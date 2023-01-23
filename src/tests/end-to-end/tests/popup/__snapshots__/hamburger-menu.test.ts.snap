@@ -1,6 +1,219 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
+exports[`Popup -> Hamburger menu should have content matching snapshot when quickAssess feature flag is false 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-ContextualMenu-container container-000"
+    id="id__000-menu"
+    role="menu"
+    tabindex="0"
+  >
+    <div
+      class="ms-FocusZone css-000 ms-ContextualMenu is-open ms-BaseButton-menuhost root-000"
+      data-focuszone-id="FocusZone000"
+    >
+      <ul
+        class="ms-ContextualMenu-list is-open list-000"
+        role="presentation"
+      >
+        <li
+          class="ms-ContextualMenu-item item-000"
+          role="presentation"
+        >
+          <button
+            aria-disabled="false"
+            aria-posinset="1"
+            aria-setsize="6"
+            class="ms-ContextualMenu-link root-000"
+            name="FastPass"
+            role="menuitem"
+            tabindex="0"
+          >
+            <div
+              class="ms-ContextualMenu-linkContent linkContent-000"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-ContextualMenu-icon icon-000"
+                data-icon-name="Rocket"
+              >
+                
+              </i>
+              <span
+                class="ms-ContextualMenu-itemText label-000"
+              >
+                FastPass
+              </span>
+            </div>
+          </button>
+        </li>
+        <li
+          class="ms-ContextualMenu-item item-000"
+          role="presentation"
+        >
+          <button
+            aria-disabled="false"
+            aria-posinset="2"
+            aria-setsize="6"
+            class="ms-ContextualMenu-link root-000"
+            name="Assessment"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <div
+              class="ms-ContextualMenu-linkContent linkContent-000"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-ContextualMenu-icon icon-000"
+                data-icon-name="testBeakerSolid"
+              >
+                
+              </i>
+              <span
+                class="ms-ContextualMenu-itemText label-000"
+              >
+                Assessment
+              </span>
+            </div>
+          </button>
+        </li>
+        <li
+          class="ms-ContextualMenu-item item-000"
+          role="presentation"
+        >
+          <button
+            aria-disabled="false"
+            aria-posinset="3"
+            aria-setsize="6"
+            class="ms-ContextualMenu-link root-000"
+            name="Ad hoc tools"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <div
+              class="ms-ContextualMenu-linkContent linkContent-000"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-ContextualMenu-icon icon-000"
+                data-icon-name="Medical"
+              >
+                
+              </i>
+              <span
+                class="ms-ContextualMenu-itemText label-000"
+              >
+                Ad hoc tools
+              </span>
+            </div>
+          </button>
+        </li>
+        <li
+          aria-hidden="true"
+          class="ms-ContextualMenu-divider divider-000"
+          role="separator"
+        />
+        <li
+          class="ms-ContextualMenu-item item-000"
+          role="presentation"
+        >
+          <button
+            aria-disabled="false"
+            aria-posinset="4"
+            aria-setsize="6"
+            class="ms-ContextualMenu-link root-000"
+            name="Keyboard shortcuts"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <div
+              class="ms-ContextualMenu-linkContent linkContent-000"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-ContextualMenu-icon icon-000"
+                data-icon-name="KeyboardClassic"
+              >
+                
+              </i>
+              <span
+                class="ms-ContextualMenu-itemText label-000"
+              >
+                Keyboard shortcuts
+              </span>
+            </div>
+          </button>
+        </li>
+        <li
+          class="ms-ContextualMenu-item item-000"
+          role="presentation"
+        >
+          <button
+            aria-disabled="false"
+            aria-posinset="5"
+            aria-setsize="6"
+            class="ms-ContextualMenu-link root-000"
+            name="Third party notices"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <div
+              class="ms-ContextualMenu-linkContent linkContent-000"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-ContextualMenu-icon icon-000"
+                data-icon-name="TextDocument"
+              >
+                
+              </i>
+              <span
+                class="ms-ContextualMenu-itemText label-000"
+              >
+                Third party notices
+              </span>
+            </div>
+          </button>
+        </li>
+        <li
+          class="ms-ContextualMenu-item item-000"
+          role="presentation"
+        >
+          <button
+            aria-disabled="false"
+            aria-posinset="6"
+            aria-setsize="6"
+            class="ms-ContextualMenu-link root-000"
+            name="Help"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <div
+              class="ms-ContextualMenu-linkContent linkContent-000"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-ContextualMenu-icon icon-000"
+                data-icon-name="Unknown"
+              >
+                
+              </i>
+              <span
+                class="ms-ContextualMenu-itemText label-000"
+              >
+                Help
+              </span>
+            </div>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popup -> Hamburger menu should have content matching snapshot when quickAssess feature flag is true 1`] = `
 <DocumentFragment>
   <div
     class="ms-ContextualMenu-container container-000"
@@ -56,6 +269,36 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
             aria-posinset="2"
             aria-setsize="7"
             class="ms-ContextualMenu-link root-000"
+            name="Quick Assess"
+            role="menuitem"
+          >
+            <div
+              class="ms-ContextualMenu-linkContent linkContent-000"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-ContextualMenu-icon icon-000"
+                data-icon-name="SiteScan"
+              >
+                
+              </i>
+              <span
+                class="ms-ContextualMenu-itemText label-000"
+              >
+                Quick Assess
+              </span>
+            </div>
+          </button>
+        </li>
+        <li
+          class="ms-ContextualMenu-item item-000"
+          role="presentation"
+        >
+          <button
+            aria-disabled="false"
+            aria-posinset="3"
+            aria-setsize="7"
+            class="ms-ContextualMenu-link root-000"
             name="Assessment"
             role="menuitem"
             tabindex="-1"
@@ -74,37 +317,6 @@ exports[`Popup -> Hamburger menu should have content matching snapshot 1`] = `
                 class="ms-ContextualMenu-itemText label-000"
               >
                 Assessment
-              </span>
-            </div>
-          </button>
-        </li>
-        <li
-          class="ms-ContextualMenu-item item-000"
-          role="presentation"
-        >
-          <button
-            aria-disabled="false"
-            aria-posinset="3"
-            aria-setsize="7"
-            class="ms-ContextualMenu-link root-000"
-            name="Quick Assess"
-            role="menuitem"
-            tabindex="-1"
-          >
-            <div
-              class="ms-ContextualMenu-linkContent linkContent-000"
-            >
-              <i
-                aria-hidden="true"
-                class="ms-ContextualMenu-icon icon-000"
-                data-icon-name="SiteScan"
-              >
-                
-              </i>
-              <span
-                class="ms-ContextualMenu-itemText label-000"
-              >
-                Quick Assess
               </span>
             </div>
           </button>

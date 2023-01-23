@@ -24,17 +24,35 @@ describe('Popup -> Launch Pad', () => {
         await browser?.close();
     });
 
-    it('content should match snapshot', async () => {
-        const element = await formatPageElementForSnapshot(
-            popupPage,
-            popupPageElementIdentifiers.launchPad,
-        );
-        expect(element).toMatchSnapshot();
-    });
-
     it.each([true, false])(
-        'should pass accessibility validation with highContrastMode=%s',
-        async highContrastMode => {
+        'content should match snapshot when quick assess feature flag is %s',
+        async quickAssessFeatureFlag => {
+            const backgroundPage = await browser.background();
+            quickAssessFeatureFlag === true
+                ? await backgroundPage.enableFeatureFlag('quickAssess')
+                : await backgroundPage.disableFeatureFlag('quickAssess');
+            const element = await formatPageElementForSnapshot(
+                popupPage,
+                popupPageElementIdentifiers.launchPad,
+            );
+            expect(element).toMatchSnapshot();
+        },
+    );
+
+    it.each`
+        highContrastMode | quickAssessFeatureFlag
+        ${true}          | ${false}
+        ${true}          | ${true}
+        ${false}         | ${true}
+        ${false}         | ${false}
+    `(
+        'should pass accessibility validation with highContrastMode=%s and quickAssessFeatureFlag=%s',
+        async ({ highContrastMode, quickAssessFeatureFlag }) => {
+            await browser.setHighContrastMode(highContrastMode);
+            const backgroundPage = await browser.background();
+            quickAssessFeatureFlag === true
+                ? await backgroundPage.enableFeatureFlag('quickAssess')
+                : await backgroundPage.disableFeatureFlag('quickAssess');
             await browser.setHighContrastMode(highContrastMode);
             await popupPage.waitForHighContrastMode(highContrastMode);
 
