@@ -103,7 +103,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             defaultValue: false,
             displayableName: 'Quick Assess',
             displayableDescription: 'Adds Quick Assess option to launch pad and details view pivot',
-            isPreviewFeature: false,
+            isPreviewFeature: true,
             forceDefault: false,
         },
     ];
