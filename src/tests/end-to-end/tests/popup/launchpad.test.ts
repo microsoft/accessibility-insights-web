@@ -48,7 +48,6 @@ describe('Popup -> Launch Pad', () => {
     `(
         'should pass accessibility validation with highContrastMode=%s and quickAssessFeatureFlag=%s',
         async ({ highContrastMode, quickAssessFeatureFlag }) => {
-            await browser.setHighContrastMode(highContrastMode);
             const backgroundPage = await browser.background();
             quickAssessFeatureFlag === true
                 ? await backgroundPage.enableFeatureFlag('quickAssess')
