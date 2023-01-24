@@ -20,10 +20,6 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
         "className": "commandBarButtonsSubmenu",
         "items": [
           {
-            "key": "export report",
-            "onRender": [Function],
-          },
-          {
             "key": "save assessment",
             "onRender": [Function],
           },

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Popup -> Launch Pad content should match snapshot 1`] = `
+exports[`Popup -> Launch Pad content should match snapshot when quick assess feature flag is false 1`] = `
 <DocumentFragment>
   <div
     class="ms-Fabric launch-panel"
@@ -199,6 +199,304 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                   >
                     <button
                       aria-describedby="launch-pad-item-description-3"
+                      class="ms-Link insights-link root-000"
+                      id="ad-hoc-tools"
+                      role="link"
+                      type="button"
+                    >
+                      Ad hoc tools
+                    </button>
+                  </div>
+                  <div
+                    class="launch-pad-item-description"
+                    id="launch-pad-item-description-000"
+                  >
+                    Get quick access to visualizations that help you identify accessibility issues.
+                  </div>
+                </div>
+              </div>
+              <hr
+                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+              />
+            </div>
+          </div>
+        </main>
+        <div
+          class="launch-pad-footer"
+          role="complementary"
+        >
+          <div>
+            Version 1.0.4 | Powered by 
+            <div
+              class="ms-TooltipHost insights-tooltip-host--{{CSS_MODULE_HASH}} root-000"
+              role="none"
+            >
+              <a
+                aria-label="Navigate to axe-core npm page"
+                class="ms-Link insights-link insights-link--{{CSS_MODULE_HASH}} root-000"
+                href="https://www.npmjs.com/package/axe-core"
+                target="_blank"
+              >
+                axe-core
+              </a>
+              <div
+                hidden=""
+                id="tooltip000"
+                style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+              >
+                Navigate to axe-core npm page
+              </div>
+            </div>
+             4.4.1
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Popup -> Launch Pad content should match snapshot when quick assess feature flag is true 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-Fabric launch-panel"
+    id="new-launch-pad"
+  >
+    <header
+      class="launch-panel-header--{{CSS_MODULE_HASH}}"
+    >
+      <h1
+        class="title--{{CSS_MODULE_HASH}}"
+      >
+        Accessibility Insights for Web
+      </h1>
+      <div
+        class="children--{{CSS_MODULE_HASH}}"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="manage settings"
+          class="ms-Button ms-Button--icon ms-Button--hasMenu gear-menu-button--{{CSS_MODULE_HASH}} root-000"
+          data-is-focusable="true"
+          type="button"
+        >
+          <span
+            class="ms-Button-flexContainer flexContainer-000"
+            data-automationid="splitbuttonprimary"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
+              data-icon-name="Gear"
+              style="font-family: FabricMDL2Icons;"
+            >
+              
+            </i>
+          </span>
+        </button>
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="help menu"
+          class="ms-Button ms-Button--icon ms-Button--hasMenu hamburger-menu-button--{{CSS_MODULE_HASH}} root-000"
+          data-is-focusable="true"
+          type="button"
+        >
+          <span
+            class="ms-Button-flexContainer flexContainer-000"
+            data-automationid="splitbuttonprimary"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-000 css-000 ms-Button-icon icon-000"
+              data-icon-name="GlobalNavButton"
+              style="font-family: FabricMDL2Icons;"
+            >
+              
+            </i>
+          </span>
+        </button>
+      </div>
+      <div
+        class="subtitle--{{CSS_MODULE_HASH}}"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://go.microsoft.com/fwlink/?linkid=2082374"
+          target="_blank"
+        >
+          Watch 3-minute video introduction
+        </a>
+         
+      </div>
+    </header>
+    <div
+      class="main-section"
+    >
+      <div
+        class="popup-grid"
+      >
+        <main>
+          <h2
+            class="launch-pad-title ms-fontWeight-semibold"
+          >
+            Launch pad
+          </h2>
+          <hr
+            class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+          />
+          <div
+            class="launch-pad-main-section"
+          >
+            <div>
+              <div
+                class="launch-pad-item-grid"
+              >
+                <div
+                  aria-hidden="true"
+                  class="popup-start-dialog-icon-circle"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="popup-start-dialog-icon root-000"
+                    data-icon-name="Rocket"
+                  >
+                    
+                  </i>
+                </div>
+                <div>
+                  <div
+                    class="launch-pad-item-title"
+                  >
+                    <button
+                      aria-describedby="launch-pad-item-description-1"
+                      class="ms-Link insights-link root-000"
+                      id="fast-pass"
+                      role="link"
+                      type="button"
+                    >
+                      FastPass
+                    </button>
+                  </div>
+                  <div
+                    class="launch-pad-item-description"
+                    id="launch-pad-item-description-000"
+                  >
+                    Run three tests to find the most common accessibility issues in less than 5 minutes.
+                  </div>
+                </div>
+              </div>
+              <hr
+                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+              />
+            </div>
+            <div>
+              <div
+                class="launch-pad-item-grid"
+              >
+                <div
+                  aria-hidden="true"
+                  class="popup-start-dialog-icon-circle"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="popup-start-dialog-icon root-000"
+                    data-icon-name="SiteScan"
+                  >
+                    
+                  </i>
+                </div>
+                <div>
+                  <div
+                    class="launch-pad-item-title"
+                  >
+                    <button
+                      aria-describedby="launch-pad-item-description-2"
+                      class="ms-Link insights-link root-000"
+                      id="quick-assess"
+                      role="link"
+                      type="button"
+                    >
+                      Quick Assess
+                    </button>
+                  </div>
+                  <div
+                    class="launch-pad-item-description"
+                    id="launch-pad-item-description-000"
+                  >
+                    Run 10 assisted checks to find more accessibility issues in 30 minutes.
+                  </div>
+                </div>
+              </div>
+              <hr
+                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+              />
+            </div>
+            <div>
+              <div
+                class="launch-pad-item-grid"
+              >
+                <div
+                  aria-hidden="true"
+                  class="popup-start-dialog-icon-circle"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="popup-start-dialog-icon root-000"
+                    data-icon-name="testBeaker"
+                  >
+                    
+                  </i>
+                </div>
+                <div>
+                  <div
+                    class="launch-pad-item-title"
+                  >
+                    <button
+                      aria-describedby="launch-pad-item-description-3"
+                      class="ms-Link insights-link root-000"
+                      id="assessment"
+                      role="link"
+                      type="button"
+                    >
+                      Assessment
+                    </button>
+                  </div>
+                  <div
+                    class="launch-pad-item-description"
+                    id="launch-pad-item-description-000"
+                  >
+                    Walk through a guided process for assessing accessibility compliance.
+                  </div>
+                </div>
+              </div>
+              <hr
+                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+              />
+            </div>
+            <div>
+              <div
+                class="launch-pad-item-grid"
+              >
+                <div
+                  aria-hidden="true"
+                  class="popup-start-dialog-icon-circle"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="popup-start-dialog-icon root-000"
+                    data-icon-name="Medical"
+                  >
+                    
+                  </i>
+                </div>
+                <div>
+                  <div
+                    class="launch-pad-item-title"
+                  >
+                    <button
+                      aria-describedby="launch-pad-item-description-4"
                       class="ms-Link insights-link root-000"
                       id="ad-hoc-tools"
                       role="link"

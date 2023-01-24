@@ -28,6 +28,7 @@ describe('HamburgerMenuButton', () => {
             deps,
             header: Mock.ofType(LaunchPanelHeader).object,
             popupWindow: Mock.ofType<Window>().object,
+            featureFlagData: {},
         };
 
         it('proper button and menu item props', () => {
@@ -40,6 +41,22 @@ describe('HamburgerMenuButton', () => {
             const testSubject = wrapped.find<IButtonProps>(IconButton).prop('onRenderMenuIcon');
 
             expect(testSubject()).toBeNull();
+        });
+
+        it('does not render quick-assess menu item if feature flag is false', () => {
+            props.featureFlagData = { quickAssess: false };
+            const wrapped = shallow(<HamburgerMenuButton {...props} />);
+            const testSubject = wrapped.find<IButtonProps>(IconButton).prop('menuProps').items;
+
+            expect(testSubject.find(item => item.key === 'quick-assess')).toBeUndefined();
+        });
+
+        it('renders quick-assess menu item if feature flag is true', () => {
+            props.featureFlagData = { quickAssess: true };
+            const wrapped = shallow(<HamburgerMenuButton {...props} />);
+            const testSubject = wrapped.find<IButtonProps>(IconButton).prop('menuProps').items;
+
+            expect(testSubject.find(item => item.key === 'quick-assess')).toBeDefined();
         });
     });
 
@@ -65,6 +82,7 @@ describe('HamburgerMenuButton', () => {
                 },
                 header: headerMock.object,
                 popupWindow: popupWindowMock.object,
+                featureFlagData: { quickAssess: true },
             };
 
             const testObject = shallow(<HamburgerMenuButton {...props} />);
@@ -102,6 +120,24 @@ describe('HamburgerMenuButton', () => {
                         null,
                         TelemetryEventSource.HamburgerMenu,
                         DetailsViewPivotType.assessment,
+                    ),
+                Times.once(),
+            );
+        });
+
+        it('handles quick-assess', () => {
+            popupActionMessageCreatorMock.verify(
+                handler => handler.openDetailsView(It.isAny(), It.isAny(), It.isAny(), It.isAny()),
+                Times.never(),
+            );
+            findMenuItemByKey('quick-assess').onClick(event);
+            popupActionMessageCreatorMock.verify(
+                handler =>
+                    handler.openDetailsView(
+                        It.isObjectWith(event),
+                        null,
+                        TelemetryEventSource.HamburgerMenu,
+                        DetailsViewPivotType.quickAssess,
                     ),
                 Times.once(),
             );
