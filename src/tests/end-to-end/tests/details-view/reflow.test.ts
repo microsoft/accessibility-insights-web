@@ -46,11 +46,8 @@ describe('Details View -> Quick Assess -> Reflow', () => {
                     reflowPage,
                     detailsViewSelectors.mainContent,
                 );
-                // this results object has a failure for label-content-name-misatch
-                // where the "show all visualizations" label does not match the content (a checkbox)
-                // this is a false positive because the checkbox is symbolic, so this criteria
-                // does not apply
-                expect(results).toMatchSnapshot();
+
+                expect(results.length).toBe(0);
             },
         );
     });
