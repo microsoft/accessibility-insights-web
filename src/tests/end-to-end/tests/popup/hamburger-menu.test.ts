@@ -70,11 +70,7 @@ describe('Popup -> Hamburger menu', () => {
             );
 
             const results = await scanForAccessibilityIssues(popupPage, `#${menuCalloutId}`);
-            expect(results).toMatchSnapshot();
-            // has a failure for aria-required-children
-            // for elements using aria-hidden=true that should be excluded
-            // this is a known issue with axe-core that has been filed here:
-            // https://github.com/dequelabs/axe-core/issues/3850
+            expect(results).toHaveLength(0);
         },
     );
 });

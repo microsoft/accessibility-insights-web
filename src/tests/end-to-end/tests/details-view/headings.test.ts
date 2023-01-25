@@ -55,13 +55,6 @@ describe('Details View -> Assessment -> Headings', () => {
                 // where the "show all visualizations" label does not match the content (a checkbox)
                 // this is a false positive because the checkbox is symbolic, so this criteria
                 // does not apply
-                //
-                // additionally, it has several failures for aria-required-children
-                // this is a known issue with axe-core that has been filed here:
-                // https://github.com/dequelabs/axe-core/issues/3850
-                // the axe-core bug causes a failure for the FluentUI v8 DetailsList component
-                // The FluentUI tracking issue can be found here:
-                // https://github.com/microsoft/fluentui/issues/26330
                 expect(results).toMatchSnapshot();
             },
         );

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
-import { AxeResults, ElementContext } from 'axe-core';
+import { AxeResults, Result, ElementContext } from 'axe-core';
 
 import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
 import { Page } from './page-controllers/page';
@@ -24,7 +24,27 @@ export async function scanForAccessibilityIssues(
         },
         { selector, rules: getNeedsReviewRulesConfig() },
     )) as AxeResults;
+    axeResults.violations = falsePositiveRemoval(axeResults.violations);
     return prettyPrintAxeViolations(axeResults);
+}
+
+// this is a method to remove violations tied to rules with known false-positives and was introduced
+// Jan 25 2023 to remove aria-required-children failures introduced by axe-core 4.6.1
+// we should keep this in until Deque introduces the fix for the issues tracked here
+// https://github.com/dequelabs/axe-core/issues/3850
+// the axe-core bug causes a failure for the FluentUI v8 DetailsList component
+// The FluentUI tracking issue can be found here:
+// https://github.com/microsoft/fluentui/issues/26330
+function falsePositiveRemoval(violations: Result[]): Result[] {
+    const newViolations = [];
+    //can be modified if other rules with false positives are identified
+    const knownFalsePositives = ['aria-required-children'];
+    violations.forEach(function (x) {
+        if (!knownFalsePositives.includes(x.id)) {
+            newViolations.push(x);
+        }
+    });
+    return newViolations;
 }
 
 async function injectAxeIfUndefined(page: Page): Promise<void> {

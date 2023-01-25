@@ -30,11 +30,7 @@ describe('Details View -> FastPass -> TabStops', () => {
             await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
             const results = await scanForAccessibilityIssues(detailsViewPage, '*');
-            expect(results).toMatchSnapshot();
-            // this test has been updated to expect an aria-required-children failure only
-            // this is a known issue with axe-core that has been filed here: https://github.com/dequelabs/axe-core/issues/3850
-            // the axe-core bug causes a failure for the FluentUI v8 DetailsList component, which we use.
-            // The FluentUI tracking issue can be found here: https://github.com/microsoft/fluentui/issues/26330
+            expect(results).toHaveLength(0);
         },
     );
 
