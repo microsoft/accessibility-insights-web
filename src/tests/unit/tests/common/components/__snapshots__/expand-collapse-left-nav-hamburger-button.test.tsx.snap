@@ -17,3 +17,12 @@ exports[`FastPassLeftNavHamburgerButton renders per snapshot 1`] = `
   setSideNavOpen={null}
 />
 `;
+
+exports[`QuickAssessLeftNavHamburgerButton renders per snapshot 1`] = `
+<LeftNavHamburgerButton
+  ariaLabel="Quick Assess - all tests and requirements list"
+  className="some-class"
+  isSideNavOpen={false}
+  setSideNavOpen={null}
+/>
+`;

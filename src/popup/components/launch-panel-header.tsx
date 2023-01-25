@@ -71,6 +71,7 @@ export class LaunchPanelHeader extends React.Component<
                     deps={this.props.deps}
                     popupWindow={this.props.popupWindow}
                     header={this}
+                    featureFlagData={featureFlags}
                 />
             </>
         );

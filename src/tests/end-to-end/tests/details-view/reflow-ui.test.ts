@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
+import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
 import { TargetPage } from 'tests/end-to-end/common/page-controllers/target-page';
 import {
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
@@ -21,6 +22,7 @@ describe('Details View ->', () => {
     let detailsViewPage: DetailsViewPage;
     const height = 400;
     const narrowModeThresholds = getNarrowModeThresholdsForWeb();
+    let backgroundPage: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({
@@ -48,9 +50,60 @@ describe('Details View ->', () => {
         const hamburgerButtonWindowWidth = narrowModeThresholds.collapseHeaderAndNavThreshold - 1;
 
         describe.each`
-            componentName           | componentSelectors               | width
-            ${'command bar button'} | ${commandBarMenuButtonSelectors} | ${commandBarWindowWidth}
-            ${'hamburger button'}   | ${hamburgerMenuButtonSelectors}  | ${hamburgerButtonWindowWidth}
+            componentName           | componentSelectors                         | width
+            ${'command bar button'} | ${commandBarMenuButtonSelectors}           | ${commandBarWindowWidth}
+            ${'hamburger button'}   | ${hamburgerMenuButtonSelectors.assessment} | ${hamburgerButtonWindowWidth}
+        `('With $componentName visible', ({ componentName, componentSelectors, width }) => {
+            beforeAll(async () => {
+                await resizeDetailsView(width, componentSelectors.collapsed);
+            });
+
+            it.each([true, false])(
+                `should pass accessibility validation with high contrast mode=%s`,
+                async highContrastMode => {
+                    await scanForA11yIssuesWithHighContrast(highContrastMode);
+                },
+            );
+
+            describe(`with ${componentName} expanded`, () => {
+                beforeAll(async () => {
+                    await setButtonExpandedState(componentSelectors, true);
+                });
+
+                afterAll(async () => {
+                    await setButtonExpandedState(componentSelectors, false);
+                });
+
+                it.each([true, false])(
+                    `should pass accessibility validation with command bar menu open and high contrast mode=%s`,
+                    async highContrastMode => {
+                        await scanForA11yIssuesWithHighContrast(highContrastMode);
+                    },
+                );
+            });
+        });
+    });
+
+    describe('Quick Assess -> Reflow', () => {
+        beforeAll(async () => {
+            backgroundPage = await browser.background();
+            await backgroundPage.enableFeatureFlag('quickAssess');
+            detailsViewPage = (await browser.newQuickAssess()).detailsViewPage;
+        });
+
+        afterAll(async () => {
+            await detailsViewPage.close();
+        });
+
+        const { commandBarMenuButtonSelectors, hamburgerMenuButtonSelectors } = navMenuSelectors;
+
+        const commandBarWindowWidth = narrowModeThresholds.collapseCommandBarThreshold - 1;
+        const hamburgerButtonWindowWidth = narrowModeThresholds.collapseHeaderAndNavThreshold - 1;
+
+        describe.each`
+            componentName           | componentSelectors                          | width
+            ${'command bar button'} | ${commandBarMenuButtonSelectors}            | ${commandBarWindowWidth}
+            ${'hamburger button'}   | ${hamburgerMenuButtonSelectors.quickAssess} | ${hamburgerButtonWindowWidth}
         `('With $componentName visible', ({ componentName, componentSelectors, width }) => {
             beforeAll(async () => {
                 await resizeDetailsView(width, componentSelectors.collapsed);

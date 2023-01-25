@@ -35,16 +35,27 @@ export class DetailsViewPage extends Page {
         await this.clickSelector('button[title="Assessment"]');
     }
 
+    public async switchToQuickAssess(): Promise<void> {
+        await this.ensureNoModals();
+
+        await this.clickSelector('*[aria-label="select activity"]');
+        await this.clickSelector('button[title="Quick Assess"]');
+    }
+
     public async closeNavTestLink(testName: string): Promise<void> {
         await this.clickSelector(detailsViewSelectors.testNavLink(testName));
         await this.waitForSelectorToDisappear(detailsViewSelectors.gettingStartedNavLink);
     }
 
-    public async navigateToTestRequirement(
+    public async navigateToAssessmentRequirement(
         testName: string,
         requirementName: string,
     ): Promise<void> {
         await this.clickSelector(detailsViewSelectors.testNavLink(testName));
+        await this.navigateToRequirement(requirementName);
+    }
+
+    public async navigateToRequirement(requirementName: string): Promise<void> {
         await this.waitForSelector(`//div[@name="${requirementName}"]`);
         await this.clickSelector(detailsViewSelectors.requirementNavLink(requirementName));
         await this.waitForSelector(`//h1[text()="${requirementName}"]`);

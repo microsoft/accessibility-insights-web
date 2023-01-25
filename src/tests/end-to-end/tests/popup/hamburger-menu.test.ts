@@ -24,22 +24,42 @@ describe('Popup -> Hamburger menu', () => {
         await browser?.close();
     });
 
-    it('should have content matching snapshot', async () => {
-        const button = await popupPage.getSelectorElement(
-            popupPageElementIdentifiers.hamburgerMenuButton,
-        );
-        const menuCalloutId = await button.evaluate(element =>
-            element.getAttribute('aria-controls'),
-        );
-
-        const hamburgerMenu = await formatPageElementForSnapshot(popupPage, `#${menuCalloutId}`);
-        expect(hamburgerMenu).toMatchSnapshot();
-    });
-
     it.each([true, false])(
-        'should pass accessibility validation with highContrastMode=%s',
-        async highContrastMode => {
+        'should have content matching snapshot when quickAssess feature flag is %s',
+        async quickAssessFeatureFlag => {
+            const backgroundPage = await browser.background();
+            quickAssessFeatureFlag === true
+                ? await backgroundPage.enableFeatureFlag('quickAssess')
+                : await backgroundPage.disableFeatureFlag('quickAssess');
+            const button = await popupPage.getSelectorElement(
+                popupPageElementIdentifiers.hamburgerMenuButton,
+            );
+            const menuCalloutId = await button.evaluate(element =>
+                element.getAttribute('aria-controls'),
+            );
+
+            const hamburgerMenu = await formatPageElementForSnapshot(
+                popupPage,
+                `#${menuCalloutId}`,
+            );
+            expect(hamburgerMenu).toMatchSnapshot();
+        },
+    );
+
+    it.each`
+        highContrastMode | quickAssessFeatureFlag
+        ${true}          | ${false}
+        ${true}          | ${true}
+        ${false}         | ${true}
+        ${false}         | ${false}
+    `(
+        'should pass accessibility validation with highContrastMode=%s and quickAssessFeatureFlag=%s',
+        async ({ highContrastMode, quickAssessFeatureFlag }) => {
             await browser.setHighContrastMode(highContrastMode);
+            const backgroundPage = await browser.background();
+            quickAssessFeatureFlag === true
+                ? await backgroundPage.enableFeatureFlag('quickAssess')
+                : await backgroundPage.disableFeatureFlag('quickAssess');
             await popupPage.waitForHighContrastMode(highContrastMode);
 
             const button = await popupPage.getSelectorElement(
