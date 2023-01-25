@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BackgroundContext } from 'tests/end-to-end/common/page-controllers/background-context';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
@@ -7,9 +8,10 @@ import { DetailsViewPage } from '../../common/page-controllers/details-view-page
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
 
-describe('Details View -> Assessment -> Headings', () => {
+describe('Details View -> Quick Assess -> Instructions', () => {
     let browser: Browser;
-    let headingsPage: DetailsViewPage;
+    let instructionsPage: DetailsViewPage;
+    let backgroundPage: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({
@@ -17,7 +19,9 @@ describe('Details View -> Assessment -> Headings', () => {
             addExtraPermissionsToManifest: 'fake-activeTab',
         });
 
-        headingsPage = (await browser.newAssessment()).detailsViewPage;
+        backgroundPage = await browser.background();
+        await backgroundPage.enableFeatureFlag('quickAssess');
+        instructionsPage = (await browser.newQuickAssess()).detailsViewPage;
     });
 
     afterAll(async () => {
@@ -26,24 +30,20 @@ describe('Details View -> Assessment -> Headings', () => {
 
     describe('Requirement page', () => {
         beforeAll(async () => {
-            await headingsPage.navigateToAssessmentRequirement('Headings', 'Heading function');
-            await headingsPage.waitForVisualHelperState('Off', {
+            await instructionsPage.navigateToRequirement('Instructions');
+            await instructionsPage.waitForVisualHelperState('Off', {
                 timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
             });
-        });
-
-        afterAll(async () => {
-            await headingsPage.closeNavTestLink('Headings');
         });
 
         it.each([true, false])(
             'should pass accessibility validation with highContrastMode=%s',
             async highContrastMode => {
                 await browser.setHighContrastMode(highContrastMode);
-                await headingsPage.waitForHighContrastMode(highContrastMode);
+                await instructionsPage.waitForHighContrastMode(highContrastMode);
 
                 const results = await scanForAccessibilityIssues(
-                    headingsPage,
+                    instructionsPage,
                     detailsViewSelectors.mainContent,
                 );
                 // this results object has a failure for label-content-name-misatch
@@ -51,30 +51,6 @@ describe('Details View -> Assessment -> Headings', () => {
                 // this is a false positive because the checkbox is symbolic, so this criteria
                 // does not apply
                 expect(results).toMatchSnapshot();
-            },
-        );
-    });
-
-    describe('Getting started page', () => {
-        beforeAll(async () => {
-            await headingsPage.navigateToGettingStarted('Headings');
-        });
-
-        afterAll(async () => {
-            await headingsPage.closeNavTestLink('Headings');
-        });
-
-        it.each([true, false])(
-            'Getting started page should pass accessibility validation with highContrastMode=%s',
-            async highContrastMode => {
-                await browser.setHighContrastMode(highContrastMode);
-                await headingsPage.waitForHighContrastMode(highContrastMode);
-
-                const results = await scanForAccessibilityIssues(
-                    headingsPage,
-                    detailsViewSelectors.mainContent,
-                );
-                expect(results).toStrictEqual([]);
             },
         );
     });

@@ -23,7 +23,7 @@ describe('Details View -> Assessment -> Landmarks', () => {
             const { detailsViewPage } = await browser.newAssessment({
                 testResourcePath: 'landmarks/no-landmarks.html',
             });
-            await detailsViewPage.navigateToTestRequirement('Landmarks', 'Primary content');
+            await detailsViewPage.navigateToAssessmentRequirement('Landmarks', 'Primary content');
 
             await detailsViewPage.waitForRequirementStatus('Primary content', '4.2', 'Passed', {
                 timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
@@ -34,7 +34,7 @@ describe('Details View -> Assessment -> Landmarks', () => {
             const { detailsViewPage } = await browser.newAssessment({
                 testResourcePath: 'landmarks/mixed-landmarks.html',
             });
-            await detailsViewPage.navigateToTestRequirement('Landmarks', 'Primary content');
+            await detailsViewPage.navigateToAssessmentRequirement('Landmarks', 'Primary content');
 
             await detailsViewPage.waitForVisualHelperState('Off', {
                 timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
