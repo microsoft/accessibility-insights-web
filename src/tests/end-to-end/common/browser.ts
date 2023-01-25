@@ -128,10 +128,9 @@ export class Browser {
     public async newAssessment(
         targetPageUrlOptions?: TargetPageUrlOptions,
     ): Promise<{ detailsViewPage: DetailsViewPage; targetPage: TargetPage }> {
-        const targetPage = await this.newTargetPage(targetPageUrlOptions);
-        await this.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
-
-        const detailsViewPage = await this.newDetailsViewPage(targetPage);
+        const { targetPage, detailsViewPage } = await this.setupDetailsViewAndTargetPage(
+            targetPageUrlOptions,
+        );
         await detailsViewPage.switchToAssessment();
 
         return { detailsViewPage, targetPage };
@@ -140,10 +139,9 @@ export class Browser {
     public async newQuickAssess(
         targetPageUrlOptions?: TargetPageUrlOptions,
     ): Promise<{ detailsViewPage: DetailsViewPage; targetPage: TargetPage }> {
-        const targetPage = await this.newTargetPage(targetPageUrlOptions);
-        await this.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
-
-        const detailsViewPage = await this.newDetailsViewPage(targetPage);
+        const { targetPage, detailsViewPage } = await this.setupDetailsViewAndTargetPage(
+            targetPageUrlOptions,
+        );
         await detailsViewPage.switchToQuickAssess();
 
         return { detailsViewPage, targetPage };
@@ -182,6 +180,20 @@ export class Browser {
     public async setHighContrastMode(highContrastMode: boolean): Promise<void> {
         const backgroundPage = await this.background();
         await backgroundPage.setHighContrastMode(highContrastMode);
+    }
+
+    private async setupDetailsViewAndTargetPage(
+        targetPageUrlOptions?: TargetPageUrlOptions,
+    ): Promise<{
+        detailsViewPage: DetailsViewPage;
+        targetPage: TargetPage;
+    }> {
+        const targetPage = await this.newTargetPage(targetPageUrlOptions);
+        await this.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
+
+        const detailsViewPage = await this.newDetailsViewPage(targetPage);
+
+        return { detailsViewPage, targetPage };
     }
 
     private async getActivePageTabId(): Promise<number> {
