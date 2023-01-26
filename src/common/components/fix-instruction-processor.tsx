@@ -46,6 +46,8 @@ export class FixInstructionProcessor {
     private readonly originalMiddleSentence = ' and the original foreground color: ';
 
     public process(fixInstruction: string, recommendColor: RecommendColor): JSX.Element {
+        fixInstruction = fixInstruction.replace(/\(see related nodes\)/g, '(see related paths)');
+
         const matches = this.getColorMatches(fixInstruction);
 
         let recommendationSentences: string[] = [];

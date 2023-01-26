@@ -8,7 +8,7 @@ import {
     UnifiedResult,
 } from '../../common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from '../../common/uid-generator';
-import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
+import { AxeNodeResult, RuleResult, ScanResults, Target } from '../../scanner/iruleresults';
 import { IssueFilingUrlStringUtils } from './../../issue-filing/common/issue-filing-url-string-utils';
 
 export type ConvertScanResultsToUnifiedResultsDelegate = (
@@ -111,7 +111,7 @@ export class ConvertScanResultsToUnifiedResults {
         ruleResultData: RuleResultData,
         getResolution: ResolutionCreator,
     ): UnifiedResult => {
-        const cssSelector = nodeResult.target.join(';');
+        const cssSelector = this.nodeToCssSelector(nodeResult);
         return {
             uid: this.uuidGenerator(),
             status: ruleResultData.status,
@@ -124,11 +124,32 @@ export class ConvertScanResultsToUnifiedResults {
             },
             descriptors: {
                 snippet: nodeResult.snippet || nodeResult.html,
+                relatedCssSelectors: this.relatedCssSelectors(nodeResult),
             },
             resolution: {
                 howToFixSummary: nodeResult.failureSummary!,
                 ...getResolution({ ruleId: ruleResultData.ruleID, nodeResult: nodeResult }),
             },
         };
+    };
+
+    private relatedCssSelectors(nodeResult: AxeNodeResult): string[] | undefined {
+        const output: string[] = [];
+        for (const checkType of ['all', 'any', 'none'] as const) {
+            const checks = nodeResult[checkType];
+            for (const check of checks) {
+                const relatedSelectors = check.relatedNodes?.map(this.nodeToCssSelector) ?? [];
+                output.push(...relatedSelectors);
+            }
+        }
+        return output.length === 0 ? undefined : output;
+    }
+
+    private nodeToCssSelector = (node: { target: Target }): string => {
+        const { target } = node;
+        if (typeof target === 'string') {
+            return target;
+        }
+        return target.join(';');
     };
 }

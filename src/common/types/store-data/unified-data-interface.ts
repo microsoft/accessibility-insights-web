@@ -93,6 +93,7 @@ export type UnifiedIdentifiers = {
 export type UnifiedDescriptors = {
     snippet?: string;
     boundingRectangle?: BoundingRectangle;
+    relatedCssSelectors?: string[];
 } & InstancePropertyBag;
 
 export type UnifiedRichResolution = {
