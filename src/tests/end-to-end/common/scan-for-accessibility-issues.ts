@@ -9,7 +9,7 @@ import { Page } from './page-controllers/page';
 import { prettyPrintAxeViolations, PrintableAxeResult } from './pretty-print-axe-violations';
 
 // we are using axe object in target page scope. so we shouldn't be importing axe object via axe-core
-declare let axe; 
+declare let axe;
 
 export async function scanForAccessibilityIssues(
     page: Page,
