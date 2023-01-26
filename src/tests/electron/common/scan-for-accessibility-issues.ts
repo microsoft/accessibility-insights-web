@@ -4,6 +4,7 @@ import * as path from 'path';
 import { Result } from 'axe-core';
 import { Page } from 'playwright';
 import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
+import { falsePositiveRemoval } from 'tests/common/false-positive-violations';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 
 import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
@@ -44,6 +45,7 @@ async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
         },
         { selector, axeRunOptions },
     );
+    axeResults.violations = falsePositiveRemoval(axeResults.violations);
     return axeResults.violations;
 }
 
