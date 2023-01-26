@@ -39,6 +39,7 @@ export async function scanForAccessibilityIssues(
 // The FluentUI tracking issue can be found here:
 // https://github.com/microsoft/fluentui/issues/26330
 function falsePositiveRemoval(violations: Result[]): Result[] {
+    // Re-evaluate if the false positive is still present in future axe-core versions
     if (axeInfo.version !== '4.6.3') {
         console.log('Axe Core version has changed. Please check if this is still needed');
         return violations;
