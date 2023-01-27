@@ -44,6 +44,7 @@ exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigura
 
 exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns Complete button when it is last requirement in quickAssessRequirementKeys 1`] = `
 <CustomizedPrimaryButton
+  data-automation-id="complete-button"
   onClick={[Function]}
   text="Complete"
 />

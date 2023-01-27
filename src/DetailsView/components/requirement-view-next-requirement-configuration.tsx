@@ -37,6 +37,8 @@ export type GetNextRequirementButtonConfiguration = (
     props: GetNextRequirementConfigurationProps,
 ) => JSX.Element;
 
+export const completeButtonAutomationId = 'complete-button';
+
 export const getNextRequirementConfigurationForAssessment = (
     props: GetNextRequirementConfigurationProps,
 ) => {
@@ -75,6 +77,7 @@ export const getNextRequirementConfigurationForQuickAssess = (
                 onClick={
                     props.deps.dataTransferViewController.showQuickAssessToAssessmentConfirmDialog
                 }
+                data-automation-id={completeButtonAutomationId}
             ></PrimaryButton>
         );
     }

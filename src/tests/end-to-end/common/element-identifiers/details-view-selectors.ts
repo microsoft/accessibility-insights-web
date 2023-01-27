@@ -8,8 +8,10 @@ import { instanceTableTextContentAutomationId } from 'DetailsView/components/ass
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { singleExportToHtmlButtonDataAutomationId } from 'DetailsView/components/export-dialog';
-import { reportExportDropdownAutomationId } from 'DetailsView/components/export-dropdown';
-import { reportExportDropdownMenuAutomationId } from 'DetailsView/components/export-dropdown';
+import {
+    reportExportDropdownAutomationId,
+    reportExportDropdownMenuAutomationId,
+} from 'DetailsView/components/export-dropdown';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { inlineStartOverButtonDataAutomationId } from 'DetailsView/components/inline-start-over-button';
 import { invalidLoadAssessmentDialogOkButtonAutomationId } from 'DetailsView/components/invalid-load-assessment-dialog';
@@ -17,8 +19,11 @@ import { loadAssessmentButtonAutomationId } from 'DetailsView/components/load-as
 import { loadAssessmentDialogLoadButtonAutomationId } from 'DetailsView/components/load-assessment-dialog';
 import { overviewContainerAutomationId } from 'DetailsView/components/overview-content/overview-content-container';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
+import { continueToAssessmentButtonAutomationId } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { reportExportButtonAutomationId } from 'DetailsView/components/report-export-button';
+import { completeButtonAutomationId } from 'DetailsView/components/requirement-view-next-requirement-configuration';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
+import { switcherOptionAutomationId } from 'DetailsView/components/switcher';
 import { tabStopsFailedInstanceSectionAutomationId } from 'DetailsView/components/tab-stops-failed-instance-section';
 import {
     addFailedInstanceTextAreaAutomationId,
@@ -28,6 +33,7 @@ import {
     addTabStopsFailureInstanceAutomationId,
     tabStopsPassFailChoiceGroupAutomationId,
 } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
+import { transferToAssessmentButtonAutomationId } from 'DetailsView/components/transfer-to-assessment-button';
 import { resultsGroupAutomationId } from 'DetailsView/tab-stops-requirements-with-instances';
 import { reportExportAsHtmlAutomationId } from 'report-export/services/html-report-export-service';
 import { reportExportAsJsonAutomationId } from 'report-export/services/json-report-export-service';
@@ -61,6 +67,8 @@ export const detailsViewSelectors = {
     exportReportButton: getAutomationIdSelector(reportExportButtonAutomationId),
     singleExportToHtmlButton: getAutomationIdSelector(singleExportToHtmlButtonDataAutomationId),
     inlineStartOverButton: getAutomationIdSelector(inlineStartOverButtonDataAutomationId),
+    selectedSwitcherOption: (option: string) =>
+        `//span[@data-automation-id="${switcherOptionAutomationId}"][text()="${option}"]`,
 };
 
 export const navMenuSelectors = {
@@ -159,4 +167,12 @@ export const settingsPanelSelectors = {
 
 export const fastPassReportSelectors = {
     reportHeaderSection: getAutomationIdSelector(reportHeaderSectionDataAutomationId),
+};
+
+export const quickAssessSelectors = {
+    transferToAssessmentButton: getAutomationIdSelector(transferToAssessmentButtonAutomationId),
+    continueToAssessmentDialogButton: getAutomationIdSelector(
+        continueToAssessmentButtonAutomationId,
+    ),
+    completeButton: getAutomationIdSelector(completeButtonAutomationId),
 };
