@@ -14,11 +14,14 @@ export interface TransferToAssessmentButtonProps {
     deps: TransferToAssessmentButtonDeps;
 }
 
+export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-button';
+
 export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProps>(
     'TransferToAssessmentButton',
     props => {
         return (
             <InsightsCommandButton
+                data-automation-id={transferToAssessmentButtonAutomationId}
                 iconProps={{ iconName: 'fabricMoveToFolder' }}
                 onClick={
                     props.deps.dataTransferViewController.showQuickAssessToAssessmentConfirmDialog

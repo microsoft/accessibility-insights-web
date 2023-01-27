@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dropdown, IDropdownOption } from '@fluentui/react';
-import { Icon } from '@fluentui/react';
-import { ResponsiveMode } from '@fluentui/react';
+import { Dropdown, Icon, IDropdownOption, ResponsiveMode } from '@fluentui/react';
 import { FeatureFlags } from 'common/feature-flags';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -25,6 +23,7 @@ export interface SwitcherState {
     selectedKey: DetailsViewPivotType;
 }
 
+export const switcherOptionAutomationId = 'switcher-option';
 export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
     constructor(props: SwitcherProps) {
         super(props);
@@ -41,7 +40,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
         return (
             <span className={styles.switcherDropdownOption}>
                 {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
-                <span>{option.text}</span>
+                <span data-automation-id={switcherOptionAutomationId}>{option.text}</span>
             </span>
         );
     };

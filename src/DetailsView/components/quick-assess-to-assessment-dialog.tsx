@@ -19,6 +19,8 @@ export interface QuickAssessToAssessmentDialogProps {
     isShown: boolean;
 }
 
+export const continueToAssessmentButtonAutomationId = 'continue-to-assessment-button';
+
 export const QuickAssessToAssessmentDialog = NamedFC<QuickAssessToAssessmentDialogProps>(
     'QuickAssessToAssessmentConfirmDialog',
     props => {
@@ -57,6 +59,7 @@ export const QuickAssessToAssessmentDialog = NamedFC<QuickAssessToAssessmentDial
                             detailsViewActionMessageCreator.changeRightContentPanel('Overview');
                             await dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog();
                         }}
+                        data-automation-id={continueToAssessmentButtonAutomationId}
                         text={'Continue to assessment'}
                         autoFocus={true}
                     />

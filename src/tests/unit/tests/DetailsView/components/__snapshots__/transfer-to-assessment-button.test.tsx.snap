@@ -12,6 +12,7 @@ exports[`TransferToAssessmentButton getTransferToAssessmentButton 1`] = `
 
 exports[`TransferToAssessmentButton render 1`] = `
 <InsightsCommandButton
+  data-automation-id="transfer-to-assessment-button"
   iconProps={
     {
       "iconName": "fabricMoveToFolder",

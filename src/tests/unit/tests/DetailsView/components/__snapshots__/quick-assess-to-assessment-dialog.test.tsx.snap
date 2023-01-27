@@ -24,6 +24,7 @@ exports[`QuickAssessToAssessmentDialog dialog is hidden when isShown is false 1`
     />
     <CustomizedPrimaryButton
       autoFocus={true}
+      data-automation-id="continue-to-assessment-button"
       onClick={[Function]}
       text="Continue to assessment"
     />
@@ -55,6 +56,7 @@ exports[`QuickAssessToAssessmentDialog dialog is not hidden when isShown is true
     />
     <CustomizedPrimaryButton
       autoFocus={true}
+      data-automation-id="continue-to-assessment-button"
       onClick={[Function]}
       text="Continue to assessment"
     />
