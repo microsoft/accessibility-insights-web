@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { RelatedSelectorExtractor } from 'injected/adapters/extract-related-selectors';
 import { ResolutionCreator } from 'injected/adapters/resolution-creator';
 import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
@@ -12,6 +13,7 @@ describe('ScanResults to Unified Results Test', () => {
     let generateGuidMock: IMock<() => string>;
     let fixResolutionCreatorMock: IMock<ResolutionCreator>;
     let checkResolutionCreatorMock: IMock<ResolutionCreator>;
+    let extractRelatedSelectorsStub: RelatedSelectorExtractor;
 
     beforeEach(() => {
         const guidStub = 'gguid-mock-stub';
@@ -22,6 +24,7 @@ describe('ScanResults to Unified Results Test', () => {
             .verifiable(Times.atLeastOnce());
         fixResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
         checkResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
+        extractRelatedSelectorsStub = node => [`extractRelatedSelectors output for ${node.target}`];
     });
 
     const nullIdentifiers = [null, undefined, {}];
@@ -110,6 +113,7 @@ describe('ScanResults to Unified Results Test', () => {
             generateGuidMock.object,
             fixResolutionCreatorMock.object,
             checkResolutionCreatorMock.object,
+            extractRelatedSelectorsStub,
         );
     }
 

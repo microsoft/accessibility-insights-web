@@ -73,7 +73,7 @@ export interface FormattedCheckResult {
 }
 
 export interface AxeRelatedNode {
-    target: string[];
+    target: (string | string[])[];
     html: string;
 }
 

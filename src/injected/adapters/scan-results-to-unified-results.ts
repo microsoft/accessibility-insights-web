@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TargetHelper } from 'common/target-helper';
+import { RelatedSelectorExtractor } from 'injected/adapters/extract-related-selectors';
 import { ResolutionCreator } from 'injected/adapters/resolution-creator';
 import { flatMap } from 'lodash';
 
@@ -22,9 +24,10 @@ interface RuleResultData {
 
 export class ConvertScanResultsToUnifiedResults {
     constructor(
-        private uuidGenerator: UUIDGenerator,
-        private getFixResolution: ResolutionCreator,
-        private getCheckResolution: ResolutionCreator,
+        private readonly uuidGenerator: UUIDGenerator,
+        private readonly getFixResolution: ResolutionCreator,
+        private readonly getCheckResolution: ResolutionCreator,
+        private readonly extractRelatedSelectors: RelatedSelectorExtractor,
     ) {}
 
     public automatedChecksConversion: ConvertScanResultsToUnifiedResultsDelegate = (
@@ -111,7 +114,7 @@ export class ConvertScanResultsToUnifiedResults {
         ruleResultData: RuleResultData,
         getResolution: ResolutionCreator,
     ): UnifiedResult => {
-        const cssSelector = this.nodeToCssSelector(nodeResult);
+        const cssSelector = TargetHelper.getSelectorFromTarget(nodeResult.target);
         return {
             uid: this.uuidGenerator(),
             status: ruleResultData.status,
@@ -124,32 +127,12 @@ export class ConvertScanResultsToUnifiedResults {
             },
             descriptors: {
                 snippet: nodeResult.snippet || nodeResult.html,
-                relatedCssSelectors: this.relatedCssSelectors(nodeResult),
+                relatedCssSelectors: this.extractRelatedSelectors(nodeResult),
             },
             resolution: {
                 howToFixSummary: nodeResult.failureSummary!,
                 ...getResolution({ ruleId: ruleResultData.ruleID, nodeResult: nodeResult }),
             },
         };
-    };
-
-    private relatedCssSelectors(nodeResult: AxeNodeResult): string[] | undefined {
-        const output: string[] = [];
-        for (const checkType of ['all', 'any', 'none'] as const) {
-            const checks = nodeResult[checkType];
-            for (const check of checks) {
-                const relatedSelectors = check.relatedNodes?.map(this.nodeToCssSelector) ?? [];
-                output.push(...relatedSelectors);
-            }
-        }
-        return output.length === 0 ? undefined : output;
-    }
-
-    private nodeToCssSelector = (node: { target: Target }): string => {
-        const { target } = node;
-        if (typeof target === 'string') {
-            return target;
-        }
-        return target.join(';');
     };
 }
