@@ -1119,6 +1119,7 @@ describe('AssessmentStore', () => {
         )
             .withSelectedTestType(visualizationType)
             .withSelectedTestSubview(requirement)
+            .withExpandedTest(visualizationType)
             .build();
 
         const payload: SelectTestSubviewPayload = {
