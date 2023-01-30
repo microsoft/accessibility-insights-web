@@ -46,6 +46,10 @@ export class FixInstructionProcessor {
     private readonly originalMiddleSentence = ' and the original foreground color: ';
 
     public process(fixInstruction: string, recommendColor: RecommendColor): JSX.Element {
+        // We perform this replacement because what axe-core exposes as a "relatedNodes" property
+        // is presented in our cards views as a "Related paths" row. This only comes up in practice
+        // with the aria-required-children rule and is likely to be obsoleted with the resolution of
+        // https://github.com/dequelabs/axe-core/issues/3842
         fixInstruction = fixInstruction.replace(/\(see related nodes\)/g, '(see related paths)');
 
         const matches = this.getColorMatches(fixInstruction);
