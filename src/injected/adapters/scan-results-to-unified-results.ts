@@ -10,7 +10,7 @@ import {
     UnifiedResult,
 } from '../../common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from '../../common/uid-generator';
-import { AxeNodeResult, RuleResult, ScanResults, Target } from '../../scanner/iruleresults';
+import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { IssueFilingUrlStringUtils } from './../../issue-filing/common/issue-filing-url-string-utils';
 
 export type ConvertScanResultsToUnifiedResultsDelegate = (
