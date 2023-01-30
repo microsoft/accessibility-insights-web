@@ -8,16 +8,19 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe(RelatedPathsCardRow.displayName, () => {
-    it.each([null, undefined, []])('renders as null with related paths: %p', relatedPaths => {
-        const props: RelatedPathsCardRowProps = {
-            deps: null,
-            index: 123,
-            propertyData: relatedPaths,
-        };
-        const testSubject = shallow(<RelatedPathsCardRow {...props} />);
+    it.each([[], null, undefined])(
+        'renders as null with related paths: %p',
+        (relatedPaths?: any) => {
+            const props: RelatedPathsCardRowProps = {
+                deps: null,
+                index: 123,
+                propertyData: relatedPaths,
+            };
+            const testSubject = shallow(<RelatedPathsCardRow {...props} />);
 
-        expect(testSubject.getElement()).toBeNull();
-    });
+            expect(testSubject.getElement()).toBeNull();
+        },
+    );
 
     it('renders matching snapshot with related paths present', () => {
         const props: RelatedPathsCardRowProps = {
