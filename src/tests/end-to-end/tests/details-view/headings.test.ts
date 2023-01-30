@@ -42,11 +42,16 @@ describe('Details View -> Assessment -> Headings', () => {
                 await browser.setHighContrastMode(highContrastMode);
                 await headingsPage.waitForHighContrastMode(highContrastMode);
 
+                // Workaround for axe-core #3883 to ensure the label-content-name-mismatch false
+                // positive below is detected consistently
+                await headingsPage.scrollToInstanceTable();
+
                 const results = await scanForAccessibilityIssues(
                     headingsPage,
                     detailsViewSelectors.mainContent,
                 );
-                // this results object has a failure for label-content-name-misatch
+
+                // this results object has a failure for label-content-name-mismatch
                 // where the "show all visualizations" label does not match the content (a checkbox)
                 // this is a false positive because the checkbox is symbolic, so this criteria
                 // does not apply

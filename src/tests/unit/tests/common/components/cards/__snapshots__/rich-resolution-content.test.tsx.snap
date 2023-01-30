@@ -357,35 +357,6 @@ exports[`RichResolutionContent renders static content with id=web/label-content-
 </span>
 `;
 
-exports[`RichResolutionContent renders static content with id=web/link-in-text-block 1`] = `
-<ul
-  className="multiLineTextNoBullet"
->
-  <li>
-    Manually verify that the link text EITHER has a contrast ratio of at least 3:1 compared to surrounding text OR has a distinct visual style (such as underlined, bolded, or italicized).
-  </li>
-  <li>
-    To measure contrast, use
-     
-    <stubLinkComponent
-      href="https://go.microsoft.com/fwlink/?linkid=2075365"
-    >
-      Accessibility Insights for Windows
-    </stubLinkComponent>
-     
-    (or the
-     
-    <stubLinkComponent
-      href="https://developer.paciellogroup.com/resources/contrastanalyser/"
-    >
-      Colour Contrast Analyser
-    </stubLinkComponent>
-     
-    if you're testing on a Mac).
-  </li>
-</ul>
-`;
-
 exports[`RichResolutionContent renders static content with id=web/p-as-heading 1`] = `
 <span>
   Inspect the 

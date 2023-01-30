@@ -12,9 +12,7 @@ export const filterNeedsReviewResults = (results: ScanResults): ScanResults => {
             v.id !== 'color-contrast' &&
             v.id !== 'th-has-data-cells',
     );
-    results.incomplete = results.incomplete.filter(
-        i => i.id !== 'link-in-text-block' && i.id !== 'label-content-name-mismatch',
-    );
+    results.incomplete = results.incomplete.filter(i => i.id !== 'label-content-name-mismatch');
 
     return results;
 };

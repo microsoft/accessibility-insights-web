@@ -230,6 +230,13 @@ export class DetailsViewPage extends Page {
         await detailsViewPage.clickSelector(tabStopsSelectors.instanceRemoveButton);
         await detailsViewPage.waitForSelectorToDisappear(tabStopsSelectors.failedInstancesSection);
     }
+
+    public async scrollToInstanceTable(): Promise<void> {
+        await this.underlyingPage
+            .locator(detailsViewSelectors.instanceTableTextContent)
+            .first()
+            .scrollIntoViewIfNeeded();
+    }
 }
 
 export function detailsViewRelativeUrl(targetTabId: number): string {

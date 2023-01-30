@@ -183,7 +183,7 @@
         "ajv": "^8.12.0",
         "android-device-list": "^1.2.9",
         "appium-adb": "^9.10.23",
-        "axe-core": "4.4.1",
+        "axe-core": "4.6.3",
         "classnames": "^2.3.2",
         "electron": "22.0.0",
         "electron-log": "^4.4.8",

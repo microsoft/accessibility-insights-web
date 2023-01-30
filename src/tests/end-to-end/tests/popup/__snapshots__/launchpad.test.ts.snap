@@ -247,7 +247,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                 Navigate to axe-core npm page
               </div>
             </div>
-             4.4.1
+             4.6.3
           </div>
         </div>
       </div>
@@ -545,7 +545,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                 Navigate to axe-core npm page
               </div>
             </div>
-             4.4.1
+             4.6.3
           </div>
         </div>
       </div>
