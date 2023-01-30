@@ -5,6 +5,7 @@ import { CardSelectionViewData } from "common/get-card-selection-view-data";
 import { CardResult, CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from "common/types/store-data/card-view-model";
 import { GuidanceLink } from "common/types/store-data/guidance-links";
 import { UUIDGenerator } from "common/uid-generator";
+import { RelatedSelectorNormalizer } from "injected/adapters/extract-related-selectors";
 import { ResolutionCreator } from "injected/adapters/resolution-creator";
 import { IssueFilingUrlStringUtils } from "issue-filing/common/issue-filing-url-string-utils";
 import { isNil } from "lodash";
@@ -18,6 +19,7 @@ export class CombinedResultsToCardsModelConverter {
         private readonly uuidGenerator: UUIDGenerator,
         private readonly helpUrlGetter: HelpUrlGetter,
         private readonly getFixResolution: ResolutionCreator,
+        private readonly normalizeRelatedSelectors: RelatedSelectorNormalizer,
     ) {}
 
     public convertResults = (
@@ -74,6 +76,7 @@ export class CombinedResultsToCardsModelConverter {
     private getFailureCardResult = (failureData: FailureData): CardResult => {
         const rule = failureData.rule;
         const cssSelector = failureData.elementSelector;
+        const relatedCssSelectors = this.normalizeRelatedSelectors(cssSelector, failureData.relatedSelectors);
 
         const urls: any = {};
         if (failureData.urls) {
@@ -100,6 +103,7 @@ export class CombinedResultsToCardsModelConverter {
             },
             descriptors: {
                 snippet: failureData.snippet,
+                relatedCssSelectors,
             },
             resolution: {
                 howToFixSummary: failureData.fix.failureSummary,

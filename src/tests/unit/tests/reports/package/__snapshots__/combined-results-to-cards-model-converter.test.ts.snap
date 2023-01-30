@@ -13,6 +13,9 @@ exports[`CombinedResultsToCardsModelConverter with a mixture of url specificatio
         "nodes": [
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-1-selector-1, undefined",
+              ],
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
@@ -89,6 +92,9 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
         "nodes": [
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-1-selector-1, undefined",
+              ],
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
@@ -116,6 +122,9 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
           },
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-1-selector-2, undefined",
+              ],
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",
@@ -160,6 +169,9 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
         "nodes": [
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-2-selector-1, undefined",
+              ],
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
@@ -187,6 +199,9 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
           },
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-2-selector-2, undefined",
+              ],
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",
@@ -263,6 +278,9 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
         "nodes": [
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-1-selector-1, undefined",
+              ],
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
@@ -290,6 +308,9 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
           },
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-1-selector-2, undefined",
+              ],
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",
@@ -334,6 +355,9 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
         "nodes": [
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-2-selector-1, undefined",
+              ],
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
@@ -361,6 +385,9 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
           },
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-2-selector-2, undefined",
+              ],
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",
@@ -484,6 +511,9 @@ exports[`CombinedResultsToCardsModelConverter without passed or inapplicable rul
         "nodes": [
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-1-selector-1, undefined",
+              ],
               "snippet": "<div>snippet 1</div>",
             },
             "highlightStatus": "unavailable",
@@ -511,6 +541,9 @@ exports[`CombinedResultsToCardsModelConverter without passed or inapplicable rul
           },
           {
             "descriptors": {
+              "relatedCssSelectors": [
+                "normalizeRelatedSelectors output for .failed-rule-1-selector-2, undefined",
+              ],
               "snippet": "<div>snippet 2</div>",
             },
             "highlightStatus": "unavailable",

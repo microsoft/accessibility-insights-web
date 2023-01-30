@@ -86,7 +86,8 @@ declare namespace AccessibilityInsightsReport {
         elementSelector: string,
         snippet: string,
         fix: HowToFixData,
-        rule: AxeRuleData
+        rule: AxeRuleData,
+        relatedSelectors?: string[],
     };
 
     export interface FailuresGroup {

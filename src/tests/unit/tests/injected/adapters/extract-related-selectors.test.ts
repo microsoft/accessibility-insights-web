@@ -1,8 +1,54 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
+import {
+    extractRelatedSelectors,
+    normalizeRelatedSelectors,
+} from 'injected/adapters/extract-related-selectors';
 import { AxeNodeResult, FormattedCheckResult, Target } from 'scanner/iruleresults';
+
+describe(normalizeRelatedSelectors, () => {
+    it('returns undefined if there are no relatedNodes', () => {
+        const output = normalizeRelatedSelectors('#node', []);
+        expect(output).toBeUndefined();
+    });
+
+    it('returns undefined if the only relatedNodes are the node itself', () => {
+        const output = normalizeRelatedSelectors('#node', ['#node', '#node']);
+        expect(output).toBeUndefined();
+    });
+
+    it('no-ops for simple targets per relatedNode', () => {
+        const output = normalizeRelatedSelectors('#node', ['#related-1', '.related-2']);
+        expect(output).toStrictEqual(['#related-1', '.related-2']);
+    });
+
+    it('omits duplicates', () => {
+        const output = normalizeRelatedSelectors('#node', [
+            '#related-1',
+            '#related-2',
+            '#related-2',
+            '#related-3',
+            '#related-3',
+            '#related-1',
+        ]);
+        expect(output).toStrictEqual(['#related-1', '#related-2', '#related-3']);
+    });
+
+    it.each([[[1, 2, 3]], [[3, 2, 1]], [[1, 3, 2]]])(
+        'maintains original order',
+        (order: number[]) => {
+            const relatedSelectors = order.map(n => `#related-${n}`);
+            const output = normalizeRelatedSelectors('#node', relatedSelectors);
+            expect(output).toStrictEqual(relatedSelectors);
+        },
+    );
+
+    it('omits the node itself', () => {
+        const output = normalizeRelatedSelectors('#node', ['#related-1', '#node', '#related-2']);
+        expect(output).toStrictEqual(['#related-1', '#related-2']);
+    });
+});
 
 describe(extractRelatedSelectors, () => {
     function checkResult(relatedTargets?: Target[]): FormattedCheckResult {

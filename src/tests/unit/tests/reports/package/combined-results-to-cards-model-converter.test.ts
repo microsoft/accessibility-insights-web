@@ -24,6 +24,9 @@ describe(CombinedResultsToCardsModelConverter, () => {
         }
     } as HelpUrlGetter;
     let resolutionCreatorMock: IMock<ResolutionCreator>;
+    const normalizeRelatedSelectorsStub = (selector: string, relatedSelectors?: string[]) => {
+        return [`normalizeRelatedSelectors output for ${selector}, ${relatedSelectors}`];
+    }
 
     let testSubject: CombinedResultsToCardsModelConverter;
 
@@ -42,6 +45,7 @@ describe(CombinedResultsToCardsModelConverter, () => {
             uuidGeneratorMock.object,
             helpUrlGetterStub,
             resolutionCreatorMock.object,
+            normalizeRelatedSelectorsStub,
         );
     })
 
