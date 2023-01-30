@@ -12,7 +12,7 @@ export interface RelatedPathsCardRowProps extends CardRowProps {
 }
 
 export const RelatedPathsCardRow = NamedFC<RelatedPathsCardRowProps>(
-    'RichResolutionCardRow',
+    'RelatedPathsCardRow',
     ({ index, propertyData }) => {
         if (isEmpty(propertyData)) {
             return null;
