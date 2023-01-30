@@ -24,8 +24,7 @@ export const assessmentLinkDataSource: HyperlinkDefinition[] = [
 
 export const quickAssessLinkDataSource: HyperlinkDefinition[] = [
     {
-        // TODO update to fwlink
-        href: 'TESTLINK',
+        href: 'https://go.microsoft.com/fwlink/?linkid=2223436',
         text: 'Getting started',
     },
     {
