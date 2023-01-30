@@ -60,19 +60,19 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
       linkDataSource={
         [
           {
-            "href": "https://go.microsoft.com/fwlink/?linkid=2082219",
+            "href": "Getting-started-link",
             "text": "Getting started",
           },
           {
-            "href": "https://go.microsoft.com/fwlink/?linkid=2082220",
+            "href": "How-to-complete-a-test-link",
             "text": "How to complete a test",
           },
           {
-            "href": "https://go.microsoft.com/fwlink/?linkid=2077941",
+            "href": "Ask-a-question-link",
             "text": "Ask a question",
           },
           {
-            "href": "https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/",
+            "href": "New-WCAG-2.1-success-criteria-link",
             "text": "New WCAG 2.1 success criteria",
           },
         ]

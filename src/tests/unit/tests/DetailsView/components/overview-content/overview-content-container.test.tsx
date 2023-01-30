@@ -82,6 +82,25 @@ describe('OverviewContainer', () => {
 
     const overviewHeadingIntroTextStub = 'Test intro overview text:';
 
+    const linkDataSourceStub = [
+        {
+            href: 'Getting-started-link',
+            text: 'Getting started',
+        },
+        {
+            href: 'How-to-complete-a-test-link',
+            text: 'How to complete a test',
+        },
+        {
+            href: 'Ask-a-question-link',
+            text: 'Ask a question',
+        },
+        {
+            href: 'New-WCAG-2.1-success-criteria-link',
+            text: 'New WCAG 2.1 success criteria',
+        },
+    ];
+
     const component = (
         <OverviewContainer
             deps={deps}
@@ -89,6 +108,7 @@ describe('OverviewContainer', () => {
             featureFlagStoreData={featureFlagDataStub}
             tabStoreData={tabStoreDataStub}
             overviewHeadingIntroText={overviewHeadingIntroTextStub}
+            linkDataSource={linkDataSourceStub}
         />
     );
     const wrapper = shallow(component);

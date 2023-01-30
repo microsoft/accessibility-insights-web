@@ -8,6 +8,11 @@ import {
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { getNullComponent } from 'common/components/null-component';
 import {
+    assessmentLinkDataSource,
+    quickAssessLinkDataSource,
+} from 'common/constants/link-data-sources';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import {
     AssessmentFunctionalitySwitcher,
     SharedAssessmentObjects,
 } from 'DetailsView/assessment-functionality-switcher';
@@ -115,6 +120,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
     getRequirementViewComponentConfiguration: GetRequirementViewComponentConfiguration;
     overviewHeadingIntroText: string;
+    linkDataSource: HyperlinkDefinition[];
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<
@@ -148,6 +154,7 @@ const detailsViewSwitcherNavs: {
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForAssessment,
         overviewHeadingIntroText: overviewHeadingIntroTextForAssessment,
+        linkDataSource: assessmentLinkDataSource,
     },
     [DetailsViewPivotType.quickAssess]: {
         CommandBar: QuickAssessCommandBar,
@@ -167,6 +174,7 @@ const detailsViewSwitcherNavs: {
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForQuickAssess,
         overviewHeadingIntroText: overviewHeadingIntroTextForQuickAssess,
+        linkDataSource: quickAssessLinkDataSource,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -186,6 +194,7 @@ const detailsViewSwitcherNavs: {
         overviewHeadingIntroText: null,
         // Getting assessmentStoreData is default behavior
         getSelectedAssessmentStoreData: getAssessmentStoreData,
+        linkDataSource: null,
     },
 };
 

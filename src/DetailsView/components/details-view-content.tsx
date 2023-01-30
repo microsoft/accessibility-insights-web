@@ -157,6 +157,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
 
         const overviewHeadingIntroText =
             selectedDetailsViewSwitcherNavConfiguration.overviewHeadingIntroText;
+        const linkDataSource = selectedDetailsViewSwitcherNavConfiguration.linkDataSource;
 
         return (
             <DetailsViewBody
@@ -191,6 +192,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 narrowModeStatus={props.narrowModeStatus}
                 tabStopRequirementData={tabStopRequirementData}
                 overviewHeadingIntroText={overviewHeadingIntroText}
+                linkDataSource={linkDataSource}
             />
         );
     };

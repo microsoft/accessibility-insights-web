@@ -18,24 +18,6 @@ import { AssessmentReportSummary } from 'reports/components/assessment-report-su
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import styles from './overview-content-container.scss';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
-const linkDataSource: HyperlinkDefinition[] = [
-    {
-        href: 'https://go.microsoft.com/fwlink/?linkid=2082219',
-        text: 'Getting started',
-    },
-    {
-        href: 'https://go.microsoft.com/fwlink/?linkid=2082220',
-        text: 'How to complete a test',
-    },
-    {
-        href: 'https://go.microsoft.com/fwlink/?linkid=2077941',
-        text: 'Ask a question',
-    },
-    {
-        href: 'https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/',
-        text: 'New WCAG 2.1 success criteria',
-    },
-];
 
 export type OverviewContainerDeps = {
     getProvider: () => AssessmentsProvider;
@@ -55,6 +37,7 @@ export interface OverviewContainerProps {
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     overviewHeadingIntroText: string;
+    linkDataSource: HyperlinkDefinition[];
 }
 
 export const overviewContainerAutomationId = 'overviewContainerAutomationId';
@@ -66,6 +49,7 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         tabStoreData,
         featureFlagStoreData,
         overviewHeadingIntroText,
+        linkDataSource,
     } = props;
     const {
         getProvider,
