@@ -15,16 +15,21 @@ const axeInfo = AxeInfo.Default;
 export function falsePositiveRemoval(violations: Result[]): Result[] {
     // Re-evaluate if the false positive is still present in future axe-core versions
     if (axeInfo.version !== '4.6.3') {
-        console.log('Axe Core version has changed. Please check if this is still needed');
-        return violations;
+        throw new Error('Axe Core version has changed. Please check if this is still needed');
     }
-    const newViolations = [] as Result[];
-    //can be modified if other rules with false positives are identified
-    const knownFalsePositives = ['aria-required-children'];
-    violations.forEach(function (x) {
-        if (!knownFalsePositives.includes(x.id)) {
-            newViolations.push(x);
+    let newViolations = violations.map(function (violation) {
+        if (violation.id === 'aria-required-children') {
+            const newNodes = violation.nodes.filter(
+                node =>
+                    !(
+                        node.html.includes('ms-DetailsHeader') ||
+                        node.html.includes('ms-DetailsRow')
+                    ),
+            );
+            violation.nodes = newNodes;
         }
+        return violation;
     });
+    newViolations = newViolations.filter(violation => violation.nodes.length > 0);
     return newViolations;
 }
