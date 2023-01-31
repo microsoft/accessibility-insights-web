@@ -14,7 +14,7 @@ exports[`CombinedResultsToCardsModelConverter with a mixture of url specificatio
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-1-selector-1, undefined",
+                "extractRelatedSelectors output for .failed-rule-1-selector-1 <div>snippet 1</div>",
               ],
               "snippet": "<div>snippet 1</div>",
             },
@@ -93,7 +93,7 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-1-selector-1, undefined",
+                "extractRelatedSelectors output for .failed-rule-1-selector-1 <div>snippet 1</div>",
               ],
               "snippet": "<div>snippet 1</div>",
             },
@@ -123,7 +123,7 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-1-selector-2, undefined",
+                "extractRelatedSelectors output for .failed-rule-1-selector-2 <div>snippet 2</div>",
               ],
               "snippet": "<div>snippet 2</div>",
             },
@@ -170,7 +170,7 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-2-selector-1, undefined",
+                "extractRelatedSelectors output for .failed-rule-2-selector-1 <div>snippet 1</div>",
               ],
               "snippet": "<div>snippet 1</div>",
             },
@@ -200,7 +200,7 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-2-selector-2, undefined",
+                "extractRelatedSelectors output for .failed-rule-2-selector-2 <div>snippet 2</div>",
               ],
               "snippet": "<div>snippet 2</div>",
             },
@@ -279,7 +279,7 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-1-selector-1, undefined",
+                "extractRelatedSelectors output for .failed-rule-1-selector-1 <div>snippet 1</div>",
               ],
               "snippet": "<div>snippet 1</div>",
             },
@@ -309,7 +309,7 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-1-selector-2, undefined",
+                "extractRelatedSelectors output for .failed-rule-1-selector-2 <div>snippet 2</div>",
               ],
               "snippet": "<div>snippet 2</div>",
             },
@@ -356,7 +356,7 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-2-selector-1, undefined",
+                "extractRelatedSelectors output for .failed-rule-2-selector-1 <div>snippet 1</div>",
               ],
               "snippet": "<div>snippet 1</div>",
             },
@@ -386,7 +386,7 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-2-selector-2, undefined",
+                "extractRelatedSelectors output for .failed-rule-2-selector-2 <div>snippet 2</div>",
               ],
               "snippet": "<div>snippet 2</div>",
             },
@@ -512,7 +512,7 @@ exports[`CombinedResultsToCardsModelConverter without passed or inapplicable rul
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-1-selector-1, undefined",
+                "extractRelatedSelectors output for .failed-rule-1-selector-1 <div>snippet 1</div>",
               ],
               "snippet": "<div>snippet 1</div>",
             },
@@ -542,7 +542,7 @@ exports[`CombinedResultsToCardsModelConverter without passed or inapplicable rul
           {
             "descriptors": {
               "relatedCssSelectors": [
-                "normalizeRelatedSelectors output for .failed-rule-1-selector-2, undefined",
+                "extractRelatedSelectors output for .failed-rule-1-selector-2 <div>snippet 2</div>",
               ],
               "snippet": "<div>snippet 2</div>",
             },
