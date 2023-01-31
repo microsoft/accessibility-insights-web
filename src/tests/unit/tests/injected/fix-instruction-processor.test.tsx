@@ -14,21 +14,21 @@ describe('FixInstructionProcessor', () => {
         testSubject = new FixInstructionProcessor();
     });
 
-    test('updates aria-required-children "(see related nodes)" text to "(see related paths)"', () => {
+    test('updates aria-required-children "(see related nodes)" text to "(see <em>Related paths</em>)"', () => {
         const fixInstruction = 'Element has children which are not allowed (see related nodes)';
 
         const result = testSubject.process(fixInstruction, recommendColorMock.object);
 
-        expect(result).toEqual(<>Element has children which are not allowed (see related paths)</>);
+        expect(result).toMatchSnapshot();
     });
 
-    test('no background nor foreground on the message', () => {
+    test('no-ops if neither background nor foreground on the message', () => {
         const fixInstruction =
             'there is nothing that will trigger the processor to change the fix instruction here';
 
         const result = testSubject.process(fixInstruction, recommendColorMock.object);
 
-        expect(result).toMatchSnapshot();
+        expect(result).toEqual(<>{fixInstruction}</>);
     });
 
     test('foreground color on the message', () => {

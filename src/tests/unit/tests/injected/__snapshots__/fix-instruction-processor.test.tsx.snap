@@ -157,12 +157,6 @@ exports[`FixInstructionProcessor foreground color on the message 1`] = `
 </React.Fragment>
 `;
 
-exports[`FixInstructionProcessor no background nor foreground on the message 1`] = `
-<React.Fragment>
-  there is nothing that will trigger the processor to change the fix instruction here
-</React.Fragment>
-`;
-
 exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
 <React.Fragment>
   <React.Fragment>
@@ -374,6 +368,17 @@ exports[`FixInstructionProcessor recommendColor has two recommendations 1`] = `
       </React.Fragment>
     </li>
   </ul>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor updates aria-required-children "(see related nodes)" text to "(see <em>Related paths</em>)" 1`] = `
+<React.Fragment>
+  Element has children which are not allowed
+   (see 
+  <em>
+    Related paths
+  </em>
+  )
 </React.Fragment>
 `;
 
