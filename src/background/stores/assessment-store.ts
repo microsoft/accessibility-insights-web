@@ -378,6 +378,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
     private onSelectTestSubview = async (payload: SelectTestSubviewPayload): Promise<void> => {
         this.state.assessmentNavState.selectedTestType = payload.selectedTest;
         this.state.assessmentNavState.selectedTestSubview = payload.selectedTestSubview;
+        this.state.assessmentNavState.expandedTestType = payload.selectedTest;
         await this.emitChanged();
     };
 
