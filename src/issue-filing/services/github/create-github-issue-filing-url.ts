@@ -23,7 +23,7 @@ export const createGitHubIssueFilingUrlProvider = (
         toolData: ToolData,
     ): string => {
         const title = stringUtils.getTitle(issueData);
-        const body = issueDetailsBuilder(toolData, issueData);
+        const body = issueDetailsBuilder(toolData, issueData, { isLengthConstrained: true });
 
         const baseUrl = rectifier(settingsData.repository);
 

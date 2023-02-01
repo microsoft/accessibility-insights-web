@@ -69,7 +69,9 @@ describe('createAzureBoardsIssueFilingUrl', () => {
 
         issueDetailsGetterMock = Mock.ofType<IssueDetailsBuilder>();
         issueDetailsGetterMock
-            .setup(getter => getter(toolData, sampleIssueDetailsData))
+            .setup(getter =>
+                getter(toolData, sampleIssueDetailsData, { isLengthConstrained: true }),
+            )
             .returns(() => testIssueDetails);
 
         queryBuilderMock = Mock.ofType<HTTPQueryBuilder>();
