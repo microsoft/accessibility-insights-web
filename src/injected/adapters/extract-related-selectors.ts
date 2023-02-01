@@ -1,13 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TargetHelper } from 'common/target-helper';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { uniq } from 'lodash';
 import { AxeNodeResult } from '../../scanner/iruleresults';
 
 export type RelatedSelectorExtractor = typeof extractRelatedSelectors;
 
-export function extractRelatedSelectors(nodeResult: AxeNodeResult): string[] | undefined {
-    const nodeSelector = TargetHelper.getSelectorFromTarget(nodeResult.target);
+export function extractRelatedSelectors(
+    nodeResult: AxeNodeResult | DecoratedAxeNodeResult,
+): string[] | undefined {
+    const nodeSelector =
+        (nodeResult as DecoratedAxeNodeResult).selector ??
+        TargetHelper.getSelectorFromTarget((nodeResult as AxeNodeResult).target);
 
     let relatedSelectors: string[] = [];
     for (const checkType of ['all', 'any', 'none'] as const) {
