@@ -42,6 +42,10 @@ describe('MarkdownFormatter', () => {
         expect(result).toEqual(`\`this is code\``);
     });
 
+    it('returns relatedPaths as a markdown list', () => {
+        expect(testSubject.relatedPaths(['#path-a', '#path-b'])).toEqual('- #path-a\n- #path-b');
+    });
+
     it('return new line', () => {
         expect(testSubject.sectionSeparator()).toBe('\n');
     });

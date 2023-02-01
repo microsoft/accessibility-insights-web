@@ -25,6 +25,10 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
             .join('\n');
     };
 
+    const relatedPaths = (relatedPaths: string[]): string => {
+        return relatedPaths.map(path => `- ${path}`).join('\n');
+    };
+
     const sectionHeaderSeparator = () => '\n';
 
     const footerSeparator = () => null;
@@ -36,6 +40,7 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
         link,
         sectionHeader,
         howToFixSection,
+        relatedPaths,
         sectionHeaderSeparator,
         footerSeparator,
         sectionSeparator,

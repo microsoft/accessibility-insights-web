@@ -57,6 +57,20 @@ describe('HTMLFormatter', () => {
         });
     });
 
+    describe('relatedPaths', () => {
+        it('returns as an HTML list', () => {
+            expect(testSubject.relatedPaths(['#path-a', '#path-b'])).toEqual(
+                '<ul><li>#path-a</li><li>#path-b</li></ul>',
+            );
+        });
+
+        it('escapes properly', () => {
+            expect(testSubject.relatedPaths(['[attr="<script>"]'])).toEqual(
+                '<ul><li>[attr=&quot;&lt;script&gt;&quot;]</li></ul>',
+            );
+        });
+    });
+
     describe('creates link', () => {
         it('handles href only', () => {
             const result = testSubject.link('test-href');
