@@ -31,6 +31,7 @@ export class UnifiedResultToIssueFilingDataConverter {
             },
             howToFixSummary: result.resolution.howToFixSummary,
             snippet: result.descriptors.snippet,
+            relatedPaths: result.descriptors.relatedCssSelectors,
         };
     }
 }

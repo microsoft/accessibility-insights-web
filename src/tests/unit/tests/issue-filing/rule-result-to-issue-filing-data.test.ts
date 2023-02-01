@@ -8,7 +8,11 @@ import { AxeResultToIssueFilingDataConverter } from '../../../../issue-filing/ru
 describe('AxeResultToIssueFilingDataConverter', () => {
     test('constructor', () => {
         const shortenSelector = selector => 'short';
-        const converter = new AxeResultToIssueFilingDataConverter(shortenSelector);
+        const extractRelatedSelectorsStub = () => null;
+        const converter = new AxeResultToIssueFilingDataConverter(
+            shortenSelector,
+            extractRelatedSelectorsStub,
+        );
         expect(converter).not.toBeNull();
     });
 
@@ -33,6 +37,7 @@ describe('AxeResultToIssueFilingDataConverter', () => {
         } as any;
         const fakePageTitle = 'title';
         const fakePageUrl = 'url';
+        const extractRelatedSelectorsOutput = ['extractRelatedSelectorsStub output'];
 
         const expected: CreateIssueDetailsTextData = {
             rule: {
@@ -51,6 +56,7 @@ describe('AxeResultToIssueFilingDataConverter', () => {
             },
             howToFixSummary: result.failureSummary,
             snippet: result.html,
+            relatedPaths: ['extractRelatedSelectorsStub output'],
         };
 
         const shortenSelector = Mock.ofInstance((str): string => '');
@@ -58,9 +64,20 @@ describe('AxeResultToIssueFilingDataConverter', () => {
             .setup(m => m(It.isAnyString()))
             .returns(_ => 'short')
             .verifiable(Times.once());
-        const converter = new AxeResultToIssueFilingDataConverter(shortenSelector.object);
+
+        const extractRelatedSelectorsMock = Mock.ofInstance((nodeResult): string[] | null => null);
+        extractRelatedSelectorsMock
+            .setup(m => m(result))
+            .returns(() => extractRelatedSelectorsOutput)
+            .verifiable(Times.once());
+
+        const converter = new AxeResultToIssueFilingDataConverter(
+            shortenSelector.object,
+            extractRelatedSelectorsMock.object,
+        );
         const textData = converter.convert(result, fakePageTitle, fakePageUrl);
         expect(textData).toEqual(expected);
         shortenSelector.verifyAll();
+        extractRelatedSelectorsMock.verifyAll();
     });
 });

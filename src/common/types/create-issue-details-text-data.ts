@@ -19,4 +19,5 @@ export interface CreateIssueDetailsTextData {
     };
     howToFixSummary?: string;
     snippet?: string;
+    relatedPaths?: string[];
 }
