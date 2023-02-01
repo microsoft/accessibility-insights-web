@@ -11,6 +11,12 @@ export interface FormattedCheckResult {
     id: string;
     message: string;
     data: any;
+    relatedNodes?: AxeRelatedNode[];
+}
+
+export interface AxeRelatedNode {
+    target: (string | string[])[];
+    html: string;
 }
 
 export interface CheckData {

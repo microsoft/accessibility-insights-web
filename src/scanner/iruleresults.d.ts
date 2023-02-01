@@ -69,6 +69,12 @@ export interface FormattedCheckResult {
     message: string;
     data: IAxeCheckResultExtraData;
     result?: boolean;
+    relatedNodes?: AxeRelatedNode[];
+}
+
+export interface AxeRelatedNode {
+    target: (string | string[])[];
+    html: string;
 }
 
 export interface IAxeCheckResultExtraData {

@@ -7,6 +7,7 @@ import { getA11yInsightsWebRuleUrl } from 'common/configs/a11y-insights-rule-res
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
+import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
@@ -94,7 +95,12 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         mapAxeTagsToGuidanceLinks,
         ruleProcessor,
     );
-    const getUnifiedResults = new ConvertScanResultsToUnifiedResults(generateUID, getFixResolution, getCheckResolution).automatedChecksConversion;
+    const getUnifiedResults = new ConvertScanResultsToUnifiedResults(
+        generateUID,
+        getFixResolution,
+        getCheckResolution,
+        extractRelatedSelectors
+    ).automatedChecksConversion;
 
     const deps: AxeResultsReportDeps = {
         reportHtmlGenerator,
@@ -179,6 +185,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         generateUID,
         helpUrlGetter,
         getFixResolution,
+        extractRelatedSelectors,
     );
 
     return new CombinedResultsReport(deps, parameters, toolData, resultsToCardsConverter);

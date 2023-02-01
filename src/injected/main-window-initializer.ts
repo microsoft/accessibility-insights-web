@@ -14,6 +14,7 @@ import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data
 import { toolName } from 'content/strings/application';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
@@ -293,6 +294,7 @@ export class MainWindowInitializer extends WindowInitializer {
             generateUID,
             getFixResolution,
             getCheckResolution,
+            extractRelatedSelectors,
         );
 
         const notificationTextCreator = new NotificationTextCreator(scanIncompleteWarningDetector);

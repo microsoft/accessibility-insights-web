@@ -24,6 +24,9 @@ describe(CombinedResultsToCardsModelConverter, () => {
         }
     } as HelpUrlGetter;
     let resolutionCreatorMock: IMock<ResolutionCreator>;
+    const extractRelatedSelectorsStub = (nodeResult: AxeNodeResult) => {
+        return [`extractRelatedSelectors output for ${nodeResult.target} ${nodeResult.html}`];
+    }
 
     let testSubject: CombinedResultsToCardsModelConverter;
 
@@ -42,6 +45,7 @@ describe(CombinedResultsToCardsModelConverter, () => {
             uuidGeneratorMock.object,
             helpUrlGetterStub,
             resolutionCreatorMock.object,
+            extractRelatedSelectorsStub,
         );
     })
 

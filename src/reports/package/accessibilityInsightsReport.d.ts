@@ -65,6 +65,12 @@ declare namespace AccessibilityInsightsReport {
         id: string;
         message: string;
         data: any;
+        relatedNodes?: AxeRelatedNode[];
+    }
+    
+    export interface AxeRelatedNode {
+        target: (string | string[])[];
+        html: string;
     }
 
     export type HowToFixData = {
@@ -86,7 +92,7 @@ declare namespace AccessibilityInsightsReport {
         elementSelector: string,
         snippet: string,
         fix: HowToFixData,
-        rule: AxeRuleData
+        rule: AxeRuleData,
     };
 
     export interface FailuresGroup {

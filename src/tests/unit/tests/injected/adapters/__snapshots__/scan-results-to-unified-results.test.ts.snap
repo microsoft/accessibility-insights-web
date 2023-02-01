@@ -6,6 +6,9 @@ exports[`ScanResults to Unified Results Test automaticChecksConversion works wit
 [
   {
     "descriptors": {
+      "relatedCssSelectors": [
+        "extractRelatedSelectors output for target1,id1",
+      ],
       "snippet": "html1",
     },
     "identifiers": {
@@ -27,6 +30,9 @@ exports[`ScanResults to Unified Results Test automaticChecksConversion works wit
   },
   {
     "descriptors": {
+      "relatedCssSelectors": [
+        "extractRelatedSelectors output for target2,id2",
+      ],
       "snippet": "html2",
     },
     "identifiers": {
@@ -48,6 +54,9 @@ exports[`ScanResults to Unified Results Test automaticChecksConversion works wit
   },
   {
     "descriptors": {
+      "relatedCssSelectors": [
+        "extractRelatedSelectors output for target3,id3",
+      ],
       "snippet": "html3",
     },
     "identifiers": {
@@ -69,6 +78,9 @@ exports[`ScanResults to Unified Results Test automaticChecksConversion works wit
   },
   {
     "descriptors": {
+      "relatedCssSelectors": [
+        "extractRelatedSelectors output for passTarget1,passTarget2",
+      ],
       "snippet": "html-pass",
     },
     "identifiers": {
@@ -97,6 +109,9 @@ exports[`ScanResults to Unified Results Test needsReviewConversion works with fi
 [
   {
     "descriptors": {
+      "relatedCssSelectors": [
+        "extractRelatedSelectors output for incompleteTarget1",
+      ],
       "snippet": "html-incomplete",
     },
     "identifiers": {
@@ -117,6 +132,9 @@ exports[`ScanResults to Unified Results Test needsReviewConversion works with fi
   },
   {
     "descriptors": {
+      "relatedCssSelectors": [
+        "extractRelatedSelectors output for target1,id1",
+      ],
       "snippet": "html1",
     },
     "identifiers": {
@@ -138,6 +156,9 @@ exports[`ScanResults to Unified Results Test needsReviewConversion works with fi
   },
   {
     "descriptors": {
+      "relatedCssSelectors": [
+        "extractRelatedSelectors output for target2,id2",
+      ],
       "snippet": "html2",
     },
     "identifiers": {
@@ -159,6 +180,9 @@ exports[`ScanResults to Unified Results Test needsReviewConversion works with fi
   },
   {
     "descriptors": {
+      "relatedCssSelectors": [
+        "extractRelatedSelectors output for target3,id3",
+      ],
       "snippet": "html3",
     },
     "identifiers": {

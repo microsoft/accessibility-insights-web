@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
+import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 
 describe('FixInstructionProcessor', () => {
@@ -13,13 +14,21 @@ describe('FixInstructionProcessor', () => {
         testSubject = new FixInstructionProcessor();
     });
 
-    test('no background nor foreground on the message', () => {
+    test('updates aria-required-children "(see related nodes)" text to "(see <em>Related paths</em>)"', () => {
+        const fixInstruction = 'Element has children which are not allowed (see related nodes)';
+
+        const result = testSubject.process(fixInstruction, recommendColorMock.object);
+
+        expect(result).toMatchSnapshot();
+    });
+
+    test('no-ops if neither background nor foreground on the message', () => {
         const fixInstruction =
             'there is nothing that will trigger the processor to change the fix instruction here';
 
         const result = testSubject.process(fixInstruction, recommendColorMock.object);
 
-        expect(result).toMatchSnapshot();
+        expect(result).toEqual(<>{fixInstruction}</>);
     });
 
     test('foreground color on the message', () => {

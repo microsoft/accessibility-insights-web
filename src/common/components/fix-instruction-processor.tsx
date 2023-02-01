@@ -46,7 +46,42 @@ export class FixInstructionProcessor {
     private readonly originalMiddleSentence = ' and the original foreground color: ';
 
     public process(fixInstruction: string, recommendColor: RecommendColor): JSX.Element {
+        return (
+            this.tryProcessAsColorContrastRecommendation(fixInstruction, recommendColor) ??
+            this.tryProcessAsRelatedNodesReference(fixInstruction) ??
+            this.processAsNoop(fixInstruction)
+        );
+    }
+
+    private processAsNoop(fixInstruction: string): JSX.Element {
+        return <>{fixInstruction}</>;
+    }
+
+    // We perform this replacement because what axe-core exposes as a "relatedNodes" property
+    // is presented in our cards views as a "Related paths" row. This only comes up in practice
+    // with the aria-required-children rule and is likely to be obsoleted with the resolution of
+    // https://github.com/dequelabs/axe-core/issues/3842
+    private tryProcessAsRelatedNodesReference(input: string): JSX.Element | null {
+        if (!input.endsWith(' (see related nodes)')) {
+            return null;
+        }
+
+        const inputBody = input.slice(0, input.length - ' (see related nodes)'.length);
+        return (
+            <>
+                {inputBody} (see <em>Related paths</em>)
+            </>
+        );
+    }
+
+    private tryProcessAsColorContrastRecommendation(
+        fixInstruction: string,
+        recommendColor: RecommendColor,
+    ): JSX.Element | null {
         const matches = this.getColorMatches(fixInstruction);
+        if (matches.length === 0) {
+            return null;
+        }
 
         let recommendationSentences: string[] = [];
         if (matches.length === 2 && fixInstruction != null) {

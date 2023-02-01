@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ClassNameCardRow } from 'common/components/cards/class-name-card-row';
 import { ContentDescriptionCardRow } from 'common/components/cards/content-description-card-row';
+import { RelatedPathsCardRow } from 'common/components/cards/related-paths-card-row';
 import { RichResolutionCardRow } from 'common/components/cards/rich-resolution-card-row';
 import { TextCardRow } from 'common/components/cards/text-card-row';
 import { UrlsCardRow } from 'common/components/cards/urls-card-row';
@@ -13,15 +14,7 @@ import { SnippetCardRow } from '../components/cards/snippet-card-row';
 import { FixInstructionProcessor } from '../components/fix-instruction-processor';
 import { ReactFCWithDisplayName } from '../react/named-fc';
 
-export type PropertyType =
-    | 'css-selector'
-    | 'how-to-fix-web'
-    | 'richResolution'
-    | 'snippet'
-    | 'className'
-    | 'contentDescription'
-    | 'text';
-export const AllPropertyTypes: PropertyType[] = [
+export const AllPropertyTypes = [
     'css-selector',
     'how-to-fix-web',
     'richResolution',
@@ -29,7 +22,9 @@ export const AllPropertyTypes: PropertyType[] = [
     'className',
     'contentDescription',
     'text',
-];
+    'relatedCssSelectors',
+] as const;
+export type PropertyType = (typeof AllPropertyTypes)[number];
 
 export interface CardRowDeps {
     fixInstructionProcessor: FixInstructionProcessor;
@@ -57,6 +52,10 @@ export const richResolutionConfiguration: PropertyConfiguration = {
 
 export const cssSelectorConfiguration: PropertyConfiguration = {
     cardRow: PathCardRow,
+};
+
+export const relatedCssSelectorsConfiguration: PropertyConfiguration = {
+    cardRow: RelatedPathsCardRow,
 };
 
 export const snippetConfiguration: PropertyConfiguration = {
@@ -91,6 +90,7 @@ const propertyIdToConfigurationMap: PropertyIdToConfigurationMap = {
     contentDescription: contentDescriptionConfiguration,
     text: textConfiguration,
     urls: urlsConfiguration,
+    relatedCssSelectors: relatedCssSelectorsConfiguration,
 };
 
 export function getPropertyConfiguration(id: string): Readonly<PropertyConfiguration> {
