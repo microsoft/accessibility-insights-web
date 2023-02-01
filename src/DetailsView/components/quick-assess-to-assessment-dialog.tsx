@@ -33,10 +33,10 @@ export const QuickAssessToAssessmentDialog = NamedFC<QuickAssessToAssessmentDial
         };
 
         const descriptionText =
-            'This will allow you to continue accessibility testing with additional tests and requirements in assessment. All your existing data in quick assess will be transfered into assessment.';
+            'This will allow you to continue accessibility testing with additional tests and requirements in Assessment. All your existing data in Quick Assess will be transferred into Assessment.';
 
         const noteText =
-            'If you have an assessment in progress, the current quick assess evaluation data will replace the assessment evaluation and previous progress will be lost.';
+            'If you have an Assessment in progress, the current Quick Assess evaluation data will replace the Assessment evaluation and previous progress will be lost.';
         return (
             <Dialog {...dialogProps}>
                 <div>{descriptionText}</div>
