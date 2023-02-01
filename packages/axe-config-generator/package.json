@@ -1,0 +1,20 @@
+{
+    "name": "accessibility-insights-axe-config-generator",
+    "version": "1.0.0",
+    "description": "Generates the current config used to run axe core scans.",
+    "license": "MIT",
+    "files": [
+        "../../LICENSE",
+        "drop",
+        "README.md"
+    ],
+    "main": "drop/index.js",
+    "scripts": {
+        "build": "grunt build-axe-config-generator"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Microsoft/accessibility-insights-web"
+    },
+    "dependencies": {}
+}
