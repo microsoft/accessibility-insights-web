@@ -10,13 +10,13 @@ export type RelatedSelectorExtractor = typeof extractRelatedSelectors;
 export function extractRelatedSelectors(
     nodeResult: AxeNodeResult | DecoratedAxeNodeResult,
 ): string[] | undefined {
+    // DecoratedAxeNodeResult has only selector, AxeNodeResult has only target
     const nodeSelector =
-        (nodeResult as DecoratedAxeNodeResult).selector ??
-        TargetHelper.getSelectorFromTarget((nodeResult as AxeNodeResult).target);
+        nodeResult['selector'] ?? TargetHelper.getSelectorFromTarget(nodeResult['target']);
 
     let relatedSelectors: string[] = [];
     for (const checkType of ['all', 'any', 'none'] as const) {
-        const checks = nodeResult[checkType];
+        const checks = nodeResult[checkType] ?? [];
         for (const check of checks) {
             const relatedSelectorsForCheck =
                 check.relatedNodes?.map(n => TargetHelper.getSelectorFromTarget(n.target)) ?? [];
