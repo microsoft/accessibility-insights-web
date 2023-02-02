@@ -62,7 +62,9 @@ describe('createGitHubIssueFilingUrlTest', () => {
         issueDetailsGetter = Mock.ofType<IssueDetailsBuilder>();
         const testIssueDetails = 'test issue details';
         issueDetailsGetter
-            .setup(getter => getter(toolData, sampleIssueDetailsData))
+            .setup(getter =>
+                getter(toolData, sampleIssueDetailsData, { isLengthConstrained: true }),
+            )
             .returns(() => testIssueDetails);
 
         const rectifiedUrl = 'rectified-url';

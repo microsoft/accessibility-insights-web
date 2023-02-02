@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
 import { AxeNodeResult, FormattedCheckResult, Target } from 'scanner/iruleresults';
 
@@ -146,11 +147,23 @@ describe(extractRelatedSelectors, () => {
         },
     );
 
-    it('omits the node itself', () => {
+    it('omits the node itself (passed as target)', () => {
         const input: AxeNodeResult = {
-            target: ['#node'],
+            target: ['#complex', '#node'],
             html: 'node-html',
-            all: [checkResult([['#related-1']]), checkResult([['#node']])],
+            all: [checkResult([['#related-1']]), checkResult([['#complex', '#node']])],
+            any: [],
+            none: [checkResult([['#related-2']])],
+        };
+        const output = extractRelatedSelectors(input);
+        expect(output).toStrictEqual(['#related-1', '#related-2']);
+    });
+
+    it('omits the node itself (passed as selector)', () => {
+        const input: DecoratedAxeNodeResult = {
+            selector: '#complex;#node',
+            ruleId: 'rule',
+            all: [checkResult([['#related-1']]), checkResult([['#complex', '#node']])],
             any: [],
             none: [checkResult([['#related-2']])],
         };

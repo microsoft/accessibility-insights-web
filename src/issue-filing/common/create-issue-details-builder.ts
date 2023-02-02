@@ -3,16 +3,23 @@
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { compact } from 'lodash';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { IssueDetailsBuilder } from './issue-details-builder';
+import { IssueDetailsBuilder, IssueDetailsBuilderOptions } from './issue-details-builder';
 import { MarkupFormatter } from './markup/markup-formatter';
 
 export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetailsBuilder => {
-    const getter = (toolData: ToolData, data: CreateIssueDetailsTextData): string => {
+    const getter = (
+        toolData: ToolData,
+        data: CreateIssueDetailsTextData,
+        options?: IssueDetailsBuilderOptions,
+    ): string => {
+        const isLengthConstrained = options?.isLengthConstrained ?? false;
+
         const {
             howToFixSection: howToFixSummary,
             link,
             sectionHeader,
             snippet,
+            relatedPaths,
             sectionHeaderSeparator,
             footerSeparator,
             sectionSeparator,
@@ -30,6 +37,16 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
                   sectionSeparator(),
               ]
             : [];
+
+        const relatedPathsSection =
+            !isLengthConstrained && data.relatedPaths
+                ? [
+                      sectionHeader('Related paths'),
+                      sectionHeaderSeparator(),
+                      relatedPaths(data.relatedPaths),
+                      sectionSeparator(),
+                  ]
+                : [];
 
         const howToFixSection = data.howToFixSummary
             ? [
@@ -65,6 +82,8 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
             sectionSeparator(),
 
             ...snippetSection,
+
+            ...relatedPathsSection,
 
             ...howToFixSection,
 

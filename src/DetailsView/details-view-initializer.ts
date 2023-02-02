@@ -73,6 +73,7 @@ import {
     TabStopsFailedCounterIncludingNoInstance,
     TabStopsFailedCounterInstancesOnly,
 } from 'DetailsView/tab-stops-failed-counter';
+import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
@@ -513,6 +514,7 @@ if (tabId != null) {
 
             const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
                 IssueFilingUrlStringUtils.getSelectorLastPart,
+                extractRelatedSelectors,
             );
 
             const unifiedResultToIssueFilingDataConverter =

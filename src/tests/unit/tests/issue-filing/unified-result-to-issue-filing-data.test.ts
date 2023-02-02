@@ -27,6 +27,7 @@ describe(UnifiedResultToIssueFilingDataConverter, () => {
             },
             descriptors: {
                 snippet: 'snippet',
+                relatedCssSelectors: ['#related-1', '#related-2'],
             },
             resolution: {
                 howToFixSummary: 'failureSummary',
@@ -56,6 +57,7 @@ describe(UnifiedResultToIssueFilingDataConverter, () => {
             },
             howToFixSummary: 'failureSummary',
             snippet: 'snippet',
+            relatedPaths: ['#related-1', '#related-2'],
         };
 
         const converter = new UnifiedResultToIssueFilingDataConverter();

@@ -17,6 +17,10 @@ const createFormatter = (): MarkupFormatter => {
 
     const howToFixSection = (failureSummary: string): string => `\n${failureSummary}`;
 
+    const relatedPaths = (relatedPaths: string[]): string => {
+        return relatedPaths.map(path => `\n  ${path}`).join('');
+    };
+
     const sectionHeaderSeparator = () => ': ';
 
     const footerSeparator = () => '====\n\n';
@@ -28,6 +32,7 @@ const createFormatter = (): MarkupFormatter => {
         link,
         sectionHeader,
         howToFixSection,
+        relatedPaths,
         sectionHeaderSeparator,
         footerSeparator,
         sectionSeparator: newLine,

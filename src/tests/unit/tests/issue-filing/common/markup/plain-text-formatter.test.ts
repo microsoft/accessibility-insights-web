@@ -32,6 +32,10 @@ describe('PlainTextFormatter', () => {
         expect(testSubject.snippet('   snippet with      spaces  ')).toEqual('snippet with spaces');
     });
 
+    it('returns relatedPaths as separate indented lines', () => {
+        expect(testSubject.relatedPaths(['#path-a', '#path-b'])).toEqual('\n  #path-a\n  #path-b');
+    });
+
     it('return new line', () => {
         expect(testSubject.sectionSeparator()).toBe('\n\n');
     });

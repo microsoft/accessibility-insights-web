@@ -24,7 +24,9 @@ describe('ScanResults to Unified Results Test', () => {
             .verifiable(Times.atLeastOnce());
         fixResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
         checkResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
-        extractRelatedSelectorsStub = node => [`extractRelatedSelectors output for ${node.target}`];
+        extractRelatedSelectorsStub = node => [
+            `extractRelatedSelectors output for ${node['target'] ?? node['selector']}`,
+        ];
     });
 
     const nullIdentifiers = [null, undefined, {}];

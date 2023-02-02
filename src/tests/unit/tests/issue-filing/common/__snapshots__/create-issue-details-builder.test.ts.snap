@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createIssueDetailsBuilder build issue details when targetApp.url is null 1`] = `
+"h-Issue-h--s-h-s--s-RR-help-s (l-RR-help-url-RR-rule-id-l)
+h-Target application-h--s-h-s--pageTitle<x>
+h-Element path-h--s-h-s--RR-selector<x>
+h-Snippet-h--s-h-s--s-RR-snippet   space-s
+h-Related paths-h--s-h-s--rp-related-path-1|related-path-2-rp
+h-How to fix-h--s-h-s--h-t--RR-failureSummary--h-t
+h-Environment-h--s-h-s--environmentName
+--f-s--This accessibility issue was found using app-name app-version (engine-name engine-version), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
+`;
+
+exports[`createIssueDetailsBuilder build issue details when targetApp.url is pageUrl 1`] = `
+"h-Issue-h--s-h-s--s-RR-help-s (l-RR-help-url-RR-rule-id-l)
+h-Target application-h--s-h-s--l-pageUrl-pageTitle<x>-l
+h-Element path-h--s-h-s--RR-selector<x>
+h-Snippet-h--s-h-s--s-RR-snippet   space-s
+h-Related paths-h--s-h-s--rp-related-path-1|related-path-2-rp
+h-How to fix-h--s-h-s--h-t--RR-failureSummary--h-t
+h-Environment-h--s-h-s--environmentName
+--f-s--This accessibility issue was found using app-name app-version (engine-name engine-version), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
+`;
+
+exports[`createIssueDetailsBuilder builds issue details without snippet 1`] = `
+"h-Issue-h--s-h-s--s-RR-help-s (l-RR-help-url-RR-rule-id-l)
+h-Target application-h--s-h-s--pageTitle<x>
+h-Element path-h--s-h-s--RR-selector<x>
+h-Related paths-h--s-h-s--rp-related-path-1|related-path-2-rp
+h-How to fix-h--s-h-s--h-t--RR-failureSummary--h-t
+h-Environment-h--s-h-s--environmentName
+--f-s--This accessibility issue was found using app-name app-version (engine-name engine-version), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
+`;
+
+exports[`createIssueDetailsBuilder relatedPaths section omits section if length is constrained 1`] = `
+"h-Issue-h--s-h-s--s-RR-help-s (l-RR-help-url-RR-rule-id-l)
+h-Target application-h--s-h-s--pageTitle<x>
+h-Element path-h--s-h-s--RR-selector<x>
+h-How to fix-h--s-h-s--h-t--RR-failureSummary--h-t
+h-Environment-h--s-h-s--environmentName
+--f-s--This accessibility issue was found using app-name app-version (engine-name engine-version), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
+`;
+
+exports[`createIssueDetailsBuilder relatedPaths section omits section if relatedPaths is not present in text data 1`] = `
+"h-Issue-h--s-h-s--s-RR-help-s (l-RR-help-url-RR-rule-id-l)
+h-Target application-h--s-h-s--pageTitle<x>
+h-Element path-h--s-h-s--RR-selector<x>
+h-How to fix-h--s-h-s--h-t--RR-failureSummary--h-t
+h-Environment-h--s-h-s--environmentName
+--f-s--This accessibility issue was found using app-name app-version (engine-name engine-version), a tool that helps find and fix accessibility issues. Get more information & download this tool at l-http://aka.ms/AccessibilityInsights-l."
+`;

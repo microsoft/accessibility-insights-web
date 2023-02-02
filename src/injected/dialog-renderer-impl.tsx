@@ -15,6 +15,7 @@ import {
     HtmlElementAxeResults,
 } from 'common/types/store-data/visualization-scan-result-data';
 import { WindowUtils } from 'common/window-utils';
+import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
 import { DialogRenderer } from 'injected/dialog-renderer';
 import {
     CommandMessage,
@@ -79,6 +80,7 @@ export class DialogRendererImpl implements DialogRenderer {
             const recommendColor = new RecommendColor();
             const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
                 IssueFilingUrlStringUtils.getSelectorLastPart,
+                extractRelatedSelectors,
             );
 
             const deps: LayeredDetailsDialogDeps = {
