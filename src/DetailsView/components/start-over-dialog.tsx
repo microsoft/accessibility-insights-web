@@ -59,8 +59,7 @@ export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', 
     const dialogPropsOptions = {
         assessment: {
             messageText:
-                'Starting over will clear all existing results from the Assessment. ' +
-                'This will clear results and progress of all tests and requirements. ' +
+                'Starting over will clear all existing results and clear progress of all tests and requirements. ' +
                 'Are you sure you want to start over?',
             onPrimaryButtonClick: onStartOverAllTests,
             onCancelButtonClick: onCancelStartOverAllTests,
