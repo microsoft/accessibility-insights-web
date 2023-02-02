@@ -79,7 +79,7 @@ export function getStartOverComponentForAssessment(
         openDialog: props.openDialog,
         buttonRef: props.buttonRef,
         rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
-        switcherStartOverPreferences: { showAssessment: true, showTest: true },
+        switcherStartOverPreferences: { showTest: true },
     };
 
     return <StartOverDropdown {...startOverProps} />;
@@ -98,7 +98,7 @@ export function getStartOverComponentForQuickAssess(
         openDialog: props.openDialog,
         buttonRef: props.buttonRef,
         rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
-        switcherStartOverPreferences: { showAssessment: true, showTest: false },
+        switcherStartOverPreferences: { showTest: false },
     };
 
     return <StartOverDropdown {...startOverProps} />;

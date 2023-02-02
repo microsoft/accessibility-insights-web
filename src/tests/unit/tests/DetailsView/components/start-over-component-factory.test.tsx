@@ -81,7 +81,6 @@ describe('StartOverComponentFactory', () => {
             visualizationStoreData,
             rightPanelConfiguration: {
                 startOverContextMenuKeyOptions: {
-                    showAssessment: true,
                     showTest: true,
                 },
             },

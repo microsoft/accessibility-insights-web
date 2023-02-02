@@ -53,7 +53,6 @@ describe('DetailsViewRightPanelTests', () => {
         expect(configuration.GetTitle).toEqual(getTestViewTitle);
         expect(configuration.RightPanel).toEqual(TestViewContainer);
         expect(configuration.startOverContextMenuKeyOptions).toEqual({
-            showAssessment: true,
             showTest: true,
         });
     }
@@ -63,7 +62,6 @@ describe('DetailsViewRightPanelTests', () => {
         expect(configuration.GetTitle).toEqual(getOverviewTitle);
         expect(configuration.RightPanel).toEqual(OverviewContainer);
         expect(configuration.startOverContextMenuKeyOptions).toEqual({
-            showAssessment: true,
             showTest: false,
         });
     }

@@ -6,14 +6,12 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverCompon
   dropdownDirection="down"
   rightPanelOptions={
     {
-      "showAssessment": true,
       "showTest": true,
     }
   }
   singleTestSuffix="the title"
   switcherStartOverPreferences={
     {
-      "showAssessment": true,
       "showTest": true,
     }
   }
@@ -29,14 +27,12 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuIt
     dropdownDirection="left"
     rightPanelOptions={
       {
-        "showAssessment": true,
         "showTest": true,
       }
     }
     singleTestSuffix="the title"
     switcherStartOverPreferences={
       {
-        "showAssessment": true,
         "showTest": true,
       }
     }
@@ -110,14 +106,12 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverCompo
   dropdownDirection="down"
   rightPanelOptions={
     {
-      "showAssessment": true,
       "showTest": true,
     }
   }
   singleTestSuffix="requirement name stub"
   switcherStartOverPreferences={
     {
-      "showAssessment": true,
       "showTest": false,
     }
   }
@@ -133,14 +127,12 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuI
     dropdownDirection="left"
     rightPanelOptions={
       {
-        "showAssessment": true,
         "showTest": true,
       }
     }
     singleTestSuffix="requirement name stub"
     switcherStartOverPreferences={
       {
-        "showAssessment": true,
         "showTest": false,
       }
     }
