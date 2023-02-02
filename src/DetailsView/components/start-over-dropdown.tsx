@@ -108,9 +108,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             onClick: this.onStartOverTestMenu,
         };
 
-        if (rightPanelOptions.showAssessment && startOverButtonOptionPreferences.showAssessment) {
-            items.push(assessmentKey);
-        }
+        items.push(assessmentKey);
 
         if (rightPanelOptions.showTest && startOverButtonOptionPreferences.showTest) {
             items.push(testKey);

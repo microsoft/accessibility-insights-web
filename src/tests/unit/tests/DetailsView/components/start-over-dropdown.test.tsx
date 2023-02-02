@@ -48,50 +48,36 @@ describe('StartOverDropdownTest', () => {
     });
 
     const menuButtonOptions = [true, false];
-    const startOverOptionsCases = [
-        {
-            key: 'assessment',
-            optionName: 'showAssessment',
-        },
-        {
-            key: 'test',
-            optionName: 'showTest',
-        },
-    ];
+    const optionName = 'showTest';
+    const optionKey = 'test';
+    menuButtonOptions.forEach(rightPanelOptionEnabled => {
+        menuButtonOptions.forEach(switcherPreferencesOptionEnabled => {
+            const rightPanelOptions = {
+                [optionName]: rightPanelOptionEnabled,
+            } as StartOverContextMenuKeyOptions;
+            const switcherPreferences = {
+                [optionName]: switcherPreferencesOptionEnabled,
+            } as StartOverContextMenuKeyOptions;
 
-    startOverOptionsCases.forEach(testCase => {
-        const optionName = testCase.optionName;
-        const optionKey = testCase.key;
-        menuButtonOptions.forEach(rightPanelOptionEnabled => {
-            menuButtonOptions.forEach(switcherPreferencesOptionEnabled => {
-                const rightPanelOptions = {
-                    [optionName]: rightPanelOptionEnabled,
-                } as StartOverContextMenuKeyOptions;
-                const switcherPreferences = {
-                    [optionName]: switcherPreferencesOptionEnabled,
-                } as StartOverContextMenuKeyOptions;
+            const shouldFindOption = rightPanelOptionEnabled && switcherPreferencesOptionEnabled;
 
-                const shouldFindOption =
-                    rightPanelOptionEnabled && switcherPreferencesOptionEnabled;
+            const casePrefix = shouldFindOption
+                ? `${optionKey} item IS rendered`
+                : `${optionKey} item IS NOT rendered`;
 
-                const casePrefix = shouldFindOption
-                    ? `${optionKey} item IS rendered`
-                    : `${optionKey} item IS NOT rendered`;
+            test(`${casePrefix} - rightPanelOptions.${optionName} is ${rightPanelOptionEnabled} & switcherStartOverPreferences.${optionName} is ${switcherPreferencesOptionEnabled}`, () => {
+                defaultProps.rightPanelOptions = rightPanelOptions;
+                defaultProps.switcherStartOverPreferences = switcherPreferences;
 
-                test(`${casePrefix} - rightPanelOptions.${optionName} is ${rightPanelOptionEnabled} & switcherStartOverPreferences.${optionName} is ${switcherPreferencesOptionEnabled}`, () => {
-                    defaultProps.rightPanelOptions = rightPanelOptions;
-                    defaultProps.switcherStartOverPreferences = switcherPreferences;
-
-                    const rendered = shallow<StartOverDropdown>(
-                        <StartOverDropdown {...defaultProps} />,
-                    );
-                    rendered.find(InsightsCommandButton).simulate('click', event);
-                    const isStartOverOptionRendered = rendered
-                        .find(ContextualMenu)
-                        .prop('items')
-                        .some(item => item.key === optionKey);
-                    expect(isStartOverOptionRendered).toEqual(shouldFindOption);
-                });
+                const rendered = shallow<StartOverDropdown>(
+                    <StartOverDropdown {...defaultProps} />,
+                );
+                rendered.find(InsightsCommandButton).simulate('click', event);
+                const isStartOverOptionRendered = rendered
+                    .find(ContextualMenu)
+                    .prop('items')
+                    .some(item => item.key === optionKey);
+                expect(isStartOverOptionRendered).toEqual(shouldFindOption);
             });
         });
     });

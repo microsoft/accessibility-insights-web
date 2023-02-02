@@ -55,18 +55,17 @@ const detailsViewTypeContentMap: {
         RightPanel: OverviewContainer,
         GetTitle: getOverviewTitle,
         GetLeftNavSelectedKey: getOverviewKey,
-        startOverContextMenuKeyOptions: { showAssessment: true, showTest: false },
+        startOverContextMenuKeyOptions: { showTest: false },
     },
     TestView: {
         RightPanel: TestViewContainer,
         GetTitle: getTestViewTitle,
         GetLeftNavSelectedKey: getTestViewKey,
-        startOverContextMenuKeyOptions: { showAssessment: true, showTest: true },
+        startOverContextMenuKeyOptions: { showTest: true },
     },
 };
 
 export type StartOverContextMenuKeyOptions = {
-    showAssessment: boolean;
     showTest: boolean;
 };
 
