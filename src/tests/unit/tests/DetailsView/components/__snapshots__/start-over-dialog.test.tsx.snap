@@ -3,7 +3,7 @@
 exports[`StartOverDialog renders when dialogState = assessment 1`] = `
 <GenericDialog
   isHidden={false}
-  messageText="Starting over will clear all existing results from the Assessment. This will clear results and progress of all tests and requirements. Are you sure you want to start over?"
+  messageText="Starting over will clear all existing results and clear progress of all tests and requirements. Are you sure you want to start over?"
   onCancelButtonClick={[Function]}
   onPrimaryButtonClick={[Function]}
   primaryButtonText="Start over"

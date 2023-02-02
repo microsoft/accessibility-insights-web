@@ -3,6 +3,7 @@
 import { IContextualMenuItem } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
 import {
     AssessmentNavState,
     AssessmentStoreData,
@@ -13,6 +14,7 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import {
     AssessmentStartOverFactory,
     FastpassStartOverFactory,
+    QuickAssessStartOverFactory,
     StartOverFactoryDeps,
     StartOverFactoryProps,
     StartOverMenuItem,
@@ -27,6 +29,7 @@ describe('StartOverComponentFactory', () => {
     const theTestType = VisualizationType.ColorSensoryAssessment;
 
     let assessment: Readonly<Assessment>;
+    let requirement: Readonly<Requirement>;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let assessmentStoreData: AssessmentStoreData;
     let scanning: string;
@@ -48,10 +51,16 @@ describe('StartOverComponentFactory', () => {
             assessment = {
                 title: theTitle,
             } as Readonly<Assessment>;
+            requirement = {
+                name: 'requirement name stub',
+            } as Readonly<Requirement>;
             selectedTestType = theTestType;
             assessmentsProviderMock
                 .setup(apm => apm.forType(theTestType))
                 .returns(() => assessment);
+            assessmentsProviderMock
+                .setup(apm => apm.getStep(theTestType, theTestStep))
+                .returns(() => requirement);
         } else {
             visualizationStoreData = {
                 selectedFastPassDetailsView: theTestType,
@@ -70,6 +79,12 @@ describe('StartOverComponentFactory', () => {
             deps,
             assessmentStoreData,
             visualizationStoreData,
+            rightPanelConfiguration: {
+                startOverContextMenuKeyOptions: {
+                    showAssessment: true,
+                    showTest: true,
+                },
+            },
         } as StartOverFactoryProps;
     }
 
@@ -77,13 +92,28 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverComponent', () => {
             const props = getProps(true);
             const rendered = AssessmentStartOverFactory.getStartOverComponent(props);
-
             expect(rendered).toMatchSnapshot();
         });
 
         it('getStartOverMenuItem', () => {
             const props = getProps(true);
             const menuItem = AssessmentStartOverFactory.getStartOverMenuItem(props);
+            const rendered = shallow(menuItem.onRender());
+
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
+    });
+
+    describe('QuickAssessStartOverFactory', () => {
+        it('getStartOverComponent', () => {
+            const props = getProps(true);
+            const rendered = QuickAssessStartOverFactory.getStartOverComponent(props);
+            expect(rendered).toMatchSnapshot();
+        });
+
+        it('getStartOverMenuItem', () => {
+            const props = getProps(true);
+            const menuItem = QuickAssessStartOverFactory.getStartOverMenuItem(props);
             const rendered = shallow(menuItem.onRender());
 
             expect(rendered.getElement()).toMatchSnapshot();

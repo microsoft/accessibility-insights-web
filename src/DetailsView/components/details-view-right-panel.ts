@@ -37,7 +37,7 @@ export type DetailsRightPanelConfiguration = Readonly<{
     RightPanel: ReactFCWithDisplayName<RightPanelProps>;
     GetTitle: (props: GetTestViewTitleProps) => string;
     GetLeftNavSelectedKey: (props: GetLeftNavSelectedKeyProps) => string;
-    GetStartOverContextualMenuItemKeys: () => string[];
+    startOverContextMenuKeyOptions: StartOverContextMenuKeyOptions;
 }>;
 
 export type GetDetailsRightPanelConfiguration = (
@@ -55,14 +55,19 @@ const detailsViewTypeContentMap: {
         RightPanel: OverviewContainer,
         GetTitle: getOverviewTitle,
         GetLeftNavSelectedKey: getOverviewKey,
-        GetStartOverContextualMenuItemKeys: () => ['assessment'],
+        startOverContextMenuKeyOptions: { showAssessment: true, showTest: false },
     },
     TestView: {
         RightPanel: TestViewContainer,
         GetTitle: getTestViewTitle,
         GetLeftNavSelectedKey: getTestViewKey,
-        GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
+        startOverContextMenuKeyOptions: { showAssessment: true, showTest: true },
     },
+};
+
+export type StartOverContextMenuKeyOptions = {
+    showAssessment: boolean;
+    showTest: boolean;
 };
 
 export const GetDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration = (

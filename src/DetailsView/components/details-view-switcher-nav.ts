@@ -52,8 +52,8 @@ import {
 import {
     GetRequirementViewComponentConfiguration,
     getRequirementViewComponentConfigurationForAssessment,
-    getRequirementViewComponentConfigurationForQuickAssess,
     getRequirementViewComponentConfigurationForFastPass,
+    getRequirementViewComponentConfigurationForQuickAssess,
 } from 'DetailsView/components/requirement-view-component-configuration';
 import {
     getNullSaveButton,
@@ -68,6 +68,7 @@ import {
 import {
     AssessmentStartOverFactory,
     FastpassStartOverFactory,
+    QuickAssessStartOverFactory,
     StartOverComponentFactory,
 } from 'DetailsView/components/start-over-component-factory';
 import { getTransferToAssessmentButton } from 'DetailsView/components/transfer-to-assessment-button';
@@ -163,7 +164,7 @@ const detailsViewSwitcherNavs: {
         SaveAssessmentButton: getNullSaveButton,
         LoadAssessmentButton: getNullLoadButton,
         TransferToAssessmentButton: getTransferToAssessmentButton,
-        StartOverComponentFactory: AssessmentStartOverFactory,
+        StartOverComponentFactory: QuickAssessStartOverFactory,
         LeftNav: QuickAssessLeftNav,
         getSelectedDetailsView: getQuickAssessSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,

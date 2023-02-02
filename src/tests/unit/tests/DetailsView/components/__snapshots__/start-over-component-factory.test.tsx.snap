@@ -2,8 +2,21 @@
 
 exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverComponent 1`] = `
 <StartOverDropdown
+  allTestSuffix="Assessment"
   dropdownDirection="down"
-  testName="the title"
+  rightPanelOptions={
+    {
+      "showAssessment": true,
+      "showTest": true,
+    }
+  }
+  singleTestSuffix="the title"
+  switcherStartOverPreferences={
+    {
+      "showAssessment": true,
+      "showTest": true,
+    }
+  }
 />
 `;
 
@@ -12,8 +25,21 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuIt
   role="menuitem"
 >
   <StartOverDropdown
+    allTestSuffix="Assessment"
     dropdownDirection="left"
-    testName="the title"
+    rightPanelOptions={
+      {
+        "showAssessment": true,
+        "showTest": true,
+      }
+    }
+    singleTestSuffix="the title"
+    switcherStartOverPreferences={
+      {
+        "showAssessment": true,
+        "showTest": true,
+      }
+    }
   />
 </div>
 `;
@@ -76,4 +102,48 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
   "onClick": [Function],
   "text": "Start over",
 }
+`;
+
+exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverComponent 1`] = `
+<StartOverDropdown
+  allTestSuffix="Quick Assess"
+  dropdownDirection="down"
+  rightPanelOptions={
+    {
+      "showAssessment": true,
+      "showTest": true,
+    }
+  }
+  singleTestSuffix="requirement name stub"
+  switcherStartOverPreferences={
+    {
+      "showAssessment": true,
+      "showTest": false,
+    }
+  }
+/>
+`;
+
+exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuItem 1`] = `
+<div
+  role="menuitem"
+>
+  <StartOverDropdown
+    allTestSuffix="Quick Assess"
+    dropdownDirection="left"
+    rightPanelOptions={
+      {
+        "showAssessment": true,
+        "showTest": true,
+      }
+    }
+    singleTestSuffix="requirement name stub"
+    switcherStartOverPreferences={
+      {
+        "showAssessment": true,
+        "showTest": false,
+      }
+    }
+  />
+</div>
 `;
