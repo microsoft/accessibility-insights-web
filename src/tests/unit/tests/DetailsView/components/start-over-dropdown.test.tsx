@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { ContextualMenu, IButton, IRefObject } from '@fluentui/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { StartOverContextMenuKeyOptions } from 'DetailsView/components/details-view-right-panel';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import {
     StartOverDropdown,
     StartOverProps,
@@ -24,10 +24,10 @@ describe('StartOverDropdownTest', () => {
     beforeEach(() => {
         openDialogMock = Mock.ofInstance(() => null);
         defaultProps = {
-            testName: 'test name',
-            rightPanelConfiguration: {
-                GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
-            } as DetailsRightPanelConfiguration,
+            singleTestSuffix: 'single test suffix stub',
+            allTestSuffix: 'all test suffix stub',
+            rightPanelOptions: { showAssessment: true, showTest: true },
+            switcherStartOverPreferences: { showAssessment: true, showTest: true },
             dropdownDirection: 'down',
             openDialog: openDialogMock.object,
             buttonRef: {} as IRefObject<IButton>,
@@ -47,14 +47,53 @@ describe('StartOverDropdownTest', () => {
         expect(rendered.state().target).toBe(event.currentTarget);
     });
 
-    it('render ContextualMenu with only one option', () => {
-        defaultProps.rightPanelConfiguration = {
-            GetStartOverContextualMenuItemKeys: () => ['assessment'],
-        } as DetailsRightPanelConfiguration;
-        const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
-        rendered.find(InsightsCommandButton).simulate('click', event);
-        expect(rendered.getElement()).toMatchSnapshot();
-        expect(rendered.state().target).toBe(event.currentTarget);
+    const menuButtonOptions = [true, false];
+    const startOverOptionsCases = [
+        {
+            key: 'assessment',
+            optionName: 'showAssessment',
+        },
+        {
+            key: 'test',
+            optionName: 'showTest',
+        },
+    ];
+
+    startOverOptionsCases.forEach(testCase => {
+        const optionName = testCase.optionName;
+        const optionKey = testCase.key;
+        menuButtonOptions.forEach(rightPanelOptionEnabled => {
+            menuButtonOptions.forEach(switcherPreferencesOptionEnabled => {
+                const rightPanelOptions = {
+                    [optionName]: rightPanelOptionEnabled,
+                } as StartOverContextMenuKeyOptions;
+                const switcherPreferences = {
+                    [optionName]: switcherPreferencesOptionEnabled,
+                } as StartOverContextMenuKeyOptions;
+
+                const shouldFindOption =
+                    rightPanelOptionEnabled && switcherPreferencesOptionEnabled;
+
+                const casePrefix = shouldFindOption
+                    ? `${optionKey} item IS rendered`
+                    : `${optionKey} item IS NOT rendered`;
+
+                test(`${casePrefix} - rightPanelOptions.${optionName} is ${rightPanelOptionEnabled} & switcherStartOverPreferences.${optionName} is ${switcherPreferencesOptionEnabled}`, () => {
+                    defaultProps.rightPanelOptions = rightPanelOptions;
+                    defaultProps.switcherStartOverPreferences = switcherPreferences;
+
+                    const rendered = shallow<StartOverDropdown>(
+                        <StartOverDropdown {...defaultProps} />,
+                    );
+                    rendered.find(InsightsCommandButton).simulate('click', event);
+                    const isStartOverOptionRendered = rendered
+                        .find(ContextualMenu)
+                        .prop('items')
+                        .some(item => item.key === optionKey);
+                    expect(isStartOverOptionRendered).toEqual(shouldFindOption);
+                });
+            });
+        });
     });
 
     it('render with dropdown on left', () => {

@@ -12,7 +12,7 @@ import { InsightsCommandButton } from 'common/components/controls/insights-comma
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import * as React from 'react';
 
-import { DetailsRightPanelConfiguration } from './details-view-right-panel';
+import { StartOverContextMenuKeyOptions } from './details-view-right-panel';
 
 export interface StartOverState {
     isContextMenuVisible: boolean;
@@ -20,11 +20,13 @@ export interface StartOverState {
 }
 
 export interface StartOverProps {
-    testName: string;
-    rightPanelConfiguration: DetailsRightPanelConfiguration;
+    singleTestSuffix: string;
     dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
     buttonRef: IRefObject<IButton>;
+    allTestSuffix: string;
+    rightPanelOptions: StartOverContextMenuKeyOptions;
+    switcherStartOverPreferences: StartOverContextMenuKeyOptions;
 }
 
 const dropdownDirections = {
@@ -88,23 +90,33 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     private getMenuItems(): IContextualMenuItem[] {
-        const { testName, rightPanelConfiguration } = this.props;
-        const items: IContextualMenuItem[] = [
-            {
-                key: 'assessment',
-                name: 'Start over Assessment',
-                onClick: this.onStartOverAllTestsMenu,
-            },
-            {
-                key: 'test',
-                name: `Start over ${testName}`,
-                onClick: this.onStartOverTestMenu,
-            },
-        ];
+        const {
+            singleTestSuffix,
+            allTestSuffix,
+            rightPanelOptions,
+            switcherStartOverPreferences: startOverButtonOptionPreferences,
+        } = this.props;
+        const items: IContextualMenuItem[] = [];
+        const assessmentKey = {
+            key: 'assessment',
+            name: `Start over ${allTestSuffix}`,
+            onClick: this.onStartOverAllTestsMenu,
+        };
+        const testKey = {
+            key: 'test',
+            name: `Start over ${singleTestSuffix}`,
+            onClick: this.onStartOverTestMenu,
+        };
 
-        return rightPanelConfiguration
-            .GetStartOverContextualMenuItemKeys()
-            .map(key => items.find(item => item.key === key));
+        if (rightPanelOptions.showAssessment && startOverButtonOptionPreferences.showAssessment) {
+            items.push(assessmentKey);
+        }
+
+        if (rightPanelOptions.showTest && startOverButtonOptionPreferences.showTest) {
+            items.push(testKey);
+        }
+
+        return items;
     }
 
     private onStartOverTestMenu = (): void => {

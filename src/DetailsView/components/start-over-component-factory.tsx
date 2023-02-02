@@ -48,6 +48,17 @@ export const AssessmentStartOverFactory: StartOverComponentFactory = {
     },
 };
 
+export const QuickAssessStartOverFactory: StartOverComponentFactory = {
+    getStartOverComponent: props => getStartOverComponentForQuickAssess(props, 'down'),
+    getStartOverMenuItem: props => {
+        return {
+            onRender: () => (
+                <div role="menuitem">{getStartOverComponentForQuickAssess(props, 'left')}</div>
+            ),
+        };
+    },
+};
+
 export const FastpassStartOverFactory: StartOverComponentFactory = {
     getStartOverComponent: props => {
         return <InsightsCommandButton {...getStartOverPropsForFastPass(props)} />;
@@ -62,11 +73,32 @@ export function getStartOverComponentForAssessment(
     const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
     const test = props.deps.getProvider().forType(selectedTest);
     const startOverProps: StartOverProps = {
-        testName: test.title,
-        rightPanelConfiguration: props.rightPanelConfiguration,
+        singleTestSuffix: test.title,
+        allTestSuffix: 'Assessment',
         dropdownDirection,
         openDialog: props.openDialog,
         buttonRef: props.buttonRef,
+        rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
+        switcherStartOverPreferences: { showAssessment: true, showTest: true },
+    };
+
+    return <StartOverDropdown {...startOverProps} />;
+}
+
+export function getStartOverComponentForQuickAssess(
+    props: StartOverFactoryProps,
+    dropdownDirection: DropdownDirection,
+): JSX.Element {
+    const { selectedTestSubview, selectedTestType } = props.assessmentStoreData.assessmentNavState;
+    const test = props.deps.getProvider().getStep(selectedTestType, selectedTestSubview);
+    const startOverProps: StartOverProps = {
+        singleTestSuffix: test.name,
+        allTestSuffix: 'Quick Assess',
+        dropdownDirection,
+        openDialog: props.openDialog,
+        buttonRef: props.buttonRef,
+        rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
+        switcherStartOverPreferences: { showAssessment: true, showTest: false },
     };
 
     return <StartOverDropdown {...startOverProps} />;

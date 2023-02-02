@@ -30,47 +30,12 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
       [
         {
           "key": "assessment",
-          "name": "Start over Assessment",
+          "name": "Start over all test suffix stub",
           "onClick": [Function],
         },
         {
           "key": "test",
-          "name": "Start over test name",
-          "onClick": [Function],
-        },
-      ]
-    }
-    onDismiss={[Function]}
-    target="test target"
-  />
-</div>
-`;
-
-exports[`StartOverDropdownTest render ContextualMenu with only one option 1`] = `
-<div>
-  <InsightsCommandButton
-    ariaLabel="start over menu"
-    componentRef={{}}
-    iconProps={
-      {
-        "iconName": "Refresh",
-      }
-    }
-    menuIconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-    text="Start over"
-  />
-  <ContextualMenu
-    directionalHint={7}
-    items={
-      [
-        {
-          "key": "assessment",
-          "name": "Start over Assessment",
+          "name": "Start over single test suffix stub",
           "onClick": [Function],
         },
       ]
@@ -105,12 +70,12 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
       [
         {
           "key": "assessment",
-          "name": "Start over Assessment",
+          "name": "Start over all test suffix stub",
           "onClick": [Function],
         },
         {
           "key": "test",
-          "name": "Start over test name",
+          "name": "Start over single test suffix stub",
           "onClick": [Function],
         },
       ]
