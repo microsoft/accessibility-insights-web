@@ -7,5 +7,5 @@ export const overviewHeadingIntroTextForAssessment = `This page contains a summa
                     requirements that can be:`;
 
 export const overviewHeadingIntroTextForQuickAssess = ` This page contains a summary that indicates the progress of your Quick Assess
-                    review. Quick assess is a limited version of the Assessment experience where you
+                    review. Quick Assess is a limited version of the Assessment experience where you
                     will navigate through a set of 10 requirements. These requirements can be:`;
