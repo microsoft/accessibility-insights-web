@@ -25,9 +25,9 @@ module.exports = function (grunt) {
     const packageValidatorBundlePath = path.join(packageValidatorPath, 'bundle');
     const packageValidatorDropPath = path.join(packageValidatorPath, 'drop');
 
-    const packageAxeConfigGeneratorPath = path.join('packages', 'axe-config-generator');
-    const packageAxeConfigGeneratorBundlePath = path.join(packageAxeConfigGeneratorPath, 'bundle');
-    const packageAxeConfigGeneratorDropPath = path.join(packageAxeConfigGeneratorPath, 'drop');
+    const packageAxeConfigPath = path.join('packages', 'axe-config');
+    const packageAxeConfigBundlePath = path.join(packageAxeConfigPath, 'bundle');
+    const packageAxeConfigDropPath = path.join(packageAxeConfigPath, 'drop');
 
     const mockAdbObjPath = path.join('packages', 'mock-adb', 'obj');
     const mockAdbBinPath = path.join('packages', 'mock-adb', 'bin');
@@ -54,7 +54,7 @@ module.exports = function (grunt) {
             'package-report': packageReportDropPath,
             'package-ui': packageUIDropPath,
             'package-validator': packageValidatorDropPath,
-            'package-axe-config-generator': packageAxeConfigGeneratorDropPath,
+            'package-axe-config': packageAxeConfigDropPath,
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
@@ -176,15 +176,12 @@ module.exports = function (grunt) {
                     },
                 ],
             },
-            'package-axe-config-generator': {
+            'package-axe-config': {
                 files: [
                     {
                         cwd: '.',
-                        src: path.join(
-                            packageAxeConfigGeneratorBundlePath,
-                            'axe-config-generator.bundle.js',
-                        ),
-                        dest: path.join(packageAxeConfigGeneratorDropPath, 'index.js'),
+                        src: path.join(packageAxeConfigPath, 'index.js'),
+                        dest: path.join(packageAxeConfigDropPath, 'index.js'),
                     },
                 ],
             },
@@ -197,8 +194,11 @@ module.exports = function (grunt) {
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
             'esbuild-package-validator': `node esbuild.js --env validator`,
             'generate-validator': `node ${packageValidatorDropPath}`,
-            'esbuild-package-axe-config-generator': `node esbuild.js --env axe-config-generator`,
-            'generate-axe-config': `node ${packageAxeConfigGeneratorDropPath}`,
+            'esbuild-package-axe-config': `node esbuild.js --env axe-config`,
+            'generate-axe-config': `node ${path.join(
+                packageAxeConfigBundlePath,
+                'axe-config-generator.bundle.js',
+            )} ${path.join(packageAxeConfigDropPath, 'axe-config.json')}`,
             'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
             'dotnet-publish-mock-adb': {
                 command: `dotnet publish -c Release -o "${path.resolve(mockAdbDropPath)}"`,
@@ -729,17 +729,17 @@ module.exports = function (grunt) {
         console.log(`package is in ${packageValidatorDropPath}`);
     });
 
-    grunt.registerTask('package-axe-config-generator', function () {
+    grunt.registerTask('package-axe-config', function () {
         const mustExistPath = path.join(
-            packageAxeConfigGeneratorBundlePath,
+            packageAxeConfigBundlePath,
             'axe-config-generator.bundle.js',
         );
 
         mustExist(mustExistPath, 'Have you run esbuild?');
 
-        grunt.task.run('clean:package-axe-config-generator');
-        grunt.task.run('copy:package-axe-config-generator');
-        console.log(`package is in ${packageAxeConfigGeneratorDropPath}`);
+        grunt.task.run('clean:package-axe-config');
+        grunt.task.run('copy:package-axe-config');
+        console.log(`package is in ${packageAxeConfigDropPath}`);
     });
 
     grunt.registerTask('build-mock-adb', function () {
@@ -832,8 +832,8 @@ module.exports = function (grunt) {
         'package-validator',
     ]);
     grunt.registerTask('generate-axe-config', [
-        'exec:esbuild-package-axe-config-generator',
-        'package-axe-config-generator',
+        'exec:esbuild-package-axe-config',
+        'package-axe-config',
         'exec:generate-axe-config',
     ]);
     grunt.registerTask('build-all', [

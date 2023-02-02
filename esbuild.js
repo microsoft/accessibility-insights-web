@@ -122,11 +122,11 @@ switch (argsObj.env) {
 
         break;
 
-    case 'axe-config-generator':
+    case 'axe-config':
         entryFiles = {
-            'axe-config-generator': `${src}/packages/axe-config-generator/index.ts`,
+            'axe-config-generator': `${src}/packages/axe-config/generate-config-json.ts`,
         };
-        outdir = path.join(__dirname, 'packages/axe-config-generator/bundle');
+        outdir = path.join(__dirname, 'packages/axe-config/bundle');
         platform = 'node';
 
         ignoreNodeModules(plugins);

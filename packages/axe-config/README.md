@@ -3,9 +3,9 @@ Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the MIT License.
 -->
 
-# accessibility-insights-axe-config-generator
+# @accessibility-insights/axe-config
 
-This library produces a tool that generates the [axe core run options](https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter) currently used by default in Accessibility Insights for Web extension scans.
+This library provides the [axe core run options](https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter) currently used by default in Accessibility Insights for Web extension FastPass scans.
 
 ## Contributing
 

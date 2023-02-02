@@ -7,7 +7,8 @@ import * as path from 'path';
 import { explicitRuleOverrides, getRuleInclusions } from 'scanner/get-rule-inclusions';
 import { ScanParameterGenerator } from 'scanner/scan-parameter-generator';
 
-const configFilePath = path.join(__dirname, '../../../drop/axe-config.json');
+const defaultConfigFilePath = path.join(__dirname, '../../../drop/axe-config.json');
+const configFilePath = process.argv[2] || defaultConfigFilePath;
 
 const generateAxeConfig = () => {
     console.log('Generating axe config file...');

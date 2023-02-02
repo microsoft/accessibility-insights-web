@@ -1,7 +1,7 @@
 {
-    "name": "accessibility-insights-axe-config-generator",
+    "name": "@accessibility-insights/axe-config",
     "version": "1.0.0",
-    "description": "Generates the current config used to run axe core scans.",
+    "description": "Provides the current axe-core run options used by Accessibility Insights for Web for FastPass scans.",
     "license": "MIT",
     "files": [
         "../../LICENSE",
@@ -10,7 +10,7 @@
     ],
     "main": "drop/index.js",
     "scripts": {
-        "build": "grunt build-axe-config-generator"
+        "build": "grunt build-axe-config"
     },
     "repository": {
         "type": "git",
