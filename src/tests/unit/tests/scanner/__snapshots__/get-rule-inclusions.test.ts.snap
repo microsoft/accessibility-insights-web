@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
+exports[`getRuleInclusions getRuleInclusions matches snapshotted list of production rules 1`] = `
 {
   "accesskeys": {
     "reason": "rule is tagged best-practice",
@@ -170,7 +170,7 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "included",
   },
   "identical-links-same-purpose": {
-    "reason": "disabled in axe config",
+    "reason": "rule is tagged wcag2aaa",
     "status": "excluded",
   },
   "image-alt": {
@@ -234,7 +234,8 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
     "status": "excluded",
   },
   "link-in-text-block": {
-    "status": "included",
+    "reason": "rule is tagged experimental",
+    "status": "excluded",
   },
   "link-name": {
     "status": "included",
@@ -251,12 +252,9 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
   "meta-refresh": {
     "status": "included",
   },
-  "meta-refresh-no-exceptions": {
-    "reason": "disabled in axe config",
-    "status": "excluded",
-  },
   "meta-viewport": {
-    "status": "included",
+    "reason": "rule is tagged best-practice",
+    "status": "excluded",
   },
   "meta-viewport-large": {
     "reason": "rule is tagged best-practice",
@@ -322,10 +320,6 @@ exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
   },
   "table-fake-caption": {
     "reason": "rule is tagged experimental",
-    "status": "excluded",
-  },
-  "target-size": {
-    "reason": "disabled in axe config",
     "status": "excluded",
   },
   "td-has-header": {

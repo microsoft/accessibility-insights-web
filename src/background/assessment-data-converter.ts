@@ -16,7 +16,6 @@ import {
     HtmlElementAxeResults,
 } from 'common/types/store-data/visualization-scan-result-data';
 import { forOwn, isEmpty } from 'lodash';
-import { getIncludedAlwaysRules } from 'scanner/get-rule-inclusions';
 import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
@@ -35,6 +34,7 @@ export class AssessmentDataConverter {
         generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
         isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
+        getIncludedAlwaysRules: () => string[],
     ): AssessmentInstancesMap {
         let instancesMap: AssessmentInstancesMap = {};
 
