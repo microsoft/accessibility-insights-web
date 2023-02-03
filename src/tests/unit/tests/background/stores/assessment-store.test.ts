@@ -52,6 +52,7 @@ import {
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
 import { cloneDeep } from 'lodash';
+import { getIncludedAlwaysRules } from 'scanner/get-rule-inclusions';
 import { ScanResults } from 'scanner/iruleresults';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -762,6 +763,7 @@ describe('AssessmentStore', () => {
                     instanceIdentifierGeneratorStub,
                     stepConfig.getInstanceStatus,
                     stepConfig.isVisualizationSupportedForResult,
+                    getIncludedAlwaysRules,
                 ),
             )
             .returns(() => expectedInstanceMap);
@@ -886,6 +888,7 @@ describe('AssessmentStore', () => {
                     instanceIdentifierGeneratorStub,
                     stepConfig.getInstanceStatus,
                     stepConfig.isVisualizationSupportedForResult,
+                    getIncludedAlwaysRules,
                 ),
             )
             .returns(() => fullInstanceMap);
@@ -988,6 +991,7 @@ describe('AssessmentStore', () => {
                     instanceIdentifierGeneratorStub,
                     stepConfig.getInstanceStatus,
                     stepConfig.isVisualizationSupportedForResult,
+                    getIncludedAlwaysRules,
                 ),
             )
             .returns(() => expectedInstanceMap);

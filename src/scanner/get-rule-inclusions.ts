@@ -69,6 +69,12 @@ export const getNeedsReviewRulesConfig: () => DictionaryStringTo<RuleIncluded> =
     return needsReviewRulesConfig;
 };
 
+export const getIncludedAlwaysRules: () => string[] = () => {
+    return Object.entries(explicitRuleOverrides)
+        .filter(rule => rule[1].status === 'included-always')
+        .map(rule => rule[0]);
+};
+
 export const getRuleInclusions = (
     ruleset: IRuleConfiguration[],
     ruleOverrides: DictionaryStringTo<RuleIncluded>,

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
+exports[`getRuleInclusions getRuleInclusions matches snapshotted list of production rules 1`] = `
 {
   "accesskeys": {
     "reason": "rule is tagged best-practice",

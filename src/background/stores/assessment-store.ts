@@ -22,6 +22,7 @@ import {
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
 import { forEach, isEmpty, pickBy } from 'lodash';
+import { getIncludedAlwaysRules } from 'scanner/get-rule-inclusions';
 import { DictionaryStringTo } from 'types/common-types';
 import {
     AddResultDescriptionPayload,
@@ -407,6 +408,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
                 config.getInstanceIdentiferGenerator(step),
                 stepConfig.getInstanceStatus,
                 stepConfig.isVisualizationSupportedForResult,
+                getIncludedAlwaysRules,
             );
         assessmentData.generatedAssessmentInstancesMap = generatedAssessmentInstancesMap;
         assessmentData.testStepStatus[step].isStepScanned = true;

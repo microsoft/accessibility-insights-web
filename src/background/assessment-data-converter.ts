@@ -34,6 +34,7 @@ export class AssessmentDataConverter {
         generateInstanceIdentifier: (instance: UniquelyIdentifiableInstances) => string,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
         isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
+        getIncludedAlwaysRules: () => string[],
     ): AssessmentInstancesMap {
         let instancesMap: AssessmentInstancesMap = {};
 
@@ -41,8 +42,11 @@ export class AssessmentDataConverter {
             instancesMap = previouslyGeneratedInstances;
         }
 
+        const includedAlwaysRules = getIncludedAlwaysRules();
         forOwn(selectorMap, elementAxeResult => {
-            const rule = Object.keys(elementAxeResult.ruleResults).pop();
+            const rule = Object.keys(elementAxeResult.ruleResults)
+                .filter(rule => !includedAlwaysRules.includes(rule))
+                .pop();
             if (rule) {
                 const ruleResult = elementAxeResult.ruleResults[rule];
                 const identifier = generateInstanceIdentifier({

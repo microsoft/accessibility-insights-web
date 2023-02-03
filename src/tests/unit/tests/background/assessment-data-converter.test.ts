@@ -59,6 +59,34 @@ describe('AssessmentDataConverter', () => {
                 undefined,
                 null,
                 null,
+                () => [],
+            );
+
+            expect(instanceMap).toEqual(previouslyGeneratedInstances);
+        });
+
+        it('should ignore selectors with only included always rule results.', () => {
+            const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
+                [selectorStub]: {
+                    ruleResults: {
+                        rule1: {
+                            html: htmlStub,
+                            id: 'id1',
+                            status: false,
+                        } as DecoratedAxeNodeResult,
+                    },
+                    target: [selectorStub],
+                },
+            };
+            const previouslyGeneratedInstances = {};
+            const instanceMap = testSubject.generateAssessmentInstancesMap(
+                previouslyGeneratedInstances,
+                selectorMap,
+                testStep,
+                undefined,
+                null,
+                null,
+                () => ['rule1'],
             );
 
             expect(instanceMap).toEqual(previouslyGeneratedInstances);
@@ -79,6 +107,7 @@ describe('AssessmentDataConverter', () => {
                 undefined,
                 null,
                 null,
+                () => [],
             );
 
             expect(instanceMap).toEqual(expectedResult);
@@ -126,6 +155,7 @@ describe('AssessmentDataConverter', () => {
                 generateInstanceIdentifierMock.object,
                 () => ManualTestStatus.UNKNOWN,
                 () => true,
+                () => [],
             );
 
             expect(instanceMap).toEqual(expectedResult);
@@ -166,6 +196,7 @@ describe('AssessmentDataConverter', () => {
                 generateInstanceIdentifierMock.object,
                 () => ManualTestStatus.UNKNOWN,
                 () => true,
+                () => [],
             );
 
             expect(instanceMap[identifierStub].propertyBag).toEqual(expectedPropertyBag);
@@ -198,6 +229,7 @@ describe('AssessmentDataConverter', () => {
                     generateInstanceIdentifierMock.object,
                     () => getInstanceStatusResult,
                     () => true,
+                    () => [],
                 );
 
                 expect(instanceMap[identifierStub].testStepResults[testStep].status).toEqual(
@@ -233,6 +265,7 @@ describe('AssessmentDataConverter', () => {
                     generateInstanceIdentifierMock.object,
                     () => ManualTestStatus.UNKNOWN,
                     () => isVisualizationSupportedResult,
+                    () => [],
                 );
 
                 expect(
@@ -318,6 +351,7 @@ describe('AssessmentDataConverter', () => {
                 generateInstanceIdentifierMock.object,
                 () => ManualTestStatus.UNKNOWN,
                 () => true,
+                () => [],
             );
 
             expect(instanceMap).toEqual(expectedResult);
