@@ -37,7 +37,16 @@ steps:
     - task: msospo.ospo-extension.8d7f9abb-6896-461d-9e25-4f74ed65ddb2.notice@0
       displayName: 'generate NOTICE.html file'
       inputs:
-          outputfile: '$(System.DefaultWorkingDirectory)/src/NOTICE.html'
+          # Temporarily disabled in favor of a manually generated NOTICE.html file while we
+          # investigate a fix for the generator task missing a few dependencies due to missing
+          # ClearlyDefined data.
+          #
+          # During investigation, we're still running the task (so that it generates an artifact
+          # containing NOTICE.html for debugging purposes), but we direct its output to a temp
+          # directory so that the build uses the checked-in src/NOTICE.html instead.
+          #
+          # outputfile: '$(System.DefaultWorkingDirectory)/src/NOTICE.html'
+          outputfile: '$(Agent.TempDirectory)/GENERATED_NOTICE.html'
           outputformat: html
       timeoutInMinutes: 5
 
