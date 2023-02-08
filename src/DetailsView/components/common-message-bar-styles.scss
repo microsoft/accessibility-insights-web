@@ -1,0 +1,7 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+.message-bar-height-override {
+    // min-height is set to 32px in MessageBar which behaves oddly and causes #6406.
+    min-height: fit-content;
+}

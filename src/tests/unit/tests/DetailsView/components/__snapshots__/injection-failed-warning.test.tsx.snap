@@ -2,6 +2,7 @@
 
 exports[`InjectionFailedWarning render with injection failed 1`] = `
 <StyledMessageBar
+  className="messageBarHeightOverride"
   messageBarType={5}
 >
   <div

@@ -7,6 +7,8 @@ import {
     InjectingState,
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
+
+import commonStyles from 'DetailsView/components/common-message-bar-styles.scss';
 import * as React from 'react';
 
 export const InjectionFailedWarningContainerAutomationId = 'injection-failed-warning-container';
@@ -22,7 +24,11 @@ export const InjectionFailedWarning = NamedFC<InjectionFailedWarningProps>(
             return null;
         } else {
             return (
-                <MessageBar key="injection-failed" messageBarType={MessageBarType.warning}>
+                <MessageBar
+                    className={commonStyles.messageBarHeightOverride}
+                    key="injection-failed"
+                    messageBarType={MessageBarType.warning}
+                >
                     <div data-automation-id={InjectionFailedWarningContainerAutomationId}>
                         {DisplayableStrings.injectionFailed}
                     </div>
