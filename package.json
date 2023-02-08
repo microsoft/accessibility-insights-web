@@ -116,7 +116,7 @@
         "@types/ua-parser-js": "^0.7.36",
         "@types/uuid": "^9.0.0",
         "@types/webextension-polyfill": "^0.10.0",
-        "@typescript-eslint/eslint-plugin": "^5.38.1",
+        "@typescript-eslint/eslint-plugin": "^5.51.0",
         "@typescript-eslint/parser": "^5.48.1",
         "app-builder-lib": "^23.6.0",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
