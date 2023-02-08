@@ -3,6 +3,7 @@
 import { MessageBar, MessageBarType } from '@fluentui/react';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
+import commonStyles from 'DetailsView/components/common-message-bar-styles.scss';
 import {
     ScanIncompleteWarningMessageBarDeps,
     WarningConfiguration,
@@ -32,7 +33,11 @@ export class ScanIncompleteWarning extends React.PureComponent<ScanIncompleteWar
             }
 
             const message = (
-                <MessageBar key={warningId} messageBarType={MessageBarType.warning}>
+                <MessageBar
+                    className={commonStyles.messageBarHeightOverride}
+                    key={warningId}
+                    messageBarType={MessageBarType.warning}
+                >
                     {render(this.props)}
                 </MessageBar>
             );

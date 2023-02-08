@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { MessageBar, MessageBarType } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
+
+import commonStyles from 'DetailsView/components/common-message-bar-styles.scss';
 import * as React from 'react';
 
 export type TargetPageHiddenBarProps = {
@@ -16,7 +18,10 @@ export const TargetPageHiddenBar = NamedFC<TargetPageHiddenBarProps>(
         }
 
         return (
-            <MessageBar messageBarType={MessageBarType.warning}>
+            <MessageBar
+                className={commonStyles.messageBarHeightOverride}
+                messageBarType={MessageBarType.warning}
+            >
                 The Target page is in a hidden state. For better performance, use the Target page
                 link above to make the page visible.
             </MessageBar>

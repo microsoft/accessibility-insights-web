@@ -5,6 +5,7 @@ exports[`ScanIncompleteWarning notRendered: where no warnings were provided 1`] 
 exports[`ScanIncompleteWarning rendered: where warnings were provided 1`] = `
 <React.Fragment>
   <StyledMessageBar
+    className="messageBarHeightOverride"
     messageBarType={5}
   />
 </React.Fragment>
@@ -13,6 +14,7 @@ exports[`ScanIncompleteWarning rendered: where warnings were provided 1`] = `
 exports[`ScanIncompleteWarning rendered: where warnings were provided, with one warning not supported 1`] = `
 <React.Fragment>
   <StyledMessageBar
+    className="messageBarHeightOverride"
     messageBarType={5}
   />
 </React.Fragment>
