@@ -125,7 +125,7 @@
         "core-js-bundle": "^3.27.1",
         "cross-env": "^7.0.3",
         "css-loader": "^6.7.2",
-        "electron-builder": "23.3.3",
+        "electron-builder": "23.6.0",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.7",
         "esbuild": "^0.15.12",
