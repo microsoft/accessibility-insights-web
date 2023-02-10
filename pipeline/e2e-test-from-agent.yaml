@@ -1,10 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-parameters:
-    - name: testsTimeoutInMinutes
-      type: number
-      default: 15
-
 steps:
     - script: yarn build:dev
       displayName: build:dev
@@ -12,4 +7,4 @@ steps:
 
     - script: yarn test:e2e --ci
       displayName: run e2e tests
-      timeoutInMinutes: ${{ parameters.testsTimeoutInMinutes }}
+      timeoutInMinutes: 20
