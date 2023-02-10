@@ -22,6 +22,8 @@ jobs:
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
+            parameters:
+                testsTimeoutInMinutes: 20
           - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_linux${{ parameters.jobNameSuffix }}'
