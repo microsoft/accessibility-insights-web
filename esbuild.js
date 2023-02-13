@@ -122,6 +122,17 @@ switch (argsObj.env) {
 
         break;
 
+    case 'axe-config':
+        entryFiles = {
+            'axe-config-generator': `${src}/packages/axe-config/generate-config-json.ts`,
+        };
+        outdir = path.join(__dirname, 'packages/axe-config/bundle');
+        platform = 'node';
+
+        ignoreNodeModules(plugins);
+
+        break;
+
     // dev web extension
     default:
         define = {

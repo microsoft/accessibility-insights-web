@@ -33,6 +33,7 @@
         "build:package:report": "lerna --scope accessibility-insights-report run build",
         "build:package:ui": "lerna --scope accessibility-insights-ui run build",
         "build:prod": "grunt build-prod",
+        "build:package:axe-config": "grunt generate-axe-config",
         "change-log": "node ./tools/get-change-log-for-release.js",
         "clean": "grunt clean:*",
         "clean:mock-adb": "grunt clean:mock-adb",
