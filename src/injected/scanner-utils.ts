@@ -3,6 +3,7 @@
 import { Logger } from 'common/logging/logger';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { scan as scanRunner } from 'scanner/exposed-apis';
+import { getIncludedAlwaysRules } from 'scanner/get-rule-inclusions';
 import { RuleResult, ScanResults } from 'scanner/iruleresults';
 import { ScanOptions } from 'scanner/scan-options';
 import { DictionaryStringTo } from 'types/common-types';
@@ -12,6 +13,7 @@ export class ScannerUtils {
         private readonly scanner: typeof scanRunner,
         private readonly logger: Logger,
         private readonly generateUID?: () => string,
+        private readonly getIncludedAlwaysRulesFunc: () => string[] = getIncludedAlwaysRules,
     ) {}
 
     public scan(options: ScanOptions, callback: (results: ScanResults) => void): void {
@@ -96,33 +98,36 @@ export class ScannerUtils {
         axeRules: RuleResult[],
         status: boolean | undefined,
     ): void {
-        axeRules.forEach(ruleResult => {
-            ruleResult.nodes.forEach(node => {
-                const selectorKey = node.target.join(';');
-                node.instanceId = this.generateUID ? this.generateUID() : undefined;
+        const includedAlwaysRules = this.getIncludedAlwaysRulesFunc();
+        axeRules
+            .filter(rule => !includedAlwaysRules.includes(rule.id))
+            .forEach(ruleResult => {
+                ruleResult.nodes.forEach(node => {
+                    const selectorKey = node.target.join(';');
+                    node.instanceId = this.generateUID ? this.generateUID() : undefined;
 
-                const elementResult = dictionary[selectorKey] || {
-                    target: node.target,
-                    ruleResults: {},
-                };
+                    const elementResult = dictionary[selectorKey] || {
+                        target: node.target,
+                        ruleResults: {},
+                    };
 
-                dictionary[selectorKey] = elementResult;
-                elementResult.ruleResults[ruleResult.id] = {
-                    any: node.any,
-                    all: node.all,
-                    none: node.none,
-                    status: status,
-                    ruleId: ruleResult.id,
-                    help: ruleResult.help,
-                    failureSummary: node.failureSummary,
-                    html: node.html,
-                    selector: selectorKey,
-                    id: node.instanceId,
-                    guidanceLinks: ruleResult.guidanceLinks ?? [],
-                    helpUrl: ruleResult.helpUrl,
-                };
+                    dictionary[selectorKey] = elementResult;
+                    elementResult.ruleResults[ruleResult.id] = {
+                        any: node.any,
+                        all: node.all,
+                        none: node.none,
+                        status: status,
+                        ruleId: ruleResult.id,
+                        help: ruleResult.help,
+                        failureSummary: node.failureSummary,
+                        html: node.html,
+                        selector: selectorKey,
+                        id: node.instanceId,
+                        guidanceLinks: ruleResult.guidanceLinks ?? [],
+                        helpUrl: ruleResult.helpUrl,
+                    };
+                });
             });
-        });
     }
 
     public static getFingerprint(node: AxeNodeResult, rule: RuleResult): string {

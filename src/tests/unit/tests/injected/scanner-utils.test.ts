@@ -29,7 +29,9 @@ describe('ScannerUtilsTest', () => {
             .returns(() => scopingState)
             .verifiable();
         const loggerMock = Mock.ofType<Logger>();
-        testSubject = new ScannerUtils(scannerMock.object, loggerMock.object, null);
+        testSubject = new ScannerUtils(scannerMock.object, loggerMock.object, null, () => [
+            'included-always-rule',
+        ]);
         scopingState = {
             selectors: {
                 [ScopingInputTypes.include]: [],
@@ -265,6 +267,7 @@ describe('ScannerUtilsTest', () => {
             scannerMock.object,
             loggerMock.object,
             generateUIDMock.object,
+            () => [],
         );
 
         generateUIDMock
@@ -411,6 +414,25 @@ describe('ScannerUtilsTest', () => {
             element3Selector,
             expectedElement3RuleResults,
         );
+    });
+
+    test('getAllCompletedInstances filters out included-always results', () => {
+        const selectors = ['1', '2', '3'];
+
+        const axeResults: ScanResults = {
+            passes: [getSampleRule('included-always-rule', selectors)],
+            violations: [],
+            inapplicable: [],
+            incomplete: [],
+            timestamp: '0',
+            targetPageUrl: 'test url',
+            targetPageTitle: 'test title',
+        };
+
+        const actual = testSubject.getAllCompletedInstances(axeResults);
+
+        const expected = {};
+        expect(actual).toEqual(expected);
     });
 
     test('getFingerprint', () => {
