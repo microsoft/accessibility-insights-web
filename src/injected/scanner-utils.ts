@@ -13,6 +13,7 @@ export class ScannerUtils {
         private readonly scanner: typeof scanRunner,
         private readonly logger: Logger,
         private readonly generateUID?: () => string,
+        private readonly getIncludedAlwaysRulesFunc: () => string[] = getIncludedAlwaysRules,
     ) {}
 
     public scan(options: ScanOptions, callback: (results: ScanResults) => void): void {
@@ -97,7 +98,7 @@ export class ScannerUtils {
         axeRules: RuleResult[],
         status: boolean | undefined,
     ): void {
-        const includedAlwaysRules = getIncludedAlwaysRules();
+        const includedAlwaysRules = this.getIncludedAlwaysRulesFunc();
         axeRules
             .filter(rule => !includedAlwaysRules.includes(rule.id))
             .forEach(ruleResult => {
