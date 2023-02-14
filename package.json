@@ -139,7 +139,7 @@
         "fake-indexeddb": "^4.0.1",
         "fork-ts-checker-webpack-plugin": "^7.2.13",
         "generic-names": "^4.0.0",
-        "grunt": "^1.5.3",
+        "grunt": "^1.6.1",
         "grunt-bom-removal": "1.0.1",
         "grunt-cli": "^1.4.3",
         "grunt-concurrent": "^3.0.0",
