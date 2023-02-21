@@ -5,73 +5,68 @@ import { VisualizationConfigurationFactory } from 'common/configs/visualization-
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
-import { TestViewType } from 'common/types/test-view-type';
 import { VisualizationType } from 'common/types/visualization-type';
+import { ITestViewContainerProvider } from 'DetailsView/components/itest-view-container-provider';
 import {
     TestViewContainer,
     TestViewContainerProps,
 } from 'DetailsView/components/test-view-container';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ContentPageComponent } from 'views/content/content-page';
+import { IMock, Mock, Times } from 'typemoq';
 
 describe('TestViewContainer', () => {
-    describe.each([
-        'AdhocStatic',
-        'AdhocFailure',
-        'AdhocNeedsReview',
-        'AdhocTabStops',
-        'Assessment',
-    ])('for testViewType=%s', (testViewType: TestViewType) => {
-        const selectedTest: VisualizationType = -1;
-        let configStub: VisualizationConfiguration;
-        let configFactoryStub: VisualizationConfigurationFactory;
-        let props: TestViewContainerProps;
-        beforeEach(() => {
-            configStub = {
-                key: 'configStub',
-                testViewType,
-            } as VisualizationConfiguration;
+    const selectedTest: VisualizationType = -1;
+    const elementStub = <div />;
+    let configStub: VisualizationConfiguration;
+    let configFactoryStub: VisualizationConfigurationFactory;
+    let props: TestViewContainerProps;
+    let getTestViewContainerMock: IMock<
+        (provider: ITestViewContainerProvider, props: TestViewContainerProps) => JSX.Element
+    >;
+    let testViewContainerProviderMock: IMock<ITestViewContainerProvider>;
 
-            configFactoryStub = {
-                getConfiguration: (visualizationType: VisualizationType) => configStub,
-            } as VisualizationConfigurationFactory;
+    beforeEach(() => {
+        getTestViewContainerMock = Mock.ofInstance((provider, props) => null);
+        testViewContainerProviderMock = Mock.ofType<ITestViewContainerProvider>();
 
-            props = {
-                deps: {
-                    automatedChecksCardSelectionMessageCreator:
-                        {} as AutomatedChecksCardSelectionMessageCreator,
-                    needsReviewCardSelectionMessageCreator:
-                        {} as NeedsReviewCardSelectionMessageCreator,
+        configStub = {
+            key: 'configStub',
+            getTestViewContainer: getTestViewContainerMock.object,
+        } as VisualizationConfiguration;
+
+        configFactoryStub = {
+            getConfiguration: _ => configStub,
+        } as VisualizationConfigurationFactory;
+
+        props = {
+            deps: {
+                automatedChecksCardSelectionMessageCreator:
+                    {} as AutomatedChecksCardSelectionMessageCreator,
+                needsReviewCardSelectionMessageCreator:
+                    {} as NeedsReviewCardSelectionMessageCreator,
+            },
+            someParentProp: 'parent-prop',
+            visualizationConfigurationFactory: configFactoryStub,
+            selectedTest,
+            visualizationScanResultData: {
+                tabStops: {
+                    requirements: {} as TabStopRequirementState,
                 },
-                someParentProp: 'parent-prop',
-                visualizationConfigurationFactory: configFactoryStub,
-                selectedTest,
-                visualizationScanResultData: {
-                    tabStops: {
-                        requirements: {} as TabStopRequirementState,
-                    },
-                },
-            } as unknown as TestViewContainerProps;
-        });
+            },
+            testViewContainerProvider: testViewContainerProviderMock.object,
+        } as unknown as TestViewContainerProps;
+    });
 
-        it('renders per snapshot with no testViewOverrides', () => {
-            configStub.testViewOverrides = undefined;
-            const rendered = shallow(<TestViewContainer {...props} />);
-            expect(rendered.getElement()).toMatchSnapshot();
-        });
-
-        it('renders per snapshot with testViewOverrides', () => {
-            configStub.testViewOverrides = {
-                content: stubContentPageComponent('content'),
-                guidance: stubContentPageComponent('guidance'),
-            };
-            const rendered = shallow(<TestViewContainer {...props} />);
-            expect(rendered.getElement()).toMatchSnapshot();
-        });
-
-        function stubContentPageComponent(identifier: string): ContentPageComponent {
-            return `stub content page component "${identifier}"` as unknown as ContentPageComponent;
-        }
+    it('renders per snapshot', () => {
+        getTestViewContainerMock
+            .setup(gtc =>
+                gtc(testViewContainerProviderMock.object, { configuration: configStub, ...props }),
+            )
+            .returns(() => elementStub)
+            .verifiable(Times.once());
+        const rendered = shallow(<TestViewContainer {...props} />);
+        expect(rendered.getElement()).toEqual(elementStub);
+        getTestViewContainerMock.verifyAll();
     });
 });

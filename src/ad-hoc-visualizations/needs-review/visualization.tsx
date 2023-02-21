@@ -65,4 +65,5 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
+    getTestViewContainer: (provider, props) => provider.createNeedsReviewTestViewContainer(props),
 };

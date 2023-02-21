@@ -159,6 +159,8 @@ export class AssessmentBuilder {
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: this.getSwitchToTargetTabOnScan(requirements),
             getInstanceIdentiferGenerator: this.getInstanceIdentifier(requirements),
+            getTestViewContainer: (provider, props) =>
+                provider.createAssessmentTestViewContainer(props),
         };
 
         this.buildRequirementReportDescription(requirements);
@@ -242,6 +244,8 @@ export class AssessmentBuilder {
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(requirements),
             getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(requirements),
+            getTestViewContainer: (provider, props) =>
+                provider.createAssessmentTestViewContainer(props),
         } as AssessmentVisualizationConfiguration;
 
         AssessmentBuilder.buildRequirementReportDescription(requirements);

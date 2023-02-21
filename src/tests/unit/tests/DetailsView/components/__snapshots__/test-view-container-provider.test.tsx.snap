@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestViewContainerProvider can create assessment test view container 1`] = `
+<AssessmentTestView
+  deps={
+    {
+      "automatedChecksCardSelectionMessageCreator": {},
+      "needsReviewCardSelectionMessageCreator": {},
+    }
+  }
+  someParentProp="parent-prop"
+  visualizationScanResultData={
+    {
+      "tabStops": {
+        "requirements": {},
+      },
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainerProvider can create issues test view container 1`] = `
+<AdhocIssuesTestView
+  cardSelectionMessageCreator={{}}
+  deps={
+    {
+      "automatedChecksCardSelectionMessageCreator": {},
+      "needsReviewCardSelectionMessageCreator": {},
+    }
+  }
+  instancesSection={[Function]}
+  someParentProp="parent-prop"
+  visualizationScanResultData={
+    {
+      "tabStops": {
+        "requirements": {},
+      },
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainerProvider can create needs review test view container 1`] = `
+<AdhocIssuesTestView
+  cardSelectionMessageCreator={{}}
+  deps={
+    {
+      "automatedChecksCardSelectionMessageCreator": {},
+      "needsReviewCardSelectionMessageCreator": {},
+    }
+  }
+  instancesSection={[Function]}
+  someParentProp="parent-prop"
+  visualizationScanResultData={
+    {
+      "tabStops": {
+        "requirements": {},
+      },
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainerProvider can create static test view container 1`] = `
+<AdhocStaticTestView
+  deps={
+    {
+      "automatedChecksCardSelectionMessageCreator": {},
+      "needsReviewCardSelectionMessageCreator": {},
+    }
+  }
+  someParentProp="parent-prop"
+  visualizationScanResultData={
+    {
+      "tabStops": {
+        "requirements": {},
+      },
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainerProvider can create tab stops test view container 1`] = `
+<AdhocTabStopsTestView
+  deps={
+    {
+      "automatedChecksCardSelectionMessageCreator": {},
+      "needsReviewCardSelectionMessageCreator": {},
+    }
+  }
+  someParentProp="parent-prop"
+  visualizationScanResultData={
+    {
+      "tabStops": {
+        "requirements": {},
+      },
+    }
+  }
+/>
+`;

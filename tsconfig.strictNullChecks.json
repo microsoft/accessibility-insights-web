@@ -37,6 +37,7 @@
         "src/DetailsView/components/left-nav/assessment-left-nav.tsx",
         "src/DetailsView/components/left-nav/details-view-left-nav.tsx",
         "src/DetailsView/components/left-nav/fast-pass-left-nav.tsx",
+        "src/DetailsView/components/test-view-container-provider.tsx",
         "src/DetailsView/components/left-nav/fluent-side-nav.tsx",
         "src/DetailsView/components/left-nav/get-left-nav-selected-key.ts",
         "src/DetailsView/components/left-nav/get-status-for-test.ts",

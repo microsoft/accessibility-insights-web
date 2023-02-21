@@ -37,6 +37,7 @@ import {
 } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
+import { ITestViewContainerProvider } from './components/itest-view-container-provider';
 import { DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-nav';
 import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
@@ -77,6 +78,7 @@ export interface DetailsViewBodyProps {
     narrowModeStatus: NarrowModeStatus;
     tabStopRequirementData: TabStopRequirementState;
     dataTransferViewStoreData: DataTransferViewStoreData;
+    testViewContainerProvider: ITestViewContainerProvider;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {

@@ -65,6 +65,7 @@ import { FastPassTabStopsInstanceSectionPropsFactory } from 'DetailsView/compone
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
 import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
+import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import { DataTransferViewStore } from 'DetailsView/data-transfer-view-store';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
@@ -592,6 +593,8 @@ if (tabId != null) {
                 GetDetailsSwitcherNavConfiguration,
             );
 
+            const testViewContainerProvider = new TestViewContainerProvider();
+
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);
 
@@ -688,6 +691,7 @@ if (tabId != null) {
                 getGetAssessmentSummaryModelFromProviderAndStatusData:
                     assessmentFunctionalitySwitcher.getGetAssessmentSummaryModelFromProviderAndStatusData,
                 dataTransferViewController,
+                testViewContainerProvider,
             };
 
             const renderer = new DetailsViewRenderer(
