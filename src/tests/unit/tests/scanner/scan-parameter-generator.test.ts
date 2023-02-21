@@ -34,7 +34,6 @@ describe('ScanParameterGenerator', () => {
     describe('getAxeEngineOptions', () => {
         it('should handle options being null', () => {
             const expectedAxeOptions: AxeOptions = {
-                restoreScroll: true,
                 runOnly: {
                     type: 'rule',
                     values: ['rule-a', 'rule-b', 'rule-c'],
@@ -49,7 +48,6 @@ describe('ScanParameterGenerator', () => {
 
         it('should handle testsToRun to be null', () => {
             const expectedAxeOptions: AxeOptions = {
-                restoreScroll: true,
                 runOnly: {
                     type: 'rule',
                     values: ['rule-a', 'rule-b', 'rule-c'],
@@ -65,7 +63,6 @@ describe('ScanParameterGenerator', () => {
 
         it('should handle testsToRun to have rules', () => {
             const expectedAxeOptions: AxeOptions = {
-                restoreScroll: true,
                 runOnly: {
                     type: 'rule',
                     values: ['ruleA', 'ruleB', 'rule-c'],
