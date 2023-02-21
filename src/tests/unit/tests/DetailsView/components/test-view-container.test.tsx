@@ -6,11 +6,11 @@ import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creat
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { ITestViewContainerProvider } from 'DetailsView/components/itest-view-container-provider';
 import {
     TestViewContainer,
     TestViewContainerProps,
 } from 'DetailsView/components/test-view-container';
+import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
@@ -22,13 +22,13 @@ describe('TestViewContainer', () => {
     let configFactoryStub: VisualizationConfigurationFactory;
     let props: TestViewContainerProps;
     let getTestViewContainerMock: IMock<
-        (provider: ITestViewContainerProvider, props: TestViewContainerProps) => JSX.Element
+        (provider: TestViewContainerProvider, props: TestViewContainerProps) => JSX.Element
     >;
-    let testViewContainerProviderMock: IMock<ITestViewContainerProvider>;
+    let testViewContainerProviderMock: IMock<TestViewContainerProvider>;
 
     beforeEach(() => {
         getTestViewContainerMock = Mock.ofInstance((provider, props) => null);
-        testViewContainerProviderMock = Mock.ofType<ITestViewContainerProvider>();
+        testViewContainerProviderMock = Mock.ofType<TestViewContainerProvider>();
 
         configStub = {
             key: 'configStub',

@@ -55,6 +55,7 @@ import {
     SharedAssessmentObjects,
 } from 'DetailsView/assessment-functionality-switcher';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
+import { DefaultTestViewContainerProvider } from 'DetailsView/components/default-test-view-container-provider';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
@@ -65,7 +66,6 @@ import { FastPassTabStopsInstanceSectionPropsFactory } from 'DetailsView/compone
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
 import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
-import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import { DataTransferViewStore } from 'DetailsView/data-transfer-view-store';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
@@ -593,7 +593,7 @@ if (tabId != null) {
                 GetDetailsSwitcherNavConfiguration,
             );
 
-            const testViewContainerProvider = new TestViewContainerProvider();
+            const testViewContainerProvider = new DefaultTestViewContainerProvider();
 
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);

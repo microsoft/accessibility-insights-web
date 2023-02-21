@@ -13,6 +13,7 @@ import {
     QuickAssessToAssessmentDialogDeps,
 } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
+import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
 import styles from 'DetailsView/details-view-body.scss';
 import * as React from 'react';
@@ -37,7 +38,6 @@ import {
 } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
-import { ITestViewContainerProvider } from './components/itest-view-container-provider';
 import { DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-nav';
 import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
@@ -78,7 +78,7 @@ export interface DetailsViewBodyProps {
     narrowModeStatus: NarrowModeStatus;
     tabStopRequirementData: TabStopRequirementState;
     dataTransferViewStoreData: DataTransferViewStoreData;
-    testViewContainerProvider: ITestViewContainerProvider;
+    testViewContainerProvider: TestViewContainerProvider;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {

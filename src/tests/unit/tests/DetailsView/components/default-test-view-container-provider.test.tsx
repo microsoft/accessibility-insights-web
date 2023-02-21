@@ -3,15 +3,15 @@
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { DefaultTestViewContainerProvider } from 'DetailsView/components/default-test-view-container-provider';
 import { TestViewContainerProps } from 'DetailsView/components/test-view-container';
-import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 
-describe('TestViewContainerProvider', () => {
-    let testSubject: TestViewContainerProvider;
+describe('DefaultTestViewContainerProvider', () => {
+    let testSubject: DefaultTestViewContainerProvider;
     let propsStub: TestViewContainerProps;
 
     beforeEach(() => {
-        testSubject = new TestViewContainerProvider();
+        testSubject = new DefaultTestViewContainerProvider();
         propsStub = {
             deps: {
                 automatedChecksCardSelectionMessageCreator:

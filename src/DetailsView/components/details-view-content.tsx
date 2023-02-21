@@ -20,8 +20,8 @@ import {
     InteractiveHeaderDeps,
 } from 'DetailsView/components/interactive-header';
 import { IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
-import { ITestViewContainerProvider } from 'DetailsView/components/itest-view-container-provider';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 import { DetailsViewBody, DetailsViewBodyDeps } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
@@ -44,7 +44,7 @@ export type DetailsViewContentDeps = {
     dropdownClickHandler: DropdownClickHandler;
     isResultHighlightUnavailable: IsResultHighlightUnavailable;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    testViewContainerProvider: ITestViewContainerProvider;
+    testViewContainerProvider: TestViewContainerProvider;
 } & InteractiveHeaderDeps &
     DetailsViewOverlayDeps &
     DetailsViewBodyDeps;
