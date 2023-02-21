@@ -14,6 +14,7 @@ export class FeatureFlags {
     public static readonly debugTools = 'debugTools';
     public static readonly exportReportOptions = 'exportReportOptions';
     public static readonly quickAssess = 'quickAssess';
+    public static readonly automatedChecks = 'automatedChecks';
 }
 
 export interface FeatureFlagDetail {
@@ -104,6 +105,15 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'Quick Assess',
             displayableDescription: 'Adds Quick Assess option to launch pad and details view pivot',
             isPreviewFeature: true,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.automatedChecks,
+            defaultValue: false,
+            displayableName: 'Automated checks',
+            displayableDescription:
+                'New Automated checks experience for Assessment and Quick Assess',
+            isPreviewFeature: false,
             forceDefault: false,
         },
     ];
