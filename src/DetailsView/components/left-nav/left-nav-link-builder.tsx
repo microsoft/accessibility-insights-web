@@ -123,7 +123,7 @@ export class LeftNavLinkBuilder {
 
         const isExpanded = assessment.visualizationType === expandedTest;
         const test = featureFlagStoreData[FeatureFlags.automatedChecks]
-            ? this.buildNoncollapsableAssessmentLink(
+            ? this.buildNoncollapsibleAssessmentLink(
                   deps,
                   assessment,
                   startingIndex,
@@ -194,7 +194,7 @@ export class LeftNavLinkBuilder {
             const featureFlagStoreData = this.featureFlagStore.getState();
             const buildAssessmentLink =
                 assessment.isNonCollapsible && featureFlagStoreData[FeatureFlags.automatedChecks]
-                    ? this.buildNoncollapsableAssessmentLink
+                    ? this.buildNoncollapsibleAssessmentLink
                     : this.buildCollapsibleAssessmentLink;
             const test = buildAssessmentLink(
                 deps,
@@ -211,7 +211,7 @@ export class LeftNavLinkBuilder {
         return allTestLinks;
     }
 
-    private buildNoncollapsableAssessmentLink = (
+    private buildNoncollapsibleAssessmentLink = (
         deps: AssessmentLinkBuilderDeps,
         assessment: Assessment,
         index: number,
