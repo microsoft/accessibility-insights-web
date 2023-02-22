@@ -4,6 +4,9 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { FeatureFlags } from 'common/feature-flags';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
@@ -46,6 +49,8 @@ describe('LeftNavBuilder', () => {
     let eventStub: React.MouseEvent<HTMLElement, MouseEvent>;
     let itemStub: BaseLeftNavLink;
     let quickAssessRequirementKeysStub: string[];
+    let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
+    let featureFlagStoreStateStub: FeatureFlagStoreData;
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -62,6 +67,11 @@ describe('LeftNavBuilder', () => {
         eventStub = {} as React.MouseEvent<HTMLElement, MouseEvent>;
         itemStub = {} as BaseLeftNavLink;
         quickAssessRequirementKeysStub = [];
+        featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
+        featureFlagStoreStateStub = {};
+        featureFlagStoreStoreMock
+            .setup(sm => sm.getState())
+            .returns(() => featureFlagStoreStateStub);
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
@@ -76,7 +86,7 @@ describe('LeftNavBuilder', () => {
                 getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
         } as LeftNavLinkBuilderDeps;
 
-        testSubject = new LeftNavLinkBuilder();
+        testSubject = new LeftNavLinkBuilder(featureFlagStoreStoreMock.object);
     });
 
     const setupLinkClickHandlerMocks = () => {
@@ -192,22 +202,31 @@ describe('LeftNavBuilder', () => {
     });
 
     describe('buildAutomatedChecksLinks', () => {
-        it('should build just automated checks assessment link', () => {
-            const { expandedTest } = setupAssessmentMocks();
+        it.each([true, false])(
+            'should build just automated checks assessment link with feature flag %s',
+            featureFlagState => {
+                featureFlagStoreStateStub[FeatureFlags.automatedChecks] = featureFlagState;
 
-            const testLink = testSubject.buildAutomatedChecksLinks(
-                deps,
-                assessmentProviderMock.object,
-                assessmentsDataStub,
-                0,
-                expandedTest,
-                onRightPanelContentSwitchMock.object,
-            );
-            expect(testLink).toMatchSnapshot();
-            testLink.links.forEach(actualLink => {
-                expect(actualLink).toMatchSnapshot();
-            });
-        });
+                const { expandedTest } = setupAssessmentMocks();
+
+                const testLink = testSubject.buildAutomatedChecksLinks(
+                    deps,
+                    assessmentProviderMock.object,
+                    assessmentsDataStub,
+                    0,
+                    expandedTest,
+                    onRightPanelContentSwitchMock.object,
+                );
+                expect(testLink).toMatchSnapshot();
+                if (featureFlagState) {
+                    expect(testLink.links).toBe(undefined);
+                } else {
+                    testLink.links.forEach(actualLink => {
+                        expect(actualLink).toMatchSnapshot();
+                    });
+                }
+            },
+        );
     });
 
     describe('buildQuickAssessTestLinks', () => {
@@ -232,26 +251,38 @@ describe('LeftNavBuilder', () => {
     });
 
     describe('buildAssessmentTestLinks', () => {
-        it('should build links for assessments', () => {
-            const { expandedTest } = setupAssessmentMocks();
+        it.each([true, false])(
+            'should build links for assessments with feature flag %s',
+            featureFlagState => {
+                featureFlagStoreStateStub[FeatureFlags.automatedChecks] = featureFlagState;
 
-            const links = testSubject.buildAssessmentTestLinks(
-                deps,
-                assessmentProviderMock.object,
-                assessmentsDataStub,
-                1,
-                expandedTest,
-                onRightPanelContentSwitchMock.object,
-            );
+                const { expandedTest, assessmentsStub } = setupAssessmentMocks();
 
-            links.forEach(testLink => {
-                testLink.links.forEach(actualLink => {
-                    expect(actualLink).toMatchSnapshot();
+                const links = testSubject.buildAssessmentTestLinks(
+                    deps,
+                    assessmentProviderMock.object,
+                    assessmentsDataStub,
+                    1,
+                    expandedTest,
+                    onRightPanelContentSwitchMock.object,
+                );
+
+                const nonCollapsibleAssessments = assessmentsStub
+                    .filter(a => a.isNonCollapsible)
+                    .map(a => a.title);
+                links.forEach(testLink => {
+                    if (featureFlagState && nonCollapsibleAssessments.includes(testLink.name)) {
+                        expect(testLink.links).toBe(undefined);
+                    } else {
+                        testLink.links.forEach(actualLink => {
+                            expect(actualLink).toMatchSnapshot();
+                        });
+                    }
+
+                    expect(testLink).toMatchSnapshot();
                 });
-
-                expect(testLink).toMatchSnapshot();
-            });
-        });
+            },
+        );
     });
 
     const setupAssessmentMocks = () => {
@@ -287,6 +318,7 @@ describe('LeftNavBuilder', () => {
             title: 'another title',
             visualizationType: 2,
             requirements: [requirementStubC],
+            isNonCollapsible: true,
         } as Assessment;
 
         const assessmentStub3 = {
@@ -369,6 +401,7 @@ describe('LeftNavBuilder', () => {
         return {
             expandedTest,
             quickAssessRequirementKeysStub,
+            assessmentsStub,
         };
     };
 });

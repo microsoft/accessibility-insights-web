@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 1`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 1`] = `
 {
   "forceAnchor": true,
   "iconProps": {
@@ -16,7 +16,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 2`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 2`] = `
 {
   "displayedIndex": "1.1",
   "forceAnchor": true,
@@ -36,7 +36,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 3`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 3`] = `
 {
   "displayedIndex": "1.2",
   "forceAnchor": true,
@@ -56,7 +56,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 4`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 4`] = `
 {
   "forceAnchor": false,
   "iconProps": {
@@ -124,7 +124,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 5`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 5`] = `
 {
   "forceAnchor": true,
   "iconProps": {
@@ -140,7 +140,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 6`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 6`] = `
 {
   "displayedIndex": "2.1",
   "forceAnchor": true,
@@ -160,7 +160,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 7`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 7`] = `
 {
   "forceAnchor": false,
   "iconProps": {
@@ -211,7 +211,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 8`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 8`] = `
 {
   "forceAnchor": true,
   "iconProps": {
@@ -227,7 +227,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 9`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 9`] = `
 {
   "displayedIndex": "3.1",
   "forceAnchor": true,
@@ -247,7 +247,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments 10`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag false 10`] = `
 {
   "forceAnchor": false,
   "iconProps": {
@@ -298,7 +298,236 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link 1`] = `
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag true 1`] = `
+{
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "key": "Issues: getting-started",
+  "name": "Getting started",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "testType": 1,
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag true 2`] = `
+{
+  "displayedIndex": "1.1",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "key": "Issues: requirement-key-1",
+  "name": "requirement-name-1",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-1",
+  "status": -2,
+  "testType": 1,
+  "title": "1.1: requirement-name-1 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag true 3`] = `
+{
+  "displayedIndex": "1.2",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 2,
+  "key": "Issues: requirement-key-2",
+  "name": "requirement-name-2",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-2",
+  "status": -2,
+  "testType": 1,
+  "title": "1.2: requirement-name-2 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag true 4`] = `
+{
+  "forceAnchor": false,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "isExpanded": true,
+  "key": "Issues",
+  "links": [
+    {
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 0,
+      "key": "Issues: getting-started",
+      "name": "Getting started",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "testType": 1,
+      "url": "",
+    },
+    {
+      "displayedIndex": "1.1",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Issues: requirement-key-1",
+      "name": "requirement-name-1",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-1",
+      "status": -2,
+      "testType": 1,
+      "title": "1.1: requirement-name-1 (passed)",
+      "url": "",
+    },
+    {
+      "displayedIndex": "1.2",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 2,
+      "key": "Issues: requirement-key-2",
+      "name": "requirement-name-2",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-2",
+      "status": -2,
+      "testType": 1,
+      "title": "1.2: requirement-name-2 (passed)",
+      "url": "",
+    },
+  ],
+  "name": "some title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 1,
+  "title": "1: some title (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag true 5`] = `
+{
+  "forceAnchor": false,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 2,
+  "key": "Landmarks",
+  "name": "another title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 2,
+  "title": "2: another title (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag true 6`] = `
+{
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "key": "Landmarks: getting-started",
+  "name": "Getting started",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "testType": 2,
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag true 7`] = `
+{
+  "displayedIndex": "3.1",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "key": "Landmarks: requirement-key-4",
+  "name": "requirement-name-4",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-4",
+  "status": -2,
+  "testType": 2,
+  "title": "3.1: requirement-name-4 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessments with feature flag true 8`] = `
+{
+  "forceAnchor": false,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 3,
+  "isExpanded": false,
+  "key": "Landmarks",
+  "links": [
+    {
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 0,
+      "key": "Landmarks: getting-started",
+      "name": "Getting started",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "testType": 2,
+      "url": "",
+    },
+    {
+      "displayedIndex": "3.1",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Landmarks: requirement-key-4",
+      "name": "requirement-name-4",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-4",
+      "status": -2,
+      "testType": 2,
+      "title": "3.1: requirement-name-4 (passed)",
+      "url": "",
+    },
+  ],
+  "name": "some other title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 2,
+  "title": "3: some other title (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag false 1`] = `
 {
   "forceAnchor": false,
   "iconProps": {
@@ -366,7 +595,7 @@ exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated ch
 }
 `;
 
-exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link 2`] = `
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag false 2`] = `
 {
   "forceAnchor": true,
   "iconProps": {
@@ -382,7 +611,7 @@ exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated ch
 }
 `;
 
-exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link 3`] = `
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag false 3`] = `
 {
   "displayedIndex": "0.1",
   "forceAnchor": true,
@@ -402,7 +631,7 @@ exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated ch
 }
 `;
 
-exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link 4`] = `
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag false 4`] = `
 {
   "displayedIndex": "0.2",
   "forceAnchor": true,
@@ -418,6 +647,24 @@ exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated ch
   "status": -2,
   "testType": 1,
   "title": "0.2: requirement-name-2 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag true 1`] = `
+{
+  "forceAnchor": false,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "key": "Issues",
+  "name": "some title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 1,
+  "title": "0: some title (passed)",
   "url": "",
 }
 `;
