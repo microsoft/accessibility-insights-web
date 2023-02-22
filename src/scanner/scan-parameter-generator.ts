@@ -11,7 +11,6 @@ export class ScanParameterGenerator {
 
     public getAxeEngineOptions(options: ScanOptions): AxeOptions {
         const result: AxeOptions = {
-            restoreScroll: true,
             runOnly: {
                 type: 'rule',
                 values: [],
