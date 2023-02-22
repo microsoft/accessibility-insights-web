@@ -89,16 +89,18 @@ export function getStartOverComponentForQuickAssess(
     props: StartOverFactoryProps,
     dropdownDirection: DropdownDirection,
 ): JSX.Element {
-    const { selectedTestSubview, selectedTestType } = props.assessmentStoreData.assessmentNavState;
-    const test = props.deps.getProvider().getStep(selectedTestType, selectedTestSubview);
+    // since we do not show start over per requirement in quick assess.
+    const showTest = false;
+    const singleTestSuffix = '';
+
     const startOverProps: StartOverProps = {
-        singleTestSuffix: test.name,
+        singleTestSuffix,
         allTestSuffix: 'Quick Assess',
         dropdownDirection,
         openDialog: props.openDialog,
         buttonRef: props.buttonRef,
         rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
-        switcherStartOverPreferences: { showTest: false },
+        switcherStartOverPreferences: { showTest },
     };
 
     return <StartOverDropdown {...startOverProps} />;
