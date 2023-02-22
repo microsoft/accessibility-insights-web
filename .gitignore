@@ -18,6 +18,7 @@ drop/
 obj/
 test-results/
 analysis/
+grunt-task-time.json
 *.scss.d.ts
 original-manifest-copy.json
 generated-validate-assessment-json.js

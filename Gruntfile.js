@@ -8,6 +8,15 @@ const sass = require('sass');
 const targets = require('./targets.config');
 
 module.exports = function (grunt) {
+    require('time-grunt')(grunt, (stats, done) => {
+        // This library tracks execution time of grunt tasks. Note that
+        // grunt.task.run() resets the counter. This means the execution
+        // time for multi-tasks like 'drop' is quite short because it
+        // immediately switches to 'embed-styles'
+        grunt.file.write('grunt-task-time.json', JSON.stringify(stats));
+        done();
+    });
+
     const typedScssModulesPath = path.resolve('./node_modules/.bin/typed-scss-modules');
     const webpackPath = path.resolve('./node_modules/.bin/webpack');
 
