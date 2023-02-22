@@ -109,7 +109,7 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverCompo
       "showTest": true,
     }
   }
-  singleTestSuffix="requirement name stub"
+  singleTestSuffix=""
   switcherStartOverPreferences={
     {
       "showTest": false,
@@ -130,7 +130,7 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuI
         "showTest": true,
       }
     }
-    singleTestSuffix="requirement name stub"
+    singleTestSuffix=""
     switcherStartOverPreferences={
       {
         "showTest": false,
