@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TestViewContainerProvider can create assessment test view container 1`] = `
+exports[`DefaultTestViewContainerProvider can create assessment test view container 1`] = `
 <AssessmentTestView
   deps={
     {
@@ -19,7 +19,7 @@ exports[`TestViewContainerProvider can create assessment test view container 1`]
 />
 `;
 
-exports[`TestViewContainerProvider can create issues test view container 1`] = `
+exports[`DefaultTestViewContainerProvider can create issues test view container 1`] = `
 <AdhocIssuesTestView
   cardSelectionMessageCreator={{}}
   deps={
@@ -40,7 +40,7 @@ exports[`TestViewContainerProvider can create issues test view container 1`] = `
 />
 `;
 
-exports[`TestViewContainerProvider can create needs review test view container 1`] = `
+exports[`DefaultTestViewContainerProvider can create needs review test view container 1`] = `
 <AdhocIssuesTestView
   cardSelectionMessageCreator={{}}
   deps={
@@ -61,7 +61,7 @@ exports[`TestViewContainerProvider can create needs review test view container 1
 />
 `;
 
-exports[`TestViewContainerProvider can create static test view container 1`] = `
+exports[`DefaultTestViewContainerProvider can create static test view container 1`] = `
 <AdhocStaticTestView
   deps={
     {
@@ -80,7 +80,7 @@ exports[`TestViewContainerProvider can create static test view container 1`] = `
 />
 `;
 
-exports[`TestViewContainerProvider can create tab stops test view container 1`] = `
+exports[`DefaultTestViewContainerProvider can create tab stops test view container 1`] = `
 <AdhocTabStopsTestView
   deps={
     {
