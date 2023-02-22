@@ -25,7 +25,7 @@ describe('Launcher', () => {
             const domMock = Mock.ofInstance(document);
             const axeResponseHandlerMock = Mock.ofType(AxeResponseHandler);
             const scanParameterGeneratorMock = Mock.ofType(ScanParameterGenerator);
-            const defaultOptions = { restoreScroll: true, runOnly: undefined };
+            const defaultOptions = { runOnly: undefined };
             const optionsStub = {};
             const errorMock = Mock.ofType(Error);
 
