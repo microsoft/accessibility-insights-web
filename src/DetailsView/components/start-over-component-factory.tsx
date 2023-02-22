@@ -89,7 +89,7 @@ export function getStartOverComponentForQuickAssess(
     props: StartOverFactoryProps,
     dropdownDirection: DropdownDirection,
 ): JSX.Element {
-    // since we do not show start per requirement in quick assess.
+    // since we do not show start over per requirement in quick assess.
     const showTest = false;
     const singleTestSuffix = '';
 
