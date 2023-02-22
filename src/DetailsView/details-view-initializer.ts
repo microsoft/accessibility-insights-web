@@ -620,7 +620,7 @@ if (tabId != null) {
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
                 getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration,
                 userConfigMessageCreator,
-                leftNavLinkBuilder: new LeftNavLinkBuilder(),
+                leftNavLinkBuilder: new LeftNavLinkBuilder(featureFlagStore),
                 getStatusForTest,
                 outcomeTypeFromTestStatus,
                 outcomeStatsFromManualTestStatus,
