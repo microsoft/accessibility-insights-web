@@ -92,6 +92,7 @@ describe(AssessmentLeftNav.displayName, () => {
                     1,
                     expandedTest,
                     onRightPanelContentSwitch,
+                    {},
                 ),
             )
             .returns(() => [linkStub]);

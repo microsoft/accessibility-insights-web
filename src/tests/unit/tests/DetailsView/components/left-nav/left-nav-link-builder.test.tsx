@@ -4,7 +4,6 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { GetSelectedAssessmentSummaryModelFromProviderAndStatusData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
@@ -49,7 +48,6 @@ describe('LeftNavBuilder', () => {
     let eventStub: React.MouseEvent<HTMLElement, MouseEvent>;
     let itemStub: BaseLeftNavLink;
     let quickAssessRequirementKeysStub: string[];
-    let featureFlagStoreStoreMock: IMock<FeatureFlagStore>;
     let featureFlagStoreStateStub: FeatureFlagStoreData;
 
     beforeEach(() => {
@@ -67,11 +65,7 @@ describe('LeftNavBuilder', () => {
         eventStub = {} as React.MouseEvent<HTMLElement, MouseEvent>;
         itemStub = {} as BaseLeftNavLink;
         quickAssessRequirementKeysStub = [];
-        featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();
         featureFlagStoreStateStub = {};
-        featureFlagStoreStoreMock
-            .setup(sm => sm.getState())
-            .returns(() => featureFlagStoreStateStub);
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
@@ -86,7 +80,7 @@ describe('LeftNavBuilder', () => {
                 getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
         } as LeftNavLinkBuilderDeps;
 
-        testSubject = new LeftNavLinkBuilder(featureFlagStoreStoreMock.object);
+        testSubject = new LeftNavLinkBuilder();
     });
 
     const setupLinkClickHandlerMocks = () => {
@@ -216,6 +210,7 @@ describe('LeftNavBuilder', () => {
                     0,
                     expandedTest,
                     onRightPanelContentSwitchMock.object,
+                    featureFlagStoreStateStub,
                 );
                 expect(testLink).toMatchSnapshot();
                 if (featureFlagState) {
@@ -265,6 +260,7 @@ describe('LeftNavBuilder', () => {
                     1,
                     expandedTest,
                     onRightPanelContentSwitchMock.object,
+                    featureFlagStoreStateStub,
                 );
 
                 const nonCollapsibleAssessments = assessmentsStub

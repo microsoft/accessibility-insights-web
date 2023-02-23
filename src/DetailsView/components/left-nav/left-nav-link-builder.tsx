@@ -3,7 +3,6 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
-import { BaseStore } from 'common/base-store';
 import { FeatureFlags } from 'common/feature-flags';
 import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -69,10 +68,6 @@ export function generateAssessmentTestKey(
 export type assessmentTestKeyGenerator = typeof generateAssessmentTestKey;
 
 export class LeftNavLinkBuilder {
-    public constructor(
-        private readonly featureFlagStore: BaseStore<FeatureFlagStoreData, Promise<void>>,
-    ) {}
-
     public buildOverviewLink(
         deps: OverviewLinkBuilderDeps,
         onLinkClick: onBaseLeftNavItemClick,
@@ -116,10 +111,9 @@ export class LeftNavLinkBuilder {
         startingIndex: number,
         expandedTest: VisualizationType | undefined,
         onRightPanelContentSwitch: () => void,
+        featureFlagStoreData: FeatureFlagStoreData,
     ): BaseLeftNavLink {
         const assessment = assessmentsProvider.forKey('automated-checks');
-
-        const featureFlagStoreData = this.featureFlagStore.getState();
 
         const isExpanded = assessment.visualizationType === expandedTest;
         const test = featureFlagStoreData[FeatureFlags.automatedChecks]
@@ -185,13 +179,13 @@ export class LeftNavLinkBuilder {
         startingIndex: number,
         expandedTest: VisualizationType | undefined,
         onRightPanelContentSwitch: () => void,
+        featureFlagStoreData: FeatureFlagStoreData,
     ): BaseLeftNavLink[] {
         const assessments = assessmentsProvider.all();
         let index = startingIndex;
 
         const allTestLinks = map(assessments, assessment => {
             const isExpanded = assessment.visualizationType === expandedTest;
-            const featureFlagStoreData = this.featureFlagStore.getState();
             const buildAssessmentLink =
                 assessment.isNonCollapsible && featureFlagStoreData[FeatureFlags.automatedChecks]
                     ? this.buildNoncollapsibleAssessmentLink

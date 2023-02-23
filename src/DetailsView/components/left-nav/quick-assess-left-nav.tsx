@@ -45,6 +45,7 @@ export const QuickAssessLeftNav = NamedFC<QuickAssessLeftNavProps>('QuickAssessL
         expandedTest,
         onRightPanelContentSwitch,
         setNavComponentRef,
+        featureFlagStoreData,
     } = props;
 
     const { getNavLinkHandler, leftNavLinkBuilder } = deps;
@@ -69,6 +70,7 @@ export const QuickAssessLeftNav = NamedFC<QuickAssessLeftNavProps>('QuickAssessL
             1,
             expandedTest,
             onRightPanelContentSwitch,
+            featureFlagStoreData,
         ),
     );
 
