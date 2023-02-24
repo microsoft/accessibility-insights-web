@@ -4,7 +4,6 @@ import { StoreNames } from 'common/stores/store-names';
 
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from '../../common/messages';
-import { CardSelectionActions as AssessmentCardSelectionActions } from './card-selection-actions';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
@@ -12,6 +11,7 @@ import {
     CardSelectionPayload,
     RuleExpandCollapsePayload,
 } from './action-payloads';
+import { CardSelectionActions as AssessmentCardSelectionActions } from './card-selection-actions';
 
 export class AssessmentCardSelectionActionCreator {
     constructor(

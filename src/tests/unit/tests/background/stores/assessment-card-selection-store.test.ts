@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
-import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TabActions } from 'background/actions/tab-actions';
+import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
-import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
+import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { cloneDeep, forOwn } from 'lodash';
 
 import {
