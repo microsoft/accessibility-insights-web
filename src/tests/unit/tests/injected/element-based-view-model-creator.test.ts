@@ -91,7 +91,12 @@ describe('ElementBasedViewModelCreator', () => {
 
         getHighlightedResultInstanceIdsMock
             .setup(mock =>
-                mock(cardSelectionData, scanResultStoreData, isResultHighlightUnavailableStub),
+                mock(
+                    cardSelectionData,
+                    scanResultStoreData.results,
+                    scanResultStoreData.platformInfo,
+                    isResultHighlightUnavailableStub,
+                ),
             )
             .returns(() => cardSelectionViewData);
 
@@ -125,7 +130,12 @@ describe('ElementBasedViewModelCreator', () => {
 
             getHighlightedResultInstanceIdsMock
                 .setup(mock =>
-                    mock(cardSelectionData, scanResultStoreData, isResultHighlightUnavailableStub),
+                    mock(
+                        cardSelectionData,
+                        scanResultStoreData.results,
+                        scanResultStoreData.platformInfo,
+                        isResultHighlightUnavailableStub,
+                    ),
                 )
                 .returns(() => cardSelectionViewData);
 
@@ -181,7 +191,12 @@ describe('ElementBasedViewModelCreator', () => {
 
         getHighlightedResultInstanceIdsMock
             .setup(mock =>
-                mock(cardSelectionData, scanResultStoreData, isResultHighlightUnavailableStub),
+                mock(
+                    cardSelectionData,
+                    scanResultStoreData.results,
+                    scanResultStoreData.platformInfo,
+                    isResultHighlightUnavailableStub,
+                ),
             )
             .returns(() => cardSelectionViewData);
 
@@ -228,7 +243,12 @@ describe('ElementBasedViewModelCreator', () => {
 
         getHighlightedResultInstanceIdsMock
             .setup(mock =>
-                mock(cardSelectionData, scanResultStoreData, isResultHighlightUnavailableStub),
+                mock(
+                    cardSelectionData,
+                    scanResultStoreData.results,
+                    scanResultStoreData.platformInfo,
+                    isResultHighlightUnavailableStub,
+                ),
             )
             .returns(() => cardSelectionViewData);
 
