@@ -78,7 +78,7 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
 
     const { getNavLinkHandler, leftNavLinkBuilder } = deps;
     const navLinkHandler = getNavLinkHandler();
-    let links = [];
+    let links: BaseLeftNavLink[] = [];
     links.push(
         leftNavLinkBuilder.buildOverviewLink(
             deps,

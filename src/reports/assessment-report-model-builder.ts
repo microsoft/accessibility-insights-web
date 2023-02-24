@@ -88,7 +88,7 @@ export class AssessmentReportModelBuilder {
                                     key: step.key,
                                     header: {
                                         displayName: step.name,
-                                        description: step.renderReportDescription(),
+                                        description: step.renderReportDescription!(),
                                         guidanceLinks: step.guidanceLinks,
                                         requirementType: step.isManual ? 'manual' : 'assisted',
                                     },
@@ -102,7 +102,7 @@ export class AssessmentReportModelBuilder {
                                 };
 
                                 assessmentReportExtensionPoint
-                                    .apply(assessment.extensions)
+                                    .apply(assessment.extensions!)
                                     .alterRequirementReportModel(model);
 
                                 return model;
@@ -119,12 +119,12 @@ export class AssessmentReportModelBuilder {
             stepKey: string,
         ): InstanceReportModel[] {
             const { storeData } = assessment;
-            const { reportInstanceFields } = find(assessment.requirements, s => s.key === stepKey);
+            const { reportInstanceFields } = find(assessment.requirements, s => s.key === stepKey)!;
 
             function getInstanceReportModel(
                 instance: Partial<TestStepInstance>,
             ): InstanceReportModel {
-                const props = reportInstanceFields
+                const props = reportInstanceFields!
                     .filter(element => {
                         if (element.getValue(instance)) {
                             return true;
@@ -140,7 +140,7 @@ export class AssessmentReportModelBuilder {
             }
 
             function getManualData(): InstanceReportModel[] {
-                return storeData.manualTestStepResultMap[stepKey].instances.map(instance =>
+                return storeData.manualTestStepResultMap![stepKey].instances.map(instance =>
                     getInstanceReportModel(instance),
                 );
             }
@@ -153,7 +153,9 @@ export class AssessmentReportModelBuilder {
                 return keys(storeData.generatedAssessmentInstancesMap)
                     .filter(key => {
                         const testStepResult =
-                            storeData.generatedAssessmentInstancesMap[key].testStepResults[stepKey];
+                            storeData.generatedAssessmentInstancesMap![key].testStepResults[
+                                stepKey
+                            ];
                         return (
                             testStepResult != null &&
                             testStepResult.status ===
@@ -161,15 +163,15 @@ export class AssessmentReportModelBuilder {
                         );
                     })
                     .map(key =>
-                        getInstanceReportModel(storeData.generatedAssessmentInstancesMap[key]),
+                        getInstanceReportModel(storeData.generatedAssessmentInstancesMap![key]),
                     );
             }
 
             if (
                 storeData.testStepStatus[stepKey].stepFinalResult === ManualTestStatus.FAIL &&
                 !(
-                    storeData.manualTestStepResultMap[stepKey] === undefined ||
-                    storeData.manualTestStepResultMap[stepKey].instances.length === 0
+                    storeData.manualTestStepResultMap![stepKey] === undefined ||
+                    storeData.manualTestStepResultMap![stepKey].instances.length === 0
                 )
             ) {
                 return getManualData();

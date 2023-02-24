@@ -51,7 +51,7 @@ export class AssessmentViewUpdateHandler {
 
     private enableSelectedStepVisualHelper(
         props: AssessmentViewUpdateHandlerProps,
-        prevProps: AssessmentViewUpdateHandlerProps = undefined,
+        prevProps: AssessmentViewUpdateHandlerProps | undefined = undefined,
         sendTelemetry = true,
     ): void {
         const test = props.assessmentNavState.selectedTestType;
@@ -97,7 +97,7 @@ export class AssessmentViewUpdateHandler {
         test: VisualizationType,
         step: string,
     ): boolean {
-        return props.deps.getProvider().getStep(test, step).doNotScanByDefault === true;
+        return props.deps.getProvider().getStep(test, step)!.doNotScanByDefault === true;
     }
 
     private disableVisualHelpersForSelectedTest(props: AssessmentViewUpdateHandlerProps): void {

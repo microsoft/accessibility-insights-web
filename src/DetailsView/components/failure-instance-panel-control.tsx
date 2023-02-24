@@ -127,7 +127,7 @@ export class FailureInstancePanelControl extends React.Component<
 
         return (
             <GenericPanel {...panelProps}>
-                {testStepConfig.addFailureInstruction}
+                {testStepConfig?.addFailureInstruction}
                 <FlaggedComponent
                     enableJSXElement={this.getFailureInstancePanelDetails()}
                     featureFlag={FeatureFlags[FeatureFlags.manualInstanceDetails]}
@@ -186,10 +186,10 @@ export class FailureInstancePanelControl extends React.Component<
     };
 
     private getDefaultInstance = (): FailureInstanceData => {
-        const defaultInstance = {
-            failureDescription: null,
-            path: null,
-            snippet: null,
+        const defaultInstance: FailureInstanceData = {
+            failureDescription: undefined,
+            path: undefined,
+            snippet: undefined,
         };
 
         return defaultInstance;
@@ -218,12 +218,16 @@ export class FailureInstancePanelControl extends React.Component<
     };
 
     protected onAddFailureInstance = (): void => {
-        this.props.addFailureInstance(this.state.currentInstance, this.props.test, this.props.step);
+        this.props.addFailureInstance!(
+            this.state.currentInstance,
+            this.props.test,
+            this.props.step,
+        );
         this.closeFailureInstancePanel();
     };
 
     protected onSaveEditedFailureInstance = (): void => {
-        this.props.editFailureInstance(
+        this.props.editFailureInstance!(
             this.state.currentInstance,
             this.props.test,
             this.props.step,

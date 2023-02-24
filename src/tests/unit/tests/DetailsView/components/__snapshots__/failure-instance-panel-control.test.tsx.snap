@@ -140,8 +140,6 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
         <FailureInstancePanelDetails
           onSelectorChange={[Function]}
           onValidateSelector={[Function]}
-          path={null}
-          snippet={null}
         />
       }
       featureFlag="manualInstanceDetails"

@@ -33,7 +33,7 @@ export const FastPassTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectio
             requirementId: TabStopRequirementId,
             instanceId: string,
         ) => {
-            deps.tabStopRequirementActionMessageCreator.removeTabStopInstance(
+            deps.tabStopRequirementActionMessageCreator!.removeTabStopInstance(
                 requirementId,
                 instanceId,
             );
@@ -43,7 +43,7 @@ export const FastPassTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectio
             instanceId: string,
             description: string,
         ) => {
-            await deps.tabStopsTestViewController.editExistingFailureInstance({
+            await deps.tabStopsTestViewController!.editExistingFailureInstance({
                 instanceId,
                 requirementId,
                 description,
@@ -80,7 +80,7 @@ export const FastPassTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectio
                 headingLevel,
                 deps: deps,
                 onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
-                    deps.tabStopRequirementActionMessageCreator.toggleTabStopRequirementExpand(
+                    deps.tabStopRequirementActionMessageCreator!.toggleTabStopRequirementExpand(
                         result.id,
                         event,
                     );

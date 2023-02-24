@@ -27,7 +27,7 @@ export class LoadAssessmentHelper {
         input.accept = '.a11ywebassessment';
 
         const onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
-            const content = readerEvent.target.result as string;
+            const content = readerEvent.target!.result as string;
             let parsedAssessmentData: VersionedAssessmentData;
 
             try {
@@ -58,12 +58,12 @@ export class LoadAssessmentHelper {
                 this.assessmentActionMessageCreator.loadAssessment(
                     parsedAssessmentData,
                     newTargetPageId,
-                    prevTargetPageData?.detailsViewId,
+                    prevTargetPageData?.detailsViewId ?? undefined,
                 );
             }
         };
         const onInputChange = (e: Event) => {
-            const file = (e.target as HTMLInputElement).files[0];
+            const file = (e.target as HTMLInputElement).files![0];
             this.fileReader.onload = onReaderLoad;
             this.fileReader.readAsText(file, 'UTF-8');
         };

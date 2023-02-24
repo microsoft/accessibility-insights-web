@@ -4,6 +4,7 @@ import { IButton } from '@fluentui/react';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
@@ -76,13 +77,17 @@ export type DetailsViewCommandBarState = {
     startOverDialogState: StartOverDialogState;
 };
 
-export type ReportExportDialogFactory = (props: ReportExportDialogFactoryProps) => JSX.Element;
+export type ReportExportDialogFactory = (
+    props: ReportExportDialogFactoryProps,
+) => JSX.Element | null;
 
-export type SaveAssessmentButtonFactory = (props: SaveAssessmentButtonFactoryProps) => JSX.Element;
-export type LoadAssessmentButtonFactory = (props: LoadAssessmentButtonProps) => JSX.Element;
+export type SaveAssessmentButtonFactory = (
+    props: SaveAssessmentButtonFactoryProps,
+) => JSX.Element | null;
+export type LoadAssessmentButtonFactory = (props: LoadAssessmentButtonProps) => JSX.Element | null;
 export type TransferToAssessmentButtonFactory = (
     props: TransferToAssessmentButtonProps,
-) => JSX.Element;
+) => JSX.Element | null;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -99,6 +104,7 @@ export interface DetailsViewCommandBarProps {
     selectedTest: VisualizationType;
     tabStopRequirementData: TabStopRequirementState;
     userConfigurationStoreData: UserConfigurationStoreData;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
@@ -113,12 +119,12 @@ export class DetailsViewCommandBar extends React.Component<
             isInvalidLoadAssessmentDialogOpen: false,
             isLoadAssessmentDialogOpen: false,
             isReportExportDialogOpen: false,
-            loadedAssessmentData: null,
+            loadedAssessmentData: {} as VersionedAssessmentData,
             startOverDialogState: 'none',
         };
     }
 
-    public render(): JSX.Element {
+    public render(): JSX.Element | null {
         if (this.props.tabStoreData.isClosed) {
             return null;
         }
@@ -136,7 +142,7 @@ export class DetailsViewCommandBar extends React.Component<
     }
 
     private renderTargetPageInfo(): JSX.Element {
-        const targetPageTitle: string = this.props.scanMetadata.targetAppInfo.name;
+        const targetPageTitle: string | undefined = this.props.scanMetadata.targetAppInfo.name;
         const tooltipContent = `Switch to target page: ${targetPageTitle}`;
         return (
             <div className={styles.detailsViewTargetPage} aria-labelledby="switch-to-target">
@@ -154,7 +160,7 @@ export class DetailsViewCommandBar extends React.Component<
         );
     }
 
-    private renderFarItems(): JSX.Element {
+    private renderFarItems(): JSX.Element | null {
         if (this.props.narrowModeStatus.isCommandBarCollapsed) {
             return this.renderCommandButtonsMenu();
         } else {
@@ -162,12 +168,12 @@ export class DetailsViewCommandBar extends React.Component<
         }
     }
 
-    private renderCommandButtons(): JSX.Element {
-        const reportExportElement: JSX.Element = this.renderExportButton();
+    private renderCommandButtons(): JSX.Element | null {
+        const reportExportElement: JSX.Element | null = this.renderExportButton();
         const startOverElement: JSX.Element = this.renderStartOverButton();
-        const saveAssessmentButtonElement: JSX.Element = this.renderSaveAssessmentButton();
-        const loadAssessmentButtonElement: JSX.Element = this.renderLoadAssessmentButton();
-        const transferToAssessmentButtonElement: JSX.Element =
+        const saveAssessmentButtonElement: JSX.Element | null = this.renderSaveAssessmentButton();
+        const loadAssessmentButtonElement: JSX.Element | null = this.renderLoadAssessmentButton();
+        const transferToAssessmentButtonElement: JSX.Element | null =
             this.renderTransferToAssessmentButton();
 
         if (
@@ -200,8 +206,8 @@ export class DetailsViewCommandBar extends React.Component<
                 transferToAssessmentButton={this.renderTransferToAssessmentButton()}
                 getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
-                    this.exportDialogCloseFocus = ref;
-                    this.startOverDialogCloseFocus = ref;
+                    this.exportDialogCloseFocus = ref ?? undefined;
+                    this.startOverDialogCloseFocus = ref ?? undefined;
                 }}
             />
         );
@@ -230,12 +236,12 @@ export class DetailsViewCommandBar extends React.Component<
         return (
             <ReportExportButton
                 showReportExportDialog={this.showReportExportDialog}
-                buttonRef={ref => (this.exportDialogCloseFocus = ref)}
+                buttonRef={ref => (this.exportDialogCloseFocus = ref ?? undefined)}
             />
         );
     };
 
-    private renderExportDialog(): JSX.Element {
+    private renderExportDialog(): JSX.Element | null {
         return this.props.switcherNavConfiguration.ReportExportDialogFactory({
             ...this.props,
             isOpen: this.state.isReportExportDialogOpen,
@@ -244,20 +250,20 @@ export class DetailsViewCommandBar extends React.Component<
         });
     }
 
-    private renderSaveAssessmentButton = (): JSX.Element => {
+    private renderSaveAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.SaveAssessmentButton({
             ...this.props,
         });
     };
 
-    private renderLoadAssessmentButton = (): JSX.Element => {
+    private renderLoadAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.LoadAssessmentButton({
             ...this.props,
             handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
         });
     };
 
-    private renderTransferToAssessmentButton = (): JSX.Element => {
+    private renderTransferToAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.TransferToAssessmentButton({
             ...this.props,
         });
@@ -270,7 +276,7 @@ export class DetailsViewCommandBar extends React.Component<
                 isOpen={this.state.isLoadAssessmentDialogOpen}
                 prevTab={this.props.assessmentStoreData.persistedTabInfo}
                 loadedAssessmentData={this.state.loadedAssessmentData}
-                tabId={this.props.tabStoreData.id}
+                tabId={this.props.tabStoreData.id!}
                 onClose={this.toggleLoadAssessmentDialog}
             />
         );
@@ -310,7 +316,7 @@ export class DetailsViewCommandBar extends React.Component<
             this.toggleInvalidLoadAssessmentDialog,
             this.toggleLoadAssessmentDialog,
             this.props.assessmentStoreData.persistedTabInfo,
-            this.props.tabStoreData.id,
+            this.props.tabStoreData.id!,
         );
     };
 

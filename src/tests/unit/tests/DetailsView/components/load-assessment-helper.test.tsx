@@ -19,7 +19,6 @@ describe('LoadAssessmentHelper', () => {
     let toggleInvalidLoadDialogMock: IMock<() => void>;
     let clickMock: IMock<() => void>;
     let loadAssessmentDataValidatorMock: IMock<LoadAssessmentDataValidator>;
-
     const prevTargetPageDataStub = {
         id: 1,
         url: 'http://test.com',

@@ -47,7 +47,7 @@ export const AssessmentReportStepList = NamedFC<AssessmentReportStepListProps>(
             );
         }
 
-        function renderStepInstances(instances: InstanceReportModel[]): JSX.Element {
+        function renderStepInstances(instances: InstanceReportModel[]): JSX.Element | undefined {
             if (status === ManualTestStatus.UNKNOWN) {
                 return;
             }
