@@ -46,7 +46,7 @@ export const TabStopsMinimalRequirementHeader = NamedFC<TabStopsMinimalRequireme
 
         return (
             <span className={styles.requirementDetail}>
-                <span className={styles.outcomeChipContainer}>{renderCountBadge()}</span>
+                <span>{renderCountBadge()}</span>
                 <span>
                     {renderRuleName()}: {renderDescription()}
                 </span>

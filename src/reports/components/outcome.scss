@@ -35,6 +35,7 @@ $outcome-count-border-size: 1.5px;
     .count {
         background-color: transparent;
         border: $outcome-count-border-size solid $outcome-color;
+        width: max-content;
     }
 }
 
