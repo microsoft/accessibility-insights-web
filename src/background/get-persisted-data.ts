@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CommandStoreData } from 'common/types/store-data/command-store-data';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
@@ -50,6 +51,7 @@ export interface TabSpecificPersistedData {
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     visualizationScanResultStoreData: VisualizationScanResultData;
     visualizationStoreData: VisualizationStoreData;
+    assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData;
 }
 
 const keyToPersistedDataMappingOverrides = {
