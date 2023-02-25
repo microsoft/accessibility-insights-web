@@ -62,6 +62,7 @@ export class IndexedDBDataKeys {
         IndexedDBDataKeys.needsReviewCardSelectionStore,
         IndexedDBDataKeys.visualizationStore,
         IndexedDBDataKeys.visualizationScanResultStore,
+        IndexedDBDataKeys.unifiedScanResultStore,
         IndexedDBDataKeys.assessmentCardSelectionStore,
     ];
 }
