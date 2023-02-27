@@ -15,7 +15,7 @@ export type ContentPanelButtonDeps = {
 export type ContentPanelButtonProps = {
     contentTitle: string;
     deps: ContentPanelButtonDeps;
-    reference: ContentReference;
+    reference: ContentReference | undefined;
     iconName?: string;
 };
 

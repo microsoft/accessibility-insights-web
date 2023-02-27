@@ -123,7 +123,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         const displayableData = props.configuration.displayableData;
         const fastPassProvider = createFastPassProviderWithFeatureFlags(props.featureFlagStoreData);
         const stepsText = fastPassProvider.getStepsText(selectedTest);
-        const requirementState = props.visualizationScanResultData.tabStops.requirements;
+        const requirementState = props.visualizationScanResultData.tabStops.requirements!;
 
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
         const clickHandler = props.clickHandlerFactory.createClickHandler(
@@ -184,7 +184,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     <TabStopsFailedInstanceSection
                         deps={props.deps}
                         tabStopRequirementState={
-                            props.visualizationScanResultData.tabStops.requirements
+                            props.visualizationScanResultData.tabStops.requirements!
                         }
                         alwaysRenderSection={false}
                         sectionHeadingLevel={2}

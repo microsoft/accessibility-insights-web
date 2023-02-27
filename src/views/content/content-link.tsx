@@ -16,7 +16,7 @@ export type ContentLinkDeps = {
 
 export type ContentLinkProps = {
     deps: ContentLinkDeps;
-    reference: ContentReference;
+    reference: ContentReference | undefined;
     linkText?: string;
     iconName?: string;
     hideTooltip?: boolean;

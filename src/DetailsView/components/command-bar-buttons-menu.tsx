@@ -13,7 +13,7 @@ import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = {
-    renderExportReportButton: () => JSX.Element;
+    renderExportReportButton: () => JSX.Element | null;
     saveAssessmentButton?: JSX.Element | null;
     loadAssessmentButton?: JSX.Element | null;
     transferToAssessmentButton?: JSX.Element | null;

@@ -72,7 +72,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         );
     }
 
-    private renderContextMenu(): JSX.Element {
+    private renderContextMenu(): JSX.Element | null {
         if (!this.state.isContextMenuVisible) {
             return null;
         }

@@ -3,9 +3,9 @@
 import { GuidanceLink, GuidanceTag } from 'common/types/store-data/guidance-links';
 import { isArray, isObject } from 'lodash';
 
-export type GetGuidanceTagsFromGuidanceLinks = (links: GuidanceLink[]) => GuidanceTag[];
+export type GetGuidanceTagsFromGuidanceLinks = (links: GuidanceLink[] | undefined) => GuidanceTag[];
 export const GetGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks = links => {
-    if (isArray(links) === false) {
+    if (!links || isArray(links) === false) {
         return [];
     }
 

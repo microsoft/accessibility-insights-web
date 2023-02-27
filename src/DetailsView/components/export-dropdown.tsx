@@ -58,7 +58,7 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
         );
     }
 
-    private renderContextMenu(): JSX.Element {
+    private renderContextMenu(): JSX.Element | null {
         if (!this.state.isContextMenuVisible) {
             return null;
         }

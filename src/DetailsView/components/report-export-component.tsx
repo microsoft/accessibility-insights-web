@@ -20,7 +20,7 @@ export interface ReportExportComponentProps {
     deps: ReportExportComponentDeps;
     isOpen: boolean;
     reportExportFormat: ReportExportFormat;
-    pageTitle: string;
+    pageTitle: string | undefined;
     scanDate: Date;
     htmlGenerator: (descriptionPlaceholder: string) => string;
     jsonGenerator: (descriptionPlaceholder: string) => string;
@@ -133,7 +133,7 @@ export class ReportExportComponent extends React.Component<
         return deps.reportNameGenerator.generateName(
             reportExportFormat,
             scanDate,
-            pageTitle,
+            pageTitle ?? '',
             fileExtension,
         );
     }

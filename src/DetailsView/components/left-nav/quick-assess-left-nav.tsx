@@ -9,7 +9,7 @@ import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { ManualTestStatusData } from '../../../common/types/store-data/manual-test-status';
 import { DictionaryStringTo } from '../../../types/common-types';
-import { BaseLeftNav } from '../base-left-nav';
+import { BaseLeftNav, BaseLeftNavLink } from '../base-left-nav';
 import {
     AssessmentLinkBuilderDeps,
     LeftNavLinkBuilder,
@@ -45,11 +45,12 @@ export const QuickAssessLeftNav = NamedFC<QuickAssessLeftNavProps>('QuickAssessL
         expandedTest,
         onRightPanelContentSwitch,
         setNavComponentRef,
+        featureFlagStoreData,
     } = props;
 
     const { getNavLinkHandler, leftNavLinkBuilder } = deps;
 
-    let links = [];
+    let links: BaseLeftNavLink[] = [];
     links.push(
         leftNavLinkBuilder.buildOverviewLink(
             deps,
@@ -69,6 +70,7 @@ export const QuickAssessLeftNav = NamedFC<QuickAssessLeftNavProps>('QuickAssessL
             1,
             expandedTest,
             onRightPanelContentSwitch,
+            featureFlagStoreData,
         ),
     );
 

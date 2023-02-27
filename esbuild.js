@@ -158,12 +158,20 @@ const config = {
     outExtension: {
         '.js': '.bundle.js',
     },
-    watch: argv.includes('--watch'),
     logLevel: 'info',
     define,
 };
 
-esbuild.build(config).catch(e => {
+async function run() {
+    if (argv.includes('--watch')) {
+        var ctx = await esbuild.context(config);
+        await ctx.watch();
+    } else {
+        await esbuild.build(config);
+    }
+}
+
+run().catch(e => {
     console.error(e);
     process.exit(1);
 });

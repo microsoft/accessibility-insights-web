@@ -43,7 +43,7 @@ describe(QuickAssessLeftNav.displayName, () => {
         assessmentsDataStub = {};
         assessmentsProviderStub = {} as AssessmentsProvider;
         quickAssessRequirementKeysStub = [];
-        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
+        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
         navLinkHandlerMock = {
             onOverviewClick: () => {},
             onAssessmentTestClick: (x, y) => {},
@@ -111,6 +111,7 @@ describe(QuickAssessLeftNav.displayName, () => {
                     1,
                     expandedTest,
                     onRightPanelContentSwitch,
+                    {},
                 ),
             )
             .returns(() => automatedChecksLinkStub);

@@ -134,7 +134,7 @@ describe('NavLinkHandler', () => {
         });
     });
 
-    describe('onTestHeadingClick with unexpanded link', () => {
+    describe('onCollapsibleTestHeadingClick with unexpanded link', () => {
         it('should call expandTestNav with appropriate params', () => {
             const testHeadingLink = {
                 testType: irrelevantVisualizationType,
@@ -144,12 +144,12 @@ describe('NavLinkHandler', () => {
                 .setup(amc => amc.expandTestNav(testHeadingLink.testType))
                 .verifiable();
 
-            testSubject.onTestHeadingClick(eventStub, testHeadingLink);
+            testSubject.onCollapsibleTestHeadingClick(eventStub, testHeadingLink);
             assessmentActionMessageCreatorMock.verifyAll();
         });
     });
 
-    describe('onTestHeadingClick with already expanded link', () => {
+    describe('onCollapsibleTestHeadingClick with already expanded link', () => {
         it('should call expandTestNav with appropriate params', () => {
             const testHeadingLink = {
                 testType: irrelevantVisualizationType,
@@ -157,7 +157,26 @@ describe('NavLinkHandler', () => {
             } as AssessmentLeftNavLink;
             assessmentActionMessageCreatorMock.setup(amc => amc.collapseTestNav()).verifiable();
 
-            testSubject.onTestHeadingClick(eventStub, testHeadingLink);
+            testSubject.onCollapsibleTestHeadingClick(eventStub, testHeadingLink);
+            assessmentActionMessageCreatorMock.verifyAll();
+        });
+    });
+
+    describe('onNoncollapsibleTestHeadingClick with unexpanded link', () => {
+        it('should call selectGettingStarted and changeRightContentPanel with appropriate params', () => {
+            const assessmentLeftNavLink = {
+                testType: irrelevantVisualizationType,
+            } as AssessmentLeftNavLink;
+            assessmentActionMessageCreatorMock
+                .setup(amc => amc.selectGettingStarted(eventStub, assessmentLeftNavLink.testType))
+                .verifiable();
+
+            detailsViewActionMessageCreatorMock
+                .setup(amc => amc.changeRightContentPanel('TestView'))
+                .verifiable();
+
+            testSubject.onNoncollapsibleTestHeadingClick(eventStub, assessmentLeftNavLink);
+            detailsViewActionMessageCreatorMock.verifyAll();
             assessmentActionMessageCreatorMock.verifyAll();
         });
     });

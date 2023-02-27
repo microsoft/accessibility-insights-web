@@ -73,11 +73,12 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
         expandedTest,
         onRightPanelContentSwitch,
         setNavComponentRef,
+        featureFlagStoreData,
     } = props;
 
     const { getNavLinkHandler, leftNavLinkBuilder } = deps;
     const navLinkHandler = getNavLinkHandler();
-    let links = [];
+    let links: BaseLeftNavLink[] = [];
     links.push(
         leftNavLinkBuilder.buildOverviewLink(
             deps,
@@ -97,6 +98,7 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
             1,
             expandedTest,
             onRightPanelContentSwitch,
+            featureFlagStoreData,
         ),
     );
 

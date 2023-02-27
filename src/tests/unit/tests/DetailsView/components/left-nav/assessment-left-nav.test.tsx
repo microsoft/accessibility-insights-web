@@ -36,7 +36,7 @@ describe(AssessmentLeftNav.displayName, () => {
         setNavComponentRef = _ => {};
         assessmentsDataStub = {};
         assessmentsProviderStub = {} as AssessmentsProvider;
-        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
+        leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
         navLinkHandlerMock = {
             onOverviewClick: () => {},
             onAssessmentTestClick: (x, y) => {},
@@ -92,6 +92,7 @@ describe(AssessmentLeftNav.displayName, () => {
                     1,
                     expandedTest,
                     onRightPanelContentSwitch,
+                    {},
                 ),
             )
             .returns(() => [linkStub]);

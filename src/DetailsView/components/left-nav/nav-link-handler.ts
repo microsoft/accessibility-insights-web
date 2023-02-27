@@ -25,7 +25,7 @@ export class NavLinkHandler {
     public onFastPassTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
         this.detailsViewActionMessageCreator.selectDetailsView(
             event,
-            VisualizationType[item.key],
+            VisualizationType[item.key!],
             DetailsViewPivotType.fastPass,
         );
     };
@@ -36,7 +36,7 @@ export class NavLinkHandler {
     ) => {
         this.detailsViewActionMessageCreator.selectDetailsView(
             event,
-            VisualizationType[item.key],
+            VisualizationType[item.key!],
             DetailsViewPivotType.assessment,
         );
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
@@ -62,7 +62,7 @@ export class NavLinkHandler {
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
     };
 
-    public onTestHeadingClick = (
+    public onCollapsibleTestHeadingClick = (
         event: React.MouseEvent<HTMLElement>,
         item: AssessmentLeftNavLink,
     ) => {
@@ -71,5 +71,15 @@ export class NavLinkHandler {
         } else {
             this.assessmentActionMessageCreator.expandTestNav(item.testType);
         }
+    };
+
+    public onNoncollapsibleTestHeadingClick = (
+        event: React.MouseEvent<HTMLElement>,
+        item: AssessmentLeftNavLink,
+    ) => {
+        // TODO this temporarily navigates to the getting started page, but this will need to be changed
+        // once we have a unified automated checks view
+        this.assessmentActionMessageCreator.selectGettingStarted(event, item.testType);
+        this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
     };
 }

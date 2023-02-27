@@ -16,9 +16,9 @@ export const resultsGroupAutomationId = 'tab-stops-results-group';
 
 export type TabStopsRequirementsWithInstancesDeps = CollapsibleComponentCardsDeps & {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
-    tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
+    tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator | undefined;
     tabStopsFailedCounter: TabStopsFailedCounter;
-    tabStopsTestViewController: TabStopsTestViewController;
+    tabStopsTestViewController: TabStopsTestViewController | undefined;
 };
 
 export type TabStopsRequirementsWithInstancesProps = {
@@ -68,7 +68,7 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                     let collapsibleComponentProps: CollapsibleComponentCardsProps;
                     const buttonAriaLabel = `${totalCount} ${pastTense} ${requirement.name} ${requirement.description}`;
                     if (instanceCount === 0) {
-                        collapsibleComponentProps = getCollapsibleComponentPropsWithoutInstance(
+                        collapsibleComponentProps = getCollapsibleComponentPropsWithoutInstance!(
                             requirement,
                             idx,
                             buttonAriaLabel,
