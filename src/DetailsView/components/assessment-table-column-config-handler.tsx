@@ -17,10 +17,10 @@ export class AssessmentTableColumnConfigHandler {
         minWidth: 20,
         maxWidth: 20,
         isResizable: false,
-        iconName: null,
-        name: null,
-        ariaLabel: null,
-        onColumnClick: null,
+        iconName: undefined,
+        name: '',
+        ariaLabel: undefined,
+        onColumnClick: () => undefined,
     };
 
     private masterCheckBoxConfigProvider: MasterCheckBoxConfigProvider;
@@ -66,7 +66,7 @@ export class AssessmentTableColumnConfigHandler {
         const stepConfig = this.assessmentProvider.getStep(
             assessmentNavState.selectedTestType,
             assessmentNavState.selectedTestSubview,
-        );
+        )!;
 
         if (hasVisualHelper) {
             const masterCheckbox = this.getMasterCheckboxColumn(assessmentNavState, allEnabled);
@@ -76,7 +76,7 @@ export class AssessmentTableColumnConfigHandler {
         const customColumns = this.getCustomColumns(assessmentNavState);
         allColumns = allColumns.concat(customColumns);
 
-        const statusColumns = stepConfig.getInstanceStatusColumns();
+        const statusColumns = stepConfig.getInstanceStatusColumns!();
         allColumns = allColumns.concat(statusColumns);
 
         return allColumns;
@@ -90,21 +90,22 @@ export class AssessmentTableColumnConfigHandler {
         const stepConfig = this.assessmentProvider.getStep(
             assessmentNavState.selectedTestType,
             assessmentNavState.selectedTestSubview,
-        );
+        )!;
 
-        const customColumns = stepConfig.columnsConfig.map(columnConfig => {
-            const column: IColumn = {
-                key: columnConfig.key,
-                name: columnConfig.name,
-                onRender: columnConfig.onRender,
-                fieldName: 'this does not matter as we are using onRender function',
-                minWidth: 200,
-                maxWidth: 400,
-                isResizable: true,
-            };
+        const customColumns =
+            stepConfig.columnsConfig?.map(columnConfig => {
+                const column: IColumn = {
+                    key: columnConfig.key,
+                    name: columnConfig.name,
+                    onRender: columnConfig.onRender,
+                    fieldName: 'this does not matter as we are using onRender function',
+                    minWidth: 200,
+                    maxWidth: 400,
+                    isResizable: true,
+                };
 
-            return column;
-        });
+                return column;
+            }) ?? [];
 
         return customColumns;
     }
@@ -130,13 +131,13 @@ export class AssessmentTableColumnConfigHandler {
         const headerText = item.instance.description ? 'Comment:' : 'Path:';
         const textContent = item.instance.description
             ? item.instance.description
-            : item.instance.selector;
+            : item.instance.selector!;
         return (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}
                 textContent={textContent}
                 headerText={headerText}
-                tooltipId={item.instance.id}
+                tooltipId={item.instance.id!}
                 customClassName="not-applicable"
             />
         );

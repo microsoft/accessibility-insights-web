@@ -73,7 +73,7 @@ export function getStartOverComponentForAssessment(
     const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
     const test = props.deps.getProvider().forType(selectedTest);
     const startOverProps: StartOverProps = {
-        singleTestSuffix: test.title,
+        singleTestSuffix: test!.title,
         allTestSuffix: 'Assessment',
         dropdownDirection,
         openDialog: props.openDialog,

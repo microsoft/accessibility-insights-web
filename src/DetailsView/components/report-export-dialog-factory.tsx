@@ -27,7 +27,7 @@ export type ReportExportDialogFactoryProps = CommandBarProps & {
     isOpen: boolean;
     dismissExportDialog: () => void;
     afterDialogDismissed: () => void;
-    featureFlagStoreData?: FeatureFlagStoreData;
+    featureFlagStoreData: FeatureFlagStoreData;
     tabStopRequirementData: TabStopRequirementState;
 };
 
@@ -85,13 +85,13 @@ export function getReportExportDialogForAssessment(
 
 export function getReportExportDialogForQuickAssess(
     props: ReportExportDialogFactoryProps,
-): JSX.Element {
+): JSX.Element | null {
     return null;
 }
 
 export function getReportExportDialogForFastPass(
     props: ReportExportDialogFactoryProps,
-): JSX.Element {
+): JSX.Element | null {
     const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
         visualizationConfigurationFactory: props.visualizationConfigurationFactory,
         selectedTest: props.selectedTest,
@@ -142,7 +142,7 @@ export function getReportExportDialogForFastPass(
         scanDate: props.scanMetadata.timespan.scanComplete,
         reportExportFormat: 'FastPass',
         htmlGenerator: generateReportFromDescription,
-        jsonGenerator: () => null,
+        jsonGenerator: () => '',
         updatePersistedDescription: () => null,
         getExportDescription: () => '',
         featureFlagStoreData: props.featureFlagStoreData,

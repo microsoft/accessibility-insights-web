@@ -12,7 +12,7 @@ export interface HeaderWithContentLinkProps {
     headingTitleClassName?: string;
     headingTitle: string;
     secondaryText?: string;
-    guidance: ContentReference;
+    guidance: ContentReference | undefined;
 }
 
 export const HeadingWithContentLink = NamedFC<HeaderWithContentLinkProps>(

@@ -33,7 +33,7 @@ export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', 
     }
 
     const test = assessmentStoreData.assessmentNavState.selectedTestType;
-    const testName = getProvider().forType(test).title;
+    const testName = getProvider().forType(test)!.title;
     const requirementKey = assessmentStoreData.assessmentNavState.selectedTestSubview;
 
     const onStartTestOver = (event: React.MouseEvent<any>): void => {

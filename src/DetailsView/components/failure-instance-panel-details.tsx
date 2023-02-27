@@ -6,8 +6,8 @@ import { NamedFC } from '../../common/react/named-fc';
 import styles from './failure-instance-panel.scss';
 
 export type FailureInstancePanelDetailsProps = {
-    path: string;
-    snippet: string;
+    path?: string;
+    snippet?: string;
     onSelectorChange: (event, value) => void;
     onValidateSelector: (event) => void;
 };

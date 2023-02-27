@@ -35,7 +35,7 @@ export const AssessmentReportStepHeader = NamedFC<AssessmentReportStepHeaderProp
         const outcomeType = allRequirementOutcomeTypes[status];
         const minCount = header.requirementType === 'manual' && outcomeType === 'pass' ? 1 : 0;
         let count = Math.max(minCount, instanceCount);
-        let message: JSX.Element = null;
+        let message: JSX.Element | null = null;
 
         if (defaultMessageComponent && outcomeType === 'pass') {
             count = defaultMessageComponent.instanceCount;

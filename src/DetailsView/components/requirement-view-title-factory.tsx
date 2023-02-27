@@ -15,7 +15,7 @@ export interface RequirementViewTitleFactoryProps {
     deps: RequirementViewTitleDeps;
     name: string;
     guidanceLinks: HyperlinkDefinition[];
-    infoAndExamples: ContentPageComponent;
+    infoAndExamples: ContentPageComponent | undefined;
     assessmentKey: string;
 }
 

@@ -113,7 +113,7 @@ export class LeftNavLinkBuilder {
         onRightPanelContentSwitch: () => void,
         featureFlagStoreData: FeatureFlagStoreData,
     ): BaseLeftNavLink {
-        const assessment = assessmentsProvider.forKey('automated-checks');
+        const assessment = assessmentsProvider.forKey('automated-checks')!;
 
         const isExpanded = assessment.visualizationType === expandedTest;
         const test = featureFlagStoreData[FeatureFlags.automatedChecks]
@@ -143,16 +143,16 @@ export class LeftNavLinkBuilder {
         onRightPanelContentSwitch: () => void,
     ): TestRequirementLeftNavLink[] {
         let index = startingIndex;
-        const testLinks = [];
+        const testLinks: TestRequirementLeftNavLink[] = [];
         const { getNavLinkHandler, quickAssessRequirementKeys } = deps;
         const navLinkHandler = getNavLinkHandler();
         quickAssessRequirementKeys.forEach(requirementKey => {
-            const assessment = assessmentsProvider.forRequirementKey(requirementKey);
+            const assessment = assessmentsProvider.forRequirementKey(requirementKey)!;
             const stepStatus = assessmentsData[assessment.key];
             const requirement = assessmentsProvider.getStep(
                 assessment.visualizationType,
                 requirementKey,
-            );
+            )!;
             testLinks.push(
                 this.buildQuickAssessRequirementLink(
                     deps,

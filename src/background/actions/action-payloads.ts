@@ -60,7 +60,7 @@ export interface AssessmentActionInstancePayload extends AssessmentToggleActionP
 export interface LoadAssessmentPayload extends BaseActionPayload {
     versionedAssessmentData: VersionedAssessmentData;
     tabId: number;
-    detailsViewId: string;
+    detailsViewId: string | undefined;
 }
 
 export interface TransferAssessmentPayload extends BaseActionPayload {
