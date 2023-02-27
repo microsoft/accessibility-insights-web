@@ -55,6 +55,7 @@ import {
     SharedAssessmentObjects,
 } from 'DetailsView/assessment-functionality-switcher';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
+import { DefaultTestViewContainerProvider } from 'DetailsView/components/default-test-view-container-provider';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
@@ -592,6 +593,8 @@ if (tabId != null) {
                 GetDetailsSwitcherNavConfiguration,
             );
 
+            const testViewContainerProvider = new DefaultTestViewContainerProvider();
+
             const detailsViewId = generateUID();
             detailsViewActionMessageCreator.initialize(detailsViewId);
 
@@ -688,6 +691,7 @@ if (tabId != null) {
                 getGetAssessmentSummaryModelFromProviderAndStatusData:
                     assessmentFunctionalitySwitcher.getGetAssessmentSummaryModelFromProviderAndStatusData,
                 dataTransferViewController,
+                testViewContainerProvider,
             };
 
             const renderer = new DetailsViewRenderer(

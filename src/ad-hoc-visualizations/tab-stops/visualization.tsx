@@ -56,4 +56,5 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     getSwitchToTargetTabOnScan: () => true,
     getInstanceIdentiferGenerator: () => generateUID,
     guidance,
+    getTestViewContainer: (provider, props) => provider.createTabStopsTestViewContainer(props),
 };

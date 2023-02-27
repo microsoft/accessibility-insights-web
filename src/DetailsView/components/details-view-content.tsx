@@ -21,6 +21,7 @@ import {
 } from 'DetailsView/components/interactive-header';
 import { IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 import { DetailsViewBody, DetailsViewBodyDeps } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
@@ -43,6 +44,7 @@ export type DetailsViewContentDeps = {
     dropdownClickHandler: DropdownClickHandler;
     isResultHighlightUnavailable: IsResultHighlightUnavailable;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
+    testViewContainerProvider: TestViewContainerProvider;
 } & InteractiveHeaderDeps &
     DetailsViewOverlayDeps &
     DetailsViewBodyDeps;
@@ -193,6 +195,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 tabStopRequirementData={tabStopRequirementData}
                 overviewHeadingIntroText={overviewHeadingIntroText}
                 linkDataSource={linkDataSource}
+                testViewContainerProvider={props.deps.testViewContainerProvider}
             />
         );
     };
