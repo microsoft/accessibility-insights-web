@@ -65,7 +65,14 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
     const configuration = props.visualizationConfigurationFactory.getConfiguration(
         props.selectedTest,
     );
-    const testViewProps = { configuration, ...configuration.testViewOverrides, ...props };
+    const testViewProps = {
+        configuration,
+        ...configuration.testViewOverrides,
+        ...props,
+        automatedChecksCardSelectionMessageCreator:
+            props.deps.automatedChecksCardSelectionMessageCreator,
+        needsReviewCardSelectionMessageCreator: props.deps.needsReviewCardSelectionMessageCreator,
+    };
 
     return configuration.getTestViewContainer(props.testViewContainerProvider, testViewProps);
 });

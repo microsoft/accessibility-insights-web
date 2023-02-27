@@ -21,7 +21,6 @@ exports[`DefaultTestViewContainerProvider can create assessment test view contai
 
 exports[`DefaultTestViewContainerProvider can create issues test view container 1`] = `
 <AdhocIssuesTestView
-  cardSelectionMessageCreator={{}}
   deps={
     {
       "automatedChecksCardSelectionMessageCreator": {},
@@ -42,7 +41,6 @@ exports[`DefaultTestViewContainerProvider can create issues test view container 
 
 exports[`DefaultTestViewContainerProvider can create needs review test view container 1`] = `
 <AdhocIssuesTestView
-  cardSelectionMessageCreator={{}}
   deps={
     {
       "automatedChecksCardSelectionMessageCreator": {},

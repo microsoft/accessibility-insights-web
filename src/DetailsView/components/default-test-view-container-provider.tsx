@@ -6,41 +6,44 @@ import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-vi
 import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
 import { AdhocTabStopsTestView } from 'DetailsView/components/adhoc-tab-stops-test-view';
 import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
-import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
+import {
+    TestViewContainerProvider,
+    TestViewContainerProviderProps,
+} from 'DetailsView/components/test-view-container-provider';
 import React from 'react';
 
 export class DefaultTestViewContainerProvider implements TestViewContainerProvider {
-    public createStaticTestViewContainer(props: any) {
+    public createStaticTestViewContainer(props: TestViewContainerProviderProps) {
         return <AdhocStaticTestView {...props} />;
     }
 
-    public createTabStopsTestViewContainer(props: any) {
+    public createTabStopsTestViewContainer(props: TestViewContainerProviderProps) {
         return <AdhocTabStopsTestView {...props} />;
     }
 
-    public createNeedsReviewTestViewContainer(props: any) {
+    public createNeedsReviewTestViewContainer(props: TestViewContainerProviderProps) {
         return (
             <AdhocIssuesTestView
                 cardsViewData={props.needsReviewCardsViewData}
-                cardSelectionMessageCreator={props.deps.needsReviewCardSelectionMessageCreator}
+                cardSelectionMessageCreator={props.needsReviewCardSelectionMessageCreator}
                 instancesSection={NeedsReviewInstancesSection}
                 {...props}
             />
         );
     }
 
-    public createIssuesTestViewContainer(props: any) {
+    public createIssuesTestViewContainer(props: TestViewContainerProviderProps) {
         return (
             <AdhocIssuesTestView
                 instancesSection={FailedInstancesSection}
-                cardSelectionMessageCreator={props.deps.automatedChecksCardSelectionMessageCreator}
+                cardSelectionMessageCreator={props.automatedChecksCardSelectionMessageCreator}
                 cardsViewData={props.automatedChecksCardsViewData}
                 {...props}
             />
         );
     }
 
-    public createAssessmentTestViewContainer(props: any) {
+    public createAssessmentTestViewContainer(props: TestViewContainerProviderProps) {
         return <AssessmentTestView {...props} />;
     }
 }

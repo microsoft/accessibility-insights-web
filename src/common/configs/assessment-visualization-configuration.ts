@@ -3,7 +3,10 @@
 import { ToggleActionPayload } from 'background/actions/action-payloads';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
-import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
+import {
+    TestViewContainerProvider,
+    TestViewContainerProviderProps,
+} from 'DetailsView/components/test-view-container-provider';
 import { Analyzer, AnalyzerConfiguration } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
@@ -46,5 +49,8 @@ export interface AssessmentVisualizationConfiguration {
     getInstanceIdentiferGenerator: (
         testStep?: string,
     ) => (instance: UniquelyIdentifiableInstances) => string;
-    getTestViewContainer: (provider: TestViewContainerProvider, props: any) => JSX.Element;
+    getTestViewContainer: (
+        provider: TestViewContainerProvider,
+        props: TestViewContainerProviderProps,
+    ) => JSX.Element;
 }

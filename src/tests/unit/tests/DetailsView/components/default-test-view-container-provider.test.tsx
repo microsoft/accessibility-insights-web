@@ -4,11 +4,11 @@ import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creat
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { DefaultTestViewContainerProvider } from 'DetailsView/components/default-test-view-container-provider';
-import { TestViewContainerProps } from 'DetailsView/components/test-view-container';
+import { TestViewContainerProviderProps } from 'DetailsView/components/test-view-container-provider';
 
 describe('DefaultTestViewContainerProvider', () => {
     let testSubject: DefaultTestViewContainerProvider;
-    let propsStub: TestViewContainerProps;
+    let propsStub: TestViewContainerProviderProps;
 
     beforeEach(() => {
         testSubject = new DefaultTestViewContainerProvider();
@@ -25,7 +25,7 @@ describe('DefaultTestViewContainerProvider', () => {
                     requirements: {} as TabStopRequirementState,
                 },
             },
-        } as unknown as TestViewContainerProps;
+        } as unknown as TestViewContainerProviderProps;
     });
 
     it('can create static test view container', () => {

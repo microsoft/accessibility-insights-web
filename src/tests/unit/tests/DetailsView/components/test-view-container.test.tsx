@@ -10,7 +10,10 @@ import {
     TestViewContainer,
     TestViewContainerProps,
 } from 'DetailsView/components/test-view-container';
-import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
+import {
+    TestViewContainerProvider,
+    TestViewContainerProviderProps,
+} from 'DetailsView/components/test-view-container-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
@@ -18,11 +21,14 @@ import { IMock, Mock, Times } from 'typemoq';
 describe('TestViewContainer', () => {
     const selectedTest: VisualizationType = -1;
     const elementStub = <div />;
+    const automatedChecksCardSelectionMessageCreatorStub =
+        {} as AutomatedChecksCardSelectionMessageCreator;
+    const needsReviewCardSelectionMessageCreatorStub = {} as NeedsReviewCardSelectionMessageCreator;
     let configStub: VisualizationConfiguration;
     let configFactoryStub: VisualizationConfigurationFactory;
     let props: TestViewContainerProps;
     let getTestViewContainerMock: IMock<
-        (provider: TestViewContainerProvider, props: TestViewContainerProps) => JSX.Element
+        (provider: TestViewContainerProvider, props: TestViewContainerProviderProps) => JSX.Element
     >;
     let testViewContainerProviderMock: IMock<TestViewContainerProvider>;
 
@@ -42,9 +48,8 @@ describe('TestViewContainer', () => {
         props = {
             deps: {
                 automatedChecksCardSelectionMessageCreator:
-                    {} as AutomatedChecksCardSelectionMessageCreator,
-                needsReviewCardSelectionMessageCreator:
-                    {} as NeedsReviewCardSelectionMessageCreator,
+                    automatedChecksCardSelectionMessageCreatorStub,
+                needsReviewCardSelectionMessageCreator: needsReviewCardSelectionMessageCreatorStub,
             },
             someParentProp: 'parent-prop',
             visualizationConfigurationFactory: configFactoryStub,
@@ -61,7 +66,14 @@ describe('TestViewContainer', () => {
     it('renders per snapshot', () => {
         getTestViewContainerMock
             .setup(gtc =>
-                gtc(testViewContainerProviderMock.object, { configuration: configStub, ...props }),
+                gtc(testViewContainerProviderMock.object, {
+                    configuration: configStub,
+                    ...props,
+                    automatedChecksCardSelectionMessageCreator:
+                        automatedChecksCardSelectionMessageCreatorStub,
+                    needsReviewCardSelectionMessageCreator:
+                        needsReviewCardSelectionMessageCreatorStub,
+                }),
             )
             .returns(() => elementStub)
             .verifiable(Times.once());
