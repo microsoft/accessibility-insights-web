@@ -5,16 +5,15 @@ import { AssessmentCardSelectionActions } from 'background/actions/assessment-ca
 import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
+import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { cloneDeep, forOwn } from 'lodash';
 
 import {
     BaseActionPayload,
     CardSelectionPayload,
     RuleExpandCollapsePayload,
-    UnifiedScanCompletedPayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { UnifiedResult } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
 describe('AssessmentCardSelectionStore', () => {
@@ -42,21 +41,21 @@ describe('AssessmentCardSelectionStore', () => {
     `('onScanCompleted', async ({ result }) => {
         const initialState = getDefaultState();
 
-        const payload: UnifiedScanCompletedPayload = {
+        const payload: ScanCompletedPayload<any> = {
             scanResult: [
                 {
                     ruleId: 'sampleRuleId',
                     uid: 'sampleUid1',
                     status: result,
-                } as UnifiedResult,
+                },
                 {
                     ruleId: 'sampleRuleId',
                     uid: 'sampleUid2',
                     status: result,
-                } as UnifiedResult,
+                },
             ],
             rules: [],
-        } as UnifiedScanCompletedPayload;
+        };
 
         const expectedState: AssessmentCardSelectionStoreData = {
             rules: {
