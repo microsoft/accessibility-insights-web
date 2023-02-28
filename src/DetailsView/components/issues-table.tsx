@@ -76,7 +76,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         );
     }
 
-    private renderSubtitle(): JSX.Element {
+    private renderSubtitle(): JSX.Element | null {
         if (!this.props.subtitle) {
             return null;
         }

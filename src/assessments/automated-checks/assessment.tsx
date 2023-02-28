@@ -30,6 +30,7 @@ const config: AssistedAssessment = {
     guidance,
     requirements: buildTestStepsFromRules(getDefaultRules()),
     extensions: [excludePassingInstancesFromAssessmentReport],
+    isNonCollapsible: true,
 };
 
 export const AutomatedChecks = AssessmentBuilder.Assisted(config);

@@ -51,8 +51,8 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
         const scanningInProgress: boolean = props.visualizationStoreData.scanning !== null;
         const assessmentNavState = props.assessmentStoreData.assessmentNavState;
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-        const assessment = deps.getProvider().forType(assessmentNavState.selectedTestType);
-        const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);
+        const assessment = deps.getProvider().forType(assessmentNavState.selectedTestType)!;
+        const assessmentData = props.configuration.getAssessmentData!(props.assessmentStoreData);
         const prevTarget = props.assessmentStoreData.persistedTabInfo;
         const selectedRequirementIsEnabled = props.configuration.getTestStatus(
             scanData,
@@ -68,7 +68,7 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
             assessmentNavState.selectedTestSubview === gettingStartedSubview;
 
         const requirementViewComponentConfiguration =
-            props.switcherNavConfiguration.getRequirementViewComponentConfiguration();
+            props.switcherNavConfiguration.getRequirementViewComponentConfiguration()!;
 
         return (
             <>

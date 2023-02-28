@@ -53,4 +53,5 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
     guidance,
+    getTestViewContainer: (provider, props) => provider.createStaticTestViewContainer(props),
 };

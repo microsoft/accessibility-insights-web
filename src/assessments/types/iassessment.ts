@@ -17,6 +17,7 @@ interface BaseAssessment {
     featureFlag?: { required?: string[] };
     extensions?: AnyExtension[];
     initialDataCreator?: InitialDataCreator;
+    isNonCollapsible?: boolean;
 }
 
 export interface ManualAssessment extends BaseAssessment {}

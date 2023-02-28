@@ -3,7 +3,9 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { FeatureFlags } from 'common/feature-flags';
 import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     AssessmentLeftNavLink,
     onTestGettingStartedClick,
@@ -109,18 +111,26 @@ export class LeftNavLinkBuilder {
         startingIndex: number,
         expandedTest: VisualizationType | undefined,
         onRightPanelContentSwitch: () => void,
+        featureFlagStoreData: FeatureFlagStoreData,
     ): BaseLeftNavLink {
-        const assessment = assessmentsProvider.forKey('automated-checks');
+        const assessment = assessmentsProvider.forKey('automated-checks')!;
 
         const isExpanded = assessment.visualizationType === expandedTest;
-        const test = this.buildAssessmentLink(
-            deps,
-            assessment,
-            startingIndex,
-            assessmentsData,
-            isExpanded,
-            onRightPanelContentSwitch,
-        );
+        const test = featureFlagStoreData[FeatureFlags.automatedChecks]
+            ? this.buildNoncollapsibleAssessmentLink(
+                  deps,
+                  assessment,
+                  startingIndex,
+                  assessmentsData,
+              )
+            : this.buildCollapsibleAssessmentLink(
+                  deps,
+                  assessment,
+                  startingIndex,
+                  assessmentsData,
+                  isExpanded,
+                  onRightPanelContentSwitch,
+              );
 
         return test;
     }
@@ -133,16 +143,16 @@ export class LeftNavLinkBuilder {
         onRightPanelContentSwitch: () => void,
     ): TestRequirementLeftNavLink[] {
         let index = startingIndex;
-        const testLinks = [];
+        const testLinks: TestRequirementLeftNavLink[] = [];
         const { getNavLinkHandler, quickAssessRequirementKeys } = deps;
         const navLinkHandler = getNavLinkHandler();
         quickAssessRequirementKeys.forEach(requirementKey => {
-            const assessment = assessmentsProvider.forRequirementKey(requirementKey);
+            const assessment = assessmentsProvider.forRequirementKey(requirementKey)!;
             const stepStatus = assessmentsData[assessment.key];
             const requirement = assessmentsProvider.getStep(
                 assessment.visualizationType,
                 requirementKey,
-            );
+            )!;
             testLinks.push(
                 this.buildQuickAssessRequirementLink(
                     deps,
@@ -169,13 +179,18 @@ export class LeftNavLinkBuilder {
         startingIndex: number,
         expandedTest: VisualizationType | undefined,
         onRightPanelContentSwitch: () => void,
+        featureFlagStoreData: FeatureFlagStoreData,
     ): BaseLeftNavLink[] {
         const assessments = assessmentsProvider.all();
         let index = startingIndex;
 
         const allTestLinks = map(assessments, assessment => {
             const isExpanded = assessment.visualizationType === expandedTest;
-            const test = this.buildAssessmentLink(
+            const buildAssessmentLink =
+                assessment.isNonCollapsible && featureFlagStoreData[FeatureFlags.automatedChecks]
+                    ? this.buildNoncollapsibleAssessmentLink
+                    : this.buildCollapsibleAssessmentLink;
+            const test = buildAssessmentLink(
                 deps,
                 assessment,
                 index,
@@ -190,7 +205,47 @@ export class LeftNavLinkBuilder {
         return allTestLinks;
     }
 
-    private buildAssessmentLink = (
+    private buildNoncollapsibleAssessmentLink = (
+        deps: AssessmentLinkBuilderDeps,
+        assessment: Assessment,
+        index: number,
+        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
+    ): AssessmentLeftNavLink => {
+        const {
+            getStatusForTest,
+            outcomeTypeSemanticsFromTestStatus,
+            outcomeStatsFromManualTestStatus,
+            getNavLinkHandler,
+            navLinkRenderer,
+        } = deps;
+
+        const navLinkHandler = getNavLinkHandler();
+        const stepStatus = assessmentsData[assessment.key];
+        const stats = outcomeStatsFromManualTestStatus(stepStatus);
+        const status = getStatusForTest(stats);
+        const narratorTestStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
+        const name = assessment.title;
+
+        const baselink = this.buildBaseLink(
+            name,
+            VisualizationType[assessment.visualizationType],
+            index,
+            navLinkRenderer.renderAssessmentTestLink,
+            navLinkHandler.onNoncollapsibleTestHeadingClick,
+        );
+
+        const testLink: AssessmentLeftNavLink = {
+            ...baselink,
+            status,
+            title: `${index}: ${name} (${narratorTestStatus})`,
+            testType: assessment.visualizationType,
+            forceAnchor: false,
+        };
+
+        return testLink;
+    };
+
+    private buildCollapsibleAssessmentLink = (
         deps: AssessmentLinkBuilderDeps,
         assessment: Assessment,
         index: number,
@@ -218,7 +273,7 @@ export class LeftNavLinkBuilder {
             VisualizationType[assessment.visualizationType],
             index,
             navLinkRenderer.renderAssessmentTestLink,
-            navLinkHandler.onTestHeadingClick,
+            navLinkHandler.onCollapsibleTestHeadingClick,
         );
 
         const gettingStartedLink = this.buildGettingStartedLink(

@@ -12,7 +12,7 @@ export type CommonInstancesSectionDeps = ResultSectionDeps;
 export type CommonInstancesSectionProps = {
     deps: CommonInstancesSectionDeps;
     cardsViewData: CardsViewModel;
-    userConfigurationStoreData: UserConfigurationStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData | null;
     scanMetadata: ScanMetadata;
     shouldAlertFailuresCount?: boolean;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;

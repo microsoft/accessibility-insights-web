@@ -52,7 +52,7 @@ describe('FailureInstancePanelControlTest', () => {
             <FailureInstancePanelControl {...props} />,
         );
         expect(rendered.getElement()).toMatchSnapshot();
-        expect(rendered.state().currentInstance.path).toBeNull();
+        expect(rendered.state().currentInstance.path).toBeUndefined();
     });
 
     test('render FailureInstancePanelControl: edit without instance', () => {

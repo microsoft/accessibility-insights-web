@@ -31,8 +31,8 @@ export interface AssessmentInstanceTableProps {
     instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    instanceTableHeaderType: InstanceTableHeaderType;
-    getDefaultMessage: Function;
+    instanceTableHeaderType?: InstanceTableHeaderType;
+    getDefaultMessage?: Function;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     hasVisualHelper: boolean;
 }
@@ -67,7 +67,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
             this.props.hasVisualHelper,
         );
 
-        const getDefaultMessage = this.props.getDefaultMessage(
+        const getDefaultMessage = this.props.getDefaultMessage!(
             this.props.assessmentDefaultMessageGenerator,
         );
         const defaultMessageComponent = getDefaultMessage(
@@ -112,7 +112,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         this.props.assessmentInstanceTableHandler.updateFocusedTarget(item.instance.target);
     };
 
-    private renderInstanceTableHeader(items: InstanceTableRow[]): JSX.Element {
+    private renderInstanceTableHeader(items: InstanceTableRow[]): JSX.Element | null {
         if (this.props.instanceTableHeaderType === 'none') {
             return null;
         }

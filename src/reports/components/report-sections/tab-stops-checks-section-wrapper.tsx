@@ -32,7 +32,6 @@ export class TabStopsChecksSectionWrapper extends React.Component<TabStopsChecks
     public render(): React.ReactNode {
         return (
             <this.props.checksSection
-                sectionHeadingLevel={this.props.sectionHeadingLevel}
                 testKey="tab-stops"
                 cardsViewData={this.prepareCardsViewData()}
                 {...this.props}

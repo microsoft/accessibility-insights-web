@@ -11,7 +11,7 @@ export type ContentIncludeDeps = {
 
 export type ContentIncludeProps = {
     deps: ContentIncludeDeps;
-    content: ContentReference;
+    content: ContentReference | undefined;
 };
 
 export const ContentInclude = NamedFC<ContentIncludeProps>(
