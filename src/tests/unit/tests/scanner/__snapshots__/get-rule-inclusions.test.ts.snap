@@ -90,8 +90,7 @@ exports[`getRuleInclusions getRuleInclusions matches snapshotted list of product
     "status": "included",
   },
   "bypass": {
-    "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
-    "status": "excluded",
+    "status": "included",
   },
   "color-contrast": {
     "status": "included",
