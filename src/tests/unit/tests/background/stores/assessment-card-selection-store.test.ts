@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
-import { TabActions } from 'background/actions/tab-actions';
-import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
@@ -74,7 +73,7 @@ describe('AssessmentCardSelectionStore', () => {
         };
 
         const storeTester =
-            createStoreForUnifiedScanResultActions('scanCompleted').withActionParam(payload);
+            createStoreForAssessmentActions('scanCompleted').withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
@@ -82,14 +81,13 @@ describe('AssessmentCardSelectionStore', () => {
         return createStoreWithNullParams(AssessmentCardSelectionStore).getDefaultState();
     }
 
-    function createStoreForUnifiedScanResultActions(
-        actionName: keyof UnifiedScanResultActions,
-    ): StoreTester<AssessmentCardSelectionStoreData, UnifiedScanResultActions> {
-        const factory = (actions: UnifiedScanResultActions) =>
+    function createStoreForAssessmentActions(
+        actionName: keyof AssessmentActions,
+    ): StoreTester<AssessmentCardSelectionStoreData, AssessmentActions> {
+        const factory = (actions: AssessmentActions) =>
             new AssessmentCardSelectionStore(
                 new AssessmentCardSelectionActions(),
                 actions,
-                new TabActions(),
                 null,
                 null,
                 null,
@@ -97,7 +95,7 @@ describe('AssessmentCardSelectionStore', () => {
                 true,
             );
 
-        return new StoreTester(UnifiedScanResultActions, actionName, factory);
+        return new StoreTester(AssessmentActions, actionName, factory);
     }
 });
 
@@ -431,15 +429,6 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
     });
 
-    test('reset data on tab URL change', async () => {
-        initialState.rules = {};
-        initialState.visualHelperEnabled = true;
-        expectedState.rules = null;
-        expectedState.visualHelperEnabled = false;
-        const storeTester = createStoreForTabActions('existingTabUpdated');
-        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
         rule.isExpanded = true;
 
@@ -454,8 +443,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         const factory = (actions: AssessmentCardSelectionActions) =>
             new AssessmentCardSelectionStore(
                 actions,
-                new UnifiedScanResultActions(),
-                new TabActions(),
+                new AssessmentActions(),
                 null,
                 null,
                 null,
@@ -464,23 +452,5 @@ describe('AssessmentCardSelectionStore Test', () => {
             );
 
         return new StoreTester(AssessmentCardSelectionActions, actionName, factory);
-    }
-
-    function createStoreForTabActions(
-        actionName: keyof TabActions,
-    ): StoreTester<AssessmentCardSelectionStoreData, TabActions> {
-        const factory = (actions: TabActions) =>
-            new AssessmentCardSelectionStore(
-                new AssessmentCardSelectionActions(),
-                new UnifiedScanResultActions(),
-                actions,
-                null,
-                null,
-                null,
-                null,
-                true,
-            );
-
-        return new StoreTester(TabActions, actionName, factory);
     }
 });

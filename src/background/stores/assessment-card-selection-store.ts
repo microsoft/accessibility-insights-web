@@ -1,27 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
-import { TabActions } from 'background/actions/tab-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
+import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import { RuleExpandCollapseData } from '../../common/types/store-data/card-selection-store-data';
-import {
-    CardSelectionPayload,
-    RuleExpandCollapsePayload,
-    UnifiedScanCompletedPayload,
-} from '../actions/action-payloads';
-import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
+import { CardSelectionPayload, RuleExpandCollapsePayload } from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
-        private readonly unifiedScanResultActions: UnifiedScanResultActions,
-        private readonly tabActions: TabActions,
+        private readonly assessmentActions: AssessmentActions,
         persistedState: AssessmentCardSelectionStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
@@ -49,14 +44,13 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.assessmentCardSelectionActions.expandAllRules.addListener(this.expandAllRules);
         this.assessmentCardSelectionActions.toggleVisualHelper.addListener(this.toggleVisualHelper);
         this.assessmentCardSelectionActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.assessmentActions.scanCompleted.addListener(this.onScanCompleted);
         this.assessmentCardSelectionActions.resetFocusedIdentifier.addListener(
             this.onResetFocusedIdentifier,
         );
         this.assessmentCardSelectionActions.navigateToNewCardsView.addListener(
             this.onNavigateToNewCardsView,
         );
-        this.tabActions.existingTabUpdated.addListener(this.onResetStoreData);
     }
 
     public getDefaultState(): AssessmentCardSelectionStoreData {
@@ -164,7 +158,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         await this.emitChanged();
     };
 
-    private onScanCompleted = async (payload: UnifiedScanCompletedPayload): Promise<void> => {
+    private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
         this.state = this.getDefaultState();
         this.state.rules = {};
 
@@ -209,11 +203,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             }
         }
         this.state.visualHelperEnabled = !isEmpty(this.state.rules);
-        await this.emitChanged();
-    };
-
-    private onResetStoreData = async (): Promise<void> => {
-        this.state = this.getDefaultState();
         await this.emitChanged();
     };
 }
