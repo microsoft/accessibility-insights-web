@@ -7745,7 +7745,7 @@ htmlparser2@^3.9.1:
     inherits "^2.0.1"
     readable-stream "^3.1.1"
 
-http-cache-semantics@^4.0.0, http-cache-semantics@^4.1.0:
+http-cache-semantics@^4.0.0, http-cache-semantics@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/http-cache-semantics/-/http-cache-semantics-4.1.1.tgz#abe02fcb2985460bf0323be664436ec3476a6d5a"
   integrity sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==
@@ -9430,7 +9430,7 @@ make-fetch-happen@^10.0.3, make-fetch-happen@^10.0.6:
   dependencies:
     agentkeepalive "^4.2.1"
     cacache "^16.1.0"
-    http-cache-semantics "^4.1.0"
+    http-cache-semantics "^4.1.1"
     http-proxy-agent "^5.0.0"
     https-proxy-agent "^5.0.0"
     is-lambda "^1.0.1"
