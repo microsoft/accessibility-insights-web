@@ -116,7 +116,8 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             props.storeState.unifiedScanResultStoreData.results,
             props.deps.getCardSelectionViewData(
                 props.storeState.cardSelectionStoreData,
-                props.storeState.unifiedScanResultStoreData,
+                props.storeState.unifiedScanResultStoreData.results,
+                props.storeState.unifiedScanResultStoreData.platformInfo,
                 props.deps.isResultHighlightUnavailable,
             ),
         );
@@ -129,7 +130,8 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             props.storeState.needsReviewScanResultStoreData.results,
             props.deps.getCardSelectionViewData(
                 props.storeState.needsReviewCardSelectionStoreData,
-                props.storeState.needsReviewScanResultStoreData,
+                props.storeState.needsReviewScanResultStoreData.results,
+                props.storeState.needsReviewScanResultStoreData.platformInfo,
                 props.deps.isResultHighlightUnavailable,
             ),
         );

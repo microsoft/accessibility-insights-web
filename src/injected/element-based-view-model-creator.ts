@@ -37,7 +37,8 @@ export class ElementBasedViewModelCreator {
         const resultDictionary: SelectorToVisualizationMap = {};
         const resultsHighlightStatus = this.getHighlightedResultInstanceIds(
             cardSelectionData,
-            unifiedScanResultStoreData,
+            results,
+            unifiedScanResultStoreData.platformInfo ?? null,
             this.isResultHighlightUnavailable,
         ).resultsHighlightStatus;
 

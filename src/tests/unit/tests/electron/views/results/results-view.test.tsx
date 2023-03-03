@@ -151,7 +151,8 @@ describe('ResultsView', () => {
             .setup(getData =>
                 getData(
                     cardSelectionStoreData,
-                    unifiedScanResultStoreData,
+                    unifiedScanResultStoreData.results,
+                    unifiedScanResultStoreData.platformInfo,
                     isResultHighlightUnavailableStub,
                     resultsFilter,
                 ),

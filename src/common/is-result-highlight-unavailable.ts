@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { PlatformData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
+import { FilterableResult } from 'common/get-card-selection-view-data';
+import { PlatformData } from 'common/types/store-data/unified-data-interface';
 import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
 
 export type IsResultHighlightUnavailable = (
-    result: UnifiedResult,
+    result: FilterableResult,
     platformInfo: PlatformData | null,
 ) => boolean;
 

@@ -3,11 +3,7 @@
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { ResultsFilter } from 'common/types/results-filter';
 import { HighlightState } from 'common/types/store-data/card-view-model';
-import {
-    PlatformData,
-    UnifiedResult,
-    UnifiedScanResultStoreData,
-} from 'common/types/store-data/unified-data-interface';
+import { PlatformData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { flatMap, forOwn, intersection, keys } from 'lodash';
 
 import {
@@ -25,35 +21,39 @@ export interface CardSelectionViewData {
 
 export type ResultsHighlightStatus = { [resultUid: string]: HighlightState };
 
+export type FilterableResult = Pick<UnifiedResult, 'status' | 'uid' | 'descriptors'>;
+
 export type GetCardSelectionViewData = (
     storeData: CardSelectionStoreData,
-    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    results: FilterableResult[],
+    platformInfo: PlatformData | null,
     isResultHighlightUnavailable: IsResultHighlightUnavailable,
     resultsFilter?: ResultsFilter,
 ) => CardSelectionViewData;
 
 export const getCardSelectionViewData: GetCardSelectionViewData = (
     cardSelectionStoreData: CardSelectionStoreData,
-    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    results: FilterableResult[],
+    platformInfo: PlatformData | null,
     isResultHighlightUnavailable: IsResultHighlightUnavailable,
     resultsFilter: ResultsFilter = _ => true,
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
-    if (cardSelectionStoreData?.rules == null || unifiedScanResultStoreData?.results == null) {
+    if (cardSelectionStoreData?.rules == null || results == null) {
         return viewData;
     }
 
     viewData.visualHelperEnabled = cardSelectionStoreData.visualHelperEnabled || false;
     viewData.expandedRuleIds = getRuleIdsOfExpandedRules(cardSelectionStoreData.rules);
 
-    const candidateResults = unifiedScanResultStoreData.results.filter(resultsFilter);
+    const candidateResults = results.filter(resultsFilter);
     const candidateResultUids = candidateResults.map(res => res.uid);
     const allFilteredUids = getAllFilteredUids(candidateResultUids, cardSelectionStoreData.rules);
 
     const unavailableResultUids = getResultsWithUnavailableHighlightStatus(
         candidateResults,
-        unifiedScanResultStoreData.platformInfo ?? null,
+        platformInfo ?? null,
         isResultHighlightUnavailable,
     );
     let selectedResultUids = getOnlyResultUidsFromSelectedCards(
@@ -98,7 +98,7 @@ function getEmptyViewData(): CardSelectionViewData {
 }
 
 function getResultsWithUnavailableHighlightStatus(
-    candidateResults: UnifiedResult[],
+    candidateResults: Pick<UnifiedResult, 'status' | 'uid' | 'descriptors'>[],
     platformInfo: PlatformData | null,
     isResultHighlightUnavailable: IsResultHighlightUnavailable,
 ): string[] {

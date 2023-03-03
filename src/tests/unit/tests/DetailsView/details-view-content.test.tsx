@@ -233,7 +233,8 @@ describe(DetailsViewContent.displayName, () => {
                 .setup(g =>
                     g(
                         state.cardSelectionStoreData,
-                        state.unifiedScanResultStoreData,
+                        state.unifiedScanResultStoreData.results,
+                        state.unifiedScanResultStoreData.platformInfo,
                         isResultHighlightUnavailableStub,
                     ),
                 )
