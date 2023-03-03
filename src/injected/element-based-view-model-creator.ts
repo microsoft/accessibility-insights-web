@@ -38,7 +38,7 @@ export class ElementBasedViewModelCreator {
         const resultsHighlightStatus = this.getHighlightedResultInstanceIds(
             cardSelectionData,
             results,
-            unifiedScanResultStoreData.platformInfo,
+            unifiedScanResultStoreData.platformInfo ?? null,
             this.isResultHighlightUnavailable,
         ).resultsHighlightStatus;
 
