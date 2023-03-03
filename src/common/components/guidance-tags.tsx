@@ -12,7 +12,7 @@ export interface GuidanceTagsDeps {
 }
 export interface GuidanceTagsProps {
     deps: GuidanceTagsDeps;
-    links: GuidanceLink[];
+    links: GuidanceLink[] | undefined;
 }
 
 export const GuidanceTags = NamedFC<GuidanceTagsProps>('GuidanceTags', props => {

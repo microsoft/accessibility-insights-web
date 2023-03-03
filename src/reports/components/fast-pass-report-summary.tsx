@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
+import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import * as React from 'react';
 import { FastPassReportResultData } from 'reports/components/fast-pass-report';
 import { OutcomeSummaryBar } from 'reports/components/outcome-summary-bar';
@@ -22,9 +23,9 @@ export const allOutcomeTypes: RequirementOutcomeType[] = ['fail', 'incomplete', 
 export class FastPassReportSummary extends React.Component<FastPassReportSummaryProps> {
     public render(): JSX.Element {
         const { results, deps } = this.props;
-        const failedTabResults = [];
-        const incompleteTabResults = [];
-        const passedTabResults = [];
+        const failedTabResults: TabStopsRequirementResult[] = [];
+        const incompleteTabResults: TabStopsRequirementResult[] = [];
+        const passedTabResults: TabStopsRequirementResult[] = [];
 
         for (const [requirementId, data] of Object.entries(results.tabStops)) {
             const resultsObject = {
@@ -33,7 +34,7 @@ export class FastPassReportSummary extends React.Component<FastPassReportSummary
                 description: requirements[requirementId].description,
                 instances: data.instances,
                 isExpanded: data.isExpanded,
-            };
+            } as TabStopsRequirementResult;
             if (data.status === 'fail') {
                 failedTabResults.push(resultsObject);
             }

@@ -119,7 +119,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       }
     }
     isOpen={false}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": true,
@@ -340,7 +340,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       }
     }
     isOpen={false}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": false,
@@ -558,7 +558,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       }
     }
     isOpen={false}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": false,
@@ -767,7 +767,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidde
       }
     }
     isOpen={false}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": false,
@@ -976,7 +976,7 @@ exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 
       }
     }
     isOpen={false}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": false,
@@ -1185,7 +1185,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = 
       }
     }
     isOpen={false}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": false,
@@ -1394,7 +1394,7 @@ exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
       }
     }
     isOpen={true}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": false,
@@ -1603,7 +1603,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
       }
     }
     isOpen={false}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": false,
@@ -1859,7 +1859,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       }
     }
     isOpen={false}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": false,
@@ -2076,7 +2076,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       }
     }
     isOpen={false}
-    loadedAssessmentData={null}
+    loadedAssessmentData={{}}
     narrowModeStatus={
       {
         "isCommandBarCollapsed": false,

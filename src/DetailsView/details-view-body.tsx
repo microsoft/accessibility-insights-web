@@ -13,6 +13,7 @@ import {
     QuickAssessToAssessmentDialogDeps,
 } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
+import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
 import styles from 'DetailsView/details-view-body.scss';
 import * as React from 'react';
@@ -77,6 +78,7 @@ export interface DetailsViewBodyProps {
     narrowModeStatus: NarrowModeStatus;
     tabStopRequirementData: TabStopRequirementState;
     dataTransferViewStoreData: DataTransferViewStoreData;
+    testViewContainerProvider: TestViewContainerProvider;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {

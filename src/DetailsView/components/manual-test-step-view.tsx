@@ -50,7 +50,7 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
         );
     }
 
-    private renderTable(status: ManualTestStatus): JSX.Element {
+    private renderTable(status: ManualTestStatus): JSX.Element | null {
         if (status !== ManualTestStatus.FAIL) {
             return null;
         }
@@ -64,8 +64,8 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
             this.props.pathSnippetStoreData,
         );
         const instance: FailureInstanceData = {
-            path: this.props.pathSnippetStoreData.path,
-            snippet: this.props.pathSnippetStoreData.snippet,
+            path: this.props.pathSnippetStoreData.path ?? undefined,
+            snippet: this.props.pathSnippetStoreData.snippet ?? undefined,
         };
         return (
             <React.Fragment>

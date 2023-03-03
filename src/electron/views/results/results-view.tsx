@@ -106,7 +106,8 @@ export class ResultsView extends React.Component<ResultsViewProps> {
 
         const cardSelectionViewData = deps.getCardSelectionViewData(
             cardSelectionStoreData,
-            unifiedScanResultStoreData,
+            unifiedScanResultStoreData?.results,
+            unifiedScanResultStoreData?.platformInfo,
             deps.isResultHighlightUnavailable,
             contentPageInfo.resultsFilter,
         );

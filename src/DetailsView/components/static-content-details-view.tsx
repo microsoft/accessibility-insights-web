@@ -16,8 +16,8 @@ export interface StaticContentDetailsViewProps {
     title: string;
     visualizationEnabled: boolean;
     toggleLabel: string;
-    content: ContentReference;
-    guidance: ContentReference;
+    content: ContentReference | undefined;
+    guidance: ContentReference | undefined;
     onToggleClick: (event) => void;
     stepsText: string;
 }

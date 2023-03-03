@@ -14,8 +14,8 @@ export type RequirementContextSectionDeps = ContentPanelButtonDeps & MarkupDeps 
 
 export interface RequirementContextSectionProps {
     deps: RequirementContextSectionDeps;
-    infoAndExamples: ContentPageComponent;
-    whyItMatters: ContentPageComponent;
+    infoAndExamples: ContentPageComponent | undefined;
+    whyItMatters: ContentPageComponent | undefined;
     helpfulResourceLinks?: HyperlinkDefinition[];
 }
 
@@ -25,7 +25,7 @@ export const RequirementContextSection = NamedFC(
         return (
             <section className={styles.requirementContextContainer}>
                 <h3 className={styles.contextHeading}>Why it matters</h3>
-                <props.whyItMatters deps={props.deps} />
+                {props.whyItMatters ? <props.whyItMatters deps={props.deps} /> : null}
                 <h3 className={styles.contextHeading}>Helpful resources</h3>
                 <div className={styles.contextLinks}>
                     <ContentPanelButton

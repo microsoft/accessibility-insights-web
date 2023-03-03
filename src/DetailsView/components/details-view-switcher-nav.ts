@@ -120,8 +120,8 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
     getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
     getRequirementViewComponentConfiguration: GetRequirementViewComponentConfiguration;
-    overviewHeadingIntroText: string;
-    linkDataSource: HyperlinkDefinition[];
+    overviewHeadingIntroText: string | null;
+    linkDataSource: HyperlinkDefinition[] | null;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<

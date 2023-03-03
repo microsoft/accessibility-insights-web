@@ -3,7 +3,10 @@
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { ResultsFilter } from 'common/types/results-filter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import {
+    PlatformData,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { cloneDeep } from 'lodash';
 import { IMock, Mock } from 'typemoq';
 
@@ -74,7 +77,8 @@ describe('getCardSelectionStoreviewData', () => {
     test('all rules collapsed, visual helper enabled, no resultsFilter, expect all highlights', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
         );
 
@@ -94,7 +98,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
             resultsFilter,
         );
@@ -128,7 +133,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
         );
 
@@ -158,7 +164,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
         );
 
@@ -187,7 +194,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
         );
 
@@ -208,7 +216,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
         );
 
@@ -228,7 +237,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
         );
 
@@ -249,7 +259,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
             resultsFilter,
         );
@@ -269,7 +280,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
         );
 
@@ -292,7 +304,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
             resultsFilter,
         );
@@ -310,7 +323,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
         );
 
@@ -333,7 +347,8 @@ describe('getCardSelectionStoreviewData', () => {
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
-            initialUnifiedScanResultState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
             isResultHighlightUnavailable.object,
         );
 
@@ -349,7 +364,7 @@ describe('getCardSelectionStoreviewData', () => {
     });
 
     test('null store data, expect no results', () => {
-        const viewData = getCardSelectionViewData(null, null, null);
+        const viewData = getCardSelectionViewData(null, null, null, null);
 
         validateEmptyViewData(viewData);
     });
@@ -357,7 +372,8 @@ describe('getCardSelectionStoreviewData', () => {
     test('empty CardSelectionStoreData, expect no results', () => {
         const viewData = getCardSelectionViewData(
             {} as CardSelectionStoreData,
-            {} as UnifiedScanResultStoreData,
+            [],
+            {} as PlatformData,
             null,
         );
 
@@ -370,19 +386,8 @@ describe('getCardSelectionStoreviewData', () => {
                 visualHelperEnabled: false,
                 focusedResultUid: null,
             } as CardSelectionStoreData,
-            {} as UnifiedScanResultStoreData,
-            null,
-        );
-
-        validateEmptyViewData(viewData);
-    });
-
-    test('null UnifiedScanResultStoreData, expect no results', () => {
-        const viewData = getCardSelectionViewData(
-            {
-                rules: {},
-            } as CardSelectionStoreData,
-            null,
+            [],
+            {} as PlatformData,
             null,
         );
 
@@ -392,7 +397,8 @@ describe('getCardSelectionStoreviewData', () => {
     test('invalid UnifiedScanResultStoreData, expect no results', () => {
         const viewData = getCardSelectionViewData(
             {} as CardSelectionStoreData,
-            { results: null } as UnifiedScanResultStoreData,
+            null,
+            {} as PlatformData,
             null,
         );
 

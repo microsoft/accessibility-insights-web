@@ -385,14 +385,14 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
     public loadAssessment = (
         assessmentData: VersionedAssessmentData,
         tabId: number,
-        detailsViewId: string,
+        detailsViewId: string | undefined,
     ): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: LoadAssessmentPayload = {
             telemetry: telemetry,
             versionedAssessmentData: assessmentData,
             tabId,
-            detailsViewId,
+            detailsViewId: detailsViewId,
         };
         const setDetailsViewRightContentPanelPayload: DetailsViewRightContentPanelType = 'Overview';
         this.dispatcher.dispatchMessage({

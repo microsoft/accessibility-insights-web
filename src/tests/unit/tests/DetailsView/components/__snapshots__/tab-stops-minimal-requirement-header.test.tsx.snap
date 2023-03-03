@@ -4,9 +4,7 @@ exports[`TabStopsMinimalRequirementHeader renders 1`] = `
 <span
   className="requirementDetail"
 >
-  <span
-    className="outcomeChipContainer"
-  >
+  <span>
     <span
       aria-hidden="true"
     >

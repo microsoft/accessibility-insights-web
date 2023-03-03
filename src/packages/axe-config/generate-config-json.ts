@@ -13,6 +13,15 @@ const configFilePath = process.argv[2] || defaultConfigFilePath;
 const generateAxeConfig = () => {
     console.log('Generating axe config file...');
 
+    const ruleOverrides = explicitRuleOverrides;
+    ruleOverrides['frame-tested'] = {
+        status: 'excluded',
+        reason: `This is included by our scanner, but special cased during post-processing to
+                 display a special warning bar rather than appearing with automated check results.
+                 We omit it from @accessibility-insights/axe-config to avoid confusing disparities
+                 between automated check results and external config users.`,
+    };
+
     const ruleIncludedStatus = getRuleInclusions(axe._audit.rules, explicitRuleOverrides);
     const scanParameterGenerator = new ScanParameterGenerator(ruleIncludedStatus);
     const scanOptions = scanParameterGenerator.getAxeEngineOptions({});

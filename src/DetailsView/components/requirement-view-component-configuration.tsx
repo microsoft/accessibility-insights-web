@@ -26,7 +26,8 @@ export type RequirementViewComponentConfiguration = {
 
 export type GetRequirementViewComponentConfigurationProps = GetNextRequirementConfigurationProps;
 
-export type GetRequirementViewComponentConfiguration = () => RequirementViewComponentConfiguration;
+export type GetRequirementViewComponentConfiguration =
+    () => RequirementViewComponentConfiguration | null;
 
 export const getRequirementViewComponentConfigurationForAssessment = () => {
     return {

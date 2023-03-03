@@ -15,7 +15,7 @@ export type ScanIncompleteWarningDeps = ScanIncompleteWarningMessageBarDeps;
 
 export type ScanIncompleteWarningProps = {
     deps: ScanIncompleteWarningDeps;
-    warnings: ScanIncompleteWarningId[];
+    warnings: ScanIncompleteWarningId[] | undefined;
     warningConfiguration: WarningConfiguration;
     test: VisualizationType;
 };
@@ -28,7 +28,7 @@ export class ScanIncompleteWarning extends React.PureComponent<ScanIncompleteWar
 
         const messages: JSX.Element[] = [];
         forOwn(this.props.warningConfiguration, (render, warningId: ScanIncompleteWarningId) => {
-            if (!this.props.warnings.includes(warningId)) {
+            if (!this.props.warnings || !this.props.warnings.includes(warningId)) {
                 return;
             }
 

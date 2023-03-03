@@ -25,7 +25,7 @@ export class NavLinkHandler {
     public onFastPassTestClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink) => {
         this.detailsViewActionMessageCreator.selectDetailsView(
             event,
-            VisualizationType[item.key],
+            VisualizationType[item.key!],
             DetailsViewPivotType.fastPass,
         );
     };
@@ -36,7 +36,7 @@ export class NavLinkHandler {
     ) => {
         this.detailsViewActionMessageCreator.selectDetailsView(
             event,
-            VisualizationType[item.key],
+            VisualizationType[item.key!],
             DetailsViewPivotType.assessment,
         );
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');

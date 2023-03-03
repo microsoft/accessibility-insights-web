@@ -9,6 +9,7 @@ import styles from 'DetailsView/components/tab-stops-failed-instance-section.scs
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
+import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import {
     TabStopsRequirementsWithInstances,
     TabStopsRequirementsWithInstancesDeps,
@@ -33,7 +34,7 @@ export const tabStopsFailedInstanceSectionAutomationId = 'tab-stops-failure-inst
 export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSectionProps>(
     'TabStopsFailedInstanceSection',
     props => {
-        const results = [];
+        const results: TabStopsRequirementResult[] = [];
 
         for (const [requirementId, data] of Object.entries(props.tabStopRequirementState)) {
             if (data.status !== 'fail') {
@@ -46,7 +47,7 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
                 description: requirements[requirementId].description,
                 instances: data.instances,
                 isExpanded: data.isExpanded,
-            });
+            } as TabStopsRequirementResult);
         }
 
         const totalFailedInstancesCount: number =

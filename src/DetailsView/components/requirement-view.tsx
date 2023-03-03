@@ -103,13 +103,13 @@ export class RequirementView extends React.Component<RequirementViewProps> {
         const { deps } = this.props;
         const assessment: Readonly<Assessment> = deps
             .getProvider()
-            .forType(this.props.assessmentNavState.selectedTestType);
+            .forType(this.props.assessmentNavState.selectedTestType)!;
         const requirement: Readonly<Requirement> = deps
             .getProvider()
             .getStep(
                 this.props.assessmentNavState.selectedTestType,
                 this.props.assessmentNavState.selectedTestSubview,
-            );
+            )!;
         const isRequirementScanned =
             this.props.assessmentData.testStepStatus[requirement.key].isStepScanned;
         const requirementHasVisualHelper = !!requirement.getVisualHelperToggle;
@@ -117,7 +117,7 @@ export class RequirementView extends React.Component<RequirementViewProps> {
         const visualHelperToggleConfig: VisualHelperToggleConfig = {
             deps: this.props.deps,
             assessmentNavState: this.props.assessmentNavState,
-            instancesMap: this.props.assessmentData.generatedAssessmentInstancesMap,
+            instancesMap: this.props.assessmentData.generatedAssessmentInstancesMap!,
             isStepEnabled: this.props.isRequirementEnabled,
             isStepScanned: isRequirementScanned,
         };
@@ -160,10 +160,10 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                                     requirement={requirement}
                                     assessmentNavState={this.props.assessmentNavState}
                                     instancesMap={
-                                        this.props.assessmentData.generatedAssessmentInstancesMap
+                                        this.props.assessmentData.generatedAssessmentInstancesMap!
                                     }
                                     manualRequirementResultMap={
-                                        this.props.assessmentData.manualTestStepResultMap
+                                        this.props.assessmentData.manualTestStepResultMap!
                                     }
                                     assessmentInstanceTableHandler={
                                         this.props.assessmentInstanceTableHandler
