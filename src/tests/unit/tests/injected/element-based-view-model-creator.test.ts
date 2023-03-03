@@ -84,6 +84,7 @@ describe('ElementBasedViewModelCreator', () => {
         const scanResultStoreData = {
             results: [unifiedResult],
             rules: [],
+            platformInfo: null,
         } as UnifiedScanResultStoreData;
         const cardSelectionViewData = {
             resultsHighlightStatus: { [unifiedResult.uid]: 'hidden' },
@@ -123,6 +124,7 @@ describe('ElementBasedViewModelCreator', () => {
             const scanResultStoreData = {
                 results: [unifiedResult],
                 rules: unifiedRules,
+                platformInfo: null,
             } as UnifiedScanResultStoreData;
             const cardSelectionViewData = {
                 resultsHighlightStatus: { [unifiedResult.uid]: 'visible' },
@@ -181,6 +183,7 @@ describe('ElementBasedViewModelCreator', () => {
         const scanResultStoreData = {
             results: [unifiedResultOne, unifiedResultTwo],
             rules: unifiedRules,
+            platformInfo: null,
         } as UnifiedScanResultStoreData;
         const cardSelectionViewData = {
             resultsHighlightStatus: {
@@ -236,6 +239,7 @@ describe('ElementBasedViewModelCreator', () => {
         const scanResultStoreData = {
             results: [unifiedResult],
             rules: unifiedRules,
+            platformInfo: null,
         } as UnifiedScanResultStoreData;
         const cardSelectionViewData = {
             resultsHighlightStatus: { [unifiedResult.uid]: 'visible' },
