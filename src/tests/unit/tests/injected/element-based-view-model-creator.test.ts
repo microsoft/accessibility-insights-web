@@ -91,7 +91,7 @@ describe('ElementBasedViewModelCreator', () => {
     test('getElementBasedViewModel: no highlighted results', () => {
         const unifiedResult = exampleUnifiedResult;
         const ruleStub = { id: unifiedResult.ruleId } as UnifiedRule;
-        const ScanNodeResults: ScanNodeResult[] = [{ ...unifiedResult, rule: ruleStub }];
+        const scanNodeResults: ScanNodeResult[] = [{ ...unifiedResult, rule: ruleStub }];
         const cardSelectionViewData = {
             resultsHighlightStatus: { [unifiedResult.uid]: 'hidden' },
         } as CardSelectionViewData;
@@ -117,7 +117,7 @@ describe('ElementBasedViewModelCreator', () => {
         const dataStub = {} as UnifiedScanResultStoreData;
         convertStoreDataForScanNodeResultsCallbackMock
             .setup(mock => mock(dataStub, cardSelectionData))
-            .returns(() => ScanNodeResults)
+            .returns(() => scanNodeResults)
             .verifiable(Times.once());
         expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionData)).toEqual(
             expectedResult,
@@ -136,7 +136,7 @@ describe('ElementBasedViewModelCreator', () => {
             const ruleStub = { id: unifiedResult.ruleId } as UnifiedRule;
             const identifierStub = unifiedResult.identifiers['css-selector'];
             const decoratedResultStub = {} as DecoratedAxeNodeResult;
-            const ScanNodeResults = [{ ...unifiedResult, rule: ruleStub }];
+            const scanNodeResults = [{ ...unifiedResult, rule: ruleStub }];
             const cardSelectionViewData = {
                 resultsHighlightStatus: { [unifiedResult.uid]: 'visible' },
             } as CardSelectionViewData;
@@ -175,7 +175,7 @@ describe('ElementBasedViewModelCreator', () => {
             const dataStub = {} as UnifiedScanResultStoreData;
             convertStoreDataForScanNodeResultsCallbackMock
                 .setup(mock => mock(dataStub, cardSelectionData))
-                .returns(() => ScanNodeResults)
+                .returns(() => scanNodeResults)
                 .verifiable(Times.once());
             expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionData)).toEqual(
                 expectedResult,
@@ -200,7 +200,7 @@ describe('ElementBasedViewModelCreator', () => {
             id: 'some other id',
         } as DecoratedAxeNodeResult;
 
-        const ScanNodeResults = [
+        const scanNodeResults = [
             { ...unifiedResultOne, rule: ruleStubOne },
             { ...unifiedResultTwo, rule: ruleStubTwo },
         ];
@@ -258,7 +258,7 @@ describe('ElementBasedViewModelCreator', () => {
         const dataStub = {} as UnifiedScanResultStoreData;
         convertStoreDataForScanNodeResultsCallbackMock
             .setup(mock => mock(dataStub, cardSelectionData))
-            .returns(() => ScanNodeResults)
+            .returns(() => scanNodeResults)
             .verifiable(Times.once());
         expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionData)).toEqual(
             expectedResult,
@@ -272,7 +272,7 @@ describe('ElementBasedViewModelCreator', () => {
         const ruleStub = { id: unifiedResult.ruleId } as UnifiedRule;
         const identifierStub = unifiedResult.identifiers['css-selector'];
         const decoratedResultStub = {} as DecoratedAxeNodeResult;
-        const ScanNodeResults = [{ ...unifiedResult, rule: ruleStub }];
+        const scanNodeResults = [{ ...unifiedResult, rule: ruleStub }];
         const cardSelectionViewData = {
             resultsHighlightStatus: { [unifiedResult.uid]: 'visible' },
         } as CardSelectionViewData;
@@ -311,7 +311,7 @@ describe('ElementBasedViewModelCreator', () => {
         const dataStub = {} as UnifiedScanResultStoreData;
         convertStoreDataForScanNodeResultsCallbackMock
             .setup(mock => mock(dataStub, cardSelectionData))
-            .returns(() => ScanNodeResults)
+            .returns(() => scanNodeResults)
             .verifiable(Times.once());
         expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionData)).toEqual(
             expectedResult,
