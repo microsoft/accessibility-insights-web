@@ -1,20 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
+import {
+    ConvertStoreDataForScanNodeResultsCallback,
+    ScanNodeResult,
+} from 'common/store-data-to-scan-node-result-converter';
 import { TargetHelper } from 'common/target-helper';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
+    PlatformData,
     UnifiedResult,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
-import { find } from 'lodash';
 import { Target } from 'scanner/iruleresults';
 
 export type GetElementBasedViewModelCallback = (
-    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
     cardSelectionData: CardSelectionStoreData,
 ) => SelectorToVisualizationMap | null;
 
@@ -23,54 +29,66 @@ export class ElementBasedViewModelCreator {
         private getDecoratedAxeNode: GetDecoratedAxeNodeCallback,
         private getHighlightedResultInstanceIds: GetCardSelectionViewData,
         private isResultHighlightUnavailable: IsResultHighlightUnavailable,
+        private convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback,
     ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
-        unifiedScanResultStoreData,
-        cardSelectionData,
+        storeData: UnifiedScanResultStoreData | AssessmentStoreData,
+        cardSelectionData: CardSelectionStoreData,
     ) => {
-        const { rules, results } = unifiedScanResultStoreData;
-        if (rules == null || results == null || cardSelectionData?.rules == null) {
+        const results: ScanNodeResult[] | null = this.convertStoreDataForScanNodeResults(
+            storeData,
+            cardSelectionData,
+        );
+
+        if (results == null || cardSelectionData?.rules == null) {
             return null;
         }
 
+        return this.getSelectorToVisualizationMap(
+            cardSelectionData,
+            results,
+            'platformInfo' in storeData && storeData.platformInfo ? storeData.platformInfo : null,
+        );
+    };
+
+    private getSelectorToVisualizationMap(
+        cardSelectionData: CardSelectionStoreData,
+        results: ScanNodeResult[],
+        platformInfo: PlatformData | null,
+    ): SelectorToVisualizationMap {
         const resultDictionary: SelectorToVisualizationMap = {};
         const resultsHighlightStatus = this.getHighlightedResultInstanceIds(
             cardSelectionData,
             results,
-            unifiedScanResultStoreData.platformInfo ?? null,
+            platformInfo,
             this.isResultHighlightUnavailable,
         ).resultsHighlightStatus;
 
-        results.forEach(unifiedResult => {
-            if (resultsHighlightStatus[unifiedResult.uid] !== 'visible') {
+        results.forEach(result => {
+            if (resultsHighlightStatus[result.uid] !== 'visible') {
                 return null;
             }
 
-            const rule = find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId);
-            if (rule == null) {
-                throw new Error(`Got result with unknown ruleId ${unifiedResult.ruleId}`);
-            }
-
-            const identifier = this.getIdentifier(unifiedResult);
-            const decoratedResult = this.getDecoratedAxeNode(unifiedResult, rule, identifier);
+            const identifier = this.getIdentifier(result);
+            const decoratedResult = this.getDecoratedAxeNode(result, result.rule, identifier);
             const ruleResults = resultDictionary[identifier]
                 ? resultDictionary[identifier].ruleResults
                 : {};
 
             resultDictionary[identifier] = {
-                isFailure: unifiedResult.status === 'fail',
+                isFailure: result.status === 'fail',
                 isVisualizationEnabled: true,
-                target: this.getTarget(unifiedResult),
+                target: this.getTarget(result),
                 ruleResults: {
                     ...ruleResults,
-                    [rule.id]: decoratedResult,
+                    [result.ruleId]: decoratedResult,
                 },
             };
         });
 
         return resultDictionary;
-    };
+    }
 
     private getTarget(unifiedResult: UnifiedResult): Target {
         return unifiedResult.identifiers.target

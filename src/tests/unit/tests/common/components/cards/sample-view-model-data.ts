@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentData } from 'common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import {
     CardRuleResult,
     CardRuleResultsByStatus,
@@ -30,6 +32,25 @@ export const exampleUnifiedResult: UnifiedResult = {
             all: [],
         },
     },
+};
+
+export const exampleAssessmentResult: AssessmentData = {
+    fullAxeResultsMap: null,
+    generatedAssessmentInstancesMap: {
+        'body img': {
+            target: ['body img'],
+            html: 'body img',
+            testStepResults: {
+                'image-alt': {
+                    status: ManualTestStatus.FAIL,
+                    isVisualizationEnabled: true,
+                    id: 'some-guid-here',
+                    failureSummary: 'sample how to fix summary',
+                },
+            },
+        },
+    },
+    testStepStatus: {},
 };
 
 export const exampleUnifiedResultWithBoundingRectangle = {
