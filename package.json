@@ -170,7 +170,7 @@
         "stylelint-config-standard-scss": "^6.1.0",
         "terser-webpack-plugin": "^5.3.6",
         "ts-loader": "^9.4.2",
-        "typed-scss-modules": "^7.0.1",
+        "typed-scss-modules": "^7.0.2",
         "typemoq": "^2.1.0",
         "typescript": "^4.9.5",
         "webpack": "^5.75.0",
