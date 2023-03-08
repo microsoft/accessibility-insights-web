@@ -173,19 +173,15 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             return;
         }
 
-        payload.scanResult.forEach(result => {
-            if (result.status !== 'fail' && result.status !== 'unknown') {
-                return;
-            }
-
-            if (this.state.testKey.rules![result.ruleId] === undefined) {
-                this.state.testKey.rules![result.ruleId] = {
+        payload.scanResult.violations.forEach(result => {
+            if (this.state.testKey.rules![result.id] === undefined) {
+                this.state.testKey.rules![result.id] = {
                     isExpanded: false,
                     cards: {},
                 };
             }
 
-            this.state.testKey.rules![result.ruleId].cards[result.uid] = false;
+            this.state.testKey.rules![result.id].cards[result.id] = false;
         });
 
         this.state.testKey.visualHelperEnabled = true;
