@@ -4,6 +4,7 @@ import { createToolData } from 'common/application-properties-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { Logger } from 'common/logging/logger';
+import { convertStoreDataForScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -226,6 +227,7 @@ export class MainWindowInitializer extends WindowInitializer {
             getDecoratedAxeNode,
             getCardSelectionViewData,
             isResultHighlightUnavailableWeb,
+            convertStoreDataForScanNodeResults,
         );
         const selectorMapHelper = new SelectorMapHelper(
             this.visualizationConfigurationFactory,
