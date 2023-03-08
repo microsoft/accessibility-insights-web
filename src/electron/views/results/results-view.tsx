@@ -100,7 +100,6 @@ export class ResultsView extends React.Component<ResultsViewProps> {
             narrowModeStatus,
             cardsViewStoreData,
         } = this.props;
-        const { rules, results, toolInfo } = unifiedScanResultStoreData;
 
         const contentPageInfo: ContentPageInfo = this.getContentPageInfo();
 
@@ -112,8 +111,11 @@ export class ResultsView extends React.Component<ResultsViewProps> {
             contentPageInfo.resultsFilter,
         );
 
-        const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
-        deps.toolData = toolInfo;
+        const cardsViewData = deps.getCardsViewData(
+            unifiedScanResultStoreData,
+            cardSelectionViewData,
+        );
+        deps.toolData = unifiedScanResultStoreData.toolInfo;
 
         const highlightedResultUids = Object.keys(
             cardSelectionViewData.resultsHighlightStatus,

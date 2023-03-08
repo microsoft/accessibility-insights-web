@@ -112,8 +112,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
         const automatedChecksCardsViewData = props.deps.getCardViewData(
-            props.storeState.unifiedScanResultStoreData.rules,
-            props.storeState.unifiedScanResultStoreData.results,
+            props.storeState.unifiedScanResultStoreData,
             props.deps.getCardSelectionViewData(
                 props.storeState.cardSelectionStoreData,
                 props.storeState.unifiedScanResultStoreData.results,
@@ -126,8 +125,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             props.storeState.visualizationScanResultStoreData.tabStops.requirements;
 
         const needsReviewCardsViewData = props.deps.getCardViewData(
-            props.storeState.needsReviewScanResultStoreData.rules,
-            props.storeState.needsReviewScanResultStoreData.results,
+            props.storeState.needsReviewScanResultStoreData,
             props.deps.getCardSelectionViewData(
                 props.storeState.needsReviewCardSelectionStoreData,
                 props.storeState.needsReviewScanResultStoreData.results,
