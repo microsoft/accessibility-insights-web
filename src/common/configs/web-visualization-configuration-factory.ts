@@ -128,6 +128,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
             adhocToolsPanelDisplayOrder: null,
             displayableData: {
                 title: assessment.title,
+                subtitle: assessment.subtitle,
                 adHoc: null,
             },
             shouldShowExportReport: () => false,

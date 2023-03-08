@@ -13,15 +13,15 @@ import {
 import React from 'react';
 
 export class DefaultTestViewContainerProvider implements TestViewContainerProvider {
-    public createStaticTestViewContainer(props: TestViewContainerProviderProps) {
+    public createStaticTestViewContainer(props: TestViewContainerProviderProps): JSX.Element {
         return <AdhocStaticTestView {...props} />;
     }
 
-    public createTabStopsTestViewContainer(props: TestViewContainerProviderProps) {
+    public createTabStopsTestViewContainer(props: TestViewContainerProviderProps): JSX.Element {
         return <AdhocTabStopsTestView {...props} />;
     }
 
-    public createNeedsReviewTestViewContainer(props: TestViewContainerProviderProps) {
+    public createNeedsReviewTestViewContainer(props: TestViewContainerProviderProps): JSX.Element {
         return (
             <AdhocIssuesTestView
                 cardsViewData={props.needsReviewCardsViewData}
@@ -32,7 +32,7 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
         );
     }
 
-    public createIssuesTestViewContainer(props: TestViewContainerProviderProps) {
+    public createIssuesTestViewContainer(props: TestViewContainerProviderProps): JSX.Element {
         return (
             <AdhocIssuesTestView
                 instancesSection={FailedInstancesSection}
@@ -43,7 +43,22 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
         );
     }
 
-    public createAssessmentTestViewContainer(props: TestViewContainerProviderProps) {
+    public createAssessmentAutomatedChecksTestViewContainer(
+        props: TestViewContainerProviderProps,
+    ): JSX.Element {
+        return (
+            // TODO need to use assessment specific data/ infra here
+            <AdhocIssuesTestView
+                instancesSection={FailedInstancesSection}
+                cardSelectionMessageCreator={props.automatedChecksCardSelectionMessageCreator}
+                cardsViewData={props.automatedChecksCardsViewData}
+                includeStepsText={false}
+                {...props}
+            />
+        );
+    }
+
+    public createAssessmentTestViewContainer(props: TestViewContainerProviderProps): JSX.Element {
         return <AssessmentTestView {...props} />;
     }
 }

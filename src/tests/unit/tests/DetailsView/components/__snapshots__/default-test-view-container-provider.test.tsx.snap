@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DefaultTestViewContainerProvider can create assessment automated checks test view container 1`] = `
+<AdhocIssuesTestView
+  deps={
+    {
+      "automatedChecksCardSelectionMessageCreator": {},
+      "needsReviewCardSelectionMessageCreator": {},
+    }
+  }
+  includeStepsText={false}
+  instancesSection={[Function]}
+  someParentProp="parent-prop"
+  visualizationScanResultData={
+    {
+      "tabStops": {
+        "requirements": {},
+      },
+    }
+  }
+/>
+`;
+
 exports[`DefaultTestViewContainerProvider can create assessment test view container 1`] = `
 <AssessmentTestView
   deps={
