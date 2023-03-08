@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
@@ -19,7 +18,6 @@ import {
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
-        private readonly assessmentActions: AssessmentActions,
         persistedState: AssessmentCardSelectionStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
@@ -47,7 +45,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.assessmentCardSelectionActions.expandAllRules.addListener(this.expandAllRules);
         this.assessmentCardSelectionActions.toggleVisualHelper.addListener(this.toggleVisualHelper);
         this.assessmentCardSelectionActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.assessmentActions.scanCompleted.addListener(this.onScanCompleted);
         this.assessmentCardSelectionActions.resetFocusedIdentifier.addListener(
             this.onResetFocusedIdentifier,
         );

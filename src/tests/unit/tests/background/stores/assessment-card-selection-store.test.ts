@@ -1,17 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
-import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { cloneDeep, forOwn } from 'lodash';
-import { FormattedCheckResult, ScanResults } from 'scanner/iruleresults';
 
 import {
-    BaseActionPayload,
     AssessmentCardSelectionPayload,
+    BaseActionPayload,
     RuleExpandCollapsePayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
@@ -35,70 +32,8 @@ describe('AssessmentCardSelectionStore', () => {
         expect(defaultState.testKey.rules).toBeNull();
     });
 
-    test('onScanCompleted', async () => {
-        const initialState = getDefaultState();
-
-        const payload: ScanCompletedPayload<any> = {
-            scanResult: {
-                passes: [],
-                violations: [
-                    {
-                        id: 'sampleRuleId',
-                        nodes: [
-                            {
-                                any: [
-                                    { id: 'sampleUid1' } as FormattedCheckResult,
-                                    { id: 'sampleUid2' } as FormattedCheckResult,
-                                ],
-                            } as AxeNodeResult,
-                        ],
-                    },
-                ],
-                inapplicable: [],
-                incomplete: [],
-            } as ScanResults,
-        } as ScanCompletedPayload<any>;
-
-        const expectedState: AssessmentCardSelectionStoreData = {
-            testKey: {
-                rules: {
-                    sampleRuleId: {
-                        isExpanded: false,
-                        cards: {
-                            sampleUid1: false,
-                            sampleUid2: false,
-                        },
-                    },
-                },
-                focusedResultUid: null,
-                visualHelperEnabled: true,
-            },
-        };
-
-        const storeTester =
-            createStoreForAssessmentActions('scanCompleted').withActionParam(payload);
-        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
     function getDefaultState(): AssessmentCardSelectionStoreData {
         return createStoreWithNullParams(AssessmentCardSelectionStore).getDefaultState();
-    }
-
-    function createStoreForAssessmentActions(
-        actionName: keyof AssessmentActions,
-    ): StoreTester<AssessmentCardSelectionStoreData, AssessmentActions> {
-        const factory = (actions: AssessmentActions) =>
-            new AssessmentCardSelectionStore(
-                new AssessmentCardSelectionActions(),
-                actions,
-                null,
-                null,
-                null,
-                null,
-                true,
-            );
-
-        return new StoreTester(AssessmentActions, actionName, factory);
     }
 });
 
@@ -450,15 +385,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         actionName: keyof AssessmentCardSelectionActions,
     ): StoreTester<AssessmentCardSelectionStoreData, AssessmentCardSelectionActions> {
         const factory = (actions: AssessmentCardSelectionActions) =>
-            new AssessmentCardSelectionStore(
-                actions,
-                new AssessmentActions(),
-                null,
-                null,
-                null,
-                null,
-                true,
-            );
+            new AssessmentCardSelectionStore(actions, null, null, null, null, true);
 
         return new StoreTester(AssessmentCardSelectionActions, actionName, factory);
     }
