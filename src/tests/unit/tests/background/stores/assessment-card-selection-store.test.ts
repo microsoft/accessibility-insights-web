@@ -7,6 +7,7 @@ import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assess
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { cloneDeep, forOwn } from 'lodash';
+import { FormattedCheckResult, ScanResults } from 'scanner/iruleresults';
 
 import {
     BaseActionPayload,
@@ -34,28 +35,29 @@ describe('AssessmentCardSelectionStore', () => {
         expect(defaultState.testKey.rules).toBeNull();
     });
 
-    it.each`
-        result
-        ${'fail'}
-        ${'unknown'}
-    `('onScanCompleted', async ({ result }) => {
+    test('onScanCompleted', async () => {
         const initialState = getDefaultState();
 
         const payload: ScanCompletedPayload<any> = {
-            scanResult: [
-                {
-                    ruleId: 'sampleRuleId',
-                    uid: 'sampleUid1',
-                    status: result,
-                },
-                {
-                    ruleId: 'sampleRuleId',
-                    uid: 'sampleUid2',
-                    status: result,
-                },
-            ],
-            rules: [],
-        };
+            scanResult: {
+                passes: [],
+                violations: [
+                    {
+                        id: 'sampleRuleId',
+                        nodes: [
+                            {
+                                any: [
+                                    { id: 'sampleUid1' } as FormattedCheckResult,
+                                    { id: 'sampleUid2' } as FormattedCheckResult,
+                                ],
+                            } as AxeNodeResult,
+                        ],
+                    },
+                ],
+                inapplicable: [],
+                incomplete: [],
+            } as ScanResults,
+        } as ScanCompletedPayload<any>;
 
         const expectedState: AssessmentCardSelectionStoreData = {
             testKey: {

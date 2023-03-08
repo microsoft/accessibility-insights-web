@@ -169,7 +169,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.state = this.getDefaultState();
         this.state.testKey.rules = {};
 
-        if (!payload) {
+        if (!payload || !payload.scanResult || payload.scanResult.violations === undefined) {
             return;
         }
 
@@ -181,7 +181,9 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
                 };
             }
 
-            this.state.testKey.rules![result.id].cards[result.id] = false;
+            result.nodes['any'].forEach(instance => {
+                this.state.testKey.rules![result.id].cards[instance.id] = false;
+            });
         });
 
         this.state.testKey.visualHelperEnabled = true;
