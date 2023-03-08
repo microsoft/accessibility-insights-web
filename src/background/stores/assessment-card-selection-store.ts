@@ -11,7 +11,10 @@ import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import { RuleExpandCollapseData } from '../../common/types/store-data/card-selection-store-data';
-import { CardSelectionPayload, RuleExpandCollapsePayload } from '../actions/action-payloads';
+import {
+    AssessmentCardSelectionPayload,
+    RuleExpandCollapsePayload,
+} from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
     constructor(
@@ -55,9 +58,11 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
 
     public getDefaultState(): AssessmentCardSelectionStoreData {
         const defaultValue: AssessmentCardSelectionStoreData = {
-            rules: null,
-            visualHelperEnabled: false,
-            focusedResultUid: null,
+            testKey: {
+                rules: null,
+                visualHelperEnabled: false,
+                focusedResultUid: null,
+            },
         };
 
         return defaultValue;
@@ -74,11 +79,11 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private deselectAllCards = (): void => {
-        if (!this.state.rules) {
+        if (!this.state.testKey.rules) {
             return;
         }
 
-        forOwn(this.state.rules, rule => {
+        forOwn(this.state.testKey.rules, rule => {
             this.deselectAllCardsInRule(rule);
         });
     };
@@ -86,11 +91,11 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private toggleRuleExpandCollapse = async (
         payload: RuleExpandCollapsePayload,
     ): Promise<void> => {
-        if (!payload || !this.state.rules?.[payload.ruleId]) {
+        if (!payload || !this.state.testKey.rules?.[payload.ruleId]) {
             return;
         }
 
-        const rule = this.state.rules[payload.ruleId];
+        const rule = this.state.testKey.rules[payload.ruleId];
 
         rule.isExpanded = !rule.isExpanded;
 
@@ -101,34 +106,36 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         await this.emitChanged();
     };
 
-    private toggleCardSelection = async (payload: CardSelectionPayload): Promise<void> => {
+    private toggleCardSelection = async (
+        payload: AssessmentCardSelectionPayload,
+    ): Promise<void> => {
         if (
             !payload ||
-            !this.state.rules?.[payload.ruleId] ||
-            this.state.rules![payload.ruleId].cards[payload.resultInstanceUid] === undefined
+            !this.state.testKey.rules?.[payload.ruleId] ||
+            this.state.testKey.rules![payload.ruleId].cards[payload.resultInstanceUid] === undefined
         ) {
             return;
         }
 
-        const rule = this.state.rules[payload.ruleId];
+        const rule = this.state.testKey.rules[payload.ruleId];
         const isSelected = !rule.cards[payload.resultInstanceUid];
         rule.cards[payload.resultInstanceUid] = isSelected;
 
         // whenever a card is selected, the visual helper is enabled
         if (isSelected) {
-            this.state.visualHelperEnabled = true;
-            this.state.focusedResultUid = payload.resultInstanceUid;
+            this.state.testKey.visualHelperEnabled = true;
+            this.state.testKey.focusedResultUid = payload.resultInstanceUid;
         }
 
         await this.emitChanged();
     };
 
     private collapseAllRules = async (): Promise<void> => {
-        if (!this.state.rules) {
+        if (!this.state.testKey.rules) {
             return;
         }
 
-        forOwn(this.state.rules, rule => {
+        forOwn(this.state.testKey.rules, rule => {
             rule.isExpanded = false;
             this.deselectAllCardsInRule(rule);
         });
@@ -137,11 +144,11 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private expandAllRules = async (): Promise<void> => {
-        if (!this.state.rules) {
+        if (!this.state.testKey.rules) {
             return;
         }
 
-        forOwn(this.state.rules, rule => {
+        forOwn(this.state.testKey.rules, rule => {
             rule.isExpanded = true;
         });
 
@@ -149,9 +156,9 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private toggleVisualHelper = async (): Promise<void> => {
-        this.state.visualHelperEnabled = !this.state.visualHelperEnabled;
+        this.state.testKey.visualHelperEnabled = !this.state.testKey.visualHelperEnabled;
 
-        if (!this.state.visualHelperEnabled) {
+        if (!this.state.testKey.visualHelperEnabled) {
             this.deselectAllCards();
         }
 
@@ -160,7 +167,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
 
     private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
         this.state = this.getDefaultState();
-        this.state.rules = {};
+        this.state.testKey.rules = {};
 
         if (!payload) {
             return;
@@ -171,38 +178,38 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
                 return;
             }
 
-            if (this.state.rules![result.ruleId] === undefined) {
-                this.state.rules![result.ruleId] = {
+            if (this.state.testKey.rules![result.ruleId] === undefined) {
+                this.state.testKey.rules![result.ruleId] = {
                     isExpanded: false,
                     cards: {},
                 };
             }
 
-            this.state.rules![result.ruleId].cards[result.uid] = false;
+            this.state.testKey.rules![result.ruleId].cards[result.uid] = false;
         });
 
-        this.state.visualHelperEnabled = true;
+        this.state.testKey.visualHelperEnabled = true;
 
         await this.emitChanged();
     };
 
     private onResetFocusedIdentifier = async (): Promise<void> => {
-        this.state.focusedResultUid = null;
+        this.state.testKey.focusedResultUid = null;
         await this.emitChanged();
     };
 
     private onNavigateToNewCardsView = async (): Promise<void> => {
-        this.state.focusedResultUid = null;
+        this.state.testKey.focusedResultUid = null;
 
-        if (this.state.rules) {
-            for (const ruleId in this.state.rules) {
-                this.state.rules[ruleId].isExpanded = false;
-                for (const resultId in this.state.rules[ruleId].cards) {
-                    this.state.rules[ruleId].cards[resultId] = false;
+        if (this.state.testKey.rules) {
+            for (const ruleId in this.state.testKey.rules) {
+                this.state.testKey.rules[ruleId].isExpanded = false;
+                for (const resultId in this.state.testKey.rules[ruleId].cards) {
+                    this.state.testKey.rules[ruleId].cards[resultId] = false;
                 }
             }
         }
-        this.state.visualHelperEnabled = !isEmpty(this.state.rules);
+        this.state.testKey.visualHelperEnabled = !isEmpty(this.state.testKey.rules);
         await this.emitChanged();
     };
 }

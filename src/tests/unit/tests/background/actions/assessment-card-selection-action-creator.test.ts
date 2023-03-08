@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import {
     BaseActionPayload,
-    CardSelectionPayload,
+    AssessmentCardSelectionPayload,
     RuleExpandCollapsePayload,
 } from 'background/actions/action-payloads';
 import { AssessmentCardSelectionActionCreator } from 'background/actions/assessment-card-selection-action-creator';
@@ -26,7 +26,8 @@ describe('AssessmentCardSelectionActionCreator', () => {
     });
 
     it('handles card selection toggle', async () => {
-        const payload: CardSelectionPayload = {
+        const payload: AssessmentCardSelectionPayload = {
+            testKey: 'sample-testKey',
             resultInstanceUid: 'test-instance-uuid',
             ruleId: 'test-rule-id',
         };

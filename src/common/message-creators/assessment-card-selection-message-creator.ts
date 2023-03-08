@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import {
     BaseActionPayload,
-    CardSelectionPayload,
+    AssessmentCardSelectionPayload,
     RuleExpandCollapsePayload,
 } from 'background/actions/action-payloads';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
@@ -22,8 +22,10 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         ruleId: string,
         resultInstanceUid: string,
         event: React.SyntheticEvent,
+        testKey: string,
     ) => {
-        const payload: CardSelectionPayload = {
+        const payload: AssessmentCardSelectionPayload = {
+            testKey,
             resultInstanceUid,
             ruleId,
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),

@@ -10,7 +10,7 @@ import { cloneDeep, forOwn } from 'lodash';
 
 import {
     BaseActionPayload,
-    CardSelectionPayload,
+    AssessmentCardSelectionPayload,
     RuleExpandCollapsePayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
@@ -31,7 +31,7 @@ describe('AssessmentCardSelectionStore', () => {
     test('check defaultState is as expected', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.rules).toBeNull();
+        expect(defaultState.testKey.rules).toBeNull();
     });
 
     it.each`
@@ -58,17 +58,19 @@ describe('AssessmentCardSelectionStore', () => {
         };
 
         const expectedState: AssessmentCardSelectionStoreData = {
-            rules: {
-                sampleRuleId: {
-                    isExpanded: false,
-                    cards: {
-                        sampleUid1: false,
-                        sampleUid2: false,
+            testKey: {
+                rules: {
+                    sampleRuleId: {
+                        isExpanded: false,
+                        cards: {
+                            sampleUid1: false,
+                            sampleUid2: false,
+                        },
                     },
                 },
+                focusedResultUid: null,
+                visualHelperEnabled: true,
             },
-            focusedResultUid: null,
-            visualHelperEnabled: true,
         };
 
         const storeTester =
@@ -104,24 +106,26 @@ describe('AssessmentCardSelectionStore Test', () => {
 
     beforeEach(() => {
         const defaultState: AssessmentCardSelectionStoreData = {
-            rules: {
-                sampleRuleId1: {
-                    isExpanded: false,
-                    cards: {
-                        sampleUid1: false,
-                        sampleUid2: false,
+            testKey: {
+                rules: {
+                    sampleRuleId1: {
+                        isExpanded: false,
+                        cards: {
+                            sampleUid1: false,
+                            sampleUid2: false,
+                        },
+                    },
+                    sampleRuleId2: {
+                        isExpanded: false,
+                        cards: {
+                            sampleUid1: false,
+                            sampleUid2: false,
+                        },
                     },
                 },
-                sampleRuleId2: {
-                    isExpanded: false,
-                    cards: {
-                        sampleUid1: false,
-                        sampleUid2: false,
-                    },
-                },
+                visualHelperEnabled: false,
+                focusedResultUid: null,
             },
-            visualHelperEnabled: false,
-            focusedResultUid: null,
         };
 
         initialState = cloneDeep(defaultState);
@@ -133,7 +137,7 @@ describe('AssessmentCardSelectionStore Test', () => {
             ruleId: 'sampleRuleId1',
         };
 
-        expectedState.rules['sampleRuleId1'].isExpanded = true;
+        expectedState.testKey.rules['sampleRuleId1'].isExpanded = true;
 
         const storeTester = createStoreForAssessmentCardSelectionActions(
             'toggleRuleExpandCollapse',
@@ -144,7 +148,7 @@ describe('AssessmentCardSelectionStore Test', () => {
     test('onResetFocusedIdentifier', async () => {
         const payload: BaseActionPayload = {};
 
-        initialState.focusedResultUid = 'some uid';
+        initialState.testKey.focusedResultUid = 'some uid';
 
         const storeTester =
             createStoreForAssessmentCardSelectionActions('resetFocusedIdentifier').withActionParam(
@@ -158,8 +162,8 @@ describe('AssessmentCardSelectionStore Test', () => {
             ruleId: 'sampleRuleId1',
         };
 
-        initialState.rules['sampleRuleId1'].isExpanded = true;
-        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        initialState.testKey.rules['sampleRuleId1'].isExpanded = true;
+        initialState.testKey.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
         const storeTester = createStoreForAssessmentCardSelectionActions(
             'toggleRuleExpandCollapse',
@@ -197,14 +201,15 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     test('toggleCardSelection selected', async () => {
-        const payload: CardSelectionPayload = {
+        const payload: AssessmentCardSelectionPayload = {
+            testKey: 'sampleTestKey',
             ruleId: 'sampleRuleId1',
             resultInstanceUid: 'sampleUid1',
         };
 
-        expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
-        expectedState.focusedResultUid = 'sampleUid1';
-        expectedState.visualHelperEnabled = true;
+        expectedState.testKey.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        expectedState.testKey.focusedResultUid = 'sampleUid1';
+        expectedState.testKey.visualHelperEnabled = true;
 
         const storeTester =
             createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
@@ -214,12 +219,13 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     test('toggleCardSelection unselected', async () => {
-        const payload: CardSelectionPayload = {
+        const payload: AssessmentCardSelectionPayload = {
+            testKey: 'sampleTestKey',
             ruleId: 'sampleRuleId1',
             resultInstanceUid: 'sampleUid1',
         };
 
-        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        initialState.testKey.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
         const storeTester =
             createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
@@ -229,7 +235,8 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     test('toggleCardSelection invalid rule', async () => {
-        const payload: CardSelectionPayload = {
+        const payload: AssessmentCardSelectionPayload = {
+            testKey: 'sampleTestKey',
             ruleId: 'invalid-rule-id',
             resultInstanceUid: 'sampleUid1',
         };
@@ -242,7 +249,8 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     test('toggleCardSelection invalid card', async () => {
-        const payload: CardSelectionPayload = {
+        const payload: AssessmentCardSelectionPayload = {
+            testKey: 'sampleTestKey',
             ruleId: 'sampleRuleId1',
             resultInstanceUid: 'invalid-uid',
         };
@@ -263,7 +271,7 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     test('ToggleRuleExpandCollapse invalid payload', async () => {
-        const payload: CardSelectionPayload = {} as CardSelectionPayload;
+        const payload: AssessmentCardSelectionPayload = {} as AssessmentCardSelectionPayload;
 
         const storeTester =
             createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
@@ -274,7 +282,7 @@ describe('AssessmentCardSelectionStore Test', () => {
 
     describe('collapseAllRules', () => {
         test('Does nothing if rules is null', async () => {
-            initialState.rules = null;
+            initialState.testKey.rules = null;
             expectedState = cloneDeep(initialState);
 
             const storeTester = createStoreForAssessmentCardSelectionActions('collapseAllRules');
@@ -282,8 +290,8 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         test('collapses all expanded rules', async () => {
-            expandRuleSelectCards(initialState.rules['sampleRuleId1']);
-            expandRuleSelectCards(initialState.rules['sampleRuleId2']);
+            expandRuleSelectCards(initialState.testKey.rules['sampleRuleId1']);
+            expandRuleSelectCards(initialState.testKey.rules['sampleRuleId2']);
 
             const storeTester = createStoreForAssessmentCardSelectionActions('collapseAllRules');
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
@@ -292,7 +300,7 @@ describe('AssessmentCardSelectionStore Test', () => {
 
     describe('expandAllRules', () => {
         test('Does nothing if rules is null', async () => {
-            initialState.rules = null;
+            initialState.testKey.rules = null;
             expectedState = cloneDeep(initialState);
 
             const storeTester = createStoreForAssessmentCardSelectionActions('expandAllRules');
@@ -300,12 +308,12 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         test('expands all collapsed rules', async () => {
-            initialState.rules['sampleRuleId1'].isExpanded = true;
-            initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            initialState.testKey.rules['sampleRuleId1'].isExpanded = true;
+            initialState.testKey.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
-            expectedState.rules['sampleRuleId1'].isExpanded = true;
-            expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
-            expectedState.rules['sampleRuleId2'].isExpanded = true;
+            expectedState.testKey.rules['sampleRuleId1'].isExpanded = true;
+            expectedState.testKey.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            expectedState.testKey.rules['sampleRuleId2'].isExpanded = true;
 
             const storeTester = createStoreForAssessmentCardSelectionActions('expandAllRules');
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
@@ -314,33 +322,33 @@ describe('AssessmentCardSelectionStore Test', () => {
 
     describe('toggleVisualHelper', () => {
         test('toggle on - no card selection or rule expansion changes', async () => {
-            initialState.rules['sampleRuleId1'].isExpanded = true;
-            initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            initialState.testKey.rules['sampleRuleId1'].isExpanded = true;
+            initialState.testKey.rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
             expectedState = cloneDeep(initialState);
-            expectedState.visualHelperEnabled = true;
+            expectedState.testKey.visualHelperEnabled = true;
 
             const storeTester = createStoreForAssessmentCardSelectionActions('toggleVisualHelper');
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
 
         test('toggle off - cards deselected, no rule expansion changes', async () => {
-            initialState.rules['sampleRuleId1'].isExpanded = true;
-            initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
-            initialState.visualHelperEnabled = true;
+            initialState.testKey.rules['sampleRuleId1'].isExpanded = true;
+            initialState.testKey.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            initialState.testKey.visualHelperEnabled = true;
 
-            expectedState.rules['sampleRuleId1'].isExpanded = true;
+            expectedState.testKey.rules['sampleRuleId1'].isExpanded = true;
 
             const storeTester = createStoreForAssessmentCardSelectionActions('toggleVisualHelper');
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
 
         test('toggle off when rules is null', async () => {
-            initialState.rules = null;
-            initialState.visualHelperEnabled = true;
+            initialState.testKey.rules = null;
+            initialState.testKey.visualHelperEnabled = true;
 
             expectedState = cloneDeep(initialState);
-            expectedState.visualHelperEnabled = false;
+            expectedState.testKey.visualHelperEnabled = false;
 
             const storeTester = createStoreForAssessmentCardSelectionActions('toggleVisualHelper');
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
@@ -349,18 +357,18 @@ describe('AssessmentCardSelectionStore Test', () => {
 
     describe('navigateToNewCardsView', () => {
         beforeEach(() => {
-            expectedState.visualHelperEnabled = true;
+            expectedState.testKey.visualHelperEnabled = true;
         });
 
         it.each([null, {}])(
             'should reset the focused element and turn off visual helper when rules = %s',
             async rules => {
-                initialState.focusedResultUid = 'sampleUid1';
-                initialState.rules = rules;
-                initialState.visualHelperEnabled = true;
-                expectedState.focusedResultUid = null;
-                expectedState.rules = rules;
-                expectedState.visualHelperEnabled = false;
+                initialState.testKey.focusedResultUid = 'sampleUid1';
+                initialState.testKey.rules = rules;
+                initialState.testKey.visualHelperEnabled = true;
+                expectedState.testKey.focusedResultUid = null;
+                expectedState.testKey.rules = rules;
+                expectedState.testKey.visualHelperEnabled = false;
 
                 const storeTester =
                     createStoreForAssessmentCardSelectionActions('navigateToNewCardsView');
@@ -369,7 +377,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         );
 
         it('should keep all rules/cards/results but set them to collapsed/unselected', async () => {
-            initialState.rules = {
+            initialState.testKey.rules = {
                 sampleRuleId1: {
                     isExpanded: true,
                     cards: {
@@ -385,7 +393,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                     },
                 },
             };
-            expectedState.rules = {
+            expectedState.testKey.rules = {
                 sampleRuleId1: {
                     isExpanded: false,
                     cards: {
@@ -408,8 +416,8 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('should set the visualHelperToggle to enabled if there are any rules', async () => {
-            initialState.visualHelperEnabled = false;
-            expectedState.visualHelperEnabled = true;
+            initialState.testKey.visualHelperEnabled = false;
+            expectedState.testKey.visualHelperEnabled = true;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('navigateToNewCardsView');
@@ -417,10 +425,10 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('should set the visualHelperToggle to disabled if there are no rules', async () => {
-            initialState.rules = {};
-            initialState.visualHelperEnabled = true;
-            expectedState.rules = {};
-            expectedState.visualHelperEnabled = false;
+            initialState.testKey.rules = {};
+            initialState.testKey.visualHelperEnabled = true;
+            expectedState.testKey.rules = {};
+            expectedState.testKey.visualHelperEnabled = false;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('navigateToNewCardsView');

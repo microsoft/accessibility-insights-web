@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import {
     BaseActionPayload,
-    CardSelectionPayload,
+    AssessmentCardSelectionPayload,
     RuleExpandCollapsePayload,
 } from 'background/actions/action-payloads';
 import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
@@ -35,9 +35,11 @@ describe('AssessmentCardSelectionMessageCreator', () => {
     });
 
     it('dispatches message for toggleCardSelection', () => {
+        const testKey = 'test-testKey';
         const resultInstanceUid = 'test-uid';
         const ruleId = 'test-rule-id';
-        const payload: CardSelectionPayload = {
+        const payload: AssessmentCardSelectionPayload = {
+            testKey,
             resultInstanceUid,
             ruleId,
             telemetry: telemetryStub,
@@ -52,7 +54,7 @@ describe('AssessmentCardSelectionMessageCreator', () => {
             .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
             .returns(() => telemetryStub);
 
-        testSubject.toggleCardSelection(ruleId, resultInstanceUid, eventStub);
+        testSubject.toggleCardSelection(ruleId, resultInstanceUid, eventStub, testKey);
 
         dispatcherMock.verify(handler => handler.dispatchMessage(expectedMessage), Times.once());
     });

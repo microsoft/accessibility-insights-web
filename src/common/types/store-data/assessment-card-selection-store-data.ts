@@ -3,4 +3,6 @@
 
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 
-export type AssessmentCardSelectionStoreData = CardSelectionStoreData;
+export interface AssessmentCardSelectionStoreData {
+    [testKey: string]: CardSelectionStoreData;
+}

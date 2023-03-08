@@ -249,6 +249,10 @@ export interface CardSelectionPayload extends BaseActionPayload {
     resultInstanceUid: string;
 }
 
+export interface AssessmentCardSelectionPayload extends CardSelectionPayload {
+    testKey: string;
+}
+
 export interface PopupInitializedPayload extends BaseActionPayload {
     tab: Tab;
 }

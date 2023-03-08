@@ -7,8 +7,8 @@ import { getStoreStateMessage, Messages } from '../../common/messages';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
+    AssessmentCardSelectionPayload,
     BaseActionPayload,
-    CardSelectionPayload,
     RuleExpandCollapsePayload,
 } from './action-payloads';
 import { CardSelectionActions as AssessmentCardSelectionActions } from './card-selection-actions';
@@ -52,7 +52,7 @@ export class AssessmentCardSelectionActionCreator {
     };
 
     private onAssessmentCardSelectionToggle = async (
-        payload: CardSelectionPayload,
+        payload: AssessmentCardSelectionPayload,
     ): Promise<void> => {
         await this.assessmentCardSelectionActions.toggleCardSelection.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
