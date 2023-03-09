@@ -77,7 +77,11 @@ export class NavLinkHandler {
         event: React.MouseEvent<HTMLElement>,
         item: AssessmentLeftNavLink,
     ) => {
-        this.assessmentActionMessageCreator.selectRequirement(event, undefined, item.testType);
+        this.assessmentActionMessageCreator.selectRequirement(
+            event,
+            item.requirementKey,
+            item.testType,
+        );
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
     };
 }
