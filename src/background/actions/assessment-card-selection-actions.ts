@@ -11,5 +11,5 @@ export class AssessmentCardSelectionActions {
     public readonly collapseAllRules = new AsyncAction<RuleExpandCollapsePayload>();
     public readonly expandAllRules = new AsyncAction<RuleExpandCollapsePayload>();
     public readonly toggleVisualHelper = new AsyncAction<AssessmentCardSelectionPayload>();
-    public readonly resetFocusedIdentifier = new AsyncAction();
+    public readonly resetFocusedIdentifier = new AsyncAction<AssessmentCardSelectionPayload>();
 }

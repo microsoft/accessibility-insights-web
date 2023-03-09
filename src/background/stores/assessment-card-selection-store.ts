@@ -173,8 +173,10 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         await this.emitChanged();
     };
 
-    private onResetFocusedIdentifier = async (): Promise<void> => {
-        this.state.testKey.focusedResultUid = null;
+    private onResetFocusedIdentifier = async (
+        payload: AssessmentCardSelectionPayload,
+    ): Promise<void> => {
+        this.state[payload.testKey].focusedResultUid = null;
         await this.emitChanged();
     };
 

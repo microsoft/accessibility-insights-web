@@ -8,7 +8,6 @@ import { cloneDeep, forOwn } from 'lodash';
 
 import {
     AssessmentCardSelectionPayload,
-    BaseActionPayload,
     RuleExpandCollapsePayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
@@ -97,9 +96,13 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     test('onResetFocusedIdentifier', async () => {
-        const payload: BaseActionPayload = {};
+        const payload: AssessmentCardSelectionPayload = {
+            testKey: 'testKey1',
+            ruleId: 'sampleRuleId1',
+            resultInstanceUid: 'sampleUid1',
+        };
 
-        initialState.testKey.focusedResultUid = 'some uid';
+        initialState['testKey1'].focusedResultUid = 'some uid';
 
         const storeTester =
             createStoreForAssessmentCardSelectionActions('resetFocusedIdentifier').withActionParam(
