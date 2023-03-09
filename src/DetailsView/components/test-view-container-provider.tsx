@@ -25,5 +25,8 @@ export interface TestViewContainerProvider {
     createTabStopsTestViewContainer(props: TestViewContainerProviderProps): JSX.Element;
     createNeedsReviewTestViewContainer(props: TestViewContainerProviderProps): JSX.Element;
     createIssuesTestViewContainer(props: TestViewContainerProviderProps): JSX.Element;
+    createAssessmentAutomatedChecksTestViewContainer(
+        props: TestViewContainerProviderProps,
+    ): JSX.Element;
     createAssessmentTestViewContainer(props: TestViewContainerProviderProps): JSX.Element;
 }

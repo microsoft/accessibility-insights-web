@@ -8,6 +8,8 @@ import { AssessmentToggleActionPayload } from 'background/actions/action-payload
 import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
+import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
+import { DefaultTestViewContainerProvider } from 'DetailsView/components/default-test-view-container-provider';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
@@ -200,6 +202,9 @@ describe('AssessmentBuilderTest', () => {
         requirement6.getInstanceStatusColumns = getInstanceStatusColumns6;
         const instanceTableHeaderType6 = 'none';
         requirement6.instanceTableHeaderType = instanceTableHeaderType6;
+        const getTestViewContainerStub = (provider, props) => {
+            return {} as JSX.Element;
+        };
 
         const assistedAssessment: AssistedAssessment = {
             key: 'manual assessment key',
@@ -216,6 +221,7 @@ describe('AssessmentBuilderTest', () => {
             ],
             storeDataKey: 'headingsAssessment',
             visualizationConfiguration: {},
+            getTestViewContainer: getTestViewContainerStub,
         };
 
         const nonDefaultAssessment: AssistedAssessment = {
@@ -311,6 +317,7 @@ describe('AssessmentBuilderTest', () => {
             InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier,
         );
         expect(config.testViewType).toBe('Assessment');
+        expect(config.getTestViewContainer).toBe(getTestViewContainerStub);
 
         validateInstanceTableSettings(requirement1);
         validateInstanceTableSettings(requirement5);
@@ -332,6 +339,40 @@ describe('AssessmentBuilderTest', () => {
         providerMock.verifyAll();
         drawerProviderMock.verifyAll();
         expect(config.getAssessmentData(assessmentData as any)).toEqual(expectedData);
+    });
+
+    test('Assisted getTestViewContainer defaults to createAssessmentTestViewContainer', () => {
+        const assistedAssessment: AssistedAssessment = {
+            key: 'manual assessment key',
+            visualizationType: -1 as VisualizationType,
+            title: 'manual assessment title',
+            gettingStarted: <span>getting started</span>,
+            requirements: [],
+            storeDataKey: 'headingsAssessment',
+            visualizationConfiguration: {},
+        };
+
+        const assisted = AssessmentBuilder.Assisted(assistedAssessment);
+        const config = assisted.getVisualizationConfiguration();
+
+        const expectedTestViewContainer = (
+            <AssessmentTestView
+                deps={undefined}
+                tabStoreData={undefined}
+                assessmentStoreData={undefined}
+                pathSnippetStoreData={undefined}
+                visualizationStoreData={undefined}
+                assessmentInstanceTableHandler={undefined}
+                configuration={undefined}
+                featureFlagStoreData={undefined}
+                switcherNavConfiguration={undefined}
+            />
+        );
+        const actualTestViewContainer = config.getTestViewContainer(
+            new DefaultTestViewContainerProvider(),
+            undefined,
+        );
+        expect(actualTestViewContainer).toEqual(expectedTestViewContainer);
     });
 
     function validateInstanceTableSettings(requirement: Requirement): void {

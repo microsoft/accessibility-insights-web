@@ -212,8 +212,10 @@ describe('WebVisualizationConfigurationFactory', () => {
                 key: 'req-2',
             },
         ] as Requirement[];
+        const subtitle = {} as JSX.Element;
         return {
             title,
+            subtitle,
             visualizationType,
             requirements: requirementsStub,
             getVisualizationConfiguration: () => {},
@@ -349,6 +351,7 @@ describe('WebVisualizationConfigurationFactory', () => {
         testMode: TestMode,
         expectedMessageConfig: AnalyzerMessageConfiguration,
     ): Partial<VisualizationConfiguration> {
+        const subtitle = {} as JSX.Element;
         return {
             testMode,
             chromeCommand: null,
@@ -356,6 +359,7 @@ describe('WebVisualizationConfigurationFactory', () => {
             adhocToolsPanelDisplayOrder: null,
             displayableData: {
                 title: expectedDisplayableTitle,
+                subtitle,
                 adHoc: null,
             },
             messageConfiguration: expectedMessageConfig,

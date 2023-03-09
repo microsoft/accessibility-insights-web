@@ -172,7 +172,11 @@ export class AssessmentBuilder {
     }
 
     public static Assisted(assessment: AssistedAssessment): Assessment {
-        const { key, requirements } = assessment;
+        const {
+            key,
+            requirements,
+            getTestViewContainer: getTestViewContainerOverride,
+        } = assessment;
 
         assessment.initialDataCreator =
             assessment.initialDataCreator || createInitialAssessmentTestData;
@@ -223,6 +227,10 @@ export class AssessmentBuilder {
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
+        const getTestViewContainer =
+            getTestViewContainerOverride ??
+            ((provider, props) => provider.createAssessmentTestViewContainer(props));
+
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             testViewType: 'Assessment',
             getAssessmentData: data => data.assessments[key],
@@ -244,8 +252,7 @@ export class AssessmentBuilder {
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(requirements),
             getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(requirements),
-            getTestViewContainer: (provider, props) =>
-                provider.createAssessmentTestViewContainer(props),
+            getTestViewContainer,
         } as AssessmentVisualizationConfiguration;
 
         AssessmentBuilder.buildRequirementReportDescription(requirements);

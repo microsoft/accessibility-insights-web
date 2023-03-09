@@ -34,6 +34,7 @@ export interface IssuesTableProps {
     deps: IssuesTableDeps;
     title: string;
     subtitle?: JSX.Element;
+    includeStepsText?: boolean;
     stepsText: string;
     issuesEnabled: boolean;
     scanning: boolean;
@@ -71,7 +72,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         return (
             <h1>
                 {this.props.title}
-                {` ${this.props.stepsText}`}
+                {this.props.includeStepsText ?? true ? ` ${this.props.stepsText}` : null}
             </h1>
         );
     }

@@ -48,6 +48,11 @@ describe('DefaultTestViewContainerProvider', () => {
         expect(element).toMatchSnapshot();
     });
 
+    it('can create assessment automated checks test view container', () => {
+        const element = testSubject.createAssessmentAutomatedChecksTestViewContainer(propsStub);
+        expect(element).toMatchSnapshot();
+    });
+
     it('can create assessment test view container', () => {
         const element = testSubject.createAssessmentTestViewContainer(propsStub);
         expect(element).toMatchSnapshot();

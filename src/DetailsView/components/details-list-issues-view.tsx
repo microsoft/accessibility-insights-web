@@ -31,6 +31,7 @@ export interface DetailsListIssuesViewProps {
     selectedTest: VisualizationType;
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     narrowModeStatus: NarrowModeStatus;
+    includeStepsText?: boolean;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
@@ -54,6 +55,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 title={title}
                 subtitle={subtitle}
                 stepsText={stepsText()}
+                includeStepsText={props.includeStepsText}
                 issuesEnabled={scanData.enabled}
                 scanning={isScanning}
                 featureFlags={props.featureFlagStoreData}
