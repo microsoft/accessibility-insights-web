@@ -162,32 +162,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         await this.emitChanged();
     };
 
-    private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
-        this.state = this.getDefaultState();
-        this.state.testKey.rules = {};
-
-        if (!payload || !payload.scanResult || payload.scanResult.violations === undefined) {
-            return;
-        }
-
-        payload.scanResult.violations.forEach(result => {
-            if (this.state.testKey.rules![result.id] === undefined) {
-                this.state.testKey.rules![result.id] = {
-                    isExpanded: false,
-                    cards: {},
-                };
-            }
-
-            result.nodes['any'].forEach(instance => {
-                this.state.testKey.rules![result.id].cards[instance.id] = false;
-            });
-        });
-
-        this.state.testKey.visualHelperEnabled = true;
-
-        await this.emitChanged();
-    };
-
     private onResetFocusedIdentifier = async (): Promise<void> => {
         this.state.testKey.focusedResultUid = null;
         await this.emitChanged();
