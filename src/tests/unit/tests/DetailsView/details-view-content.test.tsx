@@ -15,8 +15,6 @@ import { DetailsViewRightContentPanelType } from 'common/types/store-data/detail
 import {
     TargetAppData,
     ToolData,
-    UnifiedResult,
-    UnifiedRule,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -78,9 +76,8 @@ describe(DetailsViewContent.displayName, () => {
         );
         getCardViewDataMock = Mock.ofInstance(
             (
-                rules: UnifiedRule[],
-                results: UnifiedResult[],
-                cardSelectionViewData: CardSelectionViewData,
+                storeData: UnifiedScanResultStoreData,
+                cardSelectionViewData?: CardSelectionViewData,
             ) => null,
             MockBehavior.Strict,
         );
@@ -243,13 +240,7 @@ describe(DetailsViewContent.displayName, () => {
 
             const cardsViewData: CardsViewModel = {} as any;
             getCardViewDataMock
-                .setup(m =>
-                    m(
-                        state.unifiedScanResultStoreData.rules,
-                        state.unifiedScanResultStoreData.results,
-                        cardSelectionViewData,
-                    ),
-                )
+                .setup(m => m(state.unifiedScanResultStoreData, cardSelectionViewData))
                 .returns(() => cardsViewData);
 
             const rendered = shallow(

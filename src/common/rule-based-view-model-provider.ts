@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
+import {
+    convertStoreDataForScanNodeResults,
+    ConvertStoreDataForScanNodeResultsCallback,
+    ScanNodeResult,
+} from 'common/store-data-to-scan-node-result-converter';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { includes } from 'lodash';
 
 import {
@@ -12,23 +18,35 @@ import {
     CardsViewModel,
     HighlightState,
 } from './types/store-data/card-view-model';
-import { UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
+import { UnifiedRule, UnifiedScanResultStoreData } from './types/store-data/unified-data-interface';
 
 export type GetCardViewData = (
-    rules: UnifiedRule[],
-    results: UnifiedResult[],
+    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
     cardSelectionViewData: CardSelectionViewData,
+    getStoreDataForScanNodeResults?: ConvertStoreDataForScanNodeResultsCallback,
 ) => CardsViewModel | null;
 
 export const getCardViewData: GetCardViewData = (
-    rules: UnifiedRule[],
-    results: UnifiedResult[],
+    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
     cardSelectionViewData: CardSelectionViewData,
+    getStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = convertStoreDataForScanNodeResults,
 ): CardsViewModel | null => {
-    if (results == null || rules == null || cardSelectionViewData == null) {
+    const results: ScanNodeResult[] | null = getStoreDataForScanNodeResults(storeData);
+    if (results == null || cardSelectionViewData == null) {
         return null;
     }
+    return getCardViewDataFromScanNodeResults(
+        results,
+        cardSelectionViewData,
+        'rules' in storeData && storeData.rules ? storeData.rules : undefined,
+    );
+};
 
+const getCardViewDataFromScanNodeResults = (
+    results: ScanNodeResult[],
+    cardSelectionViewData: CardSelectionViewData,
+    rules?: UnifiedRule[],
+): CardsViewModel | null => {
     const statusResults = getEmptyStatusResults();
     const ruleIdsWithResultNodes: Set<string> = new Set();
 
@@ -38,16 +56,11 @@ export const getCardViewData: GetCardViewData = (
         let ruleResult = getExistingRuleFromResults(result.ruleId, ruleResults);
 
         if (ruleResult == null) {
-            const rule = getUnifiedRule(result.ruleId, rules);
-            if (!rule) {
-                continue;
-            }
-
             const isExpanded = isInstanceDisplayed
-                ? includes(cardSelectionViewData.expandedRuleIds, rule.id)
+                ? includes(cardSelectionViewData.expandedRuleIds, result.ruleId)
                 : false;
 
-            ruleResult = createCardRuleResult(result.status, rule, isExpanded);
+            ruleResult = createCardRuleResult(result.status, result.rule, isExpanded);
             ruleResults.push(ruleResult);
         }
 
@@ -61,9 +74,11 @@ export const getCardViewData: GetCardViewData = (
         ruleIdsWithResultNodes.add(result.ruleId);
     }
 
-    for (const rule of rules) {
-        if (!ruleIdsWithResultNodes.has(rule.id)) {
-            statusResults.inapplicable.push(createRuleResultWithoutNodes('inapplicable', rule));
+    if (rules) {
+        for (const rule of rules) {
+            if (!ruleIdsWithResultNodes.has(rule.id)) {
+                statusResults.inapplicable.push(createRuleResultWithoutNodes('inapplicable', rule));
+            }
         }
     }
 
@@ -121,19 +136,16 @@ const createRuleResultWithoutNodes = (
 });
 
 const createCardResult = (
-    unifiedResult: UnifiedResult,
+    result: ScanNodeResult,
     isSelected: boolean,
     highlightStatus: HighlightState,
 ): CardResult => {
     return {
-        ...unifiedResult,
+        ...result,
         isSelected,
         highlightStatus,
     };
 };
-
-const getUnifiedRule = (id: string, rules: UnifiedRule[]): UnifiedRule | undefined =>
-    rules.find(rule => rule.id === id);
 
 const getRuleResultIndex = (ruleId: string, ruleResults: CardRuleResult[]): number =>
     ruleResults.findIndex(result => result.id === ruleId);

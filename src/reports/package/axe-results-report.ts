@@ -52,7 +52,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
             resultsHighlightStatus: {},
         };
 
-        const cardsViewModel = getCards(unifiedRules, unifiedResults, cardSelectionViewData);
+        const cardsViewModel = getCards({ rules: unifiedRules, results: unifiedResults }, cardSelectionViewData);
 
         const targetAppInfo = {
             name: pageTitle,

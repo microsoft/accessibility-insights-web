@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": false} 1`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": false} 1`] = `
 {
   "allCardsCollapsed": true,
   "cards": {
@@ -22,6 +22,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -65,6 +76,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -92,6 +114,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -102,6 +135,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -116,7 +160,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": false} 2`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": false} 2`] = `
 {
   "allCardsCollapsed": true,
   "cards": {
@@ -138,6 +182,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -181,6 +236,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -208,6 +274,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -218,6 +295,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -232,7 +320,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": true} 1`] = `
 {
   "allCardsCollapsed": true,
   "cards": {
@@ -254,6 +342,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -297,6 +396,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -324,6 +434,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -334,6 +455,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -348,7 +480,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": true} 2`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": false, "isSelected": false, "visualHelperEnabled": true} 2`] = `
 {
   "allCardsCollapsed": true,
   "cards": {
@@ -370,6 +502,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -413,6 +556,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -440,6 +594,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -450,6 +615,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -464,7 +640,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": false} 1`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": false} 1`] = `
 {
   "allCardsCollapsed": true,
   "cards": {
@@ -486,6 +662,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -529,6 +716,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -556,6 +754,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -566,6 +775,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -580,7 +800,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": false} 2`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": false} 2`] = `
 {
   "allCardsCollapsed": true,
   "cards": {
@@ -602,6 +822,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -645,6 +876,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -672,6 +914,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -682,6 +935,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -696,7 +960,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": true} 1`] = `
 {
   "allCardsCollapsed": true,
   "cards": {
@@ -718,6 +982,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -761,6 +1036,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -788,6 +1074,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -798,6 +1095,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -812,7 +1120,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": true} 2`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": false, "isSelected": true, "visualHelperEnabled": true} 2`] = `
 {
   "allCardsCollapsed": true,
   "cards": {
@@ -834,6 +1142,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -877,6 +1196,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -904,6 +1234,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -914,6 +1255,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -928,7 +1280,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": false} 1`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": false} 1`] = `
 {
   "allCardsCollapsed": false,
   "cards": {
@@ -950,6 +1302,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -993,6 +1356,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -1020,6 +1394,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1030,6 +1415,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1044,7 +1440,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": false} 2`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": false} 2`] = `
 {
   "allCardsCollapsed": false,
   "cards": {
@@ -1066,6 +1462,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -1109,6 +1516,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -1136,6 +1554,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1146,6 +1575,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1160,7 +1600,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": true} 1`] = `
 {
   "allCardsCollapsed": false,
   "cards": {
@@ -1182,6 +1622,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -1225,6 +1676,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -1252,6 +1714,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1262,6 +1735,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1276,7 +1760,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": true} 2`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": true, "isSelected": false, "visualHelperEnabled": true} 2`] = `
 {
   "allCardsCollapsed": false,
   "cards": {
@@ -1298,6 +1782,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -1341,6 +1836,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -1368,6 +1874,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1378,6 +1895,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1392,7 +1920,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": false} 1`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": false} 1`] = `
 {
   "allCardsCollapsed": false,
   "cards": {
@@ -1414,6 +1942,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -1457,6 +1996,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -1484,6 +2034,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1494,6 +2055,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1508,7 +2080,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": false} 2`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": false} 2`] = `
 {
   "allCardsCollapsed": false,
   "cards": {
@@ -1530,6 +2102,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -1573,6 +2156,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -1600,6 +2194,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1610,6 +2215,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1624,7 +2240,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": true} 1`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": true} 1`] = `
 {
   "allCardsCollapsed": false,
   "cards": {
@@ -1646,6 +2262,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -1689,6 +2316,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -1716,6 +2354,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1726,6 +2375,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1740,7 +2400,7 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
 }
 `;
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": true} 2`] = `
+exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded": true, "isSelected": true, "visualHelperEnabled": true} 2`] = `
 {
   "allCardsCollapsed": false,
   "cards": {
@@ -1762,6 +2422,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "fail",
             "uid": "stub_uid",
@@ -1805,6 +2476,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": false,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule1",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule1",
+                  "text": "stub_guidance_text_rule1",
+                },
+              ],
+              "id": "rule1",
+              "url": "stub_url_rule1",
+            },
             "ruleId": "rule1",
             "status": "pass",
             "uid": "stub_uid",
@@ -1832,6 +2514,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",
@@ -1842,6 +2535,17 @@ exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isEx
             "identifiers": null,
             "isSelected": true,
             "resolution": null,
+            "rule": {
+              "description": "stub_description_rule2",
+              "guidance": [
+                {
+                  "href": "stub_guidance_href_rule2",
+                  "text": "stub_guidance_text_rule2",
+                },
+              ],
+              "id": "rule2",
+              "url": "stub_url_rule2",
+            },
             "ruleId": "rule2",
             "status": "unknown",
             "uid": "stub_uid",

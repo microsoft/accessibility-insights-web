@@ -2,12 +2,14 @@
 // Licensed under the MIT License.
 import { CardSelectionViewData, ResultsHighlightStatus } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
+import { ConvertStoreDataForScanNodeResultsCallback } from 'common/store-data-to-scan-node-result-converter';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import {
     InstanceResultStatus,
     UnifiedResult,
     UnifiedRule,
 } from 'common/types/store-data/unified-data-interface';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 type TestScenario = {
     isExpanded: boolean;
@@ -17,34 +19,51 @@ type TestScenario = {
 
 describe('RuleBasedViewModelProvider', () => {
     const emptyCardSelectionViewData = {} as CardSelectionViewData;
+    let convertStoreDataForScanNodeResultsCallbackMock: IMock<ConvertStoreDataForScanNodeResultsCallback>;
 
-    test('getUnifiedRuleResults with null rules and results', () => {
-        const actualResults: CardsViewModel = getCardViewData(null, null, null);
+    beforeEach(() => {
+        convertStoreDataForScanNodeResultsCallbackMock =
+            Mock.ofType<ConvertStoreDataForScanNodeResultsCallback>(undefined, MockBehavior.Strict);
+    });
+
+    afterEach(() => {
+        convertStoreDataForScanNodeResultsCallbackMock.verifyAll();
+    });
+
+    test('getCardViewData with null results', () => {
+        convertStoreDataForScanNodeResultsCallbackMock
+            .setup(mock => mock(null))
+            .returns(() => null)
+            .verifiable(Times.once());
+
+        const actualResults: CardsViewModel = getCardViewData(
+            null,
+            emptyCardSelectionViewData,
+            convertStoreDataForScanNodeResultsCallbackMock.object,
+        );
 
         expect(actualResults).toEqual(null);
     });
 
-    test('getUnifiedRuleResults with null rules', () => {
-        const actualResults: CardsViewModel = getCardViewData(null, [], emptyCardSelectionViewData);
+    test('getCardViewData with null card selection view data', () => {
+        const storeData = { rules: [], results: [] };
+        convertStoreDataForScanNodeResultsCallbackMock
+            .setup(mock => mock(storeData))
+            .returns(() => [])
+            .verifiable(Times.once());
 
-        expect(actualResults).toEqual(null);
-    });
-
-    test('getUnifiedRuleResults with null results', () => {
-        const actualResults: CardsViewModel = getCardViewData([], null, emptyCardSelectionViewData);
-
-        expect(actualResults).toEqual(null);
-    });
-
-    test('getUnifiedRuleResults with null card selection view data', () => {
-        const actualResults: CardsViewModel = getCardViewData([], [], null);
+        const actualResults: CardsViewModel = getCardViewData(
+            storeData,
+            null,
+            convertStoreDataForScanNodeResultsCallbackMock.object,
+        );
 
         expect(actualResults).toEqual(null);
     });
 
     const testScenarios = createTestScenarios();
 
-    it.each(testScenarios)('getUnifiedRuleResults for combination %p', testScenario => {
+    it.each(testScenarios)('getCardViewData for combination %p', testScenario => {
         const rules = getSampleRules();
 
         const resultStub1 = createUnifiedResultStub('pass', 'rule1');
@@ -64,10 +83,21 @@ describe('RuleBasedViewModelProvider', () => {
             visualHelperEnabled: testScenario.visualHelperEnabled,
         };
 
+        const storeData = { rules, results };
+        convertStoreDataForScanNodeResultsCallbackMock
+            .setup(mock => mock(storeData))
+            .returns(() =>
+                results.map(result => {
+                    const rule = rules.find(rule => rule.id === result.ruleId);
+                    return { ...result, rule };
+                }),
+            )
+            .verifiable(Times.once());
+
         const actualResults: CardsViewModel = getCardViewData(
-            rules,
-            results,
+            storeData,
             cardSelectionViewData,
+            convertStoreDataForScanNodeResultsCallbackMock.object,
         );
 
         expect(actualResults).toMatchSnapshot();
