@@ -5,11 +5,11 @@ import { AssessmentCardSelectionPayload, RuleExpandCollapsePayload } from './act
 
 export class AssessmentCardSelectionActions {
     public readonly getCurrentState = new AsyncAction();
-    public readonly navigateToNewCardsView = new AsyncAction();
+    public readonly navigateToNewCardsView = new AsyncAction<AssessmentCardSelectionPayload>();
     public readonly toggleRuleExpandCollapse = new AsyncAction<RuleExpandCollapsePayload>();
     public readonly toggleCardSelection = new AsyncAction<AssessmentCardSelectionPayload>();
-    public readonly collapseAllRules = new AsyncAction();
-    public readonly expandAllRules = new AsyncAction();
-    public readonly toggleVisualHelper = new AsyncAction();
+    public readonly collapseAllRules = new AsyncAction<RuleExpandCollapsePayload>();
+    public readonly expandAllRules = new AsyncAction<RuleExpandCollapsePayload>();
+    public readonly toggleVisualHelper = new AsyncAction<AssessmentCardSelectionPayload>();
     public readonly resetFocusedIdentifier = new AsyncAction();
 }

@@ -242,6 +242,7 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
 
 export interface RuleExpandCollapsePayload extends BaseActionPayload {
     ruleId: string;
+    testKey?: string;
 }
 
 export interface CardSelectionPayload extends BaseActionPayload {
