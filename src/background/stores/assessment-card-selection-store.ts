@@ -6,7 +6,6 @@ import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
-import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import { RuleExpandCollapseData } from '../../common/types/store-data/card-selection-store-data';
