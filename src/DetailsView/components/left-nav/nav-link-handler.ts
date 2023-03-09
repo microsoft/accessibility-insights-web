@@ -77,9 +77,11 @@ export class NavLinkHandler {
         event: React.MouseEvent<HTMLElement>,
         item: AssessmentLeftNavLink,
     ) => {
-        // TODO this temporarily navigates to the getting started page, but this will need to be changed
-        // once we have a unified automated checks view
-        this.assessmentActionMessageCreator.selectGettingStarted(event, item.testType);
+        this.assessmentActionMessageCreator.selectRequirement(
+            event,
+            item.requirementKey,
+            item.testType,
+        );
         this.detailsViewActionMessageCreator.changeRightContentPanel('TestView');
     };
 }

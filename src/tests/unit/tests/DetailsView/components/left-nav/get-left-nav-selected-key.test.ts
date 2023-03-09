@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { assessmentTestKeyGenerator } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { IMock, Mock } from 'typemoq';
@@ -44,6 +45,16 @@ describe('getTestviewKey', () => {
 
     it('with invalid assessment type', () => {
         assessmentsProviderMock.setup(a => a.isValidType(visualizationType)).returns(() => false);
+        const expectedKey = VisualizationType[visualizationType];
+
+        expect(getTestViewKey(props)).toEqual(expectedKey);
+    });
+
+    it('with noncollapsible assessment type', () => {
+        assessmentsProviderMock.setup(a => a.isValidType(visualizationType)).returns(() => true);
+        assessmentsProviderMock
+            .setup(a => a.forType(visualizationType))
+            .returns(() => ({ isNonCollapsible: true } as Readonly<Assessment>));
         const expectedKey = VisualizationType[visualizationType];
 
         expect(getTestViewKey(props)).toEqual(expectedKey);

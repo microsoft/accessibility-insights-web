@@ -23,7 +23,10 @@ export function getOverviewKey(): string {
 }
 
 export function getTestViewKey(props: GetLeftNavSelectedKeyProps): string {
-    if (props.assessmentsProvider.isValidType(props.visualizationType) === false) {
+    if (
+        props.assessmentsProvider.isValidType(props.visualizationType) === false ||
+        props.assessmentsProvider.forType(props.visualizationType)?.isNonCollapsible
+    ) {
         return VisualizationType[props.visualizationType];
     }
 

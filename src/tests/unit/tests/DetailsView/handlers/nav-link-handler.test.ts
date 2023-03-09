@@ -168,7 +168,9 @@ describe('NavLinkHandler', () => {
                 testType: irrelevantVisualizationType,
             } as AssessmentLeftNavLink;
             assessmentActionMessageCreatorMock
-                .setup(amc => amc.selectGettingStarted(eventStub, assessmentLeftNavLink.testType))
+                .setup(amc =>
+                    amc.selectRequirement(eventStub, undefined, assessmentLeftNavLink.testType),
+                )
                 .verifiable();
 
             detailsViewActionMessageCreatorMock
