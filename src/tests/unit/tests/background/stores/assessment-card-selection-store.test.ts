@@ -11,6 +11,7 @@ import {
     RuleExpandCollapsePayload,
     AssessmentExpandCollapsePayload,
     AssessmentCardToggleVisualHelperPayload,
+    AssessmentNavigateToNewCardsViewPayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
@@ -395,15 +396,45 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
     });
 
+    test('onResetFocusedIdentifier', async () => {
+        const payload: AssessmentCardSelectionPayload = {
+            testKey: 'testKey1',
+            ruleId: 'sampleRuleId1',
+            resultInstanceUid: 'sampleUid1',
+        };
+
+        initialState['testKey1'].focusedResultUid = 'some uid';
+
+        const storeTester =
+            createStoreForAssessmentCardSelectionActions('resetFocusedIdentifier').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
     describe('navigateToNewCardsView', () => {
-        let payload: AssessmentCardSelectionPayload;
+        let payload: AssessmentNavigateToNewCardsViewPayload;
         beforeEach(() => {
-            expectedState['testKey1'].visualHelperEnabled = true;
             payload = {
-                ruleId: 'sampleRuleId1',
                 testKey: 'testKey1',
-                resultInstanceUid: '',
             };
+        });
+
+        it('does nothing if payload is null', async () => {
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions(
+                    'navigateToNewCardsView',
+                ).withActionParam(null);
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
+        it.each(['invalid-test', null])('does nothing if testKey is: ', async testKey => {
+            payload.testKey = testKey;
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions(
+                    'navigateToNewCardsView',
+                ).withActionParam(null);
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
         });
 
         it.each([null, {}])(
@@ -412,6 +443,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                 initialState['testKey1'].focusedResultUid = 'sampleUid1';
                 initialState['testKey1'].rules = rules;
                 initialState['testKey1'].visualHelperEnabled = true;
+
                 expectedState['testKey1'].focusedResultUid = null;
                 expectedState['testKey1'].rules = rules;
                 expectedState['testKey1'].visualHelperEnabled = false;
@@ -457,6 +489,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                     },
                 },
             };
+            expectedState['testKey1'].visualHelperEnabled = true;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions(
@@ -466,11 +499,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('should set the visualHelperToggle to enabled if there are any rules', async () => {
-            payload = {
-                ruleId: 'sampleRuleId3',
-                testKey: 'testKey2',
-                resultInstanceUid: '',
-            };
+            payload.testKey = 'testKey2';
             initialState['testKey2'].visualHelperEnabled = false;
             expectedState['testKey2'].visualHelperEnabled = true;
 
@@ -482,11 +511,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('should set the visualHelperToggle to disabled if there are no rules', async () => {
-            payload = {
-                ruleId: 'sampleRuleId3',
-                testKey: 'testKey2',
-                resultInstanceUid: '',
-            };
+            payload.testKey = 'testKey2';
             initialState['testKey2'].rules = {};
             initialState['testKey2'].visualHelperEnabled = true;
             expectedState['testKey2'].rules = {};
@@ -498,22 +523,6 @@ describe('AssessmentCardSelectionStore Test', () => {
                 ).withActionParam(payload);
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
-    });
-
-    test('onResetFocusedIdentifier', async () => {
-        const payload: AssessmentCardSelectionPayload = {
-            testKey: 'testKey1',
-            ruleId: 'sampleRuleId1',
-            resultInstanceUid: 'sampleUid1',
-        };
-
-        initialState['testKey1'].focusedResultUid = 'some uid';
-
-        const storeTester =
-            createStoreForAssessmentCardSelectionActions('resetFocusedIdentifier').withActionParam(
-                payload,
-            );
-        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {

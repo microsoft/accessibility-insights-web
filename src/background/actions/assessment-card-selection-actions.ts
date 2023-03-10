@@ -5,12 +5,14 @@ import {
     AssessmentCardSelectionPayload,
     AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
+    AssessmentNavigateToNewCardsViewPayload,
     RuleExpandCollapsePayload,
 } from './action-payloads';
 
 export class AssessmentCardSelectionActions {
     public readonly getCurrentState = new AsyncAction();
-    public readonly navigateToNewCardsView = new AsyncAction<AssessmentCardSelectionPayload>();
+    public readonly navigateToNewCardsView =
+        new AsyncAction<AssessmentNavigateToNewCardsViewPayload>();
     public readonly toggleRuleExpandCollapse = new AsyncAction<RuleExpandCollapsePayload>();
     public readonly toggleCardSelection = new AsyncAction<AssessmentCardSelectionPayload>();
     public readonly collapseAllRules = new AsyncAction<AssessmentExpandCollapsePayload>();

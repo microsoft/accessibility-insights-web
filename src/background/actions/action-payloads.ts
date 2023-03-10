@@ -289,3 +289,7 @@ export interface InjectionFailedPayload extends BaseActionPayload {
 export interface AssessmentCardToggleVisualHelperPayload extends BaseActionPayload {
     testKey: string;
 }
+
+export interface AssessmentNavigateToNewCardsViewPayload extends BaseActionPayload {
+    testKey: string;
+}

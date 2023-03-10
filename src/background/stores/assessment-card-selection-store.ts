@@ -16,6 +16,7 @@ import {
     AssessmentCardSelectionPayload,
     AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
+    AssessmentNavigateToNewCardsViewPayload,
     RuleExpandCollapsePayload,
 } from '../actions/action-payloads';
 
@@ -205,8 +206,12 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private onNavigateToNewCardsView = async (
-        payload: AssessmentCardSelectionPayload,
+        payload: AssessmentNavigateToNewCardsViewPayload,
     ): Promise<void> => {
+        if (!payload || !payload.testKey || !this.state[payload.testKey]) {
+            return;
+        }
+
         this.state[payload.testKey].focusedResultUid = null;
 
         if (this.state[payload.testKey].rules) {
@@ -220,6 +225,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.state[payload.testKey].visualHelperEnabled = !isEmpty(
             this.state[payload.testKey].rules,
         );
+
         await this.emitChanged();
     };
 }
