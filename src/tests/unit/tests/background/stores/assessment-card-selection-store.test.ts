@@ -12,7 +12,7 @@ import {
     AssessmentExpandCollapsePayload,
     AssessmentNavigateToNewCardsViewPayload,
     AssessmentResetFocusedIdentifierPayload,
-    RuleExpandCollapsePayload,
+    AssessmentSingleRuleExpandCollapsePayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
@@ -32,7 +32,7 @@ describe('AssessmentCardSelectionStore', () => {
     it('check defaultState is as expected', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState['automated-checks'].rules).toBeNull();
+        expect(defaultState).toEqual({});
     });
 
     function getDefaultState(): AssessmentCardSelectionStoreData {
@@ -87,7 +87,7 @@ describe('AssessmentCardSelectionStore Test', () => {
 
     describe('toggleRuleExpandCollapse', () => {
         it('when collapsed, toggles rule to expanded', async () => {
-            const payload: RuleExpandCollapsePayload = {
+            const payload: AssessmentSingleRuleExpandCollapsePayload = {
                 ruleId: 'sampleRuleId1',
                 testKey: 'testKey1',
             };
@@ -101,7 +101,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('when expanded, toggles rule to collapsed', async () => {
-            const payload: RuleExpandCollapsePayload = {
+            const payload: AssessmentSingleRuleExpandCollapsePayload = {
                 ruleId: 'sampleRuleId1',
                 testKey: 'testKey1',
             };
@@ -126,7 +126,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         ];
 
         it.each(testCases)('does nothing with payload: %s', async (testName, testKey, ruleId) => {
-            const payload: RuleExpandCollapsePayload = {
+            const payload: AssessmentSingleRuleExpandCollapsePayload = {
                 testKey,
                 ruleId,
             };

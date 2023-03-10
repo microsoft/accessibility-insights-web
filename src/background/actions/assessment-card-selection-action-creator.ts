@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { StoreNames } from 'common/stores/store-names';
 
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
@@ -8,10 +9,10 @@ import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     AssessmentCardSelectionPayload,
-    BaseActionPayload,
-    RuleExpandCollapsePayload,
+    AssessmentCardToggleVisualHelperPayload,
+    AssessmentExpandCollapsePayload,
+    AssessmentSingleRuleExpandCollapsePayload,
 } from './action-payloads';
-import { CardSelectionActions as AssessmentCardSelectionActions } from './card-selection-actions';
 
 export class AssessmentCardSelectionActionCreator {
     constructor(
@@ -61,7 +62,9 @@ export class AssessmentCardSelectionActionCreator {
         );
     };
 
-    private onRuleExpansionToggle = async (payload: RuleExpandCollapsePayload): Promise<void> => {
+    private onRuleExpansionToggle = async (
+        payload: AssessmentSingleRuleExpandCollapsePayload,
+    ): Promise<void> => {
         await this.assessmentCardSelectionActions.toggleRuleExpandCollapse.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.RULE_EXPANSION_TOGGLED,
@@ -69,17 +72,21 @@ export class AssessmentCardSelectionActionCreator {
         );
     };
 
-    private onToggleVisualHelper = async (payload: BaseActionPayload): Promise<void> => {
+    private onToggleVisualHelper = async (
+        payload: AssessmentCardToggleVisualHelperPayload,
+    ): Promise<void> => {
         await this.assessmentCardSelectionActions.toggleVisualHelper.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.VISUAL_HELPER_TOGGLED, payload);
     };
 
-    private onCollapseAllRules = async (payload: BaseActionPayload): Promise<void> => {
+    private onCollapseAllRules = async (
+        payload: AssessmentExpandCollapsePayload,
+    ): Promise<void> => {
         await this.assessmentCardSelectionActions.collapseAllRules.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_COLLAPSED, payload);
     };
 
-    private onExpandAllRules = async (payload: BaseActionPayload): Promise<void> => {
+    private onExpandAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
         await this.assessmentCardSelectionActions.expandAllRules.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_EXPANDED, payload);
     };

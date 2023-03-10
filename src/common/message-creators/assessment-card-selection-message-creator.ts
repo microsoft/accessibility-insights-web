@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    BaseActionPayload,
     AssessmentCardSelectionPayload,
-    RuleExpandCollapsePayload,
+    AssessmentCardToggleVisualHelperPayload,
+    AssessmentExpandCollapsePayload,
+    AssessmentSingleRuleExpandCollapsePayload,
 } from 'background/actions/action-payloads';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
@@ -37,8 +38,13 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         });
     };
 
-    public toggleRuleExpandCollapse = (ruleId: string, event: React.SyntheticEvent) => {
-        const payload: RuleExpandCollapsePayload = {
+    public toggleRuleExpandCollapse = (
+        ruleId: string,
+        event: React.SyntheticEvent,
+        testKey: string,
+    ) => {
+        const payload: AssessmentSingleRuleExpandCollapsePayload = {
+            testKey,
             ruleId,
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
@@ -49,8 +55,9 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         });
     };
 
-    public collapseAllRules = (event: SupportedMouseEvent) => {
-        const payload: BaseActionPayload = {
+    public collapseAllRules = (event: SupportedMouseEvent, testKey: string) => {
+        const payload: AssessmentExpandCollapsePayload = {
+            testKey,
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
 
@@ -60,8 +67,9 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         });
     };
 
-    public expandAllRules = (event: SupportedMouseEvent) => {
-        const payload: BaseActionPayload = {
+    public expandAllRules = (event: SupportedMouseEvent, testKey: string) => {
+        const payload: AssessmentExpandCollapsePayload = {
+            testKey,
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
 
@@ -71,8 +79,9 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         });
     };
 
-    public toggleVisualHelper = (event: SupportedMouseEvent) => {
-        const payload: BaseActionPayload = {
+    public toggleVisualHelper = (event: SupportedMouseEvent, testKey: string) => {
+        const payload: AssessmentCardToggleVisualHelperPayload = {
+            testKey,
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
 

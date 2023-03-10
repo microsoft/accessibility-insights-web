@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    BaseActionPayload,
     AssessmentCardSelectionPayload,
-    RuleExpandCollapsePayload,
+    AssessmentCardToggleVisualHelperPayload,
+    AssessmentExpandCollapsePayload,
+    AssessmentSingleRuleExpandCollapsePayload,
 } from 'background/actions/action-payloads';
 import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
@@ -60,8 +61,10 @@ describe('AssessmentCardSelectionMessageCreator', () => {
     });
 
     test('toggleRuleExpandCollapse', () => {
+        const testKey = 'test-testKey';
         const ruleId = 'test-rule-id';
-        const payload: RuleExpandCollapsePayload = {
+        const payload: AssessmentSingleRuleExpandCollapsePayload = {
+            testKey,
             ruleId,
             telemetry: telemetryStub,
         };
@@ -75,13 +78,15 @@ describe('AssessmentCardSelectionMessageCreator', () => {
             .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
             .returns(() => telemetryStub);
 
-        testSubject.toggleRuleExpandCollapse(ruleId, eventStub);
+        testSubject.toggleRuleExpandCollapse(ruleId, eventStub, testKey);
 
         dispatcherMock.verify(handler => handler.dispatchMessage(expectedMessage), Times.once());
     });
 
     test('collapseAllRules', () => {
-        const payload: BaseActionPayload = {
+        const testKey = 'test-testKey';
+        const payload: AssessmentExpandCollapsePayload = {
+            testKey,
             telemetry: telemetryStub,
         };
 
@@ -94,13 +99,15 @@ describe('AssessmentCardSelectionMessageCreator', () => {
             .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
             .returns(() => telemetryStub);
 
-        testSubject.collapseAllRules(eventStub);
+        testSubject.collapseAllRules(eventStub, testKey);
 
         dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
     });
 
     test('expandAllRules', () => {
-        const payload: BaseActionPayload = {
+        const testKey = 'test-testKey';
+        const payload: AssessmentExpandCollapsePayload = {
+            testKey,
             telemetry: telemetryStub,
         };
 
@@ -113,13 +120,15 @@ describe('AssessmentCardSelectionMessageCreator', () => {
             .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
             .returns(() => telemetryStub);
 
-        testSubject.expandAllRules(eventStub);
+        testSubject.expandAllRules(eventStub, testKey);
 
         dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
     });
 
     test('toggleVisualHelper', () => {
-        const payload: BaseActionPayload = {
+        const testKey = 'test-testKey';
+        const payload: AssessmentCardToggleVisualHelperPayload = {
+            testKey,
             telemetry: telemetryStub,
         };
 
@@ -132,7 +141,7 @@ describe('AssessmentCardSelectionMessageCreator', () => {
             .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
             .returns(() => telemetryStub);
 
-        testSubject.toggleVisualHelper(eventStub);
+        testSubject.toggleVisualHelper(eventStub, testKey);
 
         dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
     });

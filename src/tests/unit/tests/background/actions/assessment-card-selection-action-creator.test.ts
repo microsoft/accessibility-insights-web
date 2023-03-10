@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    BaseActionPayload,
     AssessmentCardSelectionPayload,
-    RuleExpandCollapsePayload,
+    AssessmentCardToggleVisualHelperPayload,
+    AssessmentExpandCollapsePayload,
+    AssessmentSingleRuleExpandCollapsePayload,
 } from 'background/actions/action-payloads';
 import { AssessmentCardSelectionActionCreator } from 'background/actions/assessment-card-selection-action-creator';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
@@ -59,8 +60,9 @@ describe('AssessmentCardSelectionActionCreator', () => {
     });
 
     test('onRuleExpansionToggle', async () => {
-        const payload: RuleExpandCollapsePayload = {
+        const payload: AssessmentSingleRuleExpandCollapsePayload = {
             ruleId: 'test-rule-id',
+            testKey: 'sample-testKey',
         };
         const ruleExpansionToggleMock = createAsyncActionMock(payload);
         const actionsMock = createActionsMock(
@@ -90,7 +92,9 @@ describe('AssessmentCardSelectionActionCreator', () => {
     });
 
     test('onToggleVisualHelper', async () => {
-        const payloadStub: BaseActionPayload = {};
+        const payloadStub: AssessmentCardToggleVisualHelperPayload = {
+            testKey: 'sample-testKey',
+        };
         const toggleVisualHelperMock = createAsyncActionMock(null);
         const actionsMock = createActionsMock('toggleVisualHelper', toggleVisualHelperMock.object);
 
@@ -116,7 +120,9 @@ describe('AssessmentCardSelectionActionCreator', () => {
     });
 
     test('onCollapseAllRules', async () => {
-        const payloadStub: BaseActionPayload = {};
+        const payloadStub: AssessmentExpandCollapsePayload = {
+            testKey: 'sample-testKey',
+        };
         const collapseAllRulesActionMock = createAsyncActionMock(null);
         const actionsMock = createActionsMock(
             'collapseAllRules',
@@ -145,7 +151,9 @@ describe('AssessmentCardSelectionActionCreator', () => {
     });
 
     test('onExpandAllRules', async () => {
-        const payloadStub: BaseActionPayload = {};
+        const payloadStub: AssessmentExpandCollapsePayload = {
+            testKey: 'sample-testKey',
+        };
         const expandAllRulesActionMock = createAsyncActionMock(null);
         const actionsMock = createActionsMock('expandAllRules', expandAllRulesActionMock.object);
 

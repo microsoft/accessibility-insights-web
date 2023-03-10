@@ -242,7 +242,10 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
 
 export interface RuleExpandCollapsePayload extends BaseActionPayload {
     ruleId: string;
-    testKey?: string;
+}
+
+export interface AssessmentSingleRuleExpandCollapsePayload extends RuleExpandCollapsePayload {
+    testKey: string;
 }
 
 export interface AssessmentExpandCollapsePayload extends BaseActionPayload {
