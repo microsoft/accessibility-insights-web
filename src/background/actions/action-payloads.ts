@@ -290,6 +290,10 @@ export interface AssessmentCardToggleVisualHelperPayload extends BaseActionPaylo
     testKey: string;
 }
 
+export interface AssessmentResetFocusedIdentifierPayload extends BaseActionPayload {
+    testKey: string;
+}
+
 export interface AssessmentNavigateToNewCardsViewPayload extends BaseActionPayload {
     testKey: string;
 }

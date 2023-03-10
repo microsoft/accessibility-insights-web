@@ -6,6 +6,7 @@ import {
     AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
     AssessmentNavigateToNewCardsViewPayload,
+    AssessmentResetFocusedIdentifierPayload,
     RuleExpandCollapsePayload,
 } from './action-payloads';
 
@@ -18,5 +19,6 @@ export class AssessmentCardSelectionActions {
     public readonly collapseAllRules = new AsyncAction<AssessmentExpandCollapsePayload>();
     public readonly expandAllRules = new AsyncAction<AssessmentExpandCollapsePayload>();
     public readonly toggleVisualHelper = new AsyncAction<AssessmentCardToggleVisualHelperPayload>();
-    public readonly resetFocusedIdentifier = new AsyncAction<AssessmentCardSelectionPayload>();
+    public readonly resetFocusedIdentifier =
+        new AsyncAction<AssessmentResetFocusedIdentifierPayload>();
 }

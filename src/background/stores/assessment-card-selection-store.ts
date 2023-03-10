@@ -17,6 +17,7 @@ import {
     AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
     AssessmentNavigateToNewCardsViewPayload,
+    AssessmentResetFocusedIdentifierPayload,
     RuleExpandCollapsePayload,
 } from '../actions/action-payloads';
 
@@ -60,7 +61,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
 
     public getDefaultState(): AssessmentCardSelectionStoreData {
         const defaultValue: AssessmentCardSelectionStoreData = {
-            testKey: {
+            'automated-checks': {
                 rules: null,
                 visualHelperEnabled: false,
                 focusedResultUid: null,
@@ -199,8 +200,12 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private onResetFocusedIdentifier = async (
-        payload: AssessmentCardSelectionPayload,
+        payload: AssessmentResetFocusedIdentifierPayload,
     ): Promise<void> => {
+        if (!payload || !payload.testKey || !this.state[payload.testKey]) {
+            return;
+        }
+
         this.state[payload.testKey].focusedResultUid = null;
         await this.emitChanged();
     };
