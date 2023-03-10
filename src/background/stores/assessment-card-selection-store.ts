@@ -104,12 +104,13 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             !payload ||
             !payload.testKey ||
             !this.state[payload.testKey] ||
+            !this.state[payload.testKey].rules ||
             !this.state[payload.testKey].rules?.[payload.ruleId]
         ) {
             return;
         }
 
-        const rule = this.state[payload.testKey!].rules[payload.ruleId];
+        const rule = this.state[payload.testKey].rules![payload.ruleId];
 
         rule.isExpanded = !rule.isExpanded;
 
@@ -134,7 +135,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             return;
         }
 
-        const rule = this.state[payload.testKey].rules[payload.ruleId];
+        const rule = this.state[payload.testKey].rules![payload.ruleId];
         const isSelected = !rule.cards[payload.resultInstanceUid];
         rule.cards[payload.resultInstanceUid] = isSelected;
 
@@ -157,7 +158,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             return;
         }
 
-        forOwn(this.state[payload.testKey].rules, rule => {
+        forOwn(this.state[payload.testKey].rules!, rule => {
             rule.isExpanded = false;
             this.deselectAllCardsInRule(rule);
         });
@@ -175,7 +176,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             return;
         }
 
-        forOwn(this.state[payload.testKey].rules, rule => {
+        forOwn(this.state[payload.testKey].rules!, rule => {
             rule.isExpanded = true;
         });
 
@@ -221,9 +222,9 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
 
         if (this.state[payload.testKey].rules) {
             for (const ruleId in this.state[payload.testKey].rules) {
-                this.state[payload.testKey].rules[ruleId].isExpanded = false;
-                for (const resultId in this.state[payload.testKey].rules[ruleId].cards) {
-                    this.state[payload.testKey].rules[ruleId].cards[resultId] = false;
+                this.state[payload.testKey].rules![ruleId].isExpanded = false;
+                for (const resultId in this.state[payload.testKey].rules![ruleId].cards) {
+                    this.state[payload.testKey].rules![ruleId].cards[resultId] = false;
                 }
             }
         }
