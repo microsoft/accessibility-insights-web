@@ -181,6 +181,7 @@ describe('GetPersistedDataTest', () => {
                 unifiedScanResultStoreData: {},
                 visualizationScanResultStoreData: {},
                 visualizationStoreData: {},
+                assessmentCardSelectionStoreData: {},
             } as TabSpecificPersistedData;
             const tabData: { [tabId: number]: TabSpecificPersistedData } = {
                 0: expectedTabData,

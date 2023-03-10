@@ -244,9 +244,21 @@ export interface RuleExpandCollapsePayload extends BaseActionPayload {
     ruleId: string;
 }
 
+export interface AssessmentSingleRuleExpandCollapsePayload extends RuleExpandCollapsePayload {
+    testKey: string;
+}
+
+export interface AssessmentExpandCollapsePayload extends BaseActionPayload {
+    testKey: string;
+}
+
 export interface CardSelectionPayload extends BaseActionPayload {
     ruleId: string;
     resultInstanceUid: string;
+}
+
+export interface AssessmentCardSelectionPayload extends CardSelectionPayload {
+    testKey: string;
 }
 
 export interface PopupInitializedPayload extends BaseActionPayload {
@@ -275,4 +287,16 @@ export interface SaveAssessmentDialogStatePayload extends BaseActionPayload {
 export interface InjectionFailedPayload extends BaseActionPayload {
     failedAttempts: number;
     shouldRetry: boolean;
+}
+
+export interface AssessmentCardToggleVisualHelperPayload extends BaseActionPayload {
+    testKey: string;
+}
+
+export interface AssessmentResetFocusedIdentifierPayload extends BaseActionPayload {
+    testKey: string;
+}
+
+export interface AssessmentNavigateToNewCardsViewPayload extends BaseActionPayload {
+    testKey: string;
 }

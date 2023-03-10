@@ -35,6 +35,8 @@ export class IndexedDBDataKeys {
         'visualizationScanResultStore' + tabId;
     public static readonly unifiedScanResultStore: (tabId: number) => string = tabId =>
         'unifiedScanResultStore' + tabId;
+    public static readonly assessmentCardSelectionStore: (tabId: number) => string = tabId =>
+        'assessmentCardSelectionStore' + tabId;
 
     public static readonly globalKeys: string[] = [
         IndexedDBDataKeys.assessmentStore,
@@ -61,5 +63,6 @@ export class IndexedDBDataKeys {
         IndexedDBDataKeys.visualizationStore,
         IndexedDBDataKeys.visualizationScanResultStore,
         IndexedDBDataKeys.unifiedScanResultStore,
+        IndexedDBDataKeys.assessmentCardSelectionStore,
     ];
 }
