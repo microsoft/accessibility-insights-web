@@ -3,6 +3,7 @@
 import { Spinner, SpinnerSize } from '@fluentui/react';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { Header, HeaderProps } from 'common/components/header';
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
@@ -52,6 +53,7 @@ export interface DetailsViewContainerState {
     cardSelectionStoreData: CardSelectionStoreData;
     needsReviewScanResultStoreData: NeedsReviewScanResultStoreData;
     needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData;
+    assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewStoreData;
     assessmentStoreData: AssessmentStoreData;

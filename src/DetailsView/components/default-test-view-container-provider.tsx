@@ -47,11 +47,10 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
         props: TestViewContainerProviderProps,
     ): JSX.Element {
         return (
-            // TODO need to use assessment specific data/ infra here
             <AdhocIssuesTestView
                 instancesSection={FailedInstancesSection}
-                cardSelectionMessageCreator={props.automatedChecksCardSelectionMessageCreator}
-                cardsViewData={props.automatedChecksCardsViewData}
+                cardSelectionMessageCreator={props.assessmentCardSelectionMessageCreator}
+                cardsViewData={props.assessmentCardsViewData}
                 includeStepsText={false}
                 {...props}
             />

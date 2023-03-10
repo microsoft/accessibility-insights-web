@@ -12,6 +12,8 @@ export type TestViewContainerProviderProps = {
     needsReviewCardSelectionMessageCreator: CardSelectionMessageCreator;
     automatedChecksCardsViewData: CardsViewModel;
     automatedChecksCardSelectionMessageCreator: CardSelectionMessageCreator;
+    assessmentCardsViewData: CardsViewModel;
+    assessmentCardSelectionMessageCreator: CardSelectionMessageCreator;
 } & Omit<
     AdhocIssuesTestViewProps,
     'instancesSection' | 'cardSelectionMessageCreator' | 'cardsViewData'

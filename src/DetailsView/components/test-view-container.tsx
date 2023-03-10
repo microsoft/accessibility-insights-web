@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
+import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
@@ -32,6 +33,7 @@ export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     automatedChecksCardSelectionMessageCreator: AutomatedChecksCardSelectionMessageCreator;
     needsReviewCardSelectionMessageCreator: NeedsReviewCardSelectionMessageCreator;
+    assessmentCardSelectionMessageCreator: AssessmentCardSelectionMessageCreator;
 } & TestViewDeps &
     OverviewContainerDeps &
     AdhocTabStopsTestViewDeps;
@@ -55,6 +57,7 @@ export interface TestViewContainerProps {
     scanMetadata: ScanMetadata;
     automatedChecksCardsViewData: CardsViewModel;
     needsReviewCardsViewData: CardsViewModel;
+    assessmentCardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     narrowModeStatus: NarrowModeStatus;
@@ -72,6 +75,7 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
         automatedChecksCardSelectionMessageCreator:
             props.deps.automatedChecksCardSelectionMessageCreator,
         needsReviewCardSelectionMessageCreator: props.deps.needsReviewCardSelectionMessageCreator,
+        assessmentCardSelectionMessageCreator: props.deps.assessmentCardSelectionMessageCreator,
     };
 
     return configuration.getTestViewContainer(props.testViewContainerProvider, testViewProps);

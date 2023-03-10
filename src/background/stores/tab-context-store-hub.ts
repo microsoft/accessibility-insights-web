@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { PersistedData } from 'background/get-persisted-data';
 import { InitialVisualizationStoreDataGenerator } from 'background/initial-visualization-store-data-generator';
+import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
 import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-result-store';
@@ -34,6 +35,7 @@ export class TabContextStoreHub implements StoreHub {
     public unifiedScanResultStore: UnifiedScanResultStore;
     public cardSelectionStore: CardSelectionStore;
     public needsReviewCardSelectionStore: NeedsReviewCardSelectionStore;
+    public assessmentCardSelectionStore: AssessmentCardSelectionStore;
     public needsReviewScanResultStore: NeedsReviewScanResultStore;
 
     constructor(
@@ -177,6 +179,16 @@ export class TabContextStoreHub implements StoreHub {
             persistStoreData,
         );
         this.needsReviewCardSelectionStore.initialize();
+
+        this.assessmentCardSelectionStore = new AssessmentCardSelectionStore(
+            actionHub.assessmentCardSelectionActions,
+            persistedTabData?.assessmentCardSelectionStoreData,
+            indexedDBInstance,
+            logger,
+            tabId,
+            persistStoreData,
+        );
+        this.assessmentCardSelectionStore.initialize();
     }
 
     public getAllStores(): PersistentStore<any>[] {
@@ -192,6 +204,7 @@ export class TabContextStoreHub implements StoreHub {
             this.cardSelectionStore,
             this.needsReviewScanResultStore,
             this.needsReviewCardSelectionStore,
+            this.assessmentCardSelectionStore,
         ].filter(store => store != null);
     }
 

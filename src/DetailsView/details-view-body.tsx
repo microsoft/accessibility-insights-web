@@ -71,6 +71,7 @@ export interface DetailsViewBodyProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     automatedChecksCardsViewData: CardsViewModel;
     needsReviewCardsViewData: CardsViewModel;
+    assessmentCardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     scanMetadata: ScanMetadata;
     isSideNavOpen: boolean;

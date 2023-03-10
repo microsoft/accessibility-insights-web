@@ -8,6 +8,7 @@ import { InspectActionMessageCreator } from 'common/message-creators/inspect-act
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
+import { convertStoreDataForScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsViewOverlay,
@@ -134,6 +135,17 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             ),
         );
 
+        const assessmentCardsViewData = props.deps.getCardViewData(
+            props.storeState.assessmentStoreData,
+            props.deps.getCardSelectionViewData(
+                props.storeState.assessmentCardSelectionStoreData[selectedTest],
+                convertStoreDataForScanNodeResults(props.storeState.assessmentStoreData),
+                null,
+                props.deps.isResultHighlightUnavailable,
+            ),
+        );
+        console.log('Selected test: ' + selectedTest + ' ' + JSON.stringify(props)); // TODO is this the right key?
+
         const targetAppInfo = {
             name: props.storeState.tabStoreData.title,
             url: props.storeState.tabStoreData.url,
@@ -185,6 +197,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 automatedChecksCardsViewData={automatedChecksCardsViewData}
                 needsReviewCardsViewData={needsReviewCardsViewData}
+                assessmentCardsViewData={assessmentCardsViewData}
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
