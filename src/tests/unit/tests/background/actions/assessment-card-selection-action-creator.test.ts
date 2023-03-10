@@ -95,7 +95,7 @@ describe('AssessmentCardSelectionActionCreator', () => {
         const payloadStub: AssessmentCardToggleVisualHelperPayload = {
             testKey: 'sample-testKey',
         };
-        const toggleVisualHelperMock = createAsyncActionMock(null);
+        const toggleVisualHelperMock = createAsyncActionMock(payloadStub);
         const actionsMock = createActionsMock('toggleVisualHelper', toggleVisualHelperMock.object);
 
         const testSubject = new AssessmentCardSelectionActionCreator(
@@ -123,7 +123,7 @@ describe('AssessmentCardSelectionActionCreator', () => {
         const payloadStub: AssessmentExpandCollapsePayload = {
             testKey: 'sample-testKey',
         };
-        const collapseAllRulesActionMock = createAsyncActionMock(null);
+        const collapseAllRulesActionMock = createAsyncActionMock(payloadStub);
         const actionsMock = createActionsMock(
             'collapseAllRules',
             collapseAllRulesActionMock.object,
@@ -154,7 +154,7 @@ describe('AssessmentCardSelectionActionCreator', () => {
         const payloadStub: AssessmentExpandCollapsePayload = {
             testKey: 'sample-testKey',
         };
-        const expandAllRulesActionMock = createAsyncActionMock(null);
+        const expandAllRulesActionMock = createAsyncActionMock(payloadStub);
         const actionsMock = createActionsMock('expandAllRules', expandAllRulesActionMock.object);
 
         const testSubject = new AssessmentCardSelectionActionCreator(

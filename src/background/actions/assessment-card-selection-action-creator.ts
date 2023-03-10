@@ -75,19 +75,19 @@ export class AssessmentCardSelectionActionCreator {
     private onToggleVisualHelper = async (
         payload: AssessmentCardToggleVisualHelperPayload,
     ): Promise<void> => {
-        await this.assessmentCardSelectionActions.toggleVisualHelper.invoke(null);
+        await this.assessmentCardSelectionActions.toggleVisualHelper.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.VISUAL_HELPER_TOGGLED, payload);
     };
 
     private onCollapseAllRules = async (
         payload: AssessmentExpandCollapsePayload,
     ): Promise<void> => {
-        await this.assessmentCardSelectionActions.collapseAllRules.invoke(null);
+        await this.assessmentCardSelectionActions.collapseAllRules.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_COLLAPSED, payload);
     };
 
     private onExpandAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
-        await this.assessmentCardSelectionActions.expandAllRules.invoke(null);
+        await this.assessmentCardSelectionActions.expandAllRules.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_EXPANDED, payload);
     };
 }
