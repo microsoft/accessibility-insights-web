@@ -14,8 +14,9 @@ import {
 } from '../../common/types/store-data/card-selection-store-data';
 import {
     AssessmentCardSelectionPayload,
-    RuleExpandCollapsePayload,
+    AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
+    RuleExpandCollapsePayload,
 } from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
@@ -123,6 +124,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         if (
             !payload ||
             !payload.testKey ||
+            !this.state[payload.testKey] ||
             !this.state[payload.testKey].rules?.[payload.ruleId] ||
             this.state[payload.testKey].rules![payload.ruleId].cards[payload.resultInstanceUid] ===
                 undefined
@@ -178,7 +180,13 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         await this.emitChanged();
     };
 
-    private toggleVisualHelper = async (payload: AssessmentCardSelectionPayload): Promise<void> => {
+    private toggleVisualHelper = async (
+        payload: AssessmentCardToggleVisualHelperPayload,
+    ): Promise<void> => {
+        if (!payload || !payload.testKey || !this.state[payload.testKey]) {
+            return;
+        }
+
         this.state[payload.testKey].visualHelperEnabled =
             !this.state[payload.testKey].visualHelperEnabled;
 

@@ -285,3 +285,7 @@ export interface InjectionFailedPayload extends BaseActionPayload {
     failedAttempts: number;
     shouldRetry: boolean;
 }
+
+export interface AssessmentCardToggleVisualHelperPayload extends BaseActionPayload {
+    testKey: string;
+}

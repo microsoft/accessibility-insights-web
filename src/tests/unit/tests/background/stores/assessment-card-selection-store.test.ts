@@ -10,6 +10,7 @@ import {
     AssessmentCardSelectionPayload,
     RuleExpandCollapsePayload,
     AssessmentExpandCollapsePayload,
+    AssessmentCardToggleVisualHelperPayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
@@ -144,7 +145,7 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('toggleCardSelection', () => {
-        test('toggleCardSelection selected', async () => {
+        test('sets the expected state when a card is selected', async () => {
             const payload: AssessmentCardSelectionPayload = {
                 testKey: 'testKey1',
                 ruleId: 'sampleRuleId1',
@@ -162,7 +163,7 @@ describe('AssessmentCardSelectionStore Test', () => {
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
 
-        test('toggleCardSelection unselected', async () => {
+        test('sets the expected state when a card is unselected', async () => {
             const payload: AssessmentCardSelectionPayload = {
                 testKey: 'testKey1',
                 ruleId: 'sampleRuleId1',
@@ -178,35 +179,30 @@ describe('AssessmentCardSelectionStore Test', () => {
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
 
-        test('toggleCardSelection invalid rule', async () => {
-            const payload: AssessmentCardSelectionPayload = {
-                testKey: 'testKey1',
-                ruleId: 'invalid-rule-id',
-                resultInstanceUid: 'sampleUid1',
-            };
+        const testCases = [
+            ['invalid testKey', 'invalid-testKey', 'sampleRuleId1', 'sampleUid1'],
+            ['invalid ruleId', 'testKey1', 'invalid-rule-id', 'sampleUid1'],
+            ['invalid resultInstanceUid', 'testKey1', 'sampleRuleId1', 'invalid-uid'],
+        ];
 
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
-                    payload,
-                );
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
+        test.each(testCases)(
+            'does nothing with %s in payload',
+            async (testName, testKey, ruleId, resultInstanceUid) => {
+                const payload: AssessmentCardSelectionPayload = {
+                    testKey,
+                    ruleId,
+                    resultInstanceUid,
+                };
 
-        test('toggleCardSelection invalid card', async () => {
-            const payload: AssessmentCardSelectionPayload = {
-                testKey: 'testKey1',
-                ruleId: 'sampleRuleId1',
-                resultInstanceUid: 'invalid-uid',
-            };
+                const storeTester =
+                    createStoreForAssessmentCardSelectionActions(
+                        'toggleCardSelection',
+                    ).withActionParam(payload);
+                await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+            },
+        );
 
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
-                    payload,
-                );
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
-
-        test('toggleCardSelection no payload', async () => {
+        test('does nothing when there is no payload', async () => {
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
                     null,
@@ -330,11 +326,32 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('toggleVisualHelper', () => {
-        const payload: AssessmentCardSelectionPayload = {
-            ruleId: 'sampleRuleId1',
+        const payload: AssessmentCardToggleVisualHelperPayload = {
             testKey: 'testKey1',
-            resultInstanceUid: '',
         };
+
+        test.each([null, 'invalid-testKey'])(
+            'does nothing when payload contains testKey: %s',
+            async testKey => {
+                const payload: AssessmentCardToggleVisualHelperPayload = {
+                    testKey,
+                };
+                const storeTester =
+                    createStoreForAssessmentCardSelectionActions(
+                        'toggleVisualHelper',
+                    ).withActionParam(payload);
+                await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+            },
+        );
+
+        test('does nothing when payload is null', async () => {
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('toggleVisualHelper').withActionParam(
+                    null,
+                );
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
         test('toggle on - no card selection or rule expansion changes', async () => {
             initialState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
             initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;

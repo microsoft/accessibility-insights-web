@@ -3,8 +3,9 @@
 import { AsyncAction } from 'common/flux/async-action';
 import {
     AssessmentCardSelectionPayload,
-    RuleExpandCollapsePayload,
+    AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
+    RuleExpandCollapsePayload,
 } from './action-payloads';
 
 export class AssessmentCardSelectionActions {
@@ -14,6 +15,6 @@ export class AssessmentCardSelectionActions {
     public readonly toggleCardSelection = new AsyncAction<AssessmentCardSelectionPayload>();
     public readonly collapseAllRules = new AsyncAction<AssessmentExpandCollapsePayload>();
     public readonly expandAllRules = new AsyncAction<AssessmentExpandCollapsePayload>();
-    public readonly toggleVisualHelper = new AsyncAction<AssessmentCardSelectionPayload>();
+    public readonly toggleVisualHelper = new AsyncAction<AssessmentCardToggleVisualHelperPayload>();
     public readonly resetFocusedIdentifier = new AsyncAction<AssessmentCardSelectionPayload>();
 }
