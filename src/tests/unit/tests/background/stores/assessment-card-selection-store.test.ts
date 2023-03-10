@@ -9,6 +9,7 @@ import { cloneDeep, forOwn } from 'lodash';
 import {
     AssessmentCardSelectionPayload,
     RuleExpandCollapsePayload,
+    AssessmentExpandCollapsePayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
@@ -81,166 +82,170 @@ describe('AssessmentCardSelectionStore Test', () => {
         expectedState = cloneDeep(defaultState);
     });
 
-    test('ToggleRuleExpandCollapse expanded', async () => {
-        const payload: RuleExpandCollapsePayload = {
-            ruleId: 'sampleRuleId1',
-            testKey: 'testKey1',
-        };
+    describe('ToggleRuleExpandCollapse', () => {
+        test('when collapsed, toggles rule to expanded', async () => {
+            const payload: RuleExpandCollapsePayload = {
+                ruleId: 'sampleRuleId1',
+                testKey: 'testKey1',
+            };
 
-        expectedState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
+            expectedState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
 
-        const storeTester = createStoreForAssessmentCardSelectionActions(
-            'toggleRuleExpandCollapse',
-        ).withActionParam(payload);
-        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+            const storeTester = createStoreForAssessmentCardSelectionActions(
+                'toggleRuleExpandCollapse',
+            ).withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        });
+
+        test('when expanded, toggles rule to collapsed', async () => {
+            const payload: RuleExpandCollapsePayload = {
+                ruleId: 'sampleRuleId1',
+                testKey: 'testKey1',
+            };
+
+            initialState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
+            initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+            const storeTester = createStoreForAssessmentCardSelectionActions(
+                'toggleRuleExpandCollapse',
+            ).withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        });
+
+        const testCases = [
+            ['invalid testKey', 'invalid-test', 'sampleRuleId1'],
+            ['invalid ruleId', 'testKey1', 'invalid-rule-id'],
+            ['invalid testKey and ruleId', 'invalid-test', 'invalid-rule-id'],
+            ['null testKey', null, 'sampleRuleId1'],
+            ['undefined testKey', undefined, 'sampleRuleId1'],
+            ['null ruleId', 'testKey1', null],
+            ['null testKey and ruleId', null, null],
+        ];
+
+        test.each(testCases)('does nothing with payload: %s', async (testName, testKey, ruleId) => {
+            const payload: RuleExpandCollapsePayload = {
+                testKey,
+                ruleId,
+            };
+
+            const storeTester = createStoreForAssessmentCardSelectionActions(
+                'toggleRuleExpandCollapse',
+            ).withActionParam(payload);
+
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
+        test('does nothing with no payload', async () => {
+            const storeTester = createStoreForAssessmentCardSelectionActions(
+                'toggleRuleExpandCollapse',
+            ).withActionParam(null);
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
     });
 
-    test('onResetFocusedIdentifier', async () => {
-        const payload: AssessmentCardSelectionPayload = {
-            testKey: 'testKey1',
-            ruleId: 'sampleRuleId1',
-            resultInstanceUid: 'sampleUid1',
-        };
+    describe('toggleCardSelection', () => {
+        test('toggleCardSelection selected', async () => {
+            const payload: AssessmentCardSelectionPayload = {
+                testKey: 'testKey1',
+                ruleId: 'sampleRuleId1',
+                resultInstanceUid: 'sampleUid1',
+            };
 
-        initialState['testKey1'].focusedResultUid = 'some uid';
+            expectedState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            expectedState['testKey1'].focusedResultUid = 'sampleUid1';
+            expectedState['testKey1'].visualHelperEnabled = true;
 
-        const storeTester =
-            createStoreForAssessmentCardSelectionActions('resetFocusedIdentifier').withActionParam(
-                payload,
-            );
-        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    });
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        });
 
-    test('ToggleRuleExpandCollapse collapsed', async () => {
-        const payload: RuleExpandCollapsePayload = {
-            ruleId: 'sampleRuleId1',
-            testKey: 'testKey1',
-        };
+        test('toggleCardSelection unselected', async () => {
+            const payload: AssessmentCardSelectionPayload = {
+                testKey: 'testKey1',
+                ruleId: 'sampleRuleId1',
+                resultInstanceUid: 'sampleUid1',
+            };
 
-        initialState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
-        initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
 
-        const storeTester = createStoreForAssessmentCardSelectionActions(
-            'toggleRuleExpandCollapse',
-        ).withActionParam(payload);
-        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    });
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        });
 
-    test('ToggleRuleExpandCollapse invalid rule', async () => {
-        const payload: RuleExpandCollapsePayload = {
-            ruleId: 'invalid-rule-id',
-            testKey: 'invalid-test-key',
-        };
+        test('toggleCardSelection invalid rule', async () => {
+            const payload: AssessmentCardSelectionPayload = {
+                testKey: 'testKey1',
+                ruleId: 'invalid-rule-id',
+                resultInstanceUid: 'sampleUid1',
+            };
 
-        const storeTester = createStoreForAssessmentCardSelectionActions(
-            'toggleRuleExpandCollapse',
-        ).withActionParam(payload);
-        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-    });
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
 
-    test('ToggleRuleExpandCollapse no payload', async () => {
-        const storeTester = createStoreForAssessmentCardSelectionActions(
-            'toggleRuleExpandCollapse',
-        ).withActionParam(null);
-        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-    });
+        test('toggleCardSelection invalid card', async () => {
+            const payload: AssessmentCardSelectionPayload = {
+                testKey: 'testKey1',
+                ruleId: 'sampleRuleId1',
+                resultInstanceUid: 'invalid-uid',
+            };
 
-    test('ToggleRuleExpandCollapse invalid payload', async () => {
-        const payload: RuleExpandCollapsePayload = {
-            ruleId: null,
-        };
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
 
-        const storeTester = createStoreForAssessmentCardSelectionActions(
-            'toggleRuleExpandCollapse',
-        ).withActionParam(payload);
-        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-    });
-
-    test('toggleCardSelection selected', async () => {
-        const payload: AssessmentCardSelectionPayload = {
-            testKey: 'testKey1',
-            ruleId: 'sampleRuleId1',
-            resultInstanceUid: 'sampleUid1',
-        };
-
-        expectedState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
-        expectedState['testKey1'].focusedResultUid = 'sampleUid1';
-        expectedState['testKey1'].visualHelperEnabled = true;
-
-        const storeTester =
-            createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
-                payload,
-            );
-        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('toggleCardSelection unselected', async () => {
-        const payload: AssessmentCardSelectionPayload = {
-            testKey: 'testKey1',
-            ruleId: 'sampleRuleId1',
-            resultInstanceUid: 'sampleUid1',
-        };
-
-        initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
-
-        const storeTester =
-            createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
-                payload,
-            );
-        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('toggleCardSelection invalid rule', async () => {
-        const payload: AssessmentCardSelectionPayload = {
-            testKey: 'testKey1',
-            ruleId: 'invalid-rule-id',
-            resultInstanceUid: 'sampleUid1',
-        };
-
-        const storeTester =
-            createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
-                payload,
-            );
-        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-    });
-
-    test('toggleCardSelection invalid card', async () => {
-        const payload: AssessmentCardSelectionPayload = {
-            testKey: 'testKey1',
-            ruleId: 'sampleRuleId1',
-            resultInstanceUid: 'invalid-uid',
-        };
-
-        const storeTester =
-            createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
-                payload,
-            );
-        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-    });
-
-    test('toggleCardSelection no payload', async () => {
-        const storeTester =
-            createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
-                null,
-            );
-        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-    });
-
-    test('ToggleRuleExpandCollapse invalid payload', async () => {
-        const payload: AssessmentCardSelectionPayload = {} as AssessmentCardSelectionPayload;
-
-        const storeTester =
-            createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
-                payload,
-            );
-        await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        test('toggleCardSelection no payload', async () => {
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
+                    null,
+                );
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
     });
 
     describe('collapseAllRules', () => {
-        const payload: RuleExpandCollapsePayload = {
-            testKey: 'testKey1',
-            ruleId: 'sampleRuleId1',
-        };
+        let payload: AssessmentExpandCollapsePayload;
+        beforeEach(() => {
+            payload = {
+                testKey: 'testKey1',
+            };
+        });
+
+        test('Does nothing if test is null', async () => {
+            initialState['testKey1'] = null;
+            expectedState = cloneDeep(initialState);
+
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('collapseAllRules').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
+        test('Does nothing if invalid testKey', async () => {
+            payload.testKey = 'invalid-test';
+
+            expectedState = cloneDeep(initialState);
+
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('collapseAllRules').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
         test('Does nothing if rules is null', async () => {
             initialState['testKey1'].rules = null;
             expectedState = cloneDeep(initialState);
@@ -265,12 +270,40 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('expandAllRules', () => {
-        const payload: RuleExpandCollapsePayload = {
-            testKey: 'testKey1',
-            ruleId: 'sampleRuleId1',
-        };
+        let payload: AssessmentExpandCollapsePayload;
+        beforeEach(() => {
+            payload = {
+                testKey: 'testKey1',
+            };
+        });
+
+        test('Does nothing if test is null', async () => {
+            initialState['testKey1'] = null;
+
+            expectedState = cloneDeep(initialState);
+
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('expandAllRules').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
+        test('Does nothing if invalid testKey', async () => {
+            payload.testKey = 'invalid-test';
+
+            expectedState = cloneDeep(initialState);
+
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('expandAllRules').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
         test('Does nothing if rules is null', async () => {
             initialState['testKey1'].rules = null;
+
             expectedState = cloneDeep(initialState);
 
             const storeTester =
@@ -448,6 +481,22 @@ describe('AssessmentCardSelectionStore Test', () => {
                 ).withActionParam(payload);
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
+    });
+
+    test('onResetFocusedIdentifier', async () => {
+        const payload: AssessmentCardSelectionPayload = {
+            testKey: 'testKey1',
+            ruleId: 'sampleRuleId1',
+            resultInstanceUid: 'sampleUid1',
+        };
+
+        initialState['testKey1'].focusedResultUid = 'some uid';
+
+        const storeTester =
+            createStoreForAssessmentCardSelectionActions('resetFocusedIdentifier').withActionParam(
+                payload,
+            );
+        await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {

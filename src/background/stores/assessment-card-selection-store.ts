@@ -15,6 +15,7 @@ import {
 import {
     AssessmentCardSelectionPayload,
     RuleExpandCollapsePayload,
+    AssessmentExpandCollapsePayload,
 } from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
@@ -96,7 +97,12 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private toggleRuleExpandCollapse = async (
         payload: RuleExpandCollapsePayload,
     ): Promise<void> => {
-        if (!payload || !payload.testKey || !this.state[payload.testKey].rules?.[payload.ruleId]) {
+        if (
+            !payload ||
+            !payload.testKey ||
+            !this.state[payload.testKey] ||
+            !this.state[payload.testKey].rules?.[payload.ruleId]
+        ) {
             return;
         }
 
@@ -137,8 +143,13 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         await this.emitChanged();
     };
 
-    private collapseAllRules = async (payload: RuleExpandCollapsePayload): Promise<void> => {
-        if (!payload || !payload.testKey || !this.state[payload.testKey].rules) {
+    private collapseAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
+        if (
+            !payload ||
+            !payload.testKey ||
+            !this.state[payload.testKey] ||
+            !this.state[payload.testKey].rules
+        ) {
             return;
         }
 
@@ -150,8 +161,13 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         await this.emitChanged();
     };
 
-    private expandAllRules = async (payload: RuleExpandCollapsePayload): Promise<void> => {
-        if (!payload || !payload.testKey || !this.state[payload.testKey].rules) {
+    private expandAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
+        if (
+            !payload ||
+            !payload.testKey ||
+            !this.state[payload.testKey] ||
+            !this.state[payload.testKey].rules
+        ) {
             return;
         }
 

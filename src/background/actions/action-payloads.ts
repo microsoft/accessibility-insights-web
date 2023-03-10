@@ -245,6 +245,10 @@ export interface RuleExpandCollapsePayload extends BaseActionPayload {
     testKey?: string;
 }
 
+export interface AssessmentExpandCollapsePayload extends BaseActionPayload {
+    testKey: string;
+}
+
 export interface CardSelectionPayload extends BaseActionPayload {
     ruleId: string;
     resultInstanceUid: string;
