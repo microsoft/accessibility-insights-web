@@ -144,7 +144,6 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 props.deps.isResultHighlightUnavailable,
             ),
         );
-        console.log('Selected test: ' + selectedTest + ' ' + JSON.stringify(props)); // TODO is this the right key?
 
         const targetAppInfo = {
             name: props.storeState.tabStoreData.title,

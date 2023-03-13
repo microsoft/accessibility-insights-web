@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -26,6 +27,7 @@ export interface TargetPageStoreData {
     cardSelectionStoreData: CardSelectionStoreData;
     permissionsStateStoreData: PermissionsStateStoreData;
     needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData;
+    assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData;
 }
 
 export class ClientStoreListener {

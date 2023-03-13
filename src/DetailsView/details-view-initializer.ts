@@ -664,6 +664,7 @@ if (tabId != null) {
                 automatedChecksCardSelectionMessageCreator,
                 needsReviewCardSelectionMessageCreator,
                 assessmentCardSelectionMessageCreator,
+                assessmentActionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
                 allUrlsPermissionHandler: new AllUrlsPermissionHandler(

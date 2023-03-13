@@ -47,6 +47,7 @@ export interface IssuesTableProps {
     visualizationStoreData: VisualizationStoreData;
     narrowModeStatus: NarrowModeStatus;
     cardsViewStoreData: CardsViewStoreData;
+    handleCardCountResults: (issuesEnabled: boolean, cardCount: number) => void;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -106,16 +107,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     private renderComponent(): JSX.Element {
         const cardCount = this.getCardCount();
-        if (!this.props.issuesEnabled && cardCount > 0) {
-            this.props.deps.detailsViewActionMessageCreator.enableFastPassVisualHelperWithoutScan(
-                this.props.visualizationStoreData.selectedFastPassDetailsView,
-            );
-        }
-        if (!this.props.issuesEnabled && cardCount === 0) {
-            this.props.deps.detailsViewActionMessageCreator.rescanVisualizationWithoutTelemetry(
-                this.props.visualizationStoreData.selectedFastPassDetailsView,
-            );
-        }
+        this.props.handleCardCountResults(this.props.issuesEnabled, cardCount);
 
         if (this.props.scanning) {
             return this.renderSpinner('Scanning...');

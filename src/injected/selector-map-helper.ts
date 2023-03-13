@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -11,7 +12,10 @@ import { GetElementBasedViewModelCallback } from 'injected/element-based-view-mo
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { includes } from 'lodash';
-import { GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
+import {
+    AssessmentStoreData,
+    GeneratedAssessmentInstance,
+} from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
@@ -24,6 +28,7 @@ export type VisualizationRelatedStoreData = Pick<
     | 'cardSelectionStoreData'
     | 'needsReviewCardSelectionStoreData'
     | 'needsReviewScanResultStoreData'
+    | 'assessmentCardSelectionStoreData'
 >;
 
 export class SelectorMapHelper {
@@ -45,6 +50,7 @@ export class SelectorMapHelper {
             cardSelectionStoreData,
             needsReviewScanResultStoreData,
             needsReviewCardSelectionStoreData,
+            assessmentCardSelectionStoreData,
         } = visualizationRelatedStoreData;
 
         if (this.isAdHocVisualization(visualizationType)) {
@@ -55,6 +61,8 @@ export class SelectorMapHelper {
                 cardSelectionStoreData,
                 needsReviewScanResultStoreData,
                 needsReviewCardSelectionStoreData,
+                assessmentStoreData,
+                assessmentCardSelectionStoreData,
             );
         }
 
@@ -90,6 +98,8 @@ export class SelectorMapHelper {
         cardSelectionStoreData: CardSelectionStoreData,
         needsReviewScanData: NeedsReviewScanResultStoreData,
         needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData,
+        assessmentStoreData: AssessmentStoreData,
+        assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData,
     ): SelectorToVisualizationMap {
         let selectorMap = {};
         switch (visualizationType) {
@@ -103,6 +113,12 @@ export class SelectorMapHelper {
                 selectorMap = this.getElementBasedViewModel(
                     unifiedScanData,
                     cardSelectionStoreData,
+                );
+                break;
+            case VisualizationType.AutomatedChecks:
+                selectorMap = this.getElementBasedViewModel(
+                    assessmentStoreData,
+                    assessmentCardSelectionStoreData[visualizationType],
                 );
                 break;
             case VisualizationType.Headings:

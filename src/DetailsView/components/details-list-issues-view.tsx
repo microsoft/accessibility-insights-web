@@ -32,6 +32,7 @@ export interface DetailsListIssuesViewProps {
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     narrowModeStatus: NarrowModeStatus;
     includeStepsText?: boolean;
+    handleCardCountResults: (issuesEnabled: boolean, cardCount: number) => void;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
@@ -67,6 +68,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 cardSelectionMessageCreator={props.cardSelectionMessageCreator}
                 narrowModeStatus={props.narrowModeStatus}
                 cardsViewStoreData={props.cardsViewStoreData}
+                handleCardCountResults={props.handleCardCountResults}
             />
         );
     },

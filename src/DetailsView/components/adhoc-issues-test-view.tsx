@@ -42,6 +42,7 @@ export type AdhocIssuesTestViewProps = {
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     narrowModeStatus: NarrowModeStatus;
+    handleCardCountResults: (issuesEnabled: boolean, cardCount: number) => void;
 };
 
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(
