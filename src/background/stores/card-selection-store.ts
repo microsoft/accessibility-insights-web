@@ -5,6 +5,11 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
+import {
+    convertResultsToCardSelectionStoreData,
+    ConvertResultsToCardSelectionStoreDataCallback,
+} from 'common/store-data-to-scan-node-result-converter';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import {
@@ -29,6 +34,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         logger: Logger,
         tabId: number,
         persistStoreData: boolean,
+        private readonly convertResultsToCardSelectionStoreDataCallback: ConvertResultsToCardSelectionStoreDataCallback = convertResultsToCardSelectionStoreData,
     ) {
         super(
             StoreNames.CardSelectionStore,
@@ -164,20 +170,9 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
             return;
         }
 
-        payload.scanResult.forEach(result => {
-            if (result.status !== 'fail' && result.status !== 'unknown') {
-                return;
-            }
-
-            if (this.state.rules![result.ruleId] === undefined) {
-                this.state.rules![result.ruleId] = {
-                    isExpanded: false,
-                    cards: {},
-                };
-            }
-
-            this.state.rules![result.ruleId].cards[result.uid] = false;
-        });
+        this.state = this.convertResultsToCardSelectionStoreDataCallback(this.state, {
+            results: payload.scanResult,
+        } as UnifiedScanResultStoreData);
 
         this.state.visualHelperEnabled = true;
 

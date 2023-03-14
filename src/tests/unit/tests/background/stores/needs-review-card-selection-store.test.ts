@@ -4,9 +4,11 @@ import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { TabActions } from 'background/actions/tab-actions';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
+import { ConvertResultsToCardSelectionStoreDataCallback } from 'common/store-data-to-scan-node-result-converter';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { cloneDeep, forOwn } from 'lodash';
+import { IMock, Mock, Times } from 'typemoq';
 
 import {
     BaseActionPayload,
@@ -15,10 +17,20 @@ import {
     UnifiedScanCompletedPayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { UnifiedResult } from '../../../../../common/types/store-data/unified-data-interface';
+import {
+    UnifiedResult,
+    UnifiedScanResultStoreData,
+} from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
 describe('NeedsReviewCardSelectionStore Test', () => {
+    let convertResultsToCardSelectionStoreDataCallbackMock: IMock<ConvertResultsToCardSelectionStoreDataCallback>;
+
+    beforeEach(() => {
+        convertResultsToCardSelectionStoreDataCallbackMock =
+            Mock.ofType<ConvertResultsToCardSelectionStoreDataCallback>();
+    });
+
     test('constructor has no side effects', () => {
         const testObject = createStoreWithNullParams(NeedsReviewCardSelectionStore);
         expect(testObject).toBeDefined();
@@ -73,9 +85,26 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             visualHelperEnabled: true,
         };
 
+        const callbackExpectedState = {
+            rules: {},
+            visualHelperEnabled: false,
+            focusedResultUid: null,
+        } as NeedsReviewCardSelectionStoreData;
+        convertResultsToCardSelectionStoreDataCallbackMock
+            .setup(callback =>
+                callback(callbackExpectedState, {
+                    results: payload.scanResult,
+                } as UnifiedScanResultStoreData),
+            )
+            .returns(() => {
+                return expectedState;
+            })
+            .verifiable(Times.once());
+
         const storeTester =
             createStoreForNeedsReviewScanResultActions('scanCompleted').withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        convertResultsToCardSelectionStoreDataCallbackMock.verifyAll();
     });
 
     function getDefaultState(): NeedsReviewCardSelectionStoreData {
@@ -95,6 +124,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
                 null,
                 null,
                 true,
+                convertResultsToCardSelectionStoreDataCallbackMock.object,
             );
 
         return new StoreTester(NeedsReviewScanResultActions, actionName, factory);

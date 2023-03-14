@@ -24,12 +24,12 @@ export type ScanNodeResult = UnifiedResult & {
 };
 
 export type ConvertStoreDataForScanNodeResultsCallback = (
-    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
+    storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
     cardSelectionStoreData?: CardSelectionStoreData,
 ) => ScanNodeResult[] | null;
 
 export const convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = (
-    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
+    storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
     cardSelectionStoreData?: CardSelectionStoreData,
 ): ScanNodeResult[] | null => {
     let results: ScanNodeResult[] | null = convertUnifiedStoreDataToScanNodeResults(
@@ -44,12 +44,43 @@ export const convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResu
     return results;
 };
 
+export type ConvertResultsToCardSelectionStoreDataCallback = (
+    state: CardSelectionStoreData,
+    storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
+) => CardSelectionStoreData;
+
+export const convertResultsToCardSelectionStoreData: ConvertResultsToCardSelectionStoreDataCallback =
+    (
+        state: CardSelectionStoreData,
+        storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
+    ): CardSelectionStoreData => {
+        const results = convertStoreDataForScanNodeResults(storeData);
+
+        if (results) {
+            results.forEach(result => {
+                if (result.status !== 'fail' && result.status !== 'unknown') {
+                    return;
+                }
+
+                if (state.rules![result.ruleId] === undefined) {
+                    state.rules![result.ruleId] = {
+                        isExpanded: false,
+                        cards: {},
+                    };
+                }
+
+                state.rules![result.ruleId].cards[result.uid] = false;
+            });
+        }
+
+        return state;
+    };
+
 function convertUnifiedStoreDataToScanNodeResults(
-    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    unifiedScanResultStoreData: UnifiedScanResultStoreData | null,
 ): ScanNodeResult[] | null {
     if (
         isNullOrUndefined(unifiedScanResultStoreData) ||
-        isNullOrUndefined(unifiedScanResultStoreData.rules) ||
         isNullOrUndefined(unifiedScanResultStoreData.results)
     ) {
         return null;
@@ -57,7 +88,9 @@ function convertUnifiedStoreDataToScanNodeResults(
     const { rules, results } = unifiedScanResultStoreData;
 
     const transformedResults = results.map(unifiedResult => {
-        const rule = find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId);
+        const rule = rules
+            ? find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId)
+            : { id: unifiedResult.ruleId };
         if (rule == null) {
             throw new Error(`Got result with unknown ruleId ${unifiedResult.ruleId}`);
         }
@@ -73,7 +106,7 @@ function convertUnifiedStoreDataToScanNodeResults(
 }
 
 function convertAssessmentStoreDataToScanNodeResults(
-    assessmentStoreData: AssessmentStoreData,
+    assessmentStoreData: AssessmentStoreData | null,
     cardSelectionStoreData?: CardSelectionStoreData,
 ): ScanNodeResult[] | null {
     if (
