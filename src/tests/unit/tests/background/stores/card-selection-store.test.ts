@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabActions } from 'background/actions/tab-actions';
+import { ConvertResultsToCardSelectionStoreDataCallback } from 'common/store-data-to-scan-node-result-converter';
 import { cloneDeep, forOwn } from 'lodash';
+import { IMock, Mock, Times } from 'typemoq';
 
 import {
     BaseActionPayload,
@@ -17,10 +19,20 @@ import {
     CardSelectionStoreData,
     RuleExpandCollapseData,
 } from '../../../../../common/types/store-data/card-selection-store-data';
-import { UnifiedResult } from '../../../../../common/types/store-data/unified-data-interface';
+import {
+    UnifiedResult,
+    UnifiedScanResultStoreData,
+} from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
 describe('CardSelectionStore Test', () => {
+    let convertResultsToCardSelectionStoreDataCallbackMock: IMock<ConvertResultsToCardSelectionStoreDataCallback>;
+
+    beforeEach(() => {
+        convertResultsToCardSelectionStoreDataCallbackMock =
+            Mock.ofType<ConvertResultsToCardSelectionStoreDataCallback>();
+    });
+
     test('constructor has no side effects', () => {
         const testObject = createStoreWithNullParams(CardSelectionStore);
         expect(testObject).toBeDefined();
@@ -75,9 +87,26 @@ describe('CardSelectionStore Test', () => {
             visualHelperEnabled: true,
         };
 
+        const callbackExpectedState = {
+            rules: {},
+            visualHelperEnabled: false,
+            focusedResultUid: null,
+        } as CardSelectionStoreData;
+        convertResultsToCardSelectionStoreDataCallbackMock
+            .setup(callback =>
+                callback(callbackExpectedState, {
+                    results: payload.scanResult,
+                } as UnifiedScanResultStoreData),
+            )
+            .returns(() => {
+                return expectedState;
+            })
+            .verifiable(Times.once());
+
         const storeTester =
             createStoreForUnifiedScanResultActions('scanCompleted').withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        convertResultsToCardSelectionStoreDataCallbackMock.verifyAll();
     });
 
     function getDefaultState(): CardSelectionStoreData {
@@ -97,6 +126,7 @@ describe('CardSelectionStore Test', () => {
                 null,
                 null,
                 true,
+                convertResultsToCardSelectionStoreDataCallbackMock.object,
             );
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);
