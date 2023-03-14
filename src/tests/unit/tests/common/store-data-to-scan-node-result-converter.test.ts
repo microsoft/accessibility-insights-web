@@ -49,6 +49,16 @@ describe('StoreDataToScanNodeResultConverter', () => {
             expect(convertStoreDataForScanNodeResults(storeData)).toEqual(expectedResult);
         });
 
+        test('unified data with no rules is converted successfully', () => {
+            const unifiedResult = exampleUnifiedResult;
+            const storeData = {
+                results: [unifiedResult],
+            } as UnifiedScanResultStoreData;
+
+            const expectedResult = [{ ...unifiedResult, rule: { id: unifiedResult.ruleId } }];
+            expect(convertStoreDataForScanNodeResults(storeData)).toEqual(expectedResult);
+        });
+
         test('unified data with multiple results is converted successfully', () => {
             const unifiedResultOne = cloneDeep(exampleUnifiedResult);
             const unifiedResultTwo = cloneDeep(exampleUnifiedResult);

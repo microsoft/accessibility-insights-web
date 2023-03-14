@@ -81,7 +81,6 @@ function convertUnifiedStoreDataToScanNodeResults(
 ): ScanNodeResult[] | null {
     if (
         isNullOrUndefined(unifiedScanResultStoreData) ||
-        isNullOrUndefined(unifiedScanResultStoreData.rules) ||
         isNullOrUndefined(unifiedScanResultStoreData.results)
     ) {
         return null;
@@ -89,7 +88,9 @@ function convertUnifiedStoreDataToScanNodeResults(
     const { rules, results } = unifiedScanResultStoreData;
 
     const transformedResults = results.map(unifiedResult => {
-        const rule = find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId);
+        const rule = rules
+            ? find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId)
+            : { id: unifiedResult.ruleId };
         if (rule == null) {
             throw new Error(`Got result with unknown ruleId ${unifiedResult.ruleId}`);
         }
