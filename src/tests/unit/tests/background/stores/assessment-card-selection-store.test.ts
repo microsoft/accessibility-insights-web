@@ -1,8 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
-import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
+import {
+    AssessmentCardSelectionInfo,
+    AssessmentCardSelectionStoreData,
+    AssessmentRuleInstances,
+} from 'common/types/store-data/assessment-card-selection-store-data';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { cloneDeep, forOwn } from 'lodash';
 
@@ -33,6 +38,60 @@ describe('AssessmentCardSelectionStore', () => {
         const defaultState = getDefaultState();
 
         expect(defaultState).toEqual({});
+    });
+
+    it('converts AssessmentCardSelectionInfo to AssessmentCardSelectionStoreData', () => {
+        const ruleData1: AssessmentRuleInstances = { 'rule-1': ['instance-1', 'instance-2'] };
+        const ruleData2: AssessmentRuleInstances = { 'rule-2': ['uid3', 'uid4', 'uid5'] };
+        const ruleData3: AssessmentRuleInstances = { 'rule-3': ['uid6'] };
+        const input: AssessmentCardSelectionInfo = {
+            'test-key-1': {
+                ...ruleData1,
+            },
+            'test-key-2': {
+                ...ruleData2,
+                ...ruleData3,
+            },
+        };
+
+        const output: AssessmentCardSelectionStoreData = {
+            'test-key-1': {
+                rules: {
+                    'rule-1': {
+                        isExpanded: false,
+                        cards: {
+                            'instance-1': false,
+                            'instance-2': false,
+                        },
+                    },
+                },
+                visualHelperEnabled: false,
+                focusedResultUid: null,
+            },
+            'test-key-2': {
+                rules: {
+                    'rule-2': {
+                        isExpanded: false,
+                        cards: {
+                            uid3: false,
+                            uid4: false,
+                            uid5: false,
+                        },
+                    },
+                    'rule-3': {
+                        isExpanded: false,
+                        cards: {
+                            uid6: false,
+                        },
+                    },
+                },
+                visualHelperEnabled: false,
+                focusedResultUid: null,
+            },
+        };
+
+        const testObject = createStoreWithNullParams(AssessmentCardSelectionStore);
+        expect(testObject.createStoreDataFromAssessmentInfo(input)).toEqual(output);
     });
 
     function getDefaultState(): AssessmentCardSelectionStoreData {
@@ -557,7 +616,15 @@ describe('AssessmentCardSelectionStore Test', () => {
         actionName: keyof AssessmentCardSelectionActions,
     ): StoreTester<AssessmentCardSelectionStoreData, AssessmentCardSelectionActions> {
         const factory = (actions: AssessmentCardSelectionActions) =>
-            new AssessmentCardSelectionStore(actions, null, null, null, null, true);
+            new AssessmentCardSelectionStore(
+                actions,
+                new AssessmentActions(),
+                null,
+                null,
+                null,
+                null,
+                true,
+            );
 
         return new StoreTester(AssessmentCardSelectionActions, actionName, factory);
     }

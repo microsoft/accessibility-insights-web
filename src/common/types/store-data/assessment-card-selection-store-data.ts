@@ -6,3 +6,13 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 export interface AssessmentCardSelectionStoreData {
     [testKey: string]: CardSelectionStoreData;
 }
+
+export interface AssessmentCardSelectionInfo {
+    [testKey: string]: AssessmentRuleInstances;
+}
+
+export type AssessmentRuleInstances = {
+    [ruleId: string]: InstanceUids;
+};
+
+type InstanceUids = string[];

@@ -1,12 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
-import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
-import { forOwn, isEmpty } from 'lodash';
+import {
+    AssessmentCardSelectionInfo,
+    AssessmentCardSelectionStoreData,
+} from 'common/types/store-data/assessment-card-selection-store-data';
+import { AssessmentData } from 'common/types/store-data/assessment-result-data';
+import { forEach, forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import {
     CardSelectionStoreData,
@@ -24,6 +29,7 @@ import {
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
+        private readonly assessmentActions: AssessmentActions,
         persistedState: AssessmentCardSelectionStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
@@ -57,13 +63,58 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.assessmentCardSelectionActions.navigateToNewCardsView.addListener(
             this.onNavigateToNewCardsView,
         );
+        // this.assessmentActions.scanCompleted.addListener(this.onScanCompleted);
     }
+
+    public override initialize(initialState?: AssessmentCardSelectionStoreData): void {
+        this.state =
+            initialState ||
+            (this.persistedState ??
+                /* assessmentStore persistedState data ??*/ this.getDefaultState());
+
+        this.addActionListeners();
+    }
+    // assume assessment scan completed and the data is in the payload. check injected controller
 
     public getDefaultState(): AssessmentCardSelectionStoreData {
         const defaultValue: AssessmentCardSelectionStoreData = {};
 
         return defaultValue;
     }
+
+    public createStoreDataFromAssessmentInfo(
+        assessmentInfo: AssessmentCardSelectionInfo,
+    ): AssessmentCardSelectionStoreData {
+        let storeData = {};
+
+        forOwn(assessmentInfo, (ruleInstances, testKey) => {
+            storeData[testKey] = {
+                rules: {},
+                visualHelperEnabled: false,
+                focusedResultUid: null,
+            };
+            forOwn(ruleInstances, (instanceUids, ruleId) => {
+                storeData[testKey].rules[ruleId] = {
+                    isExpanded: false,
+                    cards: this.createCardsFromInstances(instanceUids),
+                };
+            });
+        });
+
+        return storeData;
+    }
+
+    private createCardsFromInstances(instanceUids: string[]) {
+        const cards = {};
+        forEach(instanceUids, instanceUid => {
+            cards[instanceUid] = false;
+        });
+        return cards;
+    }
+
+    // private getPersistedStateFromAssessment(): AssessmentCardSelectionStoreData {
+    //     const assessmentPersistedState = {} as AssessmentData;
+    // }
 
     private deselectAllCards = (): void => {
         forOwn(this.state, test => {
