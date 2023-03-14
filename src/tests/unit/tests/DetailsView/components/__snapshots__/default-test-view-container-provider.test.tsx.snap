@@ -2,14 +2,21 @@
 
 exports[`DefaultTestViewContainerProvider can create assessment automated checks test view container 1`] = `
 <AdhocIssuesTestView
-  deps={
-    {
-      "automatedChecksCardSelectionMessageCreator": {},
-      "needsReviewCardSelectionMessageCreator": {},
-    }
-  }
+  assessmentActionMessageCreator={{}}
+  assessmentCardSelectionMessageCreator={{}}
+  assessmentCardsViewData={{}}
+  assessmentStoreData={{}}
+  automatedChecksCardSelectionMessageCreator={{}}
+  automatedChecksCardsViewData={{}}
+  cardSelectionMessageCreator={{}}
+  cardViewResultsHandler={[typemoq mock object]}
+  cardsViewData={{}}
+  detailsViewActionMessageCreator={{}}
+  handleCardCountResults={[Function]}
   includeStepsText={false}
   instancesSection={[Function]}
+  needsReviewCardSelectionMessageCreator={{}}
+  needsReviewCardsViewData={{}}
   someParentProp="parent-prop"
   visualizationScanResultData={
     {
@@ -18,17 +25,22 @@ exports[`DefaultTestViewContainerProvider can create assessment automated checks
       },
     }
   }
+  visualizationStoreData={{}}
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create assessment test view container 1`] = `
 <AssessmentTestView
-  deps={
-    {
-      "automatedChecksCardSelectionMessageCreator": {},
-      "needsReviewCardSelectionMessageCreator": {},
-    }
-  }
+  assessmentActionMessageCreator={{}}
+  assessmentCardSelectionMessageCreator={{}}
+  assessmentCardsViewData={{}}
+  assessmentStoreData={{}}
+  automatedChecksCardSelectionMessageCreator={{}}
+  automatedChecksCardsViewData={{}}
+  cardViewResultsHandler={[typemoq mock object]}
+  detailsViewActionMessageCreator={{}}
+  needsReviewCardSelectionMessageCreator={{}}
+  needsReviewCardsViewData={{}}
   someParentProp="parent-prop"
   visualizationScanResultData={
     {
@@ -37,18 +49,26 @@ exports[`DefaultTestViewContainerProvider can create assessment test view contai
       },
     }
   }
+  visualizationStoreData={{}}
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create issues test view container 1`] = `
 <AdhocIssuesTestView
-  deps={
-    {
-      "automatedChecksCardSelectionMessageCreator": {},
-      "needsReviewCardSelectionMessageCreator": {},
-    }
-  }
+  assessmentActionMessageCreator={{}}
+  assessmentCardSelectionMessageCreator={{}}
+  assessmentCardsViewData={{}}
+  assessmentStoreData={{}}
+  automatedChecksCardSelectionMessageCreator={{}}
+  automatedChecksCardsViewData={{}}
+  cardSelectionMessageCreator={{}}
+  cardViewResultsHandler={[typemoq mock object]}
+  cardsViewData={{}}
+  detailsViewActionMessageCreator={{}}
+  handleCardCountResults={[Function]}
   instancesSection={[Function]}
+  needsReviewCardSelectionMessageCreator={{}}
+  needsReviewCardsViewData={{}}
   someParentProp="parent-prop"
   visualizationScanResultData={
     {
@@ -57,18 +77,26 @@ exports[`DefaultTestViewContainerProvider can create issues test view container 
       },
     }
   }
+  visualizationStoreData={{}}
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create needs review test view container 1`] = `
 <AdhocIssuesTestView
-  deps={
-    {
-      "automatedChecksCardSelectionMessageCreator": {},
-      "needsReviewCardSelectionMessageCreator": {},
-    }
-  }
+  assessmentActionMessageCreator={{}}
+  assessmentCardSelectionMessageCreator={{}}
+  assessmentCardsViewData={{}}
+  assessmentStoreData={{}}
+  automatedChecksCardSelectionMessageCreator={{}}
+  automatedChecksCardsViewData={{}}
+  cardSelectionMessageCreator={{}}
+  cardViewResultsHandler={[typemoq mock object]}
+  cardsViewData={{}}
+  detailsViewActionMessageCreator={{}}
+  handleCardCountResults={[Function]}
   instancesSection={[Function]}
+  needsReviewCardSelectionMessageCreator={{}}
+  needsReviewCardsViewData={{}}
   someParentProp="parent-prop"
   visualizationScanResultData={
     {
@@ -77,17 +105,22 @@ exports[`DefaultTestViewContainerProvider can create needs review test view cont
       },
     }
   }
+  visualizationStoreData={{}}
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create static test view container 1`] = `
 <AdhocStaticTestView
-  deps={
-    {
-      "automatedChecksCardSelectionMessageCreator": {},
-      "needsReviewCardSelectionMessageCreator": {},
-    }
-  }
+  assessmentActionMessageCreator={{}}
+  assessmentCardSelectionMessageCreator={{}}
+  assessmentCardsViewData={{}}
+  assessmentStoreData={{}}
+  automatedChecksCardSelectionMessageCreator={{}}
+  automatedChecksCardsViewData={{}}
+  cardViewResultsHandler={[typemoq mock object]}
+  detailsViewActionMessageCreator={{}}
+  needsReviewCardSelectionMessageCreator={{}}
+  needsReviewCardsViewData={{}}
   someParentProp="parent-prop"
   visualizationScanResultData={
     {
@@ -96,17 +129,22 @@ exports[`DefaultTestViewContainerProvider can create static test view container 
       },
     }
   }
+  visualizationStoreData={{}}
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create tab stops test view container 1`] = `
 <AdhocTabStopsTestView
-  deps={
-    {
-      "automatedChecksCardSelectionMessageCreator": {},
-      "needsReviewCardSelectionMessageCreator": {},
-    }
-  }
+  assessmentActionMessageCreator={{}}
+  assessmentCardSelectionMessageCreator={{}}
+  assessmentCardsViewData={{}}
+  assessmentStoreData={{}}
+  automatedChecksCardSelectionMessageCreator={{}}
+  automatedChecksCardsViewData={{}}
+  cardViewResultsHandler={[typemoq mock object]}
+  detailsViewActionMessageCreator={{}}
+  needsReviewCardSelectionMessageCreator={{}}
+  needsReviewCardsViewData={{}}
   someParentProp="parent-prop"
   visualizationScanResultData={
     {
@@ -115,5 +153,6 @@ exports[`DefaultTestViewContainerProvider can create tab stops test view contain
       },
     }
   }
+  visualizationStoreData={{}}
 />
 `;

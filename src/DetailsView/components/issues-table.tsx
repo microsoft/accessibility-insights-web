@@ -14,6 +14,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { CardViewResultsHandlerCallback } from 'DetailsView/components/card-view-results-handler';
 import {
     IssueFilingDialog,
     IssueFilingDialogDeps,
@@ -47,7 +48,7 @@ export interface IssuesTableProps {
     visualizationStoreData: VisualizationStoreData;
     narrowModeStatus: NarrowModeStatus;
     cardsViewStoreData: CardsViewStoreData;
-    handleCardCountResults: (issuesEnabled: boolean, cardCount: number) => void;
+    handleCardCountResults: CardViewResultsHandlerCallback;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {

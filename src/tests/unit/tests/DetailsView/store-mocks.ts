@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
@@ -128,6 +129,14 @@ export class StoreMocks {
     ).getDefaultState();
     public needsReviewScanResultStoreData = new NeedsReviewScanResultStore(
         null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+    ).getDefaultState();
+    public assessmentCardSelectionStoreData = new AssessmentCardSelectionStore(
         null,
         null,
         null,

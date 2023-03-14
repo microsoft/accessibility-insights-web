@@ -11,6 +11,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { CardViewResultsHandlerCallback } from 'DetailsView/components/card-view-results-handler';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
@@ -32,7 +33,7 @@ export interface DetailsListIssuesViewProps {
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     narrowModeStatus: NarrowModeStatus;
     includeStepsText?: boolean;
-    handleCardCountResults: (issuesEnabled: boolean, cardCount: number) => void;
+    handleCardCountResults: CardViewResultsHandlerCallback;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(

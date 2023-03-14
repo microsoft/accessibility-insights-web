@@ -14,6 +14,7 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { VisualizationType } from 'common/types/visualization-type';
 import styles from 'DetailsView/components/adhoc-issues-test-view.scss';
 import { BannerWarnings } from 'DetailsView/components/banner-warnings';
+import { CardViewResultsHandlerCallback } from 'DetailsView/components/card-view-results-handler';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ScanIncompleteWarningDeps } from 'DetailsView/components/scan-incomplete-warning';
@@ -42,7 +43,7 @@ export type AdhocIssuesTestViewProps = {
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     narrowModeStatus: NarrowModeStatus;
-    handleCardCountResults: (issuesEnabled: boolean, cardCount: number) => void;
+    handleCardCountResults: CardViewResultsHandlerCallback;
 };
 
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(

@@ -2,10 +2,13 @@
 // Licensed under the MIT License.
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     TestViewContainer,
     TestViewContainerProps,
@@ -24,6 +27,9 @@ describe('TestViewContainer', () => {
     const automatedChecksCardSelectionMessageCreatorStub =
         {} as AutomatedChecksCardSelectionMessageCreator;
     const needsReviewCardSelectionMessageCreatorStub = {} as NeedsReviewCardSelectionMessageCreator;
+    const assessmentCardSelectionMessageCreatorStub = {} as AssessmentCardSelectionMessageCreator;
+    const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
+    const assessmentActionMessageCreatorStub = {} as AssessmentActionMessageCreator;
     let configStub: VisualizationConfiguration;
     let configFactoryStub: VisualizationConfigurationFactory;
     let props: TestViewContainerProps;
@@ -50,6 +56,9 @@ describe('TestViewContainer', () => {
                 automatedChecksCardSelectionMessageCreator:
                     automatedChecksCardSelectionMessageCreatorStub,
                 needsReviewCardSelectionMessageCreator: needsReviewCardSelectionMessageCreatorStub,
+                assessmentCardSelectionMessageCreator: assessmentCardSelectionMessageCreatorStub,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
+                assessmentActionMessageCreator: assessmentActionMessageCreatorStub,
             },
             someParentProp: 'parent-prop',
             visualizationConfigurationFactory: configFactoryStub,
@@ -73,6 +82,10 @@ describe('TestViewContainer', () => {
                         automatedChecksCardSelectionMessageCreatorStub,
                     needsReviewCardSelectionMessageCreator:
                         needsReviewCardSelectionMessageCreatorStub,
+                    assessmentCardSelectionMessageCreator:
+                        assessmentCardSelectionMessageCreatorStub,
+                    detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
+                    assessmentActionMessageCreator: assessmentActionMessageCreatorStub,
                 }),
             )
             .returns(() => elementStub)

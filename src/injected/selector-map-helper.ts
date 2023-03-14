@@ -86,6 +86,7 @@ export class SelectorMapHelper {
                 VisualizationType.Color,
                 VisualizationType.NeedsReview,
                 VisualizationType.AccessibleNames,
+                VisualizationType.AutomatedChecks,
             ],
             visualizationType,
         );

@@ -238,9 +238,18 @@ describe(DetailsViewContent.displayName, () => {
                 .returns(() => cardSelectionViewData)
                 .verifiable(Times.exactly(2));
 
+            getCardSelectionViewDataMock
+                .setup(g => g(undefined, null, null, isResultHighlightUnavailableStub))
+                .returns(() => cardSelectionViewData)
+                .verifiable(Times.exactly(1));
+
             const cardsViewData: CardsViewModel = {} as any;
             getCardViewDataMock
                 .setup(m => m(state.unifiedScanResultStoreData, cardSelectionViewData))
+                .returns(() => cardsViewData);
+
+            getCardViewDataMock
+                .setup(m => m(state.assessmentStoreData, cardSelectionViewData))
                 .returns(() => cardsViewData);
 
             const rendered = shallow(
@@ -291,6 +300,8 @@ describe(DetailsViewContent.displayName, () => {
                         scopingPanelStateStoreData: storeMocks.scopingStoreData,
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
                         unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
+                        assessmentCardSelectionStoreData:
+                            storeMocks.assessmentCardSelectionStoreData,
                         needsReviewScanResultStoreData: storeMocks.needsReviewScanResultStoreData,
                         needsReviewCardSelectionStoreData:
                             storeMocks.needsReviewCardSelectionStoreData,
@@ -354,6 +365,7 @@ describe(DetailsViewContent.displayName, () => {
             scopingPanelStateStoreData: storeMocks.scopingSelectorsData,
             unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
             needsReviewScanResultStoreData: storeMocks.needsReviewScanResultStoreData,
+            assessmentCardSelectionStoreData: storeMocks.assessmentCardSelectionStoreData,
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
             cardSelectionStoreData: storeMocks.cardSelectionStoreData,

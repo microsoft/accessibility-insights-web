@@ -9,6 +9,7 @@ import { AdhocIssuesTestViewProps } from 'DetailsView/components/adhoc-issues-te
 import { AdhocStaticTestViewProps } from 'DetailsView/components/adhoc-static-test-view';
 import { AdhocTabStopsTestViewProps } from 'DetailsView/components/adhoc-tab-stops-test-view';
 import { AssessmentTestViewProps } from 'DetailsView/components/assessment-test-view';
+import { CardViewResultsHandler } from 'DetailsView/components/card-view-results-handler';
 
 export type TestViewContainerProviderProps = {
     needsReviewCardsViewData: CardsViewModel;
@@ -20,6 +21,7 @@ export type TestViewContainerProviderProps = {
     assessmentStoreData: AssessmentStoreData;
     assessmentActionMessageCreator: AssessmentActionMessageCreator;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    cardViewResultsHandler: CardViewResultsHandler;
 } & Omit<
     AdhocIssuesTestViewProps,
     'instancesSection' | 'cardSelectionMessageCreator' | 'cardsViewData' | 'handleCardCountResults'

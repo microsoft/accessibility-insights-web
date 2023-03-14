@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
@@ -42,6 +43,9 @@ describe('SelectorMapHelperTest', () => {
         VisualizationType.Issues,
         VisualizationType.NeedsReview,
     ];
+
+    const assessmentVisualizationTypes = [VisualizationType.AutomatedChecks];
+
     beforeEach(() => {
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         getElementBasedViewModelMock = Mock.ofType<GetElementBasedViewModelCallback>();
@@ -98,6 +102,33 @@ describe('SelectorMapHelperTest', () => {
             getElementBasedViewModelMock
                 .setup(gebvm =>
                     gebvm(storeData.unifiedScanResultStoreData, storeData.cardSelectionStoreData),
+                )
+                .returns(() => selectorMap);
+
+            expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
+                selectorMap,
+            );
+        });
+    });
+
+    assessmentVisualizationTypes.forEach(visualizationType => {
+        test(`getState: ${VisualizationType[visualizationType]}`, () => {
+            const selectorMap = {
+                key1: { target: ['element1'] } as AssessmentVisualizationInstance,
+            };
+            const assessmentStoreDataStub = {} as AssessmentStoreData;
+            const assessmentCardSelectionStoreDataStub = {} as CardSelectionStoreData;
+
+            const storeData: VisualizationRelatedStoreData = {
+                assessmentStoreData: assessmentStoreDataStub,
+                assessmentCardSelectionStoreData: {
+                    [visualizationType]: assessmentCardSelectionStoreDataStub,
+                },
+            } as unknown as VisualizationRelatedStoreData;
+
+            getElementBasedViewModelMock
+                .setup(gebvm =>
+                    gebvm(assessmentStoreDataStub, assessmentCardSelectionStoreDataStub),
                 )
                 .returns(() => selectorMap);
 
