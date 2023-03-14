@@ -140,7 +140,9 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         const assessmentCardsViewData = props.deps.getCardViewData(
             props.storeState.assessmentStoreData,
             props.deps.getCardSelectionViewData(
-                props.storeState.assessmentCardSelectionStoreData[selectedTest],
+                props.storeState.assessmentCardSelectionStoreData
+                    ? props.storeState.assessmentCardSelectionStoreData[selectedTest]
+                    : null,
                 convertStoreDataForScanNodeResults(props.storeState.assessmentStoreData),
                 null,
                 props.deps.isResultHighlightUnavailable,

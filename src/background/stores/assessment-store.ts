@@ -442,7 +442,10 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
             this.generateDefaultState(null),
         );
         this.state.assessments[test.key] = defaultTestStatus;
-        this.state.assessmentNavState.selectedTestSubview = test.requirements[0].key;
+
+        if (this.state.assessmentNavState.selectedTestType === payload.test) {
+            this.state.assessmentNavState.selectedTestSubview = test.requirements[0].key;
+        }
         await this.emitChanged();
     };
 

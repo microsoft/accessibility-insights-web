@@ -119,7 +119,9 @@ export class SelectorMapHelper {
             case VisualizationType.AutomatedChecks:
                 selectorMap = this.getElementBasedViewModel(
                     assessmentStoreData,
-                    assessmentCardSelectionStoreData[visualizationType],
+                    assessmentCardSelectionStoreData
+                        ? assessmentCardSelectionStoreData[visualizationType]
+                        : null,
                 );
                 break;
             case VisualizationType.Headings:

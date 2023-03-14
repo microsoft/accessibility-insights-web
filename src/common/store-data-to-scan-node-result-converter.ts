@@ -24,12 +24,12 @@ export type ScanNodeResult = UnifiedResult & {
 };
 
 export type ConvertStoreDataForScanNodeResultsCallback = (
-    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
+    storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
     cardSelectionStoreData?: CardSelectionStoreData,
 ) => ScanNodeResult[] | null;
 
 export const convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = (
-    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
+    storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
     cardSelectionStoreData?: CardSelectionStoreData,
 ): ScanNodeResult[] | null => {
     let results: ScanNodeResult[] | null = convertUnifiedStoreDataToScanNodeResults(
@@ -45,7 +45,7 @@ export const convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResu
 };
 
 function convertUnifiedStoreDataToScanNodeResults(
-    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    unifiedScanResultStoreData: UnifiedScanResultStoreData | null,
 ): ScanNodeResult[] | null {
     if (
         isNullOrUndefined(unifiedScanResultStoreData) ||
@@ -73,7 +73,7 @@ function convertUnifiedStoreDataToScanNodeResults(
 }
 
 function convertAssessmentStoreDataToScanNodeResults(
-    assessmentStoreData: AssessmentStoreData,
+    assessmentStoreData: AssessmentStoreData | null,
     cardSelectionStoreData?: CardSelectionStoreData,
 ): ScanNodeResult[] | null {
     if (
