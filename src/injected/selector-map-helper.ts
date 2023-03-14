@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -12,10 +11,7 @@ import { GetElementBasedViewModelCallback } from 'injected/element-based-view-mo
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { GetVisualizationInstancesForTabStops } from 'injected/visualization/get-visualization-instances-for-tab-stops';
 import { includes } from 'lodash';
-import {
-    AssessmentStoreData,
-    GeneratedAssessmentInstance,
-} from '../common/types/store-data/assessment-result-data';
+import { GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
@@ -61,8 +57,15 @@ export class SelectorMapHelper {
                 cardSelectionStoreData,
                 needsReviewScanResultStoreData,
                 needsReviewCardSelectionStoreData,
+            );
+        }
+
+        if (visualizationType === VisualizationType.AutomatedChecks) {
+            return this.getElementBasedViewModel(
                 assessmentStoreData,
-                assessmentCardSelectionStoreData,
+                assessmentCardSelectionStoreData
+                    ? assessmentCardSelectionStoreData[visualizationType]
+                    : null,
             );
         }
 
@@ -86,7 +89,6 @@ export class SelectorMapHelper {
                 VisualizationType.Color,
                 VisualizationType.NeedsReview,
                 VisualizationType.AccessibleNames,
-                VisualizationType.AutomatedChecks,
             ],
             visualizationType,
         );
@@ -99,8 +101,6 @@ export class SelectorMapHelper {
         cardSelectionStoreData: CardSelectionStoreData,
         needsReviewScanData: NeedsReviewScanResultStoreData,
         needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData,
-        assessmentStoreData: AssessmentStoreData,
-        assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData,
     ): SelectorToVisualizationMap {
         let selectorMap = {};
         switch (visualizationType) {
@@ -114,14 +114,6 @@ export class SelectorMapHelper {
                 selectorMap = this.getElementBasedViewModel(
                     unifiedScanData,
                     cardSelectionStoreData,
-                );
-                break;
-            case VisualizationType.AutomatedChecks:
-                selectorMap = this.getElementBasedViewModel(
-                    assessmentStoreData,
-                    assessmentCardSelectionStoreData
-                        ? assessmentCardSelectionStoreData[visualizationType]
-                        : null,
                 );
                 break;
             case VisualizationType.Headings:

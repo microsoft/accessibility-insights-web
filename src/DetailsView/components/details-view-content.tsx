@@ -137,13 +137,23 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             ),
         );
 
+        const assessmentStoreData =
+            selectedDetailsViewSwitcherNavConfiguration.getSelectedAssessmentStoreData(
+                props.storeState,
+            );
+
+        const assessmentCardSelectionStoreData =
+            selectedDetailsViewSwitcherNavConfiguration.getSelectedAssessmentCardSelectionStoreData(
+                props.storeState,
+            );
+
         const assessmentCardsViewData = props.deps.getCardViewData(
-            props.storeState.assessmentStoreData,
+            assessmentStoreData,
             props.deps.getCardSelectionViewData(
-                props.storeState.assessmentCardSelectionStoreData
-                    ? props.storeState.assessmentCardSelectionStoreData[selectedTest]
+                assessmentCardSelectionStoreData
+                    ? assessmentCardSelectionStoreData[selectedTest]
                     : null,
-                convertStoreDataForScanNodeResults(props.storeState.assessmentStoreData),
+                convertStoreDataForScanNodeResults(assessmentStoreData),
                 null,
                 props.deps.isResultHighlightUnavailable,
             ),
@@ -167,10 +177,6 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         };
 
         const assessmentInstanceTableHandler = props.deps.getAssessmentInstanceTableHandler();
-        const assessmentStoreData =
-            selectedDetailsViewSwitcherNavConfiguration.getSelectedAssessmentStoreData(
-                props.storeState,
-            );
 
         const overviewHeadingIntroText =
             selectedDetailsViewSwitcherNavConfiguration.overviewHeadingIntroText;

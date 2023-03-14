@@ -144,6 +144,14 @@ export class StoreMocks {
         null,
         null,
     ).getDefaultState();
+    public quickAssessCardSelectionStoreData = new AssessmentCardSelectionStore(
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+    ).getDefaultState();
     public launchPanelStateStoreData = new LaunchPanelStore(null, null, null).getDefaultState();
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,

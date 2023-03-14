@@ -54,6 +54,7 @@ export interface DetailsViewContainerState {
     needsReviewScanResultStoreData: NeedsReviewScanResultStoreData;
     needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData;
     assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData;
+    quickAssessCardSelectionStoreData: AssessmentCardSelectionStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewStoreData;
     assessmentStoreData: AssessmentStoreData;
