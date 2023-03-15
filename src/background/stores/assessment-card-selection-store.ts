@@ -64,10 +64,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     }
 
     public override initialize(initialState?: AssessmentCardSelectionStoreData): void {
-        this.state =
-            initialState ||
-            (this.persistedState ??
-                /* assessmentStore persistedState data ??*/ this.getDefaultState());
+        this.state = initialState || (this.persistedState ?? this.getDefaultState());
 
         this.addActionListeners();
     }
