@@ -7,6 +7,7 @@ import {
     TransferAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
+import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { CommandActions } from 'background/actions/command-actions';
 import { DataTransferActions } from 'background/actions/data-transfer-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
@@ -221,6 +222,9 @@ class GlobalActionCreatorValidator {
     private dataTransferActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private assessmentActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private quickAssessActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private assessmentCardSelectionActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private quickAssessCardSelectionActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> =
+        {};
     private registeredCallbacksMap: DictionaryStringTo<PayloadCallback<any>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
@@ -228,6 +232,12 @@ class GlobalActionCreatorValidator {
     private launchPanelStateActionsContainerMock = Mock.ofType(LaunchPanelStateActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private quickAssessActionsContainerMock = Mock.ofType(AssessmentActions);
+    private assessmentCardSelectionActionsContainerMock = Mock.ofType(
+        AssessmentCardSelectionActions,
+    );
+    private quickAssessCardSelectionActionsContainerMock = Mock.ofType(
+        AssessmentCardSelectionActions,
+    );
     private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
     private permissionsStateActionsContainerMock = Mock.ofType(PermissionsStateActions);
     private dataTransferActionsMock = Mock.ofType(DataTransferActions);
@@ -243,6 +253,8 @@ class GlobalActionCreatorValidator {
         scopingActions: null,
         assessmentActions: this.assessmentActionsContainerMock.object,
         quickAssessActions: this.quickAssessActionsContainerMock.object,
+        assessmentCardSelectionActions: this.assessmentCardSelectionActionsContainerMock.object,
+        quickAssessCardSelectionActions: this.quickAssessCardSelectionActionsContainerMock.object,
         userConfigurationActions: this.userConfigActionsContainerMock.object,
         permissionsStateActions: this.permissionsStateActionsContainerMock.object,
         dataTransferActions: this.dataTransferActionsMock.object,
@@ -297,6 +309,26 @@ class GlobalActionCreatorValidator {
             actionName,
             this.quickAssessActionsContainerMock,
             this.quickAssessActionsMockMap,
+        );
+    }
+
+    public setupActionOnAssessmentCardSelectionActions(
+        actionName: string,
+    ): GlobalActionCreatorValidator {
+        return this.setupAction(
+            actionName,
+            this.assessmentCardSelectionActionsContainerMock,
+            this.assessmentCardSelectionActionsMockMap,
+        );
+    }
+
+    public setupActionOnQuickAssessCardSelectionActions(
+        actionName: string,
+    ): GlobalActionCreatorValidator {
+        return this.setupAction(
+            actionName,
+            this.quickAssessCardSelectionActionsContainerMock,
+            this.quickAssessCardSelectionActionsMockMap,
         );
     }
 
@@ -476,6 +508,7 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.launchPanelActionsMockMap);
         this.verifyAllActions(this.assessmentActionsMockMap);
         this.verifyAllActions(this.quickAssessActionsMockMap);
+        this.verifyAllActions(this.assessmentCardSelectionActionsMockMap);
     }
 
     private verifyAllActions(

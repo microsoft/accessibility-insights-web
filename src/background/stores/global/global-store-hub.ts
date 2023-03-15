@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { DataTransferStore } from 'background/stores/global/data-transfer-store';
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
@@ -35,6 +36,8 @@ export class GlobalStoreHub implements StoreHub {
     public launchPanelStore: LaunchPanelStore;
     public scopingStore: ScopingStore;
     public assessmentStore: AssessmentStore;
+    public quickAssessCardSelectionStore: AssessmentCardSelectionStore;
+    public assessmentCardSelectionStore: AssessmentCardSelectionStore;
     public quickAssessStore: AssessmentStore;
     public dataTransferStore: DataTransferStore;
     public userConfigurationStore: UserConfigurationStore;
@@ -106,6 +109,22 @@ export class GlobalStoreHub implements StoreHub {
             StoreNames.QuickAssessStore,
             IndexedDBDataKeys.quickAssessStore,
         );
+        this.assessmentCardSelectionStore = new AssessmentCardSelectionStore(
+            globalActionHub.assessmentCardSelectionActions,
+            persistedData.assessmentCardSelectionStoreData,
+            indexedDbInstance,
+            logger,
+            persistStoreData,
+            IndexedDBDataKeys.assessmentCardSelectionStore,
+        );
+        this.quickAssessCardSelectionStore = new AssessmentCardSelectionStore(
+            globalActionHub.quickAssessCardSelectionActions,
+            persistedData.quickAssessCardSelectionStoreData,
+            indexedDbInstance,
+            logger,
+            persistStoreData,
+            IndexedDBDataKeys.quickAssessCardSelectionStore,
+        );
         this.userConfigurationStore = new UserConfigurationStore(
             persistedData.userConfigurationData,
             globalActionHub.userConfigurationActions,
@@ -129,6 +148,8 @@ export class GlobalStoreHub implements StoreHub {
         this.scopingStore.initialize();
         this.assessmentStore.initialize();
         this.quickAssessStore.initialize();
+        this.assessmentCardSelectionStore.initialize();
+        this.quickAssessCardSelectionStore.initialize();
         this.userConfigurationStore.initialize();
         this.permissionsStateStore.initialize();
         this.dataTransferStore.initialize();
@@ -142,6 +163,8 @@ export class GlobalStoreHub implements StoreHub {
             this.scopingStore,
             this.assessmentStore,
             this.quickAssessStore,
+            this.assessmentCardSelectionStore,
+            this.quickAssessCardSelectionStore,
             this.userConfigurationStore,
             this.permissionsStateStore,
             this.dataTransferStore,
