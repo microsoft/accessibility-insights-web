@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
-import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { DataTransferStore } from 'background/stores/global/data-transfer-store';
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
@@ -40,7 +39,6 @@ export class GlobalStoreHub implements StoreHub {
     public dataTransferStore: DataTransferStore;
     public userConfigurationStore: UserConfigurationStore;
     public permissionsStateStore: PermissionsStateStore;
-    public assessmentCardSelectionStore: AssessmentCardSelectionStore;
 
     constructor(
         globalActionHub: GlobalActionHub,
@@ -122,13 +120,6 @@ export class GlobalStoreHub implements StoreHub {
             persistStoreData,
         );
         this.dataTransferStore = new DataTransferStore(globalActionHub.dataTransferActions);
-        this.assessmentCardSelectionStore = new AssessmentCardSelectionStore(
-            globalActionHub.assessmentCardSelectionActions,
-            persistedData.assessmentCardSelectionStoreData,
-            indexedDbInstance,
-            logger,
-            persistStoreData,
-        );
     }
 
     public initialize(): void {
@@ -141,7 +132,6 @@ export class GlobalStoreHub implements StoreHub {
         this.userConfigurationStore.initialize();
         this.permissionsStateStore.initialize();
         this.dataTransferStore.initialize();
-        this.assessmentCardSelectionStore.initialize();
     }
 
     public getAllStores(): BaseStore<any, Promise<void>>[] {

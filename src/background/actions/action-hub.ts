@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
@@ -37,7 +36,6 @@ export class ActionHub {
     public sidePanelActions: SidePanelActions;
     public needsReviewScanResultActions: NeedsReviewScanResultActions;
     public needsReviewCardSelectionActions: NeedsReviewCardSelectionActions;
-    public assessmentCardSelectionActions: AssessmentCardSelectionActions;
 
     constructor() {
         this.visualizationActions = new VisualizationActions();
@@ -57,6 +55,5 @@ export class ActionHub {
         this.sidePanelActions = new SidePanelActions();
         this.needsReviewScanResultActions = new NeedsReviewScanResultActions();
         this.needsReviewCardSelectionActions = new NeedsReviewCardSelectionActions();
-        this.assessmentCardSelectionActions = new AssessmentCardSelectionActions();
     }
 }

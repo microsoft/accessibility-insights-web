@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentCardSelectionActionCreator } from 'background/actions/assessment-card-selection-action-creator';
 import { NeedsReviewCardSelectionActionCreator } from 'background/actions/needs-review-card-selection-action-creator';
 import { NeedsReviewScanResultActionCreator } from 'background/actions/needs-review-scan-result-action-creator';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
@@ -174,11 +173,6 @@ export class TabContextFactory {
             storeHub.inspectStore,
             this.logger,
         );
-        const assessmentCardSelectionActionCreator = new AssessmentCardSelectionActionCreator(
-            interpreter,
-            actionsHub.assessmentCardSelectionActions,
-            this.telemetryEventHandler,
-        );
 
         const messageBroadcaster = this.broadcasterFactory.createTabSpecificBroadcaster(tabId);
 
@@ -197,7 +191,6 @@ export class TabContextFactory {
         unifiedScanResultActionCreator.registerCallbacks();
         cardSelectionActionCreator.registerCallbacks();
         injectionActionCreator.registerCallbacks();
-        assessmentCardSelectionActionCreator.registerCallbacks();
 
         injectorController.initialize();
         const dispatcher = new StateDispatcher(messageBroadcaster, storeHub, this.logger);
