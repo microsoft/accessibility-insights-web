@@ -7,6 +7,7 @@ import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { convertResultsToCardSelectionStoreData } from 'common/store-data-to-scan-node-result-converter';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import {
@@ -78,12 +79,18 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onAssessmentStoreChanged = async (
         payload: AssessmentStoreChangedPayload,
     ): Promise<void> => {
-        console.log('assessment card selection store');
-        forOwn(this.state, test => {
-            test = convertResultsToCardSelectionStoreData(test, payload.assessmentStoreData);
+        forOwn(payload.assessmentStoreData.assessments, (assessment, key) => {
+            this.state[key] = convertResultsToCardSelectionStoreData(
+                this.state[key] ?? {
+                    rules: null,
+                    visualHelperEnabled: false,
+                    focusedResultUid: null,
+                },
+                payload.assessmentStoreData,
+                key as unknown as VisualizationType,
+            );
         });
 
-        console.log(this.state);
         await this.emitChanged();
     };
 

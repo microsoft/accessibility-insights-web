@@ -3,6 +3,10 @@
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
+import {
+    AssessmentNavState,
+    AssessmentStoreData,
+} from 'common/types/store-data/assessment-result-data';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { cloneDeep, forOwn } from 'lodash';
 
@@ -13,31 +17,27 @@ import {
     AssessmentNavigateToNewCardsViewPayload,
     AssessmentResetFocusedIdentifierPayload,
     AssessmentSingleRuleExpandCollapsePayload,
+    AssessmentStoreChangedPayload,
 } from '../../../../../background/actions/action-payloads';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
 describe('AssessmentCardSelectionStore', () => {
+    let testObject;
+    beforeEach(() => {
+        testObject = createStoreWithNullParams(AssessmentCardSelectionStore);
+    });
     it('constructor has no side effects', () => {
-        const testObject = createStoreWithNullParams(AssessmentCardSelectionStore);
         expect(testObject).toBeDefined();
     });
 
     it('getId', () => {
-        const testObject = createStoreWithNullParams(AssessmentCardSelectionStore);
-
         expect(testObject.getId()).toEqual(StoreNames[StoreNames.AssessmentCardSelectionStore]);
     });
 
     it('check defaultState is as expected', () => {
-        const defaultState = getDefaultState();
-
-        expect(defaultState).toEqual({});
+        expect(testObject.getDefaultState()).toEqual({});
     });
-
-    function getDefaultState(): AssessmentCardSelectionStoreData {
-        return createStoreWithNullParams(AssessmentCardSelectionStore).getDefaultState();
-    }
 });
 
 describe('AssessmentCardSelectionStore Test', () => {
@@ -83,6 +83,131 @@ describe('AssessmentCardSelectionStore Test', () => {
 
         initialState = cloneDeep(defaultState);
         expectedState = cloneDeep(defaultState);
+    });
+
+    describe('initialize', () => {
+        it('sets the state based on param', () => {
+            const testObject = new AssessmentCardSelectionStore(
+                new AssessmentCardSelectionActions(),
+                null,
+                null,
+                null,
+                false,
+            );
+            testObject.initialize(initialState);
+
+            expect(testObject.getState()).toEqual(expectedState);
+        });
+
+        it('sets the state based on persisted state if no param', () => {
+            const testObject = new AssessmentCardSelectionStore(
+                new AssessmentCardSelectionActions(),
+                initialState,
+                null,
+                null,
+                true,
+            );
+            testObject.initialize();
+
+            expect(testObject.getState()).toEqual(expectedState);
+        });
+
+        it('sets the state to default state if no param or persisted state', () => {
+            const testObject = new AssessmentCardSelectionStore(
+                new AssessmentCardSelectionActions(),
+                null,
+                null,
+                null,
+                false,
+            );
+            testObject.initialize();
+
+            expect(testObject.getState()).toEqual({});
+        });
+    });
+
+    describe('onAssessmentStoreChanged', () => {
+        let assessmentStoreData: AssessmentStoreData;
+        beforeEach(() => {
+            assessmentStoreData = {
+                persistedTabInfo: {},
+                assessments: {
+                    testKey1: {
+                        fullAxeResultsMap: {},
+                        generatedAssessmentInstancesMap: {
+                            selector1: {
+                                target: ['selector1'],
+                                html: 'html1',
+                                testStepResults: {
+                                    ...testStepResult('sampleRuleId1', 'sampleUid1', 2),
+                                    ...testStepResult('sampleRuleId2', 'sampleUid1', 2),
+                                },
+                                propertyBag: null,
+                            },
+                            selector2: {
+                                target: ['selector2'],
+                                html: 'html2',
+                                testStepResults: {
+                                    ...testStepResult('sampleRuleId1', 'sampleUid2', 2),
+                                    ...testStepResult('sampleRuleId2', 'sampleUid2', 2),
+                                },
+                                propertyBag: null,
+                            },
+                        },
+                        testStepStatus: {},
+                    },
+                    testKey2: {
+                        fullAxeResultsMap: {},
+                        generatedAssessmentInstancesMap: {
+                            selector2: {
+                                target: ['selector2'],
+                                html: 'html1',
+                                testStepResults: {
+                                    ...testStepResult('sampleRuleId3', 'sampleUid3', 2),
+                                },
+                                propertyBag: null,
+                            },
+                            selector3: {
+                                target: ['selector3'],
+                                html: 'html2',
+                                testStepResults: {
+                                    ...testStepResult('sampleRuleId3', 'sampleUid4', 2),
+                                },
+                                propertyBag: null,
+                            },
+                        },
+                        testStepStatus: {},
+                    },
+                },
+                assessmentNavState: {} as AssessmentNavState,
+                resultDescription: '',
+            };
+        });
+        it('does not create cards when assessment data contains no failure instances', () => {});
+        it('sets the store state with assessment data', async () => {
+            const payload: AssessmentStoreChangedPayload = {
+                assessmentStoreData,
+            };
+
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions(
+                    'assessmentStoreChanged',
+                ).withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(null, expectedState);
+        });
+
+        const testStepResult = (ruleId: string, uid: string, status) => {
+            return {
+                [ruleId]: {
+                    id: uid,
+                    status: status,
+                    isCapturedByUser: false,
+                    isVisualizationSupported: true,
+                    isVisualizationEnabled: false,
+                    isVisible: true,
+                },
+            };
+        };
     });
 
     describe('toggleRuleExpandCollapse', () => {
