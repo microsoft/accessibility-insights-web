@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
