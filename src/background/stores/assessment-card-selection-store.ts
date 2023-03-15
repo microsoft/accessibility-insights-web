@@ -28,15 +28,9 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         logger: Logger,
         persistStoreData: boolean,
         indexDBKey: string,
+        storeName: StoreNames,
     ) {
-        super(
-            StoreNames.AssessmentCardSelectionStore,
-            persistedState,
-            idbInstance,
-            indexDBKey,
-            logger,
-            persistStoreData,
-        );
+        super(storeName, persistedState, idbInstance, indexDBKey, logger, persistStoreData);
     }
 
     protected addActionListeners(): void {

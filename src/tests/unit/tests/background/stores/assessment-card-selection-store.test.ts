@@ -23,8 +23,16 @@ describe('AssessmentCardSelectionStore', () => {
         expect(testObject).toBeDefined();
     });
 
-    it('getId', () => {
-        const testObject = createStoreWithNullParams(AssessmentCardSelectionStore);
+    test('getId', () => {
+        const testObject = new AssessmentCardSelectionStore(
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            StoreNames.AssessmentCardSelectionStore,
+        );
 
         expect(testObject.getId()).toEqual(StoreNames[StoreNames.AssessmentCardSelectionStore]);
     });
@@ -557,7 +565,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         actionName: keyof AssessmentCardSelectionActions,
     ): StoreTester<AssessmentCardSelectionStoreData, AssessmentCardSelectionActions> {
         const factory = (actions: AssessmentCardSelectionActions) =>
-            new AssessmentCardSelectionStore(actions, null, null, null, true, '');
+            new AssessmentCardSelectionStore(actions, null, null, null, true, '', null);
 
         return new StoreTester(AssessmentCardSelectionActions, actionName, factory);
     }

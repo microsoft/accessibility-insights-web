@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
+import { TestMode } from 'common/configs/test-mode';
 import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
@@ -36,7 +37,9 @@ export type TestViewContainerDeps = {
     automatedChecksCardSelectionMessageCreator: AutomatedChecksCardSelectionMessageCreator;
     needsReviewCardSelectionMessageCreator: NeedsReviewCardSelectionMessageCreator;
     assessmentCardSelectionMessageCreator: AssessmentCardSelectionMessageCreator;
+    quickAssessCardSelectionMessageCreator: AssessmentCardSelectionMessageCreator;
     assessmentActionMessageCreator: AssessmentActionMessageCreator;
+    quickAssessActionMessageCreator: AssessmentActionMessageCreator;
 } & TestViewDeps &
     OverviewContainerDeps &
     AdhocTabStopsTestViewDeps;
@@ -79,8 +82,14 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
         automatedChecksCardSelectionMessageCreator:
             props.deps.automatedChecksCardSelectionMessageCreator,
         needsReviewCardSelectionMessageCreator: props.deps.needsReviewCardSelectionMessageCreator,
-        assessmentCardSelectionMessageCreator: props.deps.assessmentCardSelectionMessageCreator,
-        assessmentActionMessageCreator: props.deps.assessmentActionMessageCreator,
+        assessmentCardSelectionMessageCreator:
+            configuration.testMode === TestMode.QuickAssess
+                ? props.deps.quickAssessCardSelectionMessageCreator
+                : props.deps.assessmentCardSelectionMessageCreator,
+        assessmentActionMessageCreator:
+            configuration.testMode === TestMode.QuickAssess
+                ? props.deps.quickAssessActionMessageCreator
+                : props.deps.assessmentActionMessageCreator,
         detailsViewActionMessageCreator: props.deps.detailsViewActionMessageCreator,
     };
 

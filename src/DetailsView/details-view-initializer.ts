@@ -241,6 +241,10 @@ if (tabId != null) {
                 StoreNames[StoreNames.AssessmentCardSelectionStore],
                 storeUpdateMessageHub,
             );
+            const quickAssessCardSelectionStore = new StoreProxy<AssessmentCardSelectionStoreData>(
+                StoreNames[StoreNames.QuickAssessCardSelectionStore],
+                storeUpdateMessageHub,
+            );
             const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(
                 StoreNames[StoreNames.PathSnippetStore],
                 storeUpdateMessageHub,
@@ -298,6 +302,7 @@ if (tabId != null) {
                 needsReviewScanResultStore,
                 needsReviewCardSelectionStore,
                 assessmentCardSelectionStore,
+                quickAssessCardSelectionStore,
                 visualizationStore,
                 assessmentStore,
                 quickAssessStore,
@@ -507,7 +512,16 @@ if (tabId != null) {
                 actionMessageDispatcher,
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
+                Messages.AssessmentCardSelection,
             );
+
+            const quickAssessCardSelectionMessageCreator =
+                new AssessmentCardSelectionMessageCreator(
+                    actionMessageDispatcher,
+                    telemetryFactory,
+                    TelemetryEventSource.DetailsView,
+                    Messages.QuickAssessCardSelection,
+                );
 
             const windowUtils = new WindowUtils();
 
@@ -666,7 +680,9 @@ if (tabId != null) {
                 automatedChecksCardSelectionMessageCreator,
                 needsReviewCardSelectionMessageCreator,
                 assessmentCardSelectionMessageCreator,
+                quickAssessCardSelectionMessageCreator,
                 assessmentActionMessageCreator,
+                quickAssessActionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
                 allUrlsPermissionHandler: new AllUrlsPermissionHandler(
