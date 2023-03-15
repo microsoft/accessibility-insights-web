@@ -11,6 +11,7 @@ import {
     QuickAssessRequirementMap,
 } from 'assessments/quick-assess-requirements';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
+import { AssessmentCardController } from 'background/assessment-card-controller';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { createToolData } from 'common/application-properties-provider';
@@ -33,6 +34,7 @@ import { Globalization } from 'common/globalization';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
+import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { Messages } from 'common/messages';
@@ -40,6 +42,7 @@ import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { Tab } from 'common/types/store-data/itab';
@@ -280,6 +283,23 @@ if (tabId != null) {
                 dataTransferViewActions,
             );
 
+            const assessmentCardSelectionStore = new StoreProxy<AssessmentCardSelectionStoreData>(
+                StoreNames[StoreNames.AssessmentCardSelectionStore],
+                storeUpdateMessageHub,
+            );
+
+            const assessmentCardSelectionMessageCreator = new AssessmentCardSelectionMessageCreator(
+                actionMessageDispatcher,
+                telemetryFactory,
+                TelemetryEventSource.DetailsView,
+            );
+
+            const assessmentCardController = new AssessmentCardController(
+                assessmentStore,
+                assessmentCardSelectionMessageCreator,
+            );
+            assessmentCardController.initialize();
+
             const storesHub = new ClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
                 featureFlagStore,
@@ -290,6 +310,7 @@ if (tabId != null) {
                 cardSelectionStore,
                 needsReviewScanResultStore,
                 needsReviewCardSelectionStore,
+                assessmentCardSelectionStore,
                 visualizationStore,
                 assessmentStore,
                 quickAssessStore,
@@ -692,6 +713,8 @@ if (tabId != null) {
                     assessmentFunctionalitySwitcher.getGetAssessmentSummaryModelFromProviderAndStatusData,
                 dataTransferViewController,
                 testViewContainerProvider,
+                assessmentCardSelectionMessageCreator,
+                assessmentCardController,
             };
 
             const renderer = new DetailsViewRenderer(
