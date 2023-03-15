@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentCardSelectionActionCreator } from 'background/actions/assessment-card-selection-action-creator';
 import { QuickAssessActionCreator } from 'background/actions/quick-assess-action-creator';
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { QuickAssessToAssessmentConverter } from 'background/quick-assess-to-assessment-converter';
@@ -109,6 +110,11 @@ export class GlobalContextFactory {
             globalActionsHub.quickAssessActions,
             telemetryEventHandler,
         );
+        const assessmentCardSelectionActionCreator = new AssessmentCardSelectionActionCreator(
+            interpreter,
+            globalActionsHub.assessmentCardSelectionActions,
+            telemetryEventHandler,
+        );
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
             globalActionsHub.userConfigurationActions,
             telemetryEventHandler,
@@ -132,6 +138,7 @@ export class GlobalContextFactory {
         actionCreator.registerCallbacks();
         assessmentActionCreator.registerCallbacks();
         quickAssessActionCreator.registerCallbacks();
+        assessmentCardSelectionActionCreator.registerCallbacks();
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();

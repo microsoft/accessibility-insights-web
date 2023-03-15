@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ActionHub } from 'background/actions/action-hub';
 import { AssessmentActions } from 'background/actions/assessment-actions';
-import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { ContentActions } from 'background/actions/content-actions';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
@@ -44,5 +43,4 @@ function runTypeAsserts(hub: ActionHub): void {
     expect(hub.sidePanelActions).toBeInstanceOf(SidePanelActions);
     expect(hub.needsReviewScanResultActions).toBeInstanceOf(NeedsReviewScanResultActions);
     expect(hub.needsReviewCardSelectionActions).toBeInstanceOf(NeedsReviewCardSelectionActions);
-    expect(hub.assessmentCardSelectionActions).toBeInstanceOf(AssessmentCardSelectionActions);
 }

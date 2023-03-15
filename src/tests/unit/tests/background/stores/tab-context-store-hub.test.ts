@@ -20,7 +20,7 @@ describe('TabContextStoreHubTest', () => {
     });
 
     it('verify getAllStores', () => {
-        expect(testSubject.getAllStores().length).toBe(12);
+        expect(testSubject.getAllStores().length).toBe(11);
     });
 
     it('verify store type', () => {

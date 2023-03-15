@@ -7,7 +7,6 @@ import { BrowserMessageBroadcasterFactory } from 'background/browser-message-bro
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { PersistedData } from 'background/get-persisted-data';
 import { Interpreter } from 'background/interpreter';
-import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { DevToolStore } from 'background/stores/dev-tools-store';
@@ -86,7 +85,6 @@ describe('TabContextFactoryTest', () => {
             StoreNames.CardSelectionStore,
             StoreNames.NeedsReviewCardSelectionStore,
             StoreNames.NeedsReviewScanResultStore,
-            StoreNames.AssessmentCardSelectionStore,
         ];
 
         storeNames.forEach(storeName => {
@@ -172,9 +170,6 @@ describe('TabContextFactoryTest', () => {
         );
         expect(tabContext.stores.needsReviewScanResultStore).toBeInstanceOf(
             NeedsReviewScanResultStore,
-        );
-        expect(tabContext.stores.assessmentCardSelectionStore).toBeInstanceOf(
-            AssessmentCardSelectionStore,
         );
 
         broadcastMock.verifyAll();

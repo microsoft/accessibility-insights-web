@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentCardSelectionActionCreator } from 'background/actions/assessment-card-selection-action-creator';
 import { NeedsReviewCardSelectionActionCreator } from 'background/actions/needs-review-card-selection-action-creator';
 import { NeedsReviewScanResultActionCreator } from 'background/actions/needs-review-scan-result-action-creator';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
@@ -160,11 +159,6 @@ export class TabContextFactory {
             actionsHub.needsReviewCardSelectionActions,
             this.telemetryEventHandler,
         );
-        const assessmentCardSelectionActionCreator = new AssessmentCardSelectionActionCreator(
-            interpreter,
-            actionsHub.assessmentCardSelectionActions,
-            this.telemetryEventHandler,
-        );
         const injectionActionCreator = new InjectionActionCreator(
             interpreter,
             actionsHub.injectionActions,
@@ -194,7 +188,6 @@ export class TabContextFactory {
         contentActionCreator.registerCallbacks();
         needsReviewScanResultActionCreator.registerCallbacks();
         needsReviewCardSelectionActionCreator.registerCallbacks();
-        assessmentCardSelectionActionCreator.registerCallbacks();
         unifiedScanResultActionCreator.registerCallbacks();
         cardSelectionActionCreator.registerCallbacks();
         injectionActionCreator.registerCallbacks();

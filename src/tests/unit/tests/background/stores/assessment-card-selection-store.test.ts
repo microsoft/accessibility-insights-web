@@ -557,7 +557,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         actionName: keyof AssessmentCardSelectionActions,
     ): StoreTester<AssessmentCardSelectionStoreData, AssessmentCardSelectionActions> {
         const factory = (actions: AssessmentCardSelectionActions) =>
-            new AssessmentCardSelectionStore(actions, null, null, null, null, true);
+            new AssessmentCardSelectionStore(actions, null, null, null, true, '');
 
         return new StoreTester(AssessmentCardSelectionActions, actionName, factory);
     }

@@ -4,6 +4,8 @@ export class IndexedDBDataKeys {
     // Global keys
     public static readonly assessmentStore: string = 'assessmentStoreData';
     public static readonly quickAssessStore: string = 'quickAssessStoreData';
+    public static readonly assessmentCardSelectionStore: string = 'assessmentCardSelectionStore';
+    public static readonly quickAssessCardSelectionStore: string = 'quickAssessCardSelectionStore';
     public static readonly userConfiguration: string = 'userConfiguration';
     public static readonly installation: string = 'installationData';
     public static readonly unifiedFeatureFlags: string = 'featureFlags';
@@ -35,12 +37,12 @@ export class IndexedDBDataKeys {
         'visualizationScanResultStore' + tabId;
     public static readonly unifiedScanResultStore: (tabId: number) => string = tabId =>
         'unifiedScanResultStore' + tabId;
-    public static readonly assessmentCardSelectionStore: (tabId: number) => string = tabId =>
-        'assessmentCardSelectionStore' + tabId;
 
     public static readonly globalKeys: string[] = [
         IndexedDBDataKeys.assessmentStore,
+        IndexedDBDataKeys.assessmentCardSelectionStore,
         IndexedDBDataKeys.quickAssessStore,
+        IndexedDBDataKeys.quickAssessCardSelectionStore,
         IndexedDBDataKeys.userConfiguration,
         IndexedDBDataKeys.installation,
         IndexedDBDataKeys.unifiedFeatureFlags,
@@ -63,6 +65,5 @@ export class IndexedDBDataKeys {
         IndexedDBDataKeys.visualizationStore,
         IndexedDBDataKeys.visualizationScanResultStore,
         IndexedDBDataKeys.unifiedScanResultStore,
-        IndexedDBDataKeys.assessmentCardSelectionStore,
     ];
 }
