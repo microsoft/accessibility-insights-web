@@ -239,6 +239,14 @@ export const Messages = {
         ToggleVisualHelper: `${messagePrefix}/assessmentCardSelection/toggleVisualHelper`,
         NavigateToNewCardsView: `${messagePrefix}/assessmentCardSelection/navigateToNewCardsView`,
     },
+    QuickAssessCardSelection: {
+        CardSelectionToggled: `${messagePrefix}/quickAssessCardSelection/cardSelectionToggled`,
+        RuleExpansionToggled: `${messagePrefix}/quickAssessCardSelection/ruleExpansionToggled`,
+        CollapseAllRules: `${messagePrefix}/quickAssessCardSelection/collapseAllRules`,
+        ExpandAllRules: `${messagePrefix}/quickAssessCardSelection/expandAllRules`,
+        ToggleVisualHelper: `${messagePrefix}/quickAssessCardSelection/toggleVisualHelper`,
+        NavigateToNewCardsView: `${messagePrefix}/quickAssessCardSelection/navigateToNewCardsView`,
+    },
 
     PermissionsState: {
         SetPermissionsState: `${messagePrefix}/permissionsState/setPermissionsState`,
