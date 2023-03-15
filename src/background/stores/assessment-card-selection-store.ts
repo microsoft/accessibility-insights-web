@@ -6,12 +6,9 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
-import {
-    AssessmentCardSelectionInfo,
-    AssessmentCardSelectionStoreData,
-} from 'common/types/store-data/assessment-card-selection-store-data';
-import { AssessmentData } from 'common/types/store-data/assessment-result-data';
-import { forEach, forOwn, isEmpty } from 'lodash';
+import { convertResultsToCardSelectionStoreData } from 'common/store-data-to-scan-node-result-converter';
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
+import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import {
     CardSelectionStoreData,
@@ -24,23 +21,22 @@ import {
     AssessmentNavigateToNewCardsViewPayload,
     AssessmentResetFocusedIdentifierPayload,
     AssessmentSingleRuleExpandCollapsePayload,
+    AssessmentStoreChangedPayload,
 } from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
-        private readonly assessmentActions: AssessmentActions,
         persistedState: AssessmentCardSelectionStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
-        tabId: number,
         persistStoreData: boolean,
     ) {
         super(
             StoreNames.AssessmentCardSelectionStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.assessmentCardSelectionStore(tabId),
+            IndexedDBDataKeys.assessmentCardSelectionStore,
             logger,
             persistStoreData,
         );
@@ -63,7 +59,9 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.assessmentCardSelectionActions.navigateToNewCardsView.addListener(
             this.onNavigateToNewCardsView,
         );
-        // this.assessmentActions.scanCompleted.addListener(this.onScanCompleted);
+        this.assessmentCardSelectionActions.assessmentStoreChanged.addListener(
+            this.onAssessmentStoreChanged,
+        );
     }
 
     public override initialize(initialState?: AssessmentCardSelectionStoreData): void {
@@ -74,7 +72,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
 
         this.addActionListeners();
     }
-    // assume assessment scan completed and the data is in the payload. check injected controller
 
     public getDefaultState(): AssessmentCardSelectionStoreData {
         const defaultValue: AssessmentCardSelectionStoreData = {};
@@ -82,39 +79,17 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         return defaultValue;
     }
 
-    public createStoreDataFromAssessmentInfo(
-        assessmentInfo: AssessmentCardSelectionInfo,
-    ): AssessmentCardSelectionStoreData {
-        let storeData = {};
-
-        forOwn(assessmentInfo, (ruleInstances, testKey) => {
-            storeData[testKey] = {
-                rules: {},
-                visualHelperEnabled: false,
-                focusedResultUid: null,
-            };
-            forOwn(ruleInstances, (instanceUids, ruleId) => {
-                storeData[testKey].rules[ruleId] = {
-                    isExpanded: false,
-                    cards: this.createCardsFromInstances(instanceUids),
-                };
-            });
+    private onAssessmentStoreChanged = async (
+        payload: AssessmentStoreChangedPayload,
+    ): Promise<void> => {
+        console.log('assessment card selection store');
+        forOwn(this.state, test => {
+            test = convertResultsToCardSelectionStoreData(test, payload.assessmentStoreData);
         });
 
-        return storeData;
-    }
-
-    private createCardsFromInstances(instanceUids: string[]) {
-        const cards = {};
-        forEach(instanceUids, instanceUid => {
-            cards[instanceUid] = false;
-        });
-        return cards;
-    }
-
-    // private getPersistedStateFromAssessment(): AssessmentCardSelectionStoreData {
-    //     const assessmentPersistedState = {} as AssessmentData;
-    // }
+        console.log(this.state);
+        await this.emitChanged();
+    };
 
     private deselectAllCards = (): void => {
         forOwn(this.state, test => {

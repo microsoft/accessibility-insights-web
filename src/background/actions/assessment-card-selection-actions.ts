@@ -8,6 +8,7 @@ import {
     AssessmentNavigateToNewCardsViewPayload,
     AssessmentResetFocusedIdentifierPayload,
     AssessmentSingleRuleExpandCollapsePayload,
+    AssessmentStoreChangedPayload,
 } from './action-payloads';
 
 export class AssessmentCardSelectionActions {
@@ -22,4 +23,5 @@ export class AssessmentCardSelectionActions {
     public readonly toggleVisualHelper = new AsyncAction<AssessmentCardToggleVisualHelperPayload>();
     public readonly resetFocusedIdentifier =
         new AsyncAction<AssessmentResetFocusedIdentifierPayload>();
+    public readonly assessmentStoreChanged = new AsyncAction<AssessmentStoreChangedPayload>();
 }

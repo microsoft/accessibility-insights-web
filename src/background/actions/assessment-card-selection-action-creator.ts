@@ -12,6 +12,7 @@ import {
     AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
     AssessmentSingleRuleExpandCollapsePayload,
+    AssessmentStoreChangedPayload,
 } from './action-payloads';
 
 export class AssessmentCardSelectionActionCreator {
@@ -45,6 +46,10 @@ export class AssessmentCardSelectionActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.AssessmentCardSelection.CollapseAllRules,
             this.onCollapseAllRules,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.AssessmentCardSelection.AssessmentStoreChanged,
+            this.onAssessmentStoreChanged,
         );
     }
 
@@ -89,5 +94,11 @@ export class AssessmentCardSelectionActionCreator {
     private onExpandAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
         await this.assessmentCardSelectionActions.expandAllRules.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_EXPANDED, payload);
+    };
+
+    private onAssessmentStoreChanged = async (
+        payload: AssessmentStoreChangedPayload,
+    ): Promise<void> => {
+        await this.assessmentCardSelectionActions.assessmentStoreChanged.invoke(payload);
     };
 }

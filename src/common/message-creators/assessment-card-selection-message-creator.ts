@@ -5,12 +5,14 @@ import {
     AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
     AssessmentSingleRuleExpandCollapsePayload,
+    AssessmentStoreChangedPayload,
 } from 'background/actions/action-payloads';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 
 export class AssessmentCardSelectionMessageCreator implements CardSelectionMessageCreator {
     constructor(
@@ -89,5 +91,17 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
             messageType: Messages.AssessmentCardSelection.ToggleVisualHelper,
             payload,
         });
+    };
+
+    public assessmentStoreChanged = (assessmentStoreData: AssessmentStoreData) => {
+        const payload: AssessmentStoreChangedPayload = {
+            assessmentStoreData,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.AssessmentCardSelection.AssessmentStoreChanged,
+            payload,
+        });
+        console.log('dispatched');
     };
 }

@@ -238,6 +238,7 @@ export const Messages = {
         ExpandAllRules: `${messagePrefix}/assessmentCardSelection/expandAllRules`,
         ToggleVisualHelper: `${messagePrefix}/assessmentCardSelection/toggleVisualHelper`,
         NavigateToNewCardsView: `${messagePrefix}/assessmentCardSelection/navigateToNewCardsView`,
+        AssessmentStoreChanged: `${messagePrefix}/assessmentCardSelection/assessmentStoreChanged`,
     },
 
     PermissionsState: {
