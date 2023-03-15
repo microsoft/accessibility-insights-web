@@ -12,6 +12,7 @@ export class IndexedDBDataKeys {
     public static readonly scopingStore: string = 'scopingStore';
     public static readonly knownTabIds: string = 'knownTabIds';
     public static readonly tabIdToDetailsViewMap: string = 'tabIdToDetailsViewMap';
+    public static readonly assessmentCardSelectionStore: string = 'assessmentCardSelectionStore';
 
     // Tab specific keys- there may be multiple instances of these stores for each tab
     public static readonly cardSelectionStore: (tabId: number) => string = tabId =>
@@ -35,8 +36,6 @@ export class IndexedDBDataKeys {
         'visualizationScanResultStore' + tabId;
     public static readonly unifiedScanResultStore: (tabId: number) => string = tabId =>
         'unifiedScanResultStore' + tabId;
-    public static readonly assessmentCardSelectionStore: (tabId: number) => string = tabId =>
-        'assessmentCardSelectionStore' + tabId;
 
     public static readonly globalKeys: string[] = [
         IndexedDBDataKeys.assessmentStore,
@@ -49,6 +48,7 @@ export class IndexedDBDataKeys {
         IndexedDBDataKeys.scopingStore,
         IndexedDBDataKeys.knownTabIds,
         IndexedDBDataKeys.tabIdToDetailsViewMap,
+        IndexedDBDataKeys.assessmentCardSelectionStore,
     ];
 
     public static readonly tabSpecificKeys: ((tabId: number) => string)[] = [
@@ -63,6 +63,5 @@ export class IndexedDBDataKeys {
         IndexedDBDataKeys.visualizationStore,
         IndexedDBDataKeys.visualizationScanResultStore,
         IndexedDBDataKeys.unifiedScanResultStore,
-        IndexedDBDataKeys.assessmentCardSelectionStore,
     ];
 }
