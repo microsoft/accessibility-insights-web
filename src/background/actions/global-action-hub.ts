@@ -21,6 +21,7 @@ export class GlobalActionHub {
     public userConfigurationActions: UserConfigurationActions;
     public permissionsStateActions: PermissionsStateActions;
     public assessmentCardSelectionActions: AssessmentCardSelectionActions;
+    public quickAssessCardSelectionActions: AssessmentCardSelectionActions;
 
     constructor() {
         this.commandActions = new CommandActions();
@@ -33,5 +34,6 @@ export class GlobalActionHub {
         this.userConfigurationActions = new UserConfigurationActions();
         this.permissionsStateActions = new PermissionsStateActions();
         this.assessmentCardSelectionActions = new AssessmentCardSelectionActions();
+        this.quickAssessCardSelectionActions = new AssessmentCardSelectionActions();
     }
 }

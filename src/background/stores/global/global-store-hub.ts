@@ -118,7 +118,7 @@ export class GlobalStoreHub implements StoreHub {
             IndexedDBDataKeys.assessmentCardSelectionStore,
         );
         this.quickAssessCardSelectionStore = new AssessmentCardSelectionStore(
-            globalActionHub.assessmentCardSelectionActions,
+            globalActionHub.quickAssessCardSelectionActions,
             persistedData.quickAssessCardSelectionStoreData,
             indexedDbInstance,
             logger,

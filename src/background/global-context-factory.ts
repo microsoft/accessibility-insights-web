@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentCardSelectionActionCreator } from 'background/actions/assessment-card-selection-action-creator';
 import { QuickAssessActionCreator } from 'background/actions/quick-assess-action-creator';
+import { QuickAssessCardSelectionActionCreator } from 'background/actions/quick-assess-card-selection-action-creator';
 import { BrowserPermissionsTracker } from 'background/browser-permissions-tracker';
 import { QuickAssessToAssessmentConverter } from 'background/quick-assess-to-assessment-converter';
 import {
@@ -115,6 +116,11 @@ export class GlobalContextFactory {
             globalActionsHub.assessmentCardSelectionActions,
             telemetryEventHandler,
         );
+        const quickAssessCardSelectionActionCreator = new QuickAssessCardSelectionActionCreator(
+            interpreter,
+            globalActionsHub.quickAssessCardSelectionActions,
+            telemetryEventHandler,
+        );
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
             globalActionsHub.userConfigurationActions,
             telemetryEventHandler,
@@ -139,6 +145,7 @@ export class GlobalContextFactory {
         assessmentActionCreator.registerCallbacks();
         quickAssessActionCreator.registerCallbacks();
         assessmentCardSelectionActionCreator.registerCallbacks();
+        quickAssessCardSelectionActionCreator.registerCallbacks();
         registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();

@@ -223,6 +223,8 @@ class GlobalActionCreatorValidator {
     private assessmentActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private quickAssessActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
     private assessmentCardSelectionActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> = {};
+    private quickAssessCardSelectionActionsMockMap: DictionaryStringTo<IMock<Action<any, any>>> =
+        {};
     private registeredCallbacksMap: DictionaryStringTo<PayloadCallback<any>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
@@ -231,6 +233,9 @@ class GlobalActionCreatorValidator {
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private quickAssessActionsContainerMock = Mock.ofType(AssessmentActions);
     private assessmentCardSelectionActionsContainerMock = Mock.ofType(
+        AssessmentCardSelectionActions,
+    );
+    private quickAssessCardSelectionActionsContainerMock = Mock.ofType(
         AssessmentCardSelectionActions,
     );
     private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
@@ -249,6 +254,7 @@ class GlobalActionCreatorValidator {
         assessmentActions: this.assessmentActionsContainerMock.object,
         quickAssessActions: this.quickAssessActionsContainerMock.object,
         assessmentCardSelectionActions: this.assessmentCardSelectionActionsContainerMock.object,
+        quickAssessCardSelectionActions: this.quickAssessCardSelectionActionsContainerMock.object,
         userConfigurationActions: this.userConfigActionsContainerMock.object,
         permissionsStateActions: this.permissionsStateActionsContainerMock.object,
         dataTransferActions: this.dataTransferActionsMock.object,
@@ -313,6 +319,16 @@ class GlobalActionCreatorValidator {
             actionName,
             this.assessmentCardSelectionActionsContainerMock,
             this.assessmentCardSelectionActionsMockMap,
+        );
+    }
+
+    public setupActionOnQuickAssessCardSelectionActions(
+        actionName: string,
+    ): GlobalActionCreatorValidator {
+        return this.setupAction(
+            actionName,
+            this.quickAssessCardSelectionActionsContainerMock,
+            this.quickAssessCardSelectionActionsMockMap,
         );
     }
 
@@ -493,6 +509,7 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.assessmentActionsMockMap);
         this.verifyAllActions(this.quickAssessActionsMockMap);
         this.verifyAllActions(this.assessmentCardSelectionActionsMockMap);
+        this.verifyAllActions(this.quickAssessCardSelectionActionsMockMap);
     }
 
     private verifyAllActions(
