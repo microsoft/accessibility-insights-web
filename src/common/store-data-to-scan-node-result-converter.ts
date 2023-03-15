@@ -16,6 +16,7 @@ import {
     UnifiedRule,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
+import { VisualizationType } from 'common/types/visualization-type';
 import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-string-utils';
 import { find, forOwn } from 'lodash';
 
@@ -26,11 +27,13 @@ export type ScanNodeResult = UnifiedResult & {
 export type ConvertStoreDataForScanNodeResultsCallback = (
     storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
     cardSelectionStoreData?: CardSelectionStoreData,
+    testKey?: VisualizationType,
 ) => ScanNodeResult[] | null;
 
 export const convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = (
     storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
     cardSelectionStoreData?: CardSelectionStoreData,
+    testKey?: VisualizationType,
 ): ScanNodeResult[] | null => {
     let results: ScanNodeResult[] | null = convertUnifiedStoreDataToScanNodeResults(
         storeData as UnifiedScanResultStoreData,
@@ -39,6 +42,7 @@ export const convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResu
         results = convertAssessmentStoreDataToScanNodeResults(
             storeData as AssessmentStoreData,
             cardSelectionStoreData,
+            testKey,
         );
     }
     return results;
@@ -47,19 +51,25 @@ export const convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResu
 export type ConvertResultsToCardSelectionStoreDataCallback = (
     state: CardSelectionStoreData,
     storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
+    testKey?: VisualizationType,
 ) => CardSelectionStoreData;
 
 export const convertResultsToCardSelectionStoreData: ConvertResultsToCardSelectionStoreDataCallback =
     (
         state: CardSelectionStoreData,
         storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
+        testKey?: VisualizationType,
     ): CardSelectionStoreData => {
-        const results = convertStoreDataForScanNodeResults(storeData);
+        const results = convertStoreDataForScanNodeResults(storeData, state, testKey);
 
         if (results) {
             results.forEach(result => {
                 if (result.status !== 'fail' && result.status !== 'unknown') {
                     return;
+                }
+
+                if (state.rules === null) {
+                    state.rules = {};
                 }
 
                 if (state.rules![result.ruleId] === undefined) {
@@ -108,21 +118,28 @@ function convertUnifiedStoreDataToScanNodeResults(
 function convertAssessmentStoreDataToScanNodeResults(
     assessmentStoreData: AssessmentStoreData | null,
     cardSelectionStoreData?: CardSelectionStoreData,
+    testKey?: VisualizationType,
 ): ScanNodeResult[] | null {
     if (
         isNullOrUndefined(assessmentStoreData) ||
-        isNullOrUndefined(assessmentStoreData.assessmentNavState) ||
-        isNullOrUndefined(assessmentStoreData.assessments) ||
-        isNullOrUndefined(
-            assessmentStoreData.assessments[
-                assessmentStoreData.assessmentNavState.selectedTestType
-            ],
-        )
+        isNullOrUndefined(assessmentStoreData.assessments)
     ) {
         return null;
     }
 
-    const selectedTest = assessmentStoreData.assessmentNavState.selectedTestType;
+    if (
+        isNullOrUndefined(testKey) &&
+        (isNullOrUndefined(assessmentStoreData.assessmentNavState) ||
+            isNullOrUndefined(
+                assessmentStoreData.assessments[
+                    assessmentStoreData.assessmentNavState.selectedTestType
+                ],
+            ))
+    ) {
+        return null;
+    }
+
+    const selectedTest = testKey ?? assessmentStoreData.assessmentNavState.selectedTestType;
     const testData = assessmentStoreData.assessments[selectedTest];
     const allResults: ScanNodeResult[] = [];
 
