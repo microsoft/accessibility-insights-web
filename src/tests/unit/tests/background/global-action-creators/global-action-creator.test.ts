@@ -509,6 +509,7 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.assessmentActionsMockMap);
         this.verifyAllActions(this.quickAssessActionsMockMap);
         this.verifyAllActions(this.assessmentCardSelectionActionsMockMap);
+        this.verifyAllActions(this.quickAssessCardSelectionActionsMockMap);
     }
 
     private verifyAllActions(
