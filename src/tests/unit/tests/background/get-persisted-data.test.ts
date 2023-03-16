@@ -148,6 +148,8 @@ describe('GetPersistedDataTest', () => {
             expect(data).toEqual({
                 assessmentStoreData: assessmentStoreData,
                 quickAssessStoreData: quickAssessStoreData,
+                assessmentCardSelectionStoreData: {},
+                quickAssessCardSelectionStoreData: {},
                 knownTabIds: {},
                 userConfigurationData: {},
                 commandStoreData: {},
@@ -181,7 +183,6 @@ describe('GetPersistedDataTest', () => {
                 unifiedScanResultStoreData: {},
                 visualizationScanResultStoreData: {},
                 visualizationStoreData: {},
-                assessmentCardSelectionStoreData: {},
             } as TabSpecificPersistedData;
             const tabData: { [tabId: number]: TabSpecificPersistedData } = {
                 0: expectedTabData,
@@ -190,6 +191,8 @@ describe('GetPersistedDataTest', () => {
             expect(data).toEqual({
                 assessmentStoreData: assessmentStoreData,
                 quickAssessStoreData: quickAssessStoreData,
+                assessmentCardSelectionStoreData: {},
+                quickAssessCardSelectionStoreData: {},
                 knownTabIds: knownTabIds,
                 userConfigurationData: {},
                 commandStoreData: {},

@@ -4,6 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { GlobalActionHub } from 'background/actions/global-action-hub';
 import { PersistedData } from 'background/get-persisted-data';
 import { LocalStorageData } from 'background/storage-data';
+import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { DataTransferStore } from 'background/stores/global/data-transfer-store';
@@ -76,13 +77,14 @@ describe('GlobalStoreHubTest', () => {
         );
         const allStores = testSubject.getAllStores();
 
-        expect(allStores.length).toBe(9);
+        expect(allStores.length).toBe(11);
         expect(testSubject.getStoreType()).toEqual(StoreType.GlobalStore);
 
         verifyStoreExists(allStores, FeatureFlagStore);
         verifyStoreExists(allStores, LaunchPanelStore);
         verifyStoreExists(allStores, ScopingStore);
         verifyStoreExists(allStores, AssessmentStore);
+        verifyStoreExists(allStores, AssessmentCardSelectionStore);
         verifyStoreExists(allStores, UserConfigurationStore);
         verifyStoreExists(allStores, PermissionsStateStore);
         verifyStoreExists(allStores, DataTransferStore);
@@ -125,7 +127,7 @@ describe('GlobalStoreHubTest', () => {
         storeType,
     ): BaseStore<StoreType, Promise<void>> {
         const matchingStores = stores.filter(s => s instanceof storeType);
-        if (storeType !== AssessmentStore) {
+        if (storeType !== AssessmentStore && storeType !== AssessmentCardSelectionStore) {
             expect(matchingStores.length).toBe(1);
         } else {
             expect(matchingStores.length).toBe(2);

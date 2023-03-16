@@ -29,6 +29,8 @@ export interface PersistedData {
     };
     assessmentStoreData: AssessmentStoreData;
     quickAssessStoreData: AssessmentStoreData;
+    assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData;
+    quickAssessCardSelectionStoreData: AssessmentCardSelectionStoreData;
     userConfigurationData: UserConfigurationStoreData;
     installationData: InstallationData;
     featureFlags: FeatureFlagStoreData;
@@ -51,7 +53,6 @@ export interface TabSpecificPersistedData {
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     visualizationScanResultStoreData: VisualizationScanResultData;
     visualizationStoreData: VisualizationStoreData;
-    assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData;
 }
 
 const keyToPersistedDataMappingOverrides = {

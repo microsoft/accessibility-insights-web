@@ -10,7 +10,6 @@ import {
 } from 'common/types/store-data/assessment-result-data';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
-import { TestsEnabledState } from 'common/types/store-data/visualization-store-data';
 import { cloneDeep, forOwn } from 'lodash';
 
 import {
@@ -96,6 +95,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                 null,
                 null,
                 false,
+                '',
             );
             testObject.initialize(initialState);
 
@@ -109,6 +109,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                 null,
                 null,
                 true,
+                '',
             );
             testObject.initialize();
 
@@ -122,6 +123,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                 null,
                 null,
                 false,
+                '',
             );
             testObject.initialize();
 
@@ -732,7 +734,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         actionName: keyof AssessmentCardSelectionActions,
     ): StoreTester<AssessmentCardSelectionStoreData, AssessmentCardSelectionActions> {
         const factory = (actions: AssessmentCardSelectionActions) =>
-            new AssessmentCardSelectionStore(actions, null, null, null, true);
+            new AssessmentCardSelectionStore(actions, null, null, null, true, '');
 
         return new StoreTester(AssessmentCardSelectionActions, actionName, factory);
     }

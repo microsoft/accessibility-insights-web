@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
-import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
@@ -31,12 +30,13 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         idbInstance: IndexedDBAPI,
         logger: Logger,
         persistStoreData: boolean,
+        indexDBKey: string,
     ) {
         super(
             StoreNames.AssessmentCardSelectionStore,
             persistedState,
             idbInstance,
-            IndexedDBDataKeys.assessmentCardSelectionStore,
+            indexDBKey,
             logger,
             persistStoreData,
         );

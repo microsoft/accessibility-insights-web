@@ -240,6 +240,14 @@ export const Messages = {
         NavigateToNewCardsView: `${messagePrefix}/assessmentCardSelection/navigateToNewCardsView`,
         AssessmentStoreChanged: `${messagePrefix}/assessmentCardSelection/assessmentStoreChanged`,
     },
+    QuickAssessCardSelection: {
+        CardSelectionToggled: `${messagePrefix}/quickAssessCardSelection/cardSelectionToggled`,
+        RuleExpansionToggled: `${messagePrefix}/quickAssessCardSelection/ruleExpansionToggled`,
+        CollapseAllRules: `${messagePrefix}/quickAssessCardSelection/collapseAllRules`,
+        ExpandAllRules: `${messagePrefix}/quickAssessCardSelection/expandAllRules`,
+        ToggleVisualHelper: `${messagePrefix}/quickAssessCardSelection/toggleVisualHelper`,
+        NavigateToNewCardsView: `${messagePrefix}/quickAssessCardSelection/navigateToNewCardsView`,
+    },
 
     PermissionsState: {
         SetPermissionsState: `${messagePrefix}/permissionsState/setPermissionsState`,
