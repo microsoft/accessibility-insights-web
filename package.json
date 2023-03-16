@@ -101,7 +101,7 @@
         "@esbuild-plugins/node-resolve": "^0.2.2",
         "@swc/core": "^1.3.4",
         "@swc/jest": "^0.2.24",
-        "@types/chrome": "0.0.218",
+        "@types/chrome": "0.0.224",
         "@types/enzyme": "^3.10.12",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^29.4.0",
