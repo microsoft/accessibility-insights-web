@@ -679,8 +679,6 @@ if (tabId != null) {
                 needsReviewCardSelectionMessageCreator,
                 assessmentCardSelectionMessageCreator,
                 quickAssessCardSelectionMessageCreator,
-                assessmentActionMessageCreator,
-                quickAssessActionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
                 allUrlsPermissionHandler: new AllUrlsPermissionHandler(

@@ -7,7 +7,6 @@ import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creat
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { AdhocTabStopsTestViewDeps } from 'DetailsView/components/adhoc-tab-stops-test-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -37,8 +36,6 @@ export type TestViewContainerDeps = {
     needsReviewCardSelectionMessageCreator: NeedsReviewCardSelectionMessageCreator;
     assessmentCardSelectionMessageCreator: AssessmentCardSelectionMessageCreator;
     quickAssessCardSelectionMessageCreator: AssessmentCardSelectionMessageCreator;
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
-    quickAssessActionMessageCreator: AssessmentActionMessageCreator;
 } & TestViewDeps &
     OverviewContainerDeps &
     AdhocTabStopsTestViewDeps;
@@ -84,11 +81,6 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
             configuration.testMode === TestMode.QuickAssess
                 ? props.deps.quickAssessCardSelectionMessageCreator
                 : props.deps.assessmentCardSelectionMessageCreator,
-        assessmentActionMessageCreator:
-            configuration.testMode === TestMode.QuickAssess
-                ? props.deps.quickAssessActionMessageCreator
-                : props.deps.assessmentActionMessageCreator,
-        detailsViewActionMessageCreator: props.deps.detailsViewActionMessageCreator,
     };
 
     return configuration.getTestViewContainer(props.testViewContainerProvider, testViewProps);

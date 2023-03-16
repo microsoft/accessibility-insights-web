@@ -3,12 +3,8 @@
 import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
-import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
-import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DefaultTestViewContainerProvider } from 'DetailsView/components/default-test-view-container-provider';
 import { TestViewContainerProviderProps } from 'DetailsView/components/test-view-container-provider';
 
@@ -23,16 +19,12 @@ describe('DefaultTestViewContainerProvider', () => {
                 {} as AutomatedChecksCardSelectionMessageCreator,
             needsReviewCardSelectionMessageCreator: {} as NeedsReviewCardSelectionMessageCreator,
             assessmentCardSelectionMessageCreator: {} as AssessmentCardSelectionMessageCreator,
-            assessmentActionMessageCreator: {} as AssessmentActionMessageCreator,
-            detailsViewActionMessageCreator: {} as DetailsViewActionMessageCreator,
             someParentProp: 'parent-prop',
             visualizationScanResultData: {
                 tabStops: {
                     requirements: {} as TabStopRequirementState,
                 },
             },
-            visualizationStoreData: {} as VisualizationStoreData,
-            assessmentStoreData: {} as AssessmentStoreData,
             needsReviewCardsViewData: {} as CardsViewModel,
             automatedChecksCardsViewData: {} as CardsViewModel,
             assessmentCardsViewData: {} as CardsViewModel,

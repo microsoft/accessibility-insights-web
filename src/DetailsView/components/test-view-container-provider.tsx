@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
-import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { AdhocIssuesTestViewProps } from 'DetailsView/components/adhoc-issues-test-view';
 import { AdhocStaticTestViewProps } from 'DetailsView/components/adhoc-static-test-view';
 import { AdhocTabStopsTestViewProps } from 'DetailsView/components/adhoc-tab-stops-test-view';
@@ -17,9 +14,6 @@ export type TestViewContainerProviderProps = {
     automatedChecksCardSelectionMessageCreator: CardSelectionMessageCreator;
     assessmentCardsViewData: CardsViewModel;
     assessmentCardSelectionMessageCreator: CardSelectionMessageCreator;
-    assessmentStoreData: AssessmentStoreData;
-    assessmentActionMessageCreator: AssessmentActionMessageCreator;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & Omit<
     AdhocIssuesTestViewProps,
     | 'instancesSection'

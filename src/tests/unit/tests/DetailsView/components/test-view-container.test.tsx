@@ -7,8 +7,6 @@ import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creat
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     TestViewContainer,
     TestViewContainerProps,
@@ -28,8 +26,6 @@ describe('TestViewContainer', () => {
         {} as AutomatedChecksCardSelectionMessageCreator;
     const needsReviewCardSelectionMessageCreatorStub = {} as NeedsReviewCardSelectionMessageCreator;
     const assessmentCardSelectionMessageCreatorStub = {} as AssessmentCardSelectionMessageCreator;
-    const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
-    const assessmentActionMessageCreatorStub = {} as AssessmentActionMessageCreator;
     let configStub: VisualizationConfiguration;
     let configFactoryStub: VisualizationConfigurationFactory;
     let props: TestViewContainerProps;
@@ -57,8 +53,6 @@ describe('TestViewContainer', () => {
                     automatedChecksCardSelectionMessageCreatorStub,
                 needsReviewCardSelectionMessageCreator: needsReviewCardSelectionMessageCreatorStub,
                 assessmentCardSelectionMessageCreator: assessmentCardSelectionMessageCreatorStub,
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
-                assessmentActionMessageCreator: assessmentActionMessageCreatorStub,
             },
             someParentProp: 'parent-prop',
             visualizationConfigurationFactory: configFactoryStub,
@@ -84,8 +78,6 @@ describe('TestViewContainer', () => {
                         needsReviewCardSelectionMessageCreatorStub,
                     assessmentCardSelectionMessageCreator:
                         assessmentCardSelectionMessageCreatorStub,
-                    detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
-                    assessmentActionMessageCreator: assessmentActionMessageCreatorStub,
                 }),
             )
             .returns(() => elementStub)
