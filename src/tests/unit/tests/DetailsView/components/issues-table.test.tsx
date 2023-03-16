@@ -23,7 +23,7 @@ import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
 describe('IssuesTableTest', () => {
@@ -36,7 +36,6 @@ describe('IssuesTableTest', () => {
     } as CardsViewController;
     let cardInteractionSupport: CardInteractionSupport;
     let issueFilingDialogPropsFactoryMock: IMock<IssueFilingDialogPropsFactory>;
-    let handleCardCountResultsMock: IMock<(issuesEnabled: boolean, cardCount: number) => void>;
 
     beforeEach(() => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
@@ -46,8 +45,6 @@ describe('IssuesTableTest', () => {
             supportsIssueFiling: false,
         } as CardInteractionSupport;
         issueFilingDialogPropsFactoryMock = Mock.ofInstance(() => null);
-        handleCardCountResultsMock =
-            Mock.ofType<(issuesEnabled: boolean, cardCount: number) => void>();
 
         deps = {
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
@@ -101,18 +98,11 @@ describe('IssuesTableTest', () => {
     });
 
     it('not scanning, issuesEnabled is true', () => {
-        const props = new TestPropsBuilder()
-            .setDeps(deps)
-            .setIssuesEnabled(true)
-            .setHandleCardCountResultsMock(handleCardCountResultsMock)
-            .build();
-
-        handleCardCountResultsMock.setup(h => h(true, 1)).verifiable(Times.once());
+        const props = new TestPropsBuilder().setDeps(deps).setIssuesEnabled(true).build();
 
         const wrapper = shallow(<IssuesTable {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
-        handleCardCountResultsMock.verifyAll();
     });
 
     it('With issue filing support', () => {
@@ -149,7 +139,6 @@ class TestPropsBuilder {
     private featureFlags = {};
     private deps: IssuesTableDeps;
     private testType: VisualizationType = -1;
-    private handleCardCountResultsMock: IMock<(issuesEnabled: boolean, cardCount: number) => void>;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
         this.deps = deps;
@@ -168,13 +157,6 @@ class TestPropsBuilder {
 
     public setSubtitle(subtitle?: JSX.Element): TestPropsBuilder {
         this.subtitle = subtitle;
-        return this;
-    }
-
-    public setHandleCardCountResultsMock(
-        handleCardCountResultsMock: IMock<(issuesEnabled: boolean, cardCount: number) => void>,
-    ): TestPropsBuilder {
-        this.handleCardCountResultsMock = handleCardCountResultsMock;
         return this;
     }
 
@@ -208,7 +190,7 @@ class TestPropsBuilder {
                 isIssueFilingSettingsDialogOpen: false,
             },
             narrowModeStatus: {} as NarrowModeStatus,
-            handleCardCountResults: this.handleCardCountResultsMock?.object ?? (() => {}),
+            selectedVisualizationType: 0,
         };
     }
 }

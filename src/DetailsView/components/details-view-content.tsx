@@ -10,7 +10,6 @@ import { NamedFC } from 'common/react/named-fc';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { convertStoreDataForScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { CardViewResultsHandler } from 'DetailsView/components/card-view-results-handler';
 import {
     DetailsViewOverlay,
     DetailsViewOverlayDeps,
@@ -47,7 +46,6 @@ export type DetailsViewContentDeps = {
     isResultHighlightUnavailable: IsResultHighlightUnavailable;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     testViewContainerProvider: TestViewContainerProvider;
-    cardViewResultsHandler: CardViewResultsHandler;
 } & InteractiveHeaderDeps &
     DetailsViewOverlayDeps &
     DetailsViewBodyDeps;
@@ -218,7 +216,6 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 overviewHeadingIntroText={overviewHeadingIntroText}
                 linkDataSource={linkDataSource}
                 testViewContainerProvider={props.deps.testViewContainerProvider}
-                cardViewResultsHandler={props.deps.cardViewResultsHandler}
             />
         );
     };

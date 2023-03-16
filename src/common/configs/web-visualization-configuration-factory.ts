@@ -87,9 +87,13 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
                 AssessmentVisualizationMessageTypes,
             );
 
-            assessment.requirements.forEach(requirementConfig => {
-                callback(testConfig, assessment.visualizationType, requirementConfig);
-            });
+            if (assessment.isNonCollapsible) {
+                callback(testConfig, assessment.visualizationType);
+            } else {
+                assessment.requirements.forEach(requirementConfig => {
+                    callback(testConfig, assessment.visualizationType, requirementConfig);
+                });
+            }
         });
 
         this.quickAssessProvider.all().forEach(assessment => {
@@ -99,9 +103,13 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
                 QuickAssessVisualizationMessageTypes,
             );
 
-            assessment.requirements.forEach(requirementConfig => {
-                callback(testConfig, assessment.visualizationType, requirementConfig);
-            });
+            if (assessment.isNonCollapsible) {
+                callback(testConfig, assessment.visualizationType);
+            } else {
+                assessment.requirements.forEach(requirementConfig => {
+                    callback(testConfig, assessment.visualizationType, requirementConfig);
+                });
+            }
         });
     }
 
@@ -114,7 +122,7 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
 
         const getIdentifier = (requirementKey: string) => {
             const requirement = assessment.requirements.find(req => req.key === requirementKey);
-            return `${testMode}-${requirement!.key}`;
+            return assessment.isNonCollapsible ? testMode : `${testMode}-${requirement?.key}`;
         };
 
         const getStoreData = (data: TestsEnabledState) => {

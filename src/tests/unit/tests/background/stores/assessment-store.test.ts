@@ -272,7 +272,10 @@ describe('AssessmentStore', () => {
             .build();
 
         const initialState = getStateWithAssessment(assessmentData);
-        const expectedState = getDefaultStateWithDefaultAssessmentData(assessmentKey, null);
+        const expectedState = getDefaultStateWithDefaultAssessmentData(
+            assessmentKey,
+            requirementKey,
+        );
         setupDataGeneratorMock(null, expectedState, Times.exactly(2));
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
@@ -321,12 +324,10 @@ describe('AssessmentStore', () => {
             .build();
 
         const initialState = getStateWithAssessment(assessmentData);
-        initialState.assessmentNavState.selectedTestType = assessmentType;
         const expectedState = getDefaultStateWithDefaultAssessmentData(
             assessmentKey,
             requirementKey,
         );
-        expectedState.assessmentNavState.selectedTestType = assessmentType;
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
             getAssessmentData: state => {
@@ -381,9 +382,7 @@ describe('AssessmentStore', () => {
             .build();
 
         const initialState = getStateWithAssessment(assessmentData);
-        initialState.assessmentNavState.selectedTestType = assessmentType;
         const finalState = getDefaultStateWithDefaultAssessmentData(assessmentKey, requirementKey);
-        finalState.assessmentNavState.selectedTestType = assessmentType;
         setupDataGeneratorMock(null, finalState, Times.exactly(2));
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
@@ -434,9 +433,7 @@ describe('AssessmentStore', () => {
             .build();
 
         const initialState = getStateWithAssessment(assessmentData);
-        initialState.assessmentNavState.selectedTestType = assessmentType;
         const finalState = getDefaultStateWithDefaultAssessmentData(assessmentKey, requirementKey);
-        finalState.assessmentNavState.selectedTestType = assessmentType;
         setupDataGeneratorMock(null, finalState, Times.exactly(2));
         const getVisualizationConfigurationMock = Mock.ofInstance(() => {});
         const visualizationConfigStub = {
@@ -460,6 +457,7 @@ describe('AssessmentStore', () => {
                 },
             ],
         } as Assessment;
+
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
 
         assessmentsProviderMock

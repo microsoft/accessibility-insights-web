@@ -14,7 +14,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
-import { CardViewResultsHandlerCallback } from 'DetailsView/components/card-view-results-handler';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     IssueFilingDialog,
     IssueFilingDialogDeps,
@@ -48,7 +48,7 @@ export interface IssuesTableProps {
     visualizationStoreData: VisualizationStoreData;
     narrowModeStatus: NarrowModeStatus;
     cardsViewStoreData: CardsViewStoreData;
-    handleCardCountResults: CardViewResultsHandlerCallback;
+    selectedVisualizationType: VisualizationType;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -108,7 +108,16 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     private renderComponent(): JSX.Element {
         const cardCount = this.getCardCount();
-        this.props.handleCardCountResults(this.props.issuesEnabled, cardCount);
+        if (!this.props.issuesEnabled && cardCount > 0) {
+            this.props.deps.detailsViewActionMessageCreator.enableFastPassVisualHelperWithoutScan(
+                this.props.selectedVisualizationType,
+            );
+        }
+        if (!this.props.issuesEnabled && cardCount === 0) {
+            this.props.deps.detailsViewActionMessageCreator.rescanVisualizationWithoutTelemetry(
+                this.props.selectedVisualizationType,
+            );
+        }
 
         if (this.props.scanning) {
             return this.renderSpinner('Scanning...');

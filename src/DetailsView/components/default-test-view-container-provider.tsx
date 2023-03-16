@@ -27,10 +27,7 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
                 cardsViewData={props.needsReviewCardsViewData}
                 cardSelectionMessageCreator={props.needsReviewCardSelectionMessageCreator}
                 instancesSection={NeedsReviewInstancesSection}
-                handleCardCountResults={props.cardViewResultsHandler.fastPassHandleCardViewResults(
-                    props.detailsViewActionMessageCreator,
-                    props.visualizationStoreData,
-                )}
+                selectedVisualizationType={props.visualizationStoreData.selectedFastPassDetailsView}
                 {...props}
             />
         );
@@ -42,10 +39,7 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
                 instancesSection={FailedInstancesSection}
                 cardSelectionMessageCreator={props.automatedChecksCardSelectionMessageCreator}
                 cardsViewData={props.automatedChecksCardsViewData}
-                handleCardCountResults={props.cardViewResultsHandler.fastPassHandleCardViewResults(
-                    props.detailsViewActionMessageCreator,
-                    props.visualizationStoreData,
-                )}
+                selectedVisualizationType={props.visualizationStoreData.selectedFastPassDetailsView}
                 {...props}
             />
         );
@@ -59,11 +53,10 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
                 instancesSection={FailedInstancesSection}
                 cardSelectionMessageCreator={props.assessmentCardSelectionMessageCreator}
                 cardsViewData={props.assessmentCardsViewData}
-                handleCardCountResults={props.cardViewResultsHandler.getAssessmentHandleCardViewResults(
-                    props.assessmentActionMessageCreator,
-                    props.assessmentStoreData,
-                )}
                 includeStepsText={false}
+                selectedVisualizationType={
+                    props.assessmentStoreData?.assessmentNavState?.selectedTestType
+                }
                 {...props}
             />
         );

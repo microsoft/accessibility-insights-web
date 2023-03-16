@@ -185,6 +185,19 @@ export class AssessmentBuilder {
         requirements.forEach(AssessmentBuilder.applyDefaultFunctions);
 
         const getAnalyzer = (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) => {
+            if (assessment.isNonCollapsible) {
+                const rules = requirements.map(requirement => requirement.key);
+                const analyzerConfiguration = {
+                    ...analyzerConfig,
+                    resultProcessor: scanner => scanner.getFailingOrPassingInstances,
+                    telemetryProcessor: telemetryFactory =>
+                        telemetryFactory.forAssessmentRequirementScan,
+                    rules,
+                };
+
+                return provider.createBatchedRuleAnalyzer(analyzerConfiguration);
+            }
+
             const requirementConfig = AssessmentBuilder.getRequirementConfig(
                 requirements,
                 analyzerConfig.key,

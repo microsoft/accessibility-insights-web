@@ -203,22 +203,6 @@ describe('AssessmentActionMessageCreatorTest', () => {
         );
     });
 
-    test('startOverTestWithoutTelemetry', () => {
-        const expectedMessage = {
-            messageType: assessmentMessageStubs.StartOverTest,
-            payload: {
-                test: VisualizationType.HeadingsAssessment,
-            },
-        };
-
-        testSubject.startOverTestWithoutTelemetry(VisualizationType.HeadingsAssessment);
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
-            Times.once(),
-        );
-    });
-
     test('enableVisualHelper', () => {
         const requirement = 'fake-requirement-name';
         const telemetry = {

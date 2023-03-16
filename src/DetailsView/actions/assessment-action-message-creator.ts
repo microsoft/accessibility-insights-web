@@ -124,17 +124,6 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
         });
     }
 
-    public startOverTestWithoutTelemetry(test: VisualizationType): void {
-        const payload: ToggleActionPayload = {
-            test,
-        };
-
-        this.dispatcher.dispatchMessage({
-            messageType: this.messages.StartOverTest,
-            payload,
-        });
-    }
-
     public enableVisualHelper(
         test: VisualizationType,
         requirement: string,

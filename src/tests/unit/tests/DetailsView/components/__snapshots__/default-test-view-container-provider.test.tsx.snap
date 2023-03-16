@@ -9,10 +9,8 @@ exports[`DefaultTestViewContainerProvider can create assessment automated checks
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
   cardSelectionMessageCreator={{}}
-  cardViewResultsHandler={[typemoq mock object]}
   cardsViewData={{}}
   detailsViewActionMessageCreator={{}}
-  handleCardCountResults={[Function]}
   includeStepsText={false}
   instancesSection={[Function]}
   needsReviewCardSelectionMessageCreator={{}}
@@ -37,7 +35,6 @@ exports[`DefaultTestViewContainerProvider can create assessment test view contai
   assessmentStoreData={{}}
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
-  cardViewResultsHandler={[typemoq mock object]}
   detailsViewActionMessageCreator={{}}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
@@ -62,10 +59,8 @@ exports[`DefaultTestViewContainerProvider can create issues test view container 
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
   cardSelectionMessageCreator={{}}
-  cardViewResultsHandler={[typemoq mock object]}
   cardsViewData={{}}
   detailsViewActionMessageCreator={{}}
-  handleCardCountResults={[Function]}
   instancesSection={[Function]}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
@@ -90,10 +85,8 @@ exports[`DefaultTestViewContainerProvider can create needs review test view cont
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
   cardSelectionMessageCreator={{}}
-  cardViewResultsHandler={[typemoq mock object]}
   cardsViewData={{}}
   detailsViewActionMessageCreator={{}}
-  handleCardCountResults={[Function]}
   instancesSection={[Function]}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
@@ -117,7 +110,6 @@ exports[`DefaultTestViewContainerProvider can create static test view container 
   assessmentStoreData={{}}
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
-  cardViewResultsHandler={[typemoq mock object]}
   detailsViewActionMessageCreator={{}}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
@@ -141,7 +133,6 @@ exports[`DefaultTestViewContainerProvider can create tab stops test view contain
   assessmentStoreData={{}}
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
-  cardViewResultsHandler={[typemoq mock object]}
   detailsViewActionMessageCreator={{}}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}

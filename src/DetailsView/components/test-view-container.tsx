@@ -9,7 +9,6 @@ import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { AdhocTabStopsTestViewDeps } from 'DetailsView/components/adhoc-tab-stops-test-view';
-import { CardViewResultsHandler } from 'DetailsView/components/card-view-results-handler';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
@@ -68,7 +67,6 @@ export interface TestViewContainerProps {
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     narrowModeStatus: NarrowModeStatus;
     testViewContainerProvider: TestViewContainerProvider;
-    cardViewResultsHandler: CardViewResultsHandler;
 }
 
 export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {

@@ -5,7 +5,6 @@ import { CardsViewStoreData } from 'common/components/cards/cards-view-store-dat
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { CardViewResultsHandler } from 'DetailsView/components/card-view-results-handler';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -81,7 +80,6 @@ export interface DetailsViewBodyProps {
     tabStopRequirementData: TabStopRequirementState;
     dataTransferViewStoreData: DataTransferViewStoreData;
     testViewContainerProvider: TestViewContainerProvider;
-    cardViewResultsHandler: CardViewResultsHandler;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {

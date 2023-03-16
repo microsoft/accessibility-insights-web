@@ -9,19 +9,15 @@ import { TabStopRequirementState } from 'common/types/store-data/visualization-s
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { CardViewResultsHandler } from 'DetailsView/components/card-view-results-handler';
 import { DefaultTestViewContainerProvider } from 'DetailsView/components/default-test-view-container-provider';
 import { TestViewContainerProviderProps } from 'DetailsView/components/test-view-container-provider';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('DefaultTestViewContainerProvider', () => {
     let testSubject: DefaultTestViewContainerProvider;
     let propsStub: TestViewContainerProviderProps;
-    let cardViewResultsHandlerMock: IMock<CardViewResultsHandler>;
 
     beforeEach(() => {
         testSubject = new DefaultTestViewContainerProvider();
-        cardViewResultsHandlerMock = Mock.ofType(CardViewResultsHandler, MockBehavior.Strict);
         propsStub = {
             automatedChecksCardSelectionMessageCreator:
                 {} as AutomatedChecksCardSelectionMessageCreator,
@@ -37,7 +33,6 @@ describe('DefaultTestViewContainerProvider', () => {
             },
             visualizationStoreData: {} as VisualizationStoreData,
             assessmentStoreData: {} as AssessmentStoreData,
-            cardViewResultsHandler: cardViewResultsHandlerMock.object,
             needsReviewCardsViewData: {} as CardsViewModel,
             automatedChecksCardsViewData: {} as CardsViewModel,
             assessmentCardsViewData: {} as CardsViewModel,
@@ -55,51 +50,18 @@ describe('DefaultTestViewContainerProvider', () => {
     });
 
     it('can create needs review test view container', () => {
-        cardViewResultsHandlerMock
-            .setup(mock =>
-                mock.fastPassHandleCardViewResults(
-                    propsStub.detailsViewActionMessageCreator,
-                    propsStub.visualizationStoreData,
-                ),
-            )
-            .returns(() => () => {})
-            .verifiable(Times.once());
-
         const element = testSubject.createNeedsReviewTestViewContainer(propsStub);
         expect(element).toMatchSnapshot();
-        cardViewResultsHandlerMock.verifyAll();
     });
 
     it('can create issues test view container', () => {
-        cardViewResultsHandlerMock
-            .setup(mock =>
-                mock.fastPassHandleCardViewResults(
-                    propsStub.detailsViewActionMessageCreator,
-                    propsStub.visualizationStoreData,
-                ),
-            )
-            .returns(() => () => {})
-            .verifiable(Times.once());
-
         const element = testSubject.createIssuesTestViewContainer(propsStub);
         expect(element).toMatchSnapshot();
-        cardViewResultsHandlerMock.verifyAll();
     });
 
     it('can create assessment automated checks test view container', () => {
-        cardViewResultsHandlerMock
-            .setup(mock =>
-                mock.getAssessmentHandleCardViewResults(
-                    propsStub.assessmentActionMessageCreator,
-                    propsStub.assessmentStoreData,
-                ),
-            )
-            .returns(() => () => {})
-            .verifiable(Times.once());
-
         const element = testSubject.createAssessmentAutomatedChecksTestViewContainer(propsStub);
         expect(element).toMatchSnapshot();
-        cardViewResultsHandlerMock.verifyAll();
     });
 
     it('can create assessment test view container', () => {
