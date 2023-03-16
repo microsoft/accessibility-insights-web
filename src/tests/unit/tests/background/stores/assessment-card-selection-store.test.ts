@@ -157,6 +157,39 @@ describe('AssessmentCardSelectionStore Test', () => {
             await storeTester.testListenerToBeCalledOnce(null, expectedState);
         });
 
+        it('sets the store state to {} when assessment store data is empty', async () => {
+            const payload: AssessmentStoreChangedPayload = {
+                assessmentStoreData: {} as AssessmentStoreData,
+            };
+
+            expectedState = {};
+
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions(
+                    'assessmentStoreChanged',
+                ).withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(null, expectedState);
+        });
+
+        it('does nothing when there is no payload', async () => {
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions(
+                    'assessmentStoreChanged',
+                ).withActionParam(null);
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
+        it('does nothing when there is no assessment store data in payload', async () => {
+            const payload: AssessmentStoreChangedPayload = {
+                assessmentStoreData: null,
+            };
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions(
+                    'assessmentStoreChanged',
+                ).withActionParam(payload);
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
         const testStepResult = (uid: string, status: ManualTestStatus): TestStepResult => {
             return {
                 id: uid,

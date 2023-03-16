@@ -79,6 +79,10 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onAssessmentStoreChanged = async (
         payload: AssessmentStoreChangedPayload,
     ): Promise<void> => {
+        if (!payload || !payload.assessmentStoreData) {
+            return;
+        }
+
         forOwn(payload.assessmentStoreData.assessments, (assessment, key) => {
             this.state[key] = convertResultsToCardSelectionStoreData(
                 this.state[key] ?? {
