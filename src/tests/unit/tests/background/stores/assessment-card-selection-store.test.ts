@@ -183,7 +183,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                 resultDescription: '',
             };
         });
-        it('does not create cards when assessment data contains no failure instances', () => {});
+
         it('sets the store state with assessment data', async () => {
             const payload: AssessmentStoreChangedPayload = {
                 assessmentStoreData,
@@ -196,11 +196,33 @@ describe('AssessmentCardSelectionStore Test', () => {
             await storeTester.testListenerToBeCalledOnce(null, expectedState);
         });
 
-        const testStepResult = (ruleId: string, uid: string, status) => {
+        it('does not create cards when assessment data contains no failure instances', async () => {
+            forOwn(assessmentStoreData.assessments, assessment => {
+                forOwn(assessment.generatedAssessmentInstancesMap, instancesMap => {
+                    forOwn(instancesMap.testStepResults, result => {
+                        result.status = 0;
+                    });
+                });
+            });
+
+            expectedState['testKey1'].rules = null;
+            expectedState['testKey2'].rules = null;
+
+            const payload: AssessmentStoreChangedPayload = {
+                assessmentStoreData,
+            };
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions(
+                    'assessmentStoreChanged',
+                ).withActionParam(payload);
+            await storeTester.testListenerToBeCalledOnce(null, expectedState);
+        });
+
+        const testStepResult = (ruleId: string, uid: string, status: number) => {
             return {
                 [ruleId]: {
                     id: uid,
-                    status: status,
+                    status,
                     isCapturedByUser: false,
                     isVisualizationSupported: true,
                     isVisualizationEnabled: false,
