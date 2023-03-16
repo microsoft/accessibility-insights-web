@@ -28,6 +28,7 @@ export interface TargetPageStoreData {
     permissionsStateStoreData: PermissionsStateStoreData;
     needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData;
     assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData;
+    quickAssessCardSelectionStoreData: AssessmentCardSelectionStoreData;
 }
 
 export class ClientStoreListener {

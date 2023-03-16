@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
@@ -60,7 +61,7 @@ export class SelectorMapHelper {
             );
         }
 
-        if (visualizationType === VisualizationType.AutomatedChecks) {
+        if (stepKey === AutomatedChecks.key) {
             return this.getElementBasedViewModel(
                 assessmentStoreData,
                 assessmentCardSelectionStoreData

@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
-import { TestMode } from 'common/configs/test-mode';
 import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
@@ -34,8 +33,7 @@ export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     automatedChecksCardSelectionMessageCreator: AutomatedChecksCardSelectionMessageCreator;
     needsReviewCardSelectionMessageCreator: NeedsReviewCardSelectionMessageCreator;
-    assessmentCardSelectionMessageCreator: AssessmentCardSelectionMessageCreator;
-    quickAssessCardSelectionMessageCreator: AssessmentCardSelectionMessageCreator;
+    getAssessmentCardSelectionMessageCreator: () => AssessmentCardSelectionMessageCreator;
 } & TestViewDeps &
     OverviewContainerDeps &
     AdhocTabStopsTestViewDeps;
@@ -78,9 +76,7 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
             props.deps.automatedChecksCardSelectionMessageCreator,
         needsReviewCardSelectionMessageCreator: props.deps.needsReviewCardSelectionMessageCreator,
         assessmentCardSelectionMessageCreator:
-            configuration.testMode === TestMode.QuickAssess
-                ? props.deps.quickAssessCardSelectionMessageCreator
-                : props.deps.assessmentCardSelectionMessageCreator,
+            props.deps.getAssessmentCardSelectionMessageCreator(),
     };
 
     return configuration.getTestViewContainer(props.testViewContainerProvider, testViewProps);

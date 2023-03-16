@@ -590,6 +590,7 @@ if (tabId != null) {
             const assessmentObjects: SharedAssessmentObjects = {
                 provider: Assessments,
                 actionMessageCreator: assessmentActionMessageCreator,
+                cardSelectionMessageCreator: assessmentCardSelectionMessageCreator,
                 navLinkHandler: new NavLinkHandler(
                     detailsViewActionMessageCreator,
                     assessmentActionMessageCreator,
@@ -603,6 +604,7 @@ if (tabId != null) {
             const quickAssessObjects: SharedAssessmentObjects = {
                 provider: quickAssessProvider,
                 actionMessageCreator: quickAssessActionMessageCreator,
+                cardSelectionMessageCreator: quickAssessCardSelectionMessageCreator,
                 navLinkHandler: new NavLinkHandler(
                     detailsViewActionMessageCreator,
                     quickAssessActionMessageCreator,
@@ -712,6 +714,8 @@ if (tabId != null) {
                 getProvider: assessmentFunctionalitySwitcher.getProvider,
                 getAssessmentActionMessageCreator:
                     assessmentFunctionalitySwitcher.getAssessmentActionMessageCreator,
+                getAssessmentCardSelectionMessageCreator:
+                    assessmentFunctionalitySwitcher.getAssessmentCardSelectionMessageCreator,
                 getNavLinkHandler: assessmentFunctionalitySwitcher.getNavLinkHandler,
                 getAssessmentInstanceTableHandler:
                     assessmentFunctionalitySwitcher.getInstanceTableHandler,
