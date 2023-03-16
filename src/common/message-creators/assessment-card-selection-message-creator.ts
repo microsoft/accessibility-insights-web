@@ -102,6 +102,5 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
             messageType: Messages.AssessmentCardSelection.AssessmentStoreChanged,
             payload,
         });
-        console.log('dispatched');
     };
 }
