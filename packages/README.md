@@ -8,7 +8,7 @@ Licensed under the MIT License.
 As of Oct 2020, this repository is an ad-hoc monorepo; `/src` contains code for multiple projects,
 and does not separate them as cleanly as we would like.
 
-We plan to gradually convert the repository into a Lerna/Yarn Workspaces based monorepo, similar to
+We plan to gradually convert the repository into a Yarn Workspaces based monorepo, similar to
 how [accessibility-insights-service](https://github.com/microsoft/accessibility-insights-service) is
 structured.
 
