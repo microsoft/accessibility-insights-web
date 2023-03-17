@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { FeatureFlags } from 'common/feature-flags';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -26,6 +27,7 @@ export type VisualizationRelatedStoreData = Pick<
     | 'needsReviewCardSelectionStoreData'
     | 'needsReviewScanResultStoreData'
     | 'assessmentCardSelectionStoreData'
+    | 'featureFlagStoreData'
 >;
 
 export class SelectorMapHelper {
@@ -48,6 +50,7 @@ export class SelectorMapHelper {
             needsReviewScanResultStoreData,
             needsReviewCardSelectionStoreData,
             assessmentCardSelectionStoreData,
+            featureFlagStoreData,
         } = visualizationRelatedStoreData;
 
         if (this.isAdHocVisualization(visualizationType)) {
@@ -61,18 +64,20 @@ export class SelectorMapHelper {
             );
         }
 
-        if (stepKey === AutomatedChecks.key) {
-            return this.getElementBasedViewModel(
-                assessmentStoreData,
-                assessmentCardSelectionStoreData
-                    ? assessmentCardSelectionStoreData[visualizationType]
-                    : null,
-            );
+        const assessmentConfig =
+            this.visualizationConfigurationFactory.getConfiguration(visualizationType);
+        if (featureFlagStoreData[FeatureFlags.automatedChecks]) {
+            if (assessmentConfig.key === AutomatedChecks.getVisualizationConfiguration().key) {
+                return this.getElementBasedViewModel(
+                    assessmentStoreData,
+                    assessmentCardSelectionStoreData
+                        ? assessmentCardSelectionStoreData[visualizationType]
+                        : null,
+                );
+            }
         }
 
-        const assessmentData = this.visualizationConfigurationFactory
-            .getConfiguration(visualizationType)
-            .getAssessmentData(assessmentStoreData);
+        const assessmentData = assessmentConfig.getAssessmentData(assessmentStoreData);
 
         return this.getFilteredSelectorMap(
             assessmentData?.generatedAssessmentInstancesMap,
