@@ -7,6 +7,7 @@
         "./.swcrc",
         "./.vs",
         "./.vscode",
+        "./.yarn",
         "./dist",
         "./docs/art/ada-cat.ansi256.txt",
         "./docs/LICENSE.txt",
