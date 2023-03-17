@@ -109,7 +109,7 @@ jobs:
         path: unit-tests-2-results
       timeout-minutes: 2
 
-    - run: yarn publish-code-coverage
+    - run: npx codecov
       timeout-minutes: 3
 
   lints:
