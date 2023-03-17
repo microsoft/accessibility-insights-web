@@ -46,6 +46,7 @@ describe('VisualizationStateChangeHandler', () => {
             getDetailsSwitcherNavConfigurationMock.object,
         );
     });
+
     test('visualization is updated, with requirement passed', async () => {
         const requirementConfigStub = {
             key: 'some requirement',

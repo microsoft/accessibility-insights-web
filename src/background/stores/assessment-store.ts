@@ -395,32 +395,25 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
 
     private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
         const test = payload.testType;
-        let steps: string[];
-        if (payload.key) {
-            steps = [payload.key];
-        } else {
-            steps = Object.keys(this.assessmentsProvider.getStepMap(test));
-        }
-        steps.forEach(step => {
-            const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
-            const stepConfig = this.assessmentsProvider.getStep(test, step);
-            const assessmentData = config.getAssessmentData(this.state);
-            const { generatedAssessmentInstancesMap: currentGeneratedMap } = assessmentData;
-            const generatedAssessmentInstancesMap =
-                this.assessmentDataConverter.generateAssessmentInstancesMap(
-                    currentGeneratedMap,
-                    payload.selectorMap,
-                    step,
-                    config.getInstanceIdentiferGenerator(step),
-                    stepConfig.getInstanceStatus,
-                    stepConfig.isVisualizationSupportedForResult,
-                    getIncludedAlwaysRules,
-                );
-            assessmentData.generatedAssessmentInstancesMap = generatedAssessmentInstancesMap;
-            assessmentData.testStepStatus[step].isStepScanned = true;
-            assessmentData.scanIncompleteWarnings = payload.scanIncompleteWarnings;
-            this.updateTestStepStatusOnScanUpdate(assessmentData, step, test);
-        });
+        const step = payload.key;
+        const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
+        const stepConfig = this.assessmentsProvider.getStep(test, step);
+        const assessmentData = config.getAssessmentData(this.state);
+        const { generatedAssessmentInstancesMap: currentGeneratedMap } = assessmentData;
+        const generatedAssessmentInstancesMap =
+            this.assessmentDataConverter.generateAssessmentInstancesMap(
+                currentGeneratedMap,
+                payload.selectorMap,
+                step,
+                config.getInstanceIdentiferGenerator(step),
+                stepConfig.getInstanceStatus,
+                stepConfig.isVisualizationSupportedForResult,
+                getIncludedAlwaysRules,
+            );
+        assessmentData.generatedAssessmentInstancesMap = generatedAssessmentInstancesMap;
+        assessmentData.testStepStatus[step].isStepScanned = true;
+        assessmentData.scanIncompleteWarnings = payload.scanIncompleteWarnings;
+        this.updateTestStepStatusOnScanUpdate(assessmentData, step, test);
         await this.emitChanged();
     };
 
