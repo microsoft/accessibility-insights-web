@@ -1018,7 +1018,9 @@ describe('AssessmentStore', () => {
         };
 
         const expectedInstanceMap = {};
-        const stepMapStub: DictionaryStringTo<Requirement> =  {'assessment-1-step-1': {} as Requirement}
+        const stepMapStub: DictionaryStringTo<Requirement> = {
+            'assessment-1-step-1': {} as Requirement,
+        };
         const stepConfig: Readonly<Requirement> = {
             ...assessmentsProvider.getStep(assessmentType, 'assessment-1-step-1'),
             isManual: false,
