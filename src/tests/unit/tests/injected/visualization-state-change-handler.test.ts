@@ -2,12 +2,14 @@
 // Licensed under the MIT License.
 import { Requirement } from 'assessments/types/requirement';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
     DetailsViewSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfiguration,
 } from 'DetailsView/components/details-view-switcher-nav';
+import { GetSelectedAssessmentCardSelectionStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-card-selection-store-data';
 import { GetSelectedAssessmentStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-store-data';
 import { TargetPageStoreData } from 'injected/client-store-listener';
 import { UpdateVisualization } from 'injected/target-page-visualization-updater';
@@ -21,6 +23,7 @@ describe('VisualizationStateChangeHandler', () => {
     let testSubject: VisualizationStateChangeHandler;
     let getDetailsSwitcherNavConfigurationMock: IMock<GetDetailsSwitcherNavConfiguration>;
     let assessmentStoreDataStub: AssessmentStoreData;
+    let assessmentCardSelectionStoreDataStub: AssessmentCardSelectionStoreData;
 
     beforeEach(() => {
         visualizationUpdaterMock = Mock.ofType<UpdateVisualization>();
@@ -28,11 +31,14 @@ describe('VisualizationStateChangeHandler', () => {
         storeDataStub = {
             assessmentStoreData: { assessmentNavState: { selectedTestSubview: 'sub-view-1' } },
             quickAssessStoreData: { assessmentNavState: { selectedTestSubview: 'sub-view-2' } },
+            assessmentCardSelectionStoreData: {},
+            quickAssessCardSelectionStoreData: {},
             visualizationStoreData: { selectedDetailsViewPivot: DetailsViewPivotType.fastPass },
         } as TargetPageStoreData;
         assessmentStoreDataStub = {
             assessmentNavState: { selectedTestSubview: 'some test sub view' },
         } as AssessmentStoreData;
+        assessmentCardSelectionStoreDataStub = {} as AssessmentCardSelectionStoreData;
         getDetailsSwitcherNavConfigurationMock = Mock.ofType<GetDetailsSwitcherNavConfiguration>();
         testSubject = new VisualizationStateChangeHandler(
             visualizationUpdaterMock.object,
@@ -40,7 +46,6 @@ describe('VisualizationStateChangeHandler', () => {
             getDetailsSwitcherNavConfigurationMock.object,
         );
     });
-
     test('visualization is updated, with requirement passed', async () => {
         const requirementConfigStub = {
             key: 'some requirement',
@@ -51,7 +56,11 @@ describe('VisualizationStateChangeHandler', () => {
                 givenCallback(null, -1, requirementConfigStub);
             });
 
-        setupSwitcherNavConfiguration(storeDataStub, assessmentStoreDataStub);
+        setupSwitcherNavConfiguration(
+            storeDataStub,
+            assessmentStoreDataStub,
+            assessmentCardSelectionStoreDataStub,
+        );
         await testSubject.updateVisualizationsWithStoreData(storeDataStub);
 
         const expectedStoreData = {
@@ -72,7 +81,11 @@ describe('VisualizationStateChangeHandler', () => {
                 givenCallback(null, -1);
             });
 
-        setupSwitcherNavConfiguration(storeDataStub, assessmentStoreDataStub);
+        setupSwitcherNavConfiguration(
+            storeDataStub,
+            assessmentStoreDataStub,
+            assessmentCardSelectionStoreDataStub,
+        );
         await testSubject.updateVisualizationsWithStoreData(storeDataStub);
 
         const expectedStoreData = {
@@ -95,8 +108,11 @@ describe('VisualizationStateChangeHandler', () => {
     function setupSwitcherNavConfiguration(
         storeData: TargetPageStoreData,
         returnedAssessmentData: AssessmentStoreData,
+        returnedAssessmentCardSelectionData: AssessmentCardSelectionStoreData,
     ): void {
         const getSelectedAssessmentStoreDataMock = Mock.ofType<GetSelectedAssessmentStoreData>();
+        const getSelectedAssessmentCardSelectionStoreDataMock =
+            Mock.ofType<GetSelectedAssessmentCardSelectionStoreData>();
         getDetailsSwitcherNavConfigurationMock
             .setup(m =>
                 m(
@@ -109,6 +125,8 @@ describe('VisualizationStateChangeHandler', () => {
             .returns(() => {
                 return {
                     getSelectedAssessmentStoreData: getSelectedAssessmentStoreDataMock.object,
+                    getSelectedAssessmentCardSelectionStoreData:
+                        getSelectedAssessmentCardSelectionStoreDataMock.object,
                 } as DetailsViewSwitcherNavConfiguration;
             });
 
@@ -122,5 +140,18 @@ describe('VisualizationStateChangeHandler', () => {
                 ),
             )
             .returns(() => returnedAssessmentData);
+
+        getSelectedAssessmentCardSelectionStoreDataMock
+            .setup(m =>
+                m(
+                    It.isObjectWith({
+                        quickAssessCardSelectionStoreData:
+                            storeData.quickAssessCardSelectionStoreData,
+                        assessmentCardSelectionStoreData:
+                            storeData.assessmentCardSelectionStoreData,
+                    }),
+                ),
+            )
+            .returns(() => returnedAssessmentCardSelectionData);
     }
 });

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -113,6 +114,7 @@ describe('SelectorMapHelperTest', () => {
 
     assessmentVisualizationTypes.forEach(visualizationType => {
         test(`getState: ${VisualizationType[visualizationType]}`, () => {
+            const stepKey = AutomatedChecks.key;
             const selectorMap = {
                 key1: { target: ['element1'] } as AssessmentVisualizationInstance,
             };
@@ -132,7 +134,7 @@ describe('SelectorMapHelperTest', () => {
                 )
                 .returns(() => selectorMap);
 
-            expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
+            expect(testSubject.getSelectorMap(visualizationType, stepKey, storeData)).toEqual(
                 selectorMap,
             );
         });

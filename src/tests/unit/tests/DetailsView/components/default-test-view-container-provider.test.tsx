@@ -25,6 +25,7 @@ describe('DefaultTestViewContainerProvider', () => {
                     requirements: {} as TabStopRequirementState,
                 },
             },
+            visualizationStoreData: { selectedFastPassDetailsView: 0 },
             needsReviewCardsViewData: {} as CardsViewModel,
             automatedChecksCardsViewData: {} as CardsViewModel,
             assessmentCardsViewData: {} as CardsViewModel,

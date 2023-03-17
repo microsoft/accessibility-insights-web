@@ -2,15 +2,12 @@
 
 exports[`DefaultTestViewContainerProvider can create assessment automated checks test view container 1`] = `
 <AdhocIssuesTestView
-  assessmentActionMessageCreator={{}}
   assessmentCardSelectionMessageCreator={{}}
   assessmentCardsViewData={{}}
-  assessmentStoreData={{}}
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
   cardSelectionMessageCreator={{}}
   cardsViewData={{}}
-  detailsViewActionMessageCreator={{}}
   includeStepsText={false}
   instancesSection={[Function]}
   needsReviewCardSelectionMessageCreator={{}}
@@ -23,19 +20,20 @@ exports[`DefaultTestViewContainerProvider can create assessment automated checks
       },
     }
   }
-  visualizationStoreData={{}}
+  visualizationStoreData={
+    {
+      "selectedFastPassDetailsView": 0,
+    }
+  }
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create assessment test view container 1`] = `
 <AssessmentTestView
-  assessmentActionMessageCreator={{}}
   assessmentCardSelectionMessageCreator={{}}
   assessmentCardsViewData={{}}
-  assessmentStoreData={{}}
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
-  detailsViewActionMessageCreator={{}}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
   someParentProp="parent-prop"
@@ -46,24 +44,26 @@ exports[`DefaultTestViewContainerProvider can create assessment test view contai
       },
     }
   }
-  visualizationStoreData={{}}
+  visualizationStoreData={
+    {
+      "selectedFastPassDetailsView": 0,
+    }
+  }
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create issues test view container 1`] = `
 <AdhocIssuesTestView
-  assessmentActionMessageCreator={{}}
   assessmentCardSelectionMessageCreator={{}}
   assessmentCardsViewData={{}}
-  assessmentStoreData={{}}
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
   cardSelectionMessageCreator={{}}
   cardsViewData={{}}
-  detailsViewActionMessageCreator={{}}
   instancesSection={[Function]}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
+  selectedVisualizationType={0}
   someParentProp="parent-prop"
   visualizationScanResultData={
     {
@@ -72,24 +72,26 @@ exports[`DefaultTestViewContainerProvider can create issues test view container 
       },
     }
   }
-  visualizationStoreData={{}}
+  visualizationStoreData={
+    {
+      "selectedFastPassDetailsView": 0,
+    }
+  }
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create needs review test view container 1`] = `
 <AdhocIssuesTestView
-  assessmentActionMessageCreator={{}}
   assessmentCardSelectionMessageCreator={{}}
   assessmentCardsViewData={{}}
-  assessmentStoreData={{}}
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
   cardSelectionMessageCreator={{}}
   cardsViewData={{}}
-  detailsViewActionMessageCreator={{}}
   instancesSection={[Function]}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
+  selectedVisualizationType={0}
   someParentProp="parent-prop"
   visualizationScanResultData={
     {
@@ -98,19 +100,20 @@ exports[`DefaultTestViewContainerProvider can create needs review test view cont
       },
     }
   }
-  visualizationStoreData={{}}
+  visualizationStoreData={
+    {
+      "selectedFastPassDetailsView": 0,
+    }
+  }
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create static test view container 1`] = `
 <AdhocStaticTestView
-  assessmentActionMessageCreator={{}}
   assessmentCardSelectionMessageCreator={{}}
   assessmentCardsViewData={{}}
-  assessmentStoreData={{}}
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
-  detailsViewActionMessageCreator={{}}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
   someParentProp="parent-prop"
@@ -121,19 +124,20 @@ exports[`DefaultTestViewContainerProvider can create static test view container 
       },
     }
   }
-  visualizationStoreData={{}}
+  visualizationStoreData={
+    {
+      "selectedFastPassDetailsView": 0,
+    }
+  }
 />
 `;
 
 exports[`DefaultTestViewContainerProvider can create tab stops test view container 1`] = `
 <AdhocTabStopsTestView
-  assessmentActionMessageCreator={{}}
   assessmentCardSelectionMessageCreator={{}}
   assessmentCardsViewData={{}}
-  assessmentStoreData={{}}
   automatedChecksCardSelectionMessageCreator={{}}
   automatedChecksCardsViewData={{}}
-  detailsViewActionMessageCreator={{}}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
   someParentProp="parent-prop"
@@ -144,6 +148,10 @@ exports[`DefaultTestViewContainerProvider can create tab stops test view contain
       },
     }
   }
-  visualizationStoreData={{}}
+  visualizationStoreData={
+    {
+      "selectedFastPassDetailsView": 0,
+    }
+  }
 />
 `;
