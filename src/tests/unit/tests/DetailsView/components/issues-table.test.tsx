@@ -190,6 +190,7 @@ class TestPropsBuilder {
                 isIssueFilingSettingsDialogOpen: false,
             },
             narrowModeStatus: {} as NarrowModeStatus,
+            selectedVisualizationType: 0,
         };
     }
 }

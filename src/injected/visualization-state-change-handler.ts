@@ -34,11 +34,14 @@ export class VisualizationStateChangeHandler {
                 });
                 const selectedAssessmentData =
                     switcherNavConfig.getSelectedAssessmentStoreData(storeData);
+                const selectedAssessmentCardSelectionData =
+                    switcherNavConfig.getSelectedAssessmentCardSelectionStoreData(storeData);
 
                 updateCalls.push(
                     this.visualizationUpdater(type, requirementConfig?.key, {
                         ...storeData,
                         assessmentStoreData: selectedAssessmentData,
+                        assessmentCardSelectionStoreData: selectedAssessmentCardSelectionData,
                     }),
                 );
             },

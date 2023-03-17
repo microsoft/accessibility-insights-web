@@ -20,7 +20,7 @@ import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-m
 import { Target } from 'scanner/iruleresults';
 
 export type GetElementBasedViewModelCallback = (
-    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
+    storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
     cardSelectionData: CardSelectionStoreData,
 ) => SelectorToVisualizationMap | null;
 
@@ -33,7 +33,7 @@ export class ElementBasedViewModelCreator {
     ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
-        storeData: UnifiedScanResultStoreData | AssessmentStoreData,
+        storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
         cardSelectionData: CardSelectionStoreData,
     ) => {
         const results: ScanNodeResult[] | null = this.convertStoreDataForScanNodeResults(
@@ -48,7 +48,9 @@ export class ElementBasedViewModelCreator {
         return this.getSelectorToVisualizationMap(
             cardSelectionData,
             results,
-            'platformInfo' in storeData && storeData.platformInfo ? storeData.platformInfo : null,
+            storeData && 'platformInfo' in storeData && storeData.platformInfo
+                ? storeData.platformInfo
+                : null,
         );
     };
 
