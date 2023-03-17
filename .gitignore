@@ -26,3 +26,12 @@ generated-validate-assessment-json.js
 node_modules/
 .DS_STORE
 yarn-error.log
+
+# Yarn config for non-zero-installs
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
