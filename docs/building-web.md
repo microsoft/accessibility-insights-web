@@ -85,7 +85,7 @@ We expect almost all code to be covered by unit tests (the main exception to thi
 yarn test --changedSince main
 
 # Test only files matching a particular name pattern
-yarn test -- -- SomeFile.test.tsx
+yarn test -- SomeFile.test.tsx
 
 # This runs unit tests continuously as they are updated
 yarn watch:test
@@ -96,7 +96,7 @@ yarn test
 # -u updates snapshots
 yarn test --changedSince main -u
 yarn test -u
-yarn test -- -u -- SomeFile.test.tsx
+yarn test -u -- SomeFile.test.tsx
 ```
 
 Extra command line arguments and flags are passed along to Jest. See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
@@ -128,9 +128,9 @@ yarn test:report:e2e
 
 # -u updates snapshots for the report package
 # Windows: 
-yarn test:report:e2e -- -- -- -u
+yarn test:report:e2e -u
 #Linux and Mac:
-yarn test:report:e2e -- -- -u
+yarn test:report:e2e -u
 
 # On occasion you may need to clear the Jest cache before running tests
 yarn jest --clearCache
