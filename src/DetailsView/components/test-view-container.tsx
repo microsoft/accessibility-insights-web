@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
@@ -62,6 +63,7 @@ export interface TestViewContainerProps {
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     narrowModeStatus: NarrowModeStatus;
     testViewContainerProvider: TestViewContainerProvider;
+    getProvider: () => AssessmentsProvider;
 }
 
 export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {

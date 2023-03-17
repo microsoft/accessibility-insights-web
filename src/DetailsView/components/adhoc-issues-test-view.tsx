@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
@@ -43,6 +44,7 @@ export type AdhocIssuesTestViewProps = {
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     narrowModeStatus: NarrowModeStatus;
     selectedVisualizationType: VisualizationType;
+    getProvider: () => AssessmentsProvider;
 };
 
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(

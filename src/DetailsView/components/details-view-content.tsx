@@ -216,6 +216,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 overviewHeadingIntroText={overviewHeadingIntroText}
                 linkDataSource={linkDataSource}
                 testViewContainerProvider={props.deps.testViewContainerProvider}
+                getProvider={props.deps.getProvider}
             />
         );
     };

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import {
     CommonInstancesSectionDeps,
@@ -49,6 +50,7 @@ export interface IssuesTableProps {
     narrowModeStatus: NarrowModeStatus;
     cardsViewStoreData: CardsViewStoreData;
     selectedVisualizationType: VisualizationType;
+    getProvider: () => AssessmentsProvider;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -108,14 +110,17 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     private renderComponent(): JSX.Element {
         const cardCount = this.getCardCount();
+        const assessment = this.props.getProvider().forType(this.props.selectedVisualizationType);
         if (!this.props.issuesEnabled && cardCount > 0) {
             this.props.deps.detailsViewActionMessageCreator.enableFastPassVisualHelperWithoutScan(
                 this.props.selectedVisualizationType,
+                assessment?.requirements[0].key,
             );
         }
         if (!this.props.issuesEnabled && cardCount === 0) {
             this.props.deps.detailsViewActionMessageCreator.rescanVisualizationWithoutTelemetry(
                 this.props.selectedVisualizationType,
+                assessment?.requirements[0].key,
             );
         }
 

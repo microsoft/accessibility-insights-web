@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import classNames from 'classnames';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -80,6 +81,7 @@ export interface DetailsViewBodyProps {
     tabStopRequirementData: TabStopRequirementState;
     dataTransferViewStoreData: DataTransferViewStoreData;
     testViewContainerProvider: TestViewContainerProvider;
+    getProvider: () => AssessmentsProvider;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
