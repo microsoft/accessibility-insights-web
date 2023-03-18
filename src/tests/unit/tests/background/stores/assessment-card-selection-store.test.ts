@@ -184,6 +184,11 @@ describe('AssessmentCardSelectionStore Test', () => {
             ['null', null],
             ['empty assessmentStoreData', { assessmentStoreData: {} }],
             ['null assessmentStoreData', { assessmentStoreData: null }],
+            [
+                'null assessmentStoreData.assessments',
+                { assessmentStoreData: { assessments: null } },
+            ],
+            ['empty assessmentStoreData.assessments', { assessmentStoreData: { assessments: {} } }],
         ];
         it.each(testCases)('does nothing with payload: %s"', async (testName, payload) => {
             const storeTester =

@@ -90,7 +90,12 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onAssessmentStoreChanged = async (
         payload: AssessmentStoreChangedPayload,
     ): Promise<void> => {
-        if (!payload || !payload.assessmentStoreData || !payload.assessmentStoreData.assessments) {
+        if (
+            !payload ||
+            !payload.assessmentStoreData ||
+            !payload.assessmentStoreData.assessments ||
+            isEmpty(payload.assessmentStoreData.assessments)
+        ) {
             return;
         }
 
