@@ -110,11 +110,11 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             return;
         }
 
-        const storeState: AssessmentCardSelectionStoreData = this.state ?? this.getDefaultState();
+        const cardSelectionStoreData: AssessmentCardSelectionStoreData = {};
 
         forOwn(assessmentStoreData.assessments, (assessment, key) => {
-            storeState[key] = convertResultsToCardSelectionStoreData(
-                storeState[key] ?? {
+            cardSelectionStoreData[key] = convertResultsToCardSelectionStoreData(
+                cardSelectionStoreData[key] ?? {
                     rules: null,
                     visualHelperEnabled: false,
                     focusedResultUid: null,
@@ -124,7 +124,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             );
         });
 
-        return storeState;
+        return cardSelectionStoreData;
     }
 
     private deselectAllCards = (): void => {
