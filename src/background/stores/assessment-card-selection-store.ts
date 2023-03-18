@@ -25,7 +25,7 @@ import {
 } from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
-    private persistedStateFromAssessmentStore: AssessmentCardSelectionStoreData;
+    private persistedStateFromAssessmentStore: AssessmentCardSelectionStoreData | undefined;
 
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
@@ -83,18 +83,18 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onAssessmentStoreChanged = async (
         payload: AssessmentStoreChangedPayload,
     ): Promise<void> => {
-        if (
-            !payload ||
-            !payload.assessmentStoreData ||
-            !payload.assessmentStoreData.assessments ||
-            isEmpty(payload.assessmentStoreData.assessments)
-        ) {
+        if (!payload) {
             return;
         }
 
-        this.state = this.convertAllAssessmentResultsToCardSelectionStoreData(
-            payload.assessmentStoreData,
-        );
+        const cardSelectionDataFromAssessment =
+            this.convertAllAssessmentResultsToCardSelectionStoreData(payload.assessmentStoreData);
+
+        if (!cardSelectionDataFromAssessment || isEmpty(cardSelectionDataFromAssessment)) {
+            return;
+        }
+
+        this.state = cardSelectionDataFromAssessment;
 
         await this.emitChanged();
     };

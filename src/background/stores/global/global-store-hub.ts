@@ -112,6 +112,7 @@ export class GlobalStoreHub implements StoreHub {
         this.assessmentCardSelectionStore = new AssessmentCardSelectionStore(
             globalActionHub.assessmentCardSelectionActions,
             persistedData.assessmentCardSelectionStoreData,
+            persistedData.assessmentStoreData,
             indexedDbInstance,
             logger,
             persistStoreData,
@@ -121,6 +122,7 @@ export class GlobalStoreHub implements StoreHub {
         this.quickAssessCardSelectionStore = new AssessmentCardSelectionStore(
             globalActionHub.quickAssessCardSelectionActions,
             persistedData.quickAssessCardSelectionStoreData,
+            persistedData.quickAssessStoreData,
             indexedDbInstance,
             logger,
             persistStoreData,

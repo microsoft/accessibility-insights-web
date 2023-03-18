@@ -100,7 +100,7 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.AssessmentCardSelection.AssessmentStoreChanged,
+            messageType: this.messages.AssessmentStoreChanged,
             payload,
         });
     };
