@@ -6,6 +6,7 @@ import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { convertResultsToCardSelectionStoreData } from 'common/store-data-to-scan-node-result-converter';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
@@ -24,9 +25,12 @@ import {
 } from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
+    private persistedStateFromAssessmentStore: AssessmentCardSelectionStoreData;
+
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
         persistedState: AssessmentCardSelectionStoreData,
+        assessmentStoreData: AssessmentStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
         persistStoreData: boolean,
@@ -40,6 +44,9 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             logger,
             persistStoreData,
         );
+
+        this.persistedStateFromAssessmentStore =
+            this.convertAllAssessmentResultsToCardSelectionStoreData(assessmentStoreData);
     }
 
     protected addActionListeners(): void {
@@ -65,7 +72,11 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     }
 
     public override initialize(initialState?: AssessmentCardSelectionStoreData): void {
-        this.state = initialState || (this.persistedState ?? this.getDefaultState());
+        this.state =
+            initialState ||
+            (this.persistedState ??
+                this.persistedStateFromAssessmentStore ??
+                this.getDefaultState());
 
         this.addActionListeners();
     }
@@ -79,24 +90,44 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onAssessmentStoreChanged = async (
         payload: AssessmentStoreChangedPayload,
     ): Promise<void> => {
-        if (!payload || !payload.assessmentStoreData) {
+        if (!payload || !payload.assessmentStoreData || !payload.assessmentStoreData.assessments) {
             return;
         }
 
-        forOwn(payload.assessmentStoreData.assessments, (assessment, key) => {
-            this.state[key] = convertResultsToCardSelectionStoreData(
-                this.state[key] ?? {
+        this.state = this.convertAllAssessmentResultsToCardSelectionStoreData(
+            payload.assessmentStoreData,
+        );
+
+        await this.emitChanged();
+    };
+
+    private convertAllAssessmentResultsToCardSelectionStoreData(
+        assessmentStoreData: AssessmentStoreData,
+    ) {
+        if (
+            !assessmentStoreData ||
+            !assessmentStoreData.assessments ||
+            isEmpty(assessmentStoreData.assessments)
+        ) {
+            return;
+        }
+
+        const storeState: AssessmentCardSelectionStoreData = this.state ?? this.getDefaultState();
+
+        forOwn(assessmentStoreData.assessments, (assessment, key) => {
+            storeState[key] = convertResultsToCardSelectionStoreData(
+                storeState[key] ?? {
                     rules: null,
                     visualHelperEnabled: false,
                     focusedResultUid: null,
                 },
-                payload.assessmentStoreData,
+                assessmentStoreData,
                 key as unknown as VisualizationType,
             );
         });
 
-        await this.emitChanged();
-    };
+        return storeState;
+    }
 
     private deselectAllCards = (): void => {
         forOwn(this.state, test => {

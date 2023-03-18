@@ -94,6 +94,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                 null,
                 null,
                 null,
+                null,
                 false,
                 '',
             );
@@ -108,6 +109,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                 initialState,
                 null,
                 null,
+                null,
                 true,
                 '',
             );
@@ -116,9 +118,28 @@ describe('AssessmentCardSelectionStore Test', () => {
             expect(testObject.getState()).toEqual(expectedState);
         });
 
-        it('sets the state to default state if no param or persisted state', () => {
+        it('sets the state based on persisted assessment state if no param or persisted store state', () => {
+            const assessmentStoreState: AssessmentStoreData = createAssessmentStoreDataWithStatus(
+                ManualTestStatus.FAIL,
+            );
             const testObject = new AssessmentCardSelectionStore(
                 new AssessmentCardSelectionActions(),
+                null,
+                assessmentStoreState,
+                null,
+                null,
+                true,
+                '',
+            );
+            testObject.initialize();
+
+            expect(testObject.getState()).toEqual(expectedState);
+        });
+
+        it('sets the state to default state if no param or persisted states', () => {
+            const testObject = new AssessmentCardSelectionStore(
+                new AssessmentCardSelectionActions(),
+                null,
                 null,
                 null,
                 null,
@@ -159,107 +180,18 @@ describe('AssessmentCardSelectionStore Test', () => {
             await storeTester.testListenerToBeCalledOnce(null, expectedState);
         });
 
-        it('sets the store state to {} when assessment store data is empty', async () => {
-            const payload: AssessmentStoreChangedPayload = {
-                assessmentStoreData: {} as AssessmentStoreData,
-            };
-
-            expectedState = {};
-
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions(
-                    'assessmentStoreChanged',
-                ).withActionParam(payload);
-            await storeTester.testListenerToBeCalledOnce(null, expectedState);
-        });
-
-        it('does nothing when there is no payload', async () => {
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions(
-                    'assessmentStoreChanged',
-                ).withActionParam(null);
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
-
-        it('does nothing when there is no assessment store data in payload', async () => {
-            const payload: AssessmentStoreChangedPayload = {
-                assessmentStoreData: null,
-            };
+        const testCases = [
+            ['null', null],
+            ['empty assessmentStoreData', { assessmentStoreData: {} }],
+            ['null assessmentStoreData', { assessmentStoreData: null }],
+        ];
+        it.each(testCases)('does nothing with payload: %s"', async (testName, payload) => {
             const storeTester =
                 createStoreForAssessmentCardSelectionActions(
                     'assessmentStoreChanged',
                 ).withActionParam(payload);
             await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
         });
-
-        const testStepResult = (uid: string, status: ManualTestStatus): TestStepResult => {
-            return {
-                id: uid,
-                status,
-                isCapturedByUser: false,
-                isVisualizationSupported: true,
-                isVisualizationEnabled: false,
-                isVisible: true,
-            } as TestStepResult;
-        };
-
-        function createAssessmentStoreDataWithStatus(
-            status: ManualTestStatus,
-        ): AssessmentStoreData {
-            return {
-                persistedTabInfo: {},
-                assessments: {
-                    testKey1: {
-                        fullAxeResultsMap: {},
-                        generatedAssessmentInstancesMap: {
-                            selector1: {
-                                target: ['selector1'],
-                                html: 'html1',
-                                testStepResults: {
-                                    sampleRuleId1: testStepResult('sampleUid1', status),
-                                    sampleRuleId2: testStepResult('sampleUid1', status),
-                                },
-                                propertyBag: null,
-                            },
-                            selector2: {
-                                target: ['selector2'],
-                                html: 'html2',
-                                testStepResults: {
-                                    sampleRuleId1: testStepResult('sampleUid2', status),
-                                    sampleRuleId2: testStepResult('sampleUid2', status),
-                                },
-                                propertyBag: null,
-                            },
-                        },
-                        testStepStatus: {},
-                    },
-                    testKey2: {
-                        fullAxeResultsMap: {},
-                        generatedAssessmentInstancesMap: {
-                            selector2: {
-                                target: ['selector2'],
-                                html: 'html1',
-                                testStepResults: {
-                                    sampleRuleId3: testStepResult('sampleUid3', status),
-                                },
-                                propertyBag: null,
-                            },
-                            selector3: {
-                                target: ['selector3'],
-                                html: 'html2',
-                                testStepResults: {
-                                    sampleRuleId3: testStepResult('sampleUid4', status),
-                                },
-                                propertyBag: null,
-                            },
-                        },
-                        testStepStatus: {},
-                    },
-                },
-                assessmentNavState: {} as AssessmentNavState,
-                resultDescription: '',
-            };
-        }
     });
 
     describe('toggleRuleExpandCollapse', () => {
@@ -734,8 +666,75 @@ describe('AssessmentCardSelectionStore Test', () => {
         actionName: keyof AssessmentCardSelectionActions,
     ): StoreTester<AssessmentCardSelectionStoreData, AssessmentCardSelectionActions> {
         const factory = (actions: AssessmentCardSelectionActions) =>
-            new AssessmentCardSelectionStore(actions, null, null, null, true, '');
+            new AssessmentCardSelectionStore(actions, null, null, null, null, true, '');
 
         return new StoreTester(AssessmentCardSelectionActions, actionName, factory);
+    }
+
+    const testStepResult = (uid: string, status: ManualTestStatus): TestStepResult => {
+        return {
+            id: uid,
+            status,
+            isCapturedByUser: false,
+            isVisualizationSupported: true,
+            isVisualizationEnabled: false,
+            isVisible: true,
+        } as TestStepResult;
+    };
+
+    function createAssessmentStoreDataWithStatus(status: ManualTestStatus): AssessmentStoreData {
+        return {
+            persistedTabInfo: {},
+            assessments: {
+                testKey1: {
+                    fullAxeResultsMap: {},
+                    generatedAssessmentInstancesMap: {
+                        selector1: {
+                            target: ['selector1'],
+                            html: 'html1',
+                            testStepResults: {
+                                sampleRuleId1: testStepResult('sampleUid1', status),
+                                sampleRuleId2: testStepResult('sampleUid1', status),
+                            },
+                            propertyBag: null,
+                        },
+                        selector2: {
+                            target: ['selector2'],
+                            html: 'html2',
+                            testStepResults: {
+                                sampleRuleId1: testStepResult('sampleUid2', status),
+                                sampleRuleId2: testStepResult('sampleUid2', status),
+                            },
+                            propertyBag: null,
+                        },
+                    },
+                    testStepStatus: {},
+                },
+                testKey2: {
+                    fullAxeResultsMap: {},
+                    generatedAssessmentInstancesMap: {
+                        selector2: {
+                            target: ['selector2'],
+                            html: 'html1',
+                            testStepResults: {
+                                sampleRuleId3: testStepResult('sampleUid3', status),
+                            },
+                            propertyBag: null,
+                        },
+                        selector3: {
+                            target: ['selector3'],
+                            html: 'html2',
+                            testStepResults: {
+                                sampleRuleId3: testStepResult('sampleUid4', status),
+                            },
+                            propertyBag: null,
+                        },
+                    },
+                    testStepStatus: {},
+                },
+            },
+            assessmentNavState: {} as AssessmentNavState,
+            resultDescription: '',
+        };
     }
 });

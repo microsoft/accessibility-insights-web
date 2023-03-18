@@ -16,7 +16,6 @@ export class AssessmentCardController {
 
     private onAssessmentStoreChanged = async (): Promise<void> => {
         const assessmentStoreState = this.assessmentStore.getState();
-        console.log(assessmentStoreState);
 
         this.assessmentCardSelectionMessageCreator.assessmentStoreChanged(assessmentStoreState);
     };
