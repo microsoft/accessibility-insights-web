@@ -32,6 +32,7 @@ export interface DetailsListIssuesViewProps {
     cardSelectionMessageCreator: CardSelectionMessageCreator;
     narrowModeStatus: NarrowModeStatus;
     includeStepsText?: boolean;
+    selectedVisualizationType: VisualizationType;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
@@ -67,6 +68,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 cardSelectionMessageCreator={props.cardSelectionMessageCreator}
                 narrowModeStatus={props.narrowModeStatus}
                 cardsViewStoreData={props.cardsViewStoreData}
+                selectedVisualizationType={props.selectedVisualizationType}
             />
         );
     },

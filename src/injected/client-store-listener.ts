@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -26,6 +27,8 @@ export interface TargetPageStoreData {
     cardSelectionStoreData: CardSelectionStoreData;
     permissionsStateStoreData: PermissionsStateStoreData;
     needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData;
+    assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData;
+    quickAssessCardSelectionStoreData: AssessmentCardSelectionStoreData;
 }
 
 export class ClientStoreListener {

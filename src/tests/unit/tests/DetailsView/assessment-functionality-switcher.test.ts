@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -76,6 +77,12 @@ describe(AssessmentFunctionalitySwitcher, () => {
             );
         });
 
+        test('getAssessmentCardSelectionMessageCreator', () => {
+            expect(() => testSubject.getAssessmentCardSelectionMessageCreator()).toThrowError(
+                NO_STORE_DATA_ERROR,
+            );
+        });
+
         test('getNavLinkHandler', () => {
             expect(() => testSubject.getNavLinkHandler()).toThrowError(NO_STORE_DATA_ERROR);
         });
@@ -107,6 +114,8 @@ describe(AssessmentFunctionalitySwitcher, () => {
             assessmentObjectsStub = {
                 provider: Mock.ofType<AssessmentsProvider>().object,
                 actionMessageCreator: Mock.ofType<AssessmentActionMessageCreator>().object,
+                cardSelectionMessageCreator:
+                    Mock.ofType<AssessmentCardSelectionMessageCreator>().object,
                 navLinkHandler: Mock.ofType<NavLinkHandler>().object,
                 instanceTableHandler: Mock.ofType<AssessmentInstanceTableHandler>().object,
                 getAssessmentSummaryModelFromProviderAndStatusData:
@@ -126,6 +135,12 @@ describe(AssessmentFunctionalitySwitcher, () => {
         test('getAssessmentActionMessageCreator', () => {
             expect(testSubject.getAssessmentActionMessageCreator()).toEqual(
                 assessmentObjectsStub.actionMessageCreator,
+            );
+        });
+
+        test('getAssessmentCardSelectionMessageCreator', () => {
+            expect(testSubject.getAssessmentCardSelectionMessageCreator()).toEqual(
+                assessmentObjectsStub.cardSelectionMessageCreator,
             );
         });
 

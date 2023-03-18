@@ -31,6 +31,7 @@ import {
     GetDetailsSwitcherNavConfiguration,
     GetDetailsSwitcherNavConfigurationProps,
 } from 'DetailsView/components/details-view-switcher-nav';
+import { GetSelectedAssessmentCardSelectionStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-card-selection-store-data';
 import { GetSelectedAssessmentStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-store-data';
 import { GetSelectedDetailsViewProps } from 'DetailsView/components/left-nav/get-selected-details-view';
 import {
@@ -125,12 +126,17 @@ describe(DetailsViewContent.displayName, () => {
             const getSelectedAssessmentStoreDataMock = Mock.ofInstance(
                 (() => null) as GetSelectedAssessmentStoreData,
             );
+            const getSelectedAssessmentCardSelectionStoreDataMock = Mock.ofInstance(
+                (() => null) as GetSelectedAssessmentCardSelectionStoreData,
+            );
 
             const rightContentPanelType = 'TestView';
             const rightContentPanelConfig = {} as DetailsRightPanelConfiguration;
             const switcherNavConfig = {
                 getSelectedDetailsView: getSelectedDetailsViewMock.object,
                 getSelectedAssessmentStoreData: getSelectedAssessmentStoreDataMock.object,
+                getSelectedAssessmentCardSelectionStoreData:
+                    getSelectedAssessmentCardSelectionStoreDataMock.object,
             } as DetailsViewSwitcherNavConfiguration;
 
             const visualizationStoreData = new VisualizationStoreDataBuilder()
@@ -225,6 +231,21 @@ describe(DetailsViewContent.displayName, () => {
                     return state.assessmentStoreData;
                 });
 
+            getSelectedAssessmentCardSelectionStoreDataMock
+                .setup(m =>
+                    m(
+                        It.isObjectWith({
+                            assessmentCardSelectionStoreData:
+                                state.assessmentCardSelectionStoreData,
+                            quickAssessCardSelectionStoreData:
+                                state.quickAssessCardSelectionStoreData,
+                        }),
+                    ),
+                )
+                .returns(() => {
+                    return state.assessmentCardSelectionStoreData;
+                });
+
             const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
             getCardSelectionViewDataMock
                 .setup(g =>
@@ -238,9 +259,18 @@ describe(DetailsViewContent.displayName, () => {
                 .returns(() => cardSelectionViewData)
                 .verifiable(Times.exactly(2));
 
+            getCardSelectionViewDataMock
+                .setup(g => g(undefined, null, null, isResultHighlightUnavailableStub))
+                .returns(() => cardSelectionViewData)
+                .verifiable(Times.exactly(1));
+
             const cardsViewData: CardsViewModel = {} as any;
             getCardViewDataMock
                 .setup(m => m(state.unifiedScanResultStoreData, cardSelectionViewData))
+                .returns(() => cardsViewData);
+
+            getCardViewDataMock
+                .setup(m => m(state.assessmentStoreData, cardSelectionViewData))
                 .returns(() => cardsViewData);
 
             const rendered = shallow(
@@ -291,6 +321,10 @@ describe(DetailsViewContent.displayName, () => {
                         scopingPanelStateStoreData: storeMocks.scopingStoreData,
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
                         unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
+                        assessmentCardSelectionStoreData:
+                            storeMocks.assessmentCardSelectionStoreData,
+                        quickAssessCardSelectionStoreData:
+                            storeMocks.quickAssessCardSelectionStoreData,
                         needsReviewScanResultStoreData: storeMocks.needsReviewScanResultStoreData,
                         needsReviewCardSelectionStoreData:
                             storeMocks.needsReviewCardSelectionStoreData,
@@ -354,6 +388,8 @@ describe(DetailsViewContent.displayName, () => {
             scopingPanelStateStoreData: storeMocks.scopingSelectorsData,
             unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
             needsReviewScanResultStoreData: storeMocks.needsReviewScanResultStoreData,
+            assessmentCardSelectionStoreData: storeMocks.assessmentCardSelectionStoreData,
+            quickAssessCardSelectionStoreData: storeMocks.quickAssessCardSelectionStoreData,
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
             cardSelectionStoreData: storeMocks.cardSelectionStoreData,

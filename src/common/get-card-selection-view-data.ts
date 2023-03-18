@@ -24,7 +24,7 @@ export type ResultsHighlightStatus = { [resultUid: string]: HighlightState };
 export type FilterableResult = Pick<UnifiedResult, 'status' | 'uid' | 'descriptors'>;
 
 export type GetCardSelectionViewData = (
-    storeData: CardSelectionStoreData,
+    storeData: CardSelectionStoreData | null,
     results: FilterableResult[],
     platformInfo: PlatformData | null,
     isResultHighlightUnavailable: IsResultHighlightUnavailable,
@@ -32,7 +32,7 @@ export type GetCardSelectionViewData = (
 ) => CardSelectionViewData;
 
 export const getCardSelectionViewData: GetCardSelectionViewData = (
-    cardSelectionStoreData: CardSelectionStoreData,
+    cardSelectionStoreData: CardSelectionStoreData | null,
     results: FilterableResult[],
     platformInfo: PlatformData | null,
     isResultHighlightUnavailable: IsResultHighlightUnavailable,

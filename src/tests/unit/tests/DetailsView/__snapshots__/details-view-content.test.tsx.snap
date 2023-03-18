@@ -36,6 +36,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     tabClosed={false}
   />
   <DetailsViewBody
+    assessmentCardsViewData={{}}
     assessmentInstanceTableHandler={[typemoq mock object]}
     assessmentStoreData={
       {
@@ -124,6 +125,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     setSideNavOpen={[Function]}
     switcherNavConfiguration={
       {
+        "getSelectedAssessmentCardSelectionStoreData": [Function],
         "getSelectedAssessmentStoreData": [Function],
         "getSelectedDetailsView": [Function],
       }

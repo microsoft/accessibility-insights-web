@@ -32,6 +32,7 @@ describe('AssessmentCardSelectionMessageCreator', () => {
             dispatcherMock.object,
             telemetryDataFactoryMock.object,
             sourceStub,
+            Messages.AssessmentCardSelection,
         );
     });
 

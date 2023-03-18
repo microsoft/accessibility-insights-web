@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { FeatureFlags } from 'common/feature-flags';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
@@ -42,6 +45,9 @@ describe('SelectorMapHelperTest', () => {
         VisualizationType.Issues,
         VisualizationType.NeedsReview,
     ];
+
+    const assessmentVisualizationTypes = [VisualizationType.AutomatedChecks];
+
     beforeEach(() => {
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         getElementBasedViewModelMock = Mock.ofType<GetElementBasedViewModelCallback>();
@@ -66,7 +72,7 @@ describe('SelectorMapHelperTest', () => {
                 .build();
             const storeData: VisualizationRelatedStoreData = {
                 visualizationScanResultStoreData: state,
-            } as VisualizationRelatedStoreData;
+            } as unknown as VisualizationRelatedStoreData;
             expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
                 selectorMap,
             );
@@ -102,6 +108,41 @@ describe('SelectorMapHelperTest', () => {
                 .returns(() => selectorMap);
 
             expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
+                selectorMap,
+            );
+        });
+    });
+
+    assessmentVisualizationTypes.forEach(visualizationType => {
+        test(`getState: ${VisualizationType[visualizationType]}`, () => {
+            const stepKey = AutomatedChecks.key;
+            const selectorMap = {
+                key1: { target: ['element1'] } as AssessmentVisualizationInstance,
+            };
+            const assessmentStoreDataStub = {} as AssessmentStoreData;
+            const assessmentCardSelectionStoreDataStub = {} as CardSelectionStoreData;
+
+            const storeData: VisualizationRelatedStoreData = {
+                assessmentStoreData: assessmentStoreDataStub,
+                assessmentCardSelectionStoreData: {
+                    [visualizationType]: assessmentCardSelectionStoreDataStub,
+                },
+                featureFlagStoreData: { [FeatureFlags.automatedChecks]: true },
+            } as unknown as VisualizationRelatedStoreData;
+
+            setupVisualizationConfigurationFactory(
+                null,
+                null,
+                visualizationType,
+                'automatedChecks',
+            );
+            getElementBasedViewModelMock
+                .setup(gebvm =>
+                    gebvm(assessmentStoreDataStub, assessmentCardSelectionStoreDataStub),
+                )
+                .returns(() => selectorMap);
+
+            expect(testSubject.getSelectorMap(visualizationType, stepKey, storeData)).toEqual(
                 selectorMap,
             );
         });
@@ -168,7 +209,8 @@ describe('SelectorMapHelperTest', () => {
         } as AssessmentStoreData;
         const storeData: VisualizationRelatedStoreData = {
             assessmentStoreData: state,
-        } as VisualizationRelatedStoreData;
+            featureFlagStoreData: { [FeatureFlags.automatedChecks]: false },
+        } as unknown as VisualizationRelatedStoreData;
 
         setupVisualizationConfigurationFactory(state, assessmentDataStub, visualizationType);
         const result = testSubject.getSelectorMap(visualizationType, stepKey, storeData);
@@ -206,7 +248,8 @@ describe('SelectorMapHelperTest', () => {
         setupVisualizationConfigurationFactory(state, assessmentDataStub, visualizationType);
         const storeData: VisualizationRelatedStoreData = {
             assessmentStoreData: state,
-        } as VisualizationRelatedStoreData;
+            featureFlagStoreData: { [FeatureFlags.automatedChecks]: false },
+        } as unknown as VisualizationRelatedStoreData;
 
         const result = testSubject.getSelectorMap(visualizationType, stepKey, storeData);
 
@@ -217,6 +260,7 @@ describe('SelectorMapHelperTest', () => {
         state: AssessmentStoreData,
         assessmentData: AssessmentData,
         visualizationType: VisualizationType,
+        key: string = null,
     ): void {
         const getAssessmentDataMock = Mock.ofType<(storeData: AssessmentStoreData) => void>();
         getAssessmentDataMock.setup(m => m(state)).returns(() => assessmentData);
@@ -225,6 +269,7 @@ describe('SelectorMapHelperTest', () => {
             .returns(() => {
                 return {
                     getAssessmentData: getAssessmentDataMock.object,
+                    key,
                 } as VisualizationConfiguration;
             });
     }

@@ -27,6 +27,7 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
                 cardsViewData={props.needsReviewCardsViewData}
                 cardSelectionMessageCreator={props.needsReviewCardSelectionMessageCreator}
                 instancesSection={NeedsReviewInstancesSection}
+                selectedVisualizationType={props.visualizationStoreData.selectedFastPassDetailsView}
                 {...props}
             />
         );
@@ -38,6 +39,7 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
                 instancesSection={FailedInstancesSection}
                 cardSelectionMessageCreator={props.automatedChecksCardSelectionMessageCreator}
                 cardsViewData={props.automatedChecksCardsViewData}
+                selectedVisualizationType={props.visualizationStoreData.selectedFastPassDetailsView}
                 {...props}
             />
         );
@@ -47,12 +49,14 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
         props: TestViewContainerProviderProps,
     ): JSX.Element {
         return (
-            // TODO need to use assessment specific data/ infra here
             <AdhocIssuesTestView
                 instancesSection={FailedInstancesSection}
-                cardSelectionMessageCreator={props.automatedChecksCardSelectionMessageCreator}
-                cardsViewData={props.automatedChecksCardsViewData}
+                cardSelectionMessageCreator={props.assessmentCardSelectionMessageCreator}
+                cardsViewData={props.assessmentCardsViewData}
                 includeStepsText={false}
+                selectedVisualizationType={
+                    props.assessmentStoreData?.assessmentNavState?.selectedTestType
+                }
                 {...props}
             />
         );

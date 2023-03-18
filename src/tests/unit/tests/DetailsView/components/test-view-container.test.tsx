@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
@@ -24,6 +25,7 @@ describe('TestViewContainer', () => {
     const automatedChecksCardSelectionMessageCreatorStub =
         {} as AutomatedChecksCardSelectionMessageCreator;
     const needsReviewCardSelectionMessageCreatorStub = {} as NeedsReviewCardSelectionMessageCreator;
+    const assessmentCardSelectionMessageCreatorStub = {} as AssessmentCardSelectionMessageCreator;
     let configStub: VisualizationConfiguration;
     let configFactoryStub: VisualizationConfigurationFactory;
     let props: TestViewContainerProps;
@@ -31,9 +33,17 @@ describe('TestViewContainer', () => {
         (provider: TestViewContainerProvider, props: TestViewContainerProviderProps) => JSX.Element
     >;
     let testViewContainerProviderMock: IMock<TestViewContainerProvider>;
+    let getAssessmentCardSelectionMessageCreatorMock: IMock<
+        () => AssessmentCardSelectionMessageCreator
+    >;
 
     beforeEach(() => {
         getTestViewContainerMock = Mock.ofInstance((provider, props) => null);
+        getAssessmentCardSelectionMessageCreatorMock = Mock.ofInstance(() => null);
+        getAssessmentCardSelectionMessageCreatorMock
+            .setup(g => g())
+            .returns(() => assessmentCardSelectionMessageCreatorStub)
+            .verifiable(Times.once());
         testViewContainerProviderMock = Mock.ofType<TestViewContainerProvider>();
 
         configStub = {
@@ -50,6 +60,9 @@ describe('TestViewContainer', () => {
                 automatedChecksCardSelectionMessageCreator:
                     automatedChecksCardSelectionMessageCreatorStub,
                 needsReviewCardSelectionMessageCreator: needsReviewCardSelectionMessageCreatorStub,
+                assessmentCardSelectionMessageCreator: assessmentCardSelectionMessageCreatorStub,
+                getAssessmentCardSelectionMessageCreator:
+                    getAssessmentCardSelectionMessageCreatorMock.object,
             },
             someParentProp: 'parent-prop',
             visualizationConfigurationFactory: configFactoryStub,
@@ -73,6 +86,8 @@ describe('TestViewContainer', () => {
                         automatedChecksCardSelectionMessageCreatorStub,
                     needsReviewCardSelectionMessageCreator:
                         needsReviewCardSelectionMessageCreatorStub,
+                    assessmentCardSelectionMessageCreator:
+                        assessmentCardSelectionMessageCreatorStub,
                 }),
             )
             .returns(() => elementStub)
@@ -80,5 +95,6 @@ describe('TestViewContainer', () => {
         const rendered = shallow(<TestViewContainer {...props} />);
         expect(rendered.getElement()).toEqual(elementStub);
         getTestViewContainerMock.verifyAll();
+        getAssessmentCardSelectionMessageCreatorMock.verifyAll();
     });
 });

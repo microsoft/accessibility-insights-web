@@ -26,6 +26,11 @@ import {
     TransferToAssessmentButtonFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
+    getAssessmentCardSelectionStoreData,
+    getQuickAssessCardSelectionStoreData,
+    GetSelectedAssessmentCardSelectionStoreData,
+} from 'DetailsView/components/left-nav/get-selected-assessment-card-selection-store-data';
+import {
     getAssessmentStoreData,
     getQuickAssessStoreData,
     GetSelectedAssessmentStoreData,
@@ -119,6 +124,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
     getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
     getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
+    getSelectedAssessmentCardSelectionStoreData: GetSelectedAssessmentCardSelectionStoreData;
     getRequirementViewComponentConfiguration: GetRequirementViewComponentConfiguration;
     overviewHeadingIntroText: string | null;
     linkDataSource: HyperlinkDefinition[] | null;
@@ -152,6 +158,7 @@ const detailsViewSwitcherNavs: {
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
         getSelectedAssessmentStoreData: getAssessmentStoreData,
+        getSelectedAssessmentCardSelectionStoreData: getAssessmentCardSelectionStoreData,
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForAssessment,
         overviewHeadingIntroText: overviewHeadingIntroTextForAssessment,
@@ -171,6 +178,7 @@ const detailsViewSwitcherNavs: {
         leftNavHamburgerButton: QuickAssessLeftNavHamburgerButton,
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getQuickAssessObjects(),
         getSelectedAssessmentStoreData: getQuickAssessStoreData,
+        getSelectedAssessmentCardSelectionStoreData: getQuickAssessCardSelectionStoreData,
         shouldShowQuickAssessRequirementView: true,
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForQuickAssess,
@@ -193,8 +201,9 @@ const detailsViewSwitcherNavs: {
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForFastPass,
         overviewHeadingIntroText: null,
-        // Getting assessmentStoreData is default behavior
+        // Getting assessmentStoreData and assessmentCardSelectionStoreData is default behavior
         getSelectedAssessmentStoreData: getAssessmentStoreData,
+        getSelectedAssessmentCardSelectionStoreData: getAssessmentCardSelectionStoreData,
         linkDataSource: null,
     },
 };

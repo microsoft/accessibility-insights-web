@@ -8,6 +8,9 @@ export const getStoreStateMessage = (storeName: StoreNames): string => {
 };
 
 export type AssessmentMessages = typeof Messages.Assessment | typeof Messages.QuickAssess;
+export type AssessmentCardSelectionMessages =
+    | typeof Messages.AssessmentCardSelection
+    | typeof Messages.QuickAssessCardSelection;
 
 export const Messages = {
     Visualizations: {

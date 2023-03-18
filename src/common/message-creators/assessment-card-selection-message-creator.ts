@@ -10,7 +10,7 @@ import {
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
-import { Messages } from 'common/messages';
+import { AssessmentCardSelectionMessages } from 'common/messages';
 import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 
@@ -19,6 +19,7 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         private readonly dispatcher: ActionMessageDispatcher,
         private readonly telemetryFactory: TelemetryDataFactory,
         private readonly source: TelemetryEventSource,
+        protected readonly messages: AssessmentCardSelectionMessages,
     ) {}
 
     public toggleCardSelection = (
@@ -35,7 +36,7 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.AssessmentCardSelection.CardSelectionToggled,
+            messageType: this.messages.CardSelectionToggled,
             payload,
         });
     };
@@ -52,7 +53,7 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.AssessmentCardSelection.RuleExpansionToggled,
+            messageType: this.messages.RuleExpansionToggled,
             payload,
         });
     };
@@ -64,7 +65,7 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.AssessmentCardSelection.CollapseAllRules,
+            messageType: this.messages.CollapseAllRules,
             payload,
         });
     };
@@ -76,7 +77,7 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.AssessmentCardSelection.ExpandAllRules,
+            messageType: this.messages.ExpandAllRules,
             payload,
         });
     };
@@ -88,7 +89,7 @@ export class AssessmentCardSelectionMessageCreator implements CardSelectionMessa
         };
 
         this.dispatcher.dispatchMessage({
-            messageType: Messages.AssessmentCardSelection.ToggleVisualHelper,
+            messageType: this.messages.ToggleVisualHelper,
             payload,
         });
     };

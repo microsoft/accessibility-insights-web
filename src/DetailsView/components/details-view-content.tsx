@@ -8,6 +8,7 @@ import { InspectActionMessageCreator } from 'common/message-creators/inspect-act
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
+import { convertStoreDataForScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsViewOverlay,
@@ -134,6 +135,28 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             ),
         );
 
+        const assessmentStoreData =
+            selectedDetailsViewSwitcherNavConfiguration.getSelectedAssessmentStoreData(
+                props.storeState,
+            );
+
+        const assessmentCardSelectionStoreData =
+            selectedDetailsViewSwitcherNavConfiguration.getSelectedAssessmentCardSelectionStoreData(
+                props.storeState,
+            );
+
+        const assessmentCardsViewData = props.deps.getCardViewData(
+            assessmentStoreData,
+            props.deps.getCardSelectionViewData(
+                assessmentCardSelectionStoreData
+                    ? assessmentCardSelectionStoreData[selectedTest]
+                    : null,
+                convertStoreDataForScanNodeResults(assessmentStoreData),
+                null,
+                props.deps.isResultHighlightUnavailable,
+            ),
+        );
+
         const targetAppInfo = {
             name: props.storeState.tabStoreData.title,
             url: props.storeState.tabStoreData.url,
@@ -152,10 +175,6 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         };
 
         const assessmentInstanceTableHandler = props.deps.getAssessmentInstanceTableHandler();
-        const assessmentStoreData =
-            selectedDetailsViewSwitcherNavConfiguration.getSelectedAssessmentStoreData(
-                props.storeState,
-            );
 
         const overviewHeadingIntroText =
             selectedDetailsViewSwitcherNavConfiguration.overviewHeadingIntroText;
@@ -185,6 +204,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 automatedChecksCardsViewData={automatedChecksCardsViewData}
                 needsReviewCardsViewData={needsReviewCardsViewData}
+                assessmentCardsViewData={assessmentCardsViewData}
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }

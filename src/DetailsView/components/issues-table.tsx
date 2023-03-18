@@ -14,6 +14,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     IssueFilingDialog,
     IssueFilingDialogDeps,
@@ -47,6 +48,7 @@ export interface IssuesTableProps {
     visualizationStoreData: VisualizationStoreData;
     narrowModeStatus: NarrowModeStatus;
     cardsViewStoreData: CardsViewStoreData;
+    selectedVisualizationType: VisualizationType;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -108,12 +110,12 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         const cardCount = this.getCardCount();
         if (!this.props.issuesEnabled && cardCount > 0) {
             this.props.deps.detailsViewActionMessageCreator.enableFastPassVisualHelperWithoutScan(
-                this.props.visualizationStoreData.selectedFastPassDetailsView,
+                this.props.selectedVisualizationType,
             );
         }
         if (!this.props.issuesEnabled && cardCount === 0) {
             this.props.deps.detailsViewActionMessageCreator.rescanVisualizationWithoutTelemetry(
-                this.props.visualizationStoreData.selectedFastPassDetailsView,
+                this.props.selectedVisualizationType,
             );
         }
 
