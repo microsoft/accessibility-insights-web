@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
@@ -36,6 +37,8 @@ describe('IssuesTableTest', () => {
     } as CardsViewController;
     let cardInteractionSupport: CardInteractionSupport;
     let issueFilingDialogPropsFactoryMock: IMock<IssueFilingDialogPropsFactory>;
+    let assessmentsProviderMock: IMock<AssessmentsProvider>;
+    let getProviderMock: IMock<() => AssessmentsProvider>;
 
     beforeEach(() => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
@@ -45,6 +48,9 @@ describe('IssuesTableTest', () => {
             supportsIssueFiling: false,
         } as CardInteractionSupport;
         issueFilingDialogPropsFactoryMock = Mock.ofInstance(() => null);
+        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>();
+        getProviderMock = Mock.ofType<() => AssessmentsProvider>();
+        getProviderMock.setup(g => g()).returns(() => assessmentsProviderMock.object);
 
         deps = {
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
@@ -58,7 +64,10 @@ describe('IssuesTableTest', () => {
     });
 
     it('spinner, issuesEnabled == null', () => {
-        const props = new TestPropsBuilder().setDeps(deps).build();
+        const props = new TestPropsBuilder()
+            .setDeps(deps)
+            .setGetProviderMock(getProviderMock)
+            .build();
 
         const wrapped = shallow(<IssuesTable {...props} />);
 
@@ -66,7 +75,10 @@ describe('IssuesTableTest', () => {
     });
 
     it('includes subtitle if specified', () => {
-        const props = new TestPropsBuilder().setSubtitle(<>test subtitle text</>).build();
+        const props = new TestPropsBuilder()
+            .setGetProviderMock(getProviderMock)
+            .setSubtitle(<>test subtitle text</>)
+            .build();
 
         const wrapped = shallow(<IssuesTable {...props} />);
 
@@ -76,7 +88,11 @@ describe('IssuesTableTest', () => {
     it('automated checks disabled', () => {
         const issuesEnabled = false;
 
-        const props = new TestPropsBuilder().setDeps(deps).setIssuesEnabled(issuesEnabled).build();
+        const props = new TestPropsBuilder()
+            .setGetProviderMock(getProviderMock)
+            .setDeps(deps)
+            .setIssuesEnabled(issuesEnabled)
+            .build();
 
         const wrapped = shallow(<IssuesTable {...props} />);
 
@@ -88,6 +104,7 @@ describe('IssuesTableTest', () => {
 
         const props = new TestPropsBuilder()
             .setDeps(deps)
+            .setGetProviderMock(getProviderMock)
             .setIssuesEnabled(issuesEnabled)
             .setScanning(true)
             .build();
@@ -98,7 +115,11 @@ describe('IssuesTableTest', () => {
     });
 
     it('not scanning, issuesEnabled is true', () => {
-        const props = new TestPropsBuilder().setDeps(deps).setIssuesEnabled(true).build();
+        const props = new TestPropsBuilder()
+            .setGetProviderMock(getProviderMock)
+            .setDeps(deps)
+            .setIssuesEnabled(true)
+            .build();
 
         const wrapper = shallow(<IssuesTable {...props} />);
 
@@ -107,7 +128,11 @@ describe('IssuesTableTest', () => {
 
     it('With issue filing support', () => {
         cardInteractionSupport.supportsIssueFiling = true;
-        const props = new TestPropsBuilder().setDeps(deps).setIssuesEnabled(true).build();
+        const props = new TestPropsBuilder()
+            .setGetProviderMock(getProviderMock)
+            .setDeps(deps)
+            .setIssuesEnabled(true)
+            .build();
         issueFilingDialogPropsFactoryMock
             .setup(i =>
                 i(
@@ -139,6 +164,7 @@ class TestPropsBuilder {
     private featureFlags = {};
     private deps: IssuesTableDeps;
     private testType: VisualizationType = -1;
+    private getProviderMock: IMock<() => AssessmentsProvider>;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
         this.deps = deps;
@@ -157,6 +183,11 @@ class TestPropsBuilder {
 
     public setSubtitle(subtitle?: JSX.Element): TestPropsBuilder {
         this.subtitle = subtitle;
+        return this;
+    }
+
+    public setGetProviderMock(getProviderMock: IMock<() => AssessmentsProvider>): TestPropsBuilder {
+        this.getProviderMock = getProviderMock;
         return this;
     }
 
@@ -191,6 +222,7 @@ class TestPropsBuilder {
             },
             narrowModeStatus: {} as NarrowModeStatus,
             selectedVisualizationType: 0,
+            getProvider: this.getProviderMock.object,
         };
     }
 }
