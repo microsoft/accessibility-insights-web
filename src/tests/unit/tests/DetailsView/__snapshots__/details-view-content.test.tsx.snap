@@ -13,6 +13,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "getDateFromTimestamp": [Function],
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
+        "getProvider": [Function],
         "isResultHighlightUnavailable": [Function],
         "storesHub": [typemoq mock object],
       }
@@ -65,6 +66,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "getDateFromTimestamp": [Function],
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
+        "getProvider": [Function],
         "isResultHighlightUnavailable": [Function],
         "storesHub": [typemoq mock object],
       }
@@ -453,6 +455,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "getDateFromTimestamp": [Function],
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
+        "getProvider": [Function],
         "isResultHighlightUnavailable": [Function],
         "storesHub": [typemoq mock object],
       }

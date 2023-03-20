@@ -71,8 +71,9 @@ export class SelectorMapHelper {
                 return this.getElementBasedViewModel(
                     assessmentStoreData,
                     assessmentCardSelectionStoreData
-                        ? assessmentCardSelectionStoreData[visualizationType]
+                        ? assessmentCardSelectionStoreData[assessmentConfig.key]
                         : null,
+                    assessmentConfig.key,
                 );
             }
         }

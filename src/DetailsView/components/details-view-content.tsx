@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -46,6 +47,7 @@ export type DetailsViewContentDeps = {
     isResultHighlightUnavailable: IsResultHighlightUnavailable;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     testViewContainerProvider: TestViewContainerProvider;
+    getProvider: () => AssessmentsProvider;
 } & InteractiveHeaderDeps &
     DetailsViewOverlayDeps &
     DetailsViewBodyDeps;
@@ -145,16 +147,19 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 props.storeState,
             );
 
+        const selectedTestKey = props.deps.getProvider().forType(selectedTest)?.key;
+
         const assessmentCardsViewData = props.deps.getCardViewData(
             assessmentStoreData,
             props.deps.getCardSelectionViewData(
                 assessmentCardSelectionStoreData
-                    ? assessmentCardSelectionStoreData[selectedTest]
+                    ? assessmentCardSelectionStoreData[selectedTestKey]
                     : null,
-                convertStoreDataForScanNodeResults(assessmentStoreData),
+                convertStoreDataForScanNodeResults(assessmentStoreData, null, selectedTestKey),
                 null,
                 props.deps.isResultHighlightUnavailable,
             ),
+            selectedTestKey,
         );
 
         const targetAppInfo = {

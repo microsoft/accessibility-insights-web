@@ -59,7 +59,7 @@ describe('ElementBasedViewModelCreator', () => {
         const dataStub = {} as UnifiedScanResultStoreData;
         const cardSelectionDataStub = {} as CardSelectionStoreData;
         convertStoreDataForScanNodeResultsCallbackMock
-            .setup(mock => mock(dataStub, cardSelectionDataStub))
+            .setup(mock => mock(dataStub, cardSelectionDataStub, undefined))
             .returns(() => null)
             .verifiable(Times.once());
         expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionDataStub)).toBeNull();
@@ -69,7 +69,7 @@ describe('ElementBasedViewModelCreator', () => {
         const dataStub = {} as UnifiedScanResultStoreData;
         const cardSelectionDataStub = null;
         convertStoreDataForScanNodeResultsCallbackMock
-            .setup(mock => mock(dataStub, cardSelectionDataStub))
+            .setup(mock => mock(dataStub, cardSelectionDataStub, undefined))
             .returns(() => [])
             .verifiable(Times.once());
         expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionDataStub)).toBeNull();
@@ -83,7 +83,7 @@ describe('ElementBasedViewModelCreator', () => {
             focusedResultUid: null,
         };
         convertStoreDataForScanNodeResultsCallbackMock
-            .setup(mock => mock(dataStub, cardSelectionDataStub))
+            .setup(mock => mock(dataStub, cardSelectionDataStub, undefined))
             .verifiable(Times.once());
         expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionDataStub)).toBeNull();
     });
@@ -116,7 +116,7 @@ describe('ElementBasedViewModelCreator', () => {
 
         const dataStub = {} as UnifiedScanResultStoreData;
         convertStoreDataForScanNodeResultsCallbackMock
-            .setup(mock => mock(dataStub, cardSelectionData))
+            .setup(mock => mock(dataStub, cardSelectionData, undefined))
             .returns(() => scanNodeResults)
             .verifiable(Times.once());
         expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionData)).toEqual(
@@ -174,7 +174,7 @@ describe('ElementBasedViewModelCreator', () => {
 
             const dataStub = {} as UnifiedScanResultStoreData;
             convertStoreDataForScanNodeResultsCallbackMock
-                .setup(mock => mock(dataStub, cardSelectionData))
+                .setup(mock => mock(dataStub, cardSelectionData, undefined))
                 .returns(() => scanNodeResults)
                 .verifiable(Times.once());
             expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionData)).toEqual(
@@ -257,7 +257,7 @@ describe('ElementBasedViewModelCreator', () => {
 
         const dataStub = {} as UnifiedScanResultStoreData;
         convertStoreDataForScanNodeResultsCallbackMock
-            .setup(mock => mock(dataStub, cardSelectionData))
+            .setup(mock => mock(dataStub, cardSelectionData, undefined))
             .returns(() => scanNodeResults)
             .verifiable(Times.once());
         expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionData)).toEqual(
@@ -310,7 +310,7 @@ describe('ElementBasedViewModelCreator', () => {
 
         const dataStub = {} as UnifiedScanResultStoreData;
         convertStoreDataForScanNodeResultsCallbackMock
-            .setup(mock => mock(dataStub, cardSelectionData))
+            .setup(mock => mock(dataStub, cardSelectionData, undefined))
             .returns(() => scanNodeResults)
             .verifiable(Times.once());
         expect(testSubject.getElementBasedViewModel(dataStub, cardSelectionData)).toEqual(

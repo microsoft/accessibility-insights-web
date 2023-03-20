@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlags } from 'common/feature-flags';
@@ -115,9 +114,9 @@ describe('SelectorMapHelperTest', () => {
 
     assessmentVisualizationTypes.forEach(visualizationType => {
         test(`getState: ${VisualizationType[visualizationType]}`, () => {
-            const stepKey = AutomatedChecks.key;
+            const stepKey = 'automatedChecks';
             const selectorMap = {
-                key1: { target: ['element1'] } as AssessmentVisualizationInstance,
+                automatedChecks: { target: ['element1'] } as AssessmentVisualizationInstance,
             };
             const assessmentStoreDataStub = {} as AssessmentStoreData;
             const assessmentCardSelectionStoreDataStub = {} as CardSelectionStoreData;
@@ -125,20 +124,15 @@ describe('SelectorMapHelperTest', () => {
             const storeData: VisualizationRelatedStoreData = {
                 assessmentStoreData: assessmentStoreDataStub,
                 assessmentCardSelectionStoreData: {
-                    [visualizationType]: assessmentCardSelectionStoreDataStub,
+                    [stepKey]: assessmentCardSelectionStoreDataStub,
                 },
                 featureFlagStoreData: { [FeatureFlags.automatedChecks]: true },
             } as unknown as VisualizationRelatedStoreData;
 
-            setupVisualizationConfigurationFactory(
-                null,
-                null,
-                visualizationType,
-                'automatedChecks',
-            );
+            setupVisualizationConfigurationFactory(null, null, visualizationType, stepKey);
             getElementBasedViewModelMock
                 .setup(gebvm =>
-                    gebvm(assessmentStoreDataStub, assessmentCardSelectionStoreDataStub),
+                    gebvm(assessmentStoreDataStub, assessmentCardSelectionStoreDataStub, stepKey),
                 )
                 .returns(() => selectorMap);
 

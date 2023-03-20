@@ -32,13 +32,14 @@ describe('RuleBasedViewModelProvider', () => {
 
     test('getCardViewData with null results', () => {
         convertStoreDataForScanNodeResultsCallbackMock
-            .setup(mock => mock(null))
+            .setup(mock => mock(null, undefined, null))
             .returns(() => null)
             .verifiable(Times.once());
 
         const actualResults: CardsViewModel = getCardViewData(
             null,
             emptyCardSelectionViewData,
+            null,
             convertStoreDataForScanNodeResultsCallbackMock.object,
         );
 
@@ -48,12 +49,13 @@ describe('RuleBasedViewModelProvider', () => {
     test('getCardViewData with null card selection view data', () => {
         const storeData = { rules: [], results: [] };
         convertStoreDataForScanNodeResultsCallbackMock
-            .setup(mock => mock(storeData))
+            .setup(mock => mock(storeData, undefined, null))
             .returns(() => [])
             .verifiable(Times.once());
 
         const actualResults: CardsViewModel = getCardViewData(
             storeData,
+            null,
             null,
             convertStoreDataForScanNodeResultsCallbackMock.object,
         );
@@ -85,7 +87,7 @@ describe('RuleBasedViewModelProvider', () => {
 
         const storeData = { rules, results };
         convertStoreDataForScanNodeResultsCallbackMock
-            .setup(mock => mock(storeData))
+            .setup(mock => mock(storeData, undefined, null))
             .returns(() =>
                 results.map(result => {
                     const rule = rules.find(rule => rule.id === result.ruleId);
@@ -97,6 +99,7 @@ describe('RuleBasedViewModelProvider', () => {
         const actualResults: CardsViewModel = getCardViewData(
             storeData,
             cardSelectionViewData,
+            null,
             convertStoreDataForScanNodeResultsCallbackMock.object,
         );
 

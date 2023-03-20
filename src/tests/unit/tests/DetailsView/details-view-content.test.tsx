@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import {
     CardSelectionViewData,
@@ -64,6 +66,8 @@ describe(DetailsViewContent.displayName, () => {
     let scanDate: Date;
     let toolData: ToolData;
     let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
+    let assessmentsProviderMock: IMock<AssessmentsProvider>;
+    let getProviderMock: IMock<() => AssessmentsProvider>;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType(DetailsViewActionMessageCreator);
@@ -100,6 +104,12 @@ describe(DetailsViewContent.displayName, () => {
         } as ToolData;
 
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
+        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>();
+        getProviderMock = Mock.ofInstance(
+            () => assessmentsProviderMock.object,
+            MockBehavior.Strict,
+        );
+        getProviderMock.setup(g => g()).returns(() => assessmentsProviderMock.object);
 
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
@@ -110,6 +120,7 @@ describe(DetailsViewContent.displayName, () => {
             isResultHighlightUnavailable: isResultHighlightUnavailableStub,
             getDateFromTimestamp: getDateFromTimestampMock.object,
             getAssessmentInstanceTableHandler: () => assessmentInstanceTableHandlerMock.object,
+            getProvider: getProviderMock.object,
         } as DetailsViewContainerDeps;
     });
 
@@ -206,6 +217,11 @@ describe(DetailsViewContent.displayName, () => {
 
             const state = getState(storeMocks, viewType, rightContentPanelConfig);
 
+            const assessmentStub = { key: 'test-key' } as Assessment;
+            assessmentsProviderMock
+                .setup(apm => apm.forType(viewType))
+                .returns(() => assessmentStub);
+
             getSelectedDetailsViewMock
                 .setup(gsdvm =>
                     gsdvm(
@@ -270,7 +286,7 @@ describe(DetailsViewContent.displayName, () => {
                 .returns(() => cardsViewData);
 
             getCardViewDataMock
-                .setup(m => m(state.assessmentStoreData, cardSelectionViewData))
+                .setup(m => m(state.assessmentStoreData, cardSelectionViewData, assessmentStub.key))
                 .returns(() => cardsViewData);
 
             const rendered = shallow(

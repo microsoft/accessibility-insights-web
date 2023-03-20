@@ -22,6 +22,7 @@ import { Target } from 'scanner/iruleresults';
 export type GetElementBasedViewModelCallback = (
     storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
     cardSelectionData: CardSelectionStoreData,
+    selectedTestKey?: string,
 ) => SelectorToVisualizationMap | null;
 
 export class ElementBasedViewModelCreator {
@@ -35,10 +36,12 @@ export class ElementBasedViewModelCreator {
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
         storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
         cardSelectionData: CardSelectionStoreData,
+        selectedTestKey?: string,
     ) => {
         const results: ScanNodeResult[] | null = this.convertStoreDataForScanNodeResults(
             storeData,
             cardSelectionData,
+            selectedTestKey,
         );
 
         if (results == null || cardSelectionData?.rules == null) {

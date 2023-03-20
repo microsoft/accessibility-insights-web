@@ -91,6 +91,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
         });
 
         test('assessment data with no card selection store data is converted successfully', () => {
+            const testKey = 'test-key';
             const assessmentResult = exampleAssessmentResult;
             const { selector, testStepResult, ruleId } =
                 getAssessmentDataProperties(assessmentResult);
@@ -113,10 +114,13 @@ describe('StoreDataToScanNodeResultConverter', () => {
                     uid: testStepResult.id,
                 },
             ];
-            expect(convertStoreDataForScanNodeResults(storeData)).toEqual(expectedResult);
+            expect(convertStoreDataForScanNodeResults(storeData, null, testKey)).toEqual(
+                expectedResult,
+            );
         });
 
         test('assessment data with card selection store data is converted successfully', () => {
+            const testKey = 'test-key';
             const assessmentResult = exampleAssessmentResult;
             const { selector, testStepResult, ruleId } =
                 getAssessmentDataProperties(assessmentResult);
@@ -142,12 +146,13 @@ describe('StoreDataToScanNodeResultConverter', () => {
                     uid: testStepResult.id,
                 },
             ];
-            expect(convertStoreDataForScanNodeResults(storeData, cardSelectionStoreData)).toEqual(
-                expectedResult,
-            );
+            expect(
+                convertStoreDataForScanNodeResults(storeData, cardSelectionStoreData, testKey),
+            ).toEqual(expectedResult);
         });
 
         test('assessment data with multiple failures on one element is converted successfully', () => {
+            const testKey = 'test-key';
             const assessmentResult = cloneDeep(exampleAssessmentResult);
             const {
                 selector,
@@ -164,9 +169,8 @@ describe('StoreDataToScanNodeResultConverter', () => {
 
             const storeData = {
                 assessments: {
-                    'test-key': assessmentResult,
+                    [testKey]: assessmentResult,
                 },
-                assessmentNavState: { selectedTestType: 'test-key' },
             } as unknown as AssessmentStoreData;
 
             const expectedResult = [
@@ -191,10 +195,13 @@ describe('StoreDataToScanNodeResultConverter', () => {
                     uid: testStepResult2.id,
                 },
             ];
-            expect(convertStoreDataForScanNodeResults(storeData)).toEqual(expectedResult);
+            expect(convertStoreDataForScanNodeResults(storeData, null, testKey)).toEqual(
+                expectedResult,
+            );
         });
 
         test('assessment data with failures on different elements is converted successfully', () => {
+            const testKey = 'test-key';
             const assessmentResult = cloneDeep(exampleAssessmentResult);
             const {
                 testStepResult: testStepResult1,
@@ -217,9 +224,8 @@ describe('StoreDataToScanNodeResultConverter', () => {
 
             const storeData = {
                 assessments: {
-                    'test-key': assessmentResult,
+                    [testKey]: assessmentResult,
                 },
-                assessmentNavState: { selectedTestType: 'test-key' },
             } as unknown as AssessmentStoreData;
 
             const expectedResult = [
@@ -244,7 +250,9 @@ describe('StoreDataToScanNodeResultConverter', () => {
                     uid: testStepResult2.id,
                 },
             ];
-            expect(convertStoreDataForScanNodeResults(storeData)).toEqual(expectedResult);
+            expect(convertStoreDataForScanNodeResults(storeData, null, testKey)).toEqual(
+                expectedResult,
+            );
         });
 
         function getAssessmentDataProperties(data: AssessmentData) {
@@ -292,15 +300,15 @@ describe('StoreDataToScanNodeResultConverter', () => {
         });
 
         test('assessment data is converted successfully', () => {
+            const testKey = 'test-key';
             const assessmentResult = exampleAssessmentResult;
             const storeData = {
                 assessments: {
-                    'test-key': assessmentResult,
+                    [testKey]: assessmentResult,
                 },
-                assessmentNavState: { selectedTestType: 'test-key' },
             } as unknown as AssessmentStoreData;
 
-            expect(convertResultsToCardSelectionStoreData(stateStub, storeData)).toEqual(
+            expect(convertResultsToCardSelectionStoreData(stateStub, storeData, testKey)).toEqual(
                 expectedResultStub,
             );
         });

@@ -23,15 +23,21 @@ import { UnifiedRule, UnifiedScanResultStoreData } from './types/store-data/unif
 export type GetCardViewData = (
     storeData: UnifiedScanResultStoreData | AssessmentStoreData,
     cardSelectionViewData: CardSelectionViewData,
+    selectedTestKey?: string,
     getStoreDataForScanNodeResults?: ConvertStoreDataForScanNodeResultsCallback,
 ) => CardsViewModel | null;
 
 export const getCardViewData: GetCardViewData = (
     storeData: UnifiedScanResultStoreData | AssessmentStoreData,
     cardSelectionViewData: CardSelectionViewData,
+    selectedTestKey?: string,
     getStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = convertStoreDataForScanNodeResults,
 ): CardsViewModel | null => {
-    const results: ScanNodeResult[] | null = getStoreDataForScanNodeResults(storeData);
+    const results: ScanNodeResult[] | null = getStoreDataForScanNodeResults(
+        storeData,
+        undefined,
+        selectedTestKey,
+    );
     if (results == null || cardSelectionViewData == null) {
         return null;
     }
