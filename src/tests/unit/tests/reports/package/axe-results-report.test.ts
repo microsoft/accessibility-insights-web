@@ -12,7 +12,7 @@ import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-resu
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { ResultDecorator } from 'scanner/result-decorator';
-import { Mock, MockBehavior } from 'typemoq';
+import { It, Mock, MockBehavior } from 'typemoq';
 
 describe('AxeResultReport', () => {
     const scanTimestamp = 'timestamp';
@@ -71,7 +71,7 @@ describe('AxeResultReport', () => {
     };
     const mockCardsViewModel = Mock.ofType<CardsViewModel>();
     const mockGetCards = Mock.ofType<typeof getCardViewData>(null, MockBehavior.Strict);
-    mockGetCards.setup(fn => fn({rules: mockRules.object, results: mockResults.object}, emptyCardSelectionViewData)).returns(() => mockCardsViewModel.object);
+    mockGetCards.setup(fn => fn(It.isAny(), emptyCardSelectionViewData)).returns(() => mockCardsViewModel.object);
 
     const expectedHTML = '<div>The Report!</div>';
     const mockReportHtmlGenerator = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);

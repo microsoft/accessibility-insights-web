@@ -8,6 +8,8 @@ import { Logger } from 'common/logging/logger';
 import {
     convertResultsToCardSelectionStoreData,
     ConvertResultsToCardSelectionStoreDataCallback,
+    convertStoreDataForScanNodeResults,
+    ConvertStoreDataForScanNodeResultsCallback,
 } from 'common/store-data-to-scan-node-result-converter';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { forOwn, isEmpty } from 'lodash';
@@ -35,6 +37,7 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
         tabId: number,
         persistStoreData: boolean,
         private readonly convertResultsToCardSelectionStoreDataCallback: ConvertResultsToCardSelectionStoreDataCallback = convertResultsToCardSelectionStoreData,
+        private readonly getStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = convertStoreDataForScanNodeResults,
     ) {
         super(
             StoreNames.CardSelectionStore,
@@ -170,9 +173,12 @@ export class CardSelectionStore extends PersistentStore<CardSelectionStoreData> 
             return;
         }
 
-        this.state = this.convertResultsToCardSelectionStoreDataCallback(this.state, {
+        const results = this.getStoreDataForScanNodeResults({
             results: payload.scanResult,
         } as UnifiedScanResultStoreData);
+        if (results) {
+            this.state = this.convertResultsToCardSelectionStoreDataCallback(this.state, results);
+        }
 
         this.state.visualHelperEnabled = true;
 

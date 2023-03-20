@@ -4,6 +4,7 @@
 import {
     convertResultsToCardSelectionStoreData,
     convertStoreDataForScanNodeResults,
+    ScanNodeResult,
 } from 'common/store-data-to-scan-node-result-converter';
 import {
     AssessmentData,
@@ -289,26 +290,9 @@ describe('StoreDataToScanNodeResultConverter', () => {
         test('unified data is converted successfully', () => {
             const unifiedResult = exampleUnifiedResult;
             const ruleStub = { id: unifiedResult.ruleId } as UnifiedRule;
-            const storeData = {
-                results: [unifiedResult],
-                rules: [ruleStub],
-            } as UnifiedScanResultStoreData;
+            const result = { ...unifiedResult, rule: ruleStub } as ScanNodeResult;
 
-            expect(convertResultsToCardSelectionStoreData(stateStub, storeData)).toEqual(
-                expectedResultStub,
-            );
-        });
-
-        test('assessment data is converted successfully', () => {
-            const testKey = 'test-key';
-            const assessmentResult = exampleAssessmentResult;
-            const storeData = {
-                assessments: {
-                    [testKey]: assessmentResult,
-                },
-            } as unknown as AssessmentStoreData;
-
-            expect(convertResultsToCardSelectionStoreData(stateStub, storeData, testKey)).toEqual(
+            expect(convertResultsToCardSelectionStoreData(stateStub, [result])).toEqual(
                 expectedResultStub,
             );
         });

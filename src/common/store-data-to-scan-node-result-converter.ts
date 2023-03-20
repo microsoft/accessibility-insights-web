@@ -34,33 +34,39 @@ export const convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResu
     cardSelectionStoreData?: CardSelectionStoreData,
     testKey?: string,
 ): ScanNodeResult[] | null => {
-    let results: ScanNodeResult[] | null = convertUnifiedStoreDataToScanNodeResults(
-        storeData as UnifiedScanResultStoreData,
-    );
-    if (results === null) {
+    let results: ScanNodeResult[] | null = null;
+
+    if (
+        !isNullOrUndefined(storeData) &&
+        !isNullOrUndefined((storeData as UnifiedScanResultStoreData).results)
+    ) {
+        results = convertUnifiedStoreDataToScanNodeResults(storeData as UnifiedScanResultStoreData);
+    }
+
+    if (
+        results === null &&
+        !isNullOrUndefined(storeData) &&
+        !isNullOrUndefined((storeData as AssessmentStoreData).assessments) &&
+        !isNullOrUndefined(testKey) &&
+        !isNullOrUndefined((storeData as AssessmentStoreData).assessments[testKey])
+    ) {
         results = convertAssessmentStoreDataToScanNodeResults(
             storeData as AssessmentStoreData,
             testKey,
             cardSelectionStoreData,
         );
     }
+
     return results;
 };
 
 export type ConvertResultsToCardSelectionStoreDataCallback = (
     state: CardSelectionStoreData,
-    storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
-    testKey?: string,
+    results: ScanNodeResult[],
 ) => CardSelectionStoreData;
 
 export const convertResultsToCardSelectionStoreData: ConvertResultsToCardSelectionStoreDataCallback =
-    (
-        state: CardSelectionStoreData,
-        storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
-        testKey?: string,
-    ): CardSelectionStoreData => {
-        const results = convertStoreDataForScanNodeResults(storeData, undefined, testKey);
-
+    (state: CardSelectionStoreData, results: ScanNodeResult[]): CardSelectionStoreData => {
         if (results) {
             results.forEach(result => {
                 if (result.status !== 'fail' && result.status !== 'unknown') {
@@ -82,48 +88,34 @@ export const convertResultsToCardSelectionStoreData: ConvertResultsToCardSelecti
     };
 
 function convertUnifiedStoreDataToScanNodeResults(
-    unifiedScanResultStoreData: UnifiedScanResultStoreData | null,
-): ScanNodeResult[] | null {
-    if (
-        isNullOrUndefined(unifiedScanResultStoreData) ||
-        isNullOrUndefined(unifiedScanResultStoreData.results)
-    ) {
-        return null;
-    }
+    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+): ScanNodeResult[] {
     const { rules, results } = unifiedScanResultStoreData;
 
-    const transformedResults = results.map(unifiedResult => {
-        const rule = rules
-            ? find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId)
-            : { id: unifiedResult.ruleId };
-        if (rule == null) {
-            throw new Error(`Got result with unknown ruleId ${unifiedResult.ruleId}`);
-        }
+    const transformedResults =
+        results?.map(unifiedResult => {
+            const rule = rules
+                ? find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId)
+                : { id: unifiedResult.ruleId };
+            if (rule == null) {
+                throw new Error(`Got result with unknown ruleId ${unifiedResult.ruleId}`);
+            }
 
-        const result: ScanNodeResult = {
-            ...unifiedResult,
-            rule,
-        };
+            const result: ScanNodeResult = {
+                ...unifiedResult,
+                rule,
+            };
 
-        return result;
-    });
+            return result;
+        }) ?? [];
     return transformedResults;
 }
 
 function convertAssessmentStoreDataToScanNodeResults(
-    assessmentStoreData: AssessmentStoreData | null,
-    selectedTest?: string,
+    assessmentStoreData: AssessmentStoreData,
+    selectedTest: string,
     cardSelectionStoreData?: CardSelectionStoreData,
-): ScanNodeResult[] | null {
-    if (
-        isNullOrUndefined(assessmentStoreData) ||
-        isNullOrUndefined(assessmentStoreData.assessments) ||
-        isNullOrUndefined(selectedTest) ||
-        isNullOrUndefined(assessmentStoreData.assessments[selectedTest])
-    ) {
-        return null;
-    }
-
+): ScanNodeResult[] {
     const testData = assessmentStoreData.assessments[selectedTest];
     const allResults: ScanNodeResult[] = [];
 

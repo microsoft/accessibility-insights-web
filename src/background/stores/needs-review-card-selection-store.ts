@@ -10,6 +10,8 @@ import { Logger } from 'common/logging/logger';
 import {
     convertResultsToCardSelectionStoreData,
     ConvertResultsToCardSelectionStoreDataCallback,
+    convertStoreDataForScanNodeResults,
+    ConvertStoreDataForScanNodeResultsCallback,
 } from 'common/store-data-to-scan-node-result-converter';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -33,6 +35,7 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
         tabId: number,
         persistStoreData: boolean,
         private readonly convertResultsToCardSelectionStoreDataCallback: ConvertResultsToCardSelectionStoreDataCallback = convertResultsToCardSelectionStoreData,
+        private readonly getStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = convertStoreDataForScanNodeResults,
     ) {
         super(
             StoreNames.NeedsReviewCardSelectionStore,
@@ -180,9 +183,12 @@ export class NeedsReviewCardSelectionStore extends PersistentStore<NeedsReviewCa
             return;
         }
 
-        this.state = this.convertResultsToCardSelectionStoreDataCallback(this.state, {
+        const results = this.getStoreDataForScanNodeResults({
             results: payload.scanResult,
         } as UnifiedScanResultStoreData);
+        if (results) {
+            this.state = this.convertResultsToCardSelectionStoreDataCallback(this.state, results);
+        }
 
         this.state.visualHelperEnabled = true;
 

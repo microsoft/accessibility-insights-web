@@ -3,6 +3,10 @@
 import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlags } from 'common/feature-flags';
+import {
+    convertStoreDataForScanNodeResults,
+    ConvertStoreDataForScanNodeResultsCallback,
+} from 'common/store-data-to-scan-node-result-converter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -35,6 +39,7 @@ export class SelectorMapHelper {
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private getElementBasedViewModel: GetElementBasedViewModelCallback,
         private getVisualizationInstancesForTabStops: typeof GetVisualizationInstancesForTabStops,
+        private readonly getStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = convertStoreDataForScanNodeResults,
     ) {}
 
     public getSelectorMap(
@@ -68,12 +73,14 @@ export class SelectorMapHelper {
             this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         if (featureFlagStoreData[FeatureFlags.automatedChecks]) {
             if (assessmentConfig.key === AutomatedChecks.getVisualizationConfiguration().key) {
-                return this.getElementBasedViewModel(
+                const assessmentScanNodeResults = this.getStoreDataForScanNodeResults(
                     assessmentStoreData,
-                    assessmentCardSelectionStoreData
-                        ? assessmentCardSelectionStoreData[assessmentConfig.key]
-                        : null,
+                    assessmentCardSelectionStoreData[assessmentConfig.key],
                     assessmentConfig.key,
+                );
+                return this.getElementBasedViewModel(
+                    assessmentScanNodeResults,
+                    assessmentCardSelectionStoreData[assessmentConfig.key],
                 );
             }
         }
@@ -113,14 +120,19 @@ export class SelectorMapHelper {
         switch (visualizationType) {
             case VisualizationType.NeedsReview:
                 selectorMap = this.getElementBasedViewModel(
-                    needsReviewScanData,
+                    this.getStoreDataForScanNodeResults(
+                        needsReviewScanData,
+                        needsReviewCardSelectionStoreData,
+                    ),
                     needsReviewCardSelectionStoreData,
+                    needsReviewScanData.platformInfo,
                 );
                 break;
             case VisualizationType.Issues:
                 selectorMap = this.getElementBasedViewModel(
-                    unifiedScanData,
+                    this.getStoreDataForScanNodeResults(unifiedScanData, cardSelectionStoreData),
                     cardSelectionStoreData,
+                    unifiedScanData.platformInfo,
                 );
                 break;
             case VisualizationType.Headings:

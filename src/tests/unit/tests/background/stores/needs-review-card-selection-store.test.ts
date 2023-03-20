@@ -4,7 +4,10 @@ import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { TabActions } from 'background/actions/tab-actions';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
-import { ConvertResultsToCardSelectionStoreDataCallback } from 'common/store-data-to-scan-node-result-converter';
+import {
+    ConvertResultsToCardSelectionStoreDataCallback,
+    ConvertStoreDataForScanNodeResultsCallback,
+} from 'common/store-data-to-scan-node-result-converter';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { cloneDeep, forOwn } from 'lodash';
@@ -25,10 +28,13 @@ import { createStoreWithNullParams, StoreTester } from '../../../common/store-te
 
 describe('NeedsReviewCardSelectionStore Test', () => {
     let convertResultsToCardSelectionStoreDataCallbackMock: IMock<ConvertResultsToCardSelectionStoreDataCallback>;
+    let convertStoreDataForScanNodeResultsCallbackMock: IMock<ConvertStoreDataForScanNodeResultsCallback>;
 
     beforeEach(() => {
         convertResultsToCardSelectionStoreDataCallbackMock =
             Mock.ofType<ConvertResultsToCardSelectionStoreDataCallback>();
+        convertStoreDataForScanNodeResultsCallbackMock =
+            Mock.ofType<ConvertStoreDataForScanNodeResultsCallback>();
     });
 
     test('constructor has no side effects', () => {
@@ -90,12 +96,17 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             visualHelperEnabled: false,
             focusedResultUid: null,
         } as NeedsReviewCardSelectionStoreData;
-        convertResultsToCardSelectionStoreDataCallbackMock
+        const scanResultsNodesStub = [];
+        convertStoreDataForScanNodeResultsCallbackMock
             .setup(callback =>
-                callback(callbackExpectedState, {
+                callback({
                     results: payload.scanResult,
                 } as UnifiedScanResultStoreData),
             )
+            .returns(() => scanResultsNodesStub)
+            .verifiable(Times.once());
+        convertResultsToCardSelectionStoreDataCallbackMock
+            .setup(callback => callback(callbackExpectedState, scanResultsNodesStub))
             .returns(() => {
                 return expectedState;
             })
@@ -105,6 +116,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             createStoreForNeedsReviewScanResultActions('scanCompleted').withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         convertResultsToCardSelectionStoreDataCallbackMock.verifyAll();
+        convertStoreDataForScanNodeResultsCallbackMock.verifyAll();
     });
 
     function getDefaultState(): NeedsReviewCardSelectionStoreData {
@@ -125,6 +137,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
                 null,
                 true,
                 convertResultsToCardSelectionStoreDataCallbackMock.object,
+                convertStoreDataForScanNodeResultsCallbackMock.object,
             );
 
         return new StoreTester(NeedsReviewScanResultActions, actionName, factory);

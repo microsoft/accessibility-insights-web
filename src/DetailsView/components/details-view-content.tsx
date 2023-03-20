@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -47,7 +46,6 @@ export type DetailsViewContentDeps = {
     isResultHighlightUnavailable: IsResultHighlightUnavailable;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     testViewContainerProvider: TestViewContainerProvider;
-    getProvider: () => AssessmentsProvider;
 } & InteractiveHeaderDeps &
     DetailsViewOverlayDeps &
     DetailsViewBodyDeps;
@@ -114,8 +112,11 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         const selectedTest =
             selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const automatedChecksCardsViewData = props.deps.getCardViewData(
+        const unifiedScanNodeResults = convertStoreDataForScanNodeResults(
             props.storeState.unifiedScanResultStoreData,
+        );
+        const automatedChecksCardsViewData = props.deps.getCardViewData(
+            unifiedScanNodeResults,
             props.deps.getCardSelectionViewData(
                 props.storeState.cardSelectionStoreData,
                 props.storeState.unifiedScanResultStoreData.results,
@@ -128,7 +129,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             props.storeState.visualizationScanResultStoreData.tabStops.requirements;
 
         const needsReviewCardsViewData = props.deps.getCardViewData(
-            props.storeState.needsReviewScanResultStoreData,
+            unifiedScanNodeResults,
             props.deps.getCardSelectionViewData(
                 props.storeState.needsReviewCardSelectionStoreData,
                 props.storeState.needsReviewScanResultStoreData.results,
@@ -147,19 +148,24 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 props.storeState,
             );
 
-        const selectedTestKey = props.deps.getProvider().forType(selectedTest)?.key;
+        const selectedTestKey =
+            props.deps.visualizationConfigurationFactory.getConfiguration(selectedTest).key;
 
-        const assessmentCardsViewData = props.deps.getCardViewData(
+        const assessmentScanNodeResults = convertStoreDataForScanNodeResults(
             assessmentStoreData,
+            null,
+            selectedTestKey,
+        );
+        const assessmentCardsViewData = props.deps.getCardViewData(
+            assessmentScanNodeResults,
             props.deps.getCardSelectionViewData(
                 assessmentCardSelectionStoreData
                     ? assessmentCardSelectionStoreData[selectedTestKey]
                     : null,
-                convertStoreDataForScanNodeResults(assessmentStoreData, null, selectedTestKey),
+                assessmentScanNodeResults,
                 null,
                 props.deps.isResultHighlightUnavailable,
             ),
-            selectedTestKey,
         );
 
         const targetAppInfo = {

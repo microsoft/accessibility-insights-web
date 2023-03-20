@@ -38,7 +38,7 @@ import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-m
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('ResultsView', () => {
     const initialSelectedKey: LeftNavItemKey = 'automated-checks';
@@ -161,7 +161,7 @@ describe('ResultsView', () => {
             .verifiable(Times.once());
 
         getUnifiedRuleResultsMock
-            .setup(getter => getter(unifiedScanResultStoreData, cardSelectionViewDataStub))
+            .setup(getter => getter(It.isAny(), cardSelectionViewDataStub))
             .returns(() => cardsViewData)
             .verifiable(Times.once());
 
