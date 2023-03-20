@@ -41,7 +41,7 @@ describe('AssessmentCardControllerTest', () => {
             assessmentStoreMock.object,
             assessmentCardSelectionMessageCreatorMock.object,
         );
-        testSubject.initialize();
+        testSubject.listenToStore();
 
         await assessmentStoreChangedCallback();
         assessmentStoreMock.verifyAll();

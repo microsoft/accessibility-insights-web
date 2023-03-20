@@ -10,7 +10,7 @@ export class AssessmentCardController {
         private readonly assessmentCardSelectionMessageCreator: AssessmentCardSelectionMessageCreator,
     ) {}
 
-    public initialize(): void {
+    public listenToStore(): void {
         this.assessmentStore.addChangedListener(this.onAssessmentStoreChanged);
     }
 
