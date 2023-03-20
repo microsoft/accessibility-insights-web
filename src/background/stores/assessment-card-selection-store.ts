@@ -83,8 +83,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onAssessmentStoreChanged = async (
         payload: AssessmentStoreChangedPayload,
     ): Promise<void> => {
-        console.log('onAssessmentStoreChanged');
-        console.log(this.state);
         if (!payload) {
             return;
         }
