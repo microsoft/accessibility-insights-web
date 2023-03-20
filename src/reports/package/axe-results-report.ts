@@ -54,7 +54,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
         };
 
         const scanNodeResults = convertStoreDataForScanNodeResults({ rules: unifiedRules, results: unifiedResults });
-        const cardsViewModel = getCards(scanNodeResults, cardSelectionViewData);
+        const cardsViewModel = getCards(scanNodeResults, cardSelectionViewData, unifiedRules);
 
         const targetAppInfo = {
             name: pageTitle,

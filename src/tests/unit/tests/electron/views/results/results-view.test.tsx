@@ -161,7 +161,9 @@ describe('ResultsView', () => {
             .verifiable(Times.once());
 
         getUnifiedRuleResultsMock
-            .setup(getter => getter(It.isAny(), cardSelectionViewDataStub))
+            .setup(getter =>
+                getter(It.isAny(), cardSelectionViewDataStub, unifiedScanResultStoreData.rules),
+            )
             .returns(() => cardsViewData)
             .verifiable(Times.once());
 

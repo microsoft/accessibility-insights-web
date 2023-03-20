@@ -115,7 +115,11 @@ export class ResultsView extends React.Component<ResultsViewProps> {
         const unifiedScanNodeResults = convertStoreDataForScanNodeResults(
             unifiedScanResultStoreData,
         );
-        const cardsViewData = deps.getCardsViewData(unifiedScanNodeResults, cardSelectionViewData);
+        const cardsViewData = deps.getCardsViewData(
+            unifiedScanNodeResults,
+            cardSelectionViewData,
+            unifiedScanResultStoreData?.rules,
+        );
         deps.toolData = unifiedScanResultStoreData.toolInfo;
 
         const highlightedResultUids = Object.keys(

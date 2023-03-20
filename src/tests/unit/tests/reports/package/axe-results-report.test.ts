@@ -71,8 +71,8 @@ describe('AxeResultReport', () => {
     };
     const mockCardsViewModel = Mock.ofType<CardsViewModel>();
     const mockGetCards = Mock.ofType<typeof getCardViewData>(null, MockBehavior.Strict);
-    mockGetCards.setup(fn => fn(It.isAny(), emptyCardSelectionViewData)).returns(() => mockCardsViewModel.object);
-
+    mockGetCards.setup(fn => fn(It.isAny(), emptyCardSelectionViewData, mockRules.object)).returns(() => mockCardsViewModel.object);
+    
     const expectedHTML = '<div>The Report!</div>';
     const mockReportHtmlGenerator = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
     mockReportHtmlGenerator
