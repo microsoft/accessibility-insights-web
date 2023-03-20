@@ -209,14 +209,14 @@ export class MainWindowInitializer extends WindowInitializer {
         const assessmentCardSelectionMessageCreator = new AssessmentCardSelectionMessageCreator(
             this.actionMessageDispatcher,
             telemetryDataFactory,
-            TelemetryEventSource.DetailsView,
+            TelemetryEventSource.TargetPage,
             Messages.AssessmentCardSelection,
         );
 
         const quickAssessCardSelectionMessageCreator = new AssessmentCardSelectionMessageCreator(
             this.actionMessageDispatcher,
             telemetryDataFactory,
-            TelemetryEventSource.DetailsView,
+            TelemetryEventSource.TargetPage,
             Messages.QuickAssessCardSelection,
         );
 
