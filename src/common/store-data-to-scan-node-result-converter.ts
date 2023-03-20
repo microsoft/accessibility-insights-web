@@ -122,19 +122,14 @@ function convertAssessmentStoreDataToScanNodeResults(
 ): ScanNodeResult[] | null {
     if (
         isNullOrUndefined(assessmentStoreData) ||
-        isNullOrUndefined(assessmentStoreData.assessments)
-    ) {
-        return null;
-    }
-
-    if (
-        isNullOrUndefined(testKey) &&
-        (isNullOrUndefined(assessmentStoreData.assessmentNavState) ||
-            isNullOrUndefined(
-                assessmentStoreData.assessments[
-                    assessmentStoreData.assessmentNavState.selectedTestType
-                ],
-            ))
+        isNullOrUndefined(assessmentStoreData.assessments) ||
+        (isNullOrUndefined(testKey) &&
+            (isNullOrUndefined(assessmentStoreData.assessmentNavState) ||
+                isNullOrUndefined(
+                    assessmentStoreData.assessments[
+                        assessmentStoreData.assessmentNavState.selectedTestType
+                    ],
+                )))
     ) {
         return null;
     }
