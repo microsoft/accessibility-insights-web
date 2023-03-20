@@ -30,6 +30,7 @@ export type IssuesTableDeps = CommonInstancesSectionDeps &
         getDateFromTimestamp: (timestamp: string) => Date;
         reportGenerator: ReportGenerator;
         issueFilingDialogPropsFactory: IssueFilingDialogPropsFactory;
+        getProvider: () => AssessmentsProvider;
     };
 
 export interface IssuesTableProps {
@@ -50,7 +51,6 @@ export interface IssuesTableProps {
     narrowModeStatus: NarrowModeStatus;
     cardsViewStoreData: CardsViewStoreData;
     selectedVisualizationType: VisualizationType;
-    getProvider: () => AssessmentsProvider;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -110,7 +110,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     private renderComponent(): JSX.Element {
         const cardCount = this.getCardCount();
-        const assessment = this.props.getProvider().forType(this.props.selectedVisualizationType);
+        const assessment = this.props.deps
+            .getProvider()
+            .forType(this.props.selectedVisualizationType);
         if (!this.props.issuesEnabled && cardCount > 0) {
             this.props.deps.detailsViewActionMessageCreator.enableFastPassVisualHelperWithoutScan(
                 this.props.selectedVisualizationType,

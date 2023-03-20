@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
@@ -34,7 +33,6 @@ export interface DetailsListIssuesViewProps {
     narrowModeStatus: NarrowModeStatus;
     includeStepsText?: boolean;
     selectedVisualizationType: VisualizationType;
-    getProvider: () => AssessmentsProvider;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
@@ -71,7 +69,6 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 narrowModeStatus={props.narrowModeStatus}
                 cardsViewStoreData={props.cardsViewStoreData}
                 selectedVisualizationType={props.selectedVisualizationType}
-                getProvider={props.getProvider}
             />
         );
     },
