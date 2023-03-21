@@ -92,7 +92,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                 assessments: {},
                 assessmentNavState: { selectedTestType: testKey },
             } as unknown as AssessmentStoreData;
-            expect(convertAssessmentStoreDataToScanNodeResults(dataStub, testKey)).toBeNull();
+            expect(convertAssessmentStoreDataToScanNodeResults(dataStub, testKey, null)).toBeNull();
         });
 
         test('assessment data with no card selection store data is converted successfully', () => {

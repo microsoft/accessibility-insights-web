@@ -83,13 +83,13 @@ export function convertUnifiedStoreDataToScanNodeResults(
 export type ConvertAssessmentStoreDataToScanNodeResultsCallback = (
     assessmentStoreData: AssessmentStoreData,
     selectedTest: string,
-    cardSelectionStoreData?: CardSelectionStoreData,
+    cardSelectionStoreData: CardSelectionStoreData,
 ) => ScanNodeResult[] | null;
 
 export function convertAssessmentStoreDataToScanNodeResults(
     assessmentStoreData: AssessmentStoreData,
     selectedTest: string,
-    cardSelectionStoreData?: CardSelectionStoreData,
+    cardSelectionStoreData: CardSelectionStoreData,
 ): ScanNodeResult[] | null {
     if (
         isNullOrUndefined(assessmentStoreData) ||
@@ -130,7 +130,7 @@ function convertAssessmentResultToScanNodeResult(
     selector: string,
     instance: GeneratedAssessmentInstance,
     requirementIdentifier: string,
-    cardSelectionViewDataForTest?: CardSelectionStoreData,
+    cardSelectionViewDataForTest: CardSelectionStoreData,
 ): ScanNodeResult {
     const instanceId = testStepResult.id;
     const status = convertTestStepResultStatusToCardResultStatus(testStepResult.status);
