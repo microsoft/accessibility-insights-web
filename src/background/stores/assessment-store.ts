@@ -15,6 +15,7 @@ import {
 } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,
@@ -393,7 +394,9 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
         await this.emitChanged();
     };
 
-    private onScanCompleted = async (payload: ScanCompletedPayload<any>): Promise<void> => {
+    private onScanCompleted = async (
+        payload: ScanCompletedPayload<HtmlElementAxeResults>,
+    ): Promise<void> => {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();

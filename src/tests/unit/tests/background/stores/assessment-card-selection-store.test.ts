@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
@@ -35,6 +36,7 @@ describe('AssessmentCardSelectionStore', () => {
 
     test('getId', () => {
         const testObject = new AssessmentCardSelectionStore(
+            null,
             null,
             null,
             null,
@@ -102,6 +104,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         it('sets the state based on param', () => {
             const testObject = new AssessmentCardSelectionStore(
                 new AssessmentCardSelectionActions(),
+                new AssessmentActions(),
                 null,
                 null,
                 null,
@@ -118,6 +121,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         it('sets the state based on persisted state if no param', () => {
             const testObject = new AssessmentCardSelectionStore(
                 new AssessmentCardSelectionActions(),
+                new AssessmentActions(),
                 initialState,
                 null,
                 null,
@@ -137,6 +141,7 @@ describe('AssessmentCardSelectionStore Test', () => {
             );
             const testObject = new AssessmentCardSelectionStore(
                 new AssessmentCardSelectionActions(),
+                new AssessmentActions(),
                 null,
                 assessmentStoreState,
                 null,
@@ -153,6 +158,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         it('sets the state to default state if no param or persisted states', () => {
             const testObject = new AssessmentCardSelectionStore(
                 new AssessmentCardSelectionActions(),
+                new AssessmentActions(),
                 null,
                 null,
                 null,
@@ -686,7 +692,17 @@ describe('AssessmentCardSelectionStore Test', () => {
         actionName: keyof AssessmentCardSelectionActions,
     ): StoreTester<AssessmentCardSelectionStoreData, AssessmentCardSelectionActions> {
         const factory = (actions: AssessmentCardSelectionActions) =>
-            new AssessmentCardSelectionStore(actions, null, null, null, null, true, '', null);
+            new AssessmentCardSelectionStore(
+                actions,
+                new AssessmentActions(),
+                null,
+                null,
+                null,
+                null,
+                true,
+                '',
+                null,
+            );
 
         return new StoreTester(AssessmentCardSelectionActions, actionName, factory);
     }

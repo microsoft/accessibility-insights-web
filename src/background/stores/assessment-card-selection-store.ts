@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
@@ -7,10 +8,14 @@ import { Logger } from 'common/logging/logger';
 import { convertResultsToCardSelectionStoreData } from 'common/store-data-to-scan-node-result-converter';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn, isEmpty } from 'lodash';
+import { DictionaryStringTo } from 'types/common-types';
 import { StoreNames } from '../../common/stores/store-names';
 import {
+    CardSelectionData,
     CardSelectionStoreData,
     RuleExpandCollapseData,
 } from '../../common/types/store-data/card-selection-store-data';
@@ -21,7 +26,9 @@ import {
     AssessmentNavigateToNewCardsViewPayload,
     AssessmentResetFocusedIdentifierPayload,
     AssessmentSingleRuleExpandCollapsePayload,
-    AssessmentStoreChangedPayload,
+    LoadAssessmentPayload,
+    ToggleActionPayload,
+    TransferAssessmentPayload,
 } from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
@@ -29,6 +36,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
 
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
+        private readonly assessmentActions: AssessmentActions,
         persistedState: AssessmentCardSelectionStoreData,
         assessmentStoreData: AssessmentStoreData,
         idbInstance: IndexedDBAPI,
@@ -59,16 +67,20 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.assessmentCardSelectionActions.navigateToNewCardsView.addListener(
             this.onNavigateToNewCardsView,
         );
-        this.assessmentCardSelectionActions.assessmentStoreChanged.addListener(
-            this.onAssessmentStoreChanged,
+        this.assessmentActions.scanCompleted.addListener(this.onScanCompleted);
+        this.assessmentActions.resetData.addListener(this.onResetData);
+        this.assessmentActions.resetAllAssessmentsData.addListener(this.onResetAllAssessmentsData);
+        this.assessmentActions.loadAssessment.addListener(this.onLoadAssessment);
+        this.assessmentActions.loadAssessmentFromTransfer.addListener(
+            this.onLoadAssessmentFromTransfer,
         );
     }
 
     public override initialize(initialState?: AssessmentCardSelectionStoreData): void {
         this.state =
             initialState ||
-            (this.persistedState ??
-                this.persistedStateFromAssessmentStore ??
+            (this.persistedStateFromAssessmentStore ??
+                this.persistedState ??
                 this.getDefaultState());
 
         this.addActionListeners();
@@ -79,25 +91,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
 
         return defaultValue;
     }
-
-    private onAssessmentStoreChanged = async (
-        payload: AssessmentStoreChangedPayload,
-    ): Promise<void> => {
-        if (!payload) {
-            return;
-        }
-
-        const cardSelectionDataFromAssessment =
-            this.convertAllAssessmentResultsToCardSelectionStoreData(payload.assessmentStoreData);
-
-        if (!cardSelectionDataFromAssessment || isEmpty(cardSelectionDataFromAssessment)) {
-            return;
-        }
-
-        this.state = cardSelectionDataFromAssessment;
-
-        await this.emitChanged();
-    };
 
     private convertAllAssessmentResultsToCardSelectionStoreData(
         assessmentStoreData: AssessmentStoreData,
@@ -287,6 +280,85 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.state[payload.testKey].visualHelperEnabled = !isEmpty(
             this.state[payload.testKey].rules,
         );
+
+        await this.emitChanged();
+    };
+
+    private onScanCompleted = async (payload: ScanCompletedPayload<HtmlElementAxeResults>) => {
+        if (
+            !payload ||
+            !payload.key ||
+            !payload.testType ||
+            isEmpty(payload.scanResult.violations) ||
+            !payload.selectorMap ||
+            isEmpty(payload.selectorMap)
+        ) {
+            return;
+        }
+
+        const testKey = payload.testType;
+        const ruleId = payload.key;
+
+        if (!this.state[testKey]) {
+            this.state[testKey] = {
+                rules: null,
+                visualHelperEnabled: false,
+                focusedResultUid: null,
+            };
+        }
+
+        if (!this.state[testKey].rules) {
+            this.state[testKey].rules = {};
+        }
+
+        if (!this.state[testKey].rules[ruleId]) {
+            this.state[testKey].rules[ruleId] = {
+                cards: {},
+                isExpanded: false,
+            };
+        }
+
+        this.state[testKey].rules[ruleId].cards = this.createCardsFromSelectorMap(
+            ruleId,
+            payload.selectorMap,
+        );
+
+        await this.emitChanged();
+    };
+
+    private createCardsFromSelectorMap(
+        key: string,
+        selectorMap: DictionaryStringTo<HtmlElementAxeResults>,
+    ): CardSelectionData {
+        const cards: CardSelectionData = {};
+        forOwn(selectorMap, result => {
+            cards[result.ruleResults[key].id] = false;
+        });
+        return cards;
+    }
+
+    private onResetAllAssessmentsData = async (): Promise<void> => {
+        this.state = this.getDefaultState();
+
+        await this.emitChanged();
+    };
+
+    private onResetData = async (payload: ToggleActionPayload): Promise<void> => {
+        this.state = this.getDefaultState();
+
+        await this.emitChanged();
+    };
+
+    private onLoadAssessment = async (payload: LoadAssessmentPayload): Promise<void> => {
+        this.state = this.getDefaultState();
+
+        await this.emitChanged();
+    };
+
+    private onLoadAssessmentFromTransfer = async (
+        payload: TransferAssessmentPayload,
+    ): Promise<void> => {
+        this.state = this.getDefaultState();
 
         await this.emitChanged();
     };
