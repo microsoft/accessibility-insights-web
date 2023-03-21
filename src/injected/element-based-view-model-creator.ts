@@ -3,25 +3,18 @@
 
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
-import {
-    ConvertStoreDataForScanNodeResultsCallback,
-    ScanNodeResult,
-} from 'common/store-data-to-scan-node-result-converter';
+import { ScanNodeResult } from 'common/store-data-to-scan-node-result-converter';
 import { TargetHelper } from 'common/target-helper';
-import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import {
-    PlatformData,
-    UnifiedResult,
-    UnifiedScanResultStoreData,
-} from 'common/types/store-data/unified-data-interface';
+import { PlatformData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
 import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { Target } from 'scanner/iruleresults';
 
 export type GetElementBasedViewModelCallback = (
-    storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
+    storeData: ScanNodeResult[],
     cardSelectionData: CardSelectionStoreData,
+    platformInfo?: PlatformData,
 ) => SelectorToVisualizationMap | null;
 
 export class ElementBasedViewModelCreator {
@@ -29,41 +22,22 @@ export class ElementBasedViewModelCreator {
         private getDecoratedAxeNode: GetDecoratedAxeNodeCallback,
         private getHighlightedResultInstanceIds: GetCardSelectionViewData,
         private isResultHighlightUnavailable: IsResultHighlightUnavailable,
-        private convertStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback,
     ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
-        storeData: UnifiedScanResultStoreData | AssessmentStoreData | null,
+        results: ScanNodeResult[],
         cardSelectionData: CardSelectionStoreData,
+        platformInfo?: PlatformData,
     ) => {
-        const results: ScanNodeResult[] | null = this.convertStoreDataForScanNodeResults(
-            storeData,
-            cardSelectionData,
-        );
-
         if (results == null || cardSelectionData?.rules == null) {
             return null;
         }
 
-        return this.getSelectorToVisualizationMap(
-            cardSelectionData,
-            results,
-            storeData && 'platformInfo' in storeData && storeData.platformInfo
-                ? storeData.platformInfo
-                : null,
-        );
-    };
-
-    private getSelectorToVisualizationMap(
-        cardSelectionData: CardSelectionStoreData,
-        results: ScanNodeResult[],
-        platformInfo: PlatformData | null,
-    ): SelectorToVisualizationMap {
         const resultDictionary: SelectorToVisualizationMap = {};
         const resultsHighlightStatus = this.getHighlightedResultInstanceIds(
             cardSelectionData,
             results,
-            platformInfo,
+            platformInfo ?? null,
             this.isResultHighlightUnavailable,
         ).resultsHighlightStatus;
 
@@ -90,7 +64,7 @@ export class ElementBasedViewModelCreator {
         });
 
         return resultDictionary;
-    }
+    };
 
     private getTarget(unifiedResult: UnifiedResult): Target {
         return unifiedResult.identifiers.target

@@ -1,12 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
-import {
-    convertStoreDataForScanNodeResults,
-    ConvertStoreDataForScanNodeResultsCallback,
-    ScanNodeResult,
-} from 'common/store-data-to-scan-node-result-converter';
-import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { ScanNodeResult } from 'common/store-data-to-scan-node-result-converter';
 import { includes } from 'lodash';
 
 import {
@@ -18,35 +13,22 @@ import {
     CardsViewModel,
     HighlightState,
 } from './types/store-data/card-view-model';
-import { UnifiedRule, UnifiedScanResultStoreData } from './types/store-data/unified-data-interface';
+import { UnifiedRule } from './types/store-data/unified-data-interface';
 
 export type GetCardViewData = (
-    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
+    results: ScanNodeResult[],
     cardSelectionViewData: CardSelectionViewData,
-    getStoreDataForScanNodeResults?: ConvertStoreDataForScanNodeResultsCallback,
+    rules?: UnifiedRule[],
 ) => CardsViewModel | null;
 
 export const getCardViewData: GetCardViewData = (
-    storeData: UnifiedScanResultStoreData | AssessmentStoreData,
-    cardSelectionViewData: CardSelectionViewData,
-    getStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = convertStoreDataForScanNodeResults,
-): CardsViewModel | null => {
-    const results: ScanNodeResult[] | null = getStoreDataForScanNodeResults(storeData);
-    if (results == null || cardSelectionViewData == null) {
-        return null;
-    }
-    return getCardViewDataFromScanNodeResults(
-        results,
-        cardSelectionViewData,
-        'rules' in storeData && storeData.rules ? storeData.rules : undefined,
-    );
-};
-
-const getCardViewDataFromScanNodeResults = (
     results: ScanNodeResult[],
     cardSelectionViewData: CardSelectionViewData,
     rules?: UnifiedRule[],
 ): CardsViewModel | null => {
+    if (results == null || cardSelectionViewData == null) {
+        return null;
+    }
     const statusResults = getEmptyStatusResults();
     const ruleIdsWithResultNodes: Set<string> = new Set();
 

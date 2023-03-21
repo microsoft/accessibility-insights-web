@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import {
     CardSelectionViewData,
@@ -7,6 +10,7 @@ import {
 } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
+import { ScanNodeResult } from 'common/store-data-to-scan-node-result-converter';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -56,6 +60,7 @@ describe(DetailsViewContent.displayName, () => {
     let deps: DetailsViewContainerDeps;
     let getDetailsRightPanelConfiguration: IMock<GetDetailsRightPanelConfiguration>;
     let getDetailsSwitcherNavConfiguration: IMock<GetDetailsSwitcherNavConfiguration>;
+    let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let getCardViewDataMock: IMock<GetCardViewData>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
@@ -76,14 +81,16 @@ describe(DetailsViewContent.displayName, () => {
             MockBehavior.Strict,
         );
         getCardViewDataMock = Mock.ofInstance(
-            (
-                storeData: UnifiedScanResultStoreData,
-                cardSelectionViewData?: CardSelectionViewData,
-            ) => null,
+            (scanNodeResults: ScanNodeResult[], cardSelectionViewData?: CardSelectionViewData) =>
+                null,
             MockBehavior.Strict,
         );
         getCardSelectionViewDataMock = Mock.ofInstance(
             (storeData: CardSelectionStoreData) => null,
+            MockBehavior.Strict,
+        );
+        visualizationConfigurationFactoryMock = Mock.ofType(
+            WebVisualizationConfigurationFactory,
             MockBehavior.Strict,
         );
         isResultHighlightUnavailableStub = () => null;
@@ -110,6 +117,7 @@ describe(DetailsViewContent.displayName, () => {
             isResultHighlightUnavailable: isResultHighlightUnavailableStub,
             getDateFromTimestamp: getDateFromTimestampMock.object,
             getAssessmentInstanceTableHandler: () => assessmentInstanceTableHandlerMock.object,
+            visualizationConfigurationFactory: visualizationConfigurationFactoryMock.object,
         } as DetailsViewContainerDeps;
     });
 
@@ -264,13 +272,18 @@ describe(DetailsViewContent.displayName, () => {
                 .returns(() => cardSelectionViewData)
                 .verifiable(Times.exactly(1));
 
+            const configStub = { key: 'test-key' } as VisualizationConfiguration;
+            visualizationConfigurationFactoryMock
+                .setup(vcfm => vcfm.getConfiguration(viewType))
+                .returns(() => configStub);
+
             const cardsViewData: CardsViewModel = {} as any;
             getCardViewDataMock
-                .setup(m => m(state.unifiedScanResultStoreData, cardSelectionViewData))
+                .setup(m => m([], cardSelectionViewData))
                 .returns(() => cardsViewData);
 
             getCardViewDataMock
-                .setup(m => m(state.assessmentStoreData, cardSelectionViewData))
+                .setup(m => m(null, cardSelectionViewData))
                 .returns(() => cardsViewData);
 
             const rendered = shallow(
