@@ -8,7 +8,10 @@ import { InspectActionMessageCreator } from 'common/message-creators/inspect-act
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
-import { convertStoreDataForScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
+import {
+    convertAssessmentStoreDataToScanNodeResults,
+    convertUnifiedStoreDataToScanNodeResults,
+} from 'common/store-data-to-scan-node-result-converter';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsViewOverlay,
@@ -112,7 +115,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         const selectedTest =
             selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const unifiedScanNodeResults = convertStoreDataForScanNodeResults(
+        const unifiedScanNodeResults = convertUnifiedStoreDataToScanNodeResults(
             props.storeState.unifiedScanResultStoreData,
         );
         const automatedChecksCardsViewData = props.deps.getCardViewData(
@@ -150,18 +153,17 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
 
         const selectedTestKey =
             props.deps.visualizationConfigurationFactory.getConfiguration(selectedTest).key;
+        const selectedCardSelectionStoreData = assessmentCardSelectionStoreData[selectedTestKey];
 
-        const assessmentScanNodeResults = convertStoreDataForScanNodeResults(
+        const assessmentScanNodeResults = convertAssessmentStoreDataToScanNodeResults(
             assessmentStoreData,
-            null,
             selectedTestKey,
+            selectedCardSelectionStoreData,
         );
         const assessmentCardsViewData = props.deps.getCardViewData(
             assessmentScanNodeResults,
             props.deps.getCardSelectionViewData(
-                assessmentCardSelectionStoreData
-                    ? assessmentCardSelectionStoreData[selectedTestKey]
-                    : null,
+                selectedCardSelectionStoreData,
                 assessmentScanNodeResults,
                 null,
                 props.deps.isResultHighlightUnavailable,

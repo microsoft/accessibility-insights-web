@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 
 import {
+    convertAssessmentStoreDataToScanNodeResults,
     convertResultsToCardSelectionStoreData,
-    convertStoreDataForScanNodeResults,
+    convertUnifiedStoreDataToScanNodeResults,
     ScanNodeResult,
 } from 'common/store-data-to-scan-node-result-converter';
 import {
@@ -24,10 +25,10 @@ import {
 } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 
 describe('StoreDataToScanNodeResultConverter', () => {
-    describe('convertStoreDataForScanNodeResults', () => {
+    describe('convertUnifiedStoreDataToScanNodeResults', () => {
         test('store data is empty returns null', () => {
             const dataStub = {} as UnifiedScanResultStoreData;
-            expect(convertStoreDataForScanNodeResults(dataStub)).toBeNull();
+            expect(convertUnifiedStoreDataToScanNodeResults(dataStub)).toBeNull();
         });
 
         test('unified data with no results returns null', () => {
@@ -35,7 +36,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                 results: [],
                 rules: [],
             } as UnifiedScanResultStoreData;
-            expect(convertStoreDataForScanNodeResults(storeData)).toEqual([]);
+            expect(convertUnifiedStoreDataToScanNodeResults(storeData)).toEqual([]);
         });
 
         test('unified data is converted successfully', () => {
@@ -47,7 +48,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
             } as UnifiedScanResultStoreData;
 
             const expectedResult = [{ ...unifiedResult, rule: ruleStub }];
-            expect(convertStoreDataForScanNodeResults(storeData)).toEqual(expectedResult);
+            expect(convertUnifiedStoreDataToScanNodeResults(storeData)).toEqual(expectedResult);
         });
 
         test('unified data with no rules is converted successfully', () => {
@@ -57,7 +58,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
             } as UnifiedScanResultStoreData;
 
             const expectedResult = [{ ...unifiedResult, rule: { id: unifiedResult.ruleId } }];
-            expect(convertStoreDataForScanNodeResults(storeData)).toEqual(expectedResult);
+            expect(convertUnifiedStoreDataToScanNodeResults(storeData)).toEqual(expectedResult);
         });
 
         test('unified data with multiple results is converted successfully', () => {
@@ -80,15 +81,18 @@ describe('StoreDataToScanNodeResultConverter', () => {
                 { ...unifiedResultOne, rule: ruleStubOne },
                 { ...unifiedResultTwo, rule: ruleStubTwo },
             ];
-            expect(convertStoreDataForScanNodeResults(storeData)).toEqual(expectedResult);
+            expect(convertUnifiedStoreDataToScanNodeResults(storeData)).toEqual(expectedResult);
         });
+    });
 
+    describe('convertAssessmentStoreDataToScanNodeResults', () => {
         test('assessment data with invalid selected test type returns null', () => {
+            const testKey = 'test-key';
             const dataStub = {
                 assessments: {},
-                assessmentNavState: { selectedTestType: 'test-key' },
+                assessmentNavState: { selectedTestType: testKey },
             } as unknown as AssessmentStoreData;
-            expect(convertStoreDataForScanNodeResults(dataStub)).toBeNull();
+            expect(convertAssessmentStoreDataToScanNodeResults(dataStub, testKey)).toBeNull();
         });
 
         test('assessment data with no card selection store data is converted successfully', () => {
@@ -115,7 +119,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                     uid: testStepResult.id,
                 },
             ];
-            expect(convertStoreDataForScanNodeResults(storeData, null, testKey)).toEqual(
+            expect(convertAssessmentStoreDataToScanNodeResults(storeData, testKey, null)).toEqual(
                 expectedResult,
             );
         });
@@ -148,7 +152,11 @@ describe('StoreDataToScanNodeResultConverter', () => {
                 },
             ];
             expect(
-                convertStoreDataForScanNodeResults(storeData, cardSelectionStoreData, testKey),
+                convertAssessmentStoreDataToScanNodeResults(
+                    storeData,
+                    testKey,
+                    cardSelectionStoreData,
+                ),
             ).toEqual(expectedResult);
         });
 
@@ -196,7 +204,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                     uid: testStepResult2.id,
                 },
             ];
-            expect(convertStoreDataForScanNodeResults(storeData, null, testKey)).toEqual(
+            expect(convertAssessmentStoreDataToScanNodeResults(storeData, testKey, null)).toEqual(
                 expectedResult,
             );
         });
@@ -251,7 +259,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                     uid: testStepResult2.id,
                 },
             ];
-            expect(convertStoreDataForScanNodeResults(storeData, null, testKey)).toEqual(
+            expect(convertAssessmentStoreDataToScanNodeResults(storeData, testKey, null)).toEqual(
                 expectedResult,
             );
         });

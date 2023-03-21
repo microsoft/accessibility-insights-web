@@ -3,7 +3,7 @@
 import { TabActions } from 'background/actions/tab-actions';
 import {
     ConvertResultsToCardSelectionStoreDataCallback,
-    ConvertStoreDataForScanNodeResultsCallback,
+    ConvertUnifiedStoreDataToScanNodeResultsCallback,
 } from 'common/store-data-to-scan-node-result-converter';
 import { cloneDeep, forOwn } from 'lodash';
 import { IMock, Mock, Times } from 'typemoq';
@@ -30,13 +30,13 @@ import { createStoreWithNullParams, StoreTester } from '../../../common/store-te
 
 describe('CardSelectionStore Test', () => {
     let convertResultsToCardSelectionStoreDataCallbackMock: IMock<ConvertResultsToCardSelectionStoreDataCallback>;
-    let convertStoreDataForScanNodeResultsCallbackMock: IMock<ConvertStoreDataForScanNodeResultsCallback>;
+    let convertStoreDataForScanNodeResultsCallbackMock: IMock<ConvertUnifiedStoreDataToScanNodeResultsCallback>;
 
     beforeEach(() => {
         convertResultsToCardSelectionStoreDataCallbackMock =
             Mock.ofType<ConvertResultsToCardSelectionStoreDataCallback>();
         convertStoreDataForScanNodeResultsCallbackMock =
-            Mock.ofType<ConvertStoreDataForScanNodeResultsCallback>();
+            Mock.ofType<ConvertUnifiedStoreDataToScanNodeResultsCallback>();
     });
 
     test('constructor has no side effects', () => {

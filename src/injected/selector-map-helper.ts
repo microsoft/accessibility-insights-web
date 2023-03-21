@@ -4,8 +4,10 @@ import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlags } from 'common/feature-flags';
 import {
-    convertStoreDataForScanNodeResults,
-    ConvertStoreDataForScanNodeResultsCallback,
+    convertAssessmentStoreDataToScanNodeResults,
+    ConvertAssessmentStoreDataToScanNodeResultsCallback,
+    convertUnifiedStoreDataToScanNodeResults,
+    ConvertUnifiedStoreDataToScanNodeResultsCallback,
 } from 'common/store-data-to-scan-node-result-converter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
@@ -39,7 +41,8 @@ export class SelectorMapHelper {
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private getElementBasedViewModel: GetElementBasedViewModelCallback,
         private getVisualizationInstancesForTabStops: typeof GetVisualizationInstancesForTabStops,
-        private readonly getStoreDataForScanNodeResults: ConvertStoreDataForScanNodeResultsCallback = convertStoreDataForScanNodeResults,
+        private readonly convertUnifiedDataToScanNodeResults: ConvertUnifiedStoreDataToScanNodeResultsCallback = convertUnifiedStoreDataToScanNodeResults,
+        private readonly convertAssessmentDataToScanNodeResults: ConvertAssessmentStoreDataToScanNodeResultsCallback = convertAssessmentStoreDataToScanNodeResults,
     ) {}
 
     public getSelectorMap(
@@ -73,10 +76,10 @@ export class SelectorMapHelper {
             this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         if (featureFlagStoreData[FeatureFlags.automatedChecks]) {
             if (assessmentConfig.key === AutomatedChecks.getVisualizationConfiguration().key) {
-                const assessmentScanNodeResults = this.getStoreDataForScanNodeResults(
+                const assessmentScanNodeResults = this.convertAssessmentDataToScanNodeResults(
                     assessmentStoreData,
-                    assessmentCardSelectionStoreData[assessmentConfig.key],
                     assessmentConfig.key,
+                    assessmentCardSelectionStoreData[assessmentConfig.key],
                 );
                 return this.getElementBasedViewModel(
                     assessmentScanNodeResults,
@@ -120,17 +123,14 @@ export class SelectorMapHelper {
         switch (visualizationType) {
             case VisualizationType.NeedsReview:
                 selectorMap = this.getElementBasedViewModel(
-                    this.getStoreDataForScanNodeResults(
-                        needsReviewScanData,
-                        needsReviewCardSelectionStoreData,
-                    ),
+                    this.convertUnifiedDataToScanNodeResults(needsReviewScanData),
                     needsReviewCardSelectionStoreData,
                     needsReviewScanData.platformInfo,
                 );
                 break;
             case VisualizationType.Issues:
                 selectorMap = this.getElementBasedViewModel(
-                    this.getStoreDataForScanNodeResults(unifiedScanData, cardSelectionStoreData),
+                    this.convertUnifiedDataToScanNodeResults(unifiedScanData),
                     cardSelectionStoreData,
                     unifiedScanData.platformInfo,
                 );

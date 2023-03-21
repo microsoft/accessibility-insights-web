@@ -3,7 +3,10 @@
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlags } from 'common/feature-flags';
-import { ConvertStoreDataForScanNodeResultsCallback } from 'common/store-data-to-scan-node-result-converter';
+import {
+    ConvertAssessmentStoreDataToScanNodeResultsCallback,
+    ConvertUnifiedStoreDataToScanNodeResultsCallback,
+} from 'common/store-data-to-scan-node-result-converter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
@@ -34,7 +37,8 @@ describe('SelectorMapHelperTest', () => {
         typeof GetVisualizationInstancesForTabStops
     >;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    let convertStoreDataForScanNodeResultsCallbackMock: IMock<ConvertStoreDataForScanNodeResultsCallback>;
+    let convertUnifiedStoreDataForScanNodeResultsCallbackMock: IMock<ConvertUnifiedStoreDataToScanNodeResultsCallback>;
+    let convertAssessmentStoreDataForScanNodeResultsCallbackMock: IMock<ConvertAssessmentStoreDataToScanNodeResultsCallback>;
 
     const adHocVisualizationTypes = [
         VisualizationType.Headings,
@@ -54,13 +58,22 @@ describe('SelectorMapHelperTest', () => {
         getElementBasedViewModelMock = Mock.ofType<GetElementBasedViewModelCallback>();
         getVisualizationInstancesForTabStopsMock =
             Mock.ofType<typeof GetVisualizationInstancesForTabStops>();
-        convertStoreDataForScanNodeResultsCallbackMock =
-            Mock.ofType<ConvertStoreDataForScanNodeResultsCallback>(undefined, MockBehavior.Strict);
+        convertUnifiedStoreDataForScanNodeResultsCallbackMock =
+            Mock.ofType<ConvertUnifiedStoreDataToScanNodeResultsCallback>(
+                undefined,
+                MockBehavior.Strict,
+            );
+        convertAssessmentStoreDataForScanNodeResultsCallbackMock =
+            Mock.ofType<ConvertAssessmentStoreDataToScanNodeResultsCallback>(
+                undefined,
+                MockBehavior.Strict,
+            );
         testSubject = new SelectorMapHelper(
             visualizationConfigurationFactoryMock.object,
             getElementBasedViewModelMock.object,
             getVisualizationInstancesForTabStopsMock.object,
-            convertStoreDataForScanNodeResultsCallbackMock.object,
+            convertUnifiedStoreDataForScanNodeResultsCallbackMock.object,
+            convertAssessmentStoreDataForScanNodeResultsCallbackMock.object,
         );
     });
 
@@ -106,8 +119,8 @@ describe('SelectorMapHelperTest', () => {
             } as VisualizationRelatedStoreData;
 
             const scanResultsNodesStub = [];
-            convertStoreDataForScanNodeResultsCallbackMock
-                .setup(m => m(It.isAny(), It.isAny()))
+            convertUnifiedStoreDataForScanNodeResultsCallbackMock
+                .setup(m => m(It.isAny()))
                 .returns(() => scanResultsNodesStub);
             getElementBasedViewModelMock
                 .setup(gebvm =>
@@ -140,9 +153,9 @@ describe('SelectorMapHelperTest', () => {
 
             setupVisualizationConfigurationFactory(null, null, visualizationType, stepKey);
             const scanResultsNodesStub = [];
-            convertStoreDataForScanNodeResultsCallbackMock
+            convertAssessmentStoreDataForScanNodeResultsCallbackMock
                 .setup(m =>
-                    m(assessmentStoreDataStub, assessmentCardSelectionStoreDataStub, stepKey),
+                    m(assessmentStoreDataStub, stepKey, assessmentCardSelectionStoreDataStub),
                 )
                 .returns(() => scanResultsNodesStub);
             getElementBasedViewModelMock

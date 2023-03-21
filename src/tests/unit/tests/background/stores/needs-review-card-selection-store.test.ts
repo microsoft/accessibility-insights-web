@@ -6,7 +6,7 @@ import { TabActions } from 'background/actions/tab-actions';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
 import {
     ConvertResultsToCardSelectionStoreDataCallback,
-    ConvertStoreDataForScanNodeResultsCallback,
+    ConvertUnifiedStoreDataToScanNodeResultsCallback,
 } from 'common/store-data-to-scan-node-result-converter';
 import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -28,13 +28,13 @@ import { createStoreWithNullParams, StoreTester } from '../../../common/store-te
 
 describe('NeedsReviewCardSelectionStore Test', () => {
     let convertResultsToCardSelectionStoreDataCallbackMock: IMock<ConvertResultsToCardSelectionStoreDataCallback>;
-    let convertStoreDataForScanNodeResultsCallbackMock: IMock<ConvertStoreDataForScanNodeResultsCallback>;
+    let convertStoreDataForScanNodeResultsCallbackMock: IMock<ConvertUnifiedStoreDataToScanNodeResultsCallback>;
 
     beforeEach(() => {
         convertResultsToCardSelectionStoreDataCallbackMock =
             Mock.ofType<ConvertResultsToCardSelectionStoreDataCallback>();
         convertStoreDataForScanNodeResultsCallbackMock =
-            Mock.ofType<ConvertStoreDataForScanNodeResultsCallback>();
+            Mock.ofType<ConvertUnifiedStoreDataToScanNodeResultsCallback>();
     });
 
     test('constructor has no side effects', () => {
