@@ -28,7 +28,6 @@ interface BaseAssessment {
 export interface ManualAssessment extends BaseAssessment {}
 
 export interface AssistedAssessment extends BaseAssessment {
-    storeDataKey: string;
     visualizationConfiguration?: Partial<AssessmentVisualizationConfiguration>;
     getTestViewContainer?: (
         provider: TestViewContainerProvider,
