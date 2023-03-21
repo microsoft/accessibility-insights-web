@@ -51,5 +51,4 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
         SemanticsQuotes,
         SemanticsLetterSpacing,
     ],
-    storeDataKey: 'semanticsAssessment',
 });

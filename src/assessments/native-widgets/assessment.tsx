@@ -47,5 +47,4 @@ export const NativeWidgetsAssessment: Assessment = AssessmentBuilder.Assisted({
     gettingStarted,
     guidance,
     requirements: [WidgetFunction, Instructions, ExpectedInput, Cues, Autocomplete],
-    storeDataKey: 'nativeWidgetsAssessment',
 });

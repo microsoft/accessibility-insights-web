@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
+import { HeadingsAssessment } from 'assessments/headings/assessment';
+import { LandmarksAssessment } from 'assessments/landmarks/assessment';
 import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
 import { InitialVisualizationStoreDataGenerator } from 'background/initial-visualization-store-data-generator';
 import { VisualizationStore } from 'background/stores/visualization-store';
@@ -57,7 +59,11 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
     }
 
     public withLandmarksAssessment(enable: boolean, step: string): VisualizationStoreDataBuilder {
-        return this.withAssessment(this.data.tests.assessments.landmarksAssessment, enable, step);
+        return this.withAssessment(
+            this.data.tests.assessments[LandmarksAssessment.key],
+            enable,
+            step,
+        );
     }
 
     public withTabStopsEnable(): VisualizationStoreDataBuilder {
@@ -71,7 +77,11 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
     }
 
     public withHeadingsAssessment(enable: boolean, step: string): VisualizationStoreDataBuilder {
-        return this.withAssessment(this.data.tests.assessments.headingsAssessment, enable, step);
+        return this.withAssessment(
+            this.data.tests.assessments[HeadingsAssessment.key],
+            enable,
+            step,
+        );
     }
 
     public withNeedsReviewEnable(): VisualizationStoreDataBuilder {

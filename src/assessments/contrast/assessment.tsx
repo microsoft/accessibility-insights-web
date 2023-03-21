@@ -33,5 +33,4 @@ export const ContrastAssessment: Assessment = AssessmentBuilder.Assisted({
     guidance,
     visualizationType: VisualizationType.ContrastAssessment,
     requirements: [UIComponents, StateChanges, Graphics],
-    storeDataKey: 'contrastAssessment',
 });

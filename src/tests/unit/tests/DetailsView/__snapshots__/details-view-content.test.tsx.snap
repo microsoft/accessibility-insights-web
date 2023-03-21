@@ -299,51 +299,47 @@ exports[`DetailsViewContent render renders normally 1`] = `
             },
           },
           "assessments": {
-            "adaptableContentAssessment": {
+            "audioVideoOnly": {
               "enabled": false,
               "stepStatus": {},
             },
-            "audioVideoOnlyAssessment": {
+            "automated-checks": {
               "enabled": false,
               "stepStatus": {},
             },
-            "automatedChecks": {
+            "color": {
               "enabled": false,
               "stepStatus": {},
             },
-            "colorSensoryAssessment": {
+            "contrast": {
               "enabled": false,
               "stepStatus": {},
             },
-            "contrastAssessment": {
+            "customWidgets": {
               "enabled": false,
               "stepStatus": {},
             },
-            "customWidgetsAssessment": {
+            "errors": {
               "enabled": false,
               "stepStatus": {},
             },
-            "errorsAssessment": {
+            "headings": {
               "enabled": false,
               "stepStatus": {},
             },
-            "headingsAssessment": {
+            "images": {
               "enabled": false,
               "stepStatus": {},
             },
-            "imageAssessment": {
+            "keyboardInteraction": {
               "enabled": false,
               "stepStatus": {},
             },
-            "keyboardInteractionAssessment": {
+            "landmarks": {
               "enabled": false,
               "stepStatus": {},
             },
-            "landmarksAssessment": {
-              "enabled": false,
-              "stepStatus": {},
-            },
-            "languageAssessment": {
+            "language": {
               "enabled": false,
               "stepStatus": {},
             },
@@ -351,31 +347,31 @@ exports[`DetailsViewContent render renders normally 1`] = `
               "enabled": false,
               "stepStatus": {},
             },
-            "liveMultimediaAssessment": {
+            "liveMultimedia": {
               "enabled": false,
               "stepStatus": {},
             },
-            "nativeWidgetsAssessment": {
+            "nativeWidgets": {
               "enabled": false,
               "stepStatus": {},
             },
-            "pageAssessment": {
+            "page": {
               "enabled": false,
               "stepStatus": {},
             },
-            "parsingAssessment": {
+            "parsing": {
               "enabled": false,
               "stepStatus": {},
             },
-            "pointerMotionAssessment": {
+            "pointerMotion": {
               "enabled": false,
               "stepStatus": {},
             },
-            "prerecordedMultimediaAssessment": {
+            "prerecordedMultimedia": {
               "enabled": false,
               "stepStatus": {},
             },
-            "repetitiveContentAssessment": {
+            "repetitiveContent": {
               "enabled": false,
               "stepStatus": {},
             },
@@ -383,41 +379,41 @@ exports[`DetailsViewContent render renders normally 1`] = `
               "enabled": false,
               "stepStatus": {},
             },
-            "sequenceAssessment": {
+            "sequence": {
               "enabled": false,
               "stepStatus": {},
             },
-            "timedEventsAssessment": {
+            "textLegibility": {
               "enabled": false,
               "stepStatus": {},
             },
-            "visibleFocusOrderAssessment": {
+            "timedEvents": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "visibleFocusOrder": {
               "enabled": false,
               "stepStatus": {},
             },
           },
           "quickAssess": {
-            "adaptableContentAssessment": {
+            "automated-checks": {
               "enabled": false,
               "stepStatus": {},
             },
-            "automatedChecks": {
+            "contrast": {
               "enabled": false,
               "stepStatus": {},
             },
-            "contrastAssessment": {
+            "headings": {
               "enabled": false,
               "stepStatus": {},
             },
-            "headingsAssessment": {
+            "images": {
               "enabled": false,
               "stepStatus": {},
             },
-            "imageAssessment": {
-              "enabled": false,
-              "stepStatus": {},
-            },
-            "keyboardInteractionAssessment": {
+            "keyboardInteraction": {
               "enabled": false,
               "stepStatus": {},
             },
@@ -425,15 +421,19 @@ exports[`DetailsViewContent render renders normally 1`] = `
               "enabled": false,
               "stepStatus": {},
             },
-            "nativeWidgetsAssessment": {
+            "nativeWidgets": {
               "enabled": false,
               "stepStatus": {},
             },
-            "repetitiveContentAssessment": {
+            "repetitiveContent": {
               "enabled": false,
               "stepStatus": {},
             },
-            "visibleFocusOrderAssessment": {
+            "textLegibility": {
+              "enabled": false,
+              "stepStatus": {},
+            },
+            "visibleFocusOrder": {
               "enabled": false,
               "stepStatus": {},
             },

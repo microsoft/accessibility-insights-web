@@ -52,7 +52,6 @@ export const KeyboardInteraction: Assessment = AssessmentBuilder.Assisted({
         NoKeystrokeTiming,
         CharacterKeyShortcuts,
     ],
-    storeDataKey: 'keyboardInteractionAssessment',
     visualizationConfiguration: {
         key: key,
         analyzerProgressMessageType: Messages.Assessment.TabbedElementAdded,

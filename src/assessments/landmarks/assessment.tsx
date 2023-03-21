@@ -52,5 +52,4 @@ export const LandmarksAssessment: Assessment = AssessmentBuilder.Assisted({
     guidance,
     visualizationType: VisualizationType.LandmarksAssessment,
     requirements: [LandmarkRoles, PrimaryContent, NoRepeatingContent],
-    storeDataKey: 'landmarksAssessment',
 });

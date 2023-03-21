@@ -30,5 +30,4 @@ export const PointerMotionAssessment: Assessment = AssessmentBuilder.Assisted({
     guidance,
     visualizationType: VisualizationType.PointerMotionAssessment,
     requirements: [PointerGestures, PointerCancellation, MotionOperation],
-    storeDataKey: 'pointerMotionAssessment',
 });
