@@ -3,6 +3,12 @@
 import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlags } from 'common/feature-flags';
+import {
+    convertAssessmentStoreDataToScanNodeResults,
+    ConvertAssessmentStoreDataToScanNodeResultsCallback,
+    convertUnifiedStoreDataToScanNodeResults,
+    ConvertUnifiedStoreDataToScanNodeResultsCallback,
+} from 'common/store-data-to-scan-node-result-converter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
@@ -35,6 +41,8 @@ export class SelectorMapHelper {
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private getElementBasedViewModel: GetElementBasedViewModelCallback,
         private getVisualizationInstancesForTabStops: typeof GetVisualizationInstancesForTabStops,
+        private readonly convertUnifiedDataToScanNodeResults: ConvertUnifiedStoreDataToScanNodeResultsCallback = convertUnifiedStoreDataToScanNodeResults,
+        private readonly convertAssessmentDataToScanNodeResults: ConvertAssessmentStoreDataToScanNodeResultsCallback = convertAssessmentStoreDataToScanNodeResults,
     ) {}
 
     public getSelectorMap(
@@ -68,11 +76,14 @@ export class SelectorMapHelper {
             this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         if (featureFlagStoreData[FeatureFlags.automatedChecks]) {
             if (assessmentConfig.key === AutomatedChecks.getVisualizationConfiguration().key) {
-                return this.getElementBasedViewModel(
+                const assessmentScanNodeResults = this.convertAssessmentDataToScanNodeResults(
                     assessmentStoreData,
-                    assessmentCardSelectionStoreData
-                        ? assessmentCardSelectionStoreData[visualizationType]
-                        : null,
+                    assessmentConfig.key,
+                    assessmentCardSelectionStoreData[assessmentConfig.key],
+                );
+                return this.getElementBasedViewModel(
+                    assessmentScanNodeResults,
+                    assessmentCardSelectionStoreData[assessmentConfig.key],
                 );
             }
         }
@@ -112,14 +123,16 @@ export class SelectorMapHelper {
         switch (visualizationType) {
             case VisualizationType.NeedsReview:
                 selectorMap = this.getElementBasedViewModel(
-                    needsReviewScanData,
+                    this.convertUnifiedDataToScanNodeResults(needsReviewScanData),
                     needsReviewCardSelectionStoreData,
+                    needsReviewScanData.platformInfo,
                 );
                 break;
             case VisualizationType.Issues:
                 selectorMap = this.getElementBasedViewModel(
-                    unifiedScanData,
+                    this.convertUnifiedDataToScanNodeResults(unifiedScanData),
                     cardSelectionStoreData,
+                    unifiedScanData.platformInfo,
                 );
                 break;
             case VisualizationType.Headings:

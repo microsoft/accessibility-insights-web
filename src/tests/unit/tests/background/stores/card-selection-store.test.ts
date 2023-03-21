@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TabActions } from 'background/actions/tab-actions';
-import { ConvertResultsToCardSelectionStoreDataCallback } from 'common/store-data-to-scan-node-result-converter';
+import {
+    ConvertResultsToCardSelectionStoreDataCallback,
+    ConvertUnifiedStoreDataToScanNodeResultsCallback,
+} from 'common/store-data-to-scan-node-result-converter';
 import { cloneDeep, forOwn } from 'lodash';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -27,10 +30,13 @@ import { createStoreWithNullParams, StoreTester } from '../../../common/store-te
 
 describe('CardSelectionStore Test', () => {
     let convertResultsToCardSelectionStoreDataCallbackMock: IMock<ConvertResultsToCardSelectionStoreDataCallback>;
+    let convertStoreDataForScanNodeResultsCallbackMock: IMock<ConvertUnifiedStoreDataToScanNodeResultsCallback>;
 
     beforeEach(() => {
         convertResultsToCardSelectionStoreDataCallbackMock =
             Mock.ofType<ConvertResultsToCardSelectionStoreDataCallback>();
+        convertStoreDataForScanNodeResultsCallbackMock =
+            Mock.ofType<ConvertUnifiedStoreDataToScanNodeResultsCallback>();
     });
 
     test('constructor has no side effects', () => {
@@ -92,12 +98,17 @@ describe('CardSelectionStore Test', () => {
             visualHelperEnabled: false,
             focusedResultUid: null,
         } as CardSelectionStoreData;
-        convertResultsToCardSelectionStoreDataCallbackMock
+        const scanResultsNodesStub = [];
+        convertStoreDataForScanNodeResultsCallbackMock
             .setup(callback =>
-                callback(callbackExpectedState, {
+                callback({
                     results: payload.scanResult,
                 } as UnifiedScanResultStoreData),
             )
+            .returns(() => scanResultsNodesStub)
+            .verifiable(Times.once());
+        convertResultsToCardSelectionStoreDataCallbackMock
+            .setup(callback => callback(callbackExpectedState, scanResultsNodesStub))
             .returns(() => {
                 return expectedState;
             })
@@ -107,6 +118,7 @@ describe('CardSelectionStore Test', () => {
             createStoreForUnifiedScanResultActions('scanCompleted').withActionParam(payload);
         await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         convertResultsToCardSelectionStoreDataCallbackMock.verifyAll();
+        convertStoreDataForScanNodeResultsCallbackMock.verifyAll();
     });
 
     function getDefaultState(): CardSelectionStoreData {
@@ -127,6 +139,7 @@ describe('CardSelectionStore Test', () => {
                 null,
                 true,
                 convertResultsToCardSelectionStoreDataCallbackMock.object,
+                convertStoreDataForScanNodeResultsCallbackMock.object,
             );
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);
