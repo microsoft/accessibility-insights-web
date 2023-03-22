@@ -762,7 +762,7 @@ describe('AssessmentCardSelectionStore Test', () => {
             assessmentsProviderMock
                 .setup(apm => apm.forType(It.isAny()))
                 .returns(() => stubAssessment);
-            const payload: ScanCompletedPayload<HtmlElementAxeResults> = {
+            const payload: ScanCompletedPayload<any> = {
                 key: stubRuleId,
                 testType: stubTestKey as unknown as VisualizationType,
                 selectorMap: stubSelectorMap,
@@ -852,7 +852,7 @@ describe('AssessmentCardSelectionStore Test', () => {
             await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
         });
 
-        it.each([null, { assessmentData: null }])(
+        it.each([null, { assessmentData: null }, { assessmentData: {} }])(
             'does nothing with versionedAssessmentData=%s in payload',
             async versionedAssessmentData => {
                 const payload: LoadAssessmentPayload = {
@@ -886,10 +886,10 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('onLoadAssessmentFromTransfer', () => {
-        it.each([null, { assessmentData: null }])(
+        it.each([null, { assessmentData: null }, { assessmentData: {} }])(
             'does nothing with payload=%s',
             async payloadStub => {
-                const payload: TransferAssessmentPayload = payloadStub;
+                const payload = payloadStub;
 
                 const storeTester = createStoreForAssessmentActions(
                     'loadAssessmentFromTransfer',

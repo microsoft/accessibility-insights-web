@@ -35,7 +35,7 @@ import {
 } from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
-    private persistedStateFromAssessmentStore: AssessmentCardSelectionStoreData | undefined;
+    private persistedStateFromAssessmentStore: AssessmentCardSelectionStoreData | null;
 
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
@@ -104,7 +104,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             !assessmentStoreData.assessments ||
             isEmpty(assessmentStoreData.assessments)
         ) {
-            return;
+            return null;
         }
 
         const assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData = {};
@@ -117,13 +117,14 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
                 visualHelperEnabled: false,
                 focusedResultUid: null,
             };
+            const scanNodeResults = convertAssessmentStoreDataToScanNodeResults(
+                assessmentStoreData,
+                key,
+                cardSelectionStoreData,
+            );
             assessmentCardSelectionStoreData[key] = convertResultsToCardSelectionStoreData(
                 cardSelectionStoreData,
-                convertAssessmentStoreDataToScanNodeResults(
-                    assessmentStoreData,
-                    key,
-                    cardSelectionStoreData,
-                ),
+                scanNodeResults,
             );
         });
 
@@ -294,7 +295,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         await this.emitChanged();
     };
 
-    private onScanCompleted = async (payload: ScanCompletedPayload<HtmlElementAxeResults>) => {
+    private onScanCompleted = async (payload: ScanCompletedPayload<any>) => {
         if (
             !payload ||
             !payload.key ||
@@ -327,14 +328,14 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             this.state[testKey].rules = {};
         }
 
-        if (!this.state[testKey].rules[ruleId]) {
-            this.state[testKey].rules[ruleId] = {
+        if (!this.state[testKey].rules![ruleId]) {
+            this.state[testKey].rules![ruleId] = {
                 cards: {},
                 isExpanded: false,
             };
         }
 
-        this.state[testKey].rules[ruleId].cards = this.createCardsFromSelectorMap(
+        this.state[testKey].rules![ruleId].cards = this.createCardsFromSelectorMap(
             ruleId,
             payload.selectorMap,
         );
@@ -348,7 +349,9 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     ): CardSelectionData {
         const cards: CardSelectionData = {};
         forOwn(selectorMap, result => {
-            cards[result.ruleResults[key].id] = false;
+            if (result.ruleResults && result.ruleResults[key] && result.ruleResults[key].id) {
+                cards[result.ruleResults[key].id!] = false;
+            }
         });
         return cards;
     }
@@ -389,9 +392,16 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             return;
         }
 
-        this.state = this.convertAllAssessmentResultsToCardSelectionStoreData(
-            payload.versionedAssessmentData.assessmentData,
-        );
+        const assessmentCardSelectionStoreData =
+            this.convertAllAssessmentResultsToCardSelectionStoreData(
+                payload.versionedAssessmentData.assessmentData,
+            );
+
+        if (!assessmentCardSelectionStoreData) {
+            return;
+        }
+
+        this.state = assessmentCardSelectionStoreData;
 
         await this.emitChanged();
     };
@@ -403,9 +413,14 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             return;
         }
 
-        this.state = this.convertAllAssessmentResultsToCardSelectionStoreData(
-            payload.assessmentData,
-        );
+        const assessmentCardSelectionStoreData =
+            this.convertAllAssessmentResultsToCardSelectionStoreData(payload.assessmentData);
+
+        if (!assessmentCardSelectionStoreData) {
+            return;
+        }
+
+        this.state = assessmentCardSelectionStoreData;
 
         await this.emitChanged();
     };
