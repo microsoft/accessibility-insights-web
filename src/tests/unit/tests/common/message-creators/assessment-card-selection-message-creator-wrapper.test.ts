@@ -50,6 +50,19 @@ describe('AssessmentCardSelectionMessageCreatorWrapper', () => {
         visualizationConfigurationFactoryMock.verifyAll();
     });
 
+    test('errors when assessment store data is null', () => {
+        visualizationConfigurationFactoryMock.reset();
+        assessmentStoreMock.reset();
+        assessmentStoreMock
+            .setup(asm => asm.getState())
+            .returns(() => null)
+            .verifiable(Times.once());
+
+        expect(() => testSubject.toggleVisualHelper(eventStub)).toThrowError(
+            'no assessment store data',
+        );
+    });
+
     test('toggleVisualHelper', () => {
         assessmentCardSelectionMessageCreatorMock
             .setup(m => m.toggleVisualHelper(eventStub, selectedTestKeyStub))
