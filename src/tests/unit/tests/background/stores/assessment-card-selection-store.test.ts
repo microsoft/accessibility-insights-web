@@ -67,38 +67,46 @@ describe('AssessmentCardSelectionStore', () => {
 });
 
 describe('AssessmentCardSelectionStore Test', () => {
+    const stubRuleId1 = 'sampleRuleId1';
+    const stubRuleId2 = 'sampleRuleId2';
+    const stubTestKey1 = 'testKey1';
+    const stubTestKey2 = 'testKey2';
+    const stubUid1 = 'sampleUid1';
+    const stubUid2 = 'sampleUid2';
+    const stubUid3 = 'sampleUid3';
+    const stubUid4 = 'sampleUid4';
     let initialState: AssessmentCardSelectionStoreData = null;
     let expectedState: AssessmentCardSelectionStoreData = null;
 
     beforeEach(() => {
         const defaultState: AssessmentCardSelectionStoreData = {
-            testKey1: {
+            [stubTestKey1]: {
                 rules: {
-                    sampleRuleId1: {
+                    [stubRuleId1]: {
                         isExpanded: false,
                         cards: {
-                            sampleUid1: false,
-                            sampleUid2: false,
+                            [stubUid1]: false,
+                            [stubUid2]: false,
                         },
                     },
-                    sampleRuleId2: {
+                    [stubRuleId2]: {
                         isExpanded: false,
                         cards: {
-                            sampleUid1: false,
-                            sampleUid2: false,
+                            [stubUid1]: false,
+                            [stubUid2]: false,
                         },
                     },
                 },
                 visualHelperEnabled: false,
                 focusedResultUid: null,
             },
-            testKey2: {
+            [stubTestKey2]: {
                 rules: {
                     sampleRuleId3: {
                         isExpanded: false,
                         cards: {
-                            sampleUid3: false,
-                            sampleUid4: false,
+                            [stubUid3]: false,
+                            [stubUid4]: false,
                         },
                     },
                 },
@@ -170,11 +178,11 @@ describe('AssessmentCardSelectionStore Test', () => {
     describe('toggleRuleExpandCollapse', () => {
         it('when collapsed, toggles rule to expanded', async () => {
             const payload: AssessmentSingleRuleExpandCollapsePayload = {
-                ruleId: 'sampleRuleId1',
-                testKey: 'testKey1',
+                ruleId: stubRuleId1,
+                testKey: stubTestKey1,
             };
 
-            expectedState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
+            expectedState[stubTestKey1].rules[stubRuleId1].isExpanded = true;
 
             const storeTester = createStoreForAssessmentCardSelectionActions(
                 'toggleRuleExpandCollapse',
@@ -184,12 +192,12 @@ describe('AssessmentCardSelectionStore Test', () => {
 
         it('when expanded, toggles rule to collapsed', async () => {
             const payload: AssessmentSingleRuleExpandCollapsePayload = {
-                ruleId: 'sampleRuleId1',
-                testKey: 'testKey1',
+                ruleId: stubRuleId1,
+                testKey: stubTestKey1,
             };
 
-            initialState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
-            initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            initialState[stubTestKey1].rules[stubRuleId1].isExpanded = true;
+            initialState[stubTestKey1].rules[stubRuleId1].cards[stubUid1] = true;
 
             const storeTester = createStoreForAssessmentCardSelectionActions(
                 'toggleRuleExpandCollapse',
@@ -198,8 +206,8 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         const testCases = [
-            ['invalid testKey', 'invalid-test', 'sampleRuleId1'],
-            ['invalid ruleId', 'testKey1', 'invalid-rule-id'],
+            ['invalid testKey', 'invalid-test', stubRuleId1],
+            ['invalid ruleId', stubTestKey1, 'invalid-rule-id'],
         ];
 
         it.each(testCases)('does nothing with payload: %s', async (testName, testKey, ruleId) => {
@@ -226,14 +234,14 @@ describe('AssessmentCardSelectionStore Test', () => {
     describe('toggleCardSelection', () => {
         it('sets the expected state when a card is selected', async () => {
             const payload: AssessmentCardSelectionPayload = {
-                testKey: 'testKey1',
-                ruleId: 'sampleRuleId1',
-                resultInstanceUid: 'sampleUid1',
+                testKey: stubTestKey1,
+                ruleId: stubRuleId1,
+                resultInstanceUid: stubUid1,
             };
 
-            expectedState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
-            expectedState['testKey1'].focusedResultUid = 'sampleUid1';
-            expectedState['testKey1'].visualHelperEnabled = true;
+            expectedState[stubTestKey1].rules[stubRuleId1].cards[stubUid1] = true;
+            expectedState[stubTestKey1].focusedResultUid = stubUid1;
+            expectedState[stubTestKey1].visualHelperEnabled = true;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
@@ -244,12 +252,12 @@ describe('AssessmentCardSelectionStore Test', () => {
 
         it('sets the expected state when a card is unselected', async () => {
             const payload: AssessmentCardSelectionPayload = {
-                testKey: 'testKey1',
-                ruleId: 'sampleRuleId1',
-                resultInstanceUid: 'sampleUid1',
+                testKey: stubTestKey1,
+                ruleId: stubRuleId1,
+                resultInstanceUid: stubUid1,
             };
 
-            initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            initialState[stubTestKey1].rules[stubRuleId1].cards[stubUid1] = true;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('toggleCardSelection').withActionParam(
@@ -259,9 +267,9 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         const testCases = [
-            ['invalid testKey', 'invalid-testKey', 'sampleRuleId1', 'sampleUid1'],
-            ['invalid ruleId', 'testKey1', 'invalid-rule-id', 'sampleUid1'],
-            ['invalid resultInstanceUid', 'testKey1', 'sampleRuleId1', 'invalid-uid'],
+            ['invalid testKey', 'invalid-testKey', stubRuleId1, stubUid1],
+            ['invalid ruleId', stubTestKey1, 'invalid-rule-id', stubUid1],
+            ['invalid resultInstanceUid', stubTestKey1, stubRuleId1, 'invalid-uid'],
         ];
 
         it.each(testCases)(
@@ -294,7 +302,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         let payload: AssessmentExpandCollapsePayload;
         beforeEach(() => {
             payload = {
-                testKey: 'testKey1',
+                testKey: stubTestKey1,
             };
         });
 
@@ -311,7 +319,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('does nothing if rules is null', async () => {
-            initialState['testKey1'].rules = null;
+            initialState[stubTestKey1].rules = null;
             expectedState = cloneDeep(initialState);
 
             const storeTester =
@@ -322,8 +330,8 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('collapses all expanded rules', async () => {
-            expandRuleSelectCards(initialState['testKey1'].rules['sampleRuleId1']);
-            expandRuleSelectCards(initialState['testKey1'].rules['sampleRuleId2']);
+            expandRuleSelectCards(initialState[stubTestKey1].rules[stubRuleId1]);
+            expandRuleSelectCards(initialState[stubTestKey1].rules[stubRuleId2]);
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('collapseAllRules').withActionParam(
@@ -337,7 +345,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         let payload: AssessmentExpandCollapsePayload;
         beforeEach(() => {
             payload = {
-                testKey: 'testKey1',
+                testKey: stubTestKey1,
             };
         });
 
@@ -354,7 +362,7 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('does nothing if rules is null', async () => {
-            initialState['testKey1'].rules = null;
+            initialState[stubTestKey1].rules = null;
 
             expectedState = cloneDeep(initialState);
 
@@ -366,12 +374,12 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('expands all collapsed rules', async () => {
-            initialState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
-            initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            initialState[stubTestKey1].rules[stubRuleId1].isExpanded = true;
+            initialState[stubTestKey1].rules[stubRuleId1].cards[stubUid1] = true;
 
-            expectedState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
-            expectedState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
-            expectedState['testKey1'].rules['sampleRuleId2'].isExpanded = true;
+            expectedState[stubTestKey1].rules[stubRuleId1].isExpanded = true;
+            expectedState[stubTestKey1].rules[stubRuleId1].cards[stubUid1] = true;
+            expectedState[stubTestKey1].rules[stubRuleId2].isExpanded = true;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('expandAllRules').withActionParam(
@@ -383,15 +391,15 @@ describe('AssessmentCardSelectionStore Test', () => {
 
     describe('toggleVisualHelper', () => {
         const payload: AssessmentCardToggleVisualHelperPayload = {
-            testKey: 'testKey1',
+            testKey: stubTestKey1,
         };
 
         it('toggle on - no card selection or rule expansion changes', async () => {
-            initialState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
-            initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
+            initialState[stubTestKey1].rules[stubRuleId1].isExpanded = true;
+            initialState[stubTestKey1].rules[stubRuleId1].cards[stubUid1] = true;
 
             expectedState = cloneDeep(initialState);
-            expectedState['testKey1'].visualHelperEnabled = true;
+            expectedState[stubTestKey1].visualHelperEnabled = true;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('toggleVisualHelper').withActionParam(
@@ -401,11 +409,11 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('toggle off - cards deselected, no rule expansion changes', async () => {
-            initialState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
-            initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
-            initialState['testKey1'].visualHelperEnabled = true;
+            initialState[stubTestKey1].rules[stubRuleId1].isExpanded = true;
+            initialState[stubTestKey1].rules[stubRuleId1].cards[stubUid1] = true;
+            initialState[stubTestKey1].visualHelperEnabled = true;
 
-            expectedState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
+            expectedState[stubTestKey1].rules[stubRuleId1].isExpanded = true;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('toggleVisualHelper').withActionParam(
@@ -415,11 +423,11 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('toggle off when rules is null', async () => {
-            initialState['testKey1'].rules = null;
-            initialState['testKey1'].visualHelperEnabled = true;
+            initialState[stubTestKey1].rules = null;
+            initialState[stubTestKey1].visualHelperEnabled = true;
 
             expectedState = cloneDeep(initialState);
-            expectedState['testKey1'].visualHelperEnabled = false;
+            expectedState[stubTestKey1].visualHelperEnabled = false;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions('toggleVisualHelper').withActionParam(
@@ -432,10 +440,10 @@ describe('AssessmentCardSelectionStore Test', () => {
     describe('onResetFocusedIdentifier', () => {
         it('sets focusedResultUid for test specified in payload to null', async () => {
             const payload: AssessmentResetFocusedIdentifierPayload = {
-                testKey: 'testKey1',
+                testKey: stubTestKey1,
             };
 
-            initialState['testKey1'].focusedResultUid = 'some uid';
+            initialState[stubTestKey1].focusedResultUid = 'some uid';
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions(
@@ -449,20 +457,20 @@ describe('AssessmentCardSelectionStore Test', () => {
         let payload: AssessmentNavigateToNewCardsViewPayload;
         beforeEach(() => {
             payload = {
-                testKey: 'testKey1',
+                testKey: stubTestKey1,
             };
         });
 
         it.each([null, {}])(
             'should reset the focused element and turn off visual helper when rules = %s',
             async rules => {
-                initialState['testKey1'].focusedResultUid = 'sampleUid1';
-                initialState['testKey1'].rules = rules;
-                initialState['testKey1'].visualHelperEnabled = true;
+                initialState[stubTestKey1].focusedResultUid = stubUid1;
+                initialState[stubTestKey1].rules = rules;
+                initialState[stubTestKey1].visualHelperEnabled = true;
 
-                expectedState['testKey1'].focusedResultUid = null;
-                expectedState['testKey1'].rules = rules;
-                expectedState['testKey1'].visualHelperEnabled = false;
+                expectedState[stubTestKey1].focusedResultUid = null;
+                expectedState[stubTestKey1].rules = rules;
+                expectedState[stubTestKey1].visualHelperEnabled = false;
 
                 const storeTester =
                     createStoreForAssessmentCardSelectionActions(
@@ -473,39 +481,39 @@ describe('AssessmentCardSelectionStore Test', () => {
         );
 
         it('should keep all rules/cards/results but set them to collapsed/unselected', async () => {
-            initialState['testKey1'].rules = {
-                sampleRuleId1: {
+            initialState[stubTestKey1].rules = {
+                [stubRuleId1]: {
                     isExpanded: true,
                     cards: {
-                        sampleUid1: true,
-                        sampleUid2: false,
+                        [stubUid1]: true,
+                        [stubUid2]: false,
                     },
                 },
-                sampleRuleId2: {
+                [stubRuleId2]: {
                     isExpanded: false,
                     cards: {
-                        sampleUid1: false,
-                        sampleUid2: false,
+                        [stubUid1]: false,
+                        [stubUid2]: false,
                     },
                 },
             };
-            expectedState['testKey1'].rules = {
-                sampleRuleId1: {
+            expectedState[stubTestKey1].rules = {
+                [stubRuleId1]: {
                     isExpanded: false,
                     cards: {
-                        sampleUid1: false,
-                        sampleUid2: false,
+                        [stubUid1]: false,
+                        [stubUid2]: false,
                     },
                 },
-                sampleRuleId2: {
+                [stubRuleId2]: {
                     isExpanded: false,
                     cards: {
-                        sampleUid1: false,
-                        sampleUid2: false,
+                        [stubUid1]: false,
+                        [stubUid2]: false,
                     },
                 },
             };
-            expectedState['testKey1'].visualHelperEnabled = true;
+            expectedState[stubTestKey1].visualHelperEnabled = true;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions(
@@ -515,9 +523,9 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('should set the visualHelperToggle to enabled if there are any rules', async () => {
-            payload.testKey = 'testKey2';
-            initialState['testKey2'].visualHelperEnabled = false;
-            expectedState['testKey2'].visualHelperEnabled = true;
+            payload.testKey = stubTestKey2;
+            initialState[stubTestKey2].visualHelperEnabled = false;
+            expectedState[stubTestKey2].visualHelperEnabled = true;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions(
@@ -527,11 +535,11 @@ describe('AssessmentCardSelectionStore Test', () => {
         });
 
         it('should set the visualHelperToggle to disabled if there are no rules', async () => {
-            payload.testKey = 'testKey2';
-            initialState['testKey2'].rules = {};
-            initialState['testKey2'].visualHelperEnabled = true;
-            expectedState['testKey2'].rules = {};
-            expectedState['testKey2'].visualHelperEnabled = false;
+            payload.testKey = stubTestKey2;
+            initialState[stubTestKey2].rules = {};
+            initialState[stubTestKey2].visualHelperEnabled = true;
+            expectedState[stubTestKey2].rules = {};
+            expectedState[stubTestKey2].visualHelperEnabled = false;
 
             const storeTester =
                 createStoreForAssessmentCardSelectionActions(
@@ -542,33 +550,31 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('onScanCompleted', () => {
-        const stubRuleId = 'sampleRuleId1';
-        const stubTestKey = 'testKey1';
         const stubSelectorMap = {
             sampleSelector1: {
                 ruleResults: {
-                    sampleRuleId1: {
-                        id: 'sampleUid1',
+                    [stubRuleId1]: {
+                        id: stubUid1,
                     } as DecoratedAxeNodeResult,
                 },
                 target: [],
             },
             sampleSelector2: {
                 ruleResults: {
-                    sampleRuleId1: {
-                        id: 'sampleUid2',
+                    [stubRuleId1]: {
+                        id: stubUid2,
                     } as DecoratedAxeNodeResult,
                 },
                 target: [],
             },
         } as DictionaryStringTo<HtmlElementAxeResults>;
         const stubScanResult = {
-            violations: [{ instanceId: 'sampleUid1' }] as unknown as RuleResult[],
+            violations: [{ instanceId: stubUid1 }] as unknown as RuleResult[],
         } as ScanResults;
 
         it('sets the state based on the ScanCompletedPayload', async () => {
             const stubAssessment: Assessment = {
-                key: 'testKey1',
+                key: stubTestKey1,
             } as Assessment;
             const assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(
                 undefined,
@@ -578,8 +584,8 @@ describe('AssessmentCardSelectionStore Test', () => {
                 .setup(apm => apm.forType(It.isAny()))
                 .returns(() => stubAssessment);
             const payload: ScanCompletedPayload<any> = {
-                key: stubRuleId,
-                testType: stubTestKey as unknown as VisualizationType,
+                key: stubRuleId1,
+                testType: stubTestKey1 as unknown as VisualizationType,
                 selectorMap: stubSelectorMap,
                 scanResult: stubScanResult,
                 scanIncompleteWarnings: [],
@@ -587,13 +593,13 @@ describe('AssessmentCardSelectionStore Test', () => {
 
             initialState = {};
             expectedState = {
-                testKey1: {
+                [stubTestKey1]: {
                     rules: {
-                        sampleRuleId1: {
+                        [stubRuleId1]: {
                             isExpanded: false,
                             cards: {
-                                sampleUid1: false,
-                                sampleUid2: false,
+                                [stubUid1]: false,
+                                [stubUid2]: false,
                             },
                         },
                     },
@@ -622,7 +628,7 @@ describe('AssessmentCardSelectionStore Test', () => {
     describe('onResetData', () => {
         it('resets data for specified key in payload', async () => {
             const stubAssessment: Assessment = {
-                key: 'testKey1',
+                key: stubTestKey1,
             } as Assessment;
             const assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(
                 undefined,
@@ -632,14 +638,14 @@ describe('AssessmentCardSelectionStore Test', () => {
                 .setup(apm => apm.forType(It.isAny()))
                 .returns(() => stubAssessment);
 
-            expectedState['testKey1'] = {
+            expectedState[stubTestKey1] = {
                 rules: null,
                 visualHelperEnabled: false,
                 focusedResultUid: null,
             };
 
             const payload: ToggleActionPayload = {
-                test: 'testKey1' as unknown as VisualizationType,
+                test: stubTestKey1 as unknown as VisualizationType,
             };
 
             const storeTester = createStoreForAssessmentActions(
@@ -746,15 +752,15 @@ describe('AssessmentCardSelectionStore Test', () => {
         return {
             persistedTabInfo: {},
             assessments: {
-                testKey1: {
+                [stubTestKey1]: {
                     fullAxeResultsMap: {},
                     generatedAssessmentInstancesMap: {
                         selector1: {
                             target: ['selector1'],
                             html: 'html1',
                             testStepResults: {
-                                sampleRuleId1: testStepResult('sampleUid1', status),
-                                sampleRuleId2: testStepResult('sampleUid1', status),
+                                [stubRuleId1]: testStepResult(stubUid1, status),
+                                [stubRuleId2]: testStepResult(stubUid1, status),
                             },
                             propertyBag: null,
                         },
@@ -762,22 +768,22 @@ describe('AssessmentCardSelectionStore Test', () => {
                             target: ['selector2'],
                             html: 'html2',
                             testStepResults: {
-                                sampleRuleId1: testStepResult('sampleUid2', status),
-                                sampleRuleId2: testStepResult('sampleUid2', status),
+                                [stubRuleId1]: testStepResult(stubUid2, status),
+                                [stubRuleId2]: testStepResult(stubUid2, status),
                             },
                             propertyBag: null,
                         },
                     },
                     testStepStatus: {},
                 },
-                testKey2: {
+                [stubTestKey2]: {
                     fullAxeResultsMap: {},
                     generatedAssessmentInstancesMap: {
                         selector2: {
                             target: ['selector2'],
                             html: 'html1',
                             testStepResults: {
-                                sampleRuleId3: testStepResult('sampleUid3', status),
+                                sampleRuleId3: testStepResult(stubUid3, status),
                             },
                             propertyBag: null,
                         },
@@ -785,7 +791,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                             target: ['selector3'],
                             html: 'html2',
                             testStepResults: {
-                                sampleRuleId3: testStepResult('sampleUid4', status),
+                                sampleRuleId3: testStepResult(stubUid4, status),
                             },
                             propertyBag: null,
                         },
