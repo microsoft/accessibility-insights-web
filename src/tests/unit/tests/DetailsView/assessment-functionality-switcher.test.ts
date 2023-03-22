@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -114,8 +114,7 @@ describe(AssessmentFunctionalitySwitcher, () => {
             assessmentObjectsStub = {
                 provider: Mock.ofType<AssessmentsProvider>().object,
                 actionMessageCreator: Mock.ofType<AssessmentActionMessageCreator>().object,
-                cardSelectionMessageCreator:
-                    Mock.ofType<AssessmentCardSelectionMessageCreator>().object,
+                cardSelectionMessageCreator: Mock.ofType<CardSelectionMessageCreator>().object,
                 navLinkHandler: Mock.ofType<NavLinkHandler>().object,
                 instanceTableHandler: Mock.ofType<AssessmentInstanceTableHandler>().object,
                 getAssessmentSummaryModelFromProviderAndStatusData:

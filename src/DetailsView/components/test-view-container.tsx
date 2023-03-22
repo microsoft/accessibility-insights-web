@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
-import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -33,7 +33,7 @@ export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     automatedChecksCardSelectionMessageCreator: AutomatedChecksCardSelectionMessageCreator;
     needsReviewCardSelectionMessageCreator: NeedsReviewCardSelectionMessageCreator;
-    getAssessmentCardSelectionMessageCreator: () => AssessmentCardSelectionMessageCreator;
+    getAssessmentCardSelectionMessageCreator: () => CardSelectionMessageCreator;
 } & TestViewDeps &
     OverviewContainerDeps &
     AdhocTabStopsTestViewDeps;
