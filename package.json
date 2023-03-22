@@ -9,9 +9,9 @@
         "url": "https://github.com/Microsoft/accessibility-insights-web"
     },
     "engines": {
-        "node": ">=12.16.1",
-        "yarn": "^1.22.4"
+        "node": ">=12.16.1"
     },
+    "packageManager": "yarn@3.5.0",
     "workspaces": [
         "packages/*"
     ],
@@ -21,6 +21,7 @@
         "firefox 87"
     ],
     "scripts": {
+        "packages": "yarn workspaces foreach --verbose",
         "ada-cat": "grunt ada-cat",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:unified",
         "build": "grunt",
@@ -30,8 +31,8 @@
         "build:unified": "grunt build-unified",
         "build:unified:all": "grunt build-unified-all",
         "build:unified:canary": "grunt build-unified-canary",
-        "build:package:report": "lerna --scope accessibility-insights-report run build",
-        "build:package:ui": "lerna --scope accessibility-insights-ui run build",
+        "build:package:report": "yarn packages --include accessibility-insights-report run build",
+        "build:package:ui": "yarn packages --include accessibility-insights-ui run build",
         "build:prod": "grunt build-prod",
         "build:package:axe-config": "grunt generate-axe-config",
         "change-log": "node ./tools/get-change-log-for-release.js",
@@ -47,7 +48,7 @@
         "format:check": "prettier --config prettier.config.js --check \"**/*\"",
         "format:fix": "prettier --config prettier.config.js --write \"**/*\"",
         "lint:check": "eslint \"**/*.{js,ts,tsx}\"",
-        "lint:check:all": "yarn lint:check && yarn lint:scss && lerna run lint:check",
+        "lint:check:all": "yarn lint:check && yarn lint:scss && yarn packages run lint:check",
         "lint:fix": "eslint \"**/*.{js,ts,tsx}\" --quiet --fix",
         "lint:scss": "stylelint \"**/*.scss\"",
         "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
@@ -80,7 +81,7 @@
         "test:e2e:docker:run:unified": "docker run -t accessibility-insights-unified-e2e sh -c \"yarn test:unified --ci\"",
         "test:e2e:docker": "npm-run-all --serial test:e2e:docker:build \"test:e2e:docker:run {@}\" --",
         "test:unified": "cross-env NODE_OPTIONS='--unhandled-rejections=strict' jest --projects src/tests/electron --runInBand --forceExit --detectOpenHandles",
-        "test:report:e2e": "lerna --scope accessibility-insights-report-e2e-tests run test",
+        "test:report:e2e": "yarn packages --include accessibility-insights-report-e2e-tests run test",
         "tbuild": "yarn build && yarn type:check",
         "tbuild:all": "yarn build:all && yarn type:check",
         "type:check": "tsc -noEmit",
@@ -152,7 +153,6 @@
         "jest-environment-jsdom": "^29.5.0",
         "jest-junit": "^15.0.0",
         "js-yaml": "^4.1.0",
-        "lerna": "^6.5.1",
         "license-check-and-add": "^4.0.5",
         "mini-css-extract-plugin": "2.7.3",
         "npm-run-all": "^4.1.5",
@@ -205,12 +205,10 @@
     "resolutions": {
         "@types/node": "^16.11.7",
         "ansi-regex": "^5.0.1",
-        "**/compare-func/dot-prop": "^5.2.0",
         "got": "^11.8.5",
         "jpeg-js": ">=0.4.4",
         "kind-of": "^6.0.3",
         "license-check-and-add/yargs": "^15.3.1",
-        "**/dir-compare/minimatch": "^3.0.5",
         "minimist": "^1.2.3",
         "moment": "^2.29.4",
         "nth-check": ">=2.0.1",

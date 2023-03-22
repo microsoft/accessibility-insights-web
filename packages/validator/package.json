@@ -15,6 +15,5 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/Microsoft/accessibility-insights-web"
-    },
-    "dependencies": {}
+    }
 }

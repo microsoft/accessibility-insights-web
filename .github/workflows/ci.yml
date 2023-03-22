@@ -27,26 +27,12 @@ jobs:
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
-      with: { node-version: "${{ env.NODE_VERSION }}" }
-      timeout-minutes: 2
-
-    - name: query yarn cache path
-      id: yarn-cache-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-      timeout-minutes: 1
-
-    - name: restore yarn cache
-      uses: actions/cache@v3
       with:
-        path: |
-          ${{ steps.yarn-cache-path.outputs.dir }}
-          node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+        node-version: "${{ env.NODE_VERSION }}"
+        cache: yarn
       timeout-minutes: 5
 
-    - run: yarn install --frozen-lockfile --prefer-offline
+    - run: yarn install --immutable
       timeout-minutes: 10
 
     # CG and NOTICE generation would go here
@@ -75,26 +61,12 @@ jobs:
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
-      with: { node-version: "${{ env.NODE_VERSION }}" }
-      timeout-minutes: 2
-
-    - name: query yarn cache path
-      id: yarn-cache-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-      timeout-minutes: 1
-
-    - name: restore yarn cache
-      uses: actions/cache@v3
       with:
-        path: |
-          ${{ steps.yarn-cache-path.outputs.dir }}
-          node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+        node-version: "${{ env.NODE_VERSION }}"
+        cache: yarn
       timeout-minutes: 5
 
-    - run: yarn install --frozen-lockfile --prefer-offline
+    - run: yarn install --immutable
       timeout-minutes: 10
 
     # We set maxWorkers to 2 since GH Action VMs have 2 cores and by default Jest only uses 1.
@@ -137,7 +109,7 @@ jobs:
         path: unit-tests-2-results
       timeout-minutes: 2
 
-    - run: yarn publish-code-coverage
+    - run: npx codecov
       timeout-minutes: 3
 
   lints:
@@ -148,26 +120,12 @@ jobs:
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
-      with: { node-version: "${{ env.NODE_VERSION }}" }
-      timeout-minutes: 2
-
-    - name: query yarn cache path
-      id: yarn-cache-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-      timeout-minutes: 1
-
-    - name: restore yarn cache
-      uses: actions/cache@v3
       with:
-        path: |
-          ${{ steps.yarn-cache-path.outputs.dir }}
-          node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+        node-version: "${{ env.NODE_VERSION }}"
+        cache: yarn
       timeout-minutes: 5
 
-    - run: yarn install --frozen-lockfile --prefer-offline
+    - run: yarn install --immutable
       timeout-minutes: 10
 
     - run: yarn copyright:check
@@ -220,16 +178,16 @@ jobs:
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
-      with: { node-version: "${{ env.NODE_VERSION }}" }
+      with:
+        node-version: "${{ env.NODE_VERSION }}"
+        # Intentionally omitting caching; it would need a separate, larger
+        # cache bucket to account for differences in container image and
+        # PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD, and that would eat so far into
+        # our 5GB cache quota that we'd run into issues with useful main builds'
+        # caches being evicted anytime dependabot filed a few PRs in a row.
       timeout-minutes: 2
 
-    # Intentionally omitting caching; it would need a separate, larger
-    # cache bucket to account for differences in container image and
-    # PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD, and that would eat so far into
-    # our 5GB cache quota that we'd run into issues with useful main builds'
-    # caches being evicted anytime dependabot filed a few PRs in a row.
-
-    - run: yarn install --frozen-lockfile --prefer-offline
+    - run: yarn install --immutable
       timeout-minutes: 10
 
     - run: yarn build:prod
@@ -283,26 +241,12 @@ jobs:
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
-      with: { node-version: "${{ env.NODE_VERSION }}" }
-      timeout-minutes: 2
-
-    - name: query yarn cache path
-      id: yarn-cache-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-      timeout-minutes: 1
-
-    - name: restore yarn cache
-      uses: actions/cache@v3
       with:
-        path: |
-          ${{ steps.yarn-cache-path.outputs.dir }}
-          node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+        node-version: "${{ env.NODE_VERSION }}"
+        cache: yarn
       timeout-minutes: 5
 
-    - run: yarn install --frozen-lockfile --prefer-offline
+    - run: yarn install --immutable
       timeout-minutes: 10
 
     - run: yarn build:unified
@@ -337,26 +281,12 @@ jobs:
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
-      with: { node-version: "${{ env.NODE_VERSION }}" }
-      timeout-minutes: 2
-
-    - name: query yarn cache path
-      id: yarn-cache-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-      timeout-minutes: 1
-
-    - name: restore yarn cache
-      uses: actions/cache@v3
       with:
-        path: |
-          ${{ steps.yarn-cache-path.outputs.dir }}
-          node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+        node-version: "${{ env.NODE_VERSION }}"
+        cache: yarn
       timeout-minutes: 5
 
-    - run: yarn install --frozen-lockfile --prefer-offline
+    - run: yarn install --immutable
       timeout-minutes: 10
 
     - run: yarn build:package:report

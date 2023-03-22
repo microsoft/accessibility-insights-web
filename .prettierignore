@@ -25,8 +25,8 @@
 .github/
 .prettierignore
 .swcrc
-.yarnrc
 .vs/
+.yarn/
 AppXManifest.xml
 copyright-header.txt
 bin/

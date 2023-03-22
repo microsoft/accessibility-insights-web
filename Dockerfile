@@ -27,13 +27,17 @@ RUN apt-get update && \
   apt-get install -y dotnet-sdk-6.0 && \
   rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g yarn@1.22.10
-
 WORKDIR /app
 
-COPY package.json yarn.lock /app/
+COPY .yarn /app/.yarn
+COPY yarn.lock .yarnrc.yml package.json /app/
+COPY packages/axe-config/package.json /app/packages/axe-config/
+COPY packages/report/package.json /app/packages/report/
+COPY packages/report-e2e-tests/package.json /app/packages/report-e2e-tests/
+COPY packages/ui/package.json /app/packages/ui/
+COPY packages/validator/package.json /app/packages/validator/
 
-RUN yarn install --frozen-lockfile
+RUN yarn install --immutable
 
 COPY . /app
 
