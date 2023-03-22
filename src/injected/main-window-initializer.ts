@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentCardController } from 'background/assessment-card-controller';
 import { createToolData } from 'common/application-properties-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
@@ -86,8 +85,6 @@ export class MainWindowInitializer extends WindowInitializer {
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
     private pathSnippetController: PathSnippetController;
-    private assessmentCardController: AssessmentCardController;
-    private quickAssessCardController: AssessmentCardController;
     private storeUpdateMessageHub: StoreUpdateMessageHub;
     private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<AssessmentStoreData>;
@@ -412,20 +409,6 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         await this.pathSnippetController.listenToStore();
-
-        this.assessmentCardController = new AssessmentCardController(
-            this.assessmentStoreProxy,
-            assessmentCardSelectionMessageCreator,
-        );
-
-        this.assessmentCardController.listenToStore();
-
-        this.quickAssessCardController = new AssessmentCardController(
-            this.assessmentStoreProxy,
-            quickAssessCardSelectionMessageCreator,
-        );
-
-        this.quickAssessCardController.listenToStore();
 
         await Promise.all(asyncInitializationSteps);
     }
