@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -25,7 +25,7 @@ describe('TestViewContainer', () => {
     const automatedChecksCardSelectionMessageCreatorStub =
         {} as AutomatedChecksCardSelectionMessageCreator;
     const needsReviewCardSelectionMessageCreatorStub = {} as NeedsReviewCardSelectionMessageCreator;
-    const assessmentCardSelectionMessageCreatorStub = {} as AssessmentCardSelectionMessageCreator;
+    const assessmentCardSelectionMessageCreatorStub = {} as CardSelectionMessageCreator;
     let configStub: VisualizationConfiguration;
     let configFactoryStub: VisualizationConfigurationFactory;
     let props: TestViewContainerProps;
@@ -33,9 +33,7 @@ describe('TestViewContainer', () => {
         (provider: TestViewContainerProvider, props: TestViewContainerProviderProps) => JSX.Element
     >;
     let testViewContainerProviderMock: IMock<TestViewContainerProvider>;
-    let getAssessmentCardSelectionMessageCreatorMock: IMock<
-        () => AssessmentCardSelectionMessageCreator
-    >;
+    let getAssessmentCardSelectionMessageCreatorMock: IMock<() => CardSelectionMessageCreator>;
 
     beforeEach(() => {
         getTestViewContainerMock = Mock.ofInstance((provider, props) => null);

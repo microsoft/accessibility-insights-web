@@ -24,12 +24,12 @@ export class AssessmentCardSelectionMessageCreatorWrapper implements CardSelecti
 
     public expandAllRules = (event: SupportedMouseEvent) => {
         const testKey = this.getSelectedTestKey();
-        return this.assessmentCardSelectionMessageCreator.toggleVisualHelper(event, testKey);
+        return this.assessmentCardSelectionMessageCreator.expandAllRules(event, testKey);
     };
 
     public collapseAllRules = (event: SupportedMouseEvent) => {
         const testKey = this.getSelectedTestKey();
-        return this.assessmentCardSelectionMessageCreator.toggleVisualHelper(event, testKey);
+        return this.assessmentCardSelectionMessageCreator.collapseAllRules(event, testKey);
     };
 
     public toggleCardSelection = (
@@ -62,7 +62,7 @@ export class AssessmentCardSelectionMessageCreatorWrapper implements CardSelecti
             throw NO_ASSESSMENT_STORE_DATA_ERROR;
         }
 
-        const selectedTest = this.assessmentStore.getState().assessmentNavState.selectedTestType;
+        const selectedTest = assessmentStoreState.assessmentNavState.selectedTestType;
         const testKey = this.visualizationFactory.getConfiguration(selectedTest).key;
         return testKey;
     };

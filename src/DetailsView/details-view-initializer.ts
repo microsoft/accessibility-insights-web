@@ -688,8 +688,6 @@ if (tabId != null) {
                 navigatorUtils: navigatorUtils,
                 automatedChecksCardSelectionMessageCreator,
                 needsReviewCardSelectionMessageCreator,
-                assessmentCardSelectionMessageCreator,
-                quickAssessCardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
                 allUrlsPermissionHandler: new AllUrlsPermissionHandler(
