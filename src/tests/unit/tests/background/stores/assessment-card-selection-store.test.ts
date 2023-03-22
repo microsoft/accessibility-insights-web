@@ -201,11 +201,6 @@ describe('AssessmentCardSelectionStore Test', () => {
         const testCases = [
             ['invalid testKey', 'invalid-test', 'sampleRuleId1'],
             ['invalid ruleId', 'testKey1', 'invalid-rule-id'],
-            ['invalid testKey and ruleId', 'invalid-test', 'invalid-rule-id'],
-            ['null testKey', null, 'sampleRuleId1'],
-            ['undefined testKey', undefined, 'sampleRuleId1'],
-            ['null ruleId', 'testKey1', null],
-            ['null testKey and ruleId', null, null],
         ];
 
         it.each(testCases)('does nothing with payload: %s', async (testName, testKey, ruleId) => {
@@ -304,17 +299,6 @@ describe('AssessmentCardSelectionStore Test', () => {
             };
         });
 
-        it('does nothing if test is null', async () => {
-            initialState['testKey1'] = null;
-            expectedState = cloneDeep(initialState);
-
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions('collapseAllRules').withActionParam(
-                    payload,
-                );
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
-
         it('does nothing if invalid testKey', async () => {
             payload.testKey = 'invalid-test';
 
@@ -356,18 +340,6 @@ describe('AssessmentCardSelectionStore Test', () => {
             payload = {
                 testKey: 'testKey1',
             };
-        });
-
-        it('does nothing if test is null', async () => {
-            initialState['testKey1'] = null;
-
-            expectedState = cloneDeep(initialState);
-
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions('expandAllRules').withActionParam(
-                    payload,
-                );
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
         });
 
         it('does nothing if invalid testKey', async () => {
@@ -415,28 +387,6 @@ describe('AssessmentCardSelectionStore Test', () => {
             testKey: 'testKey1',
         };
 
-        it.each([null, 'invalid-testKey'])(
-            'does nothing when payload contains testKey: %s',
-            async testKey => {
-                const payload: AssessmentCardToggleVisualHelperPayload = {
-                    testKey,
-                };
-                const storeTester =
-                    createStoreForAssessmentCardSelectionActions(
-                        'toggleVisualHelper',
-                    ).withActionParam(payload);
-                await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-            },
-        );
-
-        it('does nothing when payload is null', async () => {
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions('toggleVisualHelper').withActionParam(
-                    null,
-                );
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
-
         it('toggle on - no card selection or rule expansion changes', async () => {
             initialState['testKey1'].rules['sampleRuleId1'].isExpanded = true;
             initialState['testKey1'].rules['sampleRuleId1'].cards['sampleUid1'] = true;
@@ -481,25 +431,6 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('onResetFocusedIdentifier', () => {
-        it('does nothing if payload is null', async () => {
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions(
-                    'resetFocusedIdentifier',
-                ).withActionParam(null);
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
-
-        it.each(['invalid-testKey', null])('does nothing if testKey is %s', async testKey => {
-            const payload: AssessmentResetFocusedIdentifierPayload = {
-                testKey,
-            };
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions(
-                    'resetFocusedIdentifier',
-                ).withActionParam(payload);
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
-
         it('sets focusedResultUid for test specified in payload to null', async () => {
             const payload: AssessmentResetFocusedIdentifierPayload = {
                 testKey: 'testKey1',
@@ -521,23 +452,6 @@ describe('AssessmentCardSelectionStore Test', () => {
             payload = {
                 testKey: 'testKey1',
             };
-        });
-
-        it('does nothing if payload is null', async () => {
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions(
-                    'navigateToNewCardsView',
-                ).withActionParam(null);
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
-
-        it.each(['invalid-test', null])('does nothing if testKey is: ', async testKey => {
-            payload.testKey = testKey;
-            const storeTester =
-                createStoreForAssessmentCardSelectionActions(
-                    'navigateToNewCardsView',
-                ).withActionParam(null);
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
         });
 
         it.each([null, {}])(
@@ -653,79 +567,6 @@ describe('AssessmentCardSelectionStore Test', () => {
             violations: [{ instanceId: 'sampleUid1' }] as unknown as RuleResult[],
         } as ScanResults;
 
-        const testCases = [
-            ['null', null],
-            [
-                'null key',
-                {
-                    key: null,
-                    testType: stubTestKey,
-                    selectorMap: stubSelectorMap,
-                    scanResult: stubScanResult,
-                },
-            ],
-            [
-                'null testType',
-                {
-                    key: stubRuleId,
-                    testType: null,
-                    selectorMap: stubSelectorMap,
-                    scanResult: stubScanResult,
-                },
-            ],
-            [
-                'invalid testType',
-                {
-                    key: stubRuleId,
-                    testType: 'invalid-key',
-                    selectorMap: stubSelectorMap,
-                    scanResult: stubScanResult,
-                },
-            ],
-            [
-                'null scanResult',
-                {
-                    key: stubRuleId,
-                    testType: stubTestKey,
-                    selectorMap: stubSelectorMap,
-                    scanResult: null,
-                },
-            ],
-            [
-                'no violations in scanResult',
-                {
-                    key: stubRuleId,
-                    testType: stubTestKey,
-                    selectorMap: stubSelectorMap,
-                    scanResult: { violations: [] },
-                },
-            ],
-            [
-                'null selectorMap',
-                {
-                    key: stubRuleId,
-                    testType: stubTestKey,
-                    selectorMap: null,
-                    scanResult: stubScanResult,
-                },
-            ],
-            [
-                'empty selectorMap',
-                {
-                    key: stubRuleId,
-                    testType: stubTestKey,
-                    selectorMap: {},
-                    scanResult: stubScanResult,
-                },
-            ],
-        ];
-        it.each(testCases)('does nothing with payload=%s', async (testName, payloadStub) => {
-            const payload = payloadStub;
-            const storeTester =
-                createStoreForAssessmentActions('scanCompleted').withActionParam(payload);
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
-
         it('sets the state based on the ScanCompletedPayload', async () => {
             const stubAssessment: Assessment = {
                 key: 'testKey1',
@@ -780,16 +621,6 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('onResetData', () => {
-        it.each([null, { test: null }, { test: 'invalid-testKey' }])(
-            'does nothing with payload=%s',
-            async payloadStub => {
-                const payload = payloadStub;
-                const storeTester =
-                    createStoreForAssessmentActions('resetData').withActionParam(payload);
-                await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-            },
-        );
-
         it('resets data for specified key in payload', async () => {
             const stubAssessment: Assessment = {
                 key: 'testKey1',
@@ -821,28 +652,6 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('onLoadAssessment', () => {
-        it('does nothing with null payload', async () => {
-            const storeTester =
-                createStoreForAssessmentActions('loadAssessment').withActionParam(null);
-            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-        });
-
-        it.each([null, { assessmentData: null }, { assessmentData: {} }])(
-            'does nothing with versionedAssessmentData=%s in payload',
-            async versionedAssessmentData => {
-                const payload: LoadAssessmentPayload = {
-                    versionedAssessmentData:
-                        versionedAssessmentData as unknown as VersionedAssessmentData,
-                    tabId: -1,
-                    detailsViewId: 'stub-details-view-id',
-                };
-
-                const storeTester =
-                    createStoreForAssessmentActions('loadAssessment').withActionParam(payload);
-                await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-            },
-        );
-
         it('loads assessment from assessment data in payload', async () => {
             initialState = {};
             const payload: LoadAssessmentPayload = {
@@ -861,18 +670,6 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('onLoadAssessmentFromTransfer', () => {
-        it.each([null, { assessmentData: null }, { assessmentData: {} }])(
-            'does nothing with payload=%s',
-            async payloadStub => {
-                const payload = payloadStub;
-
-                const storeTester = createStoreForAssessmentActions(
-                    'loadAssessmentFromTransfer',
-                ).withActionParam(payload);
-                await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
-            },
-        );
-
         it('loads assessment from assessment data in payload', async () => {
             initialState = {};
             const payload: TransferAssessmentPayload = {

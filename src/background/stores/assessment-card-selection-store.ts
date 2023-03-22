@@ -149,13 +149,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private toggleRuleExpandCollapse = async (
         payload: AssessmentSingleRuleExpandCollapsePayload,
     ): Promise<void> => {
-        if (
-            !payload ||
-            !payload.testKey ||
-            !this.state[payload.testKey] ||
-            !this.state[payload.testKey].rules ||
-            !this.state[payload.testKey].rules?.[payload.ruleId]
-        ) {
+        if (!payload || !this.state[payload.testKey]?.rules?.[payload.ruleId]) {
             return;
         }
 
@@ -175,9 +169,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     ): Promise<void> => {
         if (
             !payload ||
-            !payload.testKey ||
-            !this.state[payload.testKey] ||
-            !this.state[payload.testKey].rules?.[payload.ruleId] ||
+            !this.state[payload.testKey]?.rules?.[payload.ruleId] ||
             this.state[payload.testKey].rules![payload.ruleId].cards[payload.resultInstanceUid] ===
                 undefined
         ) {
@@ -198,12 +190,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private collapseAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
-        if (
-            !payload ||
-            !payload.testKey ||
-            !this.state[payload.testKey] ||
-            !this.state[payload.testKey].rules
-        ) {
+        if (!this.state[payload.testKey]?.rules) {
             return;
         }
 
@@ -216,12 +203,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private expandAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
-        if (
-            !payload ||
-            !payload.testKey ||
-            !this.state[payload.testKey] ||
-            !this.state[payload.testKey].rules
-        ) {
+        if (!this.state[payload.testKey]?.rules) {
             return;
         }
 
@@ -235,10 +217,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private toggleVisualHelper = async (
         payload: AssessmentCardToggleVisualHelperPayload,
     ): Promise<void> => {
-        if (!payload || !payload.testKey || !this.state[payload.testKey]) {
-            return;
-        }
-
         this.state[payload.testKey].visualHelperEnabled =
             !this.state[payload.testKey].visualHelperEnabled;
 
@@ -252,10 +230,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onResetFocusedIdentifier = async (
         payload: AssessmentResetFocusedIdentifierPayload,
     ): Promise<void> => {
-        if (!payload || !payload.testKey || !this.state[payload.testKey]) {
-            return;
-        }
-
         this.state[payload.testKey].focusedResultUid = null;
         await this.emitChanged();
     };
@@ -263,10 +237,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onNavigateToNewCardsView = async (
         payload: AssessmentNavigateToNewCardsViewPayload,
     ): Promise<void> => {
-        if (!payload || !payload.testKey || !this.state[payload.testKey]) {
-            return;
-        }
-
         this.state[payload.testKey].focusedResultUid = null;
 
         if (this.state[payload.testKey].rules) {
@@ -285,18 +255,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private onScanCompleted = async (payload: ScanCompletedPayload<any>) => {
-        if (
-            !payload ||
-            !payload.key ||
-            !payload.testType ||
-            !payload.scanResult ||
-            isEmpty(payload.scanResult.violations) ||
-            !payload.selectorMap ||
-            isEmpty(payload.selectorMap)
-        ) {
-            return;
-        }
-
         const assessment = this.assessmentsProvider.forType(payload.testType);
         if (!assessment) {
             return;
@@ -352,10 +310,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private onResetData = async (payload: ToggleActionPayload): Promise<void> => {
-        if (!payload || !payload.test) {
-            return;
-        }
-
         const assessment = this.assessmentsProvider.forType(payload.test);
         if (!assessment) {
             return;
@@ -373,14 +327,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private onLoadAssessment = async (payload: LoadAssessmentPayload): Promise<void> => {
-        if (
-            !payload ||
-            !payload.versionedAssessmentData ||
-            !payload.versionedAssessmentData.assessmentData
-        ) {
-            return;
-        }
-
         const assessmentCardSelectionStoreData =
             this.convertAllAssessmentResultsToCardSelectionStoreData(
                 payload.versionedAssessmentData.assessmentData,
@@ -398,10 +344,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onLoadAssessmentFromTransfer = async (
         payload: TransferAssessmentPayload,
     ): Promise<void> => {
-        if (!payload || !payload.assessmentData) {
-            return;
-        }
-
         const assessmentCardSelectionStoreData =
             this.convertAllAssessmentResultsToCardSelectionStoreData(payload.assessmentData);
 
