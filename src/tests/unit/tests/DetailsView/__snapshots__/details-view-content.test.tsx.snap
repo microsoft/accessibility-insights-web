@@ -15,6 +15,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
         "storesHub": [typemoq mock object],
+        "visualizationConfigurationFactory": [typemoq mock object],
       }
     }
     featureFlagStoreData={
@@ -67,6 +68,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
         "storesHub": [typemoq mock object],
+        "visualizationConfigurationFactory": [typemoq mock object],
       }
     }
     detailsViewStoreData={
@@ -200,6 +202,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "showSaveAssessmentDialog": true,
       }
     }
+    visualizationConfigurationFactory={[typemoq mock object]}
     visualizationScanResultData={
       {
         "accessibleNames": {
@@ -455,6 +458,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
         "storesHub": [typemoq mock object],
+        "visualizationConfigurationFactory": [typemoq mock object],
       }
     }
     detailsViewStoreData={

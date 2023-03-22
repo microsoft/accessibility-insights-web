@@ -6,11 +6,13 @@ import { AssessmentCardSelectionActions } from 'background/actions/assessment-ca
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
-import { convertResultsToCardSelectionStoreData } from 'common/store-data-to-scan-node-result-converter';
+import {
+    convertAssessmentStoreDataToScanNodeResults,
+    convertResultsToCardSelectionStoreData,
+} from 'common/store-data-to-scan-node-result-converter';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
-import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn, isEmpty } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
@@ -108,14 +110,20 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         const assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData = {};
 
         forOwn(assessmentStoreData.assessments, (assessment, key) => {
+            const cardSelectionStoreData: CardSelectionStoreData = assessmentCardSelectionStoreData[
+                key
+            ] ?? {
+                rules: null,
+                visualHelperEnabled: false,
+                focusedResultUid: null,
+            };
             assessmentCardSelectionStoreData[key] = convertResultsToCardSelectionStoreData(
-                assessmentCardSelectionStoreData[key] ?? {
-                    rules: null,
-                    visualHelperEnabled: false,
-                    focusedResultUid: null,
-                },
-                assessmentStoreData,
-                key as unknown as VisualizationType,
+                cardSelectionStoreData,
+                convertAssessmentStoreDataToScanNodeResults(
+                    assessmentStoreData,
+                    key,
+                    cardSelectionStoreData,
+                ),
             );
         });
 
