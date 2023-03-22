@@ -18,6 +18,7 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-string-utils';
 import { find, forOwn } from 'lodash';
+import { Target } from 'scanner/iruleresults';
 
 export type ScanNodeResult = UnifiedResult & {
     rule: UnifiedRule;
@@ -115,6 +116,7 @@ export function convertAssessmentStoreDataToScanNodeResults(
                         instance,
                         requirementIdentifier,
                         cardSelectionStoreData,
+                        instance.target,
                     );
                     allResults.push(node);
                 },
@@ -131,6 +133,7 @@ function convertAssessmentResultToScanNodeResult(
     instance: GeneratedAssessmentInstance,
     requirementIdentifier: string,
     cardSelectionViewDataForTest: CardSelectionStoreData,
+    target: Target,
 ): ScanNodeResult {
     const instanceId = testStepResult.id;
     const status = convertTestStepResultStatusToCardResultStatus(testStepResult.status);
@@ -144,14 +147,22 @@ function convertAssessmentResultToScanNodeResult(
         identifiers: {
             conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(selector),
             identifier: selector,
+            target,
+            'css-selector': selector,
         },
         descriptors: {
             snippet: instance.html,
         },
         resolution: {
+            ...testStepResult.resolution,
             howToFixSummary: testStepResult.failureSummary,
         },
-        rule: { id: requirementIdentifier },
+        rule: {
+            id: requirementIdentifier,
+            description: testStepResult.description,
+            url: testStepResult.url,
+            guidance: testStepResult.guidance,
+        },
     };
     return node;
 }

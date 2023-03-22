@@ -23,7 +23,7 @@ import {
     exampleAssessmentResult,
     exampleUnifiedResult,
 } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
-
+// TODO
 describe('StoreDataToScanNodeResultConverter', () => {
     describe('convertUnifiedStoreDataToScanNodeResults', () => {
         test('store data is empty returns null', () => {
@@ -110,10 +110,20 @@ describe('StoreDataToScanNodeResultConverter', () => {
             const expectedResult = [
                 {
                     descriptors: { snippet: selector },
-                    identifiers: { conciseName: selector, identifier: selector },
+                    identifiers: {
+                        conciseName: selector,
+                        identifier: selector,
+                        'css-selector': selector,
+                        target: [selector],
+                    },
                     isSelected: false,
                     resolution: { howToFixSummary: testStepResult.failureSummary },
-                    rule: { id: ruleId },
+                    rule: {
+                        id: ruleId,
+                        description: undefined,
+                        guidance: undefined,
+                        url: undefined,
+                    },
                     ruleId: ruleId,
                     status: 'fail',
                     uid: testStepResult.id,
@@ -142,10 +152,20 @@ describe('StoreDataToScanNodeResultConverter', () => {
             const expectedResult = [
                 {
                     descriptors: { snippet: selector },
-                    identifiers: { conciseName: selector, identifier: selector },
+                    identifiers: {
+                        conciseName: selector,
+                        identifier: selector,
+                        'css-selector': selector,
+                        target: [selector],
+                    },
                     isSelected: true,
                     resolution: { howToFixSummary: testStepResult.failureSummary },
-                    rule: { id: ruleId },
+                    rule: {
+                        id: ruleId,
+                        description: undefined,
+                        guidance: undefined,
+                        url: undefined,
+                    },
                     ruleId: ruleId,
                     status: 'fail',
                     uid: testStepResult.id,
@@ -185,20 +205,40 @@ describe('StoreDataToScanNodeResultConverter', () => {
             const expectedResult = [
                 {
                     descriptors: { snippet: selector },
-                    identifiers: { conciseName: selector, identifier: selector },
+                    identifiers: {
+                        conciseName: selector,
+                        identifier: selector,
+                        'css-selector': selector,
+                        target: [selector],
+                    },
                     isSelected: false,
                     resolution: { howToFixSummary: testStepResult1.failureSummary },
-                    rule: { id: ruleId1 },
+                    rule: {
+                        id: ruleId1,
+                        description: undefined,
+                        guidance: undefined,
+                        url: undefined,
+                    },
                     ruleId: ruleId1,
                     status: 'fail',
                     uid: testStepResult1.id,
                 },
                 {
                     descriptors: { snippet: selector },
-                    identifiers: { conciseName: selector, identifier: selector },
+                    identifiers: {
+                        conciseName: selector,
+                        identifier: selector,
+                        'css-selector': selector,
+                        target: [selector],
+                    },
                     isSelected: false,
                     resolution: { howToFixSummary: testStepResult2.failureSummary },
-                    rule: { id: ruleId2 },
+                    rule: {
+                        id: ruleId2,
+                        description: undefined,
+                        guidance: undefined,
+                        url: undefined,
+                    },
                     ruleId: ruleId2,
                     status: 'fail',
                     uid: testStepResult2.id,
@@ -240,20 +280,40 @@ describe('StoreDataToScanNodeResultConverter', () => {
             const expectedResult = [
                 {
                     descriptors: { snippet: selector1 },
-                    identifiers: { conciseName: selector1, identifier: selector1 },
+                    identifiers: {
+                        conciseName: selector1,
+                        identifier: selector1,
+                        'css-selector': selector1,
+                        target: [selector1],
+                    },
                     isSelected: false,
                     resolution: { howToFixSummary: testStepResult1.failureSummary },
-                    rule: { id: ruleId1 },
+                    rule: {
+                        id: ruleId1,
+                        description: undefined,
+                        guidance: undefined,
+                        url: undefined,
+                    },
                     ruleId: ruleId1,
                     status: 'fail',
                     uid: testStepResult1.id,
                 },
                 {
                     descriptors: { snippet: selector2 },
-                    identifiers: { conciseName: selector2, identifier: selector2 },
+                    identifiers: {
+                        conciseName: selector2,
+                        identifier: selector2,
+                        'css-selector': selector2,
+                        target: [selector2],
+                    },
                     isSelected: false,
                     resolution: { howToFixSummary: testStepResult2.failureSummary },
-                    rule: { id: ruleId2 },
+                    rule: {
+                        id: ruleId2,
+                        description: undefined,
+                        guidance: undefined,
+                        url: undefined,
+                    },
                     ruleId: ruleId2,
                     status: 'fail',
                     uid: testStepResult2.id,
