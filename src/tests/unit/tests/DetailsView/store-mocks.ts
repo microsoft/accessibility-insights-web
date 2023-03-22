@@ -146,8 +146,10 @@ export class StoreMocks {
         null,
         null,
         null,
+        null,
     ).getDefaultState();
     public quickAssessCardSelectionStoreData = new AssessmentCardSelectionStore(
+        null,
         null,
         null,
         null,

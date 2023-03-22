@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { PersistentStore } from 'common/flux/persistent-store';
@@ -37,6 +38,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
         private readonly assessmentActions: AssessmentActions,
+        private readonly assessmentsProvider: AssessmentsProvider,
         persistedState: AssessmentCardSelectionStoreData,
         assessmentStoreData: AssessmentStoreData,
         idbInstance: IndexedDBAPI,
@@ -103,11 +105,11 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             return;
         }
 
-        const cardSelectionStoreData: AssessmentCardSelectionStoreData = {};
+        const assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData = {};
 
         forOwn(assessmentStoreData.assessments, (assessment, key) => {
-            cardSelectionStoreData[key] = convertResultsToCardSelectionStoreData(
-                cardSelectionStoreData[key] ?? {
+            assessmentCardSelectionStoreData[key] = convertResultsToCardSelectionStoreData(
+                assessmentCardSelectionStoreData[key] ?? {
                     rules: null,
                     visualHelperEnabled: false,
                     focusedResultUid: null,
@@ -117,7 +119,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             );
         });
 
-        return cardSelectionStoreData;
+        return assessmentCardSelectionStoreData;
     }
 
     private deselectAllCards = (): void => {
@@ -296,7 +298,16 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             return;
         }
 
-        const testKey = payload.testType;
+        const assessment = this.assessmentsProvider.forType(payload.testType);
+        if (!assessment) {
+            return;
+        }
+
+        const testKey = assessment.key;
+        if (!this.assessmentsProvider.isValidKey(testKey)) {
+            return;
+        }
+
         const ruleId = payload.key;
 
         if (!this.state[testKey]) {
@@ -344,13 +355,38 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private onResetData = async (payload: ToggleActionPayload): Promise<void> => {
-        this.state = this.getDefaultState();
+        if (!payload || !payload.test) {
+            return;
+        }
+
+        const assessment = this.assessmentsProvider.forType(payload.test);
+        if (!assessment) {
+            return;
+        }
+
+        const testKey = assessment.key;
+
+        this.state[testKey] = {
+            rules: null,
+            visualHelperEnabled: false,
+            focusedResultUid: null,
+        };
 
         await this.emitChanged();
     };
 
     private onLoadAssessment = async (payload: LoadAssessmentPayload): Promise<void> => {
-        this.state = this.getDefaultState();
+        if (
+            !payload ||
+            !payload.versionedAssessmentData ||
+            !payload.versionedAssessmentData.assessmentData
+        ) {
+            return;
+        }
+
+        this.state = this.convertAllAssessmentResultsToCardSelectionStoreData(
+            payload.versionedAssessmentData.assessmentData,
+        );
 
         await this.emitChanged();
     };
@@ -358,7 +394,13 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onLoadAssessmentFromTransfer = async (
         payload: TransferAssessmentPayload,
     ): Promise<void> => {
-        this.state = this.getDefaultState();
+        if (!payload || !payload.assessmentData) {
+            return;
+        }
+
+        this.state = this.convertAllAssessmentResultsToCardSelectionStoreData(
+            payload.assessmentData,
+        );
 
         await this.emitChanged();
     };
