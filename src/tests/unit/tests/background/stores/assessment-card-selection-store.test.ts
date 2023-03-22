@@ -17,7 +17,6 @@ import {
     DecoratedAxeNodeResult,
     HtmlElementAxeResults,
 } from 'common/types/store-data/visualization-scan-result-data';
-import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { cloneDeep, forOwn } from 'lodash';
