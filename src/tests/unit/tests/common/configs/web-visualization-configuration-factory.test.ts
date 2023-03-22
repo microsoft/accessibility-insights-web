@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { HeadingsAssessment } from 'assessments/headings/assessment';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
@@ -67,7 +68,7 @@ describe('WebVisualizationConfigurationFactory', () => {
     test('getStoreData for headingsAssessment', () => {
         const visualizationType = VisualizationType.HeadingsAssessment;
         const getExpectedData: (data: TestsEnabledState) => ScanData = data =>
-            data.assessments.headingsAssessment;
+            data.assessments[HeadingsAssessment.key];
 
         testGetStoreData(visualizationType, getExpectedData);
     });

@@ -53,5 +53,4 @@ export const CustomWidgets: Assessment = AssessmentBuilder.Assisted({
         Cues,
         KeyboardInteraction,
     ],
-    storeDataKey: 'customWidgetsAssessment',
 });

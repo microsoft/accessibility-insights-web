@@ -30,5 +30,4 @@ export const ImagesAssessment: Assessment = AssessmentBuilder.Assisted({
     gettingStarted,
     guidance,
     requirements: [ImageFunction, TextAlternative, ImagesOfText, Captchas],
-    storeDataKey: 'imageAssessment',
 });

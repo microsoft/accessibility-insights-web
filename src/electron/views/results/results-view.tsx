@@ -4,6 +4,7 @@ import { CardsViewStoreData } from 'common/components/cards/cards-view-store-dat
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
+import { convertUnifiedStoreDataToScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
@@ -111,9 +112,13 @@ export class ResultsView extends React.Component<ResultsViewProps> {
             contentPageInfo.resultsFilter,
         );
 
-        const cardsViewData = deps.getCardsViewData(
+        const unifiedScanNodeResults = convertUnifiedStoreDataToScanNodeResults(
             unifiedScanResultStoreData,
+        );
+        const cardsViewData = deps.getCardsViewData(
+            unifiedScanNodeResults,
             cardSelectionViewData,
+            unifiedScanResultStoreData?.rules,
         );
         deps.toolData = unifiedScanResultStoreData.toolInfo;
 

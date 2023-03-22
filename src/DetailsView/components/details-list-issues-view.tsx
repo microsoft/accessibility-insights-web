@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
@@ -16,7 +17,9 @@ import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-prov
 import * as React from 'react';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 
-export type DetailsListIssuesViewDeps = IssuesTableDeps;
+export type DetailsListIssuesViewDeps = IssuesTableDeps & {
+    getProvider: () => AssessmentsProvider;
+};
 
 export interface DetailsListIssuesViewProps {
     deps: DetailsListIssuesViewDeps;
@@ -69,6 +72,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 narrowModeStatus={props.narrowModeStatus}
                 cardsViewStoreData={props.cardsViewStoreData}
                 selectedVisualizationType={props.selectedVisualizationType}
+                getProvider={props.deps.getProvider}
             />
         );
     },

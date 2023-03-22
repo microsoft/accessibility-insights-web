@@ -4,9 +4,9 @@ import { createToolData } from 'common/application-properties-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { Logger } from 'common/logging/logger';
-import { convertStoreDataForScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
@@ -86,7 +86,9 @@ export class MainWindowInitializer extends WindowInitializer {
     private storeUpdateMessageHub: StoreUpdateMessageHub;
     private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<AssessmentStoreData>;
+    private assessmentCardSelectionStoreProxy: StoreProxy<AssessmentCardSelectionStoreData>;
     private quickAssessStoreProxy: StoreProxy<AssessmentStoreData>;
+    private quickAssessCardSelectionStoreProxy: StoreProxy<AssessmentCardSelectionStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
     private userConfigStoreProxy: StoreProxy<UserConfigurationStoreData>;
     private inspectStoreProxy: StoreProxy<InspectStoreData>;
@@ -134,8 +136,16 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.AssessmentStore],
             this.storeUpdateMessageHub,
         );
+        this.assessmentCardSelectionStoreProxy = new StoreProxy<AssessmentCardSelectionStoreData>(
+            StoreNames[StoreNames.AssessmentCardSelectionStore],
+            this.storeUpdateMessageHub,
+        );
         this.quickAssessStoreProxy = new StoreProxy<AssessmentStoreData>(
             StoreNames[StoreNames.QuickAssessStore],
+            this.storeUpdateMessageHub,
+        );
+        this.quickAssessCardSelectionStoreProxy = new StoreProxy<AssessmentCardSelectionStoreData>(
+            StoreNames[StoreNames.QuickAssessCardSelectionStore],
             this.storeUpdateMessageHub,
         );
         this.tabStoreProxy = new StoreProxy<TabStoreData>(
@@ -227,7 +237,6 @@ export class MainWindowInitializer extends WindowInitializer {
             getDecoratedAxeNode,
             getCardSelectionViewData,
             isResultHighlightUnavailableWeb,
-            convertStoreDataForScanNodeResults,
         );
         const selectorMapHelper = new SelectorMapHelper(
             this.visualizationConfigurationFactory,
@@ -241,6 +250,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationScanResultStoreProxy,
             this.featureFlagStoreProxy,
             this.assessmentStoreProxy,
+            this.assessmentCardSelectionStoreProxy,
             this.userConfigStoreProxy,
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
@@ -248,6 +258,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.needsReviewCardSelectionStoreProxy,
             this.permissionsStateStoreProxy,
             this.quickAssessStoreProxy,
+            this.quickAssessCardSelectionStoreProxy,
         ]);
 
         const clientStoreListener = new ClientStoreListener(storeHub);

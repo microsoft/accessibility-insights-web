@@ -219,7 +219,6 @@ describe('AssessmentBuilderTest', () => {
                 requirement5,
                 requirement6,
             ],
-            storeDataKey: 'headingsAssessment',
             visualizationConfiguration: {},
             getTestViewContainer: getTestViewContainerStub,
         };
@@ -348,7 +347,6 @@ describe('AssessmentBuilderTest', () => {
             title: 'manual assessment title',
             gettingStarted: <span>getting started</span>,
             requirements: [],
-            storeDataKey: 'headingsAssessment',
             visualizationConfiguration: {},
         };
 

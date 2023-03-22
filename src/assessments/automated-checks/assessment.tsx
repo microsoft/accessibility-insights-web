@@ -31,7 +31,6 @@ const config: AssistedAssessment = {
             testing.
         </>
     ),
-    storeDataKey: 'automatedChecks',
     visualizationType: VisualizationType.AutomatedChecks,
     initialDataCreator: createAutomatedChecksInitialAssessmentTestData,
     gettingStarted,

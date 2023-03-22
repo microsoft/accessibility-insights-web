@@ -199,9 +199,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public enableFastPassVisualHelperWithoutScan(test: VisualizationType): void {
+    public enableFastPassVisualHelperWithoutScan(
+        test: VisualizationType,
+        requirement?: string,
+    ): void {
         const payload: ToggleActionPayload = {
             test,
+            requirement,
         };
 
         this.dispatcher.dispatchMessage({
@@ -257,9 +261,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.dispatchMessage(message);
     };
 
-    public rescanVisualizationWithoutTelemetry = (test: VisualizationType) => {
+    public rescanVisualizationWithoutTelemetry = (
+        test: VisualizationType,
+        requirement?: string,
+    ) => {
         const payload: ToggleActionPayload = {
             test: test,
+            requirement,
         };
         const message: Message = {
             messageType: Messages.Visualizations.Common.RescanVisualization,

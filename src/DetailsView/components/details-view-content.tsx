@@ -8,7 +8,10 @@ import { InspectActionMessageCreator } from 'common/message-creators/inspect-act
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
-import { convertStoreDataForScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
+import {
+    convertAssessmentStoreDataToScanNodeResults,
+    convertUnifiedStoreDataToScanNodeResults,
+} from 'common/store-data-to-scan-node-result-converter';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsViewOverlay,
@@ -112,8 +115,11 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         const selectedTest =
             selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const automatedChecksCardsViewData = props.deps.getCardViewData(
+        const unifiedScanNodeResults = convertUnifiedStoreDataToScanNodeResults(
             props.storeState.unifiedScanResultStoreData,
+        );
+        const automatedChecksCardsViewData = props.deps.getCardViewData(
+            unifiedScanNodeResults,
             props.deps.getCardSelectionViewData(
                 props.storeState.cardSelectionStoreData,
                 props.storeState.unifiedScanResultStoreData.results,
@@ -126,7 +132,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             props.storeState.visualizationScanResultStoreData.tabStops.requirements;
 
         const needsReviewCardsViewData = props.deps.getCardViewData(
-            props.storeState.needsReviewScanResultStoreData,
+            unifiedScanNodeResults,
             props.deps.getCardSelectionViewData(
                 props.storeState.needsReviewCardSelectionStoreData,
                 props.storeState.needsReviewScanResultStoreData.results,
@@ -145,13 +151,20 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 props.storeState,
             );
 
-        const assessmentCardsViewData = props.deps.getCardViewData(
+        const selectedTestKey =
+            props.deps.visualizationConfigurationFactory.getConfiguration(selectedTest).key;
+        const selectedCardSelectionStoreData = assessmentCardSelectionStoreData[selectedTestKey];
+
+        const assessmentScanNodeResults = convertAssessmentStoreDataToScanNodeResults(
             assessmentStoreData,
+            selectedTestKey,
+            selectedCardSelectionStoreData,
+        );
+        const assessmentCardsViewData = props.deps.getCardViewData(
+            assessmentScanNodeResults,
             props.deps.getCardSelectionViewData(
-                assessmentCardSelectionStoreData
-                    ? assessmentCardSelectionStoreData[selectedTest]
-                    : null,
-                convertStoreDataForScanNodeResults(assessmentStoreData),
+                selectedCardSelectionStoreData,
+                assessmentScanNodeResults,
                 null,
                 props.deps.isResultHighlightUnavailable,
             ),
