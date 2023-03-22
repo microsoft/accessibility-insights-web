@@ -56,5 +56,4 @@ export const AdaptableContentAssessment: Assessment = AssessmentBuilder.Assisted
         TextSpacing,
         HoverFocusContent,
     ],
-    storeDataKey: 'adaptableContentAssessment',
 });

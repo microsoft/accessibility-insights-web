@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlags } from 'common/feature-flags';
@@ -136,7 +137,7 @@ describe('SelectorMapHelperTest', () => {
 
     assessmentVisualizationTypes.forEach(visualizationType => {
         test(`getState: ${VisualizationType[visualizationType]}`, () => {
-            const stepKey = 'automatedChecks';
+            const testKey = AutomatedChecks.key;
             const selectorMap = {
                 automatedChecks: { target: ['element1'] } as AssessmentVisualizationInstance,
             };
@@ -146,23 +147,23 @@ describe('SelectorMapHelperTest', () => {
             const storeData: VisualizationRelatedStoreData = {
                 assessmentStoreData: assessmentStoreDataStub,
                 assessmentCardSelectionStoreData: {
-                    [stepKey]: assessmentCardSelectionStoreDataStub,
+                    [testKey]: assessmentCardSelectionStoreDataStub,
                 },
                 featureFlagStoreData: { [FeatureFlags.automatedChecks]: true },
             } as unknown as VisualizationRelatedStoreData;
 
-            setupVisualizationConfigurationFactory(null, null, visualizationType, stepKey);
+            setupVisualizationConfigurationFactory(null, null, visualizationType, testKey);
             const scanResultsNodesStub = [];
             convertAssessmentStoreDataForScanNodeResultsCallbackMock
                 .setup(m =>
-                    m(assessmentStoreDataStub, stepKey, assessmentCardSelectionStoreDataStub),
+                    m(assessmentStoreDataStub, testKey, assessmentCardSelectionStoreDataStub),
                 )
                 .returns(() => scanResultsNodesStub);
             getElementBasedViewModelMock
                 .setup(gebvm => gebvm(scanResultsNodesStub, assessmentCardSelectionStoreDataStub))
                 .returns(() => selectorMap);
 
-            expect(testSubject.getSelectorMap(visualizationType, stepKey, storeData)).toEqual(
+            expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
                 selectorMap,
             );
         });

@@ -147,12 +147,12 @@ export class AssessmentBuilder {
         };
 
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
+            key,
             testViewType: 'Assessment',
             enableTest: AssessmentBuilder.enableTest,
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             getAssessmentData: data => data.assessments[key],
-            key: `${key}Assessment`,
             getAnalyzer: getAnalyzer,
             visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
             getDrawer: provider => provider.createNullDrawer(),
@@ -232,6 +232,7 @@ export class AssessmentBuilder {
             ((provider, props) => provider.createAssessmentTestViewContainer(props));
 
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
+            key,
             testViewType: 'Assessment',
             getAssessmentData: data => data.assessments[key],
             setAssessmentData: (data, selectorMap, instanceMap) => {
@@ -244,7 +245,6 @@ export class AssessmentBuilder {
             getTestStatus: AssessmentBuilder.getTestStatus,
             telemetryProcessor: factory => factory.forAssessmentRequirementScan,
             ...assessment.visualizationConfiguration,
-            key: assessment.storeDataKey,
             getAnalyzer: getAnalyzer,
             visualizationInstanceProcessor:
                 AssessmentBuilder.getVisualizationInstanceProcessor(requirements),

@@ -38,7 +38,6 @@ export const VisibleFocusOrderAssessment: Assessment = AssessmentBuilder.Assiste
     guidance,
     visualizationType: VisualizationType.VisibleFocusOrderAssessment,
     requirements: [VisibleFocus, RevealingContent, ModalDialogs, ClosingContent, FocusOrder],
-    storeDataKey: 'visibleFocusOrderAssessment',
     visualizationConfiguration: {
         key: key,
         analyzerProgressMessageType: Messages.Assessment.TabbedElementAdded,
