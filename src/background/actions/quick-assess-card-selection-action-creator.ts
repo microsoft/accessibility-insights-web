@@ -11,7 +11,6 @@ import {
     AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
     AssessmentSingleRuleExpandCollapsePayload,
-    AssessmentStoreChangedPayload,
 } from './action-payloads';
 
 export class QuickAssessCardSelectionActionCreator {
@@ -45,10 +44,6 @@ export class QuickAssessCardSelectionActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.QuickAssessCardSelection.CollapseAllRules,
             this.onCollapseAllRules,
-        );
-        this.interpreter.registerTypeToPayloadCallback(
-            Messages.QuickAssessCardSelection.AssessmentStoreChanged,
-            this.onAssessmentStoreChanged,
         );
     }
 
@@ -93,11 +88,5 @@ export class QuickAssessCardSelectionActionCreator {
     private onExpandAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
         await this.quickAssessCardSelectionActions.expandAllRules.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_EXPANDED, payload);
-    };
-
-    private onAssessmentStoreChanged = async (
-        payload: AssessmentStoreChangedPayload,
-    ): Promise<void> => {
-        await this.quickAssessCardSelectionActions.assessmentStoreChanged.invoke(payload);
     };
 }

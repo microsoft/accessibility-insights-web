@@ -241,7 +241,6 @@ export const Messages = {
         ExpandAllRules: `${messagePrefix}/assessmentCardSelection/expandAllRules`,
         ToggleVisualHelper: `${messagePrefix}/assessmentCardSelection/toggleVisualHelper`,
         NavigateToNewCardsView: `${messagePrefix}/assessmentCardSelection/navigateToNewCardsView`,
-        AssessmentStoreChanged: `${messagePrefix}/assessmentCardSelection/assessmentStoreChanged`,
     },
     QuickAssessCardSelection: {
         CardSelectionToggled: `${messagePrefix}/quickAssessCardSelection/cardSelectionToggled`,
@@ -250,7 +249,6 @@ export const Messages = {
         ExpandAllRules: `${messagePrefix}/quickAssessCardSelection/expandAllRules`,
         ToggleVisualHelper: `${messagePrefix}/quickAssessCardSelection/toggleVisualHelper`,
         NavigateToNewCardsView: `${messagePrefix}/quickAssessCardSelection/navigateToNewCardsView`,
-        AssessmentStoreChanged: `${messagePrefix}/quickAssessCardSelection/assessmentStoreChanged`,
     },
 
     PermissionsState: {

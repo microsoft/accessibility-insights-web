@@ -5,14 +5,12 @@ import {
     AssessmentCardToggleVisualHelperPayload,
     AssessmentExpandCollapsePayload,
     AssessmentSingleRuleExpandCollapsePayload,
-    AssessmentStoreChangedPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
 import { QuickAssessCardSelectionActionCreator } from 'background/actions/quick-assess-card-selection-action-creator';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
-import { AssessmentNavState } from 'common/types/store-data/assessment-result-data';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -178,38 +176,6 @@ describe('QuickAssessCardSelectionActionCreator', () => {
             handler => handler.publishTelemetry(TelemetryEvents.ALL_RULES_EXPANDED, payloadStub),
             Times.once(),
         );
-    });
-
-    test('onAssessmentStoreChanged', async () => {
-        const payloadStub: AssessmentStoreChangedPayload = {
-            assessmentStoreData: {
-                assessments: {},
-                persistedTabInfo: {},
-                assessmentNavState: {} as AssessmentNavState,
-                resultDescription: 'sample-description',
-            },
-        };
-        const assessmentStoreChangedMock = createAsyncActionMock(payloadStub);
-        const actionsMock = createActionsMock(
-            'assessmentStoreChanged',
-            assessmentStoreChangedMock.object,
-        );
-
-        const testSubject = new QuickAssessCardSelectionActionCreator(
-            interpreterMock.object,
-            actionsMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        testSubject.registerCallbacks();
-
-        await interpreterMock.simulateMessage(
-            Messages.QuickAssessCardSelection.AssessmentStoreChanged,
-            payloadStub,
-            tabId,
-        );
-
-        assessmentStoreChangedMock.verifyAll();
     });
 
     function createActionsMock<ActionName extends keyof AssessmentCardSelectionActions>(
