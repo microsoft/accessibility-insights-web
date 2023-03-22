@@ -123,7 +123,7 @@ export class GlobalStoreHub implements StoreHub {
         );
         this.quickAssessCardSelectionStore = new AssessmentCardSelectionStore(
             globalActionHub.quickAssessCardSelectionActions,
-            globalActionHub.assessmentActions,
+            globalActionHub.quickAssessActions,
             quickAssessProvider,
             persistedData.quickAssessCardSelectionStoreData,
             persistedData.quickAssessStoreData,
