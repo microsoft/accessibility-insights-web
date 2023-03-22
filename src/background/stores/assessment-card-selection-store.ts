@@ -291,6 +291,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
             !payload ||
             !payload.key ||
             !payload.testType ||
+            !payload.scanResult ||
             isEmpty(payload.scanResult.violations) ||
             !payload.selectorMap ||
             isEmpty(payload.selectorMap)
@@ -304,10 +305,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         }
 
         const testKey = assessment.key;
-        if (!this.assessmentsProvider.isValidKey(testKey)) {
-            return;
-        }
-
         const ruleId = payload.key;
 
         if (!this.state[testKey]) {
