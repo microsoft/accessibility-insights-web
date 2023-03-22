@@ -7,12 +7,11 @@ import {
     AssessmentSingleRuleExpandCollapsePayload,
 } from 'background/actions/action-payloads';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { AssessmentCardSelectionMessages } from 'common/messages';
 import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
 
-export class AssessmentCardSelectionMessageCreator implements CardSelectionMessageCreator {
+export class AssessmentCardSelectionMessageCreator {
     constructor(
         private readonly dispatcher: ActionMessageDispatcher,
         private readonly telemetryFactory: TelemetryDataFactory,

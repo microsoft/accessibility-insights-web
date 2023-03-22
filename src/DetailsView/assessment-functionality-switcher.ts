@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { BaseStore } from 'common/base-store';
-import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
@@ -16,7 +16,7 @@ import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-
 export type SharedAssessmentObjects = {
     provider: AssessmentsProvider;
     actionMessageCreator: AssessmentActionMessageCreator;
-    cardSelectionMessageCreator: AssessmentCardSelectionMessageCreator;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
     navLinkHandler: NavLinkHandler;
     instanceTableHandler: AssessmentInstanceTableHandler;
     getAssessmentSummaryModelFromProviderAndStatusData: GetSelectedAssessmentSummaryModelFromProviderAndStatusData;
@@ -49,10 +49,9 @@ export class AssessmentFunctionalitySwitcher {
         return this.getSharedObjects().actionMessageCreator;
     };
 
-    public getAssessmentCardSelectionMessageCreator: () => AssessmentCardSelectionMessageCreator =
-        () => {
-            return this.getSharedObjects().cardSelectionMessageCreator;
-        };
+    public getAssessmentCardSelectionMessageCreator: () => CardSelectionMessageCreator = () => {
+        return this.getSharedObjects().cardSelectionMessageCreator;
+    };
 
     public getNavLinkHandler: () => NavLinkHandler = () => {
         return this.getSharedObjects().navLinkHandler;

@@ -34,6 +34,7 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
+import { AssessmentCardSelectionMessageCreatorWrapper } from 'common/message-creators/assessment-card-selection-message-creator-wrapper';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { Messages } from 'common/messages';
@@ -590,7 +591,11 @@ if (tabId != null) {
             const assessmentObjects: SharedAssessmentObjects = {
                 provider: Assessments,
                 actionMessageCreator: assessmentActionMessageCreator,
-                cardSelectionMessageCreator: assessmentCardSelectionMessageCreator,
+                cardSelectionMessageCreator: new AssessmentCardSelectionMessageCreatorWrapper(
+                    assessmentCardSelectionMessageCreator,
+                    visualizationConfigurationFactory,
+                    assessmentStore,
+                ),
                 navLinkHandler: new NavLinkHandler(
                     detailsViewActionMessageCreator,
                     assessmentActionMessageCreator,
@@ -604,7 +609,11 @@ if (tabId != null) {
             const quickAssessObjects: SharedAssessmentObjects = {
                 provider: quickAssessProvider,
                 actionMessageCreator: quickAssessActionMessageCreator,
-                cardSelectionMessageCreator: quickAssessCardSelectionMessageCreator,
+                cardSelectionMessageCreator: new AssessmentCardSelectionMessageCreatorWrapper(
+                    quickAssessCardSelectionMessageCreator,
+                    visualizationConfigurationFactory,
+                    quickAssessStore,
+                ),
                 navLinkHandler: new NavLinkHandler(
                     detailsViewActionMessageCreator,
                     quickAssessActionMessageCreator,
