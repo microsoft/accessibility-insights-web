@@ -42,7 +42,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         private readonly assessmentActions: AssessmentActions,
         private readonly assessmentsProvider: AssessmentsProvider,
         persistedState: AssessmentCardSelectionStoreData,
-        assessmentStoreData: AssessmentStoreData,
+        private readonly assessmentStoreData: AssessmentStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
         persistStoreData: boolean,
@@ -50,8 +50,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         storeName: StoreNames,
     ) {
         super(storeName, persistedState, idbInstance, indexDBKey, logger, persistStoreData);
-        this.persistedStateFromAssessmentStore =
-            this.convertAllAssessmentResultsToCardSelectionStoreData(assessmentStoreData);
     }
 
     protected addActionListeners(): void {
@@ -81,6 +79,9 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     }
 
     public getDefaultState(): AssessmentCardSelectionStoreData {
+        this.persistedStateFromAssessmentStore =
+            this.convertAllAssessmentResultsToCardSelectionStoreData(this.assessmentStoreData);
+
         return this.persistedStateFromAssessmentStore ?? this.persistedState ?? {};
     }
 
