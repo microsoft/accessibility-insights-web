@@ -23,7 +23,7 @@ import {
     exampleAssessmentResult,
     exampleUnifiedResult,
 } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
-// TODO
+
 describe('StoreDataToScanNodeResultConverter', () => {
     describe('convertUnifiedStoreDataToScanNodeResults', () => {
         test('store data is empty returns null', () => {
