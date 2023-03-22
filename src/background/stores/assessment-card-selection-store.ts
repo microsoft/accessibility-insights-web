@@ -99,13 +99,8 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         const assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData = {};
 
         forOwn(assessmentStoreData.assessments, (assessment, key) => {
-            const cardSelectionStoreData: CardSelectionStoreData = assessmentCardSelectionStoreData[
-                key
-            ] ?? {
-                rules: null,
-                visualHelperEnabled: false,
-                focusedResultUid: null,
-            };
+            const cardSelectionStoreData: CardSelectionStoreData =
+                assessmentCardSelectionStoreData[key] ?? this.getDefaultTestCardSelectionData();
             const scanNodeResults = convertAssessmentStoreDataToScanNodeResults(
                 assessmentStoreData,
                 key,
@@ -118,6 +113,14 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         });
 
         return assessmentCardSelectionStoreData;
+    }
+
+    private getDefaultTestCardSelectionData(): CardSelectionStoreData {
+        return {
+            rules: null,
+            visualHelperEnabled: false,
+            focusedResultUid: null,
+        };
     }
 
     private deselectAllCards = (): void => {
@@ -264,11 +267,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         const ruleId = payload.key;
 
         if (!this.state[testKey]) {
-            this.state[testKey] = {
-                rules: null,
-                visualHelperEnabled: false,
-                focusedResultUid: null,
-            };
+            this.state[testKey] = this.getDefaultTestCardSelectionData();
         }
 
         if (!this.state[testKey].rules) {
@@ -317,11 +316,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
 
         const testKey = assessment.key;
 
-        this.state[testKey] = {
-            rules: null,
-            visualHelperEnabled: false,
-            focusedResultUid: null,
-        };
+        this.state[testKey] = this.getDefaultTestCardSelectionData();
 
         await this.emitChanged();
     };
