@@ -80,20 +80,8 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         );
     }
 
-    public override initialize(initialState?: AssessmentCardSelectionStoreData): void {
-        this.state =
-            initialState ||
-            (this.persistedStateFromAssessmentStore ??
-                this.persistedState ??
-                this.getDefaultState());
-
-        this.addActionListeners();
-    }
-
     public getDefaultState(): AssessmentCardSelectionStoreData {
-        const defaultValue: AssessmentCardSelectionStoreData = {};
-
-        return defaultValue;
+        return this.persistedStateFromAssessmentStore ?? this.persistedState ?? {};
     }
 
     private convertAllAssessmentResultsToCardSelectionStoreData(
@@ -357,7 +345,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     }
 
     private onResetAllAssessmentsData = async (): Promise<void> => {
-        this.state = this.getDefaultState();
+        this.state = {};
 
         await this.emitChanged();
     };

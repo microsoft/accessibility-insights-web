@@ -65,10 +65,6 @@ describe('AssessmentCardSelectionStore', () => {
 
         expect(testObject.getId()).toEqual(StoreNames[StoreNames.AssessmentCardSelectionStore]);
     });
-
-    it('check defaultState is as expected', () => {
-        expect(testObject.getDefaultState()).toEqual({});
-    });
 });
 
 describe('AssessmentCardSelectionStore Test', () => {
@@ -116,26 +112,8 @@ describe('AssessmentCardSelectionStore Test', () => {
         expectedState = cloneDeep(defaultState);
     });
 
-    describe('initialize', () => {
-        it('sets the state based on param', () => {
-            const testObject = new AssessmentCardSelectionStore(
-                new AssessmentCardSelectionActions(),
-                new AssessmentActions(),
-                null,
-                null,
-                null,
-                null,
-                null,
-                false,
-                '',
-                null,
-            );
-            testObject.initialize(initialState);
-
-            expect(testObject.getState()).toEqual(expectedState);
-        });
-
-        it('sets the state based on persisted assessment state if no param', () => {
+    describe('getDefaultState', () => {
+        it('returns store state data based on persisted assessment state', () => {
             const assessmentStoreState: AssessmentStoreData = createAssessmentStoreDataWithStatus(
                 ManualTestStatus.FAIL,
             );
@@ -151,12 +129,11 @@ describe('AssessmentCardSelectionStore Test', () => {
                 '',
                 null,
             );
-            testObject.initialize();
 
-            expect(testObject.getState()).toEqual(expectedState);
+            expect(testObject.getDefaultState()).toEqual(expectedState);
         });
 
-        it('sets the state based on persisted state if no param or persisted assessment state', () => {
+        it('returns store state data based on persisted state if no persisted assessment state', () => {
             const testObject = new AssessmentCardSelectionStore(
                 new AssessmentCardSelectionActions(),
                 new AssessmentActions(),
@@ -169,12 +146,11 @@ describe('AssessmentCardSelectionStore Test', () => {
                 '',
                 null,
             );
-            testObject.initialize();
 
-            expect(testObject.getState()).toEqual(expectedState);
+            expect(testObject.getDefaultState()).toEqual(expectedState);
         });
 
-        it('sets the state to default state if no param or persisted states', () => {
+        it('returns {} if no persisted states', () => {
             const testObject = new AssessmentCardSelectionStore(
                 new AssessmentCardSelectionActions(),
                 new AssessmentActions(),
@@ -187,9 +163,8 @@ describe('AssessmentCardSelectionStore Test', () => {
                 '',
                 null,
             );
-            testObject.initialize();
 
-            expect(testObject.getState()).toEqual({});
+            expect(testObject.getDefaultState()).toEqual({});
         });
     });
 
