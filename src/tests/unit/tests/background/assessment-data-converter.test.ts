@@ -121,6 +121,10 @@ describe('AssessmentDataConverter', () => {
                             html: htmlStub,
                             id: 'id1',
                             status: false,
+                            help: 'help-text',
+                            guidanceLinks: [],
+                            helpUrl: 'help-url',
+                            all: [{ message: 'how-to-fix' }],
                         } as DecoratedAxeNodeResult,
                     },
                     target: [selectorStub],
@@ -140,6 +144,16 @@ describe('AssessmentDataConverter', () => {
                             isVisible: true,
                             isVisualizationEnabled: false,
                             isVisualizationSupported: true,
+                            description: 'help-text',
+                            url: 'help-url',
+                            guidance: [],
+                            resolution: {
+                                'how-to-fix-web': {
+                                    all: ['how-to-fix'],
+                                    any: undefined,
+                                    none: undefined,
+                                },
+                            },
                         },
                     },
                 },
@@ -284,6 +298,7 @@ describe('AssessmentDataConverter', () => {
                                 {
                                     id: 'rule1',
                                     data: { someProperty: 1 },
+                                    message: 'how-to-fix',
                                 },
                             ],
                             html: htmlStub,
@@ -326,6 +341,16 @@ describe('AssessmentDataConverter', () => {
                             isVisible: true,
                             isVisualizationEnabled: false,
                             isVisualizationSupported: true,
+                            description: undefined,
+                            guidance: undefined,
+                            url: undefined,
+                            resolution: {
+                                'how-to-fix-web': {
+                                    all: undefined,
+                                    any: ['how-to-fix'],
+                                    none: undefined,
+                                },
+                            },
                         },
                         [anotherTestStep]: {
                             id: 'id2',

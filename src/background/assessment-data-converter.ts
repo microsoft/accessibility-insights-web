@@ -15,6 +15,7 @@ import {
     DecoratedAxeNodeResult,
     HtmlElementAxeResults,
 } from 'common/types/store-data/visualization-scan-result-data';
+import { getFixResolution, ResolutionCreatorData } from 'injected/adapters/resolution-creator';
 import { forOwn, isEmpty } from 'lodash';
 import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
@@ -195,6 +196,13 @@ export class AssessmentDataConverter {
             isVisualizationSupported: isVisualizationSupported(ruleResult),
             isVisualizationEnabled: false,
             isVisible: true,
+            description: ruleResult.help,
+            url: ruleResult.helpUrl,
+            guidance: ruleResult.guidanceLinks,
+            resolution: getFixResolution({
+                nodeResult: ruleResult,
+                ruleId: ruleResult.id,
+            } as ResolutionCreatorData),
         };
     }
 

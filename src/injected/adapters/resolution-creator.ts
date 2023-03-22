@@ -19,9 +19,9 @@ export interface ResolutionCreatorData {
 export const getFixResolution: ResolutionCreator = (data: ResolutionCreatorData) => {
     return {
         'how-to-fix-web': {
-            any: data.nodeResult.any.map(checkResult => checkResult.message),
-            none: data.nodeResult.none.map(checkResult => checkResult.message),
-            all: data.nodeResult.all.map(checkResult => checkResult.message),
+            any: data.nodeResult.any?.map(checkResult => checkResult.message),
+            none: data.nodeResult.none?.map(checkResult => checkResult.message),
+            all: data.nodeResult.all?.map(checkResult => checkResult.message),
         },
     };
 };

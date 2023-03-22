@@ -75,7 +75,10 @@ export class SelectorMapHelper {
         const assessmentConfig =
             this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         if (featureFlagStoreData[FeatureFlags.automatedChecks]) {
-            if (assessmentConfig.key === AutomatedChecks.getVisualizationConfiguration().key) {
+            if (
+                assessmentConfig.key === AutomatedChecks.getVisualizationConfiguration().key &&
+                assessmentCardSelectionStoreData
+            ) {
                 const assessmentScanNodeResults = this.convertAssessmentDataToScanNodeResults(
                     assessmentStoreData,
                     assessmentConfig.key,

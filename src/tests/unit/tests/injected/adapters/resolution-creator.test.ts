@@ -8,6 +8,28 @@ import {
 } from 'injected/adapters/resolution-creator';
 
 describe('ResolutionCreator', () => {
+    it('outputs correct fix resolution with undefined properties', () => {
+        const resolutionCreatorDataStub: ResolutionCreatorData = {
+            ruleId: 'rule id',
+            nodeResult: {
+                any: undefined,
+                all: undefined,
+                none: undefined,
+            },
+        };
+
+        const expected = {
+            'how-to-fix-web': {
+                any: undefined,
+                none: undefined,
+                all: undefined,
+            },
+        };
+
+        const actual = getFixResolution(resolutionCreatorDataStub);
+        expect(actual).toEqual(expected);
+    });
+
     it('outputs correct fix resolution with no data', () => {
         const resolutionCreatorDataStub: ResolutionCreatorData = {
             ruleId: 'rule id',
