@@ -78,6 +78,7 @@
         "src/background/keyboard-shortcut-handler.ts",
         "src/background/quick-assess-to-assessment-converter.ts",
         "src/background/service-worker-init.ts",
+        "src/background/stores/assessment-card-selection-store.ts",
         "src/background/stores/assessment-store.ts",
         "src/background/stores/global/feature-flag-store.ts",
         "src/background/stores/global/global-store-hub.ts",

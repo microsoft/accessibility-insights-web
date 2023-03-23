@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
@@ -19,6 +20,7 @@ import { TabStore } from 'background/stores/tab-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { CardsViewStore } from 'common/components/cards/cards-view-store';
+import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
@@ -70,6 +72,14 @@ export class StoreMocks {
     public dataTransferViewStoreMock = Mock.ofType(DataTransferViewStore, MockBehavior.Strict);
     public needsReviewScanResultStoreMock = Mock.ofType(
         NeedsReviewScanResultStore,
+        MockBehavior.Strict,
+    );
+    public initialAssessmentStoreDataGeneratorMock = Mock.ofType(
+        InitialAssessmentStoreDataGenerator,
+        MockBehavior.Strict,
+    );
+    public initialQuickAssessStoreDataGeneratorMock = Mock.ofType(
+        InitialAssessmentStoreDataGenerator,
         MockBehavior.Strict,
     );
 
@@ -136,24 +146,8 @@ export class StoreMocks {
         null,
         null,
     ).getDefaultState();
-    public assessmentCardSelectionStoreData = new AssessmentCardSelectionStore(
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-    ).getDefaultState();
-    public quickAssessCardSelectionStoreData = new AssessmentCardSelectionStore(
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-    ).getDefaultState();
+    public assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData;
+    public quickAssessCardSelectionStoreData: AssessmentCardSelectionStoreData;
     public launchPanelStateStoreData = new LaunchPanelStore(null, null, null).getDefaultState();
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
@@ -207,6 +201,38 @@ export class StoreMocks {
             this.assessmentsProviderMock.object,
             assessmentDataConverterMock.object,
         ).build();
+        this.initialAssessmentStoreDataGeneratorMock
+            .setup(im => im.generateInitialState(It.isAny()))
+            .returns(() => this.assessmentStoreData);
+        this.initialQuickAssessStoreDataGeneratorMock
+            .setup(im => im.generateInitialState(It.isAny()))
+            .returns(() => this.quickAssessStoreData);
+        this.assessmentCardSelectionStoreData = new AssessmentCardSelectionStore(
+            null,
+            null,
+            null,
+            null,
+            null,
+            this.initialAssessmentStoreDataGeneratorMock.object,
+            null,
+            null,
+            null,
+            null,
+            null,
+        ).getDefaultState();
+        this.quickAssessCardSelectionStoreData = new AssessmentCardSelectionStore(
+            null,
+            null,
+            null,
+            null,
+            null,
+            this.initialQuickAssessStoreDataGeneratorMock.object,
+            null,
+            null,
+            null,
+            null,
+            null,
+        ).getDefaultState();
     }
 
     public scopingSelectorsData: ScopingStoreData = {

@@ -340,7 +340,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
         }
     });
 
-    describe('convertStoreDataForScanNodeResults', () => {
+    describe('convertResultsToCardSelectionStoreData', () => {
         let stateStub: CardSelectionStoreData;
         let expectedResultStub: CardSelectionStoreData;
 

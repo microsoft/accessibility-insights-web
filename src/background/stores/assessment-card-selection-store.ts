@@ -1,13 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
+import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
+import {
+    convertAssessmentStoreDataToScanNodeResults,
+    convertResultsToCardSelectionStoreData,
+} from 'common/store-data-to-scan-node-result-converter';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
+import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn, isEmpty } from 'lodash';
+import { DictionaryStringTo } from 'types/common-types';
 import { StoreNames } from '../../common/stores/store-names';
 import {
+    CardSelectionData,
     CardSelectionStoreData,
     RuleExpandCollapseData,
 } from '../../common/types/store-data/card-selection-store-data';
@@ -18,12 +30,19 @@ import {
     AssessmentNavigateToNewCardsViewPayload,
     AssessmentResetFocusedIdentifierPayload,
     AssessmentSingleRuleExpandCollapsePayload,
+    LoadAssessmentPayload,
+    ToggleActionPayload,
+    TransferAssessmentPayload,
 } from '../actions/action-payloads';
 
 export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCardSelectionStoreData> {
     constructor(
         private readonly assessmentCardSelectionActions: AssessmentCardSelectionActions,
+        private readonly assessmentActions: AssessmentActions,
+        private readonly assessmentsProvider: AssessmentsProvider,
         persistedState: AssessmentCardSelectionStoreData,
+        private readonly assessmentStoreData: AssessmentStoreData,
+        private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
         idbInstance: IndexedDBAPI,
         logger: Logger,
         persistStoreData: boolean,
@@ -50,12 +69,55 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.assessmentCardSelectionActions.navigateToNewCardsView.addListener(
             this.onNavigateToNewCardsView,
         );
+        this.assessmentActions.scanCompleted.addListener(this.onScanCompleted);
+        this.assessmentActions.resetData.addListener(this.onResetData);
+        this.assessmentActions.resetAllAssessmentsData.addListener(this.onResetAllAssessmentsData);
+        this.assessmentActions.loadAssessment.addListener(this.onLoadAssessment);
+        this.assessmentActions.loadAssessmentFromTransfer.addListener(
+            this.onLoadAssessmentFromTransfer,
+        );
     }
 
     public getDefaultState(): AssessmentCardSelectionStoreData {
-        const defaultValue: AssessmentCardSelectionStoreData = {};
+        if (this.persistedState) {
+            return this.persistedState;
+        }
+        // Falling back to getting the data from the assessment store for backwards compatibility
+        return this.convertAllAssessmentResultsToCardSelectionStoreData(this.assessmentStoreData);
+    }
 
-        return defaultValue;
+    private convertAllAssessmentResultsToCardSelectionStoreData(
+        assessmentStoreData: AssessmentStoreData,
+    ) {
+        assessmentStoreData =
+            this.initialAssessmentStoreDataGenerator.generateInitialState(assessmentStoreData);
+        const assessmentCardSelectionStoreData: AssessmentCardSelectionStoreData = {};
+
+        forOwn(assessmentStoreData.assessments, (assessment, key) => {
+            const cardSelectionStoreData: CardSelectionStoreData =
+                this.getDefaultTestCardSelectionData();
+            cardSelectionStoreData.rules = {};
+
+            const scanNodeResults = convertAssessmentStoreDataToScanNodeResults(
+                assessmentStoreData,
+                key,
+                cardSelectionStoreData,
+            );
+            assessmentCardSelectionStoreData[key] = convertResultsToCardSelectionStoreData(
+                cardSelectionStoreData,
+                scanNodeResults,
+            );
+        });
+
+        return assessmentCardSelectionStoreData;
+    }
+
+    private getDefaultTestCardSelectionData(): CardSelectionStoreData {
+        return {
+            rules: null,
+            visualHelperEnabled: false,
+            focusedResultUid: null,
+        };
     }
 
     private deselectAllCards = (): void => {
@@ -87,13 +149,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private toggleRuleExpandCollapse = async (
         payload: AssessmentSingleRuleExpandCollapsePayload,
     ): Promise<void> => {
-        if (
-            !payload ||
-            !payload.testKey ||
-            !this.state[payload.testKey] ||
-            !this.state[payload.testKey].rules ||
-            !this.state[payload.testKey].rules?.[payload.ruleId]
-        ) {
+        if (!payload || !this.state[payload.testKey]?.rules?.[payload.ruleId]) {
             return;
         }
 
@@ -113,9 +169,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     ): Promise<void> => {
         if (
             !payload ||
-            !payload.testKey ||
-            !this.state[payload.testKey] ||
-            !this.state[payload.testKey].rules?.[payload.ruleId] ||
+            !this.state[payload.testKey]?.rules?.[payload.ruleId] ||
             this.state[payload.testKey].rules![payload.ruleId].cards[payload.resultInstanceUid] ===
                 undefined
         ) {
@@ -136,12 +190,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private collapseAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
-        if (
-            !payload ||
-            !payload.testKey ||
-            !this.state[payload.testKey] ||
-            !this.state[payload.testKey].rules
-        ) {
+        if (!this.state[payload.testKey]?.rules) {
             return;
         }
 
@@ -154,12 +203,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     };
 
     private expandAllRules = async (payload: AssessmentExpandCollapsePayload): Promise<void> => {
-        if (
-            !payload ||
-            !payload.testKey ||
-            !this.state[payload.testKey] ||
-            !this.state[payload.testKey].rules
-        ) {
+        if (!this.state[payload.testKey]?.rules) {
             return;
         }
 
@@ -173,10 +217,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private toggleVisualHelper = async (
         payload: AssessmentCardToggleVisualHelperPayload,
     ): Promise<void> => {
-        if (!payload || !payload.testKey || !this.state[payload.testKey]) {
-            return;
-        }
-
         this.state[payload.testKey].visualHelperEnabled =
             !this.state[payload.testKey].visualHelperEnabled;
 
@@ -190,10 +230,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onResetFocusedIdentifier = async (
         payload: AssessmentResetFocusedIdentifierPayload,
     ): Promise<void> => {
-        if (!payload || !payload.testKey || !this.state[payload.testKey]) {
-            return;
-        }
-
         this.state[payload.testKey].focusedResultUid = null;
         await this.emitChanged();
     };
@@ -201,10 +237,6 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
     private onNavigateToNewCardsView = async (
         payload: AssessmentNavigateToNewCardsViewPayload,
     ): Promise<void> => {
-        if (!payload || !payload.testKey || !this.state[payload.testKey]) {
-            return;
-        }
-
         this.state[payload.testKey].focusedResultUid = null;
 
         if (this.state[payload.testKey].rules) {
@@ -218,6 +250,92 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         this.state[payload.testKey].visualHelperEnabled = !isEmpty(
             this.state[payload.testKey].rules,
         );
+
+        await this.emitChanged();
+    };
+
+    private onScanCompleted = async (payload: ScanCompletedPayload<any>) => {
+        const assessment = this.assessmentsProvider.forType(payload.testType);
+        if (!assessment) {
+            return;
+        }
+
+        const testKey = assessment.key;
+        const ruleId = payload.key;
+
+        if (!this.state[testKey]) {
+            this.state[testKey] = this.getDefaultTestCardSelectionData();
+        }
+
+        if (!this.state[testKey].rules) {
+            this.state[testKey].rules = {};
+        }
+
+        if (!this.state[testKey].rules![ruleId]) {
+            this.state[testKey].rules![ruleId] = {
+                cards: {},
+                isExpanded: false,
+            };
+        }
+
+        this.state[testKey].rules![ruleId].cards = this.createCardsFromSelectorMap(
+            ruleId,
+            payload.selectorMap,
+        );
+
+        await this.emitChanged();
+    };
+
+    private createCardsFromSelectorMap(
+        key: string,
+        selectorMap: DictionaryStringTo<HtmlElementAxeResults>,
+    ): CardSelectionData {
+        const cards: CardSelectionData = {};
+        forOwn(selectorMap, result => {
+            if (result.ruleResults && result.ruleResults[key] && result.ruleResults[key].id) {
+                cards[result.ruleResults[key].id!] = false;
+            }
+        });
+        return cards;
+    }
+
+    private onResetAllAssessmentsData = async (): Promise<void> => {
+        this.state = {};
+
+        await this.emitChanged();
+    };
+
+    private onResetData = async (payload: ToggleActionPayload): Promise<void> => {
+        const assessment = this.assessmentsProvider.forType(payload.test);
+        if (!assessment) {
+            return;
+        }
+
+        const testKey = assessment.key;
+
+        this.state[testKey] = this.getDefaultTestCardSelectionData();
+
+        await this.emitChanged();
+    };
+
+    private onLoadAssessment = async (payload: LoadAssessmentPayload): Promise<void> => {
+        const assessmentCardSelectionStoreData =
+            this.convertAllAssessmentResultsToCardSelectionStoreData(
+                payload.versionedAssessmentData.assessmentData,
+            );
+
+        this.state = assessmentCardSelectionStoreData;
+
+        await this.emitChanged();
+    };
+
+    private onLoadAssessmentFromTransfer = async (
+        payload: TransferAssessmentPayload,
+    ): Promise<void> => {
+        const assessmentCardSelectionStoreData =
+            this.convertAllAssessmentResultsToCardSelectionStoreData(payload.assessmentData);
+
+        this.state = assessmentCardSelectionStoreData;
 
         await this.emitChanged();
     };
