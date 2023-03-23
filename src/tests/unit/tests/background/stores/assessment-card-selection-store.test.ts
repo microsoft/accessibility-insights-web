@@ -4,6 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentCardSelectionActions } from 'background/actions/assessment-card-selection-actions';
+import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentCardSelectionStore } from 'background/stores/assessment-card-selection-store';
 import { AssessmentCardSelectionStoreData } from 'common/types/store-data/assessment-card-selection-store-data';
 import {
@@ -22,7 +23,7 @@ import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { cloneDeep, forOwn } from 'lodash';
 import { RuleResult, ScanResults } from 'scanner/iruleresults';
 import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';
-import { It, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
 import {
@@ -59,6 +60,7 @@ describe('AssessmentCardSelectionStore', () => {
             null,
             null,
             null,
+            null,
             StoreNames.AssessmentCardSelectionStore,
         );
 
@@ -69,6 +71,7 @@ describe('AssessmentCardSelectionStore', () => {
 describe('AssessmentCardSelectionStore Test', () => {
     const stubRuleId1 = 'sampleRuleId1';
     const stubRuleId2 = 'sampleRuleId2';
+    const stubRuleId3 = 'sampleRuleId3';
     const stubTestKey1 = 'testKey1';
     const stubTestKey2 = 'testKey2';
     const stubUid1 = 'sampleUid1';
@@ -77,6 +80,7 @@ describe('AssessmentCardSelectionStore Test', () => {
     const stubUid4 = 'sampleUid4';
     let initialState: AssessmentCardSelectionStoreData = null;
     let expectedState: AssessmentCardSelectionStoreData = null;
+    let initialAssessmentStoreDataGeneratorMock: IMock<InitialAssessmentStoreDataGenerator>;
 
     beforeEach(() => {
         const defaultState: AssessmentCardSelectionStoreData = {
@@ -102,7 +106,7 @@ describe('AssessmentCardSelectionStore Test', () => {
             },
             [stubTestKey2]: {
                 rules: {
-                    sampleRuleId3: {
+                    [stubRuleId3]: {
                         isExpanded: false,
                         cards: {
                             [stubUid3]: false,
@@ -117,10 +121,31 @@ describe('AssessmentCardSelectionStore Test', () => {
 
         initialState = cloneDeep(defaultState);
         expectedState = cloneDeep(defaultState);
+
+        initialAssessmentStoreDataGeneratorMock =
+            Mock.ofType<InitialAssessmentStoreDataGenerator>();
     });
 
     describe('getDefaultState', () => {
-        it('returns store state data based on persisted assessment state', () => {
+        it('returns store state data based on persisted state', () => {
+            const testObject = new AssessmentCardSelectionStore(
+                new AssessmentCardSelectionActions(),
+                new AssessmentActions(),
+                null,
+                initialState,
+                null,
+                initialAssessmentStoreDataGeneratorMock.object,
+                null,
+                null,
+                true,
+                '',
+                null,
+            );
+
+            expect(testObject.getDefaultState()).toEqual(expectedState);
+        });
+
+        it('returns store state data based on persisted assessment state if no persisted store state', () => {
             const assessmentStoreState: AssessmentStoreData = createAssessmentStoreDataWithStatus(
                 ManualTestStatus.FAIL,
             );
@@ -130,48 +155,17 @@ describe('AssessmentCardSelectionStore Test', () => {
                 null,
                 null,
                 assessmentStoreState,
+                initialAssessmentStoreDataGeneratorMock.object,
                 null,
                 null,
                 true,
                 '',
                 null,
             );
+            setupDataGeneratorMock(assessmentStoreState, assessmentStoreState);
 
             expect(testObject.getDefaultState()).toEqual(expectedState);
-        });
-
-        it('returns store state data based on persisted state if no persisted assessment state', () => {
-            const testObject = new AssessmentCardSelectionStore(
-                new AssessmentCardSelectionActions(),
-                new AssessmentActions(),
-                null,
-                initialState,
-                null,
-                null,
-                null,
-                true,
-                '',
-                null,
-            );
-
-            expect(testObject.getDefaultState()).toEqual(expectedState);
-        });
-
-        it('returns {} if no persisted states', () => {
-            const testObject = new AssessmentCardSelectionStore(
-                new AssessmentCardSelectionActions(),
-                new AssessmentActions(),
-                null,
-                null,
-                null,
-                null,
-                null,
-                false,
-                '',
-                null,
-            );
-
-            expect(testObject.getDefaultState()).toEqual({});
+            initialAssessmentStoreDataGeneratorMock.verifyAll();
         });
     });
 
@@ -435,6 +429,22 @@ describe('AssessmentCardSelectionStore Test', () => {
                 );
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
         });
+
+        it('toggle off when rule is null', async () => {
+            initialState[stubTestKey1].rules[stubRuleId1] = null;
+            initialState[stubTestKey1].rules[stubRuleId2] = null;
+            initialState[stubTestKey2].rules[stubRuleId3] = null;
+            initialState[stubTestKey1].visualHelperEnabled = true;
+
+            expectedState = cloneDeep(initialState);
+            expectedState[stubTestKey1].visualHelperEnabled = false;
+
+            const storeTester =
+                createStoreForAssessmentCardSelectionActions('toggleVisualHelper').withActionParam(
+                    payload,
+                );
+            await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+        });
     });
 
     describe('onResetFocusedIdentifier', () => {
@@ -572,6 +582,34 @@ describe('AssessmentCardSelectionStore Test', () => {
             violations: [{ instanceId: stubUid1 }] as unknown as RuleResult[],
         } as ScanResults;
 
+        const payload: ScanCompletedPayload<any> = {
+            key: stubRuleId1,
+            testType: stubTestKey1 as unknown as VisualizationType,
+            selectorMap: stubSelectorMap,
+            scanResult: stubScanResult,
+            scanIncompleteWarnings: [],
+        };
+
+        let assessmentsProviderMock: IMock<AssessmentsProvider>;
+
+        beforeEach(() => {
+            assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(
+                undefined,
+                MockBehavior.Strict,
+            );
+        });
+
+        it('does nothing when there is no assessment for the test in payload', async () => {
+            assessmentsProviderMock.setup(apm => apm.forType(It.isAny())).returns(() => undefined);
+
+            const storeTester = createStoreForAssessmentActions(
+                'scanCompleted',
+                assessmentsProviderMock.object,
+            ).withActionParam(payload);
+
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
         it('sets the state based on the ScanCompletedPayload', async () => {
             const stubAssessment: Assessment = {
                 key: stubTestKey1,
@@ -583,13 +621,6 @@ describe('AssessmentCardSelectionStore Test', () => {
             assessmentsProviderMock
                 .setup(apm => apm.forType(It.isAny()))
                 .returns(() => stubAssessment);
-            const payload: ScanCompletedPayload<any> = {
-                key: stubRuleId1,
-                testType: stubTestKey1 as unknown as VisualizationType,
-                selectorMap: stubSelectorMap,
-                scanResult: stubScanResult,
-                scanIncompleteWarnings: [],
-            };
 
             initialState = {};
             expectedState = {
@@ -626,14 +657,34 @@ describe('AssessmentCardSelectionStore Test', () => {
     });
 
     describe('onResetData', () => {
+        const payload: ToggleActionPayload = {
+            test: stubTestKey1 as unknown as VisualizationType,
+        };
+        let assessmentsProviderMock: IMock<AssessmentsProvider>;
+
+        beforeEach(() => {
+            assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(
+                undefined,
+                MockBehavior.Strict,
+            );
+        });
+
+        it('does nothing when there is no assessment for the test in payload', async () => {
+            assessmentsProviderMock.setup(apm => apm.forType(It.isAny())).returns(() => undefined);
+
+            const storeTester = createStoreForAssessmentActions(
+                'resetData',
+                assessmentsProviderMock.object,
+            ).withActionParam(payload);
+
+            await storeTester.testListenerToNeverBeCalled(initialState, expectedState);
+        });
+
         it('resets data for specified key in payload', async () => {
             const stubAssessment: Assessment = {
                 key: stubTestKey1,
             } as Assessment;
-            const assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(
-                undefined,
-                MockBehavior.Strict,
-            );
+
             assessmentsProviderMock
                 .setup(apm => apm.forType(It.isAny()))
                 .returns(() => stubAssessment);
@@ -642,10 +693,6 @@ describe('AssessmentCardSelectionStore Test', () => {
                 rules: null,
                 visualHelperEnabled: false,
                 focusedResultUid: null,
-            };
-
-            const payload: ToggleActionPayload = {
-                test: stubTestKey1 as unknown as VisualizationType,
             };
 
             const storeTester = createStoreForAssessmentActions(
@@ -658,33 +705,39 @@ describe('AssessmentCardSelectionStore Test', () => {
 
     describe('onLoadAssessment', () => {
         it('loads assessment from assessment data in payload', async () => {
+            const assessmentData = createAssessmentStoreDataWithStatus(ManualTestStatus.FAIL);
             initialState = {};
             const payload: LoadAssessmentPayload = {
                 versionedAssessmentData: {
                     version: 1,
-                    assessmentData: createAssessmentStoreDataWithStatus(ManualTestStatus.FAIL),
+                    assessmentData,
                 },
                 tabId: -1,
                 detailsViewId: 'stub-details-view-id',
             };
+            setupDataGeneratorMock(assessmentData, assessmentData);
 
             const storeTester =
                 createStoreForAssessmentActions('loadAssessment').withActionParam(payload);
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+            initialAssessmentStoreDataGeneratorMock.verifyAll();
         });
     });
 
     describe('onLoadAssessmentFromTransfer', () => {
         it('loads assessment from assessment data in payload', async () => {
+            const assessmentData = createAssessmentStoreDataWithStatus(ManualTestStatus.FAIL);
             initialState = {};
             const payload: TransferAssessmentPayload = {
-                assessmentData: createAssessmentStoreDataWithStatus(ManualTestStatus.FAIL),
+                assessmentData,
             };
+            setupDataGeneratorMock(assessmentData, assessmentData);
 
             const storeTester = createStoreForAssessmentActions(
                 'loadAssessmentFromTransfer',
             ).withActionParam(payload);
             await storeTester.testListenerToBeCalledOnce(initialState, expectedState);
+            initialAssessmentStoreDataGeneratorMock.verifyAll();
         });
     });
 
@@ -706,6 +759,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                 null,
                 null,
                 null,
+                initialAssessmentStoreDataGeneratorMock.object,
                 null,
                 null,
                 true,
@@ -727,6 +781,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                 assessmentsProvider ?? CreateTestAssessmentProvider(),
                 null,
                 null,
+                initialAssessmentStoreDataGeneratorMock.object,
                 null,
                 null,
                 true,
@@ -735,6 +790,17 @@ describe('AssessmentCardSelectionStore Test', () => {
             );
 
         return new StoreTester(AssessmentActions, actionName, factory);
+    }
+
+    function setupDataGeneratorMock(
+        persistedData: AssessmentStoreData,
+        initialData: AssessmentStoreData,
+        times: Times = Times.once(),
+    ): void {
+        initialAssessmentStoreDataGeneratorMock
+            .setup(im => im.generateInitialState(persistedData))
+            .returns(() => initialData)
+            .verifiable(times);
     }
 
     const testStepResult = (uid: string, status: ManualTestStatus): TestStepResult => {
@@ -783,7 +849,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                             target: ['selector2'],
                             html: 'html1',
                             testStepResults: {
-                                sampleRuleId3: testStepResult(stubUid3, status),
+                                [stubRuleId3]: testStepResult(stubUid3, status),
                             },
                             propertyBag: null,
                         },
@@ -791,7 +857,7 @@ describe('AssessmentCardSelectionStore Test', () => {
                             target: ['selector3'],
                             html: 'html2',
                             testStepResults: {
-                                sampleRuleId3: testStepResult(stubUid4, status),
+                                [stubRuleId3]: testStepResult(stubUid4, status),
                             },
                             propertyBag: null,
                         },

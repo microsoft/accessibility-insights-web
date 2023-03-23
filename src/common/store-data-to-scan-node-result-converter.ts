@@ -36,10 +36,6 @@ export const convertResultsToCardSelectionStoreData: ConvertResultsToCardSelecti
                     return;
                 }
 
-                if (state.rules === null) {
-                    state.rules = {};
-                }
-
                 if (state.rules![result.ruleId] === undefined) {
                     state.rules![result.ruleId] = {
                         isExpanded: false,
