@@ -7,6 +7,7 @@ import { FeatureFlags } from 'common/feature-flags';
 import {
     ConvertAssessmentStoreDataToScanNodeResultsCallback,
     ConvertUnifiedStoreDataToScanNodeResultsCallback,
+    ScanNodeResult,
 } from 'common/store-data-to-scan-node-result-converter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
@@ -52,7 +53,7 @@ describe('SelectorMapHelperTest', () => {
         VisualizationType.NeedsReview,
     ];
 
-    const assessmentVisualizationTypes = [VisualizationType.AutomatedChecks];
+    const assessmentTestsUsingElementBasedViewModels = [VisualizationType.AutomatedChecks];
 
     beforeEach(() => {
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
@@ -135,7 +136,7 @@ describe('SelectorMapHelperTest', () => {
         });
     });
 
-    assessmentVisualizationTypes.forEach(visualizationType => {
+    assessmentTestsUsingElementBasedViewModels.forEach(visualizationType => {
         test(`getState: ${VisualizationType[visualizationType]}`, () => {
             const testKey = AutomatedChecks.key;
             const selectorMap = {
@@ -153,14 +154,20 @@ describe('SelectorMapHelperTest', () => {
             } as unknown as VisualizationRelatedStoreData;
 
             setupVisualizationConfigurationFactory(null, null, visualizationType, testKey);
-            const scanResultsNodesStub = [];
+            const scanResultsNodesStub = [
+                { uid: 'failing-result-id', status: 'fail' },
+                { uid: 'non-failing-result-id', status: 'pass' },
+            ] as ScanNodeResult[];
+            const failingScanResultsNodes = [scanResultsNodesStub[0]];
             convertAssessmentStoreDataForScanNodeResultsCallbackMock
                 .setup(m =>
                     m(assessmentStoreDataStub, testKey, assessmentCardSelectionStoreDataStub),
                 )
                 .returns(() => scanResultsNodesStub);
             getElementBasedViewModelMock
-                .setup(gebvm => gebvm(scanResultsNodesStub, assessmentCardSelectionStoreDataStub))
+                .setup(gebvm =>
+                    gebvm(failingScanResultsNodes, assessmentCardSelectionStoreDataStub),
+                )
                 .returns(() => selectorMap);
 
             expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(

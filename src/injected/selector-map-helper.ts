@@ -84,8 +84,11 @@ export class SelectorMapHelper {
                     assessmentConfig.key,
                     assessmentCardSelectionStoreData[assessmentConfig.key],
                 );
+                const failureScanNodeResults = assessmentScanNodeResults.filter(
+                    result => result.status === 'fail',
+                );
                 return this.getElementBasedViewModel(
-                    assessmentScanNodeResults,
+                    failureScanNodeResults,
                     assessmentCardSelectionStoreData[assessmentConfig.key],
                 );
             }
