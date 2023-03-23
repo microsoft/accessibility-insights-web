@@ -109,7 +109,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.automatedChecks,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Automated checks',
             displayableDescription:
                 'New Automated checks experience for Assessment and Quick Assess',
