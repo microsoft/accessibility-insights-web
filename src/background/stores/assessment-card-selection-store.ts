@@ -82,6 +82,7 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         if (this.persistedState) {
             return this.persistedState;
         }
+        // Falling back to getting the data from the assessment store for backwards compatibility
         return this.convertAllAssessmentResultsToCardSelectionStoreData(this.assessmentStoreData);
     }
 
