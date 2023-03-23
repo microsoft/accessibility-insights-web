@@ -80,7 +80,7 @@
         "test:e2e:docker:run:web": "docker run -t accessibility-insights-web-e2e",
         "test:e2e:docker:run:unified": "docker run -t accessibility-insights-unified-e2e sh -c \"yarn test:unified --ci\"",
         "test:e2e:docker": "npm-run-all --serial test:e2e:docker:build \"test:e2e:docker:run {@}\" --",
-        "test:unified": "cross-env NODE_OPTIONS='--unhandled-rejections=strict' jest --projects src/tests/electron --runInBand --forceExit --detectOpenHandles",
+        "test:unified": "cross-env NODE_OPTIONS='--unhandled-rejections=strict --max-old-space-size=1536' jest --projects src/tests/electron --runInBand --forceExit --detectOpenHandles",
         "test:report:e2e": "yarn packages --include accessibility-insights-report-e2e-tests run test",
         "tbuild": "yarn build && yarn type:check",
         "tbuild:all": "yarn build:all && yarn type:check",
