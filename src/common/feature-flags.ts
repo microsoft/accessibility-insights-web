@@ -114,7 +114,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableDescription:
                 'New Automated checks experience for Assessment and Quick Assess',
             isPreviewFeature: false,
-            forceDefault: false,
+            forceDefault: true,
         },
     ];
 }
