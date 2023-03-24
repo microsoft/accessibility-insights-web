@@ -6,11 +6,17 @@ import {
 } from 'DetailsView/components/injection-failed-warning';
 import {
     ScanIncompleteWarning,
+    ScanIncompleteWarningDeps,
     ScanIncompleteWarningProps,
 } from 'DetailsView/components/scan-incomplete-warning';
 import * as React from 'react';
 
-export type BannerWarningsProps = ScanIncompleteWarningProps & InjectionFailedWarningProps;
+export type BannerWarningsDeps = ScanIncompleteWarningDeps;
+
+export type BannerWarningsProps = {
+    deps: BannerWarningsDeps;
+} & Omit<ScanIncompleteWarningProps, 'deps'> &
+    InjectionFailedWarningProps;
 
 export class BannerWarnings extends React.PureComponent<BannerWarningsProps> {
     public render() {
