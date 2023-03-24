@@ -19,6 +19,7 @@ import {
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { cloneDeep } from 'lodash';
+import { ScannerRuleInfoMap } from 'scanner/scanner-rule-info';
 import {
     exampleAssessmentResult,
     exampleUnifiedResult,
@@ -117,7 +118,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         target: [selector],
                     },
                     isSelected: false,
-                    resolution: { howToFixSummary: testStepResult.failureSummary },
+                    resolution: {},
                     rule: {
                         id: ruleId,
                         description: undefined,
@@ -132,6 +133,56 @@ describe('StoreDataToScanNodeResultConverter', () => {
             expect(convertAssessmentStoreDataToScanNodeResults(storeData, testKey, null)).toEqual(
                 expectedResult,
             );
+        });
+
+        test('assessment data with rule info and no card selection store data is converted successfully', () => {
+            const testKey = 'test-key';
+            const assessmentResult = exampleAssessmentResult;
+            const { selector, testStepResult, ruleId } =
+                getAssessmentDataProperties(assessmentResult);
+            const storeData = {
+                assessments: {
+                    'test-key': assessmentResult,
+                },
+                assessmentNavState: { selectedTestType: 'test-key' },
+            } as unknown as AssessmentStoreData;
+            const ruleUrlStub = 'some url';
+            const ruleHelpStub = 'some help';
+            const ruleA11yCriteriaStub = [];
+            const ruleInfoMap: ScannerRuleInfoMap = {
+                [ruleId]: {
+                    id: ruleId,
+                    url: ruleUrlStub,
+                    help: ruleHelpStub,
+                    a11yCriteria: ruleA11yCriteriaStub,
+                },
+            };
+
+            const expectedResult = [
+                {
+                    descriptors: { snippet: selector },
+                    identifiers: {
+                        conciseName: selector,
+                        identifier: selector,
+                        'css-selector': selector,
+                        target: [selector],
+                    },
+                    isSelected: false,
+                    resolution: {},
+                    rule: {
+                        id: ruleId,
+                        description: ruleHelpStub,
+                        guidance: ruleA11yCriteriaStub,
+                        url: ruleUrlStub,
+                    },
+                    ruleId: ruleId,
+                    status: 'fail',
+                    uid: testStepResult.id,
+                },
+            ];
+            expect(
+                convertAssessmentStoreDataToScanNodeResults(storeData, testKey, null, ruleInfoMap),
+            ).toEqual(expectedResult);
         });
 
         test('assessment data with card selection store data is converted successfully', () => {
@@ -159,7 +210,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         target: [selector],
                     },
                     isSelected: true,
-                    resolution: { howToFixSummary: testStepResult.failureSummary },
+                    resolution: {},
                     rule: {
                         id: ruleId,
                         description: undefined,
@@ -212,7 +263,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         target: [selector],
                     },
                     isSelected: false,
-                    resolution: { howToFixSummary: testStepResult1.failureSummary },
+                    resolution: {},
                     rule: {
                         id: ruleId1,
                         description: undefined,
@@ -232,7 +283,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         target: [selector],
                     },
                     isSelected: false,
-                    resolution: { howToFixSummary: testStepResult2.failureSummary },
+                    resolution: {},
                     rule: {
                         id: ruleId2,
                         description: undefined,
@@ -287,7 +338,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         target: [selector1],
                     },
                     isSelected: false,
-                    resolution: { howToFixSummary: testStepResult1.failureSummary },
+                    resolution: {},
                     rule: {
                         id: ruleId1,
                         description: undefined,
@@ -307,7 +358,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         target: [selector2],
                     },
                     isSelected: false,
-                    resolution: { howToFixSummary: testStepResult2.failureSummary },
+                    resolution: {},
                     rule: {
                         id: ruleId2,
                         description: undefined,

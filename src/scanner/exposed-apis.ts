@@ -19,7 +19,7 @@ import { ResultDecorator } from './result-decorator';
 import { RuleProcessor } from './rule-processor';
 import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
-import { ScannerRuleInfo } from './scanner-rule-info';
+import { ScannerRuleInfo, ScannerRuleInfoMap } from './scanner-rule-info';
 
 export const scan = (
     options: ScanOptions,
@@ -63,6 +63,15 @@ export const getDefaultRules = (): ScannerRuleInfo[] => {
         ruleIncludedStatus,
         mapAxeTagsToGuidanceLinks,
     );
+};
+
+export const getDefaultRulesMap = (): ScannerRuleInfoMap => {
+    const rules = getDefaultRules();
+    const ruleMap: ScannerRuleInfoMap = {};
+    rules.forEach(rule => {
+        ruleMap[rule.id] = rule;
+    });
+    return ruleMap;
 };
 
 new AxeConfigurator().configureAxe(axe, configuration);

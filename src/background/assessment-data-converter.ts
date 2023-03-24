@@ -196,9 +196,6 @@ export class AssessmentDataConverter {
             isVisualizationSupported: isVisualizationSupported(ruleResult),
             isVisualizationEnabled: false,
             isVisible: true,
-            description: ruleResult.help,
-            url: ruleResult.helpUrl,
-            guidance: ruleResult.guidanceLinks,
             resolution: getFixResolution({
                 nodeResult: ruleResult,
                 ruleId: ruleResult.id,

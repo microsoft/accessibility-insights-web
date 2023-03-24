@@ -5,6 +5,14 @@ exports[`DetailsViewContent render renders normally 1`] = `
   <InteractiveHeader
     deps={
       {
+        "convertAssessmentStoreDataToScanNodeResults": [Function],
+        "defaultRulesMap": {
+          "some-rule": {
+            "a11yCriteria": null,
+            "help": "some help",
+            "id": "some-rule",
+          },
+        },
         "detailsViewActionMessageCreator": [typemoq mock object],
         "dropdownClickHandler": [typemoq mock object],
         "getAssessmentInstanceTableHandler": [Function],
@@ -37,7 +45,11 @@ exports[`DetailsViewContent render renders normally 1`] = `
     tabClosed={false}
   />
   <DetailsViewBody
-    assessmentCardsViewData={{}}
+    assessmentCardsViewData={
+      {
+        "allCardsCollapsed": true,
+      }
+    }
     assessmentInstanceTableHandler={[typemoq mock object]}
     assessmentStoreData={
       {
@@ -50,7 +62,11 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "resultDescription": "",
       }
     }
-    automatedChecksCardsViewData={{}}
+    automatedChecksCardsViewData={
+      {
+        "allCardsCollapsed": false,
+      }
+    }
     dataTransferViewStoreData={
       {
         "showQuickAssessToAssessmentConfirmDialog": false,
@@ -58,6 +74,14 @@ exports[`DetailsViewContent render renders normally 1`] = `
     }
     deps={
       {
+        "convertAssessmentStoreDataToScanNodeResults": [Function],
+        "defaultRulesMap": {
+          "some-rule": {
+            "a11yCriteria": null,
+            "help": "some help",
+            "id": "some-rule",
+          },
+        },
         "detailsViewActionMessageCreator": [typemoq mock object],
         "dropdownClickHandler": [typemoq mock object],
         "getAssessmentInstanceTableHandler": [Function],
@@ -99,7 +123,11 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "isVirtualKeyboardCollapsed": false,
       }
     }
-    needsReviewCardsViewData={{}}
+    needsReviewCardsViewData={
+      {
+        "allCardsCollapsed": false,
+      }
+    }
     pathSnippetStoreData={
       {
         "path": null,
@@ -448,6 +476,14 @@ exports[`DetailsViewContent render renders normally 1`] = `
   <DetailsViewOverlay
     deps={
       {
+        "convertAssessmentStoreDataToScanNodeResults": [Function],
+        "defaultRulesMap": {
+          "some-rule": {
+            "a11yCriteria": null,
+            "help": "some help",
+            "id": "some-rule",
+          },
+        },
         "detailsViewActionMessageCreator": [typemoq mock object],
         "dropdownClickHandler": [typemoq mock object],
         "getAssessmentInstanceTableHandler": [Function],

@@ -9,7 +9,7 @@ import { ScopingActionMessageCreator } from 'common/message-creators/scoping-act
 import { NamedFC } from 'common/react/named-fc';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import {
-    convertAssessmentStoreDataToScanNodeResults,
+    ConvertAssessmentStoreDataToScanNodeResultsCallback,
     convertUnifiedStoreDataToScanNodeResults,
 } from 'common/store-data-to-scan-node-result-converter';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -32,6 +32,7 @@ import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
 import * as React from 'react';
+import { ScannerRuleInfoMap } from 'scanner/scanner-rule-info';
 
 export type DetailsViewContentDeps = {
     getDateFromTimestamp: (timestamp: string) => Date;
@@ -49,6 +50,8 @@ export type DetailsViewContentDeps = {
     isResultHighlightUnavailable: IsResultHighlightUnavailable;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     testViewContainerProvider: TestViewContainerProvider;
+    defaultRulesMap: ScannerRuleInfoMap;
+    convertAssessmentStoreDataToScanNodeResults: ConvertAssessmentStoreDataToScanNodeResultsCallback;
 } & InteractiveHeaderDeps &
     DetailsViewOverlayDeps &
     DetailsViewBodyDeps;
@@ -155,10 +158,11 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             props.deps.visualizationConfigurationFactory.getConfiguration(selectedTest).key;
         const selectedCardSelectionStoreData = assessmentCardSelectionStoreData[selectedTestKey];
 
-        const assessmentScanNodeResults = convertAssessmentStoreDataToScanNodeResults(
+        const assessmentScanNodeResults = deps.convertAssessmentStoreDataToScanNodeResults(
             assessmentStoreData,
             selectedTestKey,
             selectedCardSelectionStoreData,
+            deps.defaultRulesMap,
         );
         const assessmentCardsViewData = props.deps.getCardViewData(
             assessmentScanNodeResults,

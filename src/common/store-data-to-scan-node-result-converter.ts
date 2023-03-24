@@ -18,7 +18,7 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-string-utils';
 import { find, forOwn } from 'lodash';
-import { Target } from 'scanner/iruleresults';
+import { ScannerRuleInfo, ScannerRuleInfoMap } from 'scanner/scanner-rule-info';
 
 export type ScanNodeResult = UnifiedResult & {
     rule: UnifiedRule;
@@ -85,12 +85,14 @@ export type ConvertAssessmentStoreDataToScanNodeResultsCallback = (
     assessmentStoreData: AssessmentStoreData,
     selectedTest: string,
     cardSelectionStoreData: CardSelectionStoreData,
+    ruleInfoMap?: ScannerRuleInfoMap,
 ) => ScanNodeResult[] | null;
 
 export function convertAssessmentStoreDataToScanNodeResults(
     assessmentStoreData: AssessmentStoreData,
     selectedTest: string,
     cardSelectionStoreData: CardSelectionStoreData,
+    ruleInfoMap?: ScannerRuleInfoMap,
 ): ScanNodeResult[] | null {
     if (
         isNullOrUndefined(assessmentStoreData) ||
@@ -116,7 +118,7 @@ export function convertAssessmentStoreDataToScanNodeResults(
                         instance,
                         requirementIdentifier,
                         cardSelectionStoreData,
-                        instance.target,
+                        ruleInfoMap?.[requirementIdentifier],
                     );
                     allResults.push(node);
                 },
@@ -133,7 +135,7 @@ function convertAssessmentResultToScanNodeResult(
     instance: GeneratedAssessmentInstance,
     requirementIdentifier: string,
     cardSelectionViewDataForTest: CardSelectionStoreData,
-    target: Target,
+    ruleInfo: ScannerRuleInfo | undefined,
 ): ScanNodeResult {
     const instanceId = testStepResult.id;
     const status = convertTestStepResultStatusToCardResultStatus(testStepResult.status);
@@ -147,21 +149,20 @@ function convertAssessmentResultToScanNodeResult(
         identifiers: {
             conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(selector),
             identifier: selector,
-            target,
             'css-selector': selector,
+            target: instance.target,
         },
         descriptors: {
             snippet: instance.html,
         },
         resolution: {
             ...testStepResult.resolution,
-            howToFixSummary: testStepResult.failureSummary,
         },
         rule: {
             id: requirementIdentifier,
-            description: testStepResult.description,
-            url: testStepResult.url,
-            guidance: testStepResult.guidance,
+            description: ruleInfo?.help,
+            url: ruleInfo?.url,
+            guidance: ruleInfo?.a11yCriteria,
         },
     };
     return node;
