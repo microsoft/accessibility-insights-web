@@ -588,14 +588,19 @@ module.exports = function (grunt) {
                     configFile,
                 ],
                 opts: {
+                    // electron-builder performs an internal yarn install step to install
+                    // production dependencies for the specific platform being built. This
+                    // will (correctly) result in a different yarn.lock file than our normal
+                    // one. Yarn will throw an error for yarn.lock differences on CI agents;
+                    // suppressing environment variables prevents it from detecting whether it's
+                    // on a CI agent and suppresses that behavior.
                     env: {
                         ...process.env,
-                        // electron-builder performs an internal yarn install step to install
-                        // production dependencies for the specific platform being built. This
-                        // will (correctly) result in a different yarn.lock file than our normal
-                        // one. Yarn will throw an error for yarn.lock differences on CI agents;
-                        // unsetting this environment variable suppresses that behavior.
+                        // These specific variables are the ones detected by package ci-info
                         CI: undefined,
+                        CONTINUOUS_INTEGRATION: undefined,
+                        GITHUB_ACTIONS: undefined,
+                        SYSTEM_TEAMFOUNDATIONCOLLECTIONURI: undefined,
                     },
                 },
             },
