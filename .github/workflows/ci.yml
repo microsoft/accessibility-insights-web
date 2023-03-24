@@ -46,6 +46,7 @@ jobs:
     # This speeds up uploading the artifact by a large margin
     - name: compress build-results
       run: tar -zcvf build-results.tar.gz drop
+      timeout-minutes: 5
 
     - name: upload artifact build-results
       uses: actions/upload-artifact@v3
