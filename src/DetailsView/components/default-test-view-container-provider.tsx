@@ -5,6 +5,7 @@ import { NeedsReviewInstancesSection } from 'common/components/cards/needs-revie
 import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
 import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
 import { AdhocTabStopsTestView } from 'DetailsView/components/adhoc-tab-stops-test-view';
+import { AssessmentIssuesTestView } from 'DetailsView/components/assessment-issues-test-view';
 import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
 import {
     TestViewContainerProvider,
@@ -49,7 +50,7 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
         props: TestViewContainerProviderProps,
     ): JSX.Element {
         return (
-            <AdhocIssuesTestView
+            <AssessmentIssuesTestView
                 instancesSection={FailedInstancesSection}
                 cardSelectionMessageCreator={props.assessmentCardSelectionMessageCreator}
                 cardsViewData={props.assessmentCardsViewData}
