@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentIssuesTestView should return DetailsListIssuesView 1`] = `
+<div
+  className="issuesTestView"
+>
+  <React.Fragment>
+    <BannerWarnings
+      deps={{}}
+      test={-1}
+      visualizationStoreData={
+        {
+          "scanning": "test-scanning",
+          "tests": {},
+        }
+      }
+      warningConfiguration={{}}
+      warnings={[]}
+    />
+    <DetailsListIssuesView
+      clickHandlerFactory={[typemoq mock object]}
+      configuration={
+        {
+          "displayableData": {
+            "title": "test title",
+          },
+          "getStoreData": [Function],
+        }
+      }
+      deps={{}}
+      instancesSection={[Function]}
+      scanIncompleteWarnings={[]}
+      selectedTest={-1}
+      switcherNavConfiguration={
+        {
+          "warningConfiguration": {},
+        }
+      }
+      tabStoreData={
+        {
+          "isChanged": false,
+        }
+      }
+      visualizationStoreData={
+        {
+          "scanning": "test-scanning",
+          "tests": {},
+        }
+      }
+    />
+  </React.Fragment>
+</div>
+`;
