@@ -40,6 +40,9 @@ jobs:
     - run: yarn tbuild:all
       timeout-minutes: 10
 
+    - run: yarn build:unified:all
+      timeout-minutes: 10
+
     - name: upload artifact build-results
       uses: actions/upload-artifact@v3
       with:
