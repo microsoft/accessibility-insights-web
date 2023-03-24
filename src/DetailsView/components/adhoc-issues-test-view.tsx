@@ -74,7 +74,7 @@ function createTargetPageChangedView(props: AdhocIssuesTestViewProps): JSX.Eleme
     );
 }
 
-export function createTestView(props: AdhocIssuesTestViewProps): JSX.Element {
+function createTestView(props: AdhocIssuesTestViewProps): JSX.Element {
     return (
         <>
             <BannerWarnings
