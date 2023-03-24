@@ -10,7 +10,11 @@ import {
 } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
-import { ScanNodeResult } from 'common/store-data-to-scan-node-result-converter';
+import {
+    convertAssessmentStoreDataToScanNodeResults,
+    ConvertAssessmentStoreDataToScanNodeResultsCallback,
+    ScanNodeResult,
+} from 'common/store-data-to-scan-node-result-converter';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -46,6 +50,7 @@ import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ScannerRuleInfoMap } from 'scanner/scanner-rule-info';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
@@ -62,6 +67,7 @@ describe(DetailsViewContent.displayName, () => {
     let getDetailsSwitcherNavConfiguration: IMock<GetDetailsSwitcherNavConfiguration>;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let getCardViewDataMock: IMock<GetCardViewData>;
+    let convertAssessmentStoreDataToScanNodeResultsMock: IMock<ConvertAssessmentStoreDataToScanNodeResultsCallback>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
     let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
@@ -69,6 +75,7 @@ describe(DetailsViewContent.displayName, () => {
     let scanDate: Date;
     let toolData: ToolData;
     let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
+    let defaultRulesMapStub: ScannerRuleInfoMap;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType(DetailsViewActionMessageCreator);
@@ -83,6 +90,10 @@ describe(DetailsViewContent.displayName, () => {
         getCardViewDataMock = Mock.ofInstance(
             (scanNodeResults: ScanNodeResult[], cardSelectionViewData?: CardSelectionViewData) =>
                 null,
+            MockBehavior.Strict,
+        );
+        convertAssessmentStoreDataToScanNodeResultsMock = Mock.ofInstance(
+            convertAssessmentStoreDataToScanNodeResults,
             MockBehavior.Strict,
         );
         getCardSelectionViewDataMock = Mock.ofInstance(
@@ -105,6 +116,13 @@ describe(DetailsViewContent.displayName, () => {
         toolData = {
             applicationProperties: { name: 'some app' },
         } as ToolData;
+        defaultRulesMapStub = {
+            'some-rule': {
+                id: 'some-rule',
+                help: 'some help',
+                a11yCriteria: null,
+            },
+        };
 
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
 
@@ -118,6 +136,9 @@ describe(DetailsViewContent.displayName, () => {
             getDateFromTimestamp: getDateFromTimestampMock.object,
             getAssessmentInstanceTableHandler: () => assessmentInstanceTableHandlerMock.object,
             visualizationConfigurationFactory: visualizationConfigurationFactoryMock.object,
+            convertAssessmentStoreDataToScanNodeResults:
+                convertAssessmentStoreDataToScanNodeResultsMock.object,
+            defaultRulesMap: defaultRulesMapStub,
         } as DetailsViewContainerDeps;
     });
 
@@ -267,24 +288,53 @@ describe(DetailsViewContent.displayName, () => {
                 .returns(() => cardSelectionViewData)
                 .verifiable(Times.exactly(2));
 
-            getCardSelectionViewDataMock
-                .setup(g => g(undefined, null, null, isResultHighlightUnavailableStub))
-                .returns(() => cardSelectionViewData)
-                .verifiable(Times.exactly(1));
-
             const configStub = { key: 'test-key' } as VisualizationConfiguration;
             visualizationConfigurationFactoryMock
                 .setup(vcfm => vcfm.getConfiguration(viewType))
                 .returns(() => configStub);
 
-            const cardsViewData: CardsViewModel = {} as any;
+            const cardsViewDataStub: CardsViewModel = {
+                allCardsCollapsed: false,
+            } as CardsViewModel;
+            const assessmentCardsViewDataStub: CardsViewModel = {
+                allCardsCollapsed: true,
+            } as CardsViewModel;
+
+            const scanNodeResultsStub = [
+                {
+                    ruleId: 'some-rule-id',
+                },
+            ] as ScanNodeResult[];
+
+            getCardSelectionViewDataMock
+                .setup(g =>
+                    g(undefined, scanNodeResultsStub, null, isResultHighlightUnavailableStub),
+                )
+                .returns(() => cardSelectionViewData)
+                .verifiable(Times.exactly(1));
+
+            convertAssessmentStoreDataToScanNodeResultsMock
+                .setup(m =>
+                    m(
+                        state.assessmentStoreData,
+                        configStub.key,
+                        state.assessmentCardSelectionStoreData[configStub.key],
+                        defaultRulesMapStub,
+                    ),
+                )
+                .returns(() => scanNodeResultsStub);
+
+            getCardViewDataMock
+                .setup(m => m(scanNodeResultsStub, cardSelectionViewData))
+                .returns(() => assessmentCardsViewDataStub);
+
             getCardViewDataMock
                 .setup(m => m([], cardSelectionViewData))
-                .returns(() => cardsViewData);
+                .returns(() => cardsViewDataStub);
 
             getCardViewDataMock
                 .setup(m => m(null, cardSelectionViewData))
-                .returns(() => cardsViewData);
+                .returns(() => cardsViewDataStub);
 
             const rendered = shallow(
                 <DetailsViewContent

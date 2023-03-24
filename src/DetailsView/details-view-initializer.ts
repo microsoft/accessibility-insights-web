@@ -39,6 +39,7 @@ import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creat
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { Messages } from 'common/messages';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
+import { convertAssessmentStoreDataToScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
@@ -152,7 +153,7 @@ import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-d
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
 import { PlainTextFormatter } from '../issue-filing/common/markup/plain-text-formatter';
 import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result-to-issue-filing-data';
-import { getVersion, scan } from '../scanner/exposed-apis';
+import { getDefaultRulesMap, getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
 import { UnifiedResultToIssueFilingDataConverter } from './../issue-filing/unified-result-to-issue-filing-data';
@@ -732,6 +733,8 @@ if (tabId != null) {
                     assessmentFunctionalitySwitcher.getGetAssessmentSummaryModelFromProviderAndStatusData,
                 dataTransferViewController,
                 testViewContainerProvider,
+                defaultRulesMap: getDefaultRulesMap(),
+                convertAssessmentStoreDataToScanNodeResults,
             };
 
             const renderer = new DetailsViewRenderer(

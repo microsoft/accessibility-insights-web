@@ -4,7 +4,6 @@ import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete
 import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { VisualizationType } from '../visualization-type';
-import { GuidanceLink } from './guidance-links';
 import { Tab } from './itab';
 import { ManualTestStatus, ManualTestStatusData } from './manual-test-status';
 
@@ -67,9 +66,6 @@ export interface TestStepResult {
     isVisualizationEnabled: boolean;
     isVisible: boolean;
     originalStatus?: ManualTestStatus;
-    description?: string;
-    url?: string;
-    guidance?: GuidanceLink[];
     resolution?: DictionaryStringTo<any>;
 }
 

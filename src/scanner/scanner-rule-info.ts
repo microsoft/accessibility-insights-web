@@ -8,3 +8,7 @@ export interface ScannerRuleInfo {
     url?: string;
     a11yCriteria: HyperlinkDefinition[];
 }
+
+export interface ScannerRuleInfoMap {
+    [ruleId: string]: ScannerRuleInfo;
+}

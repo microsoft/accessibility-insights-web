@@ -103,7 +103,7 @@ export type UnifiedRichResolution = {
 };
 
 export type UnifiedResolution = {
-    howToFixSummary: string;
+    howToFixSummary?: string;
     richResolution?: UnifiedRichResolution;
 } & InstancePropertyBag;
 

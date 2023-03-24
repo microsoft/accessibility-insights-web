@@ -121,9 +121,6 @@ describe('AssessmentDataConverter', () => {
                             html: htmlStub,
                             id: 'id1',
                             status: false,
-                            help: 'help-text',
-                            guidanceLinks: [],
-                            helpUrl: 'help-url',
                             all: [{ message: 'how-to-fix' }],
                         } as DecoratedAxeNodeResult,
                     },
@@ -144,9 +141,6 @@ describe('AssessmentDataConverter', () => {
                             isVisible: true,
                             isVisualizationEnabled: false,
                             isVisualizationSupported: true,
-                            description: 'help-text',
-                            url: 'help-url',
-                            guidance: [],
                             resolution: {
                                 'how-to-fix-web': {
                                     all: ['how-to-fix'],
@@ -341,9 +335,6 @@ describe('AssessmentDataConverter', () => {
                             isVisible: true,
                             isVisualizationEnabled: false,
                             isVisualizationSupported: true,
-                            description: undefined,
-                            guidance: undefined,
-                            url: undefined,
                             resolution: {
                                 'how-to-fix-web': {
                                     all: undefined,
