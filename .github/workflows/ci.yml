@@ -40,19 +40,11 @@ jobs:
     - run: yarn tbuild:all
       timeout-minutes: 10
 
-    - run: yarn build:unified:all
-      timeout-minutes: 10
-
-    # This speeds up uploading the artifact by a large margin
-    - name: compress build-results
-      run: tar -zcvf build-results.tar.gz drop
-      timeout-minutes: 5
-
     - name: upload artifact build-results
       uses: actions/upload-artifact@v3
       with:
         name: build-results
-        path: build-results.tar.gz
+        path: drop
       timeout-minutes: 5
     
   unit-tests:
