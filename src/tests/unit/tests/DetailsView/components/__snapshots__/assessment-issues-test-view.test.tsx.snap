@@ -1,12 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AssessmentIssuesTestView should return DetailsListIssuesView 1`] = `
+exports[`AssessmentIssuesTestView renders 1`] = `
 <div
   className="issuesTestView"
 >
   <React.Fragment>
     <BannerWarnings
-      deps={{}}
+      deps={
+        {
+          "assessmentViewUpdateHandler": [typemoq mock object],
+          "getProvider": [Function],
+        }
+      }
       test={-1}
       visualizationStoreData={
         {
@@ -17,17 +22,49 @@ exports[`AssessmentIssuesTestView should return DetailsListIssuesView 1`] = `
       warningConfiguration={{}}
       warnings={[]}
     />
+    <TargetChangeDialog
+      deps={
+        {
+          "assessmentViewUpdateHandler": [typemoq mock object],
+          "getProvider": [Function],
+        }
+      }
+      newTab={
+        {
+          "id": 0,
+          "title": "test-title",
+          "url": "test-url",
+        }
+      }
+      prevTab={{}}
+    />
     <DetailsListIssuesView
+      assessmentStoreData={
+        {
+          "assessmentNavState": {
+            "selectedTestSubview": "test-subview",
+            "selectedTestType": -1,
+          },
+          "persistedTabInfo": {},
+        }
+      }
       clickHandlerFactory={[typemoq mock object]}
       configuration={
         {
           "displayableData": {
             "title": "test title",
           },
+          "getAssessmentData": [Function],
           "getStoreData": [Function],
+          "getTestStatus": [Function],
         }
       }
-      deps={{}}
+      deps={
+        {
+          "assessmentViewUpdateHandler": [typemoq mock object],
+          "getProvider": [Function],
+        }
+      }
       instancesSection={[Function]}
       scanIncompleteWarnings={[]}
       selectedTest={-1}
@@ -38,7 +75,9 @@ exports[`AssessmentIssuesTestView should return DetailsListIssuesView 1`] = `
       }
       tabStoreData={
         {
-          "isChanged": false,
+          "id": 0,
+          "title": "test-title",
+          "url": "test-url",
         }
       }
       visualizationStoreData={

@@ -51,8 +51,8 @@ export class AssessmentIssuesTestView extends React.Component<AssessmentIssuesTe
         }
 
         this.props.deps.assessmentViewUpdateHandler.update(
-            this.getUpdateHandlerProps(prevProps),
-            this.getUpdateHandlerProps(this.props),
+            prevUpdateHandlerProps,
+            newUpdateHandlerProps,
         );
     }
 
