@@ -33,7 +33,7 @@ import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/detai
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AssessmentIssuesTestView', () => {
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
@@ -170,72 +170,154 @@ describe('AssessmentIssuesTestView', () => {
         updateHandlerMock.setup(u => u.onUnmount(getUpdateHandlerProps())).verifiable(Times.once());
 
         const testObject = new AssessmentIssuesTestView(propsStub);
-
         testObject.componentWillUnmount();
     });
 
-    test('componentDidUpdate', () => {
-        const newTabStoreDataStub = {
-            id: 1,
-            url: 'test-url-updated',
-            title: 'test-title-updated',
-        } as TabStoreData;
-        const newAssessmentStoreDataStub = {
-            assessmentNavState: {
-                selectedTestSubview: selectedTestViewStub,
-                selectedTestType: selectedTestTypeStub,
-            },
-            persistedTabInfo: newTabStoreDataStub,
-        } as unknown as AssessmentStoreData;
-        const newProps = {
-            configuration: configurationStub,
-            clickHandlerFactory: clickHandlerFactoryMock.object,
-            visualizationStoreData: visualizationStoreDataStub,
-            selectedTest: selectedTest,
-            scanIncompleteWarnings: [],
-            instancesSection: NamedFC<CommonInstancesSectionProps>('test', _ => null),
-            switcherNavConfiguration: switcherNavConfigurationStub,
-            assessmentStoreData: newAssessmentStoreDataStub,
-            tabStoreData: tabStoreDataStub,
-            deps: depsStub,
-        } as AssessmentIssuesTestViewProps;
-        const prevProps = propsStub;
+    describe('componentDidUpdate', () => {
+        let newTabStoreDataStub: TabStoreData;
+        let newAssessmentStoreDataStub: AssessmentStoreData;
+        let newProps: AssessmentIssuesTestViewProps;
 
-        getStoreDataMock.reset();
-        getStoreDataMock
-            .setup(m => m(testsStub))
-            .returns(() => scanDataStub)
-            .verifiable(Times.exactly(2));
-        getTestStatusMock.reset();
-        getTestStatusMock
-            .setup(m => m(scanDataStub, selectedTestViewStub))
-            .returns(() => selectedRequirementIsEnabledStub)
-            .verifiable(Times.exactly(2));
-        getAssessmentDataMock.reset();
-        getAssessmentDataMock
-            .setup(m => m(assessmentStoreDataStub))
-            .returns(() => assessmentDataStub)
-            .verifiable(Times.once());
-        getAssessmentDataMock
-            .setup(m => m(newAssessmentStoreDataStub))
-            .returns(() => assessmentDataStub)
-            .verifiable(Times.once());
-        assessmentProviderMock.reset();
-        assessmentProviderMock
-            .setup(m => m.forType(selectedTestTypeStub))
-            .returns(() => assessmentStub)
-            .verifiable(Times.exactly(2));
+        beforeEach(() => {
+            newTabStoreDataStub = {
+                id: 1,
+                url: 'test-url-updated',
+                title: 'test-title-updated',
+            } as TabStoreData;
+            newAssessmentStoreDataStub = {
+                assessmentNavState: {
+                    selectedTestSubview: selectedTestViewStub,
+                    selectedTestType: selectedTestTypeStub,
+                },
+                persistedTabInfo: newTabStoreDataStub,
+            } as unknown as AssessmentStoreData;
+            newProps = {
+                configuration: configurationStub,
+                clickHandlerFactory: clickHandlerFactoryMock.object,
+                visualizationStoreData: visualizationStoreDataStub,
+                selectedTest: selectedTest,
+                scanIncompleteWarnings: [],
+                instancesSection: NamedFC<CommonInstancesSectionProps>('test', _ => null),
+                switcherNavConfiguration: switcherNavConfigurationStub,
+                assessmentStoreData: newAssessmentStoreDataStub,
+                tabStoreData: tabStoreDataStub,
+                deps: depsStub,
+            } as AssessmentIssuesTestViewProps;
+        });
 
-        const oldHandlerProps = getUpdateHandlerProps();
-        const newHandlerProps = cloneDeep(oldHandlerProps);
-        newHandlerProps.prevTarget = newTabStoreDataStub;
-        updateHandlerMock
-            .setup(u => u.update(newHandlerProps, oldHandlerProps))
-            .verifiable(Times.once());
+        test('calls update', () => {
+            const prevProps = propsStub;
+            getStoreDataMock.reset();
+            getStoreDataMock
+                .setup(m => m(testsStub))
+                .returns(() => scanDataStub)
+                .verifiable(Times.exactly(2));
+            getTestStatusMock.reset();
+            getTestStatusMock
+                .setup(m => m(scanDataStub, selectedTestViewStub))
+                .returns(() => selectedRequirementIsEnabledStub)
+                .verifiable(Times.exactly(2));
+            getAssessmentDataMock.reset();
+            getAssessmentDataMock
+                .setup(m => m(assessmentStoreDataStub))
+                .returns(() => assessmentDataStub)
+                .verifiable(Times.once());
+            getAssessmentDataMock
+                .setup(m => m(newAssessmentStoreDataStub))
+                .returns(() => assessmentDataStub)
+                .verifiable(Times.once());
+            assessmentProviderMock.reset();
+            assessmentProviderMock
+                .setup(m => m.forType(selectedTestTypeStub))
+                .returns(() => assessmentStub)
+                .verifiable(Times.exactly(2));
 
-        const testObject = new AssessmentIssuesTestView(prevProps);
+            const oldHandlerProps = getUpdateHandlerProps();
+            const newHandlerProps = cloneDeep(oldHandlerProps);
+            newHandlerProps.prevTarget = newTabStoreDataStub;
+            updateHandlerMock
+                .setup(u => u.update(newHandlerProps, oldHandlerProps))
+                .verifiable(Times.once());
 
-        testObject.componentDidUpdate(newProps);
+            const testObject = new AssessmentIssuesTestView(prevProps);
+
+            testObject.componentDidUpdate(newProps);
+        });
+
+        test('does not call update when prevProps match new props', () => {
+            const prevProps = propsStub;
+            getStoreDataMock.reset();
+            getStoreDataMock
+                .setup(m => m(testsStub))
+                .returns(() => scanDataStub)
+                .verifiable(Times.exactly(2));
+            getTestStatusMock.reset();
+            getTestStatusMock
+                .setup(m => m(scanDataStub, selectedTestViewStub))
+                .returns(() => selectedRequirementIsEnabledStub)
+                .verifiable(Times.exactly(2));
+            getAssessmentDataMock.reset();
+            getAssessmentDataMock
+                .setup(m => m(assessmentStoreDataStub))
+                .returns(() => assessmentDataStub)
+                .verifiable(Times.exactly(2));
+            assessmentProviderMock.reset();
+            assessmentProviderMock
+                .setup(m => m.forType(selectedTestTypeStub))
+                .returns(() => assessmentStub)
+                .verifiable(Times.exactly(2));
+
+            const oldHandlerProps = getUpdateHandlerProps();
+            const newHandlerProps = cloneDeep(oldHandlerProps);
+            newHandlerProps.prevTarget = newTabStoreDataStub;
+            updateHandlerMock
+                .setup(u => u.update(It.isAny(), It.isAny()))
+                .verifiable(Times.never());
+
+            const testObject = new AssessmentIssuesTestView(prevProps);
+
+            testObject.componentDidUpdate(prevProps);
+        });
+
+        test('calls update with undefined prevProps.selectedTestSubview when assessment is not found', () => {
+            const prevProps = propsStub;
+            getStoreDataMock.reset();
+            getStoreDataMock
+                .setup(m => m(testsStub))
+                .returns(() => scanDataStub)
+                .verifiable(Times.exactly(2));
+            getTestStatusMock.reset();
+            getTestStatusMock
+                .setup(m => m(scanDataStub, selectedTestViewStub))
+                .returns(() => selectedRequirementIsEnabledStub)
+                .verifiable(Times.exactly(2));
+            getAssessmentDataMock.reset();
+            getAssessmentDataMock
+                .setup(m => m(assessmentStoreDataStub))
+                .returns(() => assessmentDataStub)
+                .verifiable(Times.once());
+            getAssessmentDataMock
+                .setup(m => m(newAssessmentStoreDataStub))
+                .returns(() => assessmentDataStub)
+                .verifiable(Times.once());
+            assessmentProviderMock.reset();
+            assessmentProviderMock
+                .setup(m => m.forType(selectedTestTypeStub))
+                .returns(() => null)
+                .verifiable(Times.exactly(2));
+
+            const oldHandlerProps = getUpdateHandlerProps();
+            oldHandlerProps.assessmentNavState.selectedTestSubview = undefined;
+            const newHandlerProps = cloneDeep(oldHandlerProps);
+            newHandlerProps.prevTarget = newTabStoreDataStub;
+            updateHandlerMock
+                .setup(u => u.update(newHandlerProps, oldHandlerProps))
+                .verifiable(Times.once());
+
+            const testObject = new AssessmentIssuesTestView(prevProps);
+
+            testObject.componentDidUpdate(newProps);
+        });
     });
 
     function getUpdateHandlerProps(): AssessmentViewUpdateHandlerProps {

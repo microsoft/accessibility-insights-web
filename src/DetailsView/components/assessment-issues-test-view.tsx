@@ -66,18 +66,27 @@ export class AssessmentIssuesTestView extends React.Component<AssessmentIssuesTe
         props: AssessmentIssuesTestViewProps,
     ): AssessmentViewUpdateHandlerProps {
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
+        const propNavState = props.assessmentStoreData.assessmentNavState;
         const selectedRequirementIsEnabled = props.configuration.getTestStatus(
             scanData,
-            props.assessmentStoreData.assessmentNavState.selectedTestSubview,
+            propNavState.selectedTestSubview,
         );
         const assessmentData = props.configuration.getAssessmentData!(props.assessmentStoreData);
-        const assessment = props.deps
-            .getProvider()
-            .forType(props.assessmentStoreData.assessmentNavState.selectedTestType);
+        const assessment = props.deps.getProvider().forType(propNavState.selectedTestType);
+
         const navState = {
-            ...props.assessmentStoreData.assessmentNavState,
-            // since no test subview/requirement is specifically selected in automated checks, we default to first requirement.
-            selectedTestSubview: assessment!.requirements[0].key,
+            selectedTestType: propNavState.selectedTestType,
+            /*
+                A couple notes:
+                1. Because we run this with the previous props and the underlying assessment
+                provider can be switched, the assessment returned can be null (i.e. looking for a
+                quick assess assessment object from prevProps using the full assessment provider or
+                vice versa).
+
+                2. Since no test subview/requirement is specifically selected in automated checks,
+                we default to first requirement.
+            */
+            selectedTestSubview: assessment?.requirements[0].key,
         } as AssessmentNavState;
 
         return {
