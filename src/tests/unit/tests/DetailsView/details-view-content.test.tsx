@@ -13,6 +13,8 @@ import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import {
     convertAssessmentStoreDataToScanNodeResults,
     ConvertAssessmentStoreDataToScanNodeResultsCallback,
+    convertUnifiedStoreDataToScanNodeResults,
+    ConvertUnifiedStoreDataToScanNodeResultsCallback,
     ScanNodeResult,
 } from 'common/store-data-to-scan-node-result-converter';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
@@ -67,6 +69,7 @@ describe(DetailsViewContent.displayName, () => {
     let getDetailsSwitcherNavConfiguration: IMock<GetDetailsSwitcherNavConfiguration>;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let getCardViewDataMock: IMock<GetCardViewData>;
+    let convertUnifiedStoreDataToScanNodeResultsMock: IMock<ConvertUnifiedStoreDataToScanNodeResultsCallback>;
     let convertAssessmentStoreDataToScanNodeResultsMock: IMock<ConvertAssessmentStoreDataToScanNodeResultsCallback>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
@@ -94,6 +97,10 @@ describe(DetailsViewContent.displayName, () => {
         );
         convertAssessmentStoreDataToScanNodeResultsMock = Mock.ofInstance(
             convertAssessmentStoreDataToScanNodeResults,
+            MockBehavior.Strict,
+        );
+        convertUnifiedStoreDataToScanNodeResultsMock = Mock.ofInstance(
+            convertUnifiedStoreDataToScanNodeResults,
             MockBehavior.Strict,
         );
         getCardSelectionViewDataMock = Mock.ofInstance(
@@ -136,6 +143,8 @@ describe(DetailsViewContent.displayName, () => {
             getDateFromTimestamp: getDateFromTimestampMock.object,
             getAssessmentInstanceTableHandler: () => assessmentInstanceTableHandlerMock.object,
             visualizationConfigurationFactory: visualizationConfigurationFactoryMock.object,
+            convertUnifiedStoreDataToScanNodeResults:
+                convertUnifiedStoreDataToScanNodeResultsMock.object,
             convertAssessmentStoreDataToScanNodeResults:
                 convertAssessmentStoreDataToScanNodeResultsMock.object,
             defaultRulesMap: defaultRulesMapStub,
@@ -293,22 +302,48 @@ describe(DetailsViewContent.displayName, () => {
                 .setup(vcfm => vcfm.getConfiguration(viewType))
                 .returns(() => configStub);
 
-            const cardsViewDataStub: CardsViewModel = {
+            const unifiedCardsViewDataStub: CardsViewModel = {
                 allCardsCollapsed: false,
+            } as CardsViewModel;
+            const needsReviewCardsViewDataStub: CardsViewModel = {
+                allCardsCollapsed: true,
+                visualHelperEnabled: true,
             } as CardsViewModel;
             const assessmentCardsViewDataStub: CardsViewModel = {
                 allCardsCollapsed: true,
             } as CardsViewModel;
 
-            const scanNodeResultsStub = [
+            const assessmentScanNodeResultsStub = [
                 {
-                    ruleId: 'some-rule-id',
+                    ruleId: 'some-assessment-rule-id',
+                },
+            ] as ScanNodeResult[];
+            const unifiedScanNodeResultsStub = [
+                {
+                    ruleId: 'some-unified-scan-rule-id',
+                },
+            ] as ScanNodeResult[];
+            const needsReviewScanNodeResultsStub = [
+                {
+                    ruleId: 'some-needs-review-rule-id',
                 },
             ] as ScanNodeResult[];
 
+            convertUnifiedStoreDataToScanNodeResultsMock
+                .setup(m => m(state.unifiedScanResultStoreData))
+                .returns(() => unifiedScanNodeResultsStub);
+            convertUnifiedStoreDataToScanNodeResultsMock
+                .setup(m => m(state.needsReviewScanResultStoreData))
+                .returns(() => needsReviewScanNodeResultsStub);
+
             getCardSelectionViewDataMock
                 .setup(g =>
-                    g(undefined, scanNodeResultsStub, null, isResultHighlightUnavailableStub),
+                    g(
+                        undefined,
+                        assessmentScanNodeResultsStub,
+                        null,
+                        isResultHighlightUnavailableStub,
+                    ),
                 )
                 .returns(() => cardSelectionViewData)
                 .verifiable(Times.exactly(1));
@@ -322,19 +357,19 @@ describe(DetailsViewContent.displayName, () => {
                         defaultRulesMapStub,
                     ),
                 )
-                .returns(() => scanNodeResultsStub);
+                .returns(() => assessmentScanNodeResultsStub);
 
             getCardViewDataMock
-                .setup(m => m(scanNodeResultsStub, cardSelectionViewData))
+                .setup(m => m(assessmentScanNodeResultsStub, cardSelectionViewData))
                 .returns(() => assessmentCardsViewDataStub);
 
             getCardViewDataMock
-                .setup(m => m([], cardSelectionViewData))
-                .returns(() => cardsViewDataStub);
+                .setup(m => m(unifiedScanNodeResultsStub, cardSelectionViewData))
+                .returns(() => unifiedCardsViewDataStub);
 
             getCardViewDataMock
-                .setup(m => m(null, cardSelectionViewData))
-                .returns(() => cardsViewDataStub);
+                .setup(m => m(needsReviewScanNodeResultsStub, cardSelectionViewData))
+                .returns(() => needsReviewCardsViewDataStub);
 
             const rendered = shallow(
                 <DetailsViewContent

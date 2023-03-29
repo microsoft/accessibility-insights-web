@@ -10,7 +10,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import {
     ConvertAssessmentStoreDataToScanNodeResultsCallback,
-    convertUnifiedStoreDataToScanNodeResults,
+    ConvertUnifiedStoreDataToScanNodeResultsCallback,
 } from 'common/store-data-to-scan-node-result-converter';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
@@ -52,6 +52,7 @@ export type DetailsViewContentDeps = {
     testViewContainerProvider: TestViewContainerProvider;
     defaultRulesMap: ScannerRuleInfoMap;
     convertAssessmentStoreDataToScanNodeResults: ConvertAssessmentStoreDataToScanNodeResultsCallback;
+    convertUnifiedStoreDataToScanNodeResults: ConvertUnifiedStoreDataToScanNodeResultsCallback;
 } & InteractiveHeaderDeps &
     DetailsViewOverlayDeps &
     DetailsViewBodyDeps;
@@ -118,7 +119,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         const selectedTest =
             selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const unifiedScanNodeResults = convertUnifiedStoreDataToScanNodeResults(
+        const unifiedScanNodeResults = deps.convertUnifiedStoreDataToScanNodeResults(
             props.storeState.unifiedScanResultStoreData,
         );
         const automatedChecksCardsViewData = props.deps.getCardViewData(
@@ -134,8 +135,12 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         const tabStopRequirementData =
             props.storeState.visualizationScanResultStoreData.tabStops.requirements;
 
+        const needsReviewScanNodeResults = deps.convertUnifiedStoreDataToScanNodeResults(
+            props.storeState.needsReviewScanResultStoreData,
+        );
+
         const needsReviewCardsViewData = props.deps.getCardViewData(
-            unifiedScanNodeResults,
+            needsReviewScanNodeResults,
             props.deps.getCardSelectionViewData(
                 props.storeState.needsReviewCardSelectionStoreData,
                 props.storeState.needsReviewScanResultStoreData.results,

@@ -39,7 +39,10 @@ import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creat
 import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { Messages } from 'common/messages';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
-import { convertAssessmentStoreDataToScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
+import {
+    convertAssessmentStoreDataToScanNodeResults,
+    convertUnifiedStoreDataToScanNodeResults,
+} from 'common/store-data-to-scan-node-result-converter';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
@@ -735,6 +738,7 @@ if (tabId != null) {
                 testViewContainerProvider,
                 defaultRulesMap: getDefaultRulesMap(),
                 convertAssessmentStoreDataToScanNodeResults,
+                convertUnifiedStoreDataToScanNodeResults,
             };
 
             const renderer = new DetailsViewRenderer(

@@ -6,6 +6,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     deps={
       {
         "convertAssessmentStoreDataToScanNodeResults": [Function],
+        "convertUnifiedStoreDataToScanNodeResults": [Function],
         "defaultRulesMap": {
           "some-rule": {
             "a11yCriteria": null,
@@ -75,6 +76,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     deps={
       {
         "convertAssessmentStoreDataToScanNodeResults": [Function],
+        "convertUnifiedStoreDataToScanNodeResults": [Function],
         "defaultRulesMap": {
           "some-rule": {
             "a11yCriteria": null,
@@ -125,7 +127,8 @@ exports[`DetailsViewContent render renders normally 1`] = `
     }
     needsReviewCardsViewData={
       {
-        "allCardsCollapsed": false,
+        "allCardsCollapsed": true,
+        "visualHelperEnabled": true,
       }
     }
     pathSnippetStoreData={
@@ -477,6 +480,7 @@ exports[`DetailsViewContent render renders normally 1`] = `
     deps={
       {
         "convertAssessmentStoreDataToScanNodeResults": [Function],
+        "convertUnifiedStoreDataToScanNodeResults": [Function],
         "defaultRulesMap": {
           "some-rule": {
             "a11yCriteria": null,
