@@ -101,6 +101,7 @@ module.exports = function (grunt) {
         if (version === 'auto') {
             version = versionFromDate();
         }
+        grunt.log.writeln(`##vso[release.updatereleasename]${version}`);
         manifest.version = version;
         grunt.log.writeln(`publishing ai-web version ${version}`);
         grunt.file.write(manifestPath, JSON.stringify(manifest, undefined, 4));
