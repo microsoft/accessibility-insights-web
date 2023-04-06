@@ -118,7 +118,7 @@ export function createSimulatedBrowserAdapter(
         });
         if (tabToActivate.id != null) {
             await mock.notifyTabsOnActivated!({
-                windowId: tabToActivate.windowId,
+                windowId: tabToActivate.windowId!,
                 tabId: tabToActivate.id,
             });
         }

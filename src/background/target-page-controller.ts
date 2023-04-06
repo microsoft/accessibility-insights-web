@@ -140,6 +140,12 @@ export class TargetPageController {
     };
 
     private handleTabUrlUpdate = async (tabId: number): Promise<void> => {
+        this.tabContextManager.addTabContextIfNotExists(tabId, this.tabContextFactory);
+        await this.sendTabUrlUpdatedAction(tabId);
+        await this.addKnownTabId(tabId);
+    };
+
+    private async sendTabUrlUpdatedAction(tabId: number): Promise<void> {
         let tab: Tabs.Tab;
         try {
             tab = await this.browserAdapter.getTab(tabId);
@@ -149,12 +155,6 @@ export class TargetPageController {
             return;
         }
 
-        this.tabContextManager.addTabContextIfNotExists(tabId, this.tabContextFactory);
-        await this.sendTabUrlUpdatedAction(tab);
-        await this.addKnownTabId(tabId);
-    };
-
-    private async sendTabUrlUpdatedAction(tab: Tabs.Tab): Promise<void> {
         await this.interpretMessageAsync({
             messageType: Messages.Tab.ExistingTabUpdated,
             payload: tab,
