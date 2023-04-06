@@ -193,7 +193,7 @@ initializeFabricIcons();
 
 if (tabId != null) {
     void browserAdapter
-        .getTabAsync(tabId)
+        .getTab(tabId)
         .then((tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 

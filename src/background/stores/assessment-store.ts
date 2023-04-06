@@ -113,7 +113,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
     }
 
     private async updateTargetTabWithId(tabId: number): Promise<void> {
-        const tab = await this.browserAdapter.getTabAsync(tabId);
+        const tab = await this.browserAdapter.getTab(tabId);
         this.state.persistedTabInfo = {
             id: tab.id,
             url: tab.url,

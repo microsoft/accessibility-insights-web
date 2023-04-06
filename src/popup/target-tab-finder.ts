@@ -36,7 +36,7 @@ export class TargetTabFinder {
                     return tabs.pop()!;
                 });
         } else {
-            return this.browserAdapter.getTabAsync(tabIdInUrl);
+            return this.browserAdapter.getTab(tabIdInUrl);
         }
     };
 

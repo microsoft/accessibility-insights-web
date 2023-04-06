@@ -138,26 +138,25 @@ export class TargetPageController {
     };
 
     private handleTabUrlUpdate = async (tabId: number): Promise<void> => {
-        this.tabContextManager.addTabContextIfNotExists(tabId, this.tabContextFactory);
-        await this.sendTabUrlUpdatedAction(tabId);
-        await this.addKnownTabId(tabId);
-    };
-
-    private async sendTabUrlUpdatedAction(tabId: number): Promise<void> {
         let tab: chrome.tabs.Tab;
         try {
-            tab = await this.browserAdapter.getTabAsync(tabId);
+            tab = await this.browserAdapter.getTab(tabId);
         } catch (e) {
-            this.logger.log(
-                `sendTabUrlUpdatedAction: tab with ID ${tabId} not found, skipping action message`,
-            );
+            // This is expected in some cases; the browser will sometimes send us update/navigation
+            // events for a tab which our extension can't see because it is tearing down/preloading
             return;
         }
 
+        this.tabContextManager.addTabContextIfNotExists(tabId, this.tabContextFactory);
+        await this.sendTabUrlUpdatedAction(tab);
+        await this.addKnownTabId(tabId);
+    };
+
+    private async sendTabUrlUpdatedAction(tab: chrome.tabs.Tab): Promise<void> {
         await this.interpretMessageAsync({
             messageType: Messages.Tab.ExistingTabUpdated,
             payload: tab,
-            tabId: tabId,
+            tabId: tab.id,
         });
     }
 

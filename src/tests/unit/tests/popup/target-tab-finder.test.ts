@@ -87,7 +87,7 @@ describe('TargetTabFinderTest', () => {
         const testError = new Error('Tab not found');
         setupGetTabIdParamFromUrl(tabId);
         browserAdapterMock
-            .setup(b => b.getTabAsync(tabId))
+            .setup(b => b.getTab(tabId))
             .returns(async () => {
                 throw testError;
             });
@@ -111,7 +111,7 @@ describe('TargetTabFinderTest', () => {
 
     function setupGetTabCall(): void {
         browserAdapterMock
-            .setup(b => b.getTabAsync(tabId))
+            .setup(b => b.getTab(tabId))
             .returns(async () => tabStub as chrome.tabs.Tab);
     }
 

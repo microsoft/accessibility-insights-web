@@ -39,8 +39,8 @@ export abstract class WebExtensionBrowserAdapter
         };
     }
 
-    public getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]> {
-        return browser.windows.getAll(getInfo);
+    public async getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]> {
+        return await browser.windows.getAll(getInfo);
     }
 
     public addListenerToTabsOnActivated(
@@ -75,20 +75,12 @@ export abstract class WebExtensionBrowserAdapter
         this.addListener('WindowsOnFocusChanged', callback);
     }
 
-    public tabsQuery(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]> {
-        return browser.tabs.query(query);
+    public async tabsQuery(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]> {
+        return await browser.tabs.query(query);
     }
 
-    public async getTabAsync(tabId: number): Promise<chrome.tabs.Tab> {
-        return new Promise((resolve, reject) => {
-            chrome.tabs.get(tabId, tab => {
-                if (tab) {
-                    resolve(tab);
-                } else {
-                    reject(new Error(`tab with Id ${tabId} not found`));
-                }
-            });
-        });
+    public async getTab(tabId: number): Promise<Tabs.Tab> {
+        return await browser.tabs.get(tabId);
     }
 
     private verifyPathCompatibility(path?: string): void {
@@ -103,7 +95,7 @@ export abstract class WebExtensionBrowserAdapter
         }
     }
 
-    public executeScriptInTab(
+    public async executeScriptInTab(
         tabId: number,
         details: {
             file: string;
@@ -112,14 +104,14 @@ export abstract class WebExtensionBrowserAdapter
     ): Promise<any[]> {
         this.verifyPathCompatibility(details.file);
         return typeof browser.tabs.executeScript === 'function'
-            ? browser.tabs.executeScript(tabId, details)
-            : chrome.scripting.executeScript({
+            ? await browser.tabs.executeScript(tabId, details)
+            : await chrome.scripting.executeScript({
                   target: { tabId, allFrames: details.allFrames },
                   files: [details.file],
               });
     }
 
-    public insertCSSInTab(
+    public async insertCSSInTab(
         tabId: number,
         details: {
             file: string;
@@ -128,15 +120,15 @@ export abstract class WebExtensionBrowserAdapter
     ): Promise<void> {
         this.verifyPathCompatibility(details.file);
         return typeof browser.tabs.insertCSS === 'function'
-            ? browser.tabs.insertCSS(tabId, details)
-            : chrome.scripting.insertCSS({
+            ? await browser.tabs.insertCSS(tabId, details)
+            : await chrome.scripting.insertCSS({
                   target: { tabId, allFrames: details.allFrames },
                   files: [details.file],
               });
     }
 
-    public createActiveTab(url: string): Promise<Tabs.Tab> {
-        return browser.tabs.create({ url, active: true, pinned: false });
+    public async createActiveTab(url: string): Promise<Tabs.Tab> {
+        return await browser.tabs.create({ url, active: true, pinned: false });
     }
 
     public async createTabInNewWindow(url: string): Promise<Tabs.Tab> {
@@ -147,18 +139,18 @@ export abstract class WebExtensionBrowserAdapter
         return newWindow.tabs[0];
     }
 
-    public updateTab(
+    public async updateTab(
         tabId: number,
         updateProperties: Tabs.UpdateUpdatePropertiesType,
     ): Promise<Tabs.Tab> {
-        return browser.tabs.update(tabId, updateProperties);
+        return await browser.tabs.update(tabId, updateProperties);
     }
 
-    public updateWindow(
+    public async updateWindow(
         windowId: number,
         updateProperties: Windows.UpdateUpdateInfoType,
     ): Promise<Windows.Window> {
-        return browser.windows.update(windowId, updateProperties);
+        return await browser.windows.update(windowId, updateProperties);
     }
 
     public async switchToTab(tabId: number): Promise<void> {
@@ -169,40 +161,42 @@ export abstract class WebExtensionBrowserAdapter
         await this.updateWindow(tab.windowId, { focused: true });
     }
 
-    public sendMessageToTab(tabId: number, message: any): Promise<void> {
-        return browser.tabs.sendMessage(tabId, message);
+    public async sendMessageToTab(tabId: number, message: any): Promise<void> {
+        return await browser.tabs.sendMessage(tabId, message);
     }
 
-    public sendMessageToFrames(message: any): Promise<void> {
-        return browser.runtime.sendMessage(message);
+    public async sendMessageToFrames(message: any): Promise<void> {
+        return await browser.runtime.sendMessage(message);
     }
 
     public async sendRuntimeMessage(message: any): Promise<any> {
         return await browser.runtime.sendMessage(message);
     }
 
-    public setUserData(items: Object): Promise<void> {
-        return browser.storage.local.set(items);
+    public async setUserData(items: Object): Promise<void> {
+        return await browser.storage.local.set(items);
     }
 
-    public getUserData(keys: string[]): Promise<{ [key: string]: any }> {
-        return browser.storage.local.get(keys);
+    public async getUserData(keys: string[]): Promise<{ [key: string]: any }> {
+        return await browser.storage.local.get(keys);
     }
 
-    public removeUserData(key: string): Promise<void> {
-        return browser.storage.local.remove(key);
+    public async removeUserData(key: string): Promise<void> {
+        return await browser.storage.local.remove(key);
     }
 
     public getRuntimeLastError(): chrome.runtime.LastError | undefined {
         return chrome.runtime.lastError;
     }
 
-    public createNotification(options: Notifications.CreateNotificationOptions): Promise<string> {
-        return browser.notifications.create(options);
+    public async createNotification(
+        options: Notifications.CreateNotificationOptions,
+    ): Promise<string> {
+        return await browser.notifications.create(options);
     }
 
-    public isAllowedFileSchemeAccess(): Promise<boolean> {
-        return browser.extension.isAllowedFileSchemeAccess();
+    public async isAllowedFileSchemeAccess(): Promise<boolean> {
+        return await browser.extension.isAllowedFileSchemeAccess();
     }
 
     public addCommandListener(callback: (command: string) => void): void {
@@ -241,8 +235,8 @@ export abstract class WebExtensionBrowserAdapter
         return browser.runtime.getURL(urlPart);
     }
 
-    public requestPermissions(permissions: Permissions.Permissions): Promise<boolean> {
-        return browser.permissions.request(permissions);
+    public async requestPermissions(permissions: Permissions.Permissions): Promise<boolean> {
+        return await browser.permissions.request(permissions);
     }
 
     public addListenerOnPermissionsAdded(
@@ -257,8 +251,8 @@ export abstract class WebExtensionBrowserAdapter
         this.addListener('PermissionsOnRemoved', callback);
     }
 
-    public containsPermissions(permissions: Permissions.Permissions): Promise<boolean> {
-        return browser.permissions.contains(permissions);
+    public async containsPermissions(permissions: Permissions.Permissions): Promise<boolean> {
+        return await browser.permissions.contains(permissions);
     }
 
     public getInspectedWindowTabId(): number | null {
