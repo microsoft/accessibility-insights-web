@@ -20,18 +20,18 @@ export type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
     //
     // Tests are responsible for maintaining self-consistency (ie, ensuring all tabs have corresponding windows)
     windows: chrome.windows.Window[];
-    tabs: chrome.tabs.Tab[];
+    tabs: Tabs.Tab[];
 
     // These are set directly to whichever listener was last registered in the corresponding this.object.addListener* call
-    notifyTabsOnActivated?: (activeInfo: chrome.tabs.TabActiveInfo) => void | Promise<void>;
+    notifyTabsOnActivated?: (activeInfo: Tabs.OnActivatedActiveInfoType) => void | Promise<void>;
     notifyTabsOnUpdated?: (
         tabId: number,
-        changeInfo: chrome.tabs.TabChangeInfo,
-        tab: chrome.tabs.Tab,
+        changeInfo: Tabs.OnUpdatedChangeInfoType,
+        tab: Tabs.Tab,
     ) => void | Promise<void>;
     notifyTabsOnRemoved?: (
         tabId: number,
-        removeInfo: chrome.tabs.TabRemoveInfo,
+        removeInfo: Tabs.OnRemovedRemoveInfoType,
     ) => void | Promise<void>;
     notifyWebNavigationUpdated?: (
         details: chrome.webNavigation.WebNavigationFramedCallbackDetails,
@@ -39,8 +39,8 @@ export type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
     notifyWindowsFocusChanged?: (windowId: number) => void | Promise<void>;
 
     // These simulate real "update"/"activate" events (they update the windows/tabs state and send the notifications)
-    updateTab: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void | Promise<void>;
-    activateTab: (tab: chrome.tabs.Tab) => void | Promise<void>;
+    updateTab: (tabId: number, changeInfo: Tabs.OnUpdatedChangeInfoType) => void | Promise<void>;
+    activateTab: (tab: Tabs.Tab) => void | Promise<void>;
 
     // This simulates normal browser runtime.onMessage behavior:
     //  - it loops through each listener previously registered with addListenerOnMessage
@@ -52,7 +52,7 @@ export type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
 };
 
 export function createSimulatedBrowserAdapter(
-    tabs?: chrome.tabs.Tab[],
+    tabs?: Tabs.Tab[],
     windows?: chrome.windows.Window[],
 ): SimulatedBrowserAdapter {
     const mock: Partial<SimulatedBrowserAdapter> & IMock<BrowserAdapter> =

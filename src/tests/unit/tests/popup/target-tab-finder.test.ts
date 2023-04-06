@@ -5,7 +5,7 @@ import { UrlParser } from 'common/url-parser';
 import { UrlValidator } from 'common/url-validator';
 import { TargetTabFinder } from 'popup/target-tab-finder';
 import { IMock, Mock } from 'typemoq';
-import { Tabs } from 'webextension-polyfill';
+import type { Tabs } from 'webextension-polyfill';
 
 describe('TargetTabFinderTest', () => {
     let testSubject: TargetTabFinder;
@@ -110,9 +110,7 @@ describe('TargetTabFinderTest', () => {
     }
 
     function setupGetTabCall(): void {
-        browserAdapterMock
-            .setup(b => b.getTab(tabId))
-            .returns(async () => tabStub as chrome.tabs.Tab);
+        browserAdapterMock.setup(b => b.getTab(tabId)).returns(async () => tabStub as Tabs.Tab);
     }
 
     function setupTabQueryCall(returnValue: Tabs.Tab[]): void {

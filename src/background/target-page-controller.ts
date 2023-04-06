@@ -4,10 +4,10 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Logger } from 'common/logging/logger';
 import { InterpreterMessage, Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { DictionaryNumberTo } from 'types/common-types';
+import type { Tabs } from 'webextension-polyfill';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { TabContextManager } from './tab-context-manager';
 
@@ -16,7 +16,6 @@ export class TargetPageController {
         private readonly tabContextManager: TabContextManager,
         private readonly tabContextFactory: TabContextFactory,
         private readonly browserAdapter: BrowserAdapter,
-        private readonly logger: Logger,
         private readonly knownTabs: DictionaryNumberTo<string>,
         private readonly idbInstance: IndexedDBAPI,
     ) {}
@@ -57,13 +56,16 @@ export class TargetPageController {
         }
     }
 
-    public async onTabUpdated(tabId: number, changeInfo: chrome.tabs.TabChangeInfo): Promise<void> {
+    public async onTabUpdated(
+        tabId: number,
+        changeInfo: Tabs.OnUpdatedChangeInfoType,
+    ): Promise<void> {
         if (changeInfo.url) {
             await this.handleTabUrlUpdate(tabId);
         }
     }
 
-    public async onTabActivated(activeInfo: chrome.tabs.TabActiveInfo): Promise<void> {
+    public async onTabActivated(activeInfo: Tabs.OnActivatedActiveInfoType): Promise<void> {
         const activeTabId = activeInfo.tabId;
         const windowId = activeInfo.windowId;
 
@@ -138,7 +140,7 @@ export class TargetPageController {
     };
 
     private handleTabUrlUpdate = async (tabId: number): Promise<void> => {
-        let tab: chrome.tabs.Tab;
+        let tab: Tabs.Tab;
         try {
             tab = await this.browserAdapter.getTab(tabId);
         } catch (e) {
@@ -152,7 +154,7 @@ export class TargetPageController {
         await this.addKnownTabId(tabId);
     };
 
-    private async sendTabUrlUpdatedAction(tab: chrome.tabs.Tab): Promise<void> {
+    private async sendTabUrlUpdatedAction(tab: Tabs.Tab): Promise<void> {
         await this.interpretMessageAsync({
             messageType: Messages.Tab.ExistingTabUpdated,
             payload: tab,

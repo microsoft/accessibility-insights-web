@@ -9,12 +9,13 @@ import {
     SimulatedBrowserAdapter,
 } from 'tests/unit/common/simulated-browser-adapter';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
+import type { Tabs } from 'webextension-polyfill';
 
 describe(TabEventDistributor, () => {
     const tab = {
         id: 1,
         windowId: 101,
-    } as chrome.tabs.Tab;
+    } as Tabs.Tab;
 
     let browserAdapterMock: SimulatedBrowserAdapter;
     let targetPageControllerMock: IMock<TargetPageController>;
@@ -59,7 +60,7 @@ describe(TabEventDistributor, () => {
         targetPageControllerMock.setup(t => t.onTargetTabRemoved(tab.id)).verifiable();
         detailsViewControllerMock.setup(d => d.onRemoveTab(tab.id)).verifiable();
 
-        await browserAdapterMock.notifyTabsOnRemoved(tab.id, {} as chrome.tabs.TabRemoveInfo);
+        await browserAdapterMock.notifyTabsOnRemoved(tab.id, {} as Tabs.OnRemovedRemoveInfoType);
     });
 
     it('onWindowsFocusChanged event', async () => {
@@ -79,7 +80,7 @@ describe(TabEventDistributor, () => {
     });
 
     it('onTabUpdated event', async () => {
-        const changeInfo: chrome.tabs.TabChangeInfo = {};
+        const changeInfo: Tabs.OnUpdatedChangeInfoType = {};
 
         targetPageControllerMock.setup(t => t.onTabUpdated(tab.id, changeInfo)).verifiable();
         detailsViewControllerMock.setup(d => d.onUpdateTab(tab.id, changeInfo)).verifiable();

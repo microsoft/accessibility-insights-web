@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { DetailsViewController } from 'background/details-view-controller';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { InterpreterResponse, Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { DictionaryStringTo } from 'types/common-types';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import type { Tabs } from 'webextension-polyfill';
 
 export class ExtensionDetailsViewController implements DetailsViewController {
     constructor(
@@ -31,7 +32,10 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         await Promise.all(removedTabs.map(tabId => this.onRemoveTab(tabId)));
     }
 
-    public async onUpdateTab(tabId: number, changeInfo: chrome.tabs.TabChangeInfo): Promise<void> {
+    public async onUpdateTab(
+        tabId: number,
+        changeInfo: Tabs.OnUpdatedChangeInfoType,
+    ): Promise<void> {
         const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
 
         if (targetTabId == null) {
@@ -84,7 +88,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         }
     }
 
-    private hasUrlChange(changeInfo: chrome.tabs.TabChangeInfo, targetTabId): boolean {
+    private hasUrlChange(changeInfo: Tabs.OnUpdatedChangeInfoType, targetTabId): boolean {
         if (changeInfo.url == null) {
             return false;
         }

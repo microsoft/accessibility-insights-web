@@ -14,16 +14,14 @@ import {
 export interface BrowserAdapter {
     allSupportedEvents(): DictionaryStringTo<Events.Event<any>>;
     getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]>;
-    addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void;
+    addListenerToTabsOnActivated(
+        callback: (activeInfo: Tabs.OnActivatedActiveInfoType) => void,
+    ): void;
     addListenerToTabsOnUpdated(
-        callback: (
-            tabId: number,
-            changeInfo: chrome.tabs.TabChangeInfo,
-            tab: chrome.tabs.Tab,
-        ) => void,
+        callback: (tabId: number, changeInfo: Tabs.OnUpdatedChangeInfoType, tab: Tabs.Tab) => void,
     ): void;
     addListenerToTabsOnRemoved(
-        callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void,
+        callback: (tabId: number, removeInfo: Tabs.OnRemovedRemoveInfoType) => void,
     ): void;
     addListenerToWebNavigationUpdated(
         callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void,

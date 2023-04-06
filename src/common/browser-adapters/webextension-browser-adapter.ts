@@ -44,17 +44,13 @@ export abstract class WebExtensionBrowserAdapter
     }
 
     public addListenerToTabsOnActivated(
-        callback: (activeInfo: chrome.tabs.TabActiveInfo) => void,
+        callback: (activeInfo: Tabs.OnActivatedActiveInfoType) => void,
     ): void {
         this.addListener('TabsOnActivated', callback);
     }
 
     public addListenerToTabsOnUpdated(
-        callback: (
-            tabId: number,
-            changeInfo: chrome.tabs.TabChangeInfo,
-            tab: chrome.tabs.Tab,
-        ) => void,
+        callback: (tabId: number, changeInfo: Tabs.OnUpdatedChangeInfoType, tab: Tabs.Tab) => void,
     ): void {
         this.addListener('TabsOnUpdated', callback);
     }
@@ -66,7 +62,7 @@ export abstract class WebExtensionBrowserAdapter
     }
 
     public addListenerToTabsOnRemoved(
-        callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void,
+        callback: (tabId: number, removeInfo: Tabs.OnRemovedRemoveInfoType) => void,
     ): void {
         this.addListener('TabsOnRemoved', callback);
     }
