@@ -34,7 +34,7 @@ export interface BrowserAdapter {
     createTabInNewWindow(url: string): Promise<Tabs.Tab>;
     switchToTab(tabId: number): Promise<void>;
     updateTab(tabId: number, updateProperties: Tabs.UpdateUpdatePropertiesType): Promise<Tabs.Tab>;
-    getTab(tabId: number): Promise<chrome.tabs.Tab>;
+    getTab(tabId: number): Promise<Tabs.Tab>;
     updateWindow(
         windowId: number,
         updateProperties: Windows.UpdateUpdateInfoType,
