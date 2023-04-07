@@ -30,7 +30,6 @@ import { WebVisualizationConfigurationFactory } from 'common/configs/web-visuali
 import { FileNameBuilder } from 'common/filename-builder';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { Globalization } from 'common/globalization';
-import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { AssessmentCardSelectionMessageCreator } from 'common/message-creators/assessment-card-selection-message-creator';
@@ -698,7 +697,6 @@ if (tabId != null) {
                     browserAdapter,
                     detailsViewActionMessageCreator,
                 ),
-                isResultHighlightUnavailable: isResultHighlightUnavailableWeb,
                 setFocusVisibility,
                 documentManipulator,
                 customCongratsContinueInvestigatingMessage: null, // uses default message

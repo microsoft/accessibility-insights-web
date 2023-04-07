@@ -4,7 +4,6 @@ import {
     CardSelectionViewData,
     GetCardSelectionViewData,
 } from 'common/get-card-selection-view-data';
-import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { ScanNodeResult } from 'common/store-data-to-scan-node-result-converter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
@@ -20,7 +19,6 @@ describe('ElementBasedViewModelCreator', () => {
     let getHighlightedResultInstanceIdsMock: IMock<GetCardSelectionViewData>;
     let testSubject: ElementBasedViewModelCreator;
     let cardSelectionData: CardSelectionStoreData;
-    let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
 
     beforeEach(() => {
         getDecoratedAxeNodeCallbackMock = Mock.ofType<GetDecoratedAxeNodeCallback>(
@@ -31,11 +29,9 @@ describe('ElementBasedViewModelCreator', () => {
             undefined,
             MockBehavior.Strict,
         );
-        isResultHighlightUnavailableStub = () => null;
         testSubject = new ElementBasedViewModelCreator(
             getDecoratedAxeNodeCallbackMock.object,
             getHighlightedResultInstanceIdsMock.object,
-            isResultHighlightUnavailableStub,
         );
 
         cardSelectionData = { rules: {} } as CardSelectionStoreData;
@@ -81,7 +77,6 @@ describe('ElementBasedViewModelCreator', () => {
                         },
                     ],
                     null,
-                    isResultHighlightUnavailableStub,
                 ),
             )
             .returns(() => cardSelectionViewData);
@@ -121,7 +116,6 @@ describe('ElementBasedViewModelCreator', () => {
                             },
                         ],
                         null,
-                        isResultHighlightUnavailableStub,
                     ),
                 )
                 .returns(() => cardSelectionViewData);
@@ -190,7 +184,6 @@ describe('ElementBasedViewModelCreator', () => {
                         },
                     ],
                     null,
-                    isResultHighlightUnavailableStub,
                 ),
             )
             .returns(() => cardSelectionViewData);
@@ -247,7 +240,6 @@ describe('ElementBasedViewModelCreator', () => {
                         },
                     ],
                     null,
-                    isResultHighlightUnavailableStub,
                 ),
             )
             .returns(() => cardSelectionViewData);

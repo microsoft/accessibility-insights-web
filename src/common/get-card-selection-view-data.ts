@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { ResultsFilter } from 'common/types/results-filter';
 import { HighlightState } from 'common/types/store-data/card-view-model';
 import { PlatformData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
@@ -27,7 +26,6 @@ export type GetCardSelectionViewData = (
     storeData: CardSelectionStoreData | null,
     results: FilterableResult[],
     platformInfo: PlatformData | null,
-    isResultHighlightUnavailable: IsResultHighlightUnavailable,
     resultsFilter?: ResultsFilter,
 ) => CardSelectionViewData;
 
@@ -35,7 +33,6 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
     cardSelectionStoreData: CardSelectionStoreData | null,
     results: FilterableResult[],
     platformInfo: PlatformData | null,
-    isResultHighlightUnavailable: IsResultHighlightUnavailable,
     resultsFilter: ResultsFilter = _ => true,
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
@@ -51,11 +48,6 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
     const candidateResultUids = candidateResults.map(res => res.uid);
     const allFilteredUids = getAllFilteredUids(candidateResultUids, cardSelectionStoreData.rules);
 
-    const unavailableResultUids = getResultsWithUnavailableHighlightStatus(
-        candidateResults,
-        platformInfo ?? null,
-        isResultHighlightUnavailable,
-    );
     let selectedResultUids = getOnlyResultUidsFromSelectedCards(
         cardSelectionStoreData.rules,
         viewData.expandedRuleIds,
@@ -82,7 +74,6 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
     viewData.resultsHighlightStatus = getHighlightStatusByResultUid(
         allFilteredUids,
         visibleResultUids,
-        unavailableResultUids,
     );
 
     return viewData;
@@ -95,19 +86,6 @@ function getEmptyViewData(): CardSelectionViewData {
         visualHelperEnabled: false,
         resultsHighlightStatus: {},
     };
-}
-
-function getResultsWithUnavailableHighlightStatus(
-    candidateResults: Pick<UnifiedResult, 'status' | 'uid' | 'descriptors'>[],
-    platformInfo: PlatformData | null,
-    isResultHighlightUnavailable: IsResultHighlightUnavailable,
-): string[] {
-    return candidateResults
-        .filter(
-            result =>
-                result.status === 'fail' && isResultHighlightUnavailable(result, platformInfo),
-        )
-        .map(result => result.uid);
 }
 
 function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDictionary): string[] {
@@ -174,7 +152,6 @@ function getResultUidsFromSelectedCards(rule: RuleExpandCollapseData): string[] 
 function getHighlightStatusByResultUid(
     allResultUids: string[],
     visibleResultUids: string[],
-    unavailableResultUids: string[],
 ): ResultsHighlightStatus {
     const result = {};
     for (const resultUid of allResultUids) {
@@ -182,9 +159,6 @@ function getHighlightStatusByResultUid(
     }
     for (const resultUid of visibleResultUids) {
         result[resultUid] = 'visible';
-    }
-    for (const resultUid of unavailableResultUids) {
-        result[resultUid] = 'unavailable';
     }
     return result;
 }

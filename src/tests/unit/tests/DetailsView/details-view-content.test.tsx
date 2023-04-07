@@ -8,7 +8,6 @@ import {
     CardSelectionViewData,
     GetCardSelectionViewData,
 } from 'common/get-card-selection-view-data';
-import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import {
     convertAssessmentStoreDataToScanNodeResults,
@@ -73,7 +72,6 @@ describe(DetailsViewContent.displayName, () => {
     let convertAssessmentStoreDataToScanNodeResultsMock: IMock<ConvertAssessmentStoreDataToScanNodeResultsCallback>;
     let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
-    let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
     let timestamp: string;
     let scanDate: Date;
     let toolData: ToolData;
@@ -111,7 +109,6 @@ describe(DetailsViewContent.displayName, () => {
             WebVisualizationConfigurationFactory,
             MockBehavior.Strict,
         );
-        isResultHighlightUnavailableStub = () => null;
         timestamp = 'timestamp';
         scanDate = new Date(Date.UTC(0, 1, 2, 3));
         getDateFromTimestampMock = Mock.ofInstance(() => null);
@@ -139,7 +136,6 @@ describe(DetailsViewContent.displayName, () => {
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
             getCardViewData: getCardViewDataMock.object,
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
-            isResultHighlightUnavailable: isResultHighlightUnavailableStub,
             getDateFromTimestamp: getDateFromTimestampMock.object,
             getAssessmentInstanceTableHandler: () => assessmentInstanceTableHandlerMock.object,
             visualizationConfigurationFactory: visualizationConfigurationFactoryMock.object,
@@ -291,7 +287,6 @@ describe(DetailsViewContent.displayName, () => {
                         state.cardSelectionStoreData,
                         state.unifiedScanResultStoreData.results,
                         state.unifiedScanResultStoreData.platformInfo,
-                        isResultHighlightUnavailableStub,
                     ),
                 )
                 .returns(() => cardSelectionViewData)
@@ -337,14 +332,7 @@ describe(DetailsViewContent.displayName, () => {
                 .returns(() => needsReviewScanNodeResultsStub);
 
             getCardSelectionViewDataMock
-                .setup(g =>
-                    g(
-                        undefined,
-                        assessmentScanNodeResultsStub,
-                        null,
-                        isResultHighlightUnavailableStub,
-                    ),
-                )
+                .setup(g => g(undefined, assessmentScanNodeResultsStub, null))
                 .returns(() => cardSelectionViewData)
                 .verifiable(Times.exactly(1));
 

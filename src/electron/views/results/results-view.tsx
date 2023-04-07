@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { convertUnifiedStoreDataToScanNodeResults } from 'common/store-data-to-scan-node-result-converter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -64,7 +63,6 @@ export type ResultsViewDeps = ReflowCommandBarDeps &
         getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
-        isResultHighlightUnavailable: IsResultHighlightUnavailable;
         getDateFromTimestamp: (timestamp: string) => Date;
     };
 
