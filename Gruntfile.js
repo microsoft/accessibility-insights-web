@@ -40,10 +40,6 @@ module.exports = function (grunt) {
         }
     }
 
-    function getUnifiedVersion() {
-        return grunt.option('unified-version');
-    }
-
     grunt.initConfig({
         bom: {
             cwd: path.resolve('./src/**/*.{ts,tsx,js,snap,html,scss,css}'),
@@ -58,7 +54,7 @@ module.exports = function (grunt) {
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
-            'compile-all': ['exec:esbuild-dev', 'exec:webpack-unified', 'exec:esbuild-prod'],
+            'compile-all': ['exec:esbuild-dev', 'exec:esbuild-prod'],
         },
         copy: {
             code: {
@@ -190,7 +186,6 @@ module.exports = function (grunt) {
             'esbuild-dev': `node esbuild.js`,
             'esbuild-prod': `node esbuild.js --env prod`,
             'esbuild-package-report': `node esbuild.js --env report`,
-            'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
             'esbuild-package-validator': `node esbuild.js --env validator`,
             'generate-validator': `node ${packageValidatorDropPath}`,
@@ -233,24 +228,20 @@ module.exports = function (grunt) {
         watch: {
             images: {
                 files: ['src/**/*.{png,ico,icns}'],
-                tasks: ['copy:images', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:images', 'drop:dev'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:code', 'drop:dev'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev'],
             },
             // We assume esbuild --watch is running separately (usually via 'yarn watch')
             'esbuild-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
-            },
-            'webpack-unified-output': {
-                files: ['extension/unifiedBundle/**/*.*'],
-                tasks: ['drop:unified-dev'],
             },
         },
     });
@@ -260,52 +251,6 @@ module.exports = function (grunt) {
     const extensionReleaseTargets = releaseTargets.filter(
         t => targets[t].config.options.productCategory === 'extension',
     );
-    const unifiedReleaseTargets = releaseTargets.filter(
-        t => targets[t].config.options.productCategory === 'electron',
-    );
-
-    unifiedReleaseTargets.forEach(targetName => {
-        const { config, appId, publishUrl } = targets[targetName];
-        const { electronIconBaseName, fullName, productCategory } = config.options;
-        const dropPath = `drop/${productCategory}/${targetName}`;
-
-        grunt.config.merge({
-            'configure-electron-builder': {
-                [targetName]: {
-                    dropPath,
-                    electronIconBaseName,
-                    fullName,
-                    appId,
-                    publishUrl,
-                },
-            },
-            'electron-builder-prepare': {
-                [targetName]: {
-                    dropPath: dropPath,
-                },
-            },
-            'electron-builder-pack': {
-                [targetName]: {
-                    dropPath: dropPath,
-                },
-            },
-            'unified-release-drop': {
-                [targetName]: {
-                    // empty on purpose
-                },
-            },
-            'unified-release-pack': {
-                [targetName]: {
-                    // empty on purpose
-                },
-            },
-            'zip-mac-folder': {
-                [targetName]: {
-                    dropPath: dropPath,
-                },
-            },
-        });
-    });
 
     targetNames.forEach(targetName => {
         const { config, bundleFolder, telemetryKeyIdentifier } = targets[targetName];
@@ -450,13 +395,6 @@ module.exports = function (grunt) {
             config.options.appInsightsInstrumentationKey = grunt.option(telemetryKeyIdentifier);
         }
 
-        // Add unifiedAppVersion value for electron-based products
-        if (config.options.productCategory === 'electron') {
-            const unifiedAppVersion = getUnifiedVersion();
-            if (unifiedAppVersion) {
-                config.options.unifiedAppVersion = unifiedAppVersion;
-            }
-        }
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
         const copyrightHeader =
@@ -703,17 +641,6 @@ module.exports = function (grunt) {
         );
     });
 
-    grunt.registerMultiTask('unified-release-drop', function () {
-        grunt.task.run(`drop:${this.target}`);
-        grunt.task.run(`configure-electron-builder:${this.target}`);
-        grunt.task.run(`electron-builder-prepare:${this.target}`);
-    });
-
-    grunt.registerMultiTask('unified-release-pack', function () {
-        grunt.task.run(`electron-builder-pack:${this.target}`);
-        grunt.task.run(`zip-mac-folder:${this.target}`);
-    });
-
     grunt.registerTask('package-report', function () {
         const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
 
@@ -768,18 +695,6 @@ module.exports = function (grunt) {
         });
     });
 
-    grunt.registerTask('unified-release-drops', function () {
-        unifiedReleaseTargets.forEach(targetName => {
-            grunt.task.run('unified-release-drop:' + targetName);
-        });
-    });
-
-    grunt.registerTask('unified-release-packs', function () {
-        unifiedReleaseTargets.forEach(targetName => {
-            grunt.task.run('unified-release-pack:' + targetName);
-        });
-    });
-
     grunt.registerTask('ada-cat', function () {
         if (process.env.SHOW_ADA !== 'false') {
             console.log(
@@ -812,20 +727,6 @@ module.exports = function (grunt) {
         'build-assets',
         'drop:production',
     ]);
-    grunt.registerTask('build-unified', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'build-mock-adb',
-        'exec:webpack-unified',
-        'build-assets',
-        'drop:unified-dev',
-    ]);
-    grunt.registerTask('build-unified-canary', [
-        'build-unified',
-        'unified-release-drop:unified-canary',
-    ]);
-    grunt.registerTask('build-unified-all', ['build-unified', 'unified-release-drops']);
-    grunt.registerTask('pack-unified-all', ['unified-release-packs']);
     grunt.registerTask('build-package-report', [
         'clean:intermediates',
         'exec:generate-scss-typings',
@@ -861,7 +762,6 @@ module.exports = function (grunt) {
         'concurrent:compile-all',
         'build-assets',
         'drop:dev',
-        'drop:unified-dev',
         'extension-release-drops',
     ]);
 
