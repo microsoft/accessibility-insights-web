@@ -92,27 +92,6 @@ const commonConfig = {
     },
 };
 
-const unifiedConfig = {
-    ...commonConfig,
-    entry: electronEntryFiles,
-    name: 'unified',
-    mode: 'development',
-    devtool: 'source-map',
-    output: {
-        path: path.join(__dirname, 'extension/unifiedBundle'),
-        filename: '[name].bundle.js',
-    },
-    node: {
-        ...commonConfig.node,
-        __dirname: false,
-        __filename: false,
-    },
-    optimization: {
-        splitChunks: false,
-    },
-    target: 'electron-main',
-};
-
 const packageUIConfig = {
     entry: {
         ui: [path.resolve(__dirname, 'src/packages/accessibility-insights-ui/index.ts')],
@@ -134,5 +113,5 @@ const packageUIConfig = {
     target: 'node',
 };
 
-// For just one config, use "webpack --config-name unified", "webpack --config-name package-ui", etc
-module.exports = [unifiedConfig, packageUIConfig];
+// For just one config, use "webpack --config-name package-ui", etc
+module.exports = [packageUIConfig];
