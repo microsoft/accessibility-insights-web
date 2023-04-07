@@ -8,18 +8,18 @@ import { BaseActionPayload } from '../actions/action-payloads';
 import { TelemetryClient } from './telemetry-client';
 
 export class TelemetryEventHandler {
-    private telemetryClient: TelemetryClient;
+    private telemetryClient: TelemetryClient | null = null;
 
     public initialize(telemetryClient: TelemetryClient): void {
         this.telemetryClient = telemetryClient;
     }
 
     public enableTelemetry(): void {
-        this.telemetryClient.enableTelemetry();
+        this.telemetryClient!.enableTelemetry();
     }
 
     public disableTelemetry(): void {
-        this.telemetryClient.disableTelemetry();
+        this.telemetryClient!.disableTelemetry();
     }
 
     public publishTelemetry(eventName: string, payload: BaseActionPayload): void {
@@ -33,7 +33,7 @@ export class TelemetryEventHandler {
         const flattenTelemetryInfo: DictionaryStringTo<string> =
             this.flattenTelemetryInfo(telemetryInfo);
 
-        this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
+        this.telemetryClient?.trackEvent(eventName, flattenTelemetryInfo);
     }
 
     private addBasicDataToTelemetry(telemetryInfo: any): void {

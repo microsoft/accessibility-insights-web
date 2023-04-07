@@ -48,6 +48,7 @@ import { title } from 'content/strings/application';
 import { IssueFilingServiceProviderImpl } from 'issue-filing/issue-filing-service-provider-impl';
 import UAParser from 'ua-parser-js';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
+import { ServiceWorkerActivator } from './service-worker-activator';
 import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 
 let logger: Logger;
@@ -56,8 +57,13 @@ let eventResponseFactory: EventResponseFactory;
 let browserEventManager: BackgroundBrowserEventManager;
 let browserAdapter: WebExtensionBrowserAdapter;
 let telemetryEventHandler: TelemetryEventHandler;
+let serviceWorkerActivator: ServiceWorkerActivator;
 
 function initializeSync(): void {
+    serviceWorkerActivator = new ServiceWorkerActivator(
+        globalThis as unknown as ServiceWorkerGlobalScope,
+    );
+
     const userAgentParser = new UAParser(globalThis.navigator.userAgent);
     const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
     logger = createDefaultLogger();
@@ -89,6 +95,9 @@ function initializeSync(): void {
 }
 
 async function initializeAsync(): Promise<void> {
+    // This should happen *before* other initialization steps that involves persisted data
+    await serviceWorkerActivator.claimExistingServiceWorkerClients();
+
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
     const cleanKeysFromStoragePromise = cleanKeysFromStorage(
         browserAdapter,
