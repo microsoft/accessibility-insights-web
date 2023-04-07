@@ -39,12 +39,6 @@ describe(ServiceWorkerActivator, () => {
     });
 
     describe('claimExistingServiceWorkerClients', () => {
-        let testSubject: ServiceWorkerActivator;
-
-        beforeEach(() => {
-            testSubject = new ServiceWorkerActivator(simulatedGlobalScope);
-        });
-
         it('always claims existing service worker clients', async () => {
             await testSubject.claimExistingServiceWorkerClients();
 
