@@ -5,6 +5,5 @@ module.exports = {
         '<rootDir>/packages/*',
         '<rootDir>/src/tests/unit',
         '<rootDir>/src/tests/end-to-end',
-        '<rootDir>/src/tests/electron',
     ],
 };

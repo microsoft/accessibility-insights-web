@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ElectronLink renders and uses electron shell 1`] = `
-<ElectronExternalLink
-  href="test-href"
->
-  test-text
-</ElectronExternalLink>
-`;
