@@ -29,10 +29,6 @@ module.exports = function (grunt) {
     const packageAxeConfigBundlePath = path.join(packageAxeConfigPath, 'bundle');
     const packageAxeConfigDropPath = path.join(packageAxeConfigPath, 'drop');
 
-    const mockAdbObjPath = path.join('packages', 'mock-adb', 'obj');
-    const mockAdbBinPath = path.join('packages', 'mock-adb', 'bin');
-    const mockAdbDropPath = path.join('drop', 'mock-adb');
-
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
         if (!grunt.file.exists(normalizedFile)) {
@@ -46,7 +42,6 @@ module.exports = function (grunt) {
         },
         clean: {
             intermediates: ['dist', extensionPath],
-            'mock-adb': [mockAdbObjPath, mockAdbBinPath, mockAdbDropPath],
             'package-report': packageReportDropPath,
             'package-ui': packageUIDropPath,
             'package-validator': packageValidatorDropPath,
@@ -195,10 +190,6 @@ module.exports = function (grunt) {
                 'axe-config-generator.bundle.js',
             )} ${path.join(packageAxeConfigDropPath, 'axe-config.json')}`,
             'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
-            'dotnet-publish-mock-adb': {
-                command: `dotnet publish -c Release -o "${path.resolve(mockAdbDropPath)}"`,
-                cwd: 'packages/mock-adb',
-            },
         },
         sass: {
             options: {
@@ -685,10 +676,6 @@ module.exports = function (grunt) {
         console.log(`package is in ${packageAxeConfigDropPath}`);
     });
 
-    grunt.registerTask('build-mock-adb', function () {
-        grunt.task.run('exec:dotnet-publish-mock-adb');
-    });
-
     grunt.registerTask('extension-release-drops', function () {
         extensionReleaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
@@ -756,7 +743,6 @@ module.exports = function (grunt) {
     grunt.registerTask('build-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'build-mock-adb',
         'build-package-validator',
         'exec:generate-validator',
         'concurrent:compile-all',
