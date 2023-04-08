@@ -26,11 +26,6 @@ const commonEntryFiles = {
     debugTools: path.resolve(__dirname, 'src/debug-tools/initializer/debug-tools-init.tsx'),
 };
 
-const electronEntryFiles = {
-    renderer: [path.resolve(__dirname, 'src/electron/views/renderer-initializer.ts')],
-    main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
-};
-
 const tsRule = {
     test: /\.tsx?$/,
     use: [

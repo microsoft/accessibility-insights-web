@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const path = require('path');
-const androidServiceBin = require('accessibility-insights-for-android-service-bin');
-const yaml = require('js-yaml');
 const merge = require('lodash/merge');
 const sass = require('sass');
 const targets = require('./targets.config');
@@ -102,12 +100,6 @@ module.exports = function (grunt) {
                         cwd: './dist/src/DetailsView/Styles',
                         src: '*.css',
                         dest: path.join(extensionPath, 'DetailsView/styles/default'),
-                        expand: true,
-                    },
-                    {
-                        cwd: './dist/src/electron/views',
-                        src: '*.css',
-                        dest: path.join(extensionPath, 'electron/views'),
                         expand: true,
                     },
                     {
@@ -252,32 +244,10 @@ module.exports = function (grunt) {
         const dropExtensionPath = path.join(dropPath, 'product');
 
         const productCategorySpecificCopyFiles = [];
-        if (productCategory === 'electron') {
-            productCategorySpecificCopyFiles.push(
-                {
-                    src: 'src/electron/resources/mit_license_en.txt',
-                    dest: `${dropExtensionPath}/LICENSE`,
-                },
-                {
-                    src: androidServiceBin.apkPath,
-                    // This should be kept in sync with android-service-apk.ts
-                    dest: path.join(dropExtensionPath, 'android-service', 'android-service.apk'),
-                },
-                {
-                    src: androidServiceBin.noticePath,
-                    dest: path.join(
-                        dropExtensionPath,
-                        'android-service',
-                        path.basename(androidServiceBin.noticePath),
-                    ),
-                },
-            );
-        } else {
-            productCategorySpecificCopyFiles.push({
-                src: 'LICENSE',
-                dest: `${dropExtensionPath}/LICENSE`,
-            });
-        }
+        productCategorySpecificCopyFiles.push({
+            src: 'LICENSE',
+            dest: `${dropExtensionPath}/LICENSE`,
+        });
 
         grunt.config.merge({
             drop: {
@@ -436,200 +406,6 @@ module.exports = function (grunt) {
         grunt.task.run('configure:' + targetName);
         grunt.task.run('manifest:' + targetName);
         console.log(`${targetName} extension is in ${dropExtensionPath}`);
-    });
-
-    grunt.registerMultiTask('configure-electron-builder', function () {
-        grunt.task.requires('drop:' + this.target);
-        const { dropPath, electronIconBaseName, fullName, appId, publishUrl } = this.data;
-        const productDir = `${dropPath}/product`;
-
-        const outElectronBuilderConfigFile = path.join(dropPath, 'electron-builder.yml');
-        const srcElectronBuilderConfigFile = path.join(
-            'src',
-            'electron',
-            'electron-builder',
-            `electron-builder.template.yaml`,
-        );
-
-        const version = getUnifiedVersion() || '0.0.0';
-
-        const config = grunt.file.readYAML(srcElectronBuilderConfigFile);
-        config.appId = appId;
-        config.directories.app = dropPath;
-        config.directories.output = `${dropPath}/packed`;
-        config.extraMetadata.version = version;
-        config.win.icon = `src/${electronIconBaseName}.ico`;
-        // electron-builder infers the linux icon from the mac one
-        config.mac.icon = `src/${electronIconBaseName}.icns`;
-        config.publish.url = publishUrl;
-        config.productName = fullName;
-        config.extraMetadata.name = fullName;
-        // This is necessary for the AppImage to display using our brand icon
-        // See electron-userland/electron-builder#3547 and AppImage/AppImageKit#678
-        config.linux.artifactName = fullName.replace(/ (- )?/g, '_') + '.${ext}';
-
-        for (const fileset of [...config.extraResources, ...config.extraFiles]) {
-            fileset.from = fileset.from.replace(/TARGET_SPECIFIC_PRODUCT_DIR/g, productDir);
-        }
-
-        // Manually copying the license files is a workaround for electron-builder #1495.
-        // On win/linux builds these are automatically included, but in Mac they are omitted.
-        // Mac notarization also requires specific structuring of code; these files should be put in
-        // the Contents/Resources folder which electron-builder will do for 'extraResources'.
-        // https://developer.apple.com/forums/thread/128166, section "Structure Your Code Correctly"
-        if (process.platform === 'darwin') {
-            config.extraResources = config.extraResources.concat(config.extraFiles);
-            config.extraFiles = [];
-            config.extraResources.push(
-                {
-                    from: 'node_modules/electron/dist/LICENSE',
-                    to: 'LICENSE.electron.txt',
-                },
-                {
-                    from: 'node_modules/electron/dist/LICENSES.chromium.html',
-                    to: 'LICENSES.chromium.html',
-                },
-            );
-        }
-
-        const configFileContent = yaml.dump(config);
-        grunt.file.write(outElectronBuilderConfigFile, configFileContent);
-        grunt.log.writeln(`generated ${outElectronBuilderConfigFile} from target config`);
-    });
-
-    grunt.registerMultiTask('electron-builder-prepare', function () {
-        grunt.task.requires('drop:' + this.target);
-        grunt.task.requires('configure-electron-builder:' + this.target);
-
-        const { dropPath } = this.data;
-        const configFile = path.join(dropPath, 'electron-builder.yml');
-
-        const taskDoneCallback = this.async();
-
-        grunt.util.spawn(
-            {
-                cmd: 'node',
-                args: [
-                    'node_modules/electron-builder/out/cli/cli.js',
-                    '-p',
-                    'never',
-                    '-c',
-                    configFile,
-                ],
-                opts: {
-                    // electron-builder performs an internal yarn install step to install
-                    // production dependencies for the specific platform being built. This
-                    // will (correctly) result in a different yarn.lock file than our normal
-                    // one. Yarn will throw an error for yarn.lock differences on CI agents;
-                    // suppressing environment variables prevents it from detecting whether it's
-                    // on a CI agent and suppresses that behavior.
-                    env: {
-                        ...process.env,
-                        // These specific variables are the ones detected by package ci-info
-                        CI: undefined,
-                        CONTINUOUS_INTEGRATION: undefined,
-                        GITHUB_ACTIONS: undefined,
-                        SYSTEM_TEAMFOUNDATIONCOLLECTIONURI: undefined,
-                    },
-                },
-            },
-            (error, result, code) => {
-                if (error) {
-                    grunt.fail.fatal(
-                        `electron-builder exited with error code ${code}:\n\n${result.stdout}`,
-                        code,
-                    );
-                }
-
-                taskDoneCallback();
-            },
-        );
-    });
-
-    grunt.registerMultiTask('electron-builder-pack', function () {
-        const { dropPath } = this.data;
-        const configFile = path.join(dropPath, 'electron-builder.yml');
-
-        mustExist(configFile, 'Have you built the product you are trying to pack?');
-
-        let unpackedDirName;
-
-        switch (process.platform) {
-            case 'win32':
-                unpackedDirName = 'win-unpacked';
-                break;
-            case 'darwin':
-                unpackedDirName = 'mac';
-                break;
-            case 'linux':
-                unpackedDirName = 'linux-unpacked';
-                break;
-        }
-
-        const unpackedPath = path.join(dropPath, 'packed', unpackedDirName);
-
-        const taskDoneCallback = this.async();
-
-        grunt.util.spawn(
-            {
-                cmd: 'node',
-                args: [
-                    'node_modules/electron-builder/out/cli/cli.js',
-                    '-p',
-                    'never',
-                    '-c',
-                    configFile,
-                    '--pd',
-                    unpackedPath,
-                ],
-            },
-            (error, result, code) => {
-                if (error) {
-                    grunt.fail.fatal(
-                        `electron-builder exited with error code ${code}:\n\n${result.stdout}`,
-                        code,
-                    );
-                }
-
-                taskDoneCallback();
-            },
-        );
-    });
-
-    grunt.registerMultiTask('zip-mac-folder', function () {
-        grunt.task.requires('electron-builder-pack:' + this.target);
-
-        // We found that the mac update fails unless we produce the
-        // zip file ourselves; electron-builder requires a zip file, but
-        // the zip file it produces leads to 'couldn't find pkzip signatures'
-        // during the eventual update.
-
-        if (process.platform !== 'darwin') {
-            grunt.log.writeln(`task not required for this platform (${process.platform})`);
-            return true;
-        }
-
-        const { dropPath } = this.data;
-        const packedPath = `${dropPath}/packed`;
-
-        const taskDoneCallback = this.async();
-
-        grunt.util.spawn(
-            {
-                cmd: 'node',
-                args: ['pipeline/scripts/zip-mac-folder.js', packedPath],
-            },
-            (error, result, code) => {
-                if (error) {
-                    grunt.fail.fatal(
-                        `zipping mac folder exited with error code ${code}:\n\n${result.stdout}`,
-                        code,
-                    );
-                }
-
-                taskDoneCallback();
-            },
-        );
     });
 
     grunt.registerTask('package-report', function () {

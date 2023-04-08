@@ -6,8 +6,6 @@ function iconSet(key) {
         icon16: `icons/brand/${key}/brand-${key}-16px.png`,
         icon48: `icons/brand/${key}/brand-${key}-48px.png`,
         icon128: `icons/brand/${key}/brand-${key}-128px.png`,
-        // should have .icns, .ico, and 512x512 .png variants; generate with electron-icon-maker
-        electronIconBaseName: `icons/brand/${key}/electron-icons/icon`,
     };
 }
 
@@ -25,12 +23,6 @@ const commonExtensionOptions = {
         'Accessibility Insights for Web helps developers quickly find and fix accessibility issues.',
     bundled: true,
     productCategory: 'extension',
-};
-
-const commonUnifiedOptions = {
-    fullName: 'Accessibility Insights for Android',
-    bundled: true,
-    productCategory: 'electron',
 };
 
 module.exports = {
