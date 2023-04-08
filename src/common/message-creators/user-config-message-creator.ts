@@ -4,7 +4,6 @@ import {
     AutoDetectedFailuresDialogStatePayload,
     SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
-    SetAdbLocationPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -73,17 +72,6 @@ export class UserConfigMessageCreator {
             payload,
         });
     };
-
-    public setAdbLocation(adbLocation: string): void {
-        const payload: SetAdbLocationPayload = {
-            adbLocation,
-        };
-
-        this.dispatcher.dispatchMessage({
-            messageType: Messages.UserConfig.SetAdbLocationConfig,
-            payload,
-        });
-    }
 
     public setAutoDetectedFailuresDialogState(showDialog: boolean): void {
         const telemetry = this.telemetryFactory.forSetAutoDetectedFailuresDialogState(showDialog);

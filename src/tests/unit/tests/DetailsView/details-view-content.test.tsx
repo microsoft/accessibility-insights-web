@@ -207,7 +207,6 @@ describe(DetailsViewContent.displayName, () => {
                 lastSelectedHighContrast: false,
                 bugService: 'gitHub',
                 bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
-                adbLocation: null,
                 showAutoDetectedFailuresDialog: true,
                 showSaveAssessmentDialog: true,
             };

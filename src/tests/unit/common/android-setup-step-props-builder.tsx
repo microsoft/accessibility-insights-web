@@ -14,9 +14,7 @@ export class AndroidSetupStepPropsBuilder extends BaseDataBuilder<CommonAndroidS
     constructor(stepId: AndroidSetupStepId) {
         super();
         this.data = {
-            userConfigurationStoreData: {
-                adbLocation: null,
-            } as UserConfigurationStoreData,
+            userConfigurationStoreData: {} as UserConfigurationStoreData,
             androidSetupStoreData: {
                 currentStepId: stepId,
             },

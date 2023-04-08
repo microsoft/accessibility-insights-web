@@ -15,9 +15,6 @@ export interface UserConfigurationStoreData {
     bugService: string;
     bugServicePropertiesMap: IssueFilingServicePropertiesMap;
 
-    // null if the path to adb is unknown
-    adbLocation: string | null;
-
     showAutoDetectedFailuresDialog: boolean;
     showSaveAssessmentDialog: boolean;
 }

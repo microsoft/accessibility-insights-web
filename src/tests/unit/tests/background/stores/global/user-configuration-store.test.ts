@@ -38,7 +38,6 @@ describe('UserConfigurationStoreTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
-            adbLocation: null,
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };
@@ -49,7 +48,6 @@ describe('UserConfigurationStoreTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
-            adbLocation: null,
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };
@@ -98,7 +96,6 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: false,
             isFirstTime: true,
             enableHighContrast: true,
-            adbLocation: 'test',
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };
@@ -203,7 +200,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    adbLocation: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -215,7 +211,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    adbLocation: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -255,7 +250,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    adbLocation: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -271,7 +265,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: payload,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    adbLocation: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -311,7 +304,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    adbLocation: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -327,7 +319,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    adbLocation: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -358,7 +349,6 @@ describe('UserConfigurationStoreTest', () => {
                 lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: {},
-                adbLocation: null,
                 showAutoDetectedFailuresDialog: true,
                 showSaveAssessmentDialog: true,
             };
@@ -403,7 +393,6 @@ describe('UserConfigurationStoreTest', () => {
                 lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: initialMapState,
-                adbLocation: null,
                 showAutoDetectedFailuresDialog: true,
                 showSaveAssessmentDialog: true,
             };
@@ -458,27 +447,6 @@ describe('UserConfigurationStoreTest', () => {
 
         await storeTester
             .withActionParam(payload)
-            .withPostListenerMock(indexDbStrictMock)
-            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
-    });
-
-    test('setAdbLocation', async () => {
-        const storeTester = createStoreToTestAction('setAdbLocation');
-        const adbLocation = 'adb-here';
-        const expectedState: UserConfigurationStoreData = {
-            ...initialStoreData,
-            adbLocation,
-        };
-
-        indexDbStrictMock
-            .setup(indexDb =>
-                indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
-            )
-            .returns(() => Promise.resolve(true))
-            .verifiable(Times.once());
-
-        await storeTester
-            .withActionParam(adbLocation)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });

@@ -26,7 +26,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         lastSelectedHighContrast: false,
         bugService: 'none',
         bugServicePropertiesMap: {},
-        adbLocation: null,
         showAutoDetectedFailuresDialog: true,
         showSaveAssessmentDialog: true,
     };
@@ -65,7 +64,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
 
     protected addActionListeners(): void {
         this.userConfigActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.userConfigActions.setAdbLocation.addListener(this.onSetAdbLocation);
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
         this.userConfigActions.setNativeHighContrastMode.addListener(
@@ -83,11 +81,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
             this.onSetSaveAssessmentDialogState,
         );
     }
-
-    private onSetAdbLocation = async (location: string): Promise<void> => {
-        this.state.adbLocation = location;
-        await this.emitChanged();
-    };
 
     private onSetTelemetryState = async (enableTelemetry: boolean): Promise<void> => {
         this.state.isFirstTime = false;

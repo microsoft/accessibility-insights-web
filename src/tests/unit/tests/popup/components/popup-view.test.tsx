@@ -79,7 +79,6 @@ describe('PopupView', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
-            adbLocation: null,
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };

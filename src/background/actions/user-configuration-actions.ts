@@ -11,7 +11,6 @@ import {
 } from './action-payloads';
 
 export class UserConfigurationActions {
-    public readonly setAdbLocation = new AsyncAction<string>();
     public readonly setTelemetryState = new AsyncAction<boolean>();
     public readonly getCurrentState = new AsyncAction<void>();
     public readonly setHighContrastMode = new AsyncAction<SetHighContrastModePayload>();

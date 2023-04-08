@@ -46,9 +46,6 @@ export class UserConfigurationActionCreator {
         payload: SaveIssueFilingSettingsPayload,
     ): Promise<void> => await this.userConfigActions.saveIssueFilingSettings.invoke(payload);
 
-    public setAdbLocation = async (adbLocation: string): Promise<void> =>
-        await this.userConfigActions.setAdbLocation.invoke(adbLocation, this.currentScope);
-
     public setAutoDetectedFailuresDialogState = async (
         payload: AutoDetectedFailuresDialogStatePayload,
     ): Promise<void> => {

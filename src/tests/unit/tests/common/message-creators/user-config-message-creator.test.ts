@@ -3,7 +3,6 @@
 import {
     AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
-    SetAdbLocationPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -138,24 +137,6 @@ describe('UserConfigMessageCreator', () => {
         };
 
         testSubject.saveIssueFilingSettings(payload);
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(expectedMessage),
-            Times.once(),
-        );
-    });
-
-    it('dispatches message for setAdbLocation', () => {
-        const adbLocation = 'This is where adb lives on the disk';
-        const payload: SetAdbLocationPayload = {
-            adbLocation,
-        };
-        const expectedMessage: Message = {
-            messageType: Messages.UserConfig.SetAdbLocationConfig,
-            payload,
-        };
-
-        testSubject.setAdbLocation(adbLocation);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(expectedMessage),

@@ -214,7 +214,6 @@ exports[`DetailsViewContent render renders normally 1`] = `
     }
     userConfigurationStoreData={
       {
-        "adbLocation": null,
         "bugService": "gitHub",
         "bugServicePropertiesMap": {
           "gitHub": {
@@ -524,7 +523,6 @@ exports[`DetailsViewContent render renders normally 1`] = `
     }
     userConfigurationStoreData={
       {
-        "adbLocation": null,
         "bugService": "gitHub",
         "bugServicePropertiesMap": {
           "gitHub": {
