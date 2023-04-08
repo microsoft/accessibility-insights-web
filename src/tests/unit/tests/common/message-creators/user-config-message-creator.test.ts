@@ -3,7 +3,6 @@
 import {
     AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
-    SaveWindowBoundsPayload,
     SetAdbLocationPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
@@ -157,24 +156,6 @@ describe('UserConfigMessageCreator', () => {
         };
 
         testSubject.setAdbLocation(adbLocation);
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(expectedMessage),
-            Times.once(),
-        );
-    });
-
-    it('dispatches message for saveWindowBounds', () => {
-        const payload: SaveWindowBoundsPayload = {
-            windowState: 'full-screen',
-            windowBounds: undefined,
-        };
-        const expectedMessage: Message = {
-            messageType: Messages.UserConfig.SaveWindowBounds,
-            payload,
-        };
-
-        testSubject.saveWindowBounds(payload);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(expectedMessage),

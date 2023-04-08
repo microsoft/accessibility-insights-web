@@ -7,7 +7,6 @@ import {
     AutoDetectedFailuresDialogStatePayload,
     SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
-    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -49,9 +48,6 @@ export class UserConfigurationActionCreator {
 
     public setAdbLocation = async (adbLocation: string): Promise<void> =>
         await this.userConfigActions.setAdbLocation.invoke(adbLocation, this.currentScope);
-
-    public saveWindowBounds = async (payload: SaveWindowBoundsPayload): Promise<void> =>
-        await this.userConfigActions.saveWindowBounds.invoke(payload);
 
     public setAutoDetectedFailuresDialogState = async (
         payload: AutoDetectedFailuresDialogStatePayload,

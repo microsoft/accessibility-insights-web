@@ -74,7 +74,6 @@ export const Messages = {
         SetIssueFilingServiceProperty: `${messagePrefix}/userConfig/setIssueFilingServiceProperty`,
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
         SetAdbLocationConfig: `${messagePrefix}/userConfig/setAdbLocationConfig`,
-        SaveWindowBounds: `${messagePrefix}/userConfig/saveWindowBounds`,
         SetAutoDetectedFailuresDialogState: `${messagePrefix}/userConfig/setAutoDetectedFailuresDialogState`,
         SetSaveAssessmentDialogState: `${messagePrefix}/userConfig/setSaveAssessmentDialogState`,
     },

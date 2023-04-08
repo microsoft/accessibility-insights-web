@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { SaveWindowBoundsPayload } from 'background/actions/action-payloads';
 import { Interpreter } from 'background/interpreter';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { Message } from 'common/message';
@@ -46,18 +45,4 @@ describe('UserConfigurationController', () => {
             interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
         },
     );
-
-    it('saveWindowBounds sends the expected interpreter message', async () => {
-        const payload: SaveWindowBoundsPayload = {
-            windowState: 'maximized',
-            windowBounds: { x: 1, y: 2, width: 10, height: 20 },
-        };
-
-        const expectedMessage: Message = {
-            messageType: Messages.UserConfig.SaveWindowBounds,
-            payload: payload,
-        };
-        await testSubject.saveWindowBounds(payload);
-        interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
-    });
 });

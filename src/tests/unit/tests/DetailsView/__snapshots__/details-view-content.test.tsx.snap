@@ -225,8 +225,6 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "enableTelemetry": true,
         "isFirstTime": false,
         "lastSelectedHighContrast": false,
-        "lastWindowBounds": null,
-        "lastWindowState": null,
         "showAutoDetectedFailuresDialog": true,
         "showSaveAssessmentDialog": true,
       }
@@ -537,8 +535,6 @@ exports[`DetailsViewContent render renders normally 1`] = `
         "enableTelemetry": true,
         "isFirstTime": false,
         "lastSelectedHighContrast": false,
-        "lastWindowBounds": null,
-        "lastWindowState": null,
         "showAutoDetectedFailuresDialog": true,
         "showSaveAssessmentDialog": true,
       }

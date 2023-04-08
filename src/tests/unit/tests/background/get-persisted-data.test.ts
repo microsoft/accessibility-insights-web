@@ -50,8 +50,6 @@ describe('GetPersistedDataTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
-            lastWindowState: null,
-            lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };

@@ -80,8 +80,6 @@ describe('PopupView', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
-            lastWindowState: null,
-            lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };

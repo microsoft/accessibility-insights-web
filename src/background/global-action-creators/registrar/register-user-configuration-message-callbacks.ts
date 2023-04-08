@@ -43,10 +43,6 @@ export const registerUserConfigurationMessageCallback = (
         payload => userConfigurationActionCreator.setAdbLocation(payload.adbLocation),
     );
     interpreter.registerTypeToPayloadCallback(
-        Messages.UserConfig.SaveWindowBounds,
-        userConfigurationActionCreator.saveWindowBounds,
-    );
-    interpreter.registerTypeToPayloadCallback(
         Messages.UserConfig.SetAutoDetectedFailuresDialogState,
         userConfigurationActionCreator.setAutoDetectedFailuresDialogState,
     );

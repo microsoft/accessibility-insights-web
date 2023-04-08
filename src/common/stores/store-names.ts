@@ -17,7 +17,6 @@ export enum StoreNames {
     UnifiedScanResultStore,
     CardSelectionStore,
     DeviceStore,
-    WindowStateStore,
     ScanStore,
     PermissionsStateStore,
     DebugToolsNavStore,
