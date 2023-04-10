@@ -54,14 +54,15 @@ import {
 import { cloneDeep } from 'lodash';
 import { getIncludedAlwaysRules } from 'scanner/get-rule-inclusions';
 import { ScanResults } from 'scanner/iruleresults';
+import { AssessmentDataBuilder } from 'tests/unit/common/assessment-data-builder';
+import { AssessmentsStoreDataBuilder } from 'tests/unit/common/assessment-store-data-builder';
+import { AssessmentStoreTester } from 'tests/unit/common/assessment-store-tester';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
+import { createStoreWithNullParams } from 'tests/unit/common/store-tester';
+import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
-import { AssessmentDataBuilder } from '../../../common/assessment-data-builder';
-import { AssessmentsStoreDataBuilder } from '../../../common/assessment-store-data-builder';
-import { AssessmentStoreTester } from '../../../common/assessment-store-tester';
-import { createStoreWithNullParams } from '../../../common/store-tester';
-import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
+import type { Tabs } from 'webextension-polyfill';
 
 const assessmentKey: string = 'assessment-1';
 const requirementKey: string = 'assessment-1-step-1';
@@ -483,9 +484,9 @@ describe('AssessmentStore', () => {
             id: tabId,
             url,
             title,
-        } as chrome.tabs.Tab;
+        } as Tabs.Tab;
         browserMock
-            .setup(b => b.getTabAsync(tabId))
+            .setup(b => b.getTab(tabId))
             .returns(async () => tab)
             .verifiable();
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
@@ -548,9 +549,9 @@ describe('AssessmentStore', () => {
             id: tabId,
             url,
             title,
-        } as chrome.tabs.Tab;
+        } as Tabs.Tab;
         browserMock
-            .setup(b => b.getTabAsync(tabId))
+            .setup(b => b.getTab(tabId))
             .returns(async () => tab)
             .verifiable();
 
@@ -591,9 +592,9 @@ describe('AssessmentStore', () => {
             id: tabId,
             url,
             title,
-        } as chrome.tabs.Tab;
+        } as Tabs.Tab;
         assessmentsProviderMock.setup(apm => apm.all()).returns(() => assessmentsProvider.all());
-        browserMock.setup(adapter => adapter.getTabAsync(tabId)).returns(async () => tab);
+        browserMock.setup(adapter => adapter.getTab(tabId)).returns(async () => tab);
 
         const initialState = new AssessmentsStoreDataBuilder(
             assessmentsProvider,
@@ -626,10 +627,10 @@ describe('AssessmentStore', () => {
             id: tabId,
             url,
             title,
-        } as chrome.tabs.Tab;
+        } as Tabs.Tab;
 
         beforeEach(() => {
-            browserMock.setup(adapter => adapter.getTabAsync(tabId)).returns(async () => tab);
+            browserMock.setup(adapter => adapter.getTab(tabId)).returns(async () => tab);
         });
 
         test('with tab info', async () => {
@@ -1188,7 +1189,7 @@ describe('AssessmentStore', () => {
             id: tabId,
             url,
             title,
-        } as chrome.tabs.Tab;
+        } as Tabs.Tab;
 
         it.each([undefined, { tabId: 2000 }])('with persisted tab=%s', async persistedTab => {
             const storeDataBuilder = new AssessmentsStoreDataBuilder(
@@ -1208,7 +1209,7 @@ describe('AssessmentStore', () => {
                 .build();
 
             browserMock
-                .setup(b => b.getTabAsync(tabId))
+                .setup(b => b.getTab(tabId))
                 .returns(async () => tab)
                 .verifiable();
 
@@ -1218,7 +1219,7 @@ describe('AssessmentStore', () => {
         });
 
         test('with no tab id change', async () => {
-            browserMock.setup(b => b.getTabAsync(It.isAny())).verifiable(Times.never());
+            browserMock.setup(b => b.getTab(It.isAny())).verifiable(Times.never());
             const initialState = new AssessmentsStoreDataBuilder(
                 assessmentsProvider,
                 assessmentDataConverterMock.object,

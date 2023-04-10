@@ -4,6 +4,7 @@
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { TargetPageController } from 'background/target-page-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import type { Tabs } from 'webextension-polyfill';
 
 export class TabEventDistributor {
     constructor(
@@ -28,7 +29,7 @@ export class TabEventDistributor {
 
     private onTabRemoved = async (
         tabId: number,
-        removeInfo: chrome.tabs.TabRemoveInfo,
+        removeInfo: Tabs.OnRemovedRemoveInfoType,
     ): Promise<void> => {
         await this.targetPageController.onTargetTabRemoved(tabId);
         await this.detailsViewController.onRemoveTab(tabId);
@@ -38,14 +39,14 @@ export class TabEventDistributor {
         await this.targetPageController.onWindowFocusChanged();
     };
 
-    private onTabActivated = async (activeInfo: chrome.tabs.TabActiveInfo): Promise<void> => {
+    private onTabActivated = async (activeInfo: Tabs.OnActivatedActiveInfoType): Promise<void> => {
         await this.targetPageController.onTabActivated(activeInfo);
     };
 
     private onTabUpdated = async (
         tabId: number,
-        changeInfo: chrome.tabs.TabChangeInfo,
-        tab: chrome.tabs.Tab,
+        changeInfo: Tabs.OnUpdatedChangeInfoType,
+        tab: Tabs.Tab,
     ): Promise<void> => {
         await this.targetPageController.onTabUpdated(tabId, changeInfo);
         await this.detailsViewController.onUpdateTab(tabId, changeInfo);

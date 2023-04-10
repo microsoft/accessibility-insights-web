@@ -4,10 +4,10 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Logger } from 'common/logging/logger';
 import { InterpreterMessage, Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { DictionaryNumberTo } from 'types/common-types';
+import type { Tabs } from 'webextension-polyfill';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { TabContextManager } from './tab-context-manager';
 
@@ -16,7 +16,6 @@ export class TargetPageController {
         private readonly tabContextManager: TabContextManager,
         private readonly tabContextFactory: TabContextFactory,
         private readonly browserAdapter: BrowserAdapter,
-        private readonly logger: Logger,
         private readonly knownTabs: DictionaryNumberTo<string>,
         private readonly idbInstance: IndexedDBAPI,
     ) {}
@@ -57,13 +56,16 @@ export class TargetPageController {
         }
     }
 
-    public async onTabUpdated(tabId: number, changeInfo: chrome.tabs.TabChangeInfo): Promise<void> {
+    public async onTabUpdated(
+        tabId: number,
+        changeInfo: Tabs.OnUpdatedChangeInfoType,
+    ): Promise<void> {
         if (changeInfo.url) {
             await this.handleTabUrlUpdate(tabId);
         }
     }
 
-    public async onTabActivated(activeInfo: chrome.tabs.TabActiveInfo): Promise<void> {
+    public async onTabActivated(activeInfo: Tabs.OnActivatedActiveInfoType): Promise<void> {
         const activeTabId = activeInfo.tabId;
         const windowId = activeInfo.windowId;
 
@@ -144,20 +146,19 @@ export class TargetPageController {
     };
 
     private async sendTabUrlUpdatedAction(tabId: number): Promise<void> {
-        let tab: chrome.tabs.Tab;
+        let tab: Tabs.Tab;
         try {
-            tab = await this.browserAdapter.getTabAsync(tabId);
+            tab = await this.browserAdapter.getTab(tabId);
         } catch (e) {
-            this.logger.log(
-                `sendTabUrlUpdatedAction: tab with ID ${tabId} not found, skipping action message`,
-            );
+            // This is expected in some cases; the browser will sometimes send us update/navigation
+            // events for a tab which our extension can't see because it is tearing down/preloading
             return;
         }
 
         await this.interpretMessageAsync({
             messageType: Messages.Tab.ExistingTabUpdated,
             payload: tab,
-            tabId: tabId,
+            tabId: tab.id,
         });
     }
 

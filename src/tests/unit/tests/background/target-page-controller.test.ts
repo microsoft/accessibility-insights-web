@@ -4,7 +4,6 @@ import { TabContextFactory } from 'background/tab-context-factory';
 import { TabContextManager } from 'background/tab-context-manager';
 import { TargetPageController } from 'background/target-page-controller';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Logger } from 'common/logging/logger';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
@@ -14,11 +13,11 @@ import {
 } from 'tests/unit/common/simulated-browser-adapter';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryNumberTo } from 'types/common-types';
+import type { Tabs } from 'webextension-polyfill';
 
 describe('TargetPageController', () => {
     let testSubject: TargetPageController;
 
-    let mockLogger: IMock<Logger>;
     let mockBrowserAdapter: SimulatedBrowserAdapter;
     let knownTabIds: DictionaryNumberTo<string>;
     let mockTabContextFactory: IMock<TabContextFactory>;
@@ -34,24 +33,23 @@ describe('TargetPageController', () => {
         id: EXISTING_ACTIVE_TAB_ID,
         windowId: EXISTING_WINDOW_ID,
         active: true,
-    } as chrome.tabs.Tab;
+    } as Tabs.Tab;
 
     const EXISTING_INACTIVE_TAB_ID = 2;
     const EXISTING_INACTIVE_TAB = {
         id: EXISTING_INACTIVE_TAB_ID,
         windowId: EXISTING_WINDOW_ID,
         active: false,
-    } as chrome.tabs.Tab;
+    } as Tabs.Tab;
 
     const NEW_TAB_ID = 3;
     const NEW_TAB = {
         id: NEW_TAB_ID,
         windowId: EXISTING_WINDOW_ID,
         active: true,
-    } as chrome.tabs.Tab;
+    } as Tabs.Tab;
 
     beforeEach(() => {
-        mockLogger = Mock.ofType<Logger>();
         mockBrowserAdapter = createSimulatedBrowserAdapter(
             [EXISTING_ACTIVE_TAB, EXISTING_INACTIVE_TAB],
             [EXISTING_WINDOW],
@@ -70,7 +68,6 @@ describe('TargetPageController', () => {
             mockTabContextManager.object,
             mockTabContextFactory.object,
             mockBrowserAdapter.object,
-            mockLogger.object,
             knownTabIds,
             idbInstanceMock.object,
         );
@@ -289,7 +286,7 @@ describe('TargetPageController', () => {
                 });
 
                 it('should send a Tab.VisibilityChange message with isHidden=false for activation of known tabs', async () => {
-                    const activeInfo: chrome.tabs.TabActiveInfo = {
+                    const activeInfo: Tabs.OnActivatedActiveInfoType = {
                         tabId: EXISTING_INACTIVE_TAB_ID,
                         windowId: EXISTING_WINDOW_ID,
                     };
@@ -310,7 +307,7 @@ describe('TargetPageController', () => {
                 });
 
                 it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when a known tab is activated', async () => {
-                    const activeInfo: chrome.tabs.TabActiveInfo = {
+                    const activeInfo: Tabs.OnActivatedActiveInfoType = {
                         tabId: EXISTING_INACTIVE_TAB_ID,
                         windowId: EXISTING_WINDOW_ID,
                     };
@@ -331,7 +328,7 @@ describe('TargetPageController', () => {
                 });
 
                 it('should send a Tab.VisibilityChange message with isHidden=true for other known tabs in the same window when an untracked tab is activated', async () => {
-                    const activeInfo: chrome.tabs.TabActiveInfo = {
+                    const activeInfo: Tabs.OnActivatedActiveInfoType = {
                         tabId: NEW_TAB_ID,
                         windowId: EXISTING_WINDOW_ID,
                     };
@@ -360,8 +357,8 @@ describe('TargetPageController', () => {
                     idbInstanceMock.reset();
                 });
 
-                const changeInfoWithoutUrl: chrome.tabs.TabChangeInfo = {};
-                const changeInfoWithUrl: chrome.tabs.TabChangeInfo = {
+                const changeInfoWithoutUrl: Tabs.OnUpdatedChangeInfoType = {};
+                const changeInfoWithUrl: Tabs.OnUpdatedChangeInfoType = {
                     url: 'https://new-host/new-page',
                 };
 
@@ -486,7 +483,7 @@ describe('TargetPageController', () => {
         });
     }
 
-    function updateTabInBrowserMock(tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void {
+    function updateTabInBrowserMock(tabId: number, changeInfo: Tabs.OnUpdatedChangeInfoType): void {
         const tabIndex = mockBrowserAdapter.tabs.findIndex(tab => tab.id === tabId);
         expect(tabIndex).toBeGreaterThanOrEqual(0);
 

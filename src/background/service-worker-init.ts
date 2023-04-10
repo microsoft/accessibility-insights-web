@@ -224,7 +224,6 @@ async function initializeAsync(): Promise<void> {
         tabContextManager,
         tabContextFactory,
         browserAdapter,
-        logger,
         persistedData.knownTabIds ?? {},
         indexedDBInstance,
     );
