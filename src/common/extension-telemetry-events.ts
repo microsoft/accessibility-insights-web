@@ -119,8 +119,6 @@ export enum TelemetryEventSource {
     NewBugButton,
     TargetPage,
     ContentPage,
-    ElectronDeviceConnect,
-    ElectronResultsView,
     Background,
     PopUp,
     DevTools,
