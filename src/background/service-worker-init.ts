@@ -95,7 +95,7 @@ function initializeSync(): void {
 }
 
 async function initializeAsync(): Promise<void> {
-    // This should happen *before* other initialization steps that involves persisted data
+    // This should happen *before* other initialization steps that involve persisted data
     await serviceWorkerActivator.claimExistingServiceWorkerClients();
 
     // This only removes keys that are unused by current versions of the extension, so it's okay for it to race with everything else
