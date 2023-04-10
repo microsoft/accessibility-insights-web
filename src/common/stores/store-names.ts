@@ -20,7 +20,6 @@ export enum StoreNames {
     ScanStore,
     PermissionsStateStore,
     DebugToolsNavStore,
-    AndroidSetupStore,
     LeftNavStore,
     ContentPanelStore,
     DeviceConnectionStore,

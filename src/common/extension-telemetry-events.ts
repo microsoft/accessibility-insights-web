@@ -225,13 +225,6 @@ export type NeedsReviewAnalyzerScanTelemetryData = {
     incompleteRuleResults: string;
 } & RuleAnalyzerScanTelemetryData;
 
-export type AndroidScanStartedTelemetryData = {
-    source: TelemetryEventSource;
-};
-export type AndroidScanCompletedTelemetryData = {
-    scanDuration: number;
-} & InstanceCount;
-
 export type TabStopsAutomatedResultsTelemetryData = {
     tabStopAutomatedFailuresInstanceCount: TabStopAutomatedFailuresInstanceCount;
 } & BaseTelemetryData;
@@ -277,11 +270,6 @@ export type AtfaInstanceCount = {
     RESOLVED: {
         [ruleId: string]: number;
     };
-};
-
-export type AndroidScanFailedTelemetryData = {
-    port?: number;
-    scanDuration: number;
 };
 
 export type SetAllUrlsPermissionTelemetryData = {
@@ -338,9 +326,6 @@ export type TelemetryData =
     | IssuesAnalyzerScanTelemetryData
     | AssessmentRequirementScanTelemetryData
     | RequirementStatusTelemetryData
-    | AndroidScanStartedTelemetryData
-    | AndroidScanCompletedTelemetryData
-    | AndroidScanFailedTelemetryData
     | DeviceFocusKeyEventTelemetryData
     | ScanIncompleteWarningsTelemetryData
     | SetAllUrlsPermissionTelemetryData
