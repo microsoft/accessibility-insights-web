@@ -44,4 +44,3 @@ Some examples of good PR titles are:
 
 -   [Git branch setup](./docs/git-branch-setup.md)
 -   [Building Accessibility Insights for Web](./docs/building-web.md)
--   [Building Accessibility Insights for Android (Unified)](./docs/building-unified.md)
