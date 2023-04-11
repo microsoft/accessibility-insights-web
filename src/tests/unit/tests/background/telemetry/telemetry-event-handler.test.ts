@@ -3,15 +3,12 @@
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { TelemetryClient } from 'background/telemetry/telemetry-client';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { TelemetryEventSource, TriggeredBy } from 'common/extension-telemetry-events';
 import { each } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import {
-    TelemetryEventSource,
-    TriggeredBy,
-} from '../../../../../common/extension-telemetry-events';
-import { DictionaryStringTo } from '../../../../../types/common-types';
+import { DictionaryStringTo } from 'types/common-types';
 
-describe('TelemetryEventHandlerTest', () => {
+describe(TelemetryEventHandler, () => {
     let telemetryClientStrictMock: IMock<TelemetryClient>;
     let testEventName;
     let testTelemetryPayload;
@@ -28,13 +25,18 @@ describe('TelemetryEventHandlerTest', () => {
         telemetryClientStrictMock = Mock.ofType<TelemetryClient>(null, MockBehavior.Strict);
     });
 
-    test('test for when telemetry is null', () => {
+    test('should silently noop when telemetry is null', () => {
         const payload: BaseActionPayload = {
             telemetry: null,
         };
 
         const testObject = createAndEnableTelemetryEventHandler();
         testObject.publishTelemetry(testEventName, payload);
+    });
+
+    test('trackEvent should silently noop when not yet initialized', () => {
+        const testObject = new TelemetryEventHandler();
+        testObject.publishTelemetry(testEventName, testTelemetryPayload);
     });
 
     test('test for when tab is null', () => {
