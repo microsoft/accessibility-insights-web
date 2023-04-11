@@ -5,21 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug current test file in VSCode",
+            "name": "Debug current unit test file in VSCode",
             "type": "node",
             "request": "launch",
+            "skipFiles": ["<node_internals>/**", "node_modules/**"],
             "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "yarn",
             "runtimeArgs": [
-                "--inspect-brk",
-                "${workspaceRoot}/node_modules/jest/bin/jest.js",
+                "run",
+                "test",
                 "--runInBand",
-                "${fileBasename}",
                 "--coverage",
-                "false"
+                "false",
+                "--",
+                "${fileBasename}"
             ],
             "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "port": 9229
+            "internalConsoleOptions": "neverOpen"
         },
         {
             "name": "Attach debugger to DetailsView in running Chrome instance (must launch Chrome with --remote-debugging-port=9230)",
@@ -67,16 +69,6 @@
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${workspaceFolder}/*"
             }
-        },
-        {
-            "name": "Debug null:find",
-            "type": "node",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "runtimeArgs": ["--inspect-brk", "${workspaceRoot}/tools/strict-null-checks/find.js"],
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "port": 9235
         }
     ],
     "inputs": [
