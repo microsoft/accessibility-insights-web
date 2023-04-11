@@ -12,11 +12,12 @@ exports[`CollapsibleScriptProvider produces script source that matches snapshot 
       return "continue";
     }
     button.addEventListener("click", function () {
-      var ref;
+      var _button_parentElement;
       var content =
-        (ref = button.parentElement) === null || ref === void 0
+        (_button_parentElement = button.parentElement) === null ||
+        _button_parentElement === void 0
           ? void 0
-          : ref.nextElementSibling;
+          : _button_parentElement.nextElementSibling;
       if (content == null) {
         throw Error("Expected button element's parent to have a next sibling");
       }
