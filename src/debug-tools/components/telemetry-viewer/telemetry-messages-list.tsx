@@ -91,4 +91,7 @@ export const onRenderTimestamp = (
 
 export const defaultDateFormatter: DateFormatter = timestamp =>
     // untested line: toLocal() is sensitive to the host machine time zone
-    DateTime.fromMillis(timestamp).toLocal().toISO();
+    //
+    // The ! covers that toISO() can return null if run on an invalid DateTime; however,
+    // DateTime.fromMillis(timestamp) will never return an invalid DateTime.
+    DateTime.fromMillis(timestamp).toLocal().toISO()!;
