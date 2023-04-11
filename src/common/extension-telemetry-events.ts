@@ -257,31 +257,12 @@ export type TabStopAutomatedFailuresInstanceCount = {
     [requirementId: string]: number;
 };
 
-export type AtfaInstanceCount = {
-    ERROR: {
-        [ruleId: string]: number;
-    };
-    WARNING: {
-        [ruleId: string]: number;
-    };
-    INFO: {
-        [ruleId: string]: number;
-    };
-    RESOLVED: {
-        [ruleId: string]: number;
-    };
-};
-
 export type SetAllUrlsPermissionTelemetryData = {
     permissionState: boolean;
 } & BaseTelemetryData;
 
 export type ScanIncompleteWarningsTelemetryData = {
     scanIncompleteWarnings: ScanIncompleteWarningId[];
-};
-
-export type DeviceFocusKeyEventTelemetryData = {
-    keyEventCode: number;
 };
 
 export type AutoDetectedFailuresDialogStateTelemetryData = {
@@ -326,7 +307,6 @@ export type TelemetryData =
     | IssuesAnalyzerScanTelemetryData
     | AssessmentRequirementScanTelemetryData
     | RequirementStatusTelemetryData
-    | DeviceFocusKeyEventTelemetryData
     | ScanIncompleteWarningsTelemetryData
     | SetAllUrlsPermissionTelemetryData
     | TabStopsAutomatedResultsTelemetryData
