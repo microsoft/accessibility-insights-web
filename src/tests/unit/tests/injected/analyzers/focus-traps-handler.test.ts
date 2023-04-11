@@ -11,7 +11,12 @@ import {
 import { IMock, It, Mock, Times } from 'typemoq';
 
 class TestableFocusTrapsKeydownHandler extends FocusTrapsHandler {
-    public lastFocusedElement: HTMLElement;
+    public get internalLastFocusedElement(): Element | null {
+        return this.lastFocusedElement;
+    }
+    public set internalLastFocusedElement(value: Element | null) {
+        this.lastFocusedElement = value;
+    }
 }
 
 describe(FocusTrapsHandler, () => {
@@ -42,15 +47,15 @@ describe(FocusTrapsHandler, () => {
     });
 
     it('constructor sets lastFocusedElement to null', () => {
-        expect(testSubject.lastFocusedElement).toBeNull();
+        expect(testSubject.internalLastFocusedElement).toBeNull();
     });
 
     it('initialize() sets lastFocusedElement to null', () => {
-        testSubject.lastFocusedElement = {} as HTMLElement;
+        testSubject.internalLastFocusedElement = {} as HTMLElement;
 
         testSubject.initialize();
 
-        expect(testSubject.lastFocusedElement).toBeNull();
+        expect(testSubject.internalLastFocusedElement).toBeNull();
     });
 
     describe('getResultOnKeydown', () => {
@@ -64,7 +69,7 @@ describe(FocusTrapsHandler, () => {
 
         beforeEach(() => {
             setupDOM();
-            testSubject.lastFocusedElement = lastFocusedElementStub;
+            testSubject.internalLastFocusedElement = lastFocusedElementStub;
         });
 
         it('Does nothing if focused element is body', async () => {
@@ -78,11 +83,11 @@ describe(FocusTrapsHandler, () => {
             const result = await testSubject.handleTabPressed(domMock.object);
 
             expect(result).toBeNull();
-            expect(testSubject.lastFocusedElement).toBe(lastFocusedElementStub);
+            expect(testSubject.internalLastFocusedElement).toBe(lastFocusedElementStub);
         });
 
         it('Returns null if there was no last focused element', async () => {
-            testSubject.lastFocusedElement = null;
+            testSubject.internalLastFocusedElement = null;
 
             evaluatorMock
                 .setup(e => e.getFocusOrderResult(It.isAny(), It.isAny()))
@@ -92,7 +97,7 @@ describe(FocusTrapsHandler, () => {
             const result = await testSubject.handleTabPressed(domMock.object);
 
             expect(result).toBeNull();
-            expect(testSubject.lastFocusedElement).toBe(focusedElementStub);
+            expect(testSubject.internalLastFocusedElement).toBe(focusedElementStub);
         });
 
         it('Returns null if no element is focused after delay', async () => {
@@ -106,7 +111,7 @@ describe(FocusTrapsHandler, () => {
             const result = await testSubject.handleTabPressed(domMock.object);
 
             expect(result).toBeNull();
-            expect(testSubject.lastFocusedElement).toBeNull();
+            expect(testSubject.internalLastFocusedElement).toBeNull();
         });
 
         it('Returns null if current focused element is dom body', async () => {
@@ -123,7 +128,7 @@ describe(FocusTrapsHandler, () => {
             const result = await testSubject.handleTabPressed(domMock.object);
 
             expect(result).toBeNull();
-            expect(testSubject.lastFocusedElement).toBe(bodyElementStub);
+            expect(testSubject.internalLastFocusedElement).toBe(bodyElementStub);
         });
 
         it('Returns result of getKeyboardTrapResults if an element is focused after delay', async () => {
@@ -141,7 +146,7 @@ describe(FocusTrapsHandler, () => {
             const result = await testSubject.handleTabPressed(domMock.object);
 
             expect(result).toBe(expectedResult);
-            expect(testSubject.lastFocusedElement).toBe(focusedElementStub);
+            expect(testSubject.internalLastFocusedElement).toBe(focusedElementStub);
         });
 
         it('Returns result of getKeyboardTrapResults if a shadow dom element is focused after delay', async () => {
@@ -167,7 +172,7 @@ describe(FocusTrapsHandler, () => {
             const result = await testSubject.handleTabPressed(domMock.object);
 
             expect(result).toBe(expectedResult);
-            expect(testSubject.lastFocusedElement).toBe(focusedElementStub);
+            expect(testSubject.internalLastFocusedElement).toBe(focusedElementStub);
         });
 
         it('Tab press during delay does not create a false positive', async () => {
@@ -195,14 +200,14 @@ describe(FocusTrapsHandler, () => {
 
                         await testSubject.handleTabPressed(domMock.object);
 
-                        expect(testSubject.lastFocusedElement).toBe(newActiveElement);
+                        expect(testSubject.internalLastFocusedElement).toBe(newActiveElement);
                     }
                 })
                 .verifiable(Times.exactly(2));
 
             await testSubject.handleTabPressed(domMock.object);
 
-            expect(testSubject.lastFocusedElement).toBe(newActiveElement);
+            expect(testSubject.internalLastFocusedElement).toBe(newActiveElement);
         });
 
         function setupDOM(focusedElement: HTMLElement = focusedElementStub): void {

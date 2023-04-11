@@ -36,14 +36,7 @@ export class AnalyzerProvider {
         private readonly sendNeedsReviewResults: PostResolveCallback,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         private readonly logger: Logger,
-    ) {
-        this.tabStopsListener = tabStopsListener;
-        this.scopingStore = scopingStore;
-        this.sendMessageDelegate = sendMessageDelegate;
-        this.scanner = scanner;
-        this.telemetryDataFactory = telemetryDataFactory;
-        this.dateGetter = dateGetter;
-    }
+    ) {}
 
     public createRuleAnalyzer(config: RuleAnalyzerConfiguration): Analyzer {
         return new RuleAnalyzer(
