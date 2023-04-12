@@ -3830,7 +3830,7 @@ __metadata:
     stylelint: ^15.3.0
     stylelint-config-prettier-scss: ^0.0.1
     stylelint-config-standard-scss: ^6.1.0
-    tabbable: ^6.0.1
+    tabbable: ^6.1.1
     terser-webpack-plugin: ^5.3.7
     ts-loader: ^9.4.2
     typed-scss-modules: ^7.0.2
@@ -14157,10 +14157,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tabbable@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "tabbable@npm:6.0.1"
-  checksum: 65e378ad69a97416f2fdce34ade11b8ff68b33d9b2d978920a9d285c77e1bb88cb35113a8f00af8c4f0163d788d451a48840a216fa918d6a3f0c554951deb984
+"tabbable@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "tabbable@npm:6.1.1"
+  checksum: 348639497262241ce8e0ccb0664ea582a386183107299ee8f27cf7b56bc84f36e09eaf667d3cb4201e789634012a91f7129bcbd49760abe874fbace35b4cf429
   languageName: node
   linkType: hard
 
