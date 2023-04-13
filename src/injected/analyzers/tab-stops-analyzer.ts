@@ -18,10 +18,9 @@ export interface ProgressResult<T> {
 export class TabStopsAnalyzer extends BaseAnalyzer {
     private debouncedProcessTabEvents: DebouncedFunc<() => void> | null = null;
     private pendingTabbedElements: TabStopEvent[] = [];
-    protected config: FocusAnalyzerConfiguration;
 
     constructor(
-        config: FocusAnalyzerConfiguration,
+        protected readonly config: FocusAnalyzerConfiguration,
         private readonly tabStopListenerRunner: AllFrameRunner<TabStopEvent>,
         sendMessageDelegate: (message) => void,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,

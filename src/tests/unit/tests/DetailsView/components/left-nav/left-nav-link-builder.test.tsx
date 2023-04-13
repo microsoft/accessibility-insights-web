@@ -55,9 +55,9 @@ describe('LeftNavBuilder', () => {
         getStatusForTestMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         outcomeTypeFromTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
         outcomeStatsFromManualTestStatusMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
-        assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
+        assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl);
         getAssessmentSummaryModelFromProviderAndStatusDataMock =
-            Mock.ofType<GetSelectedAssessmentSummaryModelFromProviderAndStatusData>();
+            Mock.ofInstance<GetSelectedAssessmentSummaryModelFromProviderAndStatusData>(_ => null);
         assessmentsDataStub = {};
         navLinkHandlerMock = Mock.ofType(NavLinkHandler);
         navLinkRendererMock = Mock.ofType(NavLinkRenderer);
