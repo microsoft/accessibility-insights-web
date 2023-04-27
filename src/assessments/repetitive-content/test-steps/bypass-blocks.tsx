@@ -31,9 +31,7 @@ const bypassBlocksHowToTest: JSX.Element = (
             <li>
                 Use the <Markup.Term>Tab</Markup.Term> key to navigate toward the primary content.
                 As you navigate, look for a bypass mechanism (typically a{' '}
-                <NewTabLink href="https://dequeuniversity.com/rules/axe/3.1/skip-link">
-                    skip link
-                </NewTabLink>
+                <NewTabLink href="https://webaim.org/techniques/skipnav/">skip link</NewTabLink>
                 ). The mechanism might not become visible until it receives focus.
             </li>
             <li>
