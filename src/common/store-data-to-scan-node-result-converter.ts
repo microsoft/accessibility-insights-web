@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { isNullOrUndefined } from '@microsoft/applicationinsights-core-js';
+import { isNullOrUndefined } from 'common/is-null-or-undefined';
 import {
     AssessmentStoreData,
     GeneratedAssessmentInstance,
