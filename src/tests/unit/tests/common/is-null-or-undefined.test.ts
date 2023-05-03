@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
 import { isNullOrUndefined } from 'common/is-null-or-undefined';
 
 describe('isNullOrUndefined', () => {
