@@ -3,6 +3,7 @@
 import { UnhandledBrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 export interface Message {
     messageType: string;
+    tabId?: number;
     payload?: any;
 }
 
