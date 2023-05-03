@@ -9,7 +9,6 @@
         "stripInternal": true,
         "noEmitOnError": true,
         "skipLibCheck": true,
-        "suppressExcessPropertyErrors": true,
         "alwaysStrict": true,
         "noImplicitUseStrict": false,
         "moduleResolution": "node",
