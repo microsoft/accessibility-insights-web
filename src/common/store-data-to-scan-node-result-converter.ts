@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { isNullOrUndefined } from 'common/is-null-or-undefined';
 import {
     AssessmentStoreData,
     GeneratedAssessmentInstance,
@@ -58,11 +59,11 @@ export function convertUnifiedStoreDataToScanNodeResults(
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
 ): ScanNodeResult[] | null {
     const { rules, results } = unifiedScanResultStoreData;
-    if (!unifiedScanResultStoreData || !results) {
+    if (isNullOrUndefined(unifiedScanResultStoreData) || isNullOrUndefined(results)) {
         return null;
     }
 
-    const transformedResults = results.map(unifiedResult => {
+    const transformedResults = results!.map(unifiedResult => {
         const rule = rules
             ? find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId)
             : { id: unifiedResult.ruleId };
@@ -94,11 +95,10 @@ export function convertAssessmentStoreDataToScanNodeResults(
     ruleInfoMap?: ScannerRuleInfoMap,
 ): ScanNodeResult[] | null {
     if (
-        !assessmentStoreData ||
-        !assessmentStoreData.assessments ||
-        selectedTest === null ||
-        selectedTest === undefined ||
-        !assessmentStoreData.assessments[selectedTest]
+        isNullOrUndefined(assessmentStoreData) ||
+        isNullOrUndefined(assessmentStoreData.assessments) ||
+        isNullOrUndefined(selectedTest) ||
+        isNullOrUndefined(assessmentStoreData.assessments[selectedTest])
     ) {
         return null;
     }
