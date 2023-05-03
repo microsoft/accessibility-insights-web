@@ -11,7 +11,7 @@ describe('isNullOrUndefined', () => {
         expect(isNullOrUndefined(undefined)).toBe(true);
     });
 
-    it.each([1, '', {}])('returns false with %s', (value: any) => {
+    it.each([0, false, NaN, '', 0n, {}])('returns false with falsy value: %s', (value: any) => {
         expect(isNullOrUndefined(value)).toBe(false);
     });
 });
