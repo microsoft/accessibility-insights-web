@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { isNullOrUndefined } from '@microsoft/applicationinsights-core-js';
 import {
     AssessmentStoreData,
     GeneratedAssessmentInstance,
@@ -59,7 +58,7 @@ export function convertUnifiedStoreDataToScanNodeResults(
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
 ): ScanNodeResult[] | null {
     const { rules, results } = unifiedScanResultStoreData;
-    if (isNullOrUndefined(unifiedScanResultStoreData) || isNullOrUndefined(results)) {
+    if (unifiedScanResultStoreData == null || results == null) {
         return null;
     }
 
@@ -95,10 +94,9 @@ export function convertAssessmentStoreDataToScanNodeResults(
     ruleInfoMap?: ScannerRuleInfoMap,
 ): ScanNodeResult[] | null {
     if (
-        isNullOrUndefined(assessmentStoreData) ||
-        isNullOrUndefined(assessmentStoreData.assessments) ||
-        isNullOrUndefined(selectedTest) ||
-        isNullOrUndefined(assessmentStoreData.assessments[selectedTest])
+        selectedTest == null ||
+        assessmentStoreData?.assessments == null ||
+        assessmentStoreData?.assessments[selectedTest] == null
     ) {
         return null;
     }
