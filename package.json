@@ -197,7 +197,7 @@
         "react-helmet": "^6.1.0",
         "react-resize-detector": "^9.1.0",
         "react-router-dom": "^6.11.0",
-        "tabbable": "^6.1.1",
+        "tabbable": "^6.1.2",
         "ua-parser-js": "^1.0.35",
         "uuid": "^9.0.0",
         "webextension-polyfill": "^0.10.0"
