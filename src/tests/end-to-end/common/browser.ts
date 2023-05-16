@@ -178,8 +178,8 @@ export class Browser {
     }
 
     public async setHighContrastMode(highContrastMode: boolean): Promise<void> {
-        const backgroundPage = await this.background();
-        await backgroundPage.setHighContrastMode(highContrastMode);
+        const background = await this.background();
+        await background.setHighContrastMode(highContrastMode);
     }
 
     private async setupDetailsViewAndTargetPage(
@@ -197,17 +197,17 @@ export class Browser {
     }
 
     private async getActivePageTabId(): Promise<number> {
-        const backgroundPage = await this.background();
+        const background = await this.background();
 
         // Check chrome.tabs is initialized
         const checkTabsInit = async () => {
-            while (await backgroundPage.evaluate(() => chrome.tabs == null, null)) {
+            while (await background.evaluate(() => chrome.tabs == null, null)) {
                 await setTimeout(50);
             }
         };
         await this.promiseFactory.timeout(checkTabsInit(), DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS);
 
-        return await backgroundPage.evaluate(() => {
+        return await background.evaluate(() => {
             return new Promise(resolve => {
                 chrome.tabs.query({ active: true, currentWindow: true }, tabs =>
                     resolve(tabs[0].id),
@@ -263,8 +263,8 @@ export class Browser {
     }
 
     private async getExtensionUrl(relativePath: string): Promise<string> {
-        const backgroundPage = await this.background();
-        const pageUrl = backgroundPage.url();
+        const background = await this.background();
+        const pageUrl = background.url();
 
         // pageUrl.origin would be correct here, but it doesn't get populated correctly in all node.js versions we build
         return `${pageUrl.protocol}//${pageUrl.host}/${relativePath}`;

@@ -13,14 +13,14 @@ describe('Details View -> Overview Page', () => {
     let targetPage: TargetPage;
     let overviewPage: DetailsViewPage;
     let loadAssessmentCount: number = 0;
-    let backgroundPage: BackgroundContext;
+    let backgroundContext: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
         overviewPage = await openOverviewPage(browser, targetPage);
-        backgroundPage = await browser.background();
+        backgroundContext = await browser.background();
     });
 
     afterAll(async () => {
@@ -139,8 +139,8 @@ describe('Details View -> Overview Page', () => {
         'should show correct number of items in export dropdown menu with codepen feature flag = %s',
         async codepenFlag => {
             codepenFlag
-                ? await backgroundPage.enableFeatureFlag('exportReportOptions')
-                : await backgroundPage.disableFeatureFlag('exportReportOptions');
+                ? await backgroundContext.enableFeatureFlag('exportReportOptions')
+                : await backgroundContext.disableFeatureFlag('exportReportOptions');
 
             await overviewPage.openExportDropdown();
             const items = (await overviewPage.countMenuItems()).valueOf();

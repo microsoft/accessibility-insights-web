@@ -13,13 +13,13 @@ describe('Details View -> Settings Panel', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let detailsViewPage: DetailsViewPage;
-    let backgroundPage: BackgroundContext;
+    let backgroundContext: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage);
-        backgroundPage = await browser.background();
+        backgroundContext = await browser.background();
         detailsViewPage = await browser.newDetailsViewPage(targetPage);
         await detailsViewPage.openSettingsPanel();
     });
@@ -36,14 +36,14 @@ describe('Details View -> Settings Panel', () => {
             );
         });
 
-        it('should reflect the state applied via the background page insightsUserConfiguration controller all other tests use', async () => {
-            await backgroundPage.setTelemetryState(true);
+        it('should reflect the state applied via the background service worker insightsUserConfiguration controller all other tests use', async () => {
+            await backgroundContext.setTelemetryState(true);
             await detailsViewPage.expectToggleState(
                 settingsPanelSelectors.telemetryStateToggle,
                 true,
             );
 
-            await backgroundPage.setTelemetryState(false);
+            await backgroundContext.setTelemetryState(false);
             await detailsViewPage.expectToggleState(
                 settingsPanelSelectors.telemetryStateToggle,
                 false,
@@ -75,14 +75,14 @@ describe('Details View -> Settings Panel', () => {
             );
         });
 
-        it('should reflect the state applied via the background page insightsUserConfiguration controller all other tests use', async () => {
-            await backgroundPage.setHighContrastMode(true);
+        it('should reflect the state applied via the background service worker insightsUserConfiguration controller all other tests use', async () => {
+            await backgroundContext.setHighContrastMode(true);
             await detailsViewPage.expectToggleState(
                 settingsPanelSelectors.highContrastModeToggle,
                 true,
             );
 
-            await backgroundPage.setHighContrastMode(false);
+            await backgroundContext.setHighContrastMode(false);
             await detailsViewPage.expectToggleState(
                 settingsPanelSelectors.highContrastModeToggle,
                 false,
@@ -93,7 +93,7 @@ describe('Details View -> Settings Panel', () => {
     it.each([true, false])(
         'should pass accessibility validation with highContrastMode=%s',
         async highContrastMode => {
-            await backgroundPage.setHighContrastMode(highContrastMode);
+            await backgroundContext.setHighContrastMode(highContrastMode);
             await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
             const results = await scanForAccessibilityIssues(

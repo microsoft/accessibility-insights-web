@@ -54,8 +54,8 @@ export class BrowserBackchannelWindowMessagePoster implements WindowMessagePoste
     }
 
     // The received message only contains an opaque ID. This callback uses that ID to ask the
-    // background page (our "backchannel") what the true message content is, then forwards the
-    // true content along to the previously-added listeners.
+    // background service worker (our "backchannel") what the true message content is, then forwards
+    // the true content along to the previously-added listeners.
     private onWindowMessageEvent = async (windowMessageEvent: MessageEvent<any>): Promise<void> => {
         // We know that source is a Window because we only register this handler via
         // window.addEventListener
