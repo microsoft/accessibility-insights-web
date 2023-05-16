@@ -38,7 +38,7 @@ A Target Page is a page being tested by the extension. When Accessibility Insigh
 
 Several Target Pages may have active Content Scripts at a time, and a single Target Page may have multiple active Content Scripts if it uses iframes.
 
-Generally, only the Content Script for a given Target Page's *topmost* frame communicates directly with [Flux messages and stores](#flux) from the Background Service Worker; instructions for child iframes' Content Scripts get passed down from their parent frame's Content Script via the different Frame Messenger components in [`/src/injected/frameCommunicators/`](../src/injected/frameCommunicators/).
+Generally, only the Content Script for a given Target Page's *topmost* frame communicates directly with [Flux messages and stores](#flux) from the Background Service Worker. Instructions for child iframes' Content Scripts get passed down from their parent frame's Content Script via the different Frame Messenger components in [`/src/injected/frameCommunicators/`](../src/injected/frameCommunicators/).
 
 The injected Content Script is implemented in [`/src/injected/`](../src/injected/). Its entry point is [`/src/injected/window-initializer.ts`](../src/injected/window-initializer.ts).
 
