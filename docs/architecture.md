@@ -52,7 +52,7 @@ The Popup View is implemented in [`/src/popup/`](../src/popup/). Its entry point
 
 #### Background Service Worker
 
-The Background Service Worker (often abbreviated as just "background") is an an [extension service worker](https://developer.chrome.com/docs/extensions/mv3/service_workers/) which acts as the central controller for all of the extension's shared state and different contexts. It is where most "business logic" lives. Unlike all the other contexts, there is only ever one active service worker, no matter how many target pages a user might be working with at a time.
+The Background Service Worker (often abbreviated as just "background") is an [extension service worker](https://developer.chrome.com/docs/extensions/mv3/service_workers/) which acts as the central controller for all of the extension's shared state and different contexts. It is where most "business logic" lives. Unlike all the other contexts, there is only ever one active service worker, no matter how many target pages a user might be working with at a time.
 
 The Background Service Worker is implemented in [`/src/background/`](../src/background). Its entry point is [`/src/background/service-worker-init.ts`](../src/background/service-worker-init.ts).
 
