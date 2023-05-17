@@ -59,9 +59,9 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
 
     const browser = new Browser(browserInstanceId, playwrightContext, onCloseCallback);
 
-    const backgroundPage = await browser.background();
+    const background = await browser.background();
     if (extensionOptions.suppressFirstTimeDialog) {
-        await backgroundPage.setTelemetryState(false);
+        await background.setTelemetryState(false);
     }
 
     return browser;

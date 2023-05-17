@@ -22,7 +22,7 @@ describe('Details View ->', () => {
     let detailsViewPage: DetailsViewPage;
     const height = 400;
     const narrowModeThresholds = getNarrowModeThresholdsForWeb();
-    let backgroundPage: BackgroundContext;
+    let backgroundContext: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({
@@ -86,8 +86,8 @@ describe('Details View ->', () => {
 
     describe('Quick Assess -> Reflow', () => {
         beforeAll(async () => {
-            backgroundPage = await browser.background();
-            await backgroundPage.enableFeatureFlag('quickAssess');
+            backgroundContext = await browser.background();
+            await backgroundContext.enableFeatureFlag('quickAssess');
             detailsViewPage = (await browser.newQuickAssess()).detailsViewPage;
         });
 

@@ -11,7 +11,7 @@ import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
 describe('Details View -> Quick Assess -> Instructions', () => {
     let browser: Browser;
     let instructionsPage: DetailsViewPage;
-    let backgroundPage: BackgroundContext;
+    let backgroundContext: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({
@@ -19,8 +19,8 @@ describe('Details View -> Quick Assess -> Instructions', () => {
             addExtraPermissionsToManifest: 'fake-activeTab',
         });
 
-        backgroundPage = await browser.background();
-        await backgroundPage.enableFeatureFlag('quickAssess');
+        backgroundContext = await browser.background();
+        await backgroundContext.enableFeatureFlag('quickAssess');
         instructionsPage = (await browser.newQuickAssess()).detailsViewPage;
     });
 

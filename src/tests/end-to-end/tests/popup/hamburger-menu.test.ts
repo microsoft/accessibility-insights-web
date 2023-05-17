@@ -27,10 +27,10 @@ describe('Popup -> Hamburger menu', () => {
     it.each([true, false])(
         'should have content matching snapshot when quickAssess feature flag is %s',
         async quickAssessFeatureFlag => {
-            const backgroundPage = await browser.background();
+            const backgroundContext = await browser.background();
             quickAssessFeatureFlag === true
-                ? await backgroundPage.enableFeatureFlag('quickAssess')
-                : await backgroundPage.disableFeatureFlag('quickAssess');
+                ? await backgroundContext.enableFeatureFlag('quickAssess')
+                : await backgroundContext.disableFeatureFlag('quickAssess');
             const button = await popupPage.getSelectorElement(
                 popupPageElementIdentifiers.hamburgerMenuButton,
             );
@@ -56,10 +56,10 @@ describe('Popup -> Hamburger menu', () => {
         'should pass accessibility validation with highContrastMode=%s and quickAssessFeatureFlag=%s',
         async ({ highContrastMode, quickAssessFeatureFlag }) => {
             await browser.setHighContrastMode(highContrastMode);
-            const backgroundPage = await browser.background();
+            const backgroundContext = await browser.background();
             quickAssessFeatureFlag === true
-                ? await backgroundPage.enableFeatureFlag('quickAssess')
-                : await backgroundPage.disableFeatureFlag('quickAssess');
+                ? await backgroundContext.enableFeatureFlag('quickAssess')
+                : await backgroundContext.disableFeatureFlag('quickAssess');
             await popupPage.waitForHighContrastMode(highContrastMode);
 
             const button = await popupPage.getSelectorElement(

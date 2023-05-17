@@ -10,7 +10,7 @@ import { PromiseFactory } from 'common/promises/promise-factory';
 // * User disabled the extension in the "Manage Extensions" settings page
 // * Extension is updated
 //
-// When this occurs, background pages/service workers get torn down, but
+// When this occurs, background service workers get torn down, but
 // already-injected content scripts don't; they remain active on the page
 // indefinitely, but lose the ability to communicate with other extension
 // pages.

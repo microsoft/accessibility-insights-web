@@ -10,7 +10,7 @@ import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-
 describe('Details View -> Quick Assess -> Reflow', () => {
     let browser: Browser;
     let reflowPage: DetailsViewPage;
-    let backgroundPage: BackgroundContext;
+    let backgroundContext: BackgroundContext;
 
     beforeAll(async () => {
         browser = await launchBrowser({
@@ -18,8 +18,8 @@ describe('Details View -> Quick Assess -> Reflow', () => {
             addExtraPermissionsToManifest: 'fake-activeTab',
         });
 
-        backgroundPage = await browser.background();
-        await backgroundPage.enableFeatureFlag('quickAssess');
+        backgroundContext = await browser.background();
+        await backgroundContext.enableFeatureFlag('quickAssess');
         reflowPage = (await browser.newQuickAssess()).detailsViewPage;
     });
 

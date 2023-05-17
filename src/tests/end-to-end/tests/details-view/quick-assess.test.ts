@@ -18,7 +18,7 @@ describe('Quick Assess', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let detailsViewPage: DetailsViewPage;
-    let backgroundPage: BackgroundContext;
+    let backgroundContext: BackgroundContext;
 
     describe('transfer to assessment dialog', () => {
         beforeAll(async () => {
@@ -30,8 +30,8 @@ describe('Quick Assess', () => {
                 testResourcePath: 'native-widgets/input-type-radio.html', // does not have any images, so will pass
             });
             await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
-            backgroundPage = await browser.background();
-            await backgroundPage.enableFeatureFlag('quickAssess');
+            backgroundContext = await browser.background();
+            await backgroundContext.enableFeatureFlag('quickAssess');
             detailsViewPage = await openOverviewPage(browser, targetPage);
             await detailsViewPage.navigateToRequirement('Image function');
             await detailsViewPage.waitForRequirementStatus('Image function', '4', 'Passed', {
@@ -75,8 +75,8 @@ describe('Quick Assess', () => {
                 testResourcePath: 'native-widgets/input-type-radio.html', // does not have any images, so will pass
             });
             await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
-            backgroundPage = await browser.background();
-            await backgroundPage.enableFeatureFlag('quickAssess');
+            backgroundContext = await browser.background();
+            await backgroundContext.enableFeatureFlag('quickAssess');
             detailsViewPage = await openOverviewPage(browser, targetPage);
             await detailsViewPage.navigateToRequirement('Image function');
             await detailsViewPage.waitForRequirementStatus('Image function', '4', 'Passed', {
