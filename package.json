@@ -53,6 +53,8 @@
         "scss:build": "typed-scss-modules \"src/**/*.scss\" --exportType default",
         "scss:clean": "grunt clean:scss",
         "test": "jest --projects src/tests/unit",
+        "publish-code-coverage": "npx codecov",
+        "test:e2e": "jest --projects src/tests/end-to-end --runInBand --forceExit --detectOpenHandles",
         "test:report:e2e": "yarn packages --include accessibility-insights-report-e2e-tests run test",
         "tbuild": "yarn build && yarn type:check",
         "tbuild:all": "yarn build:all && yarn type:check",
