@@ -15,8 +15,6 @@ import {
 import { UserConfigurationActions } from '../actions/user-configuration-actions';
 
 export class UserConfigurationActionCreator {
-    private readonly currentScope: string = 'UserConfigurationActionCreator';
-
     constructor(
         private readonly userConfigActions: UserConfigurationActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,

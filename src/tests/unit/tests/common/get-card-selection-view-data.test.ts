@@ -7,7 +7,6 @@ import {
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { cloneDeep } from 'lodash';
-import { IMock, Mock } from 'typemoq';
 
 import {
     CardSelectionViewData,

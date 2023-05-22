@@ -4,19 +4,12 @@ import { GuidanceLinks, GuidanceLinksProps } from 'common/components/guidance-li
 import { NewTabLink } from 'common/components/new-tab-link';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { shallow } from 'enzyme';
-import { forOwn } from 'lodash';
 import * as React from 'react';
-
-import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
 
 describe('GuidanceLinksTest', () => {
     const testLink1 = {
         text: 'text1',
         href: 'https://url1',
-    } as HyperlinkDefinition;
-    const testLink2 = {
-        text: 'text2',
-        href: 'https://url2',
     } as HyperlinkDefinition;
 
     test('links is null', () => {
