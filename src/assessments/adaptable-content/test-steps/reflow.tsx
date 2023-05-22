@@ -27,7 +27,7 @@ const reflowHowToTest: JSX.Element = (
                     <li>
                         <Markup.Emphasis>
                             Note: 320 x 256 is equivalent to a display resolution of 1280 x 1024 at
-                            a 400% zoom
+                            a 400% zoom with the browser set to full screen mode.
                         </Markup.Emphasis>
                     </li>
                 </ul>
