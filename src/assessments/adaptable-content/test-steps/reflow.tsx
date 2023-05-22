@@ -22,12 +22,13 @@ const reflowHowToTest: JSX.Element = (
                 Use your system's display settings to set the display resolution to 1280 x 1024.
             </li>
             <li>
-                Use your browser's settings to set the target page's zoom to 400%.
+                Use your browser's settings to set the target page's zoom to 400% and to enable
+                full-screen mode.
                 <ul>
                     <li>
                         <Markup.Emphasis>
                             Note: 320 x 256 is equivalent to a display resolution of 1280 x 1024 at
-                            a 400% zoom with the browser set to full screen mode.
+                            a 400% zoom with the browser set to full-screen mode.
                         </Markup.Emphasis>
                     </li>
                 </ul>
