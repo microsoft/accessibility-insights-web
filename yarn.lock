@@ -3828,7 +3828,7 @@ __metadata:
     sass: ^1.62.1
     sass-loader: ^13.2.0
     serve-static: ^1.15.0
-    simple-git: ^3.18.0
+    simple-git: ^3.19.0
     stylelint: ^15.6.2
     stylelint-config-prettier-scss: ^0.0.1
     stylelint-config-standard-scss: ^6.1.0
@@ -13461,14 +13461,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-git@npm:^3.18.0":
-  version: 3.18.0
-  resolution: "simple-git@npm:3.18.0"
+"simple-git@npm:^3.19.0":
+  version: 3.19.0
+  resolution: "simple-git@npm:3.19.0"
   dependencies:
     "@kwsites/file-exists": ^1.1.1
     "@kwsites/promise-deferred": ^1.1.1
     debug: ^4.3.4
-  checksum: 603a7a8b125836d58fe33f45453cc4e8e9305b6fdbd3bd919444e1f33e17d354ea75bc84097c33aab13639c639d976f32bbc6bef7ef35270c0b08a788a2e3303
+  checksum: 103f754cc172f903d7ad798c0dd7a083618e4ef373d27b37f34f4a7d5b6e5f260636376fca180ce25296f0064120af38b7be665e340c2f6ca463f1810bae0414
   languageName: node
   linkType: hard
 
