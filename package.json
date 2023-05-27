@@ -196,7 +196,7 @@
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",
         "react-resize-detector": "^9.1.0",
-        "react-router-dom": "^6.11.0",
+        "react-router-dom": "^6.11.2",
         "tabbable": "^6.1.2",
         "ua-parser-js": "^1.0.35",
         "uuid": "^9.0.0",
