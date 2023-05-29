@@ -162,7 +162,7 @@
         "prettier": "^2.8.8",
         "regenerator-runtime": "^0.13.11",
         "sass": "^1.62.1",
-        "sass-loader": "^13.2.0",
+        "sass-loader": "^13.3.1",
         "serve-static": "^1.15.0",
         "simple-git": "^3.19.0",
         "stylelint": "^15.6.2",
