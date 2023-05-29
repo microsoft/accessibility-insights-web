@@ -3731,7 +3731,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.59.8
     accessibility-insights-for-android-service-bin: 2.1.0
     ajv: ^8.12.0
-    android-device-list: ^1.2.9
+    android-device-list: ^1.2.10
     app-builder-lib: ^23.6.0
     appium-adb: ^9.10.24
     axe-core: 4.6.3
@@ -3980,10 +3980,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"android-device-list@npm:^1.2.9":
-  version: 1.2.9
-  resolution: "android-device-list@npm:1.2.9"
-  checksum: f6994283d1ec6c74e42f494a274936c25dd51a1fbbc61e70819d5f3a13170cd600bce213611e231e5058e134a67cc77f44f64866e915d9a08a95545c9486b9ce
+"android-device-list@npm:^1.2.10":
+  version: 1.2.10
+  resolution: "android-device-list@npm:1.2.10"
+  checksum: bb67042fe0cef1059ac2c4ed88cbe01d8153a2c569134a90f3cac9d1d14444357ce43529640c1599fa5686accd8a5de9e253aa2e9dd6afefa873ca6634f812c2
   languageName: node
   linkType: hard
 
