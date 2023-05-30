@@ -14,7 +14,7 @@
         color: $report-footer-text;
     }
 
-    @media only screen and (max-width: 1000px) {
+    @media only screen and (width <= 1000px) {
         margin-right: 16px;
         margin-left: 16px;
     }

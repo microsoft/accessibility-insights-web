@@ -3,7 +3,7 @@
 div.insights-dialog-main-override {
     width: 75%;
     max-width: 500px;
-    @media screen and (max-width: 500px) {
+    @media screen and (width <= 500px) {
         min-width: 240px;
         width: 75%;
     }

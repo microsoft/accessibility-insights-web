@@ -26,7 +26,7 @@ $outcome-incomplete-summary-background: $neutral-outcome;
 $outcome-incomplete-border-color: $incomplete-color;
 $outcome-not-applicable-summary-color: $neutral-outcome;
 
-@media screen and (max-width: 640px) {
+@media screen and (width <= 640px) {
     .outcome-past-tense {
         display: none;
     }
