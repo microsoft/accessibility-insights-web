@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const path = require('path');
-const { apkVersionName } = require('accessibility-insights-for-android-service-bin');
 const cloneDeep = require('lodash/cloneDeep');
 const serviceResponseData = require('./service-response-data');
 
@@ -19,6 +18,7 @@ const resetOverlayPermissionCommandMatch =
     'shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice';
 const grantOverlayPermissionCommandMatch =
     'shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW';
+const apkVersionName = '2.1.0'; // Last supported version
 
 function addDeviceEnumerationCommands(id, output) {
     output[`-s ${id} ${devicesCommandMatch}`] = cloneDeep(output.devices);

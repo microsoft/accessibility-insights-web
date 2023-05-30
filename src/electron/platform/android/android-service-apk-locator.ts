@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
-import { apkVersionName } from 'accessibility-insights-for-android-service-bin';
 
 export const AndroidServicePackageName = 'com.microsoft.accessibilityinsightsforandroidservice';
 export type AndroidServiceApkInfo = {
@@ -14,6 +13,7 @@ export class AndroidServiceApkLocator {
 
     public async locateBundledApk(): Promise<AndroidServiceApkInfo> {
         const appPath = await this.getAppPathAsync();
+        const apkVersionName = '2.1.0'; // Last supported version
         return {
             // This should be kept in sync with the corresponding Gruntfile copy config
             path: path.join(appPath, '..', 'android-service', 'android-service.apk'),
