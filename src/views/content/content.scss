@@ -108,7 +108,7 @@
 
     .columns {
         margin-top: 40px;
-        @media screen and (min-width: 800px) {
+        @media screen and (width >= 800px) {
             display: flex;
         }
     }
@@ -121,7 +121,7 @@
     }
 
     .column + .column {
-        @media screen and (min-width: 800px) {
+        @media screen and (width >= 800px) {
             margin-left: 80px;
         }
     }
@@ -257,7 +257,7 @@
     .landmark-table {
         border-spacing: 5px;
 
-        @media screen and (min-width: 600px) {
+        @media screen and (width >= 600px) {
             padding-left: 32px;
         }
 
