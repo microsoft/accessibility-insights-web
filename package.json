@@ -82,7 +82,7 @@
         "@types/chrome": "0.0.237",
         "@types/enzyme": "^3.10.13",
         "@types/enzyme-adapter-react-16": "^1.0.6",
-        "@types/jest": "^29.5.1",
+        "@types/jest": "^29.5.2",
         "@types/jsdom": "^21.1.1",
         "@types/lodash": "^4.14.195",
         "@types/luxon": "^3.3.0",
