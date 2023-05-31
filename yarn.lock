@@ -2808,13 +2808,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^29.5.1":
-  version: 29.5.1
-  resolution: "@types/jest@npm:29.5.1"
+"@types/jest@npm:^29.5.2":
+  version: 29.5.2
+  resolution: "@types/jest@npm:29.5.2"
   dependencies:
     expect: ^29.0.0
     pretty-format: ^29.0.0
-  checksum: 0a22491dec86333c0e92b897be2c809c922a7b2b0aa5604ac369810d6b2360908b4a3f2c6892e8a237a54fa1f10ecefe0e823ec5fcb7915195af4dfe88d2197e
+  checksum: 7d205599ea3cccc262bad5cc173d3242d6bf8138c99458509230e4ecef07a52d6ddcde5a1dbd49ace655c0af51d2dbadef3748697292ea4d86da19d9e03e19c0
   languageName: node
   linkType: hard
 
@@ -3650,7 +3650,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "accessibility-insights-report-e2e-tests@workspace:packages/report-e2e-tests"
   dependencies:
-    "@types/jest": ^29.5.1
+    "@types/jest": ^29.5.2
     accessibility-insights-report: "*"
     jest: ^29.5.0
     jest-file-snapshot: ^0.5.0
@@ -3707,7 +3707,7 @@ __metadata:
     "@types/chrome": 0.0.237
     "@types/enzyme": ^3.10.13
     "@types/enzyme-adapter-react-16": ^1.0.6
-    "@types/jest": ^29.5.1
+    "@types/jest": ^29.5.2
     "@types/jsdom": ^21.1.1
     "@types/lodash": ^4.14.195
     "@types/luxon": ^3.3.0
