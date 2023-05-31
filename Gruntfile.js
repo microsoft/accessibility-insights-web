@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const path = require('path');
-const androidServiceBin = require('accessibility-insights-for-android-service-bin');
-const yaml = require('js-yaml');
 const merge = require('lodash/merge');
 const sass = require('sass');
 const targets = require('./targets.config');
@@ -29,19 +27,11 @@ module.exports = function (grunt) {
     const packageAxeConfigBundlePath = path.join(packageAxeConfigPath, 'bundle');
     const packageAxeConfigDropPath = path.join(packageAxeConfigPath, 'drop');
 
-    const mockAdbObjPath = path.join('packages', 'mock-adb', 'obj');
-    const mockAdbBinPath = path.join('packages', 'mock-adb', 'bin');
-    const mockAdbDropPath = path.join('drop', 'mock-adb');
-
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
         if (!grunt.file.exists(normalizedFile)) {
             grunt.fail.fatal(`Missing required file ${normalizedFile}\n${reason}`);
         }
-    }
-
-    function getUnifiedVersion() {
-        return grunt.option('unified-version');
     }
 
     grunt.initConfig({
@@ -50,7 +40,6 @@ module.exports = function (grunt) {
         },
         clean: {
             intermediates: ['dist', extensionPath],
-            'mock-adb': [mockAdbObjPath, mockAdbBinPath, mockAdbDropPath],
             'package-report': packageReportDropPath,
             'package-ui': packageUIDropPath,
             'package-validator': packageValidatorDropPath,
@@ -58,7 +47,7 @@ module.exports = function (grunt) {
             scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
-            'compile-all': ['exec:esbuild-dev', 'exec:webpack-unified', 'exec:esbuild-prod'],
+            'compile-all': ['exec:esbuild-dev', 'exec:esbuild-prod'],
         },
         copy: {
             code: {
@@ -111,12 +100,6 @@ module.exports = function (grunt) {
                         cwd: './dist/src/DetailsView/Styles',
                         src: '*.css',
                         dest: path.join(extensionPath, 'DetailsView/styles/default'),
-                        expand: true,
-                    },
-                    {
-                        cwd: './dist/src/electron/views',
-                        src: '*.css',
-                        dest: path.join(extensionPath, 'electron/views'),
                         expand: true,
                     },
                     {
@@ -190,7 +173,6 @@ module.exports = function (grunt) {
             'esbuild-dev': `node esbuild.js`,
             'esbuild-prod': `node esbuild.js --env prod`,
             'esbuild-package-report': `node esbuild.js --env report`,
-            'webpack-unified': `"${webpackPath}" --config-name unified`,
             'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
             'esbuild-package-validator': `node esbuild.js --env validator`,
             'generate-validator': `node ${packageValidatorDropPath}`,
@@ -200,10 +182,6 @@ module.exports = function (grunt) {
                 'axe-config-generator.bundle.js',
             )} ${path.join(packageAxeConfigDropPath, 'axe-config.json')}`,
             'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
-            'dotnet-publish-mock-adb': {
-                command: `dotnet publish -c Release -o "${path.resolve(mockAdbDropPath)}"`,
-                cwd: 'packages/mock-adb',
-            },
         },
         sass: {
             options: {
@@ -233,24 +211,20 @@ module.exports = function (grunt) {
         watch: {
             images: {
                 files: ['src/**/*.{png,ico,icns}'],
-                tasks: ['copy:images', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:images', 'drop:dev'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['copy:code', 'drop:dev'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:unified-dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev'],
             },
             // We assume esbuild --watch is running separately (usually via 'yarn watch')
             'esbuild-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
-            },
-            'webpack-unified-output': {
-                files: ['extension/unifiedBundle/**/*.*'],
-                tasks: ['drop:unified-dev'],
             },
         },
     });
@@ -260,52 +234,6 @@ module.exports = function (grunt) {
     const extensionReleaseTargets = releaseTargets.filter(
         t => targets[t].config.options.productCategory === 'extension',
     );
-    const unifiedReleaseTargets = releaseTargets.filter(
-        t => targets[t].config.options.productCategory === 'electron',
-    );
-
-    unifiedReleaseTargets.forEach(targetName => {
-        const { config, appId, publishUrl } = targets[targetName];
-        const { electronIconBaseName, fullName, productCategory } = config.options;
-        const dropPath = `drop/${productCategory}/${targetName}`;
-
-        grunt.config.merge({
-            'configure-electron-builder': {
-                [targetName]: {
-                    dropPath,
-                    electronIconBaseName,
-                    fullName,
-                    appId,
-                    publishUrl,
-                },
-            },
-            'electron-builder-prepare': {
-                [targetName]: {
-                    dropPath: dropPath,
-                },
-            },
-            'electron-builder-pack': {
-                [targetName]: {
-                    dropPath: dropPath,
-                },
-            },
-            'unified-release-drop': {
-                [targetName]: {
-                    // empty on purpose
-                },
-            },
-            'unified-release-pack': {
-                [targetName]: {
-                    // empty on purpose
-                },
-            },
-            'zip-mac-folder': {
-                [targetName]: {
-                    dropPath: dropPath,
-                },
-            },
-        });
-    });
 
     targetNames.forEach(targetName => {
         const { config, bundleFolder, telemetryKeyIdentifier } = targets[targetName];
@@ -316,32 +244,10 @@ module.exports = function (grunt) {
         const dropExtensionPath = path.join(dropPath, 'product');
 
         const productCategorySpecificCopyFiles = [];
-        if (productCategory === 'electron') {
-            productCategorySpecificCopyFiles.push(
-                {
-                    src: 'src/electron/resources/mit_license_en.txt',
-                    dest: `${dropExtensionPath}/LICENSE`,
-                },
-                {
-                    src: androidServiceBin.apkPath,
-                    // This should be kept in sync with android-service-apk.ts
-                    dest: path.join(dropExtensionPath, 'android-service', 'android-service.apk'),
-                },
-                {
-                    src: androidServiceBin.noticePath,
-                    dest: path.join(
-                        dropExtensionPath,
-                        'android-service',
-                        path.basename(androidServiceBin.noticePath),
-                    ),
-                },
-            );
-        } else {
-            productCategorySpecificCopyFiles.push({
-                src: 'LICENSE',
-                dest: `${dropExtensionPath}/LICENSE`,
-            });
-        }
+        productCategorySpecificCopyFiles.push({
+            src: 'LICENSE',
+            dest: `${dropExtensionPath}/LICENSE`,
+        });
 
         grunt.config.merge({
             drop: {
@@ -450,13 +356,6 @@ module.exports = function (grunt) {
             config.options.appInsightsInstrumentationKey = grunt.option(telemetryKeyIdentifier);
         }
 
-        // Add unifiedAppVersion value for electron-based products
-        if (config.options.productCategory === 'electron') {
-            const unifiedAppVersion = getUnifiedVersion();
-            if (unifiedAppVersion) {
-                config.options.unifiedAppVersion = unifiedAppVersion;
-            }
-        }
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
         const copyrightHeader =
@@ -509,211 +408,6 @@ module.exports = function (grunt) {
         console.log(`${targetName} extension is in ${dropExtensionPath}`);
     });
 
-    grunt.registerMultiTask('configure-electron-builder', function () {
-        grunt.task.requires('drop:' + this.target);
-        const { dropPath, electronIconBaseName, fullName, appId, publishUrl } = this.data;
-        const productDir = `${dropPath}/product`;
-
-        const outElectronBuilderConfigFile = path.join(dropPath, 'electron-builder.yml');
-        const srcElectronBuilderConfigFile = path.join(
-            'src',
-            'electron',
-            'electron-builder',
-            `electron-builder.template.yaml`,
-        );
-
-        const version = getUnifiedVersion() || '0.0.0';
-
-        const config = grunt.file.readYAML(srcElectronBuilderConfigFile);
-        config.appId = appId;
-        config.directories.app = dropPath;
-        config.directories.output = `${dropPath}/packed`;
-        config.extraMetadata.version = version;
-        config.win.icon = `src/${electronIconBaseName}.ico`;
-        // electron-builder infers the linux icon from the mac one
-        config.mac.icon = `src/${electronIconBaseName}.icns`;
-        config.publish.url = publishUrl;
-        config.productName = fullName;
-        config.extraMetadata.name = fullName;
-        // This is necessary for the AppImage to display using our brand icon
-        // See electron-userland/electron-builder#3547 and AppImage/AppImageKit#678
-        config.linux.artifactName = fullName.replace(/ (- )?/g, '_') + '.${ext}';
-
-        for (const fileset of [...config.extraResources, ...config.extraFiles]) {
-            fileset.from = fileset.from.replace(/TARGET_SPECIFIC_PRODUCT_DIR/g, productDir);
-        }
-
-        // Manually copying the license files is a workaround for electron-builder #1495.
-        // On win/linux builds these are automatically included, but in Mac they are omitted.
-        // Mac notarization also requires specific structuring of code; these files should be put in
-        // the Contents/Resources folder which electron-builder will do for 'extraResources'.
-        // https://developer.apple.com/forums/thread/128166, section "Structure Your Code Correctly"
-        if (process.platform === 'darwin') {
-            config.extraResources = config.extraResources.concat(config.extraFiles);
-            config.extraFiles = [];
-            config.extraResources.push(
-                {
-                    from: 'node_modules/electron/dist/LICENSE',
-                    to: 'LICENSE.electron.txt',
-                },
-                {
-                    from: 'node_modules/electron/dist/LICENSES.chromium.html',
-                    to: 'LICENSES.chromium.html',
-                },
-            );
-        }
-
-        const configFileContent = yaml.dump(config);
-        grunt.file.write(outElectronBuilderConfigFile, configFileContent);
-        grunt.log.writeln(`generated ${outElectronBuilderConfigFile} from target config`);
-    });
-
-    grunt.registerMultiTask('electron-builder-prepare', function () {
-        grunt.task.requires('drop:' + this.target);
-        grunt.task.requires('configure-electron-builder:' + this.target);
-
-        const { dropPath } = this.data;
-        const configFile = path.join(dropPath, 'electron-builder.yml');
-
-        const taskDoneCallback = this.async();
-
-        grunt.util.spawn(
-            {
-                cmd: 'node',
-                args: [
-                    'node_modules/electron-builder/out/cli/cli.js',
-                    '-p',
-                    'never',
-                    '-c',
-                    configFile,
-                ],
-                opts: {
-                    // electron-builder performs an internal yarn install step to install
-                    // production dependencies for the specific platform being built. This
-                    // will (correctly) result in a different yarn.lock file than our normal
-                    // one. Yarn will throw an error for yarn.lock differences on CI agents;
-                    // suppressing environment variables prevents it from detecting whether it's
-                    // on a CI agent and suppresses that behavior.
-                    env: {
-                        ...process.env,
-                        // These specific variables are the ones detected by package ci-info
-                        CI: undefined,
-                        CONTINUOUS_INTEGRATION: undefined,
-                        GITHUB_ACTIONS: undefined,
-                        SYSTEM_TEAMFOUNDATIONCOLLECTIONURI: undefined,
-                    },
-                },
-            },
-            (error, result, code) => {
-                if (error) {
-                    grunt.fail.fatal(
-                        `electron-builder exited with error code ${code}:\n\n${result.stdout}`,
-                        code,
-                    );
-                }
-
-                taskDoneCallback();
-            },
-        );
-    });
-
-    grunt.registerMultiTask('electron-builder-pack', function () {
-        const { dropPath } = this.data;
-        const configFile = path.join(dropPath, 'electron-builder.yml');
-
-        mustExist(configFile, 'Have you built the product you are trying to pack?');
-
-        let unpackedDirName;
-
-        switch (process.platform) {
-            case 'win32':
-                unpackedDirName = 'win-unpacked';
-                break;
-            case 'darwin':
-                unpackedDirName = 'mac';
-                break;
-            case 'linux':
-                unpackedDirName = 'linux-unpacked';
-                break;
-        }
-
-        const unpackedPath = path.join(dropPath, 'packed', unpackedDirName);
-
-        const taskDoneCallback = this.async();
-
-        grunt.util.spawn(
-            {
-                cmd: 'node',
-                args: [
-                    'node_modules/electron-builder/out/cli/cli.js',
-                    '-p',
-                    'never',
-                    '-c',
-                    configFile,
-                    '--pd',
-                    unpackedPath,
-                ],
-            },
-            (error, result, code) => {
-                if (error) {
-                    grunt.fail.fatal(
-                        `electron-builder exited with error code ${code}:\n\n${result.stdout}`,
-                        code,
-                    );
-                }
-
-                taskDoneCallback();
-            },
-        );
-    });
-
-    grunt.registerMultiTask('zip-mac-folder', function () {
-        grunt.task.requires('electron-builder-pack:' + this.target);
-
-        // We found that the mac update fails unless we produce the
-        // zip file ourselves; electron-builder requires a zip file, but
-        // the zip file it produces leads to 'couldn't find pkzip signatures'
-        // during the eventual update.
-
-        if (process.platform !== 'darwin') {
-            grunt.log.writeln(`task not required for this platform (${process.platform})`);
-            return true;
-        }
-
-        const { dropPath } = this.data;
-        const packedPath = `${dropPath}/packed`;
-
-        const taskDoneCallback = this.async();
-
-        grunt.util.spawn(
-            {
-                cmd: 'node',
-                args: ['pipeline/scripts/zip-mac-folder.js', packedPath],
-            },
-            (error, result, code) => {
-                if (error) {
-                    grunt.fail.fatal(
-                        `zipping mac folder exited with error code ${code}:\n\n${result.stdout}`,
-                        code,
-                    );
-                }
-
-                taskDoneCallback();
-            },
-        );
-    });
-
-    grunt.registerMultiTask('unified-release-drop', function () {
-        grunt.task.run(`drop:${this.target}`);
-        grunt.task.run(`configure-electron-builder:${this.target}`);
-        grunt.task.run(`electron-builder-prepare:${this.target}`);
-    });
-
-    grunt.registerMultiTask('unified-release-pack', function () {
-        grunt.task.run(`electron-builder-pack:${this.target}`);
-        grunt.task.run(`zip-mac-folder:${this.target}`);
-    });
-
     grunt.registerTask('package-report', function () {
         const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
 
@@ -758,25 +452,9 @@ module.exports = function (grunt) {
         console.log(`package is in ${packageAxeConfigDropPath}`);
     });
 
-    grunt.registerTask('build-mock-adb', function () {
-        grunt.task.run('exec:dotnet-publish-mock-adb');
-    });
-
     grunt.registerTask('extension-release-drops', function () {
         extensionReleaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
-        });
-    });
-
-    grunt.registerTask('unified-release-drops', function () {
-        unifiedReleaseTargets.forEach(targetName => {
-            grunt.task.run('unified-release-drop:' + targetName);
-        });
-    });
-
-    grunt.registerTask('unified-release-packs', function () {
-        unifiedReleaseTargets.forEach(targetName => {
-            grunt.task.run('unified-release-pack:' + targetName);
         });
     });
 
@@ -812,20 +490,6 @@ module.exports = function (grunt) {
         'build-assets',
         'drop:production',
     ]);
-    grunt.registerTask('build-unified', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'build-mock-adb',
-        'exec:webpack-unified',
-        'build-assets',
-        'drop:unified-dev',
-    ]);
-    grunt.registerTask('build-unified-canary', [
-        'build-unified',
-        'unified-release-drop:unified-canary',
-    ]);
-    grunt.registerTask('build-unified-all', ['build-unified', 'unified-release-drops']);
-    grunt.registerTask('pack-unified-all', ['unified-release-packs']);
     grunt.registerTask('build-package-report', [
         'clean:intermediates',
         'exec:generate-scss-typings',
@@ -855,13 +519,11 @@ module.exports = function (grunt) {
     grunt.registerTask('build-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'build-mock-adb',
         'build-package-validator',
         'exec:generate-validator',
         'concurrent:compile-all',
         'build-assets',
         'drop:dev',
-        'drop:unified-dev',
         'extension-release-drops',
     ]);
 

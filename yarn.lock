@@ -3646,13 +3646,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"accessibility-insights-for-android-service-bin@npm:2.1.0":
-  version: 2.1.0
-  resolution: "accessibility-insights-for-android-service-bin@npm:2.1.0"
-  checksum: 9478d67f92a5040cb74a4bc50b498bd82ef75470163786f9afe5679a7ed0727fb1ad1a56d65fc63e37c42dbb75d44d5782fe5de0b34d871046d33ce856a056e1
-  languageName: node
-  linkType: hard
-
 "accessibility-insights-report-e2e-tests@workspace:packages/report-e2e-tests":
   version: 0.0.0-use.local
   resolution: "accessibility-insights-report-e2e-tests@workspace:packages/report-e2e-tests"
@@ -3729,7 +3722,6 @@ __metadata:
     "@types/webextension-polyfill": ^0.10.0
     "@typescript-eslint/eslint-plugin": ^5.59.8
     "@typescript-eslint/parser": ^5.59.8
-    accessibility-insights-for-android-service-bin: 2.1.0
     ajv: ^8.12.0
     android-device-list: ^1.2.9
     app-builder-lib: ^23.6.0

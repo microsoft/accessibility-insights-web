@@ -220,59 +220,6 @@ jobs:
           test-results/e2e/failure-screenshots
       timeout-minutes: 15 # chrome-logs is several GB, this can take a while
 
-  e2e-unified-tests:
-    name: e2e-unified-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
-    runs-on: ubuntu-20.04
-    env:
-      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      DISPLAY: :99
-      DEBUG: pw:api
-    strategy:
-      fail-fast: false
-      matrix:
-        shard-index: [1, 2]
-
-    steps:
-    - uses: actions/checkout@v3
-      timeout-minutes: 2
-
-    - uses: actions/setup-dotnet@v2
-      with: { dotnet-version: "${{ env.DOTNET_SDK_VERSION }}" }
-      timeout-minutes: 2
-
-    - uses: actions/setup-node@v3
-      with:
-        node-version: "${{ env.NODE_VERSION }}"
-        cache: yarn
-      timeout-minutes: 5
-
-    - run: yarn install --immutable
-      timeout-minutes: 10
-
-    - run: yarn build:unified
-      timeout-minutes: 5
-
-    - run: yarn playwright install-deps chromium
-      timeout-minutes: 5
-
-    - name: configure xvfb to use DISPLAY var from env
-      if: runner.os == 'Linux'
-      run: |
-        sudo /usr/bin/Xvfb $DISPLAY -screen 0 1024x768x24 &
-
-    - name: yarn test:unified
-      run: |
-        yarn test:unified --ci --shard=${{ matrix.shard-index }}/${{ strategy.job-total }}
-      timeout-minutes: 15
-
-    - name: upload artifact e2e-unified-tests-results
-      uses: actions/upload-artifact@v3
-      if: ${{ always() }}
-      with:
-        name: e2e-unified-tests-${{ matrix.shard-index }}-results
-        path: test-results/electron
-      timeout-minutes: 3
-
   e2e-report-tests:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
