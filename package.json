@@ -172,7 +172,7 @@
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",
         "react-resize-detector": "^9.1.0",
-        "react-router-dom": "^6.12.1",
+        "react-router-dom": "^6.13.0",
         "tabbable": "^6.1.2",
         "ua-parser-js": "^1.0.35",
         "uuid": "^9.0.0",
