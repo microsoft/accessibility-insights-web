@@ -42,5 +42,6 @@ test-results/
 yarn.lock
 src/DetailsView/components/generated-validate-assessment-json.js
 replace-plugin.js
+tools/get-chrome-web-store-refresh-token.ps1
 
 .ignoredRevs
