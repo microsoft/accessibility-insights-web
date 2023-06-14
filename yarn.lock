@@ -3310,7 +3310,7 @@ __metadata:
     classnames: ^2.3.2
     codecov: ^3.8.3
     commander: ^10.0.1
-    core-js-bundle: ^3.30.2
+    core-js-bundle: ^3.31.0
     cross-env: ^7.0.3
     css-loader: ^6.8.1
     electron: 22.0.0
@@ -5000,10 +5000,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js-bundle@npm:^3.30.2":
-  version: 3.30.2
-  resolution: "core-js-bundle@npm:3.30.2"
-  checksum: 2b3d3c4a5d873f02f21c94b54f74fd7f0475639cc18a49880f8d48795ee6877b4e9ec92bcff698c6097ff1f3528d90c021112c7a9d822ee9752e57eaaa5fa170
+"core-js-bundle@npm:^3.31.0":
+  version: 3.31.0
+  resolution: "core-js-bundle@npm:3.31.0"
+  checksum: 1ec17aa23c18babae1507fcd05ea485c77f56df79d055e2420463683c05268a86e4547e6c8e474782381e0702b1b53d3a46e3ff158ddfb84108ed51876979087
   languageName: node
   linkType: hard
 
