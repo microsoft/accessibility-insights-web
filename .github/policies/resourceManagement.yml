@@ -1,0 +1,411 @@
+id: 
+name: GitOps.PullRequestIssueManagement
+description: GitOps.PullRequestIssueManagement primitive
+owner: 
+resource: repository
+disabled: false
+where: 
+configuration:
+  resourceManagementConfiguration:
+    scheduledSearches:
+    - description: 
+      frequencies:
+      - hourly:
+          hour: 3
+      filters:
+      - isOpen
+      - isIssue
+      - noActivitySince:
+          days: 4
+      - isNotLabeledWith:
+          label: 'status: no recent activity'
+      - hasLabel:
+          label: 'status: needs author feedback'
+      actions:
+      - addLabel:
+          label: 'status: no recent activity'
+      - addReply:
+          reply: This issue has been automatically marked as stale because it is marked as requiring author feedback but has not had any activity for **4 days**. It will be closed if no further activity occurs **within 3 days of this comment**. Thank you for contributing to Accessibility Insights!
+    - description: 
+      frequencies:
+      - hourly:
+          hour: 3
+      filters:
+      - isOpen
+      - isIssue
+      - hasLabel:
+          label: 'status: no recent activity'
+      - noActivitySince:
+          days: 3
+      actions:
+      - closeIssue
+    eventResponderTasks:
+    - if:
+      - payloadType: Pull_Request
+      - hasLabel:
+          label: 'pr: auto-merge'
+      then:
+      - enableAutoMerge:
+          mergeMethod: Squash
+      description: 
+    - if:
+      - payloadType: Pull_Request
+      - labelRemoved:
+          label: 'pr: auto-merge'
+      then:
+      - disableAutoMerge
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - isAction:
+            action: Opened
+        - isAction:
+            action: Reopened
+      - not:
+          hasLabel:
+            label: task
+      - not: isAssignedToSomeone
+      then:
+      - addLabel:
+          label: 'status: new'
+      - assignIcmUsers:
+          teamId: 57436
+          primary: True
+          secondary: False
+      description: 
+    - if:
+      - payloadType: Issues
+      - isAction:
+          action: Opened
+      - hasLabel:
+          label: task
+      then:
+      - addLabel:
+          label: 'status: new'
+      description: 
+    - if:
+      - payloadType: Issues
+      - labelAdded:
+          label: 'status: needs author feedback'
+      then:
+      - removeLabel:
+          label: 'status: new'
+      - addReply:
+          reply: The team requires additional author feedback; please review their replies and update this issue accordingly. Thank you for contributing to Accessibility Insights!
+      description: 
+    - if:
+      - payloadType: Issues
+      - isActivitySender:
+          issueAuthor: True
+      - hasLabel:
+          label: 'status: needs author feedback'
+      - not:
+          isAction:
+            action: Closed
+      then:
+      - addLabel:
+          label: 'status: needs attention'
+      - removeLabel:
+          label: 'status: needs author feedback'
+      description: 
+    - if:
+      - payloadType: Issues
+      - labelAdded:
+          label: 'status: ready for triage'
+      then:
+      - assignTo:
+          users:
+          - nang4ally
+      - addReply:
+          reply: This issue has been marked as ready for team triage; we will triage it in our weekly review and update the issue. Thank you for contributing to Accessibility Insights!
+      description: 
+    - if:
+      - payloadType: Issues
+      - labelAdded:
+          label: 'status: needs investigation'
+      then:
+      - addReply:
+          reply: 'This issue requires additional investigation by the Accessibility Insights team. When the issue is ready to be triaged again, we will update the issue with the investigation result and add "status: ready for triage". Thank you for contributing to Accessibility Insights!'
+      - removeLabel:
+          label: 'status: ready for triage'
+      description: 
+    - if:
+      - payloadType: Issues
+      - labelAdded:
+          label: good first issue
+      then:
+      - addLabel:
+          label: help wanted
+      description: 
+    - if:
+      - payloadType: Issues
+      - labelAdded:
+          label: 'resolution: out of scope'
+      then:
+      - addReply:
+          reply: 'This issue has been marked as being beyond the support scope of Accessibility Insights. It will now be closed automatically for house-keeping purposes. '
+      - closeIssue
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - labelAdded:
+            label: 'status: needs author feedback'
+        - labelAdded:
+            label: 'status: needs attention'
+        - labelAdded:
+            label: 'status: needs investigation'
+        - labelAdded:
+            label: 'status: blocked'
+        - labelAdded:
+            label: 'status: ready for triage'
+        - labelAdded:
+            label: 'status: ready for work'
+        - labelAdded:
+            label: 'status: active'
+        - labelAdded:
+            label: 'status: resolved'
+        - labelAdded:
+            label: 'resolution: out of scope'
+      then:
+      - removeLabel:
+          label: 'status: new'
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - labelAdded:
+            label: 'status: new'
+        - labelAdded:
+            label: 'status: needs attention'
+        - labelAdded:
+            label: 'status: needs investigation'
+        - labelAdded:
+            label: 'status: blocked'
+        - labelAdded:
+            label: 'status: ready for triage'
+        - labelAdded:
+            label: 'status: ready for work'
+        - labelAdded:
+            label: 'status: active'
+        - labelAdded:
+            label: 'status: resolved'
+        - labelAdded:
+            label: 'resolution: out of scope'
+      then:
+      - removeLabel:
+          label: 'status: needs author feedback'
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - labelAdded:
+            label: 'status: new'
+        - labelAdded:
+            label: 'status: needs author feedback'
+        - labelAdded:
+            label: 'status: needs investigation'
+        - labelAdded:
+            label: 'status: blocked'
+        - labelAdded:
+            label: 'status: ready for triage'
+        - labelAdded:
+            label: 'status: ready for work'
+        - labelAdded:
+            label: 'status: active'
+        - labelAdded:
+            label: 'status: resolved'
+        - labelAdded:
+            label: 'resolution: out of scope'
+      then:
+      - removeLabel:
+          label: 'status: needs attention'
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - labelAdded:
+            label: 'status: new'
+        - labelAdded:
+            label: 'status: needs author feedback'
+        - labelAdded:
+            label: 'status: needs attention'
+        - labelAdded:
+            label: 'status: blocked'
+        - labelAdded:
+            label: 'status: ready for triage'
+        - labelAdded:
+            label: 'status: ready for work'
+        - labelAdded:
+            label: 'status: active'
+        - labelAdded:
+            label: 'status: resolved'
+        - labelAdded:
+            label: 'resolution: out of scope'
+      then:
+      - removeLabel:
+          label: 'status: needs investigation'
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - labelAdded:
+            label: 'status: new'
+        - labelAdded:
+            label: 'status: needs author feedback'
+        - labelAdded:
+            label: 'status: needs attention'
+        - labelAdded:
+            label: 'status: needs investigation'
+        - labelAdded:
+            label: 'status: ready for triage'
+        - labelAdded:
+            label: 'status: ready for work'
+        - labelAdded:
+            label: 'status: active'
+        - labelAdded:
+            label: 'status: resolved'
+        - labelAdded:
+            label: 'resolution: out of scope'
+      then:
+      - removeLabel:
+          label: 'status: blocked'
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - labelAdded:
+            label: 'status: new'
+        - labelAdded:
+            label: 'status: needs author feedback'
+        - labelAdded:
+            label: 'status: needs attention'
+        - labelAdded:
+            label: 'status: needs investigation'
+        - labelAdded:
+            label: 'status: blocked'
+        - labelAdded:
+            label: 'status: ready for work'
+        - labelAdded:
+            label: 'status: active'
+        - labelAdded:
+            label: 'status: resolved'
+        - labelAdded:
+            label: 'resolution: out of scope'
+      then:
+      - removeLabel:
+          label: 'status: ready for triage'
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - labelAdded:
+            label: 'status: new'
+        - labelAdded:
+            label: 'status: needs author feedback'
+        - labelAdded:
+            label: 'status: needs attention'
+        - labelAdded:
+            label: 'status: needs investigation'
+        - labelAdded:
+            label: 'status: blocked'
+        - labelAdded:
+            label: 'status: ready for triage'
+        - labelAdded:
+            label: 'status: active'
+        - labelAdded:
+            label: 'status: resolved'
+        - labelAdded:
+            label: 'resolution: out of scope'
+      then:
+      - removeLabel:
+          label: 'status: ready for work'
+      description: 
+    - if:
+      - payloadType: Issues
+      - hasLabel:
+          label: task
+      - isAction:
+          action: Closed
+      then:
+      - addLabel:
+          label: 'status: resolved'
+      - removeLabel:
+          label: 'status: active'
+      - removeLabel:
+          label: 'status: new'
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - labelAdded:
+            label: 'status: new'
+        - labelAdded:
+            label: 'status: needs author feedback'
+        - labelAdded:
+            label: 'status: needs attention'
+        - labelAdded:
+            label: 'status: needs investigation'
+        - labelAdded:
+            label: 'status: blocked'
+        - labelAdded:
+            label: 'status: ready for triage'
+        - labelAdded:
+            label: 'status: ready for work'
+        - labelAdded:
+            label: 'status: resolved'
+        - labelAdded:
+            label: 'resolution: out of scope'
+      then:
+      - removeLabel:
+          label: 'status: active'
+      description: 
+    - if:
+      - payloadType: Issues
+      - or:
+        - labelAdded:
+            label: 'status: new'
+        - labelAdded:
+            label: 'status: needs attention'
+        - labelAdded:
+            label: 'status: needs investigation'
+        - labelAdded:
+            label: 'status: blocked'
+        - labelAdded:
+            label: 'status: ready for triage'
+        - labelAdded:
+            label: 'status: ready for work'
+        - labelAdded:
+            label: 'status: active'
+        - labelAdded:
+            label: 'resolution: out of scope'
+      then:
+      - removeLabel:
+          label: 'status: resolved'
+      description: 
+    - if:
+      - payloadType: Issue_Comment
+      - isActivitySender:
+          issueAuthor: True
+      - hasLabel:
+          label: 'status: needs author feedback'
+      then:
+      - addLabel:
+          label: 'status: needs attention'
+      - removeLabel:
+          label: 'status: needs author feedback'
+      description: 
+    - if:
+      - payloadType: Pull_Request
+      - includesModifiedFiles:
+          files:
+          - src/common/types/store-data
+      - isAction:
+          action: Opened
+      then:
+      - addReply:
+          reply: This PR modifies store data, which is persisted between runs of the web extension. Please consider backwards compatibility when modifying these data types.
+      description: 
+onFailure: 
+onSuccess: 
