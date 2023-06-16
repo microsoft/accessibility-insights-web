@@ -60,7 +60,7 @@ updates:
     # working with enzyme or replacing it
   - dependency-name: "@fluentui/react"
     versions:
-    - ">= 0"
+    - ">= 8.96.1"
     # Keeping react at 16 due to compatibility issues with enzyme
     # Upgrade tracked by https://mseng.visualstudio.com/1ES/_workitems/edit/1914758
   - dependency-name: react
