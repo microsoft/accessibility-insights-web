@@ -56,10 +56,11 @@ updates:
   - dependency-name: "@types/node"
     versions:
     - ">=15.0.0"
-    # Major version upgrades of fluentui will require extra validation
+    # Ignore fluentui/react updates until we come up with a solution for either
+    # working with enzyme or replacing it
   - dependency-name: "@fluentui/react"
     versions:
-    - ">= 9.0.0"
+    - ">= 8.96.1"
     # Keeping react at 16 due to compatibility issues with enzyme
     # Upgrade tracked by https://mseng.visualstudio.com/1ES/_workitems/edit/1914758
   - dependency-name: react
