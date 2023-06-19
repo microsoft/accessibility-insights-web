@@ -16,7 +16,7 @@ jobs:
     if: github.event_name != 'schedule' || github.repository_owner == 'microsoft'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.3
+      - uses: actions/checkout@v3.5.3
       - uses: maadhattah/combine-dependabot-prs@e4dc7e045b018ee1e963a1a67bccbbf8ff3b176f
         with:
           branchPrefix: "dependabot"
