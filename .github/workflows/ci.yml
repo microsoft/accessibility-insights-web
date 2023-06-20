@@ -10,8 +10,9 @@ on:
     - cron: '0 19 * * 0'
 
 env:
-  # Keep these in sync with /pipeline/install-node-prerequisites.yaml
+  # Keep this in sync with /pipeline/install-node-prerequisites.yaml
   NODE_VERSION: 16.14.2
+  DOTNET_SDK_VERSION: 6.0.301
 
 jobs:
   build:
@@ -19,6 +20,10 @@ jobs:
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v3.5.3
+      timeout-minutes: 2
+
+    - uses: actions/setup-dotnet@v2
+      with: { dotnet-version: "${{ env.DOTNET_SDK_VERSION }}" }
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
