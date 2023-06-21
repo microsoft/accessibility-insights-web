@@ -158,8 +158,10 @@ jobs:
       with:
         trap-caching: false
     
-    - uses: github/codeql-action/autobuild@v2
-      timeout-minutes: 2
+    # Autobuild is unable to detect how to build the app
+    - run: |
+      yarn install --immutable
+      yarn build
 
     - uses: github/codeql-action/analyze@v2
       timeout-minutes: 10
