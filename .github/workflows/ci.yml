@@ -153,8 +153,9 @@ jobs:
       with:
         trap-caching: false
     
-    - uses: github/codeql-action/autobuild@v2
-      timeout-minutes: 2
+    - run: |
+      yarn install
+      yarn build
 
     - uses: github/codeql-action/analyze@v2
       timeout-minutes: 10
