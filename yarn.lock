@@ -3422,7 +3422,7 @@ __metadata:
     ajv: ^8.12.0
     android-device-list: ^1.2.9
     app-builder-lib: ^23.6.0
-    appium-adb: ^9.11.7
+    appium-adb: ^9.13.0
     axe-core: 4.6.3
     case-sensitive-paths-webpack-plugin: ^2.4.0
     classnames: ^2.3.2
@@ -3836,12 +3836,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"appium-adb@npm:^9.11.7":
-  version: 9.11.7
-  resolution: "appium-adb@npm:9.11.7"
+"appium-adb@npm:^9.13.0":
+  version: 9.13.0
+  resolution: "appium-adb@npm:9.13.0"
   dependencies:
     "@appium/support": ^4.0.0
-    "@babel/runtime": ^7.0.0
     adbkit-apkreader: ^3.1.2
     async-lock: ^1.0.0
     asyncbox: ^2.6.0
@@ -3853,7 +3852,7 @@ __metadata:
     source-map-support: ^0.x
     teen_process: ^2.0.1
     utf7: ^1.0.2
-  checksum: 114e92460daa86c474819fd2b565a23930e7ad1e3292ea1ac1855a0e74f99ddd4de6745825474b27c009b4aed9d6fb7ba539b320b445a1f76650ef51364f1733
+  checksum: 8789b6854c964e8718635dd52e700604dcf58ff06b2e9d04db1108814cccc662bdf186a0874a78f6b14f77b5bc142bb13a3f63dc0086bbc6b858b76a1d67eddb
   languageName: node
   linkType: hard
 
