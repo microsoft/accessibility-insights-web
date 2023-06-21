@@ -1,9 +1,0 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
-steps:
-    - script: yarn download:electron-mirror:binaries
-      displayName: download custom electron binaries
-
-    - powershell: '& "C:\Program Files (x86)\Windows Kits\10\App Certification Kit\signtool.exe" remove /s node_modules/electron/dist/electron.exe'
-      displayName: remove signing from electron binary before rebranding
-      condition: eq(variables['Agent.OS'], 'Windows_NT')
