@@ -16,7 +16,6 @@
         "src/**/*.tsx",
         "src/**/*.js",
         "deploy/**/*",
-        "pipeline/scripts/**/*",
         "tools/**/*",
         "./*.js"
     ]
