@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`DeviceConnectionStore returns default state 1`] = `undefined`;
