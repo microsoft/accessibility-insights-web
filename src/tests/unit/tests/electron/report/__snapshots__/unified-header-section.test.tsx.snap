@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`HeaderSection renders 1`] = `
-<header>
-  <HeaderBar
-    headerText="Accessibility Insights for Android"
-  />
-</header>
-`;
