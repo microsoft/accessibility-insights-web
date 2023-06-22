@@ -152,11 +152,8 @@ jobs:
       timeout-minutes: 2
       with:
         trap-caching: false
+        languages: javascript
     
-    - run: |
-      yarn install
-      yarn build
-
     - uses: github/codeql-action/analyze@v2
       timeout-minutes: 10
 
