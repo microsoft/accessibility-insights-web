@@ -1,6 +1,108 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink'
+} 1`] = `
+<div
+  className="ruleMoreResources"
+>
+  <div
+    className="moreResourcesTitle"
+  >
+    Resources for this rule
+  </div>
+  <span
+    className="ruleDetailsId"
+  >
+    <ExternalLink
+      href="test-url"
+    >
+      More information about 
+      some-rule
+    </ExternalLink>
+  </span>
+  <span
+    className="ruleGuidance"
+  >
+    <GuidanceLinks
+      LinkComponent={[Function]}
+      links={[]}
+    />
+    <GuidanceTags
+      deps={
+        {
+          "LinkComponent": [Function],
+        }
+      }
+      links={[]}
+    />
+  </span>
+</div>
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'ExternalLink'
+} 1`] = `
+<div
+  className="ruleMoreResources"
+>
+  <div
+    className="moreResourcesTitle"
+  >
+    Resources for this rule
+  </div>
+  <span
+    className="ruleDetailsId"
+  >
+    <ExternalLink
+      href="test-url"
+    >
+      More information about 
+      some-rule
+    </ExternalLink>
+  </span>
+  <span
+    className="ruleGuidance"
+  >
+    <GuidanceLinks
+      LinkComponent={[Function]}
+      links={
+        [
+          {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
+    <GuidanceTags
+      deps={
+        {
+          "LinkComponent": [Function],
+        }
+      }
+      links={
+        [
+          {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
+  </span>
+</div>
+`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink'
+} 1`] = `null`;
+
+exports[`RuleResources renders with {
   url: null,
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
   linkComponent: 'NewTabLink'

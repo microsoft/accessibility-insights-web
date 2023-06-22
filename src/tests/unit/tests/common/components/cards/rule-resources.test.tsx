@@ -5,6 +5,7 @@ import {
     RuleResourcesDeps,
     RuleResourcesProps,
 } from 'common/components/cards/rule-resources';
+import { ExternalLink } from 'common/components/external-link';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { shallow } from 'enzyme';
@@ -17,6 +18,7 @@ describe('RuleResources', () => {
     describe('renders', () => {
         const linkComponents = {
             NewTabLink,
+            ExternalLink,
         };
 
         type TestCases = {
@@ -27,11 +29,18 @@ describe('RuleResources', () => {
 
         const testCases: TestCases[] = [
             {
+                url: 'test-url',
+                guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
+                linkComponent: 'ExternalLink',
+            },
+            {
                 url: null,
                 guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
                 linkComponent: 'NewTabLink',
             },
+            { url: 'test-url', guidanceLinks: [], linkComponent: 'ExternalLink' },
             { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' },
+            { url: null, guidanceLinks: [], linkComponent: 'ExternalLink' },
             { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' },
         ];
 
