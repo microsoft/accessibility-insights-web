@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Rectangle } from 'electron';
-import { WindowState } from 'electron/flux/types/window-state';
 import { DictionaryStringTo } from 'types/common-types';
 
 // Licensed under the MIT License.
@@ -16,9 +14,6 @@ export interface UserConfigurationStoreData {
 
     bugService: string;
     bugServicePropertiesMap: IssueFilingServicePropertiesMap;
-
-    lastWindowState: WindowState | null;
-    lastWindowBounds: Rectangle | null;
 
     showAutoDetectedFailuresDialog: boolean;
     showSaveAssessmentDialog: boolean;

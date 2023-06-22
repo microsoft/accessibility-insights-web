@@ -4,7 +4,6 @@
 import {
     BaseActionPayload,
     SaveIssueFilingSettingsPayload,
-    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -145,27 +144,6 @@ describe('UserConfigurationActionCreator', () => {
         await testSubject.saveIssueFilingSettings(payload);
 
         setIssueFilingSettings.verifyAll();
-    });
-
-    it('should SaveWindowBounds message', async () => {
-        const payload: SaveWindowBoundsPayload = {
-            windowState: 'normal',
-            windowBounds: { x: 10, y: 20, height: 100, width: 150 },
-        };
-
-        const saveWindowBoundsActionMock = createAsyncActionMock(payload);
-        const actionsMock = createActionsMock(
-            'saveWindowBounds',
-            saveWindowBoundsActionMock.object,
-        );
-        const testSubject = new UserConfigurationActionCreator(
-            actionsMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        await testSubject.saveWindowBounds(payload);
-
-        saveWindowBoundsActionMock.verifyAll();
     });
 
     it('should SetAutoDetectedFailuresDialogState Message', async () => {

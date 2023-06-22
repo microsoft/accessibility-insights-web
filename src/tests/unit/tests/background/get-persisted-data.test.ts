@@ -49,8 +49,6 @@ describe('GetPersistedDataTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
-            lastWindowState: null,
-            lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };

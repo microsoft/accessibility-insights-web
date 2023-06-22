@@ -4,7 +4,6 @@ import {
     AutoDetectedFailuresDialogStatePayload,
     SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
-    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -70,13 +69,6 @@ export class UserConfigMessageCreator {
     public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload) => {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SaveIssueFilingSettings,
-            payload,
-        });
-    };
-
-    public saveWindowBounds = (payload: SaveWindowBoundsPayload) => {
-        this.dispatcher.dispatchMessage({
-            messageType: Messages.UserConfig.SaveWindowBounds,
             payload,
         });
     };

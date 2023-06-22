@@ -31,8 +31,6 @@ describe('IssueFilingSettings', () => {
             lastSelectedHighContrast: true,
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
-            lastWindowState: null,
-            lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };

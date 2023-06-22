@@ -5,7 +5,6 @@ import {
     AutoDetectedFailuresDialogStatePayload,
     SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
-    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -20,7 +19,6 @@ export class UserConfigurationActions {
     public readonly setIssueFilingServiceProperty =
         new AsyncAction<SetIssueFilingServicePropertyPayload>();
     public readonly saveIssueFilingSettings = new AsyncAction<SaveIssueFilingSettingsPayload>();
-    public readonly saveWindowBounds = new AsyncAction<SaveWindowBoundsPayload>();
     public readonly setAutoDetectedFailuresDialogState =
         new AsyncAction<AutoDetectedFailuresDialogStatePayload>();
     public readonly setSaveAssessmentDialogState =

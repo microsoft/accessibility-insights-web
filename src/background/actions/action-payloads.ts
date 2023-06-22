@@ -27,8 +27,6 @@ import { IssueFilingServiceProperties } from 'common/types/store-data/user-confi
 import { TabStopRequirementStatus } from 'common/types/store-data/visualization-scan-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { Rectangle } from 'electron';
-import { WindowState } from 'electron/flux/types/window-state';
 import { Target } from 'scanner/iruleresults';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
@@ -266,11 +264,6 @@ export interface SetAllUrlsPermissionStatePayload extends BaseActionPayload {
 }
 
 export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;
-
-export interface SaveWindowBoundsPayload extends BaseActionPayload {
-    windowState: WindowState;
-    windowBounds: Rectangle;
-}
 
 export interface AutoDetectedFailuresDialogStatePayload extends BaseActionPayload {
     enabled: boolean;

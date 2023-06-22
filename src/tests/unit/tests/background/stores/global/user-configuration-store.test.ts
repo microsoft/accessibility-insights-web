@@ -3,7 +3,6 @@
 import {
     AutoDetectedFailuresDialogStatePayload,
     SaveIssueFilingSettingsPayload,
-    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -13,7 +12,6 @@ import { UserConfigurationActions } from 'background/actions/user-configuration-
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { ShowAssessmentDialogStateTelemetryData } from 'common/extension-telemetry-events';
-import { WindowState } from 'electron/flux/types/window-state';
 import { cloneDeep } from 'lodash';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -40,8 +38,6 @@ describe('UserConfigurationStoreTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
-            lastWindowState: null,
-            lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };
@@ -52,8 +48,6 @@ describe('UserConfigurationStoreTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
-            lastWindowState: null,
-            lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
             showSaveAssessmentDialog: true,
         };
@@ -109,8 +103,6 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             lastSelectedHighContrast: false,
-            lastWindowState: null,
-            lastWindowBounds: null,
             ...persisted,
         } as UserConfigurationStoreData;
         const testSubject = new UserConfigurationStore(
@@ -208,8 +200,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    lastWindowState: null,
-                    lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -221,8 +211,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    lastWindowState: null,
-                    lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -262,8 +250,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    lastWindowState: null,
-                    lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -279,8 +265,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: payload,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    lastWindowState: null,
-                    lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -320,8 +304,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    lastWindowState: null,
-                    lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -337,8 +319,6 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    lastWindowState: null,
-                    lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,
                     showSaveAssessmentDialog: true,
                 };
@@ -369,8 +349,6 @@ describe('UserConfigurationStoreTest', () => {
                 lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: {},
-                lastWindowState: null,
-                lastWindowBounds: null,
                 showAutoDetectedFailuresDialog: true,
                 showSaveAssessmentDialog: true,
             };
@@ -415,8 +393,6 @@ describe('UserConfigurationStoreTest', () => {
                 lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: initialMapState,
-                lastWindowState: null,
-                lastWindowBounds: null,
                 showAutoDetectedFailuresDialog: true,
                 showSaveAssessmentDialog: true,
             };
@@ -522,49 +498,6 @@ describe('UserConfigurationStoreTest', () => {
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
-
-    test.each(['normal', 'maximized', 'full-screen'])(
-        'saveLastWindowBounds windowState:$windowState',
-        async windowState => {
-            const expectBoundsSet: boolean = windowState === 'normal';
-            const payload: SaveWindowBoundsPayload = {
-                windowState: windowState as WindowState,
-                windowBounds: { x: 5, y: 15, height: 30, width: 50 },
-            };
-
-            const storeTester = createStoreToTestAction('saveWindowBounds');
-            initialStoreData = {
-                isFirstTime: false,
-                enableTelemetry: false,
-                enableHighContrast: false,
-                lastSelectedHighContrast: false,
-                bugService: 'none',
-                bugServicePropertiesMap: {},
-                lastWindowState: null,
-                lastWindowBounds: null,
-                showAutoDetectedFailuresDialog: true,
-                showSaveAssessmentDialog: true,
-            };
-
-            const expectedState: UserConfigurationStoreData = {
-                ...initialStoreData,
-                lastWindowState: payload.windowState,
-                lastWindowBounds: expectBoundsSet ? payload.windowBounds : null,
-            };
-
-            indexDbStrictMock
-                .setup(i =>
-                    i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
-                )
-                .returns(() => Promise.resolve(true))
-                .verifiable(Times.once());
-
-            await storeTester
-                .withActionParam(payload)
-                .withPostListenerMock(indexDbStrictMock)
-                .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
-        },
-    );
 
     function createStoreToTestAction(
         actionName: keyof UserConfigurationActions,
