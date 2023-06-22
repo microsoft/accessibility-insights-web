@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-import {
-    SetHighContrastModePayload,
-    SetTelemetryStatePayload,
-} from './actions/action-payloads';
+import { SetHighContrastModePayload, SetTelemetryStatePayload } from './actions/action-payloads';
 import { Interpreter } from './interpreter';
 
 export class UserConfigurationController {
