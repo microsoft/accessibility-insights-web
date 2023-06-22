@@ -105,7 +105,6 @@ describe('KeyboardShortcutHandler', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
-                    adbLocation: null,
                     lastWindowState: null,
                     lastWindowBounds: null,
                     showAutoDetectedFailuresDialog: true,

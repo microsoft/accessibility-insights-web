@@ -224,10 +224,6 @@ export interface FileIssuePayload extends BaseActionPayload {
     toolData: ToolData;
 }
 
-export interface SetAdbLocationPayload extends BaseActionPayload {
-    adbLocation: string;
-}
-
 export interface UnifiedScanCompletedPayload extends BaseActionPayload {
     scanResult: UnifiedResult[];
     rules: UnifiedRule[];

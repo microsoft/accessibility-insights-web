@@ -147,24 +147,6 @@ describe('UserConfigurationActionCreator', () => {
         setIssueFilingSettings.verifyAll();
     });
 
-    it('should SetAdbLocation Message', async () => {
-        const expectedAdbLocation = 'Somewhere over the rainbow';
-
-        const setAdbLocationConfigMock = createAsyncActionMock(
-            expectedAdbLocation,
-            'UserConfigurationActionCreator',
-        );
-        const actionsMock = createActionsMock('setAdbLocation', setAdbLocationConfigMock.object);
-        const testSubject = new UserConfigurationActionCreator(
-            actionsMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        await testSubject.setAdbLocation(expectedAdbLocation);
-
-        setAdbLocationConfigMock.verifyAll();
-    });
-
     it('should SaveWindowBounds message', async () => {
         const payload: SaveWindowBoundsPayload = {
             windowState: 'normal',

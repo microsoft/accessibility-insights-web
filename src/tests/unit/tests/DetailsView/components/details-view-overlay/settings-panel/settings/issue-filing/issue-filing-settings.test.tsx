@@ -31,7 +31,6 @@ describe('IssueFilingSettings', () => {
             lastSelectedHighContrast: true,
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
-            adbLocation: null,
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,

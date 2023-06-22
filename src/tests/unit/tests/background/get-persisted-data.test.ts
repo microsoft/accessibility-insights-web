@@ -49,7 +49,6 @@ describe('GetPersistedDataTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
-            adbLocation: null,
             lastWindowState: null,
             lastWindowBounds: null,
             showAutoDetectedFailuresDialog: true,
