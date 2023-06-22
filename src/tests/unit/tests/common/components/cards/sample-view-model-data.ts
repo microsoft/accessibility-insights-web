@@ -53,19 +53,6 @@ export const exampleAssessmentResult: AssessmentData = {
     testStepStatus: {},
 };
 
-export const exampleUnifiedResultWithBoundingRectangle = {
-    ...exampleUnifiedResult,
-    descriptors: {
-        ...exampleUnifiedResult.descriptors,
-        boundingRectangle: {
-            left: 1,
-            top: 2,
-            right: 3,
-            bottom: 4,
-        },
-    },
-};
-
 export const exampleUnifiedRuleResult: CardRuleResult = {
     id: 'some-rule',
     nodes: [exampleUnifiedResult as UnifiedResult],
