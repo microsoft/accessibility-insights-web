@@ -3,7 +3,7 @@
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ [length]: 0 ],
-  linkComponent: 'ElectronExternalLink'
+  linkComponent: 'ExternalLink'
 } 1`] = `
 <div
   className="ruleMoreResources"
@@ -16,12 +16,12 @@ exports[`RuleResources renders with {
   <span
     className="ruleDetailsId"
   >
-    <ElectronExternalLink
+    <ExternalLink
       href="test-url"
     >
       More information about 
       some-rule
-    </ElectronExternalLink>
+    </ExternalLink>
   </span>
   <span
     className="ruleGuidance"
@@ -45,7 +45,7 @@ exports[`RuleResources renders with {
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
-  linkComponent: 'ElectronExternalLink'
+  linkComponent: 'ExternalLink'
 } 1`] = `
 <div
   className="ruleMoreResources"
@@ -58,12 +58,12 @@ exports[`RuleResources renders with {
   <span
     className="ruleDetailsId"
   >
-    <ElectronExternalLink
+    <ExternalLink
       href="test-url"
     >
       More information about 
       some-rule
-    </ElectronExternalLink>
+    </ExternalLink>
   </span>
   <span
     className="ruleGuidance"
@@ -99,7 +99,7 @@ exports[`RuleResources renders with {
 exports[`RuleResources renders with {
   url: null,
   guidanceLinks: [ [length]: 0 ],
-  linkComponent: 'ElectronExternalLink'
+  linkComponent: 'ExternalLink'
 } 1`] = `null`;
 
 exports[`RuleResources renders with {

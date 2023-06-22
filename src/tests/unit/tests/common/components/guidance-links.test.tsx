@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ExternalLink } from 'common/components/external-link';
 import { GuidanceLinks, GuidanceLinksProps } from 'common/components/guidance-links';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
-import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
 import * as React from 'react';
@@ -57,7 +57,7 @@ describe('GuidanceLinksTest', () => {
             const props: GuidanceLinksProps = {
                 links: testCase,
                 classNameForDiv: 'className',
-                LinkComponent: ElectronExternalLink,
+                LinkComponent: ExternalLink,
             };
 
             const rendered = shallow(<GuidanceLinks {...props} />);
@@ -65,10 +65,10 @@ describe('GuidanceLinksTest', () => {
         });
     });
 
-    test('linkComponentType is defined as ElectronExternalLink', () => {
+    test('linkComponentType is defined as ExternalLink', () => {
         const props: GuidanceLinksProps = {
             links: [testLink1],
-            LinkComponent: ElectronExternalLink,
+            LinkComponent: ExternalLink,
         };
 
         const rendered = shallow(<GuidanceLinks {...props} />);
