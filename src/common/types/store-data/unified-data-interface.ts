@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
 import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { GuidanceLink } from './guidance-links';
@@ -92,7 +91,6 @@ export type UnifiedIdentifiers = {
 
 export type UnifiedDescriptors = {
     snippet?: string;
-    boundingRectangle?: BoundingRectangle;
     relatedCssSelectors?: string[];
 } & InstancePropertyBag;
 
