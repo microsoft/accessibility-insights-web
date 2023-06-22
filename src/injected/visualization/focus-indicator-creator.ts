@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Point } from 'electron';
 import { CenterPositionCalculator } from 'injected/visualization/center-position-calculator';
 import { FocusIndicator } from 'injected/visualization/focus-indicator';
 import {
@@ -10,6 +9,7 @@ import {
     LineConfiguration,
     SVGDrawerConfiguration,
 } from 'injected/visualization/formatter';
+import { Point } from 'injected/visualization/point';
 import { SVGShapeFactory } from 'injected/visualization/svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from 'injected/visualization/svg-solid-shadow-filter-factory';
 import { TabbedItem, TabbedItemType } from 'injected/visualization/tabbed-item';

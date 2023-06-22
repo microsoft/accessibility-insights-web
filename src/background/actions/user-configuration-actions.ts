@@ -5,14 +5,12 @@ import {
     AutoDetectedFailuresDialogStatePayload,
     SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
-    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
 } from './action-payloads';
 
 export class UserConfigurationActions {
-    public readonly setAdbLocation = new AsyncAction<string>();
     public readonly setTelemetryState = new AsyncAction<boolean>();
     public readonly getCurrentState = new AsyncAction<void>();
     public readonly setHighContrastMode = new AsyncAction<SetHighContrastModePayload>();
@@ -21,7 +19,6 @@ export class UserConfigurationActions {
     public readonly setIssueFilingServiceProperty =
         new AsyncAction<SetIssueFilingServicePropertyPayload>();
     public readonly saveIssueFilingSettings = new AsyncAction<SaveIssueFilingSettingsPayload>();
-    public readonly saveWindowBounds = new AsyncAction<SaveWindowBoundsPayload>();
     public readonly setAutoDetectedFailuresDialogState =
         new AsyncAction<AutoDetectedFailuresDialogStatePayload>();
     public readonly setSaveAssessmentDialogState =

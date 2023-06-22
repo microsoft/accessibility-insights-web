@@ -10,7 +10,6 @@ import {
     AutoDetectedFailuresDialogStatePayload,
     SaveAssessmentDialogStatePayload,
     SaveIssueFilingSettingsPayload,
-    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -27,9 +26,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         lastSelectedHighContrast: false,
         bugService: 'none',
         bugServicePropertiesMap: {},
-        adbLocation: null,
-        lastWindowBounds: null,
-        lastWindowState: null,
         showAutoDetectedFailuresDialog: true,
         showSaveAssessmentDialog: true,
     };
@@ -68,7 +64,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
 
     protected addActionListeners(): void {
         this.userConfigActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.userConfigActions.setAdbLocation.addListener(this.onSetAdbLocation);
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
         this.userConfigActions.setNativeHighContrastMode.addListener(
@@ -79,7 +74,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
             this.onSetIssueFilingServiceProperty,
         );
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
-        this.userConfigActions.saveWindowBounds.addListener(this.onSaveLastWindowBounds);
         this.userConfigActions.setAutoDetectedFailuresDialogState.addListener(
             this.onSetAutoDetectedFailuresDialogState,
         );
@@ -87,11 +81,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
             this.onSetSaveAssessmentDialogState,
         );
     }
-
-    private onSetAdbLocation = async (location: string): Promise<void> => {
-        this.state.adbLocation = location;
-        await this.emitChanged();
-    };
 
     private onSetTelemetryState = async (enableTelemetry: boolean): Promise<void> => {
         this.state.isFirstTime = false;
@@ -143,17 +132,6 @@ export class UserConfigurationStore extends PersistentStore<UserConfigurationSto
         const bugService = payload.issueFilingServiceName;
         this.state.bugService = bugService;
         this.state.bugServicePropertiesMap[bugService] = payload.issueFilingSettings;
-        await this.emitChanged();
-    };
-
-    private onSaveLastWindowBounds = async (payload: SaveWindowBoundsPayload): Promise<void> => {
-        this.state.lastWindowState = payload.windowState;
-
-        // Retain these bounds only if the window is in a normal state
-        if (payload.windowState === 'normal') {
-            this.state.lastWindowBounds = payload.windowBounds;
-        }
-
         await this.emitChanged();
     };
 
