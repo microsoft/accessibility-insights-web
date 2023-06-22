@@ -1,13 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 steps:
-    - task: UseDotNet@2 # For building mock-adb
-      inputs:
-          # Keep this in sync with /.github/workflows/ci.yml
-          version: '6.0.301'
-      timeoutInMinutes: 2
-      retryCountOnTaskFailure: 2
-
     - task: NodeTool@0
       inputs:
           # Keep this in sync with /.github/workflows/ci.yml
