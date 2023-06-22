@@ -35,8 +35,6 @@ dist/
 docs/art/ada-cat.ansi256.txt
 docs/LICENSE.txt
 obj/
-src/electron/resources/mit_license_en.txt
-src/electron/resources/mit_license.txt
 src/NOTICE.html
 drop/
 extension/
