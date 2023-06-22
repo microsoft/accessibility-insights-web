@@ -157,6 +157,7 @@ jobs:
       timeout-minutes: 2
       with:
         trap-caching: false
+        languages: javascript
     
     - uses: github/codeql-action/analyze@v2
       timeout-minutes: 10
