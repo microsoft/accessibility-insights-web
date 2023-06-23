@@ -26,11 +26,6 @@ const commonEntryFiles = {
     debugTools: path.resolve(__dirname, 'src/debug-tools/initializer/debug-tools-init.tsx'),
 };
 
-const electronEntryFiles = {
-    renderer: [path.resolve(__dirname, 'src/electron/views/renderer-initializer.ts')],
-    main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
-};
-
 const tsRule = {
     test: /\.tsx?$/,
     use: [
@@ -92,27 +87,6 @@ const commonConfig = {
     },
 };
 
-const unifiedConfig = {
-    ...commonConfig,
-    entry: electronEntryFiles,
-    name: 'unified',
-    mode: 'development',
-    devtool: 'source-map',
-    output: {
-        path: path.join(__dirname, 'extension/unifiedBundle'),
-        filename: '[name].bundle.js',
-    },
-    node: {
-        ...commonConfig.node,
-        __dirname: false,
-        __filename: false,
-    },
-    optimization: {
-        splitChunks: false,
-    },
-    target: 'electron-main',
-};
-
 const packageUIConfig = {
     entry: {
         ui: [path.resolve(__dirname, 'src/packages/accessibility-insights-ui/index.ts')],
@@ -134,5 +108,5 @@ const packageUIConfig = {
     target: 'node',
 };
 
-// For just one config, use "webpack --config-name unified", "webpack --config-name package-ui", etc
-module.exports = [unifiedConfig, packageUIConfig];
+// For just one config, use "webpack --config-name package-ui", etc
+module.exports = [packageUIConfig];
