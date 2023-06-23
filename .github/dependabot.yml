@@ -45,12 +45,6 @@ updates:
   - dependency-name: axe-core
     versions:
     - ">= 0"
-    # All electron builds are going to be manually updated
-    # since our release builds use a non-standard Electron build
-    # with distribution-restricted media codecs stripped out
-  - dependency-name: electron
-    versions:
-    - ">= 0"
     # Major version of @types/node is pinned to match the version of node we
     # use for builds (ideally, latest LTS)
   - dependency-name: "@types/node"
