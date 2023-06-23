@@ -5,7 +5,7 @@ Licensed under the MIT License.
 
 ## Building Accessibility Insights for Web
 
-This document describes how to build and test Accessibility Insights for Web (the browser extension). Much of the information/code is shared between it and Accessibility Insights for Android (the "unified" Electron app); for guidance specific to Unified, see [Building Accessibility Insights for Android (Unified)](./building-unified.md).
+This document describes how to build and test Accessibility Insights for Web (the browser extension).
 
 ### Prerequisites
 
