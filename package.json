@@ -89,7 +89,7 @@
         "@types/react-dom": "^16.9.15",
         "@types/react-helmet": "^6.1.6",
         "@types/react-router-dom": "^5.3.3",
-        "@types/serve-static": "^1.15.1",
+        "@types/serve-static": "^1.15.2",
         "@types/ua-parser-js": "^0.7.36",
         "@types/uuid": "^9.0.2",
         "@types/webextension-polyfill": "^0.10.0",
