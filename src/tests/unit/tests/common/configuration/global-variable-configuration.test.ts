@@ -12,17 +12,11 @@ describe('GlobalVariableConfiguration', () => {
 
     const defaultTelemetryBuildName = 'unknownBuild';
     const defaultName = 'Accessibility Insights for Web';
-    const defaultUnifiedAppVersion = '0.0.0';
     const newName = 'New Extension Name';
 
     it('reflects the expected default values if none have been set (fullName)', () => {
         expect(config.getOption('fullName')).toBe(defaultName);
         expect(config.config.options.fullName).toBe(defaultName);
-    });
-
-    it('reflects the expected default values if none have been set (unifiedAppVersion)', () => {
-        expect(config.getOption('unifiedAppVersion')).toBe(defaultUnifiedAppVersion);
-        expect(config.config.options.unifiedAppVersion).toBe(defaultUnifiedAppVersion);
     });
 
     it('reflects the expected default values if none have been set (telemetryBuildName)', () => {

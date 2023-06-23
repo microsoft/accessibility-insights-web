@@ -11,7 +11,6 @@ export type InsightsConfigurationOptions = {
     appInsightsInstrumentationKey?: string;
     bundled?: string;
     telemetryBuildName: string;
-    unifiedAppVersion: string;
 };
 
 export interface ConfigAccessor {

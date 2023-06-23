@@ -38,7 +38,7 @@ The convention that we follow is inspired from [SemVer](https://semver.org/) con
 Some examples of good PR titles are:
 
 -   `refactor: rename FooWidget to BarWidget`
--   `feat(android-settings): add High Contrast toggle to unified settings panel`
+-   `feat(high-contrast-settings): add High Contrast toggle to settings panel`
 
 ## Further Guidance
 
