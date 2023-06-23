@@ -119,8 +119,6 @@ export enum TelemetryEventSource {
     NewBugButton,
     TargetPage,
     ContentPage,
-    ElectronDeviceConnect,
-    ElectronResultsView,
     Background,
     PopUp,
     DevTools,
@@ -227,13 +225,6 @@ export type NeedsReviewAnalyzerScanTelemetryData = {
     incompleteRuleResults: string;
 } & RuleAnalyzerScanTelemetryData;
 
-export type AndroidScanStartedTelemetryData = {
-    source: TelemetryEventSource;
-};
-export type AndroidScanCompletedTelemetryData = {
-    scanDuration: number;
-} & InstanceCount;
-
 export type TabStopsAutomatedResultsTelemetryData = {
     tabStopAutomatedFailuresInstanceCount: TabStopAutomatedFailuresInstanceCount;
 } & BaseTelemetryData;
@@ -266,36 +257,12 @@ export type TabStopAutomatedFailuresInstanceCount = {
     [requirementId: string]: number;
 };
 
-export type AtfaInstanceCount = {
-    ERROR: {
-        [ruleId: string]: number;
-    };
-    WARNING: {
-        [ruleId: string]: number;
-    };
-    INFO: {
-        [ruleId: string]: number;
-    };
-    RESOLVED: {
-        [ruleId: string]: number;
-    };
-};
-
-export type AndroidScanFailedTelemetryData = {
-    port?: number;
-    scanDuration: number;
-};
-
 export type SetAllUrlsPermissionTelemetryData = {
     permissionState: boolean;
 } & BaseTelemetryData;
 
 export type ScanIncompleteWarningsTelemetryData = {
     scanIncompleteWarnings: ScanIncompleteWarningId[];
-};
-
-export type DeviceFocusKeyEventTelemetryData = {
-    keyEventCode: number;
 };
 
 export type AutoDetectedFailuresDialogStateTelemetryData = {
@@ -340,10 +307,6 @@ export type TelemetryData =
     | IssuesAnalyzerScanTelemetryData
     | AssessmentRequirementScanTelemetryData
     | RequirementStatusTelemetryData
-    | AndroidScanStartedTelemetryData
-    | AndroidScanCompletedTelemetryData
-    | AndroidScanFailedTelemetryData
-    | DeviceFocusKeyEventTelemetryData
     | ScanIncompleteWarningsTelemetryData
     | SetAllUrlsPermissionTelemetryData
     | TabStopsAutomatedResultsTelemetryData

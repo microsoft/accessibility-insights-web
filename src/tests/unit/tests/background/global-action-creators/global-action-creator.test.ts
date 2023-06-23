@@ -19,6 +19,7 @@ import { GlobalActionCreator } from 'background/global-action-creators/global-ac
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import {
+    TelemetryData,
     TelemetryEventSource,
     TRANSFER_QUICK_ASSESS_DATA_TO_ASSESSMENT_INITIATED,
 } from 'common/extension-telemetry-events';
@@ -118,7 +119,7 @@ describe('GlobalActionCreatorTest', () => {
         const payload: BaseActionPayload = {
             telemetry: {
                 source: TelemetryEventSource.DetailsView,
-            },
+            } as TelemetryData,
         };
 
         const validator = new GlobalActionCreatorValidator()
