@@ -113,12 +113,8 @@ function getAllTabSpecificPersistedPromises(
 export function getGlobalPersistedData(
     indexedDBInstance: IndexedDBAPI,
     dataKeysToFetch: string[],
-    options?: { ignorePersistedData: boolean }, // this option is for tests to ensure they can use mock-adb
 ): Promise<PersistedData> {
     const persistedData = {} as PersistedData;
-    if (options?.ignorePersistedData) {
-        return Promise.resolve(persistedData); //empty object
-    }
 
     const promises = getGlobalPersistedPromises(dataKeysToFetch, indexedDBInstance, persistedData);
 
