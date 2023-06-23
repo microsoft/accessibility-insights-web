@@ -16,43 +16,16 @@ describe('RichResolutionContent', () => {
     const deps: RichResolutionContentDeps = { LinkComponent: stubLinkComponent };
 
     it.each([
-        'android/ColorContrast',
-        'android/ActiveViewName',
-        'android/ImageViewName',
-        'android/EditTextValue',
         'web/aria-input-field-name',
         'web/color-contrast',
         'web/th-has-data-cells',
         'web/scrollable-region-focusable',
         'web/label-content-name-mismatch',
         'web/p-as-heading',
-        'android/atfa/ClassNameCheck',
-        'android/atfa/ClickableSpanCheck',
-        'android/atfa/DuplicateClickableBoundsCheck',
-        'android/atfa/DuplicateSpeakableTextCheck',
-        'android/atfa/LinkPurposeUnclearCheck',
-        'android/atfa/RedundantDescriptionCheck',
-        'android/atfa/TraversalOrderCheck',
-        'android/atfa/TextContrastCheck',
-        'android/atfa/ImageContrastCheck',
     ])('renders static content with id=%s', testId => {
         const props: RichResolutionContentProps = {
             deps,
             contentId: testId,
-        };
-
-        const testSubject = shallow(<RichResolutionContent {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
-    });
-
-    it('renders android/TouchSizeWcag using contentVariables', () => {
-        const props: RichResolutionContentProps = {
-            deps,
-            contentId: 'android/TouchSizeWcag',
-            contentVariables: {
-                logicalWidth: 'LOGICAL_WIDTH_VALUE',
-                logicalHeight: 'LOGICAL_HEIGHT_VALUE',
-            },
         };
 
         const testSubject = shallow(<RichResolutionContent {...props} />);
