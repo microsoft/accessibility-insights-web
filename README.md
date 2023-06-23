@@ -11,12 +11,7 @@ Licensed under the MIT License.
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni/reviews)
 
-One project is built from this repository:
-
--   **Accessibility Insights for Web** is a browser extension for Google Chrome and the new Microsoft Edge, used for assessing the accessibility of web sites and web applications.
-
-### Notice
-The Accessibility Insights team is proud to provide accessibility scanning solutions across multiple platforms including Web, Windows Desktop, and Android. Unfortunately, the usage of Accessibility Insights for Android did not meet expectations and we will be **ending support of that product** effective June 1 2023, so we can focus on our more popular products for Web and Windows Desktop. The product download link will be removed to promote security and discourage use of an unmaintained version of the product. The source code will remain available under the MIT open-source license. We are grateful to the community who continue to use our accessibility testing products!
+This repository contains the code for **Accessibility Insights for Web**, which is a browser extension for Google Chrome and the new Microsoft Edge. It is used for assessing the accessibility of web sites and web applications.
 
 ### Install Accessibility Insights for Web
 
