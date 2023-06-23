@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { ScanNodeResult } from 'common/store-data-to-scan-node-result-converter';
 import { TargetHelper } from 'common/target-helper';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -20,6 +21,7 @@ export class ElementBasedViewModelCreator {
     constructor(
         private getDecoratedAxeNode: GetDecoratedAxeNodeCallback,
         private getHighlightedResultInstanceIds: GetCardSelectionViewData,
+        private isResultHighlightUnavailable: IsResultHighlightUnavailable,
     ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
@@ -36,6 +38,7 @@ export class ElementBasedViewModelCreator {
             cardSelectionData,
             results,
             platformInfo ?? null,
+            this.isResultHighlightUnavailable,
         ).resultsHighlightStatus;
 
         results.forEach(result => {

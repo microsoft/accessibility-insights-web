@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { ResultsFilter } from 'common/types/results-filter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
@@ -7,6 +8,7 @@ import {
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { cloneDeep } from 'lodash';
+import { IMock, Mock } from 'typemoq';
 
 import {
     CardSelectionViewData,
@@ -16,6 +18,7 @@ import {
 describe('getCardSelectionStoreviewData', () => {
     let initialCardSelectionState: CardSelectionStoreData;
     let initialUnifiedScanResultState: UnifiedScanResultStoreData;
+    let isResultHighlightUnavailable: IMock<IsResultHighlightUnavailable>;
     let resultsFilter: ResultsFilter;
 
     beforeEach(() => {
@@ -67,6 +70,7 @@ describe('getCardSelectionStoreviewData', () => {
             ],
         } as UnifiedScanResultStoreData;
 
+        isResultHighlightUnavailable = Mock.ofType<IsResultHighlightUnavailable>();
         initialCardSelectionState = cloneDeep(defaultCardSelectionState);
     });
 
@@ -75,6 +79,7 @@ describe('getCardSelectionStoreviewData', () => {
             initialCardSelectionState,
             initialUnifiedScanResultState.results,
             initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -95,6 +100,7 @@ describe('getCardSelectionStoreviewData', () => {
             initialCardSelectionState,
             initialUnifiedScanResultState.results,
             initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
             resultsFilter,
         );
 
@@ -102,6 +108,104 @@ describe('getCardSelectionStoreviewData', () => {
             sampleUid3: 'visible',
         });
         expect(viewData.expandedRuleIds).toEqual([]);
+        expect(viewData.selectedResultUids).toEqual([]);
+        expect(viewData.visualHelperEnabled).toEqual(true);
+    });
+
+    test('all rules collapsed, visual helper enabled, some results unavailable', () => {
+        isResultHighlightUnavailable
+            .setup(mock =>
+                mock(
+                    initialUnifiedScanResultState.results[0],
+                    initialUnifiedScanResultState.platformInfo,
+                ),
+            )
+            .returns(() => true);
+
+        isResultHighlightUnavailable
+            .setup(mock =>
+                mock(
+                    initialUnifiedScanResultState.results[1],
+                    initialUnifiedScanResultState.platformInfo,
+                ),
+            )
+            .returns(() => true);
+
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
+        );
+
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'unavailable',
+            sampleUid2: 'unavailable',
+            sampleUid3: 'visible',
+            sampleUid4: 'visible',
+        });
+        expect(viewData.expandedRuleIds).toEqual([]);
+        expect(viewData.selectedResultUids).toEqual([]);
+        expect(viewData.visualHelperEnabled).toEqual(true);
+    });
+
+    test('rule expanded with a selected card that is unavailable for highlight', () => {
+        initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
+        initialCardSelectionState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+        isResultHighlightUnavailable
+            .setup(mock =>
+                mock(
+                    initialUnifiedScanResultState.results[0],
+                    initialUnifiedScanResultState.platformInfo,
+                ),
+            )
+            .returns(() => true);
+
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
+        );
+
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'unavailable',
+            sampleUid2: 'hidden',
+            sampleUid3: 'hidden',
+            sampleUid4: 'hidden',
+        });
+        expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1']);
+        expect(viewData.selectedResultUids).toEqual(['sampleUid1']);
+        expect(viewData.visualHelperEnabled).toEqual(true);
+    });
+
+    test('some rules expanded, some highlights unavailable regardless, some visible', () => {
+        initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
+
+        isResultHighlightUnavailable
+            .setup(mock =>
+                mock(
+                    initialUnifiedScanResultState.results[0],
+                    initialUnifiedScanResultState.platformInfo,
+                ),
+            )
+            .returns(() => true);
+
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState.results,
+            initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
+        );
+
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid1: 'unavailable',
+            sampleUid2: 'visible',
+            sampleUid3: 'hidden',
+            sampleUid4: 'hidden',
+        });
+        expect(viewData.expandedRuleIds).toEqual(['sampleRuleId1']);
         expect(viewData.selectedResultUids).toEqual([]);
         expect(viewData.visualHelperEnabled).toEqual(true);
     });
@@ -114,6 +218,7 @@ describe('getCardSelectionStoreviewData', () => {
             initialCardSelectionState,
             initialUnifiedScanResultState.results,
             initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -134,6 +239,7 @@ describe('getCardSelectionStoreviewData', () => {
             initialCardSelectionState,
             initialUnifiedScanResultState.results,
             initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -155,6 +261,7 @@ describe('getCardSelectionStoreviewData', () => {
             initialCardSelectionState,
             initialUnifiedScanResultState.results,
             initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
             resultsFilter,
         );
 
@@ -175,6 +282,7 @@ describe('getCardSelectionStoreviewData', () => {
             initialCardSelectionState,
             initialUnifiedScanResultState.results,
             initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -198,6 +306,7 @@ describe('getCardSelectionStoreviewData', () => {
             initialCardSelectionState,
             initialUnifiedScanResultState.results,
             initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
             resultsFilter,
         );
 
@@ -216,6 +325,7 @@ describe('getCardSelectionStoreviewData', () => {
             initialCardSelectionState,
             initialUnifiedScanResultState.results,
             initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({
@@ -239,6 +349,7 @@ describe('getCardSelectionStoreviewData', () => {
             initialCardSelectionState,
             initialUnifiedScanResultState.results,
             initialUnifiedScanResultState.platformInfo,
+            isResultHighlightUnavailable.object,
         );
 
         expect(viewData.resultsHighlightStatus).toEqual({

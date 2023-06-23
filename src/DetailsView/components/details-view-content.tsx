@@ -3,6 +3,7 @@
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
@@ -46,6 +47,7 @@ export type DetailsViewContentDeps = {
     issuesTableHandler: IssuesTableHandler;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;
+    isResultHighlightUnavailable: IsResultHighlightUnavailable;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     testViewContainerProvider: TestViewContainerProvider;
     defaultRulesMap: ScannerRuleInfoMap;
@@ -126,6 +128,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 props.storeState.cardSelectionStoreData,
                 props.storeState.unifiedScanResultStoreData.results,
                 props.storeState.unifiedScanResultStoreData.platformInfo,
+                props.deps.isResultHighlightUnavailable,
             ),
         );
 
@@ -142,6 +145,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 props.storeState.needsReviewCardSelectionStoreData,
                 props.storeState.needsReviewScanResultStoreData.results,
                 props.storeState.needsReviewScanResultStoreData.platformInfo,
+                props.deps.isResultHighlightUnavailable,
             ),
         );
 
@@ -171,6 +175,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 selectedCardSelectionStoreData,
                 assessmentScanNodeResults,
                 null,
+                props.deps.isResultHighlightUnavailable,
             ),
         );
 

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { createToolData } from 'common/application-properties-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { Logger } from 'common/logging/logger';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
@@ -235,6 +236,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const elementBasedViewModelCreator = new ElementBasedViewModelCreator(
             getDecoratedAxeNode,
             getCardSelectionViewData,
+            isResultHighlightUnavailableWeb,
         );
         const selectorMapHelper = new SelectorMapHelper(
             this.visualizationConfigurationFactory,
