@@ -17,13 +17,3 @@ export const noCardInteractionsSupported: CardInteractionSupport = {
     supportsIssueFiling: false,
     supportsCopyFailureDetails: false,
 };
-
-export const onlyHighlightingSupported: CardInteractionSupport = {
-    ...noCardInteractionsSupported,
-    supportsHighlighting: true,
-};
-
-export const onlyUserConfigAgnosticCardInteractionsSupported: CardInteractionSupport = {
-    ...allCardInteractionsSupported,
-    supportsIssueFiling: false,
-};
