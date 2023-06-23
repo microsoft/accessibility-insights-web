@@ -9,6 +9,5 @@ export const defaults = {
         icon48: `icons/brand/blue/brand-blue-48px.png`,
         icon128: `icons/brand/blue/brand-blue-128px.png`,
         telemetryBuildName: 'unknownBuild',
-        unifiedAppVersion: '0.0.0',
     },
 };
