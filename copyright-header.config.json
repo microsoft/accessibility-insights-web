@@ -23,7 +23,6 @@
         ".gitattributes",
         ".ignoredRevs",
         "**/*.a11ywebassessment",
-        "**/*.csproj",
         "**/.DS_Store",
         "**/*.icns",
         "**/*.scss.d.ts",
@@ -32,10 +31,8 @@
         "**/*.svg",
         "**/*.mp3",
         "**/.vs",
-        "**/bin",
         "**/bundle",
         "**/drop",
-        "**/obj",
         "**/test-results",
         "**/yarn.lock",
         "Dockerfile",
@@ -54,7 +51,7 @@
             "prepend": "<!--",
             "append": "-->"
         },
-        "ts|tsx|d.ts|js|scss|css|cs": {
+        "ts|tsx|d.ts|js|scss|css": {
             "eachLine": {
                 "prepend": "// "
             }
