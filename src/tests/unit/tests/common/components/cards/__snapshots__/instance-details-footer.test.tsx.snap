@@ -30,51 +30,6 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
 </div>
 `;
 
-exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnostic card interactions are supported (ie, electron) 1`] = `
-<div
-  className="foot"
->
-  <div
-    className="highlightStatus"
-  >
-    <HighlightVisibleIcon />
-    <StyledLabelBase>
-      Highlight visible
-    </StyledLabelBase>
-  </div>
-  <CardFooterInstanceActionButtons
-    deps={
-      {
-        "cardInteractionSupport": {
-          "supportsCopyFailureDetails": true,
-          "supportsHighlighting": true,
-          "supportsIssueFiling": false,
-        },
-        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
-      }
-    }
-    issueDetailsData={{}}
-    kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={{}}
-  />
-</div>
-`;
-
-exports[`InstanceDetailsFooter renders per snapshot when only highlighting card interactions are supported (ie, electron) 1`] = `
-<div
-  className="foot"
->
-  <div
-    className="highlightStatus"
-  >
-    <HighlightVisibleIcon />
-    <StyledLabelBase>
-      Highlight visible
-    </StyledLabelBase>
-  </div>
-</div>
-`;
-
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden" 1`] = `
 <div
   className="foot"

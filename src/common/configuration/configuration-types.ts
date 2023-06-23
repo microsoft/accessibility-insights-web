@@ -8,11 +8,9 @@ export type InsightsConfigurationOptions = {
     icon16: string;
     icon48: string;
     icon128: string;
-    electronIconBaseName: string;
     appInsightsInstrumentationKey?: string;
     bundled?: string;
     telemetryBuildName: string;
-    unifiedAppVersion: string;
 };
 
 export interface ConfigAccessor {

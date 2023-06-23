@@ -13,7 +13,7 @@ import {
 const globalVariableName = 'insights';
 
 // Appropriate for contexts with a DOM that has pre-loaded insights.config.js in a <script> tag,
-// but without access to the fs module (eg, all extension contexts, electron renderer processes)
+// but without access to the fs module (eg, all extension contexts)
 export class GlobalVariableConfiguration implements ConfigAccessor, ConfigMutator {
     public set config(value: InsightsConfiguration) {
         globalThis[globalVariableName] = value;
