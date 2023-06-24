@@ -10,7 +10,6 @@ module.exports = function (grunt) {
 
     const options = {
         appInsightsInstrumentationKey: grunt.option('app-insights-instrumentation-key'),
-        electronUpdateURL: grunt.option('electron-update-url'),
         extensionVersion: grunt.option('extension-version'),
         webstoreAppId: grunt.option('webstore-app-id'),
     };
