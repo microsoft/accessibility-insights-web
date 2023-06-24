@@ -46,29 +46,6 @@
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${workspaceFolder}/*"
             }
-        },
-        {
-            "name": "Debug electron main process with --remote-debugging-port=9222",
-            "type": "node",
-            "request": "launch",
-            "cwd": "${workspaceRoot}",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
-            "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
-            },
-            "args": ["drop/electron/unified-dev/product/bundle/main.bundle.js"],
-            "runtimeArgs": ["--remote-debugging-port=9222"],
-            "outputCapture": "std"
-        },
-        {
-            "name": "Attach debugger to electron renderer process (must first launch main process with --remote-debugging-port=9222)",
-            "type": "chrome",
-            "request": "attach",
-            "port": 9222,
-            "webRoot": "${workspaceFolder}/drop/electron/unified-dev/product",
-            "sourceMapPathOverrides": {
-                "webpack:///./*": "${workspaceFolder}/*"
-            }
         }
     ],
     "inputs": [

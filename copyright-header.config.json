@@ -11,8 +11,6 @@
         "./dist",
         "./docs/art/ada-cat.ansi256.txt",
         "./docs/LICENSE.txt",
-        "./src/electron/resources/mit_license_en.txt",
-        "./src/electron/resources/mit_license.txt",
         "./drop",
         "./extension",
         "./node_modules",
@@ -25,7 +23,6 @@
         ".gitattributes",
         ".ignoredRevs",
         "**/*.a11ywebassessment",
-        "**/*.csproj",
         "**/.DS_Store",
         "**/*.icns",
         "**/*.scss.d.ts",
@@ -34,10 +31,8 @@
         "**/*.svg",
         "**/*.mp3",
         "**/.vs",
-        "**/bin",
         "**/bundle",
         "**/drop",
-        "**/obj",
         "**/test-results",
         "**/yarn.lock",
         "Dockerfile",
@@ -56,7 +51,7 @@
             "prepend": "<!--",
             "append": "-->"
         },
-        "ts|tsx|d.ts|js|scss|css|cs": {
+        "ts|tsx|d.ts|js|scss|css": {
             "eachLine": {
                 "prepend": "// "
             }

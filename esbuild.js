@@ -12,12 +12,6 @@ const { CreateStylePlugin } = require('./style-plugin');
 const src = './src';
 const argsObj = yargs(argv).argv;
 
-const electronEntryFiles = {
-    renderer: [path.resolve(__dirname, 'src/electron/views/renderer-initializer.ts')],
-    main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
-};
-const unifiedOutdir = path.join(__dirname, 'extension/unifiedBundle');
-
 const webExtensionEntryFiles = {
     injected: `${src}/injected/client-init.ts`,
     popup: `${src}/popup/popup-init.ts`,
@@ -83,15 +77,6 @@ let minify = false;
 let sourcemap = true;
 
 switch (argsObj.env) {
-    // Note: currently causes errors when electron app is run.
-    case 'unified':
-        entryFiles = electronEntryFiles;
-        outdir = unifiedOutdir;
-        platform = 'node';
-        external = [];
-        format = 'cjs';
-        break;
-
     case 'prod':
         minify = true;
         sourcemap = false;
