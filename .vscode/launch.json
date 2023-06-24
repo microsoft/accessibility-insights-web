@@ -46,16 +46,6 @@
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${workspaceFolder}/*"
             }
-        },
-        {
-            "name": "Debug null:find",
-            "type": "node",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "runtimeArgs": ["--inspect-brk", "${workspaceRoot}/tools/strict-null-checks/find.js"],
-            "console": "integratedTerminal",
-            "internalConsoleOptions": "neverOpen",
-            "port": 9235
         }
     ],
     "inputs": [

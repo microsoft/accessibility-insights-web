@@ -30,6 +30,7 @@
         "**/*.snap.html",
         "**/*.svg",
         "**/*.mp3",
+        "**/.vs",
         "**/bundle",
         "**/drop",
         "**/test-results",
