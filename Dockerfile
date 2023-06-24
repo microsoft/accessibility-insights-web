@@ -14,12 +14,12 @@ USER root
 #
 # We pin nodejs 16.x instead of accepting Playwright's default for consistency with
 # our other build environments.
-RUN apt-get update && \
-  apt-get install ca-certificates && \
-  apt-get update && \
-  apt-get install -y curl && \
+RUN apt update && \
+  apt install ca-certificates && \
+  apt update && \
+  apt install -y curl && \
   curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
-  apt-get install -y --allow-downgrades nodejs=16.* && \
+  apt install -y --allow-downgrades nodejs=16.* && \
   rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
