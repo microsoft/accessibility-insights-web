@@ -137,7 +137,7 @@
         "sass": "^1.63.6",
         "sass-loader": "^13.3.2",
         "serve-static": "^1.15.0",
-        "simple-git": "^3.19.0",
+        "simple-git": "^3.19.1",
         "stylelint": "^15.9.0",
         "stylelint-config-prettier-scss": "^1.0.0",
         "stylelint-config-standard-scss": "^9.0.0",
