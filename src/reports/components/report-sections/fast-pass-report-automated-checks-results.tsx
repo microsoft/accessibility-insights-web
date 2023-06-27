@@ -3,7 +3,6 @@
 
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { NamedFC } from 'common/react/named-fc';
-import { _electron } from 'playwright';
 import * as React from 'react';
 import { FastPassReportProps } from 'reports/components/fast-pass-report';
 import { IncompleteChecksSection } from 'reports/components/report-sections/incomplete-checks-section';
