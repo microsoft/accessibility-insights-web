@@ -3,15 +3,12 @@
 exports[`CollapsibleScriptProvider produces script source that matches snapshot 1`] = `
 "(function addEventListenerForCollapsibleSection(doc) {
   var _loop = function (index) {
-    var _container_querySelector, _this;
+    var _container;
     var container = collapsibles.item(index);
     var button =
-      (_this = container) === null || _this === void 0
+      (_container = container) === null || _container === void 0
         ? void 0
-        : (_container_querySelector = _this.querySelector) === null ||
-          _container_querySelector === void 0
-        ? void 0
-        : _container_querySelector.call(_this, ".collapsible-control");
+        : _container.querySelector(".collapsible-control");
     if (button == null) {
       return "continue";
     }
