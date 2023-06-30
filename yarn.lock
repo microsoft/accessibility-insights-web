@@ -2284,10 +2284,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webextension-polyfill@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "@types/webextension-polyfill@npm:0.10.0"
-  checksum: 1c6d0b3f6f1b1ba666c86d78d6bf079a5382e0c3084a307021ed19dc711a9fc044d82417e322ce403782e343b0fead8ad46db8d97ea19011fb1d85157e2b9d7f
+"@types/webextension-polyfill@npm:^0.10.1":
+  version: 0.10.1
+  resolution: "@types/webextension-polyfill@npm:0.10.1"
+  checksum: 7315dcb1943aedf2e18fd0c536406a3b3b9a8dc11ad380e66cf810e700cd7cc0a2ac08c2b017b6c17aba8a71782efc55158e1cb93497f3b680ac90a8d7b6635d
   languageName: node
   linkType: hard
 
@@ -2754,7 +2754,7 @@ __metadata:
     "@types/serve-static": ^1.15.2
     "@types/ua-parser-js": ^0.7.36
     "@types/uuid": ^9.0.2
-    "@types/webextension-polyfill": ^0.10.0
+    "@types/webextension-polyfill": ^0.10.1
     "@typescript-eslint/eslint-plugin": ^5.60.1
     "@typescript-eslint/parser": ^5.60.1
     ajv: ^8.12.0

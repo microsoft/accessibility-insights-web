@@ -92,7 +92,7 @@
         "@types/serve-static": "^1.15.2",
         "@types/ua-parser-js": "^0.7.36",
         "@types/uuid": "^9.0.2",
-        "@types/webextension-polyfill": "^0.10.0",
+        "@types/webextension-polyfill": "^0.10.1",
         "@typescript-eslint/eslint-plugin": "^5.60.1",
         "@typescript-eslint/parser": "^5.60.1",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
