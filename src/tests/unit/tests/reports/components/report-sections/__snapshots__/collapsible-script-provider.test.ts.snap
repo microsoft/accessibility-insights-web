@@ -2,40 +2,31 @@
 
 exports[`CollapsibleScriptProvider produces script source that matches snapshot 1`] = `
 "(function addEventListenerForCollapsibleSection(doc) {
-  var _loop = function (index) {
-    var _container;
-    var container = collapsibles.item(index);
-    var button =
-      (_container = container) === null || _container === void 0
-        ? void 0
-        : _container.querySelector(".collapsible-control");
-    if (button == null) {
-      return "continue";
-    }
-    button.addEventListener("click", function () {
-      var _button_parentElement;
-      var content =
-        (_button_parentElement = button.parentElement) === null ||
-        _button_parentElement === void 0
-          ? void 0
-          : _button_parentElement.nextElementSibling;
-      if (content == null) {
-        throw Error("Expected button element's parent to have a next sibling");
-      }
-      var wasExpandedBefore =
-        button.getAttribute("aria-expanded") === "false" ? false : true;
-      var isExpandedAfter = !wasExpandedBefore;
-      button.setAttribute("aria-expanded", isExpandedAfter + "");
-      content.setAttribute("aria-hidden", !isExpandedAfter + "");
-      if (isExpandedAfter) {
-        container.classList.remove("collapsed");
-      } else {
-        container.classList.add("collapsed");
-      }
-    });
-  };
-  var collapsibles = doc.getElementsByClassName("collapsible-container");
-  for (var index = 0; index < collapsibles.length; index++) _loop(index);
-})(document);
-"
+    var _loop = function(index) {
+        var _container;
+        var container = collapsibles.item(index);
+        var button = (_container = container) === null || _container === void 0 ? void 0 : _container.querySelector('.collapsible-control');
+        if (button == null) {
+            return "continue";
+        }
+        button.addEventListener('click', function() {
+            var _button_parentElement;
+            var content = (_button_parentElement = button.parentElement) === null || _button_parentElement === void 0 ? void 0 : _button_parentElement.nextElementSibling;
+            if (content == null) {
+                throw Error("Expected button element's parent to have a next sibling");
+            }
+            var wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+            var isExpandedAfter = !wasExpandedBefore;
+            button.setAttribute('aria-expanded', isExpandedAfter + '');
+            content.setAttribute('aria-hidden', !isExpandedAfter + '');
+            if (isExpandedAfter) {
+                container.classList.remove('collapsed');
+            } else {
+                container.classList.add('collapsed');
+            }
+        });
+    };
+    var collapsibles = doc.getElementsByClassName('collapsible-container');
+    for(var index = 0; index < collapsibles.length; index++)_loop(index);
+})(document)"
 `;

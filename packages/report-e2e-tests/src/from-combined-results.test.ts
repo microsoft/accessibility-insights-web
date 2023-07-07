@@ -3,7 +3,7 @@
 import * as path from 'path';
 import { resetIds } from '@fluentui/react';
 import { reporterFactory, CombinedReportParameters } from 'accessibility-insights-report';
-import * as prettier from 'prettier';
+//import * as prettier from 'prettier';
 
 import { combinedResultsWithBaselineAwareIssues } from './examples/combined-results-with-baseline-aware-issues';
 import { combinedResultsWithIssues } from './examples/combined-results-with-issues.input';
@@ -27,13 +27,13 @@ describe('fromCombinedResults', () => {
 
         it('produces pinned HTML file', async () => {
             const output = reporterFactory().fromCombinedResults(input).asHTML();
-            const formattedOutput = await prettier.format(output, {
-                parser: 'html',
-                htmlWhitespaceSensitivity: 'strict',
-            });
+            // const formattedOutput = await prettier.format(output, {
+            //     parser: 'html',
+            //     htmlWhitespaceSensitivity: 'strict',
+            // });
 
             const snapshotFile = path.join(__dirname, 'examples', `${exampleName}.snap.html`);
-            expect(formattedOutput).toMatchFile(snapshotFile);
+            expect(output).toMatchFile(snapshotFile);
         });
     });
 });

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
-import { format } from 'prettier';
+//import { format } from 'prettier';
 import {
     addEventListenerForCollapsibleSection,
     getDefaultAddListenerForCollapsibleSection,
@@ -12,8 +12,8 @@ describe('CollapsibleScriptProvider', () => {
     it('produces script source that matches snapshot', async () => {
         const source = getDefaultAddListenerForCollapsibleSection();
         // Required to get a consistent snapshot with --coverage=false vs --coverage=true
-        const formattedSource = (await format(source, { parser: 'babel' })).replace(/\n\n/g, '\n');
-        expect(formattedSource).toMatchSnapshot();
+        // const formattedSource = (await format(source, { parser: 'babel' })).replace(/\n\n/g, '\n');
+        expect(source).toMatchSnapshot();
     });
 
     it('produces script source that does not use IE-incompatible arrow functions', () => {
