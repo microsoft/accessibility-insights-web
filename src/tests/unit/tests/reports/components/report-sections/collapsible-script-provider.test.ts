@@ -9,10 +9,10 @@ import {
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CollapsibleScriptProvider', () => {
-    it('produces script source that matches snapshot', () => {
+    it('produces script source that matches snapshot', async () => {
         const source = getDefaultAddListenerForCollapsibleSection();
         // Required to get a consistent snapshot with --coverage=false vs --coverage=true
-        const formattedSource = format(source, { parser: 'babel' }).replace(/\n\n/g, '\n');
+        const formattedSource = (await format(source, { parser: 'babel' })).replace(/\n\n/g, '\n');
         expect(formattedSource).toMatchSnapshot();
     });
 
