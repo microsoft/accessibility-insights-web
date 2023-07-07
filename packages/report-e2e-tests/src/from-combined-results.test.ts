@@ -3,6 +3,7 @@
 import * as path from 'path';
 import { resetIds } from '@fluentui/react';
 import { reporterFactory, CombinedReportParameters } from 'accessibility-insights-report';
+// TODO: Restore usage of prettier once the Node update feature is complete
 //import * as prettier from 'prettier';
 
 import { combinedResultsWithBaselineAwareIssues } from './examples/combined-results-with-baseline-aware-issues';

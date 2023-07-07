@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
+// TODO: Restore usage of prettier once the Node update feature is complete
 // import { format } from 'prettier';
 import {
     addEventListenerForCollapsibleSection,
