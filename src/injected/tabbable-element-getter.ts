@@ -10,7 +10,10 @@ export interface TabbableElementInfo {
 }
 
 export class TabbableElementGetter {
-    constructor(private doc: Document, private getTabbableElements: typeof tabbable) {}
+    constructor(
+        private doc: Document,
+        private getTabbableElements: typeof tabbable,
+    ) {}
 
     public getRawElements: () => FocusableElement[] = () => {
         const tabbableElements = this.getTabbableElements(this.doc.documentElement, {

@@ -13,7 +13,9 @@
     padding-bottom: 14px;
     padding-left: 20px;
     background-color: $neutral-0;
-    box-shadow: 0 0.3px 0.9px rgb(0 0 0 / 10.8%), 0 1.6px 3.6px rgb(0 0 0 / 13.2%);
+    box-shadow:
+        0 0.3px 0.9px rgb(0 0 0 / 10.8%),
+        0 1.6px 3.6px rgb(0 0 0 / 13.2%);
     border-radius: 4px;
     border: 1px solid $card-border;
     line-height: 20px;

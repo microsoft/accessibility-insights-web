@@ -40,8 +40,10 @@ describe(AxeFrameMessenger, () => {
 
     beforeEach(() => {
         mockTopicHandler = Mock.ofInstance((topicData, responder) => {}, MockBehavior.Strict);
-        mockReplyHandler = Mock.ofInstance((message, keepalive, responder) => {},
-        MockBehavior.Strict);
+        mockReplyHandler = Mock.ofInstance(
+            (message, keepalive, responder) => {},
+            MockBehavior.Strict,
+        );
         logger = new RecordingLogger();
 
         [parentLinkedCommunicator, childLinkedCommunicator] =
@@ -128,10 +130,14 @@ describe(AxeFrameMessenger, () => {
         });
 
         it('passes messages to each topicHandler if multiple are registered', () => {
-            const firstMockTopicHandler: IMock<TopicHandler> = Mock.ofInstance(() => {},
-            MockBehavior.Strict);
-            const secondMockTopicHandler: IMock<TopicHandler> = Mock.ofInstance(() => {},
-            MockBehavior.Strict);
+            const firstMockTopicHandler: IMock<TopicHandler> = Mock.ofInstance(
+                () => {},
+                MockBehavior.Strict,
+            );
+            const secondMockTopicHandler: IMock<TopicHandler> = Mock.ofInstance(
+                () => {},
+                MockBehavior.Strict,
+            );
 
             firstMockTopicHandler
                 .setup(m => m(It.isObjectWith(singleReplyTopicData), It.isAny()))
