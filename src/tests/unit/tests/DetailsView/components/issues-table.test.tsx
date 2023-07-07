@@ -146,7 +146,7 @@ describe('IssuesTableTest', () => {
                 () =>
                     ({
                         isOpen: false,
-                    } as IssueFilingNeedsSettingsContentProps),
+                    }) as IssueFilingNeedsSettingsContentProps,
             );
 
         const wrapper = shallow(<IssuesTable {...props} />);

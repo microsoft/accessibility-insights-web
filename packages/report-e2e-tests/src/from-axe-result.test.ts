@@ -3,7 +3,8 @@
 import * as path from 'path';
 import { resetIds } from '@fluentui/react';
 import { AxeReportParameters, reporterFactory } from 'accessibility-insights-report';
-import * as prettier from 'prettier';
+// TODO: Restore usage of prettier once the Node update feature is complete
+//import * as prettier from 'prettier';
 
 import { axeResultsWithIssues } from './examples/axe-results-with-issues.input';
 import { axeResultsWithoutIssues } from './examples/axe-results-without-issues.input';
@@ -23,15 +24,15 @@ describe('fromAxeResult', () => {
             resetIds();
         });
 
-        it('produces pinned HTML file', () => {
+        it('produces pinned HTML file', async () => {
             const output = reporterFactory().fromAxeResult(input).asHTML();
-            const formattedOutput = prettier.format(output, {
-                parser: 'html',
-                htmlWhitespaceSensitivity: 'strict',
-            });
+            // const formattedOutput = await prettier.format(output, {
+            //     parser: 'html',
+            //     htmlWhitespaceSensitivity: 'strict',
+            // });
 
             const snapshotFile = path.join(__dirname, 'examples', `${exampleName}.snap.html`);
-            expect(formattedOutput).toMatchFile(snapshotFile);
+            expect(output).toMatchFile(snapshotFile);
         });
     });
 });

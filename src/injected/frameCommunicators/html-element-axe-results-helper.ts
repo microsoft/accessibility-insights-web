@@ -35,7 +35,10 @@ export interface TabStopVisualizationInstance extends AssessmentVisualizationIns
 }
 
 export class HtmlElementAxeResultsHelper {
-    constructor(private htmlElementUtils: HTMLElementUtils, private logger: Logger) {}
+    constructor(
+        private htmlElementUtils: HTMLElementUtils,
+        private logger: Logger,
+    ) {}
 
     public splitResultsByFrame(elementResults: AxeResultsWithFrameLevel[]): HTMLIFrameResult[] {
         const frameSelectorToResultsMap = this.getFrameSelectorToResultMap(elementResults);

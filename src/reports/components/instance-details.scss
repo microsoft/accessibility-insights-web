@@ -22,7 +22,9 @@
     border-radius: 4px;
     border: 1px solid $card-border;
     outline-style: 'border-style';
-    box-shadow: 0 0.6px 1.8px $box-shadow-108, 0 3.2px 7.2px $box-shadow-132;
+    box-shadow:
+        0 0.6px 1.8px $box-shadow-108,
+        0 3.2px 7.2px $box-shadow-132;
     margin-bottom: 16px;
     @include fill-available-width;
 }
@@ -51,7 +53,9 @@
 }
 
 .instance-details-card.interactive:hover {
-    box-shadow: 0 8px 10px $box-shadow-108, 0 8px 10px $box-shadow-132;
+    box-shadow:
+        0 8px 10px $box-shadow-108,
+        0 8px 10px $box-shadow-132;
 }
 
 .report-instance-table {

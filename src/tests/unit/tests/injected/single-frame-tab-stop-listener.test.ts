@@ -105,7 +105,7 @@ describe('SingleFrameTabStopListener', () => {
                 _ =>
                     ({
                         getTime: () => exampleTabStopEvent.timestamp,
-                    } as Date),
+                    }) as Date,
             )
             .verifiable(Times.once());
 

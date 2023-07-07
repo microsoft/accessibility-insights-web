@@ -9,7 +9,10 @@ export class DetailsDialogHandler {
     private onDevToolChangedHandler: () => Promise<void>;
     private onUserConfigChangedHandler: () => Promise<void>;
 
-    constructor(private htmlElementUtils: HTMLElementUtils, private windowUtils: WindowUtils) {}
+    constructor(
+        private htmlElementUtils: HTMLElementUtils,
+        private windowUtils: WindowUtils,
+    ) {}
 
     public backButtonClickHandler = (dialog: DetailsDialog): void => {
         const currentRuleIndex = dialog.state.currentRuleIndex;

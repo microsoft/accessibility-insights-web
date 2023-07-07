@@ -111,8 +111,10 @@ describe('FeedbackMenuClickHandlerTest', () => {
 
         const header = new LaunchPanelHeader(props);
 
-        const setStateMock = Mock.ofInstance((state: LaunchPanelHeaderState) => {},
-        MockBehavior.Strict);
+        const setStateMock = Mock.ofInstance(
+            (state: LaunchPanelHeaderState) => {},
+            MockBehavior.Strict,
+        );
 
         header.setState = setStateMock.object;
 
