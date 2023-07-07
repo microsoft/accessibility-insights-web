@@ -9,11 +9,12 @@ import {
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CollapsibleScriptProvider', () => {
-    it('produces script source that matches snapshot', async () => {
+    it('produces script source that matches snapshot', () => {
         const source = getDefaultAddListenerForCollapsibleSection();
         // Required to get a consistent snapshot with --coverage=false vs --coverage=true
         // const formattedSource = (await format(source, { parser: 'babel' })).replace(/\n\n/g, '\n');
-        expect(source).toMatchSnapshot();
+        const formattedSource = source.replace(/\n\n/g, '\n');
+        expect(formattedSource).toMatchSnapshot();
     });
 
     it('produces script source that does not use IE-incompatible arrow functions', () => {
