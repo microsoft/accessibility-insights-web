@@ -12,7 +12,10 @@ export type WindowMessageRecord = {
 };
 
 export class WindowMessageRecorder {
-    private constructor(private readonly frame: Frame, private readonly recorderId: string) {}
+    private constructor(
+        private readonly frame: Frame,
+        private readonly recorderId: string,
+    ) {}
     public static async create(frame: Frame) {
         const recorder = new WindowMessageRecorder(frame, uuid.v4());
         await recorder.initialize();

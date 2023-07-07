@@ -3,7 +3,10 @@
 import { Logger } from 'common/logging/logger';
 
 export class NavigatorUtils {
-    constructor(private navigatorInfo: Navigator, private logger: Logger) {}
+    constructor(
+        private navigatorInfo: Navigator,
+        private logger: Logger,
+    ) {}
 
     public getBrowserSpec(): string {
         const userAgent = this.navigatorInfo.userAgent;

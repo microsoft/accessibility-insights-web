@@ -54,7 +54,7 @@ describe('getTestviewKey', () => {
         assessmentsProviderMock.setup(a => a.isValidType(visualizationType)).returns(() => true);
         assessmentsProviderMock
             .setup(a => a.forType(visualizationType))
-            .returns(() => ({ isNonCollapsible: true } as Readonly<Assessment>));
+            .returns(() => ({ isNonCollapsible: true }) as Readonly<Assessment>);
         const expectedKey = VisualizationType[visualizationType];
 
         expect(getTestViewKey(props)).toEqual(expectedKey);

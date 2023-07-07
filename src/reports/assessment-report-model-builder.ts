@@ -133,7 +133,7 @@ export class AssessmentReportModelBuilder {
                     })
                     .map(
                         ({ label, getValue }) =>
-                            ({ key: label, value: getValue(instance) } as InstancePairReportModel),
+                            ({ key: label, value: getValue(instance) }) as InstancePairReportModel,
                     );
 
                 return { props };

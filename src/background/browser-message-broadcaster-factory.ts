@@ -9,7 +9,10 @@ export const connectionErrorMessage =
     'Could not establish connection. Receiving end does not exist.';
 
 export class BrowserMessageBroadcasterFactory {
-    constructor(private readonly browserAdapter: BrowserAdapter, private readonly logger: Logger) {}
+    constructor(
+        private readonly browserAdapter: BrowserAdapter,
+        private readonly logger: Logger,
+    ) {}
 
     public allTabsBroadcaster: MessageBroadcaster = async (message: any) => {
         // Ordering sendMessageToFrames before tabsQuery is necessary to prevent the race

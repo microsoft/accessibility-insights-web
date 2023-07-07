@@ -20,7 +20,10 @@ export type PageOptions = {
 };
 
 export class Page extends Context {
-    constructor(protected readonly underlyingPage: Playwright.Page, options?: PageOptions) {
+    constructor(
+        protected readonly underlyingPage: Playwright.Page,
+        options?: PageOptions,
+    ) {
         super(underlyingPage);
 
         function forceEventFailure(eventDescription: string): void {

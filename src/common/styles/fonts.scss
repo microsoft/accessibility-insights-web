@@ -59,7 +59,11 @@ $font-size-xl: 36px !default;
 $font-size-xxl: 40px !default;
 $font-size-xxxl: 56px !default;
 $font-size-xxxxl: 72px !default;
-$code-font-family: menlo, consolas, courier new, monospace !default;
+$code-font-family:
+    menlo,
+    consolas,
+    courier new,
+    monospace !default;
 
 @mixin text-style-title-m {
     font-weight: $font-weight-semi-bold;
