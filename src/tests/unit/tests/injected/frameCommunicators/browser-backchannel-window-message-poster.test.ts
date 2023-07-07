@@ -96,7 +96,7 @@ describe('BrowserBackchannelWindowMessagePoster', () => {
                             ...sampleMessage,
                         } as BackchannelStoreRequestMessage,
                         windowMessageMetadata: sampleMessage as WindowMessageMetadata,
-                    } as BackchannelMessagePair),
+                    }) as BackchannelMessagePair,
             )
             .verifiable(Times.once());
 

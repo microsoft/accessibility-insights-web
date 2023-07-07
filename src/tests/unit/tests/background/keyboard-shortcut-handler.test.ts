@@ -65,7 +65,7 @@ describe('KeyboardShortcutHandler', () => {
         tabContextManagerMock
             .setup(t => t.getTabContextStores(existingTabId))
             .returns(
-                () => ({ visualizationStore: visualizationStoreMock.object } as TabContextStoreHub),
+                () => ({ visualizationStore: visualizationStoreMock.object }) as TabContextStoreHub,
             );
 
         browserAdapterMock = Mock.ofType<BrowserAdapter>();

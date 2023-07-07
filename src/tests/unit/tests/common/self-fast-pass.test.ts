@@ -170,7 +170,7 @@ describe('SelfFastPass', () => {
                             html: 'html data',
                         },
                     ],
-                } as AxeRule),
+                }) as AxeRule,
         );
     }
 
