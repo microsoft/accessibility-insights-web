@@ -10,7 +10,7 @@ module.exports = {
 
         let prettierConfigPath = path.join(__dirname, '..', '..', 'prettier.config.js');
         let prettierConfig = await prettier.resolveConfig(prettierConfigPath);
-        let formattedContent = prettier.format(serializedContent, {
+        let formattedContent = await prettier.format(serializedContent, {
             ...prettierConfig,
             filepath: tsconfigPath,
         });

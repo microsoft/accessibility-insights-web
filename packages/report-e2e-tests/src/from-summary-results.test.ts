@@ -23,9 +23,9 @@ describe('fromSummaryResults', () => {
             resetIds();
         });
 
-        it('produces pinned HTML file', () => {
+        it('produces pinned HTML file', async () => {
             const output = reporterFactory().fromSummaryResults(input).asHTML();
-            const formattedOutput = prettier.format(output, {
+            const formattedOutput = await prettier.format(output, {
                 parser: 'html',
                 htmlWhitespaceSensitivity: 'strict',
             });
