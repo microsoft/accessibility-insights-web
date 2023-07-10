@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as contrast from './contrast';
 import { guidance } from './guidance';
+import { highContrastInstructions } from './high-contrast-instructions';
 import * as hoverFocusContent from './hover-focus-content';
 import * as orientation from './orientation';
 import { infoAndExamples as reflow } from './reflow';
@@ -16,4 +17,5 @@ export const adaptableContent = {
     reflow,
     textSpacing,
     hoverFocusContent,
+    highContrastInstructions,
 };
