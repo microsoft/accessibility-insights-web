@@ -138,7 +138,7 @@
         "sass-loader": "^13.3.2",
         "serve-static": "^1.15.0",
         "simple-git": "^3.19.1",
-        "stylelint": "^15.10.1",
+        "stylelint": "^15.10.2",
         "stylelint-config-prettier-scss": "^1.0.0",
         "stylelint-config-standard-scss": "^10.0.0",
         "terser-webpack-plugin": "^5.3.9",
