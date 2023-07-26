@@ -4,7 +4,7 @@ import { create, React } from '../../common';
 
 export const resizeTextInstructions = create(({ Markup }) => (
     <>
-        <h2>Setting the screen size for your operating system</h2>
+        <h2>Setting the browser width for your operating system</h2>
         Please follow the instructions for your operating system:
         <h3>Windows</h3>
         <ul>

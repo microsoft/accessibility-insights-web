@@ -32,20 +32,27 @@ const resizeTextHowToTest: JSX.Element = (
         &nbsp;
         <ol>
             <li>
-                Set your display width to 1280 logical pixels using{' '}
-                <NewTabLink href={resizeTextInstructionsURL}>these instructions</NewTabLink>.
+                Set your browser window width to 640 logical pixels (the equivalent of 1280 logical
+                pixels at 200% zoom):
             </li>
-            <li>Put the browser into full-screen mode.</li>
-            <li>
-                Examine the target page to verify that:
-                <ol>
-                    <li>All text resizes fully, including text in form fields.</li>
-                    <li>Text isn't clipped, truncated, or obscured.</li>
-                    <li>All content remains available.</li>
-                    <li>All functionality remains available.</li>
-                </ol>
-                Exception: Images of text and captions for videos are exempt from this requirement.
-            </li>
+            <ol>
+                <li>
+                    Set the maximum browser window size using{' '}
+                    <NewTabLink href={resizeTextInstructionsURL}>these instructions</NewTabLink>.
+                </li>
+                <li>Put the browser into full-screen mode.</li>
+                <li>
+                    Examine the target page to verify that:
+                    <ol>
+                        <li>All text resizes fully, including text in form fields.</li>
+                        <li>Text isn't clipped, truncated, or obscured.</li>
+                        <li>All content remains available.</li>
+                        <li>All functionality remains available.</li>
+                    </ol>
+                    Exception: Images of text and captions for videos are exempt from this
+                    requirement.
+                </li>
+            </ol>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>
