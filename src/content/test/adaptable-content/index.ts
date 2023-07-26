@@ -7,6 +7,7 @@ import * as hoverFocusContent from './hover-focus-content';
 import * as orientation from './orientation';
 import { infoAndExamples as reflow } from './reflow';
 import * as resizeText from './resize-text';
+import { resizeTextInstructions } from './resize-text-instructions';
 import * as textSpacing from './text-spacing';
 
 export const adaptableContent = {
@@ -18,4 +19,5 @@ export const adaptableContent = {
     textSpacing,
     hoverFocusContent,
     highContrastInstructions,
+    resizeTextInstructions,
 };
