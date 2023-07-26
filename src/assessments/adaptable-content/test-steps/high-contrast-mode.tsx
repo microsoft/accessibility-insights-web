@@ -17,9 +17,9 @@ const highContrastModeDescription: JSX.Element = (
 
 const highContrastModeHowToTest: JSX.Element = (
     <div>
-        Google Chrome and Microsoft Edge both support Windows' high contrast themes. If you are
-        using Microsoft Edge, make sure that the target page is not in Internet Explorer mode.
-        Neither browser supports high contrast themes on macOS.
+        Google Chrome and Microsoft Edge both support Windows high contrast themes. If you are using
+        Microsoft Edge, make sure that the target page is not in Internet Explorer mode. Neither
+        browser supports high contrast themes on macOS.
         <ol>
             <li>Open the target page.</li>
             <li>
