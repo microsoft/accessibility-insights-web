@@ -84,7 +84,11 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                 <ol>
                     <li>
                         Use your keyboard to move input focus through all the interactive elements
-                        in the page:
+                        in the page--
+                        <Markup.Emphasis>
+                            please traverse the entire page before returning to this window
+                        </Markup.Emphasis>
+                        :
                         <ol>
                             <li>
                                 Use <Markup.Term>Tab</Markup.Term> and{' '}
@@ -108,12 +112,12 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                                 Select <Markup.Term>Pass</Markup.Term> if all instances meet the
                                 requirement.
                             </li>
-                            <li>
-                                <Markup.Emphasis>
-                                    Review any auto-discovered failures to be sure they are valid.
-                                </Markup.Emphasis>
-                            </li>
                         </ol>
+                    </li>
+                    <li>
+                        <Markup.Emphasis>
+                            Review any auto-discovered failures to be sure they are valid.
+                        </Markup.Emphasis>
                     </li>
                 </ol>
             </>
