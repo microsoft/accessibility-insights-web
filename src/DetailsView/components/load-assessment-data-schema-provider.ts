@@ -22,8 +22,8 @@ export class LoadAssessmentDataSchemaProvider {
 
     private setDeprecatedRequirementProperties(schema: any) {
         const deprecatedRequirements = [
+            { assessmentKey: 'automated-checks', requirementKey: 'aria-roledescription' },
             { assessmentKey: 'automated-checks', requirementKey: 'duplicate-id' },
-            { assessmentKey: 'automated-checks', requirementKey: 'scrollable-region-focusable' },
         ];
         deprecatedRequirements.forEach(requirement => {
             if (this.getAssessments(schema)[requirement.assessmentKey] === undefined) {

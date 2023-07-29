@@ -66,8 +66,8 @@ describe(LoadAssessmentDataSchemaProvider, () => {
                             properties:
                                 assessment.key === 'automated-checks'
                                     ? {
+                                          'aria-roledescription': stepProperties,
                                           'duplicate-id': stepProperties,
-                                          'scrollable-region-focusable': stepProperties,
                                       }
                                     : {},
                             type: ['object', 'null'],
@@ -78,8 +78,8 @@ describe(LoadAssessmentDataSchemaProvider, () => {
                             properties:
                                 assessment.key === 'automated-checks'
                                     ? {
+                                          'aria-roledescription': statusProperties,
                                           'duplicate-id': statusProperties,
-                                          'scrollable-region-focusable': statusProperties,
                                       }
                                     : {},
                             type: ['object', 'null'],
