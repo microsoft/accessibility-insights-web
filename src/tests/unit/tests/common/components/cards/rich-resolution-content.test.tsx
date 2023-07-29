@@ -19,7 +19,6 @@ describe('RichResolutionContent', () => {
         'web/aria-input-field-name',
         'web/color-contrast',
         'web/th-has-data-cells',
-        'web/scrollable-region-focusable',
         'web/label-content-name-mismatch',
         'web/p-as-heading',
     ])('renders static content with id=%s', testId => {
