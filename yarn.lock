@@ -2750,7 +2750,7 @@ __metadata:
   resolution: "accessibility-insights-report@workspace:packages/report"
   dependencies:
     "@fluentui/react": ^8.96.1
-    axe-core: 4.6.3
+    axe-core: 4.7.2
     classnames: ^2.3.2
     lodash: ^4.17.21
     luxon: ^3.3.0
@@ -2766,7 +2766,7 @@ __metadata:
   resolution: "accessibility-insights-ui@workspace:packages/ui"
   dependencies:
     "@fluentui/react": ^8.96.1
-    axe-core: 4.6.3
+    axe-core: 4.7.2
     classnames: ^2.3.2
     lodash: ^4.17.21
     luxon: ^3.3.0
@@ -2806,7 +2806,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.61.0
     "@typescript-eslint/parser": ^6.2.1
     ajv: ^8.12.0
-    axe-core: 4.6.3
+    axe-core: 4.7.2
     case-sensitive-paths-webpack-plugin: ^2.4.0
     classnames: ^2.3.2
     codecov: ^3.8.3
@@ -3304,10 +3304,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:4.6.3":
-  version: 4.6.3
-  resolution: "axe-core@npm:4.6.3"
-  checksum: d0c46be92b9707c48b88a53cd5f471b155a2bfc8bf6beffb514ecd14e30b4863e340b5fc4f496d82a3c562048088c1f3ff5b93b9b3b026cb9c3bfacfd535da10
+"axe-core@npm:4.7.2":
+  version: 4.7.2
+  resolution: "axe-core@npm:4.7.2"
+  checksum: 5d86fa0f45213b0e54cbb5d713ce885c4a8fe3a72b92dd915a47aa396d6fd149c4a87fec53aa978511f6d941402256cfeb26f2db35129e370f25a453c688655a
   languageName: node
   linkType: hard
 
