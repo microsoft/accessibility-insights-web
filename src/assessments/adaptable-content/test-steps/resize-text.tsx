@@ -2,12 +2,16 @@
 // Licensed under the MIT License.
 import { AdaptableContentTestStep } from 'assessments/adaptable-content/test-steps/test-step';
 import { Requirement } from 'assessments/types/requirement';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
 import * as content from 'content/test/adaptable-content/resize-text';
 import * as React from 'react';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Emphasis } from '../../markup';
+
+const resizeTextInstructionsURL =
+    '/insights.html#/content/test/adaptableContent/resizeTextInstructions';
 
 const resizeTextDescription: JSX.Element = (
     <span>
@@ -28,25 +32,27 @@ const resizeTextHowToTest: JSX.Element = (
         &nbsp;
         <ol>
             <li>
-                Use <Markup.Term>Windows Settings</Markup.Term> {'>'}{' '}
-                <Markup.Term>System</Markup.Term> {'>'} <Markup.Term>Display</Markup.Term> {'>'}{' '}
-                <Markup.Term>Scale and layout</Markup.Term> to
-                <ol>
-                    <li>Set the resolution to 1280 pixels wide, and</li>
-                    <li>Set scaling to 100%.</li>
-                </ol>
+                Set your browser window width to 640 logical pixels (the equivalent of 1280 logical
+                pixels at 200% zoom):
             </li>
-            <li>Use the browser's settings to set the target page's zoom to 200%.</li>
-            <li>
-                Examine the target page to verify that:
-                <ol>
-                    <li>All text resizes fully, including text in form fields.</li>
-                    <li>Text isn't clipped, truncated, or obscured.</li>
-                    <li>All content remains available.</li>
-                    <li>All functionality remains available.</li>
-                </ol>
-                Exception: Images of text and captions for videos are exempt from this requirement.
-            </li>
+            <ol>
+                <li>
+                    Set the maximum browser window size using{' '}
+                    <NewTabLink href={resizeTextInstructionsURL}>these instructions</NewTabLink>.
+                </li>
+                <li>Put the browser into full-screen mode.</li>
+                <li>
+                    Examine the target page to verify that:
+                    <ol>
+                        <li>All text resizes fully, including text in form fields.</li>
+                        <li>Text isn't clipped, truncated, or obscured.</li>
+                        <li>All content remains available.</li>
+                        <li>All functionality remains available.</li>
+                    </ol>
+                    Exception: Images of text and captions for videos are exempt from this
+                    requirement.
+                </li>
+            </ol>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
     </div>

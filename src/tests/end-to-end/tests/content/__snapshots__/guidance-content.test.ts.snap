@@ -2544,6 +2544,77 @@ exports[`Guidance Content pages test/adaptableContent/guidance matches the snaps
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/adaptableContent/highContrastInstructions matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h2>
+        Applying a high contrast theme
+      </h2>
+      Please follow the instructions for your operating system:
+      <h3>
+        Windows 10
+      </h3>
+      <ul>
+        <li>
+          Use 
+          <strong>
+            Windows Settings
+          </strong>
+           &gt; 
+          <strong>
+            Ease of Access
+          </strong>
+           &gt; 
+          <strong>
+            High contrast
+          </strong>
+           to apply a high contrast theme.
+        </li>
+      </ul>
+      <h3>
+        Windows 11
+      </h3>
+      <ul>
+        <li>
+          Use 
+          <strong>
+            Windows Settings
+          </strong>
+           &gt; 
+          <strong>
+            Accessibility
+          </strong>
+           &gt; 
+          <strong>
+            Contrast themes
+          </strong>
+           to apply a high contrast theme.
+        </li>
+      </ul>
+      <h3>
+        macOS
+      </h3>
+      <ul>
+        <li>
+          High contrast modes are not applied in the browser on macOS.
+        </li>
+      </ul>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/adaptableContent/hoverFocusContent/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
   <div
@@ -3511,6 +3582,93 @@ exports[`Guidance Content pages test/adaptableContent/resizeText/infoAndExamples
           Using CSS to control visual presentation of text
         </a>
       </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Guidance Content pages test/adaptableContent/resizeTextInstructions matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h2>
+        Setting the browser width for your operating system
+      </h2>
+      Please follow the instructions for your operating system:
+      <h3>
+        Windows
+      </h3>
+      <ul>
+        <li>
+          Use 
+          <strong>
+            Windows Settings
+          </strong>
+           &gt; 
+          <strong>
+            System
+          </strong>
+           &gt; 
+          <strong>
+            Display
+          </strong>
+           &gt; 
+          <strong>
+            Scale and layout
+          </strong>
+           to
+          <ol>
+            <li>
+              Set the resolution to 1280 pixels wide.
+            </li>
+            <li>
+              Set scaling to 100%.
+            </li>
+          </ol>
+        </li>
+        <li>
+          From the browser, set the target page's zoom to 200%. This will simulate the screen width needed for the test.
+        </li>
+      </ul>
+      <h3>
+        macOS
+      </h3>
+      <ul>
+        <li>
+          Open the 
+          <strong>
+            System Settings
+          </strong>
+           app.
+        </li>
+        <li>
+          Open the 
+          <strong>
+            Displays
+          </strong>
+           tab.
+        </li>
+        <li>
+          Select a 
+          <strong>
+            Use as
+          </strong>
+           option with a width that is a multiple of 640. If more than one option has a width that is a multiple of 640, select the option with the lowest resolution.
+        </li>
+        <li>
+          From the browser, set the target page's zoom to the screen width / 640. For example, if your screen width is 1920, set the target page zoom to 300%. Ths will simulate the screen width needed for the test.
+        </li>
+      </ul>
     </div>
     <div
       class="content-right"
@@ -25528,11 +25686,11 @@ exports[`Guidance Content pages test/parsing/keyboardBookmarkletInstructions mat
         </li>
       </ol>
       <h2>
-        Microsoft Edge Insider instructions
+        Microsoft Edge instructions
       </h2>
       <ol>
         <li>
-          Open the Microsoft Edge Insider 
+          Open the Microsoft Edge 
           <strong>
             Favorites
           </strong>
@@ -25541,7 +25699,7 @@ exports[`Guidance Content pages test/parsing/keyboardBookmarkletInstructions mat
             type="a"
           >
             <li>
-              In Microsoft Edge Insider, type 
+              In Microsoft Edge, type 
               <strong>
                 Ctrl + Shift + o
               </strong>
