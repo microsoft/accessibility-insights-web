@@ -15,6 +15,9 @@ env:
 
 jobs:
   build:
+    - run: env
+      timeout-minutes: 2
+
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
