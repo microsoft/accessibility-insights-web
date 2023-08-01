@@ -4,7 +4,6 @@ import * as path from 'path';
 import { AxeResults, ElementContext } from 'axe-core';
 import { getNeedsReviewRulesConfig } from 'scanner/get-rule-inclusions';
 
-import { falsePositiveRemoval } from '../../common/false-positive-violations';
 import { Page } from './page-controllers/page';
 import { prettyPrintAxeViolations, PrintableAxeResult } from './pretty-print-axe-violations';
 
@@ -25,7 +24,6 @@ export async function scanForAccessibilityIssues(
         },
         { selector, rules: getNeedsReviewRulesConfig() },
     )) as AxeResults;
-    axeResults.violations = falsePositiveRemoval(axeResults.violations);
     return prettyPrintAxeViolations(axeResults);
 }
 

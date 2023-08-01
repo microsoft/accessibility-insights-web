@@ -84,12 +84,6 @@ exports[`RichResolutionContent renders static content with id=web/p-as-heading 1
 </span>
 `;
 
-exports[`RichResolutionContent renders static content with id=web/scrollable-region-focusable 1`] = `
-<span>
-  Examine the element and ensure that, if there is scrollable content, the elements are accessible by keyboard.
-</span>
-`;
-
 exports[`RichResolutionContent renders static content with id=web/th-has-data-cells 1`] = `
 <div>
   Examine the header cell in the context of the table to verify that it has no data cells.

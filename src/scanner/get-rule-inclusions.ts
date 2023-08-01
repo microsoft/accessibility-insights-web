@@ -47,10 +47,6 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
         status: 'included',
         reason: 'best practice rule that was investigated with no known false positives, implemented as an automated check.',
     },
-    'scrollable-region-focusable': {
-        status: 'excluded',
-        reason: 'only reports to needs-review results due to potential false-positives',
-    },
 };
 
 // all the rules we enable in needs review
@@ -58,7 +54,6 @@ export const needsReviewRules = [
     'aria-input-field-name',
     'color-contrast',
     'th-has-data-cells',
-    'scrollable-region-focusable',
     'label-content-name-mismatch',
     'p-as-heading',
 ];
