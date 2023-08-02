@@ -246,8 +246,7 @@ jobs:
   check-dependencies:
     runs-on: ubuntu-20.04
     env:
-      BRANCH_NAME: "${{ GITHUB_HEAD_REF }}"
-      PIPELINE_TYPE: action
+      BRANCH_NAME: "${{ env.NODE_VERSION }}"
     steps:
     - uses: actions/checkout@v3.5.3
       timeout-minutes: 2
