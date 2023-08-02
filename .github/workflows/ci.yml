@@ -259,5 +259,5 @@ jobs:
       run: ./tools/check-clearly-defined.ps1 -Verbose
       shell: pwsh
       env:
-        BRANCH_NAME: ABCDEF
+        BRANCH_NAME: "${{ env.GITHUB_HEAD_REF }}"
         PIPELINE_TYPE: action
