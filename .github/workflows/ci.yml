@@ -246,5 +246,8 @@ jobs:
   check-dependencies:
     runs-on: ubuntu-20.04
     steps:
+    - run: pwd
+      timeout-minutes: 2
+
     - run: pwsh -f tools/check-clearly-defined.ps1 -Verbose -BranchName $env:GITHUB_HEAD_REF -PipelineType action
       timeout-minutes: 2
