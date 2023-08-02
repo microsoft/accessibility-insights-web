@@ -246,6 +246,9 @@ jobs:
   check-dependencies:
     runs-on: ubuntu-20.04
     steps:
+    - uses: actions/checkout@v3.5.3
+      timeout-minutes: 2
+
     - run: pwd
       timeout-minutes: 2
 
