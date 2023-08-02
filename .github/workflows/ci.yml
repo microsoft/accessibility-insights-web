@@ -249,5 +249,11 @@ jobs:
     - run: pwd
       timeout-minutes: 2
 
+    - run: ls -R
+      timeout-minutes: 2
+
+    - run: env
+      timeout-minutes: 2
+
     - run: pwsh -f tools/check-clearly-defined.ps1 -Verbose -BranchName $env:GITHUB_HEAD_REF -PipelineType action
       timeout-minutes: 2
