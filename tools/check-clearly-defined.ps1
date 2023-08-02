@@ -16,7 +16,7 @@ reminder to request that ClearlyDefined harvest information for the version bein
 
 [CmdletBinding()]
 Param(
-    [Parameter(Mandatory = $true)]
+    [Parameter(Mandatory = $false)]
     [string]$BranchName,
     [Parameter(Mandatory = $false)]
     [string]$PipelineType
@@ -24,6 +24,30 @@ Param(
 
 Set-StrictMode -Version Latest
 $script:ErrorActionPreference = 'Stop'
+
+function GetBranchName([string]$branchName) {
+    if ($branchName.Length -eq 0) {
+        $branchName = $env:BRANCH_NAME
+
+        if ($branchName -eq $null) {
+            Throw "Branch name not provided"
+        }
+    }
+
+    return $branchName
+}
+
+function GetPipelineType([string]$pipelineType) {
+    if ($pipelineType.length -eq 0) {
+        $pipelineType = $env:PIPELINE_TYPE
+
+        if ($pipelineType -eq $null) {
+            Throw "Pipeline type not provided"
+        }
+    }
+
+    return $pipelineType
+}
 
 function GetType([string]$rawType) {
     if ($rawType -eq "npm_and_yarn") {
@@ -41,8 +65,6 @@ function GetProvider([string]$rawType) {
 }
 
 function GetUri([string]$branchName){
-    Write-Verbose "Branch name: $branchName"
-    
     $elements = $BranchName.Split('/')
 
     if ($elements[0] -ne 'dependabot') {
@@ -82,8 +104,13 @@ function WriteFormattedError([string]$formatter, [string]$message) {
 }
 
 try {
-    $uri = GetUri($BranchName)
-    Write-Host $uri
+    $pipelineType = GetPipelineType ($PipelineType.Trim())
+    $branchName = GetBranchName ($BranchName.Trim())
+
+    Write-Verbose "Resolved Inputs: BranchName=$branchName, PipeLineType=$pipelineType"
+
+    $uri = GetUri($branchName)
+    Write-Host "Getting date from $uri"
     $response = Invoke-RestMethod -Uri $uri -Method Get -ErrorAction Stop
 
     if(Get-Member -inputobject $response -name "files" -Membertype Properties) {
@@ -92,11 +119,11 @@ try {
     }
 }
 catch {
-    WriteFormattedError $PipelineType "Caught error: $Error"
+    WriteFormattedError $pipelineType "Caught error: $Error"
     Exit 1
 }
 
-WriteFormattedError $PipelineType "ClearlyDefined does not have a definition for this package version.
+WriteFormattedError $pipelineType "ClearlyDefined does not have a definition for this package version.
 If this is a development component, you may safely ignore this error.
 
 If this is a production component, please do the following:
