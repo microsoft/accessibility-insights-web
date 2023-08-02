@@ -245,6 +245,7 @@ jobs:
 
   check-dependencies:
     runs-on: ubuntu-20.04
+    env: { BRANCH_NAME : ABCDEF }
     steps:
     - uses: actions/checkout@v3.5.3
       timeout-minutes: 2
@@ -255,5 +256,5 @@ jobs:
     - run: env
       timeout-minutes: 2
 
-    - run: pwsh -f tools/check-clearly-defined.ps1 -Verbose -BranchName ${{ GITHUB_HEAD_REF }} -PipelineType action
+    - run: pwsh -f tools/check-clearly-defined.ps1 -Verbose -BranchName ${{ env.BRANCH_NAME }} -PipelineType action
       timeout-minutes: 2
