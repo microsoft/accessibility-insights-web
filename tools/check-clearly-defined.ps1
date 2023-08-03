@@ -110,6 +110,20 @@ function GetUri([string]$branchName){
     return "https://api.clearlydefined.io/definitions/$type/$provider/$namespace/$packageName/$packageVersion"
 }
 
+function WriteFormattedWarning([string]$pipelineType, [string]$message) {
+    switch ($pipelineType) {
+        "action" {
+            Write-Host "::warning::$message"
+        }
+        "ado" {
+            Write-Host "##vso[task.logissue type=warning]$message"
+        }
+        default {
+            Write-Host $message
+        }
+    }
+}
+
 function WriteFormattedError([string]$pipelineType, [string]$message) {
     switch ($pipelineType) {
         "action" {
@@ -128,7 +142,7 @@ try {
     $pipelineType = GetPipelineType $PipelineType
     $branchName = GetBranchName $pipelineType $BranchName
 
-    Write-Verbose "Resolved Inputs: BranchName=$branchName, PipeLineType=$pipelineType"
+    Write-Verbose "Resolved Inputs: PipeLineType=$pipelineType, BranchName=$branchName"
 
     $uri = GetUri($branchName)
     Write-Host "Getting date from $uri"
@@ -144,8 +158,8 @@ catch {
     Exit 1
 }
 
-WriteFormattedError $pipelineType "ClearlyDefined does not have a definition for this package version.
-If this is a development component, you may safely ignore this error.
+WriteFormattedWarning $pipelineType "ClearlyDefined does not have a definition for this package version.
+If this is a development component, you may safely ignore this warning.
 
 If this is a production component, please do the following:
 1. Request that ClearlyDefined harvest information for this package version
