@@ -56,8 +56,6 @@ function GetPipelineType([string]$pipelineType) {
 
 function GetBranchName([string]$pipelineType, [string]$branchName) {
     $trimmedBranchName = $branchName.Trim()
-    Write-Verbose "Trimmed branch name: $trimmedBranchName"
-
     if ($trimmedBranchName.Length -eq 0) {
         switch ($pipelineType) {
             "action" {
