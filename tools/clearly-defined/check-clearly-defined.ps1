@@ -122,6 +122,8 @@ function GetUri([string]$branchName){
     $packageName = $fullPackage.Substring(0, $indexOfLastDash - 1)
     $packageVersion = $fullPackage.Substring($indexOfLastDash)
 
+    Write-Verbose "fullPackage=$fullPackage, packageName=$packageName, packageVersion=$packageVersion"
+    
     $namespaceAndPackage = "$namespace/$packageName"
     if (IsPackageExcluded $namespaceAndPackage) {
         Write-Host "Package '$namespaceAndPackage' is a known exclusion, skipping check"
