@@ -118,16 +118,15 @@ function GetUri([string]$branchName){
         $fullPackage = $elements[3]
     }
 
-    $splitPackage = $fullPackage.Split('-')
-    $packageName = $splitPackage[0]
+    $indexOfLastDash = $fullPackage.LastIndexOf('-') + 1
+    $packageName = $fullPackage.Substring(0, $indexOfLastDash - 1)
+    $packageVersion = $fullPackage.Substring($indexOfLastDash)
 
     $namespaceAndPackage = "$namespace/$packageName"
     if (IsPackageExcluded $namespaceAndPackage) {
         Write-Host "Package '$namespaceAndPackage' is a known exclusion, skipping check"
         Exit 0
     }
-
-    $packageVersion = $splitPackage[1]
 
     return "https://api.clearlydefined.io/definitions/$type/$provider/$namespace/$packageName/$packageVersion"
 }
