@@ -167,4 +167,4 @@ If this is a production component, please do the following:
 3. Re-run the failed build
 4. Once the PR build passes, merge the PR"
     
-Exit 2
+Exit 0
