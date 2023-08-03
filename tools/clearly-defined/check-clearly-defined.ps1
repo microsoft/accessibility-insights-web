@@ -122,8 +122,6 @@ function GetUri([string]$branchName){
     $packageName = $fullPackage.Substring(0, $indexOfLastDash - 1)
     $packageVersion = $fullPackage.Substring($indexOfLastDash)
 
-    Write-Verbose "fullPackage=$fullPackage, packageName=$packageName, packageVersion=$packageVersion"
-
     $namespaceAndPackage = "$namespace/$packageName"
     if (IsPackageExcluded $namespaceAndPackage) {
         Write-Host "Package '$namespaceAndPackage' is a known exclusion, skipping check"
@@ -147,7 +145,7 @@ function WriteFormattedError([string]$pipelineType, [string]$message) {
     }
 }
 
-try {
+#try {
     $pipelineType = GetPipelineType $PipelineType
     $branchName = GetBranchName $pipelineType $BranchName
 
@@ -161,11 +159,11 @@ try {
         Write-Host "ClearlyDefined has a definition for this package version."
         Exit 0
     }
-}
-catch {
-    WriteFormattedError $pipelineType "Caught error: $Error"
-    Exit 1
-}
+#}
+#catch {
+#    WriteFormattedError $pipelineType "Caught error: $Error"
+#    Exit 1
+#}
 
 WriteFormattedError $pipelineType "ClearlyDefined does not have a definition for this package version.
 If this is a development component, you may safely ignore this warning.
