@@ -145,7 +145,7 @@ function WriteFormattedError([string]$pipelineType, [string]$message) {
     }
 }
 
-#try {
+try {
     $pipelineType = GetPipelineType $PipelineType
     $branchName = GetBranchName $pipelineType $BranchName
 
@@ -159,11 +159,12 @@ function WriteFormattedError([string]$pipelineType, [string]$message) {
         Write-Host "ClearlyDefined has a definition for this package version."
         Exit 0
     }
-#}
-#catch {
-#    WriteFormattedError $pipelineType "Caught error: $Error"
-#    Exit 1
-#}
+}
+catch {
+    WriteFormattedError $pipelineType "Caught error - details below"
+    $Error[0] | Format-List * -Force
+    Exit 1
+}
 
 WriteFormattedError $pipelineType "ClearlyDefined does not have a definition for this package version.
 If this is a development component, you may safely ignore this warning.
