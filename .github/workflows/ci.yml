@@ -249,12 +249,6 @@ jobs:
     - uses: actions/checkout@v3.5.3
       timeout-minutes: 2
 
-    - run: ls -R
-      timeout-minutes: 2
-
-    - run: env
-      timeout-minutes: 2
-
     - name: Run script
-      run: ./tools/clearly-defined/check-clearly-defined.ps1 -Verbose -PipelineType action -BranchName  dependabot/npm_and_yarn/react-router-dom-6.14.10
+      run: ./tools/clearly-defined/check-clearly-defined.ps1 -Verbose -PipelineType action
       shell: pwsh
