@@ -49,15 +49,12 @@ function GetBranchName([string]$pipelineType, [string]$branchName) {
     if ($trimmedBranchName.Length -eq 0) {
         switch ($pipelineType) {
             "action" {
-                Write-Verbose "Using GITHUB environment variable"
                 $trimmedBranchName = ($Env:GITHUB_HEAD_REF).Trim()
             }
             "ado" {
-                Write-Verbose "Using ADO environment variable"
                 $trimmedBranchName = ($Env:SYSTEM_PULLREQUEST_SOURCEBRANCH).Trim()
             }
             "local" {
-                Write-Verbose "Using parameter environment variable"
                 $trimmedBranchName = ""
             }
         }
@@ -85,6 +82,12 @@ function GetProvider([string]$rawType) {
     return $rawType
 }
 
+function IsPackageExcluded([string]$packageName) {
+    $exclusionFile = Join-Path $PSScriptRoot "clearly-defined-exclusions.json"
+    $exclusions = Get-Content -Path $exclusionFile | ConvertFrom-Json
+    return $exclusions.Contains($packageName)
+}
+
 function GetUri([string]$branchName){
     $elements = $BranchName.Split('/')
 
@@ -105,6 +108,12 @@ function GetUri([string]$branchName){
 
     $splitPackage = $fullPackage.Split('-')
     $packageName = $splitPackage[0]
+
+    if (IsPackageExcluded $packageName) {
+        Write-Host "Package '$packageName' is a known exclusion, skipping check"
+        Exit 0
+    }
+
     $packageVersion = $splitPackage[1]
 
     return "https://api.clearlydefined.io/definitions/$type/$provider/$namespace/$packageName/$packageVersion"
@@ -151,6 +160,8 @@ If this is a production component, please do the following:
 1. Request that ClearlyDefined harvest information for this package version
 2. Wait for the harvest to complete (check at https://clearlydefined.io)
 3. Re-run the failed build
-4. Once the PR build passes, merge the PR"
+4. Once the PR build passes, merge the PR
+5. If necessary, add this package to clearly-defined-exclusions.json and include it in your PR.
+   Merge the PR once the build passes."
     
 Exit 2

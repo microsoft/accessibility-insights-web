@@ -256,5 +256,5 @@ jobs:
       timeout-minutes: 2
 
     - name: Run script
-      run: ./tools/check-clearly-defined.ps1 -Verbose -PipelineType action
+      run: ./tools/clearly-defined/check-clearly-defined.ps1 -Verbose -PipelineType action
       shell: pwsh
