@@ -171,7 +171,7 @@ If this is a development component, you may safely ignore this warning.
 
 If this is a production component, please do the following:
 1. Request that ClearlyDefined harvest information for this package version
-2. Wait for the harvest to complete (check at https://clearlydefined.io)
+2. Wait for the harvest to complete -- check https://clearlydefined.io
 3. Re-run the failed build
 4. Once the PR build passes, merge the PR
 5. If necessary, add this package to clearly-defined-exclusions.json and include it in your PR.
