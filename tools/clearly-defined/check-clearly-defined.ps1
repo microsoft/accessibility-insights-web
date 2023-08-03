@@ -93,14 +93,11 @@ function GetProvider([string]$rawType) {
 }
 
 function IsPackageExcluded([string]$namespaceAndPackage) {
-    Write-Verbose "PSScriptRoot is $PSScriptRoot, namespaceAndPackage is $namespaceAndPackage"
     # Files that will never be in ClearlyDefined, but that are safe to ignore for
     # licensing purposes, can be added to clearly-defined-exclusions.json
     $exclusionFile = Join-Path $PSScriptRoot "clearly-defined-exclusions.json"
-    Write-Verbose "exclusionFile is $exclusionFile"
     $exclusions = Get-Content -Path $exclusionFile | ConvertFrom-Json
-    Write-Verbose "exclusions is $exclusions"
-    return $exclusions.Contains($namespaceAndPackage)
+    return $exclusions -ne $null -and $exclusions.Contains($namespaceAndPackage)
 }
 
 function GetUri([string]$branchName){
