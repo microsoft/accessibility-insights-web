@@ -110,20 +110,6 @@ function GetUri([string]$branchName){
     return "https://api.clearlydefined.io/definitions/$type/$provider/$namespace/$packageName/$packageVersion"
 }
 
-function WriteFormattedWarning([string]$pipelineType, [string]$message) {
-    switch ($pipelineType) {
-        "action" {
-            Write-Host "::warning::$message"
-        }
-        "ado" {
-            Write-Host "##vso[task.logissue type=warning]$message"
-        }
-        default {
-            Write-Host $message
-        }
-    }
-}
-
 function WriteFormattedError([string]$pipelineType, [string]$message) {
     switch ($pipelineType) {
         "action" {
@@ -158,7 +144,7 @@ catch {
     Exit 1
 }
 
-WriteFormattedWarning $pipelineType "ClearlyDefined does not have a definition for this package version.
+WriteFormattedError $pipelineType "ClearlyDefined does not have a definition for this package version.
 If this is a development component, you may safely ignore this warning.
 
 If this is a production component, please do the following:
@@ -167,4 +153,4 @@ If this is a production component, please do the following:
 3. Re-run the failed build
 4. Once the PR build passes, merge the PR"
     
-Exit 0
+Exit 2
