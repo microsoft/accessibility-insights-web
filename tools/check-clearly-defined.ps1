@@ -11,42 +11,63 @@ the latest version of a package. This script exists to detect this scenario and 
 reminder to request that ClearlyDefined harvest information for the version being updated.
 
 .EXAMPLE
-./check-clearly-defined.ps1 -BranchName <string> [-PipelineType <string>]
+./check-clearly-defined.ps1 -PipelineType <string> [-BranchName <string>]
 #>
 
 [CmdletBinding()]
 Param(
+    [Parameter(Mandatory = $true)]
+    [string]$PipelineType,
     [Parameter(Mandatory = $false)]
-    [string]$BranchName,
-    [Parameter(Mandatory = $false)]
-    [string]$PipelineType
+    [string]$BranchName
 )
 
 Set-StrictMode -Version Latest
 $script:ErrorActionPreference = 'Stop'
 
-function GetBranchName([string]$branchName) {
-    if ($branchName.Length -eq 0) {
-        $branchName = $env:BRANCH_NAME
-
-        if ($branchName -eq $null) {
-            Throw "Branch name not provided"
+function GetPipelineType([string]$pipelineType) {
+    $trimmedType = $pipelineType.Trim()
+    switch ($trimmedType) {
+        "action" {
+            return $trimmedType
+        }
+        "ado" {
+            return $trimmedType
+        }
+        "local" {
+            return $trimmedType
         }
     }
 
-    return $branchName
+    Throw "Pipeline type not provided or invalid"
 }
 
-function GetPipelineType([string]$pipelineType) {
-    if ($pipelineType.length -eq 0) {
-        $pipelineType = $env:PIPELINE_TYPE
+function GetBranchName([string]$pipelineType, [string]$branchName) {
+    $trimmedBranchName = $branchName.Trim()
+    Write-Verbose "Trimmed branch name: $trimmedBranchName"
 
-        if ($pipelineType -eq $null) {
-            Throw "Pipeline type not provided"
+    if ($trimmedBranchName.Length -eq 0) {
+        switch ($pipelineType) {
+            "action" {
+                Write-Verbose "Using GITHUB environment variable"
+                $trimmedBranchName = ($Env:GITHUB_HEAD_REF).Trim()
+            }
+            "ado" {
+                Write-Verbose "Using ADO environment variable"
+                $trimmedBranchName = ($Env:SYSTEM_PULLREQUEST_SOURCEBRANCH).Trim()
+            }
+            "local" {
+                Write-Verbose "Using parameter environment variable"
+                $trimmedBranchName = ""
+            }
         }
     }
 
-    return $pipelineType
+    if ($trimmedBranchName.Length -eq 0) {
+        Throw "Branch name not provided or invalid"
+    }
+
+    return $trimmedBranchName
 }
 
 function GetType([string]$rawType) {
@@ -89,13 +110,13 @@ function GetUri([string]$branchName){
     return "https://api.clearlydefined.io/definitions/$type/$provider/$namespace/$packageName/$packageVersion"
 }
 
-function WriteFormattedError([string]$formatter, [string]$message) {
-    switch ($formatter) {
-        "ado" {
-            Write-Host "##vso[task.logissue type=error]$message"
-        }
+function WriteFormattedError([string]$pipelineType, [string]$message) {
+    switch ($pipelineType) {
         "action" {
             Write-Host "::error::$message"
+        }
+        "ado" {
+            Write-Host "##vso[task.logissue type=error]$message"
         }
         default {
             Write-Host $message
@@ -104,8 +125,8 @@ function WriteFormattedError([string]$formatter, [string]$message) {
 }
 
 try {
-    $pipelineType = GetPipelineType ($PipelineType.Trim())
-    $branchName = GetBranchName ($BranchName.Trim())
+    $pipelineType = GetPipelineType $PipelineType
+    $branchName = GetBranchName $pipelineType $BranchName
 
     Write-Verbose "Resolved Inputs: BranchName=$branchName, PipeLineType=$pipelineType"
 
