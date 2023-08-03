@@ -256,5 +256,5 @@ jobs:
       timeout-minutes: 2
 
     - name: Run script
-      run: ./tools/clearly-defined/check-clearly-defined.ps1 -Verbose -PipelineType action
+      run: ./tools/clearly-defined/check-clearly-defined.ps1 -Verbose -PipelineType action -BranchName  dependabot/npm_and_yarn/react-router-dom-6.14.1
       shell: pwsh
