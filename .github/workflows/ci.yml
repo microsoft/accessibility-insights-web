@@ -242,3 +242,19 @@ jobs:
         name: e2e-report-tests-results
         path: packages/report-e2e-tests/test-results
       timeout-minutes: 3
+
+  check-dependencies:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3.5.3
+      timeout-minutes: 2
+
+    - run: ls -R
+      timeout-minutes: 2
+
+    - run: env
+      timeout-minutes: 2
+
+    - name: Run script
+      run: ./tools/clearly-defined/check-clearly-defined.ps1 -Verbose -PipelineType action
+      shell: pwsh
