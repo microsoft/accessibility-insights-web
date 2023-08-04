@@ -1502,84 +1502,84 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@microsoft/applicationinsights-analytics-js@npm:2.8.11":
-  version: 2.8.11
-  resolution: "@microsoft/applicationinsights-analytics-js@npm:2.8.11"
+"@microsoft/applicationinsights-analytics-js@npm:2.8.15":
+  version: 2.8.15
+  resolution: "@microsoft/applicationinsights-analytics-js@npm:2.8.15"
   dependencies:
-    "@microsoft/applicationinsights-common": 2.8.11
-    "@microsoft/applicationinsights-core-js": 2.8.11
+    "@microsoft/applicationinsights-common": 2.8.15
+    "@microsoft/applicationinsights-core-js": 2.8.15
     "@microsoft/applicationinsights-shims": 2.0.2
-    "@microsoft/dynamicproto-js": ^1.1.7
+    "@microsoft/dynamicproto-js": ^1.1.9
   peerDependencies:
     tslib: "*"
-  checksum: 10d2a583ed014bd9309468fc0e9ccd5ec4d615e7dc644b5b209dfb1a2aaf7ac6cc7a2476ca1049daae50f4bb4f1ff46aaebbec768e4b98c9075d72e61433198f
+  checksum: f9589e36d69c67336241386f4c581c760bd8031cc58db9d044244901a9f69447ea18d6f7982605982d758f7a13a82000cff46bf58a5b8d4ec79bc802ed0eba34
   languageName: node
   linkType: hard
 
-"@microsoft/applicationinsights-channel-js@npm:2.8.11":
-  version: 2.8.11
-  resolution: "@microsoft/applicationinsights-channel-js@npm:2.8.11"
+"@microsoft/applicationinsights-channel-js@npm:2.8.15":
+  version: 2.8.15
+  resolution: "@microsoft/applicationinsights-channel-js@npm:2.8.15"
   dependencies:
-    "@microsoft/applicationinsights-common": 2.8.11
-    "@microsoft/applicationinsights-core-js": 2.8.11
+    "@microsoft/applicationinsights-common": 2.8.15
+    "@microsoft/applicationinsights-core-js": 2.8.15
     "@microsoft/applicationinsights-shims": 2.0.2
-    "@microsoft/dynamicproto-js": ^1.1.7
+    "@microsoft/dynamicproto-js": ^1.1.9
   peerDependencies:
     tslib: "*"
-  checksum: 31d2ffc2e2c10c7a4fc852fe47a40caad0e9e13e3682dfb996a6439ff20c62d5e282d9bdf48886917b6fe5178765e29f1bcaa85fa5d53a485b161d3697534007
+  checksum: 55d814f32956d8cfe3bf52cc6ed9fc5c76d2973281e65d6811dfd083691fcab2e373e1f4fb288e35310a732f399f6c6ac85fcdeea9db6e286d1b69e5af34c9dc
   languageName: node
   linkType: hard
 
-"@microsoft/applicationinsights-common@npm:2.8.11":
-  version: 2.8.11
-  resolution: "@microsoft/applicationinsights-common@npm:2.8.11"
+"@microsoft/applicationinsights-common@npm:2.8.15":
+  version: 2.8.15
+  resolution: "@microsoft/applicationinsights-common@npm:2.8.15"
   dependencies:
-    "@microsoft/applicationinsights-core-js": 2.8.11
+    "@microsoft/applicationinsights-core-js": 2.8.15
     "@microsoft/applicationinsights-shims": 2.0.2
-    "@microsoft/dynamicproto-js": ^1.1.7
+    "@microsoft/dynamicproto-js": ^1.1.9
   peerDependencies:
     tslib: "*"
-  checksum: aa2792def72467adceec37716baecf473e29df23611994f960a99881b2976e3a48e4a4198cb500899ece078530cea7861a05b0d8844ea5e5139db63f6aa02a59
+  checksum: 52a63b194103373023fad475902eafbfaa0296811c7678d0f5c3e801f316a2298d4298f8fcd3990d9e2366907b034ffbb3ea46309cc79368f14debe07b795ad3
   languageName: node
   linkType: hard
 
-"@microsoft/applicationinsights-core-js@npm:2.8.11":
-  version: 2.8.11
-  resolution: "@microsoft/applicationinsights-core-js@npm:2.8.11"
+"@microsoft/applicationinsights-core-js@npm:2.8.15":
+  version: 2.8.15
+  resolution: "@microsoft/applicationinsights-core-js@npm:2.8.15"
   dependencies:
     "@microsoft/applicationinsights-shims": 2.0.2
-    "@microsoft/dynamicproto-js": ^1.1.7
+    "@microsoft/dynamicproto-js": ^1.1.9
   peerDependencies:
     tslib: "*"
-  checksum: 4ce1633b777f94fdcc42b849dfdd60c2e631ffb426efd34305f09c173c2e1c431b6f9f10691ca5bb830ede46bee7583f33b139a617e13ee098fe967e701541d9
+  checksum: 1f0165c9e36f8062f203cdbc5e395196c9ebf13542d671c6f031244e253776d10834fb007f4a1e7c073a46029ef641cc52fbc1e6ec8ba55ffddef70a910fe349
   languageName: node
   linkType: hard
 
-"@microsoft/applicationinsights-dependencies-js@npm:2.8.11":
-  version: 2.8.11
-  resolution: "@microsoft/applicationinsights-dependencies-js@npm:2.8.11"
+"@microsoft/applicationinsights-dependencies-js@npm:2.8.15":
+  version: 2.8.15
+  resolution: "@microsoft/applicationinsights-dependencies-js@npm:2.8.15"
   dependencies:
-    "@microsoft/applicationinsights-common": 2.8.11
-    "@microsoft/applicationinsights-core-js": 2.8.11
+    "@microsoft/applicationinsights-common": 2.8.15
+    "@microsoft/applicationinsights-core-js": 2.8.15
     "@microsoft/applicationinsights-shims": 2.0.2
-    "@microsoft/dynamicproto-js": ^1.1.7
+    "@microsoft/dynamicproto-js": ^1.1.9
   peerDependencies:
     tslib: "*"
-  checksum: 58477c20a8bd2e33d129b2063b245e2196fb4b08545b655578bd48b1586cbe15768683a3cf2195396b15869e92975fbe9b98bac1a14fbcade8a8a43d7f630adb
+  checksum: 3a49837b0b0cf724035046289972c144499cdcce78e80dc52277b6a90a979017dc03150b50513b49351f650209d5c278c4efca750833159e8a40043c7e580867
   languageName: node
   linkType: hard
 
-"@microsoft/applicationinsights-properties-js@npm:2.8.11":
-  version: 2.8.11
-  resolution: "@microsoft/applicationinsights-properties-js@npm:2.8.11"
+"@microsoft/applicationinsights-properties-js@npm:2.8.15":
+  version: 2.8.15
+  resolution: "@microsoft/applicationinsights-properties-js@npm:2.8.15"
   dependencies:
-    "@microsoft/applicationinsights-common": 2.8.11
-    "@microsoft/applicationinsights-core-js": 2.8.11
+    "@microsoft/applicationinsights-common": 2.8.15
+    "@microsoft/applicationinsights-core-js": 2.8.15
     "@microsoft/applicationinsights-shims": 2.0.2
-    "@microsoft/dynamicproto-js": ^1.1.7
+    "@microsoft/dynamicproto-js": ^1.1.9
   peerDependencies:
     tslib: "*"
-  checksum: 07712d154d094d6f56b08f722e0519617b571db37a31ac0a19a749cef3f953d196d5c6241b602e7b530c3df3352d291bf48eb14eb730ded7482f39567c31cbe8
+  checksum: b112fe53ac43dc3394c7dc9bccfe6bcebe1a55a599e09acb24ded811a5ff004cde922371bd78e886e3a3d4157c33952fa9d8d80998e8e0c65c67df241efc6570
   languageName: node
   linkType: hard
 
@@ -1590,28 +1590,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@microsoft/applicationinsights-web@npm:^2.8.11":
-  version: 2.8.11
-  resolution: "@microsoft/applicationinsights-web@npm:2.8.11"
+"@microsoft/applicationinsights-web@npm:^2.8.15":
+  version: 2.8.15
+  resolution: "@microsoft/applicationinsights-web@npm:2.8.15"
   dependencies:
-    "@microsoft/applicationinsights-analytics-js": 2.8.11
-    "@microsoft/applicationinsights-channel-js": 2.8.11
-    "@microsoft/applicationinsights-common": 2.8.11
-    "@microsoft/applicationinsights-core-js": 2.8.11
-    "@microsoft/applicationinsights-dependencies-js": 2.8.11
-    "@microsoft/applicationinsights-properties-js": 2.8.11
+    "@microsoft/applicationinsights-analytics-js": 2.8.15
+    "@microsoft/applicationinsights-channel-js": 2.8.15
+    "@microsoft/applicationinsights-common": 2.8.15
+    "@microsoft/applicationinsights-core-js": 2.8.15
+    "@microsoft/applicationinsights-dependencies-js": 2.8.15
+    "@microsoft/applicationinsights-properties-js": 2.8.15
     "@microsoft/applicationinsights-shims": 2.0.2
-    "@microsoft/dynamicproto-js": ^1.1.7
+    "@microsoft/dynamicproto-js": ^1.1.9
   peerDependencies:
     tslib: "*"
-  checksum: 6b55b734c8c68ac8697f1a301bdffa7d707f4655df8453d24238d5522820b9479c8386db84ddca49ff669943928e12623076905a1e16d0ff0fc8e6736eecf225
+  checksum: 0f886bda5d9fda8c7dfbf4c2ef0724b7e89ed95b7ef7a5a0e554ffc176961f47d4a64d8a8d9adbc198ca4f75f857999cf38b0713782701e7ee1397fcb30e5ec8
   languageName: node
   linkType: hard
 
-"@microsoft/dynamicproto-js@npm:^1.1.7":
-  version: 1.1.7
-  resolution: "@microsoft/dynamicproto-js@npm:1.1.7"
-  checksum: 60446aaa7dc7918bf514099bc2b26610319e1d78dbca3d43b5878273b108f17743b361197f083c7faa46130ee24a147eb60bac98e34c5214f386789cc1708424
+"@microsoft/dynamicproto-js@npm:^1.1.9":
+  version: 1.1.9
+  resolution: "@microsoft/dynamicproto-js@npm:1.1.9"
+  checksum: 29ab31e42b6cbd46571f296d898d0741700738e6f3fd9facbebc025baaf4c8fd69e209c33f0eff976cbc33b2f05ccd289c7da520fb1de52219706cfacaef9477
   languageName: node
   linkType: hard
 
@@ -2784,7 +2784,7 @@ __metadata:
   dependencies:
     "@esbuild-plugins/node-resolve": ^0.2.2
     "@fluentui/react": ^8.96.1
-    "@microsoft/applicationinsights-web": ^2.8.11
+    "@microsoft/applicationinsights-web": ^2.8.15
     "@swc/core": ^1.3.71
     "@swc/jest": ^0.2.27
     "@types/chrome": 0.0.242
