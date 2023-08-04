@@ -60,7 +60,6 @@ describe('AssessmentCardSelectionStore', () => {
             null,
             null,
             null,
-            null,
             StoreNames.AssessmentCardSelectionStore,
         );
 
@@ -137,7 +136,6 @@ describe('AssessmentCardSelectionStore Test', () => {
                 initialAssessmentStoreDataGeneratorMock.object,
                 null,
                 null,
-                true,
                 '',
                 null,
             );
@@ -158,7 +156,6 @@ describe('AssessmentCardSelectionStore Test', () => {
                 initialAssessmentStoreDataGeneratorMock.object,
                 null,
                 null,
-                true,
                 '',
                 null,
             );
@@ -762,7 +759,6 @@ describe('AssessmentCardSelectionStore Test', () => {
                 initialAssessmentStoreDataGeneratorMock.object,
                 null,
                 null,
-                true,
                 '',
                 null,
             );
@@ -784,7 +780,6 @@ describe('AssessmentCardSelectionStore Test', () => {
                 initialAssessmentStoreDataGeneratorMock.object,
                 null,
                 null,
-                true,
                 '',
                 null,
             );

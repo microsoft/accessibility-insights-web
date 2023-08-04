@@ -16,7 +16,6 @@ export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStor
             null!,
             null!,
             null!,
-            null!,
         ).getDefaultState();
     }
 

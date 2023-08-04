@@ -18,7 +18,6 @@ export class NeedsReviewScanResultStore extends PersistentStore<NeedsReviewScanR
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
-        persistStoreData: boolean,
     ) {
         super(
             StoreNames.NeedsReviewScanResultStore,
@@ -26,7 +25,6 @@ export class NeedsReviewScanResultStore extends PersistentStore<NeedsReviewScanR
             idbInstance,
             IndexedDBDataKeys.needsReviewScanResultsStore(tabId),
             logger,
-            persistStoreData,
         );
     }
 

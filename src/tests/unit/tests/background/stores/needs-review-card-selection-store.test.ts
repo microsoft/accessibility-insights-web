@@ -135,7 +135,6 @@ describe('NeedsReviewCardSelectionStore Test', () => {
                 null,
                 null,
                 null,
-                true,
                 convertResultsToCardSelectionStoreDataCallbackMock.object,
                 convertStoreDataForScanNodeResultsCallbackMock.object,
             );
@@ -503,7 +502,6 @@ describe('NeedsReviewCardSelectionStore Test', () => {
                 null,
                 null,
                 null,
-                true,
             );
 
         return new StoreTester(NeedsReviewCardSelectionActions, actionName, factory);
@@ -521,7 +519,6 @@ describe('NeedsReviewCardSelectionStore Test', () => {
                 null,
                 null,
                 null,
-                true,
             );
 
         return new StoreTester(TabActions, actionName, factory);

@@ -26,7 +26,6 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
         idbInstance: IndexedDBAPI,
         logger: Logger,
         tabId: number,
-        persistStoreData: boolean,
     ) {
         super(
             StoreNames.DetailsViewStore,
@@ -34,7 +33,6 @@ export class DetailsViewStore extends PersistentStore<DetailsViewStoreData> {
             idbInstance,
             IndexedDBDataKeys.detailsViewStore(tabId),
             logger,
-            persistStoreData,
         );
     }
 

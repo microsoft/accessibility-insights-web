@@ -137,7 +137,6 @@ describe('CardSelectionStore Test', () => {
                 null,
                 null,
                 null,
-                true,
                 convertResultsToCardSelectionStoreDataCallbackMock.object,
                 convertStoreDataForScanNodeResultsCallbackMock.object,
             );
@@ -474,7 +473,6 @@ describe('CardSelectionStore Test', () => {
                 null,
                 null,
                 null,
-                true,
             );
 
         return new StoreTester(CardSelectionActions, actionName, factory);
@@ -492,7 +490,6 @@ describe('CardSelectionStore Test', () => {
                 null,
                 null,
                 null,
-                true,
             );
 
         return new StoreTester(TabActions, actionName, factory);

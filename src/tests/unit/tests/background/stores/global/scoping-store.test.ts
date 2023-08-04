@@ -100,8 +100,7 @@ describe('ScopingStoreTest', () => {
     function createStoreForScopingActions(
         actionName: keyof ScopingActions,
     ): StoreTester<ScopingStoreData, ScopingActions> {
-        const factory = (actions: ScopingActions) =>
-            new ScopingStore(actions, null, null, null, true);
+        const factory = (actions: ScopingActions) => new ScopingStore(actions, null, null, null);
 
         return new StoreTester(ScopingActions, actionName, factory);
     }

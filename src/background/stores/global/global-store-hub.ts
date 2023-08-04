@@ -55,15 +55,12 @@ export class GlobalStoreHub implements StoreHub {
         storageAdapter: StorageAdapter,
         logger: Logger,
     ) {
-        const persistStoreData = true;
-
         this.commandStore = new CommandStore(
             globalActionHub.commandActions,
             telemetryEventHandler,
             persistedData.commandStoreData,
             indexedDbInstance,
             logger,
-            persistStoreData,
         );
         this.featureFlagStore = new FeatureFlagStore(
             globalActionHub.featureFlagActions,
@@ -81,7 +78,6 @@ export class GlobalStoreHub implements StoreHub {
             persistedData.scopingStoreData,
             indexedDbInstance,
             logger,
-            persistStoreData,
         );
         this.assessmentStore = new AssessmentStore(
             browserAdapter,
@@ -118,7 +114,6 @@ export class GlobalStoreHub implements StoreHub {
             new InitialAssessmentStoreDataGenerator(assessmentsProvider.all()),
             indexedDbInstance,
             logger,
-            persistStoreData,
             IndexedDBDataKeys.assessmentCardSelectionStore,
             StoreNames.AssessmentCardSelectionStore,
         );
@@ -131,7 +126,6 @@ export class GlobalStoreHub implements StoreHub {
             new InitialAssessmentStoreDataGenerator(quickAssessProvider.all()),
             indexedDbInstance,
             logger,
-            persistStoreData,
             IndexedDBDataKeys.quickAssessCardSelectionStore,
             StoreNames.QuickAssessCardSelectionStore,
         );
@@ -146,7 +140,6 @@ export class GlobalStoreHub implements StoreHub {
             persistedData.permissionsStateStoreData,
             indexedDbInstance,
             logger,
-            persistStoreData,
         );
         this.dataTransferStore = new DataTransferStore(globalActionHub.dataTransferActions);
     }

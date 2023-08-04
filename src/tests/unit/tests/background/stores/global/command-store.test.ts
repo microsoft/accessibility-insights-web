@@ -31,7 +31,7 @@ describe('CommandStoreTest', () => {
     });
 
     test('on getCommands: no command modification', async () => {
-        const prototype = new CommandStore(null, null, null, null, null, null);
+        const prototype = new CommandStore(null, null, null, null, null);
         const initialState: CommandStoreData = prototype.getDefaultState();
         const expectedState: CommandStoreData = prototype.getDefaultState();
 
@@ -96,7 +96,6 @@ describe('CommandStoreTest', () => {
             null,
             null,
             null,
-            null,
         ).getDefaultState();
 
         const command: chrome.commands.Command = {
@@ -130,7 +129,7 @@ describe('CommandStoreTest', () => {
         actionName: keyof CommandActions,
     ): StoreTester<CommandStoreData, CommandActions> {
         const factory = (actions: CommandActions) =>
-            new CommandStore(actions, telemetryEventHandlerMock.object, null, null, null, true);
+            new CommandStore(actions, telemetryEventHandlerMock.object, null, null, null);
 
         return new StoreTester(CommandActions, actionName, factory);
     }

@@ -19,7 +19,6 @@ export class ScopingStore extends PersistentStore<ScopingStoreData> {
         persistedState: ScopingStoreData,
         idbInstance: IndexedDBAPI,
         logger: Logger,
-        persistStoreData: boolean,
     ) {
         super(
             StoreNames.ScopingPanelStateStore,
@@ -27,7 +26,6 @@ export class ScopingStore extends PersistentStore<ScopingStoreData> {
             idbInstance,
             IndexedDBDataKeys.scopingStore,
             logger,
-            persistStoreData,
         );
 
         this.scopingActions = scopingActions;

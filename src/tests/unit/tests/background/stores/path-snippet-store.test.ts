@@ -72,7 +72,7 @@ describe('PathSnippetStoreTest', () => {
         actionName: keyof PathSnippetActions,
     ): StoreTester<PathSnippetStoreData, PathSnippetActions> {
         const factory = (actions: PathSnippetActions) =>
-            new PathSnippetStore(actions, null, null, null, null, true);
+            new PathSnippetStore(actions, null, null, null, null);
         return new StoreTester(PathSnippetActions, actionName, factory);
     }
 });
