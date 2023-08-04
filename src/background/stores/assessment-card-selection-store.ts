@@ -45,11 +45,10 @@ export class AssessmentCardSelectionStore extends PersistentStore<AssessmentCard
         private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
         idbInstance: IndexedDBAPI,
         logger: Logger,
-        persistStoreData: boolean,
         indexDBKey: string,
         storeName: StoreNames,
     ) {
-        super(storeName, persistedState, idbInstance, indexDBKey, logger, persistStoreData);
+        super(storeName, persistedState, idbInstance, indexDBKey, logger);
     }
 
     protected addActionListeners(): void {

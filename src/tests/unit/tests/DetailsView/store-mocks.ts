@@ -96,23 +96,15 @@ export class StoreMocks {
         isPageHidden: false,
         isOriginChanged: false,
     };
-    public commandStoreData = new CommandStore(
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-    ).getDefaultState();
+    public commandStoreData = new CommandStore(null, null, null, null, null).getDefaultState();
     public userConfigurationStoreData = new UserConfigurationStore(
         null,
         null,
         null,
         null,
     ).getDefaultState();
-    public scopingStoreData = new ScopingStore(null, null, null, null, null).getDefaultState();
+    public scopingStoreData = new ScopingStore(null, null, null, null).getDefaultState();
     public inspectStoreData = new InspectStore(
-        null,
         null,
         null,
         null,
@@ -126,7 +118,6 @@ export class StoreMocks {
         null,
         null,
         null,
-        null,
     ).getDefaultState();
     public unifiedScanResultStoreData = new UnifiedScanResultStore(
         null,
@@ -135,10 +126,8 @@ export class StoreMocks {
         null,
         null,
         null,
-        null,
     ).getDefaultState();
     public needsReviewScanResultStoreData = new NeedsReviewScanResultStore(
-        null,
         null,
         null,
         null,
@@ -155,7 +144,6 @@ export class StoreMocks {
     public assessmentStoreData: AssessmentStoreData;
     public quickAssessStoreData: AssessmentStoreData;
     public permissionsStateStoreData = new PermissionsStateStore(
-        null,
         null,
         null,
         null,
@@ -218,7 +206,6 @@ export class StoreMocks {
             null,
             null,
             null,
-            null,
         ).getDefaultState();
         this.quickAssessCardSelectionStoreData = new AssessmentCardSelectionStore(
             null,
@@ -227,7 +214,6 @@ export class StoreMocks {
             null,
             null,
             this.initialQuickAssessStoreDataGeneratorMock.object,
-            null,
             null,
             null,
             null,

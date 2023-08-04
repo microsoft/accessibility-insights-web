@@ -114,7 +114,6 @@ export class GlobalStoreHub implements StoreHub {
             new InitialAssessmentStoreDataGenerator(assessmentsProvider.all()),
             indexedDbInstance,
             logger,
-            persistStoreData,
             IndexedDBDataKeys.assessmentCardSelectionStore,
             StoreNames.AssessmentCardSelectionStore,
         );
@@ -127,7 +126,6 @@ export class GlobalStoreHub implements StoreHub {
             new InitialAssessmentStoreDataGenerator(quickAssessProvider.all()),
             indexedDbInstance,
             logger,
-            persistStoreData,
             IndexedDBDataKeys.quickAssessCardSelectionStore,
             StoreNames.QuickAssessCardSelectionStore,
         );
