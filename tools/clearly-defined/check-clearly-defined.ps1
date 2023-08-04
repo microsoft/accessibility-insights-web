@@ -12,7 +12,10 @@ the latest version of a package. This script exists to detect this scenario and 
 reminder to request that ClearlyDefined harvest information for the version being updated. It
 also provides a way to exclude packages that we know will never be in ClearlyDefined.
 
-This script will be in multiple repos, please try to keep it in sync.
+Please keep this script in sync across the following repos:
+  accessibility-insights-web
+  accessibility-insights-windows
+  axe-windows
 
 .PARAMETER PipelineType
 The pipeline environment. This is used to determine which environment variables specify the branch
