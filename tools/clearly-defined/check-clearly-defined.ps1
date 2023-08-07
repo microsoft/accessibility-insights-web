@@ -7,7 +7,7 @@ Determine if this is a dependabot PR. If it is and the package being updated is 
 if ClearlyDefined has information for the current version. Fail the build is it's not there.
 
 .DESCRIPTION
-ClearlyDefined is our source of license information for dependemncies, but it often lags behind
+ClearlyDefined is our source of license information for dependencies, but it often lags behind
 the latest version of a package. This script exists to detect this scenario and to serve as a
 reminder to request that ClearlyDefined harvest information for the version being updated. It
 also provides a way to exclude packages that we know will never be in ClearlyDefined.
