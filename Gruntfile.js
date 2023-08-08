@@ -1,31 +1,51 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+const sass = require('node-sass');
 const path = require('path');
-const merge = require('lodash/merge');
-const sass = require('sass');
 const targets = require('./targets.config');
+const merge = require('lodash/merge');
+const { run: copyrightCheckAndAdd } = require('license-check-and-add');
 
-module.exports = function (grunt) {
-    const typedScssModulesPath = path.resolve('./node_modules/.bin/typed-scss-modules');
-    const webpackPath = path.resolve('./node_modules/.bin/webpack');
-
+module.exports = function(grunt) {
     const extensionPath = 'extension';
-
-    const packageReportPath = path.join('packages', 'report');
-    const packageReportBundlePath = path.join(packageReportPath, 'bundle');
-    const packageReportDropPath = path.join(packageReportPath, 'drop');
-
-    const packageUIPath = path.join('packages', 'ui');
-    const packageUIBundlePath = path.join(packageUIPath, 'bundle');
-    const packageUIDropPath = path.join(packageUIPath, 'drop');
-
-    const packageValidatorPath = path.join('packages', 'validator');
-    const packageValidatorBundlePath = path.join(packageValidatorPath, 'bundle');
-    const packageValidatorDropPath = path.join(packageValidatorPath, 'drop');
-
-    const packageAxeConfigPath = path.join('packages', 'axe-config');
-    const packageAxeConfigBundlePath = path.join(packageAxeConfigPath, 'bundle');
-    const packageAxeConfigDropPath = path.join(packageAxeConfigPath, 'drop');
+    const copyrightCheckAndAddConfig = {
+        folder: './',
+        license: 'copyright-header.txt',
+        exact_paths_method: 'EXCLUDE',
+        exact_paths: [
+            './.vscode',
+            './.git',
+            './.github',
+            './dist',
+            './drop',
+            './extension',
+            './node_modules',
+            './copyright-header.txt',
+            './src/assessments/color/test-steps/flashing-text-example.html',
+            './test-results',
+            './docs/NOTICE.html',
+            './docs/LICENSE.txt',
+        ],
+        file_type_method: 'INCLUDE',
+        file_types: ['.ts', '.tsx', '.d.ts', '.js', '.html', '.css', '.scss', '.yaml', '.md', '.txt', '.xml'],
+        insert_license: false,
+        license_formats: {
+            'yaml|npmrc': {
+                eachLine: {
+                    prepend: '# ',
+                },
+            },
+            md: {
+                prepend: '<!--',
+                append: '-->',
+            },
+            'snap|ts|tsx|d.ts|js|scss|css': {
+                eachLine: {
+                    prepend: '// ',
+                },
+            },
+        },
+    };
 
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
@@ -40,14 +60,6 @@ module.exports = function (grunt) {
         },
         clean: {
             intermediates: ['dist', extensionPath],
-            'package-report': packageReportDropPath,
-            'package-ui': packageUIDropPath,
-            'package-validator': packageValidatorDropPath,
-            'package-axe-config': packageAxeConfigDropPath,
-            scss: path.join('src', '**/*.scss.d.ts'),
-        },
-        concurrent: {
-            'compile-all': ['exec:esbuild-dev', 'exec:esbuild-prod'],
         },
         copy: {
             code: {
@@ -70,7 +82,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         cwd: './src',
-                        src: ['./**/*.{png,ico,icns}', '!./tests/**/*'],
+                        src: ['./**/*.png', '!./tests/**/*'],
                         dest: extensionPath,
                         expand: true,
                     },
@@ -82,12 +94,6 @@ module.exports = function (grunt) {
                         cwd: './src',
                         src: '**/*.css',
                         dest: extensionPath,
-                        expand: true,
-                    },
-                    {
-                        cwd: './dist/src/reports',
-                        src: '*.css',
-                        dest: path.join(extensionPath, 'reports'),
                         expand: true,
                     },
                     {
@@ -115,73 +121,29 @@ module.exports = function (grunt) {
                         expand: true,
                     },
                     {
-                        cwd: './dist/src/debug-tools',
-                        src: '*.css',
-                        dest: path.join(extensionPath, 'debug-tools'),
+                        cwd: './node_modules/office-ui-fabric-react/dist/css',
+                        src: 'fabric.min.css',
+                        dest: path.join(extensionPath, 'common/styles/'),
                         expand: true,
                     },
                 ],
             },
-            'package-report': {
-                files: [
-                    {
-                        cwd: '.',
-                        src: path.join(packageReportBundlePath, 'report.bundle.js'),
-                        dest: path.join(packageReportDropPath, 'index.js'),
-                    },
-                    {
-                        cwd: '.',
-                        src: './src/reports/package/accessibilityInsightsReport.d.ts',
-                        dest: path.join(packageReportDropPath, 'index.d.ts'),
-                    },
-                ],
-            },
-            'package-ui': {
-                files: [
-                    {
-                        cwd: '.',
-                        src: path.join(packageUIBundlePath, 'ui.bundle.js'),
-                        dest: path.join(packageUIDropPath, 'index.js'),
-                    },
-                    {
-                        cwd: '.',
-                        src: path.join(packageUIBundlePath, 'ui.css'),
-                        dest: path.join(packageUIDropPath, 'ui.css'),
-                    },
-                ],
-            },
-            'package-validator': {
-                files: [
-                    {
-                        cwd: '.',
-                        src: path.join(packageValidatorBundlePath, 'validator.bundle.js'),
-                        dest: path.join(packageValidatorDropPath, 'index.js'),
-                    },
-                ],
-            },
-            'package-axe-config': {
-                files: [
-                    {
-                        cwd: '.',
-                        src: path.join(packageAxeConfigPath, 'index.js'),
-                        dest: path.join(packageAxeConfigDropPath, 'index.js'),
-                    },
-                ],
+        },
+        'embed-styles': {
+            code: {
+                cwd: extensionPath,
+                src: '**/*bundle.js',
+                dest: extensionPath,
+                expand: true,
             },
         },
         exec: {
-            'esbuild-dev': `node esbuild.js`,
-            'esbuild-prod': `node esbuild.js --env prod`,
-            'esbuild-package-report': `node esbuild.js --env report`,
-            'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
-            'esbuild-package-validator': `node esbuild.js --env validator`,
-            'generate-validator': `node ${packageValidatorDropPath}`,
-            'esbuild-package-axe-config': `node esbuild.js --env axe-config`,
-            'generate-axe-config': `node ${path.join(
-                packageAxeConfigBundlePath,
-                'axe-config-generator.bundle.js',
-            )} ${path.join(packageAxeConfigDropPath, 'axe-config.json')}`,
-            'generate-scss-typings': `"${typedScssModulesPath}" src --exportType default`,
+            'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
+            'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
+            'webpack-electron-main': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron-main`,
+            'webpack-electron-renderer': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron-renderer`,
+            'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
+            'generate-scss-typings': `${path.resolve('./node_modules/.bin/tsm')} src`,
         },
         sass: {
             options: {
@@ -199,18 +161,9 @@ module.exports = function (grunt) {
                 ],
             },
         },
-        'embed-styles': {
-            'package-report': {
-                cwd: packageReportBundlePath,
-                src: '**/*bundle.js',
-                dest: packageReportBundlePath,
-                expand: true,
-                cssPath: path.resolve('extension', 'prodBundle'),
-            },
-        },
         watch: {
             images: {
-                files: ['src/**/*.{png,ico,icns}'],
+                files: ['src/**/*.png'],
                 tasks: ['copy:images', 'drop:dev'],
             },
             'non-webpack-code': {
@@ -219,35 +172,23 @@ module.exports = function (grunt) {
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev'],
+                tasks: ['sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
             },
-            // We assume esbuild --watch is running separately (usually via 'yarn watch')
-            'esbuild-dev-output': {
+            // We assume webpack --watch is running separately (usually via 'yarn watch')
+            'webpack-output': {
                 files: ['extension/devBundle/**/*.*'],
-                tasks: ['drop:dev'],
+                tasks: ['embed-styles:code', 'drop:dev'],
             },
         },
     });
 
     const targetNames = Object.keys(targets);
     const releaseTargets = Object.keys(targets).filter(t => targets[t].release);
-    const extensionReleaseTargets = releaseTargets.filter(
-        t => targets[t].config.options.productCategory === 'extension',
-    );
-
     targetNames.forEach(targetName => {
-        const { config, bundleFolder, telemetryKeyIdentifier } = targets[targetName];
+        const dropPath = path.join('drop', targetName);
+        const dropExtensionPath = path.join(dropPath, 'extension');
 
-        const { productCategory } = config.options;
-
-        const dropPath = path.join(`drop/${productCategory}`, targetName);
-        const dropExtensionPath = path.join(dropPath, 'product');
-
-        const productCategorySpecificCopyFiles = [];
-        productCategorySpecificCopyFiles.push({
-            src: 'LICENSE',
-            dest: `${dropExtensionPath}/LICENSE`,
-        });
+        const { config, bundleFolder } = targets[targetName];
 
         grunt.config.merge({
             drop: {
@@ -260,7 +201,6 @@ module.exports = function (grunt) {
                     configJSPath: path.join(dropExtensionPath, 'insights.config.js'),
                     configJSONPath: path.join(dropExtensionPath, 'insights.config.json'),
                     config,
-                    telemetryKeyIdentifier,
                 },
             },
             manifest: {
@@ -272,34 +212,26 @@ module.exports = function (grunt) {
             },
             clean: {
                 [targetName]: dropPath,
-            },
-            'embed-styles': {
-                [targetName]: {
-                    cwd: path.resolve(extensionPath, bundleFolder),
-                    src: ['**/*bundle.js', '**/*bundle.js.map'],
-                    dest: path.resolve(extensionPath, bundleFolder),
-                    cssPath: path.resolve(extensionPath, bundleFolder),
-                    expand: true,
-                },
+                scss: path.join('src', '**/*.scss.d.ts'),
             },
             copy: {
                 [targetName]: {
                     files: [
                         {
                             cwd: path.resolve(extensionPath, bundleFolder),
-                            src: ['*.js', '*.js.map', '*.css', '*.css.map'],
+                            src: ['*.js', '*.js.map', '*.css'],
                             dest: path.resolve(dropExtensionPath, 'bundle'),
                             expand: true,
                         },
                         {
                             cwd: extensionPath,
-                            src: ['**/*.{png,icns,ico,css,woff}'],
+                            src: ['**/*.png', '**/*.css', '**/*.woff'],
                             dest: dropExtensionPath,
                             expand: true,
                         },
                         {
                             cwd: 'deploy',
-                            src: ['Gruntfile.js', 'package.json', 'yarn.lock'],
+                            src: ['Gruntfile.js', 'package.json'],
                             dest: dropPath,
                             expand: true,
                         },
@@ -309,7 +241,6 @@ module.exports = function (grunt) {
                             dest: dropExtensionPath,
                             expand: true,
                         },
-                        ...productCategorySpecificCopyFiles,
                     ],
                 },
             },
@@ -317,15 +248,22 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-bom-removal');
-    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
 
-    grunt.registerMultiTask('embed-styles', function () {
-        const { cssPath } = this.data;
+    grunt.registerTask('copyright-check', 'grunt task to check copyright header', function() {
+        copyrightCheckAndAdd(copyrightCheckAndAddConfig);
+    });
+
+    grunt.registerTask('copyright-add', 'grunt task to add copyright header', function() {
+        copyrightCheckAndAddConfig.insert_license = true;
+        copyrightCheckAndAdd(copyrightCheckAndAddConfig);
+    });
+
+    grunt.registerMultiTask('embed-styles', function() {
         this.files.forEach(file => {
             const {
                 src: [src],
@@ -334,197 +272,96 @@ module.exports = function (grunt) {
             grunt.log.writeln(`embedding style in ${src}`);
             const fileOptions = { options: { encoding: 'utf8' } };
             const input = grunt.file.read(src, fileOptions);
-            // eslint-disable-next-line no-useless-escape
             const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
             const output = input.replace(rex, (_, cssName) => {
-                const cssFile = path.resolve(cssPath, cssName);
+                const cssFile = path.resolve('dist/src', cssName);
                 grunt.log.writeln(`    embedding from ${cssFile}`);
                 const styles = grunt.file.read(cssFile, fileOptions);
-                return styles.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n');
+                return styles.replace(/\n/g, '\\\n');
             });
             grunt.file.write(dest, output, fileOptions);
             grunt.log.writeln(`    written to ${dest}`);
         });
     });
 
-    grunt.registerMultiTask('configure', function () {
-        const { config, configJSONPath, configJSPath, telemetryKeyIdentifier } = this.data;
-        // We pass this as an option from a build variable not because it is a secret
-        // (it can be found easily enough from released builds), but to make it harder
-        // to accidentally pollute release telemetry with data from local builds.
-        if (telemetryKeyIdentifier && grunt.option(telemetryKeyIdentifier)) {
-            config.options.appInsightsInstrumentationKey = grunt.option(telemetryKeyIdentifier);
-        }
-
+    grunt.registerMultiTask('configure', function() {
+        const { config, configJSONPath, configJSPath } = this.data;
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
-        const copyrightHeader =
-            '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
-        const configJS = `${copyrightHeader}globalThis.insights = ${configJSON};`;
+        const copyrightHeader = '// Copyright (c) Microsoft Corporation. All rights reserved.\n// Licensed under the MIT License.\n';
+        const configJS = `${copyrightHeader}window.insights = ${configJSON}`;
         grunt.file.write(configJSPath, configJS);
     });
 
-    grunt.registerMultiTask('manifest', function () {
+    grunt.registerMultiTask('manifest', function() {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
-
         merge(manifestJSON, {
-            name: config.options.fullName,
+            name: config.options.extensionFullName,
             description: config.options.extensionDescription,
             icons: {
-                16: config.options.icon16,
-                48: config.options.icon48,
-                128: config.options.icon128,
+                '16': config.options.icon16,
+                '48': config.options.icon48,
+                '128': config.options.icon128,
             },
-            action: {
+            browser_action: {
                 default_icon: {
-                    20: config.options.icon16,
-                    40: config.options.icon48,
+                    '20': config.options.icon16,
+                    '40': config.options.icon48,
                 },
             },
         });
-
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
 
-    grunt.registerMultiTask('drop', function () {
+    grunt.registerMultiTask('drop', function() {
         const targetName = this.target;
-        const { bundleFolder, mustExistFile, config } = targets[targetName];
-
-        const { productCategory } = config.options;
-
-        const dropPath = path.join(`drop/${productCategory}`, targetName);
-        const dropExtensionPath = path.join(dropPath, 'product');
+        const { bundleFolder, mustExistFile } = targets[targetName];
 
         const mustExistPath = path.join(extensionPath, bundleFolder, mustExistFile);
 
-        mustExist(mustExistPath, 'Have you run the appropriate compiler (esbuild/webpack)?');
+        mustExist(mustExistPath, 'Have you run webpack?');
 
-        grunt.task.run('embed-styles:' + targetName);
         grunt.task.run('clean:' + targetName);
         grunt.task.run('copy:' + targetName);
         grunt.task.run('configure:' + targetName);
         grunt.task.run('manifest:' + targetName);
-        console.log(`${targetName} extension is in ${dropExtensionPath}`);
+        console.log(`${targetName} extension is in ${path.join('drop', targetName, 'extension')}`);
     });
 
-    grunt.registerTask('package-report', function () {
-        const mustExistPath = path.join(packageReportBundlePath, 'report.bundle.js');
-
-        mustExist(mustExistPath, 'Have you run esbuild?');
-
-        grunt.task.run('embed-styles:package-report');
-        grunt.task.run('clean:package-report');
-        grunt.task.run('copy:package-report');
-        console.log(`package is in ${packageReportDropPath}`);
-    });
-
-    grunt.registerTask('package-ui', function () {
-        const mustExistPath = path.join(packageUIBundlePath, 'ui.bundle.js');
-
-        mustExist(mustExistPath, 'Have you run webpack?');
-
-        grunt.task.run('clean:package-ui');
-        grunt.task.run('copy:package-ui');
-        console.log(`package is in ${packageUIDropPath}`);
-    });
-
-    grunt.registerTask('package-validator', function () {
-        const mustExistPath = path.join(packageValidatorBundlePath, 'validator.bundle.js');
-
-        mustExist(mustExistPath, 'Have you run esbuild?');
-
-        grunt.task.run('clean:package-validator');
-        grunt.task.run('copy:package-validator');
-        console.log(`package is in ${packageValidatorDropPath}`);
-    });
-
-    grunt.registerTask('package-axe-config', function () {
-        const mustExistPath = path.join(
-            packageAxeConfigBundlePath,
-            'axe-config-generator.bundle.js',
-        );
-
-        mustExist(mustExistPath, 'Have you run esbuild?');
-
-        grunt.task.run('clean:package-axe-config');
-        grunt.task.run('copy:package-axe-config');
-        console.log(`package is in ${packageAxeConfigDropPath}`);
-    });
-
-    grunt.registerTask('extension-release-drops', function () {
-        extensionReleaseTargets.forEach(targetName => {
+    grunt.registerTask('release-drops', function() {
+        releaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
         });
     });
 
-    grunt.registerTask('ada-cat', function () {
-        if (process.env.SHOW_ADA !== 'false') {
-            console.log(
-                'Image of Ada sleeping follows. Set environment variable SHOW_ADA to false to hide.',
-            );
-            const adaFile = 'docs/art/ada-cat.ansi256.txt';
-            const adaArt = grunt.file.read(adaFile);
-            console.log(adaArt);
-        }
-    });
-
-    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
+    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
 
     // Main entry points for npm scripts:
-    grunt.registerTask('build-dev', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'build-package-validator',
-        'exec:generate-validator',
-        'exec:esbuild-dev',
-        'build-assets',
-        'drop:dev',
-    ]);
+    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:generate-scss-typings', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'build-package-validator',
-        'exec:generate-validator',
-        'exec:esbuild-prod',
+        'exec:webpack-prod',
         'build-assets',
         'drop:production',
     ]);
-    grunt.registerTask('build-package-report', [
+    grunt.registerTask('build-electron', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'build-package-validator',
-        'exec:generate-validator',
-        'exec:esbuild-prod', // required to get the css assets
-        'exec:esbuild-package-report',
+        'exec:webpack-electron-main',
+        'exec:webpack-electron-renderer',
         'build-assets',
-        'package-report',
-    ]);
-    grunt.registerTask('build-package-ui', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'exec:webpack-package-ui',
-        'build-assets',
-        'package-ui',
-    ]);
-    grunt.registerTask('build-package-validator', [
-        'exec:esbuild-package-validator',
-        'package-validator',
-    ]);
-    grunt.registerTask('generate-axe-config', [
-        'exec:esbuild-package-axe-config',
-        'package-axe-config',
-        'exec:generate-axe-config',
+        'drop:electron',
     ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'build-package-validator',
-        'exec:generate-validator',
-        'concurrent:compile-all',
+        'exec:webpack-all',
         'build-assets',
         'drop:dev',
-        'extension-release-drops',
+        'drop:electron',
+        'release-drops',
     ]);
 
     grunt.registerTask('default', ['build-dev']);
