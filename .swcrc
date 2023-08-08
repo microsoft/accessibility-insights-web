@@ -8,6 +8,5 @@
     "module": {
         "type": "commonjs"
     },
-    "env": {},
     "sourceMaps": "inline"
 }
