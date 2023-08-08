@@ -25,7 +25,9 @@ import {
     TestViewContainerProps,
 } from './test-view-container';
 
-export type RightPanelDeps = OverviewContainerDeps & TestViewContainerDeps & TargetChangeDialogDeps;
+export type DetailsViewContentDeps = OverviewContainerDeps &
+    TestViewContainerDeps &
+    TargetChangeDialogDeps;
 
 export type RightPanelProps =
     | Omit<TestViewContainerProps, 'deps'>
@@ -37,7 +39,7 @@ export type DetailsRightPanelConfiguration = Readonly<{
     RightPanel: ReactFCWithDisplayName<RightPanelProps>;
     GetTitle: (props: GetTestViewTitleProps) => string;
     GetLeftNavSelectedKey: (props: GetLeftNavSelectedKeyProps) => string;
-    startOverContextMenuKeyOptions: StartOverContextMenuKeyOptions;
+    GetStartOverContextualMenuItemKeys: () => string[];
 }>;
 
 export type GetDetailsRightPanelConfiguration = (
@@ -55,26 +57,25 @@ const detailsViewTypeContentMap: {
         RightPanel: OverviewContainer,
         GetTitle: getOverviewTitle,
         GetLeftNavSelectedKey: getOverviewKey,
-        startOverContextMenuKeyOptions: { showTest: false },
+        GetStartOverContextualMenuItemKeys: () => ['assessment'],
     },
     TestView: {
         RightPanel: TestViewContainer,
         GetTitle: getTestViewTitle,
         GetLeftNavSelectedKey: getTestViewKey,
-        startOverContextMenuKeyOptions: { showTest: true },
+        GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
     },
-};
-
-export type StartOverContextMenuKeyOptions = {
-    showTest: boolean;
 };
 
 export const GetDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration = (
     props: GetDetailsRightPanelConfigurationProps,
 ) => {
-    if (props.selectedDetailsViewPivot === DetailsViewPivotType.fastPass) {
-        return detailsViewTypeContentMap.TestView;
+    if (
+        props.selectedDetailsViewPivot === DetailsViewPivotType.assessment ||
+        props.selectedDetailsViewPivot === DetailsViewPivotType.mediumPass
+    ) {
+        return detailsViewTypeContentMap[props.detailsViewRightContentPanel];
     }
 
-    return detailsViewTypeContentMap[props.detailsViewRightContentPanel];
+    return detailsViewTypeContentMap.TestView;
 };

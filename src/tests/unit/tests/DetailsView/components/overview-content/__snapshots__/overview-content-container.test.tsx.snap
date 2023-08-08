@@ -11,12 +11,16 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
         "actionInitiators": {
           "openExternalLink": [MockFunction],
         },
-        "assessmentsProviderWithFeaturesEnabled": [Function],
+        "assessmentActionMessageCreator": {},
+        "assessmentsProvider": {
+          "all": [Function],
+        },
+        "assessmentsProviderForRequirements": [MockFunction],
+        "assessmentsProviderWithFeaturesEnabled": [MockFunction],
         "detailsViewActionMessageCreator": {},
         "detailsViewId": undefined,
-        "getAssessmentActionMessageCreator": [Function],
-        "getGetAssessmentSummaryModelFromProviderAndStoreData": [Function],
-        "getProvider": [Function],
+        "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+        "getQuickAssessSummaryModelFromProviderAndStoreData": [MockFunction],
         "quickAssessRequirementKeys": [],
         "urlParser": {},
       }
@@ -33,10 +37,10 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
   <section
     className="overviewTextSummarySection"
   >
-    <OverviewHeading
-      introText="Test intro overview text:"
+    <OverviewHeading />
+    <AssessmentReportSummary
+      summary={{}}
     />
-    <AssessmentReportSummary />
   </section>
   <section
     className="overviewHelpSection"
@@ -47,12 +51,16 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
           "actionInitiators": {
             "openExternalLink": [MockFunction],
           },
-          "assessmentsProviderWithFeaturesEnabled": [Function],
+          "assessmentActionMessageCreator": {},
+          "assessmentsProvider": {
+            "all": [Function],
+          },
+          "assessmentsProviderForRequirements": [MockFunction],
+          "assessmentsProviderWithFeaturesEnabled": [MockFunction],
           "detailsViewActionMessageCreator": {},
           "detailsViewId": undefined,
-          "getAssessmentActionMessageCreator": [Function],
-          "getGetAssessmentSummaryModelFromProviderAndStoreData": [Function],
-          "getProvider": [Function],
+          "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
+          "getQuickAssessSummaryModelFromProviderAndStoreData": [MockFunction],
           "quickAssessRequirementKeys": [],
           "urlParser": {},
         }
@@ -60,19 +68,19 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
       linkDataSource={
         [
           {
-            "href": "Getting-started-link",
+            "href": "https://go.microsoft.com/fwlink/?linkid=2082219",
             "text": "Getting started",
           },
           {
-            "href": "How-to-complete-a-test-link",
+            "href": "https://go.microsoft.com/fwlink/?linkid=2082220",
             "text": "How to complete a test",
           },
           {
-            "href": "Ask-a-question-link",
+            "href": "https://go.microsoft.com/fwlink/?linkid=2077941",
             "text": "Ask a question",
           },
           {
-            "href": "New-WCAG-2.1-success-criteria-link",
+            "href": "https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/",
             "text": "New WCAG 2.1 success criteria",
           },
         ]

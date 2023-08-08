@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
+import { GetOverviewSummaryDataProps } from 'DetailsView/components/overview-content/get-overview-summary-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { Mock, MockBehavior } from 'typemoq';
 
 import {
@@ -40,30 +42,28 @@ describe('OverviewContainer', () => {
         all: () => [],
     } as any;
 
-    const filteredProvider = {} as AssessmentsProvider;
     const detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
     const assessmentActionMessageCreator = {} as AssessmentActionMessageCreator;
-    const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance(
-        (provider, featureFlagData) => null,
-        MockBehavior.Strict,
-    );
-    const getAssessmentSummaryModelFromProviderAndStoreDataMock = Mock.ofInstance(
-        (provider, assessmentData, requirementKeys) => null,
-        MockBehavior.Strict,
-    );
+    const assessmentsProviderWithFeaturesEnabledMock = jest.fn();
+    const assessmentsProviderForRequirementsMock = jest.fn();
+    const getSummaryDataMock = Mock.ofInstance(props => null, MockBehavior.Strict);
+    const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
+    const getQuickAssessSummaryModelFromProviderAndStoreData = jest.fn();
     const quickAssessRequirementKeysStub = [];
-
     const deps: OverviewContainerDeps = {
-        getProvider: () => assessmentsProvider,
+        assessmentsProvider: assessmentsProvider,
         actionInitiators: overviewHelpSectionDeps.actionInitiators,
-        getAssessmentActionMessageCreator: () => assessmentActionMessageCreator,
+        getAssessmentSummaryModelFromProviderAndStoreData:
+            getAssessmentSummaryModelFromProviderAndStoreData,
+        assessmentActionMessageCreator,
+        getQuickAssessSummaryModelFromProviderAndStoreData:
+            getQuickAssessSummaryModelFromProviderAndStoreData,
         detailsViewActionMessageCreator,
         urlParser: urlParserMock,
-        assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
+        assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock,
+        assessmentsProviderForRequirements: assessmentsProviderForRequirementsMock,
         detailsViewId: undefined,
         quickAssessRequirementKeys: quickAssessRequirementKeysStub,
-        getGetAssessmentSummaryModelFromProviderAndStoreData: () =>
-            getAssessmentSummaryModelFromProviderAndStoreDataMock.object,
     };
 
     const featureFlagDataStub = {};
@@ -72,49 +72,30 @@ describe('OverviewContainer', () => {
         persistedTabInfo: {} as PersistedTabInfo,
     } as AssessmentStoreData;
 
-    assessmentsProviderWithFeaturesEnabledMock
-        .setup(mock => mock(assessmentsProvider, featureFlagDataStub))
-        .returns(() => filteredProvider);
+    const summaryData = {} as OverviewSummaryReportModel;
+    const summaryDataProps = {
+        deps,
+        assessmentStoreData,
+        featureFlagStoreData: featureFlagDataStub,
+    } as GetOverviewSummaryDataProps;
 
-    getAssessmentSummaryModelFromProviderAndStoreDataMock.setup(mock =>
-        mock(filteredProvider, assessmentStoreData, quickAssessRequirementKeysStub),
-    );
+    getSummaryDataMock.setup(mock => mock(summaryDataProps)).returns(() => summaryData);
 
-    const overviewHeadingIntroTextStub = 'Test intro overview text:';
+    let component: JSX.Element;
 
-    const linkDataSourceStub = [
-        {
-            href: 'Getting-started-link',
-            text: 'Getting started',
-        },
-        {
-            href: 'How-to-complete-a-test-link',
-            text: 'How to complete a test',
-        },
-        {
-            href: 'Ask-a-question-link',
-            text: 'Ask a question',
-        },
-        {
-            href: 'New-WCAG-2.1-success-criteria-link',
-            text: 'New WCAG 2.1 success criteria',
-        },
-    ];
-
-    const component = (
-        <OverviewContainer
-            deps={deps}
-            assessmentStoreData={assessmentStoreData}
-            featureFlagStoreData={featureFlagDataStub}
-            tabStoreData={tabStoreDataStub}
-            overviewHeadingIntroText={overviewHeadingIntroTextStub}
-            linkDataSource={linkDataSourceStub}
-        />
-    );
-    const wrapper = shallow(component);
-
-    test('component is defined and matches snapshot', () => {
+    it('component is defined and matches snapshot', () => {
+        component = (
+            <OverviewContainer
+                deps={deps}
+                assessmentStoreData={assessmentStoreData}
+                featureFlagStoreData={featureFlagDataStub}
+                tabStoreData={tabStoreDataStub}
+                getSummaryData={getSummaryDataMock.object}
+            />
+        );
+        const wrapper = shallow(component);
         expect(component).toBeDefined();
         expect(wrapper.getElement()).toMatchSnapshot();
+        getSummaryDataMock.verifyAll();
     });
 });

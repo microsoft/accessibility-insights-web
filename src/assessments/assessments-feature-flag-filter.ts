@@ -16,6 +16,11 @@ function assessmentIsFeatureEnabled(
         every(assessment.featureFlag.required, f => flags[f]);
 }
 
+export type AssessmentsFeatureFlagFilter = (
+    assessmentsProvider: AssessmentsProvider,
+    featureFlagStoreData: FeatureFlagStoreData,
+) => AssessmentsProvider;
+
 export function assessmentsProviderWithFeaturesEnabled(
     assessmentProvider: AssessmentsProvider,
     flags: FeatureFlagStoreData,

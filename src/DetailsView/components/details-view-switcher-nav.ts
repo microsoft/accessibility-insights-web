@@ -4,18 +4,8 @@ import {
     AssessmentLeftNavHamburgerButton,
     ExpandCollpaseLeftNavButtonProps,
     FastPassLeftNavHamburgerButton,
-    QuickAssessLeftNavHamburgerButton,
+    MediumPassLeftNavHamburgerButton,
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
-import { getNullComponent } from 'common/components/null-component';
-import {
-    assessmentLinkDataSource,
-    quickAssessLinkDataSource,
-} from 'common/constants/link-data-sources';
-import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
-import {
-    AssessmentFunctionalitySwitcher,
-    SharedAssessmentObjects,
-} from 'DetailsView/assessment-functionality-switcher';
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
 import {
@@ -23,43 +13,25 @@ import {
     LoadAssessmentButtonFactory,
     ReportExportDialogFactory,
     SaveAssessmentButtonFactory,
-    TransferToAssessmentButtonFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
-    getAssessmentCardSelectionStoreData,
-    getQuickAssessCardSelectionStoreData,
-    GetSelectedAssessmentCardSelectionStoreData,
-} from 'DetailsView/components/left-nav/get-selected-assessment-card-selection-store-data';
-import {
-    getAssessmentStoreData,
-    getQuickAssessStoreData,
-    GetSelectedAssessmentStoreData,
-} from 'DetailsView/components/left-nav/get-selected-assessment-store-data';
-import {
-    QuickAssessLeftNav,
-    QuickAssessLeftNavDeps,
-    QuickAssessLeftNavProps,
-} from 'DetailsView/components/left-nav/quick-assess-left-nav';
+    MediumPassLeftNav,
+    MediumPassLeftNavDeps,
+} from 'DetailsView/components/left-nav/medium-pass-left-nav';
 import {
     getLoadButtonForAssessment,
     getNullLoadButton,
 } from 'DetailsView/components/load-assessment-button-factory';
+import { MediumPassCommandBar } from 'DetailsView/components/medium-pass-command-bar';
 import {
-    overviewHeadingIntroTextForAssessment,
-    overviewHeadingIntroTextForQuickAssess,
-} from 'DetailsView/components/overview-content/overview-heading-intro-text';
-import { QuickAssessCommandBar } from 'DetailsView/components/quick-assess-command-bar';
+    GetOverviewSummaryData,
+    getOverviewSummaryDataForPivot,
+} from 'DetailsView/components/overview-content/get-overview-summary-data';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
-    getReportExportDialogForQuickAssess,
+    getReportExportDialogForMediumPass,
 } from 'DetailsView/components/report-export-dialog-factory';
-import {
-    GetRequirementViewComponentConfiguration,
-    getRequirementViewComponentConfigurationForAssessment,
-    getRequirementViewComponentConfigurationForFastPass,
-    getRequirementViewComponentConfigurationForQuickAssess,
-} from 'DetailsView/components/requirement-view-component-configuration';
 import {
     getNullSaveButton,
     getSaveButtonForAssessment,
@@ -68,20 +40,25 @@ import {
     ShouldShowReportExportButton,
     shouldShowReportExportButtonForAssessment,
     shouldShowReportExportButtonForFastpass,
-    shouldShowReportExportButtonForQuickAssess,
+    shouldShowReportExportButtonForMediumPass,
 } from 'DetailsView/components/should-show-report-export-button';
 import {
     AssessmentStartOverFactory,
     FastpassStartOverFactory,
-    QuickAssessStartOverFactory,
     StartOverComponentFactory,
 } from 'DetailsView/components/start-over-component-factory';
-import { getTransferToAssessmentButton } from 'DetailsView/components/transfer-to-assessment-button';
 import {
     assessmentWarningConfiguration,
     fastpassWarningConfiguration,
+    quickAssessWarningConfiguration,
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
+import {
+    AdhocVisualizationMessageTypes,
+    AnalyzerMessageConfiguration,
+    AssessmentVisualizationMessageTypes,
+    MediumPassVisualizationMessageTypes,
+} from 'injected/analyzers/get-analyzer-message-types';
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -98,17 +75,12 @@ import {
 import {
     getAssessmentSelectedDetailsView,
     getFastPassSelectedDetailsView,
-    getQuickAssessSelectedDetailsView,
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
 
-export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & QuickAssessLeftNavDeps;
-export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps & QuickAssessLeftNavProps;
-type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps | QuickAssessLeftNavProps;
-
-export type GetSharedAssessmentFunctionalityObjects = (
-    switcher: AssessmentFunctionalitySwitcher,
-) => SharedAssessmentObjects;
+export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & MediumPassLeftNavDeps;
+export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps;
+type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps;
 
 export type DetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
@@ -116,18 +88,13 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     shouldShowReportExportButton: ShouldShowReportExportButton;
     SaveAssessmentButton: SaveAssessmentButtonFactory;
     LoadAssessmentButton: LoadAssessmentButtonFactory;
-    TransferToAssessmentButton: TransferToAssessmentButtonFactory;
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
-    getSharedAssessmentFunctionalityObjects: GetSharedAssessmentFunctionalityObjects;
-    getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
-    getSelectedAssessmentCardSelectionStoreData: GetSelectedAssessmentCardSelectionStoreData;
-    getRequirementViewComponentConfiguration: GetRequirementViewComponentConfiguration;
-    overviewHeadingIntroText: string | null;
-    linkDataSource: HyperlinkDefinition[] | null;
+    analyzerMessageConfiguration: AnalyzerMessageConfiguration;
+    getOverviewSummaryData: GetOverviewSummaryData;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<
@@ -150,40 +117,27 @@ const detailsViewSwitcherNavs: {
         shouldShowReportExportButton: shouldShowReportExportButtonForAssessment,
         SaveAssessmentButton: getSaveButtonForAssessment,
         LoadAssessmentButton: getLoadButtonForAssessment,
-        TransferToAssessmentButton: getNullComponent,
         StartOverComponentFactory: AssessmentStartOverFactory,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
-        getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
-        getSelectedAssessmentStoreData: getAssessmentStoreData,
-        getSelectedAssessmentCardSelectionStoreData: getAssessmentCardSelectionStoreData,
-        getRequirementViewComponentConfiguration:
-            getRequirementViewComponentConfigurationForAssessment,
-        overviewHeadingIntroText: overviewHeadingIntroTextForAssessment,
-        linkDataSource: assessmentLinkDataSource,
+        analyzerMessageConfiguration: AssessmentVisualizationMessageTypes,
+        getOverviewSummaryData: getOverviewSummaryDataForPivot(DetailsViewPivotType.assessment),
     },
-    [DetailsViewPivotType.quickAssess]: {
-        CommandBar: QuickAssessCommandBar,
-        ReportExportDialogFactory: getReportExportDialogForQuickAssess,
-        shouldShowReportExportButton: shouldShowReportExportButtonForQuickAssess,
+    [DetailsViewPivotType.mediumPass]: {
+        CommandBar: MediumPassCommandBar,
+        ReportExportDialogFactory: getReportExportDialogForMediumPass,
+        shouldShowReportExportButton: shouldShowReportExportButtonForMediumPass,
         SaveAssessmentButton: getNullSaveButton,
         LoadAssessmentButton: getNullLoadButton,
-        TransferToAssessmentButton: getTransferToAssessmentButton,
-        StartOverComponentFactory: QuickAssessStartOverFactory,
-        LeftNav: QuickAssessLeftNav,
-        getSelectedDetailsView: getQuickAssessSelectedDetailsView,
-        warningConfiguration: assessmentWarningConfiguration,
-        leftNavHamburgerButton: QuickAssessLeftNavHamburgerButton,
-        getSharedAssessmentFunctionalityObjects: switcher => switcher.getQuickAssessObjects(),
-        getSelectedAssessmentStoreData: getQuickAssessStoreData,
-        getSelectedAssessmentCardSelectionStoreData: getQuickAssessCardSelectionStoreData,
-        shouldShowQuickAssessRequirementView: true,
-        getRequirementViewComponentConfiguration:
-            getRequirementViewComponentConfigurationForQuickAssess,
-        overviewHeadingIntroText: overviewHeadingIntroTextForQuickAssess,
-        linkDataSource: quickAssessLinkDataSource,
+        StartOverComponentFactory: AssessmentStartOverFactory,
+        LeftNav: MediumPassLeftNav,
+        getSelectedDetailsView: getAssessmentSelectedDetailsView,
+        warningConfiguration: quickAssessWarningConfiguration,
+        leftNavHamburgerButton: MediumPassLeftNavHamburgerButton,
+        analyzerMessageConfiguration: MediumPassVisualizationMessageTypes,
+        getOverviewSummaryData: getOverviewSummaryDataForPivot(DetailsViewPivotType.mediumPass),
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -191,20 +145,13 @@ const detailsViewSwitcherNavs: {
         shouldShowReportExportButton: shouldShowReportExportButtonForFastpass,
         SaveAssessmentButton: getNullSaveButton,
         LoadAssessmentButton: getNullLoadButton,
-        TransferToAssessmentButton: getNullComponent,
         StartOverComponentFactory: FastpassStartOverFactory,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,
         leftNavHamburgerButton: FastPassLeftNavHamburgerButton,
-        getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
-        getRequirementViewComponentConfiguration:
-            getRequirementViewComponentConfigurationForFastPass,
-        overviewHeadingIntroText: null,
-        // Getting assessmentStoreData and assessmentCardSelectionStoreData is default behavior
-        getSelectedAssessmentStoreData: getAssessmentStoreData,
-        getSelectedAssessmentCardSelectionStoreData: getAssessmentCardSelectionStoreData,
-        linkDataSource: null,
+        analyzerMessageConfiguration: AdhocVisualizationMessageTypes,
+        getOverviewSummaryData: () => null,
     },
 };
 

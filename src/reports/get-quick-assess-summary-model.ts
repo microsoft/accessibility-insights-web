@@ -22,83 +22,37 @@ export type GetQuickAssessSummaryModelFromProviderAndStatusData = (
     requirementKeys: string[],
 ) => Model.OverviewSummaryReportModel;
 
-function getStoreDataByAssessmentKey(
-    assessmentsProvider: AssessmentsProvider,
-    quickAssessStoreData: AssessmentStoreData,
-    assessmentKey: string,
-) {
-    const assessment = assessmentsProvider.forKey(assessmentKey)!;
-    const assessmentData = quickAssessStoreData.assessments[assessmentKey]!;
-    return {
-        title: assessment.title,
-        storeData: {
-            testStepStatus: assessmentData.testStepStatus,
-        },
-    };
-}
-
-function getStoreDataByRequirementKey(
-    assessmentsProvider: AssessmentsProvider,
-    quickAssessStoreData: AssessmentStoreData,
-    requirementKey: string,
-) {
-    const assessment = assessmentsProvider.forRequirementKey(requirementKey)!;
-    const requirement = assessmentsProvider.getStep(assessment.visualizationType, requirementKey)!;
-    const requirementData = quickAssessStoreData.assessments[assessment.key]!;
-    return {
-        title: requirement.name,
-        storeData: {
-            testStepStatus: {
-                [requirementKey]: requirementData.testStepStatus[requirementKey],
-            },
-        },
-    };
-}
-
-function getStatusDataByAssessmentKey(
-    assessmentsProvider: AssessmentsProvider,
-    statusData: AssessmentStatusData,
-    assessmentKey: string,
-) {
-    const assessment = assessmentsProvider.forKey(assessmentKey)!;
-    return {
-        title: assessment.title,
-        storeData: {
-            testStepStatus: statusData[assessmentKey]!,
-        },
-    };
-}
-
-function getStatusDataByRequirementKey(
-    assessmentsProvider: AssessmentsProvider,
-    statusData: AssessmentStatusData,
-    requirementKey: string,
-) {
-    const assessment = assessmentsProvider.forRequirementKey(requirementKey)!;
-    const requirement = assessmentsProvider.getStep(assessment.visualizationType, requirementKey)!;
-    return {
-        title: requirement.name,
-        storeData: {
-            testStepStatus: {
-                [requirementKey]: statusData[assessment.key][requirementKey],
-            },
-        },
-    };
-}
 export function getQuickAssessSummaryModelFromProviderAndStoreData(
     assessmentsProvider: AssessmentsProvider,
     quickAssessStoreData: AssessmentStoreData,
     requirementKeys: string[],
 ): Model.OverviewSummaryReportModel {
-    const automatedChecksResult = getStoreDataByAssessmentKey(
-        assessmentsProvider,
-        quickAssessStoreData,
-        AutomatedChecks.key,
-    );
-    const quickAssessResults = requirementKeys.map(requirementKey =>
-        getStoreDataByRequirementKey(assessmentsProvider, quickAssessStoreData, requirementKey),
-    );
-
+    const automatedChecksAssessment = assessmentsProvider.forKey(AutomatedChecks.key);
+    const automatedChecksResult = {
+        title: automatedChecksAssessment.title,
+        storeData: {
+            testStepStatus:
+                quickAssessStoreData.assessments[automatedChecksAssessment.key].testStepStatus,
+        },
+    };
+    const quickAssessResults = requirementKeys.map(requirementKey => {
+        const assessment = assessmentsProvider.forRequirementKey(requirementKey);
+        const requirement = assessmentsProvider.getStep(
+            assessment.visualizationType,
+            requirementKey,
+        );
+        return {
+            title: requirement.name,
+            storeData: {
+                testStepStatus: {
+                    [requirementKey]:
+                        quickAssessStoreData.assessments[assessment.key].testStepStatus[
+                            requirementKey
+                        ],
+                },
+            },
+        };
+    });
     quickAssessResults.unshift(automatedChecksResult);
 
     return getAssessmentSummaryModelFromResults(quickAssessResults);
@@ -109,16 +63,28 @@ export function getQuickAssessSummaryModelFromProviderAndStatusData(
     statusData: AssessmentStatusData,
     requirementKeys: string[],
 ): Model.OverviewSummaryReportModel {
-    const automatedChecksResult = getStatusDataByAssessmentKey(
-        quickAssessProvider,
-        statusData,
-        AutomatedChecks.key,
-    );
-
-    const quickAssessResults = requirementKeys.map(requirementKey =>
-        getStatusDataByRequirementKey(quickAssessProvider, statusData, requirementKey),
-    );
-
+    const automatedChecksAssessment = quickAssessProvider.forKey(AutomatedChecks.key);
+    const automatedChecksResult = {
+        title: automatedChecksAssessment.title,
+        storeData: {
+            testStepStatus: statusData[automatedChecksAssessment.key],
+        },
+    };
+    const quickAssessResults = requirementKeys.map(requirementKey => {
+        const assessment = quickAssessProvider.forRequirementKey(requirementKey);
+        const requirement = quickAssessProvider.getStep(
+            assessment.visualizationType,
+            requirementKey,
+        );
+        return {
+            title: requirement.name,
+            storeData: {
+                testStepStatus: {
+                    [requirementKey]: statusData[assessment.key][requirementKey],
+                },
+            },
+        };
+    });
     quickAssessResults.unshift(automatedChecksResult);
 
     return getAssessmentSummaryModelFromResults(quickAssessResults);

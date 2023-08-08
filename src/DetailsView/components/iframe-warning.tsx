@@ -44,6 +44,17 @@ export type AssessmentIframeWarningProps = {
     test: VisualizationType;
 };
 
+export type QuickAssessIframeWarningDeps = {
+    allUrlsPermissionHandler: AllUrlsPermissionHandler;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    assessmentActionMessageCreator: AssessmentActionMessageCreator;
+};
+
+export type QuickAssessIframeWarningProps = {
+    deps: QuickAssessIframeWarningDeps;
+    test: VisualizationType;
+};
+
 export const AssessmentIframeWarning = NamedFC<AssessmentIframeWarningProps>(
     'AssessmentIframeWarning',
     props => {
@@ -52,6 +63,23 @@ export const AssessmentIframeWarning = NamedFC<AssessmentIframeWarningProps>(
         const onAllowPermissionsClick = async (event: SupportedMouseEvent) => {
             const rescanTest = () => {
                 deps.getAssessmentActionMessageCreator().startOverTest(event, test);
+            };
+
+            await deps.allUrlsPermissionHandler.requestAllUrlsPermission(event, rescanTest);
+        };
+
+        return <IframeWarning onAllowPermissionsClick={onAllowPermissionsClick} />;
+    },
+);
+
+export const QuickAssessIframeWarning = NamedFC<QuickAssessIframeWarningProps>(
+    'QuickAssessIframeWarning',
+    props => {
+        const { deps, test } = props;
+
+        const onAllowPermissionsClick = async (event: SupportedMouseEvent) => {
+            const rescanTest = () => {
+                deps.assessmentActionMessageCreator.startOverTest(event, test);
             };
 
             await deps.allUrlsPermissionHandler.requestAllUrlsPermission(event, rescanTest);

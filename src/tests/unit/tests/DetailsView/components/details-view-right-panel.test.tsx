@@ -27,24 +27,40 @@ describe('DetailsViewRightPanelTests', () => {
             validateTestView(testSubject);
         });
 
-        [DetailsViewPivotType.assessment, DetailsViewPivotType.quickAssess].forEach(pivot => {
-            it(`GetDetailsRightPanelConfiguration: return TestView object when ${DetailsViewPivotType[pivot]} selected`, () => {
-                const testSubject = GetDetailsRightPanelConfiguration({
-                    selectedDetailsViewPivot: pivot,
-                    detailsViewRightContentPanel: 'TestView',
-                });
-
-                validateTestView(testSubject);
+        it('GetDetailsRightPanelConfiguration: return TestView object when assessment selected', () => {
+            const testSubject = GetDetailsRightPanelConfiguration({
+                selectedDetailsViewPivot: DetailsViewPivotType.assessment,
+                detailsViewRightContentPanel: 'TestView',
             });
 
-            it(`GetDetailsRightPanelConfiguration: return TestView object when ${DetailsViewPivotType[pivot]} selected`, () => {
-                const testSubject = GetDetailsRightPanelConfiguration({
-                    selectedDetailsViewPivot: pivot,
-                    detailsViewRightContentPanel: 'Overview',
-                });
+            validateTestView(testSubject);
+        });
 
-                validateOverview(testSubject);
+        it('GetDetailsRightPanelConfiguration: return TestView object when mediumPass selected', () => {
+            const testSubject = GetDetailsRightPanelConfiguration({
+                selectedDetailsViewPivot: DetailsViewPivotType.mediumPass,
+                detailsViewRightContentPanel: 'TestView',
             });
+
+            validateTestView(testSubject);
+        });
+
+        it('GetDetailsRightPanelConfiguration: return Overview object when assessment selected', () => {
+            const testSubject = GetDetailsRightPanelConfiguration({
+                selectedDetailsViewPivot: DetailsViewPivotType.assessment,
+                detailsViewRightContentPanel: 'Overview',
+            });
+
+            validateOverview(testSubject);
+        });
+
+        it('GetDetailsRightPanelConfiguration: return Overview object when mediumPass selected', () => {
+            const testSubject = GetDetailsRightPanelConfiguration({
+                selectedDetailsViewPivot: DetailsViewPivotType.mediumPass,
+                detailsViewRightContentPanel: 'Overview',
+            });
+
+            validateOverview(testSubject);
         });
     });
 
@@ -52,17 +68,13 @@ describe('DetailsViewRightPanelTests', () => {
         expect(configuration.GetLeftNavSelectedKey).toEqual(getTestViewKey);
         expect(configuration.GetTitle).toEqual(getTestViewTitle);
         expect(configuration.RightPanel).toEqual(TestViewContainer);
-        expect(configuration.startOverContextMenuKeyOptions).toEqual({
-            showTest: true,
-        });
+        expect(configuration.GetStartOverContextualMenuItemKeys()).toEqual(['assessment', 'test']);
     }
 
     function validateOverview(configuration: DetailsRightPanelConfiguration): void {
         expect(configuration.GetLeftNavSelectedKey).toEqual(getOverviewKey);
         expect(configuration.GetTitle).toEqual(getOverviewTitle);
         expect(configuration.RightPanel).toEqual(OverviewContainer);
-        expect(configuration.startOverContextMenuKeyOptions).toEqual({
-            showTest: false,
-        });
+        expect(configuration.GetStartOverContextualMenuItemKeys()).toEqual(['assessment']);
     }
 });
