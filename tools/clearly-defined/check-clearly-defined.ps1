@@ -65,7 +65,12 @@ function GetBranchName([string]$pipelineType, [string]$branchName) {
                 $trimmedBranchName = ($Env:GITHUB_HEAD_REF).Trim()
             }
             "ado" {
-                $trimmedBranchName = ($Env:SYSTEM_PULLREQUEST_SOURCEBRANCH).Trim()
+                $prBranchName = $Env:SYSTEM_PULLREQUEST_SOURCEBRANCH
+                if ($prBranchName -eq $null) {
+                    $trimmedBranchName = ($Env:BUILD_SOURCEBRANCH).Trim().Replace("refs/heads/","")
+                } else {
+                    $trimmedBranchName = $prBranchName.Trim()
+                }
             }
             "local" {
                 $trimmedBranchName = ""
@@ -103,6 +108,18 @@ function IsPackageExcluded([string]$namespaceAndPackage) {
     return $exclusions -ne $null -and $exclusions.Contains($namespaceAndPackage)
 }
 
+function AdjustNamespace([string]$provider, [string]$rawNamespace) {
+    if (($provider -eq "npmjs") -and ($rawNamespace -ne "-")) {
+        return "@$rawNameSpace"
+    }
+    
+    if (($provider -eq "nuget") -and ($rawNamespace -eq "src")) {
+        return "-"
+    }
+    
+    return $rawNamespace
+}
+
 function GetUri([string]$branchName){
     $elements = $branchName.Split('/')
 
@@ -114,13 +131,13 @@ function GetUri([string]$branchName){
     $type = GetType $elements[1]
     $provider = GetProvider $elements[1]
     if ($elements.Length -eq 3) {
-        $namespace = "-"
+        $rawNamespace = "-"
         $fullPackage = $elements[2]
     } else {
-        $namespace = $elements[2]
+        $rawNamespace = $elements[2]
         $fullPackage = $elements[3]
     }
-
+    $nameSpace = AdjustNamespace $provider $rawNamespace
     $indexOfLastDash = $fullPackage.LastIndexOf('-') + 1
     $packageName = $fullPackage.Substring(0, $indexOfLastDash - 1)
     $packageVersion = $fullPackage.Substring($indexOfLastDash)

@@ -43,5 +43,6 @@ test-results/
 yarn.lock
 src/DetailsView/components/generated-validate-assessment-json.js
 replace-plugin.js
+**/*.bat
 
 .ignoredRevs
