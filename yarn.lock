@@ -2753,7 +2753,7 @@ __metadata:
     axe-core: 4.7.2
     classnames: ^2.3.2
     lodash: ^4.17.21
-    luxon: ^3.3.0
+    luxon: ^3.4.0
     react: ^16.14.0
     react-dom: ^16.14.0
     react-helmet: ^6.1.0
@@ -2769,7 +2769,7 @@ __metadata:
     axe-core: 4.7.2
     classnames: ^2.3.2
     lodash: ^4.17.21
-    luxon: ^3.3.0
+    luxon: ^3.4.0
     react: ^16.14.0
     react-dom: ^16.14.0
     react-helmet: ^6.1.0
@@ -2842,7 +2842,7 @@ __metadata:
     js-yaml: ^4.1.0
     license-check-and-add: ^4.0.5
     lodash: ^4.17.21
-    luxon: ^3.3.0
+    luxon: ^3.4.0
     mini-css-extract-plugin: 2.7.6
     npm-run-all: ^4.1.5
     playwright: ^1.36.2
@@ -8425,10 +8425,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"luxon@npm:^3.3.0":
-  version: 3.3.0
-  resolution: "luxon@npm:3.3.0"
-  checksum: 50cf17a0dc155c3dcacbeae8c0b7e80db425e0ba97b9cbdf12a7fc142d841ff1ab1560919f033af46240ed44e2f70c49f76e3422524c7fc8bb8d81ca47c66187
+"luxon@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "luxon@npm:3.4.0"
+  checksum: ca9b6d0e0a8d156574b7e84014ac8e4b60d116d6d7a0fb65ef48eeb8e4415dad6350b76c5ee34f795cadf8b3f9a5fe7a6885733f561e554c50dffb0b704a840b
   languageName: node
   linkType: hard
 
