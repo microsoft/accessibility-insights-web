@@ -46,6 +46,11 @@
                 "prepend": "# "
             }
         },
+        "bat": {
+            "eachLine": {
+                "prepend": ":: "
+            }
+        },
         "md": {
             "prepend": "<!--",
             "append": "-->"
