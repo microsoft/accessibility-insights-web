@@ -243,12 +243,12 @@ jobs:
         path: packages/report-e2e-tests/test-results
       timeout-minutes: 3
 
-  check-dependencies:
+  check-clearly-defined:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3.5.3
       timeout-minutes: 2
 
-    - name: Run script
+    - name: Check ClearlyDefined for dependabot PR's
       run: ./tools/clearly-defined/check-clearly-defined.ps1 -Verbose -PipelineType action
       shell: pwsh
