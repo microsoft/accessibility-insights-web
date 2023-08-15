@@ -128,9 +128,8 @@ export class Browser {
     public async newAssessment(
         targetPageUrlOptions?: TargetPageUrlOptions,
     ): Promise<{ detailsViewPage: DetailsViewPage; targetPage: TargetPage }> {
-        const { targetPage, detailsViewPage } = await this.setupDetailsViewAndTargetPage(
-            targetPageUrlOptions,
-        );
+        const { targetPage, detailsViewPage } =
+            await this.setupDetailsViewAndTargetPage(targetPageUrlOptions);
         await detailsViewPage.switchToAssessment();
 
         return { detailsViewPage, targetPage };
@@ -139,9 +138,8 @@ export class Browser {
     public async newQuickAssess(
         targetPageUrlOptions?: TargetPageUrlOptions,
     ): Promise<{ detailsViewPage: DetailsViewPage; targetPage: TargetPage }> {
-        const { targetPage, detailsViewPage } = await this.setupDetailsViewAndTargetPage(
-            targetPageUrlOptions,
-        );
+        const { targetPage, detailsViewPage } =
+            await this.setupDetailsViewAndTargetPage(targetPageUrlOptions);
         await detailsViewPage.switchToQuickAssess();
 
         return { detailsViewPage, targetPage };
