@@ -30,9 +30,8 @@ export class BrowserPermissionsTracker {
         let permissionState: boolean = false;
 
         try {
-            permissionState = await this.browserAdapter.containsPermissions(
-                allUrlAndFilePermissions,
-            );
+            permissionState =
+                await this.browserAdapter.containsPermissions(allUrlAndFilePermissions);
         } catch (error) {
             this.logger.log(permissionsCheckErrorMessage);
         } finally {

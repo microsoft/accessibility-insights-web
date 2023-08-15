@@ -15,9 +15,8 @@ export class AllUrlsPermissionHandler {
     ) {}
 
     public requestAllUrlsPermission = async (e: SupportedMouseEvent, onSuccess: () => void) => {
-        const newAllUrlsPermissionState = await this.browserAdapter.requestPermissions(
-            allUrlAndFilePermissions,
-        );
+        const newAllUrlsPermissionState =
+            await this.browserAdapter.requestPermissions(allUrlAndFilePermissions);
         this.actionMessageCreator.setAllUrlsPermissionState(e, newAllUrlsPermissionState);
 
         if (newAllUrlsPermissionState) {
