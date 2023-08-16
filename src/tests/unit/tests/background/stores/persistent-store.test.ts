@@ -34,7 +34,7 @@ describe('PersistentStoreTest', () => {
 
             testObject.initialize();
 
-            expect(testObject.getState()).toBe(persistedState);
+            expect(testObject.getState()).toStrictEqual(persistedState);
         });
 
         test('Initialize without persisted data', async () => {

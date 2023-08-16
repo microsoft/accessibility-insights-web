@@ -4,7 +4,7 @@ import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
-import { cloneDeep, isEqual } from 'lodash';
+import { cloneDeep, isEmpty, isEqual, merge } from 'lodash';
 
 export abstract class PersistentStore<TState> extends BaseStoreImpl<TState, Promise<void>> {
     private previouslyPersistedState: TState | null;
@@ -30,13 +30,14 @@ export abstract class PersistentStore<TState> extends BaseStoreImpl<TState, Prom
 
     // Allow specific stores to override default state behavior
     protected generateDefaultState(persistedData: TState): TState {
-        return persistedData;
+        const defaultState = this.getDefaultState();
+        return !isEmpty(persistedData) ? merge({}, defaultState, persistedData) : defaultState;
     }
 
     public override initialize(initialState?: TState): void {
         const generatedPersistedState = this.generateDefaultState(this.persistedState);
 
-        this.state = initialState || (generatedPersistedState ?? this.getDefaultState());
+        this.state = initialState || generatedPersistedState;
 
         this.addActionListeners();
     }
