@@ -35,7 +35,8 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
             </p>
             <ol>
               <li>
-                Use your keyboard to move input focus through all the interactive elements in the page--
+                Use your keyboard to move input focus through all the interactive elements on the page –
+                 
                 <Emphasis>
                   please traverse the entire page before returning to this window
                 </Emphasis>
@@ -175,7 +176,8 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
             </p>
             <ol>
               <li>
-                Use your keyboard to move input focus through all the interactive elements in the page--
+                Use your keyboard to move input focus through all the interactive elements on the page –
+                 
                 <Emphasis>
                   please traverse the entire page before returning to this window
                 </Emphasis>
