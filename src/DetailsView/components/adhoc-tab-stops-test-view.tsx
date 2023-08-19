@@ -84,7 +84,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                 <ol>
                     <li>
                         Use your keyboard to move input focus through all the interactive elements
-                        in the page--
+                        on the page&nbsp;&ndash;{' '}
                         <Markup.Emphasis>
                             please traverse the entire page before returning to this window
                         </Markup.Emphasis>
