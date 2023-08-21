@@ -16,7 +16,7 @@ export const createHowToTest = (headingLevel: number) => {
                 <li>Refresh the target page to put it in its default state.</li>
                 <li>Turn on the Show tab stops toggle. An empty circle will highlight the element with focus.</li>
                 <li>
-                    Use your keyboard to move input focus through all the interactive elements in the page:
+                    Use your keyboard to move input focus through all the interactive elements on the page:
                     <ul>
                         <li>Use Tab and Shift+Tab to navigate between standalone controls.</li>
                         <li>Use the arrow keys to navigate between the focusable elements within a composite control.</li>
