@@ -1195,7 +1195,7 @@ exports[`Guidance Content pages adhoc/tabstops/guidance matches the snapshot 1`]
           Turn on the Show tab stops toggle. An empty circle will highlight the element with focus.
         </li>
         <li>
-          Use your keyboard to move input focus through all the interactive elements in the page:
+          Use your keyboard to move input focus through all the interactive elements on the page:
           <ul>
             <li>
               Use Tab and Shift+Tab to navigate between standalone controls.
