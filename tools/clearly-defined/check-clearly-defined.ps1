@@ -108,6 +108,10 @@ function IsPackageExcluded([string]$namespaceAndPackage) {
     return $exclusions -ne $null -and $exclusions.Contains($namespaceAndPackage)
 }
 
+function IsDockerImage([string]$provider){
+    return $provider -eq "docker"
+}
+
 function AdjustNamespace([string]$provider, [string]$rawNamespace) {
     if (($provider -eq "npmjs") -and ($rawNamespace -ne "-")) {
         return "@$rawNameSpace"
@@ -130,6 +134,7 @@ function GetUri([string]$branchName){
 
     $type = GetType $elements[1]
     $provider = GetProvider $elements[1]
+
     if ($elements.Length -eq 3) {
         $rawNamespace = "-"
         $fullPackage = $elements[2]
@@ -141,12 +146,16 @@ function GetUri([string]$branchName){
     $indexOfLastDash = $fullPackage.LastIndexOf('-') + 1
     $packageName = $fullPackage.Substring(0, $indexOfLastDash - 1)
     $packageVersion = $fullPackage.Substring($indexOfLastDash)
-
+    if(IsDockerImage $provider){
+        Write-Host "'$packageName' is a Docker image, skipping check"
+        Exit 0
+    }
     $namespaceAndPackage = "$namespace/$packageName"
     if (IsPackageExcluded $namespaceAndPackage) {
         Write-Host "Package '$namespaceAndPackage' is a known exclusion, skipping check"
         Exit 0
     }
+
 
     return "https://api.clearlydefined.io/definitions/$type/$provider/$namespace/$packageName/$packageVersion"
 }
