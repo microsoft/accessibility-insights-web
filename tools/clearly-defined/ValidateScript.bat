@@ -16,6 +16,13 @@ if errorlevel 1 goto fail
 echo OK
 echo.
 
+@echo Passing case: Docker playwright image
+echo pwsh -f ./check-clearly-defined.ps1 -PipelineType local -BranchName dependabot/docker/playwright-v1.37.1-focal
+pwsh -f ./check-clearly-defined.ps1 -PipelineType local -BranchName dependabot/docker/playwright-v1.37.1-focal
+if errorlevel 1 goto fail
+echo OK
+echo.
+
 echo Passing case: ADO PR build of dependabot branch
 echo set SYSTEM_PULLREQUEST_SOURCEBRANCH=dependabot/nuget/src/Moq-4.18.4
 set SYSTEM_PULLREQUEST_SOURCEBRANCH=dependabot/nuget/src/Moq-4.18.4
