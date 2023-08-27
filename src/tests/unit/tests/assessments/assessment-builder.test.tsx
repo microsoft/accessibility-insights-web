@@ -22,8 +22,8 @@ import {
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { Analyzer, AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
-import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
+import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 
 describe('AssessmentBuilderTest', () => {
     const analyzerConfigStub = {

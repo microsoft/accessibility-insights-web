@@ -15,9 +15,9 @@ import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-sc
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { Analyzer, AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
-import { VisualizationInstanceProcessorCallback } from 'injected/visualization-instance-processor';
 import { Drawer } from 'injected/visualization/drawer';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
+import { VisualizationInstanceProcessorCallback } from 'injected/visualization-instance-processor';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPageComponent } from 'views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';

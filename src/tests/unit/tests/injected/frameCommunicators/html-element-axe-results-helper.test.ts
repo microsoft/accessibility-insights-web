@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
+import { HTMLElementUtils } from '.././../../../../common/html-element-utils';
 import { Logger } from '../../../../../common/logging/logger';
 import {
     AxeResultsWithFrameLevel,
     HtmlElementAxeResultsHelper,
 } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { HTMLCollectionOfBuilder } from '../../../common/html-collection-of-builder';
-import { HTMLElementUtils } from '.././../../../../common/html-element-utils';
 
 describe('HtmlElementAxeResultsHelperTest', () => {
     let testSubject: HtmlElementAxeResultsHelper;

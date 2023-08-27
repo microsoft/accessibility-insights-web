@@ -4,12 +4,12 @@ import { Requirement } from 'assessments/types/requirement';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { VisualizationType } from 'common/types/visualization-type';
+import { Drawer } from 'injected/visualization/drawer';
+import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import {
     RegisterDrawer,
     VisualizationTypeDrawerRegistrar,
 } from 'injected/visualization-type-drawer-registrar';
-import { Drawer } from 'injected/visualization/drawer';
-import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { IMock, It, Mock } from 'typemoq';
 
 describe('VisualizationTypeDrawerRegistrar', () => {
