@@ -1182,18 +1182,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/environment@npm:^29.6.3":
-  version: 29.6.3
-  resolution: "@jest/environment@npm:29.6.3"
-  dependencies:
-    "@jest/fake-timers": ^29.6.3
-    "@jest/types": ^29.6.3
-    "@types/node": "*"
-    jest-mock: ^29.6.3
-  checksum: 96aaf9baaa58fbacbdfbde9591297f25f9d6f5566cf10cd07d744a4a25b1d82b6cfb89f217a45ccce2cc50ec6c7e3c9a0122908d6b827985a1679afb5e10b7b1
-  languageName: node
-  linkType: hard
-
 "@jest/environment@npm:^29.6.4":
   version: 29.6.4
   resolution: "@jest/environment@npm:29.6.4"
@@ -1231,20 +1219,6 @@ __metadata:
     expect: ^29.6.4
     jest-snapshot: ^29.6.4
   checksum: e9d7306a96e2f9f9f7a0d93d41850cbad987ebda951a5d9a63d3f5fb61da4c1e41adb54af7f7222e4a185454ecb17ddc77845e18001ee28ac114f7a7fe9e671d
-  languageName: node
-  linkType: hard
-
-"@jest/fake-timers@npm:^29.6.3":
-  version: 29.6.3
-  resolution: "@jest/fake-timers@npm:29.6.3"
-  dependencies:
-    "@jest/types": ^29.6.3
-    "@sinonjs/fake-timers": ^10.0.2
-    "@types/node": "*"
-    jest-message-util: ^29.6.3
-    jest-mock: ^29.6.3
-    jest-util: ^29.6.3
-  checksum: 60be71159bb92c8b8da593fac2b2fff50c0760c26c3b17237561a2818382d3c797bd119a1707ec1d3e9b77e8e3d6513fe88f0c668d6ca26fb2c01ab475620888
   languageName: node
   linkType: hard
 
@@ -2871,7 +2845,7 @@ __metadata:
     grunt-sass: ^3.1.0
     idb-keyval: ^6.2.1
     jest: ^29.6.4
-    jest-environment-jsdom: ^29.6.3
+    jest-environment-jsdom: ^29.6.4
     jest-junit: ^16.0.0
     js-yaml: ^4.1.0
     license-check-and-add: ^4.0.5
@@ -7905,12 +7879,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-environment-jsdom@npm:^29.6.3":
-  version: 29.6.3
-  resolution: "jest-environment-jsdom@npm:29.6.3"
+"jest-environment-jsdom@npm:^29.6.4":
+  version: 29.6.4
+  resolution: "jest-environment-jsdom@npm:29.6.4"
   dependencies:
-    "@jest/environment": ^29.6.3
-    "@jest/fake-timers": ^29.6.3
+    "@jest/environment": ^29.6.4
+    "@jest/fake-timers": ^29.6.4
     "@jest/types": ^29.6.3
     "@types/jsdom": ^20.0.0
     "@types/node": "*"
@@ -7922,7 +7896,7 @@ __metadata:
   peerDependenciesMeta:
     canvas:
       optional: true
-  checksum: c8c3a45952c4ca82fa17ae77b9be986ebe323300bd3d2f85895a143f078402668df42978a8764005d373d8b10926367a832731ae524a79d61568cc4e75a92c41
+  checksum: 2afe105f12d7d93ca56e2e6f67ab07ada3dd3da0516d1198f254930683ab9feb2b8c14417baaca53544eed88fd7fb5744f0dbce2e100269746187317ce0347df
   languageName: node
   linkType: hard
 
