@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { InjectionFailedPayload } from 'background/actions/action-payloads';
-import { InjectorController } from 'background/injector-controller';
 import { ContentScriptInjector } from 'background/injector/content-script-injector';
+import { InjectorController } from 'background/injector-controller';
 import { Interpreter } from 'background/interpreter';
 import { InspectStore } from 'background/stores/inspect-store';
 import { TabStore } from 'background/stores/tab-store';

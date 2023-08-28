@@ -9,9 +9,9 @@ import {
 } from 'DetailsView/components/test-view-container-provider';
 import { Analyzer, AnalyzerConfiguration } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
-import { VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { Drawer } from '../../injected/visualization/drawer';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
+import { VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { DictionaryStringTo } from '../../types/common-types';
 import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callbacks';
 import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessment-result-data';

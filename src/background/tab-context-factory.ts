@@ -28,8 +28,8 @@ import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-crea
 import { TabActionCreator } from './actions/tab-action-creator';
 import { UnifiedScanResultActionCreator } from './actions/unified-scan-result-action-creator';
 import { ExtensionDetailsViewController } from './extension-details-view-controller';
-import { InjectorController } from './injector-controller';
 import { ContentScriptInjector } from './injector/content-script-injector';
+import { InjectorController } from './injector-controller';
 import { Interpreter } from './interpreter';
 import { ShortcutsPageController } from './shortcuts-page-controller';
 import { TabContextStoreHub } from './stores/tab-context-store-hub';

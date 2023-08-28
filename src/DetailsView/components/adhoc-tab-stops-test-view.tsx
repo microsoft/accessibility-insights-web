@@ -20,10 +20,6 @@ import styles from 'DetailsView/components/adhoc-tab-stops-test-view.scss';
 import { AutoDetectedFailuresDialog } from 'DetailsView/components/auto-detected-failures-dialog';
 import requirementInstructionStyles from 'DetailsView/components/requirement-instructions.scss';
 import {
-    TabStopsFailedInstanceSection,
-    TabStopsFailedInstanceSectionDeps,
-} from 'DetailsView/components/tab-stops-failed-instance-section';
-import {
     TabStopsFailedInstancePanel,
     TabStopsFailedInstancePanelDeps,
 } from 'DetailsView/components/tab-stops/tab-stops-failed-instance-panel';
@@ -32,6 +28,10 @@ import {
     TabStopsRequirementsTableDeps,
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
+import {
+    TabStopsFailedInstanceSection,
+    TabStopsFailedInstanceSectionDeps,
+} from 'DetailsView/components/tab-stops-failed-instance-section';
 import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';

@@ -3,14 +3,14 @@
 
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import {
+    TabStopsInstanceSectionPropsFactory,
+    TabStopsInstanceSectionPropsFactoryProps,
+} from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
+import {
     TabStopsFailedInstanceSection,
     TabStopsFailedInstanceSectionDeps,
     TabStopsFailedInstanceSectionProps,
 } from 'DetailsView/components/tab-stops-failed-instance-section';
-import {
-    TabStopsInstanceSectionPropsFactory,
-    TabStopsInstanceSectionPropsFactoryProps,
-} from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { shallow } from 'enzyme';
 import * as React from 'react';

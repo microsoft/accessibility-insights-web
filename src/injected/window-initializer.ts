@@ -51,10 +51,10 @@ import { HtmlElementAxeResultsHelper } from './frameCommunicators/html-element-a
 import { ScrollingController } from './frameCommunicators/scrolling-controller';
 import { ShadowInitializer } from './shadow-initializer';
 import { ShadowUtils } from './shadow-utils';
-import { VisualizationTypeDrawerRegistrar } from './visualization-type-drawer-registrar';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
+import { VisualizationTypeDrawerRegistrar } from './visualization-type-drawer-registrar';
 
 // Required to initialize axe-core with our ruleset/branding
 import 'scanner/exposed-apis';

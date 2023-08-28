@@ -5,9 +5,9 @@ import { ResultSectionTitle } from 'common/components/cards/result-section-title
 import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
-import styles from 'DetailsView/components/tab-stops-failed-instance-section.scss';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsInstanceSectionPropsFactory } from 'DetailsView/components/tab-stops/tab-stops-instance-section-props-factory';
+import styles from 'DetailsView/components/tab-stops-failed-instance-section.scss';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import {

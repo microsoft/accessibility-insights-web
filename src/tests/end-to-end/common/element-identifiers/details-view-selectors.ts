@@ -24,7 +24,6 @@ import { reportExportButtonAutomationId } from 'DetailsView/components/report-ex
 import { completeButtonAutomationId } from 'DetailsView/components/requirement-view-next-requirement-configuration';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 import { switcherOptionAutomationId } from 'DetailsView/components/switcher';
-import { tabStopsFailedInstanceSectionAutomationId } from 'DetailsView/components/tab-stops-failed-instance-section';
 import {
     addFailedInstanceTextAreaAutomationId,
     primaryAddFailedInstanceButtonAutomationId,
@@ -33,6 +32,7 @@ import {
     addTabStopsFailureInstanceAutomationId,
     tabStopsPassFailChoiceGroupAutomationId,
 } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
+import { tabStopsFailedInstanceSectionAutomationId } from 'DetailsView/components/tab-stops-failed-instance-section';
 import { transferToAssessmentButtonAutomationId } from 'DetailsView/components/transfer-to-assessment-button';
 import { resultsGroupAutomationId } from 'DetailsView/tab-stops-requirements-with-instances';
 import { reportExportAsHtmlAutomationId } from 'report-export/services/html-report-export-service';

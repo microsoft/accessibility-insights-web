@@ -6,9 +6,9 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../../../actions/details-view-action-message-creator';
 import { GenericPanel } from '../../generic-panel';
-import styles from './settings-panel.scss';
 import { SettingsDeps } from './settings/settings-props';
 import { SettingsComponent, SettingsProvider } from './settings/settings-provider';
+import styles from './settings-panel.scss';
 
 export type SettingsPanelDeps = SettingsDeps & {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

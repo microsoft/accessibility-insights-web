@@ -15,11 +15,11 @@ import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-sc
 import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
 import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
+import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import {
     VisualizationInstanceProcessor,
     VisualizationInstanceProcessorCallback,
 } from 'injected/visualization-instance-processor';
-import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { cloneDeep } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
