@@ -2280,10 +2280,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ua-parser-js@npm:^0.7.36":
-  version: 0.7.36
-  resolution: "@types/ua-parser-js@npm:0.7.36"
-  checksum: 8c24d4dc12ed1b8b98195838093391c358c81bf75e9cae0ecec8f7824b441e069daaa17b974a3e257172caddb671439f0c0b44bf43bfcf409b7a574a25aab948
+"@types/ua-parser-js@npm:^0.7.37":
+  version: 0.7.37
+  resolution: "@types/ua-parser-js@npm:0.7.37"
+  checksum: dde3733d30801d96959c73fd164c5431080f00bfa5b6bec79eff4726349c9832b3dbac5ce07dae29033cb8bb878b459d63ba25a31aee4e64b37272b90d1f1ca9
   languageName: node
   linkType: hard
 
@@ -2808,7 +2808,7 @@ __metadata:
     "@types/react-helmet": ^6.1.6
     "@types/react-router-dom": ^5.3.3
     "@types/serve-static": ^1.15.2
-    "@types/ua-parser-js": ^0.7.36
+    "@types/ua-parser-js": ^0.7.37
     "@types/uuid": ^9.0.3
     "@types/webextension-polyfill": ^0.10.2
     "@typescript-eslint/eslint-plugin": ^5.61.0
