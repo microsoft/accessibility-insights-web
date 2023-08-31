@@ -132,7 +132,7 @@
         "playwright": "^1.37.1",
         "postcss": "^8.4.29",
         "postcss-modules": "^6.0.0",
-        "prettier": "^3.0.2",
+        "prettier": "^3.0.3",
         "regenerator-runtime": "^0.14.0",
         "sass": "^1.66.1",
         "sass-loader": "^13.3.2",
