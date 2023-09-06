@@ -15,6 +15,8 @@ import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
+import { QuickAssessReportBodyHeader } from 'reports/components/quick-assess-report-body-header';
 import { FastPassReportModel } from 'reports/fast-pass-report-html-generator';
 
 export type ReportExportDialogFactoryDeps = {
@@ -31,8 +33,10 @@ export type ReportExportDialogFactoryProps = CommandBarProps & {
     tabStopRequirementData: TabStopRequirementState;
 };
 
-export function getReportExportDialogForAssessment(
+function getReportExportDialog(
     props: ReportExportDialogFactoryProps,
+    reportExportFormat: ReportExportFormat,
+    bodyHeader: JSX.Element,
 ): JSX.Element {
     const {
         deps,
@@ -46,7 +50,7 @@ export function getReportExportDialogForAssessment(
     const { reportGenerator, getProvider } = deps;
     const dialogProps: ReportExportComponentProps = {
         deps: deps,
-        reportExportFormat: 'Assessment',
+        reportExportFormat: reportExportFormat,
         pageTitle: scanMetadata.targetAppInfo.name,
         scanDate: deps.getCurrentDate(),
         htmlGenerator: description =>
@@ -56,6 +60,8 @@ export function getReportExportDialogForAssessment(
                 featureFlagStoreData,
                 scanMetadata.targetAppInfo,
                 description,
+                `${reportExportFormat} report`,
+                bodyHeader,
             ),
         jsonGenerator: description =>
             reportGenerator.generateAssessmentJsonExport(
@@ -83,10 +89,18 @@ export function getReportExportDialogForAssessment(
     return <ReportExportComponent {...dialogProps} />;
 }
 
+export function getReportExportDialogForAssessment(
+    props: ReportExportDialogFactoryProps,
+): JSX.Element {
+    const BodyHeader = <AssessmentReportBodyHeader />;
+    return getReportExportDialog(props, 'Assessment', BodyHeader);
+}
+
 export function getReportExportDialogForQuickAssess(
     props: ReportExportDialogFactoryProps,
-): JSX.Element | null {
-    return null;
+): JSX.Element {
+    const BodyHeader = <QuickAssessReportBodyHeader />;
+    return getReportExportDialog(props, 'QuickAssess', BodyHeader);
 }
 
 export function getReportExportDialogForFastPass(

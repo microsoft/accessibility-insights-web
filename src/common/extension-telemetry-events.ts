@@ -102,7 +102,7 @@ export const TRANSFER_QUICK_ASSESS_DATA_TO_ASSESSMENT_INITIATED: string =
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
 
-export type ReportExportFormat = 'Assessment' | 'FastPass';
+export type ReportExportFormat = 'Assessment' | 'FastPass' | 'QuickAssess';
 
 export enum TelemetryEventSource {
     LaunchPad,

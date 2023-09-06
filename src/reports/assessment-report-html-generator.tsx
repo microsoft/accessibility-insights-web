@@ -34,6 +34,8 @@ export class AssessmentReportHtmlGenerator {
         featureFlagStoreData: FeatureFlagStoreData,
         targetAppInfo: TargetAppData,
         description: string,
+        title: string,
+        bodyHeader: JSX.Element,
     ): string {
         const filteredProvider = assessmentsProviderWithFeaturesEnabled(
             assessmentsProvider,
@@ -55,13 +57,14 @@ export class AssessmentReportHtmlGenerator {
             <React.Fragment>
                 <head>
                     <meta charSet="UTF-8" />
-                    <title>Assessment report</title>
+                    <title>{title}</title>
                     <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
                     <style dangerouslySetInnerHTML={{ __html: bundledStyles.styleSheet }} />
                 </head>
                 <body>
                     <AssessmentReport
                         deps={this.deps}
+                        bodyHeader={bodyHeader}
                         data={model}
                         description={description}
                         extensionVersion={this.extensionVersion}
