@@ -98,7 +98,6 @@ describe('PopupView', () => {
                         It.isAny(),
                         IsSameObject(actionMessageCreatorStrictMock.object),
                         IsSameObject(handlerMock.object),
-                        It.isAny(),
                     ),
                 )
                 .returns(() => rowConfigStub as any)
