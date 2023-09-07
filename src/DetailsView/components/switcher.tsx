@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Dropdown, Icon, IDropdownOption, ResponsiveMode } from '@fluentui/react';
-import { FeatureFlags } from 'common/feature-flags';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
 
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -16,7 +14,6 @@ export type SwitcherDeps = {
 export interface SwitcherProps {
     deps: SwitcherDeps;
     pivotKey: DetailsViewPivotType;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export interface SwitcherState {
@@ -58,7 +55,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
         );
     };
 
-    private getOptions = (featureFlagStoreData: FeatureFlagStoreData): IDropdownOption[] => {
+    private getOptions = (): IDropdownOption[] => {
         const fastPassConfig = {
             key: DetailsViewPivotType.fastPass,
             text: 'FastPass',
@@ -83,9 +80,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 icon: 'testBeakerSolid',
             },
         };
-        return featureFlagStoreData[FeatureFlags.quickAssess]
-            ? [fastPassConfig, quickAssessConfig, assessmentConfig]
-            : [fastPassConfig, assessmentConfig];
+        return [fastPassConfig, quickAssessConfig, assessmentConfig];
     };
 
     public render(): JSX.Element {
@@ -99,7 +94,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                     onRenderOption={this.onRenderOption}
                     onRenderTitle={this.onRenderTitle}
                     onChange={this.onOptionChange}
-                    options={this.getOptions(this.props.featureFlagStoreData)}
+                    options={this.getOptions()}
                 />
             </div>
         );

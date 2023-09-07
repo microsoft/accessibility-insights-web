@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { Mock, Times } from 'typemoq';
 
 import { TelemetryEventSource } from '../../../../common/extension-telemetry-events';
@@ -15,8 +14,6 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
     let componentStub = {};
     let handlerMock = Mock.ofType(PopupViewControllerHandler);
     let actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-    let featureFlagStoreDataStub: FeatureFlagStoreData;
-    const quickAssessFlagName = 'quickAssess';
     let testSubject: LaunchPadRowConfigurationFactory;
     const fastPassRowConfig = {
         iconName: 'Rocket',
@@ -50,92 +47,81 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
         componentStub = {};
         handlerMock = Mock.ofType(PopupViewControllerHandler);
         actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
-        featureFlagStoreDataStub = {};
         testSubject = new LaunchPadRowConfigurationFactory();
     });
 
-    it.each([true, false])(
-        'createRowConfigs: verify string properties when quickAssess featureFlag is %s',
-        featureFlagValue => {
-            featureFlagStoreDataStub[quickAssessFlagName] = featureFlagValue;
+    it('createRowConfigs: verify string properties', () => {
+        const expectedConfig: LaunchPadRowConfiguration[] = [
+            fastPassRowConfig,
+            quickAssessRowConfig,
+            assessmentRowConfig,
+            adhocRowConfig,
+        ];
 
-            const expectedConfig: LaunchPadRowConfiguration[] =
-                featureFlagValue === true
-                    ? [fastPassRowConfig, quickAssessRowConfig, assessmentRowConfig, adhocRowConfig]
-                    : [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
+        const configs = testSubject.createRowConfigs(
+            componentStub as any,
+            actionMessageCreatorMock.object,
+            handlerMock.object,
+        );
 
-            const configs = testSubject.createRowConfigs(
-                componentStub as any,
-                actionMessageCreatorMock.object,
-                handlerMock.object,
-                featureFlagStoreDataStub,
-            );
+        compareStaticProperties(expectedConfig, configs);
+    });
 
-            compareStaticProperties(expectedConfig, configs);
-        },
-    );
+    it('createRowConfigs: onClick title', () => {
+        actionMessageCreatorMock
+            .setup(a =>
+                a.openDetailsView(
+                    null,
+                    VisualizationType.Issues,
+                    TelemetryEventSource.LaunchPadFastPass,
+                    DetailsViewPivotType.fastPass,
+                ),
+            )
+            .verifiable(Times.once());
 
-    it.each([true, false])(
-        'createRowConfigs: onClick title when quickAssess featureFlag is %s',
-        featureFlagValue => {
-            featureFlagStoreDataStub[quickAssessFlagName] = featureFlagValue;
+        actionMessageCreatorMock
+            .setup(a =>
+                a.openDetailsView(
+                    null,
+                    null,
+                    TelemetryEventSource.LaunchPadAssessment,
+                    DetailsViewPivotType.assessment,
+                ),
+            )
+            .verifiable(Times.once());
 
-            actionMessageCreatorMock
-                .setup(a =>
-                    a.openDetailsView(
-                        null,
-                        VisualizationType.Issues,
-                        TelemetryEventSource.LaunchPadFastPass,
-                        DetailsViewPivotType.fastPass,
-                    ),
-                )
-                .verifiable(Times.once());
+        actionMessageCreatorMock
+            .setup(a =>
+                a.openDetailsView(
+                    null,
+                    null,
+                    TelemetryEventSource.LaunchPadQuickAssess,
+                    DetailsViewPivotType.quickAssess,
+                ),
+            )
+            .verifiable(Times.once());
 
-            actionMessageCreatorMock
-                .setup(a =>
-                    a.openDetailsView(
-                        null,
-                        null,
-                        TelemetryEventSource.LaunchPadAssessment,
-                        DetailsViewPivotType.assessment,
-                    ),
-                )
-                .verifiable(Times.once());
+        handlerMock
+            .setup(h => h.openAdhocToolsPanel(componentStub as any))
+            .verifiable(Times.once());
 
-            actionMessageCreatorMock
-                .setup(a =>
-                    a.openDetailsView(
-                        null,
-                        null,
-                        TelemetryEventSource.LaunchPadQuickAssess,
-                        DetailsViewPivotType.quickAssess,
-                    ),
-                )
-                .verifiable(featureFlagValue === true ? Times.once() : Times.never());
+        const configs = testSubject.createRowConfigs(
+            componentStub as any,
+            actionMessageCreatorMock.object,
+            handlerMock.object,
+        );
 
-            handlerMock
-                .setup(h => h.openAdhocToolsPanel(componentStub as any))
-                .verifiable(Times.once());
+        configs.forEach((config, index) => {
+            if (index === configs.length - 1) {
+                config.onClickTitle();
+            } else {
+                config.onClickTitle(null);
+            }
+        });
 
-            const configs = testSubject.createRowConfigs(
-                componentStub as any,
-                actionMessageCreatorMock.object,
-                handlerMock.object,
-                featureFlagStoreDataStub,
-            );
-
-            configs.forEach((config, index) => {
-                if (index === configs.length - 1) {
-                    config.onClickTitle();
-                } else {
-                    config.onClickTitle(null);
-                }
-            });
-
-            actionMessageCreatorMock.verifyAll();
-            handlerMock.verifyAll();
-        },
-    );
+        actionMessageCreatorMock.verifyAll();
+        handlerMock.verifyAll();
+    });
 
     function compareStaticProperties(
         expected: LaunchPadRowConfiguration[],

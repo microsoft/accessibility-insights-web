@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import { ContextualMenuItemType, IconButton, IContextualMenuItem } from '@fluentui/react';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
-import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
@@ -24,13 +22,12 @@ export type HamburgerMenuButtonProps = {
     deps: HamburgerMenuButtonDeps;
     popupWindow: Window;
     header: LaunchPanelHeader;
-    featureFlagData: FeatureFlagStoreData;
 };
 
 export const HamburgerMenuButton = NamedFC<HamburgerMenuButtonProps>(
     'HamburgerMenuButton',
     props => {
-        const { deps, header, popupWindow, featureFlagData } = props;
+        const { deps, header, popupWindow } = props;
         const { launchPanelHeaderClickHandler, popupActionMessageCreator } = deps;
         const fastPassMenuItem = {
             key: 'fast-pass',
@@ -82,9 +79,12 @@ export const HamburgerMenuButton = NamedFC<HamburgerMenuButtonProps>(
             name: 'Ad hoc tools',
             onClick: () => launchPanelHeaderClickHandler.openAdhocToolsPanel(header),
         };
-        const productMenuItems = featureFlagData[FeatureFlags.quickAssess]
-            ? [fastPassMenuItem, quickAssessMenuItem, assessmentMenuItem, adhocToolsMenuItem]
-            : [fastPassMenuItem, assessmentMenuItem, adhocToolsMenuItem];
+        const productMenuItems = [
+            fastPassMenuItem,
+            quickAssessMenuItem,
+            assessmentMenuItem,
+            adhocToolsMenuItem,
+        ];
 
         const resourceMenuItems: IContextualMenuItem[] = [
             {
