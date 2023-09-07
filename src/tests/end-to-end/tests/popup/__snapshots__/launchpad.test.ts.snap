@@ -146,6 +146,48 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                   <i
                     aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
+                    data-icon-name="SiteScan"
+                  >
+                    
+                  </i>
+                </div>
+                <div>
+                  <div
+                    class="launch-pad-item-title"
+                  >
+                    <button
+                      aria-describedby="launch-pad-item-description-2"
+                      class="ms-Link insights-link root-000"
+                      id="quick-assess"
+                      role="link"
+                      type="button"
+                    >
+                      Quick Assess
+                    </button>
+                  </div>
+                  <div
+                    class="launch-pad-item-description"
+                    id="launch-pad-item-description-000"
+                  >
+                    Run 10 assisted checks to find more accessibility issues in 30 minutes.
+                  </div>
+                </div>
+              </div>
+              <hr
+                class="ms-fontColor-neutralTertiaryAlt launch-pad-hr"
+              />
+            </div>
+            <div>
+              <div
+                class="launch-pad-item-grid"
+              >
+                <div
+                  aria-hidden="true"
+                  class="popup-start-dialog-icon-circle"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="popup-start-dialog-icon root-000"
                     data-icon-name="testBeaker"
                   >
                     
@@ -156,7 +198,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                     class="launch-pad-item-title"
                   >
                     <button
-                      aria-describedby="launch-pad-item-description-2"
+                      aria-describedby="launch-pad-item-description-3"
                       class="ms-Link insights-link root-000"
                       id="assessment"
                       role="link"
@@ -198,7 +240,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                     class="launch-pad-item-title"
                   >
                     <button
-                      aria-describedby="launch-pad-item-description-3"
+                      aria-describedby="launch-pad-item-description-4"
                       class="ms-Link insights-link root-000"
                       id="ad-hoc-tools"
                       role="link"
