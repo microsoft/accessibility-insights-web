@@ -23,7 +23,7 @@ exports[`Popup -> Hamburger menu should have content matching snapshot when quic
           <button
             aria-disabled="false"
             aria-posinset="1"
-            aria-setsize="6"
+            aria-setsize="7"
             class="ms-ContextualMenu-link root-000"
             name="FastPass"
             role="menuitem"
@@ -54,7 +54,38 @@ exports[`Popup -> Hamburger menu should have content matching snapshot when quic
           <button
             aria-disabled="false"
             aria-posinset="2"
-            aria-setsize="6"
+            aria-setsize="7"
+            class="ms-ContextualMenu-link root-000"
+            name="Quick Assess"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <div
+              class="ms-ContextualMenu-linkContent linkContent-000"
+            >
+              <i
+                aria-hidden="true"
+                class="ms-ContextualMenu-icon icon-000"
+                data-icon-name="SiteScan"
+              >
+                
+              </i>
+              <span
+                class="ms-ContextualMenu-itemText label-000"
+              >
+                Quick Assess
+              </span>
+            </div>
+          </button>
+        </li>
+        <li
+          class="ms-ContextualMenu-item item-000"
+          role="presentation"
+        >
+          <button
+            aria-disabled="false"
+            aria-posinset="3"
+            aria-setsize="7"
             class="ms-ContextualMenu-link root-000"
             name="Assessment"
             role="menuitem"
@@ -84,8 +115,8 @@ exports[`Popup -> Hamburger menu should have content matching snapshot when quic
         >
           <button
             aria-disabled="false"
-            aria-posinset="3"
-            aria-setsize="6"
+            aria-posinset="4"
+            aria-setsize="7"
             class="ms-ContextualMenu-link root-000"
             name="Ad hoc tools"
             role="menuitem"
@@ -120,8 +151,8 @@ exports[`Popup -> Hamburger menu should have content matching snapshot when quic
         >
           <button
             aria-disabled="false"
-            aria-posinset="4"
-            aria-setsize="6"
+            aria-posinset="5"
+            aria-setsize="7"
             class="ms-ContextualMenu-link root-000"
             name="Keyboard shortcuts"
             role="menuitem"
@@ -151,8 +182,8 @@ exports[`Popup -> Hamburger menu should have content matching snapshot when quic
         >
           <button
             aria-disabled="false"
-            aria-posinset="5"
-            aria-setsize="6"
+            aria-posinset="6"
+            aria-setsize="7"
             class="ms-ContextualMenu-link root-000"
             name="Third party notices"
             role="menuitem"
@@ -182,8 +213,8 @@ exports[`Popup -> Hamburger menu should have content matching snapshot when quic
         >
           <button
             aria-disabled="false"
-            aria-posinset="6"
-            aria-setsize="6"
+            aria-posinset="7"
+            aria-setsize="7"
             class="ms-ContextualMenu-link root-000"
             name="Help"
             role="menuitem"
@@ -271,6 +302,7 @@ exports[`Popup -> Hamburger menu should have content matching snapshot when quic
             class="ms-ContextualMenu-link root-000"
             name="Quick Assess"
             role="menuitem"
+            tabindex="-1"
           >
             <div
               class="ms-ContextualMenu-linkContent linkContent-000"

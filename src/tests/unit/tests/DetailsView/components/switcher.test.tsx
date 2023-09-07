@@ -11,7 +11,6 @@ import { IMock, Mock, Times } from 'typemoq';
 describe('Switcher', () => {
     let defaultProps: SwitcherProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    const quickAssessFeatureFlag = 'quickAssess';
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
@@ -20,52 +19,37 @@ describe('Switcher', () => {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
-            featureFlagStoreData: {},
         };
     });
 
     describe('renders', () => {
-        it.each([true, false])(
-            'Switcher itself matches snapshot when quick assess feature flag is %s',
-            featureFlagValue => {
-                defaultProps.featureFlagStoreData[quickAssessFeatureFlag] = featureFlagValue;
-                const renderer = shallow(<Switcher {...defaultProps} />);
+        it('Switcher itself matches snapshot', () => {
+            const renderer = shallow(<Switcher {...defaultProps} />);
 
-                expect(renderer.debug()).toMatchSnapshot();
-            },
-        );
+            expect(renderer.debug()).toMatchSnapshot();
+        });
 
-        it.each([true, false])(
-            'option renderer override matches snapshotm when quick assess feature flag is %s',
-            featureFlagValue => {
-                defaultProps.featureFlagStoreData[quickAssessFeatureFlag] = featureFlagValue;
+        it('option renderer override matches snapshot', () => {
+            const renderer = shallow(<Switcher {...defaultProps} />);
 
-                const renderer = shallow(<Switcher {...defaultProps} />);
+            const dropdown = renderer.find(Dropdown);
 
-                const dropdown = renderer.find(Dropdown);
+            const options = dropdown.prop('options');
 
-                const options = dropdown.prop('options');
+            const onRenderOption = dropdown.prop('onRenderOption');
 
-                const onRenderOption = dropdown.prop('onRenderOption');
-
-                expect(onRenderOption(options[0])).toMatchSnapshot();
-            },
-        );
+            expect(onRenderOption(options[0])).toMatchSnapshot();
+        });
     });
 
     describe('props', () => {
-        it.each([true, false])(
-            'dropdown has correct options when quick assess feature flag is %s',
-            featureFlagValue => {
-                defaultProps.featureFlagStoreData[quickAssessFeatureFlag] = featureFlagValue;
+        it('dropdown has correct options', () => {
+            const renderer = shallow(<Switcher {...defaultProps} />);
 
-                const renderer = shallow(<Switcher {...defaultProps} />);
+            const dropdown = renderer.find(Dropdown);
 
-                const dropdown = renderer.find(Dropdown);
-
-                expect(dropdown.prop('options')).toMatchSnapshot();
-            },
-        );
+            expect(dropdown.prop('options')).toMatchSnapshot();
+        });
     });
 
     describe('user interaction', () => {
