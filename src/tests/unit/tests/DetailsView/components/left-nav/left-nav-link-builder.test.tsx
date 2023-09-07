@@ -196,9 +196,15 @@ describe('LeftNavBuilder', () => {
     });
 
     describe('buildAutomatedChecksLinks', () => {
-        it.each([true, false])(
-            'should build just automated checks assessment link with feature flag %s',
-            featureFlagState => {
+        it.each`
+            renderType  | featureFlagState | forceAnchor
+            ${'link'}   | ${true}          | ${true}
+            ${'button'} | ${false}         | ${false}
+            ${'button'} | ${true}          | ${false}
+            ${'link'}   | ${false}         | ${true}
+        `(
+            'should build just automated checks assessment link as $renderType with feature flag $featureFlagState',
+            ({ featureFlagState, forceAnchor }) => {
                 featureFlagStoreStateStub[FeatureFlags.automatedChecks] = featureFlagState;
 
                 const { expandedTest } = setupAssessmentMocks();
@@ -211,6 +217,7 @@ describe('LeftNavBuilder', () => {
                     expandedTest,
                     onRightPanelContentSwitchMock.object,
                     featureFlagStoreStateStub,
+                    forceAnchor,
                 );
                 expect(testLink).toMatchSnapshot();
                 if (featureFlagState) {

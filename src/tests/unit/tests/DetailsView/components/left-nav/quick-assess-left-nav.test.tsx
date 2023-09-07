@@ -112,6 +112,7 @@ describe(QuickAssessLeftNav.displayName, () => {
                     expandedTest,
                     onRightPanelContentSwitch,
                     {},
+                    true,
                 ),
             )
             .returns(() => automatedChecksLinkStub);
