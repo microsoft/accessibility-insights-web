@@ -1,1 +1,1 @@
-["@typescript-eslint/parser"]
+["@typescript-eslint/parser", "-/stylelint-config-standard-scss"]
