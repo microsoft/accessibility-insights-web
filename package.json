@@ -166,7 +166,7 @@
         "react-router-dom": "^6.15.0",
         "tabbable": "^6.2.0",
         "ua-parser-js": "^1.0.35",
-        "uuid": "^9.0.0",
+        "uuid": "^9.0.1",
         "webextension-polyfill": "^0.10.0"
     },
     "resolutions": {
