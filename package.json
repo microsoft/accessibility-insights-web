@@ -165,7 +165,7 @@
         "react-resize-detector": "^9.1.0",
         "react-router-dom": "^6.15.0",
         "tabbable": "^6.2.0",
-        "ua-parser-js": "^1.0.35",
+        "ua-parser-js": "^1.0.36",
         "uuid": "^9.0.0",
         "webextension-polyfill": "^0.10.0"
     },
