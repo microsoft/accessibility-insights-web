@@ -28,7 +28,6 @@ describe('HamburgerMenuButton', () => {
             deps,
             header: Mock.ofType(LaunchPanelHeader).object,
             popupWindow: Mock.ofType<Window>().object,
-            featureFlagData: {},
         };
 
         it('proper button and menu item props', () => {
@@ -41,22 +40,6 @@ describe('HamburgerMenuButton', () => {
             const testSubject = wrapped.find<IButtonProps>(IconButton).prop('onRenderMenuIcon');
 
             expect(testSubject()).toBeNull();
-        });
-
-        it('does not render quick-assess menu item if feature flag is false', () => {
-            props.featureFlagData = { quickAssess: false };
-            const wrapped = shallow(<HamburgerMenuButton {...props} />);
-            const testSubject = wrapped.find<IButtonProps>(IconButton).prop('menuProps').items;
-
-            expect(testSubject.find(item => item.key === 'quick-assess')).toBeUndefined();
-        });
-
-        it('renders quick-assess menu item if feature flag is true', () => {
-            props.featureFlagData = { quickAssess: true };
-            const wrapped = shallow(<HamburgerMenuButton {...props} />);
-            const testSubject = wrapped.find<IButtonProps>(IconButton).prop('menuProps').items;
-
-            expect(testSubject.find(item => item.key === 'quick-assess')).toBeDefined();
         });
     });
 
@@ -82,7 +65,6 @@ describe('HamburgerMenuButton', () => {
                 },
                 header: headerMock.object,
                 popupWindow: popupWindowMock.object,
-                featureFlagData: { quickAssess: true },
             };
 
             const testObject = shallow(<HamburgerMenuButton {...props} />);

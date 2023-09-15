@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v3.6.0
+    - uses: actions/checkout@v4.0.0
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
@@ -52,7 +52,7 @@ jobs:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v3.6.0
+    - uses: actions/checkout@v4.0.0
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
@@ -85,7 +85,7 @@ jobs:
     steps:
     # This only needs to be present so codecov can use the source tree for some post-processing
     # This job doesn't require that we install dependencies
-    - uses: actions/checkout@v3.6.0
+    - uses: actions/checkout@v4.0.0
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
@@ -111,7 +111,7 @@ jobs:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v3.6.0
+    - uses: actions/checkout@v4.0.0
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
@@ -145,7 +145,7 @@ jobs:
   codeql:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3.6.0
+    - uses: actions/checkout@v4.0.0
       timeout-minutes: 2
 
     - uses: github/codeql-action/init@v2
@@ -167,7 +167,7 @@ jobs:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v3.6.0
+    - uses: actions/checkout@v4.0.0
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
@@ -217,7 +217,7 @@ jobs:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v3.6.0
+    - uses: actions/checkout@v4.0.0
       timeout-minutes: 2
 
     - uses: actions/setup-node@v3
@@ -246,7 +246,7 @@ jobs:
   check-clearly-defined:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3.6.0
+    - uses: actions/checkout@v4.0.0
       timeout-minutes: 2
 
     - name: Check ClearlyDefined for dependabot PR's

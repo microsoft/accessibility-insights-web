@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlags } from 'common/feature-flags';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { DetailsViewPivotType } from '../common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from '../common/types/visualization-type';
@@ -15,7 +13,6 @@ export class LaunchPadRowConfigurationFactory {
         component: PopupView,
         actionMessageCreator: PopupActionMessageCreator,
         handler: PopupViewControllerHandler,
-        featureFlagStoreData: FeatureFlagStoreData,
     ): LaunchPadRowConfiguration[] {
         const fastPassRowConfig = {
             iconName: 'Rocket',
@@ -62,8 +59,6 @@ export class LaunchPadRowConfigurationFactory {
                 ),
         };
 
-        return featureFlagStoreData[FeatureFlags.quickAssess]
-            ? [fastPassRowConfig, quickAssessRowConfig, assessmentRowConfig, adhocRowConfig]
-            : [fastPassRowConfig, assessmentRowConfig, adhocRowConfig];
+        return [fastPassRowConfig, quickAssessRowConfig, assessmentRowConfig, adhocRowConfig];
     }
 }

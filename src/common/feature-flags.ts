@@ -13,7 +13,6 @@ export class FeatureFlags {
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
     public static readonly exportReportOptions = 'exportReportOptions';
-    public static readonly quickAssess = 'quickAssess';
     public static readonly automatedChecks = 'automatedChecks';
 }
 
@@ -96,14 +95,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             defaultValue: false,
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',
-            isPreviewFeature: true,
-            forceDefault: false,
-        },
-        {
-            id: FeatureFlags.quickAssess,
-            defaultValue: false,
-            displayableName: 'Quick Assess',
-            displayableDescription: 'Adds Quick Assess option to launch pad and details view pivot',
             isPreviewFeature: true,
             forceDefault: false,
         },

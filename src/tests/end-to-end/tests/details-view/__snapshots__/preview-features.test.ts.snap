@@ -130,53 +130,6 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
                     Enables exporting reports to external services
                   </div>
                 </div>
-                <div
-                  class="generic-toggle-component--{{CSS_MODULE_HASH}}"
-                >
-                  <div
-                    class="toggle-container--{{CSS_MODULE_HASH}}"
-                  >
-                    <div
-                      class="toggle-name--{{CSS_MODULE_HASH}}"
-                    >
-                      Quick Assess
-                    </div>
-                    <div
-                      class="ms-Toggle is-enabled toggle--{{CSS_MODULE_HASH}} root-000"
-                    >
-                      <div
-                        class="ms-Toggle-innerContainer container-000"
-                      >
-                        <button
-                          aria-checked="false"
-                          aria-label="Quick Assess"
-                          class="ms-Toggle-background pill-000"
-                          data-is-focusable="true"
-                          data-ktp-target="true"
-                          id="quickAssess"
-                          role="switch"
-                          type="button"
-                        >
-                          <span
-                            class="ms-Toggle-thumb thumb-000"
-                          />
-                        </button>
-                        <label
-                          class="ms-Label ms-Toggle-stateText text-000"
-                          for="quickAssess"
-                          id="quickAssess-stateText"
-                        >
-                          Off
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="toggle-description--{{CSS_MODULE_HASH}}"
-                  >
-                    Adds Quick Assess option to launch pad and details view pivot
-                  </div>
-                </div>
               </div>
             </div>
           </div>

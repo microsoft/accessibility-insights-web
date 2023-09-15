@@ -25,6 +25,14 @@ exports[`HamburgerMenuButton renders proper button and menu item props 1`] = `
         },
         {
           "iconProps": {
+            "iconName": "SiteScan",
+          },
+          "key": "quick-assess",
+          "name": "Quick Assess",
+          "onClick": [Function],
+        },
+        {
+          "iconProps": {
             "iconName": "testBeakerSolid",
           },
           "key": "assessment",
