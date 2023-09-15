@@ -71,6 +71,7 @@ export const QuickAssessLeftNav = NamedFC<QuickAssessLeftNavProps>('QuickAssessL
             expandedTest,
             onRightPanelContentSwitch,
             featureFlagStoreData,
+            true,
         ),
     );
 

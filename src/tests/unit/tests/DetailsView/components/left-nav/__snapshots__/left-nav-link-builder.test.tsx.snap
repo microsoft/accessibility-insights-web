@@ -527,7 +527,7 @@ exports[`LeftNavBuilder buildAssessmentTestLinks should build links for assessme
 }
 `;
 
-exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag false 1`] = `
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as button with feature flag false 1`] = `
 {
   "forceAnchor": false,
   "iconProps": {
@@ -595,7 +595,7 @@ exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated ch
 }
 `;
 
-exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag false 2`] = `
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as button with feature flag false 2`] = `
 {
   "forceAnchor": true,
   "iconProps": {
@@ -611,7 +611,7 @@ exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated ch
 }
 `;
 
-exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag false 3`] = `
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as button with feature flag false 3`] = `
 {
   "displayedIndex": "0.1",
   "forceAnchor": true,
@@ -631,7 +631,7 @@ exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated ch
 }
 `;
 
-exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag false 4`] = `
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as button with feature flag false 4`] = `
 {
   "displayedIndex": "0.2",
   "forceAnchor": true,
@@ -651,9 +651,151 @@ exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated ch
 }
 `;
 
-exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link with feature flag true 1`] = `
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as button with feature flag true 1`] = `
 {
   "forceAnchor": false,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "key": "Issues",
+  "name": "some title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 1,
+  "title": "0: some title (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as link with feature flag false 1`] = `
+{
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "isExpanded": true,
+  "key": "Issues",
+  "links": [
+    {
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 0,
+      "key": "Issues: getting-started",
+      "name": "Getting started",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "testType": 1,
+      "url": "",
+    },
+    {
+      "displayedIndex": "0.1",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 1,
+      "key": "Issues: requirement-key-1",
+      "name": "requirement-name-1",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-1",
+      "status": -2,
+      "testType": 1,
+      "title": "0.1: requirement-name-1 (passed)",
+      "url": "",
+    },
+    {
+      "displayedIndex": "0.2",
+      "forceAnchor": true,
+      "iconProps": {
+        "className": "hidden",
+      },
+      "index": 2,
+      "key": "Issues: requirement-key-2",
+      "name": "requirement-name-2",
+      "onClickNavLink": [Function],
+      "onRenderNavLink": [Function],
+      "requirementKey": "requirement-key-2",
+      "status": -2,
+      "testType": 1,
+      "title": "0.2: requirement-name-2 (passed)",
+      "url": "",
+    },
+  ],
+  "name": "some title",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "status": -2,
+  "testType": 1,
+  "title": "0: some title (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as link with feature flag false 2`] = `
+{
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 0,
+  "key": "Issues: getting-started",
+  "name": "Getting started",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "testType": 1,
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as link with feature flag false 3`] = `
+{
+  "displayedIndex": "0.1",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 1,
+  "key": "Issues: requirement-key-1",
+  "name": "requirement-name-1",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-1",
+  "status": -2,
+  "testType": 1,
+  "title": "0.1: requirement-name-1 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as link with feature flag false 4`] = `
+{
+  "displayedIndex": "0.2",
+  "forceAnchor": true,
+  "iconProps": {
+    "className": "hidden",
+  },
+  "index": 2,
+  "key": "Issues: requirement-key-2",
+  "name": "requirement-name-2",
+  "onClickNavLink": [Function],
+  "onRenderNavLink": [Function],
+  "requirementKey": "requirement-key-2",
+  "status": -2,
+  "testType": 1,
+  "title": "0.2: requirement-name-2 (passed)",
+  "url": "",
+}
+`;
+
+exports[`LeftNavBuilder buildAutomatedChecksLinks should build just automated checks assessment link as link with feature flag true 1`] = `
+{
+  "forceAnchor": true,
   "iconProps": {
     "className": "hidden",
   },

@@ -112,6 +112,7 @@ export class LeftNavLinkBuilder {
         expandedTest: VisualizationType | undefined,
         onRightPanelContentSwitch: () => void,
         featureFlagStoreData: FeatureFlagStoreData,
+        forceAnchor: boolean = false,
     ): BaseLeftNavLink {
         const assessment = assessmentsProvider.forKey('automated-checks')!;
 
@@ -122,6 +123,7 @@ export class LeftNavLinkBuilder {
                   assessment,
                   startingIndex,
                   assessmentsData,
+                  forceAnchor,
               )
             : this.buildCollapsibleAssessmentLink(
                   deps,
@@ -130,6 +132,7 @@ export class LeftNavLinkBuilder {
                   assessmentsData,
                   isExpanded,
                   onRightPanelContentSwitch,
+                  forceAnchor,
               );
 
         return test;
@@ -180,6 +183,7 @@ export class LeftNavLinkBuilder {
         expandedTest: VisualizationType | undefined,
         onRightPanelContentSwitch: () => void,
         featureFlagStoreData: FeatureFlagStoreData,
+        forceAnchor: boolean = false,
     ): BaseLeftNavLink[] {
         const assessments = assessmentsProvider.all();
         let index = startingIndex;
@@ -197,6 +201,7 @@ export class LeftNavLinkBuilder {
                 assessmentsData,
                 isExpanded,
                 onRightPanelContentSwitch,
+                forceAnchor,
             );
             index++;
             return test;
@@ -210,6 +215,7 @@ export class LeftNavLinkBuilder {
         assessment: Assessment,
         index: number,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
+        forceAnchor: boolean = false,
     ): AssessmentLeftNavLink => {
         const {
             getStatusForTest,
@@ -239,7 +245,7 @@ export class LeftNavLinkBuilder {
             status,
             title: `${index}: ${name} (${narratorTestStatus})`,
             testType: assessment.visualizationType,
-            forceAnchor: false,
+            forceAnchor,
         };
 
         return testLink;
@@ -252,6 +258,7 @@ export class LeftNavLinkBuilder {
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         isExpanded: boolean,
         onRightPanelContentSwitch: () => void,
+        forceAnchor: boolean = false,
     ): AssessmentLeftNavLink => {
         const {
             getStatusForTest,
@@ -308,7 +315,7 @@ export class LeftNavLinkBuilder {
             links: [gettingStartedLink, ...requirementLinks],
             isExpanded: isExpanded,
             testType: assessment.visualizationType,
-            forceAnchor: false,
+            forceAnchor,
         };
 
         return testLink;
