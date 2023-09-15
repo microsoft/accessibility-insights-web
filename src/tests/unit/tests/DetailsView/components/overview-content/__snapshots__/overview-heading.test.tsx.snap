@@ -9,26 +9,8 @@ exports[`OverviewHeading match snapshot 1`] = `
     <h1>
       Overview
     </h1>
-    <div
-      className="overviewHeadingContent"
-    >
-      This is an intro!
-      <ul>
-        <li>
-          Automated
-        </li>
-        <li>
-          Assisted
-        </li>
-        <li>
-          Manual
-        </li>
-      </ul>
-      Where possible, 
-      Accessibility Insights for Web
-       "assists" the test process by generating a list of instances to evaluate and highlighting them on the screen. 
-      Accessibility Insights for Web
-       also allows you to manually record failure instances.
+    <div>
+      INTRO COMPONENT
     </div>
   </div>
 </React.Fragment>

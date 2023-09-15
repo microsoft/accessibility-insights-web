@@ -14,6 +14,7 @@ describe('OverviewHelpSection', () => {
         const props: OverviewHelpSectionProps = {
             linkDataSource: [] as HyperlinkDefinition[],
             deps: {} as OverviewHelpSectionDeps,
+            getAboutComponent: () => <div>ABOUT OVERVIEW</div>,
         };
         const wrapper = shallow(<OverviewHelpSection {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();

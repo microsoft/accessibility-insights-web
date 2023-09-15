@@ -80,7 +80,14 @@ describe('OverviewContainer', () => {
         mock(filteredProvider, assessmentStoreData, quickAssessRequirementKeysStub),
     );
 
-    const overviewHeadingIntroTextStub = 'Test intro overview text:';
+    const getOverviewHeadingIntroMock = Mock.ofInstance(
+        () => <div>OVERVIEW HEADING INTRO</div>,
+        MockBehavior.Strict,
+    );
+    const getOverviewHelpSectionAboutMock = Mock.ofInstance(
+        () => <div>OVERVIEW HELP SECTION ABOUT</div>,
+        MockBehavior.Strict,
+    );
 
     const linkDataSourceStub = [
         {
@@ -107,8 +114,9 @@ describe('OverviewContainer', () => {
             assessmentStoreData={assessmentStoreData}
             featureFlagStoreData={featureFlagDataStub}
             tabStoreData={tabStoreDataStub}
-            overviewHeadingIntroText={overviewHeadingIntroTextStub}
             linkDataSource={linkDataSourceStub}
+            getOverviewHeadingIntro={getOverviewHeadingIntroMock.object}
+            getOverviewHelpSectionAbout={getOverviewHelpSectionAboutMock.object}
         />
     );
     const wrapper = shallow(component);

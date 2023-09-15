@@ -34,7 +34,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
     className="overviewTextSummarySection"
   >
     <OverviewHeading
-      introText="Test intro overview text:"
+      getIntroComponent={[Function]}
     />
     <AssessmentReportSummary />
   </section>
@@ -57,6 +57,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
           "urlParser": {},
         }
       }
+      getAboutComponent={[Function]}
       linkDataSource={
         [
           {
