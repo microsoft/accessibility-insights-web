@@ -91,7 +91,7 @@
         "@types/react-router-dom": "^5.3.3",
         "@types/serve-static": "^1.15.2",
         "@types/ua-parser-js": "^0.7.37",
-        "@types/uuid": "^9.0.3",
+        "@types/uuid": "^9.0.4",
         "@types/webextension-polyfill": "^0.10.2",
         "@typescript-eslint/eslint-plugin": "^5.61.0",
         "@typescript-eslint/parser": "^6.7.0",
@@ -166,7 +166,7 @@
         "react-router-dom": "^6.16.0",
         "tabbable": "^6.2.0",
         "ua-parser-js": "^1.0.36",
-        "uuid": "^9.0.0",
+        "uuid": "^9.0.1",
         "webextension-polyfill": "^0.10.0"
     },
     "resolutions": {
