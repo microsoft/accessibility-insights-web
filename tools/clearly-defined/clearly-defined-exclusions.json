@@ -1,1 +1,7 @@
-["@swc/core", "@typescript-eslint/parser", "-/core-js-bundle", "-/stylelint-config-standard-scss"]
+[
+    "@swc/core",
+    "@typescript-eslint/parser",
+    "-/core-js-bundle",
+    "-/jest-environment-jsdom",
+    "-/stylelint-config-standard-scss"
+]
