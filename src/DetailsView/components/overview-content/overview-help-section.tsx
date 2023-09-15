@@ -3,10 +3,10 @@
 
 import { NamedFC } from 'common/react/named-fc';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { OverviewHelpSectionAboutFactory } from 'DetailsView/components/overview-content/overview-help-section-about';
 import * as React from 'react';
 import { HelpLinks, HelpLinksDeps } from '../help-links';
 import styles from './overview-help-section.scss';
-import { OverviewHelpSectionAboutFactory } from 'DetailsView/components/overview-content/overview-help-section-about';
 
 export type OverviewHelpSectionDeps = HelpLinksDeps;
 

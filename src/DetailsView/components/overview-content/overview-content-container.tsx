@@ -10,6 +10,8 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { GetSelectedAssessmentSummaryModelFromProviderAndStoreData } from 'DetailsView/components/left-nav/get-selected-assessment-summary-model';
 import { OverviewHeading } from 'DetailsView/components/overview-content/overview-heading';
+import { OverviewHeadingIntroFactory } from 'DetailsView/components/overview-content/overview-heading-intro';
+import { OverviewHelpSectionAboutFactory } from 'DetailsView/components/overview-content/overview-help-section-about';
 import * as React from 'react';
 
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
@@ -18,8 +20,6 @@ import { AssessmentReportSummary } from 'reports/components/assessment-report-su
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import styles from './overview-content-container.scss';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
-import { OverviewHelpSectionAboutFactory } from 'DetailsView/components/overview-content/overview-help-section-about';
-import { OverviewHeadingIntroFactory } from 'DetailsView/components/overview-content/overview-heading-intro';
 
 export type OverviewContainerDeps = {
     getProvider: () => AssessmentsProvider;

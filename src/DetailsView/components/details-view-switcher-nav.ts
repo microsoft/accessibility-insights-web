@@ -48,6 +48,10 @@ import {
     OverviewHeadingIntroFactory,
     getOverviewHeadingIntroForAssessment,
 } from 'DetailsView/components/overview-content/overview-heading-intro';
+import {
+    OverviewHelpSectionAboutFactory,
+    getOverviewHelpSectionAboutForQuickAssess,
+} from 'DetailsView/components/overview-content/overview-help-section-about';
 import { QuickAssessCommandBar } from 'DetailsView/components/quick-assess-command-bar';
 import {
     getReportExportDialogForAssessment,
@@ -101,10 +105,6 @@ import {
     getQuickAssessSelectedDetailsView,
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
-import {
-    OverviewHelpSectionAboutFactory,
-    getOverviewHelpSectionAboutForQuickAssess,
-} from 'DetailsView/components/overview-content/overview-help-section-about';
 
 export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & QuickAssessLeftNavDeps;
 export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps & QuickAssessLeftNavProps;
