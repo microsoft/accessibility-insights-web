@@ -11,11 +11,9 @@ const main = async () => {
     validateCommandLineArguments(params);
 
     const gitLogs = await getGitLogs(params.from, params.to);
-    const outputContent =
-        params.kind === 'csv'
-            ? generateOutputContent(gitLogs, params.to)
-            : generateTextContent(gitLogs);
-    console.log(outputContent);
+
+    const outputContent = generateOutputContent(gitLogs, params.to);
+
     ensureOutputFileExist(params.output);
 
     fs.writeFileSync(params.output, outputContent);
@@ -64,42 +62,11 @@ const makePrLink = pr => {
         return pr;
     }
 
-    return `=HYPERLINK("${makePrURL(pr)}", "#${pr}")`;
-};
-
-const makePrURL = pr => {
-    return `https://github.com/microsoft/accessibility-insights-web/pull/${pr}`;
+    return `=HYPERLINK("https://github.com/microsoft/accessibility-insights-web/pull/${pr}", "#${pr}")`;
 };
 
 const makeCommitLink = commit => {
-    return `=HYPERLINK("${makeCommitURL(commit)}", "${commit}")`;
-};
-
-const makeCommitURL = commit => {
-    return `https://github.com/microsoft/accessibility-insights-web/commit/${commit}`;
-};
-
-const generateTextContent = gitLogs => {
-    let outputText = '';
-    gitLogs.all
-        .map(log => {
-            return {
-                dev: log.author_name,
-                pr: makePrURL(extractPrNumber(log.message)),
-                change: log.message,
-                group: getCommitType(log.message),
-            };
-        })
-        .filter(log => {
-            return (
-                !['chore(deps-dev)'].includes(log.group) && !['dependabot[bot]'].includes(log.dev)
-            );
-        })
-        .sort((a, b) => a.group - b.group)
-        .forEach(log => {
-            outputText += `[tester]\n\tdev: ${log.dev}\n\tpr: ${log.pr}\n\tgroup: ${log.group}\n\tchange: ${log.change}\n`;
-        });
-    return outputText;
+    return `=HYPERLINK("https://github.com/microsoft/accessibility-insights-web/commit/${commit}", "${commit}")`;
 };
 
 const generateOutputContent = (gitLogs, version) => {
@@ -140,11 +107,6 @@ const parseCommandLineArguments = () => {
             '-o, --output <output_path>',
             'Path to the output file. Default: change-log.<from>-<to>.csv',
         )
-        .option(
-            '-k, --kind <csv or txt>',
-            'Type of desired output, csv or txt. Default: csv',
-            'csv',
-        )
         .parse(process.argv);
 
     return program.opts();
@@ -152,6 +114,7 @@ const parseCommandLineArguments = () => {
 
 const validateCommandLineArguments = program => {
     const errors = [];
+
     if (!program.from) {
         errors.push('Missing param: from');
     }
@@ -160,12 +123,8 @@ const validateCommandLineArguments = program => {
         errors.push('Missing param: to');
     }
 
-    if (!program.kind) {
-        program.kind = 'csv';
-    }
-
     if (!program.output) {
-        program.output = `change-log.${program.from}-${program.to}.${program.kind}`;
+        program.output = `change-log.${program.from}-${program.to}.csv`;
     }
 
     if (errors.length !== 0) {
