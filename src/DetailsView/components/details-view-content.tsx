@@ -198,9 +198,11 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
 
         const assessmentInstanceTableHandler = props.deps.getAssessmentInstanceTableHandler();
 
-        const overviewHeadingIntroText =
-            selectedDetailsViewSwitcherNavConfiguration.overviewHeadingIntroText;
+        const getOverviewHeadingIntro =
+            selectedDetailsViewSwitcherNavConfiguration.getOverviewHeadingIntro;
         const linkDataSource = selectedDetailsViewSwitcherNavConfiguration.linkDataSource;
+        const getOverviewHelpSectionAbout =
+            selectedDetailsViewSwitcherNavConfiguration.getOverviewHelpSectionAbout;
 
         return (
             <DetailsViewBody
@@ -235,9 +237,10 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 setSideNavOpen={props.setSideNavOpen}
                 narrowModeStatus={props.narrowModeStatus}
                 tabStopRequirementData={tabStopRequirementData}
-                overviewHeadingIntroText={overviewHeadingIntroText}
+                getOverviewHeadingIntro={getOverviewHeadingIntro}
                 linkDataSource={linkDataSource}
                 testViewContainerProvider={props.deps.testViewContainerProvider}
+                getOverviewHelpSectionAbout={getOverviewHelpSectionAbout}
             />
         );
     };

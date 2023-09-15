@@ -18,6 +18,8 @@ import { AssessmentReportSummary } from 'reports/components/assessment-report-su
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import styles from './overview-content-container.scss';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
+import { OverviewHelpSectionAboutFactory } from 'DetailsView/components/overview-content/overview-help-section-about';
+import { OverviewHeadingIntroFactory } from 'DetailsView/components/overview-content/overview-heading-intro';
 
 export type OverviewContainerDeps = {
     getProvider: () => AssessmentsProvider;
@@ -36,8 +38,9 @@ export interface OverviewContainerProps {
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    overviewHeadingIntroText: string;
+    getOverviewHeadingIntro: OverviewHeadingIntroFactory;
     linkDataSource: HyperlinkDefinition[];
+    getOverviewHelpSectionAbout: OverviewHelpSectionAboutFactory;
 }
 
 export const overviewContainerAutomationId = 'overviewContainerAutomationId';
@@ -48,8 +51,9 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         assessmentStoreData,
         tabStoreData,
         featureFlagStoreData,
-        overviewHeadingIntroText,
+        getOverviewHeadingIntro,
         linkDataSource,
+        getOverviewHelpSectionAbout,
     } = props;
     const {
         getProvider,
@@ -81,11 +85,15 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         <div data-automation-id={overviewContainerAutomationId} className={styles.overview}>
             <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
             <section className={styles.overviewTextSummarySection}>
-                <OverviewHeading introText={overviewHeadingIntroText} />
+                <OverviewHeading getIntroComponent={getOverviewHeadingIntro} />
                 <AssessmentReportSummary summary={summaryData} />
             </section>
             <section className={styles.overviewHelpSection}>
-                <OverviewHelpSection linkDataSource={linkDataSource} deps={deps} />
+                <OverviewHelpSection
+                    getAboutComponent={getOverviewHelpSectionAbout}
+                    linkDataSource={linkDataSource}
+                    deps={deps}
+                />
             </section>
         </div>
     );

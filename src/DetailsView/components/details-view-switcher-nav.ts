@@ -45,9 +45,9 @@ import {
     getNullLoadButton,
 } from 'DetailsView/components/load-assessment-button-factory';
 import {
-    overviewHeadingIntroTextForAssessment,
-    overviewHeadingIntroTextForQuickAssess,
-} from 'DetailsView/components/overview-content/overview-heading-intro-text';
+    OverviewHeadingIntroFactory,
+    getOverviewHeadingIntroForAssessment,
+} from 'DetailsView/components/overview-content/overview-heading-intro';
 import { QuickAssessCommandBar } from 'DetailsView/components/quick-assess-command-bar';
 import {
     getReportExportDialogForAssessment,
@@ -101,6 +101,10 @@ import {
     getQuickAssessSelectedDetailsView,
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
+import {
+    OverviewHelpSectionAboutFactory,
+    getOverviewHelpSectionAboutForQuickAssess,
+} from 'DetailsView/components/overview-content/overview-help-section-about';
 
 export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps & QuickAssessLeftNavDeps;
 export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps & QuickAssessLeftNavProps;
@@ -126,8 +130,9 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     getSelectedAssessmentStoreData: GetSelectedAssessmentStoreData;
     getSelectedAssessmentCardSelectionStoreData: GetSelectedAssessmentCardSelectionStoreData;
     getRequirementViewComponentConfiguration: GetRequirementViewComponentConfiguration;
-    overviewHeadingIntroText: string | null;
+    getOverviewHeadingIntro: OverviewHeadingIntroFactory;
     linkDataSource: HyperlinkDefinition[] | null;
+    getOverviewHelpSectionAbout: OverviewHelpSectionAboutFactory;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Omit<
@@ -161,8 +166,9 @@ const detailsViewSwitcherNavs: {
         getSelectedAssessmentCardSelectionStoreData: getAssessmentCardSelectionStoreData,
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForAssessment,
-        overviewHeadingIntroText: overviewHeadingIntroTextForAssessment,
+        getOverviewHeadingIntro: getOverviewHeadingIntroForAssessment,
         linkDataSource: assessmentLinkDataSource,
+        getOverviewHelpSectionAbout: getNullComponent,
     },
     [DetailsViewPivotType.quickAssess]: {
         CommandBar: QuickAssessCommandBar,
@@ -182,8 +188,9 @@ const detailsViewSwitcherNavs: {
         shouldShowQuickAssessRequirementView: true,
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForQuickAssess,
-        overviewHeadingIntroText: overviewHeadingIntroTextForQuickAssess,
+        getOverviewHeadingIntro: getNullComponent,
         linkDataSource: quickAssessLinkDataSource,
+        getOverviewHelpSectionAbout: getOverviewHelpSectionAboutForQuickAssess,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -200,11 +207,12 @@ const detailsViewSwitcherNavs: {
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getAssessmentObjects(),
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForFastPass,
-        overviewHeadingIntroText: null,
+        getOverviewHeadingIntro: getNullComponent,
         // Getting assessmentStoreData and assessmentCardSelectionStoreData is default behavior
         getSelectedAssessmentStoreData: getAssessmentStoreData,
         getSelectedAssessmentCardSelectionStoreData: getAssessmentCardSelectionStoreData,
         linkDataSource: null,
+        getOverviewHelpSectionAbout: getNullComponent,
     },
 };
 
