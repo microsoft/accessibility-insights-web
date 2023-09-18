@@ -4,8 +4,10 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import * as React from 'react';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
+import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
 import {
     FastPassReportHtmlGenerator,
     FastPassReportModel,
@@ -82,6 +84,8 @@ describe('ReportGenerator', () => {
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
         const assessmentDescription = 'generateAssessmentHtml-description';
+        const TITLE = 'Assessment report';
+        const bodyHeader = React.createElement(AssessmentReportBodyHeader, {}, null);
 
         assessmentReportHtmlGeneratorMock
             .setup(builder =>
@@ -91,6 +95,8 @@ describe('ReportGenerator', () => {
                     featureFlagStoreDataStub,
                     targetPage,
                     assessmentDescription,
+                    TITLE,
+                    bodyHeader,
                 ),
             )
             .returns(() => 'generated-assessment-html')
@@ -102,6 +108,8 @@ describe('ReportGenerator', () => {
             featureFlagStoreDataStub,
             targetPage,
             assessmentDescription,
+            TITLE,
+            bodyHeader,
         );
 
         const expected = 'generated-assessment-html';

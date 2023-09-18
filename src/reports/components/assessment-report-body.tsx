@@ -8,7 +8,6 @@ import {
     AssessmentReportAssessmentList,
     AssessmentReportAssessmentListDeps,
 } from './assessment-report-assessment-list';
-import { AssessmentReportBodyHeader } from './assessment-report-body-header';
 import { AssessmentReportSummary } from './assessment-report-summary';
 import { AssessmentScanDetails, AssessmentScanDetailsDeps } from './assessment-scan-details';
 import { OutcomeChip } from './outcome-chip';
@@ -19,6 +18,7 @@ export type AssessmentReportBodyDeps = AssessmentReportAssessmentListDeps &
 
 export interface AssessmentReportBodyProps {
     deps: AssessmentReportBodyDeps;
+    bodyHeader: JSX.Element;
     data: ReportModel;
     description: string;
 }
@@ -27,7 +27,7 @@ export class AssessmentReportBody extends React.Component<AssessmentReportBodyPr
     public render(): JSX.Element {
         return (
             <div className="assessment-report-body" role="main">
-                <AssessmentReportBodyHeader />
+                {this.props.bodyHeader}
                 <AssessmentReportSummary summary={this.props.data.summary} />
                 <AssessmentScanDetails
                     deps={this.props.deps}

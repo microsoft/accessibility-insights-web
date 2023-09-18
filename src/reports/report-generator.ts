@@ -28,6 +28,8 @@ export class ReportGenerator {
         featureFlagStoreData: FeatureFlagStoreData,
         targetAppInfo: TargetAppData,
         description: string,
+        title: string,
+        bodyHeader: JSX.Element,
     ): string {
         return this.assessmentReportHtmlGenerator.generateHtml(
             assessmentStoreData,
@@ -35,6 +37,8 @@ export class ReportGenerator {
             featureFlagStoreData,
             targetAppInfo,
             description,
+            title,
+            bodyHeader,
         );
     }
 

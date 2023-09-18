@@ -14,6 +14,7 @@ import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-bu
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
 import * as reportStyles from 'reports/assessment-report.styles';
 import { AssessmentReport } from 'reports/components/assessment-report';
+import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { It, Mock, MockBehavior } from 'typemoq';
 
@@ -42,13 +43,15 @@ describe('AssessmentReportHtmlGenerator', () => {
 
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
         const model: ReportModel = { stub: 'model' } as any;
+        const TITLE = 'Assessment report';
+        const bodyHeader = <AssessmentReportBodyHeader />;
 
         // tslint:disable: react-no-dangerous-html
         const expectedComponent = (
             <React.Fragment>
                 <head>
                     <meta charSet="UTF-8" />
-                    <title>Assessment report</title>
+                    <title>{TITLE}</title>
                     <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
                     <style dangerouslySetInnerHTML={{ __html: detailsViewBundledCSS.styleSheet }} />
                 </head>
@@ -56,6 +59,7 @@ describe('AssessmentReportHtmlGenerator', () => {
                     <AssessmentReport
                         deps={deps}
                         data={model}
+                        bodyHeader={bodyHeader}
                         description={description}
                         extensionVersion="ProductVersion"
                         axeVersion="axeVersion"
@@ -108,6 +112,8 @@ describe('AssessmentReportHtmlGenerator', () => {
             featureFlagStoreData,
             targetAppInfo,
             description,
+            TITLE,
+            bodyHeader,
         );
 
         expect(actualHtml).toEqual(expectedHtml);

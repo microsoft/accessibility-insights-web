@@ -12,6 +12,7 @@ exports[`AssessmentReport render 1`] = `
     }
   />
   <AssessmentReportBody
+    bodyHeader={<AssessmentReportBodyHeader />}
     data={
       {
         "failedDetailsData": [

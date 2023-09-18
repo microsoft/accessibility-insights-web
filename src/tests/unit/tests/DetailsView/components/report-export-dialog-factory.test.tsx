@@ -24,7 +24,9 @@ import {
     ShouldShowReportExportButton,
     ShouldShowReportExportButtonProps,
 } from 'DetailsView/components/should-show-report-export-button';
+import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
+import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -131,6 +133,9 @@ describe('ReportExportDialogFactory', () => {
     }
 
     function setAssessmentReportGenerator(): void {
+        const TITLE = 'Assessment report';
+        const bodyHeader = <AssessmentReportBodyHeader />;
+
         reportGeneratorMock
             .setup(reportGenerator =>
                 reportGenerator.generateAssessmentHtmlReport(
@@ -139,6 +144,8 @@ describe('ReportExportDialogFactory', () => {
                     featureFlagStoreData,
                     targetAppInfo,
                     theDescription,
+                    TITLE,
+                    bodyHeader,
                 ),
             )
             .returns(() => theGeneratorOutput)

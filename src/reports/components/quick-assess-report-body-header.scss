@@ -1,0 +1,25 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+@import '../../common/styles/fonts.scss';
+
+.quick-assess-report-body-header {
+    margin-bottom: 21px;
+
+    h1 {
+        font-size: 28px;
+        margin-top: 0;
+        margin-bottom: 24px;
+        font-weight: $font-weight-semi-bold;
+        line-height: 40px;
+        letter-spacing: -1;
+    }
+
+    p {
+        font-size: 14px;
+        color: $secondary-text;
+        font-family: $font-family;
+        margin: 0;
+        line-height: 20px;
+    }
+}

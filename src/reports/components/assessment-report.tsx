@@ -11,6 +11,7 @@ export type AssessmentReportDeps = AssessmentReportBodyDeps;
 
 export interface AssessmentReportProps {
     deps: AssessmentReportDeps;
+    bodyHeader: JSX.Element;
     data: ReportModel;
     description: string;
     extensionVersion: string;
@@ -30,6 +31,7 @@ export class AssessmentReport extends React.Component<AssessmentReportProps> {
                 <HeaderSection targetAppInfo={targetAppInfo} headerText={productName} />
                 <AssessmentReportBody
                     deps={this.props.deps}
+                    bodyHeader={this.props.bodyHeader}
                     data={this.props.data}
                     description={this.props.description}
                 />
