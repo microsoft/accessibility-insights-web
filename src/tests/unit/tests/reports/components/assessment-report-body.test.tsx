@@ -7,6 +7,7 @@ import {
     AssessmentReportBodyDeps,
     AssessmentReportBodyProps,
 } from 'reports/components/assessment-report-body';
+import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
 describe('AssessmentReportBody', () => {
@@ -17,10 +18,13 @@ describe('AssessmentReportBody', () => {
             } as any,
         } as AssessmentReportBodyDeps;
 
+        const bodyHeader = <AssessmentReportBodyHeader />;
+
         const props: AssessmentReportBodyProps = {
             deps: deps,
             data: AssessmentReportBuilderTestHelper.getAssessmentReportModel(),
             description: 'test-description',
+            bodyHeader: bodyHeader,
         };
 
         const wrapper = shallow(<AssessmentReportBody {...props} />);

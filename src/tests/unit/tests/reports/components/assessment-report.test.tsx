@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { AssessmentReport, AssessmentReportDeps } from 'reports/components/assessment-report';
+import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
 describe('AssessmentReport', () => {
@@ -16,10 +17,13 @@ describe('AssessmentReport', () => {
 
         const data = AssessmentReportBuilderTestHelper.getAssessmentReportModel();
 
+        const bodyHeader = <AssessmentReportBodyHeader />;
+
         const wrapper = shallow(
             <AssessmentReport
                 deps={deps}
                 data={data}
+                bodyHeader={bodyHeader}
                 description="test string"
                 extensionVersion="ProductVersion"
                 axeVersion="axeVersion"
