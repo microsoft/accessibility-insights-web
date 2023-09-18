@@ -13,5 +13,8 @@ exports[`OverviewHelpSection help text is shown properly 1`] = `
     deps={{}}
     linkInformation={[]}
   />
+  <div>
+    ABOUT OVERVIEW
+  </div>
 </section>
 `;
