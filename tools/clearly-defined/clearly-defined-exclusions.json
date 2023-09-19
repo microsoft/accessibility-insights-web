@@ -1,6 +1,7 @@
 [
     "@swc/core",
     "@types/chrome",
+    "@types/jest",
     "@typescript-eslint/parser",
     "-/core-js-bundle",
     "-/esbuild",
