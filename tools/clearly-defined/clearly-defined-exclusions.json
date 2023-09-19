@@ -6,5 +6,6 @@
     "-/core-js-bundle",
     "-/esbuild",
     "-/jest-environment-jsdom",
+    "-/postcss",
     "-/stylelint-config-standard-scss"
 ]
