@@ -4,5 +4,6 @@
     "@typescript-eslint/parser",
     "-/core-js-bundle",
     "-/jest-environment-jsdom",
+    "-/postcss",
     "-/stylelint-config-standard-scss"
 ]
