@@ -2,6 +2,7 @@
     "@swc/core",
     "@types/chrome",
     "@types/jest",
+    "@types/jsdom",
     "@typescript-eslint/parser",
     "-/core-js-bundle",
     "-/esbuild",
