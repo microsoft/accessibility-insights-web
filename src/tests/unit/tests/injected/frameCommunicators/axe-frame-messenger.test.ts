@@ -341,11 +341,7 @@ describe(AxeFrameMessenger, () => {
                 noopReplyHandler,
             );
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "AxeFrameMessenger does not support replies-to-replies, but a topicHandler provided a replyHandler in a response callback.",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             mockReplyHandler.verify(m => m(It.isAny(), It.isAny(), It.isAny()), Times.never());
             expect(postReturn).toBe(true);
         });
