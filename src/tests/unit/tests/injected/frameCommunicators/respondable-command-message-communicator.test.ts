@@ -408,11 +408,7 @@ describe('RespondableCommandMessageCommunicator', () => {
                     targetWindow,
                 );
 
-                expect(recordingLogger.errorMessages).toMatchInlineSnapshot(`
-                    [
-                      "Received a response for command command1 after it timed out",
-                    ]
-                `);
+                expect(recordingLogger.errorMessages).toMatchSnapshot();
             });
         });
 
