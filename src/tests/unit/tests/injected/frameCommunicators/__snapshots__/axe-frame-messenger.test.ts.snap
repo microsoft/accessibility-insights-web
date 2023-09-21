@@ -12,6 +12,12 @@ exports[`AxeFrameMessenger post/open communication does not invoke closed topic 
 ]
 `;
 
+exports[`AxeFrameMessenger post/open communication logs an error and continues if a replyHandler attempts to reply to a reply 1`] = `
+[
+  "AxeFrameMessenger does not support replies-to-replies, but a post replyHandler invoked a responder.",
+]
+`;
+
 exports[`AxeFrameMessenger post/open communication logs an error and noops if a replyHandler throws 1`] = `
 [
   "An axe-core error occurred while processing a result from a child frame.",

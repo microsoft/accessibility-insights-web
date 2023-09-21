@@ -323,11 +323,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "AxeFrameMessenger does not support replies-to-replies, but a post replyHandler invoked a responder.",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             expect(postReturn).toBe(true);
         });
 
