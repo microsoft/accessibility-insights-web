@@ -68,9 +68,7 @@ describe(SingleFrameMessenger, () => {
                 payload: 'irrelevant',
             });
 
-            await expect(sendPromise).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"target window unreachable (LinkedRespondableCommunicator not linked to it)"`,
-            );
+            await expect(sendPromise).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it("rejects with a descriptive error if the target's sandbox attribute disallows scripts", async () => {
