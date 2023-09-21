@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`BackgroundBrowserEventManager does not allow ApplicationListener added for an event that does not have a browser listener 1`] = `"No browser listener was pre-registered for event-type"`;
+
 exports[`BackgroundBrowserEventManager does not allow multiple registrations for the same event type 1`] = `"Listener already registered for event-type"`;
 
 exports[`BackgroundBrowserEventManager logs an error and propagates sync value-returning ApplicationListeners 1`] = `"Unexpected sync ApplicationListener for browser event-type event: "`;

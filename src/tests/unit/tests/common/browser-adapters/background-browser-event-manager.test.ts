@@ -278,9 +278,7 @@ describe(BackgroundBrowserEventManager, () => {
                 testEvent,
                 async () => 'app listener result',
             );
-        }).toThrowErrorMatchingInlineSnapshot(
-            `"No browser listener was pre-registered for event-type"`,
-        );
+        }).toThrowErrorMatchingSnapshot();
     });
 
     describe('removeListener', () => {
