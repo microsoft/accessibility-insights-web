@@ -299,11 +299,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Received unexpected axe-core message from a non-parent window",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             mockTopicHandler.verify(m => m(It.isAny(), It.isAny()), Times.never());
             mockReplyHandler.verify(m => m(It.isAny(), It.isAny(), It.isAny()), Times.never());
             expect(postReturn).toBe(true);

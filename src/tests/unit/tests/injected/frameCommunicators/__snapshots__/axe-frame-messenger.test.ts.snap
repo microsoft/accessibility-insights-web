@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AxeFrameMessenger post/open communication does not accept messages that originate from non-parent windows 1`] = `
+[
+  "Received unexpected axe-core message from a non-parent window",
+]
+`;
+
 exports[`AxeFrameMessenger post/open communication does not invoke closed topic handlers 1`] = `
 [
   "Error while attempting to send axe-core frameMessenger message: target window reachable, but is not listening for command axe.frameMessenger.post",
