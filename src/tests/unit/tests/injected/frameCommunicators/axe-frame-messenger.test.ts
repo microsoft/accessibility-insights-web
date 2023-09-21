@@ -251,9 +251,7 @@ describe(AxeFrameMessenger, () => {
             mockReplyHandler
                 .setup(m => m(It.isAnyObject(Error), false, It.isAny()))
                 .callback(receivedError => {
-                    expect(receivedError.message).toMatchInlineSnapshot(
-                        `"An axe-core error occurred in a child frame."`,
-                    );
+                    expect(receivedError.message).toMatchSnapshot();
                 });
 
             childMessenger.open(topicHandler);
