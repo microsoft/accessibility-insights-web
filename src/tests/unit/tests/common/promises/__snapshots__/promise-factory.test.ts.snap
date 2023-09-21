@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`promiseFactory timeout rejects with the pinned error message on timeout 1`] = `"Timed out after 1ms"`;
