@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackgroundBrowserEventManager times out if no ApplicationListener registers in time 1`] = `
+[
+  "Error while processing browser event-type event: ",
+  "[deferred browser event: {"eventType":"event-type","eventArgs":[]}]",
+]
+`;

@@ -150,14 +150,11 @@ describe(BackgroundBrowserEventManager, () => {
 
         expect(timeSimulatingPromiseFactory.elapsedTime).toBe(60000);
         expect(recordingLogger.errorRecords).toHaveLength(1);
-        expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
-            `"Error while processing browser event-type event: "`,
-        );
         const loggedError = recordingLogger.errorRecords[0].optionalParams[0];
         expect(loggedError).toBeInstanceOf(TimeoutError);
-        expect(loggedError.context).toMatchInlineSnapshot(
-            `"[deferred browser event: {"eventType":"event-type","eventArgs":[]}]"`,
-        );
+
+        const snapshot = [recordingLogger.errorRecords[0].message, loggedError.context];
+        expect(snapshot).toMatchSnapshot();
 
         let appListenerFired = false;
         testSubject.addApplicationListener('event-type', testEvent, () => {
