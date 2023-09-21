@@ -268,7 +268,7 @@ describe(BackgroundBrowserEventManager, () => {
 
         expect(() => {
             testSubject.addApplicationListener('event-type', testEvent, () => {});
-        }).toThrowErrorMatchingInlineSnapshot(`"Listener already registered for event-type"`);
+        }).toThrowErrorMatchingSnapshot();
     });
 
     it('does not allow ApplicationListener added for an event that does not have a browser listener', async () => {
