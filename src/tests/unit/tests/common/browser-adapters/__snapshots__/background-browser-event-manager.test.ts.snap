@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`BackgroundBrowserEventManager logs an error and propagates sync value-returning ApplicationListeners 1`] = `"Unexpected sync ApplicationListener for browser event-type event: "`;
+
 exports[`BackgroundBrowserEventManager times out if no ApplicationListener registers in time 1`] = `
 [
   "Error while processing browser event-type event: ",

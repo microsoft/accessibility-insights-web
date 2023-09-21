@@ -224,9 +224,7 @@ describe(BackgroundBrowserEventManager, () => {
 
         expect(timeSimulatingPromiseFactory.elapsedTime).toBe(0);
         expect(recordingLogger.errorRecords).toHaveLength(1);
-        expect(recordingLogger.errorRecords[0].message).toMatchInlineSnapshot(
-            `"Unexpected sync ApplicationListener for browser event-type event: "`,
-        );
+        expect(recordingLogger.errorRecords[0].message).toMatchSnapshot();
         expect(recordingLogger.errorRecords[0].optionalParams[0]).toBe(syncAppListener);
         expect(recordingLogger.errorRecords[0].optionalParams[1]).toStrictEqual([
             'event-arg-1',
