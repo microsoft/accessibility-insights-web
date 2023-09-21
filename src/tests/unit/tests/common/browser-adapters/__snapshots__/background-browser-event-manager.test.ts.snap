@@ -6,3 +6,10 @@ exports[`BackgroundBrowserEventManager times out if no ApplicationListener regis
   "[deferred browser event: {"eventType":"event-type","eventArgs":[]}]",
 ]
 `;
+
+exports[`BackgroundBrowserEventManager times out late-registered Promise-based ApplicationListeners 1`] = `
+[
+  "Error while processing browser event-type event: ",
+  "[deferred browser event: {"eventType":"event-type","eventArgs":[]}]",
+]
+`;
