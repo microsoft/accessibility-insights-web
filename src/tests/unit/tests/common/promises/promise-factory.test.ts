@@ -52,9 +52,7 @@ describe(`promiseFactory`, () => {
             const delay = 1;
             const timingOut = testObject.timeout(neverResolveAsync(), delay, 'test-error-context');
 
-            await expect(timingOut).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"Timed out after 1ms at context test-error-context"`,
-            );
+            await expect(timingOut).rejects.toThrowErrorMatchingSnapshot();
         });
     });
 

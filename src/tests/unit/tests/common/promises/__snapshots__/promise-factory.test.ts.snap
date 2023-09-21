@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`promiseFactory timeout rejects with the pinned error message on timeout 1`] = `"Timed out after 1ms"`;
+
+exports[`promiseFactory timeout rejects with the pinned error message on timeout with error context 1`] = `"Timed out after 1ms at context test-error-context"`;
