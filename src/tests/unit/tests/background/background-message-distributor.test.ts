@@ -192,9 +192,7 @@ describe(BackgroundMessageDistributor, () => {
             const response = distributeMessageCallback(message);
 
             expect(response.messageHandled).toBe(true);
-            await expect(response.result).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"Unable to interpret message - {"payload":"test-payload"}"`,
-            );
+            await expect(response.result).rejects.toThrowErrorMatchingSnapshot();
         });
     });
 
