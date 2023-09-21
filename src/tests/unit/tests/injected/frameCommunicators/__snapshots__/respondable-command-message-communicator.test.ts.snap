@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RespondableCommandMessageCommunicator callback message behavior handles throwing listeners by logging an error at the receiver 1`] = `
+[
+  "Error at command1 listener callback: from listener",
+]
+`;
+
 exports[`RespondableCommandMessageCommunicator promise message behavior timeout behavior logs an error if a response comes back after we already failed with a timeout 1`] = `
 [
   "Received a response for command command1 after it timed out",

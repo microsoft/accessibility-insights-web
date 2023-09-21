@@ -624,11 +624,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             mockReplyHandler.verifyAll();
             senderLogger.verifyNoErrors();
 
-            expect(receiverLogger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Error at command1 listener callback: from listener",
-                ]
-            `);
+            expect(receiverLogger.errorMessages).toMatchSnapshot();
         });
 
         it('handles throwing replyHandlers by logging an error at the sender', async () => {
