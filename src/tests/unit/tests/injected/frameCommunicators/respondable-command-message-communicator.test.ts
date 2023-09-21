@@ -384,9 +384,7 @@ describe('RespondableCommandMessageCommunicator', () => {
                 testSubject.initialize();
                 await expect(
                     testSubject.sendPromiseCommandMessage(targetWindow, commandMessage),
-                ).rejects.toThrowErrorMatchingInlineSnapshot(
-                    `"Timed out attempting to establish communication with target window. Is there a script inside it intercepting window messages? Underlying error: mock timeout"`,
-                );
+                ).rejects.toThrowErrorMatchingSnapshot();
 
                 expect(recordingLogger.errorMessages).toStrictEqual([]);
             });

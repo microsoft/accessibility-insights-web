@@ -17,3 +17,5 @@ exports[`RespondableCommandMessageCommunicator promise message behavior timeout 
   "Received a response for command command1 after it timed out",
 ]
 `;
+
+exports[`RespondableCommandMessageCommunicator promise message behavior timeout behavior rejects with an error that warns about potential message interception 1`] = `"Timed out attempting to establish communication with target window. Is there a script inside it intercepting window messages? Underlying error: mock timeout"`;
