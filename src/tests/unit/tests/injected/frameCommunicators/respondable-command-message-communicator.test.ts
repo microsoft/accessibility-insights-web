@@ -661,11 +661,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             mockReplyHandler.verifyAll();
             receiverLogger.verifyNoErrors();
 
-            expect(senderLogger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Error at unique_id response callback: from replyHandler",
-                ]
-            `);
+            expect(senderLogger.errorMessages).toMatchSnapshot();
         });
     });
 });

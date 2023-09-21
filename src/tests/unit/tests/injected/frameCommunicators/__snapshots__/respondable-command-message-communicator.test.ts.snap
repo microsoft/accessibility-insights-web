@@ -6,6 +6,12 @@ exports[`RespondableCommandMessageCommunicator callback message behavior handles
 ]
 `;
 
+exports[`RespondableCommandMessageCommunicator callback message behavior handles throwing replyHandlers by logging an error at the sender 1`] = `
+[
+  "Error at unique_id response callback: from replyHandler",
+]
+`;
+
 exports[`RespondableCommandMessageCommunicator promise message behavior timeout behavior logs an error if a response comes back after we already failed with a timeout 1`] = `
 [
   "Received a response for command command1 after it timed out",
