@@ -12,6 +12,8 @@ exports[`RespondableCommandMessageCommunicator callback message behavior handles
 ]
 `;
 
+exports[`RespondableCommandMessageCommunicator callback message behavior propagates errors from the underlying postMessage by rejecting with them as-is 1`] = `"target window unreachable (LinkedWindowMessagePoster not linked to it)"`;
+
 exports[`RespondableCommandMessageCommunicator promise message behavior timeout behavior logs an error if a response comes back after we already failed with a timeout 1`] = `
 [
   "Received a response for command command1 after it timed out",

@@ -591,9 +591,7 @@ describe('RespondableCommandMessageCommunicator', () => {
                     noopReplyHandler,
                     'single',
                 ),
-            ).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"target window unreachable (LinkedWindowMessagePoster not linked to it)"`,
-            );
+            ).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it('handles throwing listeners by logging an error at the receiver', async () => {
