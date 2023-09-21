@@ -206,11 +206,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Error while attempting to send axe-core frameMessenger message: target window unreachable (LinkedRespondableCommunicator not linked to it)",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             mockTopicHandler.verifyAll();
             expect(postReturn).toBe(true);
         });

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AxeFrameMessenger post/open communication logs an error if the underlying communicator fails 1`] = `
+[
+  "Error while attempting to send axe-core frameMessenger message: target window unreachable (LinkedRespondableCommunicator not linked to it)",
+]
+`;
