@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SingleFrameMessenger sendMessageToWindow/addMessageListener communication propagates rejection from the underlying communicator 1`] = `"from throw-error listener"`;

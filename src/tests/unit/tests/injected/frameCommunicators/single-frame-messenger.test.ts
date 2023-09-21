@@ -42,9 +42,7 @@ describe(SingleFrameMessenger, () => {
                 payload: 'irrelevant',
             });
 
-            await expect(sendToFailingListener).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"from throw-error listener"`,
-            );
+            await expect(sendToFailingListener).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it("resolves with the other end's response in the happy path", async () => {
