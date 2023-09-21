@@ -6,6 +6,12 @@ exports[`AxeFrameMessenger post/open communication does not invoke closed topic 
 ]
 `;
 
+exports[`AxeFrameMessenger post/open communication logs an error and noops if a replyHandler throws 1`] = `
+[
+  "An axe-core error occurred while processing a result from a child frame.",
+]
+`;
+
 exports[`AxeFrameMessenger post/open communication logs an error if the underlying communicator fails 1`] = `
 [
   "Error while attempting to send axe-core frameMessenger message: target window unreachable (LinkedRespondableCommunicator not linked to it)",

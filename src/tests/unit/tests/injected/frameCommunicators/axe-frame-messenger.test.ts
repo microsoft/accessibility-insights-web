@@ -285,11 +285,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "An axe-core error occurred while processing a result from a child frame.",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             expect(postReturn).toBe(true);
         });
 
