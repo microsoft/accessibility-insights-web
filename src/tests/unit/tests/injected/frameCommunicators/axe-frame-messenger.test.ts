@@ -239,11 +239,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Error while attempting to send axe-core frameMessenger message: target window reachable, but is not listening for command axe.frameMessenger.post",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             mockTopicHandler.verify(m => m(It.isAny(), It.isAny()), Times.never());
             expect(postReturn).toBe(true);
         });
