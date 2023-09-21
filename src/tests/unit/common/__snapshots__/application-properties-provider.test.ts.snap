@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createToolData returns proper tool data 1`] = `
+{
+  "applicationProperties": {
+    "environmentName": "test-environment-name",
+    "name": "test-tool-name",
+    "resolution": "test-resolution",
+    "version": "test-tool-version",
+  },
+  "scanEngineProperties": {
+    "name": "test-engine-name",
+    "version": "test-engine-version",
+  },
+}
+`;
