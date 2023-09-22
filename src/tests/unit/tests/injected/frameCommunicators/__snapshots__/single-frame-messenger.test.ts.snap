@@ -2,6 +2,8 @@
 
 exports[`SingleFrameMessenger sendMessageToFrame/addMessageListener communication propagates rejection from the underlying communicator 1`] = `"target window unreachable (LinkedRespondableCommunicator not linked to it)"`;
 
+exports[`SingleFrameMessenger sendMessageToFrame/addMessageListener communication rejects with a descriptive error if the target has no contentWindow 1`] = `"Target frame does not have a contentWindow"`;
+
 exports[`SingleFrameMessenger sendMessageToFrame/addMessageListener communication rejects with a descriptive error if the target's sandbox attribute disallows scripts 1`] = `"Target frame has a sandbox attribute which disallows scripts"`;
 
 exports[`SingleFrameMessenger sendMessageToWindow/addMessageListener communication propagates rejection from the underlying communicator 1`] = `"from throw-error listener"`;

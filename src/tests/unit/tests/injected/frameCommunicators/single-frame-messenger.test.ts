@@ -91,9 +91,7 @@ describe(SingleFrameMessenger, () => {
                 irrelevantMessage,
             );
 
-            await expect(sendToFrameWithoutWindow).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"Target frame does not have a contentWindow"`,
-            );
+            await expect(sendToFrameWithoutWindow).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it("resolves with the other end's response for valid frame with no sandbox attr", async () => {
