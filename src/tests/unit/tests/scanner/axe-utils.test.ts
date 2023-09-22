@@ -539,11 +539,7 @@ describe('AxeUtils', () => {
 
         it('Throws if axe.setup has already been invoked (ie, a scan is in progress)', () => {
             AxeUtils.withAxeSetup(() => {
-                expect(() =>
-                    AxeUtils.getUniqueSelector(fixture),
-                ).toThrowErrorMatchingInlineSnapshot(
-                    `"Axe is already setup. Call \`axe.teardown()\` before calling \`axe.setup\` again."`,
-                );
+                expect(() => AxeUtils.getUniqueSelector(fixture)).toThrowErrorMatchingSnapshot();
             });
         });
 
@@ -564,9 +560,7 @@ describe('AxeUtils', () => {
     describe('withAxeSetup', () => {
         it('Throws if axe.setup has already been invoked (ie, a scan is in progress)', () => {
             AxeUtils.withAxeSetup(() => {
-                expect(() => AxeUtils.withAxeSetup(() => {})).toThrowErrorMatchingInlineSnapshot(
-                    `"Axe is already setup. Call \`axe.teardown()\` before calling \`axe.setup\` again."`,
-                );
+                expect(() => AxeUtils.withAxeSetup(() => {})).toThrowErrorMatchingSnapshot();
             });
         });
 

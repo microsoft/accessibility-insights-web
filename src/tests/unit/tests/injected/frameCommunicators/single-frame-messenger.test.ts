@@ -42,9 +42,7 @@ describe(SingleFrameMessenger, () => {
                 payload: 'irrelevant',
             });
 
-            await expect(sendToFailingListener).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"from throw-error listener"`,
-            );
+            await expect(sendToFailingListener).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it("resolves with the other end's response in the happy path", async () => {
@@ -70,9 +68,7 @@ describe(SingleFrameMessenger, () => {
                 payload: 'irrelevant',
             });
 
-            await expect(sendPromise).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"target window unreachable (LinkedRespondableCommunicator not linked to it)"`,
-            );
+            await expect(sendPromise).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it("rejects with a descriptive error if the target's sandbox attribute disallows scripts", async () => {
@@ -85,11 +81,7 @@ describe(SingleFrameMessenger, () => {
                 irrelevantMessage,
             );
 
-            await expect(
-                sendToFrameWithRestrictiveSandbox,
-            ).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"Target frame has a sandbox attribute which disallows scripts"`,
-            );
+            await expect(sendToFrameWithRestrictiveSandbox).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it('rejects with a descriptive error if the target has no contentWindow', async () => {
@@ -99,9 +91,7 @@ describe(SingleFrameMessenger, () => {
                 irrelevantMessage,
             );
 
-            await expect(sendToFrameWithoutWindow).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"Target frame does not have a contentWindow"`,
-            );
+            await expect(sendToFrameWithoutWindow).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it("resolves with the other end's response for valid frame with no sandbox attr", async () => {

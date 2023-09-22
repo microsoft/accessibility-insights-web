@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AxeUtils getUniqueSelector Throws if axe.setup has already been invoked (ie, a scan is in progress) 1`] = `"Axe is already setup. Call \`axe.teardown()\` before calling \`axe.setup\` again."`;
+
+exports[`AxeUtils withAxeSetup Throws if axe.setup has already been invoked (ie, a scan is in progress) 1`] = `"Axe is already setup. Call \`axe.teardown()\` before calling \`axe.setup\` again."`;

@@ -384,9 +384,7 @@ describe('RespondableCommandMessageCommunicator', () => {
                 testSubject.initialize();
                 await expect(
                     testSubject.sendPromiseCommandMessage(targetWindow, commandMessage),
-                ).rejects.toThrowErrorMatchingInlineSnapshot(
-                    `"Timed out attempting to establish communication with target window. Is there a script inside it intercepting window messages? Underlying error: mock timeout"`,
-                );
+                ).rejects.toThrowErrorMatchingSnapshot();
 
                 expect(recordingLogger.errorMessages).toStrictEqual([]);
             });
@@ -408,11 +406,7 @@ describe('RespondableCommandMessageCommunicator', () => {
                     targetWindow,
                 );
 
-                expect(recordingLogger.errorMessages).toMatchInlineSnapshot(`
-                    [
-                      "Received a response for command command1 after it timed out",
-                    ]
-                `);
+                expect(recordingLogger.errorMessages).toMatchSnapshot();
             });
         });
 
@@ -597,9 +591,7 @@ describe('RespondableCommandMessageCommunicator', () => {
                     noopReplyHandler,
                     'single',
                 ),
-            ).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"target window unreachable (LinkedWindowMessagePoster not linked to it)"`,
-            );
+            ).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it('handles throwing listeners by logging an error at the receiver', async () => {
@@ -628,11 +620,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             mockReplyHandler.verifyAll();
             senderLogger.verifyNoErrors();
 
-            expect(receiverLogger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Error at command1 listener callback: from listener",
-                ]
-            `);
+            expect(receiverLogger.errorMessages).toMatchSnapshot();
         });
 
         it('handles throwing replyHandlers by logging an error at the sender', async () => {
@@ -669,11 +657,7 @@ describe('RespondableCommandMessageCommunicator', () => {
             mockReplyHandler.verifyAll();
             receiverLogger.verifyNoErrors();
 
-            expect(senderLogger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Error at unique_id response callback: from replyHandler",
-                ]
-            `);
+            expect(senderLogger.errorMessages).toMatchSnapshot();
         });
     });
 });

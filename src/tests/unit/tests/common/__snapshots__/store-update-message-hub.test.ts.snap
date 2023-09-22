@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StoreUpdateMessageHub Errors if a store update listener is registered before the hub's listener 1`] = `"StoreUpdateMessageHub.browserMessageHandler must be registered as a browser listener *before* registering individual store update listeners to avoid missing store state initialization messages"`;

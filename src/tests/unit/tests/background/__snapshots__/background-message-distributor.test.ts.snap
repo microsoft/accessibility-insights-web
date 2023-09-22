@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackgroundMessageDistributor with unrecognized messages should emit a rejected promise describing the unrecognized message 1`] = `"Unable to interpret message - {"payload":"test-payload"}"`;

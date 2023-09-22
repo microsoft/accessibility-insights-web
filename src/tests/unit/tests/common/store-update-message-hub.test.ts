@@ -115,9 +115,7 @@ describe(StoreUpdateMessageHub, () => {
 
         expect(() =>
             testSubject.registerStoreUpdateListener(storeId, registeredListener),
-        ).toThrowErrorMatchingInlineSnapshot(
-            `"StoreUpdateMessageHub.browserMessageHandler must be registered as a browser listener *before* registering individual store update listeners to avoid missing store state initialization messages"`,
-        );
+        ).toThrowErrorMatchingSnapshot();
     });
 
     it('Calls registered listener if not created with a tab id', async () => {

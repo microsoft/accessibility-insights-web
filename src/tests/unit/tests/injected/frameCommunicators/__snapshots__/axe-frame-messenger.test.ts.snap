@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AxeFrameMessenger post/open communication does not accept messages that originate from non-parent windows 1`] = `
+[
+  "Received unexpected axe-core message from a non-parent window",
+]
+`;
+
+exports[`AxeFrameMessenger post/open communication does not invoke closed topic handlers 1`] = `
+[
+  "Error while attempting to send axe-core frameMessenger message: target window reachable, but is not listening for command axe.frameMessenger.post",
+]
+`;
+
+exports[`AxeFrameMessenger post/open communication logs an error and continues if a replyHandler attempts to reply to a reply 1`] = `
+[
+  "AxeFrameMessenger does not support replies-to-replies, but a post replyHandler invoked a responder.",
+]
+`;
+
+exports[`AxeFrameMessenger post/open communication logs an error and continues if a topicHandler attempts support handling replies-to-replies 1`] = `
+[
+  "AxeFrameMessenger does not support replies-to-replies, but a topicHandler provided a replyHandler in a response callback.",
+]
+`;
+
+exports[`AxeFrameMessenger post/open communication logs an error and noops if a replyHandler throws 1`] = `
+[
+  "An axe-core error occurred while processing a result from a child frame.",
+]
+`;
+
+exports[`AxeFrameMessenger post/open communication logs an error if the underlying communicator fails 1`] = `
+[
+  "Error while attempting to send axe-core frameMessenger message: target window unreachable (LinkedRespondableCommunicator not linked to it)",
+]
+`;
+
+exports[`AxeFrameMessenger post/open communication passes a generic Error object to the replyHandler if a topicHandler throws 1`] = `"An axe-core error occurred in a child frame."`;

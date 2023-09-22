@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackgroundBrowserEventManager does not allow ApplicationListener added for an event that does not have a browser listener 1`] = `"No browser listener was pre-registered for event-type"`;
+
+exports[`BackgroundBrowserEventManager does not allow multiple registrations for the same event type 1`] = `"Listener already registered for event-type"`;
+
+exports[`BackgroundBrowserEventManager logs an error and propagates sync value-returning ApplicationListeners 1`] = `"Unexpected sync ApplicationListener for browser event-type event: "`;
+
+exports[`BackgroundBrowserEventManager logs and eats an error for Promise-based ApplicationListeners which reject 1`] = `"Error while processing browser event-type event: "`;
+
+exports[`BackgroundBrowserEventManager logs and eats an error for throwing ApplicationListeners 1`] = `"Error thrown from ApplicationListener for browser event-type event: "`;
+
+exports[`BackgroundBrowserEventManager times out if no ApplicationListener registers in time 1`] = `
+[
+  "Error while processing browser event-type event: ",
+  "[deferred browser event: {"eventType":"event-type","eventArgs":[]}]",
+]
+`;
+
+exports[`BackgroundBrowserEventManager times out late-registered Promise-based ApplicationListeners 1`] = `
+[
+  "Error while processing browser event-type event: ",
+  "[deferred browser event: {"eventType":"event-type","eventArgs":[]}]",
+]
+`;
+
+exports[`BackgroundBrowserEventManager times out pre-registered Promise-based ApplicationListeners 1`] = `
+[
+  "Error while processing browser event-type event: ",
+  "[browser event listener: {"eventType":"event-type","eventArgs":[]}]",
+]
+`;

@@ -28,7 +28,7 @@ describe(PassthroughBrowserEventManager, () => {
 
             expect(() => {
                 testSubject.addApplicationListener('event-type', testEvent, () => {});
-            }).toThrowErrorMatchingInlineSnapshot(`"Listener already registered for event-type"`);
+            }).toThrowErrorMatchingSnapshot();
         });
     });
 

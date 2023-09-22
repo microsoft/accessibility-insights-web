@@ -13,19 +13,6 @@ describe('createToolData', () => {
             'test-resolution',
         );
 
-        expect(result).toMatchInlineSnapshot(`
-            {
-              "applicationProperties": {
-                "environmentName": "test-environment-name",
-                "name": "test-tool-name",
-                "resolution": "test-resolution",
-                "version": "test-tool-version",
-              },
-              "scanEngineProperties": {
-                "name": "test-engine-name",
-                "version": "test-engine-version",
-              },
-            }
-        `);
+        expect(result).toMatchSnapshot();
     });
 });

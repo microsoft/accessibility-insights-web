@@ -206,11 +206,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Error while attempting to send axe-core frameMessenger message: target window unreachable (LinkedRespondableCommunicator not linked to it)",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             mockTopicHandler.verifyAll();
             expect(postReturn).toBe(true);
         });
@@ -243,11 +239,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Error while attempting to send axe-core frameMessenger message: target window reachable, but is not listening for command axe.frameMessenger.post",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             mockTopicHandler.verify(m => m(It.isAny(), It.isAny()), Times.never());
             expect(postReturn).toBe(true);
         });
@@ -259,9 +251,7 @@ describe(AxeFrameMessenger, () => {
             mockReplyHandler
                 .setup(m => m(It.isAnyObject(Error), false, It.isAny()))
                 .callback(receivedError => {
-                    expect(receivedError.message).toMatchInlineSnapshot(
-                        `"An axe-core error occurred in a child frame."`,
-                    );
+                    expect(receivedError.message).toMatchSnapshot();
                 });
 
             childMessenger.open(topicHandler);
@@ -295,11 +285,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "An axe-core error occurred while processing a result from a child frame.",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             expect(postReturn).toBe(true);
         });
 
@@ -313,11 +299,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "Received unexpected axe-core message from a non-parent window",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             mockTopicHandler.verify(m => m(It.isAny(), It.isAny()), Times.never());
             mockReplyHandler.verify(m => m(It.isAny(), It.isAny(), It.isAny()), Times.never());
             expect(postReturn).toBe(true);
@@ -341,11 +323,7 @@ describe(AxeFrameMessenger, () => {
 
             await flushSettledPromises();
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "AxeFrameMessenger does not support replies-to-replies, but a post replyHandler invoked a responder.",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             expect(postReturn).toBe(true);
         });
 
@@ -363,11 +341,7 @@ describe(AxeFrameMessenger, () => {
                 noopReplyHandler,
             );
 
-            expect(logger.errorMessages).toMatchInlineSnapshot(`
-                [
-                  "AxeFrameMessenger does not support replies-to-replies, but a topicHandler provided a replyHandler in a response callback.",
-                ]
-            `);
+            expect(logger.errorMessages).toMatchSnapshot();
             mockReplyHandler.verify(m => m(It.isAny(), It.isAny(), It.isAny()), Times.never());
             expect(postReturn).toBe(true);
         });
