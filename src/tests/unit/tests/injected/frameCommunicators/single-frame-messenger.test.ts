@@ -81,11 +81,7 @@ describe(SingleFrameMessenger, () => {
                 irrelevantMessage,
             );
 
-            await expect(
-                sendToFrameWithRestrictiveSandbox,
-            ).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"Target frame has a sandbox attribute which disallows scripts"`,
-            );
+            await expect(sendToFrameWithRestrictiveSandbox).rejects.toThrowErrorMatchingSnapshot();
         });
 
         it('rejects with a descriptive error if the target has no contentWindow', async () => {
