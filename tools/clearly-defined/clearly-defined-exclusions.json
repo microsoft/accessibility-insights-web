@@ -7,6 +7,7 @@
     "-/core-js-bundle",
     "-/esbuild",
     "-/jest-environment-jsdom",
+    "-/playwright",
     "-/postcss",
     "-/stylelint-config-standard-scss"
 ]
