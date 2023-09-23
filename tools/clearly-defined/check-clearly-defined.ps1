@@ -108,6 +108,10 @@ function IsPackageExcluded([string]$namespaceAndPackage) {
     return $exclusions -ne $null -and $exclusions.Contains($namespaceAndPackage)
 }
 
+function IsGithubActionsType([string]$namespace){
+    return $namespace -eq "github_actions"
+}
+
 function IsDockerImage([string]$provider){
     return $provider -eq "docker"
 }
@@ -133,6 +137,10 @@ function GetUri([string]$branchName){
     }
 
     $type = GetType $elements[1]
+    if (IsGithubActionsType $type) {
+        Write-Host "type is github_actions, skipping check"
+        Exit 0
+    }
     $provider = GetProvider $elements[1]
 
     if ($elements.Length -eq 3) {
