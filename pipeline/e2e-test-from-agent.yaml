@@ -5,6 +5,10 @@ steps:
       displayName: build:dev
       timeoutInMinutes: 5
 
+    - script: yarn playwright install
+      displayName: install playwright
+      timeoutInMinutes: 5
+
     - script: yarn test:e2e --ci
       displayName: run e2e tests
       timeoutInMinutes: 20
