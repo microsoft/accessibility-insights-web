@@ -3,6 +3,7 @@
     "@types/chrome",
     "@types/jest",
     "@types/jsdom",
+    "@types/serve-static",
     "@types/webextension-polyfill",
     "@typescript-eslint/parser",
     "-/core-js-bundle",
