@@ -3,6 +3,7 @@
     "@types/chrome",
     "@types/jest",
     "@types/jsdom",
+    "@types/react-helmet",
     "@types/serve-static",
     "@types/webextension-polyfill",
     "@typescript-eslint/parser",
