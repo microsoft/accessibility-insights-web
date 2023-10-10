@@ -5,6 +5,7 @@
     "@types/jsdom",
     "@types/react-helmet",
     "@types/serve-static",
+    "@types/uuid",
     "@types/webextension-polyfill",
     "@typescript-eslint/parser",
     "-/core-js-bundle",
