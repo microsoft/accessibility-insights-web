@@ -14,5 +14,6 @@
     "-/playwright",
     "-/postcss",
     "-/sass",
-    "-/stylelint-config-standard-scss"
+    "-/stylelint-config-standard-scss",
+    "-/ts-loader"
 ]
