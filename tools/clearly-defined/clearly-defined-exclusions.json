@@ -13,6 +13,7 @@
     "-/jest-environment-jsdom",
     "-/playwright",
     "-/postcss",
+    "-/sass",
     "-/stylelint-config-standard-scss",
     "-/ts-loader"
 ]
