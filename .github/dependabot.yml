@@ -4,32 +4,31 @@ updates:
   directory: "/deploy/"
   schedule:
     interval: daily
-    time: "11:00"
-    timezone: "America/Los_Angeles" # Pacific Time
+    time: "8:30"  # UTC
   labels:
   - "category: engineering"
   - dependencies
   commit-message:
     prefix: chore
     include: scope
+  open-pull-requests-limit: 20  # Default value of 5 has been problematic
 - package-ecosystem: docker
   directory: "/"
   schedule:
     interval: daily
-    time: "11:00"
-    timezone: "America/Los_Angeles" # Pacific Time
+    time: "8:30"  # UTC
   labels:
   - "category: engineering"
   - dependencies
   commit-message:
     prefix: chore
     include: scope
+  open-pull-requests-limit: 20  # Default value of 5 has been problematic
 - package-ecosystem: npm
   directory: "/"
   schedule:
     interval: daily
-    time: "11:00"
-    timezone: "America/Los_Angeles" # Pacific Time
+    time: "8:30"  # UTC
   labels:
   - "category: engineering"
   - dependencies
@@ -37,7 +36,7 @@ updates:
     prefix: chore
     include: scope
   versioning-strategy: increase
-  open-pull-requests-limit: 10 # Default value of 5 has been problematic
+  open-pull-requests-limit: 20  # Default value of 5 has been problematic
   ignore:
     # axe-core updates require enough extra validation
     # on false positives and breaking ai-web, so avoiding
@@ -73,5 +72,5 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-    time: "11:00"
-    timezone: "America/Los_Angeles" # Pacific Time
+    time: "8:30"  # UTC
+  open-pull-requests-limit: 20  # Default value of 5 has been problematic
