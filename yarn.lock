@@ -2871,7 +2871,7 @@ __metadata:
     react-resize-detector: ^9.1.0
     react-router-dom: ^6.16.0
     regenerator-runtime: ^0.14.0
-    sass: ^1.69.1
+    sass: ^1.69.3
     sass-loader: ^13.3.2
     serve-static: ^1.15.0
     simple-git: ^3.20.0
@@ -11117,16 +11117,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.69.1":
-  version: 1.69.1
-  resolution: "sass@npm:1.69.1"
+"sass@npm:^1.69.3":
+  version: 1.69.3
+  resolution: "sass@npm:1.69.3"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: e3f0754fc8e1ffc239919cba8d1cc8d89908d596161992c562d0679a6aa1e1c57b0a11846726f9222f96622495a5bfc00461b3f31182e71a54ad91a86dd10a8f
+  checksum: b89a3370c7ede462b344e2136bf1407bf375855c1ec54f73b6257b18fe59dae5377eb9f7b25f21ae4a25d8f0bc41a165d8d7e5f693d8285b1aa51ac6056c4d19
   languageName: node
   linkType: hard
 
