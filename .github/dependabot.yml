@@ -4,7 +4,7 @@ updates:
   directory: "/deploy/"
   schedule:
     interval: daily
-    time: "8:30"  # UTC
+    time: "08:30"  # UTC
   labels:
   - "category: engineering"
   - dependencies
@@ -16,7 +16,7 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-    time: "8:30"  # UTC
+    time: "08:30"  # UTC
   labels:
   - "category: engineering"
   - dependencies
@@ -28,7 +28,7 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-    time: "8:30"  # UTC
+    time: "08:30"  # UTC
   labels:
   - "category: engineering"
   - dependencies
@@ -72,5 +72,5 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-    time: "8:30"  # UTC
+    time: "08:30"  # UTC
   open-pull-requests-limit: 10  # Default value of 5 has been problematic
