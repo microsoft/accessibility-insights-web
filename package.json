@@ -97,7 +97,7 @@
         "@typescript-eslint/parser": "^6.7.5",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.3",
-        "commander": "^11.0.0",
+        "commander": "^11.1.0",
         "core-js-bundle": "^3.33.0",
         "cross-env": "^7.0.3",
         "css-loader": "^6.8.1",
