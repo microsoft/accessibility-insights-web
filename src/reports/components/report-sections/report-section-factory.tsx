@@ -15,8 +15,8 @@ import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section'
 import { PassedChecksSectionDeps } from './passed-checks-section';
 
 export type SectionDeps = NotApplicableChecksSectionDeps &
-    CommonInstancesSectionDeps &
-    PassedChecksSectionDeps;
+    CommonInstancesSectionDeps 
+    ;
 
 export type SectionProps = {
     deps: SectionDeps;
