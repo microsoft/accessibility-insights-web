@@ -1,6 +1,7 @@
 [
     "@swc/core",
     "@types/chrome",
+    "@types/enzyme",
     "@types/jest",
     "@types/jsdom",
     "@types/react-helmet",
