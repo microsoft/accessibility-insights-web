@@ -1931,12 +1931,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/enzyme-adapter-react-16@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "@types/enzyme-adapter-react-16@npm:1.0.7"
+"@types/enzyme-adapter-react-16@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "@types/enzyme-adapter-react-16@npm:1.0.8"
   dependencies:
     "@types/enzyme": "*"
-  checksum: a82507660a20d2b0a97ecef50386c4c4803331ee35a5484c2fd8279afa1f7285c2d3002f19b41b7494dbf858e5171140a3c3f4d77ac1f9977e3ccc060e890901
+  checksum: f55da0dc77e1761465e0b3917164018a4879e93d0c852387c75859e975294767a48b2801326299acfe9bb075744d422e68469b1c9b75b0234d04468b7d5da302
   languageName: node
   linkType: hard
 
@@ -2805,7 +2805,7 @@ __metadata:
     "@swc/jest": ^0.2.29
     "@types/chrome": 0.0.246
     "@types/enzyme": ^3.10.14
-    "@types/enzyme-adapter-react-16": ^1.0.7
+    "@types/enzyme-adapter-react-16": ^1.0.8
     "@types/jest": ^29.5.5
     "@types/jsdom": ^21.1.3
     "@types/lodash": ^4.14.199
