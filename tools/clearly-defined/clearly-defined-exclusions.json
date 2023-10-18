@@ -3,6 +3,7 @@
     "@types/chrome",
     "@types/jest",
     "@types/jsdom",
+    "@types/luxon",
     "@types/react-helmet",
     "@types/serve-static",
     "@types/uuid",
