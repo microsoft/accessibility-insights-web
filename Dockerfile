@@ -5,7 +5,8 @@
 # reference: https://stackoverflow.com/a/51683309/3711475
 # reference: https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
-FROM mcr.microsoft.com/playwright:v1.38.1-focal AS setup
+# We need to update this every time we update playwright
+FROM mcr.microsoft.com/playwright:v1.39.0-focal AS setup
 
 USER root
 
