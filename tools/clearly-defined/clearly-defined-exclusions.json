@@ -10,6 +10,7 @@
     "@typescript-eslint/parser",
     "-/core-js-bundle",
     "-/esbuild",
+    "-/fake-indexeddb",
     "-/jest-environment-jsdom",
     "-/playwright",
     "-/postcss",
