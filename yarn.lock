@@ -1988,13 +1988,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:0.0.246":
-  version: 0.0.246
-  resolution: "@types/chrome@npm:0.0.246"
+"@types/chrome@npm:0.0.248":
+  version: 0.0.248
+  resolution: "@types/chrome@npm:0.0.248"
   dependencies:
     "@types/filesystem": "*"
     "@types/har-format": "*"
-  checksum: 6c6d92814b9838bbb1034d0cf731e53f8bb0090dc3e4a248c0e7c4c087fba305702ebf61b80858fec60f52858cb9ecf8148dbe9e94a20d742661085f31ee9cc7
+  checksum: 3e3c193af1ee46e753d02367ba1e4e0800f8a7784ed47fa5906b6874a28c14475346235490bc92d6575e8d8c2622d11210a7c5cfe832be2d341f8ec601c5cfb1
   languageName: node
   linkType: hard
 
@@ -2203,10 +2203,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/luxon@npm:^3.3.2":
-  version: 3.3.2
-  resolution: "@types/luxon@npm:3.3.2"
-  checksum: b9111132720eae0269538872a5a496b29587ecfc8edc3b0ff7d269aa93a5ff00a131b23d1e9d1f12ec39f2c779ad21bd8d9f90b122c85a182771aabde7f676b8
+"@types/luxon@npm:^3.3.3":
+  version: 3.3.3
+  resolution: "@types/luxon@npm:3.3.3"
+  checksum: 072dd39eea3f63453788fab2fcfc83eb33917afcaffe178ce08ecd8b016824b8ab3bfa991f66266f2fc1927768a56b4334945f2eb1d83638e325c0c43d7d0e86
   languageName: node
   linkType: hard
 
@@ -2870,13 +2870,13 @@ __metadata:
     "@microsoft/applicationinsights-web": ^2.8.15
     "@swc/core": ^1.3.93
     "@swc/jest": ^0.2.29
-    "@types/chrome": 0.0.246
+    "@types/chrome": 0.0.248
     "@types/enzyme": ^3.10.15
     "@types/enzyme-adapter-react-16": ^1.0.8
     "@types/jest": ^29.5.5
     "@types/jsdom": ^21.1.3
     "@types/lodash": ^4.14.199
-    "@types/luxon": ^3.3.2
+    "@types/luxon": ^3.3.3
     "@types/node": ^16.11.7
     "@types/react": ^16.14.25
     "@types/react-dom": ^16.9.15
@@ -2938,7 +2938,7 @@ __metadata:
     react-resize-detector: ^9.1.0
     react-router-dom: ^6.17.0
     regenerator-runtime: ^0.14.0
-    sass: ^1.69.3
+    sass: ^1.69.4
     sass-loader: ^13.3.2
     serve-static: ^1.15.0
     simple-git: ^3.20.0
@@ -11216,16 +11216,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.69.3":
-  version: 1.69.3
-  resolution: "sass@npm:1.69.3"
+"sass@npm:^1.69.4":
+  version: 1.69.4
+  resolution: "sass@npm:1.69.4"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: b89a3370c7ede462b344e2136bf1407bf375855c1ec54f73b6257b18fe59dae5377eb9f7b25f21ae4a25d8f0bc41a165d8d7e5f693d8285b1aa51ac6056c4d19
+  checksum: ed5558445b59dfa711e094f804e4a360544dd916c069ee211e1c687446146721d91d4304f33fe5df3966a10de96eba43369beb2e14f0881c285424e5e44cf360
   languageName: node
   linkType: hard
 
