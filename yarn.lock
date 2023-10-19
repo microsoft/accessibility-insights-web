@@ -2330,14 +2330,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/serve-static@npm:^1.15.3":
-  version: 1.15.3
-  resolution: "@types/serve-static@npm:1.15.3"
+"@types/serve-static@npm:^1.15.4":
+  version: 1.15.4
+  resolution: "@types/serve-static@npm:1.15.4"
   dependencies:
     "@types/http-errors": "*"
     "@types/mime": "*"
     "@types/node": "*"
-  checksum: afa52252f0ba94cdb5391e80f23e17fd629bdf2a31be8876e2c4490312ed6b0570822dd7de7cea04c9002049e207709563568b7f4ee10bb9f456321db1e83e40
+  checksum: e2e71916d262cac05fa36c3178c3bcc5c0f2fb801f9dc3c4ee58864b7b2bd69b6fb0e312f60e3f19e0ba7206ea57964652a4a3251125121a463acb34dfc9f636
   languageName: node
   linkType: hard
 
@@ -2882,7 +2882,7 @@ __metadata:
     "@types/react-dom": ^16.9.15
     "@types/react-helmet": ^6.1.7
     "@types/react-router-dom": ^5.3.3
-    "@types/serve-static": ^1.15.3
+    "@types/serve-static": ^1.15.4
     "@types/ua-parser-js": ^0.7.37
     "@types/uuid": ^9.0.5
     "@types/webextension-polyfill": ^0.10.5
