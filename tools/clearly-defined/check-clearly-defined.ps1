@@ -66,7 +66,7 @@ function GetBranchName([string]$pipelineType, [string]$branchName) {
             }
             "ado" {
                 $prBranchName = $Env:SYSTEM_PULLREQUEST_SOURCEBRANCH
-                if ($prBranchName -eq $null) {
+                if ($null -eq $prBranchName) {
                     $trimmedBranchName = ($Env:BUILD_SOURCEBRANCH).Trim().Replace("refs/heads/","")
                 } else {
                     $trimmedBranchName = $prBranchName.Trim()
@@ -105,7 +105,7 @@ function IsPackageExcluded([string]$namespaceAndPackage) {
     # licensing purposes, can be added to clearly-defined-exclusions.json
     $exclusionFile = Join-Path $PSScriptRoot "clearly-defined-exclusions.json"
     $exclusions = Get-Content -Path $exclusionFile | ConvertFrom-Json
-    return $exclusions -ne $null -and $exclusions.Contains($namespaceAndPackage)
+    return $null -ne $exclusions -and $exclusions.Contains($namespaceAndPackage)
 }
 
 function IsGithubActionsType([string]$namespace){
