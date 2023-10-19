@@ -87,7 +87,7 @@
         "@types/node": "^16.11.7",
         "@types/react": "^16.14.25",
         "@types/react-dom": "^16.9.15",
-        "@types/react-helmet": "^6.1.7",
+        "@types/react-helmet": "^6.1.8",
         "@types/react-router-dom": "^5.3.3",
         "@types/serve-static": "^1.15.4",
         "@types/ua-parser-js": "^0.7.37",
