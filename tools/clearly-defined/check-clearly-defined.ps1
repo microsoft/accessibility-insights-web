@@ -128,6 +128,10 @@ function AdjustNamespace([string]$provider, [string]$rawNamespace) {
     return $rawNamespace
 }
 
+function IsTypesNamespace([string]$nameSpace){
+    return $nameSpace -eq "@types"
+}
+
 function GetUri([string]$branchName){
     $elements = $branchName.Split('/')
 
@@ -150,7 +154,13 @@ function GetUri([string]$branchName){
         $rawNamespace = $elements[2]
         $fullPackage = $elements[3]
     }
+
     $nameSpace = AdjustNamespace $provider $rawNamespace
+    if (IsTypesNamespace $nameSpace) {
+        Write-Host "Namespace is @types, skipping check"
+        Exit 0
+    }
+    
     $indexOfLastDash = $fullPackage.LastIndexOf('-') + 1
     $packageName = $fullPackage.Substring(0, $indexOfLastDash - 1)
     $packageVersion = $fullPackage.Substring($indexOfLastDash)
