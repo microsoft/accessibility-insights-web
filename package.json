@@ -90,7 +90,7 @@
         "@types/react-helmet": "^6.1.7",
         "@types/react-router-dom": "^5.3.3",
         "@types/serve-static": "^1.15.3",
-        "@types/ua-parser-js": "^0.7.37",
+        "@types/ua-parser-js": "^0.7.38",
         "@types/uuid": "^9.0.5",
         "@types/webextension-polyfill": "^0.10.5",
         "@typescript-eslint/eslint-plugin": "^5.61.0",
