@@ -7,12 +7,12 @@ describe('FormattedDate', () => {
     describe('render', () => {
         test('end of last millennium', () => {
             const date = DateTime.fromISO('1999-12-31T23:59:59', { zone: 'utc' }).toJSDate();
-            testDate('en-us', date, '12/31/1999, 11:59:59 PM UTC');
+            testDate('en-us', date, '12/31/1999, 11:59:59\u202fPM UTC'); // Node 20 uses narrow non-breaking space before AM/PM suffix
         });
 
         test('start of this millennium', () => {
             const date = DateTime.fromISO('2000-01-01T00:00:00', { zone: 'utc' }).toJSDate();
-            testDate('en-us', date, '1/1/2000, 12:00:00 AM UTC');
+            testDate('en-us', date, '1/1/2000, 12:00:00\u202fAM UTC'); // Node 20 uses narrow non-breaking space before AM/PM suffix
         });
 
         (platformSupportsNonEnLocales() ? test : test.skip)('German format', () => {
