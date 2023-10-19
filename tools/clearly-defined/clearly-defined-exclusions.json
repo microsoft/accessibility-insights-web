@@ -8,6 +8,7 @@
     "@types/luxon",
     "@types/react-helmet",
     "@types/serve-static",
+    "@types/ua-parser-js",
     "@types/uuid",
     "@types/webextension-polyfill",
     "@typescript-eslint/parser",
