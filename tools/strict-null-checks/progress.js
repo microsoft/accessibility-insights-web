@@ -6,8 +6,10 @@ const { getAllCheckedFiles, getAllEligibleFiles } = require('./eligible-file-fin
 
 async function main() {
     const datestamp = new Date().toDateString();
-    const checkedFiles = await getAllCheckedFiles();
-    const eligibleFiles = await getAllEligibleFiles();
+    const [checkedFiles, eligibleFiles] = await Promise.all([
+        getAllCheckedFiles(),
+        getAllEligibleFiles(),
+    ]);
     const checkedEligibleFiles = eligibleFiles.filter(f => checkedFiles.has(f));
     const doneCount = checkedEligibleFiles.length;
     const totalCount = eligibleFiles.length;
