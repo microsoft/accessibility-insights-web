@@ -12,6 +12,7 @@ import { FocusOrder } from './test-steps/focus-order';
 import { ModalDialogs } from './test-steps/modal-dialogs';
 import { RevealingContent } from './test-steps/revealing-content';
 import { VisibleFocus } from './test-steps/visible-focus';
+import { FocusNotObscured } from 'assessments/visible-focus-order/test-steps/focus-not-obscured';
 
 const key = 'visibleFocusOrder';
 const keyboardInteractionTitle = 'Focus';
@@ -37,7 +38,14 @@ export const VisibleFocusOrderAssessment: Assessment = AssessmentBuilder.Assiste
     gettingStarted: keyboardInteractionGettingStarted,
     guidance,
     visualizationType: VisualizationType.VisibleFocusOrderAssessment,
-    requirements: [VisibleFocus, RevealingContent, ModalDialogs, ClosingContent, FocusOrder],
+    requirements: [
+        VisibleFocus,
+        RevealingContent,
+        ModalDialogs,
+        ClosingContent,
+        FocusOrder,
+        FocusNotObscured,
+    ],
     visualizationConfiguration: {
         key: key,
         analyzerProgressMessageType: Messages.Assessment.TabbedElementAdded,

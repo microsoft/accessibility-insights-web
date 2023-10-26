@@ -50,6 +50,7 @@ export const link = {
     WCAG_2_4_5: guidanceLinkTo('WCAG 2.4.5'),
     WCAG_2_4_6: guidanceLinkTo('WCAG 2.4.6'),
     WCAG_2_4_7: guidanceLinkTo('WCAG 2.4.7'),
+    WCAG_2_4_11: guidanceLinkTo('WCAG 2.4.11'),
     WCAG_2_5_1: guidanceLinkTo('WCAG 2.5.1'),
     WCAG_2_5_2: guidanceLinkTo('WCAG 2.5.2'),
     WCAG_2_5_3: guidanceLinkTo('WCAG 2.5.3'),

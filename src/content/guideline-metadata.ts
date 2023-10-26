@@ -382,6 +382,15 @@ export const guidelineMetadata = {
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html',
         guidanceTags: [],
     },
+    'WCAG 2.4.11': {
+        number: '2.4.11',
+        axeTag: 'wcag2411',
+        name: 'Focus Not Obscured',
+        linkName: 'WCAG 2.4.11',
+        linkTag: 'WCAG_2_4_11',
+        link: 'https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum',
+        guidanceTags: [guidanceTags.WCAG_2_2],
+    },
     // wcag248: intentionally omitted, AAA
     // wcag249: intentionally omitted, AAA
     'WCAG 2.5.1': {

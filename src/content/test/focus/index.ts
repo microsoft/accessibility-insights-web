@@ -6,6 +6,7 @@ import { guidance } from './guidance';
 import * as modalDialogs from './modal-dialogs';
 import * as revealingContent from './revealing-content';
 import * as visibleFocus from './visible-focus';
+import * as focusNotObscured from './focus-not-obscured';
 
 export const focus = {
     guidance,
@@ -14,4 +15,5 @@ export const focus = {
     modalDialogs,
     closingContent,
     focusOrder,
+    focusNotObscured,
 };
