@@ -66,7 +66,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F108">
                 F108: Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method for the user to
-                operate a function that does not require a dragging movement | WAI | W3C
+                operate a function that does not require a dragging movement
             </Markup.HyperLink>
         </Markup.Links>
         <h3>Additional guidance</h3>
