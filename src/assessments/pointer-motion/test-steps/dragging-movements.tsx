@@ -33,16 +33,16 @@ const howToTest: JSX.Element = (
                     activation alternative that does not require dragging to operate the same
                     function
                 </p>
+                <p>
+                    Exception: This criterion does not apply to scrolling enabled by the user-agent.
+                    Scrolling a page is not in scope, nor is using a technique such as CSS overflow
+                    to make a section of content scrollable. This criterion also applies to web
+                    content that interprets pointer actions (i.e. this does not apply to actions
+                    that are required to operate the user agent or assistive technology).
+                </p>
             </li>
+            <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
-        <p>
-            Exception: This criterion does not apply to scrolling enabled by the user-agent.
-            Scrolling a page is not in scope, nor is using a technique such as CSS overflow to make
-            a section of content scrollable. This criterion also applies to web content that
-            interprets pointer actions (i.e. this does not apply to actions that are required to
-            operate the user agent or assistive technology).
-        </p>
-        <ManualTestRecordYourResults isMultipleFailurePossible={true} />
     </div>
 );
 
