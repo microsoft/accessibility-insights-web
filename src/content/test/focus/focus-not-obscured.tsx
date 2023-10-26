@@ -72,8 +72,8 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>Additional Guidance</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F110">
-                F110: Failure of Success Criterion 2.4.12 Focus Not Obscured (Minimum) due to a sticky footer or header completely hiding
-                focused elements
+                Failure of Success Criterion 2.4.12 Focus Not Obscured (Minimum) due to a sticky footer or header completely hiding focused
+                elements
             </Markup.HyperLink>
         </Markup.Links>
     </>
