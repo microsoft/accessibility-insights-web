@@ -24,6 +24,7 @@ import { semantics } from './semantics';
 import { sensory } from './sensory';
 import { sequence } from './sequence';
 import { timedEvents } from './timed-events';
+import { cognitive } from './cognitive';
 
 export const test = {
     headings,
@@ -50,4 +51,5 @@ export const test = {
     automatedChecks,
     pointerMotion,
     contrast,
+    cognitive,
 };
