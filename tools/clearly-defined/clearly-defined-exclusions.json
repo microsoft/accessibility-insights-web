@@ -1,15 +1,13 @@
 [
     "@swc/core",
-    "@types/chrome",
-    "@types/jest",
-    "@types/jsdom",
-    "@types/serve-static",
-    "@types/webextension-polyfill",
     "@typescript-eslint/parser",
     "-/core-js-bundle",
     "-/esbuild",
     "-/jest-environment-jsdom",
     "-/playwright",
     "-/postcss",
-    "-/stylelint-config-standard-scss"
+    "-/sass",
+    "-/stylelint",
+    "-/stylelint-config-standard-scss",
+    "-/ts-loader"
 ]

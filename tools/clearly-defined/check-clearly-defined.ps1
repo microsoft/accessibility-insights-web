@@ -66,7 +66,7 @@ function GetBranchName([string]$pipelineType, [string]$branchName) {
             }
             "ado" {
                 $prBranchName = $Env:SYSTEM_PULLREQUEST_SOURCEBRANCH
-                if ($prBranchName -eq $null) {
+                if ($null -eq $prBranchName) {
                     $trimmedBranchName = ($Env:BUILD_SOURCEBRANCH).Trim().Replace("refs/heads/","")
                 } else {
                     $trimmedBranchName = $prBranchName.Trim()
@@ -105,7 +105,7 @@ function IsPackageExcluded([string]$namespaceAndPackage) {
     # licensing purposes, can be added to clearly-defined-exclusions.json
     $exclusionFile = Join-Path $PSScriptRoot "clearly-defined-exclusions.json"
     $exclusions = Get-Content -Path $exclusionFile | ConvertFrom-Json
-    return $exclusions -ne $null -and $exclusions.Contains($namespaceAndPackage)
+    return $null -ne $exclusions -and $exclusions.Contains($namespaceAndPackage)
 }
 
 function IsGithubActionsType([string]$namespace){
@@ -126,6 +126,10 @@ function AdjustNamespace([string]$provider, [string]$rawNamespace) {
     }
     
     return $rawNamespace
+}
+
+function IsTypesNamespace([string]$nameSpace){
+    return $nameSpace -eq "@types"
 }
 
 function GetUri([string]$branchName){
@@ -150,7 +154,13 @@ function GetUri([string]$branchName){
         $rawNamespace = $elements[2]
         $fullPackage = $elements[3]
     }
+
     $nameSpace = AdjustNamespace $provider $rawNamespace
+    if (IsTypesNamespace $nameSpace) {
+        Write-Host "Namespace is @types, skipping check"
+        Exit 0
+    }
+    
     $indexOfLastDash = $fullPackage.LastIndexOf('-') + 1
     $packageName = $fullPackage.Substring(0, $indexOfLastDash - 1)
     $packageVersion = $fullPackage.Substring($indexOfLastDash)

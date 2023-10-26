@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.1.0
+    - uses: actions/checkout@v4.1.1
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -52,10 +52,10 @@ jobs:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v4.1.0
+    - uses: actions/checkout@v4.1.1
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -85,10 +85,10 @@ jobs:
     steps:
     # This only needs to be present so codecov can use the source tree for some post-processing
     # This job doesn't require that we install dependencies
-    - uses: actions/checkout@v4.1.0
+    - uses: actions/checkout@v4.1.1
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with: { node-version: "${{ env.NODE_VERSION }}" }
       timeout-minutes: 2
 
@@ -111,10 +111,10 @@ jobs:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.1.0
+    - uses: actions/checkout@v4.1.1
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -145,7 +145,7 @@ jobs:
   codeql:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v4.1.0
+    - uses: actions/checkout@v4.1.1
       timeout-minutes: 2
 
     - uses: github/codeql-action/init@v2
@@ -160,17 +160,18 @@ jobs:
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.38.1-focal
+    # We need to update this each tiem we update playwright
+    container: mcr.microsoft.com/playwright:v1.39.0-focal
     strategy:
       fail-fast: false
       matrix:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v4.1.0
+    - uses: actions/checkout@v4.1.1
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: "${{ env.NODE_VERSION }}"
         # Intentionally omitting caching; it would need a separate, larger
@@ -217,10 +218,10 @@ jobs:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.1.0
+    - uses: actions/checkout@v4.1.1
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -246,7 +247,7 @@ jobs:
   check-clearly-defined:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v4.1.0
+    - uses: actions/checkout@v4.1.1
       timeout-minutes: 2
 
     - name: Check ClearlyDefined for dependabot PR's

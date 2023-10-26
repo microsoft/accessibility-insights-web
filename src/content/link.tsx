@@ -56,16 +56,21 @@ export const link = {
     WCAG_2_5_3: guidanceLinkTo('WCAG 2.5.3'),
     WCAG_2_5_4: guidanceLinkTo('WCAG 2.5.4'),
     WCAG_2_5_5: guidanceLinkTo('WCAG 2.5.5'),
+    WCAG_2_5_7: guidanceLinkTo('WCAG 2.5.7'),
+    WCAG_2_5_8: guidanceLinkTo('WCAG 2.5.8'),
     WCAG_3_1_1: guidanceLinkTo('WCAG 3.1.1'),
     WCAG_3_1_2: guidanceLinkTo('WCAG 3.1.2'),
     WCAG_3_2_1: guidanceLinkTo('WCAG 3.2.1'),
     WCAG_3_2_2: guidanceLinkTo('WCAG 3.2.2'),
     WCAG_3_2_3: guidanceLinkTo('WCAG 3.2.3'),
     WCAG_3_2_4: guidanceLinkTo('WCAG 3.2.4'),
+    WCAG_3_2_6: guidanceLinkTo('WCAG 3.2.6'),
     WCAG_3_3_1: guidanceLinkTo('WCAG 3.3.1'),
     WCAG_3_3_2: guidanceLinkTo('WCAG 3.3.2'),
     WCAG_3_3_3: guidanceLinkTo('WCAG 3.3.3'),
     WCAG_3_3_4: guidanceLinkTo('WCAG 3.3.4'),
+    WCAG_3_3_7: guidanceLinkTo('WCAG 3.3.7'),
+    WCAG_3_3_8: guidanceLinkTo('WCAG 3.3.8'),
     WCAG_4_1_1: guidanceLinkTo('WCAG 4.1.1'),
     WCAG_4_1_2: guidanceLinkTo('WCAG 4.1.2'),
     WCAG_4_1_3: guidanceLinkTo('WCAG 4.1.3'),
@@ -124,5 +129,60 @@ export const link = {
     WCAG21TechniquesG202: linkTo(
         'Ensuring keyboard control for all functionality',
         'https://www.w3.org/WAI/WCAG21/Techniques/general/G202',
+    ),
+    WCAG22CognitiveAccessibilityRoadmapAndGapAnalysisTable3: linkTo(
+        'Cognitive Accessibility Roadmap and Gap Analysis',
+        'https://www.w3.org/TR/coga-gap-analysis/#table3',
+    ),
+    WCAG22CognitiveAccessibilityRoadmapAndGapAnalysisTable6: linkTo(
+        'Cognitive Accessibility Roadmap and Gap Analysis',
+        'https://www.w3.org/TR/coga-gap-analysis/#table6',
+    ),
+    WCAG22MakingContentUsableForPeopleWithCognitiveAndLearningDisabilities: linkTo(
+        'Making Content Usable for People with Cognitive and Learning Disabilities',
+        'https://www.w3.org/TR/coga-usable/#make-it-easy-%20%20%20%20%20%20%20%20%20%20%20%20%20to-find-help-and-give-feedback-pattern',
+    ),
+    WCAG22TargetSizeStudyForOneHandedThumbUseOnSmallTouchscreenDevices: linkTo(
+        'Target size study for one-handed thumb use on small touchscreen devices',
+        'https://dl.acm.org/doi/10.1145/1152215.1152260',
+    ),
+    WCAG22TechniquesC42: linkTo(
+        'Using min-height and min-width to ensure sufficient target spacing',
+        'https://www.w3.org/WAI/WCAG22/Techniques/css/C42',
+    ),
+    WCAG22TechniquesC43: linkTo('Using CSS scroll-padding to un-obscure content', 'https://www.w3.org/WAI/WCAG22/Techniques/css/C43'),
+    WCAG22TechniquesF105: linkTo(
+        'Failure of Success Criterion 2.5.1 due to providing functionality via a path-based gesture without simple pointer alternative',
+        'https://www.w3.org/WAI/WCAG22/Techniques/failures/F105',
+    ),
+    WCAG22TechniquesF108: linkTo(
+        'Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method for the user to operate a function that does not require a dragging movement',
+        'https://www.w3.org/WAI/WCAG22/Techniques/failures/F108',
+    ),
+    WCAG22TechniquesF110: linkTo(
+        'Failure of Success Criterion 2.4.11 due to a sticky footers or headers hiding focused elements',
+        'https://www.w3.org/WAI/WCAG20/Techniques/failures/F110',
+    ),
+    WCAG22TechniquesG215: linkTo(
+        'Providing controls to achieve the same result as path based or multipoint gestures',
+        'https://www.w3.org/WAI/WCAG22/Techniques/general/G215',
+    ),
+    WCAG22TechniquesG216: linkTo(
+        'Providing single point activation for a control slider',
+        'https://www.w3.org/WAI/WCAG22/Techniques/general/G216',
+    ),
+    WCAG22TechniquesG218: linkTo('Email link authentication', 'https://www.w3.org/WAI/WCAG22/Techniques/general/G218'),
+    WCAG22TechniquesG219: linkTo(
+        'Ensuring that an alternative is available for dragging movements that operate on content',
+        'https://www.w3.org/WAI/WCAG22/Techniques/general/G219',
+    ),
+    WCAG22TechniquesG220: linkTo(
+        'Provide a contact-us link in a consistent location',
+        'https://www.w3.org/WAI/WCAG22/Techniques/general/G220',
+    ),
+    WCAG22TechniquesG221: linkTo('Provide data from a previous step in a process', 'https://www.w3.org/WAI/WCAG22/Techniques/general/G221'),
+    WCAG22TechniquesH100: linkTo(
+        'Providing properly marked up email and password inputs',
+        'https://www.w3.org/WAI/WCAG22/Techniques/html/H100',
     ),
 };
