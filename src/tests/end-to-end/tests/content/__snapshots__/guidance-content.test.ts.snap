@@ -26125,6 +26125,28 @@ exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples matc
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/pointerMotion/draggingMovements/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Cannot find test/pointerMotion/draggingMovements/infoAndExamples
+      </h1>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/pointerMotion/guidance matches the snapshot 1`] = `
 <DocumentFragment>
   <div
