@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { FocusNotObscured } from 'assessments/visible-focus-order/test-steps/focus-not-obscured';
 import { Messages } from 'common/messages';
 import { VisualizationType } from 'common/types/visualization-type';
 import { test as content } from 'content/test';
@@ -12,7 +13,6 @@ import { FocusOrder } from './test-steps/focus-order';
 import { ModalDialogs } from './test-steps/modal-dialogs';
 import { RevealingContent } from './test-steps/revealing-content';
 import { VisibleFocus } from './test-steps/visible-focus';
-import { FocusNotObscured } from 'assessments/visible-focus-order/test-steps/focus-not-obscured';
 
 const key = 'visibleFocusOrder';
 const keyboardInteractionTitle = 'Focus';
