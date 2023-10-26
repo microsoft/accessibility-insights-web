@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { link } from 'content/link';
-import * as content from 'content/test/pointer-motion/motion-operation';
+import * as content from 'content/test/pointer-motion/dragging-movements';
 import * as React from 'react';
 
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
