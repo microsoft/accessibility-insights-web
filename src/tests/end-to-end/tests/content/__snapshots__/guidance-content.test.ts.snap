@@ -26136,9 +26136,193 @@ exports[`Guidance Content pages test/pointerMotion/draggingMovements/infoAndExam
     <div
       class="content"
     >
-      <h1>
-        Cannot find test/pointerMotion/draggingMovements/infoAndExamples
-      </h1>
+      <p>
+        The action of dragging cannot be the only means available to perform an action, with exceptions on where dragging is essential to the functionality, or the dragging mechanism is not built by the web author (e.g., native browser functionality unmodified by the author).
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Users who struggle with performing dragging movements need to still operate an interface with a pointer interface.
+      </p>
+      <p>
+        Some people cannot perform dragging movements in a precise manner. Others use a specialized or adapted input device, such as a trackball, head pointer, eye-gaze system, or speech-controlled mouse emulator, which may make dragging cumbersome and error-prone. When an interface implements functionality that uses dragging movements, users perform discrete actions such as tapping or clicking to establish a starting point or press and hold that contact. Not all users can accurately press and hold that contact while also repositioning the pointer. An alternative method must be provided so that users with mobility impairments who use a pointer (mouse, pen, or touch contact) can use the functionality.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        For any function that can be operated through dragging, make sure that the user can (1) operate the function through dragging, or (2) there is a 
+        <a
+          href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer"
+        >
+          single pointer
+        </a>
+         activation (for example single taps, clicks) alternative that does not require dragging to operate the same function.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A table’s columns can only be resized if someone can use a mouse to click on the column divider and then drag it to a new position, adjusting the width of the column in the process.
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            To pass this instance, an alternative "move" button could be provided, where if pressed, the next mouse click on another area of the UI could result in the table column adjustments without the need to specifically drag the column divider there.
+          </p>
+          <p>
+            Another way to pass this instance would be to provide alternative controls to adjust the width, such as with menus, buttons, or text fields to adjust the value. These alternative methods would allow someone to click or press different controls to adjust the table columns, without having to drag or use keyboard commands which may be difficult to perform (e.g., rapidly pressing, or long-pressing different keys).
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements"
+          target="_blank"
+        >
+          Understanding Success Criterion 2.5.7: Dragging Movements
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/general/G219"
+          target="_blank"
+        >
+          G219: Ensuring that an alternative is available for dragging movements that operate on content
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F108"
+          target="_blank"
+        >
+          F108: Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method for the user to operate a function that does not require a dragging movement
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures"
+          target="_blank"
+        >
+          Understanding Success Criterion 2.5.1: Pointer Gestures
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/general/G216"
+          target="_blank"
+        >
+          G216: Providing single point activation for a control slider
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F105"
+          target="_blank"
+        >
+          F105: Failure of Success Criterion 2.5.1 due to providing functionality via a path-based gesture without simple pointer alternative
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/general/G215"
+          target="_blank"
+        >
+          G215: Providing controls to achieve the same result as path based or multipoint gestures
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
