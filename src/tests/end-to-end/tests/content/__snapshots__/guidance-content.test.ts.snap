@@ -27183,6 +27183,199 @@ exports[`Guidance Content pages test/repetitiveContent/bypassBlocks matches the 
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/repetitiveContent/consistentHelp/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <p>
+        Ensure help – or mechanism(s) to request help – are consistently located in the same relative location across a 
+        <a
+          href="https://w3c.github.io/wcag/guidelines/#dfn-set-of-web-pages"
+        >
+          set of web pages/screens
+        </a>
+        .
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        People who may have difficulty locating help are more likely to find it when it is consistently located. This improves the overall user experience for everyone, including support for people with cognitive disabilities, and makes it easier to find help and support.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Ensure all helpful information and mechanisms provided are consistent with other pages in terms of location, behavior and relative to the other content of the page & UI for all components where help resides.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A chat widget to request help is present on select pages of a website but is not available on other pages which would be considered part of a set of web pages.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <p>
+            Finding a specific policy or procedure: An employee who needs to complete a work task may have difficulty locating the specific policy or procedure document on their employer's Web site. A consistently located "How Do I" page may include the information that enables them to independently complete this task.
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            A link to a help page exists as the third item in a list of five items within a web page’s navigation (the primary navigation, or a footer navigation, for example). But on some of the linked pages from this navigation, the help link is located in a different position in the list of the same navigation items, resulting in a failure of this rule.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <p>
+            Finding a specific policy or procedure: An employee who needs to complete a work task may have difficulty locating the specific policy or procedure document on their employer's Web site. A consistently located "How Do I" page may include the information that enables them to independently complete this task.
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://w3c.github.io/wcag/understanding/consistent-help"
+          target="_blank"
+        >
+          Understanding Success Criterion 3.2.6: Consistent Help
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://w3c.github.io/wcag/techniques/general/G220"
+          target="_blank"
+        >
+          G220: Provide a contact-us link in a consistent location
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/coga-gap-analysis/#table6"
+          target="_blank"
+        >
+          Cognitive Accessibility Roadmap and Gap Analysis
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/coga-usable/#make-it-easy-%20%20%20%20%20%20%20%20%20%20%20%20%20to-find-help-and-give-feedback-pattern"
+          target="_blank"
+        >
+          Making Content Usable for People with Cognitive and Learning Disabilities
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/repetitiveContent/consistentIdentification/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
   <div
