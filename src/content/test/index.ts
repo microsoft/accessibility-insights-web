@@ -3,6 +3,7 @@
 import { adaptableContent } from './adaptable-content';
 import { audioVideoOnly } from './audio-video-only';
 import { automatedChecks } from './automated-checks';
+import { cognitive } from './cognitive';
 import { contrast } from './contrast';
 import { customWidgets } from './custom-widgets';
 import { errors } from './errors';
@@ -24,7 +25,6 @@ import { semantics } from './semantics';
 import { sensory } from './sensory';
 import { sequence } from './sequence';
 import { timedEvents } from './timed-events';
-import { cognitive } from './cognitive';
 
 export const test = {
     headings,

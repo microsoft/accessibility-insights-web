@@ -34,8 +34,8 @@ const howToTest: JSX.Element = (
 );
 
 export const RedundantEntry: Requirement = {
-    key: CognitiveTestStep.authentication,
-    name: 'Accessible Authentication (Minimum)',
+    key: CognitiveTestStep.redundantEntry,
+    name: 'Redundant Entry',
     description,
     howToTest,
     isManual: true,

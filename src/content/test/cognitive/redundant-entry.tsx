@@ -43,22 +43,22 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html#:~:text=Redundant%20Entry%20is%20asking%20for%20the%20website%20content,essential%20purposes%20such%20as%20asking%20for%20a%20password.">
-                Understanding Success Criterion 3.3.7: Redundant Entry | WAI | W3C
+                Understanding Success Criterion 3.3.7: Redundant Entry
             </Markup.HyperLink>
         </Markup.Links>
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/general/G221">
-                G221: Provide data from a previous step in a process | WAI | W3C
+                Provide data from a previous step in a process
             </Markup.HyperLink>
         </Markup.Links>
         <h3>Additional Guidance</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/TR/coga-gap-analysis/#table3">
-                Cognitive Accessibility Roadmap and Gap Analysis (w3.org)
+                Cognitive Accessibility Roadmap and Gap Analysis
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/TR/coga-usable/#make-it-easy-%20%20%20%20%20%20%20%20%20%20%20%20%20to-find-help-and-give-feedback-pattern">
-                Making Content Usable for People with Cognitive and Learning Disabilities (w3.org)
+                Making Content Usable for People with Cognitive and Learning Disabilities
             </Markup.HyperLink>
         </Markup.Links>
     </>

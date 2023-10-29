@@ -53,25 +53,23 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html">
-                Understanding Success Criterion 3.3.8: Accessible Authentication (Minimum) | WAI | W3C
+                Understanding Success Criterion 3.3.8: Accessible Authentication (Minimum)
             </Markup.HyperLink>
         </Markup.Links>
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/html/H100">
-                H100: Providing properly marked up email and password inputs | WAI | W3C
+                Providing properly marked up email and password inputs
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/general/G218">
-                G218: Email link authentication | WAI | W3C
-            </Markup.HyperLink>
+            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/general/G218">Email link authentication</Markup.HyperLink>
         </Markup.Links>
         <h3>Additional Guidance</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/TR/coga-gap-analysis/#table3">
-                Cognitive Accessibility Roadmap and Gap Analysis (w3.org)
+                Cognitive Accessibility Roadmap and Gap Analysis
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/TR/coga-usable/#make-it-easy-%20%20%20%20%20%20%20%20%20%20%20%20%20to-find-help-and-give-feedback-pattern">
-                Making Content Usable for People with Cognitive and Learning Disabilities (w3.org)
+                Making Content Usable for People with Cognitive and Learning Disabilities
             </Markup.HyperLink>
         </Markup.Links>
     </>
