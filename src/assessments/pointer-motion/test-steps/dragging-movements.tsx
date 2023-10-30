@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
 import * as content from 'content/test/pointer-motion/dragging-movements';
 import * as React from 'react';
@@ -29,7 +30,7 @@ const howToTest: JSX.Element = (
             <li>
                 <p>
                     Verify that there is an{' '}
-                    <a href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer">single pointer</a>{' '}
+                    <NewTabLink href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer">single pointer</NewTabLink>{' '}
                     activation alternative that does not require dragging to operate the same
                     function
                 </p>
