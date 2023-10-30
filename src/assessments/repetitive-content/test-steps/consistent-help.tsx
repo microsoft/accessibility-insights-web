@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
 import * as content from 'content/test/repetitive-content/consistent-help';
 import * as React from 'react';
@@ -11,9 +12,9 @@ const consistentHelpDescription: JSX.Element = (
     <span>
         Ensure help – or mechanism(s) to request help – are consistently located in the same
         relative location across a{' '}
-        <a href="https://w3c.github.io/wcag/guidelines/#dfn-set-of-web-pages">
+        <NewTabLink href="https://w3c.github.io/wcag/guidelines/#dfn-set-of-web-pages">
             set of web pages/screens
-        </a>
+        </NewTabLink>
         .
     </span>
 );
