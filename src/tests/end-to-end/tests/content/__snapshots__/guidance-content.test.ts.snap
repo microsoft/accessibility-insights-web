@@ -26970,7 +26970,7 @@ exports[`Guidance Content pages test/pointerMotion/targetSize/infoAndExamples ma
           href="https://w3c.github.io/wcag/techniques/css/C42"
           target="_blank"
         >
-          C42: Using min-height and min-width to ensure sufficient target spacing 
+          Using min-height and min-width to ensure sufficient target spacing
         </a>
       </div>
       <h3>
@@ -26984,7 +26984,7 @@ exports[`Guidance Content pages test/pointerMotion/targetSize/infoAndExamples ma
           href="https://dl.acm.org/doi/10.1145/1152215.1152260"
           target="_blank"
         >
-          Target size study for one-handed thumb use on small touchscreen devices | Proceedings of the 8th conference on Human-computer interaction with mobile devices and services (acm.org)
+          Target size study for one-handed thumb use on small touchscreen devices
         </a>
       </div>
     </div>
