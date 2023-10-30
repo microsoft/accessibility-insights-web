@@ -26285,7 +26285,7 @@ exports[`Guidance Content pages test/pointerMotion/draggingMovements/infoAndExam
           href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F108"
           target="_blank"
         >
-          F108: Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method for the user to operate a function that does not require a dragging movement
+          Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method for the user to operate a function that does not require a dragging movement
         </a>
       </div>
       <h3>
@@ -26306,21 +26306,21 @@ exports[`Guidance Content pages test/pointerMotion/draggingMovements/infoAndExam
           href="https://www.w3.org/WAI/WCAG22/Techniques/general/G216"
           target="_blank"
         >
-          G216: Providing single point activation for a control slider
+          Providing single point activation for a control slider
         </a>
         <a
           class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F105"
           target="_blank"
         >
-          F105: Failure of Success Criterion 2.5.1 due to providing functionality via a path-based gesture without simple pointer alternative
+          Failure of Success Criterion 2.5.1 due to providing functionality via a path-based gesture without simple pointer alternative
         </a>
         <a
           class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG22/Techniques/general/G215"
           target="_blank"
         >
-          G215: Providing controls to achieve the same result as path based or multipoint gestures
+          Providing controls to achieve the same result as path based or multipoint gestures
         </a>
       </div>
     </div>
