@@ -6,7 +6,8 @@ export const infoAndExamples = create(({ Markup }) => (
     <>
         <p>
             Ensure help – or mechanism(s) to request help – are consistently located in the same relative location across a{' '}
-            <Markup.HyperLink href="https://w3c.github.io/wcag/guidelines/#dfn-set-of-web-pages">set of web pages/screens</Markup.HyperLink>.
+            <Markup.HyperLink href="https://w3c.github.io/wcag/guidelines/#dfn-set-of-web-pages">set of web pages/screens</Markup.HyperLink>
+            .
         </p>
 
         <h2>Why it matters</h2>
