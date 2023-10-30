@@ -30,7 +30,9 @@ const howToTest: JSX.Element = (
             <li>
                 <p>
                     Verify that there is an{' '}
-                    <NewTabLink href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer">single pointer</NewTabLink>{' '}
+                    <NewTabLink href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer">
+                        single pointer
+                    </NewTabLink>{' '}
                     activation alternative that does not require dragging to operate the same
                     function
                 </p>
