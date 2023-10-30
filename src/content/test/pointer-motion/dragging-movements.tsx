@@ -65,7 +65,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 G219: Ensuring that an alternative is available for dragging movements that operate on content
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F108">
-                F108: Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method for the user to
+                Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method for the user to
                 operate a function that does not require a dragging movement
             </Markup.HyperLink>
         </Markup.Links>
@@ -75,14 +75,14 @@ export const infoAndExamples = create(({ Markup }) => (
                 Understanding Success Criterion 2.5.1: Pointer Gestures
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/general/G216">
-                G216: Providing single point activation for a control slider
+                Providing single point activation for a control slider
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F105">
-                F105: Failure of Success Criterion 2.5.1 due to providing functionality via a path-based gesture without simple pointer
+                Failure of Success Criterion 2.5.1 due to providing functionality via a path-based gesture without simple pointer
                 alternative
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/general/G215">
-                G215: Providing controls to achieve the same result as path based or multipoint gestures
+                Providing controls to achieve the same result as path based or multipoint gestures
             </Markup.HyperLink>
         </Markup.Links>
     </>
