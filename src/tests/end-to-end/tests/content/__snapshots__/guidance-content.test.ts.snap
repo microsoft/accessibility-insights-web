@@ -27197,7 +27197,9 @@ exports[`Guidance Content pages test/repetitiveContent/consistentHelp/infoAndExa
       <p>
         Ensure help – or mechanism(s) to request help – are consistently located in the same relative location across a 
         <a
+          class="ms-Link insights-link root-000"
           href="https://w3c.github.io/wcag/guidelines/#dfn-set-of-web-pages"
+          target="_blank"
         >
           set of web pages/screens
         </a>
