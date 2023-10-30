@@ -27346,7 +27346,7 @@ exports[`Guidance Content pages test/repetitiveContent/consistentHelp/infoAndExa
           href="https://w3c.github.io/wcag/techniques/general/G220"
           target="_blank"
         >
-          G220: Provide a contact-us link in a consistent location
+          Provide a contact-us link in a consistent location
         </a>
       </div>
       <h3>
@@ -27364,7 +27364,7 @@ exports[`Guidance Content pages test/repetitiveContent/consistentHelp/infoAndExa
         </a>
         <a
           class="ms-Link insights-link root-000"
-          href="https://www.w3.org/TR/coga-usable/#make-it-easy-%20%20%20%20%20%20%20%20%20%20%20%20%20to-find-help-and-give-feedback-pattern"
+          href="https://www.w3.org/TR/coga-usable/"
           target="_blank"
         >
           Making Content Usable for People with Cognitive and Learning Disabilities
