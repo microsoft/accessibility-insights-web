@@ -66,7 +66,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://w3c.github.io/wcag/techniques/general/G220">
-                G220: Provide a contact-us link in a consistent location
+                Provide a contact-us link in a consistent location
             </Markup.HyperLink>
         </Markup.Links>
 
@@ -75,7 +75,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <Markup.HyperLink href="https://www.w3.org/TR/coga-gap-analysis/#table6">
                 Cognitive Accessibility Roadmap and Gap Analysis
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/TR/coga-usable/#make-it-easy-%20%20%20%20%20%20%20%20%20%20%20%20%20to-find-help-and-give-feedback-pattern">
+            <Markup.HyperLink href="https://www.w3.org/TR/coga-usable/">
                 Making Content Usable for People with Cognitive and Learning Disabilities
             </Markup.HyperLink>
         </Markup.Links>
