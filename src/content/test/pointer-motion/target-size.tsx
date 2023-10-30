@@ -45,14 +45,13 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://w3c.github.io/wcag/techniques/css/C42">
-                C42: Using min-height and min-width to ensure sufficient target spacing{' '}
+                Using min-height and min-width to ensure sufficient target spacing
             </Markup.HyperLink>
         </Markup.Links>
         <h3>Additional guidance</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://dl.acm.org/doi/10.1145/1152215.1152260">
-                Target size study for one-handed thumb use on small touchscreen devices | Proceedings of the 8th conference on
-                Human-computer interaction with mobile devices and services (acm.org)
+                Target size study for one-handed thumb use on small touchscreen devices
             </Markup.HyperLink>
         </Markup.Links>
     </>
