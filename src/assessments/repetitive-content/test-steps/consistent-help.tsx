@@ -22,7 +22,7 @@ const consistentHelpDescription: JSX.Element = (
 
 const consistentHelpHowToTest: JSX.Element = (
     <div>
-       <p>
+        <p>
             <Markup.Emphasis>
                 Note: this criterion does not require help to be provided.
             </Markup.Emphasis>
