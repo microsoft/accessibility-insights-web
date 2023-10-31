@@ -4,4 +4,5 @@ export enum RepetitiveContentTestStep {
     bypassBlocks = 'bypassBlocks',
     consistentNavigation = 'consistentNavigation',
     consistentIdentification = 'consistentIdentification',
+    consistentHelp = 'consistentHelp',
 }
