@@ -25,8 +25,8 @@ const description: JSX.Element = (
 const howToTest: JSX.Element = (
     <div>
         <p>
-            The visual helper for this requirement records elements in the target page that receive
-            the input focus.
+            <Markup.Term>The visual helper for this requirement</Markup.Term> records elements in
+            the target page that receive the input focus.
         </p>
         <ol>
             <li>

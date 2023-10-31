@@ -15,7 +15,9 @@ export const infoAndExamples = create(({ Markup }) => (
             If this failure occurs, users cannot see where the indicator is due to other authored content. Any 'sticky' content that moves
             with the viewport can potentially obscure other elements on the page, including controls the user may tab to.
         </p>
-        <h3>From a user's perspective</h3>
+        <h3>
+            <Markup.Term>From a user's perspective:</Markup.Term>
+        </h3>
         <p>
             <Markup.Emphasis>
                 “I’m a reporter with repetitive stress injury who uses speech recognition software. This page has a big content area that's
