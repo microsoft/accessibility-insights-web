@@ -3,7 +3,7 @@
 import { link } from 'content/link';
 import * as content from 'content/test/pointer-motion/target-size';
 import * as React from 'react';
-
+import * as Markup from '../../markup';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { PointerMotionTestStep } from './test-steps';
@@ -32,32 +32,32 @@ const howToTest: JSX.Element = (
                 <ul>
                     <li>
                         <p>
-                            <em>Spacing</em>: These elements may be smaller than 24x24 css pixels so
+                            <Markup.Emphasis>Spacing</Markup.Emphasis>: These elements may be smaller than 24x24 css pixels so
                             long as it is within a 24x24 css pixel target spacing circle that
                             doesn’t overlap with other targets or their 24x24 target spacing circle.
                         </p>
                     </li>
                     <li>
                         <p>
-                            <em>Equivalent</em>: If an alternative control is provided on the same
+                            <Markup.Emphasis>Equivalent</Markup.Emphasis>: If an alternative control is provided on the same
                             page that successfully meets the target criteria.
                         </p>
                     </li>
                     <li>
                         <p>
-                            <em>Inline</em>: The target is in a sentence, or its size is otherwise
+                            <Markup.Emphasis>Inline</Markup.Emphasis>: The target is in a sentence, or its size is otherwise
                             constrained by the line-height of non-target text.
                         </p>
                     </li>
                     <li>
                         <p>
-                            <em>User agent control</em>: The size of the target is determined by the
+                            <Markup.Emphasis>User agent control</Markup.Emphasis>: The size of the target is determined by the
                             user agent and is not modified by the author.
                         </p>
                     </li>
                     <li>
                         <p>
-                            <em>Essential</em>: A particular presentation of the target is essential
+                            <Markup.Emphasis>Essential</Markup.Emphasis>: A particular presentation of the target is essential
                             or is legally required for the information to be conveyed.
                         </p>
                     </li>
