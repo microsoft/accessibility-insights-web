@@ -23,8 +23,8 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>How to fix</h2>
         <p>
             For any function that can be operated through dragging, make sure that the user can (1) operate the function through dragging,
-            or (2) there is a <Markup.HyperLink href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer">single pointer</Markup.HyperLink> activation (for example single
-            taps, clicks) alternative that does not require dragging to operate the same function.
+            or (2) there is a <Markup.HyperLink href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer">single pointer</Markup.HyperLink>{' '}
+            activation (for example single taps, clicks) alternative that does not require dragging to operate the same function.
         </p>
 
         <h2>Example</h2>
@@ -65,8 +65,8 @@ export const infoAndExamples = create(({ Markup }) => (
                 G219: Ensuring that an alternative is available for dragging movements that operate on content
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F108">
-                Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method for the user to
-                operate a function that does not require a dragging movement
+                Failure of Success Criterion 2.5.7 Dragging Movements due to not providing a single pointer method for the user to operate a
+                function that does not require a dragging movement
             </Markup.HyperLink>
         </Markup.Links>
         <h3>Additional guidance</h3>
