@@ -26154,7 +26154,9 @@ exports[`Guidance Content pages test/pointerMotion/draggingMovements/infoAndExam
       <p>
         For any function that can be operated through dragging, make sure that the user can (1) operate the function through dragging, or (2) there is a 
         <a
+          class="ms-Link insights-link root-000"
           href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer"
+          target="_blank"
         >
           single pointer
         </a>
