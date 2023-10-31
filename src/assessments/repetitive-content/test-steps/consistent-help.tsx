@@ -5,6 +5,7 @@ import { link } from 'content/link';
 import * as content from 'content/test/repetitive-content/consistent-help';
 import * as React from 'react';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
+import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { RepetitiveContentTestStep } from './test-steps';
 
@@ -21,11 +22,11 @@ const consistentHelpDescription: JSX.Element = (
 
 const consistentHelpHowToTest: JSX.Element = (
     <div>
-        <blockquote>
-            <p>
-                <em>Note: this criterion does not require help to be provided.</em>
-            </p>
-        </blockquote>
+       <p>
+            <Markup.Emphasis>
+                Note: this criterion does not require help to be provided.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 <p>
@@ -44,12 +45,11 @@ const consistentHelpHowToTest: JSX.Element = (
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
         <p>
-            <em>Exemption</em>:{' '}
-            <em>
-                The location of a help mechanism can change based on user input, for example
-                resizing of the window that changes the location of the help link – this would still
-                pass this rule.
-            </em>
+            <Markup.Emphasis>
+                Exemption: The location of a help mechanism can change based on user input, for
+                example resizing of the window that changes the location of the help link – this
+                would still pass this rule.
+            </Markup.Emphasis>
         </p>
     </div>
 );
