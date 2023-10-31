@@ -4,4 +4,5 @@ export const enum PointerMotionTestStep {
     pointerGestures = 'pointer-gestures',
     pointerCancellation = 'pointer-cancellation',
     motionOperation = 'motion-operation',
+    targetSize = 'target-size',
 }
