@@ -23,7 +23,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>How to fix</h2>
         <p>
             For any function that can be operated through dragging, make sure that the user can (1) operate the function through dragging,
-            or (2) there is a <a href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer">single pointer</a> activation (for example single
+            or (2) there is a <Markup.HyperLink href="https://www.w3.org/TR/WCAG22/#dfn-single-pointer">single pointer</Markup.HyperLink> activation (for example single
             taps, clicks) alternative that does not require dragging to operate the same function.
         </p>
 
