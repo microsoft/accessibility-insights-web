@@ -27,10 +27,13 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h2>Example</h2>
         <Markup.PassFail
             failText={
-                <p>
-                    A fieldset that prompts a user to "Enter the 2nd, 6th and last characters of your password", with separate input fields
-                    for each character.{' '}
-                </p>
+                <>
+                    <p>
+                        A fieldset that prompts a user to "Enter the 2nd, 6th and last characters of your password", with separate input
+                        fields for each character.
+                    </p>
+                    <p>See more failure examples below.</p>
+                </>
             }
             failExample={
                 <p>The block paste functionality for the website is blocked and user is unable to copy credentials into the login form.</p>
@@ -53,7 +56,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html">
-                Understanding Success Criterion 3.3.8: Accessible Authentication (Minimum)
+                Understanding Success Criterion 3.3.8: Accessible Authentication
             </Markup.HyperLink>
         </Markup.Links>
         <h3>Sufficient techniques</h3>
@@ -68,8 +71,11 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             <Markup.HyperLink href="https://www.w3.org/TR/coga-gap-analysis/#table3">
                 Cognitive Accessibility Roadmap and Gap Analysis
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/TR/coga-usable/#make-it-easy-%20%20%20%20%20%20%20%20%20%20%20%20%20to-find-help-and-give-feedback-pattern">
+            <Markup.HyperLink href="https://www.w3.org/TR/coga-usable/">
                 Making Content Usable for People with Cognitive and Learning Disabilities
+            </Markup.HyperLink>
+            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F109">
+                Failure of Success Criterion 3.3.8 and 3.3.9 due to preventing password or code re-entry in the same format
             </Markup.HyperLink>
         </Markup.Links>
     </>

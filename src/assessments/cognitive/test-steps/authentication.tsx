@@ -40,7 +40,7 @@ const howToTest: JSX.Element = (
 
 export const Authentication: Requirement = {
     key: CognitiveTestStep.authentication,
-    name: 'Accessible Authentication (Minimum)',
+    name: 'Authentication',
     description,
     howToTest,
     isManual: true,

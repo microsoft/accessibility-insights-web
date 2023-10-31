@@ -4509,6 +4509,50 @@ exports[`Guidance Content pages test/automatedChecks/guidance matches the snapsh
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/cognitive/authentication/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Cannot find test/cognitive/authentication/infoAndExamples
+      </h1>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Guidance Content pages test/cognitive/redundantEntry/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Cannot find test/cognitive/redundantEntry/infoAndExamples
+      </h1>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/contrast/graphics/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
   <div

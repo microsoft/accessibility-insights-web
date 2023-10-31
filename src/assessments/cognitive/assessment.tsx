@@ -3,10 +3,13 @@
 
 import { RedundantEntry } from 'assessments/cognitive/test-steps/redundant-entry';
 import { VisualizationType } from 'common/types/visualization-type';
+import { test as content } from 'content/test';
 import * as React from 'react';
 import { AssessmentBuilder } from '../assessment-builder';
 import { Assessment } from '../types/iassessment';
 import { Authentication } from './test-steps/authentication';
+
+const { guidance } = content.pointerMotion;
 
 const key = 'cognitive';
 const title = 'Cognitive';
@@ -22,6 +25,7 @@ export const CognitiveAssessment: Assessment = AssessmentBuilder.Manual({
     key,
     title,
     gettingStarted,
+    guidance,
     requirements: [RedundantEntry, Authentication],
     isEnabled: true,
 });

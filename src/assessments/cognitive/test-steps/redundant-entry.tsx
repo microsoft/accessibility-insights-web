@@ -16,7 +16,6 @@ const description: JSX.Element = (
 
 const howToTest: JSX.Element = (
     <div>
-        <p>Note: this criterion does not require help to be provided.</p>
         <ol>
             <li>
                 Examine the target page to identify user input mechanisms that request information
