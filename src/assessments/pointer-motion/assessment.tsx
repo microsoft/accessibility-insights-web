@@ -31,5 +31,11 @@ export const PointerMotionAssessment: Assessment = AssessmentBuilder.Assisted({
     gettingStarted: gettingStarted,
     guidance,
     visualizationType: VisualizationType.PointerMotionAssessment,
-    requirements: [PointerGestures, PointerCancellation, MotionOperation, DraggingMovements, TargetSize],
+    requirements: [
+        PointerGestures,
+        PointerCancellation,
+        MotionOperation,
+        DraggingMovements,
+        TargetSize,
+    ],
 });
