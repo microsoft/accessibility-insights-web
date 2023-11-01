@@ -19,6 +19,10 @@ export const guidanceTags = {
         id: 'BEST_PRACTICE',
         displayText: 'Best Practice',
     },
+    WCAG_2_2_DEPRECATION: {
+        id: 'WCAG_2_2',
+        displayText: 'Deprecated as of WCAG 2.2',
+    },
 };
 
 export interface GuidanceLink {
