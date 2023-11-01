@@ -20,11 +20,11 @@ export const infoAndExamples = create(({ Markup }) => (
         </h3>
         <p>
             <Markup.Emphasis>
-                “I’m a reporter with repetitive stress injury who uses speech recognition software. This page has a big content area that's
+                "I'm a reporter with repetitive stress injury who uses speech recognition software. This page has a big content area that's
                 always displayed across the bottom of the screen (a sticky footer). When I move focus to items, some are hidden behind the
-                footer, and I can't see them. This page also uses a persistent header (also called a “sticky" header or banner), where the
-                header remains in the same place as I scroll down the screen. This header is obscuring elements that have focus — which is
-                extremely annoying and blocking for me!”
+                footer, and I can't see them. This page also uses a persistent header (also called a 'sticky' header or banner), where the
+                header remains in the same place as I scroll down the screen. This header is obscuring elements that have focus – which is
+                extremely annoying and blocking for me!"
             </Markup.Emphasis>
         </p>
 
