@@ -22,7 +22,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 always displayed across the bottom of the screen (a sticky footer). When I move focus to items, some are hidden behind the
                 footer, and I can't see them. This page also uses a persistent header (also called a “sticky" header or banner), where the
                 header remains in the same place as I scroll down the screen. This header is obscuring elements that have focus — which is
-                extremely annoying and blocking for me!”
+                extremely annoying and blocking for me!"
             </Markup.Emphasis>
         </p>
 
