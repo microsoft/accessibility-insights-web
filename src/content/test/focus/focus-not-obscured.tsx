@@ -12,8 +12,9 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>Why it matters</h2>
         <p>
             Keyboard users need to know which component currently has the input focus so they can predict the results of their key presses.
-            If this failure occurs, users cannot see where the indicator is due to other authored content. Any 'sticky' content that moves
-            with the viewport can potentially obscure other elements on the page, including controls the user may tab to.
+            If this failure occurs, users cannot see where the indicator is due to other authored content. Any 'sticky' or 'fixed' content
+            that persistently remains visible when scrolling the viewport can potentially obscure other elements on the page, including
+            controls the user may move keyboard focus to, for instance, by use of the Tab key.
         </p>
         <h3>
             <Markup.Term>From a user's perspective:</Markup.Term>
@@ -23,7 +24,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 "I'm a reporter with repetitive stress injury who uses speech recognition software. This page has a big content area that's
                 always displayed across the bottom of the screen (a sticky footer). When I move focus to items, some are hidden behind the
                 footer, and I can't see them. This page also uses a persistent header (also called a 'sticky' header or banner), where the
-                header remains in the same place as I scroll down the screen. This header is obscuring elements that have focus – which is
+                header remains in the same place as I scroll down the screen. This header is obscuring elements that have focus - which is
                 extremely annoying and blocking for me!"
             </Markup.Emphasis>
         </p>
