@@ -21,7 +21,7 @@ export const guidanceTags = {
     },
     WCAG_2_2_DEPRECATION: {
         id: 'WCAG_2_2',
-        displayText: 'Deprecated as of WCAG 2.2',
+        displayText: 'Deprecated for WCAG 2.2',
     },
 };
 
