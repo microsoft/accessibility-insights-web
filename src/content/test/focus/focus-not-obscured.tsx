@@ -69,7 +69,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG22/Techniques/css/C43">
                 Using CSS margin and scroll-margin to un-obscure content
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://accessibilityinsights.io/code-examples/focus-not-obscured/example">
+            <Markup.HyperLink href="https://accessibilityinsights.io/code-examples/focus-not-obscured/">
                 View a passing example of WCAG 2.4.11 Focus Not Obscured using the popover attribute
             </Markup.HyperLink>
         </Markup.Links>
