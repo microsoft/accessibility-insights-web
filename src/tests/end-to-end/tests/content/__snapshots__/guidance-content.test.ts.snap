@@ -10319,10 +10319,10 @@ exports[`Guidance Content pages test/focus/focusNotObscured/infoAndExamples matc
         </a>
         <a
           class="ms-Link insights-link root-000"
-          href="https://codepen.io/scottohara/pen/vYQqjbZ"
+          href="https://accessibilityinsights.io/code-examples/focus-not-obscured/"
           target="_blank"
         >
-          Demo of using the popover attribute
+          View a passing example of WCAG 2.4.11 Focus Not Obscured using the popover attribute
         </a>
       </div>
       <h3>
