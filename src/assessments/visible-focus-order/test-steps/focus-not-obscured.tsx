@@ -28,6 +28,15 @@ const howToTest: JSX.Element = (
             <Markup.Term>The visual helper for this requirement</Markup.Term> records elements in
             the target page that receive the input focus.
         </p>
+        <p>
+            <Markup.Term>Note:</Markup.Term> the AAA criterion Focus Not Obscured (Enhanced) calls
+            for focusable elements to be entirely unobscured when receiving keyboard focus.
+        </p>
+        <p>
+            <Markup.Term>Note:</Markup.Term> this rule covers standard keyboard focus. It does not
+            pertain to “focus indicators” that screen readers can provide to illustrate where the
+            assistive technology is presently reading.
+        </p>
         <ol>
             <li>
                 Use the keyboard to navigate through all the interactive interface components in the
