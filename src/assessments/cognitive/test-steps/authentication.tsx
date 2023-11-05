@@ -23,9 +23,9 @@ const howToTest: JSX.Element = (
         </p>
         <ol>
             <li>
-                Examine the target page to identify structure of input fields and verify whether
-                they prevent the user from pasting or auto-filling the entire password or code in
-                the format in which it was originally created.
+                Examine the target page to identify the input fields and verify whether they prevent
+                the user from pasting or auto-filling the entire password or code in the format in
+                which it was originally created.
             </li>
             <li>
                 Confirm whether any other acceptable authentication methods are present that satisfy
