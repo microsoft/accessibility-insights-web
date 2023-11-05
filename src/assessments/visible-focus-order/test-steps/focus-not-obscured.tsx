@@ -55,6 +55,13 @@ const howToTest: JSX.Element = (
             <li>
                 As you move focus to each component, verify that the focused element is not
                 completely obscured by other content. (In addition to the circle drawn by {title}.)
+                <p>
+                    <Markup.Emphasis>
+                        Note: Focus can be obscured by user rendered content and still pass this
+                        requirement if that content can be dismissed via a keyboard command (e.g.,
+                        pressing the Escape key).
+                    </Markup.Emphasis>
+                </p>
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
