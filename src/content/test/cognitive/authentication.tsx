@@ -17,7 +17,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h2>How to fix</h2>
         <p>
-            Ensure that login functionalities in the system don’t make people solve, recall, or transcribe something to log in. Consider
+            Ensure that login functionalities in the system don't make people solve, recall, or transcribe something to log in. Consider
             using the following techniques to make authentication more accessible such as:
         </p>
         <ul>

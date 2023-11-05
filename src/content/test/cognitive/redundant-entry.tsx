@@ -5,7 +5,7 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <p>
-            Do not require people to re-enter information they have already provided via other means – e.g., as part of a previous step in
+            Do not require people to re-enter information they have already provided via other means - e.g., as part of a previous step in
             the same form.
         </p>
         <h2>Why it matters</h2>

@@ -9,7 +9,7 @@ import { CognitiveTestStep } from './test-steps';
 
 const description: JSX.Element = (
     <span>
-        Do not require people to re-enter information they have already provided via other means –
+        Do not require people to re-enter information they have already provided via other means -
         e.g., as part of a previous step in the same form.
     </span>
 );
