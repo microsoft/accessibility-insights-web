@@ -47,7 +47,7 @@ const consistentHelpHowToTest: JSX.Element = (
         <p>
             <Markup.Emphasis>
                 Exception: The location of a help mechanism can change based on user input, for
-                example resizing of the window that changes the location of the help link - this
+                example resizing of the window that changes the location of the help link&nbsp;– this
                 would still pass this rule so long as the help link was consistently presented in
                 the same location across the same set of web pages at the adjusted window size.
             </Markup.Emphasis>
