@@ -10,7 +10,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         </p>
         <h2>Why it matters</h2>
         <p>
-            This is value for people with certain cognitive disabilities to ensure that there is an accessible, easy-to-use, and secure
+            This is valuable for people with certain cognitive disabilities to ensure that there is an accessible, easy-to-use, and secure
             method to log in. Most Web sites rely on usernames and passwords for logging in. Memorizing or transcribing a username,
             password, or one-time verification code places a very high or impossible burden upon people with certain cognitive disabilities.
         </p>

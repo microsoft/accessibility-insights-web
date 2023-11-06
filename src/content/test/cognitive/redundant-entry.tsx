@@ -18,7 +18,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h2>How to fix</h2>
         <p>
-            To fix this issue, ensure all previously provided information auto-populates into the recurring form fields. If this scenario if
+            To fix this issue, ensure all previously provided information auto-populates into the recurring form fields. If this scenario is
             not possible, provide a mechanism for the user to select the previously populated information for re-entry. The objective of
             this technique is to provide information that was previously provided by the user or by the system, rather than requiring the
             user to remember and re-enter the information from a previous step.
@@ -29,7 +29,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             failText={
                 <p>
                     A website provides no means to pre-populate information of the address entered by the user in the previous step and
-                    create repetitive actions and redundant entries.
+                    creates repetitive actions and redundant entries.
                 </p>
             }
             passText={

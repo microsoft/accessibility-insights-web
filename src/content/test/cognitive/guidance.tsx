@@ -37,7 +37,7 @@ export const guidance = create(({ Markup, Link }) => (
                 </h3>
 
                 <h3>
-                    Create systems with 2-factor authentication systems with verification codes to prevent higher cognitive recall. (
+                    Create systems with 2-factor authentication with verification codes to prevent higher cognitive recall. (
                     <Link.WCAG_3_3_8 />)
                 </h3>
             </Markup.Do>
