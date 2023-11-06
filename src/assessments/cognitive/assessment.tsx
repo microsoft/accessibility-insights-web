@@ -17,11 +17,11 @@ const title = 'Cognitive';
 const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
-            When interfaces require repetitive entry of user data, or necessitate that users recall
+            When interfaces require repetitive entry of user data or necessitate that users recall
             information, solve problems or transcribe information to login, it can unnecessarily
             increase the cognitive load a user must handle. For people with cognitive and/or
             learning disabilities, increasing cognitive load in these ways can lead to unnecessary
-            errors with data entry, or create barriers to login to websites or applications.
+            errors with data entry or create barriers to login to websites or applications.
         </p>
     </React.Fragment>
 );
