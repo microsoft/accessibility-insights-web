@@ -27015,13 +27015,13 @@ exports[`Guidance Content pages test/pointerMotion/targetSize/infoAndExamples ma
         Why it matters
       </h2>
       <p>
-        When touch targets are too small or too close together, it becomes difficult for users to activate them and having sufficient target spacing helps all users who may have difficulty in confidently targeting or operating small controls. Users who benefit include, but are not limited to people who use a mobile device where the touch screen is the primary mode of interaction, or the use of mouse, stylus or touch input for people with mobility impairments such as hand tremors.
+        When touch targets are too small or too close together, it becomes difficult for users to activate them and having sufficient target spacing helps all users who may have difficulty in confidently targeting or operating small controls. Users who benefit include, but are not limited to, people who use a mobile device where the touch screen is the primary mode of interaction, or that use mouse, stylus or touch input for people with mobility impairments such as hand tremors.
       </p>
       <h2>
         How to fix
       </h2>
       <p>
-        All touch targets must be at least 24 by 24 CSS pixels in size, where size is computed by taking the largest unobscured area of the touch target. If the size of the target is insufficient, then it must be at least 24 CSS pixels away from any other touch target. All exception criteria may be used to achieve success for this test for example, providing a different control on the same page that meets target size.
+        All touch targets must be at least 24 by 24 CSS pixels in size, where size is computed by taking the largest unobscured area of the touch target. A touch target may consist of a single actionable element, or an actionable element along with its clickable label or other programmatically associated clickable element. If the size of the target is insufficient, then it must be at least 24 CSS pixels away from any other touch target. All exception criteria may be used to achieve success for this test, for example, providing a different control on the same page that meets target size.
       </p>
       <h2>
         Example
