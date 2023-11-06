@@ -10,7 +10,7 @@ export const guidance = create(({ Markup, Link }) => (
             Cognitive and learning disabilities include long-term, short-term, and permanent difficulties relating to cognitive functions,
             such as:
             <ul>
-                <li>learning, communication, reading, writing, or math,</li>
+                <li>learning, communication, reading, writing, or mathematics,</li>
                 <li>
                     ability to understand or process new or complex information and learn new skills, with a reduced ability to cope
                     independently, and/or
