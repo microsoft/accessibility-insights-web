@@ -3,6 +3,7 @@
     "@typescript-eslint/parser",
     "-/core-js-bundle",
     "-/esbuild",
+    "-/eslint",
     "-/jest-environment-jsdom",
     "-/playwright",
     "-/postcss",
