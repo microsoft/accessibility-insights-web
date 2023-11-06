@@ -4,6 +4,7 @@ import { AdaptableContentAssessment } from './adaptable-content/assessment';
 import { AssessmentsProviderImpl } from './assessments-provider';
 import { AudioVideoOnlyAssessment } from './audio-video-only/assessment';
 import { AutomatedChecks } from './automated-checks/assessment';
+import { CognitiveAssessment } from './cognitive/assessment';
 import { ColorSensoryAssessment } from './color/assessment';
 import { ContrastAssessment } from './contrast/assessment';
 import { CustomWidgets } from './custom-widgets/assessment';
@@ -52,4 +53,5 @@ export const Assessments: AssessmentsProvider = AssessmentsProviderImpl.Create([
     SemanticsAssessment,
     PointerMotionAssessment,
     ContrastAssessment,
+    CognitiveAssessment,
 ]);

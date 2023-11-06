@@ -338,6 +338,10 @@ exports[`DetailsViewContent render renders normally 1`] = `
               "enabled": false,
               "stepStatus": {},
             },
+            "cognitive": {
+              "enabled": false,
+              "stepStatus": {},
+            },
             "color": {
               "enabled": false,
               "stepStatus": {},
