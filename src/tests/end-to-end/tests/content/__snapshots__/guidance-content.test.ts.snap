@@ -10164,6 +10164,189 @@ exports[`Guidance Content pages test/focus/closingContent/infoAndExamples matche
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/focus/focusNotObscured/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <p>
+        For elements receiving keyboard focus, its focus indicator must be at least partially visible and not obscured by author-created content which overlays it, unless the focused element can be revealed without requiring the user to advance focus in the UI.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Keyboard users need to know which component currently has the input focus so they can predict the results of their key presses. If this failure occurs, users cannot see where the indicator is due to other authored content. Any 'sticky' or 'fixed' content that persistently remains visible when scrolling the viewport can potentially obscure other elements on the page, including controls the user may move keyboard focus to, for instance, by use of the Tab key.
+      </p>
+      <h3>
+        <strong>
+          From a user's perspective:
+        </strong>
+      </h3>
+      <p>
+        <em>
+          "I'm a reporter with repetitive stress injury who uses speech recognition software. This page has a big content area that's always displayed across the bottom of the screen (a sticky footer). When I move focus to items, some are hidden behind the footer, and I can't see them. This page also uses a persistent header (also called a 'sticky' header or banner), where the header remains in the same place as I scroll down the screen. This header is obscuring elements that have focus - which is extremely annoying and blocking for me!"
+        </em>
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Ensure interactive components that receive focus indicator are at least partially visible and not obscured by author-created content which overlays it, unless the focused element can be revealed without requiring the user to advance focus in the UI.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A non-movable panel such as a sticky footer, cookie banner or chat widget can overlay content on the screen. These elements fail this rule if focus can be moved to an element where content would fully obscure to the point of being illegible and could not be scrolled into view (e.g., by attempting to manipulate the content in the visible viewport by use of arrow keys).
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            To fix this issue, ensure that there is either enough scroll padding available so the user may initially find focus obscured by an element when navigating with the Tab key, but by adjusting the scroll position of the viewport, the obscured content can be made visible. Or, that the overlaying elements can be dismissed without a user having to move focus from the obscured element.
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum"
+          target="_blank"
+        >
+          Understanding Success Criterion 2.4.11: Focus Not Obscured (Minimum)
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/css/C43"
+          target="_blank"
+        >
+          Using CSS margin and scroll-margin to un-obscure content
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://accessibilityinsights.io/code-examples/focus-not-obscured/"
+          target="_blank"
+        >
+          View a passing example of WCAG 2.4.11 Focus Not Obscured using the popover attribute
+        </a>
+      </div>
+      <h3>
+        Additional Guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F110"
+          target="_blank"
+        >
+          Failure of Success Criterion 2.4.12 Focus Not Obscured (Minimum) due to a sticky footer or header completely hiding focused elements
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/focus/focusOrder matches the snapshot 1`] = `
 <DocumentFragment>
   <div

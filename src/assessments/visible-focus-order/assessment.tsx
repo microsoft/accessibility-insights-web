@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { FocusNotObscured } from 'assessments/visible-focus-order/test-steps/focus-not-obscured';
 import { Messages } from 'common/messages';
 import { VisualizationType } from 'common/types/visualization-type';
 import { test as content } from 'content/test';
@@ -37,7 +38,14 @@ export const VisibleFocusOrderAssessment: Assessment = AssessmentBuilder.Assiste
     gettingStarted: keyboardInteractionGettingStarted,
     guidance,
     visualizationType: VisualizationType.VisibleFocusOrderAssessment,
-    requirements: [VisibleFocus, RevealingContent, ModalDialogs, ClosingContent, FocusOrder],
+    requirements: [
+        VisibleFocus,
+        RevealingContent,
+        ModalDialogs,
+        ClosingContent,
+        FocusOrder,
+        FocusNotObscured,
+    ],
     visualizationConfiguration: {
         key: key,
         analyzerProgressMessageType: Messages.Assessment.TabbedElementAdded,
