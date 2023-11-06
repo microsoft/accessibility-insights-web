@@ -4889,41 +4889,6 @@ exports[`Guidance Content pages test/cognitive/guidance matches the snapshot 1`]
                 Memory barriers stop people with cognitive disabilities from using content. This includes long passwords to log in and voice menus that involve remembering a specific number or term. Make sure there is an easier option for people who need it.
               </li>
             </ul>
-            <h3>
-              Don't use 
-              <span
-                class="insights-code"
-              >
-                display:none
-              </span>
-              , 
-              <span
-                class="insights-code"
-              >
-                visibility:hidden
-              </span>
-               or 
-              <span
-                class="insights-code"
-              >
-                aria-hidden
-              </span>
-               to make headings invisible 
-              <em>
-                only
-              </em>
-               to sighted users. (a11y tech tip)
-            </h3>
-            <ul>
-              <li>
-                Those properties make headings unavailable to everyone, including assistive technology users. Use this CSS instead: 
-                <span
-                  class="insights-code"
-                >
-                  className="element-invisible"
-                </span>
-              </li>
-            </ul>
           </div>
         </div>
       </div>

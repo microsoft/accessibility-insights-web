@@ -59,18 +59,6 @@ export const guidance = create(({ Markup, Link }) => (
                         who need it.
                     </li>
                 </ul>
-
-                <h3>
-                    Don't use <Markup.Code>display:none</Markup.Code>, <Markup.Code>visibility:hidden</Markup.Code> or{' '}
-                    <Markup.Code>aria-hidden</Markup.Code> to make headings invisible <Markup.Emphasis>only</Markup.Emphasis> to sighted
-                    users. (a11y tech tip)
-                </h3>
-                <ul>
-                    <li>
-                        Those properties make headings unavailable to everyone, including assistive technology users. Use this CSS instead:{' '}
-                        <Markup.Code>className="element-invisible"</Markup.Code>
-                    </li>
-                </ul>
             </Markup.Dont>
         </Markup.Columns>
         <h2>Learn more</h2>
