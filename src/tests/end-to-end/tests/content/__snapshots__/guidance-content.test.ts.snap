@@ -4527,7 +4527,7 @@ exports[`Guidance Content pages test/cognitive/authentication/infoAndExamples ma
         Why it matters
       </h2>
       <p>
-        This is value for people with certain cognitive disabilities to ensure that there is an accessible, easy-to-use, and secure method to log in. Most Web sites rely on usernames and passwords for logging in. Memorizing or transcribing a username, password, or one-time verification code places a very high or impossible burden upon people with certain cognitive disabilities.
+        This is valuable for people with certain cognitive disabilities to ensure that there is an accessible, easy-to-use, and secure method to log in. Most Web sites rely on usernames and passwords for logging in. Memorizing or transcribing a username, password, or one-time verification code places a very high or impossible burden upon people with certain cognitive disabilities.
       </p>
       <h2>
         How to fix
@@ -4810,7 +4810,7 @@ exports[`Guidance Content pages test/cognitive/guidance matches the snapshot 1`]
               )
             </h3>
             <h3>
-              Create systems with 2-factor authentication systems with verification codes to prevent higher cognitive recall. (
+              Create systems with 2-factor authentication with verification codes to prevent higher cognitive recall. (
               <a
                 class="ms-Link insights-link root-000"
                 href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html"
@@ -5056,7 +5056,7 @@ exports[`Guidance Content pages test/cognitive/redundantEntry/infoAndExamples ma
         How to fix
       </h2>
       <p>
-        To fix this issue, ensure all previously provided information auto-populates into the recurring form fields. If this scenario if not possible, provide a mechanism for the user to select the previously populated information for re-entry. The objective of this technique is to provide information that was previously provided by the user or by the system, rather than requiring the user to remember and re-enter the information from a previous step.
+        To fix this issue, ensure all previously provided information auto-populates into the recurring form fields. If this scenario is not possible, provide a mechanism for the user to select the previously populated information for re-entry. The objective of this technique is to provide information that was previously provided by the user or by the system, rather than requiring the user to remember and re-enter the information from a previous step.
       </p>
       <h2>
         Example
@@ -5100,7 +5100,7 @@ exports[`Guidance Content pages test/cognitive/redundantEntry/infoAndExamples ma
             </h3>
           </div>
           <p>
-            A website provides no means to pre-populate information of the address entered by the user in the previous step and create repetitive actions and redundant entries.
+            A website provides no means to pre-populate information of the address entered by the user in the previous step and creates repetitive actions and redundant entries.
           </p>
         </div>
         <div

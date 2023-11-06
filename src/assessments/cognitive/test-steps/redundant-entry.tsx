@@ -9,8 +9,8 @@ import { CognitiveTestStep } from './test-steps';
 
 const description: JSX.Element = (
     <span>
-        Do not require people to re-enter information they have already provided via other means&nbsp;– 
-        e.g., as part of a previous step in the same form.
+        Do not require people to re-enter information they have already provided via other
+        means&nbsp;– e.g., as part of a previous step in the same form.
     </span>
 );
 
@@ -34,7 +34,7 @@ const howToTest: JSX.Element = (
 
 export const RedundantEntry: Requirement = {
     key: CognitiveTestStep.redundantEntry,
-    name: 'Redundant Entry',
+    name: 'Redundant entry',
     description,
     howToTest,
     isManual: true,
