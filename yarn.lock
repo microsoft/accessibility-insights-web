@@ -1988,13 +1988,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:0.0.249":
-  version: 0.0.249
-  resolution: "@types/chrome@npm:0.0.249"
+"@types/chrome@npm:0.0.250":
+  version: 0.0.250
+  resolution: "@types/chrome@npm:0.0.250"
   dependencies:
     "@types/filesystem": "*"
     "@types/har-format": "*"
-  checksum: 16f5de1071cb014f99721d450f62b8b4bc4dfda9455bcad33af8b6a814602d46fb0af4227ca93ea294b1fd05c6135397229a2b9e033508da507ec5479a015ea8
+  checksum: 4b2db23505cc6216474938ab8adb18f3d52476f1742a82dca6bc6e3294dd69dc16f4083ed3fee22d87828b3777856a8d0199db2a035b702123e3a852a831ce1a
   languageName: node
   linkType: hard
 
@@ -2870,7 +2870,7 @@ __metadata:
     "@microsoft/applicationinsights-web": ^2.8.15
     "@swc/core": ^1.3.96
     "@swc/jest": ^0.2.29
-    "@types/chrome": 0.0.249
+    "@types/chrome": 0.0.250
     "@types/enzyme": ^3.10.16
     "@types/enzyme-adapter-react-16": ^1.0.8
     "@types/jest": ^29.5.7
