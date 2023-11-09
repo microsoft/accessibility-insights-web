@@ -1,55 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ManualTestRecordYourResultsTest render: isMultipleFailurePossible = false 1`] = `
-<li>
-  Record your results:
-  <ol>
-    <li>
-      If you find 
-      a failure
-      , select
-       
-      <Term>
-        Fail
-      </Term>
-      ,
-       then add the failure instance
-      .
-    </li>
-    <li>
-      Otherwise, select 
-      <Term>
-        Pass
-      </Term>
-      .
-    </li>
-  </ol>
-</li>
+<DocumentFragment>
+  <li>
+    Record your results:
+    <ol>
+      <li>
+        If you find a failure, select 
+        <strong>
+          Fail
+        </strong>
+        , then add the failure instance.
+      </li>
+      <li>
+        Otherwise, select 
+        <strong>
+          Pass
+        </strong>
+        .
+      </li>
+    </ol>
+  </li>
+</DocumentFragment>
 `;
 
 exports[`ManualTestRecordYourResultsTest render: isMultipleFailurePossible = true 1`] = `
-<li>
-  Record your results:
-  <ol>
-    <li>
-      If you find 
-      any failures
-      , select
-       
-      <Term>
-        Fail
-      </Term>
-      ,
-       then add them as failure instances
-      .
-    </li>
-    <li>
-      Otherwise, select 
-      <Term>
-        Pass
-      </Term>
-      .
-    </li>
-  </ol>
-</li>
+<DocumentFragment>
+  <li>
+    Record your results:
+    <ol>
+      <li>
+        If you find any failures, select 
+        <strong>
+          Fail
+        </strong>
+        , then add them as failure instances.
+      </li>
+      <li>
+        Otherwise, select 
+        <strong>
+          Pass
+        </strong>
+        .
+      </li>
+    </ol>
+  </li>
+</DocumentFragment>
 `;
