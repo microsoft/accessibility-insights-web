@@ -4,6 +4,10 @@ import { render, RenderResult } from '@testing-library/react';
 import { AutomatedChecksVisualizationToggle } from 'assessments/automated-checks/automated-checks-visualization-enabled-toggle';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import * as React from 'react';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock } from 'typemoq';
 import {
     VisualizationToggle,
@@ -12,10 +16,6 @@ import {
 import { visualHelperText } from '../../../../../DetailsView/components/base-visual-helper-toggle';
 import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-toggle-config-builder';
 import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
-import {
-    getMockComponentClassPropsForCall,
-    mockReactComponents,
-} from 'tests/unit/mock-helpers/mock-module-helpers';
 
 jest.mock('common/components/visualization-toggle');
 describe('AutomatedChecksVisualizationToggle', () => {

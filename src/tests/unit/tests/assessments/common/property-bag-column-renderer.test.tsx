@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render, RenderResult } from "@testing-library/react";
+import { render, RenderResult } from '@testing-library/react';
 import { propertyBagColumnRenderer } from 'assessments/common/property-bag-column-renderer';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
