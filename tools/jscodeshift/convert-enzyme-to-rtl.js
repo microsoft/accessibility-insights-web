@@ -305,7 +305,7 @@ function transformer(fileInfo, api) {
         firstNode2.comments = comments;
     }
 
-    return root.toSource();
+    return root.toSource({ quote: 'single' });
 }
 
 module.exports = transformer;
