@@ -17,8 +17,8 @@ export const assessmentLinkDataSource: HyperlinkDefinition[] = [
         text: 'Ask a question',
     },
     {
-        href: 'https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/',
-        text: 'New WCAG 2.1 success criteria',
+        href: 'https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/',
+        text: 'New WCAG 2.2 success criteria',
     },
 ];
 
@@ -36,7 +36,7 @@ export const quickAssessLinkDataSource: HyperlinkDefinition[] = [
         text: 'Ask a question',
     },
     {
-        href: 'https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/',
-        text: 'New WCAG 2.1 success criteria',
+        href: 'https://www.w3.org/WAI/standards-guidelines/wcag/new-in-22/',
+        text: 'New WCAG 2.2 success criteria',
     },
 ];

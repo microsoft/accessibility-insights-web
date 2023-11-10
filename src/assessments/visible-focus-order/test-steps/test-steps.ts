@@ -6,4 +6,5 @@ export const enum visibleFfocusOrderTestStep {
     modalDialogs = 'modal-dialogs',
     revealingContent = 'revealing-content',
     visibleFocus = 'visible-focus',
+    focusNotObscured = 'focus-not-obscured',
 }

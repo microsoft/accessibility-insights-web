@@ -147,6 +147,10 @@ exports[`InitialVisualizationStoreDataGenerator.generateInitialState generates t
         "enabled": false,
         "stepStatus": {},
       },
+      "type-41": {
+        "enabled": false,
+        "stepStatus": {},
+      },
     },
     "quickAssess": {
       "type-10": {
@@ -318,6 +322,10 @@ exports[`InitialVisualizationStoreDataGenerator.generateInitialState overwrites 
       "enabled": false,
       "stepStatus": {},
     },
+    "type-41": {
+      "enabled": false,
+      "stepStatus": {},
+    },
   },
   "quickAssess": {
     "type-10": {
@@ -485,6 +493,10 @@ exports[`InitialVisualizationStoreDataGenerator.generateInitialState overwrites 
       "stepStatus": {},
     },
     "type-40": {
+      "enabled": false,
+      "stepStatus": {},
+    },
+    "type-41": {
       "enabled": false,
       "stepStatus": {},
     },

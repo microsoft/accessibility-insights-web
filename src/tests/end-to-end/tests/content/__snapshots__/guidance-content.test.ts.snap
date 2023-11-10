@@ -4509,6 +4509,667 @@ exports[`Guidance Content pages test/automatedChecks/guidance matches the snapsh
 </DocumentFragment>
 `;
 
+exports[`Guidance Content pages test/cognitive/authentication/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <p>
+        People with cognitive issues relating to memory, reading (for example, dyslexia), numbers (for example, dyscalculia), or perception-processing limitations will be able to authenticate irrespective of the level of their cognitive abilities.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        This is valuable for people with certain cognitive disabilities to ensure that there is an accessible, easy-to-use, and secure method to log in. Most Web sites rely on usernames and passwords for logging in. Memorizing or transcribing a username, password, or one-time verification code places a very high or impossible burden upon people with certain cognitive disabilities.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Ensure that login functionalities in the system don't make people solve, recall, or transcribe something to log in. Consider using the following techniques to make authentication more accessible such as:
+      </p>
+      <ul>
+        <li>
+          Copy & paste functionality is enabled.
+        </li>
+        <li>
+          2-factor authentication systems with verification codes to prevent higher cognitive recall.
+        </li>
+      </ul>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A fieldset that prompts a user to "Enter the 2nd, 6th and last characters of your password", with separate input fields for each character.
+          </p>
+          <p>
+            See more failure examples below.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <p>
+            The block paste functionality for the website is blocked and user is unable to copy credentials into the login form.
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            A social media website has a username and password based login mechanism. As part of the forgotten password feature, there is a separate link to login with an email. When the user enters their email and submits the form, the site sends an email to the user. Clicking the link in the email opens the website and the user is logged in.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <p>
+            A web site does not block paste functionality. The user is able to use a third-party password manager to store credentials, copy them, and paste them directly into a login form.
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 3.3.8: Accessible Authentication
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/html/H100"
+          target="_blank"
+        >
+          Providing properly marked up email and password inputs
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/general/G218"
+          target="_blank"
+        >
+          Email link authentication
+        </a>
+      </div>
+      <h3>
+        Additional Guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/coga-gap-analysis/#table3"
+          target="_blank"
+        >
+          Cognitive Accessibility Roadmap and Gap Analysis
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/coga-usable/"
+          target="_blank"
+        >
+          Making Content Usable for People with Cognitive and Learning Disabilities
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F109"
+          target="_blank"
+        >
+          Failure of Success Criterion 3.3.8 and 3.3.9 due to preventing password or code re-entry in the same format
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Guidance Content pages test/cognitive/guidance matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Cognitive
+      </h1>
+      <h2>
+        Why it matters
+      </h2>
+      Cognitive and learning disabilities include long-term, short-term, and permanent difficulties relating to cognitive functions, such as:
+      <ul>
+        <li>
+          learning, communication, reading, writing, or mathematics,
+        </li>
+        <li>
+          ability to understand or process new or complex information and learn new skills, with a reduced ability to cope independently, and/or
+        </li>
+        <li>
+          memory and attention or visual, language, or numerical thinking.
+        </li>
+      </ul>
+      <p>
+        Web page design & structure can make content inaccessible to people with cognitive and learning disabilities. For example, people with impaired short-term memory may be unable to recall passwords, remember access codes, or have trouble remembering unfamiliar iconography. Additionally, people with cognitive and learning disabilities may need more support or time to complete a new process or an authentication task.
+      </p>
+      <p>
+        It is important designs are created while considering the cognitive load they require of their users, as many people may struggle with cognitive fatigue when completing complex, multi-stage processes. For instance, tasks like filling out forms while entering important or sensitive data correctly or just trying to locate the content or feature that they need. Designs need to consistently provide support to help minimize errors and complete their task.
+      </p>
+      <div
+        class="columns"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="do-header"
+          >
+            <h2>
+              Do
+            </h2>
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="do-section"
+          >
+            <h3>
+              Provide users functionality to Copy & paste passwords for authentication. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html"
+                target="_blank"
+              >
+                WCAG 3.3.8
+              </a>
+              )
+            </h3>
+            <h3>
+              Create systems with 2-factor authentication with verification codes to prevent higher cognitive recall. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html"
+                target="_blank"
+              >
+                WCAG 3.3.8
+              </a>
+              )
+            </h3>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="dont-header"
+          >
+            <h2>
+              Don't
+            </h2>
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="dont-section"
+          >
+            <h3>
+              Don't rely on users memorizing or transcribing a username, password, or one-time verification code. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html"
+                target="_blank"
+              >
+                WCAG 3.3.8
+              </a>
+              )
+            </h3>
+            <h3>
+              Don't require people to re-enter information they have already provided via other means. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html"
+                target="_blank"
+              >
+                WCAG 3.3.7
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Ensure processes do not rely on memory.
+              </li>
+              <li>
+                Memory barriers stop people with cognitive disabilities from using content. This includes long passwords to log in and voice menus that involve remembering a specific number or term. Make sure there is an easier option for people who need it.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h2>
+        Learn more
+      </h2>
+      <h3>
+        Reduce Redundant Entry
+      </h3>
+      <h4>
+        WCAG success Criteria
+      </h4>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html#:~:text=Redundant%20Entry%20is%20asking%20for%20the%20website%20content,essential%20purposes%20such%20as%20asking%20for%20a%20password."
+        target="_blank"
+      >
+        Understanding Success Criterion 3.3.7: Redundant Entry
+      </a>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/WAI/WCAG22/Techniques/general/G221"
+        target="_blank"
+      >
+        Provide data from a previous step in a process
+      </a>
+      <h4>
+        Additional guidance
+      </h4>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/TR/coga-gap-analysis/#table3"
+        target="_blank"
+      >
+        Cognitive Accessibility Roadmap and Gap Analysis
+      </a>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/TR/coga-usable/"
+        target="_blank"
+      >
+        Making Content Usable for People with Cognitive and Learning Disabilities
+      </a>
+      <h3>
+        Provide accessible authentication
+      </h3>
+      <h4>
+        WCAG success Criteria
+      </h4>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/WAI/WCAG22/Understanding/accessible-authentication-minimum.html"
+        target="_blank"
+      >
+        Understanding Success Criterion 3.3.8: Accessible Authentication
+      </a>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/WAI/WCAG22/Techniques/html/H100"
+        target="_blank"
+      >
+        Providing properly marked up email and password inputs
+      </a>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/WAI/WCAG22/Techniques/general/G218"
+        target="_blank"
+      >
+        Email link authentication
+      </a>
+      <h4>
+        Additional guidance and common failures
+      </h4>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/TR/coga-gap-analysis/#table3"
+        target="_blank"
+      >
+        Cognitive Accessibility Roadmap and Gap Analysis
+      </a>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/TR/coga-usable/#make-it-easy-%20%20%20%20%20%20%20%20%20%20%20%20%20to-find-help-and-give-feedback-pattern"
+        target="_blank"
+      >
+        Making Content Usable for People with Cognitive and Learning Disabilities
+      </a>
+      <a
+        class="ms-Link insights-link root-000"
+        href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F109"
+        target="_blank"
+      >
+        Failure of Success Criterion 3.3.8 and 3.3.9 due to preventing password or code re-entry in the same format
+      </a>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Guidance Content pages test/cognitive/redundantEntry/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <p>
+        Do not require people to re-enter information they have already provided via other means - e.g., as part of a previous step in the same form.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        The intent of this rule is to reduce the potential for people to have cognitive fatigue due to having to repeatedly enter the same data or recall specific data that had been previously entered. Another benefit here is to reduce the possibility of user error due to a memory lapse or typo compared to the previous entry of said data. This improves success for individuals with cognitive and learning disabilities and memory impairments.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        To fix this issue, ensure all previously provided information auto-populates into the recurring form fields. If this scenario is not possible, provide a mechanism for the user to select the previously populated information for re-entry. The objective of this technique is to provide information that was previously provided by the user or by the system, rather than requiring the user to remember and re-enter the information from a previous step.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A website provides no means to pre-populate information of the address entered by the user in the previous step and creates repetitive actions and redundant entries.
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Populate previously entered information with a trigger: An ecommerce site provides a checkbox that triggers the shipping address to be pre-populated based on the billing address the user had entered in a previous step.
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Understanding/redundant-entry.html#:~:text=Redundant%20Entry%20is%20asking%20for%20the%20website%20content,essential%20purposes%20such%20as%20asking%20for%20a%20password."
+          target="_blank"
+        >
+          Understanding Success Criterion 3.3.7: Redundant Entry
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/general/G221"
+          target="_blank"
+        >
+          Provide data from a previous step in a process
+        </a>
+      </div>
+      <h3>
+        Additional Guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/coga-gap-analysis/#table3"
+          target="_blank"
+        >
+          Cognitive Accessibility Roadmap and Gap Analysis
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/coga-usable/#make-it-easy-%20%20%20%20%20%20%20%20%20%20%20%20%20to-find-help-and-give-feedback-pattern"
+          target="_blank"
+        >
+          Making Content Usable for People with Cognitive and Learning Disabilities
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Guidance Content pages test/contrast/graphics/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
   <div
@@ -10154,6 +10815,189 @@ exports[`Guidance Content pages test/focus/closingContent/infoAndExamples matche
           target="_blank"
         >
           Dialog (Modal) in WAI-ARIA Authoring Practices 1.1
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Guidance Content pages test/focus/focusNotObscured/infoAndExamples matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <p>
+        For elements receiving keyboard focus, its focus indicator must be at least partially visible and not obscured by author-created content which overlays it, unless the focused element can be revealed without requiring the user to advance focus in the UI.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Keyboard users need to know which component currently has the input focus so they can predict the results of their key presses. If this failure occurs, users cannot see where the indicator is due to other authored content. Any 'sticky' or 'fixed' content that persistently remains visible when scrolling the viewport can potentially obscure other elements on the page, including controls the user may move keyboard focus to, for instance, by use of the Tab key.
+      </p>
+      <h3>
+        <strong>
+          From a user's perspective:
+        </strong>
+      </h3>
+      <p>
+        <em>
+          "I'm a reporter with repetitive stress injury who uses speech recognition software. This page has a big content area that's always displayed across the bottom of the screen (a sticky footer). When I move focus to items, some are hidden behind the footer, and I can't see them. This page also uses a persistent header (also called a 'sticky' header or banner), where the header remains in the same place as I scroll down the screen. This header is obscuring elements that have focus - which is extremely annoying and blocking for me!"
+        </em>
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Ensure interactive components that receive focus indicator are at least partially visible and not obscured by author-created content which overlays it, unless the focused element can be revealed without requiring the user to advance focus in the UI.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A non-movable panel such as a sticky footer, cookie banner or chat widget can overlay content on the screen. These elements fail this rule if focus can be moved to an element where content would fully obscure to the point of being illegible and could not be scrolled into view (e.g., by attempting to manipulate the content in the visible viewport by use of arrow keys).
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            To fix this issue, ensure that there is either enough scroll padding available so the user may initially find focus obscured by an element when navigating with the Tab key, but by adjusting the scroll position of the viewport, the obscured content can be made visible. Or, that the overlaying elements can be dismissed without a user having to move focus from the obscured element.
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum"
+          target="_blank"
+        >
+          Understanding Success Criterion 2.4.11: Focus Not Obscured (Minimum)
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/css/C43"
+          target="_blank"
+        >
+          Using CSS margin and scroll-margin to un-obscure content
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://accessibilityinsights.io/code-examples/focus-not-obscured/"
+          target="_blank"
+        >
+          View a passing example of WCAG 2.4.11 Focus Not Obscured using the popover attribute
+        </a>
+      </div>
+      <h3>
+        Additional Guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG22/Techniques/failures/F110"
+          target="_blank"
+        >
+          Failure of Success Criterion 2.4.12 Focus Not Obscured (Minimum) due to a sticky footer or header completely hiding focused elements
         </a>
       </div>
     </div>
@@ -27015,13 +27859,13 @@ exports[`Guidance Content pages test/pointerMotion/targetSize/infoAndExamples ma
         Why it matters
       </h2>
       <p>
-        When touch targets are too small or too close together, it becomes difficult for users to activate them and having sufficient target spacing helps all users who may have difficulty in confidently targeting or operating small controls. Users who benefit include, but are not limited to people who use a mobile device where the touch screen is the primary mode of interaction, or the use of mouse, stylus or touch input for people with mobility impairments such as hand tremors.
+        When touch targets are too small or too close together, it becomes difficult for users to activate them and having sufficient target spacing helps all users who may have difficulty in confidently targeting or operating small controls. Users who benefit include, but are not limited to, people who use a mobile device where the touch screen is the primary mode of interaction, or that use mouse, stylus or touch input for people with mobility impairments such as hand tremors.
       </p>
       <h2>
         How to fix
       </h2>
       <p>
-        All touch targets must be at least 24 by 24 CSS pixels in size, where size is computed by taking the largest unobscured area of the touch target. If the size of the target is insufficient, then it must be at least 24 CSS pixels away from any other touch target. All exception criteria may be used to achieve success for this test for example, providing a different control on the same page that meets target size.
+        All touch targets must be at least 24 by 24 CSS pixels in size, where size is computed by taking the largest unobscured area of the touch target. A touch target may consist of a single actionable element, or an actionable element along with its clickable label or other programmatically associated clickable element. If the size of the target is insufficient, then it must be at least 24 CSS pixels away from any other touch target. All exception criteria may be used to achieve success for this test, for example, providing a different control on the same page that meets target size.
       </p>
       <h2>
         Example
