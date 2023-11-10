@@ -7,7 +7,10 @@ export const expectMockedComponentPropsToMatchSnapshots = (
     snapshotName?: string,
 ) => {
     components.forEach(component => {
-        expectMockedComponentPropsToMatchSnapshot(component, snapshotName);
+        const componentSnapshotName =
+            snapshotName ||
+            `${component.displayName || component.name || 'mocked component'} props`;
+        expectMockedComponentPropsToMatchSnapshot(component, componentSnapshotName);
     });
 };
 
@@ -27,33 +30,38 @@ export function mockReactComponents(components: any[]) {
 }
 
 function mockReactComponent<T extends React.ComponentClass<P>, P = any>(component, elementName?) {
-    const name =
-        elementName || component.displayName
-            ? `mock-${component.displayName}`
-            : `mock-${component.name}`;
-    if (!(component as any).mockImplementation && !(component as any).render?.mockImplementation) {
-        throw new Error(
-            `${name} is not a mockable component. Please add a jest.mock call for this component before using this component in the test function.`,
-        );
-    }
-    const mockFunction = mockReactElement<P>(name);
-
-    if (component.prototype && component.prototype.isReactComponent) {
-        //mock the class
-        const mockClass = (props: P, context?: any, ...rest: any[]) => ({
-            render: () => mockFunction(props, ...rest),
-            props,
-            context,
-            ...rest,
-        });
-        (component as any).mockImplementation(mockClass);
-    } else {
-        //functional component
-        if ((component as any).render?.mockImplementation) {
-            component.render.mockImplementation(mockFunction);
+    if (component !== undefined) {
+        const name =
+            elementName || component.displayName
+                ? `mock-${component.displayName}`
+                : `mock-${component.name}`;
+        if (
+            !(component as any).mockImplementation &&
+            !(component as any).render?.mockImplementation
+        ) {
+            throw new Error(
+                `${name} is not a mockable component. Please add a jest.mock call for this component before using this component in the test function.`,
+            );
         }
-        if ((component as any).mockImplementation) {
-            (component as any).mockImplementation(mockFunction);
+        const mockFunction = mockReactElement<P>(name);
+
+        if (component.prototype && component.prototype.isReactComponent) {
+            //mock the class
+            const mockClass = (props: P, context?: any, ...rest: any[]) => ({
+                render: () => mockFunction(props, ...rest),
+                props,
+                context,
+                ...rest,
+            });
+            (component as any).mockImplementation(mockClass);
+        } else {
+            //functional component
+            if ((component as any).render?.mockImplementation) {
+                component.render.mockImplementation(mockFunction);
+            }
+            if ((component as any).mockImplementation) {
+                (component as any).mockImplementation(mockFunction);
+            }
         }
     }
 }
