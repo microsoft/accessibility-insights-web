@@ -205,6 +205,7 @@
         "src/tests/unit/common/visual-helper-toggle-config-builder.ts",
         "src/tests/unit/common/visualization-scan-result-store-data-builder.ts",
         "src/tests/unit/common/visualization-store-data-builder.ts",
+        "src/tests/unit/mock-helpers/mock-module-helpers.tsx",
         "src/tests/unit/tests/DetailsView/assessment-report-builder-test-helper.ts",
         "src/tests/unit/tests/DetailsView/details-view-container-props-builder.ts",
         "src/tests/unit/tests/DetailsView/store-mocks.ts",
