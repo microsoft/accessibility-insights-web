@@ -230,9 +230,8 @@ describe('AssessmentStore', () => {
             });
         });
 
-        expectedState.assessments['assessment-1'].manualTestStepResultMap[
-            expectedTestStep
-        ].status = 2;
+        expectedState.assessments['assessment-1'].manualTestStepResultMap[expectedTestStep].status =
+            2;
 
         setupDataGeneratorMock(persisted, expectedState);
 
