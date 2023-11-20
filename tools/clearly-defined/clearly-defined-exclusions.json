@@ -8,6 +8,7 @@
     "-/playwright",
     "-/postcss",
     "-/sass",
+    "-/simple-git",
     "-/stylelint",
     "-/stylelint-config-standard-scss",
     "-/ts-loader"
