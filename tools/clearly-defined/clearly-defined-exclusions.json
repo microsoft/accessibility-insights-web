@@ -11,5 +11,6 @@
     "-/simple-git",
     "-/stylelint",
     "-/stylelint-config-standard-scss",
-    "-/ts-loader"
+    "-/ts-loader",
+    "-/typed-scss-modules"
 ]
