@@ -9,6 +9,8 @@ import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 import styles from './rule-resources.scss';
+import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
+import { getNeedsReviewRuleResourcesUrl, isOutcomeNeedsReview } from '../../configs/needs-review-rule-resources';
 
 export type RuleResourcesDeps = GuidanceTagsDeps & {
     LinkComponent: LinkComponentType;
@@ -17,9 +19,10 @@ export type RuleResourcesDeps = GuidanceTagsDeps & {
 export type RuleResourcesProps = {
     deps: RuleResourcesDeps;
     rule: UnifiedRule;
+    outcomeType: InstanceOutcomeType;
 };
 
-export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ deps, rule }) => {
+export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ deps, rule, outcomeType }) => {
     if (rule.url == null && isEmpty(rule.guidance)) {
         return null;
     }
@@ -32,9 +35,10 @@ export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ dep
         if (rule.url == null) {
             return null;
         }
-
+        
         const ruleId = rule.id;
-        const ruleUrl = rule.url;
+        const ruleUrl = isOutcomeNeedsReview(ruleId, outcomeType) ? getNeedsReviewRuleResourcesUrl(ruleId) : rule.url;
+        
         return (
             <span className={styles.ruleDetailsId}>
                 <deps.LinkComponent href={ruleUrl}>
