@@ -2251,12 +2251,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-helmet@npm:^6.1.9":
-  version: 6.1.9
-  resolution: "@types/react-helmet@npm:6.1.9"
+"@types/react-helmet@npm:^6.1.10":
+  version: 6.1.10
+  resolution: "@types/react-helmet@npm:6.1.10"
   dependencies:
     "@types/react": "*"
-  checksum: 4f96b338b6500042a1dde6e7af0e109df91f5ec52a1200dd9511748f85cd659b22e84b51677f86fb1c319dd9e0da56c6947b7130cb1f8989a8ff8e5c2cc26007
+  checksum: fb8b7c96a238b64cb8ee00690ea644bffd105c72567831d76d9add4b255e96c2741ed2ed6b4ca7e70bacf312779fb433f557108f39684d038db9d4ecadbac876
   languageName: node
   linkType: hard
 
@@ -2870,7 +2870,7 @@ __metadata:
     "@types/node": ^16.11.7
     "@types/react": ^16.14.25
     "@types/react-dom": ^16.9.15
-    "@types/react-helmet": ^6.1.9
+    "@types/react-helmet": ^6.1.10
     "@types/react-router-dom": ^5.3.3
     "@types/serve-static": ^1.15.5
     "@types/ua-parser-js": ^0.7.39
