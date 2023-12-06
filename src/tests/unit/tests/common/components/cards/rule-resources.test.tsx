@@ -54,6 +54,7 @@ describe('RuleResources', () => {
                 deps: {
                     LinkComponent: linkComponents[testCase.linkComponent],
                 } as RuleResourcesDeps,
+                outcomeType: 'pass'
             };
 
             const wrapper = shallow(<RuleResources {...props} />);
