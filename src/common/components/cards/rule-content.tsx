@@ -6,11 +6,11 @@ import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
+import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
 import { RuleResources, RuleResourcesDeps } from './rule-resources';
-import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 
 export type RuleContentDeps = InstanceDetailsGroupDeps & RuleResourcesDeps;
 

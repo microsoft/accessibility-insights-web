@@ -1,13 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { getNeedsReviewRuleResourcesUrl, isOutcomeNeedsReview } from 'common/configs/needs-review-rule-resources';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from 'common/configs/needs-review-rule-resources';
 
 describe(getNeedsReviewRuleResourcesUrl, () => {
     const ruleId = 'rule-id';
 
     it('for ruleId passed to get NeedsReviewRuleResourcesUrl', () => {
-        const needsReviewRuleResourcesPath = 'https://accessibilityinsights.io/info-examples/web/needs-review';
+        const needsReviewRuleResourcesPath =
+            'https://accessibilityinsights.io/info-examples/web/needs-review';
 
         const expectedUrl = `${needsReviewRuleResourcesPath}/${ruleId}`;
 
@@ -30,7 +34,7 @@ describe(isOutcomeNeedsReview, () => {
     });
 
     it('for outcome that is not review and ruleId is eligble for needsReview', () => {
-        const otherOutcomeType =  'issue';
+        const otherOutcomeType = 'issue';
 
         const expectedBoolean = false;
 
@@ -60,5 +64,4 @@ describe(isOutcomeNeedsReview, () => {
 
         expect(result).toBe(expectedBoolean);
     });
-
 });

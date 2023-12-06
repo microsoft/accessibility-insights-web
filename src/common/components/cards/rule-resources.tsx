@@ -8,9 +8,12 @@ import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import styles from './rule-resources.scss';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
-import { getNeedsReviewRuleResourcesUrl, isOutcomeNeedsReview } from '../../configs/needs-review-rule-resources';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../../configs/needs-review-rule-resources';
+import styles from './rule-resources.scss';
 
 export type RuleResourcesDeps = GuidanceTagsDeps & {
     LinkComponent: LinkComponentType;
@@ -22,45 +25,50 @@ export type RuleResourcesProps = {
     outcomeType: InstanceOutcomeType;
 };
 
-export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ deps, rule, outcomeType }) => {
-    if (rule.url == null && isEmpty(rule.guidance)) {
-        return null;
-    }
-
-    const renderTitle = () => (
-        <div className={styles.moreResourcesTitle}>Resources for this rule</div>
-    );
-
-    const renderRuleLink = () => {
-        if (rule.url == null) {
+export const RuleResources = NamedFC<RuleResourcesProps>(
+    'RuleResources',
+    ({ deps, rule, outcomeType }) => {
+        if (rule.url == null && isEmpty(rule.guidance)) {
             return null;
         }
-        
-        const ruleId = rule.id;
-        const ruleUrl = isOutcomeNeedsReview(ruleId, outcomeType) ? getNeedsReviewRuleResourcesUrl(ruleId) : rule.url;
-        
-        return (
-            <span className={styles.ruleDetailsId}>
-                <deps.LinkComponent href={ruleUrl}>
-                    More information about {ruleId}
-                </deps.LinkComponent>
-            </span>
+
+        const renderTitle = () => (
+            <div className={styles.moreResourcesTitle}>Resources for this rule</div>
         );
-    };
 
-    const renderGuidanceLinks = () => {
-        return <GuidanceLinks links={rule.guidance!} LinkComponent={deps.LinkComponent} />;
-    };
-    const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidance!} />;
+        const renderRuleLink = () => {
+            if (rule.url == null) {
+                return null;
+            }
 
-    return (
-        <div className={styles.ruleMoreResources}>
-            {renderTitle()}
-            {renderRuleLink()}
-            <span className={styles.ruleGuidance}>
-                {renderGuidanceLinks()}
-                {renderGuidanceTags()}
-            </span>
-        </div>
-    );
-});
+            const ruleId = rule.id;
+            const ruleUrl = isOutcomeNeedsReview(ruleId, outcomeType)
+                ? getNeedsReviewRuleResourcesUrl(ruleId)
+                : rule.url;
+
+            return (
+                <span className={styles.ruleDetailsId}>
+                    <deps.LinkComponent href={ruleUrl}>
+                        More information about {ruleId}
+                    </deps.LinkComponent>
+                </span>
+            );
+        };
+
+        const renderGuidanceLinks = () => {
+            return <GuidanceLinks links={rule.guidance!} LinkComponent={deps.LinkComponent} />;
+        };
+        const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidance!} />;
+
+        return (
+            <div className={styles.ruleMoreResources}>
+                {renderTitle()}
+                {renderRuleLink()}
+                <span className={styles.ruleGuidance}>
+                    {renderGuidanceLinks()}
+                    {renderGuidanceTags()}
+                </span>
+            </div>
+        );
+    },
+);
