@@ -1,37 +1,16 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-resources:
-  repositories:
-  - repository: 1esPipelines
-    type: git
-    name: 1ESPipelineTemplates/1ESPipelineTemplates
-    ref: refs/tags/release
 
-extends:
-  # The pipeline extends the 1ES PT which will inject different SDL and compliance tasks.
-  # For non-production pipelines, use "Unofficial" as defined below.
-  # For productions pipelines, use "Official".
-  template: v1/1ES.Unofficial.PipelineTemplate.yml@1esPipelines
-  parameters:
-    # Update the pool with your team's 1ES hosted pool.
-    pool:
-      name: a11y-insights-pool-dev  # Name of your hosted pool
-      image: windows-2022-secure  # Name of the image in your pool. If not specified, first image of the pool is used
-      os: windows
-
-    stages:
-    - stage: Stage
-      jobs:
-    templateContext:
-          outputs:
-          - output: pipelineArtifact
-            targetPath: '$(System.DefaultWorkingDirectory)/test-results/e2e'
-            artifactName: '$(Agent.JobName)-screenshots-and-extended-logs'
-    steps:
-        - task: PublishTestResults@2
-          inputs:
-              testResultsFiles: test-results/e2e/junit-e2e.xml
-              testRunTitle: $(Agent.JobName)
-          condition: succeededOrFailed()
-          displayName: publish e2e test results
-          timeoutInMinutes: 3
+templateContext:
+  outputs:
+  - output: pipelineArtifact
+  targetPath: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+  artifactName: '$(Agent.JobName)-screenshots-and-extended-logs'
+steps:
+    - task: PublishTestResults@2
+      inputs:
+      testResultsFiles: test-results/e2e/junit-e2e.xml
+      testRunTitle: $(Agent.JobName)
+      condition: succeededOrFailed()
+      displayName: publish e2e test results
+      timeoutInMinutes: 3
