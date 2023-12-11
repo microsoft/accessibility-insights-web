@@ -32,22 +32,22 @@ extends:
     pool:
       name: a11y-insights-pool-dev  # Name of your hosted pool
       image: windows-2022-secure  # Name of the image in your pool. If not specified, first image of the pool is used
-      os: windows  # OS of the image. Allowed values: windows, linux, macOS
+      os: windows
 
     stages:
     - stage: Stage
       jobs:
-      - template: ./e2e-job-per-environment.yaml
+      - template: pipeline/e2e-job-per-environment.yaml@self
         parameters: { jobNameSuffix: _1 }
 
-      - template: ./e2e-job-per-environment.yaml
+      - template: pipeline/e2e-job-per-environment.yaml@self
         parameters: { jobNameSuffix: _2 }
 
-      - template: ./e2e-job-per-environment.yaml
+      - template: pipeline/e2e-job-per-environment.yaml@self
         parameters: { jobNameSuffix: _3 }
 
-      - template: ./e2e-job-per-environment.yaml
+      - template: pipeline/e2e-job-per-environment.yaml@self
         parameters: { jobNameSuffix: _4 }
 
-      - template: ./e2e-job-per-environment.yaml
+      - template: pipeline/e2e-job-per-environment.yaml@self
         parameters: { jobNameSuffix: _5 }
