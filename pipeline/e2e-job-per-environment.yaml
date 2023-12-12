@@ -9,6 +9,15 @@ parameters:
 
 jobs:
     - job: 'e2e_tests_windows${{ parameters.jobNameSuffix }}'
+      templateContext:
+        outputs:
+        - output: pipelineArtifact
+          targetPath: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+          artifactName: '$(Agent.JobName)-screenshots-and-extended-logs'
+          condition: failed() # because the detailed chrome logs are ~150MB and uploading them takes ~30s
+          continueOnError: true
+          displayName: publish e2e screenshots and extended logs
+          timeoutInMinutes: 5
       pool:
           vmImage: ${{ parameters.windowsImage }}
       steps:
@@ -17,6 +26,15 @@ jobs:
           - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_mac${{ parameters.jobNameSuffix }}'
+      templateContext:
+        outputs:
+        - output: pipelineArtifact
+          targetPath: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+          artifactName: '$(Agent.JobName)-screenshots-and-extended-logs'
+          condition: failed() # because the detailed chrome logs are ~150MB and uploading them takes ~30s
+          continueOnError: true
+          displayName: publish e2e screenshots and extended logs
+          timeoutInMinutes: 5
       pool:
           vmImage: ${{ parameters.macImage }}
       steps:
@@ -25,6 +43,15 @@ jobs:
           - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_linux${{ parameters.jobNameSuffix }}'
+      templateContext:
+        outputs:
+        - output: pipelineArtifact
+          targetPath: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+          artifactName: '$(Agent.JobName)-screenshots-and-extended-logs'
+          condition: failed() # because the detailed chrome logs are ~150MB and uploading them takes ~30s
+          continueOnError: true
+          displayName: publish e2e screenshots and extended logs
+          timeoutInMinutes: 5
       pool:
           vmImage: ${{ parameters.linuxImage }}
       steps:
