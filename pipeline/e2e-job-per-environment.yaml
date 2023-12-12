@@ -3,9 +3,9 @@
 
 parameters:
     jobNameSuffix: ''
-    windowsImage: 'windows-2019'
+    windowsImage: 'windows-2022-secure'
     macImage: 'macOS-11'
-    linuxImage: 'ubuntu-20.04'
+    linuxImage: 'ubuntu-22.04-secure'
 
 jobs:
     - job: 'e2e_tests_windows${{ parameters.jobNameSuffix }}'
