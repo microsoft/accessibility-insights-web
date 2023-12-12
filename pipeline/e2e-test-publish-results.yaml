@@ -4,8 +4,8 @@
 steps:
     - task: PublishTestResults@2
       inputs:
-      testResultsFiles: test-results/e2e/junit-e2e.xml
-      testRunTitle: $(Agent.JobName)
+          testResultsFiles: test-results/e2e/junit-e2e.xml
+          testRunTitle: $(Agent.JobName)
       condition: succeededOrFailed()
       displayName: publish e2e test results
       timeoutInMinutes: 3
