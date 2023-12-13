@@ -19,7 +19,7 @@ jobs:
 
     - job: 'build_all_mac${{ parameters.jobNameSuffix }}'
       pool:
-          name: Azure Pipelines    
+          name: Azure Pipelines
           vmImage: ${{ parameters.macImage }}
           os: macOS
       steps:
