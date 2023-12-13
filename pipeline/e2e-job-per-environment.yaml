@@ -37,8 +37,9 @@ jobs:
           displayName: publish e2e screenshots and extended logs
           timeoutInMinutes: 5
       pool:
-          name: a11y-insights-pool-dev    
+          name: Azure Pipelines    
           vmImage: ${{ parameters.macImage }}
+          os: macOS
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -55,7 +56,7 @@ jobs:
           displayName: publish e2e screenshots and extended logs
           timeoutInMinutes: 5
       pool:
-          name: a11y-insights-pool-dev
+          name: Azure Pipelines
           vmImage: ${{ parameters.linuxImage }}
           os: linux
       steps:
