@@ -21,6 +21,7 @@ jobs:
       pool:
           name: a11y-insights-pool-dev
           vmImage: ${{ parameters.windowsImage }}
+          os: windows
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -39,6 +40,7 @@ jobs:
       pool:
           name: a11y-insights-pool-dev    
           vmImage: ${{ parameters.macImage }}
+          os: macOS
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
