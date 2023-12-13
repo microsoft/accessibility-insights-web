@@ -19,8 +19,7 @@ jobs:
 
     - job: 'build_all_mac${{ parameters.jobNameSuffix }}'
       pool:
-          name: a11y-insights-pool-dev 
-          vmImage: ${{ parameters.macImage }}
+          name: a11y-insights-pool-dev
           os: macOS
       steps:
           - template: ./install-node-prerequisites.yaml
@@ -29,8 +28,7 @@ jobs:
 
     - job: 'build_all_linux${{ parameters.jobNameSuffix }}'
       pool:
-          name: a11y-insights-pool-dev 
-          vmImage: ${{ parameters.linuxImage }}
+          name: a11y-insights-pool-dev
           os: linux
       steps:
           - template: ./install-node-prerequisites.yaml
