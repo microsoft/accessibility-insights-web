@@ -6,6 +6,10 @@
 # pushes to main, not PRs; it exists in tandem with the GitHub Actions CI build because it
 # integrates better with our ADO-based release process.
 
+trigger:
+    branches:
+        include:
+            - main
 
 variables:
     windowsImage: 'windows-2022-secure'
@@ -27,7 +31,7 @@ extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
   parameters:
     pool:
-      name: a11y-insights-pool-prod  # Name of your hosted pool
+      name: a11y-insights-pool-dev  # Name of your hosted pool
       image: windows-2022-secure  # Name of the image in your pool. If not specified, first image of the pool is used
       os: windows  # OS of the image. Allowed values: windows, linux, macOS
 
@@ -49,7 +53,7 @@ extends:
       - job: 'unit_tests_and_lints'
 
         pool:
-          name: a11y-insights-pool-prod # name parameter was not there added it
+          name: a11y-insights-pool-dev # name parameter was not there added it
           vmImage: $(linuxImage)
 
         steps:
@@ -111,7 +115,7 @@ extends:
 
       - job: 'publish_build_drops'
         pool:
-          name: a11y-insights-pool-prod
+          name: a11y-insights-pool-dev
           vmImage: $(linuxImage)
         steps:
           - template: pipeline/install-node-prerequisites.yaml@self
@@ -138,7 +142,7 @@ extends:
 
       - job: 'e2e_report_linux'
         pool:
-          name: a11y-insights-pool-prod
+          name: a11y-insights-pool-dev
           vmImage: $(linuxImage)
         steps:
           - template: pipeline/install-node-prerequisites.yaml@self
@@ -171,7 +175,7 @@ extends:
            timeoutInMinutes: 5
 
         pool:
-          name: a11y-insights-pool-prod
+          name: a11y-insights-pool-dev
           vmImage: $(linuxImage)
         steps:
           - template: pipeline/install-node-prerequisites.yaml@self
