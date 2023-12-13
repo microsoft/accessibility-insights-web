@@ -6,6 +6,14 @@
 # pushes to main, not PRs; it exists in tandem with the GitHub Actions CI build because it
 # integrates better with our ADO-based release process.
 
+
+variables:
+    windowsImage: 'windows-2022-secure'
+    macImage: 'macOS-11'
+    linuxImage: 'ubuntu-22.04-secure'
+    Codeql.Enabled: true
+
+
 resources:
   repositories:
   - repository: 1esPipelines
@@ -13,11 +21,7 @@ resources:
     name: 1ESPipelineTemplates/1ESPipelineTemplates
     ref: refs/tags/release 
 
-# variables:
-#     windowsImage: 'windows-2019'
-#     macImage: 'macOS-11'
-#     linuxImage: 'ubuntu-20.04'
-#     Codeql.Enabled: true
+
 
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
@@ -27,11 +31,6 @@ extends:
       image: windows-2022-secure  # Name of the image in your pool. If not specified, first image of the pool is used
       os: windows  # OS of the image. Allowed values: windows, linux, macOS
 
-      variables:
-          windowsImage: 'windows-2022-secure'
-          macImage: 'macOS-11'
-          linuxImage: 'ubuntu-22.04-secure'
-          Codeql.Enabled: true
 
       templateContext:
           outputs:
@@ -54,7 +53,7 @@ extends:
           vmImage: $(linuxImage)
 
         steps:
-          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/install-node-prerequisites.yaml@self
                 
           - script: yarn lint:check:all
             displayName: check lint errors
@@ -115,7 +114,7 @@ extends:
           name: a11y-insights-pool-prod
           vmImage: $(linuxImage)
         steps:
-          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/install-node-prerequisites.yaml@self
 
           - task: ComponentGovernanceComponentDetection@0
             displayName: 'dependency detection (Component Governance)'
@@ -142,7 +141,7 @@ extends:
           name: a11y-insights-pool-prod
           vmImage: $(linuxImage)
         steps:
-          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/install-node-prerequisites.yaml@self
 
           - script: yarn build:package:report
             displayName: build report package
@@ -161,12 +160,22 @@ extends:
             timeoutInMinutes: 3
 
       - job: 'e2e_web_linux'
+        templateContext:
+         outputs:
+         - output: pipelineArtifact
+           targetPath: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+           artifactName: '$(Agent.JobName)-screenshots-and-extended-logs'
+           condition: failed() # because the detailed chrome logs are ~150MB and uploading them takes ~30s
+           continueOnError: true
+           displayName: publish e2e screenshots and extended logs
+           timeoutInMinutes: 5
+
         pool:
           name: a11y-insights-pool-prod
           vmImage: $(linuxImage)
         steps:
-          - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/run-tests-in-docker-linux.yaml
+          - template: pipeline/install-node-prerequisites.yaml@self
+          - template: pipeline/run-tests-in-docker-linux.yaml@self
             parameters:
                 target: web
-          - template: pipeline/e2e-test-publish-results.yaml
+          - template: pipeline/e2e-test-publish-results.yaml@self
