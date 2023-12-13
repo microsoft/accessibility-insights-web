@@ -57,8 +57,7 @@ jobs:
       pool:
           name: a11y-insights-pool-dev
           vmImage: ${{ parameters.linuxImage }}
-          demands:
-            Agent.OS -equals Linux
+          os: linux
       steps:
           - template: ./run-tests-in-docker-linux.yaml
             parameters:
