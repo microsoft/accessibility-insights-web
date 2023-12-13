@@ -20,7 +20,8 @@ jobs:
           timeoutInMinutes: 5
       pool:
           name: a11y-insights-pool-dev
-          vmImage: ${{ parameters.windowsImage }}
+          image: ${{ parameters.windowsImage }}
+          os: windows
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml

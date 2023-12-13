@@ -10,7 +10,8 @@ jobs:
     - job: 'build_all_windows${{ parameters.jobNameSuffix }}'
       pool:
           name: a11y-insights-pool-dev
-          vmImage: ${{ parameters.windowsImage }}
+          image: ${{ parameters.windowsImage }}
+          os: windows
       steps:
           - template: ./install-node-prerequisites.yaml
           - script: yarn build:all
@@ -29,7 +30,8 @@ jobs:
     - job: 'build_all_linux${{ parameters.jobNameSuffix }}'
       pool:
           name: a11y-insights-pool-dev
-          vmImage: ${{ parameters.linuxImage }}
+          image: ${{ parameters.linuxImage }}
+          os: linux
       steps:
           - template: ./install-node-prerequisites.yaml
           - script: yarn build:all
