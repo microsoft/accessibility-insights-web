@@ -31,8 +31,8 @@ extends:
     # Update the pool with your team's 1ES hosted pool.
     pool:
       name: a11y-insights-pool-dev  # Name of your hosted pool
-      image: ubuntu-22.04-secure  # Name of the image in your pool. If not specified, first image of the pool is used
-      os: linux
+      image: windows-2022-secure  # Name of the image in your pool. If not specified, first image of the pool is used
+      os: windows
 
     stages:
     - stage: Stage
