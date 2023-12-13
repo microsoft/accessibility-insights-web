@@ -6,26 +6,56 @@
 # pushes to main, not PRs; it exists in tandem with the GitHub Actions CI build because it
 # integrates better with our ADO-based release process.
 
-trigger:
-    branches:
-        include:
-            - main
+resources:
+  repositories:
+  - repository: 1esPipelines
+    type: git
+    name: 1ESPipelineTemplates/1ESPipelineTemplates
+    ref: refs/tags/release 
 
-variables:
-    windowsImage: 'windows-2019'
-    macImage: 'macOS-11'
-    linuxImage: 'ubuntu-20.04'
-    Codeql.Enabled: true
+# variables:
+#     windowsImage: 'windows-2019'
+#     macImage: 'macOS-11'
+#     linuxImage: 'ubuntu-20.04'
+#     Codeql.Enabled: true
 
-jobs:
-    - job: 'unit_tests_and_lints'
+extends:
+  template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
+  parameters:
+    pool:
+      name: a11y-insights-pool-prod  # Name of your hosted pool
+      image: windows-2022-secure  # Name of the image in your pool. If not specified, first image of the pool is used
+      os: windows  # OS of the image. Allowed values: windows, linux, macOS
 
-      pool:
+      variables:
+          windowsImage: 'windows-2022-secure'
+          macImage: 'macOS-11'
+          linuxImage: 'ubuntu-22.04-secure'
+          Codeql.Enabled: true
+
+      templateContext:
+          outputs:
+          - output: buildArtifacts
+            displayName: publish drop
+            PathtoPublish: $(System.DefaultWorkingDirectory)/drop
+            ArtifactName: drop
+            timeoutInMinutes: 5
+
+
+    stages: 
+    - stage: Stage
+
+
+      jobs:
+      - job: 'unit_tests_and_lints'
+
+        pool:
+          name: a11y-insights-pool-prod # name parameter was not there added it
           vmImage: $(linuxImage)
 
-      steps:
+        steps:
           - template: pipeline/install-node-prerequisites.yaml
-
+                
           - script: yarn lint:check:all
             displayName: check lint errors
             timeoutInMinutes: 5
@@ -80,10 +110,11 @@ jobs:
             displayName: Publish code coverage to codecov
             timeoutInMinutes: 3
 
-    - job: 'publish_build_drops'
-      pool:
+      - job: 'publish_build_drops'
+        pool:
+          name: a11y-insights-pool-prod
           vmImage: $(linuxImage)
-      steps:
+        steps:
           - template: pipeline/install-node-prerequisites.yaml
 
           - task: ComponentGovernanceComponentDetection@0
@@ -105,17 +136,12 @@ jobs:
             displayName: build:all
             timeoutInMinutes: 10
 
-          - task: PublishBuildArtifacts@1
-            inputs:
-                pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
-                artifactName: 'drop'
-            displayName: publish drop
-            timeoutInMinutes: 5
 
-    - job: 'e2e_report_linux'
-      pool:
+      - job: 'e2e_report_linux'
+        pool:
+          name: a11y-insights-pool-prod
           vmImage: $(linuxImage)
-      steps:
+        steps:
           - template: pipeline/install-node-prerequisites.yaml
 
           - script: yarn build:package:report
@@ -134,10 +160,11 @@ jobs:
             displayName: publish test results
             timeoutInMinutes: 3
 
-    - job: 'e2e_web_linux'
-      pool:
+      - job: 'e2e_web_linux'
+        pool:
+          name: a11y-insights-pool-prod
           vmImage: $(linuxImage)
-      steps:
+        steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/run-tests-in-docker-linux.yaml
             parameters:
