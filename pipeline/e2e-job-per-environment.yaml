@@ -57,7 +57,8 @@ jobs:
           timeoutInMinutes: 5
       pool:
           name: a11y-insights-pool-dev
-          vmImage: ${{ parameters.linuxImage }}
+          image: ${{ parameters.linuxImage }}
+          os: linux
       steps:
           - template: ./run-tests-in-docker-linux.yaml
             parameters:
