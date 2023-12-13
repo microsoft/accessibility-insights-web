@@ -5,7 +5,7 @@ parameters:
     jobNameSuffix: ''
     windowsImage: 'windows-2022-secure'
     macImage: 'macOS-11'
-    linuxImage: 'ubuntu-22.04'
+    linuxImage: 'ubuntu-22.04-secure'
 
 jobs:
     - job: 'e2e_tests_windows${{ parameters.jobNameSuffix }}'
@@ -56,9 +56,8 @@ jobs:
           displayName: publish e2e screenshots and extended logs
           timeoutInMinutes: 5
       pool:
-          name: Azure Pipelines
+          name: a11y-insights-pool-dev
           vmImage: ${{ parameters.linuxImage }}
-          os: linux
       steps:
           - template: ./run-tests-in-docker-linux.yaml
             parameters:

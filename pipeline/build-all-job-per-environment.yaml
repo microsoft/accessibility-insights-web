@@ -18,8 +18,9 @@ jobs:
 
     - job: 'build_all_mac${{ parameters.jobNameSuffix }}'
       pool:
-          name: a11y-insights-pool-dev
+          name: Azure Pipelines    
           vmImage: ${{ parameters.macImage }}
+          os: macOS
       steps:
           - template: ./install-node-prerequisites.yaml
           - script: yarn build:all
