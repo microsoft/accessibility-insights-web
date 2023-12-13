@@ -11,6 +11,7 @@ jobs:
       pool:
           name: a11y-insights-pool-dev 
           vmImage: ${{ parameters.windowsImage }}
+          os: windows
       steps:
           - template: ./install-node-prerequisites.yaml
           - script: yarn build:all
@@ -20,6 +21,7 @@ jobs:
       pool:
           name: a11y-insights-pool-dev 
           vmImage: ${{ parameters.macImage }}
+          os: macOS
       steps:
           - template: ./install-node-prerequisites.yaml
           - script: yarn build:all
@@ -29,6 +31,7 @@ jobs:
       pool:
           name: a11y-insights-pool-dev 
           vmImage: ${{ parameters.linuxImage }}
+          os: linux
       steps:
           - template: ./install-node-prerequisites.yaml
           - script: yarn build:all
