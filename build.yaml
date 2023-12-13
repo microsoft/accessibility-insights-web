@@ -30,20 +30,6 @@ resources:
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
   parameters:
-    pool:
-      name: a11y-insights-pool-dev  # Name of your hosted pool
-      image: windows-2022-secure  # Name of the image in your pool. If not specified, first image of the pool is used
-      os: windows  # OS of the image. Allowed values: windows, linux, macOS
-
-
-      templateContext:
-          outputs:
-          - output: buildArtifacts
-            displayName: publish drop
-            PathtoPublish: $(System.DefaultWorkingDirectory)/drop
-            ArtifactName: drop
-            timeoutInMinutes: 5
-
 
     stages: 
     - stage: Stage
@@ -114,6 +100,14 @@ extends:
             timeoutInMinutes: 3
 
       - job: 'publish_build_drops'
+        templateContext:
+          outputs:
+          - output: buildArtifacts
+            displayName: publish drop
+            PathtoPublish: $(System.DefaultWorkingDirectory)/drop
+            ArtifactName: drop
+            timeoutInMinutes: 5
+
         pool:
           name: a11y-insights-pool-dev
           vmImage: $(linuxImage)
