@@ -19,6 +19,7 @@ jobs:
           displayName: publish e2e screenshots and extended logs
           timeoutInMinutes: 5
       pool:
+          name: a11y-insights-pool-dev
           vmImage: ${{ parameters.windowsImage }}
       steps:
           - template: ./install-node-prerequisites.yaml
@@ -35,7 +36,8 @@ jobs:
           continueOnError: true
           displayName: publish e2e screenshots and extended logs
           timeoutInMinutes: 5
-      pool:      
+      pool:
+          name: a11y-insights-pool-dev    
           vmImage: ${{ parameters.macImage }}
       steps:
           - template: ./install-node-prerequisites.yaml
@@ -53,7 +55,9 @@ jobs:
           displayName: publish e2e screenshots and extended logs
           timeoutInMinutes: 5
       pool:
+          name: a11y-insights-pool-dev
           vmImage: ${{ parameters.linuxImage }}
+          os: linux
       steps:
           - template: ./run-tests-in-docker-linux.yaml
             parameters:
