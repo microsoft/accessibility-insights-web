@@ -8,60 +8,29 @@ import {
 
 describe(getNeedsReviewRuleResourcesUrl, () => {
     const ruleId = 'rule-id';
+    const needsReviewRuleResourcesPath =
+        'https://accessibilityinsights.io/info-examples/web/needs-review';
 
     it('for ruleId passed to get NeedsReviewRuleResourcesUrl', () => {
-        const needsReviewRuleResourcesPath =
-            'https://accessibilityinsights.io/info-examples/web/needs-review';
-
         const expectedUrl = `${needsReviewRuleResourcesPath}/${ruleId}`;
-
-        const resourceUrl = getNeedsReviewRuleResourcesUrl(ruleId);
-
-        expect(resourceUrl).toBe(expectedUrl);
+        expect(getNeedsReviewRuleResourcesUrl(ruleId)).toBe(expectedUrl);
     });
 });
 
 describe(isOutcomeNeedsReview, () => {
-    const ruleId = 'color-contrast';
-    const outcomeType = 'review';
-
     it('for outcome that is review and ruleId is eligble for needsReview', () => {
-        const expectedBoolean = true;
-
-        const result = isOutcomeNeedsReview(ruleId, outcomeType);
-
-        expect(result).toBe(expectedBoolean);
+        expect(isOutcomeNeedsReview('color-contrast', 'review')).toBe(true);
     });
 
     it('for outcome that is not review and ruleId is eligble for needsReview', () => {
-        const otherOutcomeType = 'issue';
-
-        const expectedBoolean = false;
-
-        const result = isOutcomeNeedsReview(ruleId, otherOutcomeType);
-
-        expect(result).toBe(expectedBoolean);
+        expect(isOutcomeNeedsReview('color-contrast', 'issue')).toBe(false);
     });
 
     it('for outcome that is review and ruleId is not eligble for needsReview', () => {
-        const otherRuleId = 'rule-id';
-
-        const expectedBoolean = false;
-
-        const result = isOutcomeNeedsReview(otherRuleId, outcomeType);
-
-        expect(result).toBe(expectedBoolean);
+        expect(isOutcomeNeedsReview('rule-id', 'review')).toBe(false);
     });
 
     it('for outcome that is not review and ruleId is not eligble for needsReview', () => {
-        const otherRuleId = 'rule-id';
-
-        const otherOutcomeType = 'issue';
-
-        const expectedBoolean = false;
-
-        const result = isOutcomeNeedsReview(otherRuleId, otherOutcomeType);
-
-        expect(result).toBe(expectedBoolean);
+        expect(isOutcomeNeedsReview('rule-id', 'issue')).toBe(false);
     });
 });
