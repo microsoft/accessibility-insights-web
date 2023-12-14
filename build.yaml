@@ -40,7 +40,8 @@ extends:
 
                     pool:
                         name: a11y-insights-pool-dev # name parameter was not there added it
-                        vmImage: $(linuxImage)
+                        image: $(linuxImage)
+                        os: linux
 
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
@@ -110,7 +111,8 @@ extends:
 
                     pool:
                         name: a11y-insights-pool-dev
-                        vmImage: $(linuxImage)
+                        image: $(linuxImage)
+                        os: linux
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
 
@@ -136,7 +138,8 @@ extends:
                   - job: 'e2e_report_linux'
                     pool:
                         name: a11y-insights-pool-dev
-                        vmImage: $(linuxImage)
+                        image: $(linuxImage)
+                        os: linux
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
 
@@ -169,7 +172,8 @@ extends:
 
                     pool:
                         name: a11y-insights-pool-dev
-                        vmImage: $(linuxImage)
+                        image: $(linuxImage)
+                        os: linux
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
                         - template: pipeline/run-tests-in-docker-linux.yaml@self
