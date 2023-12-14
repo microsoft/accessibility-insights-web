@@ -18,6 +18,7 @@ exports[`RulesWithInstances renders 1`] = `
             "fixInstructionProcessor": [typemoq mock object],
           }
         }
+        outcomeType="pass"
         rule={
           {
             "description": "sample-description",
