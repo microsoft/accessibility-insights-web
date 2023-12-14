@@ -30,6 +30,10 @@ resources:
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
   parameters:
+    pool:
+      name: a11y-insights-pool-dev  # Name of your hosted pool
+      image: windows-2022-secure  # Name of the image in your pool. If not specified, first image of the pool is used
+      os: windows  
 
     stages: 
     - stage: Stage
