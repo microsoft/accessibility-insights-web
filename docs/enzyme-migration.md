@@ -1,5 +1,8 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+
 # Enzyme Migration
 
 These are cursory notes on the migration to help folks get a sense of the process and some common API differences.
@@ -11,7 +14,8 @@ These are cursory notes on the migration to help folks get a sense of the proces
 1. Run `yarn test -u` to update snapshots
 1. Commit tests and snapshots that pass and look fairly similar to old snapshots (don’t have a ton of new content due to the full render instead of shallow rendering)
 1. Make manual changes as needed to finish migrating the remaining tests.
-  1. Running `yarn test -f -u` and fixing failing tests with each run is helpful
+> [!NOTE]
+> Running `yarn test -f -u` and fixing failing tests with each run is helpful
 
 ## Manual code changes
 
@@ -54,9 +58,11 @@ The codemod handles all of the straightforward API differences, but many of our 
 
 #### `.find(ComponentName)`
 
-NOTE: the codemod changes all `.find()` calls, as the vast majority are for Enzyme. However, some number of regular `Array.find()` calls will be mistakenly changed. These can just be changed back.
+> [!NOTE]
+> the codemod changes all `.find()` calls, as the vast majority are for Enzyme. However, some number of regular `Array.find()` calls will be mistakenly changed. These can just be changed back.
 
-NOTE: the codemod automatically changes `.find()` to be `.querySelector()`, as that is most often the correct API call to migrate to. If the selected variable's value should be an array instead of a standalone element, it should be updated to use `.querySelectorAll()` instead. Additionally, all React Testing Library query calls have “All” variations. For example, `getAllByRole`.
+> [!NOTE]
+> the codemod automatically changes `.find()` to be `.querySelector()`, as that is most often the correct API call to migrate to. If the selected variable's value should be an array instead of a standalone element, it should be updated to use `.querySelectorAll()` instead. Additionally, all React Testing Library query calls have “All” variations. For example, `getAllByRole`.
 
 The treatment of these calls will depend on what operations are performed on the object after this call.
 
