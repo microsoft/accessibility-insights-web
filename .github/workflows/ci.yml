@@ -36,7 +36,7 @@ jobs:
       timeout-minutes: 10
 
     - name: upload artifact build-results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build-results
         path: drop
@@ -70,7 +70,7 @@ jobs:
       timeout-minutes: 10
 
     - name: upload artifact unit-tests-results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: ${{ always() }}
       with:
         name: unit-tests-${{ matrix.shard-index }}-results
@@ -197,7 +197,7 @@ jobs:
       timeout-minutes: 10
 
     - name: upload artifact e2e-web-tests-results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: ${{ always() }}
       with:
         name: e2e-web-tests-${{ matrix.shard-index }}-results
@@ -205,7 +205,7 @@ jobs:
       timeout-minutes: 3
 
     - name: upload artifact e2e-web-tests-debug-logs
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: ${{ failure() }}
       with:
         name: e2e-web-tests-${{ matrix.shard-index }}-debug-logs
@@ -237,7 +237,7 @@ jobs:
       timeout-minutes: 5
 
     - name: upload artifact e2e-report-tests-results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: ${{ always() }}
       with:
         name: e2e-report-tests-results
