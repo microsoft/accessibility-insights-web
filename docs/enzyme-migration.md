@@ -9,7 +9,9 @@ These are cursory notes on the migration to help folks get a sense of the proces
 
 ## Codemod usage
 
-1. Edit the paths variable in `tools/codeshift.js` to include the files you want to migrate.
+1. Edit `tools/codeshift.js`:
+    1. change the value of the `paths` variable to include the files you want to migrate
+    1. make sure the `dry: true` line is commented out
 1. Run `yarn codeshift`
 1. Run `yarn test -u` to update snapshots
 1. Commit tests and snapshots that pass and look fairly similar to old snapshots (don’t have a ton of new content due to the full render instead of shallow rendering)
