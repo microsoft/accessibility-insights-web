@@ -107,7 +107,7 @@ const getCallExpressionByProperty = (j, root, name) => {
 function transformer(fileInfo, api) {
     const j = api.jscodeshift;
     const root = j(fileInfo.source);
-    // FIND ENZYME IMPORT
+    // find the enzyme import
     const enzymeImportDeclaration = root.find(j.ImportDeclaration, { source: { value: 'enzyme' } });
     if (enzymeImportDeclaration.length === 0) {
         return;
@@ -115,22 +115,22 @@ function transformer(fileInfo, api) {
 
     const getFirstNode = () => root.find(j.Program).get('body', 0).node;
 
-    // Save the comments attached to the first node then remove them
+    // save the comments attached to the first node then remove them
     const firstNode = getFirstNode();
     const { comments } = firstNode;
     firstNode.comments = null;
 
-    //add render import
+    // add render import
     addSourceImport(j, root, rtlSourceName, 'render');
 
-    //remove shallow import
+    // remove shallow import
     removeImportSpecifier(j, root, enzymeImportDeclaration, 'shallow');
     getVariableDeclaratorByCalleeName(j, root, 'shallow').forEach(path => {
         renameVariableDeclarator(j, path, placeholderVariableName);
     });
     replaceCallExpressionIdentifier(j, root, 'shallow', 'render');
 
-    ///remove mount
+    // remove mount
     removeImportSpecifier(j, root, enzymeImportDeclaration, 'mount');
     getVariableDeclaratorByCalleeName(j, root, 'mount').forEach(path => {
         renameVariableDeclarator(j, path, placeholderVariableName);
@@ -145,7 +145,7 @@ function transformer(fileInfo, api) {
         removeImportSpecifier(j, root, enzymeImportDeclaration, 'ShallowWrapper');
     }
 
-    //expect(renderResult.getElement()).toBeNull() --> expect(renderResult.container.firstChild).toBeNull();
+    // expect(renderResult.getElement()).toBeNull() --> expect(renderResult.container.firstChild).toBeNull();
     getCallExpressionByProperty(j, root, 'toBeNull').forEach(path => {
         getCallExpressionByCalleeName(j, j(path), 'expect').forEach(p => {
             getCallExpressionByProperty(j, j(p), 'getElement').forEach(ge => {
@@ -154,7 +154,7 @@ function transformer(fileInfo, api) {
         });
     });
 
-    //expect(renderResult.getElement()).not.toBeNull() --> expect(renderResult.container.firstChild).not.toBeNull();
+    // expect(renderResult.getElement()).not.toBeNull() --> expect(renderResult.container.firstChild).not.toBeNull();
     getCallExpressionByProperty(j, root, 'not.toBeNull').forEach(path => {
         getCallExpressionByCalleeName(j, j(path), 'expect').forEach(p => {
             getCallExpressionByProperty(j, j(p), 'getElement').forEach(ge => {
@@ -168,12 +168,12 @@ function transformer(fileInfo, api) {
         replaceCallExpressionProperty(j, ce, 'asFragment');
     });
 
-    //renderResult.getDOMNode() --> renderResult.asFragment()
+    // renderResult.getDOMNode() --> renderResult.asFragment()
     getCallExpressionByProperty(j, root, 'getDOMNode').forEach(ce => {
         replaceCallExpressionProperty(j, ce, 'asFragment', undefined, '.container');
     });
 
-    //replace element.debug() with element.asFragment()
+    // replace element.debug() with element.asFragment()
     getCallExpressionByProperty(j, root, 'debug').forEach(ce => {
         replaceCallExpressionProperty(j, ce, 'asFragment');
     });
@@ -184,7 +184,7 @@ function transformer(fileInfo, api) {
         replaceCallExpressionProperty(j, path, 'querySelector', args, true);
     });
 
-    //expect(something.exists()).toBe(true) --> expect(something).not.toBeNull();
+    // expect(something.exists()).toBe(true) --> expect(something).not.toBeNull();
     getCallExpressionByProperty(j, root, 'toBe').forEach(path => {
         getCallExpressionByCalleeName(j, j(path), 'expect').forEach(p => {
             getCallExpressionByProperty(j, j(p), 'exists').forEach(ec => {
@@ -197,7 +197,7 @@ function transformer(fileInfo, api) {
         });
     });
 
-    //expect(something.exists()).toBeTruthy() --> expect(something).not.toBeNull();
+    // expect(something.exists()).toBeTruthy() --> expect(something).not.toBeNull();
     getCallExpressionByProperty(j, root, 'toBeTruthy').forEach(path => {
         getCallExpressionByCalleeName(j, j(path), 'expect').forEach(p => {
             const existsCall = getCallExpressionByProperty(j, j(p), 'exists');
@@ -230,18 +230,18 @@ function transformer(fileInfo, api) {
     root.find(j.CallExpression, {
         callee: { property: { name: 'childAt' } },
     }).forEach(path => {
-        //handle nested calls
+        // handle nested calls
         j(path)
             .find(j.CallExpression, {
                 callee: { property: { name: 'childAt' } },
             })
             .forEach(replaceChildAtCall);
 
-        //handle top level call
+        // handle top level call
         replaceChildAtCall(path);
     });
 
-    //Mock.ofType(MyType, MockBehavior.Strict) --> Mock.ofType(MyType)
+    // Mock.ofType(MyType, MockBehavior.Strict) --> Mock.ofType(MyType)
     getCallExpressionByProperty(j, root, 'ofType').forEach(path => {
         const args = j(path).get().value.arguments;
         if (args.length !== 0) {
@@ -256,7 +256,7 @@ function transformer(fileInfo, api) {
         }
     });
 
-    //element.hasClass('className') --> element.classList.contains('className')
+    // element.hasClass('className') --> element.classList.contains('className')
     getCallExpressionByProperty(j, root, 'hasClass').forEach(path => {
         replaceCallExpressionProperty(
             j,
@@ -267,7 +267,7 @@ function transformer(fileInfo, api) {
         );
     });
 
-    //renderResult.simulate('click') --> await userEvent.click(renderResult.getByRole('button'));
+    // renderResult.simulate('click') --> await userEvent.click(renderResult.getByRole('button'));
     const replaceSimulateWithUserEvent = path => {
         getCallExpressionByProperty(j, j(path), 'simulate').forEach(p => {
             const args = j(p).get().value.arguments;
@@ -289,12 +289,12 @@ function transformer(fileInfo, api) {
         });
     };
 
-    //it('should do something', () => { --> it('should do something', async () => {
+    // it('should do something', () => { --> it('should do something', async () => {
     getCallExpressionByCalleeName(j, root, 'it').forEach(path => {
         replaceSimulateWithUserEvent(path);
     });
 
-    //test('should do something', () => { --> test('should do something', async () => {
+    // test('should do something', () => { --> test('should do something', async () => {
     getCallExpressionByCalleeName(j, root, 'test').forEach(path => {
         replaceSimulateWithUserEvent(path);
     });
