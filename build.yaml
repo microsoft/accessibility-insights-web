@@ -28,7 +28,7 @@ extends:
     template: v1/1ES.Unofficial.PipelineTemplate.yml@1esPipelines
     parameters:
         pool:
-            name: a11y-insights-pool-dev # Name of your hosted pool
+            name: $(a11yInsightsPool) # Name of your hosted pool
             image: windows-2022-secure # Name of the image in your pool. If not specified, first image of the pool is used
             os: windows
 
@@ -39,7 +39,7 @@ extends:
                   - job: 'unit_tests_and_lints'
 
                     pool:
-                        name: a11y-insights-pool-dev # name parameter was not there added it
+                        name: $(a11yInsightsPool) # name parameter was not there added it
                         image: $(linuxImage)
                         os: linux
 
@@ -110,7 +110,7 @@ extends:
                               timeoutInMinutes: 5
 
                     pool:
-                        name: a11y-insights-pool-dev
+                        name: $(a11yInsightsPool)
                         image: $(linuxImage)
                         os: linux
                     steps:
@@ -137,7 +137,7 @@ extends:
 
                   - job: 'e2e_report_linux'
                     pool:
-                        name: a11y-insights-pool-dev
+                        name: $(a11yInsightsPool)
                         image: $(linuxImage)
                         os: linux
                     steps:
@@ -171,7 +171,7 @@ extends:
                               timeoutInMinutes: 5
 
                     pool:
-                        name: a11y-insights-pool-dev
+                        name: $(a11yInsightsPool)
                         image: $(linuxImage)
                         os: linux
                     steps:
