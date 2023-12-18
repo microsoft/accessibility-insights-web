@@ -20,9 +20,9 @@ extends:
             name: $(a11yInsightsPool)
         sdl:
             sourceAnalysisPool:
-              name: $(a11yInsightsPool)
-	            image: windows-2022-secure
-              os: windows
+                name: $(a11yInsightsPool)
+                image: windows-2022-secure
+                os: windows
         stages:
             - stage: Stage
               jobs:
