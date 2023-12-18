@@ -19,7 +19,7 @@ jobs:
                 displayName: publish e2e screenshots and extended logs
                 timeoutInMinutes: 5
       pool:
-          name: a11y-insights-pool-dev
+          name: $(a11yInsightsPool)
           image: ${{ parameters.windowsImage }}
           os: windows
       steps:
@@ -57,7 +57,7 @@ jobs:
                 displayName: publish e2e screenshots and extended logs
                 timeoutInMinutes: 5
       pool:
-          name: a11y-insights-pool-dev
+          name: $(a11yInsightsPool)
           image: ${{ parameters.linuxImage }}
           os: linux
       steps:
