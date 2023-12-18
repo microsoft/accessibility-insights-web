@@ -26,6 +26,6 @@ extends:
         stages:
             - stage: Stage
               jobs:
-                  - template: build-package.template.yaml@self
+                  - template: pipeline/build-package.template.yaml@self
                     parameters:
                         suffix: report
