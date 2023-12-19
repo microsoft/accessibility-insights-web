@@ -112,6 +112,10 @@ import { allCardInteractionsSupported } from '../common/components/cards/card-in
 import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../common/configs/needs-review-rule-resources';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -176,10 +180,6 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import {
-    getNeedsReviewRuleResourcesUrl,
-    isOutcomeNeedsReview,
-} from '../common/configs/needs-review-rule-resources';
 
 declare const window: SelfFastPassContainer & Window;
 
