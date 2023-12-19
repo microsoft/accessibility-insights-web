@@ -7,14 +7,14 @@ import * as React from 'react';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
-import { CardRuleResult } from '../../types/store-data/card-view-model';
-import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
-import { RuleResources, RuleResourcesDeps } from './rule-resources';
 import {
     getNeedsReviewRuleResourcesUrl,
     isOutcomeNeedsReview,
 } from '../../configs/needs-review-rule-resources';
+import { CardRuleResult } from '../../types/store-data/card-view-model';
+import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
+import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
+import { RuleResources, RuleResourcesDeps } from './rule-resources';
 
 export type RuleContentDeps = InstanceDetailsGroupDeps & RuleResourcesDeps;
 

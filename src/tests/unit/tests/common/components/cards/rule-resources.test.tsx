@@ -11,13 +11,12 @@ import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-
+import { InstanceOutcomeType } from '../../../../../../reports/components/instance-outcome-type';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 import {
     getNeedsReviewRuleResourcesUrl,
     isOutcomeNeedsReview,
 } from '../../../../../../common/configs/needs-review-rule-resources';
-import { InstanceOutcomeType } from '../../../../../../reports/components/instance-outcome-type';
 
 describe('RuleResources', () => {
     describe('renders', () => {
