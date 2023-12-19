@@ -17,6 +17,8 @@ import styles from './rule-resources.scss';
 
 export type RuleResourcesDeps = GuidanceTagsDeps & {
     LinkComponent: LinkComponentType;
+    IsOutcomeNeedsReview: typeof isOutcomeNeedsReview;
+    GetNeedsReviewRuleResourcesUrl: typeof getNeedsReviewRuleResourcesUrl;
 };
 
 export type RuleResourcesProps = {
@@ -42,8 +44,8 @@ export const RuleResources = NamedFC<RuleResourcesProps>(
             }
 
             const ruleId = rule.id;
-            const ruleUrl = isOutcomeNeedsReview(ruleId, outcomeType)
-                ? getNeedsReviewRuleResourcesUrl(ruleId)
+            const ruleUrl = deps.IsOutcomeNeedsReview(ruleId, outcomeType)
+                ? deps.GetNeedsReviewRuleResourcesUrl(ruleId)
                 : rule.url;
 
             return (

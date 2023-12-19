@@ -3,6 +3,12 @@
 exports[`RuleContent renders 1`] = `
 <React.Fragment>
   <RuleResources
+    deps={
+      {
+        "GetNeedsReviewRuleResourcesUrl": [Function],
+        "IsOutcomeNeedsReview": [Function],
+      }
+    }
     rule={
       {
         "id": "test-id",
@@ -10,6 +16,12 @@ exports[`RuleContent renders 1`] = `
     }
   />
   <InstanceDetailsGroup
+    deps={
+      {
+        "GetNeedsReviewRuleResourcesUrl": [Function],
+        "IsOutcomeNeedsReview": [Function],
+      }
+    }
     rule={
       {
         "id": "test-id",

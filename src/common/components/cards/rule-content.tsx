@@ -11,6 +11,10 @@ import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
 import { RuleResources, RuleResourcesDeps } from './rule-resources';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../../configs/needs-review-rule-resources';
 
 export type RuleContentDeps = InstanceDetailsGroupDeps & RuleResourcesDeps;
 
@@ -25,6 +29,8 @@ export type RuleContentProps = {
 };
 
 export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {
+    props.deps.GetNeedsReviewRuleResourcesUrl = getNeedsReviewRuleResourcesUrl;
+    props.deps.IsOutcomeNeedsReview = isOutcomeNeedsReview;
     return (
         <>
             <RuleResources {...props} />

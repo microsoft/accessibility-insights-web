@@ -3,7 +3,8 @@
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ [length]: 0 ],
-  linkComponent: 'ExternalLink'
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
 } 1`] = `
 <div
   className="ruleMoreResources"
@@ -33,6 +34,8 @@ exports[`RuleResources renders with {
     <GuidanceTags
       deps={
         {
+          "GetNeedsReviewRuleResourcesUrl": [Function],
+          "IsOutcomeNeedsReview": [Function],
           "LinkComponent": [Function],
         }
       }
@@ -45,7 +48,8 @@ exports[`RuleResources renders with {
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
-  linkComponent: 'ExternalLink'
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
 } 1`] = `
 <div
   className="ruleMoreResources"
@@ -81,6 +85,8 @@ exports[`RuleResources renders with {
     <GuidanceTags
       deps={
         {
+          "GetNeedsReviewRuleResourcesUrl": [Function],
+          "IsOutcomeNeedsReview": [Function],
           "LinkComponent": [Function],
         }
       }
@@ -97,56 +103,11 @@ exports[`RuleResources renders with {
 `;
 
 exports[`RuleResources renders with {
-  url: null,
-  guidanceLinks: [ [length]: 0 ],
-  linkComponent: 'ExternalLink'
-} 1`] = `null`;
-
-exports[`RuleResources renders with {
-  url: null,
-  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
-  linkComponent: 'NewTabLink'
+  url: 'test-url',
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
 } 1`] = `
-<div
-  className="ruleMoreResources"
->
-  <div
-    className="moreResourcesTitle"
-  >
-    Resources for this rule
-  </div>
-  <span
-    className="ruleGuidance"
-  >
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-    <GuidanceTags
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
-      }
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-  </span>
-</div>
-`;
-
-exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `
 <div
   className="ruleMoreResources"
 >
@@ -175,6 +136,8 @@ exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, link
     <GuidanceTags
       deps={
         {
+          "GetNeedsReviewRuleResourcesUrl": [Function],
+          "IsOutcomeNeedsReview": [Function],
           "LinkComponent": [Function],
         }
       }
@@ -184,4 +147,115 @@ exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, link
 </div>
 `;
 
-exports[`RuleResources renders with { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `null`;
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'review'
+} 1`] = `
+<div
+  className="ruleMoreResources"
+>
+  <div
+    className="moreResourcesTitle"
+  >
+    Resources for this rule
+  </div>
+  <span
+    className="ruleDetailsId"
+  >
+    <NewTabLink
+      href="test-url"
+    >
+      More information about 
+      some-rule
+    </NewTabLink>
+  </span>
+  <span
+    className="ruleGuidance"
+  >
+    <GuidanceLinks
+      LinkComponent={[Function]}
+      links={null}
+    />
+    <GuidanceTags
+      deps={
+        {
+          "GetNeedsReviewRuleResourcesUrl": [Function],
+          "IsOutcomeNeedsReview": [Function],
+          "LinkComponent": [Function],
+        }
+      }
+      links={null}
+    />
+  </span>
+</div>
+`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
+} 1`] = `null`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'review'
+} 1`] = `null`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+} 1`] = `
+<div
+  className="ruleMoreResources"
+>
+  <div
+    className="moreResourcesTitle"
+  >
+    Resources for this rule
+  </div>
+  <span
+    className="ruleGuidance"
+  >
+    <GuidanceLinks
+      LinkComponent={[Function]}
+      links={
+        [
+          {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
+    <GuidanceTags
+      deps={
+        {
+          "GetNeedsReviewRuleResourcesUrl": [Function],
+          "IsOutcomeNeedsReview": [Function],
+          "LinkComponent": [Function],
+        }
+      }
+      links={
+        [
+          {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
+  </span>
+</div>
+`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+} 1`] = `null`;
