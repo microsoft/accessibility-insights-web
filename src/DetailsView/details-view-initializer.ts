@@ -176,6 +176,10 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../common/configs/needs-review-rule-resources';
 
 declare const window: SelfFastPassContainer & Window;
 
@@ -739,6 +743,8 @@ if (tabId != null) {
                 defaultRulesMap: getDefaultRulesMap(),
                 convertAssessmentStoreDataToScanNodeResults,
                 convertUnifiedStoreDataToScanNodeResults,
+                GetNeedsReviewRuleResourcesUrl: getNeedsReviewRuleResourcesUrl,
+                IsOutcomeNeedsReview: isOutcomeNeedsReview,
             };
 
             const renderer = new DetailsViewRenderer(
