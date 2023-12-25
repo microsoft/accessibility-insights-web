@@ -3253,7 +3253,7 @@ __metadata:
     react: ^16.14.0
     react-dom: ^16.14.0
     react-helmet: ^6.1.0
-    react-resize-detector: ^9.1.0
+    react-resize-detector: ^9.1.1
     uuid: ^9.0.1
   languageName: unknown
   linkType: soft
@@ -3335,7 +3335,7 @@ __metadata:
     react: ^16.14.0
     react-dom: ^16.14.0
     react-helmet: ^6.1.0
-    react-resize-detector: ^9.1.0
+    react-resize-detector: ^9.1.1
     react-router-dom: ^6.21.1
     regenerator-runtime: ^0.14.0
     sass: ^1.69.5
@@ -11461,15 +11461,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-resize-detector@npm:^9.1.0":
-  version: 9.1.0
-  resolution: "react-resize-detector@npm:9.1.0"
+"react-resize-detector@npm:^9.1.1":
+  version: 9.1.1
+  resolution: "react-resize-detector@npm:9.1.1"
   dependencies:
     lodash: ^4.17.21
   peerDependencies:
     react: ^16.0.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 05b263e141fd428eea433e399f88c3e1a379b4a2293958f59b5a5c75dd86c621ce60583724257cc3dc1f5c120a664666ff3fa53d41e6c283687676dc55afa02b
+  checksum: 0612b4416212962e5762f25e20c7016bdce3107d745a399b44bc099a04488a704228908357845c2e3fa49bf9902077f0eeebc99cf76d42ea479a8aa79f4c5b9d
   languageName: node
   linkType: hard
 
