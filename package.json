@@ -136,7 +136,7 @@
         "postcss": "^8.4.32",
         "postcss-modules": "^6.0.0",
         "prettier": "^3.1.1",
-        "regenerator-runtime": "^0.14.0",
+        "regenerator-runtime": "^0.14.1",
         "sass": "^1.69.5",
         "sass-loader": "^13.3.3",
         "serve-static": "^1.15.0",
