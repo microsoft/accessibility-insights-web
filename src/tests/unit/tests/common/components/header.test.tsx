@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { Header, HeaderDeps } from 'common/components/header';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('Header', () => {
@@ -17,8 +17,8 @@ describe('Header', () => {
                 applicationTitle,
             },
         } as HeaderDeps;
-        const wrapper = shallow(<Header deps={deps} narrowModeStatus={stubNarrowModeStatus} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<Header deps={deps} narrowModeStatus={stubNarrowModeStatus} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders without header title', () => {
@@ -28,10 +28,10 @@ describe('Header', () => {
                 applicationTitle,
             },
         } as HeaderDeps;
-        const wrapper = shallow(
+        const renderResult = render(
             <Header deps={deps} showHeaderTitle={false} narrowModeStatus={stubNarrowModeStatus} />,
         );
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it.each([true, false])('renders with showFarItems equals %s', showFarItems => {
@@ -41,7 +41,7 @@ describe('Header', () => {
                 applicationTitle,
             },
         } as HeaderDeps;
-        const wrapper = shallow(
+        const renderResult = render(
             <Header
                 deps={deps}
                 farItems={<div>THis is far items!</div>}
@@ -49,7 +49,7 @@ describe('Header', () => {
                 narrowModeStatus={stubNarrowModeStatus}
             />,
         );
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders in narrow mode', () => {
@@ -62,7 +62,7 @@ describe('Header', () => {
         const narrowModeStatus = {
             isHeaderAndNavCollapsed: true,
         } as NarrowModeStatus;
-        const wrapper = shallow(<Header deps={deps} narrowModeStatus={narrowModeStatus} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<Header deps={deps} narrowModeStatus={narrowModeStatus} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

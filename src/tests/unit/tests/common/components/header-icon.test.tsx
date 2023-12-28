@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import {
@@ -31,8 +31,8 @@ describe('HeaderIconComponent', () => {
             it.each([true, false])('and high contrast mode = %s', enableHighContrast => {
                 props.invertColors = invertColors;
                 props.storeState.userConfigurationStoreData.enableHighContrast = enableHighContrast;
-                const wrapper = shallow(<HeaderIconComponent {...props} />);
-                expect(wrapper.getElement()).toMatchSnapshot();
+                const renderResult = render(<HeaderIconComponent {...props} />);
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
         });
     });

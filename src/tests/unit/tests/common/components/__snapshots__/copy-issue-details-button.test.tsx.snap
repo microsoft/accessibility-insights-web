@@ -1,13 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CopyIssueDetailsButtonTest render 1`] = `
-"<Fragment>
-  <Toast deps={{...}} timeoutLength={6000} />
-  <CustomizedDefaultButton className="copy-issue-details-button" onClick={[Function (anonymous)]}>
-    <CopyIcon />
-    <div className="ms-Button-label">
+<DocumentFragment>
+  <div
+    aria-live="polite"
+    class="toastContainer"
+  />
+  <mock-customizeddefaultbutton
+    classname="copy-issue-details-button"
+  >
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="16"
+      role="img"
+      viewBox="0 0 14 16"
+      width="14"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M14 6.28906V16H4V13H0V0H6.71094L9.71094 3H10.7109L14 6.28906ZM11 6H12.2891L11 4.71094V6ZM4 3H8.28906L6.28906 1H1V12H4V3ZM13 7H10V4H5V15H13V7Z"
+      />
+    </svg>
+    <div
+      class="ms-Button-label"
+    >
       Copy failure details
     </div>
-  </CustomizedDefaultButton>
-</Fragment>"
+  </mock-customizeddefaultbutton>
+</DocumentFragment>
 `;

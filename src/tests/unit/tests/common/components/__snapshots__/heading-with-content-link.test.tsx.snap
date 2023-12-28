@@ -1,34 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeadingWithContentLink render null when reference is not defined 1`] = `
-"<div className="headerWithContentLink undefined">
-  <h1>
-    <span className={[undefined]}>
-      heading
-    </span>
-  </h1>
-  <ContentLink deps={{...}} reference={{...}} iconName="info" />
-</div>"
+<DocumentFragment>
+  <div
+    class="headerWithContentLink undefined"
+  >
+    <h1>
+      <span>
+        heading
+      </span>
+    </h1>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`HeadingWithContentLink renders with both text and icon 1`] = `
-"<div className="headerWithContentLink undefined">
-  <h1>
-    <span className={[undefined]}>
-      heading
-    </span>
-  </h1>
-  <ContentLink deps={{...}} reference="for/testing" iconName="info" />
-</div>"
+<DocumentFragment>
+  <div
+    class="headerWithContentLink undefined"
+  >
+    <h1>
+      <span>
+        heading
+      </span>
+    </h1>
+    <div
+      class="ms-TooltipHost insightsTooltipHost root-109"
+      role="none"
+    >
+      <a
+        aria-label="Guidance"
+        class="ms-Link insights-link insightsLink root-110"
+        href="/insights.html#/content/for/testing"
+        target="_blank"
+      >
+        <i
+          aria-hidden="true"
+          class="root-105"
+          data-icon-name="info"
+        />
+      </a>
+      <div
+        hidden=""
+        id="tooltip0"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        Guidance
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`HeadingWithContentLink renders with heading, secondary text, and icon 1`] = `
-"<div className="headerWithContentLink undefined">
-  <h1>
-    <span className={[undefined]}>
-      heading secondary
-    </span>
-  </h1>
-  <ContentLink deps={{...}} reference="for/testing" iconName="info" />
-</div>"
+<DocumentFragment>
+  <div
+    class="headerWithContentLink undefined"
+  >
+    <h1>
+      <span>
+        heading secondary
+      </span>
+    </h1>
+    <div
+      class="ms-TooltipHost insightsTooltipHost root-109"
+      role="none"
+    >
+      <a
+        aria-label="Guidance"
+        class="ms-Link insights-link insightsLink root-110"
+        href="/insights.html#/content/for/testing"
+        target="_blank"
+      >
+        <i
+          aria-hidden="true"
+          class="root-105"
+          data-icon-name="info"
+        />
+      </a>
+      <div
+        hidden=""
+        id="tooltip1"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        Guidance
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;

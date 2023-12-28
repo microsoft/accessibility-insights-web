@@ -2,13 +2,15 @@
 // Licensed under the MIT License.
 
 import { DefaultButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+import '@testing-library/jest-dom';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
-import { Toast } from 'common/components/toast';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { WindowUtils } from 'common/window-utils';
-import * as Enzyme from 'enzyme';
 import * as React from 'react';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
     CopyIssueDetailsButton,
@@ -16,7 +18,9 @@ import {
 } from '../../../../../common/components/copy-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
+jest.mock('@fluentui/react');
 describe('CopyIssueDetailsButtonTest', () => {
+    mockReactComponents([DefaultButton]);
     let props: CopyIssueDetailsButtonProps;
     let onClickMock: IMock<(event: React.MouseEvent<any>) => void>;
     let windowUtilsMock: IMock<WindowUtils>;
@@ -54,8 +58,8 @@ describe('CopyIssueDetailsButtonTest', () => {
     });
 
     test('render', () => {
-        const result = Enzyme.shallow(<CopyIssueDetailsButton {...props} />);
-        expect(result.debug()).toMatchSnapshot();
+        const result = render(<CopyIssueDetailsButton {...props} />);
+        expect(result.asFragment()).toMatchSnapshot();
     });
     describe('toast message', () => {
         test('render after click shows copy success message', async () => {
@@ -66,16 +70,14 @@ describe('CopyIssueDetailsButtonTest', () => {
                 })
                 .verifiable(Times.once());
 
-            const result = Enzyme.mount(<CopyIssueDetailsButton {...props} />);
-            const button = result.find(DefaultButton);
+            const result = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             // tslint:disable-next-line: await-promise
-            await button.simulate('click');
+            await userEvent.click(result.container.querySelector('.ms-Button-label'));
 
-            const toast = result.find(Toast);
-
-            expect(toast.state().toastVisible).toBe(true);
-            expect(toast.state().content).toBe('Failure details copied.');
+            const toast = result.container.querySelector('.toastContainer');
+            expect(toast).toBeInTheDocument();
+            expect(toast).toHaveTextContent('Failure details copied.');
 
             verifyMocks();
         });
@@ -87,16 +89,14 @@ describe('CopyIssueDetailsButtonTest', () => {
                 })
                 .verifiable(Times.once());
 
-            const result = Enzyme.mount(<CopyIssueDetailsButton {...props} />);
-            const button = result.find(DefaultButton);
+            const result = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             // tslint:disable-next-line: await-promise
-            await button.simulate('click');
+            await userEvent.click(result.container.querySelector('.ms-Button-label'));
 
-            const toast = result.find(Toast);
-
-            expect(toast.state().toastVisible).toBe(true);
-            expect(toast.state().content).toBe('Failed to copy failure details. Please try again.');
+            const toast = result.container.querySelector('.toastContainer');
+            expect(toast).toBeInTheDocument();
+            expect(toast).toHaveTextContent('Failed to copy failure details. Please try again.');
 
             verifyMocks();
         });
@@ -108,15 +108,13 @@ describe('CopyIssueDetailsButtonTest', () => {
                 })
                 .verifiable(Times.once());
             props.hasSecureTargetPage = false;
-            const result = Enzyme.mount(<CopyIssueDetailsButton {...props} />);
-            const button = result.find(DefaultButton);
+            const result = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             // tslint:disable-next-line: await-promise
-            await button.simulate('click');
+            await userEvent.click(result.container.querySelector('.ms-Button-label'));
 
-            const toast = result.find(Toast);
-
-            expect(toast.state().toastVisible).toBe(false);
+            const toast = result.container.querySelector('.toastContainer');
+            expect(toast).toBeInTheDocument();
 
             verifyMocks();
         });

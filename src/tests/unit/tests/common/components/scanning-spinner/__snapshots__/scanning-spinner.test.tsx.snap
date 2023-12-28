@@ -1,13 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScanningSpinner renders isScanning = <false> 1`] = `null`;
+exports[`ScanningSpinner renders isScanning = <false> 1`] = `<DocumentFragment />`;
 
 exports[`ScanningSpinner renders isScanning = <true> 1`] = `
-<StyledSpinnerBase
-  aria-live="test-aria-live"
-  className="scanningSpinner"
-  label="test-label"
-  role="alert"
-  size={3}
-/>
+<DocumentFragment>
+  <div
+    aria-live="test-aria-live"
+    class="ms-Spinner scanningSpinner root-110"
+    role="alert"
+  >
+    <div
+      class="ms-Spinner-circle ms-Spinner--large circle-111"
+    />
+    <div
+      class="ms-Spinner-label label-112"
+    >
+      test-label
+    </div>
+  </div>
+</DocumentFragment>
 `;

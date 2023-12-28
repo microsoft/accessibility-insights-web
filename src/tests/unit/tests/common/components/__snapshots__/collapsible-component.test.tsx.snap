@@ -1,162 +1,210 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="content-class-name collapsibleContent"
+    class=""
   >
-    <div>
-      Some content
+    <button
+      aria-expanded="true"
+      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="ChevronDown"
+        />
+        <div>
+          Some header
+        </div>
+      </span>
+    </button>
+    <div
+      class="content-class-name collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentTest render expanded without content-class-name 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="collapsibleContent"
+    class=""
   >
-    <div>
-      Some content
+    <button
+      aria-expanded="true"
+      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="ChevronDown"
+        />
+        <div>
+          Some header
+        </div>
+      </span>
+    </button>
+    <div
+      class="collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentTest render with container-class-name 1`] = `
-<div
-  className="a-container"
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="collapsibleContent"
+    class="a-container"
   >
-    <div>
-      Some content
+    <button
+      aria-expanded="true"
+      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="ChevronDown"
+        />
+        <div>
+          Some header
+        </div>
+      </span>
+    </button>
+    <div
+      class="collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentTest render without container-class-name 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="collapsibleContent"
+    class=""
   >
-    <div>
-      Some content
+    <button
+      aria-expanded="true"
+      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="ChevronDown"
+        />
+        <div>
+          Some header
+        </div>
+      </span>
+    </button>
+    <div
+      class="collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={false}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronRight",
-      }
-    }
-    onClick={[Function]}
+<DocumentFragment>
+  <div
+    class=""
   >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
-</div>
+    <button
+      aria-expanded="false"
+      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="ChevronRight"
+        />
+        <div>
+          Some header
+        </div>
+      </span>
+    </button>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="collapsibleContent"
+    class=""
   >
-    <div>
-      Some content
+    <button
+      aria-expanded="true"
+      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="ChevronDown"
+        />
+        <div>
+          Some header
+        </div>
+      </span>
+    </button>
+    <div
+      class="collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

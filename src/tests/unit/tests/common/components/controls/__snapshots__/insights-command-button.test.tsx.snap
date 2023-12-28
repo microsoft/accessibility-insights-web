@@ -1,47 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InsightsCommandButton renders per snapshot with extra className combined with its own 1`] = `
-<CustomizedActionButton
-  className="insightsCommandButton test-extra-class-name"
-  iconProps={
-    {
-      "className": "commandBarButtonIcon",
-    }
-  }
-/>
+<DocumentFragment>
+  <button
+    class="ms-Button ms-Button--action ms-Button--command insightsCommandButton test-extra-class-name root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    />
+  </button>
+</DocumentFragment>
 `;
 
 exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own 1`] = `
-<CustomizedActionButton
-  className="insightsCommandButton"
-  iconProps={
-    {
-      "className": "commandBarButtonIcon icon-class-name",
-    }
-  }
-/>
+<DocumentFragment>
+  <button
+    class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    />
+  </button>
+</DocumentFragment>
 `;
 
 exports[`InsightsCommandButton renders per snapshot with iconProps passed through 1`] = `
-<CustomizedActionButton
-  className="insightsCommandButton"
-  iconProps={
-    {
-      "className": "commandBarButtonIcon",
-      "testProperty": "test-value",
-    }
-  }
-/>
+<DocumentFragment>
+  <button
+    class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    />
+  </button>
+</DocumentFragment>
 `;
 
 exports[`InsightsCommandButton renders per snapshot with props passed through 1`] = `
-<CustomizedActionButton
-  className="insightsCommandButton"
-  iconProps={
-    {
-      "className": "commandBarButtonIcon",
-    }
-  }
-  text="test-text"
-/>
+<DocumentFragment>
+  <button
+    class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <span
+        class="ms-Button-textContainer textContainer-111"
+      >
+        <span
+          class="ms-Button-label label-113"
+          id="id__0"
+        >
+          test-text
+        </span>
+      </span>
+    </span>
+  </button>
+</DocumentFragment>
 `;

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import {
     EnableTelemetrySettingDescription,
@@ -9,19 +9,27 @@ import {
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { PrivacyStatementText } from '../../../../../common/components/privacy-statement-text';
 import { TelemetryNotice } from '../../../../../common/components/telemetry-notice';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../common/components/telemetry-notice');
+jest.mock('../../../../../common/components/privacy-statement-text');
 describe('EnableTelemetrySettingDescription', () => {
+    mockReactComponents([TelemetryNotice]);
+    mockReactComponents([PrivacyStatementText]);
     it('renders', () => {
         const deps: EnableTelemetrySettingDescriptionDeps = {
             LinkComponent: NewTabLink,
         };
 
-        const wrapper = shallow(<EnableTelemetrySettingDescription deps={deps} />);
-        const telemetryNotice = wrapper.find(TelemetryNotice);
-        const privacyStatementText = wrapper.find(PrivacyStatementText);
+        const renderResult = render(<EnableTelemetrySettingDescription deps={deps} />);
+        const telemetryNotice = getMockComponentClassPropsForCall(TelemetryNotice);
+        const privacyStatementText = getMockComponentClassPropsForCall(PrivacyStatementText);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
-        expect(telemetryNotice.prop('deps').LinkComponent).toBe(deps.LinkComponent);
-        expect(privacyStatementText.prop('deps').LinkComponent).toBe(deps.LinkComponent);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expect(telemetryNotice.deps.LinkComponent).toBe(deps.LinkComponent);
+        expect(privacyStatementText.deps.LinkComponent).toBe(deps.LinkComponent);
     });
 });
