@@ -1,14 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { createEvent, fireEvent, render } from '@testing-library/react';
 import { ExternalLink } from 'common/components/external-link';
 import { GuidanceLinks, GuidanceLinksProps } from 'common/components/guidance-links';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
-import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
 import * as React from 'react';
-
 import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
+//import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+//import { link } from '../../../../../content/link';
+//jest.mock('common/components/guidance-links');
 
 describe('GuidanceLinksTest', () => {
     const testLink1 = {
@@ -27,8 +29,8 @@ describe('GuidanceLinksTest', () => {
             LinkComponent: NewTabLink,
         };
 
-        const rendered = shallow(<GuidanceLinks {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        const renderResult = render(<GuidanceLinks {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('links is empty', () => {
@@ -38,8 +40,8 @@ describe('GuidanceLinksTest', () => {
             LinkComponent: NewTabLink,
         };
 
-        const rendered = shallow(<GuidanceLinks {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        const renderResult = render(<GuidanceLinks {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     const testCases = {
@@ -60,8 +62,8 @@ describe('GuidanceLinksTest', () => {
                 LinkComponent: ExternalLink,
             };
 
-            const rendered = shallow(<GuidanceLinks {...props} />);
-            expect(rendered.debug()).toMatchSnapshot();
+            const renderResult = render(<GuidanceLinks {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 
@@ -71,25 +73,26 @@ describe('GuidanceLinksTest', () => {
             LinkComponent: ExternalLink,
         };
 
-        const rendered = shallow(<GuidanceLinks {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        const renderResult = render(<GuidanceLinks {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    test('link click -> event propagation stoped', () => {
+    test('link click -> event propagation stoped', async () => {
         const props: GuidanceLinksProps = {
             links: [testLink1],
             classNameForDiv: 'className',
             LinkComponent: NewTabLink,
         };
 
-        const rendered = shallow(<GuidanceLinks {...props} />);
+        const renderResult = render(<GuidanceLinks {...props} />);
+        renderResult.debug();
+        const link = renderResult.getByRole('link');
+        const stopPropagationMock = jest.fn();
 
-        const event = {
-            stopPropagation: jest.fn(),
-        };
+        const event = createEvent.click(link);
+        event.stopPropagation = stopPropagationMock;
+        fireEvent(link, event);
+        expect(stopPropagationMock).toHaveBeenCalledTimes(1);     
 
-        rendered.find(NewTabLink).simulate('click', event);
-
-        expect(event.stopPropagation).toHaveBeenCalledTimes(1);
     });
 });

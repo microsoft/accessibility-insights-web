@@ -1,74 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NewTabLinkWithTooltip handles children 1`] = `
-<StyledTooltipHostBase
-  calloutProps={
-    {
-      "styles": {
-        "beak": "insightsTooltip",
-        "root": "insightsTooltip",
-      },
-    }
-  }
-  content="tooltip text"
-  styles={
-    {
-      "root": "insightsTooltipHost",
-    }
-  }
->
-  <NewTabLink
-    className="insightsLink"
-    href="test"
+<DocumentFragment>
+  <div
+    class="ms-TooltipHost insightsTooltipHost root-109"
+    role="none"
   >
-    link text
-  </NewTabLink>
-</StyledTooltipHostBase>
+    <a
+      class="ms-Link insights-link insightsLink root-110"
+      href="test"
+      target="_blank"
+    >
+      link text
+    </a>
+    <div
+      hidden=""
+      id="tooltip2"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+    >
+      tooltip text
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`NewTabLinkWithTooltip renders with null tooltip content 1`] = `
-<StyledTooltipHostBase
-  calloutProps={
-    {
-      "styles": {
-        "beak": "insightsTooltip",
-        "root": "insightsTooltip",
-      },
-    }
-  }
-  styles={
-    {
-      "root": "insightsTooltipHost",
-    }
-  }
->
-  <NewTabLink
-    className="insightsLink"
-    href="test"
-  />
-</StyledTooltipHostBase>
+<DocumentFragment>
+  <div
+    class="ms-TooltipHost insightsTooltipHost root-109"
+    role="none"
+  >
+    <a
+      class="ms-Link insights-link insightsLink root-110"
+      href="test"
+      target="_blank"
+    />
+    <div
+      hidden=""
+      id="tooltip1"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`NewTabLinkWithTooltip renders with tooltip content 1`] = `
-<StyledTooltipHostBase
-  calloutProps={
-    {
-      "styles": {
-        "beak": "insightsTooltip",
-        "root": "insightsTooltip",
-      },
-    }
-  }
-  content="tooltip text"
-  styles={
-    {
-      "root": "insightsTooltipHost",
-    }
-  }
->
-  <NewTabLink
-    className="insightsLink"
-    href="test"
-  />
-</StyledTooltipHostBase>
+<DocumentFragment>
+  <div
+    class="ms-TooltipHost insightsTooltipHost root-109"
+    role="none"
+  >
+    <a
+      class="ms-Link insights-link insightsLink root-110"
+      href="test"
+      target="_blank"
+    />
+    <div
+      hidden=""
+      id="tooltip0"
+      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+    >
+      tooltip text
+    </div>
+  </div>
+</DocumentFragment>
 `;

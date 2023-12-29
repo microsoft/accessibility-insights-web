@@ -1,57 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetryPermissionDialogTest render dialog 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "title": "We need your help",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "className": "telemetry-permission-dialog-modal",
-      "containerClassName": "insights-dialog-main-override telemetry-permission-dialog",
-      "isBlocking": true,
-    }
-  }
->
-  <div
-    className="telemetry-permission-details"
-  >
-    <TelemetryNotice
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
-      }
-    />
-  </div>
-  <div
-    className="telemetry-checkbox-section"
-  >
-    <StyledCheckboxBase
-      checked={true}
-      className="telemetry-agree-checkbox"
-      label="I agree to enable telemetry"
-      onChange={[Function]}
-    />
-    <PrivacyStatementPopupText
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
-      }
-    />
-  </div>
-  <StyledDialogFooterBase>
-    <CustomizedPrimaryButton
-      className="start-using-product-button"
-      onClick={[Function]}
-      text="OK"
-    />
-  </StyledDialogFooterBase>
-</Dialog>
+<DocumentFragment>
+  <span
+    class="ms-layer"
+  />
+</DocumentFragment>
 `;

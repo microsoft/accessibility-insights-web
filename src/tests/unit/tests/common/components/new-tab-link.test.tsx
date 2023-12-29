@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { ILinkProps } from '@fluentui/react';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
@@ -13,9 +13,9 @@ describe('NewTabLink', () => {
             className: 'custom-class',
         };
 
-        const wrapper = shallow(<NewTabLink {...props} />);
+        const renderResult = render(<NewTabLink {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders content without custom className', () => {
@@ -23,9 +23,9 @@ describe('NewTabLink', () => {
             href: 'test',
         };
 
-        const wrapper = shallow(<NewTabLink {...props} />);
+        const renderResult = render(<NewTabLink {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('handles children', () => {
@@ -33,8 +33,8 @@ describe('NewTabLink', () => {
             href: 'test',
         };
 
-        const wrapper = shallow(<NewTabLink {...props}>link text</NewTabLink>);
+        const renderResult = render(<NewTabLink {...props}>link text</NewTabLink>);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

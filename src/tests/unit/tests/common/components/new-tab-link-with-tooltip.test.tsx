@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe(NewTabLinkWithTooltip.displayName, () => {
@@ -11,9 +11,9 @@ describe(NewTabLinkWithTooltip.displayName, () => {
     };
 
     it('renders with tooltip content', () => {
-        const wrapper = shallow(<NewTabLinkWithTooltip {...props} />);
+        const renderResult = render(<NewTabLinkWithTooltip {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders with null tooltip content', () => {
@@ -22,16 +22,14 @@ describe(NewTabLinkWithTooltip.displayName, () => {
             tooltipContent: undefined,
         };
 
-        const wrapper = shallow(<NewTabLinkWithTooltip {...testProps} />);
+        const renderResult = render(<NewTabLinkWithTooltip {...testProps} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('handles children', () => {
-        const wrapper = shallow(
-            <NewTabLinkWithTooltip {...props}>link text</NewTabLinkWithTooltip>,
-        );
+        const renderResult = render(<NewTabLinkWithTooltip {...props}>link text</NewTabLinkWithTooltip>);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
