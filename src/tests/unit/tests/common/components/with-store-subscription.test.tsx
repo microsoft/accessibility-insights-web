@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import {
     withStoreSubscription,
@@ -189,6 +189,10 @@ describe('withStoreSubscription', () => {
         addChangedListenerToAllStoresMock.mockImplementation(cb => {
             onStoreChange = cb;
         });
+        const removeChangedListenerFromAllStoresMock = jest.fn();
+        removeChangedListenerFromAllStoresMock.mockImplementation(cb => {
+            onStoreChange = cb;
+        });
         getStoreDataMock
             .mockReturnValueOnce({ message: 'before change' })
             .mockReturnValueOnce({ message: 'after change' });
@@ -197,6 +201,7 @@ describe('withStoreSubscription', () => {
         const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;
         storesHubStub.getAllStoreData = getStoreDataMock;
         storesHubStub.addChangedListenerToAllStores = addChangedListenerToAllStoresMock;
+        storesHubStub.removeChangedListenerFromAllStores = removeChangedListenerFromAllStoresMock;
         storesHubStub.hasStores = hasStoresMock;
         const props: WithStoreSubscriptionProps<any> = {
             deps: {
@@ -205,12 +210,13 @@ describe('withStoreSubscription', () => {
             storeState: null,
         };
         const WrappedComp = withStoreSubscription<WithStoreSubscriptionProps<any>, any>(testComp);
-        const rendered = shallow(<WrappedComp {...props} />);
+        const renderResult = render(<WrappedComp {...props} />);
 
-        expect(rendered.dive().getElement()).toMatchSnapshot('before store change');
+        expect(renderResult.container).toMatchSnapshot('before store change');
+
 
         onStoreChange();
 
-        expect(rendered.dive().getElement()).toMatchSnapshot('after store change');
+        expect(renderResult.container).toMatchSnapshot('after store change');
     });
 });
