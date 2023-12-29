@@ -10,6 +10,7 @@ import {
     SelectorInputList,
     SelectorInputListProps,
 } from '../../../../../common/components/selector-input-list';
+//import '@testing-library/jest-dom';
 
 describe('SelectorInputListTest', () => {
     test('render with list items', () => {
@@ -26,7 +27,6 @@ describe('SelectorInputListTest', () => {
         };
 
         const renderResult = render(<SelectorInputList {...props} />);
-        renderResult.debug();
         renderResult.setState({ isTextFieldValueValid: false });
         genericRenderTests(renderResult, props);
     });
