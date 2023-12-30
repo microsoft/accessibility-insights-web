@@ -3303,7 +3303,7 @@ __metadata:
     eslint: ^8.56.0
     eslint-plugin-import: ^2.29.1
     eslint-plugin-react: ^7.33.2
-    eslint-plugin-security: ^1.7.1
+    eslint-plugin-security: ^2.1.0
     express: ^4.18.2
     extract-zip: ^2.0.1
     fake-indexeddb: ^4.0.2
@@ -6152,12 +6152,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-security@npm:^1.7.1":
-  version: 1.7.1
-  resolution: "eslint-plugin-security@npm:1.7.1"
+"eslint-plugin-security@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "eslint-plugin-security@npm:2.1.0"
   dependencies:
     safe-regex: ^2.1.1
-  checksum: 3a650e2482e108bb4b9c3b9ac64adefcf1dfda069cd43f89a7d3b84822da2417c9d1b764ec5e1acf4c193b48edc630c7ef2d0a5279a478a8672f9030bc78a8c0
+  checksum: 8c77ad1a32573e0dea779bf014ba7450e7397f09d65186eb5350115ef94eabd6a0ddbb6efaf93edad089d4c79dfa35bb1230f8b5b9c554af6b59964dbbe53662
   languageName: node
   linkType: hard
 
