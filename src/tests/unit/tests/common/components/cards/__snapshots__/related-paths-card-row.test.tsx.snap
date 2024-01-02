@@ -1,23 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RelatedPathsCardRow renders matching snapshot with related paths present 1`] = `
-<SimpleCardRow
-  content={
-    <ul
-      className="pathList"
-    >
-      <li>
-        #path-1a;.path-1b
-      </li>
-      <li>
-        #path-2
-      </li>
-      <li>
-        .path-3
-      </li>
-    </ul>
-  }
-  label="Related paths"
-  rowKey="related-paths-row-123"
-/>
+<DocumentFragment>
+  Related paths
+  <ul
+    class="pathList"
+  >
+    <li>
+      #path-1a;.path-1b
+    </li>
+    <li>
+      #path-2
+    </li>
+    <li>
+      .path-3
+    </li>
+  </ul>
+</DocumentFragment>
 `;

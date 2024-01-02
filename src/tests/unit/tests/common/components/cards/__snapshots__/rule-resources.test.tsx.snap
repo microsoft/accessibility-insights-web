@@ -5,41 +5,49 @@ exports[`RuleResources renders with {
   guidanceLinks: [ [length]: 0 ],
   linkComponent: 'ExternalLink'
 } 1`] = `
-<div
-  className="ruleMoreResources"
->
+<DocumentFragment>
   <div
-    className="moreResourcesTitle"
+    class="ruleMoreResources"
   >
-    Resources for this rule
-  </div>
-  <span
-    className="ruleDetailsId"
-  >
-    <ExternalLink
-      href="test-url"
+    <div
+      class="moreResourcesTitle"
     >
-      More information about 
-      some-rule
-    </ExternalLink>
-  </span>
-  <span
-    className="ruleGuidance"
-  >
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={[]}
-    />
-    <GuidanceTags
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
-      }
-      links={[]}
-    />
-  </span>
-</div>
+      Resources for this rule
+    </div>
+    <span
+      class="ruleDetailsId"
+    >
+      <div
+        class="ms-TooltipHost insightsTooltipHost root-109"
+        role="none"
+      >
+        <a
+          class="ms-Link insights-link insightsLink root-110"
+          href="test-url"
+          target="_blank"
+        >
+          More information about some-rule
+        </a>
+        <div
+          hidden=""
+          id="tooltip1"
+          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+        />
+      </div>
+    </span>
+    <span
+      class="ruleGuidance"
+    >
+      <mock-guidancelinks
+        links=""
+      />
+      <mock-guidancetags
+        deps="[object Object]"
+        links=""
+      />
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`RuleResources renders with {
@@ -47,141 +55,117 @@ exports[`RuleResources renders with {
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
   linkComponent: 'ExternalLink'
 } 1`] = `
-<div
-  className="ruleMoreResources"
->
+<DocumentFragment>
   <div
-    className="moreResourcesTitle"
+    class="ruleMoreResources"
   >
-    Resources for this rule
-  </div>
-  <span
-    className="ruleDetailsId"
-  >
-    <ExternalLink
-      href="test-url"
+    <div
+      class="moreResourcesTitle"
     >
-      More information about 
-      some-rule
-    </ExternalLink>
-  </span>
-  <span
-    className="ruleGuidance"
-  >
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-    <GuidanceTags
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
-      }
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-  </span>
-</div>
+      Resources for this rule
+    </div>
+    <span
+      class="ruleDetailsId"
+    >
+      <div
+        class="ms-TooltipHost insightsTooltipHost root-109"
+        role="none"
+      >
+        <a
+          class="ms-Link insights-link insightsLink root-110"
+          href="test-url"
+          target="_blank"
+        >
+          More information about some-rule
+        </a>
+        <div
+          hidden=""
+          id="tooltip0"
+          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+        />
+      </div>
+    </span>
+    <span
+      class="ruleGuidance"
+    >
+      <mock-guidancelinks
+        links="[object Object]"
+      />
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object]"
+      />
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`RuleResources renders with {
   url: null,
   guidanceLinks: [ [length]: 0 ],
   linkComponent: 'ExternalLink'
-} 1`] = `null`;
+} 1`] = `<DocumentFragment />`;
 
 exports[`RuleResources renders with {
   url: null,
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
   linkComponent: 'NewTabLink'
 } 1`] = `
-<div
-  className="ruleMoreResources"
->
+<DocumentFragment>
   <div
-    className="moreResourcesTitle"
+    class="ruleMoreResources"
   >
-    Resources for this rule
+    <div
+      class="moreResourcesTitle"
+    >
+      Resources for this rule
+    </div>
+    <span
+      class="ruleGuidance"
+    >
+      <mock-guidancelinks
+        links="[object Object]"
+      />
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object]"
+      />
+    </span>
   </div>
-  <span
-    className="ruleGuidance"
-  >
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-    <GuidanceTags
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
-      }
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-  </span>
-</div>
+</DocumentFragment>
 `;
 
 exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `
-<div
-  className="ruleMoreResources"
->
+<DocumentFragment>
   <div
-    className="moreResourcesTitle"
+    class="ruleMoreResources"
   >
-    Resources for this rule
-  </div>
-  <span
-    className="ruleDetailsId"
-  >
-    <NewTabLink
-      href="test-url"
+    <div
+      class="moreResourcesTitle"
     >
-      More information about 
-      some-rule
-    </NewTabLink>
-  </span>
-  <span
-    className="ruleGuidance"
-  >
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={null}
-    />
-    <GuidanceTags
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
-      }
-      links={null}
-    />
-  </span>
-</div>
+      Resources for this rule
+    </div>
+    <span
+      class="ruleDetailsId"
+    >
+      <a
+        class="ms-Link insights-link root-110"
+        href="test-url"
+        target="_blank"
+      >
+        More information about some-rule
+      </a>
+    </span>
+    <span
+      class="ruleGuidance"
+    >
+      <mock-guidancelinks />
+      <mock-guidancetags
+        deps="[object Object]"
+      />
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
-exports[`RuleResources renders with { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `null`;
+exports[`RuleResources renders with { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `<DocumentFragment />`;

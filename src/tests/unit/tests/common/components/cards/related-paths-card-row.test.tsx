@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    RelatedPathsCardRow,
-    RelatedPathsCardRowProps,
-} from 'common/components/cards/related-paths-card-row';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
+import { RelatedPathsCardRow, RelatedPathsCardRowProps } from 'common/components/cards/related-paths-card-row';
 import * as React from 'react';
 
 describe(RelatedPathsCardRow.displayName, () => {
@@ -16,9 +13,9 @@ describe(RelatedPathsCardRow.displayName, () => {
                 index: 123,
                 propertyData: relatedPaths,
             };
-            const testSubject = shallow(<RelatedPathsCardRow {...props} />);
+            const renderResult = render(<RelatedPathsCardRow {...props} />);
 
-            expect(testSubject.getElement()).toBeNull();
+            expect(renderResult.container.firstChild).toBeNull();
         },
     );
 
@@ -28,8 +25,8 @@ describe(RelatedPathsCardRow.displayName, () => {
             index: 123,
             propertyData: ['#path-1a;.path-1b', '#path-2', '.path-3'],
         };
-        const testSubject = shallow(<RelatedPathsCardRow {...props} />);
+        const renderResult = render(<RelatedPathsCardRow {...props} />);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

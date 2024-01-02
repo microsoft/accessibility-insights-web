@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
 import {
     RulesWithInstances,
@@ -8,7 +9,6 @@ import {
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
@@ -35,20 +35,18 @@ describe('RulesWithInstances', () => {
         } as RulesWithInstancesDeps;
         const outcomeCounterStub = () => 5;
 
-        const wrapped = shallow(
-            <RulesWithInstances
-                deps={depsStub}
-                outcomeType={'pass'}
-                rules={rules}
-                userConfigurationStoreData={null}
-                targetAppInfo={{ name: 'app' }}
-                outcomeCounter={outcomeCounterStub}
-                headingLevel={5}
-                cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
-            />,
-        );
+        const renderResult = render(<RulesWithInstances
+            deps={depsStub}
+            outcomeType={'pass'}
+            rules={rules}
+            userConfigurationStoreData={null}
+            targetAppInfo={{ name: 'app' }}
+            outcomeCounter={outcomeCounterStub}
+            headingLevel={5}
+            cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
+        />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     function getCollapsibleControlStub(): ReactFCWithDisplayName<CollapsibleComponentCardsProps> {

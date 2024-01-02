@@ -1,19 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`VisualHelperToggle renders per snapshot with visualHelperEnabled false 1`] = `
-<StyledToggleBase
-  checked={false}
-  className="visualHelperToggle"
-  label="Visual helper"
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <div
+    class="ms-Toggle is-enabled visualHelperToggle root-109"
+  >
+    <label
+      class="ms-Label ms-Toggle-label label-115"
+      for="Toggle1"
+      id="Toggle1-label"
+    >
+      Visual helper
+    </label>
+    <div
+      class="ms-Toggle-innerContainer container-111"
+    >
+      <button
+        aria-checked="false"
+        aria-labelledby="Toggle1-label"
+        class="ms-Toggle-background pill-116"
+        data-is-focusable="true"
+        data-ktp-target="true"
+        id="Toggle1"
+        role="switch"
+        type="button"
+      >
+        <span
+          class="ms-Toggle-thumb thumb-117"
+        />
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`VisualHelperToggle renders per snapshot with visualHelperEnabled true 1`] = `
-<StyledToggleBase
-  checked={true}
-  className="visualHelperToggle"
-  label="Visual helper"
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <div
+    class="ms-Toggle is-checked is-enabled visualHelperToggle root-109"
+  >
+    <label
+      class="ms-Label ms-Toggle-label label-115"
+      for="Toggle0"
+      id="Toggle0-label"
+    >
+      Visual helper
+    </label>
+    <div
+      class="ms-Toggle-innerContainer container-111"
+    >
+      <button
+        aria-checked="true"
+        aria-labelledby="Toggle0-label"
+        class="ms-Toggle-background pill-112"
+        data-is-focusable="true"
+        data-ktp-target="true"
+        id="Toggle0"
+        role="switch"
+        type="button"
+      >
+        <span
+          class="ms-Toggle-thumb thumb-113"
+        />
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
 `;

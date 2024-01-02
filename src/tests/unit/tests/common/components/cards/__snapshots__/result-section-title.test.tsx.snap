@@ -1,976 +1,1966 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-fail"
+        title="0 Failed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#E81123"
+                r="8"
+              />
+              <path
+                d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                fill="var(--neutral-0)"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           0
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          0 Failed
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={0}
-      outcomeType="fail"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      failure was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 failure was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-fail"
+        title="1 Failed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#E81123"
+                r="8"
+              />
+              <path
+                d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                fill="var(--neutral-0)"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           1
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          1 Failed
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={1}
-      outcomeType="fail"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-fail"
+        title="2 Failed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#E81123"
+                r="8"
+              />
+              <path
+                d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                fill="var(--neutral-0)"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           2
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          2 Failed
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={2}
-      outcomeType="fail"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with no-alerting 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-fail"
+        title="10 Failed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#E81123"
+                r="8"
+              />
+              <path
+                d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                fill="var(--neutral-0)"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Failed
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="fail"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-fail"
+        title="15 Failed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#E81123"
+                r="8"
+              />
+              <path
+                d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                fill="var(--neutral-0)"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           15
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          15 Failed
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={15}
-      outcomeType="fail"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-fail"
+        title="10 Failed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#E81123"
+                r="8"
+              />
+              <path
+                d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                fill="var(--neutral-0)"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Failed
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="fail"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-inapplicable"
+        title="0 Not applicable"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#737373"
+                r="8"
+              />
+              <line
+                stroke="white"
+                stroke-linecap="round"
+                stroke-width="1.5"
+                x1="5.66064"
+                x2="10.2568"
+                y1="5.625"
+                y2="10.2212"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           0
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          0 Not applicable
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={0}
-      outcomeType="inapplicable"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      failure was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 failure was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-inapplicable"
+        title="1 Not applicable"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#737373"
+                r="8"
+              />
+              <line
+                stroke="white"
+                stroke-linecap="round"
+                stroke-width="1.5"
+                x1="5.66064"
+                x2="10.2568"
+                y1="5.625"
+                y2="10.2212"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           1
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          1 Not applicable
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={1}
-      outcomeType="inapplicable"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-inapplicable"
+        title="2 Not applicable"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#737373"
+                r="8"
+              />
+              <line
+                stroke="white"
+                stroke-linecap="round"
+                stroke-width="1.5"
+                x1="5.66064"
+                x2="10.2568"
+                y1="5.625"
+                y2="10.2212"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           2
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          2 Not applicable
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={2}
-      outcomeType="inapplicable"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-inapplicable"
+        title="10 Not applicable"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#737373"
+                r="8"
+              />
+              <line
+                stroke="white"
+                stroke-linecap="round"
+                stroke-width="1.5"
+                x1="5.66064"
+                x2="10.2568"
+                y1="5.625"
+                y2="10.2212"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Not applicable
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="inapplicable"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-inapplicable"
+        title="15 Not applicable"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#737373"
+                r="8"
+              />
+              <line
+                stroke="white"
+                stroke-linecap="round"
+                stroke-width="1.5"
+                x1="5.66064"
+                x2="10.2568"
+                y1="5.625"
+                y2="10.2212"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           15
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          15 Not applicable
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={15}
-      outcomeType="inapplicable"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-inapplicable"
+        title="10 Not applicable"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#737373"
+                r="8"
+              />
+              <line
+                stroke="white"
+                stroke-linecap="round"
+                stroke-width="1.5"
+                x1="5.66064"
+                x2="10.2568"
+                y1="5.625"
+                y2="10.2212"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Not applicable
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="inapplicable"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-incomplete"
+        title="0 Incomplete"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           0
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          0 Incomplete
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={0}
-      outcomeType="incomplete"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      failure was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 failure was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-incomplete"
+        title="1 Incomplete"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           1
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          1 Incomplete
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={1}
-      outcomeType="incomplete"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-incomplete"
+        title="2 Incomplete"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           2
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          2 Incomplete
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={2}
-      outcomeType="incomplete"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with no-alerting 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-incomplete"
+        title="10 Incomplete"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Incomplete
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="incomplete"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-incomplete"
+        title="15 Incomplete"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           15
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          15 Incomplete
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={15}
-      outcomeType="incomplete"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-incomplete"
+        title="10 Incomplete"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Incomplete
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="incomplete"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-pass"
+        title="0 Passed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#228722"
+                r="8"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                fill="var(--neutral-0)"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           0
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          0 Passed
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={0}
-      outcomeType="pass"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      failure was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 failure was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-pass"
+        title="1 Passed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#228722"
+                r="8"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                fill="var(--neutral-0)"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           1
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          1 Passed
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={1}
-      outcomeType="pass"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-pass"
+        title="2 Passed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#228722"
+                r="8"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                fill="var(--neutral-0)"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           2
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          2 Passed
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={2}
-      outcomeType="pass"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with no-alerting 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-pass"
+        title="10 Passed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#228722"
+                r="8"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                fill="var(--neutral-0)"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Passed
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="pass"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-pass"
+        title="15 Passed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#228722"
+                r="8"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                fill="var(--neutral-0)"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           15
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          15 Passed
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={15}
-      outcomeType="pass"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-pass"
+        title="10 Passed"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          >
+            <svg
+              aria-hidden="true"
+              fill="none"
+              height="16"
+              role="img"
+              viewBox="0 0 16 16"
+              width="16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="8"
+                cy="8"
+                fill="#228722"
+                r="8"
+              />
+              <path
+                clip-rule="evenodd"
+                d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                fill="var(--neutral-0)"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Passed
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="pass"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      instances to review were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 instances to review were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-review"
+        title="0 Needs review"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           0
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          0 Needs review
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={0}
-      outcomeType="review"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      instance to review was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 instance to review was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-review"
+        title="1 Needs review"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           1
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          1 Needs review
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={1}
-      outcomeType="review"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      instances to review were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 instances to review were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-review"
+        title="2 Needs review"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           2
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          2 Needs review
+        </span>
+      </span>
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={2}
-      outcomeType="review"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with no-alerting 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-review"
+        title="10 Needs review"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Needs review
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="review"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="title"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-review"
+        title="15 Needs review"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           15
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          15 Needs review
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={15}
-      outcomeType="review"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="resultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="resultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title
+    </span>
+    <span
+      aria-hidden="true"
+      class="outcomeChipContainer"
+    >
+      <span
+        class="outcome-chip outcome-chip-review"
+        title="10 Needs review"
+      >
+        <span
+          class="icon"
+        >
+          <span
+            class="check-container"
+          />
+        </span>
+        <span
+          aria-hidden="true"
+          class="count"
+          data-automation-id="count"
+        >
+           10
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          10 Needs review
+        </span>
+      </span>
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-  </span>
-  <span
-    aria-hidden="true"
-    className="outcomeChipContainer"
-  >
-    <OutcomeChip
-      count={10}
-      outcomeType="review"
-    />
-  </span>
-</span>
+</DocumentFragment>
 `;
