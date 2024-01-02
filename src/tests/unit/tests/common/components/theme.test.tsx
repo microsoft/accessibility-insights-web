@@ -10,7 +10,7 @@ import { HighContrastTheme } from 'common/styles/high-contrast-theme';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as React from 'react';
 import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
-import { It, Mock } from 'typemoq';
+import { Mock } from 'typemoq';
 
 jest.mock('common/components/body-class-modifier');
 describe('ThemeInner', () => {
