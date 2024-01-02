@@ -6,18 +6,19 @@ import {
     LeftNavHamburgerButtonProps,
 } from 'common/components/left-nav-hamburger-button';
 import * as React from 'react';
-import { It,Mock, Times } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
 
 describe('LeftNavHamburgerButton', () => {
-    
     it('renders per snapshot', () => {
         const ariaLabel: string = 'test-aria-label';
-        const renderResult = render(<LeftNavHamburgerButton
-            isSideNavOpen={false}
-            setSideNavOpen={null}
-            ariaLabel={ariaLabel}
-            className={'some-class'}
-        />);
+        const renderResult = render(
+            <LeftNavHamburgerButton
+                isSideNavOpen={false}
+                setSideNavOpen={null}
+                ariaLabel={ariaLabel}
+                className={'some-class'}
+            />,
+        );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
     });

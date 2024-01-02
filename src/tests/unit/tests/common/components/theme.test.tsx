@@ -45,23 +45,29 @@ describe('ThemeInner', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    test.each(testStub)('componentDidMount: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
-        const theme = enableHighContrast ? HighContrastTheme : DefaultTheme;
-        const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
-        render(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
+    test.each(testStub)(
+        'componentDidMount: is high contrast mode enabled: %s',
+        (enableHighContrast: boolean) => {
+            const theme = enableHighContrast ? HighContrastTheme : DefaultTheme;
+            const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
+            render(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
 
-        expect(loadThemeMock).toHaveBeenCalledWith(theme);
-    });
+            expect(loadThemeMock).toHaveBeenCalledWith(theme);
+        },
+    );
 
-    test.each(testStub)('componentDidUpdate: is high contrast mode enabled: %s', (enableHighContrast: boolean) => {
-        const theme = enableHighContrast ? HighContrastTheme : DefaultTheme;
-        const { rerender } = render(<ThemeInner {...props} />);
+    test.each(testStub)(
+        'componentDidUpdate: is high contrast mode enabled: %s',
+        (enableHighContrast: boolean) => {
+            const theme = enableHighContrast ? HighContrastTheme : DefaultTheme;
+            const { rerender } = render(<ThemeInner {...props} />);
 
-        loadThemeMock.mockReset();
-        const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
-        rerender(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
-        expect(loadThemeMock).toHaveBeenCalledWith(theme);
-    });
+            loadThemeMock.mockReset();
+            const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
+            rerender(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
+            expect(loadThemeMock).toHaveBeenCalledWith(theme);
+        },
+    );
 
     test('loadTheme is not called if props did not change', () => {
         const component = new ThemeInner(props);

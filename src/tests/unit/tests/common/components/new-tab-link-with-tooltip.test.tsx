@@ -28,7 +28,9 @@ describe(NewTabLinkWithTooltip.displayName, () => {
     });
 
     it('handles children', () => {
-        const renderResult = render(<NewTabLinkWithTooltip {...props}>link text</NewTabLinkWithTooltip>);
+        const renderResult = render(
+            <NewTabLinkWithTooltip {...props}>link text</NewTabLinkWithTooltip>,
+        );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
     });

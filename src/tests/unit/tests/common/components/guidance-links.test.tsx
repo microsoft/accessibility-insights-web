@@ -92,7 +92,6 @@ describe('GuidanceLinksTest', () => {
         const event = createEvent.click(link);
         event.stopPropagation = stopPropagationMock;
         fireEvent(link, event);
-        expect(stopPropagationMock).toHaveBeenCalledTimes(1);     
-
+        expect(stopPropagationMock).toHaveBeenCalledTimes(1);
     });
 });

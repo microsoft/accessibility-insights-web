@@ -25,7 +25,7 @@ describe('VisualizationToggleTest', () => {
     });
 
     test('verify onClick being called when toggle clicked', async () => {
-        const onClickMock = Mock.ofInstance(event => { });
+        const onClickMock = Mock.ofInstance(event => {});
 
         onClickMock.setup(onClick => onClick(It.isAny()));
 
@@ -42,10 +42,10 @@ describe('VisualizationToggleTest', () => {
         passedOnClickMock?: IMock<(event) => void>,
     ): VisualizationToggleProps {
         const onClickMock: IMock<(event) => void> =
-            passedOnClickMock ?? Mock.ofInstance(event => { });
+            passedOnClickMock ?? Mock.ofInstance(event => {});
         const componentRefStub: React.RefObject<any> = React.createRef(); // Use React.createRef() here
-        const onBlurMock: IMock<(event) => void> = Mock.ofInstance(event => { });
-        const onFocusMock: IMock<(event) => void> = Mock.ofInstance(event => { });
+        const onBlurMock: IMock<(event) => void> = Mock.ofInstance(event => {});
+        const onFocusMock: IMock<(event) => void> = Mock.ofInstance(event => {});
         const result = {
             checked: false,
             onClick: onClickMock.object,

@@ -8,13 +8,16 @@ import { FeatureFlags } from 'common/feature-flags';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 
 describe('GearMenuButton', () => {
     describe('renders', () => {
-       mockReactComponents([IconButton]);
+        mockReactComponents([IconButton]);
         const props: GearMenuButtonProps = {
             deps: {
                 dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,
@@ -56,8 +59,8 @@ describe('GearMenuButton', () => {
                 featureFlagData: { [FeatureFlags[FeatureFlags.scoping]]: true },
             };
 
-             render(<GearMenuButton {...props} />);
-            buttonProps = getMockComponentClassPropsForCall(IconButton); 
+            render(<GearMenuButton {...props} />);
+            buttonProps = getMockComponentClassPropsForCall(IconButton);
         });
 
         it('handle settings menu item click', () => {
@@ -97,6 +100,6 @@ describe('GearMenuButton', () => {
         });
 
         const findMenuItemByKey = (key: string) =>
-            buttonProps.menuProps.items.find(item => item.key === key); 
+            buttonProps.menuProps.items.find(item => item.key === key);
     });
 });

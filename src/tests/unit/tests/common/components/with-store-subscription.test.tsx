@@ -214,7 +214,6 @@ describe('withStoreSubscription', () => {
 
         expect(renderResult.container).toMatchSnapshot('before store change');
 
-
         onStoreChange();
 
         expect(renderResult.container).toMatchSnapshot('after store change');

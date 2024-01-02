@@ -8,7 +8,10 @@ import { FastPassTheme } from 'common/styles/fast-pass-theme';
 import { HighContrastTheme } from 'common/styles/high-contrast-theme';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as React from 'react';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 jest.mock('@fluentui/react'); // manually added
 
 describe('ThemeFamilyCustomizer', () => {
@@ -23,14 +26,16 @@ describe('ThemeFamilyCustomizer', () => {
     `(
         'renders themeFamily $themeFamily using $expectedThemeName with highContrast=$enableHighContrast',
         ({ themeFamily, enableHighContrast, expectedThemeName }) => {
-            render(<ThemeFamilyCustomizer
-                themeFamily={themeFamily}
-                userConfigurationStoreData={
-                    { enableHighContrast } as UserConfigurationStoreData
-                }
-            >
-                stub children
-            </ThemeFamilyCustomizer>);
+            render(
+                <ThemeFamilyCustomizer
+                    themeFamily={themeFamily}
+                    userConfigurationStoreData={
+                        { enableHighContrast } as UserConfigurationStoreData
+                    }
+                >
+                    stub children
+                </ThemeFamilyCustomizer>,
+            );
 
             const themeFromTestSubject = getMockComponentClassPropsForCall(ThemeProvider).theme; // manually added
 

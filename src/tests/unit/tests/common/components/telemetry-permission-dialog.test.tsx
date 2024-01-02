@@ -3,7 +3,10 @@
 import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
-import { getMockComponentClassPropsForCall, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { PrivacyStatementPopupText } from '../../../../../common/components/privacy-statement-text';
 import { TelemetryNotice } from '../../../../../common/components/telemetry-notice';
@@ -50,14 +53,15 @@ describe('TelemetryPermissionDialogTest', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
 
         const checkBox = renderResult.getByRole('checkbox') as HTMLInputElement;
-        /////  
+        /////
         expect(checkBox.checked).toEqual(true);
         // expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
 
         const telemetryNotice = getMockComponentClassPropsForCall(TelemetryNotice);
         expect(telemetryNotice.deps.LinkComponent).toBe(props.deps.LinkComponent);
 
-        const privacyStatementPopupText = getMockComponentClassPropsForCall(PrivacyStatementPopupText);
+        const privacyStatementPopupText =
+            getMockComponentClassPropsForCall(PrivacyStatementPopupText);
         expect(privacyStatementPopupText.deps.LinkComponent).toBe(props.deps.LinkComponent);
     });
 

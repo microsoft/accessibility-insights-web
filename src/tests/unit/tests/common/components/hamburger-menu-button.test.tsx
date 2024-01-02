@@ -16,7 +16,10 @@ import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-heade
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 jest.mock('@fluentui/react');
 
 describe('HamburgerMenuButton', () => {

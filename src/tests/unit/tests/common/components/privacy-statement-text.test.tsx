@@ -26,7 +26,9 @@ describe('PrivacyStatementPopupText', () => {
             LinkComponent: NewTabLink,
         };
 
-        const renderResult = render(<PrivacyStatementPopupText deps={deps}></PrivacyStatementPopupText>);
+        const renderResult = render(
+            <PrivacyStatementPopupText deps={deps}></PrivacyStatementPopupText>,
+        );
         const privacyStatementText = renderResult.getByRole('link');
 
         expect(renderResult.asFragment()).toMatchSnapshot();
