@@ -1,16 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { userEvent } from '@testing-library/user-event';
-import { createEvent, fireEvent, render, RenderResult } from '@testing-library/react';
-import { DefaultButton, FocusZone, ITextField, List, TextField } from '@fluentui/react';
+import { ITextField } from '@fluentui/react';
 import styles from 'common/components/selector-input-list.scss';
+import { act, createEvent, fireEvent, render, RenderResult, within } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
     SelectorInputList,
     SelectorInputListProps,
 } from '../../../../../common/components/selector-input-list';
-//import '@testing-library/jest-dom';
 
 describe('SelectorInputListTest', () => {
     test('render with list items', () => {
@@ -27,7 +26,6 @@ describe('SelectorInputListTest', () => {
         };
 
         const renderResult = render(<SelectorInputList {...props} />);
-        renderResult.setState({ isTextFieldValueValid: false });
         genericRenderTests(renderResult, props);
     });
 
@@ -66,19 +64,11 @@ describe('SelectorInputListTest', () => {
     });
 
     test('add selector with no space after semicolon', () => {
-        const addSelectorMock = Mock.ofInstance(
-            (
-                event: React.MouseEvent<HTMLButtonElement>,
-                inputType: string,
-                selector: string[],
-            ) => { },
-        );
+        const addSelectorMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => { });
         const givenInput = 'include';
         const givenSelector = 'iframe;selector';
         const parsedSelector = ['iframe', 'selector'];
-        addSelectorMock
-            .setup(add => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector)))
-            .verifiable(Times.once());
+        addSelectorMock.setup((add) => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector))).verifiable(Times.once());
         const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
@@ -94,19 +84,11 @@ describe('SelectorInputListTest', () => {
     });
 
     test('add selector with multiple separators', () => {
-        const addSelectorMock = Mock.ofInstance(
-            (
-                event: React.MouseEvent<HTMLButtonElement>,
-                inputType: string,
-                selector: string[],
-            ) => { },
-        );
+        const addSelectorMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => { });
         const givenSelector = 'iframe;selector;selectorAgain  ;    lastSelector';
         const parsedSelector = ['iframe', 'selector', 'selectorAgain', 'lastSelector'];
         const givenInput = 'include';
-        addSelectorMock
-            .setup(add => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector)))
-            .verifiable(Times.once());
+        addSelectorMock.setup((add) => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector))).verifiable(Times.once());
         const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
@@ -122,14 +104,10 @@ describe('SelectorInputListTest', () => {
     });
 
     test('change inspection mode', () => {
-        const changeInspectionMock = Mock.ofInstance(
-            (event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => { },
-        );
+        const changeInspectionMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => { });
         const givenMode = 'scopingAddInclude';
         const givenInput = 'include';
-        changeInspectionMock
-            .setup(add => add(It.isAny(), It.isValue(givenMode)))
-            .verifiable(Times.once());
+        changeInspectionMock.setup((add) => add(It.isAny(), It.isValue(givenMode))).verifiable(Times.once());
         const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
@@ -146,18 +124,12 @@ describe('SelectorInputListTest', () => {
 
     test('delete selector with no space after semicolon', () => {
         const deleteSelectorMock = Mock.ofInstance(
-            (
-                event: React.MouseEvent<HTMLButtonElement>,
-                inputType: string,
-                selector: string[],
-            ) => { },
+            (event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => { },
         );
         const givenInput = 'include';
         const parsedSelector = ['iframe', 'selector'];
 
-        deleteSelectorMock
-            .setup(add => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector)))
-            .verifiable(Times.once());
+        deleteSelectorMock.setup((add) => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector))).verifiable(Times.once());
         const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
@@ -169,7 +141,7 @@ describe('SelectorInputListTest', () => {
             onChangeInspectMode: null,
         };
         const renderResult = render(<SelectorInputList {...props} />);
-        genericDeleteSelectorTests(renderResult, deleteSelectorMock);
+        genericDeleteSelectorTests(renderResult, deleteSelectorMock, props);
     });
 
     test('add selector button disabled after entering duplicate selector', () => {
@@ -225,7 +197,7 @@ describe('SelectorInputListTest', () => {
             onChangeInspectMode: null,
         };
         const renderResult = render(<TestableSelectorInputList {...props} />);
-        genericButtonStateTests(renderResult, givenSelector, true);
+        genericButtonStateTests(renderResult, givenSelector, false);
     });
 
     test('componentDidUpdate updates state when props have changed', () => {
@@ -253,14 +225,18 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const renderResult = render(<TestableSelectorInputList {...props} />);
-        const firstState = (renderResult.instance() as TestableSelectorInputList).state
-            .isTextFieldValueValid;
-        (renderResult.instance() as TestableSelectorInputList).setTextFieldValue(givenSelector);
-        (renderResult.instance() as TestableSelectorInputList).componentDidUpdate(previousProps);
-        const secondState = (renderResult.instance() as TestableSelectorInputList).state
-            .isTextFieldValueValid;
-        expect(secondState).toEqual(!firstState);
+        const { rerender, getByPlaceholderText, container } = render(<TestableSelectorInputList {...props} />);
+        const button = container.querySelector('.textboxAddSelectorButton');
+        
+        expect(button).toHaveProperty('disabled', true);
+        
+        const inputText = getByPlaceholderText('Enter element selector here');
+        fireEvent.change(inputText, { target: { value: givenSelector } });
+        act(() => {
+            rerender(<TestableSelectorInputList {...previousProps} />);
+        });
+        expect(button).toHaveProperty('disabled', false);
+        
     });
 
     test("componentDidUpdate doesn't update state when the props haven't changed ", () => {
@@ -286,29 +262,22 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const renderResult = render(<TestableSelectorInputList {...props} />);
-        const firstState = (renderResult.instance() as TestableSelectorInputList).state
-            .isTextFieldValueValid;
-        (renderResult.instance() as TestableSelectorInputList).componentDidUpdate(previousProps);
-        const secondState = (renderResult.instance() as TestableSelectorInputList).state
-            .isTextFieldValueValid;
-        expect(secondState).toEqual(firstState);
+        const { rerender, container } = render(<TestableSelectorInputList {...props} />);
+        const button = container.querySelector('.textboxAddSelectorButton');
+        expect(button).toHaveProperty('disabled', true);
+        act(() => {
+            rerender(<TestableSelectorInputList {...previousProps} />);
+        });
+        //expect(button).toBeDisabled();
+        expect(button).toHaveProperty('disabled', true);
     });
 
     test('restore sets textfield value to initial value upon entering a valid selector', async () => {
         const givenInput = 'include';
-        const addSelectorMock = Mock.ofInstance(
-            (
-                event: React.MouseEvent<HTMLButtonElement>,
-                inputType: string,
-                selector: string[],
-            ) => { },
-        );
+        const addSelectorMock = Mock.ofInstance((event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => { });
         const givenSelector = 'selector';
         const parsedSelector = ['selector'];
-        addSelectorMock
-            .setup(add => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector)))
-            .verifiable(Times.once());
+        addSelectorMock.setup((add) => add(It.isAny(), It.isValue(givenInput), It.isValue(parsedSelector))).verifiable(Times.once());
         const props: SelectorInputListProps = {
             title: 'test-title',
             subtitle: 'some instructions',
@@ -321,87 +290,71 @@ describe('SelectorInputListTest', () => {
         };
 
         const renderResult = render(<TestableSelectorInputList {...props} />);
-        (renderResult.instance() as TestableSelectorInputList).setTextFieldValue(givenSelector);
-        renderResult.setState({ isTextFieldValueValid: true, value: givenSelector });
-        const textFieldBeforeAdd = renderResult.container.querySelector(TextField);
-        expect(textFieldBeforeAdd.asFragment().props.value).toBe(givenSelector);
-        const button = renderResult.container.querySelector(DefaultButton);
-        await userEvent.click(button.getByRole('button'));
-        const textFieldAfterAdd = renderResult.container.querySelector(TextField);
-        expect(textFieldAfterAdd.asFragment().props.value).toBe('');
+        const inputText = renderResult.getByPlaceholderText('Enter element selector here') as HTMLInputElement;
+        fireEvent.change(inputText, { target: { value: givenSelector } });
+        expect(inputText.value).toBe(givenSelector);
+        const button = renderResult.container.querySelector('.textboxAddSelectorButton');
+        await userEvent.click(button);
+        expect(inputText.value).toBe('');
     });
 
-    function genericButtonStateTests(
-        result: RenderResult<any, any>,
-        givenSelector: string,
-        expectedStateValue: boolean,
-    ): void {
-        (result.instance() as TestableSelectorInputList).setTextFieldValue(givenSelector);
-        result.setState({ isTextFieldValueValid: expectedStateValue });
-        const button = result.container.querySelector(DefaultButton);
-        expect(button.asFragment().props.disabled).toBe(!expectedStateValue);
+    function genericButtonStateTests(result: RenderResult, givenSelector: string, expectedButtonDisabledValue: boolean): void {
+        const inputText = result.getByPlaceholderText('Enter element selector here');
+        fireEvent.change(inputText, { target: { value: givenSelector } });
+        const button = result.container.querySelector('.textboxAddSelectorButton');
+        if (expectedButtonDisabledValue) {
+            expect(button).toHaveProperty('disabled', true);
+        } else {
+            expect(button).toHaveProperty('disabled', false);
+        }
+        
     }
 
-    function genericRenderTests(
-        result: RenderResult<any, any>,
-        props: SelectorInputListProps,
-    ): void {
-        const textbox = result.container.querySelector('.' + styles.selectorInputField);
-        const selectors = result.container.querySelector(List);
+    function genericRenderTests(result: RenderResult, props: SelectorInputListProps): void {
+        const textbox = result.getByRole('textbox', { name: props.subtitle });
         const title = result.container.querySelector('.' + styles.selectorInputTitle);
-        expect(title.asFragment().props.children).toBe(props.title);
-        expect(textbox.asFragment().props.ariaLabel).toBe(props.subtitle);
-        expect(selectors.asFragment().props.items).toBe(props.items);
+        expect(title.textContent).toBe(props.title);
+        expect(textbox).toBeInstanceOf(HTMLElement);
+        props.items.forEach((item) => {
+            item.forEach((selector) => {
+                expect(result.getByText(selector)).toBeInstanceOf(HTMLElement);
+
+            });
+        });
     }
 
     function genericAddSelectorTests(
-        result: RenderResult<any, any>,
-        selectorMock: IMock<
-            (
-                event: React.MouseEvent<HTMLButtonElement>,
-                inputType: string,
-                selector: string[],
-            ) => void
-        >,
+        result: RenderResult,
+        selectorMock: IMock<(event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => void>,
         givenSelector: string,
     ): void {
-        (result.instance() as TestableSelectorInputList).setTextFieldValue(givenSelector);
-        result.setState({ isTextFieldValueValid: true });
-        const button = result.container.querySelector(DefaultButton);
+        const inputText = result.getByPlaceholderText('Enter element selector here');
+        fireEvent.change(inputText, { target: { value: givenSelector } });
+        const button = result.container.querySelector('.textboxAddSelectorButton');
         const event = createEvent.click(button);
         fireEvent.click(button, event);
         selectorMock.verifyAll();
     }
 
     function genericDeleteSelectorTests(
-        result: RenderResult<any, any>,
-        selectorMock: IMock<
-            (
-                event: React.MouseEvent<HTMLButtonElement>,
-                inputType: string,
-                selector: string[],
-            ) => void
-        >,
+        result: RenderResult,
+        selectorMock: IMock<(event: React.MouseEvent<HTMLButtonElement>, inputType: string, selector: string[]) => void>,
+        props: SelectorInputListProps,
     ): void {
-        const itemList = result.container.querySelector(List);
-        const createdRow = render(
-            itemList.asFragment().props.onRenderCell(itemList.asFragment().props.items[0]),
-        );
-        result.debug();
-        const button = createdRow.container.querySelector('button');
+        const itemList = result.getByRole('list');
+        const createdRow = within(itemList).getByText(props.items[0].join('; ')).closest('.selectorInputItemCell') as HTMLElement;
+        const button = within(createdRow).getByRole('button');
         const event = createEvent.click(button);
         fireEvent.click(button, event);
         selectorMock.verifyAll();
-        expect(result.querySelector(FocusZone)).toBeDefined();
+        expect(result.container.querySelector('.ms-FocusZone')).toBeDefined();
     }
 
     function genericChangeInspectionModeTests(
-        result: RenderResult<any, any>,
-        selectorMock: IMock<
-            (event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => void
-        >,
+        result: RenderResult,
+        selectorMock: IMock<(event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => void>,
     ): void {
-        const button = result.container.querySelector('button');
+        const button = result.container.querySelector('.ms-Button--icon');
         const event = createEvent.click(button);
         fireEvent.click(button, event);
         selectorMock.verifyAll();

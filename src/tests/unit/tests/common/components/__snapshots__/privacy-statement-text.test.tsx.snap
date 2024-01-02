@@ -2,16 +2,28 @@
 
 exports[`PrivacyStatementPopupText renders 1`] = `
 <DocumentFragment>
-  <mock-privacystatementpopuptext
-    deps="[object Object]"
-  />
+  You can change this choice anytime in settings. Read our 
+  <a
+    class="ms-Link insights-link root-109"
+    href="http://go.microsoft.com/fwlink/?LinkId=521839"
+    target="_blank"
+  >
+    privacy statement
+  </a>
+   to learn more.
 </DocumentFragment>
 `;
 
 exports[`PrivacyStatementText renders 1`] = `
 <DocumentFragment>
-  <mock-privacystatementtext
-    deps="[object Object]"
-  />
+  Read our 
+  <a
+    class="ms-Link insights-link root-109"
+    href="http://go.microsoft.com/fwlink/?LinkId=521839"
+    target="_blank"
+  >
+    privacy statement
+  </a>
+   to learn more.
 </DocumentFragment>
 `;
