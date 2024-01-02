@@ -7,13 +7,11 @@ import { userEvent } from '@testing-library/user-event';
 import { render } from '@testing-library/react';
 import { VisualHelperToggle } from 'common/components/cards/visual-helper-toggle';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
-import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import * as React from 'react';
 import { It, IMock, Mock } from 'typemoq'; 
 
 describe('VisualHelperToggle', () => {
     let mockCardSelectionMessageCreator: IMock<AutomatedChecksCardSelectionMessageCreator>;
-    const stubClickEvent = {} as SupportedMouseEvent;
 
     beforeEach(() => {
         mockCardSelectionMessageCreator = Mock.ofType(AutomatedChecksCardSelectionMessageCreator);
