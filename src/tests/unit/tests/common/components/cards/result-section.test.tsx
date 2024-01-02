@@ -1,18 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
-import { ResultSection, ResultSectionDeps, ResultSectionProps } from 'common/components/cards/result-section';
+import {
+    ResultSection,
+    ResultSectionDeps,
+    ResultSectionProps,
+} from 'common/components/cards/result-section';
+import { ResultSectionContent } from 'common/components/cards/result-section-content';
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import * as React from 'react';
-import {                                              
-    mockReactComponents
-} from 'tests/unit/mock-helpers/mock-module-helpers';   
-import { ResultSectionContent, } from 'common/components/cards/result-section-content';
-import{OutcomeChip,} from 'reports/components/outcome-chip'
-jest.mock('common/components/cards/result-section-content'); 
+import { OutcomeChip } from 'reports/components/outcome-chip';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+jest.mock('common/components/cards/result-section-content');
 jest.mock('reports/components/outcome-chip');
 describe('ResultSection', () => {
-   mockReactComponents([ResultSectionContent,OutcomeChip]); 
+    mockReactComponents([ResultSectionContent, OutcomeChip]);
     const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => headingLevel + 1;
     describe('renders', () => {
         const shouldAlertValues = [false, true, undefined];

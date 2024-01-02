@@ -35,16 +35,18 @@ describe('RulesWithInstances', () => {
         } as RulesWithInstancesDeps;
         const outcomeCounterStub = () => 5;
 
-        const renderResult = render(<RulesWithInstances
-            deps={depsStub}
-            outcomeType={'pass'}
-            rules={rules}
-            userConfigurationStoreData={null}
-            targetAppInfo={{ name: 'app' }}
-            outcomeCounter={outcomeCounterStub}
-            headingLevel={5}
-            cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
-        />);
+        const renderResult = render(
+            <RulesWithInstances
+                deps={depsStub}
+                outcomeType={'pass'}
+                rules={rules}
+                userConfigurationStoreData={null}
+                targetAppInfo={{ name: 'app' }}
+                outcomeCounter={outcomeCounterStub}
+                headingLevel={5}
+                cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
+            />,
+        );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
     });

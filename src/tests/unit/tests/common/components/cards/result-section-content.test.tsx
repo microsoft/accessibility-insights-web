@@ -1,30 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
-import { CardsVisualizationModifierButtons, CardsVisualizationModifierButtonsProps } from 'common/components/cards/cards-visualization-modifier-buttons';
+import {
+    CardsVisualizationModifierButtons,
+    CardsVisualizationModifierButtonsProps,
+} from 'common/components/cards/cards-visualization-modifier-buttons';
 import {
     ResultSectionContent,
     ResultSectionContentDeps,
     ResultSectionContentProps,
 } from 'common/components/cards/result-section-content';
-import{
-    RulesWithInstances,
-} from 'common/components/cards/rules-with-instances';
-import {                                           
-    mockReactComponents,                   
-} from 'tests/unit/mock-helpers/mock-module-helpers';   
+import { RulesWithInstances } from 'common/components/cards/rules-with-instances';
 
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import * as React from 'react';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock } from 'typemoq';
 
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 jest.mock('common/components/cards/rules-with-instances');
 
 describe('ResultSectionContent', () => {
-    mockReactComponents([RulesWithInstances]); 
+    mockReactComponents([RulesWithInstances]);
     const emptyRules: CardRuleResult[] = [];
     const someRules: CardRuleResult[] = [exampleUnifiedRuleResult];
     const depsStub = {} as ResultSectionContentDeps;
@@ -84,9 +83,8 @@ describe('ResultSectionContent', () => {
             cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
         };
 
-       const renderResult = render(<ResultSectionContent {...props} />);
-      
-       expect(renderResult.asFragment()).toMatchSnapshot();
+        const renderResult = render(<ResultSectionContent {...props} />);
 
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

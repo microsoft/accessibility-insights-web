@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
-import { ResultSectionTitle, ResultSectionTitleProps } from 'common/components/cards/result-section-title';
+import {
+    ResultSectionTitle,
+    ResultSectionTitleProps,
+} from 'common/components/cards/result-section-title';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
 
