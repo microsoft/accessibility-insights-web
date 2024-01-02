@@ -9,6 +9,7 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -30,6 +31,7 @@ describe('GearMenuButton', () => {
 
             const renderResult = render(<GearMenuButton {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([IconButton]);
         });
 
         it('no down chevron menu icon', () => {

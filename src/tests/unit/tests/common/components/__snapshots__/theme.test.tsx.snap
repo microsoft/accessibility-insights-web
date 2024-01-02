@@ -9,6 +9,20 @@ exports[`ThemeInner is high contrast mode enabled: false 1`] = `
 </DocumentFragment>
 `;
 
+exports[`ThemeInner is high contrast mode enabled: false: BodyClassModifier props 1`] = `
+{
+  "classNames": [
+    "theme-switcher",
+  ],
+  "deps": {
+    "documentManipulator": [typemoq mock object],
+    "loadTheme": [MockFunction],
+    "storeActionMessageCreator": null,
+    "storesHub": null,
+  },
+}
+`;
+
 exports[`ThemeInner is high contrast mode enabled: true 1`] = `
 <DocumentFragment>
   <mock-bodyclassmodifier
@@ -16,4 +30,19 @@ exports[`ThemeInner is high contrast mode enabled: true 1`] = `
     deps="[object Object]"
   />
 </DocumentFragment>
+`;
+
+exports[`ThemeInner is high contrast mode enabled: true: BodyClassModifier props 1`] = `
+{
+  "classNames": [
+    "theme-switcher",
+    "high-contrast-theme",
+  ],
+  "deps": {
+    "documentManipulator": [typemoq mock object],
+    "loadTheme": [MockFunction],
+    "storeActionMessageCreator": null,
+    "storesHub": null,
+  },
+}
 `;

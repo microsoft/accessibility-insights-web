@@ -11,6 +11,41 @@ exports[`GearMenuButton renders proper button with scoping enabled = false 1`] =
 </DocumentFragment>
 `;
 
+exports[`GearMenuButton renders proper button with scoping enabled = false: CustomizedIconButton props 1`] = `
+{
+  "ariaLabel": "manage settings",
+  "className": "gearMenuButton",
+  "iconProps": {
+    "iconName": "Gear",
+  },
+  "menuProps": {
+    "calloutProps": {
+      "className": "gearMenuButtonCallout",
+    },
+    "items": [
+      {
+        "iconProps": {
+          "iconName": "gear",
+        },
+        "key": "settings",
+        "name": "Settings",
+        "onClick": [Function],
+      },
+      {
+        "className": "preview-features-drop-down-button",
+        "iconProps": {
+          "iconName": "giftboxOpen",
+        },
+        "key": "preview-features",
+        "name": "Preview features",
+        "onClick": [Function],
+      },
+    ],
+  },
+  "onRenderMenuIcon": [Function],
+}
+`;
+
 exports[`GearMenuButton renders proper button with scoping enabled = true 1`] = `
 <DocumentFragment>
   <mock-customizediconbutton
@@ -20,4 +55,47 @@ exports[`GearMenuButton renders proper button with scoping enabled = true 1`] = 
     menuprops="[object Object]"
   />
 </DocumentFragment>
+`;
+
+exports[`GearMenuButton renders proper button with scoping enabled = true: CustomizedIconButton props 1`] = `
+{
+  "ariaLabel": "manage settings",
+  "className": "gearMenuButton",
+  "iconProps": {
+    "iconName": "Gear",
+  },
+  "menuProps": {
+    "calloutProps": {
+      "className": "gearMenuButtonCallout",
+    },
+    "items": [
+      {
+        "iconProps": {
+          "iconName": "gear",
+        },
+        "key": "settings",
+        "name": "Settings",
+        "onClick": [Function],
+      },
+      {
+        "className": "preview-features-drop-down-button",
+        "iconProps": {
+          "iconName": "giftboxOpen",
+        },
+        "key": "preview-features",
+        "name": "Preview features",
+        "onClick": [Function],
+      },
+      {
+        "iconProps": {
+          "iconName": "scopeTemplate",
+        },
+        "key": "scoping-feature",
+        "name": "Scoping",
+        "onClick": [Function],
+      },
+    ],
+  },
+  "onRenderMenuIcon": [Function],
+}
 `;

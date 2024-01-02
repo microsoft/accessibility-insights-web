@@ -9,7 +9,7 @@ import { DefaultTheme } from 'common/styles/default-theme';
 import { HighContrastTheme } from 'common/styles/high-contrast-theme';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as React from 'react';
-import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock } from 'typemoq';
 
 jest.mock('common/components/body-class-modifier');
@@ -43,6 +43,7 @@ describe('ThemeInner', () => {
 
         loadThemeMock.mockReset(); // omits irrelevant mock-call records from snapshot
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([BodyClassModifier]);
     });
 
     test.each(testStub)(
