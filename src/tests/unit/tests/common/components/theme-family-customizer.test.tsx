@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { ThemeProvider } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { DefaultTheme } from 'common/styles/default-theme';
 import { FastPassTheme } from 'common/styles/fast-pass-theme';

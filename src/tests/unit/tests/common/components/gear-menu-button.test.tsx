@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { IButtonProps, IconButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { GearMenuButton, GearMenuButtonProps } from 'common/components/gear-menu-button';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlags } from 'common/feature-flags';
