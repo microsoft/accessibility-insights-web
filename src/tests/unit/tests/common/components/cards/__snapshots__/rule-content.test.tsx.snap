@@ -1,20 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RuleContent renders 1`] = `
-<React.Fragment>
-  <RuleResources
-    rule={
-      {
-        "id": "test-id",
-      }
-    }
+<DocumentFragment>
+  <mock-instancedetailsgroup
+    rule="[object Object]"
   />
-  <InstanceDetailsGroup
-    rule={
-      {
-        "id": "test-id",
-      }
-    }
-  />
-</React.Fragment>
+</DocumentFragment>
 `;

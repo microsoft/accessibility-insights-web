@@ -1,69 +1,138 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UrlsCardRow renders with baseline-aware URLs 1`] = `
-<SimpleCardRow
-  content={
-    <ul
-      className="urlsRowContent"
-    >
-      <li>
-        <NewTabLinkWithConfirmationDialog
-          href="https://www.test.com"
-        >
-          https://www.test.com
-        </NewTabLinkWithConfirmationDialog>
-      </li>
-      <li>
-        <NewTabLinkWithConfirmationDialog
-          href="https://www.test.com/more/tests"
-        >
-          https://www.test.com/more/tests
-        </NewTabLinkWithConfirmationDialog>
-      </li>
-      <li>
-        <NewTabLinkWithConfirmationDialog
-          aria-label="NEW. https://www.test.com/still/more/tests"
-          href="https://www.test.com/still/more/tests"
-        >
-          https://www.test.com/still/more/tests
-        </NewTabLinkWithConfirmationDialog>
-        <span
-          aria-hidden="true"
-          className="urlsRowContentNewFailure"
-        >
-            NEW!
-        </span>
-      </li>
-    </ul>
-  }
-  label="URL"
-  rowKey="urls-row--1"
-/>
+<DocumentFragment>
+  URL
+  <ul
+    class="urlsRowContent"
+  >
+    <li>
+      <a
+        class="ms-Link insights-link root-109"
+        href="https://www.test.com"
+        id="new-tab-link-with-confirmation-dialog__2"
+        target="_blank"
+      >
+        https://www.test.com
+      </a>
+      <script>
+        (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__2", document, confirm);
+      </script>
+    </li>
+    <li>
+      <a
+        class="ms-Link insights-link root-109"
+        href="https://www.test.com/more/tests"
+        id="new-tab-link-with-confirmation-dialog__3"
+        target="_blank"
+      >
+        https://www.test.com/more/tests
+      </a>
+      <script>
+        (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__3", document, confirm);
+      </script>
+    </li>
+    <li>
+      <a
+        aria-label="NEW. https://www.test.com/still/more/tests"
+        class="ms-Link insights-link root-109"
+        href="https://www.test.com/still/more/tests"
+        id="new-tab-link-with-confirmation-dialog__4"
+        target="_blank"
+      >
+        https://www.test.com/still/more/tests
+      </a>
+      <script>
+        (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__4", document, confirm);
+      </script>
+      <span
+        aria-hidden="true"
+        class="urlsRowContentNewFailure"
+      >
+          NEW!
+      </span>
+    </li>
+  </ul>
+</DocumentFragment>
 `;
 
 exports[`UrlsCardRow renders with string-only URLs 1`] = `
-<SimpleCardRow
-  content={
-    <ul
-      className="urlsRowContent"
-    >
-      <li>
-        <NewTabLinkWithConfirmationDialog
-          href="https://www.test.com"
-        >
-          https://www.test.com
-        </NewTabLinkWithConfirmationDialog>
-      </li>
-      <li>
-        <NewTabLinkWithConfirmationDialog
-          href="https://www.test.com/more/tests"
-        >
-          https://www.test.com/more/tests
-        </NewTabLinkWithConfirmationDialog>
-      </li>
-    </ul>
-  }
-  label="URL"
-  rowKey="urls-row--1"
-/>
+<DocumentFragment>
+  URL
+  <ul
+    class="urlsRowContent"
+  >
+    <li>
+      <a
+        class="ms-Link insights-link root-109"
+        href="https://www.test.com"
+        id="new-tab-link-with-confirmation-dialog__0"
+        target="_blank"
+      >
+        https://www.test.com
+      </a>
+      <script>
+        (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__0", document, confirm);
+      </script>
+    </li>
+    <li>
+      <a
+        class="ms-Link insights-link root-109"
+        href="https://www.test.com/more/tests"
+        id="new-tab-link-with-confirmation-dialog__1"
+        target="_blank"
+      >
+        https://www.test.com/more/tests
+      </a>
+      <script>
+        (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__1", document, confirm);
+      </script>
+    </li>
+  </ul>
+</DocumentFragment>
 `;

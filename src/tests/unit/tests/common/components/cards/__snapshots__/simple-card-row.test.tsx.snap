@@ -1,35 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SimpleCardRow renders 1`] = `
-<tr
-  className="row"
->
-  <th
-    className="rowLabel"
-  >
-    test label
-  </th>
-  <td
-    className="rowContent"
-  >
-    test content
-  </td>
-</tr>
+<DocumentFragment>
+  test labeltest content
+</DocumentFragment>
 `;
 
 exports[`SimpleCardRow renders with correct styling with extra class name 1`] = `
-<tr
-  className="row"
->
-  <th
-    className="rowLabel"
-  >
-    test label
-  </th>
-  <td
-    className="rowContent test class name"
-  >
-    test content
-  </td>
-</tr>
+<DocumentFragment>
+  test labeltest content
+</DocumentFragment>
 `;
