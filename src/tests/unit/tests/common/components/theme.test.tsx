@@ -9,7 +9,10 @@ import { DefaultTheme } from 'common/styles/default-theme';
 import { HighContrastTheme } from 'common/styles/high-contrast-theme';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as React from 'react';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock } from 'typemoq';
 
 jest.mock('common/components/body-class-modifier');
