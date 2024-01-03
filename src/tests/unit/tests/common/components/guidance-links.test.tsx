@@ -82,7 +82,6 @@ describe('GuidanceLinksTest', () => {
         };
 
         const renderResult = render(<GuidanceLinks {...props} />);
-        renderResult.debug();
         const link = renderResult.getByRole('link');
         const stopPropagationMock = jest.fn();
 
