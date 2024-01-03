@@ -3347,7 +3347,7 @@ __metadata:
     eslint-plugin-security: ^1.7.1
     express: ^4.18.2
     extract-zip: ^2.0.1
-    fake-indexeddb: ^4.0.2
+    fake-indexeddb: ^5.0.2
     fork-ts-checker-webpack-plugin: ^9.0.2
     generic-names: ^4.0.0
     grunt: ^1.6.1
@@ -4065,15 +4065,6 @@ __metadata:
   version: 2.0.0
   resolution: "balanced-match@npm:2.0.0"
   checksum: 9a5caad6a292c5df164cc6d0c38e0eedf9a1413f42e5fece733640949d74d0052cfa9587c1a1681f772147fb79be495121325a649526957fd75b3a216d1fbc68
-  languageName: node
-  linkType: hard
-
-"base64-arraybuffer-es6@npm:0.5.0":
-  version: 0.5.0
-  resolution: "base64-arraybuffer-es6@npm:0.5.0"
-  peerDependencies:
-    core-js-bundle: ^3.1.3
-  checksum: 92d3c64ab2e46f69464adf9e41900a15a33f237d513fbeda677f2978b458ef1623dd17b4d04ece3187e34f376b81b2b7dba473e7f2ceea8ecc72757f99393891
   languageName: node
   linkType: hard
 
@@ -5233,15 +5224,6 @@ __metadata:
   version: 2.0.1
   resolution: "domelementtype@npm:2.0.1"
   checksum: 940c62d1c4bead483a089a9a8802e6ea26ae9f134e2594719d0ecd642efd554b560bf92084012a8538fbe47a2f4b4c4bf34d5f87f8468ec924cb4d626793020c
-  languageName: node
-  linkType: hard
-
-"domexception@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "domexception@npm:1.0.1"
-  dependencies:
-    webidl-conversions: ^4.0.2
-  checksum: f564a9c0915dcb83ceefea49df14aaed106b1468fbe505119e8bcb0b77e242534f3aba861978537c0fc9dc6f35b176d0ffc77b3e342820fb27a8f215e7ae4d52
   languageName: node
   linkType: hard
 
@@ -6517,12 +6499,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fake-indexeddb@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "fake-indexeddb@npm:4.0.2"
-  dependencies:
-    realistic-structured-clone: ^3.0.0
-  checksum: ad257e5cc6273d9ea667b4129d8b0798830d56a68c7c77ddba752b3fd0088cb33e34b9569b218d16dfc8a78733d360d325f89c2ce352b70a0587c1f46f6f881d
+"fake-indexeddb@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "fake-indexeddb@npm:5.0.2"
+  checksum: df4dc15c2f2b1a04429461fdc4da02bf25e9b84e2bbfa2ffcf4bb87764f75eef772bb36b245547538796f372c5190eb06cdaa391c7c5f5662b19667f949106cb
   languageName: node
   linkType: hard
 
@@ -9575,13 +9555,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.sortby@npm:^4.7.0":
-  version: 4.7.0
-  resolution: "lodash.sortby@npm:4.7.0"
-  checksum: db170c9396d29d11fe9a9f25668c4993e0c1331bcb941ddbd48fb76f492e732add7f2a47cfdf8e9d740fa59ac41bbfaf931d268bc72aab3ab49e9f89354d718c
-  languageName: node
-  linkType: hard
-
 "lodash.truncate@npm:^4.4.2":
   version: 4.4.2
   resolution: "lodash.truncate@npm:4.4.2"
@@ -11663,17 +11636,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"realistic-structured-clone@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "realistic-structured-clone@npm:3.0.0"
-  dependencies:
-    domexception: ^1.0.1
-    typeson: ^6.1.0
-    typeson-registry: ^1.0.0-alpha.20
-  checksum: b4521b299c8dc320a5e3ef44678f80a92b0f1837901a5fbd1c7be06808110fb0b591b417114306ec55b44ef47fd17968aacca079afc9665afbe1c528026295ec
-  languageName: node
-  linkType: hard
-
 "recast@npm:^0.23.3":
   version: 0.23.4
   resolution: "recast@npm:0.23.4"
@@ -13305,15 +13267,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tr46@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "tr46@npm:1.0.1"
-  dependencies:
-    punycode: ^2.1.0
-  checksum: 96d4ed46bc161db75dbf9247a236ea0bfcaf5758baae6749e92afab0bc5a09cb59af21788ede7e55080f2bf02dce3e4a8f2a484cc45164e29f4b5e68f7cbcc1a
-  languageName: node
-  linkType: hard
-
 "tr46@npm:^3.0.0":
   version: 3.0.0
   resolution: "tr46@npm:3.0.0"
@@ -13576,34 +13529,6 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: ab417a2f398380c90a6cf5a5f74badd17866adf57f1165617d6a551f059c3ba0a3e4da0d147b3ac5681db9ac76a303c5876394b13b3de75fdd5b1eaa06181c9d
-  languageName: node
-  linkType: hard
-
-"typeson-registry@npm:^1.0.0-alpha.20":
-  version: 1.0.0-alpha.29
-  resolution: "typeson-registry@npm:1.0.0-alpha.29"
-  dependencies:
-    base64-arraybuffer-es6: 0.5.0
-    typeson: 5.13.0
-    whatwg-url: 7.0.0
-  checksum: 6aa371ffc59c315d4556ff5297cf845760edd994cb688224408a937f8b9be55db177d81ed02ce2c328eba01956f8c324c18b156b9474dd538eb367de8511426e
-  languageName: node
-  linkType: hard
-
-"typeson@npm:5.13.0":
-  version: 5.13.0
-  resolution: "typeson@npm:5.13.0"
-  peerDependencies:
-    core-js-bundle: ^3.1.3
-    regenerator-runtime: ^0.13.2
-  checksum: 64bcf592be0bbe17373e8b8671edb482667044fe52c9885816e4f66a505f355cc7c2ae17fc7e323f98d3e957791a42a4023f2f96074289fe7fdd8777fd1b2fcd
-  languageName: node
-  linkType: hard
-
-"typeson@npm:^6.1.0":
-  version: 6.1.0
-  resolution: "typeson@npm:6.1.0"
-  checksum: 00a77b03ac8f704acb103307bad9295fe47d6b304c386297f078ec3be63875c0b81e022a4815edb9dc2c7da0a72a431345411d35c755a8510af4a420e9e46cdc
   languageName: node
   linkType: hard
 
@@ -13894,13 +13819,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webidl-conversions@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "webidl-conversions@npm:4.0.2"
-  checksum: c93d8dfe908a0140a4ae9c0ebc87a33805b416a33ee638a605b551523eec94a9632165e54632f6d57a39c5f948c4bab10e0e066525e9a4b87a79f0d04fbca374
-  languageName: node
-  linkType: hard
-
 "webidl-conversions@npm:^7.0.0":
   version: 7.0.0
   resolution: "webidl-conversions@npm:7.0.0"
@@ -14032,17 +13950,6 @@ __metadata:
   version: 3.0.0
   resolution: "whatwg-mimetype@npm:3.0.0"
   checksum: ce08bbb36b6aaf64f3a84da89707e3e6a31e5ab1c1a2379fd68df79ba712a4ab090904f0b50e6693b0dafc8e6343a6157e40bf18fdffd26e513cf95ee2a59824
-  languageName: node
-  linkType: hard
-
-"whatwg-url@npm:7.0.0":
-  version: 7.0.0
-  resolution: "whatwg-url@npm:7.0.0"
-  dependencies:
-    lodash.sortby: ^4.7.0
-    tr46: ^1.0.1
-    webidl-conversions: ^4.0.2
-  checksum: d8ac4e27d80b19c987364958ec7a4e2eb89418d3e0fb1e69d66947bf06993510c01747c5b5689206a91904d28a4af1dad7903ed814455e42e8e15ce41f7e43a6
   languageName: node
   linkType: hard
 
