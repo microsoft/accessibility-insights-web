@@ -2,9 +2,18 @@
 
 exports[`RelatedPathsCardRow renders matching snapshot with related paths present 1`] = `
 <DocumentFragment>
-  Related paths
-  <ul
-    class="pathList"
+  <mock-simplecardrow
+    content="[object Object]"
+    label="Related paths"
+    rowkey="related-paths-row-123"
+  />
+</DocumentFragment>
+`;
+
+exports[`RelatedPathsCardRow renders matching snapshot with related paths present: SimpleCardRow props 1`] = `
+{
+  "content": <ul
+    className="pathList"
   >
     <li>
       #path-1a;.path-1b
@@ -15,6 +24,8 @@ exports[`RelatedPathsCardRow renders matching snapshot with related paths presen
     <li>
       .path-3
     </li>
-  </ul>
-</DocumentFragment>
+  </ul>,
+  "label": "Related paths",
+  "rowKey": "related-paths-row-123",
+}
 `;

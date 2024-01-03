@@ -2,6 +2,19 @@
 
 exports[`TextCardRow renders 1`] = `
 <DocumentFragment>
-  Texttest text
+  <mock-simplecardrow
+    content="test text"
+    label="Text"
+    rowkey="Text--1"
+  />
 </DocumentFragment>
+`;
+
+exports[`TextCardRow renders: SimpleCardRow props 1`] = `
+{
+  "content": "test text",
+  "contentClassName": undefined,
+  "label": "Text",
+  "rowKey": "Text--1",
+}
 `;

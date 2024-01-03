@@ -22,13 +22,25 @@ describe('SimpleCardRow', () => {
     });
 
     it('renders', () => {
-        const renderResult = render(<SimpleCardRow {...props} />);
+        const renderResult = render(
+            <table>
+                <tbody>
+                    <SimpleCardRow {...props} />
+                </tbody>
+            </table>,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders with correct styling with extra class name', () => {
         props.contentClassName = 'test class name';
-        const renderResult = render(<SimpleCardRow {...props} />);
+        const renderResult = render(
+            <table>
+                <tbody>
+                    <SimpleCardRow {...props} />
+                </tbody>
+            </table>,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

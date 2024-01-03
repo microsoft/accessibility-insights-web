@@ -4,9 +4,17 @@ import { render } from '@testing-library/react';
 import { StringPropertyCardRowProps } from 'common/components/cards/get-labelled-string-property-card-row';
 import { TextCardRow } from 'common/components/cards/text-card-row';
 import { CardRowDeps } from 'common/configs/unified-result-property-configurations';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import * as React from 'react';
 
+jest.mock('common/components/cards/simple-card-row');
+
 describe('TextCardRow', () => {
+    mockReactComponents([SimpleCardRow]);
     it('renders', () => {
         const props: StringPropertyCardRowProps = {
             propertyData: 'test text',
@@ -16,5 +24,6 @@ describe('TextCardRow', () => {
 
         const renderResult = render(<TextCardRow {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow]);
     });
 });
