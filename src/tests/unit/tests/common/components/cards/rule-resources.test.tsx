@@ -13,7 +13,10 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
@@ -66,7 +69,6 @@ describe('RuleResources', () => {
 
             expect(renderResult.asFragment()).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([GuidanceTags, GuidanceLinks]);
-
         });
     });
 });

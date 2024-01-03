@@ -5,9 +5,7 @@ import { StringPropertyCardRowProps } from 'common/components/cards/get-labelled
 import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import { SnippetCardRow } from 'common/components/cards/snippet-card-row';
 import * as React from 'react';
-import {
-    mockReactComponents,
-} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { CardRowDeps } from '../../../../../../common/configs/unified-result-property-configurations';
 
 jest.mock('common/components/cards/simple-card-row');

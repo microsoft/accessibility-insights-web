@@ -7,9 +7,7 @@ import {
 } from 'common/components/cards/related-paths-card-row';
 import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import * as React from 'react';
-import {
-    mockReactComponents,
-} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 
 jest.mock('common/components/cards/simple-card-row');
 describe(RelatedPathsCardRow.displayName, () => {
@@ -35,7 +33,6 @@ describe(RelatedPathsCardRow.displayName, () => {
             propertyData: ['#path-1a;.path-1b', '#path-2', '.path-3'],
         };
         const renderResult = render(<RelatedPathsCardRow {...props} />);
-
 
         expect(renderResult.asFragment()).toMatchSnapshot();
     });

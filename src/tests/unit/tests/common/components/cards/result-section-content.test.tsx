@@ -16,7 +16,10 @@ import { CardSelectionMessageCreator } from 'common/message-creators/card-select
 import { NamedFC } from 'common/react/named-fc';
 import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import * as React from 'react';
-import { expectMockedComponentPropsToMatchSnapshots,mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock } from 'typemoq';
 
 import { exampleUnifiedRuleResult } from './sample-view-model-data';

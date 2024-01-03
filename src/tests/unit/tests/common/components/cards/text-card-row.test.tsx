@@ -6,9 +6,7 @@ import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import { TextCardRow } from 'common/components/cards/text-card-row';
 import { CardRowDeps } from 'common/configs/unified-result-property-configurations';
 import * as React from 'react';
-import {
-    mockReactComponents,
-} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 
 jest.mock('common/components/cards/simple-card-row');
 
