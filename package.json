@@ -159,7 +159,7 @@
         "@testing-library/user-event": "^14.5.2",
         "ajv": "^8.12.0",
         "axe-core": "4.7.2",
-        "classnames": "^2.4.0",
+        "classnames": "^2.5.1",
         "idb-keyval": "^6.2.1",
         "lodash": "^4.17.21",
         "luxon": "^3.4.4",
