@@ -72,7 +72,7 @@ describe('TelemetryPermissionDialogTest', () => {
         const renderResult = render(<TelemetryPermissionDialog {...props} />);
         const checkBox = renderResult.getByRole('checkbox') as HTMLInputElement;
         expect(checkBox.checked).toEqual(true);
-        fireEvent.click(checkBox);       
+        fireEvent.click(checkBox);
         expect(checkBox.checked).toEqual(false);
         fireEvent.click(checkBox);
         expect(checkBox.checked).toEqual(true);
