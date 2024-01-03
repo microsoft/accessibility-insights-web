@@ -1,138 +1,228 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PropertyBagColumnRendererTest render with a combination of expanded and not expanded objects 1`] = `
-"<div className="property-bag-container">
-  <div className="property-bag-div">
-    <span className="display-name">
-      display e: 
-    </span>
-    <div className="expanded-property-div">
-      <span className="display-name">
-        key1: 
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display e: 
       </span>
-      value1
+      <div
+        class="expanded-property-div"
+      >
+        <span
+          class="display-name"
+        >
+          key1: 
+        </span>
+        value1
+      </div>
+      <div
+        class="expanded-property-div"
+      >
+        <span
+          class="display-name"
+        >
+          key2: 
+        </span>
+        value2
+      </div>
     </div>
-    <div className="expanded-property-div">
-      <span className="display-name">
-        key2: 
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display b: 
       </span>
-      value2
+      -1
     </div>
   </div>
-  <div className="property-bag-div">
-    <span className="display-name">
-      display b: 
-    </span>
-    -1
-  </div>
-</div>"
+</DocumentFragment>
 `;
 
 exports[`PropertyBagColumnRendererTest render with expanded object 1`] = `
-"<div className="property-bag-container">
-  <div className="property-bag-div">
-    <span className="display-name">
-      display e: 
-    </span>
-    <div className="expanded-property-div">
-      <span className="display-name">
-        key1: 
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display e: 
       </span>
-      value1
-    </div>
-    <div className="expanded-property-div">
-      <span className="display-name">
-        key2: 
-      </span>
-      value2
+      <div
+        class="expanded-property-div"
+      >
+        <span
+          class="display-name"
+        >
+          key1: 
+        </span>
+        value1
+      </div>
+      <div
+        class="expanded-property-div"
+      >
+        <span
+          class="display-name"
+        >
+          key2: 
+        </span>
+        value2
+      </div>
     </div>
   </div>
-</div>"
+</DocumentFragment>
 `;
 
 exports[`PropertyBagColumnRendererTest render with expanded object where some have null values 1`] = `
-"<div className="property-bag-container">
-  <div className="property-bag-div">
-    <span className="display-name">
-      display null values: 
-    </span>
-    <div className="expanded-property-div">
-      <span className="display-name">
-        key1: 
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display null values: 
       </span>
-      value1
-    </div>
-    <div className="expanded-property-div">
-      <span className="display-name">
-        key2
-      </span>
+      <div
+        class="expanded-property-div"
+      >
+        <span
+          class="display-name"
+        >
+          key1: 
+        </span>
+        value1
+      </div>
+      <div
+        class="expanded-property-div"
+      >
+        <span
+          class="display-name"
+        >
+          key2
+        </span>
+      </div>
     </div>
   </div>
-</div>"
+</DocumentFragment>
 `;
 
 exports[`PropertyBagColumnRendererTest render, default value 1`] = `
-"<div className="property-bag-container">
-  <div className="property-bag-div">
-    <span className="display-name">
-      display a: 
-    </span>
-    is a default value
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display a: 
+      </span>
+      is a default value
+    </div>
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display b: 
+      </span>
+      -1
+    </div>
   </div>
-  <div className="property-bag-div">
-    <span className="display-name">
-      display b: 
-    </span>
-    -1
-  </div>
-</div>"
+</DocumentFragment>
 `;
 
 exports[`PropertyBagColumnRendererTest render, empty object 1`] = `
-"<div className="property-bag-container">
-  <div className="property-bag-div">
-    <span className="display-name">
-      display f: 
-    </span>
-    default
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display f: 
+      </span>
+      default
+    </div>
   </div>
-</div>"
+</DocumentFragment>
 `;
 
 exports[`PropertyBagColumnRendererTest render, one property from the bag 1`] = `
-<div
-  className="property-bag-container"
->
+<DocumentFragment>
   <div
-    className="property-bag-div"
+    class="property-bag-container"
   >
-    <span
-      className="display-name"
+    <div
+      class="property-bag-div"
     >
-      display name: 
-    </span>
-    <React.Fragment>
+      <span
+        class="display-name"
+      >
+        display name: 
+      </span>
       string value
-    </React.Fragment>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
-exports[`PropertyBagColumnRendererTest render, property is null, no default value 1`] = `"<div className="property-bag-container" />"`;
+exports[`PropertyBagColumnRendererTest render, property is null, no default value 1`] = `
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  />
+</DocumentFragment>
+`;
 
 exports[`PropertyBagColumnRendererTest render, several properties from the bag 1`] = `
-"<div className="property-bag-container">
-  <div className="property-bag-div">
-    <span className="display-name">
-      display a: 
-    </span>
-    string value
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display a: 
+      </span>
+      string value
+    </div>
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display b: 
+      </span>
+      -1
+    </div>
   </div>
-  <div className="property-bag-div">
-    <span className="display-name">
-      display b: 
-    </span>
-    -1
-  </div>
-</div>"
+</DocumentFragment>
 `;
