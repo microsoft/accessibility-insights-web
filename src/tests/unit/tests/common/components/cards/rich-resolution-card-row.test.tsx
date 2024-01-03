@@ -6,8 +6,8 @@ import {
     RichResolutionCardRowProps,
 } from 'common/components/cards/rich-resolution-card-row';
 import { RichResolutionContent } from 'common/components/cards/rich-resolution-content';
-import * as React from 'react';
 import { SimpleCardRow } from 'common/components/cards/simple-card-row';
+import * as React from 'react';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,

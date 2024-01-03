@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 import { render } from '@testing-library/react';
+import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import { UrlsCardRow, UrlsCardRowProps } from 'common/components/cards/urls-card-row';
 import { CardRowDeps } from 'common/configs/unified-result-property-configurations';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
-import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
