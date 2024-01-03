@@ -250,6 +250,10 @@ exports[`DetailsViewBody render render 1`] = `
                 "enabled": false,
                 "stepStatus": {},
               },
+              "cognitive": {
+                "enabled": false,
+                "stepStatus": {},
+              },
               "color": {
                 "enabled": false,
                 "stepStatus": {},
@@ -626,6 +630,10 @@ exports[`DetailsViewBody render render 1`] = `
                   "stepStatus": {},
                 },
                 "automated-checks": {
+                  "enabled": false,
+                  "stepStatus": {},
+                },
+                "cognitive": {
                   "enabled": false,
                   "stepStatus": {},
                 },
@@ -1020,6 +1028,10 @@ exports[`DetailsViewBody render render 1`] = `
                       "stepStatus": {},
                     },
                     "automated-checks": {
+                      "enabled": false,
+                      "stepStatus": {},
+                    },
+                    "cognitive": {
                       "enabled": false,
                       "stepStatus": {},
                     },

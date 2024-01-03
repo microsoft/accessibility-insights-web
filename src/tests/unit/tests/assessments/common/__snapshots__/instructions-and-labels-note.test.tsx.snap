@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstructionsAndLabelsNote renders 1`] = `
-<Emphasis>
-  Note: Both WCAG 2.0 and 2.1 require a widget's visible label and instructions (if present) to be programmatically determinable. WCAG 2.1 also requires a widget's visible label and instructions (if present) to be included in its accessible name and description.
-</Emphasis>
+<DocumentFragment>
+  <em>
+    Note: Both WCAG 2.0 and 2.1 require a widget's visible label and instructions (if present) to be programmatically determinable. WCAG 2.1 also requires a widget's visible label and instructions (if present) to be included in its accessible name and description.
+  </em>
+</DocumentFragment>
 `;

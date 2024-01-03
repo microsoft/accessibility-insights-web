@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { customWidgetsColumnRenderer } from 'assessments/custom-widgets/custom-widgets-column-renderer';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
@@ -43,17 +43,17 @@ describe('CustomWidgetsColumnRenderer', () => {
     it('should render unrelated properties', () => {
         const renderer = () => customWidgetsColumnRenderer(item, configs, true);
 
-        const wrapper = shallow(<RendererWrapper render={renderer} />);
+        const renderResult = render(<RendererWrapper render={renderer} />);
 
-        const div = wrapper.find('.property-bag-container');
-        expect(div.exists()).toBeTruthy();
-        expect(div.children()).toHaveLength(1);
+        const div = renderResult.container.querySelector('.property-bag-container');
+        expect(div).not.toBeNull();
+        expect(div.children).toHaveLength(1);
 
-        const designPatternSpan = div.childAt(0);
+        const designPatternSpan = div.children[0];
         expect(designPatternSpan).not.toBeUndefined();
-        expect(designPatternSpan.hasClass('property-bag-div')).toBeTruthy();
-        expect(designPatternSpan.children()).toHaveLength(2);
-        expect(designPatternSpan.text()).toEqual(
+        expect(designPatternSpan.classList.contains('property-bag-div')).toBeTruthy();
+        expect(designPatternSpan.children).toHaveLength(1);
+        expect(designPatternSpan.textContent).toEqual(
             `${configs[0].displayName}: ${item.instance.propertyBag.a}`,
         );
     });
@@ -81,21 +81,21 @@ describe('CustomWidgetsColumnRenderer', () => {
 
         const renderer = () => customWidgetsColumnRenderer(item, configs, true);
 
-        const wrapper = shallow(<RendererWrapper render={renderer} />);
+        const renderResult = render(<RendererWrapper render={renderer} />);
 
-        const div = wrapper.find('.property-bag-container');
-        expect(div.exists()).toBeTruthy();
-        expect(div.children()).toHaveLength(2);
+        const div = renderResult.container.querySelector('.property-bag-container');
+        expect(div).not.toBeNull();
+        expect(div.children).toHaveLength(2);
 
-        const designPatternSpan = div.childAt(1);
+        const designPatternSpan = div.children[1];
         expect(designPatternSpan).not.toBeUndefined();
-        expect(designPatternSpan.hasClass('property-bag-div')).toBeTruthy();
+        expect(designPatternSpan.classList.contains('property-bag-div')).toBeTruthy();
 
-        const links = designPatternSpan.find('NewTabLink');
+        const links = designPatternSpan.querySelectorAll('a');
         expect(links).toHaveLength(4);
 
         for (let i = 0; i < links.length; i++) {
-            checkLink(links.get(i), expectedValues[i].designPattern, expectedValues[i].URL);
+            checkLink(links.item(i), expectedValues[i].designPattern, expectedValues[i].URL);
         }
     });
 
@@ -114,22 +114,22 @@ describe('CustomWidgetsColumnRenderer', () => {
 
         const renderer = () => customWidgetsColumnRenderer(item, configs, false);
 
-        const wrapper = shallow(<RendererWrapper render={renderer} />);
+        const renderResult = render(<RendererWrapper render={renderer} />);
 
-        const div = wrapper.find('.property-bag-container');
-        expect(div.exists()).toBeTruthy();
-        expect(div.children()).toHaveLength(2);
-        const spans = div.find('.expanded-property-div > span');
+        const div = renderResult.container.querySelector('.property-bag-container');
+        expect(div).not.toBeNull();
+        expect(div.children).toHaveLength(2);
+        const spans = div.querySelectorAll('.expanded-property-div > span');
         expect(spans).toHaveLength(2);
 
         for (let i = 0; i < spans.length; i++) {
-            expect(spans.get(i).props.children).toEqual(expectedValues[i].designPattern);
+            expect(spans.item(i).textContent).toEqual(expectedValues[i].designPattern);
         }
     });
 
-    function checkLink(link: React.ReactElement<any>, name: string, url: string): void {
-        expect(link.props.href).toEqual(url);
-        expect(link.props.children).toEqual(name);
+    function checkLink(link: Element, name: string, url: string): void {
+        expect(link.getAttribute('href')).toEqual(url);
+        expect(link.textContent).toEqual(name);
     }
 });
 

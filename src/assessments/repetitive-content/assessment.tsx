@@ -6,6 +6,7 @@ import { test as content } from 'content/test';
 import * as React from 'react';
 import { AssessmentBuilder } from '../assessment-builder';
 import { BypassBlocks } from './test-steps/bypass-blocks';
+import { ConsistentHelp } from './test-steps/consistent-help';
 import { ConsistentIdentification } from './test-steps/consistent-identification';
 import { ConsistentNavigation } from './test-steps/consistent-navigation';
 
@@ -32,5 +33,5 @@ export const RepetitiveContentAssessment = AssessmentBuilder.Manual({
     gettingStarted: gettingStartedText,
     title,
     guidance,
-    requirements: [BypassBlocks, ConsistentNavigation, ConsistentIdentification],
+    requirements: [BypassBlocks, ConsistentNavigation, ConsistentIdentification, ConsistentHelp],
 });

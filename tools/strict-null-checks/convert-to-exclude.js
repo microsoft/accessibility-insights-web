@@ -23,8 +23,10 @@ async function main() {
 }
 
 async function buildExcludeList() {
-    const checkedFiles = await getAllCheckedFiles();
-    const eligibleFiles = await getAllEligibleFiles();
+    const [checkedFiles, eligibleFiles] = await Promise.all([
+        getAllCheckedFiles(),
+        getAllEligibleFiles(),
+    ]);
 
     const allUncheckedFiles = eligibleFiles.filter(file => !checkedFiles.has(file));
 
