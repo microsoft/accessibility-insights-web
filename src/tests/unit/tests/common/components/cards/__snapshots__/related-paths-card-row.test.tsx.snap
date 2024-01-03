@@ -9,23 +9,3 @@ exports[`RelatedPathsCardRow renders matching snapshot with related paths presen
   />
 </DocumentFragment>
 `;
-
-exports[`RelatedPathsCardRow renders matching snapshot with related paths present: SimpleCardRow props 1`] = `
-{
-  "content": <ul
-    className="pathList"
-  >
-    <li>
-      #path-1a;.path-1b
-    </li>
-    <li>
-      #path-2
-    </li>
-    <li>
-      .path-3
-    </li>
-  </ul>,
-  "label": "Related paths",
-  "rowKey": "related-paths-row-123",
-}
-`;

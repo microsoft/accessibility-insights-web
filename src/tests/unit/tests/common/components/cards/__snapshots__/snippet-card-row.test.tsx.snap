@@ -10,12 +10,3 @@ exports[`SnippetCardRow renders 1`] = `
   />
 </DocumentFragment>
 `;
-
-exports[`SnippetCardRow renders: SimpleCardRow props 1`] = `
-{
-  "content": "some snippet",
-  "contentClassName": "snippet",
-  "label": "Snippet",
-  "rowKey": "Snippet--1",
-}
-`;
