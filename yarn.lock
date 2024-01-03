@@ -3273,7 +3273,7 @@ __metadata:
   dependencies:
     "@fluentui/react": ^8.96.1
     axe-core: 4.7.2
-    classnames: ^2.4.0
+    classnames: ^2.5.1
     lodash: ^4.17.21
     luxon: ^3.4.4
     react: ^16.14.0
@@ -3289,7 +3289,7 @@ __metadata:
   dependencies:
     "@fluentui/react": ^8.96.1
     axe-core: 4.7.2
-    classnames: ^2.4.0
+    classnames: ^2.5.1
     lodash: ^4.17.21
     luxon: ^3.4.4
     react: ^16.14.0
@@ -3332,7 +3332,7 @@ __metadata:
     ajv: ^8.12.0
     axe-core: 4.7.2
     case-sensitive-paths-webpack-plugin: ^2.4.0
-    classnames: ^2.4.0
+    classnames: ^2.5.1
     codecov: ^3.8.3
     commander: ^11.1.0
     core-js-bundle: ^3.35.0
@@ -4488,10 +4488,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.4.0":
-  version: 2.4.0
-  resolution: "classnames@npm:2.4.0"
-  checksum: be22a483a5b853895d8b6b44ad78944a3d1aee6181a697dc038e948202023203f0acb6013000b635ce6b491a072d3e76ad16c8586e178c9f5d788f6797a6cdd8
+"classnames@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "classnames@npm:2.5.1"
+  checksum: da424a8a6f3a96a2e87d01a432ba19315503294ac7e025f9fece656db6b6a0f7b5003bb1fbb51cbb0d9624d964f1b9bb35a51c73af9b2434c7b292c42231c1e5
   languageName: node
   linkType: hard
 
