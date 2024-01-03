@@ -41,5 +41,9 @@
     "editor.rulers": [100, 140],
     "typescript.tsdk": "node_modules/typescript/lib",
     "eslint.workingDirectories": [{ "pattern": "./packages/*/" }, { "directory": "./" }],
-    "stylelint.validate": ["css", "scss"]
+    "stylelint.validate": ["css", "scss"],
+    "[powershell]": {
+        "editor.defaultFormatter": "ms-vscode.powershell"
+    },
+    "powershell.codeFormatting.newLineAfterCloseBrace": false
 }

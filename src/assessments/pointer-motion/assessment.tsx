@@ -6,9 +6,11 @@ import * as React from 'react';
 
 import { AssessmentBuilder } from '../assessment-builder';
 import { Assessment } from '../types/iassessment';
+import { DraggingMovements } from './test-steps/dragging-movements';
 import { MotionOperation } from './test-steps/motion-operation';
 import { PointerCancellation } from './test-steps/pointer-cancellation';
 import { PointerGestures } from './test-steps/pointer-gestures';
+import { TargetSize } from './test-steps/target-size';
 
 const { guidance } = content.pointerMotion;
 const key = 'pointerMotion';
@@ -29,5 +31,11 @@ export const PointerMotionAssessment: Assessment = AssessmentBuilder.Assisted({
     gettingStarted: gettingStarted,
     guidance,
     visualizationType: VisualizationType.PointerMotionAssessment,
-    requirements: [PointerGestures, PointerCancellation, MotionOperation],
+    requirements: [
+        PointerGestures,
+        PointerCancellation,
+        MotionOperation,
+        DraggingMovements,
+        TargetSize,
+    ],
 });

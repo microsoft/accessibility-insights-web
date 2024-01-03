@@ -66,8 +66,8 @@ function GetBranchName([string]$pipelineType, [string]$branchName) {
             }
             "ado" {
                 $prBranchName = $Env:SYSTEM_PULLREQUEST_SOURCEBRANCH
-                if ($prBranchName -eq $null) {
-                    $trimmedBranchName = ($Env:BUILD_SOURCEBRANCH).Trim().Replace("refs/heads/","")
+                if ($null -eq $prBranchName) {
+                    $trimmedBranchName = ($Env:BUILD_SOURCEBRANCH).Trim().Replace("refs/heads/", "")
                 } else {
                     $trimmedBranchName = $prBranchName.Trim()
                 }
@@ -105,14 +105,14 @@ function IsPackageExcluded([string]$namespaceAndPackage) {
     # licensing purposes, can be added to clearly-defined-exclusions.json
     $exclusionFile = Join-Path $PSScriptRoot "clearly-defined-exclusions.json"
     $exclusions = Get-Content -Path $exclusionFile | ConvertFrom-Json
-    return $exclusions -ne $null -and $exclusions.Contains($namespaceAndPackage)
+    return $null -ne $exclusions -and $exclusions.Contains($namespaceAndPackage)
 }
 
-function IsGithubActionsType([string]$namespace){
+function IsGithubActionsType([string]$namespace) {
     return $namespace -eq "github_actions"
 }
 
-function IsDockerImage([string]$provider){
+function IsDockerImage([string]$provider) {
     return $provider -eq "docker"
 }
 
@@ -128,7 +128,11 @@ function AdjustNamespace([string]$provider, [string]$rawNamespace) {
     return $rawNamespace
 }
 
-function GetUri([string]$branchName){
+function IsTypesNamespace([string]$nameSpace) {
+    return $nameSpace -eq "@types"
+}
+
+function GetUri([string]$branchName) {
     $elements = $branchName.Split('/')
 
     if ($elements[0] -ne 'dependabot') {
@@ -150,11 +154,17 @@ function GetUri([string]$branchName){
         $rawNamespace = $elements[2]
         $fullPackage = $elements[3]
     }
+
     $nameSpace = AdjustNamespace $provider $rawNamespace
+    if (IsTypesNamespace $nameSpace) {
+        Write-Host "Namespace is @types, skipping check"
+        Exit 0
+    }
+    
     $indexOfLastDash = $fullPackage.LastIndexOf('-') + 1
     $packageName = $fullPackage.Substring(0, $indexOfLastDash - 1)
     $packageVersion = $fullPackage.Substring($indexOfLastDash)
-    if(IsDockerImage $provider){
+    if (IsDockerImage $provider) {
         Write-Host "'$packageName' is a Docker image, skipping check"
         Exit 0
     }
@@ -163,7 +173,6 @@ function GetUri([string]$branchName){
         Write-Host "Package '$namespaceAndPackage' is a known exclusion, skipping check"
         Exit 0
     }
-
 
     return "https://api.clearlydefined.io/definitions/$type/$provider/$namespace/$packageName/$packageVersion"
 }
@@ -192,12 +201,11 @@ try {
     Write-Host "Getting data from $uri"
     $response = Invoke-RestMethod -Uri $uri -Method Get -ErrorAction Stop
 
-    if(Get-Member -inputobject $response -name "files" -Membertype Properties) {
+    if (Get-Member -inputobject $response -name "files" -Membertype Properties) {
         Write-Host "ClearlyDefined has a definition for this package version."
         Exit 0
     }
-}
-catch {
+} catch {
     WriteFormattedError $pipelineType "Caught error - details below"
     $Error[0] | Format-List * -Force
     Exit 1

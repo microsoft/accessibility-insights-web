@@ -29,10 +29,17 @@ async function initClient() {
         defaultPrefix: 'insights',
     });
 
-    const { createDefaultLogger } = await import('common/logging/default-logger');
-    const { initializeFabricIcons } = await import('../common/fabric-icons');
-    const { MainWindowInitializer } = await import('./main-window-initializer');
-    const { WindowInitializer } = await import('./window-initializer');
+    const [
+        { createDefaultLogger },
+        { initializeFabricIcons },
+        { MainWindowInitializer },
+        { WindowInitializer },
+    ] = await Promise.all([
+        import('common/logging/default-logger'),
+        import('../common/fabric-icons'),
+        import('./main-window-initializer'),
+        import('./window-initializer'),
+    ]);
 
     const logger = createDefaultLogger();
     initializeFabricIcons();

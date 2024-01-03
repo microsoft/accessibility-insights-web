@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssistedTestRecordYourResults } from 'assessments/common/assisted-test-record-your-results';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('AssistedTestRecordYourResults', () => {
     it('renders', () => {
-        const wrapped = shallow(<AssistedTestRecordYourResults />);
+        const renderResult = render(<AssistedTestRecordYourResults />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
