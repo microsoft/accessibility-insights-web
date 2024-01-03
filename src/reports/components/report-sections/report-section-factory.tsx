@@ -14,9 +14,7 @@ import { UserConfigurationStoreData } from '../../../common/types/store-data/use
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
 
-export type SectionDeps = NotApplicableChecksSectionDeps &
-    CommonInstancesSectionDeps 
-    ;
+export type SectionDeps = NotApplicableChecksSectionDeps & CommonInstancesSectionDeps;
 
 export type SectionProps = {
     deps: SectionDeps;
