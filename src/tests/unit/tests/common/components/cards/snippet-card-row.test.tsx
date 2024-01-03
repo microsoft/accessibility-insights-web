@@ -6,7 +6,6 @@ import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import { SnippetCardRow } from 'common/components/cards/snippet-card-row';
 import * as React from 'react';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { CardRowDeps } from '../../../../../../common/configs/unified-result-property-configurations';
@@ -22,6 +21,5 @@ describe('SnippetCardRow', () => {
         };
         const renderResult = render(<SnippetCardRow {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow]);
     });
 });

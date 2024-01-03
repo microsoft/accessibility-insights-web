@@ -2,6 +2,8 @@
 
 exports[`ResultSectionContent does not render, no rules 1`] = `<DocumentFragment />`;
 
+exports[`ResultSectionContent does not render, no rules: RulesWithInstances props 1`] = `undefined`;
+
 exports[`ResultSectionContent renders without modifier buttons without cardSelectionMessageCreator, with some rules 1`] = `
 <DocumentFragment>
   <mock-ruleswithinstances

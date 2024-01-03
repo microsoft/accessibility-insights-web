@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { InstanceDetailsGroup } from 'common/components/cards/instance-details-group';
 import { RuleContent, RuleContentProps } from 'common/components/cards/rule-content';
 import * as React from 'react';
-import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import { expectMockedComponentPropsToMatchSnapshots,mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 jest.mock('common/components/cards/instance-details-group');
 
 describe('RuleContent', () => {
@@ -19,5 +19,6 @@ describe('RuleContent', () => {
         const renderResult = render(<RuleContent {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsGroup]);
     });
 });

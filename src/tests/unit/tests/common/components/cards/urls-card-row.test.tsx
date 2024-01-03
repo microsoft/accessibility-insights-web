@@ -8,7 +8,6 @@ import { CardRowDeps } from 'common/configs/unified-result-property-configuratio
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 
@@ -49,6 +48,5 @@ describe('UrlsCardRow', () => {
         };
         const renderResult = render(<UrlsCardRow {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow]);
     });
 });

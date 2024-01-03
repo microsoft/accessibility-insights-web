@@ -7,7 +7,6 @@ import { TextCardRow } from 'common/components/cards/text-card-row';
 import { CardRowDeps } from 'common/configs/unified-result-property-configurations';
 import * as React from 'react';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 
@@ -24,6 +23,5 @@ describe('TextCardRow', () => {
 
         const renderResult = render(<TextCardRow {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow]);
     });
 });

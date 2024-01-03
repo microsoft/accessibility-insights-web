@@ -52,6 +52,30 @@ exports[`RuleResources renders with {
 
 exports[`RuleResources renders with {
   url: 'test-url',
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink'
+}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [Function],
+  "links": [],
+}
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink'
+}: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+  "links": [],
+}
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
   linkComponent: 'ExternalLink'
 } 1`] = `
@@ -101,10 +125,54 @@ exports[`RuleResources renders with {
 `;
 
 exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'ExternalLink'
+}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [Function],
+  "links": [
+    {
+      "href": "test-href",
+    },
+  ],
+}
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'ExternalLink'
+}: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+  "links": [
+    {
+      "href": "test-href",
+    },
+  ],
+}
+`;
+
+exports[`RuleResources renders with {
   url: null,
   guidanceLinks: [ [length]: 0 ],
   linkComponent: 'ExternalLink'
 } 1`] = `<DocumentFragment />`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink'
+}: GuidanceLinks props 1`] = `undefined`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink'
+}: GuidanceTags props 1`] = `undefined`;
 
 exports[`RuleResources renders with {
   url: null,
@@ -133,6 +201,38 @@ exports[`RuleResources renders with {
     </span>
   </div>
 </DocumentFragment>
+`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'NewTabLink'
+}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [Function],
+  "links": [
+    {
+      "href": "test-href",
+    },
+  ],
+}
+`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'NewTabLink'
+}: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+  "links": [
+    {
+      "href": "test-href",
+    },
+  ],
+}
 `;
 
 exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `
@@ -168,4 +268,24 @@ exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, link
 </DocumentFragment>
 `;
 
+exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' }: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [Function],
+  "links": null,
+}
+`;
+
+exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' }: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+  "links": null,
+}
+`;
+
 exports[`RuleResources renders with { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `<DocumentFragment />`;
+
+exports[`RuleResources renders with { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' }: GuidanceLinks props 1`] = `undefined`;
+
+exports[`RuleResources renders with { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' }: GuidanceTags props 1`] = `undefined`;

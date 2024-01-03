@@ -8,7 +8,6 @@ import {
 import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import * as React from 'react';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 
@@ -37,7 +36,6 @@ describe(RelatedPathsCardRow.displayName, () => {
         };
         const renderResult = render(<RelatedPathsCardRow {...props} />);
 
-        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow]);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
     });

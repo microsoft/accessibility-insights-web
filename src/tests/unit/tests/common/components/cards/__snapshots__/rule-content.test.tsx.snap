@@ -7,3 +7,11 @@ exports[`RuleContent renders 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`RuleContent renders: InstanceDetailsGroup props 1`] = `
+{
+  "rule": {
+    "id": "test-id",
+  },
+}
+`;
