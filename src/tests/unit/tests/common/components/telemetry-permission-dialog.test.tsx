@@ -53,9 +53,7 @@ describe('TelemetryPermissionDialogTest', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
 
         const checkBox = renderResult.getByRole('checkbox') as HTMLInputElement;
-        /////
         expect(checkBox.checked).toEqual(true);
-        // expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
 
         const telemetryNotice = getMockComponentClassPropsForCall(TelemetryNotice);
         expect(telemetryNotice.deps.LinkComponent).toBe(props.deps.LinkComponent);
@@ -74,15 +72,10 @@ describe('TelemetryPermissionDialogTest', () => {
         const renderResult = render(<TelemetryPermissionDialog {...props} />);
         const checkBox = renderResult.getByRole('checkbox') as HTMLInputElement;
         expect(checkBox.checked).toEqual(true);
-        //expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
-        fireEvent.click(checkBox);
-        //checkBox.props().onChange(null, false);
+        fireEvent.click(checkBox);       
         expect(checkBox.checked).toEqual(false);
-        //expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: false });
         fireEvent.click(checkBox);
-        //checkBox.props().onChange(null, true);
         expect(checkBox.checked).toEqual(true);
-        //expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
     });
 
     test('button click', async () => {
@@ -94,7 +87,6 @@ describe('TelemetryPermissionDialogTest', () => {
         };
 
         const renderResult = render(<TelemetryPermissionDialog {...props} />);
-        //const button = wrapper.querySelector(PrimaryButton);
         await userEvent.click(renderResult.getByRole('button'));
         expect(setTelemetryStateMock).toHaveBeenCalledTimes(1);
     });

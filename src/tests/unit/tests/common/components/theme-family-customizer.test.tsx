@@ -12,10 +12,10 @@ import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
-jest.mock('@fluentui/react'); // manually added
+jest.mock('@fluentui/react');
 
 describe('ThemeFamilyCustomizer', () => {
-    mockReactComponents([ThemeProvider]); // manually added
+    mockReactComponents([ThemeProvider]);
     it.each`
         themeFamily    | enableHighContrast | expectedThemeName
         ${'default'}   | ${false}           | ${'DefaultTheme'}
@@ -37,7 +37,7 @@ describe('ThemeFamilyCustomizer', () => {
                 </ThemeFamilyCustomizer>,
             );
 
-            const themeFromTestSubject = getMockComponentClassPropsForCall(ThemeProvider).theme; // manually added
+            const themeFromTestSubject = getMockComponentClassPropsForCall(ThemeProvider).theme;
 
             const expectedTheme = {
                 DefaultTheme,

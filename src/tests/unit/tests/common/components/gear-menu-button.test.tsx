@@ -36,8 +36,7 @@ describe('GearMenuButton', () => {
 
         it('no down chevron menu icon', () => {
             render(<GearMenuButton {...props} />);
-            const testSubject = getMockComponentClassPropsForCall(IconButton).onRenderMenuIcon; //
-
+            const testSubject = getMockComponentClassPropsForCall(IconButton).onRenderMenuIcon;
             expect(testSubject()).toBeNull();
         });
     });
