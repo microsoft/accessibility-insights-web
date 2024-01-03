@@ -9,12 +9,3 @@ exports[`TextCardRow renders 1`] = `
   />
 </DocumentFragment>
 `;
-
-exports[`TextCardRow renders: SimpleCardRow props 1`] = `
-{
-  "content": "test text",
-  "contentClassName": undefined,
-  "label": "Text",
-  "rowKey": "Text--1",
-}
-`;
