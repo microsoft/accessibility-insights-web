@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ClassNameCardRow renders 1`] = `
-<SimpleCardRow
-  content="test class name"
-  label="Class name"
-  rowKey="Class name--1"
-/>
+<DocumentFragment>
+  Class nametest class name
+</DocumentFragment>
 `;

@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    allCardInteractionsSupported,
-    noCardInteractionsSupported,
-} from 'common/components/cards/card-interaction-support';
+import { render } from '@testing-library/react';
+import { allCardInteractionsSupported, noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import {
     InstanceDetailsFooter,
     InstanceDetailsFooterDeps,
@@ -11,7 +9,6 @@ import {
 } from 'common/components/cards/instance-details-footer';
 import { CardResult, HighlightState } from 'common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -22,8 +19,13 @@ import {
 } from '../../../../../../common/types/store-data/unified-data-interface';
 import { UnifiedResultToIssueFilingDataConverter } from '../../../../../../issue-filing/unified-result-to-issue-filing-data';
 import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { CardFooterInstanceActionButtons } from '../../../../../../common/components/cards/card-footer-instance-action-buttons';
 
+jest.mock('../../../../../../common/components/cards/card-footer-instance-action-buttons');
 describe('InstanceDetailsFooter', () => {
+    mockReactComponents([CardFooterInstanceActionButtons]);
+
     let resultStub: CardResult;
     let props: InstanceDetailsFooterProps;
     let deps: InstanceDetailsFooterDeps;
@@ -70,18 +72,18 @@ describe('InstanceDetailsFooter', () => {
     it('renders as null when no card interactions are supported', () => {
         setupConverterToNeverBeCalled();
         deps.cardInteractionSupport = noCardInteractionsSupported;
-        const testSubject = shallow(<InstanceDetailsFooter {...props} />);
+        const renderResult = render(<InstanceDetailsFooter {...props} />);
 
-        expect(testSubject.getElement()).toBeNull();
+        expect(renderResult.container.firstChild).toBeNull();
         converterMock.verifyAll();
     });
 
     it('renders per snapshot when all card interactions are supported (ie, web)', () => {
         setupConverterToBeCalledOnce();
         deps.cardInteractionSupport = allCardInteractionsSupported;
-        const testSubject = shallow(<InstanceDetailsFooter {...props} />);
+        const renderResult = render(<InstanceDetailsFooter {...props} />);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
         converterMock.verifyAll();
     });
 
@@ -92,9 +94,9 @@ describe('InstanceDetailsFooter', () => {
         (highlightState: HighlightState) => {
             resultStub.highlightStatus = highlightState;
             setupConverterToBeCalledOnce();
-            const testSubject = shallow(<InstanceDetailsFooter {...props} />);
+            const renderResult = render(<InstanceDetailsFooter {...props} />);
 
-            expect(testSubject.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
             converterMock.verifyAll();
         },
     );

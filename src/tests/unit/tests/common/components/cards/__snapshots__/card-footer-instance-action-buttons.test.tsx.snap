@@ -2,101 +2,171 @@
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: action button menu props 1`] = `
 {
-  "directionalHint": 6,
-  "items": [
-    {
-      "key": "item1",
-      "onClick": [Function],
-      "text": "item 1",
-    },
-    {
-      "key": "item2",
-      "onClick": [Function],
-      "text": "item 2",
-    },
-  ],
-  "shouldFocusOnMount": true,
+  "ariaLabel": "test-kebabmenuarialabel",
+  "componentRef": [Function],
+  "menuIconProps": {
+    "className": "kebabMenuIcon",
+    "iconName": "MoreActionsMenuIcon",
+  },
+  "menuProps": {
+    "directionalHint": 6,
+    "items": [
+      {
+        "key": "item1",
+        "onClick": [Function],
+        "text": "item 1",
+      },
+      {
+        "key": "item2",
+        "onClick": [Function],
+        "text": "item 2",
+      },
+    ],
+    "shouldFocusOnMount": true,
+  },
 }
 `;
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: component snapshot 1`] = `
-"<div onKeyDown={[Function: onKeyDown]}>
-  <CustomizedActionButton componentRef={[Function: componentRef]} ariaLabel="test-kebabmenuarialabel" menuIconProps={{...}} menuProps={{...}} />
-  <Toast deps={{...}} timeoutLength={6000} />
-</div>"
+<DocumentFragment>
+  <div>
+    <mock-customizedactionbutton
+      arialabel="test-kebabmenuarialabel"
+      menuiconprops="[object Object]"
+      menuprops="[object Object]"
+    />
+    <div
+      aria-live="polite"
+      class="toastContainer"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: action button menu props 1`] = `
 {
-  "directionalHint": 6,
-  "items": [
-    {
-      "key": "item1",
-      "onClick": [Function],
-      "text": "item 1",
-    },
-    {
-      "key": "item2",
-      "onClick": [Function],
-      "text": "item 2",
-    },
-  ],
-  "shouldFocusOnMount": true,
+  "ariaLabel": "More actions",
+  "componentRef": [Function],
+  "menuIconProps": {
+    "className": "kebabMenuIcon",
+    "iconName": "MoreActionsMenuIcon",
+  },
+  "menuProps": {
+    "directionalHint": 6,
+    "items": [
+      {
+        "key": "item1",
+        "onClick": [Function],
+        "text": "item 1",
+      },
+      {
+        "key": "item2",
+        "onClick": [Function],
+        "text": "item 2",
+      },
+    ],
+    "shouldFocusOnMount": true,
+  },
 }
 `;
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: component snapshot 1`] = `
-"<div onKeyDown={[Function: onKeyDown]}>
-  <CustomizedActionButton componentRef={[Function: componentRef]} ariaLabel="More actions" menuIconProps={{...}} menuProps={{...}} />
-  <Toast deps={{...}} timeoutLength={6000} />
-</div>"
+<DocumentFragment>
+  <div>
+    <mock-customizedactionbutton
+      arialabel="More actions"
+      menuiconprops="[object Object]"
+      menuprops="[object Object]"
+    />
+    <div
+      aria-live="polite"
+      class="toastContainer"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`CardFooterInstanceActionButtons renders without copyFailureDetails supported: component snapshot 1`] = `
-"<div onKeyDown={[Function: onKeyDown]}>
-  <span>
-    <CustomizedActionButton onClick={[Function: onClick]} text="item 1" iconProps={[undefined]} className="item1" componentRef={[undefined]} />
-  </span>
-  <span>
-    <CustomizedActionButton onClick={[Function: onClick]} text="item 2" iconProps={[undefined]} className="item2" componentRef={[undefined]} />
-  </span>
-</div>"
+<DocumentFragment>
+  <div>
+    <span>
+      <mock-customizedactionbutton
+        classname="item1"
+        text="item 1"
+      />
+    </span>
+    <span>
+      <mock-customizedactionbutton
+        classname="item2"
+        text="item 2"
+      />
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=false renders per snapshot: component snapshot 1`] = `
-"<div onKeyDown={[Function: onKeyDown]}>
-  <span>
-    <CustomizedActionButton onClick={[Function: onClick]} text="item 1" iconProps={[undefined]} className="item1" componentRef={[undefined]} />
-  </span>
-  <span>
-    <CustomizedActionButton onClick={[Function: onClick]} text="item 2" iconProps={[undefined]} className="item2" componentRef={[undefined]} />
-  </span>
-  <Toast deps={{...}} timeoutLength={6000} />
-</div>"
+<DocumentFragment>
+  <div>
+    <span>
+      <mock-customizedactionbutton
+        classname="item1"
+        text="item 1"
+      />
+    </span>
+    <span>
+      <mock-customizedactionbutton
+        classname="item2"
+        text="item 2"
+      />
+    </span>
+    <div
+      aria-live="polite"
+      class="toastContainer"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: action button menu props 1`] = `
 {
-  "directionalHint": 6,
-  "items": [
-    {
-      "key": "item1",
-      "onClick": [Function],
-      "text": "item 1",
-    },
-    {
-      "key": "item2",
-      "onClick": [Function],
-      "text": "item 2",
-    },
-  ],
-  "shouldFocusOnMount": true,
+  "ariaLabel": "More actions",
+  "componentRef": [Function],
+  "menuIconProps": {
+    "className": "kebabMenuIcon",
+    "iconName": "MoreActionsMenuIcon",
+  },
+  "menuProps": {
+    "directionalHint": 6,
+    "items": [
+      {
+        "key": "item1",
+        "onClick": [Function],
+        "text": "item 1",
+      },
+      {
+        "key": "item2",
+        "onClick": [Function],
+        "text": "item 2",
+      },
+    ],
+    "shouldFocusOnMount": true,
+  },
 }
 `;
 
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: component snapshot 1`] = `
-"<div onKeyDown={[Function: onKeyDown]}>
-  <CustomizedActionButton componentRef={[Function: componentRef]} ariaLabel="More actions" menuIconProps={{...}} menuProps={{...}} />
-  <Toast deps={{...}} timeoutLength={6000} />
-</div>"
+<DocumentFragment>
+  <div>
+    <mock-customizedactionbutton
+      arialabel="More actions"
+      menuiconprops="[object Object]"
+      menuprops="[object Object]"
+    />
+    <div
+      aria-live="polite"
+      class="toastContainer"
+    />
+  </div>
+</DocumentFragment>
 `;

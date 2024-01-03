@@ -1,64 +1,57 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { userEvent } from '@testing-library/user-event';
+
+import { render } from '@testing-library/react';
 import { ExpandCollapseAllButton } from 'common/components/cards/expand-collapse-all-button';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
-import { SupportedMouseEvent } from 'common/telemetry-data-factory';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { It, IMock, Mock } from 'typemoq';
 
 describe('ExpandCollapseAllButton', () => {
     let cardSelectionMessageCreatorMock: IMock<AutomatedChecksCardSelectionMessageCreator>;
-    const stubClickEvent = {} as SupportedMouseEvent;
 
     beforeEach(() => {
-        cardSelectionMessageCreatorMock = Mock.ofType(
-            AutomatedChecksCardSelectionMessageCreator,
-            MockBehavior.Strict,
-        );
+        cardSelectionMessageCreatorMock = Mock.ofType(AutomatedChecksCardSelectionMessageCreator);
     });
 
     it.each([true, false])(
         'renders per snapshot with allCardsCollapsed %p',
         (allCardsCollapsed: boolean) => {
-            const testSubject = shallow(
-                <ExpandCollapseAllButton
-                    allCardsCollapsed={allCardsCollapsed}
-                    cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
-                />,
-            );
-            expect(testSubject.getElement()).toMatchSnapshot();
+            const renderResult = render(<ExpandCollapseAllButton
+                allCardsCollapsed={allCardsCollapsed}
+                cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
+            />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         },
     );
 
-    it('sends an expandAllRules message when clicked with all cards collapsed', () => {
-        cardSelectionMessageCreatorMock
-            .setup(mock => mock.expandAllRules(stubClickEvent))
-            .verifiable();
-        const testSubject = shallow(
+    it('sends an expandAllRules message when clicked with all cards collapsed', async () => {
+        cardSelectionMessageCreatorMock.setup(mock => mock.expandAllRules(It.isAny())).verifiable();
+        const renderResult = render(
             <ExpandCollapseAllButton
                 cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
                 allCardsCollapsed={true}
             />,
         );
 
-        testSubject.simulate('click', stubClickEvent);
+        await userEvent.click(renderResult.getByRole('button'));
 
         cardSelectionMessageCreatorMock.verifyAll();
     });
 
-    it('sends a collapseAllRules message when clicked with some cards expanded', () => {
+    it('sends a collapseAllRules message when clicked with some cards expanded', async () => {
         cardSelectionMessageCreatorMock
-            .setup(mock => mock.collapseAllRules(stubClickEvent))
+            .setup(mock => mock.collapseAllRules(It.isAny()))
             .verifiable();
-        const testSubject = shallow(
+        const renderResult = render(
             <ExpandCollapseAllButton
                 cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
                 allCardsCollapsed={false}
             />,
         );
 
-        testSubject.simulate('click', stubClickEvent);
+        await userEvent.click(renderResult.getByRole('button'));
 
         cardSelectionMessageCreatorMock.verifyAll();
     });

@@ -1,30 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExpandCollapseOnlyModifierButtons renders per snapshot 1`] = `
-<div
-  className="cardsVisualizationModifiersContainer"
->
-  <ExpandCollapseAllButton
-    allCardsCollapsed={true}
-    cardSelectionMessageCreator={{}}
-    visualHelperEnabled={true}
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="cardsVisualizationModifiersContainer"
+  >
+    <button
+      aria-expanded="false"
+      aria-label="Expand all rules to show failed instances."
+      class="ms-Button ms-Button--action ms-Button--command expandCollapseAllButton root-109"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="ChevronRight"
+        />
+        <span
+          class="ms-Button-textContainer textContainer-111"
+        >
+          <span
+            class="ms-Button-label label-113"
+            id="id__4"
+          >
+            Expand all
+          </span>
+        </span>
+      </span>
+    </button>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ExpandCollapseVisualHelperModifierButtons renders per snapshot 1`] = `
-<div
-  className="cardsVisualizationModifiersContainer"
->
-  <ExpandCollapseAllButton
-    allCardsCollapsed={true}
-    cardSelectionMessageCreator={{}}
-    visualHelperEnabled={true}
-  />
-  <VisualHelperToggle
-    allCardsCollapsed={true}
-    cardSelectionMessageCreator={{}}
-    visualHelperEnabled={true}
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="cardsVisualizationModifiersContainer"
+  >
+    <button
+      aria-expanded="false"
+      aria-label="Expand all rules to show failed instances."
+      class="ms-Button ms-Button--action ms-Button--command expandCollapseAllButton root-109"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="ChevronRight"
+        />
+        <span
+          class="ms-Button-textContainer textContainer-111"
+        >
+          <span
+            class="ms-Button-label label-113"
+            id="id__0"
+          >
+            Expand all
+          </span>
+        </span>
+      </span>
+    </button>
+    <div
+      class="ms-Toggle is-checked is-enabled visualHelperToggle root-117"
+    >
+      <label
+        class="ms-Label ms-Toggle-label label-123"
+        for="Toggle3"
+        id="Toggle3-label"
+      >
+        Visual helper
+      </label>
+      <div
+        class="ms-Toggle-innerContainer container-119"
+      >
+        <button
+          aria-checked="true"
+          aria-labelledby="Toggle3-label"
+          class="ms-Toggle-background pill-120"
+          data-is-focusable="true"
+          data-ktp-target="true"
+          id="Toggle3"
+          role="switch"
+          type="button"
+        >
+          <span
+            class="ms-Toggle-thumb thumb-121"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;

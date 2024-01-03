@@ -1,18 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    CommonInstancesSectionDeps,
-    CommonInstancesSectionProps,
-} from 'common/components/cards/common-instances-section-props';
+import { render } from '@testing-library/react';
+import { CommonInstancesSectionDeps, CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { ResultSection } from '../../../../../../common/components/cards/result-section';
 
+jest.mock('../../../../../../common/components/cards/result-section');
 describe('NeedsReviewInstancesSection', () => {
+    mockReactComponents([ResultSection]);
+
     const resultsWithUnknowns: CardRuleResultsByStatus = {
         fail: [],
         pass: [],
@@ -49,9 +51,9 @@ describe('NeedsReviewInstancesSection', () => {
                 sectionHeadingLevel: 2,
             } as CommonInstancesSectionProps;
 
-            const wrapper = shallow(<NeedsReviewInstancesSection {...props} />);
+            const renderResult = render(<NeedsReviewInstancesSection {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 });

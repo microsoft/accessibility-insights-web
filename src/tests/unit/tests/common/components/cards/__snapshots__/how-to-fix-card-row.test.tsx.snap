@@ -1,53 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HowToFixWebCardRow renders 1`] = `
-<SimpleCardRow
-  content={
-    <div
-      className="howToFixContent"
-    >
-      <FixInstructionPanel
-        checkType={0}
-        checks={
-          [
-            {
-              "message": "some all message",
-            },
-            {
-              "message": "some none message",
-            },
-          ]
-        }
-        deps={
-          {
-            "LinkComponent": {},
-            "fixInstructionProcessor": [typemoq mock object],
-            "recommendColor": {},
-          }
-        }
-        renderTitleElement={[Function]}
-      />
-      <FixInstructionPanel
-        checkType={1}
-        checks={
-          [
-            {
-              "message": "some any message",
-            },
-          ]
-        }
-        deps={
-          {
-            "LinkComponent": {},
-            "fixInstructionProcessor": [typemoq mock object],
-            "recommendColor": {},
-          }
-        }
-        renderTitleElement={[Function]}
-      />
-    </div>
-  }
-  label="How to fix"
-  rowKey="how-to-fix-row-22"
-/>
+<DocumentFragment>
+  <mock-simplecardrow
+    content="[object Object]"
+    label="How to fix"
+    rowkey="how-to-fix-row-22"
+  />
+</DocumentFragment>
 `;

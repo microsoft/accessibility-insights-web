@@ -1,121 +1,153 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web) 1`] = `
-<div
-  className="foot"
->
+<DocumentFragment>
   <div
-    className="highlightStatus"
+    class="foot"
   >
-    <HighlightVisibleIcon />
-    <StyledLabelBase>
-      Highlight visible
-    </StyledLabelBase>
+    <div
+      class="highlightStatus"
+    >
+      <svg
+        aria-hidden="true"
+        height="30"
+        role="img"
+        viewBox="0 0 34 30"
+        width="34"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M24.9247 15.2364C24.9252 15.2363 24.9228 15.2421 24.9161 15.2543C24.9209 15.2427 24.9242 15.2366 24.9247 15.2364ZM24.7382 15.5C24.6733 15.4225 24.5919 15.3323 24.4921 15.2312C24.1054 14.8394 23.5169 14.3566 22.767 13.8872C22.1349 13.4914 21.4077 13.1174 20.6127 12.8166C21.1701 13.5658 21.5 14.4944 21.5 15.5C21.5 16.5056 21.1701 17.4342 20.6127 18.1834C21.4077 17.8826 22.1349 17.5086 22.767 17.1128C23.5169 16.6434 24.1054 16.1606 24.4921 15.7688C24.5919 15.6677 24.6733 15.5775 24.7382 15.5ZM17 12.125H17C15.1361 12.125 13.6251 13.636 13.6251 15.5C13.6251 17.3639 15.1361 18.8749 17 18.8749C18.864 18.8749 20.375 17.3639 20.375 15.5C20.375 13.636 18.864 12.125 17 12.125ZM26 15.5C26 14.6562 21.9706 11 17 11C12.0294 11 8 14.6562 8 15.5C8 16.3438 12.0294 20 17 20C21.9706 20 26 16.3438 26 15.5ZM11.233 13.8872C11.8651 13.4914 12.5923 13.1174 13.3873 12.8165C12.8299 13.5658 12.5001 14.4944 12.5001 15.5C12.5001 16.5056 12.8299 17.4342 13.3874 18.1835C12.5924 17.8826 11.8652 17.5086 11.233 17.1128C10.4831 16.6434 9.8946 16.1606 9.50795 15.7688C9.40811 15.6677 9.32665 15.5775 9.26185 15.5C9.32665 15.4225 9.40811 15.3323 9.50795 15.2312C9.8946 14.8394 10.4831 14.3566 11.233 13.8872ZM9.07531 15.2364C9.07579 15.2366 9.07913 15.2427 9.08386 15.2543C9.07719 15.2421 9.07483 15.2363 9.07531 15.2364ZM9.07531 15.7636C9.07483 15.7637 9.07719 15.7579 9.08386 15.7457C9.07913 15.7573 9.07579 15.7634 9.07531 15.7636ZM24.9161 15.7457C24.9228 15.7579 24.9252 15.7637 24.9247 15.7636C24.9242 15.7634 24.9209 15.7573 24.9161 15.7457ZM17 16.625C17.6213 16.625 18.125 16.1213 18.125 15.5C18.125 14.8787 17.6213 14.375 17 14.375C16.3787 14.375 15.875 14.8787 15.875 15.5C15.875 16.1213 16.3787 16.625 17 16.625Z"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <label
+        class="ms-Label root-109"
+      >
+        Highlight visible
+      </label>
+    </div>
+    <mock-cardfooterinstanceactionbuttons
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
+      userconfigurationstoredata="[object Object]"
+    />
   </div>
-  <CardFooterInstanceActionButtons
-    deps={
-      {
-        "cardInteractionSupport": {
-          "supportsCopyFailureDetails": true,
-          "supportsHighlighting": true,
-          "supportsIssueFiling": true,
-        },
-        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
-      }
-    }
-    issueDetailsData={{}}
-    kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={{}}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden" 1`] = `
-<div
-  className="foot"
->
+<DocumentFragment>
   <div
-    className="highlightStatus"
+    class="foot"
   >
-    <HighlightHiddenIcon />
-    <StyledLabelBase>
-      Highlight hidden
-    </StyledLabelBase>
+    <div
+      class="highlightStatus"
+    >
+      <svg
+        aria-hidden="true"
+        height="30"
+        role="img"
+        viewBox="0 0 34 30"
+        width="34"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M9.08085 15C9.37419 15 9.61642 15.2189 9.65314 15.5022C9.66291 15.5202 9.68058 15.5492 9.70996 15.5894C9.78757 15.6956 9.91672 15.8391 10.1028 16.0101C10.4726 16.3502 11.0242 16.7595 11.7188 17.1541C13.1101 17.9445 15.0205 18.6451 17.1142 18.6451C19.2079 18.6451 21.1184 17.9445 22.5096 17.1541C23.2043 16.7595 23.7559 16.3502 24.1257 16.0101C24.3117 15.8391 24.4409 15.6956 24.5185 15.5894C24.5479 15.5492 24.5655 15.5202 24.5753 15.5022C24.612 15.2189 24.8542 15 25.1476 15C25.2415 15 25.3302 15.0224 25.4086 15.0622C25.4284 15.0708 25.4481 15.0805 25.4674 15.0913L28.8484 16.9905C29.1323 17.1499 29.2394 17.4999 29.0877 17.7723C28.9361 18.0447 28.583 18.1363 28.2992 17.9769L25.3938 16.3449C25.2642 16.5099 25.0983 16.6838 24.9069 16.8598C24.4637 17.2673 23.8388 17.7265 23.0797 18.1577C22.8753 18.2739 22.6601 18.3885 22.4351 18.5L24.1304 21.1648C24.2973 21.4271 24.2088 21.7809 23.9328 21.9549C23.6567 22.129 23.2976 22.0574 23.1307 21.7951L21.3406 18.9814C20.2653 19.3968 19.0358 19.7076 17.7186 19.7821V22.8381C17.7186 23.141 17.448 23.3865 17.1142 23.3865C16.7804 23.3865 16.5098 23.141 16.5098 22.8381L16.5098 19.7821C15.1926 19.7075 13.9631 19.3968 12.8878 18.9814L11.0976 21.7951C10.9307 22.0574 10.5717 22.129 10.2956 21.9549C10.0195 21.7809 9.93105 21.4271 10.0979 21.1648L11.7933 18.5C11.5683 18.3885 11.3531 18.2739 11.1487 18.1577C10.3896 17.7265 9.76474 17.2673 9.32154 16.8598C9.11716 16.6719 8.94198 16.4864 8.80883 16.3116L5.85741 17.9694C5.57358 18.1289 5.22055 18.0373 5.06888 17.7649C4.91722 17.4925 5.02436 17.1424 5.30818 16.983L8.68923 15.0838C8.78815 15.0283 8.89546 15.0032 8.99974 15.0057C9.02624 15.0019 9.05332 15 9.08085 15ZM9.64501 15.486C9.64391 15.4835 9.64348 15.4823 9.64355 15.4823C9.64361 15.4823 9.64416 15.4836 9.64501 15.486Z"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <label
+        class="ms-Label root-109"
+      >
+        Highlight hidden
+      </label>
+    </div>
+    <mock-cardfooterinstanceactionbuttons
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
+      userconfigurationstoredata="[object Object]"
+    />
   </div>
-  <CardFooterInstanceActionButtons
-    deps={
-      {
-        "cardInteractionSupport": {
-          "supportsCopyFailureDetails": true,
-          "supportsHighlighting": true,
-          "supportsIssueFiling": true,
-        },
-        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
-      }
-    }
-    issueDetailsData={{}}
-    kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={{}}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable" 1`] = `
-<div
-  className="foot"
->
+<DocumentFragment>
   <div
-    className="highlightStatus"
+    class="foot"
   >
-    <HighlightUnavailableIcon />
-    <StyledLabelBase>
-      Highlight unavailable
-    </StyledLabelBase>
+    <div
+      class="highlightStatus"
+    >
+      <svg
+        aria-hidden="true"
+        height="30"
+        role="img"
+        viewBox="0 0 34 30"
+        width="34"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M26.0875 10.3814C25.9321 10.1124 25.5881 10.0202 25.3191 10.1756L8.36661 19.9631C8.09757 20.1184 8.00539 20.4624 8.16072 20.7314C8.31605 21.0005 8.66007 21.0927 8.92911 20.9373L12.3384 18.969C13.6981 19.5691 15.2936 20 17 20C21.9706 20 26 16.3437 26 15.5C26 15.0546 24.8771 13.8254 23.0856 12.7641L25.8816 11.1498C26.1506 10.9945 26.2428 10.6505 26.0875 10.3814ZM21.9513 13.419L21.191 13.8579C21.3905 14.3666 21.5 14.9205 21.5 15.5C21.5 16.5056 21.1701 17.4342 20.6127 18.1834C21.4077 17.8826 22.1349 17.5086 22.767 17.1128C23.5169 16.6434 24.1054 16.1605 24.4921 15.7688C24.5919 15.6677 24.6733 15.5775 24.7382 15.5C24.6733 15.4225 24.5919 15.3323 24.4921 15.2312C24.1054 14.8394 23.5169 14.3566 22.767 13.8872C22.5102 13.7264 22.2376 13.5692 21.9513 13.419ZM20.2016 14.4292L18.1172 15.6326C18.0516 16.1914 17.5764 16.625 17 16.625C16.8423 16.625 16.6922 16.5925 16.556 16.534L14.4727 17.7368C15.091 18.4349 15.9941 18.8749 17 18.8749C18.864 18.8749 20.375 17.3639 20.375 15.5C20.375 15.1257 20.3141 14.7656 20.2016 14.4292ZM17 11C18.3092 11 19.5531 11.2536 20.6753 11.6427L18.866 12.6873C18.3315 12.332 17.6899 12.125 17 12.125C15.1361 12.125 13.6251 13.636 13.6251 15.5C13.6251 15.5703 13.6272 15.6402 13.6315 15.7095L12.5745 16.3197C12.5256 16.0539 12.5001 15.7799 12.5001 15.5C12.5001 14.4943 12.8299 13.5658 13.3873 12.8165C12.5923 13.1174 11.8651 13.4914 11.233 13.8872C10.4831 14.3566 9.8946 14.8394 9.50795 15.2312C9.40811 15.3323 9.32665 15.4224 9.26185 15.5C9.32665 15.5775 9.40811 15.6677 9.50795 15.7688C9.89194 16.1579 10.475 16.6368 11.2175 17.1031L10.1285 17.7319C8.80067 16.8111 8 15.8761 8 15.5C8 14.6562 12.0294 11 17 11ZM24.9247 15.2364C24.9252 15.2363 24.9228 15.2421 24.9161 15.2543C24.9209 15.2427 24.9242 15.2366 24.9247 15.2364ZM9.07531 15.2364C9.07579 15.2366 9.07913 15.2427 9.08386 15.2543C9.07719 15.2421 9.07483 15.2363 9.07531 15.2364ZM9.07531 15.7636C9.07483 15.7637 9.07719 15.7579 9.08386 15.7457C9.07913 15.7573 9.07579 15.7634 9.07531 15.7636ZM24.9161 15.7456C24.9228 15.7579 24.9252 15.7637 24.9247 15.7636C24.9242 15.7634 24.9209 15.7573 24.9161 15.7456Z"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <label
+        class="ms-Label root-109"
+      >
+        Highlight unavailable
+      </label>
+    </div>
+    <mock-cardfooterinstanceactionbuttons
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
+      userconfigurationstoredata="[object Object]"
+    />
   </div>
-  <CardFooterInstanceActionButtons
-    deps={
-      {
-        "cardInteractionSupport": {
-          "supportsCopyFailureDetails": true,
-          "supportsHighlighting": true,
-          "supportsIssueFiling": true,
-        },
-        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
-      }
-    }
-    issueDetailsData={{}}
-    kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={{}}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible" 1`] = `
-<div
-  className="foot"
->
+<DocumentFragment>
   <div
-    className="highlightStatus"
+    class="foot"
   >
-    <HighlightVisibleIcon />
-    <StyledLabelBase>
-      Highlight visible
-    </StyledLabelBase>
+    <div
+      class="highlightStatus"
+    >
+      <svg
+        aria-hidden="true"
+        height="30"
+        role="img"
+        viewBox="0 0 34 30"
+        width="34"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M24.9247 15.2364C24.9252 15.2363 24.9228 15.2421 24.9161 15.2543C24.9209 15.2427 24.9242 15.2366 24.9247 15.2364ZM24.7382 15.5C24.6733 15.4225 24.5919 15.3323 24.4921 15.2312C24.1054 14.8394 23.5169 14.3566 22.767 13.8872C22.1349 13.4914 21.4077 13.1174 20.6127 12.8166C21.1701 13.5658 21.5 14.4944 21.5 15.5C21.5 16.5056 21.1701 17.4342 20.6127 18.1834C21.4077 17.8826 22.1349 17.5086 22.767 17.1128C23.5169 16.6434 24.1054 16.1606 24.4921 15.7688C24.5919 15.6677 24.6733 15.5775 24.7382 15.5ZM17 12.125H17C15.1361 12.125 13.6251 13.636 13.6251 15.5C13.6251 17.3639 15.1361 18.8749 17 18.8749C18.864 18.8749 20.375 17.3639 20.375 15.5C20.375 13.636 18.864 12.125 17 12.125ZM26 15.5C26 14.6562 21.9706 11 17 11C12.0294 11 8 14.6562 8 15.5C8 16.3438 12.0294 20 17 20C21.9706 20 26 16.3438 26 15.5ZM11.233 13.8872C11.8651 13.4914 12.5923 13.1174 13.3873 12.8165C12.8299 13.5658 12.5001 14.4944 12.5001 15.5C12.5001 16.5056 12.8299 17.4342 13.3874 18.1835C12.5924 17.8826 11.8652 17.5086 11.233 17.1128C10.4831 16.6434 9.8946 16.1606 9.50795 15.7688C9.40811 15.6677 9.32665 15.5775 9.26185 15.5C9.32665 15.4225 9.40811 15.3323 9.50795 15.2312C9.8946 14.8394 10.4831 14.3566 11.233 13.8872ZM9.07531 15.2364C9.07579 15.2366 9.07913 15.2427 9.08386 15.2543C9.07719 15.2421 9.07483 15.2363 9.07531 15.2364ZM9.07531 15.7636C9.07483 15.7637 9.07719 15.7579 9.08386 15.7457C9.07913 15.7573 9.07579 15.7634 9.07531 15.7636ZM24.9161 15.7457C24.9228 15.7579 24.9252 15.7637 24.9247 15.7636C24.9242 15.7634 24.9209 15.7573 24.9161 15.7457ZM17 16.625C17.6213 16.625 18.125 16.1213 18.125 15.5C18.125 14.8787 17.6213 14.375 17 14.375C16.3787 14.375 15.875 14.8787 15.875 15.5C15.875 16.1213 16.3787 16.625 17 16.625Z"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <label
+        class="ms-Label root-109"
+      >
+        Highlight visible
+      </label>
+    </div>
+    <mock-cardfooterinstanceactionbuttons
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
+      userconfigurationstoredata="[object Object]"
+    />
   </div>
-  <CardFooterInstanceActionButtons
-    deps={
-      {
-        "cardInteractionSupport": {
-          "supportsCopyFailureDetails": true,
-          "supportsHighlighting": true,
-          "supportsIssueFiling": true,
-        },
-        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
-      }
-    }
-    issueDetailsData={{}}
-    kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={{}}
-  />
-</div>
+</DocumentFragment>
 `;

@@ -1,258 +1,322 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: some button label 1`] = `
-<div
-  className="collapsibleContainer"
->
-  <HeadingElementForLevel>
-    <CustomizedActionButton
-      aria-expanded={true}
-      ariaLabel="some button label"
-      className="collapsibleControl"
-      data-automation-id="collapsible-component-cards-button"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <HeadingElementForLevel
-          headingLevel={5}
-        >
-          Some header
-        </HeadingElementForLevel>
-      </span>
-    </CustomizedActionButton>
-  </HeadingElementForLevel>
+<DocumentFragment>
   <div
-    className="collapsibleContainerContent"
+    class="collapsibleContainer"
   >
-    <div>
-      Some content
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        aria-label="some button label"
+        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        data-automation-id="collapsible-component-cards-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="collapsibleTitle"
+          >
+            <mock-headingelementforlevel
+              headinglevel="5"
+            >
+              Some header
+            </mock-headingelementforlevel>
+          </span>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: undefined 1`] = `
-<div
-  className="collapsibleContainer"
->
-  <HeadingElementForLevel>
-    <CustomizedActionButton
-      aria-expanded={true}
-      className="collapsibleControl"
-      data-automation-id="collapsible-component-cards-button"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <HeadingElementForLevel
-          headingLevel={5}
-        >
-          Some header
-        </HeadingElementForLevel>
-      </span>
-    </CustomizedActionButton>
-  </HeadingElementForLevel>
+<DocumentFragment>
   <div
-    className="collapsibleContainerContent"
+    class="collapsibleContainer"
   >
-    <div>
-      Some content
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        data-automation-id="collapsible-component-cards-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="collapsibleTitle"
+          >
+            <mock-headingelementforlevel
+              headinglevel="5"
+            >
+              Some header
+            </mock-headingelementforlevel>
+          </span>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentCardsTest render with containerClassName set to: a-container 1`] = `
-<div
-  className="a-container collapsibleContainer"
->
-  <HeadingElementForLevel>
-    <CustomizedActionButton
-      aria-expanded={true}
-      className="collapsibleControl"
-      data-automation-id="collapsible-component-cards-button"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <HeadingElementForLevel
-          headingLevel={5}
-        >
-          Some header
-        </HeadingElementForLevel>
-      </span>
-    </CustomizedActionButton>
-  </HeadingElementForLevel>
+<DocumentFragment>
   <div
-    className="collapsibleContainerContent"
+    class="a-container collapsibleContainer"
   >
-    <div>
-      Some content
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        data-automation-id="collapsible-component-cards-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="collapsibleTitle"
+          >
+            <mock-headingelementforlevel
+              headinglevel="5"
+            >
+              Some header
+            </mock-headingelementforlevel>
+          </span>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentCardsTest render with containerClassName set to: undefined 1`] = `
-<div
-  className="collapsibleContainer"
->
-  <HeadingElementForLevel>
-    <CustomizedActionButton
-      aria-expanded={true}
-      className="collapsibleControl"
-      data-automation-id="collapsible-component-cards-button"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <HeadingElementForLevel
-          headingLevel={5}
-        >
-          Some header
-        </HeadingElementForLevel>
-      </span>
-    </CustomizedActionButton>
-  </HeadingElementForLevel>
+<DocumentFragment>
   <div
-    className="collapsibleContainerContent"
+    class="collapsibleContainer"
   >
-    <div>
-      Some content
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        data-automation-id="collapsible-component-cards-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="collapsibleTitle"
+          >
+            <mock-headingelementforlevel
+              headinglevel="5"
+            >
+              Some header
+            </mock-headingelementforlevel>
+          </span>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentCardsTest render with contentClassName set to: content-class-name-a 1`] = `
-<div
-  className="collapsibleContainer"
->
-  <HeadingElementForLevel>
-    <CustomizedActionButton
-      aria-expanded={true}
-      className="collapsibleControl"
-      data-automation-id="collapsible-component-cards-button"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <HeadingElementForLevel
-          headingLevel={5}
-        >
-          Some header
-        </HeadingElementForLevel>
-      </span>
-    </CustomizedActionButton>
-  </HeadingElementForLevel>
+<DocumentFragment>
   <div
-    className="content-class-name-a collapsibleContainerContent"
+    class="collapsibleContainer"
   >
-    <div>
-      Some content
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        data-automation-id="collapsible-component-cards-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="collapsibleTitle"
+          >
+            <mock-headingelementforlevel
+              headinglevel="5"
+            >
+              Some header
+            </mock-headingelementforlevel>
+          </span>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="content-class-name-a collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentCardsTest render with contentClassName set to: undefined 1`] = `
-<div
-  className="collapsibleContainer"
->
-  <HeadingElementForLevel>
-    <CustomizedActionButton
-      aria-expanded={true}
-      className="collapsibleControl"
-      data-automation-id="collapsible-component-cards-button"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <HeadingElementForLevel
-          headingLevel={5}
-        >
-          Some header
-        </HeadingElementForLevel>
-      </span>
-    </CustomizedActionButton>
-  </HeadingElementForLevel>
+<DocumentFragment>
   <div
-    className="collapsibleContainerContent"
+    class="collapsibleContainer"
   >
-    <div>
-      Some content
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        data-automation-id="collapsible-component-cards-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="collapsibleTitle"
+          >
+            <mock-headingelementforlevel
+              headinglevel="5"
+            >
+              Some header
+            </mock-headingelementforlevel>
+          </span>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: collapsed 1`] = `
-<div
-  className="collapsibleContainer"
->
-  <HeadingElementForLevel>
-    <CustomizedActionButton
-      aria-expanded={true}
-      className="collapsibleControl"
-      data-automation-id="collapsible-component-cards-button"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <HeadingElementForLevel
-          headingLevel={5}
-        >
-          Some header
-        </HeadingElementForLevel>
-      </span>
-    </CustomizedActionButton>
-  </HeadingElementForLevel>
+<DocumentFragment>
   <div
-    className="collapsibleContainerContent"
+    class="collapsibleContainer"
   >
-    <div>
-      Some content
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        data-automation-id="collapsible-component-cards-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="collapsibleTitle"
+          >
+            <mock-headingelementforlevel
+              headinglevel="5"
+            >
+              Some header
+            </mock-headingelementforlevel>
+          </span>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: expanded 1`] = `
-<div
-  className="collapsibleContainer"
->
-  <HeadingElementForLevel>
-    <CustomizedActionButton
-      aria-expanded={true}
-      className="collapsibleControl"
-      data-automation-id="collapsible-component-cards-button"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <HeadingElementForLevel
-          headingLevel={5}
-        >
-          Some header
-        </HeadingElementForLevel>
-      </span>
-    </CustomizedActionButton>
-  </HeadingElementForLevel>
+<DocumentFragment>
   <div
-    className="collapsibleContainerContent"
+    class="collapsibleContainer"
   >
-    <div>
-      Some content
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        data-automation-id="collapsible-component-cards-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="collapsibleTitle"
+          >
+            <mock-headingelementforlevel
+              headinglevel="5"
+            >
+              Some header
+            </mock-headingelementforlevel>
+          </span>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

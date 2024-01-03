@@ -1,32 +1,66 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed false 1`] = `
-<CustomizedActionButton
-  aria-expanded={true}
-  className="expandCollapseAllButton"
-  iconProps={
-    {
-      "iconName": "ChevronDown",
-    }
-  }
-  onClick={[Function]}
->
-  Collapse all
-</CustomizedActionButton>
+<DocumentFragment>
+  <button
+    aria-expanded="true"
+    class="ms-Button ms-Button--action ms-Button--command expandCollapseAllButton root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-105 ms-Button-icon icon-112"
+        data-icon-name="ChevronDown"
+      />
+      <span
+        class="ms-Button-textContainer textContainer-111"
+      >
+        <span
+          class="ms-Button-label label-113"
+          id="id__3"
+        >
+          Collapse all
+        </span>
+      </span>
+    </span>
+  </button>
+</DocumentFragment>
 `;
 
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed true 1`] = `
-<CustomizedActionButton
-  aria-expanded={false}
-  aria-label="Expand all rules to show failed instances."
-  className="expandCollapseAllButton"
-  iconProps={
-    {
-      "iconName": "ChevronRight",
-    }
-  }
-  onClick={[Function]}
->
-  Expand all
-</CustomizedActionButton>
+<DocumentFragment>
+  <button
+    aria-expanded="false"
+    aria-label="Expand all rules to show failed instances."
+    class="ms-Button ms-Button--action ms-Button--command expandCollapseAllButton root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-105 ms-Button-icon icon-112"
+        data-icon-name="ChevronRight"
+      />
+      <span
+        class="ms-Button-textContainer textContainer-111"
+      >
+        <span
+          class="ms-Button-label label-113"
+          id="id__0"
+        >
+          Expand all
+        </span>
+      </span>
+    </span>
+  </button>
+</DocumentFragment>
 `;
