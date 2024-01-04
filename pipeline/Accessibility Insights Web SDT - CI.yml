@@ -25,50 +25,63 @@ extends:
             image: windows-2022-secure
             name: $(a11yInsightsPool)
         sdl:
+            policheck:
+                enabled: true
             codeql:
                 compiled:
                     enabled: true
+            sourceAnalysisPostSteps: # Following tasks will run after source SDL checks
+                - task: PowerShell@2
+                  displayName: Create tsa.config
+                  inputs:
+                      targetType: filePath
+                      filePath: pipeline\create-tsa-options.ps1
+                      arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAV2ProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAV2AreaPath)" -IterationPath "$(TSAV2IterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
+                - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
+                  inputs:
+                      GdnPublishTsaOnboard: true
+                      GdnPublishTsaConfigFile: $(Build.SourcesDirectory)\tsa.config
         customBuildTags:
             - MigrationTooling-accessibility-insights-private-Accessibility Insights (private)-3-Tool
-        stages:
-            - stage: Stage
-              jobs:
-                  - job: Job_1
-                    displayName: Agent job 1
-                    steps:
-                        - checkout: self
-                          fetchTags: true
-                        - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@3
-                          displayName: 'Run Credential Scanner'
-                          inputs:
-                              outputFormat: pre
-                              debugMode: false
-                        - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@2
-                          displayName: Run PoliCheck
-                        - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@2
-                          displayName: Guardian Export
-                          inputs:
-                              GdnExportTsvFile: true
-                              GdnExportHtmlFile: true
-                              GdnExportAllTools: false
-                              GdnExportGdnToolCredScan: true
-                              GdnExportGdnToolCredScanSeverity: Warning
-                              GdnExportGdnToolPoliCheck: true
-                              GdnExportGdnToolPoliCheckSeverity: Warning
-                        - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@3
-                          displayName: Publish Guardian Artifacts
-                          inputs:
-                              AllTools: false
-                              CredScan: true
-                              PoliCheck: true
-                        - task: PowerShell@2
-                          displayName: Create tsa.config
-                          inputs:
-                              targetType: filePath
-                              filePath: pipeline\create-tsa-options.ps1
-                              arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAV2ProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAV2AreaPath)" -IterationPath "$(TSAV2IterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
-                        - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
-                          displayName: TSA upload
-                          inputs:
-                              GdnPublishTsaOnboard: true
-                              GdnPublishTsaConfigFile: $(Build.SourcesDirectory)\tsa.config
+        # stages:
+        #     - stage: Stage
+        #       jobs:
+        #           - job: Job_1
+        #             displayName: Agent job 1
+        #             steps:
+        #                 - checkout: self
+        #                   fetchTags: true
+        #                 - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@3
+        #                   displayName: 'Run Credential Scanner'
+        #                   inputs:
+        #                       outputFormat: pre
+        #                       debugMode: false
+        #                 - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@2
+        #                   displayName: Run PoliCheck
+        #                 - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@2
+        #                   displayName: Guardian Export
+        #                   inputs:
+        #                       GdnExportTsvFile: true
+        #                       GdnExportHtmlFile: true
+        #                       GdnExportAllTools: false
+        #                       GdnExportGdnToolCredScan: true
+        #                       GdnExportGdnToolCredScanSeverity: Warning
+        #                       GdnExportGdnToolPoliCheck: true
+        #                       GdnExportGdnToolPoliCheckSeverity: Warning
+        #                 - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@3
+        #                   displayName: Publish Guardian Artifacts
+        #                   inputs:
+        #                       AllTools: false
+        #                       CredScan: true
+        #                       PoliCheck: true
+        #                 - task: PowerShell@2
+        #                   displayName: Create tsa.config
+        #                   inputs:
+        #                       targetType: filePath
+        #                       filePath: pipeline\create-tsa-options.ps1
+        #                       arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAV2ProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAV2AreaPath)" -IterationPath "$(TSAV2IterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
+        #                 - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
+        #                   displayName: TSA upload
+        #                   inputs:
+        #                       GdnPublishTsaOnboard: true
+        #                       GdnPublishTsaConfigFile: $(Build.SourcesDirectory)\tsa.config
