@@ -10,8 +10,6 @@ exports[`RichResolutionCardRow renders with labelType=check 1`] = `
 </DocumentFragment>
 `;
 
-exports[`RichResolutionCardRow renders with labelType=check: RichResolutionContent props 1`] = `undefined`;
-
 exports[`RichResolutionCardRow renders with labelType=check: SimpleCardRow props 1`] = `
 {
   "content": <RichResolutionContent
@@ -38,8 +36,6 @@ exports[`RichResolutionCardRow renders with labelType=fix 1`] = `
   />
 </DocumentFragment>
 `;
-
-exports[`RichResolutionCardRow renders with labelType=fix: RichResolutionContent props 1`] = `undefined`;
 
 exports[`RichResolutionCardRow renders with labelType=fix: SimpleCardRow props 1`] = `
 {

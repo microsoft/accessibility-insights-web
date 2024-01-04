@@ -32,6 +32,6 @@ describe('RichResolutionCardRow', () => {
         const renderResult = render(<RichResolutionCardRow {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow, RichResolutionContent]);
+        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow]);
     });
 });
