@@ -10,6 +10,45 @@ exports[`UrlsCardRow renders with baseline-aware URLs 1`] = `
 </DocumentFragment>
 `;
 
+exports[`UrlsCardRow renders with baseline-aware URLs: SimpleCardRow props 1`] = `
+{
+  "content": <ul
+    className="urlsRowContent"
+  >
+    <li>
+      <NewTabLinkWithConfirmationDialog
+        href="https://www.test.com"
+      >
+        https://www.test.com
+      </NewTabLinkWithConfirmationDialog>
+    </li>
+    <li>
+      <NewTabLinkWithConfirmationDialog
+        href="https://www.test.com/more/tests"
+      >
+        https://www.test.com/more/tests
+      </NewTabLinkWithConfirmationDialog>
+    </li>
+    <li>
+      <NewTabLinkWithConfirmationDialog
+        aria-label="NEW. https://www.test.com/still/more/tests"
+        href="https://www.test.com/still/more/tests"
+      >
+        https://www.test.com/still/more/tests
+      </NewTabLinkWithConfirmationDialog>
+      <span
+        aria-hidden="true"
+        className="urlsRowContentNewFailure"
+      >
+          NEW!
+      </span>
+    </li>
+  </ul>,
+  "label": "URL",
+  "rowKey": "urls-row--1",
+}
+`;
+
 exports[`UrlsCardRow renders with string-only URLs 1`] = `
 <DocumentFragment>
   <mock-simplecardrow

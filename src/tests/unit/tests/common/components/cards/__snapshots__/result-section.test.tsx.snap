@@ -40,6 +40,18 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
 </DocumentFragment>
 `;
 
+exports[`ResultSection renders with shouldAlertFailureCount = <false>: ResultSectionContent props 1`] = `
+{
+  "containerClassName": "result-section-class-name",
+  "deps": {
+    "getNextHeadingLevel": [Function],
+  },
+  "headingLevel": 3,
+  "sectionHeadingLevel": 2,
+  "shouldAlertFailuresCount": false,
+}
+`;
+
 exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
 <DocumentFragment>
   <div
@@ -85,6 +97,18 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
 </DocumentFragment>
 `;
 
+exports[`ResultSection renders with shouldAlertFailureCount = <true>: ResultSectionContent props 1`] = `
+{
+  "containerClassName": "result-section-class-name",
+  "deps": {
+    "getNextHeadingLevel": [Function],
+  },
+  "headingLevel": 3,
+  "sectionHeadingLevel": 2,
+  "shouldAlertFailuresCount": true,
+}
+`;
+
 exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = `
 <DocumentFragment>
   <div
@@ -122,4 +146,16 @@ exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = 
     />
   </div>
 </DocumentFragment>
+`;
+
+exports[`ResultSection renders with shouldAlertFailureCount = <undefined>: ResultSectionContent props 1`] = `
+{
+  "containerClassName": "result-section-class-name",
+  "deps": {
+    "getNextHeadingLevel": [Function],
+  },
+  "headingLevel": 3,
+  "sectionHeadingLevel": 2,
+  "shouldAlertFailuresCount": undefined,
+}
 `;
