@@ -65,7 +65,7 @@ extends:
                           displayName: Create tsa.config
                           inputs:
                               targetType: filePath
-                              filePath: pipeline\create-tsa-options.ps1
+                              filePath: tools\create-tsa-options.ps1
                               arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAV2ProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAV2AreaPath)" -IterationPath "$(TSAV2IterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
                         - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
                           displayName: TSA upload
