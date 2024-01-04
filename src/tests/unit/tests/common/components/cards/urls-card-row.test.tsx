@@ -7,7 +7,10 @@ import { UrlsCardRow, UrlsCardRowProps } from 'common/components/cards/urls-card
 import { CardRowDeps } from 'common/configs/unified-result-property-configurations';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 
 jest.mock('common/components/cards/simple-card-row');
 

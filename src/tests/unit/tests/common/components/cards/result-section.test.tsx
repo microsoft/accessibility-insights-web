@@ -10,7 +10,10 @@ import { ResultSectionContent } from 'common/components/cards/result-section-con
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import * as React from 'react';
 import { OutcomeChip } from 'reports/components/outcome-chip';
-import { expectMockedComponentPropsToMatchSnapshots,mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 jest.mock('common/components/cards/result-section-content');
 jest.mock('reports/components/outcome-chip');
 describe('ResultSection', () => {
