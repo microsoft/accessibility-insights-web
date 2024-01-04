@@ -9,19 +9,7 @@ exports[`CopyIssueDetailsButtonTest render 1`] = `
   <mock-customizeddefaultbutton
     classname="copy-issue-details-button"
   >
-    <svg
-      aria-hidden="true"
-      fill="none"
-      height="16"
-      role="img"
-      viewBox="0 0 14 16"
-      width="14"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M14 6.28906V16H4V13H0V0H6.71094L9.71094 3H10.7109L14 6.28906ZM11 6H12.2891L11 4.71094V6ZM4 3H8.28906L6.28906 1H1V12H4V3ZM13 7H10V4H5V15H13V7Z"
-      />
-    </svg>
+    <mock-copyicon />
     <div
       class="ms-Button-label"
     >
@@ -30,3 +18,5 @@ exports[`CopyIssueDetailsButtonTest render 1`] = `
   </mock-customizeddefaultbutton>
 </DocumentFragment>
 `;
+
+exports[`CopyIssueDetailsButtonTest render: CopyIcon props 1`] = `{}`;

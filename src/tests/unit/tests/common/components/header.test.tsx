@@ -4,8 +4,15 @@ import { render } from '@testing-library/react';
 import { Header, HeaderDeps } from 'common/components/header';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
+import { HeaderIcon } from '../../../../../common/components/header-icon';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../common/components/header-icon');
 describe('Header', () => {
+    mockReactComponents([HeaderIcon]);
     const stubNarrowModeStatus = {
         isHeaderAndNavCollapsed: false,
     } as NarrowModeStatus;
@@ -19,6 +26,7 @@ describe('Header', () => {
         } as HeaderDeps;
         const renderResult = render(<Header deps={deps} narrowModeStatus={stubNarrowModeStatus} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([HeaderIcon]);
     });
 
     it('renders without header title', () => {
@@ -32,6 +40,7 @@ describe('Header', () => {
             <Header deps={deps} showHeaderTitle={false} narrowModeStatus={stubNarrowModeStatus} />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([HeaderIcon]);
     });
 
     it.each([true, false])('renders with showFarItems equals %s', showFarItems => {
@@ -50,6 +59,7 @@ describe('Header', () => {
             />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([HeaderIcon]);
     });
 
     it('renders in narrow mode', () => {
@@ -64,5 +74,6 @@ describe('Header', () => {
         } as NarrowModeStatus;
         const renderResult = render(<Header deps={deps} narrowModeStatus={narrowModeStatus} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([HeaderIcon]);
     });
 });

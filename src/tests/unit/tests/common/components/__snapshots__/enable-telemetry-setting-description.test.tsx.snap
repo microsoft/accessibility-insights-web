@@ -10,3 +10,19 @@ exports[`EnableTelemetrySettingDescription renders 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`EnableTelemetrySettingDescription renders: PrivacyStatementText props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
+`;
+
+exports[`EnableTelemetrySettingDescription renders: TelemetryNotice props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
+`;

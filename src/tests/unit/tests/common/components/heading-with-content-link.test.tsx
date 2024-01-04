@@ -6,10 +6,17 @@ import { render } from '@testing-library/react';
 import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import * as React from 'react';
 
+import { ContentLink } from 'views/content/content-link';
 import { ContentPage } from 'views/content/content-page';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('views/content/content-link');
 describe('HeadingWithContentLink', () => {
+    mockReactComponents([ContentLink]);
     const contentPath = 'for/testing';
     const content = {
         for: {
@@ -39,6 +46,7 @@ describe('HeadingWithContentLink', () => {
             <HeadingWithContentLink deps={deps} guidance={null} headingTitle={headingTitle} />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ContentLink]);
     });
 
     it('renders with both text and icon', () => {
@@ -51,6 +59,7 @@ describe('HeadingWithContentLink', () => {
             />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ContentLink]);
     });
 
     it('renders with heading, secondary text, and icon', () => {
@@ -64,5 +73,6 @@ describe('HeadingWithContentLink', () => {
             />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ContentLink]);
     });
 });

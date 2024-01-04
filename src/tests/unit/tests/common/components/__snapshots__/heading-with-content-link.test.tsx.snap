@@ -10,8 +10,31 @@ exports[`HeadingWithContentLink render null when reference is not defined 1`] = 
         heading
       </span>
     </h1>
+    <mock-contentlink
+      deps="[object Object]"
+      iconname="info"
+    />
   </div>
 </DocumentFragment>
+`;
+
+exports[`HeadingWithContentLink render null when reference is not defined: ContentLink props 1`] = `
+{
+  "deps": {
+    "contentActionMessageCreator": {
+      "openContentPage": [MockFunction],
+    },
+    "contentProvider": {
+      "allPaths": [Function],
+      "contentFromReference": [Function],
+      "getPage": [Function],
+      "pathFromReference": [Function],
+      "pathTo": [Function],
+    },
+  },
+  "iconName": "info",
+  "reference": null,
+}
 `;
 
 exports[`HeadingWithContentLink renders with both text and icon 1`] = `
@@ -24,32 +47,32 @@ exports[`HeadingWithContentLink renders with both text and icon 1`] = `
         heading
       </span>
     </h1>
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
-    >
-      <a
-        aria-label="Guidance"
-        class="ms-Link insights-link insightsLink root-110"
-        href="/insights.html#/content/for/testing"
-        target="_blank"
-      >
-        <i
-          aria-hidden="true"
-          class="root-105"
-          data-icon-name="info"
-        />
-      </a>
-      <div
-        hidden=""
-        id="tooltip0"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      >
-        Guidance
-      </div>
-    </div>
+    <mock-contentlink
+      deps="[object Object]"
+      iconname="info"
+      reference="for/testing"
+    />
   </div>
 </DocumentFragment>
+`;
+
+exports[`HeadingWithContentLink renders with both text and icon: ContentLink props 1`] = `
+{
+  "deps": {
+    "contentActionMessageCreator": {
+      "openContentPage": [MockFunction],
+    },
+    "contentProvider": {
+      "allPaths": [Function],
+      "contentFromReference": [Function],
+      "getPage": [Function],
+      "pathFromReference": [Function],
+      "pathTo": [Function],
+    },
+  },
+  "iconName": "info",
+  "reference": "for/testing",
+}
 `;
 
 exports[`HeadingWithContentLink renders with heading, secondary text, and icon 1`] = `
@@ -62,30 +85,30 @@ exports[`HeadingWithContentLink renders with heading, secondary text, and icon 1
         heading secondary
       </span>
     </h1>
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
-    >
-      <a
-        aria-label="Guidance"
-        class="ms-Link insights-link insightsLink root-110"
-        href="/insights.html#/content/for/testing"
-        target="_blank"
-      >
-        <i
-          aria-hidden="true"
-          class="root-105"
-          data-icon-name="info"
-        />
-      </a>
-      <div
-        hidden=""
-        id="tooltip1"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      >
-        Guidance
-      </div>
-    </div>
+    <mock-contentlink
+      deps="[object Object]"
+      iconname="info"
+      reference="for/testing"
+    />
   </div>
 </DocumentFragment>
+`;
+
+exports[`HeadingWithContentLink renders with heading, secondary text, and icon: ContentLink props 1`] = `
+{
+  "deps": {
+    "contentActionMessageCreator": {
+      "openContentPage": [MockFunction],
+    },
+    "contentProvider": {
+      "allPaths": [Function],
+      "contentFromReference": [Function],
+      "getPage": [Function],
+      "pathFromReference": [Function],
+      "pathTo": [Function],
+    },
+  },
+  "iconName": "info",
+  "reference": "for/testing",
+}
 `;

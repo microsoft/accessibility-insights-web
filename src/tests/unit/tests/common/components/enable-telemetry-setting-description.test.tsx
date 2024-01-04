@@ -10,6 +10,7 @@ import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { PrivacyStatementText } from '../../../../../common/components/privacy-statement-text';
 import { TelemetryNotice } from '../../../../../common/components/telemetry-notice';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -17,8 +18,7 @@ import {
 jest.mock('../../../../../common/components/telemetry-notice');
 jest.mock('../../../../../common/components/privacy-statement-text');
 describe('EnableTelemetrySettingDescription', () => {
-    mockReactComponents([TelemetryNotice]);
-    mockReactComponents([PrivacyStatementText]);
+    mockReactComponents([TelemetryNotice, PrivacyStatementText]);
     it('renders', () => {
         const deps: EnableTelemetrySettingDescriptionDeps = {
             LinkComponent: NewTabLink,
@@ -29,6 +29,7 @@ describe('EnableTelemetrySettingDescription', () => {
         const privacyStatementText = getMockComponentClassPropsForCall(PrivacyStatementText);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([TelemetryNotice, PrivacyStatementText]);
         expect(telemetryNotice.deps.LinkComponent).toBe(deps.LinkComponent);
         expect(privacyStatementText.deps.LinkComponent).toBe(deps.LinkComponent);
     });

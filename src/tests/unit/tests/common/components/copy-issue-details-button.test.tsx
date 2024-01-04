@@ -10,8 +10,12 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { WindowUtils } from 'common/window-utils';
 import * as React from 'react';
-import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { CopyIcon } from '../../../../../../src/common/icons/copy-icon';
 import {
     CopyIssueDetailsButton,
     CopyIssueDetailsButtonProps,
@@ -19,8 +23,9 @@ import {
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 jest.mock('@fluentui/react');
+jest.mock('../../../../../../src/common/icons/copy-icon');
 describe('CopyIssueDetailsButtonTest', () => {
-    mockReactComponents([DefaultButton]);
+    mockReactComponents([DefaultButton, CopyIcon]);
     let props: CopyIssueDetailsButtonProps;
     let onClickMock: IMock<(event: React.MouseEvent<any>) => void>;
     let windowUtilsMock: IMock<WindowUtils>;
@@ -60,6 +65,7 @@ describe('CopyIssueDetailsButtonTest', () => {
     test('render', () => {
         const result = render(<CopyIssueDetailsButton {...props} />);
         expect(result.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([CopyIcon]);
     });
     describe('toast message', () => {
         test('render after click shows copy success message', async () => {
