@@ -14,6 +14,62 @@ exports[`ResultSectionContent renders without modifier buttons without cardSelec
 </DocumentFragment>
 `;
 
+exports[`ResultSectionContent renders without modifier buttons without cardSelectionMessageCreator, with some rules: RulesWithInstances props 1`] = `
+{
+  "cardSelectionMessageCreator": undefined,
+  "deps": {
+    "cardsVisualizationModifierButtons": [Function],
+  },
+  "fixInstructionProcessor": undefined,
+  "headingLevel": undefined,
+  "narrowModeStatus": undefined,
+  "outcomeCounter": undefined,
+  "outcomeType": "pass",
+  "rules": [
+    {
+      "description": "sample-description",
+      "guidance": [
+        {
+          "href": "sample-guidance-href",
+          "text": "sample-guidance-text",
+        },
+      ],
+      "id": "some-rule",
+      "nodes": [
+        {
+          "descriptors": {
+            "snippet": "this is a sample snippet",
+          },
+          "identifiers": {
+            "conciseName": "body img",
+            "css-selector": "body img",
+            "identifier": "body img",
+          },
+          "resolution": {
+            "how-to-fix-web": {
+              "all": [],
+              "any": [
+                "Element does not have an alt attribute",
+                "aria-label attribute does not exist or is empty",
+                "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+              ],
+              "none": [],
+            },
+            "howToFixSummary": "sample how to fix summary",
+          },
+          "ruleId": "image-alt",
+          "status": "fail",
+          "uid": "some-guid-here",
+        },
+      ],
+      "url": "sample-url",
+    },
+  ],
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
 exports[`ResultSectionContent renders, with some rules 1`] = `
 <DocumentFragment>
   <mock-ruleswithinstances
@@ -23,4 +79,60 @@ exports[`ResultSectionContent renders, with some rules 1`] = `
     rules="[object Object]"
   />
 </DocumentFragment>
+`;
+
+exports[`ResultSectionContent renders, with some rules: RulesWithInstances props 1`] = `
+{
+  "cardSelectionMessageCreator": {},
+  "deps": {
+    "cardsVisualizationModifierButtons": [Function],
+  },
+  "fixInstructionProcessor": undefined,
+  "headingLevel": undefined,
+  "narrowModeStatus": undefined,
+  "outcomeCounter": undefined,
+  "outcomeType": "pass",
+  "rules": [
+    {
+      "description": "sample-description",
+      "guidance": [
+        {
+          "href": "sample-guidance-href",
+          "text": "sample-guidance-text",
+        },
+      ],
+      "id": "some-rule",
+      "nodes": [
+        {
+          "descriptors": {
+            "snippet": "this is a sample snippet",
+          },
+          "identifiers": {
+            "conciseName": "body img",
+            "css-selector": "body img",
+            "identifier": "body img",
+          },
+          "resolution": {
+            "how-to-fix-web": {
+              "all": [],
+              "any": [
+                "Element does not have an alt attribute",
+                "aria-label attribute does not exist or is empty",
+                "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+              ],
+              "none": [],
+            },
+            "howToFixSummary": "sample how to fix summary",
+          },
+          "ruleId": "image-alt",
+          "status": "fail",
+          "uid": "some-guid-here",
+        },
+      ],
+      "url": "sample-url",
+    },
+  ],
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
 `;

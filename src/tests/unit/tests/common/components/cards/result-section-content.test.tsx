@@ -52,6 +52,7 @@ describe('ResultSectionContent', () => {
         const renderResult = render(<ResultSectionContent {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([RulesWithInstances]);
     });
 
     it('renders without modifier buttons without cardSelectionMessageCreator, with some rules', () => {
@@ -69,6 +70,7 @@ describe('ResultSectionContent', () => {
         const renderResult = render(<ResultSectionContent {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([RulesWithInstances]);
     });
 
     it('does not render, no rules', () => {
