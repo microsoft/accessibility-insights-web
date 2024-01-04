@@ -11,7 +11,10 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
 import { ResultSection } from '../../../../../../common/components/cards/result-section';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 jest.mock('../../../../../../common/components/cards/result-section');
@@ -55,7 +58,7 @@ describe('NeedsReviewInstancesSection', () => {
             } as CommonInstancesSectionProps;
 
             const renderResult = render(<NeedsReviewInstancesSection {...props} />);
-
+            expectMockedComponentPropsToMatchSnapshots([ResultSection]);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });

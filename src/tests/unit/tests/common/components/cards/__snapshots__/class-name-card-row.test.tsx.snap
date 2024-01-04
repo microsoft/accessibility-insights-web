@@ -2,6 +2,10 @@
 
 exports[`ClassNameCardRow renders 1`] = `
 <DocumentFragment>
-  Class nametest class name
+  <mock-simplecardrow
+    content="test class name"
+    label="Class name"
+    rowkey="Class name--1"
+  />
 </DocumentFragment>
 `;

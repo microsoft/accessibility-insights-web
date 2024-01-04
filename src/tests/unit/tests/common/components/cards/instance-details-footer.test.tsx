@@ -16,18 +16,32 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { CardFooterInstanceActionButtons } from '../../../../../../common/components/cards/card-footer-instance-action-buttons';
+import {
+    HighlightHiddenIcon,
+    HighlightUnavailableIcon,
+    HighlightVisibleIcon,
+} from '../../../../../../common/icons/highlight-status-icons';
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 import {
     TargetAppData,
     UnifiedRule,
 } from '../../../../../../common/types/store-data/unified-data-interface';
 import { UnifiedResultToIssueFilingDataConverter } from '../../../../../../issue-filing/unified-result-to-issue-filing-data';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
 
 jest.mock('../../../../../../common/components/cards/card-footer-instance-action-buttons');
+jest.mock('../../../../../../common/icons/highlight-status-icons');
 describe('InstanceDetailsFooter', () => {
-    mockReactComponents([CardFooterInstanceActionButtons]);
+    mockReactComponents([
+        CardFooterInstanceActionButtons,
+        HighlightUnavailableIcon,
+        HighlightVisibleIcon,
+        HighlightHiddenIcon,
+    ]);
 
     let resultStub: CardResult;
     let props: InstanceDetailsFooterProps;
@@ -76,7 +90,7 @@ describe('InstanceDetailsFooter', () => {
         setupConverterToNeverBeCalled();
         deps.cardInteractionSupport = noCardInteractionsSupported;
         const renderResult = render(<InstanceDetailsFooter {...props} />);
-
+        expectMockedComponentPropsToMatchSnapshots([HighlightVisibleIcon]);
         expect(renderResult.container.firstChild).toBeNull();
         converterMock.verifyAll();
     });
@@ -85,7 +99,7 @@ describe('InstanceDetailsFooter', () => {
         setupConverterToBeCalledOnce();
         deps.cardInteractionSupport = allCardInteractionsSupported;
         const renderResult = render(<InstanceDetailsFooter {...props} />);
-
+        expectMockedComponentPropsToMatchSnapshots([HighlightHiddenIcon]);
         expect(renderResult.asFragment()).toMatchSnapshot();
         converterMock.verifyAll();
     });
@@ -98,7 +112,7 @@ describe('InstanceDetailsFooter', () => {
             resultStub.highlightStatus = highlightState;
             setupConverterToBeCalledOnce();
             const renderResult = render(<InstanceDetailsFooter {...props} />);
-
+            expectMockedComponentPropsToMatchSnapshots([HighlightUnavailableIcon]);
             expect(renderResult.asFragment()).toMatchSnapshot();
             converterMock.verifyAll();
         },

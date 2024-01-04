@@ -14,7 +14,10 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { InstanceDetails } from '../../../../../../common/components/cards/instance-details';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 jest.mock('../../../../../../common/components/cards/instance-details');
@@ -37,7 +40,7 @@ describe('InstanceDetailsGroup', () => {
         };
 
         const renderResult = render(<InstanceDetailsGroup {...props} />);
-
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetails]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

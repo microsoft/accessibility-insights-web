@@ -11,7 +11,10 @@ import { LinkComponentType } from 'common/types/link-component-type';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 import { SimpleCardRow } from '../../../../../../common/components/cards/simple-card-row';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../common/components/cards/simple-card-row');
 describe('HowToFixWebCardRow', () => {
@@ -34,7 +37,7 @@ describe('HowToFixWebCardRow', () => {
         };
 
         const renderResult = render(<HowToFixWebCardRow {...props} />);
-
+        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

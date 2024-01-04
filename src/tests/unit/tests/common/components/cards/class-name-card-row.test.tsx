@@ -5,8 +5,12 @@ import { ClassNameCardRow } from 'common/components/cards/class-name-card-row';
 import { StringPropertyCardRowProps } from 'common/components/cards/get-labelled-string-property-card-row';
 import { CardRowDeps } from 'common/configs/unified-result-property-configurations';
 import * as React from 'react';
+import { SimpleCardRow } from '../../../../../../common/components/cards/simple-card-row';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../common/components/cards/simple-card-row');
 describe('ClassNameCardRow', () => {
+    mockReactComponents([SimpleCardRow]);
     it('renders', () => {
         const props: StringPropertyCardRowProps = {
             propertyData: 'test class name',
