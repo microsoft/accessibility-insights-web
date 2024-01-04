@@ -10,9 +10,9 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { exampleUnifiedRuleResult } from './sample-view-model-data';
 import { ResultSection } from '../../../../../../common/components/cards/result-section';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 jest.mock('../../../../../../common/components/cards/result-section');
 describe('FailedInstancesSection', () => {

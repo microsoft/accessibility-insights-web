@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { userEvent } from '@testing-library/user-event';
 
 import { createEvent, fireEvent, render } from '@testing-library/react';
-import { allCardInteractionsSupported, noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { userEvent } from '@testing-library/user-event';
+import {
+    allCardInteractionsSupported,
+    noCardInteractionsSupported,
+} from 'common/components/cards/card-interaction-support';
 import {
     InstanceDetails,
     InstanceDetailsDeps,
@@ -21,9 +24,9 @@ import { UnifiedResolution, UnifiedResult } from 'common/types/store-data/unifie
 import * as React from 'react';
 import styles from 'reports/automated-checks-report.scss';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { exampleUnifiedResult } from './sample-view-model-data';
 import { InstanceDetailsFooter } from '../../../../../../common/components/cards/instance-details-footer';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { exampleUnifiedResult } from './sample-view-model-data';
 import '@testing-library/jest-dom';
 
 jest.mock('react', () => {
@@ -80,7 +83,8 @@ describe('InstanceDetails', () => {
         (React.useRef as any).mockReturnValueOnce(hiddenButtonRefStub);
         setupGetPropertyConfigByIdMock();
 
-        cardSelectionMessageCreatorMock.setup((mock) => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), It.isAny()))
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), It.isAny()))
             .verifiable(Times.once());
 
         const renderResult = render(<InstanceDetails {...props} />);
@@ -88,12 +92,11 @@ describe('InstanceDetails', () => {
         expect(element).toBeInTheDocument();
 
         fireEvent.click(element);
-        var button = renderResult.getByRole('button');
+        const button = renderResult.getByRole('button');
         expect(button).toHaveFocus();
 
         cardSelectionMessageCreatorMock.verifyAll();
     });
-
 
     it('dispatches the card selection message when hidden highlight button is clicked', async () => {
         (React.useRef as any).mockReturnValueOnce(hiddenButtonRefStub);
@@ -101,7 +104,7 @@ describe('InstanceDetails', () => {
         const stopPropagationMock = jest.fn();
 
         cardSelectionMessageCreatorMock
-            .setup((mock) => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), It.isAny()))
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), It.isAny()))
             .verifiable(Times.once());
 
         const renderResult = render(<InstanceDetails {...props} />);
@@ -121,7 +124,9 @@ describe('InstanceDetails', () => {
         (React.useRef as jest.Mock).mockReturnValue(hiddenButtonRefStub);
         setupGetPropertyConfigByIdMock();
         const renderResult = render(<InstanceDetails {...props} />);
-        const button = renderResult.container.getElementsByClassName(`${styles.hiddenHighlightButton}`);
+        const button = renderResult.container.getElementsByClassName(
+            `${styles.hiddenHighlightButton}`,
+        );
         expect(button).toHaveLength(1);
 
         fireEvent.focus(button[0]);
@@ -149,7 +154,9 @@ describe('InstanceDetails', () => {
             .verifiable(Times.never());
 
         const renderResult = render(<InstanceDetails {...props} />);
-        const divElem = renderResult.container.getElementsByClassName(`${styles.instanceDetailsCard}`);
+        const divElem = renderResult.container.getElementsByClassName(
+            `${styles.instanceDetailsCard}`,
+        );
         expect(divElem).toHaveLength(1);
 
         await userEvent.click(divElem[0]);

@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { render } from '@testing-library/react';
-import { CardsCollapsibleControl, CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
+import {
+    CardsCollapsibleControl,
+    CollapsibleComponentCardsProps,
+} from 'common/components/cards/collapsible-component-cards';
 import { HeadingElementForLevel } from 'common/components/heading-element-for-level';
 import { forOwn } from 'lodash';
 import * as React from 'react';
@@ -98,7 +101,7 @@ describe('CollapsibleComponentCardsTest', () => {
             const control = CardsCollapsibleControl(props);
             const renderResult = render(control);
 
-            var button = renderResult.getByRole('button');
+            const button = renderResult.getByRole('button');
             await userEvent.type(button, '{enter}');
 
             setFocusVisibilityMock.verify(handler => handler(true, undefined), Times.once());

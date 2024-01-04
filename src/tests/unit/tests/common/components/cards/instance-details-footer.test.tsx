@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
-import { allCardInteractionsSupported, noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import {
+    allCardInteractionsSupported,
+    noCardInteractionsSupported,
+} from 'common/components/cards/card-interaction-support';
 import {
     InstanceDetailsFooter,
     InstanceDetailsFooterDeps,
@@ -12,15 +15,15 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { CardFooterInstanceActionButtons } from '../../../../../../common/components/cards/card-footer-instance-action-buttons';
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 import {
     TargetAppData,
     UnifiedRule,
 } from '../../../../../../common/types/store-data/unified-data-interface';
 import { UnifiedResultToIssueFilingDataConverter } from '../../../../../../issue-filing/unified-result-to-issue-filing-data';
-import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
-import { CardFooterInstanceActionButtons } from '../../../../../../common/components/cards/card-footer-instance-action-buttons';
+import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
 
 jest.mock('../../../../../../common/components/cards/card-footer-instance-action-buttons');
 describe('InstanceDetailsFooter', () => {

@@ -4,11 +4,11 @@ import { render } from '@testing-library/react';
 import { GetLabelledStringPropertyCardRow } from 'common/components/cards/get-labelled-string-property-card-row';
 import * as React from 'react';
 
+import { SimpleCardRow } from '../../../../../../common/components/cards/simple-card-row';
 import {
     CardRowDeps,
     CardRowProps,
 } from '../../../../../../common/configs/unified-result-property-configurations';
-import { SimpleCardRow } from '../../../../../../common/components/cards/simple-card-row';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../common/components/cards/simple-card-row');

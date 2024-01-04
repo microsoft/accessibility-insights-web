@@ -5,9 +5,9 @@ import { render } from '@testing-library/react';
 import { StringPropertyCardRowProps } from 'common/components/cards/get-labelled-string-property-card-row';
 import { PathCardRow } from 'common/components/cards/path-card-row';
 import * as React from 'react';
+import { SimpleCardRow } from '../../../../../../common/components/cards/simple-card-row';
 import { CardRowDeps } from '../../../../../../common/configs/unified-result-property-configurations';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
-import { SimpleCardRow } from '../../../../../../common/components/cards/simple-card-row';
 
 jest.mock('../../../../../../common/components/cards/simple-card-row');
 describe('PathCardRow', () => {

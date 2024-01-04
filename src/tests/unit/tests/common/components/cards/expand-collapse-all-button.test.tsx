@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { render } from '@testing-library/react';
 import { ExpandCollapseAllButton } from 'common/components/cards/expand-collapse-all-button';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import * as React from 'react';
@@ -18,10 +18,12 @@ describe('ExpandCollapseAllButton', () => {
     it.each([true, false])(
         'renders per snapshot with allCardsCollapsed %p',
         (allCardsCollapsed: boolean) => {
-            const renderResult = render(<ExpandCollapseAllButton
-                allCardsCollapsed={allCardsCollapsed}
-                cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
-            />);
+            const renderResult = render(
+                <ExpandCollapseAllButton
+                    allCardsCollapsed={allCardsCollapsed}
+                    cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
+                />,
+            );
             expect(renderResult.asFragment()).toMatchSnapshot();
         },
     );
