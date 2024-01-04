@@ -24,6 +24,10 @@ extends:
             os: windows
             image: windows-2022-secure
             name: $(a11yInsightsPool)
+        sdl:
+            codeql:
+                compiled:
+                    enabled: true
         customBuildTags:
             - MigrationTooling-accessibility-insights-private-Accessibility Insights (private)-3-Tool
         stages:
