@@ -148,13 +148,13 @@ jobs:
     - uses: actions/checkout@v4.1.1
       timeout-minutes: 2
 
-    - uses: github/codeql-action/init@v2
+    - uses: github/codeql-action/init@v3
       timeout-minutes: 2
       with:
         trap-caching: false
         languages: javascript
     
-    - uses: github/codeql-action/analyze@v2
+    - uses: github/codeql-action/analyze@v3
       timeout-minutes: 10
 
   e2e-web-tests:
