@@ -37,6 +37,7 @@ extends:
             codeql:
                 compiled:
                     enabled: true
+                runSourceLanguagesInSourceAnalysis: true
 
         stages:
             - stage: Stage
