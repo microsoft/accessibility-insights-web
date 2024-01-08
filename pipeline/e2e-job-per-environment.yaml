@@ -11,7 +11,7 @@ jobs:
     - job: 'e2e_tests_windows${{ parameters.jobNameSuffix }}'
       templateContext:
           outputs:
-              - template: ./e2e-publish-pipeline-artifiacts.yaml
+              - template: pipeline/e2e-publish-pipeline-artifiacts.yaml@self
       pool:
           name: $(a11yInsightsPool)
           image: ${{ parameters.windowsImage }}
@@ -24,7 +24,7 @@ jobs:
     - job: 'e2e_tests_mac${{ parameters.jobNameSuffix }}'
       templateContext:
           outputs:
-              - template: ./e2e-publish-pipeline-artifiacts.yaml
+              - template: pipeline/e2e-publish-pipeline-artifiacts.yaml@self
       pool:
           name: Azure Pipelines
           vmImage: ${{ parameters.macImage }}
@@ -37,7 +37,7 @@ jobs:
     - job: 'e2e_tests_linux${{ parameters.jobNameSuffix }}'
       templateContext:
           outputs:
-              - template: ./e2e-publish-pipeline-artifiacts.yaml
+              - template: pipeline/e2e-publish-pipeline-artifiacts.yaml@self
       pool:
           name: $(a11yInsightsPool)
           image: ${{ parameters.linuxImage }}
