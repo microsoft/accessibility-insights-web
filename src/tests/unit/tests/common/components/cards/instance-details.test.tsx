@@ -25,7 +25,10 @@ import * as React from 'react';
 import styles from 'reports/automated-checks-report.scss';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { InstanceDetailsFooter } from '../../../../../../common/components/cards/instance-details-footer';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedResult } from './sample-view-model-data';
 import '@testing-library/jest-dom';
 
