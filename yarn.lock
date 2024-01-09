@@ -2426,13 +2426,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:0.0.254":
-  version: 0.0.254
-  resolution: "@types/chrome@npm:0.0.254"
+"@types/chrome@npm:0.0.256":
+  version: 0.0.256
+  resolution: "@types/chrome@npm:0.0.256"
   dependencies:
     "@types/filesystem": "*"
     "@types/har-format": "*"
-  checksum: ec54e73b792eb93cdadead294a0de0f757cc30d8ddebabab548cbfd3ed479c2a557aa33cee6eb190b67f500eebbc2e09496017a1dd521df1154a7b38cdca70d3
+  checksum: 95aab8e0e48da420533bbdd013f65afec1839c6370c90e9e571746a5d25588ee8922486ffaeef64abbce9d98805922637e6f968ef4a01582b10e29c895549d3a
   languageName: node
   linkType: hard
 
@@ -3311,7 +3311,7 @@ __metadata:
     "@swc/jest": ^0.2.29
     "@testing-library/react": 12.1.2
     "@testing-library/user-event": ^14.5.2
-    "@types/chrome": 0.0.254
+    "@types/chrome": 0.0.256
     "@types/enzyme": ^3.10.18
     "@types/enzyme-adapter-react-16": ^1.0.9
     "@types/jest": ^29.5.11
