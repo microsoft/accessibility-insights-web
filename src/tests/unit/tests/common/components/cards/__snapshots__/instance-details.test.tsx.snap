@@ -1,5 +1,173 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`InstanceDetails applies focused styling on card when hidden highlight button is focused: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails dispatches the card selection message when hidden highlight button is clicked: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails does not dispatch the card selection message when card is clicked if highlighting is not supported: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": false,
+      "supportsHighlighting": false,
+      "supportsIssueFiling": false,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails forwards focus and click events to hidden button when card is clicked: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
 exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 <DocumentFragment>
   <div
@@ -62,6 +230,66 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 </DocumentFragment>
 `;
 
+exports[`InstanceDetails isSelected drives the styling for the card: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {},
+    "identifiers": {
+      "conciseName": "test-concise-name",
+      "identifier": "test-id",
+      "this-property-does-not-have-config": "some value",
+    },
+    "isSelected": true,
+    "resolution": {},
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails isSelected drives the styling for the card: InstanceDetailsFooter props 2`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {},
+    "identifiers": {
+      "conciseName": "test-concise-name",
+      "identifier": "test-id",
+      "this-property-does-not-have-config": "some value",
+    },
+    "isSelected": false,
+    "resolution": {},
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
 exports[`InstanceDetails renders 1`] = `
 <DocumentFragment>
   <div
@@ -120,4 +348,75 @@ exports[`InstanceDetails renders nothing when there is no card row configuration
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`InstanceDetails renders nothing when there is no card row configuration for the property / no property: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {},
+    "identifiers": {
+      "conciseName": "test-concise-name",
+      "identifier": "test-id",
+      "this-property-does-not-have-config": "some value",
+    },
+    "resolution": {},
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails renders: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
 `;

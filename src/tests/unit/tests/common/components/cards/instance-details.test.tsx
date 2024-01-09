@@ -25,7 +25,7 @@ import * as React from 'react';
 import styles from 'reports/automated-checks-report.scss';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { InstanceDetailsFooter } from '../../../../../../common/components/cards/instance-details-footer';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedResult } from './sample-view-model-data';
 import '@testing-library/jest-dom';
 
@@ -74,7 +74,7 @@ describe('InstanceDetails', () => {
             .verifiable(Times.never());
 
         const renderResult = render(<InstanceDetails {...props} />);
-
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsFooter]);
         expect(renderResult.asFragment()).toMatchSnapshot();
         cardSelectionMessageCreatorMock.verifyAll();
     });
@@ -88,6 +88,7 @@ describe('InstanceDetails', () => {
             .verifiable(Times.once());
 
         const renderResult = render(<InstanceDetails {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsFooter]);
         const element = renderResult.container.querySelector(`.${styles.instanceDetailsCard}`);
         expect(element).toBeInTheDocument();
 
@@ -108,7 +109,8 @@ describe('InstanceDetails', () => {
             .verifiable(Times.once());
 
         const renderResult = render(<InstanceDetails {...props} />);
-        const element = renderResult.container.querySelector(`.${styles.hiddenHighlightButton}`);
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsFooter]);
+        const element = renderResult.getByRole('button');
         expect(element).toBeInTheDocument();
 
         const event = createEvent.click(element);
@@ -124,9 +126,8 @@ describe('InstanceDetails', () => {
         (React.useRef as jest.Mock).mockReturnValue(hiddenButtonRefStub);
         setupGetPropertyConfigByIdMock();
         const renderResult = render(<InstanceDetails {...props} />);
-        const button = renderResult.container.getElementsByClassName(
-            `${styles.hiddenHighlightButton}`,
-        );
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsFooter]);
+        const button = renderResult.getAllByRole('button');
         expect(button).toHaveLength(1);
 
         fireEvent.focus(button[0]);
@@ -154,6 +155,7 @@ describe('InstanceDetails', () => {
             .verifiable(Times.never());
 
         const renderResult = render(<InstanceDetails {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsFooter]);
         const divElem = renderResult.container.getElementsByClassName(
             `${styles.instanceDetailsCard}`,
         );
@@ -176,6 +178,7 @@ describe('InstanceDetails', () => {
         setupGetPropertyConfigByIdMock();
 
         const renderResult = render(<InstanceDetails {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsFooter]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -184,6 +187,7 @@ describe('InstanceDetails', () => {
         setupGetPropertyConfigByIdMock();
 
         const renderResult = render(<InstanceDetails {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsFooter]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 

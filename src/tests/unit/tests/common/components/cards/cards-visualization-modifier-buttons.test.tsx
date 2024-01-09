@@ -8,6 +8,8 @@ import {
 } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import * as React from 'react';
+import { ExpandCollapseAllButton } from '../../../../../../common/components/cards/expand-collapse-all-button';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
 const stubProps: CardsVisualizationModifierButtonsProps = {
     visualHelperEnabled: true,
@@ -15,7 +17,10 @@ const stubProps: CardsVisualizationModifierButtonsProps = {
     cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
 };
 
+jest.mock('../../../../../../common/components/cards/expand-collapse-all-button');
+
 describe('ExpandCollapseVisualHelperModifierButtons', () => {
+    mockReactComponents([ExpandCollapseAllButton]);
     it('renders per snapshot', () => {
         const renderResult = render(<ExpandCollapseVisualHelperModifierButtons {...stubProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
