@@ -7,8 +7,15 @@ import {
     QuickAssessLeftNavHamburgerButton,
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import * as React from 'react';
+import { LeftNavHamburgerButton } from '../../../../../common/components/left-nav-hamburger-button';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../common/components/left-nav-hamburger-button');
 describe('AssessmentLeftNavHamburgerButton', () => {
+    mockReactComponents([LeftNavHamburgerButton]);
     it('renders per snapshot', () => {
         const renderResult = render(
             <AssessmentLeftNavHamburgerButton
@@ -19,6 +26,7 @@ describe('AssessmentLeftNavHamburgerButton', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([LeftNavHamburgerButton]);
     });
 });
 
@@ -33,6 +41,7 @@ describe('QuickAssessLeftNavHamburgerButton', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([LeftNavHamburgerButton]);
     });
 });
 
@@ -47,5 +56,6 @@ describe('FastPassLeftNavHamburgerButton', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([LeftNavHamburgerButton]);
     });
 });

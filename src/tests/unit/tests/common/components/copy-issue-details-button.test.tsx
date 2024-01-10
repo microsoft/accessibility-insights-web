@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DefaultButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -22,10 +21,9 @@ import {
 } from '../../../../../common/components/copy-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
-jest.mock('@fluentui/react');
 jest.mock('../../../../../../src/common/icons/copy-icon');
 describe('CopyIssueDetailsButtonTest', () => {
-    mockReactComponents([DefaultButton, CopyIcon]);
+    mockReactComponents([CopyIcon]);
     let props: CopyIssueDetailsButtonProps;
     let onClickMock: IMock<(event: React.MouseEvent<any>) => void>;
     let windowUtilsMock: IMock<WindowUtils>;
@@ -78,8 +76,7 @@ describe('CopyIssueDetailsButtonTest', () => {
 
             const result = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
-            // tslint:disable-next-line: await-promise
-            await userEvent.click(result.container.querySelector('.ms-Button-label'));
+            await userEvent.click(result.getByRole('button'));
 
             const toast = result.container.querySelector('.toastContainer');
             expect(toast).toBeInTheDocument();
@@ -98,7 +95,7 @@ describe('CopyIssueDetailsButtonTest', () => {
             const result = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             // tslint:disable-next-line: await-promise
-            await userEvent.click(result.container.querySelector('.ms-Button-label'));
+            await userEvent.click(result.getByRole('button'));
 
             const toast = result.container.querySelector('.toastContainer');
             expect(toast).toBeInTheDocument();
@@ -117,7 +114,7 @@ describe('CopyIssueDetailsButtonTest', () => {
             const result = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             // tslint:disable-next-line: await-promise
-            await userEvent.click(result.container.querySelector('.ms-Button-label'));
+            await userEvent.click(result.getByRole('button'));
 
             const toast = result.container.querySelector('.toastContainer');
             expect(toast).toBeInTheDocument();

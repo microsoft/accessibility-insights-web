@@ -2,16 +2,23 @@
 
 exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
 <DocumentFragment>
-  <mock-customizeddefaultbutton
-    classname="file-issue-button"
+  <button
+    class="ms-Button ms-Button--default file-issue-button root-109"
+    data-is-focusable="true"
+    type="button"
   >
-    <mock-ladybugsolidicon />
-    <div
-      class="ms-Button-label"
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
     >
-      File issue
-    </div>
-  </mock-customizeddefaultbutton>
+      <mock-ladybugsolidicon />
+      <div
+        class="ms-Button-label"
+      >
+        File issue
+      </div>
+    </span>
+  </button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
     isopen="true"
@@ -23,20 +30,25 @@ exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
 </DocumentFragment>
 `;
 
-exports[`IssueFilingButtonTest onclick: invalid settings, %s: LadyBugSolidIcon props 1`] = `{}`;
-
 exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to false 1`] = `
 <DocumentFragment>
-  <mock-customizeddefaultbutton
-    classname="file-issue-button"
+  <button
+    class="ms-Button ms-Button--default file-issue-button root-109"
+    data-is-focusable="true"
+    type="button"
   >
-    <mock-ladybugsolidicon />
-    <div
-      class="ms-Button-label"
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
     >
-      File issue
-    </div>
-  </mock-customizeddefaultbutton>
+      <mock-ladybugsolidicon />
+      <div
+        class="ms-Button-label"
+      >
+        File issue
+      </div>
+    </span>
+  </button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
     isopen="false"
@@ -47,21 +59,26 @@ exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to f
   />
 </DocumentFragment>
 `;
-
-exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to false: LadyBugSolidIcon props 1`] = `{}`;
 
 exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 <DocumentFragment>
-  <mock-customizeddefaultbutton
-    classname="file-issue-button"
+  <button
+    class="ms-Button ms-Button--default file-issue-button root-109"
+    data-is-focusable="true"
+    type="button"
   >
-    <mock-ladybugsolidicon />
-    <div
-      class="ms-Button-label"
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
     >
-      File issue
-    </div>
-  </mock-customizeddefaultbutton>
+      <mock-ladybugsolidicon />
+      <div
+        class="ms-Button-label"
+      >
+        File issue
+      </div>
+    </span>
+  </button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
     isopen="false"
@@ -72,21 +89,26 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
   />
 </DocumentFragment>
 `;
-
-exports[`IssueFilingButtonTest render: isSettingsValid: false: LadyBugSolidIcon props 1`] = `{}`;
 
 exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
 <DocumentFragment>
-  <mock-customizeddefaultbutton
-    classname="file-issue-button"
+  <button
+    class="ms-Button ms-Button--default file-issue-button root-109"
+    data-is-focusable="true"
+    type="button"
   >
-    <mock-ladybugsolidicon />
-    <div
-      class="ms-Button-label"
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
     >
-      File issue
-    </div>
-  </mock-customizeddefaultbutton>
+      <mock-ladybugsolidicon />
+      <div
+        class="ms-Button-label"
+      >
+        File issue
+      </div>
+    </span>
+  </button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
     isopen="false"
@@ -97,5 +119,3 @@ exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
   />
 </DocumentFragment>
 `;
-
-exports[`IssueFilingButtonTest render: isSettingsValid: true: LadyBugSolidIcon props 1`] = `{}`;

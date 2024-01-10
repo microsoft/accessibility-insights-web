@@ -2,71 +2,75 @@
 
 exports[`InsightsCommandButton renders per snapshot with extra className combined with its own 1`] = `
 <DocumentFragment>
-  <button
-    class="ms-Button ms-Button--action ms-Button--command insightsCommandButton test-extra-class-name root-109"
-    data-is-focusable="true"
-    type="button"
-  >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    />
-  </button>
+  <mock-mockconstructor
+    classname="insightsCommandButton test-extra-class-name"
+    iconprops="[object Object]"
+  />
 </DocumentFragment>
+`;
+
+exports[`InsightsCommandButton renders per snapshot with extra className combined with its own: mockConstructor props 1`] = `
+{
+  "className": "insightsCommandButton test-extra-class-name",
+  "iconProps": {
+    "className": "commandBarButtonIcon",
+  },
+}
 `;
 
 exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own 1`] = `
 <DocumentFragment>
-  <button
-    class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-    data-is-focusable="true"
-    type="button"
-  >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    />
-  </button>
+  <mock-mockconstructor
+    classname="insightsCommandButton"
+    iconprops="[object Object]"
+  />
 </DocumentFragment>
+`;
+
+exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own: mockConstructor props 1`] = `
+{
+  "className": "insightsCommandButton",
+  "iconProps": {
+    "className": "commandBarButtonIcon icon-class-name",
+  },
+}
 `;
 
 exports[`InsightsCommandButton renders per snapshot with iconProps passed through 1`] = `
 <DocumentFragment>
-  <button
-    class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-    data-is-focusable="true"
-    type="button"
-  >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    />
-  </button>
+  <mock-mockconstructor
+    classname="insightsCommandButton"
+    iconprops="[object Object]"
+  />
 </DocumentFragment>
+`;
+
+exports[`InsightsCommandButton renders per snapshot with iconProps passed through: mockConstructor props 1`] = `
+{
+  "className": "insightsCommandButton",
+  "iconProps": {
+    "className": "commandBarButtonIcon",
+    "testProperty": "test-value",
+  },
+}
 `;
 
 exports[`InsightsCommandButton renders per snapshot with props passed through 1`] = `
 <DocumentFragment>
-  <button
-    class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-    data-is-focusable="true"
-    type="button"
-  >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <span
-        class="ms-Button-textContainer textContainer-111"
-      >
-        <span
-          class="ms-Button-label label-113"
-          id="id__0"
-        >
-          test-text
-        </span>
-      </span>
-    </span>
-  </button>
+  <mock-mockconstructor
+    classname="insightsCommandButton"
+    iconprops="[object Object]"
+    text="test-text"
+  />
 </DocumentFragment>
+`;
+
+exports[`InsightsCommandButton renders per snapshot with props passed through: mockConstructor props 1`] = `
+{
+  "className": "insightsCommandButton",
+  "iconProps": {
+    "className": "commandBarButtonIcon",
+  },
+  "text": "test-text",
+}
 `;

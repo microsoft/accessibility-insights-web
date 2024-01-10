@@ -18,25 +18,6 @@ exports[`HeadingWithContentLink render null when reference is not defined 1`] = 
 </DocumentFragment>
 `;
 
-exports[`HeadingWithContentLink render null when reference is not defined: ContentLink props 1`] = `
-{
-  "deps": {
-    "contentActionMessageCreator": {
-      "openContentPage": [MockFunction],
-    },
-    "contentProvider": {
-      "allPaths": [Function],
-      "contentFromReference": [Function],
-      "getPage": [Function],
-      "pathFromReference": [Function],
-      "pathTo": [Function],
-    },
-  },
-  "iconName": "info",
-  "reference": null,
-}
-`;
-
 exports[`HeadingWithContentLink renders with both text and icon 1`] = `
 <DocumentFragment>
   <div
@@ -56,25 +37,6 @@ exports[`HeadingWithContentLink renders with both text and icon 1`] = `
 </DocumentFragment>
 `;
 
-exports[`HeadingWithContentLink renders with both text and icon: ContentLink props 1`] = `
-{
-  "deps": {
-    "contentActionMessageCreator": {
-      "openContentPage": [MockFunction],
-    },
-    "contentProvider": {
-      "allPaths": [Function],
-      "contentFromReference": [Function],
-      "getPage": [Function],
-      "pathFromReference": [Function],
-      "pathTo": [Function],
-    },
-  },
-  "iconName": "info",
-  "reference": "for/testing",
-}
-`;
-
 exports[`HeadingWithContentLink renders with heading, secondary text, and icon 1`] = `
 <DocumentFragment>
   <div
@@ -92,23 +54,4 @@ exports[`HeadingWithContentLink renders with heading, secondary text, and icon 1
     />
   </div>
 </DocumentFragment>
-`;
-
-exports[`HeadingWithContentLink renders with heading, secondary text, and icon: ContentLink props 1`] = `
-{
-  "deps": {
-    "contentActionMessageCreator": {
-      "openContentPage": [MockFunction],
-    },
-    "contentProvider": {
-      "allPaths": [Function],
-      "contentFromReference": [Function],
-      "getPage": [Function],
-      "pathFromReference": [Function],
-      "pathTo": [Function],
-    },
-  },
-  "iconName": "info",
-  "reference": "for/testing",
-}
 `;

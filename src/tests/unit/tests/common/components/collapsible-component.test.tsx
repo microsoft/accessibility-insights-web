@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
@@ -8,8 +9,14 @@ import {
     CollapsibleComponent,
     CollapsibleComponentProps,
 } from '../../../../../common/components/collapsible-component';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('CollapsibleComponentTest', () => {
+    mockReactComponents([ActionButton]);
     test('render expanded with content-class-name', () => {
         const props: CollapsibleComponentProps = {
             header: <div>Some header</div>,
@@ -18,6 +25,7 @@ describe('CollapsibleComponentTest', () => {
         };
         const renderResult = render(<CollapsibleComponent {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
     });
 
     test('render expanded without content-class-name', () => {
@@ -27,6 +35,7 @@ describe('CollapsibleComponentTest', () => {
         };
         const renderResult = render(<CollapsibleComponent {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
     });
 
     test('render with container-class-name', () => {
@@ -38,6 +47,7 @@ describe('CollapsibleComponentTest', () => {
 
         const renderResult = render(<CollapsibleComponent {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
     });
 
     test('render without container-class-name', () => {
@@ -48,6 +58,7 @@ describe('CollapsibleComponentTest', () => {
 
         const renderResult = render(<CollapsibleComponent {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
     });
 
     test('toggle from expanded to collapsed', async () => {
@@ -55,9 +66,12 @@ describe('CollapsibleComponentTest', () => {
             header: <div>Some header</div>,
             content: <div>Some content</div>,
         };
+
         const renderResult = render(<CollapsibleComponent {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot('expanded');
-        await userEvent.click(renderResult.getByRole('button'));
+        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
+        await userEvent.click(renderResult.container.querySelector('mock-customizedactionbutton'));
         expect(renderResult.asFragment()).toMatchSnapshot('collapsed');
+        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
     });
 });

@@ -19,7 +19,6 @@ import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-pr
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -27,11 +26,10 @@ import { It, IMock, Mock, Times } from 'typemoq';
 import { LadyBugSolidIcon } from '../../../../../../src/common/icons/lady-bug-solid-icon';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
-jest.mock('@fluentui/react');
 jest.mock('common/components/issue-filing-needs-settings-help-text');
 jest.mock('../../../../../../src/common/icons/lady-bug-solid-icon');
 describe('IssueFilingButtonTest', () => {
-    mockReactComponents([DefaultButton, IssueFilingNeedsSettingsHelpText, LadyBugSolidIcon]);
+    mockReactComponents([IssueFilingNeedsSettingsHelpText, LadyBugSolidIcon]);
     const testKey: string = 'test';
     const eventStub = new EventStubFactory().createNativeMouseClickEvent() as any;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
@@ -93,7 +91,6 @@ describe('IssueFilingButtonTest', () => {
         };
         const renderResult = render(<IssueFilingButton {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([LadyBugSolidIcon]);
 
         issueFilingServiceProviderMock.verifyAll();
     });
@@ -113,11 +110,9 @@ describe('IssueFilingButtonTest', () => {
             .setup(creator => creator.fileIssue(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
             .verifiable(Times.once());
         const renderResult = render(<IssueFilingButton {...props} />);
-
-        await userEvent.click(renderResult.container.querySelector('.ms-Button-label'));
+        await userEvent.click(renderResult.getByRole('button'));
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([LadyBugSolidIcon]);
         const needSettingProps = getMockComponentClassPropsForCall(
             IssueFilingNeedsSettingsHelpText,
         );
@@ -148,9 +143,8 @@ describe('IssueFilingButtonTest', () => {
         );
         expect(needSettingProps.isOpen).toBe(false);
 
-        await userEvent.click(renderResult.container.querySelector('.ms-Button-label'));
+        await userEvent.click(renderResult.getByRole('button'));
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([LadyBugSolidIcon]);
         issueFilingActionMessageCreatorMock.verifyAll();
         const needSettingPropsAfterClick = getMockComponentClassPropsForCall(
             IssueFilingNeedsSettingsHelpText,

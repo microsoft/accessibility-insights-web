@@ -5,26 +5,15 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
   <div
     class=""
   >
-    <button
+    <mock-customizedactionbutton
       aria-expanded="true"
-      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
-      data-is-focusable="true"
-      type="button"
+      classname="collapsible"
+      iconprops="[object Object]"
     >
-      <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
-          data-icon-name="ChevronDown"
-        />
-        <div>
-          Some header
-        </div>
-      </span>
-    </button>
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
     <div
       class="content-class-name collapsibleContent"
     >
@@ -36,31 +25,34 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
 </DocumentFragment>
 `;
 
+exports[`CollapsibleComponentTest render expanded with content-class-name: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
+`;
+
 exports[`CollapsibleComponentTest render expanded without content-class-name 1`] = `
 <DocumentFragment>
   <div
     class=""
   >
-    <button
+    <mock-customizedactionbutton
       aria-expanded="true"
-      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
-      data-is-focusable="true"
-      type="button"
+      classname="collapsible"
+      iconprops="[object Object]"
     >
-      <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
-          data-icon-name="ChevronDown"
-        />
-        <div>
-          Some header
-        </div>
-      </span>
-    </button>
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
     <div
       class="collapsibleContent"
     >
@@ -70,6 +62,20 @@ exports[`CollapsibleComponentTest render expanded without content-class-name 1`]
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`CollapsibleComponentTest render expanded without content-class-name: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`CollapsibleComponentTest render with container-class-name 1`] = `
@@ -77,26 +83,15 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
   <div
     class="a-container"
   >
-    <button
+    <mock-customizedactionbutton
       aria-expanded="true"
-      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
-      data-is-focusable="true"
-      type="button"
+      classname="collapsible"
+      iconprops="[object Object]"
     >
-      <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
-          data-icon-name="ChevronDown"
-        />
-        <div>
-          Some header
-        </div>
-      </span>
-    </button>
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
     <div
       class="collapsibleContent"
     >
@@ -106,6 +101,20 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`CollapsibleComponentTest render with container-class-name: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`CollapsibleComponentTest render without container-class-name 1`] = `
@@ -113,26 +122,15 @@ exports[`CollapsibleComponentTest render without container-class-name 1`] = `
   <div
     class=""
   >
-    <button
+    <mock-customizedactionbutton
       aria-expanded="true"
-      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
-      data-is-focusable="true"
-      type="button"
+      classname="collapsible"
+      iconprops="[object Object]"
     >
-      <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
-          data-icon-name="ChevronDown"
-        />
-        <div>
-          Some header
-        </div>
-      </span>
-    </button>
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
     <div
       class="collapsibleContent"
     >
@@ -144,31 +142,62 @@ exports[`CollapsibleComponentTest render without container-class-name 1`] = `
 </DocumentFragment>
 `;
 
+exports[`CollapsibleComponentTest render without container-class-name: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`CollapsibleComponentTest toggle from expanded to collapsed: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`CollapsibleComponentTest toggle from expanded to collapsed: CustomizedActionButton props 2`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
+`;
+
 exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1`] = `
 <DocumentFragment>
   <div
     class=""
   >
-    <button
-      aria-expanded="false"
-      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
-      data-is-focusable="true"
-      type="button"
+    <mock-customizedactionbutton
+      aria-expanded="true"
+      classname="collapsible"
+      iconprops="[object Object]"
     >
-      <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
-          data-icon-name="ChevronRight"
-        />
-        <div>
-          Some header
-        </div>
-      </span>
-    </button>
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
   </div>
 </DocumentFragment>
 `;
@@ -178,26 +207,15 @@ exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`
   <div
     class=""
   >
-    <button
+    <mock-customizedactionbutton
       aria-expanded="true"
-      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
-      data-is-focusable="true"
-      type="button"
+      classname="collapsible"
+      iconprops="[object Object]"
     >
-      <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
-          data-icon-name="ChevronDown"
-        />
-        <div>
-          Some header
-        </div>
-      </span>
-    </button>
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
     <div
       class="collapsibleContent"
     >

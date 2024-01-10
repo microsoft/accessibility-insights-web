@@ -4,19 +4,12 @@ exports[`ScanningSpinner renders isScanning = <false> 1`] = `<DocumentFragment /
 
 exports[`ScanningSpinner renders isScanning = <true> 1`] = `
 <DocumentFragment>
-  <div
+  <mock-styledspinnerbase
     aria-live="test-aria-live"
-    class="ms-Spinner scanningSpinner root-110"
+    classname="scanningSpinner"
+    label="test-label"
     role="alert"
-  >
-    <div
-      class="ms-Spinner-circle ms-Spinner--large circle-111"
-    />
-    <div
-      class="ms-Spinner-label label-112"
-    >
-      test-label
-    </div>
-  </div>
+    size="3"
+  />
 </DocumentFragment>
 `;
