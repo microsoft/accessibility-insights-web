@@ -1,9 +1,174 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetryPermissionDialogTest render dialog 1`] = `
-<DocumentFragment>
-  <span
-    class="ms-layer"
-  />
-</DocumentFragment>
+<body
+  class="css-0"
+>
+  <div
+    aria-hidden="true"
+  >
+    <span
+      class="ms-layer"
+    />
+  </div>
+  <div
+    id="fluent-default-layer-host"
+    style="position: fixed; z-index: 1000000;"
+  >
+    <div
+      class="ms-Layer ms-Layer--fixed root-116"
+      data-portal-element="true"
+    >
+      <div
+        class="ms-Fabric ms-Layer-content content-118"
+      >
+        <div
+          aria-labelledby="Dialog0-title"
+          aria-modal="true"
+          role="alertdialog"
+          style="outline: none;"
+        >
+          <div
+            class="ms-Modal is-open ms-Dialog telemetry-permission-dialog-modal root-111"
+            role="document"
+          >
+            <div
+              aria-hidden="true"
+              class="ms-Overlay ms-Overlay--dark root-120"
+            />
+            <div
+              class="ms-Dialog-main insights-dialog-main-override telemetry-permission-dialog main-112"
+              id="ModalFocusTrapZone1"
+            >
+              <div
+                aria-hidden="true"
+                data-is-focus-trap-zone-bumper="true"
+                data-is-visible="true"
+                style="pointer-events: none; position: fixed;"
+                tabindex="0"
+              />
+              <div
+                class="ms-Modal-scrollableContent scrollableContent-113"
+                data-is-scrollable="true"
+              >
+                <div
+                  class="content-121"
+                >
+                  <div
+                    class="ms-Dialog-header header-123"
+                  >
+                    <div
+                      aria-level="1"
+                      class="ms-Dialog-title title-126"
+                      id="Dialog0-title"
+                      role="heading"
+                    >
+                      We need your help
+                    </div>
+                    <div
+                      class="topButton-127"
+                    />
+                  </div>
+                  <div
+                    class="ms-Dialog-inner inner-124"
+                  >
+                    <div
+                      class="ms-Dialog-content innerContent-125"
+                    >
+                      <div
+                        class="telemetry-permission-details"
+                      >
+                        <mock-telemetrynotice
+                          deps="[object Object]"
+                        />
+                      </div>
+                      <div
+                        class="telemetry-checkbox-section"
+                      >
+                        <div
+                          class="ms-Checkbox is-checked is-enabled telemetry-agree-checkbox root-128"
+                        >
+                          <input
+                            checked=""
+                            class="input-129"
+                            data-ktp-execute-target="true"
+                            id="checkbox-2"
+                            type="checkbox"
+                          />
+                          <label
+                            class="ms-Checkbox-label label-130"
+                            for="checkbox-2"
+                          >
+                            <div
+                              class="ms-Checkbox-checkbox checkbox-131"
+                              data-ktp-target="true"
+                            >
+                              <i
+                                aria-hidden="true"
+                                class="ms-Checkbox-checkmark checkmark-134"
+                                data-icon-name="CheckMark"
+                              />
+                            </div>
+                            <span
+                              class="ms-Checkbox-text text-133"
+                            >
+                              I agree to enable telemetry
+                            </span>
+                          </label>
+                        </div>
+                        <mock-privacystatementpopuptext
+                          deps="[object Object]"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="ms-Dialog-actions actions-135"
+                    >
+                      <div
+                        class="ms-Dialog-actionsRight actionsRight-137"
+                      >
+                        <span
+                          class="ms-Dialog-action action-136"
+                        >
+                          <button
+                            class="ms-Button ms-Button--primary start-using-product-button root-138"
+                            data-is-focusable="true"
+                            type="button"
+                          >
+                            <span
+                              class="ms-Button-flexContainer flexContainer-139"
+                              data-automationid="splitbuttonprimary"
+                            >
+                              <span
+                                class="ms-Button-textContainer textContainer-140"
+                              >
+                                <span
+                                  class="ms-Button-label label-142"
+                                  id="id__3"
+                                >
+                                  OK
+                                </span>
+                              </span>
+                            </span>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                aria-hidden="true"
+                data-is-focus-trap-zone-bumper="true"
+                data-is-visible="true"
+                style="pointer-events: none; position: fixed;"
+                tabindex="0"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
 `;

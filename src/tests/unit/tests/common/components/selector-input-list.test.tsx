@@ -60,7 +60,7 @@ describe('SelectorInputListTest', () => {
         };
         const renderResult = render(<SelectorInputList {...props} />);
         genericRenderTests(renderResult, props);
-        expect(renderResult.container.querySelector('.test-paragraph').getAttribute).toBeDefined();
+        expect(renderResult.getByText('Test')).not.toBeNull();
     });
 
     test('add selector with no space after semicolon', () => {
@@ -251,10 +251,10 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const { rerender, getByPlaceholderText, container } = render(
+        const { rerender, getByPlaceholderText, getByRole } = render(
             <TestableSelectorInputList {...props} />,
         );
-        const button = container.querySelector('.textboxAddSelectorButton');
+        const button = getByRole('button', { name: 'Add Selector' });
 
         expect(button).toHaveProperty('disabled', true);
 
@@ -289,13 +289,12 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const { rerender, container } = render(<TestableSelectorInputList {...props} />);
-        const button = container.querySelector('.textboxAddSelectorButton');
+        const { rerender, getByRole } = render(<TestableSelectorInputList {...props} />);
+        const button = getByRole('button', { name: 'Add Selector' });
         expect(button).toHaveProperty('disabled', true);
         act(() => {
             rerender(<TestableSelectorInputList {...previousProps} />);
         });
-        //expect(button).toBeDisabled();
         expect(button).toHaveProperty('disabled', true);
     });
 
@@ -330,7 +329,7 @@ describe('SelectorInputListTest', () => {
         ) as HTMLInputElement;
         fireEvent.change(inputText, { target: { value: givenSelector } });
         expect(inputText.value).toBe(givenSelector);
-        const button = renderResult.container.querySelector('.textboxAddSelectorButton');
+        const button = renderResult.getByRole('button', { name: 'Add Selector' });
         await userEvent.click(button);
         expect(inputText.value).toBe('');
     });
@@ -352,8 +351,8 @@ describe('SelectorInputListTest', () => {
 
     function genericRenderTests(result: RenderResult, props: SelectorInputListProps): void {
         const textbox = result.getByRole('textbox', { name: props.subtitle });
-        const title = result.container.querySelector('.' + styles.selectorInputTitle);
-        expect(title.textContent).toBe(props.title);
+        const title = result.getByText(props.title);
+        expect(title).toBeInstanceOf(HTMLElement);
         expect(textbox).toBeInstanceOf(HTMLElement);
         props.items.forEach(item => {
             item.forEach(selector => {
@@ -375,7 +374,7 @@ describe('SelectorInputListTest', () => {
     ): void {
         const inputText = result.getByPlaceholderText('Enter element selector here');
         fireEvent.change(inputText, { target: { value: givenSelector } });
-        const button = result.container.querySelector('.textboxAddSelectorButton');
+        const button = result.getByRole('button', { name: 'Add Selector' });
         const event = createEvent.click(button);
         fireEvent.click(button, event);
         selectorMock.verifyAll();
@@ -409,7 +408,7 @@ describe('SelectorInputListTest', () => {
             (event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => void
         >,
     ): void {
-        const button = result.container.querySelector('.ms-Button--icon');
+        const button = result.getAllByRole('button')[1];
         const event = createEvent.click(button);
         fireEvent.click(button, event);
         selectorMock.verifyAll();

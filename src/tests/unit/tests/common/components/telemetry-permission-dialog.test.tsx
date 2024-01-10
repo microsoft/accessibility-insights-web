@@ -17,9 +17,11 @@ import {
     TelemetryPermissionDialogProps,
 } from '../../../../../common/components/telemetry-permission-dialog';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
+//import { Dialog } from '@fluentui/react';
 
 jest.mock('../../../../../common/components/privacy-statement-text');
 jest.mock('../../../../../common/components/telemetry-notice');
+//jest.mock('@fluentui/react');
 
 describe('TelemetryPermissionDialogTest', () => {
     mockReactComponents([TelemetryNotice, PrivacyStatementPopupText]);
@@ -49,10 +51,9 @@ describe('TelemetryPermissionDialogTest', () => {
             isFirstTime: true,
         };
 
-        const renderResult = render(<TelemetryPermissionDialog {...props} />);
-        expect(renderResult.asFragment()).toMatchSnapshot();
-
-        const checkBox = renderResult.getByRole('checkbox') as HTMLInputElement;
+        const { baseElement, getByRole } = render(<TelemetryPermissionDialog {...props} />);
+        expect(baseElement).toMatchSnapshot();
+        const checkBox = getByRole('checkbox');
         expect(checkBox.checked).toEqual(true);
 
         const telemetryNotice = getMockComponentClassPropsForCall(TelemetryNotice);

@@ -3,13 +3,11 @@
 exports[`PrivacyStatementPopupText renders 1`] = `
 <DocumentFragment>
   You can change this choice anytime in settings. Read our 
-  <a
-    class="ms-Link insights-link root-109"
+  <mock-newtablink
     href="http://go.microsoft.com/fwlink/?LinkId=521839"
-    target="_blank"
   >
     privacy statement
-  </a>
+  </mock-newtablink>
    to learn more.
 </DocumentFragment>
 `;
@@ -17,13 +15,11 @@ exports[`PrivacyStatementPopupText renders 1`] = `
 exports[`PrivacyStatementText renders 1`] = `
 <DocumentFragment>
   Read our 
-  <a
-    class="ms-Link insights-link root-109"
+  <mock-newtablink
     href="http://go.microsoft.com/fwlink/?LinkId=521839"
-    target="_blank"
   >
     privacy statement
-  </a>
+  </mock-newtablink>
    to learn more.
 </DocumentFragment>
 `;

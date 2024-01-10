@@ -8,8 +8,11 @@ import {
     PrivacyStatementText,
     PrivacyStatementTextDeps,
 } from '../../../../../common/components/privacy-statement-text';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../common/components/new-tab-link');
 
 describe('PrivacyStatementText', () => {
+    mockReactComponents([NewTabLink]);
     it('renders', () => {
         const deps: PrivacyStatementTextDeps = {
             LinkComponent: NewTabLink,
@@ -29,9 +32,8 @@ describe('PrivacyStatementPopupText', () => {
         const renderResult = render(
             <PrivacyStatementPopupText deps={deps}></PrivacyStatementPopupText>,
         );
-        const privacyStatementText = renderResult.getByRole('link');
-
+        renderResult.container.querySelector('mock-newtablink');
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expect(privacyStatementText.textContent).toBe('privacy statement');
+        expect(NewTabLink).toHaveBeenCalled();
     });
 });

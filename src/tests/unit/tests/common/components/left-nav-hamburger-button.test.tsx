@@ -37,7 +37,7 @@ describe('LeftNavHamburgerButton', () => {
         } as LeftNavHamburgerButtonProps;
 
         const renderResult = render(<LeftNavHamburgerButton {...props} />);
-        const button = renderResult.container.querySelector('button');
+        const button = renderResult.getByRole('button');
 
         const event = createEvent.click(button);
         fireEvent(button, event);
