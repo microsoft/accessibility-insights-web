@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import {
