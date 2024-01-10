@@ -2641,10 +2641,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/luxon@npm:^3.3.8":
-  version: 3.3.8
-  resolution: "@types/luxon@npm:3.3.8"
-  checksum: 026711b4aefc01c6e233e359c693b6d4c0873acc3f52a08661ea3751b2cf3e34d1ce1d5b0b99b0e40a059a2a3755acc20498d37db5f9a5a4f0f330cdf72db3db
+"@types/luxon@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "@types/luxon@npm:3.4.0"
+  checksum: accd08e51e9eff4a5b47b2bdc2bc0a1404d35e0701e0165a1c1ea47065e588627784fe8bb9ddc64ca801726a7e9b0dbb075c586eb1f979fcf70e690cab963ff8
   languageName: node
   linkType: hard
 
@@ -3317,7 +3317,7 @@ __metadata:
     "@types/jest": ^29.5.11
     "@types/jsdom": ^21.1.6
     "@types/lodash": ^4.14.202
-    "@types/luxon": ^3.3.8
+    "@types/luxon": ^3.4.0
     "@types/node": ^16.11.7
     "@types/react": ^16.14.25
     "@types/react-dom": ^16.9.15
