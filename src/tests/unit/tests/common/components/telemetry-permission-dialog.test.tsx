@@ -53,7 +53,7 @@ describe('TelemetryPermissionDialogTest', () => {
 
         const { baseElement, getByRole } = render(<TelemetryPermissionDialog {...props} />);
         expect(baseElement).toMatchSnapshot();
-        const checkBox = getByRole('checkbox');
+        const checkBox = getByRole('checkbox') as HTMLInputElement;
         expect(checkBox.checked).toEqual(true);
 
         const telemetryNotice = getMockComponentClassPropsForCall(TelemetryNotice);

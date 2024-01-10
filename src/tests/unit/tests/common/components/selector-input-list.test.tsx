@@ -3,7 +3,6 @@
 import { ITextField } from '@fluentui/react';
 import { act, createEvent, fireEvent, render, RenderResult, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import styles from 'common/components/selector-input-list.scss';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
