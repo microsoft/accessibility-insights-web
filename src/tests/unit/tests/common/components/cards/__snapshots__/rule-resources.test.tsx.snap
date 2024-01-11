@@ -17,23 +17,11 @@ exports[`RuleResources renders with {
     <span
       class="ruleDetailsId"
     >
-      <div
-        class="ms-TooltipHost insightsTooltipHost root-109"
-        role="none"
+      <mock-externallink
+        href="test-url"
       >
-        <a
-          class="ms-Link insights-link insightsLink root-110"
-          href="test-url"
-          target="_blank"
-        >
-          More information about some-rule
-        </a>
-        <div
-          hidden=""
-          id="tooltip1"
-          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-        />
-      </div>
+        More information about some-rule
+      </mock-externallink>
     </span>
     <span
       class="ruleGuidance"
@@ -56,7 +44,31 @@ exports[`RuleResources renders with {
   linkComponent: 'ExternalLink'
 }: GuidanceLinks props 1`] = `
 {
-  "LinkComponent": [Function],
+  "LinkComponent": [MockFunction] {
+    "calls": [
+      [
+        {
+          "children": [
+            "More information about ",
+            "some-rule",
+          ],
+          "href": "test-url",
+        },
+        {},
+      ],
+    ],
+    "results": [
+      {
+        "type": "return",
+        "value": <mock-ExternalLink
+          href="test-url"
+        >
+          More information about 
+          some-rule
+        </mock-ExternalLink>,
+      },
+    ],
+  },
   "links": [],
 }
 `;
@@ -68,7 +80,31 @@ exports[`RuleResources renders with {
 }: GuidanceTags props 1`] = `
 {
   "deps": {
-    "LinkComponent": [Function],
+    "LinkComponent": [MockFunction] {
+      "calls": [
+        [
+          {
+            "children": [
+              "More information about ",
+              "some-rule",
+            ],
+            "href": "test-url",
+          },
+          {},
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": <mock-ExternalLink
+            href="test-url"
+          >
+            More information about 
+            some-rule
+          </mock-ExternalLink>,
+        },
+      ],
+    },
   },
   "links": [],
 }
@@ -91,23 +127,11 @@ exports[`RuleResources renders with {
     <span
       class="ruleDetailsId"
     >
-      <div
-        class="ms-TooltipHost insightsTooltipHost root-109"
-        role="none"
+      <mock-externallink
+        href="test-url"
       >
-        <a
-          class="ms-Link insights-link insightsLink root-110"
-          href="test-url"
-          target="_blank"
-        >
-          More information about some-rule
-        </a>
-        <div
-          hidden=""
-          id="tooltip0"
-          style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-        />
-      </div>
+        More information about some-rule
+      </mock-externallink>
     </span>
     <span
       class="ruleGuidance"
@@ -130,7 +154,31 @@ exports[`RuleResources renders with {
   linkComponent: 'ExternalLink'
 }: GuidanceLinks props 1`] = `
 {
-  "LinkComponent": [Function],
+  "LinkComponent": [MockFunction] {
+    "calls": [
+      [
+        {
+          "children": [
+            "More information about ",
+            "some-rule",
+          ],
+          "href": "test-url",
+        },
+        {},
+      ],
+    ],
+    "results": [
+      {
+        "type": "return",
+        "value": <mock-ExternalLink
+          href="test-url"
+        >
+          More information about 
+          some-rule
+        </mock-ExternalLink>,
+      },
+    ],
+  },
   "links": [
     {
       "href": "test-href",
@@ -146,7 +194,31 @@ exports[`RuleResources renders with {
 }: GuidanceTags props 1`] = `
 {
   "deps": {
-    "LinkComponent": [Function],
+    "LinkComponent": [MockFunction] {
+      "calls": [
+        [
+          {
+            "children": [
+              "More information about ",
+              "some-rule",
+            ],
+            "href": "test-url",
+          },
+          {},
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": <mock-ExternalLink
+            href="test-url"
+          >
+            More information about 
+            some-rule
+          </mock-ExternalLink>,
+        },
+      ],
+    },
   },
   "links": [
     {
@@ -249,7 +321,7 @@ exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, link
       class="ruleDetailsId"
     >
       <a
-        class="ms-Link insights-link root-110"
+        class="ms-Link insights-link root-109"
         href="test-url"
         target="_blank"
       >

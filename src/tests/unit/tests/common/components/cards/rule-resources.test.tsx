@@ -22,8 +22,10 @@ import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 jest.mock('common/components/guidance-tags');
 jest.mock('common/components/guidance-links');
+jest.mock('common/components/external-link');
+
 describe('RuleResources', () => {
-    mockReactComponents([GuidanceTags, GuidanceLinks]);
+    mockReactComponents([GuidanceTags, GuidanceLinks, ExternalLink]);
     describe('renders', () => {
         const linkComponents = {
             NewTabLink,
