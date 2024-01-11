@@ -9,3 +9,11 @@ steps:
       condition: succeededOrFailed()
       displayName: publish e2e test results
       timeoutInMinutes: 3
+
+    - task: 1ES.PublishPipelineArtifact@1
+      inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+          artifactName: '$(Agent.JobName)-screenshots-and-extended-logs'
+      condition: failed() # because the detailed chrome logs are ~150MB and uploading them takes ~30s
+      continueOnError: true
+      displayName: publish e2e screenshots and extended logs
