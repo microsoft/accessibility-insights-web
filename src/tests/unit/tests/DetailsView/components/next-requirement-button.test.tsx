@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
 import { DefaultButton } from '@fluentui/react';
 import { Requirement } from 'assessments/types/requirement';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -9,10 +10,13 @@ import {
     NextRequirementButtonDeps,
     NextRequirementButtonProps,
 } from 'DetailsView/components/next-requirement-button';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
+import { mockReactComponents, getMockComponentClassPropsForCall } from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('@fluentui/react');
 describe('NextRequirementButton', () => {
+    mockReactComponents([DefaultButton]);
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: React.MouseEvent<HTMLElement>;
     let props: NextRequirementButtonProps;
@@ -32,8 +36,8 @@ describe('NextRequirementButton', () => {
     });
 
     it('renders', () => {
-        const rendered = shallow(<NextRequirementButton {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<NextRequirementButton {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('validate next requirement button', () => {
@@ -47,8 +51,8 @@ describe('NextRequirementButton', () => {
             )
             .verifiable();
 
-        const rendered = shallow(<NextRequirementButton {...props} />);
-        rendered.find(DefaultButton).prop('onClick')(eventStub);
+        const renderResult = render(<NextRequirementButton {...props} />);
+      getMockComponentClassPropsForCall(DefaultButton).onClick(eventStub);
         messageCreatorMock.verifyAll();
     });
 });
