@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { Assessment } from 'assessments/types/iassessment';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
@@ -7,11 +8,15 @@ import {
     GettingStartedViewDeps,
     GettingStartedViewProps,
 } from 'DetailsView/components/getting-started-view';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ContentPageComponent } from 'views/content/content-page';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { ContentLink } from '../../../../../views/content/content-link';
+jest.mock('../../../../../views/content/content-link');
+
 
 describe('GettingStartedViewTest', () => {
+    mockReactComponents([ContentLink]);
     let props: GettingStartedViewProps;
 
     beforeEach(() => {
@@ -31,7 +36,7 @@ describe('GettingStartedViewTest', () => {
     });
 
     it('renders with content from props', () => {
-        const rendered = shallow(<GettingStartedView {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<GettingStartedView {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

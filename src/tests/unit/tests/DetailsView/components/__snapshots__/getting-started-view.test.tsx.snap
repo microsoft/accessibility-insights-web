@@ -1,39 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GettingStartedViewTest renders with content from props 1`] = `
-<div
-  className="gettingStartedView"
->
-  <div>
-    <HeadingWithContentLink
-      deps={{}}
-      guidance={
-        {
-          "pageTitle": "some page title",
-        }
-      }
-      headerClass="gettingStartedHeader"
-      headingTitle="some title"
-      headingTitleClassName="gettingStartedHeaderTitle"
-    />
-    <h2
-      className="gettingStartedTitle"
-    >
-      Getting started
-    </h2>
+<DocumentFragment>
+  <div
+    class="gettingStartedView"
+  >
     <div>
-      test-getting-started-content
+      <div
+        class="headerWithContentLink gettingStartedHeader"
+      >
+        <h1>
+          <span
+            class="gettingStartedHeaderTitle"
+          >
+            some title
+          </span>
+        </h1>
+        <mock-contentlink
+          deps="[object Object]"
+          iconname="info"
+          reference="[object Object]"
+        />
+      </div>
+      <h2
+        class="gettingStartedTitle"
+      >
+        Getting started
+      </h2>
+      <div>
+        test-getting-started-content
+      </div>
     </div>
+    <button
+      class="ms-Button ms-Button--default nextRequirementButton root-109"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <span>
+          <i
+            aria-label="next"
+            class="root-105"
+            data-icon-name="ChevronRight"
+            role="img"
+          />
+        </span>
+      </span>
+    </button>
   </div>
-  <NextRequirementButton
-    className="nextRequirementButton"
-    deps={{}}
-    nextRequirement={
-      {
-        "key": "expectedNextRequirement",
-      }
-    }
-    nextRequirementVisualizationType={-1}
-  />
-</div>
+</DocumentFragment>
 `;

@@ -1,14 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IframeSkippedWarning render 1`] = `
-<div
-  data-automation-id="iframe-skipped-warning-container"
->
-  There are iframes in the target page that are non-responsive. These frames have been skipped and are not included in results. If you get this warning unexpectedly in a page where you expect the iframes to be responsive, please
-  <NewTabLink
-    href="https://github.com/microsoft/accessibility-insights-web/issues/6347"
+<DocumentFragment>
+  <div
+    data-automation-id="iframe-skipped-warning-container"
   >
-    let us know.
-  </NewTabLink>
-</div>
+    There are iframes in the target page that are non-responsive. These frames have been skipped and are not included in results. If you get this warning unexpectedly in a page where you expect the iframes to be responsive, please
+    <a
+      class="ms-Link insights-link root-109"
+      href="https://github.com/microsoft/accessibility-insights-web/issues/6347"
+      target="_blank"
+    >
+      let us know.
+    </a>
+  </div>
+</DocumentFragment>
 `;

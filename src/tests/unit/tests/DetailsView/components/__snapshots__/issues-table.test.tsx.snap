@@ -1,366 +1,134 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssuesTableTest With issue filing support 1`] = `
-<div
-  className="issuesTable"
->
-  <h1>
-    test title
-     test steps text
-  </h1>
+<DocumentFragment>
   <div
-    className="issuesTableContent"
+    class="issuesTable"
   >
-    <React.Fragment>
-      <SomeInstancesSection
-        cardSelectionMessageCreator={{}}
-        cardsViewData={
-          {
-            "allCardsCollapsed": true,
-            "cards": {
-              "fail": [
-                {
-                  "description": "sample-description",
-                  "guidance": [
-                    {
-                      "href": "sample-guidance-href",
-                      "text": "sample-guidance-text",
-                    },
-                  ],
-                  "id": "some-rule",
-                  "nodes": [
-                    {
-                      "descriptors": {
-                        "snippet": "this is a sample snippet",
-                      },
-                      "identifiers": {
-                        "conciseName": "body img",
-                        "css-selector": "body img",
-                        "identifier": "body img",
-                      },
-                      "resolution": {
-                        "how-to-fix-web": {
-                          "all": [],
-                          "any": [
-                            "Element does not have an alt attribute",
-                            "aria-label attribute does not exist or is empty",
-                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                          ],
-                          "none": [],
-                        },
-                        "howToFixSummary": "sample how to fix summary",
-                      },
-                      "ruleId": "image-alt",
-                      "status": "fail",
-                      "uid": "some-guid-here",
-                    },
-                  ],
-                  "url": "sample-url",
-                },
-              ],
-              "inapplicable": [],
-              "pass": [],
-              "unknown": [],
-            },
-            "visualHelperEnabled": true,
-          }
-        }
-        cardsViewStoreData={
-          {
-            "isIssueFilingSettingsDialogOpen": false,
-          }
-        }
-        deps={
-          {
-            "cardInteractionSupport": {
-              "supportsIssueFiling": true,
-            },
-            "cardsViewController": {
-              "closeIssueFilingSettingsDialog": [Function],
-            },
-            "detailsViewActionMessageCreator": [typemoq mock object],
-            "getDateFromTimestamp": [Function],
-            "issueFilingDialogPropsFactory": [Function],
-            "issueFilingServiceProvider": [typemoq mock object],
-            "reportGenerator": [typemoq mock object],
-          }
-        }
-        narrowModeStatus={{}}
-        scanMetadata={
-          {
-            "targetAppInfo": {
-              "name": "app",
-            },
-          }
-        }
-        sectionHeadingLevel={2}
-        shouldAlertFailuresCount={true}
-        userConfigurationStoreData={{}}
+    <h1>
+      test title test steps text
+    </h1>
+    <div
+      class="issuesTableContent"
+    >
+      <mock-issuefilingdialog
+        isopen="false"
       />
-      <IssueFilingDialog
-        isOpen={false}
-      />
-    </React.Fragment>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`IssuesTableTest automated checks disabled 1`] = `
-<div
-  className="issuesTable"
->
-  <h1>
-    test title
-     test steps text
-  </h1>
+<DocumentFragment>
   <div
-    className="issuesTableContent"
+    class="issuesTable"
   >
-    <React.Fragment>
-      <SomeInstancesSection
-        cardSelectionMessageCreator={{}}
-        cardsViewData={
-          {
-            "allCardsCollapsed": true,
-            "cards": {
-              "fail": [
-                {
-                  "description": "sample-description",
-                  "guidance": [
-                    {
-                      "href": "sample-guidance-href",
-                      "text": "sample-guidance-text",
-                    },
-                  ],
-                  "id": "some-rule",
-                  "nodes": [
-                    {
-                      "descriptors": {
-                        "snippet": "this is a sample snippet",
-                      },
-                      "identifiers": {
-                        "conciseName": "body img",
-                        "css-selector": "body img",
-                        "identifier": "body img",
-                      },
-                      "resolution": {
-                        "how-to-fix-web": {
-                          "all": [],
-                          "any": [
-                            "Element does not have an alt attribute",
-                            "aria-label attribute does not exist or is empty",
-                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                          ],
-                          "none": [],
-                        },
-                        "howToFixSummary": "sample how to fix summary",
-                      },
-                      "ruleId": "image-alt",
-                      "status": "fail",
-                      "uid": "some-guid-here",
-                    },
-                  ],
-                  "url": "sample-url",
-                },
-              ],
-              "inapplicable": [],
-              "pass": [],
-              "unknown": [],
-            },
-            "visualHelperEnabled": true,
-          }
-        }
-        cardsViewStoreData={
-          {
-            "isIssueFilingSettingsDialogOpen": false,
-          }
-        }
-        deps={
-          {
-            "cardInteractionSupport": {
-              "supportsIssueFiling": false,
-            },
-            "cardsViewController": {
-              "closeIssueFilingSettingsDialog": [Function],
-            },
-            "detailsViewActionMessageCreator": [typemoq mock object],
-            "getDateFromTimestamp": [Function],
-            "issueFilingDialogPropsFactory": [Function],
-            "issueFilingServiceProvider": [typemoq mock object],
-            "reportGenerator": [typemoq mock object],
-          }
-        }
-        narrowModeStatus={{}}
-        scanMetadata={
-          {
-            "targetAppInfo": {
-              "name": "app",
-            },
-          }
-        }
-        sectionHeadingLevel={2}
-        shouldAlertFailuresCount={true}
-        userConfigurationStoreData={{}}
-      />
-    </React.Fragment>
+    <h1>
+      test title test steps text
+    </h1>
+    <div
+      class="issuesTableContent"
+    />
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`IssuesTableTest includes subtitle if specified 1`] = `
-<div
-  className="issuesTable"
->
-  <h1>
-    test title
-     test steps text
-  </h1>
+<DocumentFragment>
   <div
-    className="issuesTableSubtitle"
+    class="issuesTable"
   >
-    <React.Fragment>
+    <h1>
+      test title test steps text
+    </h1>
+    <div
+      class="issuesTableSubtitle"
+    >
       test subtitle text
-    </React.Fragment>
+    </div>
+    <div
+      class="ms-Spinner scanningSpinner root-110"
+      role="alert"
+    >
+      <div
+        class="ms-Spinner-circle ms-Spinner--large circle-111"
+      />
+      <div
+        class="ms-Spinner-label label-112"
+      >
+        Loading...
+      </div>
+    </div>
   </div>
-  <ScanningSpinner
-    isSpinning={true}
-    label="Loading..."
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
-<div
-  className="issuesTable"
->
-  <h1>
-    test title
-     test steps text
-  </h1>
+<DocumentFragment>
   <div
-    className="issuesTableContent"
+    class="issuesTable"
   >
-    <React.Fragment>
-      <SomeInstancesSection
-        cardSelectionMessageCreator={{}}
-        cardsViewData={
-          {
-            "allCardsCollapsed": true,
-            "cards": {
-              "fail": [
-                {
-                  "description": "sample-description",
-                  "guidance": [
-                    {
-                      "href": "sample-guidance-href",
-                      "text": "sample-guidance-text",
-                    },
-                  ],
-                  "id": "some-rule",
-                  "nodes": [
-                    {
-                      "descriptors": {
-                        "snippet": "this is a sample snippet",
-                      },
-                      "identifiers": {
-                        "conciseName": "body img",
-                        "css-selector": "body img",
-                        "identifier": "body img",
-                      },
-                      "resolution": {
-                        "how-to-fix-web": {
-                          "all": [],
-                          "any": [
-                            "Element does not have an alt attribute",
-                            "aria-label attribute does not exist or is empty",
-                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                          ],
-                          "none": [],
-                        },
-                        "howToFixSummary": "sample how to fix summary",
-                      },
-                      "ruleId": "image-alt",
-                      "status": "fail",
-                      "uid": "some-guid-here",
-                    },
-                  ],
-                  "url": "sample-url",
-                },
-              ],
-              "inapplicable": [],
-              "pass": [],
-              "unknown": [],
-            },
-            "visualHelperEnabled": true,
-          }
-        }
-        cardsViewStoreData={
-          {
-            "isIssueFilingSettingsDialogOpen": false,
-          }
-        }
-        deps={
-          {
-            "cardInteractionSupport": {
-              "supportsIssueFiling": false,
-            },
-            "cardsViewController": {
-              "closeIssueFilingSettingsDialog": [Function],
-            },
-            "detailsViewActionMessageCreator": [typemoq mock object],
-            "getDateFromTimestamp": [Function],
-            "issueFilingDialogPropsFactory": [Function],
-            "issueFilingServiceProvider": [typemoq mock object],
-            "reportGenerator": [typemoq mock object],
-          }
-        }
-        narrowModeStatus={{}}
-        scanMetadata={
-          {
-            "targetAppInfo": {
-              "name": "app",
-            },
-          }
-        }
-        sectionHeadingLevel={2}
-        shouldAlertFailuresCount={true}
-        userConfigurationStoreData={{}}
-      />
-    </React.Fragment>
+    <h1>
+      test title test steps text
+    </h1>
+    <div
+      class="issuesTableContent"
+    />
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`IssuesTableTest spinner for scanning state 1`] = `
-<div
-  className="issuesTable"
->
-  <h1>
-    test title
-     test steps text
-  </h1>
+<DocumentFragment>
   <div
-    className="issuesTableContent"
+    class="issuesTable"
   >
-    <ScanningSpinner
-      isSpinning={true}
-      label="Scanning..."
-    />
+    <h1>
+      test title test steps text
+    </h1>
+    <div
+      class="issuesTableContent"
+    >
+      <div
+        class="ms-Spinner scanningSpinner root-110"
+        role="alert"
+      >
+        <div
+          class="ms-Spinner-circle ms-Spinner--large circle-111"
+        />
+        <div
+          class="ms-Spinner-label label-112"
+        >
+          Scanning...
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`IssuesTableTest spinner, issuesEnabled == null 1`] = `
-<div
-  className="issuesTable"
->
-  <h1>
-    test title
-     test steps text
-  </h1>
-  <ScanningSpinner
-    isSpinning={true}
-    label="Loading..."
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="issuesTable"
+  >
+    <h1>
+      test title test steps text
+    </h1>
+    <div
+      class="ms-Spinner scanningSpinner root-110"
+      role="alert"
+    >
+      <div
+        class="ms-Spinner-circle ms-Spinner--large circle-111"
+      />
+      <div
+        class="ms-Spinner-label label-112"
+      >
+        Loading...
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;

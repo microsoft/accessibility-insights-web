@@ -1,86 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InteractiveHeader render: isNavCollapsed equals false 1`] = `
-<Header
-  deps={null}
-  farItems={
-    <GearOptionsButtonComponent
-      deps={null}
-      featureFlagData={null}
-    />
-  }
-  narrowModeStatus={
-    {
-      "isHeaderAndNavCollapsed": false,
-    }
-  }
-/>
+<DocumentFragment>
+  <mock-header
+    faritems="[object Object]"
+    narrowmodestatus="[object Object]"
+  />
+</DocumentFragment>
 `;
 
 exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
-<Header
-  deps={null}
-  farItems={
-    <GearOptionsButtonComponent
-      deps={null}
-      featureFlagData={null}
-    />
-  }
-  narrowModeStatus={
-    {
-      "isHeaderAndNavCollapsed": true,
-    }
-  }
-  navMenu={
-    <test-nav-menu
-      className="navMenu"
-      isSideNavOpen={false}
-      setSideNavOpen={null}
-    />
-  }
-/>
+<DocumentFragment>
+  <mock-header
+    faritems="[object Object]"
+    narrowmodestatus="[object Object]"
+    navmenu="[object Object]"
+  />
+</DocumentFragment>
 `;
 
 exports[`InteractiveHeader render: tabClosed equals false 1`] = `
-<Header
-  deps={
-    {
-      "dropdownClickHandler": {},
-    }
-  }
-  farItems={
-    <GearOptionsButtonComponent
-      deps={
-        {
-          "dropdownClickHandler": {},
-        }
-      }
-      featureFlagData={
-        {
-          "test-flag": true,
-        }
-      }
-    />
-  }
-  narrowModeStatus={
-    {
-      "isHeaderAndNavCollapsed": false,
-    }
-  }
-/>
+<DocumentFragment>
+  <mock-header
+    deps="[object Object]"
+    faritems="[object Object]"
+    narrowmodestatus="[object Object]"
+  />
+</DocumentFragment>
 `;
 
 exports[`InteractiveHeader render: tabClosed equals true 1`] = `
-<Header
-  deps={
-    {
-      "dropdownClickHandler": {},
-    }
-  }
-  narrowModeStatus={
-    {
-      "isHeaderAndNavCollapsed": false,
-    }
-  }
-/>
+<DocumentFragment>
+  <mock-header
+    deps="[object Object]"
+    narrowmodestatus="[object Object]"
+  />
+</DocumentFragment>
 `;

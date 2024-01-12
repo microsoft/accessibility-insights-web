@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+import { createEvent,fireEvent, render } from '@testing-library/react';
+//import userEvent from '@testing-library/user-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     InlineStartOverButton,
     InlineStartOverButtonProps,
 } from 'DetailsView/components/inline-start-over-button';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { It, IMock, Mock } from 'typemoq';
 
 describe(InlineStartOverButton.displayName, () => {
     const testType: VisualizationType = 1;
@@ -25,19 +25,20 @@ describe(InlineStartOverButton.displayName, () => {
     });
 
     it('renders', () => {
-        const button = shallow(<InlineStartOverButton {...props} />);
+        const renderResult = render(<InlineStartOverButton {...props} />);
 
-        expect(button.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    it('rescans on click', () => {
-        const event = {} as MouseEvent;
+    it('rescans on click', async () => {
         detailsViewActionMessageCreatorMock
-            .setup(acm => acm.rescanVisualization(testType, event))
+            .setup(acm => acm.rescanVisualization(testType, It.isAny()))
             .verifiable();
 
-        const button = shallow(<InlineStartOverButton {...props} />);
-        button.simulate('click', event);
+        const renderResult = render(<InlineStartOverButton {...props} />);
+        const button = renderResult.container.querySelector('button');
+        const event = createEvent.click(button);
+        fireEvent(button, event);
 
         detailsViewActionMessageCreatorMock.verifyAll();
     });

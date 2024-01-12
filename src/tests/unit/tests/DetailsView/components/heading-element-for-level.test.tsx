@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import {
     GetNextHeadingLevel,
     HeadingElementForLevel,
     HeadingElementForLevelProps,
     HeadingLevel,
 } from 'common/components/heading-element-for-level';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('HeadingElementForLevel', () => {
@@ -19,10 +19,8 @@ describe('HeadingElementForLevel', () => {
             className: 'a class',
         } as HeadingElementForLevelProps;
 
-        const actual = shallow(
-            <HeadingElementForLevel {...props}>A Heading</HeadingElementForLevel>,
-        );
-        expect(actual.getElement()).toMatchSnapshot();
+        const renderResult = render(<HeadingElementForLevel {...props}>A Heading</HeadingElementForLevel>);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it.each(headingLevelsWithValidNext)(

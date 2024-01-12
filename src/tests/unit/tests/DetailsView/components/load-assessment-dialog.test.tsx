@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+import { render } from '@testing-library/react';
 import { Dialog } from '@fluentui/react';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { Tab } from 'common/types/store-data/itab';
@@ -11,11 +11,15 @@ import {
     LoadAssessmentDialog,
     LoadAssessmentDialogProps,
 } from 'DetailsView/components/load-assessment-dialog';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
+import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { ChangeAssessmentDialog } from '../../../../../DetailsView/components/change-assessment-dialog';
+jest.mock('../../../../../DetailsView/components/change-assessment-dialog');
+jest.mock('@fluentui/react');
 
 describe('LoadAssessmentDialog', () => {
+    mockReactComponents([ChangeAssessmentDialog, Dialog]);
     let urlParserMock: IMock<UrlParser>;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let loadAssessmentDialogProps: LoadAssessmentDialogProps;
@@ -23,7 +27,7 @@ describe('LoadAssessmentDialog', () => {
     let newTab: Tab;
 
     beforeEach(() => {
-        urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
+        urlParserMock = Mock.ofType(UrlParser);
         assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
         prevTab = {
             id: 111,
@@ -68,21 +72,25 @@ describe('LoadAssessmentDialog', () => {
 
             loadAssessmentDialogProps.prevTab = prevTab;
 
-            const wrapper = shallow(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
-
-            expect(wrapper.find(Dialog).exists()).toBe(false);
+             render(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
+            
+            expect(getMockComponentClassPropsForCall(Dialog)).toBeFalsy();
             urlParserMock.verifyAll();
         },
     );
 
     it('should show when isOpen is set to true', () => {
-        const rendered = shallow(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
+        
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        
     });
 
     it('should not show when isOpen is set to false', () => {
         loadAssessmentDialogProps.isOpen = false;
-        const rendered = shallow(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
+        
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        
     });
 });

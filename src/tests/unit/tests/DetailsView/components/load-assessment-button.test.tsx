@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from '@fluentui/react';
+import { userEvent } from '@testing-library/user-event';
+import { render } from '@testing-library/react';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UrlParser } from 'common/url-parser';
@@ -13,7 +13,6 @@ import {
     LoadAssessmentButtonDeps,
 } from 'DetailsView/components/load-assessment-button';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
-import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 
 import { IMock, It, Mock } from 'typemoq';
@@ -60,15 +59,14 @@ describe('LoadAssessmentButton', () => {
     });
 
     it('should render per the snapshot', () => {
-        const rendered = shallow(<LoadAssessmentButton {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<LoadAssessmentButton {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    it('should call load button click method on click', () => {
+    it('should call load button click method on click', async () => {
         handleLoadAssessmentButtonClickMock.setup(m => m(It.isAny())).verifiable();
-        const rendered = mount(<LoadAssessmentButton {...props} />);
-        const button = rendered.find(InsightsCommandButton).find(ActionButton);
-        button.simulate('click', event);
+        const renderResult = render(<LoadAssessmentButton {...props} />);
+        await userEvent.click(renderResult.getByRole('button'));
         handleLoadAssessmentButtonClickMock.verifyAll();
     });
 });

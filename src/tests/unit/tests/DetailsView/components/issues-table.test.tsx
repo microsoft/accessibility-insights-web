@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
@@ -20,14 +21,17 @@ import {
     IssuesTableProps,
 } from 'DetailsView/components/issues-table';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { IssueFilingDialog } from '../../../../../DetailsView/components/issue-filing-dialog';
+jest.mock('../../../../../DetailsView/components/issue-filing-dialog');
 
 describe('IssuesTableTest', () => {
+    mockReactComponents([IssueFilingDialog]);
     let deps: IssuesTableDeps;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
@@ -69,9 +73,9 @@ describe('IssuesTableTest', () => {
             .setGetProviderMock(getProviderMock)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('includes subtitle if specified', () => {
@@ -80,9 +84,9 @@ describe('IssuesTableTest', () => {
             .setSubtitle(<>test subtitle text</>)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('automated checks disabled', () => {
@@ -94,9 +98,9 @@ describe('IssuesTableTest', () => {
             .setIssuesEnabled(issuesEnabled)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('spinner for scanning state', () => {
@@ -109,9 +113,9 @@ describe('IssuesTableTest', () => {
             .setScanning(true)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('not scanning, issuesEnabled is true', () => {
@@ -121,9 +125,9 @@ describe('IssuesTableTest', () => {
             .setIssuesEnabled(true)
             .build();
 
-        const wrapper = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('With issue filing support', () => {
@@ -144,14 +148,14 @@ describe('IssuesTableTest', () => {
             )
             .returns(
                 () =>
-                    ({
-                        isOpen: false,
-                    }) as IssueFilingNeedsSettingsContentProps,
+                    (({
+                        isOpen: false
+                    }) as IssueFilingNeedsSettingsContentProps),
             );
 
-        const wrapper = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
 
