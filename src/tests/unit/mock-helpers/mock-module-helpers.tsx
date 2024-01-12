@@ -29,7 +29,34 @@ export function mockReactComponents(components: any[]) {
     });
 }
 
-function mockReactComponent<T extends React.ComponentClass<P>, P = any>(component, elementName?) {
+export function useOriginalReactElements(library: string, components: any[]) {
+    const actualLibrary = jest.requireActual(library);
+    components.forEach(component => {
+        const mockComponent = jest.requireMock(library)[component];
+        if (
+            actualLibrary[component].prototype &&
+            actualLibrary[component].prototype.isReactComponent
+        ) {
+            const mockClass = () => ({
+                ...mockComponent,
+                render: actualLibrary[component].prototype.render,
+            });
+            (mockComponent as any).mockImplementation(mockClass);
+        } else {
+            if ((mockComponent as any).render?.mockImplementation) {
+                mockComponent.render.mockImplementation(actualLibrary[component].render);
+            }
+            if ((mockComponent as any).mockImplementation) {
+                (mockComponent as any).mockImplementation(actualLibrary[component]);
+            }
+        }
+    });
+}
+
+export function mockReactComponent<T extends React.ComponentClass<P>, P = any>(
+    component,
+    elementName?,
+) {
     if (component !== undefined) {
         const name =
             elementName || component.displayName
@@ -44,9 +71,7 @@ function mockReactComponent<T extends React.ComponentClass<P>, P = any>(componen
             );
         }
         const mockFunction = mockReactElement<P>(name);
-
         if (component.prototype && component.prototype.isReactComponent) {
-            //mock the class
             const mockClass = (props: P, context?: any, ...rest: any[]) => ({
                 render: () => mockFunction(props, ...rest),
                 props,
