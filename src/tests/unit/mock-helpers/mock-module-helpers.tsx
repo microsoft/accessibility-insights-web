@@ -53,10 +53,7 @@ export function useOriginalReactElements(library: string, components: any[]) {
     });
 }
 
-export function mockReactComponent<T extends React.ComponentClass<P>, P = any>(
-    component,
-    elementName?,
-) {
+function mockReactComponent<T extends React.ComponentClass<P>, P = any>(component, elementName?) {
     if (component !== undefined) {
         const name =
             elementName || component.displayName
