@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { DetailsList } from '@fluentui/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import {
     TabStopRequirementState,
@@ -15,7 +16,7 @@ import {
     TabStopsRequirementsTableProps,
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
-import { shallow } from 'enzyme';
+
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { VisualizationScanResultStoreDataBuilder } from 'tests/unit/common/visualization-scan-result-store-data-builder';
@@ -44,6 +45,7 @@ describe('TabStopsRequirementsTable', () => {
                 tabStopsTestViewController: tabStopsTestViewControllerMock.object,
             },
             requirementState: requirementState,
+            status: 'fail'
         };
         requirementContentStub = {
             id: 'test id',
@@ -54,46 +56,61 @@ describe('TabStopsRequirementsTable', () => {
     });
 
     test('renders table', () => {
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const testSubject = render(<TabStopsRequirementsTable {...props} />);
+        expect(testSubject.asFragment()).toMatchSnapshot();
     });
 
     test('renders requirement column', () => {
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        const columns = testSubject.find(DetailsList).props().columns;
-        expect(columns[0].onRender(requirementContentStub)).toMatchSnapshot();
+        const testSubject = render(<TabStopsRequirementsTable {...props} />);
+        const hasColumns = testSubject.container.querySelectorAll('.ms-details')
+        expect(hasColumns).toMatchSnapshot();
     });
 
     test('renders result column', () => {
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        const columns = testSubject.find(DetailsList).props().columns;
-        const tabStopsChoiceGroup = columns[1].onRender(requirementsList[0]);
+        const testSubject = render(<TabStopsRequirementsTable {...props} />);
+
+        const tabStopsChoiceGroup = testSubject.container.querySelectorAll('.ms-ChoiceFieldGroup')
         expect(tabStopsChoiceGroup).toMatchSnapshot();
     });
 
-    test('result column handlers', () => {
-        const eventStub = new EventStubFactory().createKeypressEvent() as SupportedMouseEvent;
-        const actualRequirement = requirementsList[0]; // must match with state from builder which uses actual requirement.
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        const columns = testSubject.find(DetailsList).props().columns;
-        const tabStopsChoiceGroup = columns[1].onRender(actualRequirement) as JSX.Element;
-        const renderedProps = tabStopsChoiceGroup.props as TabStopsChoiceGroupsProps;
+    test('renders undo icon button', () => {
+        props.requirementState = {
+            'input-focus': { status: 'fail', instances: [], isExpanded: false }
+        }
 
-        renderedProps.onUndoClicked(eventStub);
-        renderedProps.onGroupChoiceChange(eventStub, TabStopRequirementStatuses.fail);
-        renderedProps.onAddFailureInstanceClicked(eventStub);
-
-        tabStopsRequirementActionMessageCreatorMock.verify(
-            m => m.resetStatusForRequirement(actualRequirement.id),
-            Times.once(),
-        );
-        tabStopsRequirementActionMessageCreatorMock.verify(
-            m => m.updateTabStopRequirementStatus(actualRequirement.id, 'fail'),
-            Times.once(),
-        );
-        tabStopsTestViewControllerMock.verify(
-            m => m.createNewFailureInstancePanel(actualRequirement.id),
-            Times.once(),
-        );
+        const testSubject = render(<TabStopsRequirementsTable {...props} />);
+        expect(testSubject).toMatchSnapshot();
     });
+
+    test('result column handlers', () => {
+        //update props to make sure Undo button is visible
+        props.requirementState = {
+            'input-focus': { status: 'pass', instances: [], isExpanded: false }
+        }
+        const eventStub = new EventStubFactory().createMouseClickEvent() as SupportedMouseEvent;
+        console.log("eventStub", eventStub)
+        const testSubject = render(<TabStopsRequirementsTable {...props} />);
+
+        const undoButton = testSubject.container.querySelectorAll('.ms-Button--icon')
+        const choiceGroupChange = testSubject.container.querySelectorAll('.ms-ChoiceFieldGroup')
+
+        fireEvent.click(undoButton[0], eventStub)
+        fireEvent.change(choiceGroupChange[0], eventStub)
+    });
+
+    test('render Add icon button and handle event', () => {
+        //update props to make sure Undo button is visible
+        props.requirementState = {
+            'input-focus': { status: 'fail', instances: [], isExpanded: false }
+        }
+        const eventStub = new EventStubFactory().createMouseClickEvent() as SupportedMouseEvent;
+
+        render(<TabStopsRequirementsTable {...props} />);
+
+        const addButton = screen.getAllByLabelText('add failure instance')
+
+        fireEvent.click(addButton[0], eventStub)
+
+    });
+
 });

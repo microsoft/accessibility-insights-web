@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { BannerWarnings } from 'DetailsView/components/banner-warnings';
-import { shallow } from 'enzyme';
+
 import * as React from 'react';
 
 describe('BannerWarning', () => {
     test('render', () => {
-        const wrapper = shallow(
+        const wrapper = render(
             <BannerWarnings
                 deps={null}
                 warnings={null}
@@ -15,6 +16,6 @@ describe('BannerWarning', () => {
                 visualizationStoreData={null}
             />,
         );
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 });

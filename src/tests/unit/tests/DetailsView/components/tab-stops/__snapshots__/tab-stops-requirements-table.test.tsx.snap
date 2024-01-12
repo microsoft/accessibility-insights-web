@@ -1,114 +1,2742 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabStopsRequirementsTable renders requirement column 1`] = `
-<span
-  className="requirementColumn"
->
-  <span
-    className="requirementName"
-  >
-    test name
-  </span>
-  :
-   
-  test description
-</span>
-`;
+exports[`TabStopsRequirementsTable renders requirement column 1`] = `NodeList []`;
 
 exports[`TabStopsRequirementsTable renders result column 1`] = `
-<TabStopsChoiceGroup
-  onAddFailureInstanceClicked={[Function]}
-  onGroupChoiceChange={[Function]}
-  onUndoClicked={[Function]}
-  status="unknown"
-/>
+NodeList [
+  <div
+    class="ms-ChoiceFieldGroup root-152"
+    data-automation-id="tabStopsPassFailChoiceGroup"
+  >
+    <div
+      role="radiogroup"
+    >
+      <div
+        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+      >
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Pass"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup57-pass"
+              name="ChoiceGroup57"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+              for="ChoiceGroup57-pass"
+            />
+          </div>
+        </div>
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Fail"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup57-fail"
+              name="ChoiceGroup57"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+              for="ChoiceGroup57-fail"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    class="ms-ChoiceFieldGroup root-152"
+    data-automation-id="tabStopsPassFailChoiceGroup"
+  >
+    <div
+      role="radiogroup"
+    >
+      <div
+        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+      >
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Pass"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup61-pass"
+              name="ChoiceGroup61"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+              for="ChoiceGroup61-pass"
+            />
+          </div>
+        </div>
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Fail"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup61-fail"
+              name="ChoiceGroup61"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+              for="ChoiceGroup61-fail"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    class="ms-ChoiceFieldGroup root-152"
+    data-automation-id="tabStopsPassFailChoiceGroup"
+  >
+    <div
+      role="radiogroup"
+    >
+      <div
+        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+      >
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Pass"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup65-pass"
+              name="ChoiceGroup65"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+              for="ChoiceGroup65-pass"
+            />
+          </div>
+        </div>
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Fail"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup65-fail"
+              name="ChoiceGroup65"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+              for="ChoiceGroup65-fail"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    class="ms-ChoiceFieldGroup root-152"
+    data-automation-id="tabStopsPassFailChoiceGroup"
+  >
+    <div
+      role="radiogroup"
+    >
+      <div
+        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+      >
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Pass"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup69-pass"
+              name="ChoiceGroup69"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+              for="ChoiceGroup69-pass"
+            />
+          </div>
+        </div>
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Fail"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup69-fail"
+              name="ChoiceGroup69"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+              for="ChoiceGroup69-fail"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    class="ms-ChoiceFieldGroup root-152"
+    data-automation-id="tabStopsPassFailChoiceGroup"
+  >
+    <div
+      role="radiogroup"
+    >
+      <div
+        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+      >
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Pass"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup73-pass"
+              name="ChoiceGroup73"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+              for="ChoiceGroup73-pass"
+            />
+          </div>
+        </div>
+        <div
+          class="ms-ChoiceField radioButtonOption root-153"
+        >
+          <div
+            class="ms-ChoiceField-wrapper"
+          >
+            <input
+              aria-label="Fail"
+              class="ms-ChoiceField-input input-154"
+              id="ChoiceGroup73-fail"
+              name="ChoiceGroup73"
+              tabindex="-1"
+              type="radio"
+            />
+            <label
+              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+              for="ChoiceGroup73-fail"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
 `;
 
 exports[`TabStopsRequirementsTable renders table 1`] = `
-<StyledWithViewportComponent
-  checkboxVisibility={2}
-  className="requirementTable"
-  columns={
-    [
-      {
-        "key": "requirement",
-        "minWidth": 100,
-        "name": "Requirement",
-        "onRender": [Function],
-      },
-      {
-        "className": "passFailColumnCell",
-        "key": "result",
-        "maxWidth": 124,
-        "minWidth": 124,
-        "name": "Pass / Fail",
-        "onRender": [Function],
-      },
-    ]
-  }
-  items={
-    [
-      {
-        "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
-        "guidance": [
-          {
-            "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
-            "tags": [],
-            "text": "WCAG 2.1.1",
-          },
-        ],
-        "id": "keyboard-navigation",
-        "name": "Keyboard navigation",
-      },
-      {
-        "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
-        "guidance": [
-          {
-            "href": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html",
-            "tags": [],
-            "text": "WCAG 2.1.2",
-          },
-        ],
-        "id": "keyboard-traps",
-        "name": "Keyboard traps",
-      },
-      {
-        "description": "All interactive elements give a visible indication when they have input focus. (Manual)",
-        "guidance": [
-          {
-            "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
-            "tags": [],
-            "text": "WCAG 2.4.7",
-          },
-        ],
-        "id": "focus-indicator",
-        "name": "Focus indicator",
-      },
-      {
-        "description": "The tab order is consistent with the logical order that's communicated visually. (Partially automated)",
-        "guidance": [
-          {
-            "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
-            "tags": [],
-            "text": "WCAG 2.4.3",
-          },
-        ],
-        "id": "tab-order",
-        "name": "Tab order",
-      },
-      {
-        "description": "Input focus does not move unexpectedly without the user initiating it. (Manual)",
-        "guidance": [
-          {
-            "href": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html",
-            "tags": [],
-            "text": "WCAG 2.3.1",
-          },
-        ],
-        "id": "input-focus",
-        "name": "Input focus",
-      },
-    ]
-  }
-/>
+<DocumentFragment>
+  <div
+    class="ms-Viewport"
+    style="min-width: 1px; min-height: 1px;"
+  >
+    <div
+      class="ms-DetailsList is-horizontalConstrained requirementTable root-109"
+      data-automationid="DetailsList"
+      data-is-scrollable="false"
+    >
+      <div
+        aria-colcount="2"
+        aria-rowcount="6"
+        role="grid"
+      >
+        <div
+          class="ms-DetailsList-headerWrapper"
+          role="presentation"
+        >
+          <div
+            class="ms-FocusZone css-127 ms-DetailsHeader root-111"
+            data-automationid="DetailsHeader"
+            data-focuszone-id="FocusZone2"
+            role="row"
+          >
+            <div
+              aria-labelledby="header1-requirement-name"
+              aria-sort="none"
+              class="ms-DetailsHeader-cell is-actionable root-128"
+              data-automationid="ColumnsHeaderColumn"
+              data-is-draggable="false"
+              data-is-focusable="true"
+              data-item-key="requirement"
+              draggable="false"
+              role="columnheader"
+              style="width: 120px;"
+              tabindex="0"
+            >
+              <span
+                class="cellTooltip-136"
+              >
+                <span
+                  class="ms-DetailsHeader-cellTitle cellTitle-134"
+                  id="header1-requirement"
+                >
+                  <span
+                    class="ms-DetailsHeader-cellName cellName-135"
+                    id="header1-requirement-name"
+                  >
+                    Requirement
+                  </span>
+                </span>
+              </span>
+            </div>
+            <div
+              aria-labelledby="header1-result-name"
+              aria-sort="none"
+              class="ms-DetailsHeader-cell is-actionable root-128"
+              data-automationid="ColumnsHeaderColumn"
+              data-is-draggable="false"
+              data-is-focusable="true"
+              data-item-key="result"
+              draggable="false"
+              role="columnheader"
+              style="width: 144px;"
+              tabindex="-1"
+            >
+              <span
+                class="cellTooltip-136"
+              >
+                <span
+                  class="ms-DetailsHeader-cellTitle cellTitle-134"
+                  id="header1-result"
+                >
+                  <span
+                    class="ms-DetailsHeader-cellName cellName-135"
+                    id="header1-result-name"
+                  >
+                    Pass / Fail
+                  </span>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="ms-DetailsList-contentWrapper"
+          role="presentation"
+        >
+          <div
+            class="ms-SelectionZone"
+            role="presentation"
+          >
+            <div
+              class="ms-FocusZone css-127 focusZone-110"
+              data-focuszone-id="FocusZone3"
+            >
+              <div
+                class="ms-List"
+                role="presentation"
+              >
+                <div
+                  class="ms-List-surface"
+                  role="presentation"
+                >
+                  <div
+                    class="ms-List-page"
+                    role="presentation"
+                  >
+                    <div
+                      class="ms-List-cell"
+                      data-automationid="ListCell"
+                      data-list-index="0"
+                      role="presentation"
+                    >
+                      <div
+                        aria-rowindex="2"
+                        aria-selected="false"
+                        class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                        data-automationid="DetailsRow"
+                        data-focuszone-id="FocusZone6"
+                        data-is-focusable="true"
+                        data-item-index="0"
+                        data-selection-index="0"
+                        data-selection-touch-invoke="true"
+                        id="row4-0"
+                        role="row"
+                        style="min-width: 224px;"
+                      >
+                        <div
+                          class="ms-DetailsRow-fields fields-149"
+                          data-automationid="DetailsRowFields"
+                          role="presentation"
+                        >
+                          <div
+                            class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="requirement"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 120px;"
+                          >
+                            <span
+                              class="requirementColumn"
+                            >
+                              <span
+                                class="requirementName"
+                              >
+                                Keyboard navigation
+                              </span>
+                              : All interactive elements can be reached using the Tab and arrow keys. (Partially automated)
+                            </span>
+                          </div>
+                          <div
+                            class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="result"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 144px;"
+                          >
+                            <div
+                              class="choiceGroupContainer"
+                            >
+                              <div
+                                class="ms-ChoiceFieldGroup root-152"
+                                data-automation-id="tabStopsPassFailChoiceGroup"
+                              >
+                                <div
+                                  role="radiogroup"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Pass"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup7-pass"
+                                          name="ChoiceGroup7"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                          for="ChoiceGroup7-pass"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Fail"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup7-fail"
+                                          name="ChoiceGroup7"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                          for="ChoiceGroup7-fail"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="secondaryControlsWrapper"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <span
+                          aria-checked="false"
+                          class="checkCover-148"
+                          data-selection-toggle="true"
+                          role="checkbox"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="ms-List-cell"
+                      data-automationid="ListCell"
+                      data-list-index="1"
+                      role="presentation"
+                    >
+                      <div
+                        aria-rowindex="3"
+                        aria-selected="false"
+                        class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                        data-automationid="DetailsRow"
+                        data-focuszone-id="FocusZone10"
+                        data-is-focusable="true"
+                        data-item-index="1"
+                        data-selection-index="1"
+                        data-selection-touch-invoke="true"
+                        id="row4-1"
+                        role="row"
+                        style="min-width: 224px;"
+                      >
+                        <div
+                          class="ms-DetailsRow-fields fields-149"
+                          data-automationid="DetailsRowFields"
+                          role="presentation"
+                        >
+                          <div
+                            class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="requirement"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 120px;"
+                          >
+                            <span
+                              class="requirementColumn"
+                            >
+                              <span
+                                class="requirementName"
+                              >
+                                Keyboard traps
+                              </span>
+                              : There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)
+                            </span>
+                          </div>
+                          <div
+                            class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="result"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 144px;"
+                          >
+                            <div
+                              class="choiceGroupContainer"
+                            >
+                              <div
+                                class="ms-ChoiceFieldGroup root-152"
+                                data-automation-id="tabStopsPassFailChoiceGroup"
+                              >
+                                <div
+                                  role="radiogroup"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Pass"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup11-pass"
+                                          name="ChoiceGroup11"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                          for="ChoiceGroup11-pass"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Fail"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup11-fail"
+                                          name="ChoiceGroup11"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                          for="ChoiceGroup11-fail"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="secondaryControlsWrapper"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <span
+                          aria-checked="false"
+                          class="checkCover-148"
+                          data-selection-toggle="true"
+                          role="checkbox"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="ms-List-cell"
+                      data-automationid="ListCell"
+                      data-list-index="2"
+                      role="presentation"
+                    >
+                      <div
+                        aria-rowindex="4"
+                        aria-selected="false"
+                        class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                        data-automationid="DetailsRow"
+                        data-focuszone-id="FocusZone14"
+                        data-is-focusable="true"
+                        data-item-index="2"
+                        data-selection-index="2"
+                        data-selection-touch-invoke="true"
+                        id="row4-2"
+                        role="row"
+                        style="min-width: 224px;"
+                      >
+                        <div
+                          class="ms-DetailsRow-fields fields-149"
+                          data-automationid="DetailsRowFields"
+                          role="presentation"
+                        >
+                          <div
+                            class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="requirement"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 120px;"
+                          >
+                            <span
+                              class="requirementColumn"
+                            >
+                              <span
+                                class="requirementName"
+                              >
+                                Focus indicator
+                              </span>
+                              : All interactive elements give a visible indication when they have input focus. (Manual)
+                            </span>
+                          </div>
+                          <div
+                            class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="result"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 144px;"
+                          >
+                            <div
+                              class="choiceGroupContainer"
+                            >
+                              <div
+                                class="ms-ChoiceFieldGroup root-152"
+                                data-automation-id="tabStopsPassFailChoiceGroup"
+                              >
+                                <div
+                                  role="radiogroup"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Pass"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup15-pass"
+                                          name="ChoiceGroup15"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                          for="ChoiceGroup15-pass"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Fail"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup15-fail"
+                                          name="ChoiceGroup15"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                          for="ChoiceGroup15-fail"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="secondaryControlsWrapper"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <span
+                          aria-checked="false"
+                          class="checkCover-148"
+                          data-selection-toggle="true"
+                          role="checkbox"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="ms-List-cell"
+                      data-automationid="ListCell"
+                      data-list-index="3"
+                      role="presentation"
+                    >
+                      <div
+                        aria-rowindex="5"
+                        aria-selected="false"
+                        class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                        data-automationid="DetailsRow"
+                        data-focuszone-id="FocusZone18"
+                        data-is-focusable="true"
+                        data-item-index="3"
+                        data-selection-index="3"
+                        data-selection-touch-invoke="true"
+                        id="row4-3"
+                        role="row"
+                        style="min-width: 224px;"
+                      >
+                        <div
+                          class="ms-DetailsRow-fields fields-149"
+                          data-automationid="DetailsRowFields"
+                          role="presentation"
+                        >
+                          <div
+                            class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="requirement"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 120px;"
+                          >
+                            <span
+                              class="requirementColumn"
+                            >
+                              <span
+                                class="requirementName"
+                              >
+                                Tab order
+                              </span>
+                              : The tab order is consistent with the logical order that's communicated visually. (Partially automated)
+                            </span>
+                          </div>
+                          <div
+                            class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="result"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 144px;"
+                          >
+                            <div
+                              class="choiceGroupContainer"
+                            >
+                              <div
+                                class="ms-ChoiceFieldGroup root-152"
+                                data-automation-id="tabStopsPassFailChoiceGroup"
+                              >
+                                <div
+                                  role="radiogroup"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Pass"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup19-pass"
+                                          name="ChoiceGroup19"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                          for="ChoiceGroup19-pass"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Fail"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup19-fail"
+                                          name="ChoiceGroup19"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                          for="ChoiceGroup19-fail"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="secondaryControlsWrapper"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <span
+                          aria-checked="false"
+                          class="checkCover-148"
+                          data-selection-toggle="true"
+                          role="checkbox"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="ms-List-cell"
+                      data-automationid="ListCell"
+                      data-list-index="4"
+                      role="presentation"
+                    >
+                      <div
+                        aria-rowindex="6"
+                        aria-selected="false"
+                        class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                        data-automationid="DetailsRow"
+                        data-focuszone-id="FocusZone22"
+                        data-is-focusable="true"
+                        data-item-index="4"
+                        data-selection-index="4"
+                        data-selection-touch-invoke="true"
+                        id="row4-4"
+                        role="row"
+                        style="min-width: 224px;"
+                      >
+                        <div
+                          class="ms-DetailsRow-fields fields-149"
+                          data-automationid="DetailsRowFields"
+                          role="presentation"
+                        >
+                          <div
+                            class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="requirement"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 120px;"
+                          >
+                            <span
+                              class="requirementColumn"
+                            >
+                              <span
+                                class="requirementName"
+                              >
+                                Input focus
+                              </span>
+                              : Input focus does not move unexpectedly without the user initiating it. (Manual)
+                            </span>
+                          </div>
+                          <div
+                            class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                            data-automation-key="result"
+                            data-automationid="DetailsRowCell"
+                            role="gridcell"
+                            style="width: 144px;"
+                          >
+                            <div
+                              class="choiceGroupContainer"
+                            >
+                              <div
+                                class="ms-ChoiceFieldGroup root-152"
+                                data-automation-id="tabStopsPassFailChoiceGroup"
+                              >
+                                <div
+                                  role="radiogroup"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Pass"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup23-pass"
+                                          name="ChoiceGroup23"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                          for="ChoiceGroup23-pass"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div
+                                      class="ms-ChoiceField radioButtonOption root-153"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField-wrapper"
+                                      >
+                                        <input
+                                          aria-label="Fail"
+                                          class="ms-ChoiceField-input input-154"
+                                          id="ChoiceGroup23-fail"
+                                          name="ChoiceGroup23"
+                                          tabindex="-1"
+                                          type="radio"
+                                        />
+                                        <label
+                                          class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                          for="ChoiceGroup23-fail"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="secondaryControlsWrapper"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <span
+                          aria-checked="false"
+                          class="checkCover-148"
+                          data-selection-toggle="true"
+                          role="checkbox"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="ms-Viewport"
+        style="min-width: 1px; min-height: 1px;"
+      >
+        <div
+          class="ms-DetailsList is-horizontalConstrained requirementTable root-109"
+          data-automationid="DetailsList"
+          data-is-scrollable="false"
+        >
+          <div
+            aria-colcount="2"
+            aria-rowcount="6"
+            role="grid"
+          >
+            <div
+              class="ms-DetailsList-headerWrapper"
+              role="presentation"
+            >
+              <div
+                class="ms-FocusZone css-127 ms-DetailsHeader root-111"
+                data-automationid="DetailsHeader"
+                data-focuszone-id="FocusZone77"
+                role="row"
+              >
+                <div
+                  aria-labelledby="header76-requirement-name"
+                  aria-sort="none"
+                  class="ms-DetailsHeader-cell is-actionable root-128"
+                  data-automationid="ColumnsHeaderColumn"
+                  data-is-draggable="false"
+                  data-is-focusable="true"
+                  data-item-key="requirement"
+                  draggable="false"
+                  role="columnheader"
+                  style="width: 120px;"
+                  tabindex="0"
+                >
+                  <span
+                    class="cellTooltip-136"
+                  >
+                    <span
+                      class="ms-DetailsHeader-cellTitle cellTitle-134"
+                      id="header76-requirement"
+                    >
+                      <span
+                        class="ms-DetailsHeader-cellName cellName-135"
+                        id="header76-requirement-name"
+                      >
+                        Requirement
+                      </span>
+                    </span>
+                  </span>
+                </div>
+                <div
+                  aria-labelledby="header76-result-name"
+                  aria-sort="none"
+                  class="ms-DetailsHeader-cell is-actionable root-128"
+                  data-automationid="ColumnsHeaderColumn"
+                  data-is-draggable="false"
+                  data-is-focusable="true"
+                  data-item-key="result"
+                  draggable="false"
+                  role="columnheader"
+                  style="width: 144px;"
+                  tabindex="-1"
+                >
+                  <span
+                    class="cellTooltip-136"
+                  >
+                    <span
+                      class="ms-DetailsHeader-cellTitle cellTitle-134"
+                      id="header76-result"
+                    >
+                      <span
+                        class="ms-DetailsHeader-cellName cellName-135"
+                        id="header76-result-name"
+                      >
+                        Pass / Fail
+                      </span>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="ms-DetailsList-contentWrapper"
+              role="presentation"
+            >
+              <div
+                class="ms-SelectionZone"
+                role="presentation"
+              >
+                <div
+                  class="ms-FocusZone css-127 focusZone-110"
+                  data-focuszone-id="FocusZone78"
+                >
+                  <div
+                    class="ms-List"
+                    role="presentation"
+                  >
+                    <div
+                      class="ms-List-surface"
+                      role="presentation"
+                    >
+                      <div
+                        class="ms-List-page"
+                        role="presentation"
+                      >
+                        <div
+                          class="ms-List-cell"
+                          data-automationid="ListCell"
+                          data-list-index="0"
+                          role="presentation"
+                        >
+                          <div
+                            aria-rowindex="2"
+                            aria-selected="false"
+                            class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                            data-automationid="DetailsRow"
+                            data-focuszone-id="FocusZone81"
+                            data-is-focusable="true"
+                            data-item-index="0"
+                            data-selection-index="0"
+                            data-selection-touch-invoke="true"
+                            id="row79-0"
+                            role="row"
+                            style="min-width: 224px;"
+                          >
+                            <div
+                              class="ms-DetailsRow-fields fields-149"
+                              data-automationid="DetailsRowFields"
+                              role="presentation"
+                            >
+                              <div
+                                class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="requirement"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 120px;"
+                              >
+                                <span
+                                  class="requirementColumn"
+                                >
+                                  <span
+                                    class="requirementName"
+                                  >
+                                    Keyboard navigation
+                                  </span>
+                                  :
+                                   
+                                  All interactive elements can be reached using the Tab and arrow keys. (Partially automated)
+                                </span>
+                              </div>
+                              <div
+                                class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="result"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 144px;"
+                              >
+                                <div
+                                  class="choiceGroupContainer"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup root-152"
+                                    data-automation-id="tabStopsPassFailChoiceGroup"
+                                  >
+                                    <div
+                                      role="radiogroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Pass"
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup82-pass"
+                                              name="ChoiceGroup82"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                              for="ChoiceGroup82-pass"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Fail"
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup82-fail"
+                                              name="ChoiceGroup82"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                              for="ChoiceGroup82-fail"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="secondaryControlsWrapper"
+                                  >
+                                    <button
+                                      aria-label="undo"
+                                      class="ms-Button ms-Button--icon root-160"
+                                      data-is-focusable="true"
+                                      tabindex="-1"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="ms-Button-flexContainer flexContainer-161"
+                                        data-automationid="splitbuttonprimary"
+                                      >
+                                        <i
+                                          aria-hidden="true"
+                                          class="ms-Icon root-105 ms-Button-icon icon-163"
+                                          data-icon-name="undo"
+                                        />
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <span
+                              aria-checked="false"
+                              class="checkCover-148"
+                              data-selection-toggle="true"
+                              role="checkbox"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="ms-List-cell"
+                          data-automationid="ListCell"
+                          data-list-index="1"
+                          role="presentation"
+                        >
+                          <div
+                            aria-rowindex="3"
+                            aria-selected="false"
+                            class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                            data-automationid="DetailsRow"
+                            data-focuszone-id="FocusZone88"
+                            data-is-focusable="true"
+                            data-item-index="1"
+                            data-selection-index="1"
+                            data-selection-touch-invoke="true"
+                            id="row79-1"
+                            role="row"
+                            style="min-width: 224px;"
+                          >
+                            <div
+                              class="ms-DetailsRow-fields fields-149"
+                              data-automationid="DetailsRowFields"
+                              role="presentation"
+                            >
+                              <div
+                                class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="requirement"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 120px;"
+                              >
+                                <span
+                                  class="requirementColumn"
+                                >
+                                  <span
+                                    class="requirementName"
+                                  >
+                                    Keyboard traps
+                                  </span>
+                                  :
+                                   
+                                  There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)
+                                </span>
+                              </div>
+                              <div
+                                class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="result"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 144px;"
+                              >
+                                <div
+                                  class="choiceGroupContainer"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup root-152"
+                                    data-automation-id="tabStopsPassFailChoiceGroup"
+                                  >
+                                    <div
+                                      role="radiogroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Pass"
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup89-pass"
+                                              name="ChoiceGroup89"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                              for="ChoiceGroup89-pass"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Fail"
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup89-fail"
+                                              name="ChoiceGroup89"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                              for="ChoiceGroup89-fail"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="secondaryControlsWrapper"
+                                  >
+                                    <button
+                                      aria-label="undo"
+                                      class="ms-Button ms-Button--icon root-160"
+                                      data-is-focusable="true"
+                                      tabindex="-1"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="ms-Button-flexContainer flexContainer-161"
+                                        data-automationid="splitbuttonprimary"
+                                      >
+                                        <i
+                                          aria-hidden="true"
+                                          class="ms-Icon root-105 ms-Button-icon icon-163"
+                                          data-icon-name="undo"
+                                        />
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <span
+                              aria-checked="false"
+                              class="checkCover-148"
+                              data-selection-toggle="true"
+                              role="checkbox"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="ms-List-cell"
+                          data-automationid="ListCell"
+                          data-list-index="2"
+                          role="presentation"
+                        >
+                          <div
+                            aria-rowindex="4"
+                            aria-selected="false"
+                            class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                            data-automationid="DetailsRow"
+                            data-focuszone-id="FocusZone95"
+                            data-is-focusable="true"
+                            data-item-index="2"
+                            data-selection-index="2"
+                            data-selection-touch-invoke="true"
+                            id="row79-2"
+                            role="row"
+                            style="min-width: 224px;"
+                          >
+                            <div
+                              class="ms-DetailsRow-fields fields-149"
+                              data-automationid="DetailsRowFields"
+                              role="presentation"
+                            >
+                              <div
+                                class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="requirement"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 120px;"
+                              >
+                                <span
+                                  class="requirementColumn"
+                                >
+                                  <span
+                                    class="requirementName"
+                                  >
+                                    Focus indicator
+                                  </span>
+                                  :
+                                   
+                                  All interactive elements give a visible indication when they have input focus. (Manual)
+                                </span>
+                              </div>
+                              <div
+                                class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="result"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 144px;"
+                              >
+                                <div
+                                  class="choiceGroupContainer"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup root-152"
+                                    data-automation-id="tabStopsPassFailChoiceGroup"
+                                  >
+                                    <div
+                                      role="radiogroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Pass"
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup96-pass"
+                                              name="ChoiceGroup96"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                              for="ChoiceGroup96-pass"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Fail"
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup96-fail"
+                                              name="ChoiceGroup96"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                              for="ChoiceGroup96-fail"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="secondaryControlsWrapper"
+                                  >
+                                    <button
+                                      aria-label="undo"
+                                      class="ms-Button ms-Button--icon root-160"
+                                      data-is-focusable="true"
+                                      tabindex="-1"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="ms-Button-flexContainer flexContainer-161"
+                                        data-automationid="splitbuttonprimary"
+                                      >
+                                        <i
+                                          aria-hidden="true"
+                                          class="ms-Icon root-105 ms-Button-icon icon-163"
+                                          data-icon-name="undo"
+                                        />
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <span
+                              aria-checked="false"
+                              class="checkCover-148"
+                              data-selection-toggle="true"
+                              role="checkbox"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="ms-List-cell"
+                          data-automationid="ListCell"
+                          data-list-index="3"
+                          role="presentation"
+                        >
+                          <div
+                            aria-rowindex="5"
+                            aria-selected="false"
+                            class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                            data-automationid="DetailsRow"
+                            data-focuszone-id="FocusZone102"
+                            data-is-focusable="true"
+                            data-item-index="3"
+                            data-selection-index="3"
+                            data-selection-touch-invoke="true"
+                            id="row79-3"
+                            role="row"
+                            style="min-width: 224px;"
+                          >
+                            <div
+                              class="ms-DetailsRow-fields fields-149"
+                              data-automationid="DetailsRowFields"
+                              role="presentation"
+                            >
+                              <div
+                                class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="requirement"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 120px;"
+                              >
+                                <span
+                                  class="requirementColumn"
+                                >
+                                  <span
+                                    class="requirementName"
+                                  >
+                                    Tab order
+                                  </span>
+                                  :
+                                   
+                                  The tab order is consistent with the logical order that's communicated visually. (Partially automated)
+                                </span>
+                              </div>
+                              <div
+                                class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="result"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 144px;"
+                              >
+                                <div
+                                  class="choiceGroupContainer"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup root-152"
+                                    data-automation-id="tabStopsPassFailChoiceGroup"
+                                  >
+                                    <div
+                                      role="radiogroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Pass"
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup103-pass"
+                                              name="ChoiceGroup103"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                              for="ChoiceGroup103-pass"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Fail"
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup103-fail"
+                                              name="ChoiceGroup103"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                              for="ChoiceGroup103-fail"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="secondaryControlsWrapper"
+                                  >
+                                    <button
+                                      aria-label="undo"
+                                      class="ms-Button ms-Button--icon root-160"
+                                      data-is-focusable="true"
+                                      tabindex="-1"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="ms-Button-flexContainer flexContainer-161"
+                                        data-automationid="splitbuttonprimary"
+                                      >
+                                        <i
+                                          aria-hidden="true"
+                                          class="ms-Icon root-105 ms-Button-icon icon-163"
+                                          data-icon-name="undo"
+                                        />
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <span
+                              aria-checked="false"
+                              class="checkCover-148"
+                              data-selection-toggle="true"
+                              role="checkbox"
+                            />
+                          </div>
+                        </div>
+                        <div
+                          class="ms-List-cell"
+                          data-automationid="ListCell"
+                          data-list-index="4"
+                          role="presentation"
+                        >
+                          <div
+                            aria-rowindex="6"
+                            aria-selected="false"
+                            class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                            data-automationid="DetailsRow"
+                            data-focuszone-id="FocusZone109"
+                            data-is-focusable="true"
+                            data-item-index="4"
+                            data-selection-index="4"
+                            data-selection-touch-invoke="true"
+                            id="row79-4"
+                            role="row"
+                            style="min-width: 224px;"
+                          >
+                            <div
+                              class="ms-DetailsRow-fields fields-149"
+                              data-automationid="DetailsRowFields"
+                              role="presentation"
+                            >
+                              <div
+                                class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="requirement"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 120px;"
+                              >
+                                <span
+                                  class="requirementColumn"
+                                >
+                                  <span
+                                    class="requirementName"
+                                  >
+                                    Input focus
+                                  </span>
+                                  :
+                                   
+                                  Input focus does not move unexpectedly without the user initiating it. (Manual)
+                                </span>
+                              </div>
+                              <div
+                                class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                                data-automation-key="result"
+                                data-automationid="DetailsRowCell"
+                                role="gridcell"
+                                style="width: 144px;"
+                              >
+                                <div
+                                  class="choiceGroupContainer"
+                                >
+                                  <div
+                                    class="ms-ChoiceFieldGroup root-152"
+                                    data-automation-id="tabStopsPassFailChoiceGroup"
+                                  >
+                                    <div
+                                      role="radiogroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Pass"
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup110-pass"
+                                              name="ChoiceGroup110"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                              for="ChoiceGroup110-pass"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="ms-ChoiceField radioButtonOption root-153"
+                                        >
+                                          <div
+                                            class="ms-ChoiceField-wrapper"
+                                          >
+                                            <input
+                                              aria-label="Fail"
+                                              checked=""
+                                              class="ms-ChoiceField-input input-154"
+                                              id="ChoiceGroup110-fail"
+                                              name="ChoiceGroup110"
+                                              tabindex="-1"
+                                              type="radio"
+                                            />
+                                            <label
+                                              class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionFail field-168"
+                                              for="ChoiceGroup110-fail"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    class="secondaryControlsWrapper"
+                                  >
+                                    <button
+                                      aria-label="undo"
+                                      class="ms-Button ms-Button--icon root-160"
+                                      data-is-focusable="true"
+                                      tabindex="-1"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="ms-Button-flexContainer flexContainer-161"
+                                        data-automationid="splitbuttonprimary"
+                                      >
+                                        <i
+                                          aria-hidden="true"
+                                          class="ms-Icon root-105 ms-Button-icon icon-163"
+                                          data-icon-name="undo"
+                                        />
+                                      </span>
+                                    </button>
+                                    <button
+                                      aria-label="add failure instance"
+                                      class="ms-Button ms-Button--icon root-160"
+                                      data-automation-id="addTabStopsFailureInstance"
+                                      data-is-focusable="true"
+                                      tabindex="-1"
+                                      type="button"
+                                    >
+                                      <span
+                                        class="ms-Button-flexContainer flexContainer-161"
+                                        data-automationid="splitbuttonprimary"
+                                      >
+                                        <i
+                                          aria-hidden="true"
+                                          class="ms-Icon root-105 ms-Button-icon icon-163"
+                                          data-icon-name="add"
+                                        />
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <span
+                              aria-checked="false"
+                              class="checkCover-148"
+                              data-selection-toggle="true"
+                              role="checkbox"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="ms-Viewport"
+      style="min-width: 1px; min-height: 1px;"
+    >
+      <div
+        class="ms-DetailsList is-horizontalConstrained requirementTable root-109"
+        data-automationid="DetailsList"
+        data-is-scrollable="false"
+      >
+        <div
+          aria-colcount="2"
+          aria-rowcount="6"
+          role="grid"
+        >
+          <div
+            class="ms-DetailsList-headerWrapper"
+            role="presentation"
+          >
+            <div
+              class="ms-FocusZone css-127 ms-DetailsHeader root-111"
+              data-automationid="DetailsHeader"
+              data-focuszone-id="FocusZone77"
+              role="row"
+            >
+              <div
+                aria-labelledby="header76-requirement-name"
+                aria-sort="none"
+                class="ms-DetailsHeader-cell is-actionable root-128"
+                data-automationid="ColumnsHeaderColumn"
+                data-is-draggable="false"
+                data-is-focusable="true"
+                data-item-key="requirement"
+                draggable="false"
+                role="columnheader"
+                style="width: 120px;"
+                tabindex="0"
+              >
+                <span
+                  class="cellTooltip-136"
+                >
+                  <span
+                    class="ms-DetailsHeader-cellTitle cellTitle-134"
+                    id="header76-requirement"
+                  >
+                    <span
+                      class="ms-DetailsHeader-cellName cellName-135"
+                      id="header76-requirement-name"
+                    >
+                      Requirement
+                    </span>
+                  </span>
+                </span>
+              </div>
+              <div
+                aria-labelledby="header76-result-name"
+                aria-sort="none"
+                class="ms-DetailsHeader-cell is-actionable root-128"
+                data-automationid="ColumnsHeaderColumn"
+                data-is-draggable="false"
+                data-is-focusable="true"
+                data-item-key="result"
+                draggable="false"
+                role="columnheader"
+                style="width: 144px;"
+                tabindex="-1"
+              >
+                <span
+                  class="cellTooltip-136"
+                >
+                  <span
+                    class="ms-DetailsHeader-cellTitle cellTitle-134"
+                    id="header76-result"
+                  >
+                    <span
+                      class="ms-DetailsHeader-cellName cellName-135"
+                      id="header76-result-name"
+                    >
+                      Pass / Fail
+                    </span>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ms-DetailsList-contentWrapper"
+            role="presentation"
+          >
+            <div
+              class="ms-SelectionZone"
+              role="presentation"
+            >
+              <div
+                class="ms-FocusZone css-127 focusZone-110"
+                data-focuszone-id="FocusZone78"
+              >
+                <div
+                  class="ms-List"
+                  role="presentation"
+                >
+                  <div
+                    class="ms-List-surface"
+                    role="presentation"
+                  >
+                    <div
+                      class="ms-List-page"
+                      role="presentation"
+                    >
+                      <div
+                        class="ms-List-cell"
+                        data-automationid="ListCell"
+                        data-list-index="0"
+                        role="presentation"
+                      >
+                        <div
+                          aria-rowindex="2"
+                          aria-selected="false"
+                          class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                          data-automationid="DetailsRow"
+                          data-focuszone-id="FocusZone81"
+                          data-is-focusable="true"
+                          data-item-index="0"
+                          data-selection-index="0"
+                          data-selection-touch-invoke="true"
+                          id="row79-0"
+                          role="row"
+                          style="min-width: 224px;"
+                        >
+                          <div
+                            class="ms-DetailsRow-fields fields-149"
+                            data-automationid="DetailsRowFields"
+                            role="presentation"
+                          >
+                            <div
+                              class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="requirement"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 120px;"
+                            >
+                              <span
+                                class="requirementColumn"
+                              >
+                                <span
+                                  class="requirementName"
+                                >
+                                  Keyboard navigation
+                                </span>
+                                :
+                                 
+                                All interactive elements can be reached using the Tab and arrow keys. (Partially automated)
+                              </span>
+                            </div>
+                            <div
+                              class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="result"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 144px;"
+                            >
+                              <div
+                                class="choiceGroupContainer"
+                              >
+                                <div
+                                  class="ms-ChoiceFieldGroup root-152"
+                                  data-automation-id="tabStopsPassFailChoiceGroup"
+                                >
+                                  <div
+                                    role="radiogroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Pass"
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup82-pass"
+                                            name="ChoiceGroup82"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                            for="ChoiceGroup82-pass"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Fail"
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup82-fail"
+                                            name="ChoiceGroup82"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                            for="ChoiceGroup82-fail"
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="secondaryControlsWrapper"
+                                >
+                                  <button
+                                    aria-label="undo"
+                                    class="ms-Button ms-Button--icon root-160"
+                                    data-is-focusable="true"
+                                    tabindex="-1"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="ms-Button-flexContainer flexContainer-161"
+                                      data-automationid="splitbuttonprimary"
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        class="ms-Icon root-105 ms-Button-icon icon-163"
+                                        data-icon-name="undo"
+                                      />
+                                    </span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <span
+                            aria-checked="false"
+                            class="checkCover-148"
+                            data-selection-toggle="true"
+                            role="checkbox"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="ms-List-cell"
+                        data-automationid="ListCell"
+                        data-list-index="1"
+                        role="presentation"
+                      >
+                        <div
+                          aria-rowindex="3"
+                          aria-selected="false"
+                          class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                          data-automationid="DetailsRow"
+                          data-focuszone-id="FocusZone88"
+                          data-is-focusable="true"
+                          data-item-index="1"
+                          data-selection-index="1"
+                          data-selection-touch-invoke="true"
+                          id="row79-1"
+                          role="row"
+                          style="min-width: 224px;"
+                        >
+                          <div
+                            class="ms-DetailsRow-fields fields-149"
+                            data-automationid="DetailsRowFields"
+                            role="presentation"
+                          >
+                            <div
+                              class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="requirement"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 120px;"
+                            >
+                              <span
+                                class="requirementColumn"
+                              >
+                                <span
+                                  class="requirementName"
+                                >
+                                  Keyboard traps
+                                </span>
+                                :
+                                 
+                                There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)
+                              </span>
+                            </div>
+                            <div
+                              class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="result"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 144px;"
+                            >
+                              <div
+                                class="choiceGroupContainer"
+                              >
+                                <div
+                                  class="ms-ChoiceFieldGroup root-152"
+                                  data-automation-id="tabStopsPassFailChoiceGroup"
+                                >
+                                  <div
+                                    role="radiogroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Pass"
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup89-pass"
+                                            name="ChoiceGroup89"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                            for="ChoiceGroup89-pass"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Fail"
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup89-fail"
+                                            name="ChoiceGroup89"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                            for="ChoiceGroup89-fail"
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="secondaryControlsWrapper"
+                                >
+                                  <button
+                                    aria-label="undo"
+                                    class="ms-Button ms-Button--icon root-160"
+                                    data-is-focusable="true"
+                                    tabindex="-1"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="ms-Button-flexContainer flexContainer-161"
+                                      data-automationid="splitbuttonprimary"
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        class="ms-Icon root-105 ms-Button-icon icon-163"
+                                        data-icon-name="undo"
+                                      />
+                                    </span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <span
+                            aria-checked="false"
+                            class="checkCover-148"
+                            data-selection-toggle="true"
+                            role="checkbox"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="ms-List-cell"
+                        data-automationid="ListCell"
+                        data-list-index="2"
+                        role="presentation"
+                      >
+                        <div
+                          aria-rowindex="4"
+                          aria-selected="false"
+                          class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                          data-automationid="DetailsRow"
+                          data-focuszone-id="FocusZone95"
+                          data-is-focusable="true"
+                          data-item-index="2"
+                          data-selection-index="2"
+                          data-selection-touch-invoke="true"
+                          id="row79-2"
+                          role="row"
+                          style="min-width: 224px;"
+                        >
+                          <div
+                            class="ms-DetailsRow-fields fields-149"
+                            data-automationid="DetailsRowFields"
+                            role="presentation"
+                          >
+                            <div
+                              class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="requirement"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 120px;"
+                            >
+                              <span
+                                class="requirementColumn"
+                              >
+                                <span
+                                  class="requirementName"
+                                >
+                                  Focus indicator
+                                </span>
+                                :
+                                 
+                                All interactive elements give a visible indication when they have input focus. (Manual)
+                              </span>
+                            </div>
+                            <div
+                              class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="result"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 144px;"
+                            >
+                              <div
+                                class="choiceGroupContainer"
+                              >
+                                <div
+                                  class="ms-ChoiceFieldGroup root-152"
+                                  data-automation-id="tabStopsPassFailChoiceGroup"
+                                >
+                                  <div
+                                    role="radiogroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Pass"
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup96-pass"
+                                            name="ChoiceGroup96"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                            for="ChoiceGroup96-pass"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Fail"
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup96-fail"
+                                            name="ChoiceGroup96"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                            for="ChoiceGroup96-fail"
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="secondaryControlsWrapper"
+                                >
+                                  <button
+                                    aria-label="undo"
+                                    class="ms-Button ms-Button--icon root-160"
+                                    data-is-focusable="true"
+                                    tabindex="-1"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="ms-Button-flexContainer flexContainer-161"
+                                      data-automationid="splitbuttonprimary"
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        class="ms-Icon root-105 ms-Button-icon icon-163"
+                                        data-icon-name="undo"
+                                      />
+                                    </span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <span
+                            aria-checked="false"
+                            class="checkCover-148"
+                            data-selection-toggle="true"
+                            role="checkbox"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="ms-List-cell"
+                        data-automationid="ListCell"
+                        data-list-index="3"
+                        role="presentation"
+                      >
+                        <div
+                          aria-rowindex="5"
+                          aria-selected="false"
+                          class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                          data-automationid="DetailsRow"
+                          data-focuszone-id="FocusZone102"
+                          data-is-focusable="true"
+                          data-item-index="3"
+                          data-selection-index="3"
+                          data-selection-touch-invoke="true"
+                          id="row79-3"
+                          role="row"
+                          style="min-width: 224px;"
+                        >
+                          <div
+                            class="ms-DetailsRow-fields fields-149"
+                            data-automationid="DetailsRowFields"
+                            role="presentation"
+                          >
+                            <div
+                              class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="requirement"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 120px;"
+                            >
+                              <span
+                                class="requirementColumn"
+                              >
+                                <span
+                                  class="requirementName"
+                                >
+                                  Tab order
+                                </span>
+                                :
+                                 
+                                The tab order is consistent with the logical order that's communicated visually. (Partially automated)
+                              </span>
+                            </div>
+                            <div
+                              class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="result"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 144px;"
+                            >
+                              <div
+                                class="choiceGroupContainer"
+                              >
+                                <div
+                                  class="ms-ChoiceFieldGroup root-152"
+                                  data-automation-id="tabStopsPassFailChoiceGroup"
+                                >
+                                  <div
+                                    role="radiogroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Pass"
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup103-pass"
+                                            name="ChoiceGroup103"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                            for="ChoiceGroup103-pass"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Fail"
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup103-fail"
+                                            name="ChoiceGroup103"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
+                                            for="ChoiceGroup103-fail"
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="secondaryControlsWrapper"
+                                >
+                                  <button
+                                    aria-label="undo"
+                                    class="ms-Button ms-Button--icon root-160"
+                                    data-is-focusable="true"
+                                    tabindex="-1"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="ms-Button-flexContainer flexContainer-161"
+                                      data-automationid="splitbuttonprimary"
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        class="ms-Icon root-105 ms-Button-icon icon-163"
+                                        data-icon-name="undo"
+                                      />
+                                    </span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <span
+                            aria-checked="false"
+                            class="checkCover-148"
+                            data-selection-toggle="true"
+                            role="checkbox"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="ms-List-cell"
+                        data-automationid="ListCell"
+                        data-list-index="4"
+                        role="presentation"
+                      >
+                        <div
+                          aria-rowindex="6"
+                          aria-selected="false"
+                          class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
+                          data-automationid="DetailsRow"
+                          data-focuszone-id="FocusZone109"
+                          data-is-focusable="true"
+                          data-item-index="4"
+                          data-selection-index="4"
+                          data-selection-touch-invoke="true"
+                          id="row79-4"
+                          role="row"
+                          style="min-width: 224px;"
+                        >
+                          <div
+                            class="ms-DetailsRow-fields fields-149"
+                            data-automationid="DetailsRowFields"
+                            role="presentation"
+                          >
+                            <div
+                              class="ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="requirement"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 120px;"
+                            >
+                              <span
+                                class="requirementColumn"
+                              >
+                                <span
+                                  class="requirementName"
+                                >
+                                  Input focus
+                                </span>
+                                :
+                                 
+                                Input focus does not move unexpectedly without the user initiating it. (Manual)
+                              </span>
+                            </div>
+                            <div
+                              class="passFailColumnCell ms-DetailsRow-cell cell-145 cellUnpadded-143"
+                              data-automation-key="result"
+                              data-automationid="DetailsRowCell"
+                              role="gridcell"
+                              style="width: 144px;"
+                            >
+                              <div
+                                class="choiceGroupContainer"
+                              >
+                                <div
+                                  class="ms-ChoiceFieldGroup root-152"
+                                  data-automation-id="tabStopsPassFailChoiceGroup"
+                                >
+                                  <div
+                                    role="radiogroup"
+                                  >
+                                    <div
+                                      class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+                                    >
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Pass"
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup110-pass"
+                                            name="ChoiceGroup110"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
+                                            for="ChoiceGroup110-pass"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="ms-ChoiceField radioButtonOption root-153"
+                                      >
+                                        <div
+                                          class="ms-ChoiceField-wrapper"
+                                        >
+                                          <input
+                                            aria-label="Fail"
+                                            checked=""
+                                            class="ms-ChoiceField-input input-154"
+                                            id="ChoiceGroup110-fail"
+                                            name="ChoiceGroup110"
+                                            tabindex="-1"
+                                            type="radio"
+                                          />
+                                          <label
+                                            class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionFail field-168"
+                                            for="ChoiceGroup110-fail"
+                                          />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div
+                                  class="secondaryControlsWrapper"
+                                >
+                                  <button
+                                    aria-label="undo"
+                                    class="ms-Button ms-Button--icon root-160"
+                                    data-is-focusable="true"
+                                    tabindex="-1"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="ms-Button-flexContainer flexContainer-161"
+                                      data-automationid="splitbuttonprimary"
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        class="ms-Icon root-105 ms-Button-icon icon-163"
+                                        data-icon-name="undo"
+                                      />
+                                    </span>
+                                  </button>
+                                  <button
+                                    aria-label="add failure instance"
+                                    class="ms-Button ms-Button--icon root-160"
+                                    data-automation-id="addTabStopsFailureInstance"
+                                    data-is-focusable="true"
+                                    tabindex="-1"
+                                    type="button"
+                                  >
+                                    <span
+                                      class="ms-Button-flexContainer flexContainer-161"
+                                      data-automationid="splitbuttonprimary"
+                                    >
+                                      <i
+                                        aria-hidden="true"
+                                        class="ms-Icon root-105 ms-Button-icon icon-163"
+                                        data-icon-name="add"
+                                      />
+                                    </span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <span
+                            aria-checked="false"
+                            class="checkCover-148"
+                            data-selection-toggle="true"
+                            role="checkbox"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;

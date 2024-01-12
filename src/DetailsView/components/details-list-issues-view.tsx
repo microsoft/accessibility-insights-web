@@ -41,7 +41,7 @@ export interface DetailsListIssuesViewProps {
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
     'DetailsListIssuesView',
     ({ children, ...props }) => {
-        const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
+        const scanData = props.configuration?.getStoreData(props.visualizationStoreData.tests);
         const isScanning: boolean = props.visualizationStoreData.scanning !== null;
         const title = props.configuration.displayableData.title;
         const subtitle = props.configuration.displayableData.subtitle;
@@ -65,7 +65,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 featureFlags={props.featureFlagStoreData}
                 userConfigurationStoreData={props.userConfigurationStoreData}
                 scanMetadata={props.scanMetadata}
-                cardsViewData={props.cardsViewData}
+                cardsViewData={props?.cardsViewData}
                 instancesSection={props.instancesSection}
                 visualizationStoreData={props.visualizationStoreData}
                 cardSelectionMessageCreator={props.cardSelectionMessageCreator}

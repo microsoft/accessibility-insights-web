@@ -1,15 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BannerWarning render 1`] = `
-<React.Fragment>
-  <ScanIncompleteWarning
-    deps={null}
-    test={null}
-    warningConfiguration={null}
-    warnings={null}
-  />
-  <injection-failed-warning
-    visualizationStoreData={null}
-  />
-</React.Fragment>
-`;
+exports[`BannerWarning render 1`] = `<DocumentFragment />`;

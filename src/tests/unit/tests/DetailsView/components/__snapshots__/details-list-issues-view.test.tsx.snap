@@ -1,79 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsListIssuesView should return issues table with scanning to false 1`] = `
-<IssuesTable
-  cardsViewData={
-    {
-      "allCardsCollapsed": true,
-      "cards": {
-        "fail": [
-          {
-            "description": "sample-description",
-            "guidance": [
-              {
-                "href": "sample-guidance-href",
-                "text": "sample-guidance-text",
-              },
-            ],
-            "id": "some-rule",
-            "nodes": [
-              {
-                "descriptors": {
-                  "snippet": "this is a sample snippet",
-                },
-                "identifiers": {
-                  "conciseName": "body img",
-                  "css-selector": "body img",
-                  "identifier": "body img",
-                },
-                "resolution": {
-                  "how-to-fix-web": {
-                    "all": [],
-                    "any": [
-                      "Element does not have an alt attribute",
-                      "aria-label attribute does not exist or is empty",
-                      "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                    ],
-                    "none": [],
-                  },
-                  "howToFixSummary": "sample how to fix summary",
-                },
-                "ruleId": "image-alt",
-                "status": "fail",
-                "uid": "some-guid-here",
-              },
-            ],
-            "url": "sample-url",
-          },
-        ],
-        "inapplicable": [],
-        "pass": [],
-        "unknown": [],
-      },
-      "visualHelperEnabled": true,
-    }
-  }
-  deps={
-    {
-      "detailsViewActionMessageCreator": {},
-    }
-  }
-  featureFlags={{}}
-  instancesSection={[Function]}
-  issuesEnabled={true}
-  scanning={false}
-  stepsText="Step 0 of 3"
-  subtitle={
-    <React.Fragment>
+<DocumentFragment>
+  <div
+    class="issuesTable"
+  >
+    <h1>
+      test title Step 0 of 3
+    </h1>
+    <div
+      class="issuesTableSubtitle"
+    >
       test subtitle
-    </React.Fragment>
-  }
-  title="test title"
-  visualizationStoreData={
-    {
-      "scanning": null,
-      "tests": {},
-    }
-  }
-/>
+    </div>
+    <div
+      class="issuesTableContent"
+    />
+  </div>
+</DocumentFragment>
 `;

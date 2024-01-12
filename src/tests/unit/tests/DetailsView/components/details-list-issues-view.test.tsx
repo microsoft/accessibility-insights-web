@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
@@ -15,7 +16,6 @@ import {
     DetailsListIssuesViewDeps,
     DetailsListIssuesViewProps,
 } from 'DetailsView/components/details-list-issues-view';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
@@ -49,6 +49,7 @@ describe('DetailsListIssuesView', () => {
         props = {
             deps: {
                 detailsViewActionMessageCreator,
+                getProvider: () => { }
             } as DetailsListIssuesViewDeps,
             configuration: {
                 getStoreData: getStoreDataMock.object,
@@ -73,8 +74,8 @@ describe('DetailsListIssuesView', () => {
     it('should return issues table with scanning to false', () => {
         props.visualizationStoreData.scanning = null;
 
-        const actual = shallow(<DetailsListIssuesView {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const actual = render(<DetailsListIssuesView {...props} />);
+        expect(actual.asFragment()).toMatchSnapshot();
         verifyAll();
     });
 

@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import {
     ActionAndCancelButtonsComponent,
     ActionAndCancelButtonsComponentProps,
 } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
+
 
 describe('ActionAndCancelButtonsComponent', () => {
     test('constructor', () => {
@@ -16,8 +17,8 @@ describe('ActionAndCancelButtonsComponent', () => {
     });
 
     test.each(['sample href', null])('render with primary button href == %s', href => {
-        const primaryButtonOnClickStub = () => {};
-        const cancelButtonOnClickStub = () => {};
+        const primaryButtonOnClickStub = () => { };
+        const cancelButtonOnClickStub = () => { };
         const props: ActionAndCancelButtonsComponentProps = {
             isHidden: false,
             primaryButtonDisabled: false,
@@ -26,8 +27,8 @@ describe('ActionAndCancelButtonsComponent', () => {
             cancelButtonOnClick: cancelButtonOnClickStub,
             primaryButtonHref: href,
         };
-        const wrapper = shallow(<ActionAndCancelButtonsComponent {...props} />);
+        const wrapper = render(<ActionAndCancelButtonsComponent {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 });

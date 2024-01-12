@@ -1,69 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentInstanceSelectedButton render when element is not selected and is not visible 1`] = `
-<CustomizedIconButton
-  aria-checked={false}
-  aria-label="Visualization"
-  className="instanceVisibilityButton testInstanceSelectedHiddenButton"
-  disabled={true}
-  iconProps={
-    {
-      "className": "",
-      "iconName": "hide2",
-    }
-  }
-  onClick={[Function]}
-  role="checkbox"
-/>
+<DocumentFragment>
+  <button
+    aria-checked="false"
+    aria-disabled="true"
+    aria-label="Visualization"
+    class="ms-Button ms-Button--icon is-disabled instanceVisibilityButton testInstanceSelectedHiddenButton root-117"
+    data-is-focusable="false"
+    disabled=""
+    role="checkbox"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-105 ms-Button-icon icon-118"
+        data-icon-name="hide2"
+      />
+    </span>
+  </button>
+</DocumentFragment>
 `;
 
 exports[`AssessmentInstanceSelectedButton render when element is not selected and is visible 1`] = `
-<CustomizedIconButton
-  aria-checked={false}
-  aria-label="Visualization"
-  className="instanceVisibilityButton"
-  disabled={false}
-  iconProps={
-    {
-      "className": "",
-      "iconName": "checkBox",
-    }
-  }
-  onClick={[Function]}
-  role="checkbox"
-/>
+<DocumentFragment>
+  <button
+    aria-checked="false"
+    aria-label="Visualization"
+    class="ms-Button ms-Button--icon instanceVisibilityButton root-109"
+    data-is-focusable="true"
+    role="checkbox"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-105 ms-Button-icon icon-112"
+        data-icon-name="checkBox"
+      />
+    </span>
+  </button>
+</DocumentFragment>
 `;
 
 exports[`AssessmentInstanceSelectedButton render when element is selected and visible 1`] = `
-<CustomizedIconButton
-  aria-checked={true}
-  aria-label="Visualization"
-  className="instanceVisibilityButton"
-  disabled={false}
-  iconProps={
-    {
-      "className": "testInstanceSelected testInstanceSelectedVisible",
-      "iconName": "view",
-    }
-  }
-  onClick={[Function]}
-  role="checkbox"
-/>
+<DocumentFragment>
+  <button
+    aria-checked="false"
+    aria-label="Visualization"
+    class="ms-Button ms-Button--icon instanceVisibilityButton root-109"
+    data-is-focusable="true"
+    role="checkbox"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-105 ms-Button-icon testInstanceSelected testInstanceSelectedVisible icon-112 testInstanceSelected testInstanceSelectedVisible"
+        data-icon-name="view"
+      />
+    </span>
+  </button>
+</DocumentFragment>
 `;
 
 exports[`AssessmentInstanceSelectedButton render when element is selected but hidden 1`] = `
-<CustomizedIconButton
-  aria-checked={true}
-  aria-label="Visualization"
-  className="instanceVisibilityButton testInstanceSelectedHiddenButton"
-  disabled={true}
-  iconProps={
-    {
-      "className": "testInstanceSelected testInstanceSelectedHidden",
-      "iconName": "hide2",
-    }
-  }
-  onClick={[Function]}
-  role="checkbox"
-/>
+<DocumentFragment>
+  <button
+    aria-checked="false"
+    aria-disabled="true"
+    aria-label="Visualization"
+    class="ms-Button ms-Button--icon is-disabled instanceVisibilityButton testInstanceSelectedHiddenButton root-117"
+    data-is-focusable="false"
+    disabled=""
+    role="checkbox"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-105 ms-Button-icon testInstanceSelected testInstanceSelectedHidden icon-118 testInstanceSelected testInstanceSelectedHidden"
+        data-icon-name="hide2"
+      />
+    </span>
+  </button>
+</DocumentFragment>
 `;

@@ -1,57 +1,120 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ActionAndCancelButtonsComponent render with primary button href == null 1`] = `
-<div
-  className="actionAndCancelButtonsComponent"
-  hidden={false}
->
+<DocumentFragment>
   <div
-    className="actionCancelButtonCol"
+    class="actionAndCancelButtonsComponent"
   >
-    <CustomizedDefaultButton
-      onClick={[Function]}
-      text="Cancel"
-    />
+    <div
+      class="actionCancelButtonCol"
+    >
+      <button
+        class="ms-Button ms-Button--default root-109"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__6"
+            >
+              Cancel
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <div
+      class="actionCancelButtonCol"
+    >
+      <button
+        class="ms-Button ms-Button--primary root-117"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__9"
+            >
+              Test
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
   </div>
-  <div
-    className="actionCancelButtonCol"
-  >
-    <CustomizedDefaultButton
-      disabled={false}
-      href={null}
-      onClick={[Function]}
-      primary={true}
-      target="_self"
-      text="Test"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ActionAndCancelButtonsComponent render with primary button href == sample href 1`] = `
-<div
-  className="actionAndCancelButtonsComponent"
-  hidden={false}
->
+<DocumentFragment>
   <div
-    className="actionCancelButtonCol"
+    class="actionAndCancelButtonsComponent"
   >
-    <CustomizedDefaultButton
-      onClick={[Function]}
-      text="Cancel"
-    />
+    <div
+      class="actionCancelButtonCol"
+    >
+      <button
+        class="ms-Button ms-Button--default root-109"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__0"
+            >
+              Cancel
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <div
+      class="actionCancelButtonCol"
+    >
+      <a
+        class="ms-Button ms-Button--primary root-117"
+        data-is-focusable="true"
+        href="sample href"
+        target="_blank"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__3"
+            >
+              Test
+            </span>
+          </span>
+        </span>
+      </a>
+    </div>
   </div>
-  <div
-    className="actionCancelButtonCol"
-  >
-    <CustomizedDefaultButton
-      disabled={false}
-      href="sample href"
-      onClick={[Function]}
-      primary={true}
-      target="_blank"
-      text="Test"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;

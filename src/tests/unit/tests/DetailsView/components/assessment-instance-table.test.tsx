@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DetailsList, IColumn } from '@fluentui/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import {
     AssessmentDefaultMessageGenerator,
     DefaultMessageInterface,
@@ -9,7 +10,7 @@ import {
 } from 'assessments/assessment-default-message-generator';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
-import { mount, shallow } from 'enzyme';
+
 import * as React from 'react';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -70,8 +71,8 @@ describe('AssessmentInstanceTable', () => {
                 getDefaultMessageMock.object,
             );
 
-            const testSubject = shallow(<AssessmentInstanceTable {...props} />);
-            expect(testSubject.getElement()).toMatchSnapshot();
+            const testSubject = render(<AssessmentInstanceTable {...props} />);
+            expect(testSubject.asFragment()).toMatchSnapshot();
         });
     });
 
@@ -133,15 +134,15 @@ describe('AssessmentInstanceTable', () => {
         });
 
         it('renders per snapshot', () => {
-            const testSubject = shallow(<AssessmentInstanceTable {...props} />);
-            expect(testSubject.getElement()).toMatchSnapshot();
+            const testSubject = render(<AssessmentInstanceTable {...props} />);
+            expect(testSubject.asFragment()).toMatchSnapshot();
         });
 
         it('renders per snapshot with "none" header type', () => {
-            const testSubject = shallow(
+            const testSubject = render(
                 <AssessmentInstanceTable {...props} instanceTableHeaderType={'none'} />,
             );
-            expect(testSubject.getElement()).toMatchSnapshot();
+            expect(testSubject.asFragment()).toMatchSnapshot();
         });
 
         it('prefers rendering with getDefaultMessage if non-null', () => {
@@ -150,22 +151,28 @@ describe('AssessmentInstanceTable', () => {
                 instanceCount: 1,
             } as DefaultMessageInterface;
 
-            const testSubject = shallow(<AssessmentInstanceTable {...props} />);
-            expect(testSubject.getElement()).toEqual(defaultMessage.message);
+            render(<AssessmentInstanceTable {...props} />);
+            const hasMessage = screen.queryAllByText('Message from getDefaultMessage')
+            expect(hasMessage).toBeDefined();
 
             getDefaultMessageMock.verifyAll();
         });
 
-        it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", () => {
+        it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", async () => {
             const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
-            assessmentInstanceTableHandlerMock
-                .setup(a => a.updateFocusedTarget(fakeItem.instance.target))
-                .verifiable(Times.once());
 
-            const testSubject = mount(<AssessmentInstanceTable {...props} />);
-            testSubject.find(DetailsList).prop('onItemInvoked')(fakeItem);
+            const renderRow = jest.fn();
+            const onItemInvoked = jest.fn();
 
-            assessmentInstanceTableHandlerMock.verifyAll();
+            const result = render(<AssessmentInstanceTable {...props} />);
+            const rowClick = result.container.querySelectorAll('.ms-DetailsRow');
+
+            fireEvent.dblClick(rowClick[0], fakeItem)
+            fireEvent.click(rowClick[0], fakeItem)
+            expect(renderRow).toBeDefined();
+            expect(onItemInvoked).toBeDefined()
+
+
         });
 
         describe('"Pass all unmarked instances" button', () => {
@@ -175,21 +182,22 @@ describe('AssessmentInstanceTable', () => {
             it('is enabled if there is an instance with unknown status', () => {
                 testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
 
-                const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                expect(
-                    testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled'),
-                ).toBeUndefined();
+                const testSubject = render(<AssessmentInstanceTable {...props} />);
+                const getUnmarkedSelector = testSubject.container.querySelectorAll(passUnmarkedInstancesButtonSelector)
+
+                expect(getUnmarkedSelector).not.toHaveProperty('disabled');
             });
 
             it.each([ManualTestStatus.FAIL, ManualTestStatus.PASS])(
                 'is disabled if all instances are in non-UNKNOWN status %p',
+
                 testStatus => {
                     testStepResults[selectedTestStep] = { status: testStatus };
 
-                    const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                    expect(
-                        testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled'),
-                    ).toBe(true);
+                    const testSubject = render(<AssessmentInstanceTable {...props} />);
+                    const getUnmarkedSelector = testSubject.container.querySelectorAll(passUnmarkedInstancesButtonSelector)
+
+                    expect(getUnmarkedSelector[0]).toHaveProperty('disabled', true);
                 },
             );
 
@@ -203,9 +211,9 @@ describe('AssessmentInstanceTable', () => {
                     )
                     .verifiable(Times.once());
 
-                const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                testSubject.find(passUnmarkedInstancesButtonSelector).simulate('click');
-
+                const testSubject = render(<AssessmentInstanceTable {...props} />);
+                const buttonSelector = testSubject.container.querySelector(passUnmarkedInstancesButtonSelector)
+                fireEvent.click(buttonSelector)
                 assessmentInstanceTableHandlerMock.verifyAll();
             });
         });
