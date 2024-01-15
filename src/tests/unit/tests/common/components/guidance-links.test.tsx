@@ -8,7 +8,10 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { forOwn } from 'lodash';
 import * as React from 'react';
 import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
-import { mockReactComponents, useOriginalReactElements } from '../../../mock-helpers/mock-module-helpers';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 jest.mock('common/components/external-link');
 
 describe('GuidanceLinksTest', () => {

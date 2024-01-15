@@ -4,7 +4,10 @@ import { ILinkProps, Link } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import * as React from 'react';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 jest.mock('@fluentui/react');
 
 describe('NewTabLink', () => {

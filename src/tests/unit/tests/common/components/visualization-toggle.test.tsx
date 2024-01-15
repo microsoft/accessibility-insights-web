@@ -9,7 +9,11 @@ import {
     VisualizationToggle,
     VisualizationToggleProps,
 } from '../../../../../common/components/visualization-toggle';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents, useOriginalReactElements } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 import { Toggle } from '@fluentui/react';
 jest.mock('@fluentui/react');
 
@@ -27,7 +31,6 @@ describe('VisualizationToggleTest', () => {
         const renderResult = render(<VisualizationToggle {...generatedProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([Toggle]);
-
     });
 
     test('verify onClick being called when toggle clicked', async () => {

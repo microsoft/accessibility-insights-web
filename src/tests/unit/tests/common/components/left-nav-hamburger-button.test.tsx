@@ -7,7 +7,10 @@ import {
 } from 'common/components/left-nav-hamburger-button';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
-import { mockReactComponents, useOriginalReactElements } from '../../../mock-helpers/mock-module-helpers';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 import { IconButton } from '@fluentui/react';
 jest.mock('@fluentui/react');
 

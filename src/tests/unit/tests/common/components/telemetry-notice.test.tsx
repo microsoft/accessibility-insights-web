@@ -7,7 +7,10 @@ import {
     TelemetryNotice,
     TelemetryNoticeDeps,
 } from '../../../../../common/components/telemetry-notice';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 jest.mock('../../../../../common/components/new-tab-link');
 
 describe('TelemetryNotice', () => {
