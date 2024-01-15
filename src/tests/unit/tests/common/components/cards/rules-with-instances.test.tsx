@@ -15,12 +15,13 @@ import {
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock } from 'typemoq';
+import { RuleContent } from '../../../../../../common/components/cards/rule-content';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
-jest.mock('common/components/cards/collapsible-component-cards');
+jest.mock('../../../../../../common/components/cards/rule-content');
 
 describe('RulesWithInstances', () => {
-    mockReactComponents([CardsCollapsibleControl]);
+    mockReactComponents([RuleContent]);
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
     let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
 
@@ -51,6 +52,6 @@ describe('RulesWithInstances', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([CardsCollapsibleControl]);
+        expectMockedComponentPropsToMatchSnapshots([RuleContent]);
     });
 });
