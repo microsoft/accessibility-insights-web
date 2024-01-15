@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Toggle } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import { IMock, Mock, It } from 'typemoq';
-
 import {
     VisualizationToggle,
     VisualizationToggleProps,
@@ -14,7 +14,6 @@ import {
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
-import { Toggle } from '@fluentui/react';
 jest.mock('@fluentui/react');
 
 describe('VisualizationToggleTest', () => {

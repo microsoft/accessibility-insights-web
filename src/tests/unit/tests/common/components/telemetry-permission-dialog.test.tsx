@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Checkbox, Dialog, DialogFooter, PrimaryButton } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
@@ -18,7 +19,6 @@ import {
     TelemetryPermissionDialogProps,
 } from '../../../../../common/components/telemetry-permission-dialog';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { Checkbox, Dialog, DialogFooter, PrimaryButton } from '@fluentui/react';
 jest.mock('../../../../../common/components/privacy-statement-text');
 jest.mock('../../../../../common/components/telemetry-notice');
 jest.mock('@fluentui/react');

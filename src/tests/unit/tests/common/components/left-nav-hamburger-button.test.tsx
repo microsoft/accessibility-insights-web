@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IconButton } from '@fluentui/react';
 import { createEvent, fireEvent, render } from '@testing-library/react';
 import {
     LeftNavHamburgerButton,
@@ -11,7 +12,6 @@ import {
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
-import { IconButton } from '@fluentui/react';
 jest.mock('@fluentui/react');
 
 describe('LeftNavHamburgerButton', () => {

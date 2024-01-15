@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TooltipHost } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import * as React from 'react';
+import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
-import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { TooltipHost } from '@fluentui/react';
 jest.mock('../../../../../common/components/new-tab-link');
 jest.mock('@fluentui/react');
 
