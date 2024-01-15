@@ -7,7 +7,7 @@ import {
     ResultSectionProps,
 } from 'common/components/cards/result-section';
 import { ResultSectionContent } from 'common/components/cards/result-section-content';
-import { HeadingLevel } from 'common/components/heading-element-for-level';
+import { HeadingLevel, HeadingElementForLevel } from 'common/components/heading-element-for-level';
 import * as React from 'react';
 import { OutcomeChip } from 'reports/components/outcome-chip';
 import {
@@ -16,8 +16,10 @@ import {
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 jest.mock('common/components/cards/result-section-content');
 jest.mock('reports/components/outcome-chip');
+jest.mock('common/components/heading-element-for-level');
+
 describe('ResultSection', () => {
-    mockReactComponents([ResultSectionContent, OutcomeChip]);
+    mockReactComponents([ResultSectionContent, OutcomeChip, HeadingElementForLevel]);
     const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => headingLevel + 1;
     describe('renders', () => {
         const shouldAlertValues = [false, true, undefined];

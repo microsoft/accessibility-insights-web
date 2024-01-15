@@ -6,8 +6,8 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
     class="result-section-class-name resultSection"
     data-automation-id="result-section"
   >
-    <h2
-      class="headingElementForLevel"
+    <mock-headingelementforlevel
+      headinglevel="2"
     >
       <span
         class="resultSectionTitle"
@@ -28,7 +28,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
           <mock-outcomechip />
         </span>
       </span>
-    </h2>
+    </mock-headingelementforlevel>
     <mock-resultsectioncontent
       containerclassname="result-section-class-name"
       deps="[object Object]"
@@ -58,8 +58,8 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
     class="result-section-class-name resultSection"
     data-automation-id="result-section"
   >
-    <h2
-      class="headingElementForLevel"
+    <mock-headingelementforlevel
+      headinglevel="2"
     >
       <span
         class="resultSectionTitle"
@@ -85,7 +85,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
           <mock-outcomechip />
         </span>
       </span>
-    </h2>
+    </mock-headingelementforlevel>
     <mock-resultsectioncontent
       containerclassname="result-section-class-name"
       deps="[object Object]"
@@ -115,8 +115,8 @@ exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = 
     class="result-section-class-name resultSection"
     data-automation-id="result-section"
   >
-    <h2
-      class="headingElementForLevel"
+    <mock-headingelementforlevel
+      headinglevel="2"
     >
       <span
         class="resultSectionTitle"
@@ -137,7 +137,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = 
           <mock-outcomechip />
         </span>
       </span>
-    </h2>
+    </mock-headingelementforlevel>
     <mock-resultsectioncontent
       containerclassname="result-section-class-name"
       deps="[object Object]"

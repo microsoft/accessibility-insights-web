@@ -5,16 +5,14 @@ import {
     ResultSectionTitle,
     ResultSectionTitleProps,
 } from 'common/components/cards/result-section-title';
-import { HeadingElementForLevel } from 'common/components/heading-element-for-level';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
 import { OutcomeChip } from 'reports/components/outcome-chip';
 import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 
-jest.mock('common/components/heading-element-for-level');
 jest.mock('reports/components/outcome-chip');
 
-mockReactComponents([OutcomeChip, HeadingElementForLevel]);
+mockReactComponents([OutcomeChip]);
 describe.each(allInstanceOutcomeTypes)(
     'ResultSectionTitle with outcomeType %s renders',
     outcomeType => {
