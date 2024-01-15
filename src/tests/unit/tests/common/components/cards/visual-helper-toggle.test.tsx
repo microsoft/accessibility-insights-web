@@ -9,8 +9,17 @@ import { VisualHelperToggle } from 'common/components/cards/visual-helper-toggle
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import * as React from 'react';
 import { It, IMock, Mock } from 'typemoq';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { Toggle } from '@fluentui/react';
+
+jest.mock('@fluentui/react');
 
 describe('VisualHelperToggle', () => {
+    mockReactComponents([Toggle]);
     let mockCardSelectionMessageCreator: IMock<AutomatedChecksCardSelectionMessageCreator>;
 
     beforeEach(() => {
@@ -31,6 +40,7 @@ describe('VisualHelperToggle', () => {
     );
 
     it('fires toggleVisualHelper when toggled', async () => {
+        useOriginalReactElements('@fluentui/react', ['Toggle']);
         mockCardSelectionMessageCreator.setup(m => m.toggleVisualHelper(It.isAny()));
 
         const renderResult = render(
@@ -42,5 +52,6 @@ describe('VisualHelperToggle', () => {
         await userEvent.click(renderResult.getByRole('switch'));
 
         mockCardSelectionMessageCreator.verifyAll();
+        expectMockedComponentPropsToMatchSnapshots([Toggle]);
     });
 });
