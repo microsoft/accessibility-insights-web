@@ -18,6 +18,6 @@ variables:
     Codeql.Enabled: true
 
 extends:
-    template: pipeline/accessibility-insights-web.yml@self
+    template: pipeline/build-shared.yaml@self
     parameters:
         templateType: Official
