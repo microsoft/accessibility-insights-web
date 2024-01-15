@@ -9,21 +9,29 @@ import {
     VisualizationToggle,
     VisualizationToggleProps,
 } from '../../../../../common/components/visualization-toggle';
+import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents, useOriginalReactElements } from '../../../mock-helpers/mock-module-helpers';
+import { Toggle } from '@fluentui/react';
+jest.mock('@fluentui/react');
 
 describe('VisualizationToggleTest', () => {
+    mockReactComponents([Toggle]);
     test('render with no label', () => {
         const generatedProps = generateVisualizationToggleProps();
         const renderResult = render(<VisualizationToggle {...generatedProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Toggle]);
     });
 
     test('render with a specified label', () => {
         const generatedProps = generateVisualizationToggleProps('test-label');
         const renderResult = render(<VisualizationToggle {...generatedProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Toggle]);
+
     });
 
     test('verify onClick being called when toggle clicked', async () => {
+        useOriginalReactElements('@fluentui/react', ['Toggle']);
         const onClickMock = Mock.ofInstance(event => {});
 
         onClickMock.setup(onClick => onClick(It.isAny()));

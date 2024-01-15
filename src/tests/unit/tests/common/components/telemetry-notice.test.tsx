@@ -7,8 +7,11 @@ import {
     TelemetryNotice,
     TelemetryNoticeDeps,
 } from '../../../../../common/components/telemetry-notice';
+import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../common/components/new-tab-link');
 
 describe('TelemetryNotice', () => {
+    mockReactComponents([NewTabLink]);
     it('renders', () => {
         const deps: TelemetryNoticeDeps = {
             LinkComponent: NewTabLink,
@@ -17,5 +20,6 @@ describe('TelemetryNotice', () => {
         const renderResult = render(<TelemetryNotice deps={deps} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
     });
 });

@@ -12,6 +12,7 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
@@ -65,6 +66,7 @@ describe('GearMenuButton', () => {
         });
 
         it('handle settings menu item click', () => {
+            useOriginalReactElements('@fluentui/react', ['IconButton']);
             dropdownClickHandlerMock.verify(
                 handler => handler.openSettingsPanelHandler(It.isAny()),
                 Times.never(),
@@ -77,6 +79,7 @@ describe('GearMenuButton', () => {
         });
 
         it('handle preview features menu item click', () => {
+            useOriginalReactElements('@fluentui/react', ['IconButton']);
             dropdownClickHandlerMock.verify(
                 handler => handler.openPreviewFeaturesPanelHandler(It.isAny()),
                 Times.never(),
@@ -89,6 +92,7 @@ describe('GearMenuButton', () => {
         });
 
         it('handle scoping menu item click', () => {
+            useOriginalReactElements('@fluentui/react', ['IconButton']);
             dropdownClickHandlerMock.verify(
                 handler => handler.openScopingPanelHandler(It.isAny()),
                 Times.never(),

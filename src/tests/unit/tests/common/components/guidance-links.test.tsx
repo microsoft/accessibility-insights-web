@@ -8,8 +8,11 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { forOwn } from 'lodash';
 import * as React from 'react';
 import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
+import { mockReactComponents, useOriginalReactElements } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('common/components/external-link');
 
 describe('GuidanceLinksTest', () => {
+    mockReactComponents([ExternalLink]);
     const testLink1 = {
         text: 'text1',
         href: 'https://url1',
@@ -75,6 +78,7 @@ describe('GuidanceLinksTest', () => {
     });
 
     test('link click -> event propagation stoped', async () => {
+        useOriginalReactElements('common/components/external-link', ['ExternalLink']);
         const props: GuidanceLinksProps = {
             links: [testLink1],
             classNameForDiv: 'className',
@@ -84,7 +88,6 @@ describe('GuidanceLinksTest', () => {
         const renderResult = render(<GuidanceLinks {...props} />);
         const link = renderResult.getByRole('link');
         const stopPropagationMock = jest.fn();
-
         const event = createEvent.click(link);
         event.stopPropagation = stopPropagationMock;
         fireEvent(link, event);

@@ -120,39 +120,12 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
                           deps="[object Object]"
                         />
                       </div>
-                    </div>
-                    <div
-                      class="ms-Dialog-actions actions-135"
-                    >
-                      <div
-                        class="ms-Dialog-actionsRight actionsRight-137"
-                      >
-                        <span
-                          class="ms-Dialog-action action-136"
-                        >
-                          <button
-                            class="ms-Button ms-Button--primary start-using-product-button root-138"
-                            data-is-focusable="true"
-                            type="button"
-                          >
-                            <span
-                              class="ms-Button-flexContainer flexContainer-139"
-                              data-automationid="splitbuttonprimary"
-                            >
-                              <span
-                                class="ms-Button-textContainer textContainer-140"
-                              >
-                                <span
-                                  class="ms-Button-label label-142"
-                                  id="id__3"
-                                >
-                                  OK
-                                </span>
-                              </span>
-                            </span>
-                          </button>
-                        </span>
-                      </div>
+                      <mock-styleddialogfooterbase>
+                        <mock-customizedprimarybutton
+                          classname="start-using-product-button"
+                          text="OK"
+                        />
+                      </mock-styleddialogfooterbase>
                     </div>
                   </div>
                 </div>

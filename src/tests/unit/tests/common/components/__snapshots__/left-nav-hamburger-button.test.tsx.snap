@@ -2,24 +2,11 @@
 
 exports[`LeftNavHamburgerButton renders per snapshot 1`] = `
 <DocumentFragment>
-  <button
+  <mock-customizediconbutton
     aria-expanded="false"
-    aria-label="test-aria-label"
-    class="ms-Button ms-Button--icon leftNavHamburgerButton some-class root-109"
+    arialabel="test-aria-label"
     data-automation-id="left-nav-hamburger-button"
-    data-is-focusable="true"
-    type="button"
-  >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon icon-112"
-        data-icon-name="GlobalNavButton"
-      />
-    </span>
-  </button>
+    iconprops="[object Object]"
+  />
 </DocumentFragment>
 `;

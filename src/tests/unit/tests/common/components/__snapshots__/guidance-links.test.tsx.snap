@@ -5,23 +5,11 @@ exports[`GuidanceLinksTest linkComponentType is defined as ExternalLink 1`] = `
   <span
     class="guidance-links"
   >
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
+    <mock-externallink
+      href="https://url1"
     >
-      <a
-        class="ms-Link insights-link insightsLink root-110"
-        href="https://url1"
-        target="_blank"
-      >
-        TEXT1
-      </a>
-      <div
-        hidden=""
-        id="tooltip5"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      />
-    </div>
+      TEXT1
+    </mock-externallink>
   </span>
 </DocumentFragment>
 `;
@@ -33,43 +21,19 @@ exports[`GuidanceLinksTest links is not null and correct with best practice and 
   <span
     class="className"
   >
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
+    <mock-externallink
+      href="https://url1"
     >
-      <a
-        class="ms-Link insights-link insightsLink root-110"
-        href="https://url1"
-        target="_blank"
-      >
-        TEXT1
-      </a>
-      <div
-        hidden=""
-        id="tooltip3"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      />
-    </div>
+      TEXT1
+    </mock-externallink>
     <span>
       , 
     </span>
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
+    <mock-externallink
+      href="https://url2"
     >
-      <a
-        class="ms-Link insights-link insightsLink root-110"
-        href="https://url2"
-        target="_blank"
-      >
-        TEXT2
-      </a>
-      <div
-        hidden=""
-        id="tooltip4"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      />
-    </div>
+      TEXT2
+    </mock-externallink>
   </span>
 </DocumentFragment>
 `;
@@ -87,23 +51,11 @@ exports[`GuidanceLinksTest links is not null and correct with one regular link 1
   <span
     class="className"
   >
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
+    <mock-externallink
+      href="https://url1"
     >
-      <a
-        class="ms-Link insights-link insightsLink root-110"
-        href="https://url1"
-        target="_blank"
-      >
-        TEXT1
-      </a>
-      <div
-        hidden=""
-        id="tooltip0"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      />
-    </div>
+      TEXT1
+    </mock-externallink>
   </span>
 </DocumentFragment>
 `;
@@ -113,43 +65,19 @@ exports[`GuidanceLinksTest links is not null and correct with two regular links 
   <span
     class="className"
   >
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
+    <mock-externallink
+      href="https://url1"
     >
-      <a
-        class="ms-Link insights-link insightsLink root-110"
-        href="https://url1"
-        target="_blank"
-      >
-        TEXT1
-      </a>
-      <div
-        hidden=""
-        id="tooltip1"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      />
-    </div>
+      TEXT1
+    </mock-externallink>
     <span>
       , 
     </span>
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
+    <mock-externallink
+      href="https://url2"
     >
-      <a
-        class="ms-Link insights-link insightsLink root-110"
-        href="https://url2"
-        target="_blank"
-      >
-        TEXT2
-      </a>
-      <div
-        hidden=""
-        id="tooltip2"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      />
-    </div>
+      TEXT2
+    </mock-externallink>
   </span>
 </DocumentFragment>
 `;

@@ -2,66 +2,98 @@
 
 exports[`NewTabLinkWithTooltip handles children 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-TooltipHost insightsTooltipHost root-109"
-    role="none"
+  <mock-styledtooltiphostbase
+    calloutprops="[object Object]"
+    content="tooltip text"
+    styles="[object Object]"
   >
-    <a
-      class="ms-Link insights-link insightsLink root-110"
+    <mock-newtablink
+      classname="insightsLink"
       href="test"
-      target="_blank"
     >
       link text
-    </a>
-    <div
-      hidden=""
-      id="tooltip2"
-      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-    >
-      tooltip text
-    </div>
-  </div>
+    </mock-newtablink>
+  </mock-styledtooltiphostbase>
 </DocumentFragment>
 `;
 
 exports[`NewTabLinkWithTooltip renders with null tooltip content 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-TooltipHost insightsTooltipHost root-109"
-    role="none"
+  <mock-styledtooltiphostbase
+    calloutprops="[object Object]"
+    styles="[object Object]"
   >
-    <a
-      class="ms-Link insights-link insightsLink root-110"
+    <mock-newtablink
+      classname="insightsLink"
       href="test"
-      target="_blank"
     />
-    <div
-      hidden=""
-      id="tooltip1"
-      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-    />
-  </div>
+  </mock-styledtooltiphostbase>
 </DocumentFragment>
+`;
+
+exports[`NewTabLinkWithTooltip renders with null tooltip content: NewTabLink props 1`] = `
+{
+  "className": "insightsLink",
+  "href": "test",
+}
+`;
+
+exports[`NewTabLinkWithTooltip renders with null tooltip content: StyledTooltipHostBase props 1`] = `
+{
+  "calloutProps": {
+    "styles": {
+      "beak": "insightsTooltip",
+      "root": "insightsTooltip",
+    },
+  },
+  "children": <NewTabLink
+    className="insightsLink"
+    href="test"
+  />,
+  "content": undefined,
+  "styles": {
+    "root": "insightsTooltipHost",
+  },
+}
 `;
 
 exports[`NewTabLinkWithTooltip renders with tooltip content 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-TooltipHost insightsTooltipHost root-109"
-    role="none"
+  <mock-styledtooltiphostbase
+    calloutprops="[object Object]"
+    content="tooltip text"
+    styles="[object Object]"
   >
-    <a
-      class="ms-Link insights-link insightsLink root-110"
+    <mock-newtablink
+      classname="insightsLink"
       href="test"
-      target="_blank"
     />
-    <div
-      hidden=""
-      id="tooltip0"
-      style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-    >
-      tooltip text
-    </div>
-  </div>
+  </mock-styledtooltiphostbase>
 </DocumentFragment>
+`;
+
+exports[`NewTabLinkWithTooltip renders with tooltip content: NewTabLink props 1`] = `
+{
+  "className": "insightsLink",
+  "href": "test",
+}
+`;
+
+exports[`NewTabLinkWithTooltip renders with tooltip content: StyledTooltipHostBase props 1`] = `
+{
+  "calloutProps": {
+    "styles": {
+      "beak": "insightsTooltip",
+      "root": "insightsTooltip",
+    },
+  },
+  "children": <NewTabLink
+    className="insightsLink"
+    href="test"
+  />,
+  "content": "tooltip text",
+  "styles": {
+    "root": "insightsTooltipHost",
+  },
+}
 `;

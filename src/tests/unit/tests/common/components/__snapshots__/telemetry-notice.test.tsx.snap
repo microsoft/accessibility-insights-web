@@ -4,17 +4,22 @@ exports[`TelemetryNotice renders 1`] = `
 <DocumentFragment>
   <p>
     By opting into telemetry, you 
-    <a
-      class="ms-Link insights-link root-109"
+    <mock-newtablink
       href="https://accessibilityinsights.io/docs/en/telemetry"
-      target="_blank"
     >
       help the community
-    </a>
+    </mock-newtablink>
      develop inclusive software.
   </p>
   <p>
     We collect anonymized data to identify the top accessibility issues found by the users. This will help focus the accessibility tools and standards community to improve guidelines, rules engines, and features.
   </p>
 </DocumentFragment>
+`;
+
+exports[`TelemetryNotice renders: NewTabLink props 1`] = `
+{
+  "children": "help the community",
+  "href": "https://accessibilityinsights.io/docs/en/telemetry",
+}
 `;

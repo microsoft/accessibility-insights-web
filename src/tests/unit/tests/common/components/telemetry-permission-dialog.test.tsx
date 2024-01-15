@@ -6,6 +6,7 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { PrivacyStatementPopupText } from '../../../../../common/components/privacy-statement-text';
@@ -17,14 +18,20 @@ import {
     TelemetryPermissionDialogProps,
 } from '../../../../../common/components/telemetry-permission-dialog';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-//import { Dialog } from '@fluentui/react';
-
+import { Checkbox, Dialog, DialogFooter, PrimaryButton } from '@fluentui/react';
 jest.mock('../../../../../common/components/privacy-statement-text');
 jest.mock('../../../../../common/components/telemetry-notice');
-//jest.mock('@fluentui/react');
+jest.mock('@fluentui/react');
 
 describe('TelemetryPermissionDialogTest', () => {
-    mockReactComponents([TelemetryNotice, PrivacyStatementPopupText]);
+    mockReactComponents([
+        TelemetryNotice,
+        PrivacyStatementPopupText,
+        Dialog,
+        Checkbox,
+        DialogFooter,
+        PrimaryButton,
+    ]);
     let userConfigMessageCreatorStub: SetTelemetryStateMessageCreator;
     let setTelemetryStateMock: () => null;
 
@@ -44,6 +51,7 @@ describe('TelemetryPermissionDialogTest', () => {
     });
 
     test('render dialog', () => {
+        useOriginalReactElements('@fluentui/react', ['Dialog', 'Checkbox']);
         const props: TelemetryPermissionDialogProps = {
             deps: {
                 LinkComponent: NewTabLink,
@@ -65,11 +73,11 @@ describe('TelemetryPermissionDialogTest', () => {
     });
 
     test('toggle check box', () => {
+        useOriginalReactElements('@fluentui/react', ['Dialog', 'Checkbox']);
         const props: TelemetryPermissionDialogProps = {
             deps: {} as TelemetryPermissionDialogDeps,
             isFirstTime: true,
         };
-
         const renderResult = render(<TelemetryPermissionDialog {...props} />);
         const checkBox = renderResult.getByRole('checkbox') as HTMLInputElement;
         expect(checkBox.checked).toEqual(true);
@@ -80,6 +88,7 @@ describe('TelemetryPermissionDialogTest', () => {
     });
 
     test('button click', async () => {
+        useOriginalReactElements('@fluentui/react', ['Dialog', 'DialogFooter', 'PrimaryButton']);
         const props: TelemetryPermissionDialogProps = {
             deps: {
                 userConfigMessageCreator: userConfigMessageCreatorStub,

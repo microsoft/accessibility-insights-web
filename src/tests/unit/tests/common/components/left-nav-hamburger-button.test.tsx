@@ -7,8 +7,12 @@ import {
 } from 'common/components/left-nav-hamburger-button';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
+import { mockReactComponents, useOriginalReactElements } from '../../../mock-helpers/mock-module-helpers';
+import { IconButton } from '@fluentui/react';
+jest.mock('@fluentui/react');
 
 describe('LeftNavHamburgerButton', () => {
+    mockReactComponents([IconButton]);
     it('renders per snapshot', () => {
         const ariaLabel: string = 'test-aria-label';
         const renderResult = render(
@@ -24,6 +28,7 @@ describe('LeftNavHamburgerButton', () => {
     });
 
     it('sets side nav state with correct value', async () => {
+        useOriginalReactElements('@fluentui/react', ['IconButton']);
         const ariaLabel: string = 'test-aria-label';
         const setSideNavOpenMock = Mock.ofInstance(
             (isOpen: boolean, event: React.MouseEvent<any>) => {},

@@ -2,81 +2,69 @@
 
 exports[`VisualizationToggleTest render with a specified label 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-Toggle is-disabled my test class root-109"
-  >
-    <label
-      class="ms-Label ms-Toggle-label label-116"
-      for="Toggle1"
-      id="Toggle1-label"
-    >
-      test-label
-    </label>
-    <div
-      class="ms-Toggle-innerContainer container-111"
-    >
-      <button
-        aria-checked="false"
-        aria-disabled="true"
-        aria-label="test-label"
-        class="ms-Toggle-background pill-112"
-        data-automation-id="test-automation-id"
-        data-is-focusable="true"
-        data-ktp-target="true"
-        disabled=""
-        id="Toggle1"
-        role="switch"
-        type="button"
-      >
-        <span
-          class="ms-Toggle-thumb thumb-113"
-        />
-      </button>
-      <label
-        class="ms-Label ms-Toggle-stateText text-115"
-        for="Toggle1"
-        id="Toggle1-stateText"
-      >
-        Off
-      </label>
-    </div>
-  </div>
+  <mock-styledtogglebase
+    arialabel="test-label"
+    checked="false"
+    classname="my test class"
+    componentref="[object Object]"
+    data-automation-id="test-automation-id"
+    disabled="true"
+    label="test-label"
+    offtext="Off"
+    ontext="On"
+  />
 </DocumentFragment>
+`;
+
+exports[`VisualizationToggleTest render with a specified label: StyledToggleBase props 1`] = `
+{
+  "ariaLabel": "test-label",
+  "checked": false,
+  "className": "my test class",
+  "componentRef": {
+    "current": null,
+  },
+  "data-automation-id": "test-automation-id",
+  "disabled": true,
+  "label": "test-label",
+  "offText": "Off",
+  "onBlur": [Function],
+  "onClick": [Function],
+  "onFocus": [Function],
+  "onText": "On",
+}
 `;
 
 exports[`VisualizationToggleTest render with no label 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-Toggle is-disabled my test class root-109"
-  >
-    <div
-      class="ms-Toggle-innerContainer container-111"
-    >
-      <button
-        aria-checked="false"
-        aria-disabled="true"
-        aria-label="visualizationName"
-        class="ms-Toggle-background pill-112"
-        data-automation-id="test-automation-id"
-        data-is-focusable="true"
-        data-ktp-target="true"
-        disabled=""
-        id="Toggle0"
-        role="switch"
-        type="button"
-      >
-        <span
-          class="ms-Toggle-thumb thumb-113"
-        />
-      </button>
-      <label
-        class="ms-Label ms-Toggle-stateText text-115"
-        for="Toggle0"
-        id="Toggle0-stateText"
-      >
-        Off
-      </label>
-    </div>
-  </div>
+  <mock-styledtogglebase
+    arialabel="visualizationName"
+    checked="false"
+    classname="my test class"
+    componentref="[object Object]"
+    data-automation-id="test-automation-id"
+    disabled="true"
+    offtext="Off"
+    ontext="On"
+  />
 </DocumentFragment>
+`;
+
+exports[`VisualizationToggleTest render with no label: StyledToggleBase props 1`] = `
+{
+  "ariaLabel": "visualizationName",
+  "checked": false,
+  "className": "my test class",
+  "componentRef": {
+    "current": null,
+  },
+  "data-automation-id": "test-automation-id",
+  "disabled": true,
+  "label": undefined,
+  "offText": "Off",
+  "onBlur": [Function],
+  "onClick": [Function],
+  "onFocus": [Function],
+  "onText": "On",
+}
 `;
