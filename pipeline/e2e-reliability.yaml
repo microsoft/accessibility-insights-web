@@ -14,7 +14,7 @@ pr:
             - src/tests/end-to-end/
             - Dockerfile
 
-            # The `resources` specify the location and version of the 1ES PT.
+# The `resources` specify the location and version of the 1ES PT.
 resources:
     repositories:
         - repository: 1esPipelines

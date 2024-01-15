@@ -14,7 +14,7 @@ steps:
       inputs:
           targetPath: '$(System.DefaultWorkingDirectory)/test-results/e2e'
           artifactName: '$(Agent.JobName)-screenshots-and-extended-logs'
-      condition: failed() # because the detailed chrome logs are ~150MB and uploading them takes ~30s
+      condition: failed() # Detailed logs are big and slow to upload, so skip this step if no failures occurred
       continueOnError: true
       displayName: publish e2e screenshots and extended logs
       timeoutInMinutes: 5
