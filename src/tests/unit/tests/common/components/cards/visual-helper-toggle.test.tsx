@@ -2,19 +2,18 @@
 // Licensed under the MIT License.
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+import { Toggle } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { VisualHelperToggle } from 'common/components/cards/visual-helper-toggle';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import * as React from 'react';
-import { It, IMock, Mock } from 'typemoq';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
-import { Toggle } from '@fluentui/react';
+import { It, IMock, Mock } from 'typemoq';
 
 jest.mock('@fluentui/react');
 
