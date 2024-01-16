@@ -2,37 +2,48 @@
 // Licensed under the MIT License.
 
 import { IButton } from '@fluentui/react';
+
+import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import {
     ReportExportButton,
     ReportExportButtonProps,
 } from 'DetailsView/components/report-export-button';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('common/components/controls/insights-command-button');
 
 describe(ReportExportButton.displayName, () => {
-    let showDialogMock: IMock<() => void>;
+    mockReactComponents([InsightsCommandButton]);
+    let showDialogMock: jest.Mock<() => void> = jest.fn();
     let props: ReportExportButtonProps;
 
     beforeEach(() => {
-        showDialogMock = Mock.ofInstance(() => null);
+        showDialogMock = jest.fn();
         props = {
-            showReportExportDialog: showDialogMock.object,
+            showReportExportDialog: showDialogMock,
             buttonRef: {} as React.RefObject<IButton>,
         };
     });
 
     it('renders ReportExportButton', () => {
-        const wrapper = shallow(<ReportExportButton {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<ReportExportButton {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    it('shows export dialog on click', () => {
-        showDialogMock.setup(d => d()).verifiable(Times.once());
+    it('shows export dialog on click', async () => {
+        useOriginalReactElements('common/components/controls/insights-command-button', [
+            'InsightsCommandButton',
+        ]);
 
-        const wrapper = shallow(<ReportExportButton {...props} />);
-        wrapper.simulate('click');
+        const renderResult = render(<ReportExportButton {...props} />);
+        await userEvent.click(renderResult.getByRole('button'));
 
-        showDialogMock.verifyAll();
+        expect(showDialogMock).toHaveBeenCalledTimes(1);
     });
 });

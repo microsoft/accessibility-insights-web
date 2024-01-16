@@ -1,16 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportExportButton renders ReportExportButton 1`] = `
-<InsightsCommandButton
-  componentRef={{}}
-  data-automation-id="report-export-button"
-  iconProps={
-    {
-      "iconName": "Export",
-    }
-  }
-  onClick={[Function]}
->
-  Export result
-</InsightsCommandButton>
+<DocumentFragment>
+  <mock-insightscommandbutton
+    componentref="[object Object]"
+    data-automation-id="report-export-button"
+    iconprops="[object Object]"
+  >
+    Export result
+  </mock-insightscommandbutton>
+</DocumentFragment>
 `;
