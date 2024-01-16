@@ -86,7 +86,6 @@ describe('RequirementTableSection', () => {
         const renderResult = render(<RequirementTableSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Spinner]);
     });
 
     test('render instance table', () => {

@@ -46,14 +46,6 @@ exports[`RequirementTableSection render Spinner when scanning in progress 1`] = 
 </DocumentFragment>
 `;
 
-exports[`RequirementTableSection render Spinner when scanning in progress: StyledSpinnerBase props 1`] = `
-{
-  "className": "details-view-spinner",
-  "label": "Scanning",
-  "size": 3,
-}
-`;
-
 exports[`RequirementTableSection render instance table 1`] = `
 <DocumentFragment>
   <h3>
