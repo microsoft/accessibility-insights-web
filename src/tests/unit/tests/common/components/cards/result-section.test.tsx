@@ -14,12 +14,19 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
+import { ResultSectionTitle } from '../../../../../../common/components/cards/result-section-title';
 jest.mock('common/components/cards/result-section-content');
 jest.mock('reports/components/outcome-chip');
 jest.mock('common/components/heading-element-for-level');
+jest.mock('../../../../../../common/components/cards/result-section-title');
 
 describe('ResultSection', () => {
-    mockReactComponents([ResultSectionContent, OutcomeChip, HeadingElementForLevel]);
+    mockReactComponents([
+        ResultSectionContent,
+        OutcomeChip,
+        HeadingElementForLevel,
+        ResultSectionTitle,
+    ]);
     const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => headingLevel + 1;
     describe('renders', () => {
         const shouldAlertValues = [false, true, undefined];

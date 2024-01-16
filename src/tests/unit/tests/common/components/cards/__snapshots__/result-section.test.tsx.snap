@@ -9,25 +9,13 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
     <mock-headingelementforlevel
       headinglevel="2"
     >
-      <span
-        class="resultSectionTitle"
-      >
-        <span
-          class="screen-reader-only"
-        >
-           
-        </span>
-        <span
-          aria-hidden="true"
-          class="title"
-        />
-        <span
-          aria-hidden="true"
-          class="outcomeChipContainer"
-        >
-          <mock-outcomechip />
-        </span>
-      </span>
+      <mock-resultsectiontitle
+        containerclassname="result-section-class-name"
+        deps="[object Object]"
+        sectionheadinglevel="2"
+        shouldalertfailurescount="false"
+        titlesize="title"
+      />
     </mock-headingelementforlevel>
     <mock-resultsectioncontent
       containerclassname="result-section-class-name"
@@ -61,30 +49,13 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
     <mock-headingelementforlevel
       headinglevel="2"
     >
-      <span
-        class="resultSectionTitle"
-      >
-        <span
-          class="screen-reader-only"
-        >
-           
-          <span
-            role="alert"
-          >
-             failures were detected.
-          </span>
-        </span>
-        <span
-          aria-hidden="true"
-          class="title"
-        />
-        <span
-          aria-hidden="true"
-          class="outcomeChipContainer"
-        >
-          <mock-outcomechip />
-        </span>
-      </span>
+      <mock-resultsectiontitle
+        containerclassname="result-section-class-name"
+        deps="[object Object]"
+        sectionheadinglevel="2"
+        shouldalertfailurescount="true"
+        titlesize="title"
+      />
     </mock-headingelementforlevel>
     <mock-resultsectioncontent
       containerclassname="result-section-class-name"
@@ -118,25 +89,12 @@ exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = 
     <mock-headingelementforlevel
       headinglevel="2"
     >
-      <span
-        class="resultSectionTitle"
-      >
-        <span
-          class="screen-reader-only"
-        >
-           
-        </span>
-        <span
-          aria-hidden="true"
-          class="title"
-        />
-        <span
-          aria-hidden="true"
-          class="outcomeChipContainer"
-        >
-          <mock-outcomechip />
-        </span>
-      </span>
+      <mock-resultsectiontitle
+        containerclassname="result-section-class-name"
+        deps="[object Object]"
+        sectionheadinglevel="2"
+        titlesize="title"
+      />
     </mock-headingelementforlevel>
     <mock-resultsectioncontent
       containerclassname="result-section-class-name"
