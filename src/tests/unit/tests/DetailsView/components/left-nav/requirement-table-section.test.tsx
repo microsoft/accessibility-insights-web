@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Spinner } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
 import { ManualTestStepResult } from 'common/types/store-data/assessment-result-data';
@@ -11,11 +13,20 @@ import {
     RequirementTableSectionProps,
 } from 'DetailsView/components/left-nav/requirement-table-section';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
+import { AssessmentInstanceTable } from '../../../../../../DetailsView/components/assessment-instance-table';
+import { ManualTestStepView } from '../../../../../../DetailsView/components/manual-test-step-view';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
+jest.mock('../../../../../../DetailsView/components/manual-test-step-view');
+jest.mock('../../../../../../DetailsView/components/assessment-instance-table');
 describe('RequirementTableSection', () => {
+    mockReactComponents([ManualTestStepView, Spinner, AssessmentInstanceTable]);
     let props: RequirementTableSectionProps;
     let manualRequirementResultMapStub: DictionaryStringTo<ManualTestStepResult>;
     let assessmentInstanceTableHandlerStub: AssessmentInstanceTableHandler;
@@ -63,22 +74,25 @@ describe('RequirementTableSection', () => {
             isManual: true,
         } as Requirement;
 
-        const testObject = shallow(<RequirementTableSection {...props} />);
+        const renderResult = render(<RequirementTableSection {...props} />);
 
-        expect(testObject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ManualTestStepView]);
     });
 
     test('render Spinner when scanning in progress', () => {
         props.scanningInProgress = true;
 
-        const testObject = shallow(<RequirementTableSection {...props} />);
+        const renderResult = render(<RequirementTableSection {...props} />);
 
-        expect(testObject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Spinner]);
     });
 
     test('render instance table', () => {
-        const testObject = shallow(<RequirementTableSection {...props} />);
+        const renderResult = render(<RequirementTableSection {...props} />);
 
-        expect(testObject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([AssessmentInstanceTable]);
     });
 });

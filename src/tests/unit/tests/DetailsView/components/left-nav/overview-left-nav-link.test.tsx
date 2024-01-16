@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import {
@@ -19,8 +19,8 @@ describe('OverviewLeftNavLink', () => {
             renderIcon: undefined,
         };
 
-        const wrapper = shallow(<OverviewLeftNavLink {...props} />);
+        const renderResult = render(<OverviewLeftNavLink {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

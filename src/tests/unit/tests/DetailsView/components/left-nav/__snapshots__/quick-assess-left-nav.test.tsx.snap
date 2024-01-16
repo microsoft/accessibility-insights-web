@@ -1,28 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`QuickAssessLeftNav renders left nav with appropriate params 1`] = `
-<BaseLeftNav
-  links={
-    [
-      {
-        "key": "overview",
-        "status": 1,
-      },
-      {
-        "key": "automated-checks",
-        "status": 1,
-      },
-      {
-        "name": "keyboard navigation",
-        "status": 2,
-      },
-      {
-        "name": "focus order",
-        "status": 0,
-      },
-    ]
-  }
-  selectedKey="some key"
-  setNavComponentRef={[Function]}
-/>
+<DocumentFragment>
+  <mock-baseleftnav
+    links="[object Object],[object Object],[object Object],[object Object]"
+    selectedkey="some key"
+  />
+</DocumentFragment>
+`;
+
+exports[`QuickAssessLeftNav renders left nav with appropriate params: BaseLeftNav props 1`] = `
+{
+  "links": [
+    {
+      "key": "overview",
+      "status": 1,
+    },
+    {
+      "key": "automated-checks",
+      "status": 1,
+    },
+    {
+      "name": "keyboard navigation",
+      "status": 2,
+    },
+    {
+      "name": "focus order",
+      "status": 0,
+    },
+  ],
+  "selectedKey": "some key",
+  "setNavComponentRef": [Function],
+}
 `;

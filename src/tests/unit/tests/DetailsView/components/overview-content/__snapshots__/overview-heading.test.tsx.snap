@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OverviewHeading match snapshot 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="overviewHeading"
+    class="overviewHeading"
     data-automation-id="overview-heading"
   >
     <h1>
@@ -13,5 +13,5 @@ exports[`OverviewHeading match snapshot 1`] = `
       INTRO COMPONENT
     </div>
   </div>
-</React.Fragment>
+</DocumentFragment>
 `;

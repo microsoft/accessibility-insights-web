@@ -1,81 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabStopsChoiceGroup render with fail status 1`] = `
-<ChoiceGroupPassFail
-  data-automation-id="tabStopsPassFailChoiceGroup"
-  isLabelVisible={false}
-  onChange={[Function]}
-  onUndoClickedPassThrough={[Function]}
-  options={
-    [
-      {
-        "key": "pass",
-        "text": "Pass",
-      },
-      {
-        "key": "fail",
-        "text": "Fail",
-      },
-    ]
-  }
-  secondaryControls={
-    <CustomizedIconButton
-      ariaLabel="add failure instance"
-      data-automation-id="addTabStopsFailureInstance"
-      iconProps={
-        {
-          "iconName": "add",
-        }
-      }
-      onClick={[Function]}
+<DocumentFragment>
+  <div
+    class="choiceGroupContainer"
+  >
+    <mock-styledchoicegroup
+      data-automation-id="tabStopsPassFailChoiceGroup"
+      islabelvisible="false"
+      options="[object Object],[object Object]"
+      selectedkey="fail"
+      styles="[object Object]"
     />
-  }
-  selectedKey="fail"
-/>
+    <div
+      class="secondaryControlsWrapper"
+    >
+      <mock-customizediconbutton
+        arialabel="undo"
+        iconprops="[object Object]"
+      />
+      <mock-customizediconbutton
+        arialabel="add failure instance"
+        data-automation-id="addTabStopsFailureInstance"
+        iconprops="[object Object]"
+      />
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TabStopsChoiceGroup render with pass status 1`] = `
-<ChoiceGroupPassFail
-  data-automation-id="tabStopsPassFailChoiceGroup"
-  isLabelVisible={false}
-  onChange={[Function]}
-  onUndoClickedPassThrough={[Function]}
-  options={
-    [
-      {
-        "key": "pass",
-        "text": "Pass",
-      },
-      {
-        "key": "fail",
-        "text": "Fail",
-      },
-    ]
-  }
-  secondaryControls={null}
-  selectedKey="pass"
-/>
+<DocumentFragment>
+  <div
+    class="choiceGroupContainer"
+  >
+    <mock-styledchoicegroup
+      data-automation-id="tabStopsPassFailChoiceGroup"
+      islabelvisible="false"
+      options="[object Object],[object Object]"
+      selectedkey="pass"
+      styles="[object Object]"
+    />
+    <div
+      class="secondaryControlsWrapper"
+    >
+      <mock-customizediconbutton
+        arialabel="undo"
+        iconprops="[object Object]"
+      />
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TabStopsChoiceGroup render with unknown status 1`] = `
-<ChoiceGroupPassFail
-  data-automation-id="tabStopsPassFailChoiceGroup"
-  isLabelVisible={false}
-  onChange={[Function]}
-  onUndoClickedPassThrough={[Function]}
-  options={
-    [
-      {
-        "key": "pass",
-        "text": "Pass",
-      },
-      {
-        "key": "fail",
-        "text": "Fail",
-      },
-    ]
-  }
-  secondaryControls={null}
-  selectedKey="unknown"
-/>
+<DocumentFragment>
+  <div
+    class="choiceGroupContainer"
+  >
+    <mock-styledchoicegroup
+      data-automation-id="tabStopsPassFailChoiceGroup"
+      islabelvisible="false"
+      options="[object Object],[object Object]"
+      selectedkey="unknown"
+      styles="[object Object]"
+    />
+    <div
+      class="secondaryControlsWrapper"
+    />
+  </div>
+</DocumentFragment>
 `;

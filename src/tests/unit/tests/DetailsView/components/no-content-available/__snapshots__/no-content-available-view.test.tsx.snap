@@ -1,27 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NoContentAvailableView renders 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "textContent": {
-            "applicationTitle": "test-application-title",
-          },
-        },
-      }
-    }
-    deps={
-      {
-        "textContent": {
-          "applicationTitle": "test-application-title",
-        },
-      }
-    }
-    isNarrowModeEnabled={true}
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
   />
-  <NoContentAvailable />
-</React.Fragment>
+  <mock-nocontentavailable />
+</DocumentFragment>
+`;
+
+exports[`NoContentAvailableView renders: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "textContent": {
+        "applicationTitle": "test-application-title",
+      },
+    },
+  },
+  "deps": {
+    "textContent": {
+      "applicationTitle": "test-application-title",
+    },
+  },
+  "isNarrowModeEnabled": true,
+}
 `;
