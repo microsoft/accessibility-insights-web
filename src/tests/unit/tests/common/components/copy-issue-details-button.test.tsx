@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { DefaultButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -10,8 +11,8 @@ import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { WindowUtils } from 'common/window-utils';
 import * as React from 'react';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
+    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { CopyIcon } from '../../../../../../src/common/icons/copy-icon';
@@ -22,8 +23,9 @@ import {
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 jest.mock('../../../../../../src/common/icons/copy-icon');
+jest.mock('@fluentui/react');
 describe('CopyIssueDetailsButtonTest', () => {
-    mockReactComponents([CopyIcon]);
+    mockReactComponents([CopyIcon, DefaultButton]);
     let props: CopyIssueDetailsButtonProps;
     let onClickMock: IMock<(event: React.MouseEvent<any>) => void>;
     let windowUtilsMock: IMock<WindowUtils>;
@@ -63,7 +65,6 @@ describe('CopyIssueDetailsButtonTest', () => {
     test('render', () => {
         const result = render(<CopyIssueDetailsButton {...props} />);
         expect(result.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([CopyIcon]);
     });
     describe('toast message', () => {
         test('render after click shows copy success message', async () => {
@@ -74,11 +75,12 @@ describe('CopyIssueDetailsButtonTest', () => {
                 })
                 .verifiable(Times.once());
 
-            const result = render(<CopyIssueDetailsButton {...props} />);
+            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            const renderResult = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
-            await userEvent.click(result.getByRole('button'));
+            await userEvent.click(renderResult.getByRole('button'));
 
-            const toast = result.container.querySelector('.toastContainer');
+            const toast = renderResult.container.querySelector('.toastContent');
             expect(toast).toBeInTheDocument();
             expect(toast).toHaveTextContent('Failure details copied.');
 
@@ -92,12 +94,13 @@ describe('CopyIssueDetailsButtonTest', () => {
                 })
                 .verifiable(Times.once());
 
-            const result = render(<CopyIssueDetailsButton {...props} />);
+            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            const renderResult = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             // tslint:disable-next-line: await-promise
-            await userEvent.click(result.getByRole('button'));
+            await userEvent.click(renderResult.getByRole('button'));
 
-            const toast = result.container.querySelector('.toastContainer');
+            const toast = renderResult.container.querySelector('.toastContent');
             expect(toast).toBeInTheDocument();
             expect(toast).toHaveTextContent('Failed to copy failure details. Please try again.');
 
@@ -111,13 +114,15 @@ describe('CopyIssueDetailsButtonTest', () => {
                 })
                 .verifiable(Times.once());
             props.hasSecureTargetPage = false;
-            const result = render(<CopyIssueDetailsButton {...props} />);
+
+            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            const renderResult = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             // tslint:disable-next-line: await-promise
-            await userEvent.click(result.getByRole('button'));
+            await userEvent.click(renderResult.getByRole('button'));
 
-            const toast = result.container.querySelector('.toastContainer');
-            expect(toast).toBeInTheDocument();
+            const toast = renderResult.container.querySelector('.toastContent');
+            expect(toast).not.toBeInTheDocument();
 
             verifyMocks();
         });

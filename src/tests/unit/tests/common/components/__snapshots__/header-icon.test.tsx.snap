@@ -6,19 +6,11 @@ exports[`HeaderIconComponent renders with invertColors = false and high contrast
 </DocumentFragment>
 `;
 
-exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = false: BrandBlue props 1`] = `undefined`;
-
-exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = false: BrandWhite props 1`] = `{}`;
-
 exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = true 1`] = `
 <DocumentFragment>
   <mock-brandblue />
 </DocumentFragment>
 `;
-
-exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = true: BrandBlue props 1`] = `{}`;
-
-exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = true: BrandWhite props 1`] = `undefined`;
 
 exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = false 1`] = `
 <DocumentFragment>
@@ -26,19 +18,11 @@ exports[`HeaderIconComponent renders with invertColors = true and high contrast 
 </DocumentFragment>
 `;
 
-exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = false: BrandBlue props 1`] = `{}`;
-
-exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = false: BrandWhite props 1`] = `undefined`;
-
 exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = true 1`] = `
 <DocumentFragment>
   <mock-brandwhite />
 </DocumentFragment>
 `;
-
-exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = true: BrandBlue props 1`] = `undefined`;
-
-exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = true: BrandWhite props 1`] = `{}`;
 
 exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = false 1`] = `
 <DocumentFragment>
@@ -46,16 +30,8 @@ exports[`HeaderIconComponent renders with invertColors = undefined and high cont
 </DocumentFragment>
 `;
 
-exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = false: BrandBlue props 1`] = `undefined`;
-
-exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = false: BrandWhite props 1`] = `{}`;
-
 exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = true 1`] = `
 <DocumentFragment>
   <mock-brandblue />
 </DocumentFragment>
 `;
-
-exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = true: BrandBlue props 1`] = `{}`;
-
-exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = true: BrandWhite props 1`] = `undefined`;

@@ -10,10 +10,7 @@ import {
     HeaderIconDeps,
     HeaderIconProps,
 } from '../../../../../common/components/header-icon';
-import {
-    expectMockedComponentPropsToMatchSnapshots,
-    mockReactComponents,
-} from '../../../mock-helpers/mock-module-helpers';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../src/icons/brand/blue/brand-blue');
 jest.mock('../../../../../../src/icons/brand/white/brand-white');
@@ -42,7 +39,6 @@ describe('HeaderIconComponent', () => {
                 props.storeState.userConfigurationStoreData.enableHighContrast = enableHighContrast;
                 const renderResult = render(<HeaderIconComponent {...props} />);
                 expect(renderResult.asFragment()).toMatchSnapshot();
-                expectMockedComponentPropsToMatchSnapshots([BrandBlue, BrandWhite]);
             });
         });
     });

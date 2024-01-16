@@ -6,24 +6,15 @@ exports[`CopyIssueDetailsButtonTest render 1`] = `
     aria-live="polite"
     class="toastContainer"
   />
-  <button
-    class="ms-Button ms-Button--default copy-issue-details-button root-109"
-    data-is-focusable="true"
-    type="button"
+  <mock-customizeddefaultbutton
+    classname="copy-issue-details-button"
   >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
+    <mock-copyicon />
+    <div
+      class="ms-Button-label"
     >
-      <mock-copyicon />
-      <div
-        class="ms-Button-label"
-      >
-        Copy failure details
-      </div>
-    </span>
-  </button>
+      Copy failure details
+    </div>
+  </mock-customizeddefaultbutton>
 </DocumentFragment>
 `;
-
-exports[`CopyIssueDetailsButtonTest render: CopyIcon props 1`] = `{}`;
