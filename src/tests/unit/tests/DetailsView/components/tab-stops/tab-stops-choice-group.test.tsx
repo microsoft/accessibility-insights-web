@@ -15,6 +15,7 @@ import {
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../../mock-helpers/mock-module-helpers';
@@ -43,23 +44,26 @@ describe('TabStopsChoiceGroup', () => {
     test('render with unknown status', () => {
         const renderResult = render(<TabStopsChoiceGroup {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroup]);
     });
 
     test('render with unknown status (does not show undo button)', () => {
         const renderResult = render(<TabStopsChoiceGroup {...props} />);
-        expect(renderResult.container.querySelector('.ms-Button--icon')).not.toBeTruthy();
+        expect(renderResult.queryByRole('button')).not.toBeTruthy();
     });
 
     test('render with fail status', () => {
         props.status = TabStopRequirementStatuses.fail;
         const renderResult = render(<TabStopsChoiceGroup {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroup, IconButton]);
     });
 
     test('render with pass status', () => {
         props.status = TabStopRequirementStatuses.pass;
         const renderResult = render(<TabStopsChoiceGroup {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroup]);
     });
 
     test('verify component is correctly used with undo', async () => {

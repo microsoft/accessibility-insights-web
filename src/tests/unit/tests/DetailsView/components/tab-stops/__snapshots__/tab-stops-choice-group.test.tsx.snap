@@ -29,6 +29,51 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
 </DocumentFragment>
 `;
 
+exports[`TabStopsChoiceGroup render with fail status: CustomizedIconButton props 1`] = `
+{
+  "ariaLabel": "undo",
+  "iconProps": {
+    "iconName": "undo",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`TabStopsChoiceGroup render with fail status: StyledChoiceGroup props 1`] = `
+{
+  "componentRef": [Function],
+  "data-automation-id": "tabStopsPassFailChoiceGroup",
+  "isLabelVisible": false,
+  "onChange": [Function],
+  "options": [
+    {
+      "ariaLabel": "Pass",
+      "key": "pass",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Pass",
+    },
+    {
+      "ariaLabel": "Fail",
+      "key": "fail",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Fail",
+    },
+  ],
+  "selectedKey": "fail",
+  "styles": {
+    "flexContainer": "radioButtonGroup",
+  },
+}
+`;
+
 exports[`TabStopsChoiceGroup render with pass status 1`] = `
 <DocumentFragment>
   <div
@@ -53,6 +98,41 @@ exports[`TabStopsChoiceGroup render with pass status 1`] = `
 </DocumentFragment>
 `;
 
+exports[`TabStopsChoiceGroup render with pass status: StyledChoiceGroup props 1`] = `
+{
+  "componentRef": [Function],
+  "data-automation-id": "tabStopsPassFailChoiceGroup",
+  "isLabelVisible": false,
+  "onChange": [Function],
+  "options": [
+    {
+      "ariaLabel": "Pass",
+      "key": "pass",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Pass",
+    },
+    {
+      "ariaLabel": "Fail",
+      "key": "fail",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Fail",
+    },
+  ],
+  "selectedKey": "pass",
+  "styles": {
+    "flexContainer": "radioButtonGroup",
+  },
+}
+`;
+
 exports[`TabStopsChoiceGroup render with unknown status 1`] = `
 <DocumentFragment>
   <div
@@ -70,4 +150,39 @@ exports[`TabStopsChoiceGroup render with unknown status 1`] = `
     />
   </div>
 </DocumentFragment>
+`;
+
+exports[`TabStopsChoiceGroup render with unknown status: StyledChoiceGroup props 1`] = `
+{
+  "componentRef": [Function],
+  "data-automation-id": "tabStopsPassFailChoiceGroup",
+  "isLabelVisible": false,
+  "onChange": [Function],
+  "options": [
+    {
+      "ariaLabel": "Pass",
+      "key": "pass",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Pass",
+    },
+    {
+      "ariaLabel": "Fail",
+      "key": "fail",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Fail",
+    },
+  ],
+  "selectedKey": "unknown",
+  "styles": {
+    "flexContainer": "radioButtonGroup",
+  },
+}
 `;
