@@ -8,10 +8,12 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
+import { RuleResources } from '../../../../../../common/components/cards/rule-resources';
 jest.mock('common/components/cards/instance-details-group');
+jest.mock('../../../../../../common/components/cards/rule-resources');
 
 describe('RuleContent', () => {
-    mockReactComponents([InstanceDetailsGroup]);
+    mockReactComponents([InstanceDetailsGroup, RuleResources]);
     it('renders', () => {
         const props = {
             rule: {
