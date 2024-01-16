@@ -17,3 +17,4 @@ steps:
       condition: failed() # Detailed logs are big and slow to upload, so skip this step if no failures occurred
       continueOnError: true
       displayName: publish e2e screenshots and extended logs
+      timeoutInMinutes: 5
