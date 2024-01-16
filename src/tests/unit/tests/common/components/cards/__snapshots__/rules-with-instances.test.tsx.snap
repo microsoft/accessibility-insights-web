@@ -6,59 +6,368 @@ exports[`RulesWithInstances renders 1`] = `
     class="ruleDetailsGroup"
     data-automation-id="rule-details-group"
   >
-    <div
-      class="collapsibleRuleDetailsGroup collapsibleContainer collapsed"
-      data-automation-id="cards-rule-group"
-    >
-      <h5
-        class="headingElementForLevel"
-      >
-        <button
-          aria-expanded="false"
-          aria-label="5 Passed some-rule sample-description"
-          class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
-          data-automation-id="collapsible-component-cards-button"
-          data-is-focusable="true"
-          type="button"
-        >
-          <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
-          >
-            <span
-              class="collapsibleTitle"
-            >
-              <span
-                class="rule-detail"
-                data-automation-id="rule-detail"
-              >
-                <span
-                  class="outcomeChipContainer"
-                />
-                <span>
-                  <span
-                    class="rule-details-id"
-                    data-automation-id="cards-rule-id"
-                  >
-                    <strong>
-                      some-rule
-                    </strong>
-                  </span>
-                  : 
-                  <span
-                    class="rule-details-description"
-                  >
-                    sample-description
-                  </span>
-                </span>
-              </span>
-            </span>
-          </span>
-        </button>
-      </h5>
-    </div>
+    <mock-cardscollapsiblecontrol
+      buttonarialabel="5 Passed some-rule sample-description"
+      containerautomationid="cards-rule-group"
+      containerclassname="collapsibleRuleDetailsGroup"
+      content="[object Object]"
+      deps="[object Object]"
+      header="[object Object]"
+      headinglevel="5"
+      id="some-rule"
+    />
   </div>
 </DocumentFragment>
 `;
 
-exports[`RulesWithInstances renders: RuleContent props 1`] = `undefined`;
+exports[`RulesWithInstances renders: CardsCollapsibleControl props 1`] = `
+{
+  "buttonAriaLabel": "5 Passed some-rule sample-description",
+  "containerAutomationId": "cards-rule-group",
+  "containerClassName": "collapsibleRuleDetailsGroup",
+  "content": <RuleContent
+    cardSelectionMessageCreator={[typemoq mock object]}
+    deps={
+      {
+        "collapsibleControl": [MockFunction] {
+          "calls": [
+            [
+              [Circular],
+            ],
+          ],
+          "results": [
+            {
+              "type": "return",
+              "value": <mock-CardsCollapsibleControl
+                buttonAriaLabel="5 Passed some-rule sample-description"
+                containerAutomationId="cards-rule-group"
+                containerClassName="collapsibleRuleDetailsGroup"
+                content={
+                  <RuleContent
+                    cardSelectionMessageCreator={[typemoq mock object]}
+                    deps={[Circular]}
+                    rule={
+                      {
+                        "description": "sample-description",
+                        "guidance": [
+                          {
+                            "href": "sample-guidance-href",
+                            "text": "sample-guidance-text",
+                          },
+                        ],
+                        "id": "some-rule",
+                        "nodes": [
+                          {
+                            "descriptors": {
+                              "snippet": "this is a sample snippet",
+                            },
+                            "identifiers": {
+                              "conciseName": "body img",
+                              "css-selector": "body img",
+                              "identifier": "body img",
+                            },
+                            "resolution": {
+                              "how-to-fix-web": {
+                                "all": [],
+                                "any": [
+                                  "Element does not have an alt attribute",
+                                  "aria-label attribute does not exist or is empty",
+                                  "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                                ],
+                                "none": [],
+                              },
+                              "howToFixSummary": "sample how to fix summary",
+                            },
+                            "ruleId": "image-alt",
+                            "status": "fail",
+                            "uid": "some-guid-here",
+                          },
+                        ],
+                        "url": "sample-url",
+                      }
+                    }
+                    targetAppInfo={
+                      {
+                        "name": "app",
+                      }
+                    }
+                    userConfigurationStoreData={null}
+                  />
+                }
+                deps={[Circular]}
+                header={
+                  <MinimalRuleHeader
+                    outcomeCounter={[Function]}
+                    outcomeType="pass"
+                    rule={
+                      {
+                        "description": "sample-description",
+                        "guidance": [
+                          {
+                            "href": "sample-guidance-href",
+                            "text": "sample-guidance-text",
+                          },
+                        ],
+                        "id": "some-rule",
+                        "nodes": [
+                          {
+                            "descriptors": {
+                              "snippet": "this is a sample snippet",
+                            },
+                            "identifiers": {
+                              "conciseName": "body img",
+                              "css-selector": "body img",
+                              "identifier": "body img",
+                            },
+                            "resolution": {
+                              "how-to-fix-web": {
+                                "all": [],
+                                "any": [
+                                  "Element does not have an alt attribute",
+                                  "aria-label attribute does not exist or is empty",
+                                  "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                                ],
+                                "none": [],
+                              },
+                              "howToFixSummary": "sample how to fix summary",
+                            },
+                            "ruleId": "image-alt",
+                            "status": "fail",
+                            "uid": "some-guid-here",
+                          },
+                        ],
+                        "url": "sample-url",
+                      }
+                    }
+                  />
+                }
+                headingLevel={5}
+                id="some-rule"
+                onExpandToggle={[Function]}
+              />,
+            },
+          ],
+        },
+        "fixInstructionProcessor": [typemoq mock object],
+      }
+    }
+    rule={
+      {
+        "description": "sample-description",
+        "guidance": [
+          {
+            "href": "sample-guidance-href",
+            "text": "sample-guidance-text",
+          },
+        ],
+        "id": "some-rule",
+        "nodes": [
+          {
+            "descriptors": {
+              "snippet": "this is a sample snippet",
+            },
+            "identifiers": {
+              "conciseName": "body img",
+              "css-selector": "body img",
+              "identifier": "body img",
+            },
+            "resolution": {
+              "how-to-fix-web": {
+                "all": [],
+                "any": [
+                  "Element does not have an alt attribute",
+                  "aria-label attribute does not exist or is empty",
+                  "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                ],
+                "none": [],
+              },
+              "howToFixSummary": "sample how to fix summary",
+            },
+            "ruleId": "image-alt",
+            "status": "fail",
+            "uid": "some-guid-here",
+          },
+        ],
+        "url": "sample-url",
+      }
+    }
+    targetAppInfo={
+      {
+        "name": "app",
+      }
+    }
+    userConfigurationStoreData={null}
+  />,
+  "deps": {
+    "collapsibleControl": [MockFunction] {
+      "calls": [
+        [
+          [Circular],
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": <mock-CardsCollapsibleControl
+            buttonAriaLabel="5 Passed some-rule sample-description"
+            containerAutomationId="cards-rule-group"
+            containerClassName="collapsibleRuleDetailsGroup"
+            content={
+              <RuleContent
+                cardSelectionMessageCreator={[typemoq mock object]}
+                deps={[Circular]}
+                rule={
+                  {
+                    "description": "sample-description",
+                    "guidance": [
+                      {
+                        "href": "sample-guidance-href",
+                        "text": "sample-guidance-text",
+                      },
+                    ],
+                    "id": "some-rule",
+                    "nodes": [
+                      {
+                        "descriptors": {
+                          "snippet": "this is a sample snippet",
+                        },
+                        "identifiers": {
+                          "conciseName": "body img",
+                          "css-selector": "body img",
+                          "identifier": "body img",
+                        },
+                        "resolution": {
+                          "how-to-fix-web": {
+                            "all": [],
+                            "any": [
+                              "Element does not have an alt attribute",
+                              "aria-label attribute does not exist or is empty",
+                              "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                            ],
+                            "none": [],
+                          },
+                          "howToFixSummary": "sample how to fix summary",
+                        },
+                        "ruleId": "image-alt",
+                        "status": "fail",
+                        "uid": "some-guid-here",
+                      },
+                    ],
+                    "url": "sample-url",
+                  }
+                }
+                targetAppInfo={
+                  {
+                    "name": "app",
+                  }
+                }
+                userConfigurationStoreData={null}
+              />
+            }
+            deps={[Circular]}
+            header={
+              <MinimalRuleHeader
+                outcomeCounter={[Function]}
+                outcomeType="pass"
+                rule={
+                  {
+                    "description": "sample-description",
+                    "guidance": [
+                      {
+                        "href": "sample-guidance-href",
+                        "text": "sample-guidance-text",
+                      },
+                    ],
+                    "id": "some-rule",
+                    "nodes": [
+                      {
+                        "descriptors": {
+                          "snippet": "this is a sample snippet",
+                        },
+                        "identifiers": {
+                          "conciseName": "body img",
+                          "css-selector": "body img",
+                          "identifier": "body img",
+                        },
+                        "resolution": {
+                          "how-to-fix-web": {
+                            "all": [],
+                            "any": [
+                              "Element does not have an alt attribute",
+                              "aria-label attribute does not exist or is empty",
+                              "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                            ],
+                            "none": [],
+                          },
+                          "howToFixSummary": "sample how to fix summary",
+                        },
+                        "ruleId": "image-alt",
+                        "status": "fail",
+                        "uid": "some-guid-here",
+                      },
+                    ],
+                    "url": "sample-url",
+                  }
+                }
+              />
+            }
+            headingLevel={5}
+            id="some-rule"
+            onExpandToggle={[Function]}
+          />,
+        },
+      ],
+    },
+    "fixInstructionProcessor": [typemoq mock object],
+  },
+  "header": <MinimalRuleHeader
+    outcomeCounter={[Function]}
+    outcomeType="pass"
+    rule={
+      {
+        "description": "sample-description",
+        "guidance": [
+          {
+            "href": "sample-guidance-href",
+            "text": "sample-guidance-text",
+          },
+        ],
+        "id": "some-rule",
+        "nodes": [
+          {
+            "descriptors": {
+              "snippet": "this is a sample snippet",
+            },
+            "identifiers": {
+              "conciseName": "body img",
+              "css-selector": "body img",
+              "identifier": "body img",
+            },
+            "resolution": {
+              "how-to-fix-web": {
+                "all": [],
+                "any": [
+                  "Element does not have an alt attribute",
+                  "aria-label attribute does not exist or is empty",
+                  "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                ],
+                "none": [],
+              },
+              "howToFixSummary": "sample how to fix summary",
+            },
+            "ruleId": "image-alt",
+            "status": "fail",
+            "uid": "some-guid-here",
+          },
+        ],
+        "url": "sample-url",
+      }
+    }
+  />,
+  "headingLevel": 5,
+  "id": "some-rule",
+  "isExpanded": undefined,
+  "key": "summary-details-1",
+  "onExpandToggle": [Function],
+}
+`;
