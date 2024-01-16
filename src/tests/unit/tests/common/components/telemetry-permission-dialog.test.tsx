@@ -5,6 +5,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
@@ -51,7 +52,6 @@ describe('TelemetryPermissionDialogTest', () => {
     });
 
     test('render dialog', () => {
-        useOriginalReactElements('@fluentui/react', ['Dialog', 'Checkbox']);
         const props: TelemetryPermissionDialogProps = {
             deps: {
                 LinkComponent: NewTabLink,
@@ -59,9 +59,14 @@ describe('TelemetryPermissionDialogTest', () => {
             isFirstTime: true,
         };
 
-        const { baseElement, getByRole } = render(<TelemetryPermissionDialog {...props} />);
-        expect(baseElement).toMatchSnapshot();
-        const checkBox = getByRole('checkbox') as HTMLInputElement;
+        const renderResult = render(<TelemetryPermissionDialog {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([
+            TelemetryNotice,
+            PrivacyStatementPopupText,
+            Dialog,
+        ]);
+        const checkBox = getMockComponentClassPropsForCall(Checkbox);
         expect(checkBox.checked).toEqual(true);
 
         const telemetryNotice = getMockComponentClassPropsForCall(TelemetryNotice);

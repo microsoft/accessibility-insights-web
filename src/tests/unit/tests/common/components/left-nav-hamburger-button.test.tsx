@@ -9,6 +9,7 @@ import {
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -28,6 +29,7 @@ describe('LeftNavHamburgerButton', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([IconButton]);
     });
 
     it('sets side nav state with correct value', async () => {

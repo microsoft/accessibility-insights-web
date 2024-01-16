@@ -1,147 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetryPermissionDialogTest render dialog 1`] = `
-<body
-  class="css-0"
->
-  <div
-    aria-hidden="true"
-  >
-    <span
-      class="ms-layer"
-    />
-  </div>
-  <div
-    id="fluent-default-layer-host"
-    style="position: fixed; z-index: 1000000;"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
   >
     <div
-      class="ms-Layer ms-Layer--fixed root-116"
-      data-portal-element="true"
+      class="telemetry-permission-details"
     >
-      <div
-        class="ms-Fabric ms-Layer-content content-118"
-      >
-        <div
-          aria-labelledby="Dialog0-title"
-          aria-modal="true"
-          role="alertdialog"
-          style="outline: none;"
-        >
-          <div
-            class="ms-Modal is-open ms-Dialog telemetry-permission-dialog-modal root-111"
-            role="document"
-          >
-            <div
-              aria-hidden="true"
-              class="ms-Overlay ms-Overlay--dark root-120"
-            />
-            <div
-              class="ms-Dialog-main insights-dialog-main-override telemetry-permission-dialog main-112"
-              id="ModalFocusTrapZone1"
-            >
-              <div
-                aria-hidden="true"
-                data-is-focus-trap-zone-bumper="true"
-                data-is-visible="true"
-                style="pointer-events: none; position: fixed;"
-                tabindex="0"
-              />
-              <div
-                class="ms-Modal-scrollableContent scrollableContent-113"
-                data-is-scrollable="true"
-              >
-                <div
-                  class="content-121"
-                >
-                  <div
-                    class="ms-Dialog-header header-123"
-                  >
-                    <div
-                      aria-level="1"
-                      class="ms-Dialog-title title-126"
-                      id="Dialog0-title"
-                      role="heading"
-                    >
-                      We need your help
-                    </div>
-                    <div
-                      class="topButton-127"
-                    />
-                  </div>
-                  <div
-                    class="ms-Dialog-inner inner-124"
-                  >
-                    <div
-                      class="ms-Dialog-content innerContent-125"
-                    >
-                      <div
-                        class="telemetry-permission-details"
-                      >
-                        <mock-telemetrynotice
-                          deps="[object Object]"
-                        />
-                      </div>
-                      <div
-                        class="telemetry-checkbox-section"
-                      >
-                        <div
-                          class="ms-Checkbox is-checked is-enabled telemetry-agree-checkbox root-128"
-                        >
-                          <input
-                            checked=""
-                            class="input-129"
-                            data-ktp-execute-target="true"
-                            id="checkbox-2"
-                            type="checkbox"
-                          />
-                          <label
-                            class="ms-Checkbox-label label-130"
-                            for="checkbox-2"
-                          >
-                            <div
-                              class="ms-Checkbox-checkbox checkbox-131"
-                              data-ktp-target="true"
-                            >
-                              <i
-                                aria-hidden="true"
-                                class="ms-Checkbox-checkmark checkmark-134"
-                                data-icon-name="CheckMark"
-                              />
-                            </div>
-                            <span
-                              class="ms-Checkbox-text text-133"
-                            >
-                              I agree to enable telemetry
-                            </span>
-                          </label>
-                        </div>
-                        <mock-privacystatementpopuptext
-                          deps="[object Object]"
-                        />
-                      </div>
-                      <mock-styleddialogfooterbase>
-                        <mock-customizedprimarybutton
-                          classname="start-using-product-button"
-                          text="OK"
-                        />
-                      </mock-styleddialogfooterbase>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                aria-hidden="true"
-                data-is-focus-trap-zone-bumper="true"
-                data-is-visible="true"
-                style="pointer-events: none; position: fixed;"
-                tabindex="0"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <mock-telemetrynotice
+        deps="[object Object]"
+      />
     </div>
-  </div>
-</body>
+    <div
+      class="telemetry-checkbox-section"
+    >
+      <mock-styledcheckboxbase
+        checked="true"
+        classname="telemetry-agree-checkbox"
+        label="I agree to enable telemetry"
+      />
+      <mock-privacystatementpopuptext
+        deps="[object Object]"
+      />
+    </div>
+    <mock-styleddialogfooterbase>
+      <mock-customizedprimarybutton
+        classname="start-using-product-button"
+        text="OK"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`TelemetryPermissionDialogTest render dialog: Dialog props 1`] = `
+{
+  "children": [
+    <div
+      className="telemetry-permission-details"
+    >
+      <TelemetryNotice
+        deps={
+          {
+            "LinkComponent": [Function],
+          }
+        }
+      />
+    </div>,
+    <div
+      className="telemetry-checkbox-section"
+    >
+      <StyledCheckboxBase
+        checked={true}
+        className="telemetry-agree-checkbox"
+        label="I agree to enable telemetry"
+        onChange={[Function]}
+      />
+      <PrivacyStatementPopupText
+        deps={
+          {
+            "LinkComponent": [Function],
+          }
+        }
+      />
+    </div>,
+    <StyledDialogFooterBase>
+      <CustomizedPrimaryButton
+        className="start-using-product-button"
+        onClick={[Function]}
+        text="OK"
+      />
+    </StyledDialogFooterBase>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "title": "We need your help",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "telemetry-permission-dialog-modal",
+    "containerClassName": "insights-dialog-main-override telemetry-permission-dialog",
+    "isBlocking": true,
+  },
+}
+`;
+
+exports[`TelemetryPermissionDialogTest render dialog: PrivacyStatementPopupText props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
+`;
+
+exports[`TelemetryPermissionDialogTest render dialog: TelemetryNotice props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
 `;

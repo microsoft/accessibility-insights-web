@@ -16,10 +16,3 @@ exports[`TelemetryNotice renders 1`] = `
   </p>
 </DocumentFragment>
 `;
-
-exports[`TelemetryNotice renders: NewTabLink props 1`] = `
-{
-  "children": "help the community",
-  "href": "https://accessibilityinsights.io/docs/en/telemetry",
-}
-`;
