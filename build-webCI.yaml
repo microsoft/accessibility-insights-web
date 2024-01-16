@@ -20,4 +20,4 @@ variables:
 extends:
     template: pipeline/build-shared.yaml@self
     parameters:
-        templateType: UnOfficial
+        templateType: Official
