@@ -7,9 +7,6 @@ parameters:
 jobs:
     - job: 'build_and_publish_package'
 
-      pool:
-          vmImage: 'ubuntu-20.04'
-
       steps:
           - template: install-node-prerequisites.yaml
 
