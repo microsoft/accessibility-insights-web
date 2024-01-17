@@ -13,11 +13,13 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { mockReactComponents, useOriginalReactElements } from '../../../../mock-helpers/mock-module-helpers';
+import { ActionButton } from '@fluentui/react';
 
+jest.mock('@fluentui/react');
 jest.mock('common/components/heading-element-for-level');
 describe('CollapsibleComponentCardsTest', () => {
-    mockReactComponents([HeadingElementForLevel]);
+    mockReactComponents([HeadingElementForLevel, ActionButton]);
     const eventStubFactory = new EventStubFactory();
 
     let setFocusVisibilityMock: IMock<SetFocusVisibility>;
@@ -75,6 +77,7 @@ describe('CollapsibleComponentCardsTest', () => {
         } as CollapsibleComponentCardsProps;
 
         const control = CardsCollapsibleControl(props);
+        useOriginalReactElements('@fluentui/react', ['ActionButton']);
         const renderResult = render(control);
 
         expect(renderResult.asFragment()).toMatchSnapshot('expanded');
@@ -99,6 +102,7 @@ describe('CollapsibleComponentCardsTest', () => {
             eventStubFactory.createKeypressEvent();
 
             const control = CardsCollapsibleControl(props);
+            useOriginalReactElements('@fluentui/react', ['ActionButton']);
             const renderResult = render(control);
 
             const button = renderResult.getByRole('button');
@@ -111,6 +115,7 @@ describe('CollapsibleComponentCardsTest', () => {
             eventStubFactory.createMouseClickEvent();
 
             const control = CardsCollapsibleControl(props);
+            useOriginalReactElements('@fluentui/react', ['ActionButton']);
             const renderResult = render(control);
 
             await userEvent.click(renderResult.getByRole('button'));

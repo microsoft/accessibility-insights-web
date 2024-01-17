@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InstanceDetailsFooter renders as null when no card interactions are supported: HighlightVisibleIcon props 1`] = `undefined`;
+exports[`InstanceDetailsFooter renders as null when no card interactions are supported: CardFooterInstanceActionButtons props 1`] = `undefined`;
 
 exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web) 1`] = `
 <DocumentFragment>
@@ -27,7 +27,22 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
 </DocumentFragment>
 `;
 
-exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web): HighlightHiddenIcon props 1`] = `undefined`;
+exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web): CardFooterInstanceActionButtons props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "kebabMenuAriaLabel": "More Actions for failure instance body img in rule some-rule",
+  "narrowModeStatus": undefined,
+  "userConfigurationStoreData": {},
+}
+`;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden" 1`] = `
 <DocumentFragment>
@@ -54,7 +69,22 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
 </DocumentFragment>
 `;
 
-exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden": HighlightUnavailableIcon props 1`] = `undefined`;
+exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden": CardFooterInstanceActionButtons props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "kebabMenuAriaLabel": "More Actions for failure instance body img in rule some-rule",
+  "narrowModeStatus": undefined,
+  "userConfigurationStoreData": {},
+}
+`;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable" 1`] = `
 <DocumentFragment>
@@ -81,7 +111,22 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
 </DocumentFragment>
 `;
 
-exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable": HighlightUnavailableIcon props 1`] = `{}`;
+exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable": CardFooterInstanceActionButtons props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "kebabMenuAriaLabel": "More Actions for failure instance body img in rule some-rule",
+  "narrowModeStatus": undefined,
+  "userConfigurationStoreData": {},
+}
+`;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible" 1`] = `
 <DocumentFragment>
@@ -108,4 +153,19 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
 </DocumentFragment>
 `;
 
-exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible": HighlightUnavailableIcon props 1`] = `undefined`;
+exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible": CardFooterInstanceActionButtons props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "kebabMenuAriaLabel": "More Actions for failure instance body img in rule some-rule",
+  "narrowModeStatus": undefined,
+  "userConfigurationStoreData": {},
+}
+`;

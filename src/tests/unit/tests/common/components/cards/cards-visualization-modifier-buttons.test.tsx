@@ -10,6 +10,7 @@ import { CardSelectionMessageCreator } from 'common/message-creators/card-select
 import * as React from 'react';
 import { ExpandCollapseAllButton } from '../../../../../../common/components/cards/expand-collapse-all-button';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { VisualHelperToggle } from '../../../../../../common/components/cards/visual-helper-toggle';
 
 const stubProps: CardsVisualizationModifierButtonsProps = {
     visualHelperEnabled: true,
@@ -18,9 +19,9 @@ const stubProps: CardsVisualizationModifierButtonsProps = {
 };
 
 jest.mock('../../../../../../common/components/cards/expand-collapse-all-button');
-
+jest.mock('../../../../../../common/components/cards/visual-helper-toggle');
 describe('ExpandCollapseVisualHelperModifierButtons', () => {
-    mockReactComponents([ExpandCollapseAllButton]);
+    mockReactComponents([VisualHelperToggle, ExpandCollapseAllButton]);
     it('renders per snapshot', () => {
         const renderResult = render(<ExpandCollapseVisualHelperModifierButtons {...stubProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
@@ -28,6 +29,7 @@ describe('ExpandCollapseVisualHelperModifierButtons', () => {
 });
 
 describe('ExpandCollapseOnlyModifierButtons', () => {
+    mockReactComponents([VisualHelperToggle, ExpandCollapseAllButton]);
     it('renders per snapshot', () => {
         const renderResult = render(<ExpandCollapseOnlyModifierButtons {...stubProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();

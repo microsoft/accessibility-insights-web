@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
@@ -7,8 +8,11 @@ import { ExpandCollapseAllButton } from 'common/components/cards/expand-collapse
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import * as React from 'react';
 import { It, IMock, Mock } from 'typemoq';
+import { mockReactComponents, useOriginalReactElements } from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('ExpandCollapseAllButton', () => {
+    mockReactComponents([ActionButton]);
     let cardSelectionMessageCreatorMock: IMock<AutomatedChecksCardSelectionMessageCreator>;
 
     beforeEach(() => {
@@ -30,6 +34,7 @@ describe('ExpandCollapseAllButton', () => {
 
     it('sends an expandAllRules message when clicked with all cards collapsed', async () => {
         cardSelectionMessageCreatorMock.setup(mock => mock.expandAllRules(It.isAny())).verifiable();
+        useOriginalReactElements('@fluentui/react', ['ActionButton']);
         const renderResult = render(
             <ExpandCollapseAllButton
                 cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
@@ -46,6 +51,7 @@ describe('ExpandCollapseAllButton', () => {
         cardSelectionMessageCreatorMock
             .setup(mock => mock.collapseAllRules(It.isAny()))
             .verifiable();
+        useOriginalReactElements('@fluentui/react', ['ActionButton']);
         const renderResult = render(
             <ExpandCollapseAllButton
                 cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}

@@ -90,7 +90,7 @@ describe('InstanceDetailsFooter', () => {
         setupConverterToNeverBeCalled();
         deps.cardInteractionSupport = noCardInteractionsSupported;
         const renderResult = render(<InstanceDetailsFooter {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([HighlightVisibleIcon]);
+        expectMockedComponentPropsToMatchSnapshots([CardFooterInstanceActionButtons]);
         expect(renderResult.container.firstChild).toBeNull();
         converterMock.verifyAll();
     });
@@ -99,7 +99,7 @@ describe('InstanceDetailsFooter', () => {
         setupConverterToBeCalledOnce();
         deps.cardInteractionSupport = allCardInteractionsSupported;
         const renderResult = render(<InstanceDetailsFooter {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([HighlightHiddenIcon]);
+        expectMockedComponentPropsToMatchSnapshots([CardFooterInstanceActionButtons]);
         expect(renderResult.asFragment()).toMatchSnapshot();
         converterMock.verifyAll();
     });
@@ -112,7 +112,7 @@ describe('InstanceDetailsFooter', () => {
             resultStub.highlightStatus = highlightState;
             setupConverterToBeCalledOnce();
             const renderResult = render(<InstanceDetailsFooter {...props} />);
-            expectMockedComponentPropsToMatchSnapshots([HighlightUnavailableIcon]);
+            expectMockedComponentPropsToMatchSnapshots([CardFooterInstanceActionButtons]);
             expect(renderResult.asFragment()).toMatchSnapshot();
             converterMock.verifyAll();
         },

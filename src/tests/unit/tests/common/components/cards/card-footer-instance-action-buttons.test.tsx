@@ -24,11 +24,12 @@ import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
+import { Toast } from '../../../../../../common/components/toast';
 
 jest.mock('@fluentui/react');
-
+jest.mock('../../../../../../common/components/toast');
 describe(CardFooterInstanceActionButtons, () => {
-    mockReactComponents([ActionButton]);
+    mockReactComponents([Toast,ActionButton]);
 
     let defaultProps: CardFooterInstanceActionButtonsProps;
     let defaultDeps: CardFooterInstanceActionButtonsDeps;

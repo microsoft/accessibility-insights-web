@@ -2,65 +2,25 @@
 
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed false 1`] = `
 <DocumentFragment>
-  <button
+  <mock-customizedactionbutton
     aria-expanded="true"
-    class="ms-Button ms-Button--action ms-Button--command expandCollapseAllButton root-109"
-    data-is-focusable="true"
-    type="button"
+    classname="expandCollapseAllButton"
+    iconprops="[object Object]"
   >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon icon-112"
-        data-icon-name="ChevronDown"
-      />
-      <span
-        class="ms-Button-textContainer textContainer-111"
-      >
-        <span
-          class="ms-Button-label label-113"
-          id="id__3"
-        >
-          Collapse all
-        </span>
-      </span>
-    </span>
-  </button>
+    Collapse all
+  </mock-customizedactionbutton>
 </DocumentFragment>
 `;
 
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed true 1`] = `
 <DocumentFragment>
-  <button
+  <mock-customizedactionbutton
     aria-expanded="false"
     aria-label="Expand all rules to show failed instances."
-    class="ms-Button ms-Button--action ms-Button--command expandCollapseAllButton root-109"
-    data-is-focusable="true"
-    type="button"
+    classname="expandCollapseAllButton"
+    iconprops="[object Object]"
   >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon icon-112"
-        data-icon-name="ChevronRight"
-      />
-      <span
-        class="ms-Button-textContainer textContainer-111"
-      >
-        <span
-          class="ms-Button-label label-113"
-          id="id__0"
-        >
-          Expand all
-        </span>
-      </span>
-    </span>
-  </button>
+    Expand all
+  </mock-customizedactionbutton>
 </DocumentFragment>
 `;

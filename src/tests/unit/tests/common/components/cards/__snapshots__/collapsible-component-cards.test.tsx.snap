@@ -6,29 +6,22 @@ exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: some 
     class="collapsibleContainer"
   >
     <mock-headingelementforlevel>
-      <button
+      <mock-customizedactionbutton
         aria-expanded="true"
-        aria-label="some button label"
-        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        arialabel="some button label"
+        classname="collapsibleControl"
         data-automation-id="collapsible-component-cards-button"
-        data-is-focusable="true"
-        type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="collapsibleTitle"
         >
-          <span
-            class="collapsibleTitle"
+          <mock-headingelementforlevel
+            headinglevel="5"
           >
-            <mock-headingelementforlevel
-              headinglevel="5"
-            >
-              Some header
-            </mock-headingelementforlevel>
-          </span>
+            Some header
+          </mock-headingelementforlevel>
         </span>
-      </button>
+      </mock-customizedactionbutton>
     </mock-headingelementforlevel>
     <div
       class="collapsibleContainerContent"
@@ -47,28 +40,21 @@ exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: undef
     class="collapsibleContainer"
   >
     <mock-headingelementforlevel>
-      <button
+      <mock-customizedactionbutton
         aria-expanded="true"
-        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        classname="collapsibleControl"
         data-automation-id="collapsible-component-cards-button"
-        data-is-focusable="true"
-        type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="collapsibleTitle"
         >
-          <span
-            class="collapsibleTitle"
+          <mock-headingelementforlevel
+            headinglevel="5"
           >
-            <mock-headingelementforlevel
-              headinglevel="5"
-            >
-              Some header
-            </mock-headingelementforlevel>
-          </span>
+            Some header
+          </mock-headingelementforlevel>
         </span>
-      </button>
+      </mock-customizedactionbutton>
     </mock-headingelementforlevel>
     <div
       class="collapsibleContainerContent"
@@ -87,28 +73,21 @@ exports[`CollapsibleComponentCardsTest render with containerClassName set to: a-
     class="a-container collapsibleContainer"
   >
     <mock-headingelementforlevel>
-      <button
+      <mock-customizedactionbutton
         aria-expanded="true"
-        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        classname="collapsibleControl"
         data-automation-id="collapsible-component-cards-button"
-        data-is-focusable="true"
-        type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="collapsibleTitle"
         >
-          <span
-            class="collapsibleTitle"
+          <mock-headingelementforlevel
+            headinglevel="5"
           >
-            <mock-headingelementforlevel
-              headinglevel="5"
-            >
-              Some header
-            </mock-headingelementforlevel>
-          </span>
+            Some header
+          </mock-headingelementforlevel>
         </span>
-      </button>
+      </mock-customizedactionbutton>
     </mock-headingelementforlevel>
     <div
       class="collapsibleContainerContent"
@@ -127,28 +106,21 @@ exports[`CollapsibleComponentCardsTest render with containerClassName set to: un
     class="collapsibleContainer"
   >
     <mock-headingelementforlevel>
-      <button
+      <mock-customizedactionbutton
         aria-expanded="true"
-        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        classname="collapsibleControl"
         data-automation-id="collapsible-component-cards-button"
-        data-is-focusable="true"
-        type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="collapsibleTitle"
         >
-          <span
-            class="collapsibleTitle"
+          <mock-headingelementforlevel
+            headinglevel="5"
           >
-            <mock-headingelementforlevel
-              headinglevel="5"
-            >
-              Some header
-            </mock-headingelementforlevel>
-          </span>
+            Some header
+          </mock-headingelementforlevel>
         </span>
-      </button>
+      </mock-customizedactionbutton>
     </mock-headingelementforlevel>
     <div
       class="collapsibleContainerContent"
@@ -167,28 +139,21 @@ exports[`CollapsibleComponentCardsTest render with contentClassName set to: cont
     class="collapsibleContainer"
   >
     <mock-headingelementforlevel>
-      <button
+      <mock-customizedactionbutton
         aria-expanded="true"
-        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        classname="collapsibleControl"
         data-automation-id="collapsible-component-cards-button"
-        data-is-focusable="true"
-        type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="collapsibleTitle"
         >
-          <span
-            class="collapsibleTitle"
+          <mock-headingelementforlevel
+            headinglevel="5"
           >
-            <mock-headingelementforlevel
-              headinglevel="5"
-            >
-              Some header
-            </mock-headingelementforlevel>
-          </span>
+            Some header
+          </mock-headingelementforlevel>
         </span>
-      </button>
+      </mock-customizedactionbutton>
     </mock-headingelementforlevel>
     <div
       class="content-class-name-a collapsibleContainerContent"
@@ -207,28 +172,21 @@ exports[`CollapsibleComponentCardsTest render with contentClassName set to: unde
     class="collapsibleContainer"
   >
     <mock-headingelementforlevel>
-      <button
+      <mock-customizedactionbutton
         aria-expanded="true"
-        class="ms-Button ms-Button--action ms-Button--command collapsibleControl root-109"
+        classname="collapsibleControl"
         data-automation-id="collapsible-component-cards-button"
-        data-is-focusable="true"
-        type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="collapsibleTitle"
         >
-          <span
-            class="collapsibleTitle"
+          <mock-headingelementforlevel
+            headinglevel="5"
           >
-            <mock-headingelementforlevel
-              headinglevel="5"
-            >
-              Some header
-            </mock-headingelementforlevel>
-          </span>
+            Some header
+          </mock-headingelementforlevel>
         </span>
-      </button>
+      </mock-customizedactionbutton>
     </mock-headingelementforlevel>
     <div
       class="collapsibleContainerContent"
