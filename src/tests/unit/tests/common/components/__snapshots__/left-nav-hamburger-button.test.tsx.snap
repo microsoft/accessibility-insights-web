@@ -10,3 +10,16 @@ exports[`LeftNavHamburgerButton renders per snapshot 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`LeftNavHamburgerButton renders per snapshot: CustomizedIconButton props 1`] = `
+{
+  "aria-expanded": false,
+  "ariaLabel": "test-aria-label",
+  "className": undefined,
+  "data-automation-id": "left-nav-hamburger-button",
+  "iconProps": {
+    "iconName": "GlobalNavButton",
+  },
+  "onClick": [Function],
+}
+`;
