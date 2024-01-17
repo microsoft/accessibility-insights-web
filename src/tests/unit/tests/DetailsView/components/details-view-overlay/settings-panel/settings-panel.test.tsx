@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -11,10 +12,13 @@ import {
     SettingsPanelDeps,
     SettingsPanelProps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import { mockReactComponents } from '../../../../../mock-helpers/mock-module-helpers';
+import { GenericPanel } from '../../../../../../../DetailsView/components/generic-panel';
 
+jest.mock('../../../../../../../DetailsView/components/generic-panel');
 describe('SettingsPanelTest', () => {
+    mockReactComponents([GenericPanel]);
     const testSettingsProvider = createSettingsProvider([
         createTestSettings('test-settings-1'),
         createTestSettings('test-settings-2'),
@@ -39,8 +43,8 @@ describe('SettingsPanelTest', () => {
             isOpen: isPanelOpen,
         } as SettingsPanelProps;
 
-        const wrapped = shallow(<SettingsPanel {...props} />);
-        expect(wrapped.getElement()).toMatchSnapshot();
+        const renderResult = render(<SettingsPanel {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('render - with custom layer class name', () => {
@@ -49,8 +53,8 @@ describe('SettingsPanelTest', () => {
             layerClassName: 'test-layer-class-name',
         } as SettingsPanelProps;
 
-        const wrapped = shallow(<SettingsPanel {...props} />);
-        expect(wrapped.getElement()).toMatchSnapshot();
+        const renderResult = render(<SettingsPanel {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
 
@@ -59,7 +63,6 @@ function createTestSettings(name: string): ReactFCWithDisplayName<SettingsProps>
         return (
             <div className="test-settings">
                 <div>{name}</div>
-                <div>{props}</div>
             </div>
         );
     });

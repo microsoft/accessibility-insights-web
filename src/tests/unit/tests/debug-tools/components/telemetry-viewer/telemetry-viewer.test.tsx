@@ -1,25 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-    TelemetryViewer,
-    TelemetryViewerDeps,
-    TelemetryViewerProps,
-} from 'debug-tools/components/telemetry-viewer/telemetry-viewer';
+import { render } from '@testing-library/react';
+import { TelemetryViewer, TelemetryViewerDeps, TelemetryViewerProps } from 'debug-tools/components/telemetry-viewer/telemetry-viewer';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
-import { shallow } from 'enzyme';
 import { isFunction } from 'lodash';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { TelemetryMessagesList} from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-messages-list';
 
+jest.mock('../../../../../../debug-tools/components/telemetry-viewer/telemetry-messages-list');
 describe('TelemetryViewer', () => {
+    mockReactComponents([TelemetryMessagesList]);
     let telemetryListenerMock: IMock<TelemetryListener>;
 
     let deps: TelemetryViewerDeps;
     let props: TelemetryViewerProps;
 
     beforeEach(() => {
-        telemetryListenerMock = Mock.ofType<TelemetryListener>(TelemetryListener);
+        telemetryListenerMock = Mock.ofType(TelemetryListener);
 
         deps = {
             telemetryListener: telemetryListenerMock.object,
@@ -29,7 +29,7 @@ describe('TelemetryViewer', () => {
     });
 
     it('adds listener for telemetry messages on mount', () => {
-        shallow(<TelemetryViewer {...props} />);
+        render(<TelemetryViewer {...props} />);
 
         telemetryListenerMock.verify(
             listener => listener.addListener(It.is(isFunction)),
@@ -38,9 +38,9 @@ describe('TelemetryViewer', () => {
     });
 
     it('removes listener for telemetry messages on unmount', () => {
-        const testSubject = shallow(<TelemetryViewer {...props} />);
+        const renderResult = render(<TelemetryViewer {...props} />);
 
-        testSubject.unmount();
+        renderResult.unmount();
 
         telemetryListenerMock.verify(
             listener => listener.removeListener(It.is(isFunction)),
@@ -50,9 +50,9 @@ describe('TelemetryViewer', () => {
 
     describe('renders', () => {
         it('when there are no telemetry messages', () => {
-            const wrapped = shallow(<TelemetryViewer {...props} />);
+            const renderResult = render(<TelemetryViewer {...props} />);
 
-            expect(wrapped.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('when there is at least one telemetry message', () => {
@@ -62,7 +62,7 @@ describe('TelemetryViewer', () => {
                 .setup(listener => listener.addListener(It.is(isFunction)))
                 .callback(l => (callback = l));
 
-            const wrapped = shallow(<TelemetryViewer {...props} />);
+            const renderResult = render(<TelemetryViewer {...props} />);
 
             callback({
                 key: 'value',
@@ -72,7 +72,7 @@ describe('TelemetryViewer', () => {
                 installationId: 'test-installation-id',
             });
 
-            expect(wrapped.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 });

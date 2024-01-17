@@ -1,35 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CurrentView renders for selected tool = stores 1`] = `
-<main
-  className="main"
->
-  <StoresTree
-    deps={{}}
-    state={
-      {
-        "debugToolsNavStoreData": {
-          "selectedTool": "stores",
-        },
-      }
-    }
-  />
-</main>
+<DocumentFragment>
+  <main
+    class="main"
+  >
+    <mock-storestree
+      deps="[object Object]"
+      state="[object Object]"
+    />
+  </main>
+</DocumentFragment>
 `;
 
 exports[`CurrentView renders for selected tool = telemetryViewer 1`] = `
-<main
-  className="main"
->
-  <TelemetryViewer
-    deps={{}}
-    state={
-      {
-        "debugToolsNavStoreData": {
-          "selectedTool": "telemetryViewer",
-        },
-      }
-    }
-  />
-</main>
+<DocumentFragment>
+  <main
+    class="main"
+  >
+    <mock-telemetryviewer
+      deps="[object Object]"
+      state="[object Object]"
+    />
+  </main>
+</DocumentFragment>
 `;

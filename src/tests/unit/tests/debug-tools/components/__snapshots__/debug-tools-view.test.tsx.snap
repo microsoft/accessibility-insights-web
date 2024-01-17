@@ -1,60 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DebugToolsView renders when storesHub.hasStoresData = false 1`] = `
-<StyledSpinnerBase
-  label="Loading"
-  size={3}
-/>
+<DocumentFragment>
+  <div
+    class="ms-Spinner root-110"
+  >
+    <div
+      class="ms-Spinner-circle ms-Spinner--large circle-111"
+    />
+    <div
+      class="ms-Spinner-label label-112"
+    >
+      Loading
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
+exports[`DebugToolsView renders when storesHub.hasStoresData = false: ToolsNav props 1`] = `undefined`;
+
 exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
-<div
-  className="debugToolsContainer"
->
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "storesHub": [typemoq mock object],
-        },
-      }
-    }
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    isNarrowModeEnabled={true}
-  />
-  <ToolsNav
-    className="nav"
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    state={
-      {
-        "userConfigurationStoreData": {
-          "isFirstTime": true,
-        },
-      }
-    }
-  />
-  <CurrentView
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    storeState={
-      {
-        "userConfigurationStoreData": {
-          "isFirstTime": true,
-        },
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="debugToolsContainer"
+  >
+    <mock-narrowmodedetector
+      childrenprops="[object Object]"
+      deps="[object Object]"
+      isnarrowmodeenabled="true"
+    />
+    <mock-toolsnav
+      classname="nav"
+      deps="[object Object]"
+      state="[object Object]"
+    />
+    <mock-currentview
+      deps="[object Object]"
+      storestate="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DebugToolsView renders when storesHub.hasStoresData = true: ToolsNav props 1`] = `
+{
+  "className": "nav",
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "state": {
+    "userConfigurationStoreData": {
+      "isFirstTime": true,
+    },
+  },
+}
 `;

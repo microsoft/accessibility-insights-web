@@ -1,34 +1,46 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
-<div
-  className="leftNav main-nav"
->
-  <Switcher
-    deps={
-      {
-        "assessmentsProviderWithFeaturesEnabled": [Function],
-        "getProvider": [Function],
-      }
-    }
-    featureFlagStoreData={{}}
-  />
-  <test
-    assessmentsData={
-      {
-        "x": {},
-      }
-    }
-    assessmentsProvider={{}}
-    deps={
-      {
-        "assessmentsProviderWithFeaturesEnabled": [Function],
-        "getProvider": [Function],
-      }
-    }
-    featureFlagStoreData={{}}
-    selectedKey="some key"
-    setNavComponentRef={[Function]}
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="leftNav main-nav"
+  >
+    <div
+      aria-label="activity"
+      class="leftNavSwitcher"
+      role="region"
+    >
+      <div
+        class="ms-Dropdown-container leftNavSwitcherDropdown"
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-label="select activity"
+          class="ms-Dropdown dropdown-109"
+          data-is-focusable="true"
+          data-ktp-target="true"
+          id="Dropdown0"
+          role="combobox"
+          tabindex="0"
+        >
+          <span
+            aria-invalid="false"
+            class="ms-Dropdown-title ms-Dropdown-titleIsPlaceHolder title-110"
+            id="Dropdown0-option"
+          />
+          <span
+            class="ms-Dropdown-caretDownWrapper caretDownWrapper-111"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Dropdown-caretDown caretDown-127"
+              data-icon-name="ChevronDown"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;

@@ -1,17 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-    CurrentView,
-    CurrentViewDeps,
-    CurrentViewProps,
-    CurrentViewState,
-} from 'debug-tools/components/current-view/current-view';
+import { render } from '@testing-library/react';
+import { CurrentView, CurrentViewDeps, CurrentViewProps, CurrentViewState } from 'debug-tools/components/current-view/current-view';
 import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { TelemetryViewer } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-viewer';
+import { StoresTree } from '../../../../../../debug-tools/components/stores-tree';
 
+jest.mock('../../../../../../debug-tools/components/telemetry-viewer/telemetry-viewer');
+jest.mock('../../../../../../debug-tools/components/stores-tree');
 describe('CurrentView', () => {
+    mockReactComponents([TelemetryViewer, StoresTree]);
     const selectedToolValues: ToolsNavKey[] = ['stores', 'telemetryViewer'];
 
     it.each(selectedToolValues)('renders for selected tool = %s', selectedTool => {
@@ -24,8 +25,8 @@ describe('CurrentView', () => {
             } as CurrentViewState,
         };
 
-        const wrapped = shallow(<CurrentView {...props} />);
+        const renderResult = render(<CurrentView {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

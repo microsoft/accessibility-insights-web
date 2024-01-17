@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { SelectorInputList } from 'common/components/selector-input-list';
 import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
@@ -11,11 +13,13 @@ import {
     ScopingContainerProps,
 } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container';
 import styles from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container.scss';
-import * as Enzyme from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
+import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('common/components/selector-input-list');
 describe('ScopingContainerTest', () => {
+    mockReactComponents([SelectorInputList]);
     const scopingSelectorsStub: ScopingStoreData = {
         selectors: {
             [ScopingInputTypes.include]: [['include selector 0'], ['include selector 1']],
@@ -43,18 +47,19 @@ describe('ScopingContainerTest', () => {
             scopingActionMessageCreator: scopingActionMessageCreatorMock.object,
             inspectActionMessageCreator: inspectActionMessageCreatorMock.object,
         };
+        
+        const renderResult = render(<ScopingContainer {...props} />);
+        
+        const description = renderResult.container.querySelector('.' + styles.scopingDescription);
 
-        const wrapper = Enzyme.shallow(<ScopingContainer {...props} />);
+        expect(description).not.toBeNull();
+        expect(description).toMatchSnapshot();
+        
+        const mockCalls = (SelectorInputList as any).mock?.calls || (SelectorInputList as any).render.mock.calls;
+        expect(mockCalls.length).toBe(2);
 
-        const description = wrapper.find('.' + styles.scopingDescription);
-        expect(description.exists()).toBe(true);
-        expect(description.contains(ScopingContainer.renderInstructions)).toBe(true);
-
-        const selectorLists = wrapper.find(SelectorInputList);
-        expect(selectorLists.length).toBe(2);
-
-        const includeList = selectorLists.first();
-        const excludeList = selectorLists.last();
+        const includeList = getMockComponentClassPropsForCall(SelectorInputList);
+        const excludeList = getMockComponentClassPropsForCall(SelectorInputList, 2);
         selectorAsserts(
             includeList,
             'Include',
@@ -78,7 +83,7 @@ describe('ScopingContainerTest', () => {
     });
 
     function selectorAsserts(
-        list: Enzyme.ShallowWrapper<any, any>,
+        list: any,
         title: string,
         subtitle: string,
         selectors: string[][],
@@ -87,14 +92,14 @@ describe('ScopingContainerTest', () => {
         scopingActionMessageCreator: ScopingActionMessageCreator,
         inspectActionMessageCreator: InspectActionMessageCreator,
     ): void {
-        expect(list.prop('title')).toEqual(title);
-        expect(list.prop('subtitle')).toEqual(subtitle);
-        expect(list.prop('items')).toEqual(selectors);
-        expect(list.prop('instructions')).toEqual(instructions);
-        expect(list.prop('inputType')).toEqual(inputType);
-        expect(list.prop('onAddSelector')).toEqual(scopingActionMessageCreator.addSelector);
-        expect(list.prop('onDeleteSelector')).toEqual(scopingActionMessageCreator.deleteSelector);
-        expect(list.prop('onChangeInspectMode')).toEqual(
+        expect(list.title).toEqual(title);
+        expect(list.subtitle).toEqual(subtitle);
+        expect(list.items).toEqual(selectors);
+        expect(list.instructions).toEqual(instructions);
+        expect(list.inputType).toEqual(inputType);
+        expect(list.onAddSelector).toEqual(scopingActionMessageCreator.addSelector);
+        expect(list.onDeleteSelector).toEqual(scopingActionMessageCreator.deleteSelector);
+        expect(list.onChangeInspectMode).toEqual(
             inspectActionMessageCreator.changeInspectMode,
         );
     }

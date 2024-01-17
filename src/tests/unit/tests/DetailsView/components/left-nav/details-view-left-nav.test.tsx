@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { generateAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
@@ -97,7 +97,7 @@ describe(DetailsViewLeftNav.displayName, () => {
             .setup(ap => ap(assessmentProviderStub, featureFlagDataStub))
             .returns(() => filteredProviderStub);
 
-        const actual = shallow(<DetailsViewLeftNav {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const renderResult = render(<DetailsViewLeftNav {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

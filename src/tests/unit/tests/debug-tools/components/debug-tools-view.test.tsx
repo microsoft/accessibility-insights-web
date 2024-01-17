@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
@@ -7,17 +8,23 @@ import {
     DebugToolsViewDeps,
     DebugToolsViewState,
 } from 'debug-tools/components/debug-tools-view';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
+import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { CurrentView } from '../../../../../debug-tools/components/current-view/current-view';
+import { DebugToolsNav } from '../../../../../debug-tools/components/debug-tools-nav';
+import { NarrowModeDetector } from '../../../../../DetailsView/components/narrow-mode-detector';
 
-//
+jest.mock('../../../../../debug-tools/components/current-view/current-view');
+jest.mock('../../../../../debug-tools/components/debug-tools-nav');
+jest.mock('../../../../../DetailsView/components/narrow-mode-detector');
 describe('DebugToolsView', () => {
+    mockReactComponents([DebugToolsNav, CurrentView, NarrowModeDetector]);
     describe('renders', () => {
         let storesHubMock: IMock<ClientStoresHub<DebugToolsViewState>>;
 
         beforeEach(() => {
-            storesHubMock = Mock.ofType<ClientStoresHub<DebugToolsViewState>>(ClientStoresHub);
+            storesHubMock = Mock.ofType(ClientStoresHub);
         });
 
         it.each([true, false])('when storesHub.hasStoresData = %s', hasStoreData => {
@@ -33,9 +40,10 @@ describe('DebugToolsView', () => {
                 } as UserConfigurationStoreData,
             } as DebugToolsViewState;
 
-            const wrapped = shallow(<DebugTools deps={deps} storeState={storeState} />);
+            const renderResult = render(<DebugTools deps={deps} storeState={storeState} />);
 
-            expect(wrapped.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([DebugToolsNav]);
         });
     });
 });

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Toggle } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { EnableTelemetrySettingDescription } from 'common/components/enable-telemetry-setting-description';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
@@ -9,12 +9,14 @@ import {
     createTelemetrySettings,
     TelemetrySettingsProps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings/telemetry/telemetry-settings';
-import { GenericToggle } from 'DetailsView/components/generic-toggle';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
+import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../../../../../mock-helpers/mock-module-helpers';
+import userEvent from '@testing-library/user-event';
 
+jest.mock('common/components/enable-telemetry-setting-description');
 describe('TelemetrySettings', () => {
+    mockReactComponents([EnableTelemetrySettingDescription]);
     const enableStates = [true, false];
 
     const TelemetrySettings = createTelemetrySettings('test-product-name');
@@ -31,21 +33,19 @@ describe('TelemetrySettings', () => {
                 featureFlagData: {},
             };
 
-            const wrapper = shallow(<TelemetrySettings {...props} />);
-            const enableTelemetrySettingDescription = wrapper
-                .find(GenericToggle)
-                .dive()
-                .find(EnableTelemetrySettingDescription);
+            const renderResult = render(<TelemetrySettings {...props} />);
+            
+            const enableTelemetrySettingDescription = getMockComponentClassPropsForCall(EnableTelemetrySettingDescription);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-            expect(enableTelemetrySettingDescription.prop('deps').LinkComponent).toBe(
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expect(enableTelemetrySettingDescription.deps.LinkComponent).toBe(
                 props.deps.LinkComponent,
             );
         });
     });
 
     describe('user interaction', () => {
-        it.each(enableStates)('handle toggle click, with enabled = %s', enabled => {
+        it.each(enableStates)('handle toggle click, with enabled = %s', async enabled => {
             const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
@@ -58,13 +58,13 @@ describe('TelemetrySettings', () => {
                 featureFlagData: {},
             };
 
-            const wrapper = shallow(<TelemetrySettings {...props} />);
+            const renderResult = render(<TelemetrySettings {...props} />);
 
             userConfigMessageCreatorMock
                 .setup(creator => creator.setTelemetryState(!enabled))
                 .verifiable(Times.once());
 
-            wrapper.dive().find(Toggle).simulate('click');
+            await userEvent.click(renderResult.getByRole('switch'));
 
             userConfigMessageCreatorMock.verifyAll();
         });

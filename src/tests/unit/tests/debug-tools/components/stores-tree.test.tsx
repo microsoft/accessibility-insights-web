@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GroupedList } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { DetailsRow, FocusZone, GroupedList, SelectionZone, Spinner } from '@fluentui/react';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -11,11 +12,13 @@ import {
     StoresTreeProps,
     StoresTreeState,
 } from 'debug-tools/components/stores-tree';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock } from 'typemoq';
+import { Mock } from 'typemoq'; 
+import { expectMockedComponentPropsToMatchSnapshots, getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('StoresTree', () => {
+    mockReactComponents([GroupedList, DetailsRow, SelectionZone, FocusZone, Spinner]);
     describe('renders', () => {
         const storesHubMock = Mock.ofType<ClientStoresHub<StoresTreeState>>();
 
@@ -30,9 +33,9 @@ describe('StoresTree', () => {
                 deps,
             } as StoresTreeProps;
 
-            const wrapped = shallow(<StoresTree {...props} />);
+            const renderResult = render(<StoresTree {...props} />);
 
-            expect(wrapped.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('with proper data from the stores', () => {
@@ -55,9 +58,10 @@ describe('StoresTree', () => {
                 },
             } as StoresTreeProps;
 
-            const wrapped = shallow(<StoresTree {...props} />);
+            const renderResult = render(<StoresTree {...props} />);
 
-            expect(wrapped.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([GroupedList, DetailsRow, SelectionZone, FocusZone, Spinner]);
         });
 
         it('the value column properly', () => {
@@ -89,11 +93,12 @@ describe('StoresTree', () => {
                 deps,
             } as StoresTreeProps;
 
-            const wrapped = shallow(<StoresTree {...props} />);
+            render(<StoresTree {...props} />);
 
-            const list = wrapped.find(GroupedList);
+            const list = getMockComponentClassPropsForCall(GroupedList);
+            console.log(list);
 
-            const onRenderCell = list.prop('onRenderCell');
+            const onRenderCell = list.onRenderCell;
 
             const testItem = {
                 key: 'value',

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NamedFC applies correct displayName: MyFC 1`] = `"MyFC"`;
+
+exports[`NamedFC renders as expected 1`] = `
+<DocumentFragment>
+  <span>
+    TEXT
+  </span>
+</DocumentFragment>
+`;
+
+exports[`NamedFC shallow renders with correct displayName: <MyFC /> 1`] = `
+<DocumentFragment>
+  <span>
+    TEXT
+  </span>
+</DocumentFragment>
+`;

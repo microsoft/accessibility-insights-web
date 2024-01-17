@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { VisualizationType } from 'common/types/visualization-type';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import {
@@ -18,8 +18,13 @@ import {
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
+import { mockComponent } from 'react-dom/test-utils';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { NavLinkButton } from '../../../../../../DetailsView/components/nav-link-button';
 
+jest.mock('../../../../../../DetailsView/components/nav-link-button');
 describe(AssessmentLeftNav.displayName, () => {
+    mockReactComponents([NavLinkButton]);
     let linkStub: AssessmentLeftNavLink;
     let deps: AssessmentLeftNavDeps;
     let props: AssessmentLeftNavProps;
@@ -44,6 +49,7 @@ describe(AssessmentLeftNav.displayName, () => {
         linkStub = {
             status: ManualTestStatus.UNKNOWN,
         } as AssessmentLeftNavLink;
+
         const getAssessmentSummaryModelFromProviderAndStatusDataMock = Mock.ofInstance(
             (provider, statusData, requirementKeys) => null,
             MockBehavior.Strict,
@@ -97,7 +103,8 @@ describe(AssessmentLeftNav.displayName, () => {
             )
             .returns(() => [linkStub]);
 
-        const actual = shallow(<AssessmentLeftNav {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const renderResult = render(<AssessmentLeftNav {...props} />);
+
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

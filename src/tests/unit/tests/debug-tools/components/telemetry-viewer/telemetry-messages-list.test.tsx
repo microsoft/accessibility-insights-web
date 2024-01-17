@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NamedFC } from 'common/react/named-fc';
 import {
     DateFormatter,
@@ -10,9 +11,8 @@ import {
     TelemetryMessagesListProps,
 } from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import { DebugToolsTelemetryMessage } from 'debug-tools/controllers/telemetry-listener';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 describe('TelemetryMessagesList', () => {
     const getItems: () => DebugToolsTelemetryMessage[] = () => [
@@ -47,9 +47,9 @@ describe('TelemetryMessagesList', () => {
     });
 
     it('renders and matches snapshot', () => {
-        const wrapped = shallow(<TelemetryMessagesList {...props} />);
+        const renderResult = render(<TelemetryMessagesList {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     describe('custom renderers', () => {
@@ -69,19 +69,15 @@ describe('TelemetryMessagesList', () => {
             it('when there is not custom properties', () => {
                 delete item.customProperties;
 
-                const wrapped = shallow(
-                    <Wrapper renderer={() => testSubject('customProperties', item)} />,
-                );
+                const renderResult = render(<Wrapper renderer={() => testSubject('customProperties', item)} />);
 
-                expect(wrapped.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
 
             it('when custom properties is present', () => {
-                const wrapped = shallow(
-                    <Wrapper renderer={() => testSubject('customProperties', item)} />,
-                );
+                const renderResult = render(<Wrapper renderer={() => testSubject('customProperties', item)} />);
 
-                expect(wrapped.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
         });
 
@@ -89,16 +85,14 @@ describe('TelemetryMessagesList', () => {
             const testSubject = onRenderTimestamp;
 
             it('matches snapshot', () => {
-                dateFormatterMock = Mock.ofType<DateFormatter>(undefined, MockBehavior.Strict);
+                dateFormatterMock = Mock.ofType(undefined);
                 dateFormatterMock
                     .setup(formatter => formatter(item.timestamp))
                     .returns(() => 'formatted-datetime');
 
-                const wrapped = shallow(
-                    <Wrapper renderer={() => testSubject(item, dateFormatterMock.object)} />,
-                );
+                const renderResult = render(<Wrapper renderer={() => testSubject(item, dateFormatterMock.object)} />);
 
-                expect(wrapped.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
         });
     });
