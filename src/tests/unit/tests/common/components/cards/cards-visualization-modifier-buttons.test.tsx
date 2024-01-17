@@ -9,8 +9,8 @@ import {
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import * as React from 'react';
 import { ExpandCollapseAllButton } from '../../../../../../common/components/cards/expand-collapse-all-button';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 import { VisualHelperToggle } from '../../../../../../common/components/cards/visual-helper-toggle';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
 const stubProps: CardsVisualizationModifierButtonsProps = {
     visualHelperEnabled: true,

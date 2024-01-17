@@ -8,7 +8,10 @@ import { ExpandCollapseAllButton } from 'common/components/cards/expand-collapse
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import * as React from 'react';
 import { It, IMock, Mock } from 'typemoq';
-import { mockReactComponents, useOriginalReactElements } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('ExpandCollapseAllButton', () => {

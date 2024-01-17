@@ -19,17 +19,17 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { Toast } from '../../../../../../common/components/toast';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
-import { Toast } from '../../../../../../common/components/toast';
 
 jest.mock('@fluentui/react');
 jest.mock('../../../../../../common/components/toast');
 describe(CardFooterInstanceActionButtons, () => {
-    mockReactComponents([Toast,ActionButton]);
+    mockReactComponents([Toast, ActionButton]);
 
     let defaultProps: CardFooterInstanceActionButtonsProps;
     let defaultDeps: CardFooterInstanceActionButtonsDeps;

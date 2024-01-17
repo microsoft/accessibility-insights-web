@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
@@ -13,8 +14,10 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
-import { mockReactComponents, useOriginalReactElements } from '../../../../mock-helpers/mock-module-helpers';
-import { ActionButton } from '@fluentui/react';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 jest.mock('common/components/heading-element-for-level');
