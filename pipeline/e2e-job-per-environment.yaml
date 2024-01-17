@@ -3,14 +3,16 @@
 
 parameters:
     jobNameSuffix: ''
-    windowsImage: 'windows-2019'
+    windowsImage: 'windows-2022-secure'
     macImage: 'macOS-11'
-    linuxImage: 'ubuntu-20.04'
+    linuxImage: 'ubuntu-22.04-secure'
 
 jobs:
     - job: 'e2e_tests_windows${{ parameters.jobNameSuffix }}'
       pool:
-          vmImage: ${{ parameters.windowsImage }}
+          name: $(a11yInsightsPool)
+          image: ${{ parameters.windowsImage }}
+          os: windows
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -18,7 +20,9 @@ jobs:
 
     - job: 'e2e_tests_mac${{ parameters.jobNameSuffix }}'
       pool:
+          name: Azure Pipelines
           vmImage: ${{ parameters.macImage }}
+          os: macOS
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -26,7 +30,9 @@ jobs:
 
     - job: 'e2e_tests_linux${{ parameters.jobNameSuffix }}'
       pool:
-          vmImage: ${{ parameters.linuxImage }}
+          name: $(a11yInsightsPool)
+          image: ${{ parameters.linuxImage }}
+          os: linux
       steps:
           - template: ./run-tests-in-docker-linux.yaml
             parameters:
