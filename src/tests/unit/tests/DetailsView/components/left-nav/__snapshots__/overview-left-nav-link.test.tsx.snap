@@ -7,10 +7,9 @@ exports[`OverviewLeftNavLink renders 1`] = `
     class="leftNavLinkContainer"
   >
     <span>
-      <i
-        aria-hidden="true"
-        class="linkIcon left-nav-icon root-105"
-        data-icon-name="home"
+      <mock-mockconstructor
+        classname="linkIcon left-nav-icon"
+        iconname="home"
       />
     </span>
     <span
