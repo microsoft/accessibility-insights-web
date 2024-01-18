@@ -1,13 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
+import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import { UrlsCardRow, UrlsCardRowProps } from 'common/components/cards/urls-card-row';
 import { CardRowDeps } from 'common/configs/unified-result-property-configurations';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+
+jest.mock('common/components/cards/simple-card-row');
 
 describe('UrlsCardRow', () => {
+    mockReactComponents([SimpleCardRow]);
     it('renders with string-only URLs', () => {
         const props: UrlsCardRowProps = {
             propertyData: {
@@ -21,8 +29,8 @@ describe('UrlsCardRow', () => {
             } as CardRowDeps,
             index: -1,
         };
-        const testSubject = shallow(<UrlsCardRow {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<UrlsCardRow {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders with baseline-aware URLs', () => {
@@ -39,7 +47,8 @@ describe('UrlsCardRow', () => {
             } as CardRowDeps,
             index: -1,
         };
-        const testSubject = shallow(<UrlsCardRow {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<UrlsCardRow {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow]);
     });
 });
