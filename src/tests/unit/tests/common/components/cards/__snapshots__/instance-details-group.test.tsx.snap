@@ -1,64 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstanceDetailsGroup renders 1`] = `
-<ul
-  aria-label="instances with additional information like path, snippet and how to fix"
-  className="instanceDetailsList"
-  data-automation-id="cards-rule-content"
->
-  <li>
-    <InstanceDetails
-      cardSelectionMessageCreator={{}}
-      deps={{}}
-      getPropertyConfigById={[Function]}
-      index={0}
-      result={
-        {
-          "descriptors": {
-            "snippet": "this is a sample snippet",
-          },
-          "identifiers": {
-            "conciseName": "body img",
-            "css-selector": "body img",
-            "identifier": "body img",
-          },
-          "resolution": {
-            "how-to-fix-web": {
-              "all": [],
-              "any": [
-                "Element does not have an alt attribute",
-                "aria-label attribute does not exist or is empty",
-                "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-              ],
-              "none": [],
-            },
-            "howToFixSummary": "sample how to fix summary",
-          },
-          "ruleId": "image-alt",
-          "status": "fail",
-          "uid": "some-guid-here",
-        }
-      }
-      rule={
-        {
-          "description": "sample-description",
-          "guidance": [
-            {
-              "href": "sample-guidance-href",
-              "text": "sample-guidance-text",
-            },
-          ],
-          "id": "some-rule",
-          "url": "sample-url",
-        }
-      }
-      targetAppInfo={
-        {
-          "name": "app",
-        }
-      }
-      userConfigurationStoreData={null}
-    />
-  </li>
-</ul>
+<DocumentFragment>
+  <ul
+    aria-label="instances with additional information like path, snippet and how to fix"
+    class="instanceDetailsList"
+    data-automation-id="cards-rule-content"
+  >
+    <li>
+      <mock-instancedetails
+        cardselectionmessagecreator="[object Object]"
+        deps="[object Object]"
+        index="0"
+        result="[object Object]"
+        rule="[object Object]"
+        targetappinfo="[object Object]"
+      />
+    </li>
+  </ul>
+</DocumentFragment>
+`;
+
+exports[`InstanceDetailsGroup renders: InstanceDetails props 1`] = `
+{
+  "cardSelectionMessageCreator": {},
+  "deps": {},
+  "getPropertyConfigById": [Function],
+  "index": 0,
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": {
+    "description": "sample-description",
+    "guidance": [
+      {
+        "href": "sample-guidance-href",
+        "text": "sample-guidance-text",
+      },
+    ],
+    "id": "some-rule",
+    "url": "sample-url",
+  },
+  "targetAppInfo": {
+    "name": "app",
+  },
+  "userConfigurationStoreData": null,
+}
 `;

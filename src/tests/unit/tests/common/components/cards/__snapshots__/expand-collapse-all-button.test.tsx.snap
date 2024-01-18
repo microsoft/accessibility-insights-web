@@ -1,32 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed false 1`] = `
-<CustomizedActionButton
-  aria-expanded={true}
-  className="expandCollapseAllButton"
-  iconProps={
-    {
-      "iconName": "ChevronDown",
-    }
-  }
-  onClick={[Function]}
->
-  Collapse all
-</CustomizedActionButton>
+<DocumentFragment>
+  <mock-customizedactionbutton
+    aria-expanded="true"
+    classname="expandCollapseAllButton"
+    iconprops="[object Object]"
+  >
+    Collapse all
+  </mock-customizedactionbutton>
+</DocumentFragment>
 `;
 
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed true 1`] = `
-<CustomizedActionButton
-  aria-expanded={false}
-  aria-label="Expand all rules to show failed instances."
-  className="expandCollapseAllButton"
-  iconProps={
-    {
-      "iconName": "ChevronRight",
-    }
-  }
-  onClick={[Function]}
->
-  Expand all
-</CustomizedActionButton>
+<DocumentFragment>
+  <mock-customizedactionbutton
+    aria-expanded="false"
+    aria-label="Expand all rules to show failed instances."
+    classname="expandCollapseAllButton"
+    iconprops="[object Object]"
+  >
+    Expand all
+  </mock-customizedactionbutton>
+</DocumentFragment>
 `;
