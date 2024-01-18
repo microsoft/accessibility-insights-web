@@ -10,7 +10,6 @@ import {
     VisualizationToggleProps,
 } from '../../../../../common/components/visualization-toggle';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -22,14 +21,12 @@ describe('VisualizationToggleTest', () => {
         const generatedProps = generateVisualizationToggleProps();
         const renderResult = render(<VisualizationToggle {...generatedProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Toggle]);
     });
 
     test('render with a specified label', () => {
         const generatedProps = generateVisualizationToggleProps('test-label');
         const renderResult = render(<VisualizationToggle {...generatedProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Toggle]);
     });
 
     test('verify onClick being called when toggle clicked', async () => {

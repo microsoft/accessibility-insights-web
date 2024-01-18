@@ -32,7 +32,6 @@ describe('PrivacyStatementPopupText', () => {
         const renderResult = render(
             <PrivacyStatementPopupText deps={deps}></PrivacyStatementPopupText>,
         );
-        renderResult.container.querySelector('mock-newtablink');
         expect(renderResult.asFragment()).toMatchSnapshot();
         expect(NewTabLink).toHaveBeenCalled();
     });

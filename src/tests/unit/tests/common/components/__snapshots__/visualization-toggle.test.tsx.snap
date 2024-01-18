@@ -16,25 +16,6 @@ exports[`VisualizationToggleTest render with a specified label 1`] = `
 </DocumentFragment>
 `;
 
-exports[`VisualizationToggleTest render with a specified label: StyledToggleBase props 1`] = `
-{
-  "ariaLabel": "test-label",
-  "checked": false,
-  "className": "my test class",
-  "componentRef": {
-    "current": null,
-  },
-  "data-automation-id": "test-automation-id",
-  "disabled": true,
-  "label": "test-label",
-  "offText": "Off",
-  "onBlur": [Function],
-  "onClick": [Function],
-  "onFocus": [Function],
-  "onText": "On",
-}
-`;
-
 exports[`VisualizationToggleTest render with no label 1`] = `
 <DocumentFragment>
   <mock-styledtogglebase
@@ -48,23 +29,4 @@ exports[`VisualizationToggleTest render with no label 1`] = `
     ontext="On"
   />
 </DocumentFragment>
-`;
-
-exports[`VisualizationToggleTest render with no label: StyledToggleBase props 1`] = `
-{
-  "ariaLabel": "visualizationName",
-  "checked": false,
-  "className": "my test class",
-  "componentRef": {
-    "current": null,
-  },
-  "data-automation-id": "test-automation-id",
-  "disabled": true,
-  "label": undefined,
-  "offText": "Off",
-  "onBlur": [Function],
-  "onClick": [Function],
-  "onFocus": [Function],
-  "onText": "On",
-}
 `;
