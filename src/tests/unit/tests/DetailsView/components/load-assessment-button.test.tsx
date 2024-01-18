@@ -23,14 +23,12 @@ describe('LoadAssessmentButton', () => {
     let urlParserMock: IMock<UrlParser>;
     let loadAssessmentHelperMock: IMock<LoadAssessmentHelper>;
     let handleLoadAssessmentButtonClickMock: IMock<(event: React.MouseEvent<any>) => void>;
-    let event;
     let props: LoadAssessmentButtonProps;
     let deps: LoadAssessmentButtonDeps;
     let tabStoreData: TabStoreData;
     let assessmentStoreData: AssessmentStoreData;
 
     beforeEach(() => {
-        event = {} as React.MouseEvent<any>;
         detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         assessmentDataParserMock = Mock.ofType(AssessmentDataParser);
         urlParserMock = Mock.ofType(UrlParser);

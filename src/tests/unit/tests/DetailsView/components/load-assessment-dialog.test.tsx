@@ -13,7 +13,10 @@ import {
 } from 'DetailsView/components/load-assessment-dialog';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { ChangeAssessmentDialog } from '../../../../../DetailsView/components/change-assessment-dialog';
 jest.mock('../../../../../DetailsView/components/change-assessment-dialog');
 jest.mock('@fluentui/react');
@@ -72,8 +75,8 @@ describe('LoadAssessmentDialog', () => {
 
             loadAssessmentDialogProps.prevTab = prevTab;
 
-             render(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
-            
+            render(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
+
             expect(getMockComponentClassPropsForCall(Dialog)).toBeFalsy();
             urlParserMock.verifyAll();
         },
@@ -81,16 +84,14 @@ describe('LoadAssessmentDialog', () => {
 
     it('should show when isOpen is set to true', () => {
         const renderResult = render(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
-        
+
         expect(renderResult.asFragment()).toMatchSnapshot();
-        
     });
 
     it('should not show when isOpen is set to false', () => {
         loadAssessmentDialogProps.isOpen = false;
         const renderResult = render(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
-        
+
         expect(renderResult.asFragment()).toMatchSnapshot();
-        
     });
 });

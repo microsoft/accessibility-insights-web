@@ -148,9 +148,9 @@ describe('IssuesTableTest', () => {
             )
             .returns(
                 () =>
-                    (({
-                        isOpen: false
-                    }) as IssueFilingNeedsSettingsContentProps),
+                    ({
+                        isOpen: false,
+                    }) as IssueFilingNeedsSettingsContentProps,
             );
 
         const renderResult = render(<IssuesTable {...props} />);

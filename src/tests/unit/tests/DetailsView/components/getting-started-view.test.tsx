@@ -14,7 +14,6 @@ import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 import { ContentLink } from '../../../../../views/content/content-link';
 jest.mock('../../../../../views/content/content-link');
 
-
 describe('GettingStartedViewTest', () => {
     mockReactComponents([ContentLink]);
     let props: GettingStartedViewProps;

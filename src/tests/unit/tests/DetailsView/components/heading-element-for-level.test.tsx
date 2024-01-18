@@ -19,7 +19,9 @@ describe('HeadingElementForLevel', () => {
             className: 'a class',
         } as HeadingElementForLevelProps;
 
-        const renderResult = render(<HeadingElementForLevel {...props}>A Heading</HeadingElementForLevel>);
+        const renderResult = render(
+            <HeadingElementForLevel {...props}>A Heading</HeadingElementForLevel>,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 

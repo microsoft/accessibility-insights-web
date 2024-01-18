@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
-import { InjectingState, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import {
+    InjectingState,
+    VisualizationStoreData,
+} from 'common/types/store-data/visualization-store-data';
 import { InjectionFailedWarning } from 'DetailsView/components/injection-failed-warning';
 import * as React from 'react';
 
