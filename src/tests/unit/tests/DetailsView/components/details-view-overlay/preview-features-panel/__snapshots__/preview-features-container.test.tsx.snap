@@ -10,104 +10,10 @@ exports[`PreviewFeaturesContainerTest renders all available preview features 1`]
     >
       The following preview features are available for your evaluation. Help us make them better!
     </div>
-    <div
-      class="previewFeatureToggleList"
-    >
-      <div
-        class="genericToggleComponent"
-      >
-        <div
-          class="toggleContainer"
-        >
-          <div
-            class="toggleName"
-          >
-            test name 1
-          </div>
-          <div
-            class="ms-Toggle is-checked is-enabled toggle root-109"
-          >
-            <div
-              class="ms-Toggle-innerContainer container-111"
-            >
-              <button
-                aria-checked="true"
-                aria-label="test name 1"
-                class="ms-Toggle-background pill-112"
-                data-is-focusable="true"
-                data-ktp-target="true"
-                id="test-id-1"
-                role="switch"
-                type="button"
-              >
-                <span
-                  class="ms-Toggle-thumb thumb-113"
-                />
-              </button>
-              <label
-                class="ms-Label ms-Toggle-stateText text-115"
-                for="test-id-1"
-                id="test-id-1-stateText"
-              >
-                On
-              </label>
-            </div>
-          </div>
-        </div>
-        <div
-          class="toggleDescription"
-        >
-          test description 1
-        </div>
-      </div>
-      <div
-        class="genericToggleComponent"
-      >
-        <div
-          class="toggleContainer"
-        >
-          <div
-            class="toggleName"
-          >
-            test name 2
-          </div>
-          <div
-            class="ms-Toggle is-enabled toggle root-109"
-          >
-            <div
-              class="ms-Toggle-innerContainer container-111"
-            >
-              <button
-                aria-checked="false"
-                aria-label="test name 2"
-                class="ms-Toggle-background pill-116"
-                data-is-focusable="true"
-                data-ktp-target="true"
-                id="test-id-2"
-                role="switch"
-                type="button"
-              >
-                <span
-                  class="ms-Toggle-thumb thumb-117"
-                />
-              </button>
-              <label
-                class="ms-Label ms-Toggle-stateText text-115"
-                for="test-id-2"
-                id="test-id-2-stateText"
-              >
-                Off
-              </label>
-            </div>
-          </div>
-        </div>
-        <div
-          class="toggleDescription"
-        >
-          test description 2
-        </div>
-      </div>
-    </div>
+    <mock-previewfeaturestogglelist
+      deps="[object Object]"
+      displayedfeatureflags="[object Object],[object Object]"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -117,11 +23,7 @@ exports[`PreviewFeaturesContainerTest renders special message when there is no p
   <div
     data-automation-id="preview-features-container"
   >
-    <div
-      class="noPreviewFeatureMessage"
-    >
-      No preview features are currently available to manage. Follow this page for future cool features.
-    </div>
+    <mock-nodisplayablefeatureflagmessage />
   </div>
 </DocumentFragment>
 `;

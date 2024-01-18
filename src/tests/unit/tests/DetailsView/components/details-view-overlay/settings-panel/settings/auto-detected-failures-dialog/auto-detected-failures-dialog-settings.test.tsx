@@ -11,8 +11,15 @@ import {
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 import userEvent from '@testing-library/user-event';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../../../../../mock-helpers/mock-module-helpers';
+import { GenericToggle } from '../../../../../../../../../DetailsView/components/generic-toggle';
 
+jest.mock('../../../../../../../../../DetailsView/components/generic-toggle');
 describe('AutoDetectedFailuresDialogSettings', () => {
+    mockReactComponents([GenericToggle]);
     const enableStates = [true, false];
 
     describe('renders', () => {
@@ -33,6 +40,9 @@ describe('AutoDetectedFailuresDialogSettings', () => {
 
     describe('user interaction', () => {
         it.each(enableStates)('handles toggle click, with enabled = %s', async enabled => {
+            useOriginalReactElements('../../../DetailsView/components/generic-toggle', [
+                'GenericToggle',
+            ]);
             const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,

@@ -59,9 +59,9 @@ describe('ReactExtensionPoint', () => {
 
     it('renders extension when specified', () => {
         const rendered = render(componentWithExtensions(extensions));
-        const c1 = rendered.container.querySelector('h1');
+        const c1 = rendered.getByRole('heading', { level: 1 });
         expect(c1).toHaveTextContent('My Title');
-        const c2 = rendered.container.querySelector('h2');
+        const c2 = rendered.getByRole('heading', { level: 2 });
         expect(c2).toHaveTextContent('My Child');
     });
 

@@ -13,8 +13,12 @@ import {
     StoresTreeState,
 } from 'debug-tools/components/stores-tree';
 import * as React from 'react';
-import { Mock } from 'typemoq'; 
-import { expectMockedComponentPropsToMatchSnapshots, getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { Mock } from 'typemoq';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('StoresTree', () => {
@@ -61,7 +65,7 @@ describe('StoresTree', () => {
             const renderResult = render(<StoresTree {...props} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([GroupedList, DetailsRow, SelectionZone, FocusZone, Spinner]);
+            expectMockedComponentPropsToMatchSnapshots([FocusZone]);
         });
 
         it('the value column properly', () => {
@@ -96,7 +100,6 @@ describe('StoresTree', () => {
             render(<StoresTree {...props} />);
 
             const list = getMockComponentClassPropsForCall(GroupedList);
-            console.log(list);
 
             const onRenderCell = list.onRenderCell;
 

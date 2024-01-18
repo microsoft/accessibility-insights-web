@@ -11,18 +11,27 @@ import {
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings/telemetry/telemetry-settings';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../../../../../mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../../../../../mock-helpers/mock-module-helpers';
 import userEvent from '@testing-library/user-event';
+import { GenericToggle } from '../../../../../../../../../DetailsView/components/generic-toggle';
 
 jest.mock('common/components/enable-telemetry-setting-description');
+jest.mock('../../../../../../../../../DetailsView/components/generic-toggle');
 describe('TelemetrySettings', () => {
-    mockReactComponents([EnableTelemetrySettingDescription]);
+    mockReactComponents([EnableTelemetrySettingDescription, GenericToggle]);
     const enableStates = [true, false];
 
     const TelemetrySettings = createTelemetrySettings('test-product-name');
 
     describe('renders', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
+            useOriginalReactElements('../../../DetailsView/components/generic-toggle', [
+                'GenericToggle',
+            ]);
             const props: TelemetrySettingsProps = {
                 deps: {
                     LinkComponent: NewTabLink,
@@ -34,8 +43,10 @@ describe('TelemetrySettings', () => {
             };
 
             const renderResult = render(<TelemetrySettings {...props} />);
-            
-            const enableTelemetrySettingDescription = getMockComponentClassPropsForCall(EnableTelemetrySettingDescription);
+
+            const enableTelemetrySettingDescription = getMockComponentClassPropsForCall(
+                EnableTelemetrySettingDescription,
+            );
 
             expect(renderResult.asFragment()).toMatchSnapshot();
             expect(enableTelemetrySettingDescription.deps.LinkComponent).toBe(
@@ -46,6 +57,9 @@ describe('TelemetrySettings', () => {
 
     describe('user interaction', () => {
         it.each(enableStates)('handle toggle click, with enabled = %s', async enabled => {
+            useOriginalReactElements('../../../DetailsView/components/generic-toggle', [
+                'GenericToggle',
+            ]);
             const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,

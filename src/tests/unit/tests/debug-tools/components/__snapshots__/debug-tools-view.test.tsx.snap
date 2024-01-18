@@ -2,20 +2,16 @@
 
 exports[`DebugToolsView renders when storesHub.hasStoresData = false 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-Spinner root-110"
-  >
-    <div
-      class="ms-Spinner-circle ms-Spinner--large circle-111"
-    />
-    <div
-      class="ms-Spinner-label label-112"
-    >
-      Loading
-    </div>
-  </div>
+  <mock-styledspinnerbase
+    label="Loading"
+    size="3"
+  />
 </DocumentFragment>
 `;
+
+exports[`DebugToolsView renders when storesHub.hasStoresData = false: CurrentView props 1`] = `undefined`;
+
+exports[`DebugToolsView renders when storesHub.hasStoresData = false: NarrowModeDetector props 1`] = `undefined`;
 
 exports[`DebugToolsView renders when storesHub.hasStoresData = false: ToolsNav props 1`] = `undefined`;
 
@@ -40,6 +36,34 @@ exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
     />
   </div>
 </DocumentFragment>
+`;
+
+exports[`DebugToolsView renders when storesHub.hasStoresData = true: CurrentView props 1`] = `
+{
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "storeState": {
+    "userConfigurationStoreData": {
+      "isFirstTime": true,
+    },
+  },
+}
+`;
+
+exports[`DebugToolsView renders when storesHub.hasStoresData = true: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "storesHub": [typemoq mock object],
+    },
+  },
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": true,
+}
 `;
 
 exports[`DebugToolsView renders when storesHub.hasStoresData = true: ToolsNav props 1`] = `

@@ -13,7 +13,10 @@ import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-pr
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../../../../mock-helpers/mock-module-helpers';
 import { IssueFilingSettingsContainer } from '../../../../../../../../../issue-filing/components/issue-filing-settings-container';
 
 jest.mock('../../../../../../../../../issue-filing/components/issue-filing-settings-container');
@@ -70,6 +73,6 @@ describe('IssueFilingSettings', () => {
         const renderResult = render(<IssueFilingSettings {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([IssueFilingSettingsContainer])
+        expectMockedComponentPropsToMatchSnapshots([IssueFilingSettingsContainer]);
     });
 });

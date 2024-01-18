@@ -7,7 +7,11 @@ import { DebugToolsNav, DebugToolsNavProps } from 'debug-tools/components/debug-
 import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('DebugToolsNav', () => {
@@ -34,6 +38,7 @@ describe('DebugToolsNav', () => {
         const renderResult = render(<DebugToolsNav {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Nav]);
     });
 
     it('handles user link click', () => {

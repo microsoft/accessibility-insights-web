@@ -13,8 +13,12 @@ import {
 import { DebugToolsTelemetryMessage } from 'debug-tools/controllers/telemetry-listener';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { DetailsList } from '@fluentui/react';
 
+jest.mock('@fluentui/react');
 describe('TelemetryMessagesList', () => {
+    mockReactComponents([DetailsList]);
     const getItems: () => DebugToolsTelemetryMessage[] = () => [
         {
             applicationBuild: 'test-app-build',
@@ -69,13 +73,17 @@ describe('TelemetryMessagesList', () => {
             it('when there is not custom properties', () => {
                 delete item.customProperties;
 
-                const renderResult = render(<Wrapper renderer={() => testSubject('customProperties', item)} />);
+                const renderResult = render(
+                    <Wrapper renderer={() => testSubject('customProperties', item)} />,
+                );
 
                 expect(renderResult.asFragment()).toMatchSnapshot();
             });
 
             it('when custom properties is present', () => {
-                const renderResult = render(<Wrapper renderer={() => testSubject('customProperties', item)} />);
+                const renderResult = render(
+                    <Wrapper renderer={() => testSubject('customProperties', item)} />,
+                );
 
                 expect(renderResult.asFragment()).toMatchSnapshot();
             });
@@ -90,7 +98,9 @@ describe('TelemetryMessagesList', () => {
                     .setup(formatter => formatter(item.timestamp))
                     .returns(() => 'formatted-datetime');
 
-                const renderResult = render(<Wrapper renderer={() => testSubject(item, dateFormatterMock.object)} />);
+                const renderResult = render(
+                    <Wrapper renderer={() => testSubject(item, dateFormatterMock.object)} />,
+                );
 
                 expect(renderResult.asFragment()).toMatchSnapshot();
             });

@@ -2,66 +2,9 @@
 
 exports[`AssessmentLeftNav renders with reflow feature flag enabled 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-FocusZone css-125"
-    data-focuszone-id="FocusZone0"
-  >
-    <nav
-      class="ms-Nav detailsViewTestNavArea root-110"
-      role="navigation"
-    >
-      <div
-        class="ms-Nav-group is-expanded"
-      >
-        <div
-          class="ms-Nav-groupContent groupContent-118"
-        >
-          <ul
-            class="ms-Nav-navItems navItems-117"
-            role="list"
-          >
-            <li
-              class="ms-Nav-navItem navItem-116"
-              role="listitem"
-            >
-              <div
-                class="ms-Nav-compositeLink compositeLink-112"
-              >
-                <mock-navlinkbutton
-                  classname="ms-Nav-link link-124"
-                  iconprops="[object Object]"
-                  link="[object Object]"
-                  styles="[object Object]"
-                >
-                  <div
-                    class="ms-Nav-linkText linkText-111"
-                  />
-                </mock-navlinkbutton>
-              </div>
-            </li>
-            <li
-              class="ms-Nav-navItem navItem-116"
-              role="listitem"
-            >
-              <div
-                class="ms-Nav-compositeLink compositeLink-112"
-              >
-                <mock-navlinkbutton
-                  classname="ms-Nav-link link-124"
-                  iconprops="[object Object]"
-                  link="[object Object]"
-                  styles="[object Object]"
-                >
-                  <div
-                    class="ms-Nav-linkText linkText-111"
-                  />
-                </mock-navlinkbutton>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
+  <mock-baseleftnav
+    links="[object Object],[object Object]"
+    selectedkey="some key"
+  />
 </DocumentFragment>
 `;

@@ -15,7 +15,10 @@ import {
 import styles from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container.scss';
 import * as React from 'react';
 import { Mock } from 'typemoq';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../../../mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('common/components/selector-input-list');
 describe('ScopingContainerTest', () => {
@@ -47,15 +50,16 @@ describe('ScopingContainerTest', () => {
             scopingActionMessageCreator: scopingActionMessageCreatorMock.object,
             inspectActionMessageCreator: inspectActionMessageCreatorMock.object,
         };
-        
+
         const renderResult = render(<ScopingContainer {...props} />);
-        
+
         const description = renderResult.container.querySelector('.' + styles.scopingDescription);
 
         expect(description).not.toBeNull();
         expect(description).toMatchSnapshot();
-        
-        const mockCalls = (SelectorInputList as any).mock?.calls || (SelectorInputList as any).render.mock.calls;
+
+        const mockCalls =
+            (SelectorInputList as any).mock?.calls || (SelectorInputList as any).render.mock.calls;
         expect(mockCalls.length).toBe(2);
 
         const includeList = getMockComponentClassPropsForCall(SelectorInputList);
@@ -99,8 +103,6 @@ describe('ScopingContainerTest', () => {
         expect(list.inputType).toEqual(inputType);
         expect(list.onAddSelector).toEqual(scopingActionMessageCreator.addSelector);
         expect(list.onDeleteSelector).toEqual(scopingActionMessageCreator.deleteSelector);
-        expect(list.onChangeInspectMode).toEqual(
-            inspectActionMessageCreator.changeInspectMode,
-        );
+        expect(list.onChangeInspectMode).toEqual(inspectActionMessageCreator.changeInspectMode);
     }
 });

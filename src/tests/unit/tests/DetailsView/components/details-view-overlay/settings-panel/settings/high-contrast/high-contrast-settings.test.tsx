@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
-import { Toggle } from '@fluentui/react';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { HighContrastSettings } from 'DetailsView/components/details-view-overlay/settings-panel/settings/high-contrast/high-contrast-settings';
@@ -12,8 +11,15 @@ import {
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 import userEvent from '@testing-library/user-event';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../../../../../mock-helpers/mock-module-helpers';
+import { GenericToggle } from '../../../../../../../../../DetailsView/components/generic-toggle';
 
+jest.mock('../../../../../../../../../DetailsView/components/generic-toggle');
 describe('HighContrastSettings', () => {
+    mockReactComponents([GenericToggle]);
     const enableStates = [true, false];
 
     describe('renders', () => {
@@ -34,6 +40,9 @@ describe('HighContrastSettings', () => {
 
     describe('user interaction', () => {
         it.each(enableStates)('handles toggle click, with enabled = %s', async enabled => {
+            useOriginalReactElements('../../../DetailsView/components/generic-toggle', [
+                'GenericToggle',
+            ]);
             const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
@@ -52,7 +61,6 @@ describe('HighContrastSettings', () => {
                 .setup(creator => creator.setHighContrastMode(!enabled))
                 .verifiable(Times.once());
 
-            //renderResult.dive().querySelector(Toggle).simulate('click');
             await userEvent.click(renderResult.getByRole('switch'));
 
             userConfigMessageCreatorMock.verifyAll();

@@ -13,6 +13,19 @@ exports[`CurrentView renders for selected tool = stores 1`] = `
 </DocumentFragment>
 `;
 
+exports[`CurrentView renders for selected tool = stores: StoresTree props 1`] = `
+{
+  "deps": {},
+  "state": {
+    "debugToolsNavStoreData": {
+      "selectedTool": "stores",
+    },
+  },
+}
+`;
+
+exports[`CurrentView renders for selected tool = stores: TelemetryViewer props 1`] = `undefined`;
+
 exports[`CurrentView renders for selected tool = telemetryViewer 1`] = `
 <DocumentFragment>
   <main
@@ -24,4 +37,17 @@ exports[`CurrentView renders for selected tool = telemetryViewer 1`] = `
     />
   </main>
 </DocumentFragment>
+`;
+
+exports[`CurrentView renders for selected tool = telemetryViewer: StoresTree props 1`] = `undefined`;
+
+exports[`CurrentView renders for selected tool = telemetryViewer: TelemetryViewer props 1`] = `
+{
+  "deps": {},
+  "state": {
+    "debugToolsNavStoreData": {
+      "selectedTool": "telemetryViewer",
+    },
+  },
+}
 `;

@@ -25,8 +25,12 @@ import {
     DetailsViewLeftNavProps,
 } from '../../../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { GetLeftNavSelectedKeyProps } from '../../../../../../DetailsView/components/left-nav/get-left-nav-selected-key';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import { Switcher } from '../../../../../../DetailsView/components/switcher';
 
+jest.mock('../../../../../../DetailsView/components/switcher');
 describe(DetailsViewLeftNav.displayName, () => {
+    mockReactComponents([Switcher]);
     it('should render from switcher nav', () => {
         const selectedTestStub: VisualizationType = -1;
         const selectedKeyStub: string = 'some key';

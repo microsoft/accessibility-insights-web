@@ -2,104 +2,22 @@
 
 exports[`AutoDetectedFailuresDialogSettings renders with enabled = false 1`] = `
 <DocumentFragment>
-  <div
-    class="genericToggleComponent"
-  >
-    <div
-      class="toggleContainer"
-    >
-      <div
-        class="toggleName"
-      >
-        Enable automatically detected failures dialog
-      </div>
-      <div
-        class="ms-Toggle is-enabled toggle root-109"
-      >
-        <div
-          class="ms-Toggle-innerContainer container-111"
-        >
-          <button
-            aria-checked="false"
-            aria-label="Enable automatically detected failures dialog"
-            class="ms-Toggle-background pill-116"
-            data-is-focusable="true"
-            data-ktp-target="true"
-            id="enable-auto-detected-failures-dialog"
-            role="switch"
-            type="button"
-          >
-            <span
-              class="ms-Toggle-thumb thumb-117"
-            />
-          </button>
-          <label
-            class="ms-Label ms-Toggle-stateText text-115"
-            for="enable-auto-detected-failures-dialog"
-            id="enable-auto-detected-failures-dialog-stateText"
-          >
-            Off
-          </label>
-        </div>
-      </div>
-    </div>
-    <div
-      class="toggleDescription"
-    >
-      Show the tab stops automatically detected failures dialog.
-    </div>
-  </div>
+  <mock-generictoggle
+    description="Show the tab stops automatically detected failures dialog."
+    enabled="false"
+    id="enable-auto-detected-failures-dialog"
+    name="Enable automatically detected failures dialog"
+  />
 </DocumentFragment>
 `;
 
 exports[`AutoDetectedFailuresDialogSettings renders with enabled = true 1`] = `
 <DocumentFragment>
-  <div
-    class="genericToggleComponent"
-  >
-    <div
-      class="toggleContainer"
-    >
-      <div
-        class="toggleName"
-      >
-        Enable automatically detected failures dialog
-      </div>
-      <div
-        class="ms-Toggle is-checked is-enabled toggle root-109"
-      >
-        <div
-          class="ms-Toggle-innerContainer container-111"
-        >
-          <button
-            aria-checked="true"
-            aria-label="Enable automatically detected failures dialog"
-            class="ms-Toggle-background pill-112"
-            data-is-focusable="true"
-            data-ktp-target="true"
-            id="enable-auto-detected-failures-dialog"
-            role="switch"
-            type="button"
-          >
-            <span
-              class="ms-Toggle-thumb thumb-113"
-            />
-          </button>
-          <label
-            class="ms-Label ms-Toggle-stateText text-115"
-            for="enable-auto-detected-failures-dialog"
-            id="enable-auto-detected-failures-dialog-stateText"
-          >
-            On
-          </label>
-        </div>
-      </div>
-    </div>
-    <div
-      class="toggleDescription"
-    >
-      Show the tab stops automatically detected failures dialog.
-    </div>
-  </div>
+  <mock-generictoggle
+    description="Show the tab stops automatically detected failures dialog."
+    enabled="true"
+    id="enable-auto-detected-failures-dialog"
+    name="Enable automatically detected failures dialog"
+  />
 </DocumentFragment>
 `;

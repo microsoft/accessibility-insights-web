@@ -8,39 +8,36 @@ exports[`TelemetryViewer renders when there are no telemetry messages 1`] = `
 </DocumentFragment>
 `;
 
+exports[`TelemetryViewer renders when there are no telemetry messages: TelemetryMessagesList props 1`] = `undefined`;
+
 exports[`TelemetryViewer renders when there is at least one telemetry message 1`] = `
 <DocumentFragment>
-  <div
-    class="container"
-  >
-    <strong>
-      Build:
-    </strong>
-    <span>
-      test-application-build
-    </span>
-    <strong>
-      Name:
-    </strong>
-    <span>
-      test-application-name
-    </span>
-    <strong>
-      Version:
-    </strong>
-    <span>
-      test-application-version
-    </span>
-    <strong>
-      Installation Id:
-    </strong>
-    <span>
-      test-installation-id
-    </span>
-  </div>
+  <mock-telemetrycommonfields
+    applicationbuild="test-application-build"
+    applicationname="test-application-name"
+    applicationversion="test-application-version"
+    installationid="test-installation-id"
+  />
   <mock-telemetrymessageslist
     deps="[object Object]"
     items="[object Object]"
   />
 </DocumentFragment>
+`;
+
+exports[`TelemetryViewer renders when there is at least one telemetry message: TelemetryMessagesList props 1`] = `
+{
+  "deps": {
+    "telemetryListener": [typemoq mock object],
+  },
+  "items": [
+    {
+      "applicationBuild": "test-application-build",
+      "applicationName": "test-application-name",
+      "applicationVersion": "test-application-version",
+      "installationId": "test-installation-id",
+      "key": "value",
+    },
+  ],
+}
 `;

@@ -2,10 +2,18 @@
 // Licensed under the MIT License.
 
 import { render } from '@testing-library/react';
-import { CurrentView, CurrentViewDeps, CurrentViewProps, CurrentViewState } from 'debug-tools/components/current-view/current-view';
+import {
+    CurrentView,
+    CurrentViewDeps,
+    CurrentViewProps,
+    CurrentViewState,
+} from 'debug-tools/components/current-view/current-view';
 import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
 import * as React from 'react';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 import { TelemetryViewer } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-viewer';
 import { StoresTree } from '../../../../../../debug-tools/components/stores-tree';
 
@@ -28,5 +36,6 @@ describe('CurrentView', () => {
         const renderResult = render(<CurrentView {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([TelemetryViewer, StoresTree]);
     });
 });

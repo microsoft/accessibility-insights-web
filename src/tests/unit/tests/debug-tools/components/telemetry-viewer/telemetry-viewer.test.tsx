@@ -2,17 +2,26 @@
 // Licensed under the MIT License.
 
 import { render } from '@testing-library/react';
-import { TelemetryViewer, TelemetryViewerDeps, TelemetryViewerProps } from 'debug-tools/components/telemetry-viewer/telemetry-viewer';
+import {
+    TelemetryViewer,
+    TelemetryViewerDeps,
+    TelemetryViewerProps,
+} from 'debug-tools/components/telemetry-viewer/telemetry-viewer';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import { isFunction } from 'lodash';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
-import { TelemetryMessagesList} from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-messages-list';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
+import { TelemetryMessagesList } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-messages-list';
+import { TelemetryCommonFields } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-common-fields';
 
 jest.mock('../../../../../../debug-tools/components/telemetry-viewer/telemetry-messages-list');
+jest.mock('../../../../../../debug-tools/components/telemetry-viewer/telemetry-common-fields');
 describe('TelemetryViewer', () => {
-    mockReactComponents([TelemetryMessagesList]);
+    mockReactComponents([TelemetryMessagesList, TelemetryCommonFields]);
     let telemetryListenerMock: IMock<TelemetryListener>;
 
     let deps: TelemetryViewerDeps;
@@ -53,6 +62,7 @@ describe('TelemetryViewer', () => {
             const renderResult = render(<TelemetryViewer {...props} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([TelemetryMessagesList]);
         });
 
         it('when there is at least one telemetry message', () => {
@@ -73,6 +83,7 @@ describe('TelemetryViewer', () => {
             });
 
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([TelemetryMessagesList]);
         });
     });
 });

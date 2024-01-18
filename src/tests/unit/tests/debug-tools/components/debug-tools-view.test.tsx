@@ -10,16 +10,21 @@ import {
 } from 'debug-tools/components/debug-tools-view';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { CurrentView } from '../../../../../debug-tools/components/current-view/current-view';
 import { DebugToolsNav } from '../../../../../debug-tools/components/debug-tools-nav';
 import { NarrowModeDetector } from '../../../../../DetailsView/components/narrow-mode-detector';
+import { Spinner } from '@fluentui/react';
 
 jest.mock('../../../../../debug-tools/components/current-view/current-view');
 jest.mock('../../../../../debug-tools/components/debug-tools-nav');
 jest.mock('../../../../../DetailsView/components/narrow-mode-detector');
+jest.mock('@fluentui/react');
 describe('DebugToolsView', () => {
-    mockReactComponents([DebugToolsNav, CurrentView, NarrowModeDetector]);
+    mockReactComponents([DebugToolsNav, CurrentView, NarrowModeDetector, Spinner]);
     describe('renders', () => {
         let storesHubMock: IMock<ClientStoresHub<DebugToolsViewState>>;
 
@@ -43,7 +48,11 @@ describe('DebugToolsView', () => {
             const renderResult = render(<DebugTools deps={deps} storeState={storeState} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([DebugToolsNav]);
+            expectMockedComponentPropsToMatchSnapshots([
+                DebugToolsNav,
+                NarrowModeDetector,
+                CurrentView,
+            ]);
         });
     });
 });

@@ -9,3 +9,29 @@ exports[`DebugToolsNav renders 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`DebugToolsNav renders: StyledNavBase props 1`] = `
+{
+  "className": "test-class-name",
+  "groups": [
+    {
+      "links": [
+        {
+          "icon": "OfflineStorage",
+          "key": "stores",
+          "name": "Stores",
+          "url": "",
+        },
+        {
+          "icon": "Diagnostic",
+          "key": "telemetryViewer",
+          "name": "TelemetryViewer",
+          "url": "",
+        },
+      ],
+    },
+  ],
+  "onLinkClick": [Function],
+  "selectedKey": "test-selected-tool",
+}
+`;

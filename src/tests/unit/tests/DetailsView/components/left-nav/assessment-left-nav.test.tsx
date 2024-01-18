@@ -18,13 +18,12 @@ import {
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
-import { mockComponent } from 'react-dom/test-utils';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
-import { NavLinkButton } from '../../../../../../DetailsView/components/nav-link-button';
+import { BaseLeftNav } from '../../../../../../DetailsView/components/base-left-nav';
 
-jest.mock('../../../../../../DetailsView/components/nav-link-button');
+jest.mock('../../../../../../DetailsView/components/base-left-nav');
 describe(AssessmentLeftNav.displayName, () => {
-    mockReactComponents([NavLinkButton]);
+    mockReactComponents([BaseLeftNav]);
     let linkStub: AssessmentLeftNavLink;
     let deps: AssessmentLeftNavDeps;
     let props: AssessmentLeftNavProps;
