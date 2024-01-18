@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { userEvent } from '@testing-library/user-event';
 import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
@@ -14,7 +14,6 @@ import {
 } from 'DetailsView/components/load-assessment-button';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import * as React from 'react';
-
 import { IMock, It, Mock } from 'typemoq';
 
 describe('LoadAssessmentButton', () => {

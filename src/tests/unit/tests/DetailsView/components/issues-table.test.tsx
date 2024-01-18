@@ -25,9 +25,9 @@ import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-pr
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock } from 'typemoq';
-import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 import { IssueFilingDialog } from '../../../../../DetailsView/components/issue-filing-dialog';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 jest.mock('../../../../../DetailsView/components/issue-filing-dialog');
 
 describe('IssuesTableTest', () => {

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { Dialog } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { Tab } from 'common/types/store-data/itab';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
@@ -13,11 +13,11 @@ import {
 } from 'DetailsView/components/load-assessment-dialog';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { ChangeAssessmentDialog } from '../../../../../DetailsView/components/change-assessment-dialog';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
-import { ChangeAssessmentDialog } from '../../../../../DetailsView/components/change-assessment-dialog';
 jest.mock('../../../../../DetailsView/components/change-assessment-dialog');
 jest.mock('@fluentui/react');
 

@@ -12,8 +12,8 @@ import {
 } from 'DetailsView/components/interactive-header';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 import { Header } from '../../../../../common/components/header';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('../../../../../common/components/header');
 
 describe('InteractiveHeader', () => {

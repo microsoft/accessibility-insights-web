@@ -10,8 +10,8 @@ import {
 } from 'DetailsView/components/getting-started-view';
 import * as React from 'react';
 import { ContentPageComponent } from 'views/content/content-page';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 import { ContentLink } from '../../../../../views/content/content-link';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('../../../../../views/content/content-link');
 
 describe('GettingStartedViewTest', () => {
