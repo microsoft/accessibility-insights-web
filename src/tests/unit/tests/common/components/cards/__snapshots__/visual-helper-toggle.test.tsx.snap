@@ -1,19 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`VisualHelperToggle fires toggleVisualHelper when toggled: StyledToggleBase props 1`] = `
+{
+  "checked": false,
+  "className": undefined,
+  "label": "Visual helper",
+  "onClick": [Function],
+}
+`;
+
 exports[`VisualHelperToggle renders per snapshot with visualHelperEnabled false 1`] = `
-<StyledToggleBase
-  checked={false}
-  className="visualHelperToggle"
-  label="Visual helper"
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <mock-styledtogglebase
+    checked="false"
+    label="Visual helper"
+  />
+</DocumentFragment>
 `;
 
 exports[`VisualHelperToggle renders per snapshot with visualHelperEnabled true 1`] = `
-<StyledToggleBase
-  checked={true}
-  className="visualHelperToggle"
-  label="Visual helper"
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <mock-styledtogglebase
+    checked="true"
+    label="Visual helper"
+  />
+</DocumentFragment>
 `;

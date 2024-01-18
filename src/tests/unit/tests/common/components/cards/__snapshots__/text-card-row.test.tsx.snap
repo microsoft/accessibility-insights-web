@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TextCardRow renders 1`] = `
-<SimpleCardRow
-  content="test text"
-  label="Text"
-  rowKey="Text--1"
-/>
+<DocumentFragment>
+  <mock-simplecardrow
+    content="test text"
+    label="Text"
+    rowkey="Text--1"
+  />
+</DocumentFragment>
 `;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { SimpleCardRow, SimpleCardRowProps } from 'common/components/cards/simple-card-row';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('SimpleCardRow', () => {
@@ -22,13 +22,25 @@ describe('SimpleCardRow', () => {
     });
 
     it('renders', () => {
-        const testSubject = shallow(<SimpleCardRow {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(
+            <table>
+                <tbody>
+                    <SimpleCardRow {...props} />
+                </tbody>
+            </table>,
+        );
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders with correct styling with extra class name', () => {
         props.contentClassName = 'test class name';
-        const testSubject = shallow(<SimpleCardRow {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(
+            <table>
+                <tbody>
+                    <SimpleCardRow {...props} />
+                </tbody>
+            </table>,
+        );
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
