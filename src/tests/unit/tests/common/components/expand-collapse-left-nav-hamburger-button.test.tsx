@@ -8,10 +8,7 @@ import {
 } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import * as React from 'react';
 import { LeftNavHamburgerButton } from '../../../../../common/components/left-nav-hamburger-button';
-import {
-    expectMockedComponentPropsToMatchSnapshots,
-    mockReactComponents,
-} from '../../../mock-helpers/mock-module-helpers';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../common/components/left-nav-hamburger-button');
 describe('AssessmentLeftNavHamburgerButton', () => {
@@ -26,7 +23,6 @@ describe('AssessmentLeftNavHamburgerButton', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([LeftNavHamburgerButton]);
     });
 });
 
@@ -41,7 +37,6 @@ describe('QuickAssessLeftNavHamburgerButton', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([LeftNavHamburgerButton]);
     });
 });
 
@@ -56,6 +51,5 @@ describe('FastPassLeftNavHamburgerButton', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([LeftNavHamburgerButton]);
     });
 });

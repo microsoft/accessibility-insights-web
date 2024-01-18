@@ -10,15 +10,6 @@ exports[`AssessmentLeftNavHamburgerButton renders per snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`AssessmentLeftNavHamburgerButton renders per snapshot: LeftNavHamburgerButton props 1`] = `
-{
-  "ariaLabel": "Assessment - all tests and requirements list",
-  "className": "some-class",
-  "isSideNavOpen": false,
-  "setSideNavOpen": null,
-}
-`;
-
 exports[`FastPassLeftNavHamburgerButton renders per snapshot 1`] = `
 <DocumentFragment>
   <mock-leftnavhamburgerbutton
@@ -29,15 +20,6 @@ exports[`FastPassLeftNavHamburgerButton renders per snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`FastPassLeftNavHamburgerButton renders per snapshot: LeftNavHamburgerButton props 1`] = `
-{
-  "ariaLabel": "FastPass - all tests list",
-  "className": "some-class",
-  "isSideNavOpen": false,
-  "setSideNavOpen": null,
-}
-`;
-
 exports[`QuickAssessLeftNavHamburgerButton renders per snapshot 1`] = `
 <DocumentFragment>
   <mock-leftnavhamburgerbutton
@@ -46,13 +28,4 @@ exports[`QuickAssessLeftNavHamburgerButton renders per snapshot 1`] = `
     issidenavopen="false"
   />
 </DocumentFragment>
-`;
-
-exports[`QuickAssessLeftNavHamburgerButton renders per snapshot: LeftNavHamburgerButton props 1`] = `
-{
-  "ariaLabel": "Quick Assess - all tests and requirements list",
-  "className": "some-class",
-  "isSideNavOpen": false,
-  "setSideNavOpen": null,
-}
 `;
