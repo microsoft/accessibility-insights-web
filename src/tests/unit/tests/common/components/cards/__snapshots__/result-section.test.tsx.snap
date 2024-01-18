@@ -1,101 +1,119 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
-<div
-  className="result-section-class-name resultSection"
-  data-automation-id="result-section"
->
-  <HeadingElementForLevel
-    headingLevel={2}
+<DocumentFragment>
+  <div
+    class="result-section-class-name resultSection"
+    data-automation-id="result-section"
   >
-    <ResultSectionTitle
-      containerClassName="result-section-class-name"
-      deps={
-        {
-          "getNextHeadingLevel": [Function],
-        }
-      }
-      sectionHeadingLevel={2}
-      shouldAlertFailuresCount={false}
-      titleSize="title"
+    <mock-headingelementforlevel
+      headinglevel="2"
+    >
+      <mock-resultsectiontitle
+        containerclassname="result-section-class-name"
+        deps="[object Object]"
+        sectionheadinglevel="2"
+        shouldalertfailurescount="false"
+        titlesize="title"
+      />
+    </mock-headingelementforlevel>
+    <mock-resultsectioncontent
+      containerclassname="result-section-class-name"
+      deps="[object Object]"
+      headinglevel="3"
+      sectionheadinglevel="2"
+      shouldalertfailurescount="false"
     />
-  </HeadingElementForLevel>
-  <ResultSectionContent
-    containerClassName="result-section-class-name"
-    deps={
-      {
-        "getNextHeadingLevel": [Function],
-      }
-    }
-    headingLevel={3}
-    sectionHeadingLevel={2}
-    shouldAlertFailuresCount={false}
-  />
-</div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ResultSection renders with shouldAlertFailureCount = <false>: ResultSectionContent props 1`] = `
+{
+  "containerClassName": "result-section-class-name",
+  "deps": {
+    "getNextHeadingLevel": [Function],
+  },
+  "headingLevel": 3,
+  "sectionHeadingLevel": 2,
+  "shouldAlertFailuresCount": false,
+}
 `;
 
 exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
-<div
-  className="result-section-class-name resultSection"
-  data-automation-id="result-section"
->
-  <HeadingElementForLevel
-    headingLevel={2}
+<DocumentFragment>
+  <div
+    class="result-section-class-name resultSection"
+    data-automation-id="result-section"
   >
-    <ResultSectionTitle
-      containerClassName="result-section-class-name"
-      deps={
-        {
-          "getNextHeadingLevel": [Function],
-        }
-      }
-      sectionHeadingLevel={2}
-      shouldAlertFailuresCount={true}
-      titleSize="title"
+    <mock-headingelementforlevel
+      headinglevel="2"
+    >
+      <mock-resultsectiontitle
+        containerclassname="result-section-class-name"
+        deps="[object Object]"
+        sectionheadinglevel="2"
+        shouldalertfailurescount="true"
+        titlesize="title"
+      />
+    </mock-headingelementforlevel>
+    <mock-resultsectioncontent
+      containerclassname="result-section-class-name"
+      deps="[object Object]"
+      headinglevel="3"
+      sectionheadinglevel="2"
+      shouldalertfailurescount="true"
     />
-  </HeadingElementForLevel>
-  <ResultSectionContent
-    containerClassName="result-section-class-name"
-    deps={
-      {
-        "getNextHeadingLevel": [Function],
-      }
-    }
-    headingLevel={3}
-    sectionHeadingLevel={2}
-    shouldAlertFailuresCount={true}
-  />
-</div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ResultSection renders with shouldAlertFailureCount = <true>: ResultSectionContent props 1`] = `
+{
+  "containerClassName": "result-section-class-name",
+  "deps": {
+    "getNextHeadingLevel": [Function],
+  },
+  "headingLevel": 3,
+  "sectionHeadingLevel": 2,
+  "shouldAlertFailuresCount": true,
+}
 `;
 
 exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = `
-<div
-  className="result-section-class-name resultSection"
-  data-automation-id="result-section"
->
-  <HeadingElementForLevel
-    headingLevel={2}
+<DocumentFragment>
+  <div
+    class="result-section-class-name resultSection"
+    data-automation-id="result-section"
   >
-    <ResultSectionTitle
-      containerClassName="result-section-class-name"
-      deps={
-        {
-          "getNextHeadingLevel": [Function],
-        }
-      }
-      sectionHeadingLevel={2}
-      titleSize="title"
+    <mock-headingelementforlevel
+      headinglevel="2"
+    >
+      <mock-resultsectiontitle
+        containerclassname="result-section-class-name"
+        deps="[object Object]"
+        sectionheadinglevel="2"
+        titlesize="title"
+      />
+    </mock-headingelementforlevel>
+    <mock-resultsectioncontent
+      containerclassname="result-section-class-name"
+      deps="[object Object]"
+      headinglevel="3"
+      sectionheadinglevel="2"
     />
-  </HeadingElementForLevel>
-  <ResultSectionContent
-    containerClassName="result-section-class-name"
-    deps={
-      {
-        "getNextHeadingLevel": [Function],
-      }
-    }
-    headingLevel={3}
-    sectionHeadingLevel={2}
-  />
-</div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ResultSection renders with shouldAlertFailureCount = <undefined>: ResultSectionContent props 1`] = `
+{
+  "containerClassName": "result-section-class-name",
+  "deps": {
+    "getNextHeadingLevel": [Function],
+  },
+  "headingLevel": 3,
+  "sectionHeadingLevel": 2,
+  "shouldAlertFailuresCount": undefined,
+}
 `;

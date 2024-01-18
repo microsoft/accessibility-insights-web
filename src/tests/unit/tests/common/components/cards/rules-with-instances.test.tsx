@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
+import { render } from '@testing-library/react';
+import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import {
     RulesWithInstances,
     RulesWithInstancesDeps,
@@ -8,14 +9,18 @@ import {
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock } from 'typemoq';
-
-import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
+jest.mock('common/components/cards/collapsible-component-cards');
+
 describe('RulesWithInstances', () => {
+    mockReactComponents([CardsCollapsibleControl]);
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
     let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
 
@@ -26,16 +31,13 @@ describe('RulesWithInstances', () => {
 
     it('renders', () => {
         const rules = [exampleUnifiedRuleResult];
-        const CollapsibleControlStub = getCollapsibleControlStub();
         const depsStub = {
-            collapsibleControl: (props: CollapsibleComponentCardsProps) => (
-                <CollapsibleControlStub {...props} />
-            ),
+            collapsibleControl: CardsCollapsibleControl,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
         } as RulesWithInstancesDeps;
         const outcomeCounterStub = () => 5;
 
-        const wrapped = shallow(
+        const renderResult = render(
             <RulesWithInstances
                 deps={depsStub}
                 outcomeType={'pass'}
@@ -48,10 +50,7 @@ describe('RulesWithInstances', () => {
             />,
         );
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([CardsCollapsibleControl]);
     });
-
-    function getCollapsibleControlStub(): ReactFCWithDisplayName<CollapsibleComponentCardsProps> {
-        return NamedFC<CollapsibleComponentCardsProps>('CollapsibleControlStub', _ => null);
-    }
 });
