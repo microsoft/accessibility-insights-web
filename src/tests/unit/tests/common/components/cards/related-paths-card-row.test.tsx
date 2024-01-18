@@ -1,13 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import {
     RelatedPathsCardRow,
     RelatedPathsCardRowProps,
 } from 'common/components/cards/related-paths-card-row';
-import { shallow } from 'enzyme';
+import { SimpleCardRow } from 'common/components/cards/simple-card-row';
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 
+jest.mock('common/components/cards/simple-card-row');
 describe(RelatedPathsCardRow.displayName, () => {
+    mockReactComponents([SimpleCardRow]);
     it.each([[], null, undefined])(
         'renders as null with related paths: %p',
         (relatedPaths?: any) => {
@@ -16,9 +23,9 @@ describe(RelatedPathsCardRow.displayName, () => {
                 index: 123,
                 propertyData: relatedPaths,
             };
-            const testSubject = shallow(<RelatedPathsCardRow {...props} />);
+            const renderResult = render(<RelatedPathsCardRow {...props} />);
 
-            expect(testSubject.getElement()).toBeNull();
+            expect(renderResult.container.firstChild).toBeNull();
         },
     );
 
@@ -28,8 +35,9 @@ describe(RelatedPathsCardRow.displayName, () => {
             index: 123,
             propertyData: ['#path-1a;.path-1b', '#path-2', '.path-3'],
         };
-        const testSubject = shallow(<RelatedPathsCardRow {...props} />);
+        const renderResult = render(<RelatedPathsCardRow {...props} />);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([SimpleCardRow]);
     });
 });
