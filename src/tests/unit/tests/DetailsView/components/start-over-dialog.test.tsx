@@ -22,9 +22,6 @@ describe('StartOverDialog', () => {
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let assessmentStoreData: AssessmentStoreData;
 
-    const event = {
-        currentTarget: 'test target',
-    } as React.MouseEvent<any>;
     const testName = 'test name';
     const test = -1 as VisualizationType;
     const requirementKey = 'test key';
