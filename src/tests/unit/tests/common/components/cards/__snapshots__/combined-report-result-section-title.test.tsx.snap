@@ -1,681 +1,576 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (0)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    0
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      failure was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 failure was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (1)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    1
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (2)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    2
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with no-alerting 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (10)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    10
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (15)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    15
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (0)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    0
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      failure was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 failure was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (1)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    1
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (2)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    2
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (10)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    10
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (15)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    15
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (0)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    0
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      failure was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 failure was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (1)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    1
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (2)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    2
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with no-alerting 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (10)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    10
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType incomplete renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (15)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    15
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (0)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    0
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      failure was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 failure was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (1)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    1
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      failures were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 failures were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (2)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    2
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with no-alerting 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (10)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    10
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (15)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    15
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is 0 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      0
-       
-      instances to review were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        0 instances to review were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (0)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    0
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      1
-       
-      instance to review was
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        1 instance to review was detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (1)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    1
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is greater than 1 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
     <span
-      role="alert"
+      class="screen-reader-only"
     >
-      2
-       
-      instances to review were
-       detected.
+      test title 
+      <span
+        role="alert"
+      >
+        2 instances to review were detected.
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (2)
     </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    2
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with no-alerting 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    10
+    <span
+      class="screen-reader-only"
+    >
+      test title 10
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (10)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    10
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
+<DocumentFragment>
   <span
-    className="screen-reader-only"
+    class="combinedReportResultSectionTitle"
   >
-    test title
-     
-    15
+    <span
+      class="screen-reader-only"
+    >
+      test title 15
+    </span>
+    <span
+      aria-hidden="true"
+      class="heading"
+    >
+      test title (15)
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    15
-    )
-  </span>
-</span>
+</DocumentFragment>
 `;
