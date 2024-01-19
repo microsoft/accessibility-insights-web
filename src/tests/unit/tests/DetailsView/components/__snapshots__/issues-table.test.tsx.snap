@@ -11,6 +11,17 @@ exports[`IssuesTableTest With issue filing support 1`] = `
     <div
       class="issuesTableContent"
     >
+      <mock-failedinstancessection
+        cardselectionmessagecreator="[object Object]"
+        cardsviewdata="[object Object]"
+        cardsviewstoredata="[object Object]"
+        deps="[object Object]"
+        narrowmodestatus="[object Object]"
+        scanmetadata="[object Object]"
+        sectionheadinglevel="2"
+        shouldalertfailurescount="true"
+        userconfigurationstoredata="[object Object]"
+      />
       <mock-issuefilingdialog
         isopen="false"
       />
@@ -29,7 +40,19 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
     </h1>
     <div
       class="issuesTableContent"
-    />
+    >
+      <mock-failedinstancessection
+        cardselectionmessagecreator="[object Object]"
+        cardsviewdata="[object Object]"
+        cardsviewstoredata="[object Object]"
+        deps="[object Object]"
+        narrowmodestatus="[object Object]"
+        scanmetadata="[object Object]"
+        sectionheadinglevel="2"
+        shouldalertfailurescount="true"
+        userconfigurationstoredata="[object Object]"
+      />
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -47,19 +70,10 @@ exports[`IssuesTableTest includes subtitle if specified 1`] = `
     >
       test subtitle text
     </div>
-    <div
-      class="ms-Spinner scanningSpinner root-110"
-      role="alert"
-    >
-      <div
-        class="ms-Spinner-circle ms-Spinner--large circle-111"
-      />
-      <div
-        class="ms-Spinner-label label-112"
-      >
-        Loading...
-      </div>
-    </div>
+    <mock-scanningspinner
+      isspinning="true"
+      label="Loading..."
+    />
   </div>
 </DocumentFragment>
 `;
@@ -74,7 +88,19 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
     </h1>
     <div
       class="issuesTableContent"
-    />
+    >
+      <mock-failedinstancessection
+        cardselectionmessagecreator="[object Object]"
+        cardsviewdata="[object Object]"
+        cardsviewstoredata="[object Object]"
+        deps="[object Object]"
+        narrowmodestatus="[object Object]"
+        scanmetadata="[object Object]"
+        sectionheadinglevel="2"
+        shouldalertfailurescount="true"
+        userconfigurationstoredata="[object Object]"
+      />
+    </div>
   </div>
 </DocumentFragment>
 `;
@@ -90,19 +116,10 @@ exports[`IssuesTableTest spinner for scanning state 1`] = `
     <div
       class="issuesTableContent"
     >
-      <div
-        class="ms-Spinner scanningSpinner root-110"
-        role="alert"
-      >
-        <div
-          class="ms-Spinner-circle ms-Spinner--large circle-111"
-        />
-        <div
-          class="ms-Spinner-label label-112"
-        >
-          Scanning...
-        </div>
-      </div>
+      <mock-scanningspinner
+        isspinning="true"
+        label="Scanning..."
+      />
     </div>
   </div>
 </DocumentFragment>
@@ -116,19 +133,10 @@ exports[`IssuesTableTest spinner, issuesEnabled == null 1`] = `
     <h1>
       test title test steps text
     </h1>
-    <div
-      class="ms-Spinner scanningSpinner root-110"
-      role="alert"
-    >
-      <div
-        class="ms-Spinner-circle ms-Spinner--large circle-111"
-      />
-      <div
-        class="ms-Spinner-label label-112"
-      >
-        Loading...
-      </div>
-    </div>
+    <mock-scanningspinner
+      isspinning="true"
+      label="Loading..."
+    />
   </div>
 </DocumentFragment>
 `;
