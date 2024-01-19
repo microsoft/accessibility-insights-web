@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
-import { onBaseLeftNavItemClick, onBaseLeftNavItemRender } from 'DetailsView/components/base-left-nav';
+import {
+    onBaseLeftNavItemClick,
+    onBaseLeftNavItemRender,
+} from 'DetailsView/components/base-left-nav';
 import { NavLinkButton, NavLinkButtonProps } from 'DetailsView/components/nav-link-button';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';

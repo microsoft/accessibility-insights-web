@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
 import { fireEvent, render, RenderResult, act } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
@@ -10,7 +13,6 @@ import {
     SaveAssessmentButtonProps,
 } from 'DetailsView/components/save-assessment-button';
 import * as React from 'react';
-import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
@@ -24,7 +26,6 @@ describe('SaveAssessmentButton', () => {
     useOriginalReactElements('@fluentui/react', ['ActionButton']);
     let propsStub: SaveAssessmentButtonProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
-    let eventStub: any;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
 
@@ -43,7 +44,6 @@ describe('SaveAssessmentButton', () => {
             href: 'url',
             userConfigurationStoreData,
         };
-        eventStub = new EventStubFactory().createMouseClickEvent();
     });
 
     describe('on dialog enabled', () => {
