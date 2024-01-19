@@ -1,91 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RichResolutionContent renders static content with id=web/aria-input-field-name 1`] = `
-<div>
-  Inspect the element using the
-   
-  <stubLinkComponent
-    href="https://developers.google.com/web/updates/2018/01/devtools"
-  >
-    Accessibility pane in the browser Developer Tools
-  </stubLinkComponent>
-   
-  to verify that the field's accessible name is complete without its associated
-   
-  <b>
-    &lt;
-    label
-    &gt;
-  </b>
-  .
-</div>
+<DocumentFragment>
+  <div>
+    Inspect the element using the 
+    <a
+      href="https://developers.google.com/web/updates/2018/01/devtools"
+    >
+      Accessibility pane in the browser Developer Tools
+    </a>
+     to verify that the field's accessible name is complete without its associated 
+    <b>
+      &lt;label&gt;
+    </b>
+    .
+  </div>
+</DocumentFragment>
 `;
 
 exports[`RichResolutionContent renders static content with id=web/color-contrast 1`] = `
-<div
-  className="combinationLists"
->
-  <ul
-    className="multiLineTextYesBullet"
+<DocumentFragment>
+  <div
+    class="combinationLists"
   >
-    <li>
-      If the instance is an icon or other non-text content, ignore it. This rule applies only to text.
-    </li>
-    <li>
-      If the instance is text, use
-       
-      <stubLinkComponent
-        href="https://go.microsoft.com/fwlink/?linkid=2075365"
-      >
-        Accessibility Insights for Windows
-      </stubLinkComponent>
-       
-      (or the
-       
-      <stubLinkComponent
-        href="https://developer.paciellogroup.com/resources/contrastanalyser/"
-      >
-        Colour Contrast Analyser
-      </stubLinkComponent>
-       
-      if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.
-    </li>
-  </ul>
-  <ul
-    className="multiLineTextNoBullet"
-  >
-    <li>
-      For detailed test instructions, see
-       
-      <Term>
-        Assessment 
-        &gt;
-         Adaptable content 
-        &gt;
-         Contrast
-      </Term>
-      .
-    </li>
-  </ul>
-</div>
+    <ul
+      class="multiLineTextYesBullet"
+    >
+      <li>
+        If the instance is an icon or other non-text content, ignore it. This rule applies only to text.
+      </li>
+      <li>
+        If the instance is text, use 
+        <a
+          href="https://go.microsoft.com/fwlink/?linkid=2075365"
+        >
+          Accessibility Insights for Windows
+        </a>
+         (or the 
+        <a
+          href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+        >
+          Colour Contrast Analyser
+        </a>
+         if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.
+      </li>
+    </ul>
+    <ul
+      class="multiLineTextNoBullet"
+    >
+      <li>
+        For detailed test instructions, see 
+        <strong>
+          Assessment &gt; Adaptable content &gt; Contrast
+        </strong>
+        .
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`RichResolutionContent renders static content with id=web/label-content-name-mismatch 1`] = `
-<span>
-  Inspect the element using the Accessibility pane in the browser Developer tools and verify that the element’s accessible name contains its visible text.
-</span>
+<DocumentFragment>
+  <span>
+    Inspect the element using the Accessibility pane in the browser Developer tools and verify that the element’s accessible name contains its visible text.
+  </span>
+</DocumentFragment>
 `;
 
 exports[`RichResolutionContent renders static content with id=web/p-as-heading 1`] = `
-<span>
-  Inspect the 
-  &lt;p&gt;
-   element and verify that the element is not used as a heading through visual styling with bold, italic text or font-size. If headings are needed, use the appropriate heading tags.
-</span>
+<DocumentFragment>
+  <span>
+    Inspect the &lt;p&gt; element and verify that the element is not used as a heading through visual styling with bold, italic text or font-size. If headings are needed, use the appropriate heading tags.
+  </span>
+</DocumentFragment>
 `;
 
 exports[`RichResolutionContent renders static content with id=web/th-has-data-cells 1`] = `
-<div>
-  Examine the header cell in the context of the table to verify that it has no data cells.
-</div>
+<DocumentFragment>
+  <div>
+    Examine the header cell in the context of the table to verify that it has no data cells.
+  </div>
+</DocumentFragment>
 `;
