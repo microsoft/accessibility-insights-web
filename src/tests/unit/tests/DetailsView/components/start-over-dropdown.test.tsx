@@ -4,7 +4,6 @@ import { ContextualMenu, IButton, IRefObject } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { StartOverContextMenuKeyOptions } from 'DetailsView/components/details-view-right-panel';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import * as React from 'react';
@@ -25,10 +24,6 @@ describe('StartOverDropdownTest', () => {
     mockReactComponents([ContextualMenu]);
     let defaultProps: StartOverProps;
     let openDialogMock: IMock<(dialogType: StartOverDialogType) => void>;
-
-    const event = {
-        currentTarget: 'test target',
-    } as React.MouseEvent<any>;
 
     beforeEach(() => {
         openDialogMock = Mock.ofInstance(() => null);
