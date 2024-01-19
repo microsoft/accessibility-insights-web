@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import * as React from 'react';
-
+import { ExternalLink } from '../../../../../common/components/external-link';
 import {
     HelpLinks,
     HelpLinksDeps,
     HelpLinksProps,
 } from '../../../../../DetailsView/components/help-links';
-import { ExternalLink } from '../../../../../common/components/external-link';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('../../../../../common/components/external-link');
 
