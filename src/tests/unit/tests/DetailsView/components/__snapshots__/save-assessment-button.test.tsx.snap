@@ -1,37 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SaveAssessmentButton on dialog enabled snapshot of dialog 1`] = `
-<React.Fragment>
-  <InsightsCommandButton
+<DocumentFragment>
+  <a
+    class="ms-Button ms-Button--action ms-Button--command root-109"
+    data-is-focusable="true"
     download="download"
     href="url"
-    iconProps={
-      {
-        "iconName": "Save",
-      }
-    }
-    onClick={[Function]}
   >
-    Save assessment
-  </InsightsCommandButton>
-  <Dialog
-    dialogContentProps={
-      {
-        "title": "Assessment saved",
-        "type": 0,
-      }
-    }
-    hidden={false}
-    modalProps={
-      {
-        "containerClassName": "insightsDialogMainOverride",
-        "isBlocking": false,
-      }
-    }
-    onDismiss={[Function]}
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-105 ms-Button-icon icon-112"
+        data-icon-name="Save"
+      />
+      <span
+        class="ms-Button-textContainer textContainer-111"
+      >
+        <span
+          class="ms-Button-label label-113"
+          id="id__0"
+        >
+          Save assessment
+        </span>
+      </span>
+    </span>
+  </a>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
   >
     <div
-      className="dialogBody"
+      class="dialogBody"
     >
       To load this assessment, use the 
       <strong>
@@ -39,38 +43,32 @@ exports[`SaveAssessmentButton on dialog enabled snapshot of dialog 1`] = `
       </strong>
        button in the Accessibility Insights Assessment command bar.
     </div>
-    <StyledDialogFooterBase>
-      <Stack
-        horizontal={true}
-        horizontalAlign="space-between"
-        tokens={
-          {
-            "childrenGap": 6,
-          }
-        }
-        verticalAlign="center"
-        wrap={true}
+    <mock-styleddialogfooterbase>
+      <mock-stack
+        horizontal="true"
+        horizontalalign="space-between"
+        tokens="[object Object]"
+        verticalalign="center"
+        wrap="true"
       >
-        <StackItem
-          disableShrink={true}
-          grow={true}
+        <mock-stackitem
+          disableshrink="true"
+          grow="true"
         >
-          <StyledCheckboxBase
+          <mock-styledcheckboxbase
             label="Don't show again"
-            onChange={[Function]}
-            value={false}
+            value="false"
           />
-        </StackItem>
-        <StackItem
-          grow={true}
+        </mock-stackitem>
+        <mock-stackitem
+          grow="true"
         >
-          <CustomizedPrimaryButton
-            onClick={[Function]}
+          <mock-customizedprimarybutton
             text="Got it"
           />
-        </StackItem>
-      </Stack>
-    </StyledDialogFooterBase>
-  </Dialog>
-</React.Fragment>
+        </mock-stackitem>
+      </mock-stack>
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
 `;

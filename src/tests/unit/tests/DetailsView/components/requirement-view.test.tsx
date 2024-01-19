@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
@@ -14,6 +15,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { TestStepData } from 'common/types/store-data/manual-test-status';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
 import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerProps,
@@ -35,14 +37,17 @@ import {
 } from 'DetailsView/components/requirement-view-title-factory';
 import styles from 'DetailsView/components/requirement-view.scss';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
-import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPage, ContentPageComponent } from 'views/content/content-page';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('DetailsView/components/assessment-instance-table');
 
 describe('RequirementViewTest', () => {
+    mockReactComponents([AssessmentInstanceTable]);
     let assessmentStub: Assessment;
     let requirementStub: Requirement;
     let otherRequirementStub: Requirement;
@@ -188,8 +193,8 @@ describe('RequirementViewTest', () => {
     });
 
     it('renders with content from props', () => {
-        const rendered = shallow(<RequirementView {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<RequirementView {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
         getRequirementViewTitleMock.verifyAll();
         getRequirementContextSectionMock.verifyAll();
         getNextRequirementButtonConfigurationMock.verifyAll();

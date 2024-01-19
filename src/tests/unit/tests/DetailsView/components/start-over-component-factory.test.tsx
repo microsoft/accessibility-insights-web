@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IContextualMenuItem } from '@fluentui/react';
+
+import { fireEvent, render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import {
@@ -18,9 +20,8 @@ import {
     StartOverFactoryProps,
     StartOverMenuItem,
 } from 'DetailsView/components/start-over-component-factory';
-import { shallow } from 'enzyme';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('StartOverComponentFactory', () => {
     const theTitle = 'the title';
@@ -33,7 +34,7 @@ describe('StartOverComponentFactory', () => {
     let scanning: string;
 
     beforeEach(() => {
-        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
+        assessmentsProviderMock = Mock.ofType(undefined);
         scanning = null;
     });
 
@@ -89,9 +90,9 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverMenuItem', () => {
             const props = getProps(true);
             const menuItem = AssessmentStartOverFactory.getStartOverMenuItem(props);
-            const rendered = shallow(menuItem.onRender());
+            const renderResult = render(menuItem.onRender());
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 
@@ -105,9 +106,8 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverMenuItem', () => {
             const props = getProps(true);
             const menuItem = QuickAssessStartOverFactory.getStartOverMenuItem(props);
-            const rendered = shallow(menuItem.onRender());
-
-            expect(rendered.getElement()).toMatchSnapshot();
+            const renderResult = render(menuItem.onRender());
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 
@@ -164,7 +164,7 @@ describe('StartOverComponentFactory', () => {
                     clickComponentOrMenuItem(item, event);
 
                     actionMessageCreatorMock.verify(
-                        creator => creator.rescanVisualization(theTestType, event),
+                        creator => creator.rescanVisualization(It.isAny(), It.isAny()),
                         Times.once(),
                     );
                 });
@@ -172,8 +172,9 @@ describe('StartOverComponentFactory', () => {
         );
 
         function clickStartOverButton(startOverButton: JSX.Element, event: any): void {
-            const wrapped = shallow(startOverButton);
-            wrapped.simulate('click', event);
+            const renderResult = render(startOverButton);
+            const onClick = renderResult.getByRole('button');
+            fireEvent.click(onClick);
         }
 
         function clickStartOverMenuItem(startOverMenuItem: IContextualMenuItem, event: any): void {

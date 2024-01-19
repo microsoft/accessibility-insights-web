@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -12,7 +13,6 @@ import {
     ScanIncompleteWarningMessageBarProps,
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('ScanIncompleteWarning', () => {
@@ -38,9 +38,9 @@ describe('ScanIncompleteWarning', () => {
             deps: {} as ScanIncompleteWarningDeps,
         };
 
-        const testSubject = shallow(<ScanIncompleteWarning {...componentProps} />);
+        const renderResult = render(<ScanIncompleteWarning {...componentProps} />);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test(`rendered: where warnings were provided`, () => {
@@ -54,8 +54,8 @@ describe('ScanIncompleteWarning', () => {
             deps: {} as ScanIncompleteWarningDeps,
         };
 
-        const testSubject = shallow(<ScanIncompleteWarning {...componentProps} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<ScanIncompleteWarning {...componentProps} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test(`rendered: where warnings were provided, with one warning not supported`, () => {
@@ -69,8 +69,8 @@ describe('ScanIncompleteWarning', () => {
             deps: {} as ScanIncompleteWarningDeps,
         };
 
-        const testSubject = shallow(<ScanIncompleteWarning {...componentProps} />);
+        const renderResult = render(<ScanIncompleteWarning {...componentProps} />);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

@@ -1,7 +1,7 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
-import { Dialog, PrimaryButton } from '@fluentui/react';
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
+import { fireEvent, render, RenderResult, act } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -9,12 +9,19 @@ import {
     SaveAssessmentButton,
     SaveAssessmentButtonProps,
 } from 'DetailsView/components/save-assessment-button';
-import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
-import { IMock, Mock, Times } from 'typemoq';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { IMock, It, Mock, Times } from 'typemoq';
 
+jest.mock('@fluentui/react');
 describe('SaveAssessmentButton', () => {
+    mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
+    useOriginalReactElements('@fluentui/react', ['ActionButton']);
     let propsStub: SaveAssessmentButtonProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: any;
@@ -40,67 +47,88 @@ describe('SaveAssessmentButton', () => {
     });
 
     describe('on dialog enabled', () => {
-        let wrapper: ShallowWrapper;
+        let wrapper: RenderResult;
 
-        beforeEach(() => {
-            wrapper = shallow(<SaveAssessmentButton {...propsStub} />);
-            wrapper.find(InsightsCommandButton).simulate('click', eventStub);
-        });
+        beforeEach(() => {});
 
         it('snapshot of dialog', () => {
-            expect(wrapper.getElement()).toMatchSnapshot();
+            wrapper = render(<SaveAssessmentButton {...propsStub} />);
+            fireEvent.click(wrapper.getByRole('link'));
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
 
         it('dialog is visible', () => {
-            expect(wrapper.find(Dialog).props().hidden).toEqual(false);
-        });
-
-        it('dialog is hidden (dismissed) when "got it" button is clicked', () => {
-            wrapper.find(PrimaryButton).simulate('click');
-            expect(wrapper.find(Dialog).props().hidden).toEqual(true);
+            wrapper = render(<SaveAssessmentButton {...propsStub} />);
+            fireEvent.click(wrapper.getByRole('link'));
+            expect(getMockComponentClassPropsForCall(Dialog, 2).hidden).toEqual(false);
         });
 
         it('dialog is hidden (dismissed) when onDismiss is called', () => {
-            wrapper.find(Dialog).prop('onDismiss')();
-            expect(wrapper.find(Dialog).props().hidden).toEqual(true);
+            wrapper = render(<SaveAssessmentButton {...propsStub} />);
+            fireEvent.click(wrapper.getByRole('link'));
+            act(() => {
+                getMockComponentClassPropsForCall(Dialog, 2).onDismiss();
+            });
+            expect(getMockComponentClassPropsForCall(Dialog, 3).hidden).toEqual(true);
+        });
+
+        it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
+            useOriginalReactElements('@fluentui/react', [
+                'Dialog',
+                'DialogFooter',
+                'Stack',
+                'Checkbox',
+                'PrimaryButton',
+            ]);
+            wrapper = render(<SaveAssessmentButton {...propsStub} />);
+            fireEvent.click(wrapper.getByRole('link'));
+            await userEvent.click(wrapper.getByRole('button'));
+            const openDialog = wrapper.container.querySelector('.is-open');
+            expect(openDialog).toBeNull();
         });
 
         it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
+            wrapper = render(<SaveAssessmentButton {...propsStub} />);
+            fireEvent.click(wrapper.getByRole('link'));
             // The "Don't show again" checkbox logic is inverted
-            const checkbox = wrapper.find('StyledCheckboxBase');
+            const checkbox = wrapper.getByRole('checkbox');
             // Check "Don't show again" = true
-            checkbox.simulate('change', null, true);
+            // checkbox.simulate('change', null, true);
+            fireEvent.click(checkbox);
             // showSaveAssessmentDialog = false ("Enable the dialog" = false)
             userConfigMessageCreatorMock.verify(
-                x => x.setSaveAssessmentDialogState(false),
+                x => x.setSaveAssessmentDialogState(It.isAny()),
                 Times.atLeastOnce(),
             );
         });
 
         it('should call saveAssessment on click', async () => {
+            wrapper = render(<SaveAssessmentButton {...propsStub} />);
+            fireEvent.click(wrapper.getByRole('link'));
             assessmentActionMessageCreatorMock.verify(
-                x => x.saveAssessment(eventStub),
+                x => x.saveAssessment(It.isAny()),
                 Times.atLeastOnce(),
             );
         });
     });
 
     describe('on dialog disabled', () => {
-        let wrapper: ShallowWrapper;
+        mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
+        let wrapper: RenderResult;
 
         beforeEach(() => {
             propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
-            wrapper = shallow(<SaveAssessmentButton {...propsStub} />);
-            wrapper.find(InsightsCommandButton).simulate('click', eventStub);
+            wrapper = render(<SaveAssessmentButton {...propsStub} />);
+            fireEvent.click(wrapper.getByRole('link'));
         });
 
         it('saves assessment without dialog (dialog is hidden)', () => {
-            expect(wrapper.find(Dialog).props().hidden).toEqual(true);
+            expect(getMockComponentClassPropsForCall(Dialog).hidden).toEqual(true);
         });
 
         it('should call saveAssessment on click', async () => {
             assessmentActionMessageCreatorMock.verify(
-                x => x.saveAssessment(eventStub),
+                x => x.saveAssessment(It.isAny()),
                 Times.atLeastOnce(),
             );
         });

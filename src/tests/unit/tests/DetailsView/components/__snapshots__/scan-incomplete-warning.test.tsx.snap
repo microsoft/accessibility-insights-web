@@ -1,21 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScanIncompleteWarning notRendered: where no warnings were provided 1`] = `null`;
+exports[`ScanIncompleteWarning notRendered: where no warnings were provided 1`] = `<DocumentFragment />`;
 
 exports[`ScanIncompleteWarning rendered: where warnings were provided 1`] = `
-<React.Fragment>
-  <StyledMessageBar
-    className="messageBarHeightOverride"
-    messageBarType={5}
-  />
-</React.Fragment>
+<DocumentFragment>
+  <div
+    class="ms-MessageBar ms-MessageBar--warning ms-MessageBar-multiline messageBarHeightOverride root-109"
+  >
+    <div
+      class="ms-MessageBar-content content-110"
+    >
+      <div
+        aria-hidden="true"
+        class="ms-MessageBar-icon iconContainer-111"
+      >
+        <i
+          aria-hidden="true"
+          class="icon-118"
+          data-icon-name="Info"
+        />
+      </div>
+      <div
+        aria-live="polite"
+        class="ms-MessageBar-text text-113"
+        id="MessageBar0"
+        role="status"
+      >
+        <span
+          class="ms-MessageBar-innerText innerText-114"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ScanIncompleteWarning rendered: where warnings were provided, with one warning not supported 1`] = `
-<React.Fragment>
-  <StyledMessageBar
-    className="messageBarHeightOverride"
-    messageBarType={5}
-  />
-</React.Fragment>
+<DocumentFragment>
+  <div
+    class="ms-MessageBar ms-MessageBar--warning ms-MessageBar-multiline messageBarHeightOverride root-109"
+  >
+    <div
+      class="ms-MessageBar-content content-110"
+    >
+      <div
+        aria-hidden="true"
+        class="ms-MessageBar-icon iconContainer-111"
+      >
+        <i
+          aria-hidden="true"
+          class="icon-118"
+          data-icon-name="Info"
+        />
+      </div>
+      <div
+        aria-live="polite"
+        class="ms-MessageBar-text text-113"
+        id="MessageBar1"
+        role="status"
+      >
+        <span
+          class="ms-MessageBar-innerText innerText-114"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;

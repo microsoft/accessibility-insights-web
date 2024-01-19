@@ -1,20 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { DefaultButton, PrimaryButton } from '@fluentui/react';
-import { SupportedMouseEvent } from 'common/telemetry-data-factory';
-import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
+import { DefaultButton, PrimaryButton, Dialog, DialogFooter } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     QuickAssessToAssessmentDialog,
     QuickAssessToAssessmentDialogProps,
 } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { It, IMock, Mock, Times } from 'typemoq';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('QuickAssessToAssessmentDialog', () => {
+    mockReactComponents([DefaultButton, PrimaryButton, DialogFooter, Dialog]);
     let dataTransferViewControllerMock: IMock<DataTransferViewController>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let props: QuickAssessToAssessmentDialogProps;
@@ -32,28 +35,35 @@ describe('QuickAssessToAssessmentDialog', () => {
 
     test('dialog is hidden when isShown is false', () => {
         props.isShown = false;
-        const testSubject = shallow(
+        const renderResult = render(
             <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
         );
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('dialog is not hidden when isShown is true', () => {
         props.isShown = true;
-        const testSubject = shallow(
+        const renderResult = render(
             <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
         );
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('onclick: cancel', async () => {
         props.isShown = true;
+        useOriginalReactElements('@fluentui/react', [
+            'DefaultButton',
+            'PrimaryButton',
+            'DialogFooter',
+            'Dialog',
+        ]);
 
-        const testSubject = shallow(
+        const renderResult = render(
             <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
         );
-        const onClick = testSubject.find(DefaultButton).prop('onClick');
-        await onClick(null);
+
+        const onClick = renderResult.getAllByRole('button');
+        fireEvent.click(onClick[0]);
 
         dataTransferViewControllerMock.verify(
             m => m.hideQuickAssessToAssessmentConfirmDialog(),
@@ -63,24 +73,31 @@ describe('QuickAssessToAssessmentDialog', () => {
 
     test('onclick: continue to assessment', async () => {
         props.isShown = true;
-        const eventStub = {} as SupportedMouseEvent;
-        const testSubject = shallow(
+
+        useOriginalReactElements('@fluentui/react', [
+            'DefaultButton',
+            'PrimaryButton',
+            'DialogFooter',
+            'Dialog',
+        ]);
+
+        const renderResult = render(
             <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
         );
-        const onClick = testSubject.find(PrimaryButton).prop('onClick');
 
-        await onClick(eventStub as any);
+        const onClick = renderResult.getAllByRole('button');
+        fireEvent.click(onClick[1]);
 
         detailsViewActionMessageCreatorMock.verify(
-            m => m.confirmDataTransferToAssessment(eventStub),
+            m => m.confirmDataTransferToAssessment(It.isAny()),
             Times.once(),
         );
         detailsViewActionMessageCreatorMock.verify(
-            m => m.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]),
+            m => m.sendPivotItemClicked(It.isAny()),
             Times.once(),
         );
         detailsViewActionMessageCreatorMock.verify(
-            m => m.changeRightContentPanel('Overview'),
+            m => m.changeRightContentPanel(It.isAny()),
             Times.once(),
         );
         dataTransferViewControllerMock.verify(

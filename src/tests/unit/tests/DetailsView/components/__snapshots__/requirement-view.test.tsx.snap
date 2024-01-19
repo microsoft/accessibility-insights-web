@@ -1,88 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RequirementViewTest renders with content from props 1`] = `
-<div
-  className="requirementView"
->
-  <div>
+<DocumentFragment>
+  <div
+    class="requirementView"
+  >
     <div>
-      TITLE MOCK ELEMENT
+      <div>
+        TITLE MOCK ELEMENT
+      </div>
+      <div
+        class="requirementContent"
+      >
+        <div
+          class="mainContent"
+        >
+          <div
+            class=""
+          >
+            <button
+              aria-expanded="true"
+              class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
+              data-is-focusable="true"
+              type="button"
+            >
+              <span
+                class="ms-Button-flexContainer flexContainer-110"
+                data-automationid="splitbuttonprimary"
+              >
+                <i
+                  aria-hidden="true"
+                  class="ms-Icon root-105 ms-Button-icon icon-112"
+                  data-icon-name="ChevronDown"
+                />
+                <span
+                  aria-level="2"
+                  class="requirementInstructionsHeader"
+                  role="heading"
+                >
+                  How to test
+                </span>
+              </span>
+            </button>
+            <div
+              class="requirementInstructions collapsibleContent"
+            />
+          </div>
+          <div
+            aria-label="Scan Complete"
+            aria-live="polite"
+            role="alert"
+          />
+          <h3>
+            Instances
+          </h3>
+          <mock-assessmentinstancetable
+            assessmentinstancetablehandler="[object Object]"
+            assessmentnavstate="[object Object]"
+            hasvisualhelper="false"
+            instancesmap="[object Object]"
+          />
+        </div>
+        <div>
+          REQUIREMENT CONTEXT SECTION MOCK ELEMENT
+        </div>
+      </div>
     </div>
     <div
-      className="requirementContent"
+      class="nextRequirementButtonContainer"
     >
-      <div
-        className="mainContent"
-      >
-        <React.Fragment>
-          <RequirementInstructions />
-          <RequirementTableSection
-            assessmentInstanceTableHandler={
-              {
-                "changeRequirementStatus": null,
-              }
-            }
-            assessmentNavState={
-              {
-                "selectedTestSubview": "test-requirement-name",
-                "selectedTestType": 0,
-              }
-            }
-            assessmentsProvider={[typemoq mock object]}
-            featureFlagStoreData={
-              {
-                "some feature flag": true,
-              }
-            }
-            instancesMap={{}}
-            isRequirementScanned={true}
-            manualRequirementResultMap={
-              {
-                "some manual test step result id": null,
-              }
-            }
-            pathSnippetStoreData={
-              {
-                "path": null,
-              }
-            }
-            requirement={
-              {
-                "guidanceLinks": [
-                  {
-                    "href": "test-guidance-href",
-                    "text": "test-guidance-text",
-                  },
-                ],
-                "helpfulResourceLinks": [
-                  {
-                    "href": "test-resource-href",
-                    "text": "test-resource-text",
-                  },
-                ],
-                "infoAndExamples": {
-                  "pageTitle": "test-page-title",
-                },
-                "key": "test-requirement-key",
-                "name": "rest-requirement-name",
-                "whyItMatters": [Function],
-              }
-            }
-            selectedRequirementHasVisualHelper={false}
-          />
-        </React.Fragment>
-      </div>
-      <div>
-        REQUIREMENT CONTEXT SECTION MOCK ELEMENT
-      </div>
+      next requirement stub
     </div>
   </div>
-  <div
-    className="nextRequirementButtonContainer"
-  >
-    <React.Fragment>
-      next requirement stub
-    </React.Fragment>
-  </div>
-</div>
+</DocumentFragment>
 `;

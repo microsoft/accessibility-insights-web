@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { fireEvent, render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
@@ -10,9 +11,8 @@ import {
     StartOverDialogProps,
     StartOverDialogState,
 } from 'DetailsView/components/start-over-dialog';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 
 describe('StartOverDialog', () => {
@@ -58,9 +58,9 @@ describe('StartOverDialog', () => {
         dialogState => {
             props.dialogState = dialogState;
 
-            const wrapper = shallow(<StartOverDialog {...props} />);
+            const renderResult = render(<StartOverDialog {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         },
     );
 
@@ -71,26 +71,28 @@ describe('StartOverDialog', () => {
 
         it('dismiss dialog', () => {
             assessmentActionMessageCreatorMock
-                .setup(creator => creator.cancelStartOver(event, test, requirementKey))
+                .setup(creator => creator.cancelStartOver(It.isAny(), It.isAny(), It.isAny()))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
-            const wrapper = shallow(<StartOverDialog {...props} />);
-            wrapper.prop('onCancelButtonClick')(event);
+            const renderResult = render(<StartOverDialog {...props} />);
 
+            const onClick = renderResult.getAllByRole('button');
+            fireEvent.click(onClick[1]);
             assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
 
         it('start over test', () => {
             assessmentActionMessageCreatorMock
-                .setup(creator => creator.startOverTest(event, test))
+                .setup(creator => creator.startOverTest(It.isAny(), It.isAny()))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
-            const wrapper = shallow(<StartOverDialog {...props} />);
-            wrapper.prop('onPrimaryButtonClick')(event);
+            const renderResult = render(<StartOverDialog {...props} />);
 
+            const onClick = renderResult.getAllByRole('button');
+            fireEvent.click(onClick[0]);
             assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
@@ -103,25 +105,28 @@ describe('StartOverDialog', () => {
 
         it('dismiss dialog', () => {
             assessmentActionMessageCreatorMock
-                .setup(creator => creator.cancelStartOverAllAssessments(event))
+                .setup(creator => creator.cancelStartOverAllAssessments(It.isAny()))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
-            const wrapper = shallow(<StartOverDialog {...props} />);
-            wrapper.prop('onCancelButtonClick')(event);
+            const renderResult = render(<StartOverDialog {...props} />);
 
+            const onClick = renderResult.getAllByRole('button');
+            fireEvent.click(onClick[1]);
             assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
 
         it('start over assessment', () => {
             assessmentActionMessageCreatorMock
-                .setup(creator => creator.startOverAllAssessments(event))
+                .setup(creator => creator.startOverAllAssessments(It.isAny()))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
-            const wrapper = shallow(<StartOverDialog {...props} />);
-            wrapper.prop('onPrimaryButtonClick')(event);
+            const renderResult = render(<StartOverDialog {...props} />);
+
+            const onClick = renderResult.getAllByRole('button');
+            fireEvent.click(onClick[0]);
 
             assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();

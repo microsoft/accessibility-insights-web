@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import {
     RequirementInstructions,
     RequirementInstructionsProps,
 } from 'DetailsView/components/requirement-instructions';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('RequirementInstructions', () => {
@@ -13,8 +13,8 @@ describe('RequirementInstructions', () => {
             howToTest: <p>how to test stub</p>,
         };
 
-        const rendered = shallow(<RequirementInstructions {...props} />);
+        const renderResult = render(<RequirementInstructions {...props} />);
 
-        expect(rendered.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

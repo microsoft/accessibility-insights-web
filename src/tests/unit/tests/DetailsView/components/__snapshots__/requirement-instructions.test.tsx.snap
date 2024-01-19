@@ -1,21 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RequirementInstructions renders with content from props 1`] = `
-<CollapsibleComponent
-  content={
-    <p>
-      how to test stub
-    </p>
-  }
-  contentClassName="requirementInstructions"
-  header={
-    <span
-      aria-level={2}
-      className="requirementInstructionsHeader"
-      role="heading"
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <button
+      aria-expanded="true"
+      class="ms-Button ms-Button--action ms-Button--command collapsible root-109"
+      data-is-focusable="true"
+      type="button"
     >
-      How to test
-    </span>
-  }
-/>
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-icon icon-112"
+          data-icon-name="ChevronDown"
+        />
+        <span
+          aria-level="2"
+          class="requirementInstructionsHeader"
+          role="heading"
+        >
+          How to test
+        </span>
+      </span>
+    </button>
+    <div
+      class="requirementInstructions collapsibleContent"
+    >
+      <p>
+        how to test stub
+      </p>
+    </div>
+  </div>
+</DocumentFragment>
 `;

@@ -19,25 +19,46 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverCompon
 `;
 
 exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuItem 1`] = `
-<div
-  role="menuitem"
->
-  <StartOverDropdown
-    allTestSuffix="Assessment"
-    dropdownDirection="left"
-    rightPanelOptions={
-      {
-        "showTest": true,
-      }
-    }
-    singleTestSuffix="the title"
-    switcherStartOverPreferences={
-      {
-        "showTest": true,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    role="menuitem"
+  >
+    <div>
+      <button
+        aria-label="start over menu"
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Refresh"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__0"
+            >
+              Start over
+            </span>
+          </span>
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+            data-icon-name="ChevronRight"
+          />
+        </span>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is false => component matches snapshot 1`] = `
@@ -119,23 +140,44 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverCompo
 `;
 
 exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuItem 1`] = `
-<div
-  role="menuitem"
->
-  <StartOverDropdown
-    allTestSuffix="Quick Assess"
-    dropdownDirection="left"
-    rightPanelOptions={
-      {
-        "showTest": true,
-      }
-    }
-    singleTestSuffix=""
-    switcherStartOverPreferences={
-      {
-        "showTest": false,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    role="menuitem"
+  >
+    <div>
+      <button
+        aria-label="start over menu"
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Refresh"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__3"
+            >
+              Start over
+            </span>
+          </span>
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+            data-icon-name="ChevronRight"
+          />
+        </span>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
 `;
