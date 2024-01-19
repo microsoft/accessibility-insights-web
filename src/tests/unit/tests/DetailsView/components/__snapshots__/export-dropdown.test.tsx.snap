@@ -1,144 +1,174 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
-<div>
-  <CustomizedPrimaryButton
-    ariaLabel="export options menu"
-    data-automation-id="report-export-dropdown"
-    menuIconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-    text="Export"
-  />
-  <ContextualMenu
-    id="report-export-dropdown-menu"
-    items={
-      [
-        {
-          "download": "A file name",
-          "href": "html file url",
-          "key": "html",
-          "onClick": [Function],
-        },
-        {
-          "download": "json file name",
-          "href": "json file url",
-          "key": "json",
-          "onClick": [Function],
-        },
-        {
-          "download": undefined,
-          "href": undefined,
-          "key": "codepen",
-          "onClick": [Function],
-        },
-      ]
-    }
-    onDismiss={[Function]}
-    target="test target"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <button
+      aria-label="export options menu"
+      class="ms-Button ms-Button--primary root-109"
+      data-automation-id="report-export-dropdown"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <span
+          class="ms-Button-textContainer textContainer-111"
+        >
+          <span
+            class="ms-Button-label label-113"
+            id="id__3"
+          >
+            Export
+          </span>
+        </span>
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+          data-icon-name="ChevronDown"
+        />
+      </span>
+    </button>
+    <mock-contextualmenu
+      id="report-export-dropdown-menu"
+      items="[object Object],[object Object],[object Object]"
+      target="[object HTMLButtonElement]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ExportDropdown handles click to show menu with feature flags but missing json 1`] = `
-<div>
-  <CustomizedPrimaryButton
-    ariaLabel="export options menu"
-    data-automation-id="report-export-dropdown"
-    menuIconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-    text="Export"
-  />
-  <ContextualMenu
-    id="report-export-dropdown-menu"
-    items={
-      [
-        {
-          "download": "A file name",
-          "href": "html file url",
-          "key": "html",
-          "onClick": [Function],
-        },
-        {
-          "download": undefined,
-          "href": undefined,
-          "key": "codepen",
-          "onClick": [Function],
-        },
-      ]
-    }
-    onDismiss={[Function]}
-    target="test target"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <button
+      aria-label="export options menu"
+      class="ms-Button ms-Button--primary root-109"
+      data-automation-id="report-export-dropdown"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <span
+          class="ms-Button-textContainer textContainer-111"
+        >
+          <span
+            class="ms-Button-label label-113"
+            id="id__6"
+          >
+            Export
+          </span>
+        </span>
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+          data-icon-name="ChevronDown"
+        />
+      </span>
+    </button>
+    <mock-contextualmenu
+      id="report-export-dropdown-menu"
+      items="[object Object],[object Object]"
+      target="[object HTMLButtonElement]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
-<div>
-  <CustomizedPrimaryButton
-    ariaLabel="export options menu"
-    data-automation-id="report-export-dropdown"
-    menuIconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-    text="Export"
-  />
-  <ContextualMenu
-    id="report-export-dropdown-menu"
-    items={
-      [
-        {
-          "download": "A file name",
-          "href": "html file url",
-          "key": "html",
-          "onClick": [Function],
-        },
-      ]
-    }
-    onDismiss={[Function]}
-    target="test target"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <button
+      aria-label="export options menu"
+      class="ms-Button ms-Button--primary root-109"
+      data-automation-id="report-export-dropdown"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <span
+          class="ms-Button-textContainer textContainer-111"
+        >
+          <span
+            class="ms-Button-label label-113"
+            id="id__0"
+          >
+            Export
+          </span>
+        </span>
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+          data-icon-name="ChevronDown"
+        />
+      </span>
+    </button>
+    <mock-contextualmenu
+      id="report-export-dropdown-menu"
+      items="[object Object]"
+      target="[object HTMLButtonElement]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ExportDropdown renders without menu items 1`] = `
-<div>
-  <CustomizedPrimaryButton
-    ariaLabel="export options menu"
-    data-automation-id="report-export-dropdown"
-    menuIconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-    text="Export"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <mock-customizedprimarybutton
+      arialabel="export options menu"
+      data-automation-id="report-export-dropdown"
+      menuiconprops="[object Object]"
+      text="Export"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ExportDropdown should dismiss the contextMenu 1`] = `
-<div>
-  <CustomizedPrimaryButton
-    ariaLabel="export options menu"
-    data-automation-id="report-export-dropdown"
-    menuIconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-    text="Export"
-  />
-</div>
+<DocumentFragment>
+  <div>
+    <button
+      aria-label="export options menu"
+      class="ms-Button ms-Button--primary root-109"
+      data-automation-id="report-export-dropdown"
+      data-is-focusable="true"
+      type="button"
+    >
+      <span
+        class="ms-Button-flexContainer flexContainer-110"
+        data-automationid="splitbuttonprimary"
+      >
+        <span
+          class="ms-Button-textContainer textContainer-111"
+        >
+          <span
+            class="ms-Button-label label-113"
+            id="id__12"
+          >
+            Export
+          </span>
+        </span>
+        <i
+          aria-hidden="true"
+          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+          data-icon-name="ChevronDown"
+        />
+      </span>
+    </button>
+    <mock-contextualmenu
+      id="report-export-dropdown-menu"
+      items="[object Object]"
+      target="[object HTMLButtonElement]"
+    />
+  </div>
+</DocumentFragment>
 `;

@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { userEvent } from '@testing-library/user-event';
+
+import { fireEvent, render } from '@testing-library/react';
 import { DefaultButton, PrimaryButton } from '@fluentui/react';
 import { Dialog } from '@fluentui/react';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import {
@@ -20,12 +22,12 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props} />);
+        const renderResult = render(<GenericDialog {...props} />);
 
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    it('should handle onDismiss properly', () => {
+    it('should handle onDismiss properly', async () => {
         const onDismissMock = jest.fn();
 
         const props: GenericDialogProps = {
@@ -36,13 +38,14 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props} />);
-        rendered.find(DefaultButton).simulate('click');
+        const renderResult = render(<GenericDialog {...props} />);
+        const button = renderResult.getByRole('button', { name: /Cancel/i });
+        fireEvent.click(button);
 
         expect(onDismissMock).toHaveBeenCalledTimes(1);
     });
 
-    it('should handle onStartOver properly', () => {
+    it('should handle onStartOver properly', async () => {
         const onPrimaryButtonClickMock = jest.fn();
 
         const props: GenericDialogProps = {
@@ -53,8 +56,9 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props} />);
-        rendered.find(PrimaryButton).simulate('click');
+        const renderResult = render(<GenericDialog {...props} />);
+        const button = renderResult.getByRole('button', { name: /test primary text/i });
+        fireEvent.click(button);
 
         expect(onPrimaryButtonClickMock).toHaveBeenCalledTimes(1);
     });
@@ -70,8 +74,12 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props} />);
-        rendered.find(Dialog).prop('onDismiss')();
+        //const renderResult = render(<GenericDialog {...props} />);
+        //renderResult.container.querySelector(Dialog).prop('onDismiss')();
+
+        const renderResult = render(<GenericDialog {...props} />);
+        const button = renderResult.getByRole('button', { name: /Cancel/i });
+        fireEvent.click(button);
 
         expect(onCancelButtonClickMock).toHaveBeenCalledTimes(1);
     });

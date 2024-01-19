@@ -1,19 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewContentWithLocalState render 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "isSideNavOpen": false,
-        "setSideNavOpen": [Function],
-        "storeState": {
-          "featureFlagStoreData": {},
-        },
-      }
-    }
-    isNarrowModeEnabled={true}
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    isnarrowmodeenabled="true"
   />
-</React.Fragment>
+</DocumentFragment>
 `;

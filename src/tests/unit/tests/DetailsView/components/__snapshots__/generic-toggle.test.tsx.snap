@@ -1,123 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GenericToggleTest renders description content is JSX.Element 1`] = `
-<div
-  className="genericToggleComponent"
->
+<DocumentFragment>
   <div
-    className="toggleContainer"
+    class="genericToggleComponent"
   >
     <div
-      className="toggleName"
+      class="toggleContainer"
     >
-      test name
+      <div
+        class="toggleName"
+      >
+        test name
+      </div>
+      <div
+        class="ms-Toggle is-checked is-enabled toggle root-109"
+      >
+        <div
+          class="ms-Toggle-innerContainer container-111"
+        >
+          <button
+            aria-checked="true"
+            aria-label="test name"
+            class="ms-Toggle-background pill-112"
+            data-is-focusable="true"
+            data-ktp-target="true"
+            id="test-id-1"
+            role="switch"
+            type="button"
+          >
+            <span
+              class="ms-Toggle-thumb thumb-113"
+            />
+          </button>
+          <label
+            class="ms-Label ms-Toggle-stateText text-115"
+            for="test-id-1"
+            id="test-id-1-stateText"
+          >
+            On
+          </label>
+        </div>
+      </div>
     </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={true}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
+    <div
+      class="toggleDescription"
+    >
+      <h1>
+        hello
+      </h1>
+    </div>
   </div>
-  <div
-    className="toggleDescription"
-  >
-    <h1>
-      hello
-    </h1>
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`GenericToggleTest renders description content is string 1`] = `
-<div
-  className="genericToggleComponent"
->
+<DocumentFragment>
   <div
-    className="toggleContainer"
+    class="genericToggleComponent"
   >
     <div
-      className="toggleName"
+      class="toggleContainer"
     >
-      test name
+      <div
+        class="toggleName"
+      >
+        test name
+      </div>
+      <div
+        class="ms-Toggle is-checked is-enabled toggle root-109"
+      >
+        <div
+          class="ms-Toggle-innerContainer container-111"
+        >
+          <button
+            aria-checked="true"
+            aria-label="test name"
+            class="ms-Toggle-background pill-112"
+            data-is-focusable="true"
+            data-ktp-target="true"
+            id="test-id-1"
+            role="switch"
+            type="button"
+          >
+            <span
+              class="ms-Toggle-thumb thumb-113"
+            />
+          </button>
+          <label
+            class="ms-Label ms-Toggle-stateText text-115"
+            for="test-id-1"
+            id="test-id-1-stateText"
+          >
+            On
+          </label>
+        </div>
+      </div>
     </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={true}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
+    <div
+      class="toggleDescription"
+    >
+      test string description
+    </div>
   </div>
-  <div
-    className="toggleDescription"
-  >
-    test string description
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`GenericToggleTest renders toggle enable = false 1`] = `
-<div
-  className="genericToggleComponent"
->
+<DocumentFragment>
   <div
-    className="toggleContainer"
+    class="genericToggleComponent"
   >
     <div
-      className="toggleName"
+      class="toggleContainer"
     >
-      test name
+      <div
+        class="toggleName"
+      >
+        test name
+      </div>
+      <div
+        class="ms-Toggle is-enabled toggle root-109"
+      >
+        <div
+          class="ms-Toggle-innerContainer container-111"
+        >
+          <button
+            aria-checked="false"
+            aria-label="test name"
+            class="ms-Toggle-background pill-116"
+            data-is-focusable="true"
+            data-ktp-target="true"
+            id="test-id-1"
+            role="switch"
+            type="button"
+          >
+            <span
+              class="ms-Toggle-thumb thumb-117"
+            />
+          </button>
+          <label
+            class="ms-Label ms-Toggle-stateText text-115"
+            for="test-id-1"
+            id="test-id-1-stateText"
+          >
+            Off
+          </label>
+        </div>
+      </div>
     </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={false}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
+    <div
+      class="toggleDescription"
+    >
+      test description
+    </div>
   </div>
-  <div
-    className="toggleDescription"
-  >
-    test description
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`GenericToggleTest renders toggle enable = true 1`] = `
-<div
-  className="genericToggleComponent"
->
+<DocumentFragment>
   <div
-    className="toggleContainer"
+    class="genericToggleComponent"
   >
     <div
-      className="toggleName"
+      class="toggleContainer"
     >
-      test name
+      <div
+        class="toggleName"
+      >
+        test name
+      </div>
+      <div
+        class="ms-Toggle is-checked is-enabled toggle root-109"
+      >
+        <div
+          class="ms-Toggle-innerContainer container-111"
+        >
+          <button
+            aria-checked="true"
+            aria-label="test name"
+            class="ms-Toggle-background pill-112"
+            data-is-focusable="true"
+            data-ktp-target="true"
+            id="test-id-1"
+            role="switch"
+            type="button"
+          >
+            <span
+              class="ms-Toggle-thumb thumb-113"
+            />
+          </button>
+          <label
+            class="ms-Label ms-Toggle-stateText text-115"
+            for="test-id-1"
+            id="test-id-1-stateText"
+          >
+            On
+          </label>
+        </div>
+      </div>
     </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={true}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
+    <div
+      class="toggleDescription"
+    >
+      test description
+    </div>
   </div>
-  <div
-    className="toggleDescription"
-  >
-    test description
-  </div>
-</div>
+</DocumentFragment>
 `;
