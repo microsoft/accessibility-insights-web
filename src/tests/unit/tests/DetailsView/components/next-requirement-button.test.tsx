@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { render } from '@testing-library/react';
 import { DefaultButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { Requirement } from 'assessments/types/requirement';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import {
@@ -12,7 +12,10 @@ import {
 } from 'DetailsView/components/next-requirement-button';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-import { mockReactComponents, getMockComponentClassPropsForCall } from '../../../mock-helpers/mock-module-helpers';
+import {
+    mockReactComponents,
+    getMockComponentClassPropsForCall,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('NextRequirementButton', () => {
@@ -51,8 +54,8 @@ describe('NextRequirementButton', () => {
             )
             .verifiable();
 
-        const renderResult = render(<NextRequirementButton {...props} />);
-      getMockComponentClassPropsForCall(DefaultButton).onClick(eventStub);
+        render(<NextRequirementButton {...props} />);
+        getMockComponentClassPropsForCall(DefaultButton).onClick(eventStub);
         messageCreatorMock.verifyAll();
     });
 });
