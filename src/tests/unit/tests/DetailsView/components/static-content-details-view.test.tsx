@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { fireEvent, render } from '@testing-library/react';
-import { VisualizationToggle } from 'common/components/visualization-toggle';
 import {
     StaticContentDetailsView,
     StaticContentDetailsViewDeps,
@@ -9,16 +8,12 @@ import {
 } from 'DetailsView/components/static-content-details-view';
 import * as React from 'react';
 import { BaseDataBuilder } from 'tests/unit/common/base-data-builder';
-import { EventStubFactory, NativeEventStub } from 'tests/unit/common/event-stub-factory';
+import { NativeEventStub } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ContentInclude } from 'views/content/content-include';
 import { ContentLink } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
-import {
-    getMockComponentClassPropsForCall,
-    mockReactComponents,
-    useOriginalReactElements,
-} from '../../../mock-helpers/mock-module-helpers';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('views/content/content-include');
 jest.mock('views/content/content-link');
