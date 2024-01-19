@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroup, IconButton } from '@fluentui/react';
+import { IconButton } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
 import {
@@ -9,8 +9,8 @@ import {
 } from 'DetailsView/components/choice-group-pass-fail';
 import { onUndoClicked } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as React from 'react';
-import { getMockComponentClassPropsForCall } from 'tests/unit/mock-helpers/mock-module-helpers';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
+import "@testing-library/jest-dom"
 
 describe('ChoiceGroupPassFail', () => {
 
@@ -83,22 +83,24 @@ describe('ChoiceGroupPassFail', () => {
         expect(testSubject.container.querySelectorAll('.iconButton')).toBeTruthy();
     });
 
-    test('verify component is correctly used with undo', () => {
+    test('verify component is correctly used with undo', async () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
 
         const testSubject = render(<ChoiceGroupPassFail {...props} />);
-        const choiceGroupMock = Mock.ofType<IChoiceGroup>();
+
         const eventStub = {} as React.MouseEvent<HTMLElement>;
+        const undoButton = testSubject.getAllByRole('button');
 
+        const radioButton = testSubject.getAllByRole('radio');
 
-        const setComponentRef = getMockComponentClassPropsForCall(ChoiceGroup) as any;
+        expect(undoButton).not.toBeNull();
 
-        const getUndoLink = testSubject.container[0].querySelectorAll('.ms-Button--icon')
-        setComponentRef.setComponentRef(choiceGroupMock.object);
-        fireEvent.click(getUndoLink, eventStub)
+        const getUndoLink = testSubject.container.querySelectorAll('.ms-Button--icon')
 
-        choiceGroupMock.verify(m => m.focus(), Times.once());
-        onUndoClickedMock.verify(m => m(eventStub), Times.once());
+        fireEvent.click(getUndoLink[0], eventStub)
+        expect(radioButton[0]).toHaveFocus();
+
+        onUndoClickedMock.verify(m => m(It.isAny()), Times.once());
     });
 });
