@@ -84,7 +84,7 @@ describe('TabStopsRequirementsTable', () => {
         //update props to make sure Undo button is visible
         props.requirementState['input-focus'].status = TabStopRequirementStatuses.pass;
         const eventStub = new EventStubFactory().createMouseClickEvent() as SupportedMouseEvent;
-        console.log("eventStub", eventStub)
+
         const testSubject = render(<TabStopsRequirementsTable {...props} />);
 
         const undoButton = testSubject.container.querySelectorAll('.ms-Button--icon')

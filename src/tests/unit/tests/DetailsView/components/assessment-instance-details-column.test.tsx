@@ -72,7 +72,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
         };
 
         const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
-        console.log(typeof (wrapper))
+
         verifyBaseRender(wrapper, props);
 
         const label = wrapper.container.querySelector(`.${styles.assessmentInstanceLabel}`);
