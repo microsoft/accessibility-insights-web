@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsList, IColumn } from '@fluentui/react';
+import { IColumn } from '@fluentui/react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import {
     AssessmentDefaultMessageGenerator,
@@ -152,7 +152,7 @@ describe('AssessmentInstanceTable', () => {
             } as DefaultMessageInterface;
 
             render(<AssessmentInstanceTable {...props} />);
-            const hasMessage = screen.queryAllByText('Message from getDefaultMessage')
+            const hasMessage = screen.queryAllByText('Message from getDefaultMessage');
             expect(hasMessage).toBeDefined();
 
             getDefaultMessageMock.verifyAll();
@@ -167,12 +167,10 @@ describe('AssessmentInstanceTable', () => {
             const result = render(<AssessmentInstanceTable {...props} />);
             const rowClick = result.container.querySelectorAll('.ms-DetailsRow');
 
-            fireEvent.dblClick(rowClick[0], fakeItem)
-            fireEvent.click(rowClick[0], fakeItem)
+            fireEvent.dblClick(rowClick[0], fakeItem);
+            fireEvent.click(rowClick[0], fakeItem);
             expect(renderRow).toBeDefined();
-            expect(onItemInvoked).toBeDefined()
-
-
+            expect(onItemInvoked).toBeDefined();
         });
 
         describe('"Pass all unmarked instances" button', () => {
@@ -183,7 +181,9 @@ describe('AssessmentInstanceTable', () => {
                 testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
 
                 const testSubject = render(<AssessmentInstanceTable {...props} />);
-                const getUnmarkedSelector = testSubject.container.querySelectorAll(passUnmarkedInstancesButtonSelector)
+                const getUnmarkedSelector = testSubject.container.querySelectorAll(
+                    passUnmarkedInstancesButtonSelector,
+                );
 
                 expect(getUnmarkedSelector).not.toHaveProperty('disabled');
             });
@@ -195,7 +195,9 @@ describe('AssessmentInstanceTable', () => {
                     testStepResults[selectedTestStep] = { status: testStatus };
 
                     const testSubject = render(<AssessmentInstanceTable {...props} />);
-                    const getUnmarkedSelector = testSubject.container.querySelectorAll(passUnmarkedInstancesButtonSelector)
+                    const getUnmarkedSelector = testSubject.container.querySelectorAll(
+                        passUnmarkedInstancesButtonSelector,
+                    );
 
                     expect(getUnmarkedSelector[0]).toHaveProperty('disabled', true);
                 },
@@ -212,8 +214,10 @@ describe('AssessmentInstanceTable', () => {
                     .verifiable(Times.once());
 
                 const testSubject = render(<AssessmentInstanceTable {...props} />);
-                const buttonSelector = testSubject.container.querySelector(passUnmarkedInstancesButtonSelector)
-                fireEvent.click(buttonSelector)
+                const buttonSelector = testSubject.container.querySelector(
+                    passUnmarkedInstancesButtonSelector,
+                );
+                fireEvent.click(buttonSelector);
                 assessmentInstanceTableHandlerMock.verifyAll();
             });
         });

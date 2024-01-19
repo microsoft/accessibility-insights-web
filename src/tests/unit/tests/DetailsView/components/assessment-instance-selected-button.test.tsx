@@ -12,7 +12,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('AssessmentInstanceSelectedButton', () => {
     describe('render', () => {
-        const onSelectedStub = () => { };
+        const onSelectedStub = () => {};
 
         const baseProps: Partial<AssessmentInstanceSelectedButtonProps> = {
             test: VisualizationType.HeadingsAssessment,
@@ -81,9 +81,8 @@ describe('AssessmentInstanceSelectedButton', () => {
 
                 const wrapped = render(<AssessmentInstanceSelectedButton {...props} />);
 
-
                 const iconButton = wrapped.getByRole('checkbox');
-                fireEvent.click(iconButton, eventStub)
+                fireEvent.click(iconButton, eventStub);
 
                 onSelectedMock.verifyAll();
             },
@@ -102,11 +101,9 @@ describe('AssessmentInstanceSelectedButton', () => {
 
             const wrapped = render(<AssessmentInstanceSelectedButton {...props} />);
 
-
             const iconButton = wrapped.getByRole('checkbox');
 
-
-            fireEvent.click(iconButton, eventStub)
+            fireEvent.click(iconButton, eventStub);
             onSelectedMock.verifyAll();
         });
     });

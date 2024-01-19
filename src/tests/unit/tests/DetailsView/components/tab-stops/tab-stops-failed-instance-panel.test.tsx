@@ -77,14 +77,13 @@ describe('TabStopsFailedInstancePanel', () => {
             },
         };
 
-
         const result = render(<TabStopsFailedInstancePanel {...props} />);
         const getConfirmButton = screen.getByText('Add failed instance');
-        const getTexFieldValue = screen.getByLabelText('Comment')
+        const getTexFieldValue = screen.getByLabelText('Comment');
         //mock click behaviour for confirm button
-        fireEvent.click(getConfirmButton)
+        fireEvent.click(getConfirmButton);
         //mock onChange behaviour for input field
-        fireEvent.change(getTexFieldValue, { target: { value: 'test' } })
+        fireEvent.change(getTexFieldValue, { target: { value: 'test' } });
         expect(result.asFragment()).toMatchSnapshot();
     });
 
@@ -108,9 +107,8 @@ describe('TabStopsFailedInstancePanel', () => {
         const result = render(<TabStopsFailedInstancePanel {...props} />);
         //mock click behaviour for save button
         const getSaveButton = screen.getByText('Save');
-        fireEvent.click(getSaveButton)
+        fireEvent.click(getSaveButton);
         expect(result.asFragment()).toMatchSnapshot();
-
     });
 
     test('render with failure instance action type EDIT with description value as null', () => {
@@ -133,8 +131,7 @@ describe('TabStopsFailedInstancePanel', () => {
         const result = render(<TabStopsFailedInstancePanel {...props} />);
         //mock click behaviour for save button
         const getSaveButton = screen.getByText('Save');
-        fireEvent.click(getSaveButton)
+        fireEvent.click(getSaveButton);
         expect(result.asFragment()).toMatchSnapshot();
-
     });
 });

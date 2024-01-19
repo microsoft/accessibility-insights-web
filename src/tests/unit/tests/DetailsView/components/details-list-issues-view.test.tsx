@@ -22,11 +22,11 @@ import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
-jest.mock('DetailsView/components/details-list-issues-view')
+jest.mock('DetailsView/components/details-list-issues-view');
 jest.mock('DetailsView/components/issues-table');
 
 describe('DetailsListIssuesView', () => {
-    mockReactComponents([DetailsListIssuesView])
+    mockReactComponents([DetailsListIssuesView]);
     let props: DetailsListIssuesViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let displayableDataStub: DisplayableVisualizationTypeData;
@@ -55,7 +55,7 @@ describe('DetailsListIssuesView', () => {
         props = {
             deps: {
                 detailsViewActionMessageCreator,
-                getProvider: () => { }
+                getProvider: () => {},
             } as DetailsListIssuesViewDeps,
             configuration: {
                 getStoreData: getStoreDataMock.object,

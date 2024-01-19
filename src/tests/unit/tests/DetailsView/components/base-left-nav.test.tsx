@@ -4,7 +4,10 @@ import { Nav } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { NavLinkButton } from 'DetailsView/components/nav-link-button';
 import * as React from 'react';
-import { getMockComponentClassPropsForCall, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import {
     BaseLeftNav,
     BaseLeftNavLink,
@@ -14,18 +17,18 @@ import {
 jest.mock('@fluentui/react');
 
 describe('BaseLeftNav', () => {
-    mockReactComponents([Nav])
+    mockReactComponents([Nav]);
 
     it('should render', () => {
         const props: BaseLeftNavProps = {
             selectedKey: 'some key',
             links: [{} as BaseLeftNavLink],
-            setNavComponentRef: _ => { },
+            setNavComponentRef: _ => {},
         } as BaseLeftNavProps;
 
         const actual = render(<BaseLeftNav {...props} />);
         expect(actual.asFragment()).toMatchSnapshot();
-        const hasNav = getMockComponentClassPropsForCall(Nav)
-        expect(hasNav.linkAs).toEqual(NavLinkButton)
+        const hasNav = getMockComponentClassPropsForCall(Nav);
+        expect(hasNav.linkAs).toEqual(NavLinkButton);
     });
 });

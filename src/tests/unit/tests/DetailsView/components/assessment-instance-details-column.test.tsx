@@ -10,7 +10,6 @@ import {
     AssessmentInstanceDetailsColumnProps,
 } from '../../../../../DetailsView/components/assessment-instance-details-column';
 
-
 describe('AssessmentInstanceDetailsColumn', () => {
     test('constructor', () => {
         expect(
@@ -38,7 +37,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
             background: 'background',
             labelText: 'N/A',
             textContent: 'textContent',
-            headerText: 'headerText'
+            headerText: 'headerText',
         };
 
         const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
@@ -60,7 +59,6 @@ describe('AssessmentInstanceDetailsColumn', () => {
         const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
 
         verifyBaseRender(wrapper, props);
-
     });
 
     test('render: with custom class name', () => {
@@ -84,12 +82,18 @@ describe('AssessmentInstanceDetailsColumn', () => {
         wrapper: RenderResult,
         props: AssessmentInstanceDetailsColumnProps,
     ): void {
-        const hasLabel = !isNull(wrapper.container.querySelector(`.${styles.assessmentInstanceLabel}`));
+        const hasLabel = !isNull(
+            wrapper.container.querySelector(`.${styles.assessmentInstanceLabel}`),
+        );
 
         props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false);
-        expect(!isNull(wrapper.container.querySelector('.allContent'))).toBe(true)
-        expect(wrapper.container.querySelector('.assessmentInstanceTextContent').innerHTML).toEqual(props.textContent);
-        expect(!isNull(wrapper.container.querySelector(`.${styles.assessmentInstanceTextContent}`))).toEqual(true);
+        expect(!isNull(wrapper.container.querySelector('.allContent'))).toBe(true);
+        expect(wrapper.container.querySelector('.assessmentInstanceTextContent').innerHTML).toEqual(
+            props.textContent,
+        );
+        expect(
+            !isNull(wrapper.container.querySelector(`.${styles.assessmentInstanceTextContent}`)),
+        ).toEqual(true);
         expect(
             wrapper.container.querySelector(`.${styles.assessmentInstanceTextContent}`).innerHTML,
         ).toEqual(props.textContent);

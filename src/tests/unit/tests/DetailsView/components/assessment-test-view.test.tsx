@@ -36,7 +36,11 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { BannerWarnings } from '../../../../../DetailsView/components/banner-warnings';
 import { GettingStartedView } from '../../../../../DetailsView/components/getting-started-view';
 import { TargetChangeDialog } from '../../../../../DetailsView/components/target-change-dialog';
-import { expectMockedComponentPropsToMatchSnapshots, getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('DetailsView/components/requirement-view');
 jest.mock('../../../../../DetailsView/components/target-change-dialog');
@@ -161,7 +165,11 @@ describe('AssessmentTestView', () => {
         expect(gettingStartedView).toBeTruthy();
         expect(requirementView).toBeFalsy();
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([TargetChangeDialog, GettingStartedView, BannerWarnings]);
+        expectMockedComponentPropsToMatchSnapshots([
+            TargetChangeDialog,
+            GettingStartedView,
+            BannerWarnings,
+        ]);
         verifyAll();
     });
 
@@ -174,7 +182,11 @@ describe('AssessmentTestView', () => {
         expect(requirementView).toBeTruthy();
         expect(gettingStartedView).toBeFalsy();
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([RequirementView, TargetChangeDialog, BannerWarnings]);
+        expectMockedComponentPropsToMatchSnapshots([
+            RequirementView,
+            TargetChangeDialog,
+            BannerWarnings,
+        ]);
         verifyAll();
     });
 
@@ -189,7 +201,8 @@ describe('AssessmentTestView', () => {
             props.visualizationStoreData.scanning = scanningInput;
             render(<AssessmentTestView {...props} />);
 
-            const actualProp = getMockComponentClassPropsForCall(RequirementView).scanningInProgress;
+            const actualProp =
+                getMockComponentClassPropsForCall(RequirementView).scanningInProgress;
             expect(actualProp).toBe(expectedRequirementViewProp);
         },
     );

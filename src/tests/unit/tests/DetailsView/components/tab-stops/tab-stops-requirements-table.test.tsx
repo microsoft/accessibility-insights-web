@@ -21,7 +21,6 @@ import { IMock, Mock } from 'typemoq';
 import { TabStopRequirementContent } from 'types/tab-stop-requirement-info';
 
 describe('TabStopsRequirementsTable', () => {
-
     let props: TabStopsRequirementsTableProps;
     let requirementState: TabStopRequirementState;
     let tabStopsRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
@@ -43,7 +42,7 @@ describe('TabStopsRequirementsTable', () => {
                 tabStopsTestViewController: tabStopsTestViewControllerMock.object,
             },
             requirementState: requirementState,
-            status: 'fail'
+            status: 'fail',
         };
         requirementContentStub = {
             id: 'test id',
@@ -60,19 +59,18 @@ describe('TabStopsRequirementsTable', () => {
 
     test('renders requirement column', () => {
         const testSubject = render(<TabStopsRequirementsTable {...props} />);
-        const hasColumns = testSubject.container.querySelectorAll('.ms-details')
+        const hasColumns = testSubject.container.querySelectorAll('.ms-details');
         expect(hasColumns).toMatchSnapshot();
     });
 
     test('renders result column', () => {
         const testSubject = render(<TabStopsRequirementsTable {...props} />);
 
-        const tabStopsChoiceGroup = testSubject.container.querySelectorAll('.ms-ChoiceFieldGroup')
+        const tabStopsChoiceGroup = testSubject.container.querySelectorAll('.ms-ChoiceFieldGroup');
         expect(tabStopsChoiceGroup).toMatchSnapshot();
     });
 
     test('renders undo icon button', async () => {
-
         props.requirementState['input-focus'].status = TabStopRequirementStatuses.fail;
 
         const testSubject = render(<TabStopsRequirementsTable {...props} />);
@@ -87,11 +85,11 @@ describe('TabStopsRequirementsTable', () => {
 
         const testSubject = render(<TabStopsRequirementsTable {...props} />);
 
-        const undoButton = testSubject.container.querySelectorAll('.ms-Button--icon')
-        const choiceGroupChange = testSubject.container.querySelectorAll('.ms-ChoiceFieldGroup')
+        const undoButton = testSubject.container.querySelectorAll('.ms-Button--icon');
+        const choiceGroupChange = testSubject.container.querySelectorAll('.ms-ChoiceFieldGroup');
 
-        fireEvent.click(undoButton[0], eventStub)
-        fireEvent.change(choiceGroupChange[0], eventStub)
+        fireEvent.click(undoButton[0], eventStub);
+        fireEvent.change(choiceGroupChange[0], eventStub);
     });
 
     test('render Add icon button and handle event', () => {
@@ -101,10 +99,8 @@ describe('TabStopsRequirementsTable', () => {
 
         render(<TabStopsRequirementsTable {...props} />);
 
-        const addButton = screen.getAllByLabelText('add failure instance')
+        const addButton = screen.getAllByLabelText('add failure instance');
 
-        fireEvent.click(addButton[0], eventStub)
-
+        fireEvent.click(addButton[0], eventStub);
     });
-
 });

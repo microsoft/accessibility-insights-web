@@ -30,12 +30,12 @@ import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ContentReference } from 'views/content/content-page';
 
-jest.mock('DetailsView/components/tab-stops/tab-stops-failed-instance-panel')
+jest.mock('DetailsView/components/tab-stops/tab-stops-failed-instance-panel');
 jest.mock('@fluentui/react');
-jest.mock('common/components/heading-with-content-link')
+jest.mock('common/components/heading-with-content-link');
 
 describe('AdhocTabStopsTestView', () => {
-    mockReactComponents([TabStopsFailedInstancePanel, HeadingWithContentLink])
+    mockReactComponents([TabStopsFailedInstancePanel, HeadingWithContentLink]);
     let props: AdhocTabStopsTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
@@ -66,7 +66,7 @@ describe('AdhocTabStopsTestView', () => {
         visualizationStoreDataStub = {
             tests: {},
         } as VisualizationStoreData;
-        clickHandlerStub = () => { };
+        clickHandlerStub = () => {};
         selectedTest = -1;
         featureFlagStoreDataStub = {};
         userConfigurationStoreDataStub = 'stub-user-configuration-store-data' as any;

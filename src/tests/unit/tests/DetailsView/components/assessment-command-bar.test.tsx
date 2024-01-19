@@ -12,8 +12,7 @@ jest.mock('DetailsView/components/details-view-command-bar');
 
 describe('getAssessementCommandBar ', () => {
     it('should return DetailsViewCommandBar with props that match DetailsViewSwitcherNav props for assessment pivot type', () => {
-
-        const props = getMockComponentClassPropsForCall(DetailsViewCommandBar)
+        const props = getMockComponentClassPropsForCall(DetailsViewCommandBar);
         const testSubject = render(<AssessmentCommandBar {...props} />);
 
         expect(testSubject[0]).toStrictEqual(props);

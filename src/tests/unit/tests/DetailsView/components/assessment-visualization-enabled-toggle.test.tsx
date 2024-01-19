@@ -14,7 +14,7 @@ import { visualHelperText } from 'DetailsView/components/base-visual-helper-togg
 import * as React from 'react';
 import { VisualHelperToggleConfigBuilder } from 'tests/unit/common/visual-helper-toggle-config-builder';
 import { VisualizationTogglePropsBuilder } from 'tests/unit/common/visualization-toggle-props-builder';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,

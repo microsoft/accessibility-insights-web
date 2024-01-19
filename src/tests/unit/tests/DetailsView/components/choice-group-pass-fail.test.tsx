@@ -10,10 +10,9 @@ import {
 import { onUndoClicked } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-import "@testing-library/jest-dom"
+import '@testing-library/jest-dom';
 
 describe('ChoiceGroupPassFail', () => {
-
     let props: ChoiceGroupPassFailProps;
     let onUndoClickedMock: IMock<onUndoClicked>;
 
@@ -25,9 +24,9 @@ describe('ChoiceGroupPassFail', () => {
                 { key: TabStopRequirementStatuses.fail, text: 'Fail' },
             ],
             selectedKey: TabStopRequirementStatuses.unknown,
-            onChange: () => { },
+            onChange: () => {},
             secondaryControls: (
-                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" noClick={() => { }} />
+                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" noClick={() => {}} />
             ),
             onUndoClickedPassThrough: onUndoClickedMock.object,
         };
@@ -57,10 +56,10 @@ describe('ChoiceGroupPassFail', () => {
         const testSubject = render(<ChoiceGroupPassFail {...props} />);
         const options = testSubject.getAllByRole('radio');
 
-        expect(options[0]).not.toHaveProperty('aria-label')
-        expect(options[1]).not.toHaveProperty('aria-label')
-        expect(testSubject.queryByLabelText('Pass')).not.toBeNull()
-        expect(testSubject.queryByLabelText('Fail')).not.toBeNull()
+        expect(options[0]).not.toHaveProperty('aria-label');
+        expect(options[1]).not.toHaveProperty('aria-label');
+        expect(testSubject.queryByLabelText('Pass')).not.toBeNull();
+        expect(testSubject.queryByLabelText('Fail')).not.toBeNull();
     });
 
     test('render options without label, aria-label is defined', () => {
@@ -70,10 +69,10 @@ describe('ChoiceGroupPassFail', () => {
         const testSubject = render(<ChoiceGroupPassFail {...props} />);
         const options = testSubject.getAllByRole('radio');
 
-        expect(options[0].getAttribute('aria-label')).toEqual('Pass')
-        expect(options[1].getAttribute('aria-label')).toEqual('Fail')
-        expect(options[0].textContent).toEqual('')
-        expect(options[1].textContent).toEqual('')
+        expect(options[0].getAttribute('aria-label')).toEqual('Pass');
+        expect(options[1].getAttribute('aria-label')).toEqual('Fail');
+        expect(options[0].textContent).toEqual('');
+        expect(options[1].textContent).toEqual('');
     });
 
     test('verify undo button is present with selection', () => {
@@ -96,9 +95,9 @@ describe('ChoiceGroupPassFail', () => {
 
         expect(undoButton).not.toBeNull();
 
-        const getUndoLink = testSubject.container.querySelectorAll('.ms-Button--icon')
+        const getUndoLink = testSubject.container.querySelectorAll('.ms-Button--icon');
 
-        fireEvent.click(getUndoLink[0], eventStub)
+        fireEvent.click(getUndoLink[0], eventStub);
         expect(radioButton[0]).toHaveFocus();
 
         onUndoClickedMock.verify(m => m(It.isAny()), Times.once());

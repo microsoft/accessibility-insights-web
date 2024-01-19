@@ -24,10 +24,10 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ContentReference } from 'views/content/content-page';
 
 jest.mock('DetailsView/components/target-page-changed-view');
-jest.mock('DetailsView/components/static-content-details-view')
+jest.mock('DetailsView/components/static-content-details-view');
 
 describe('AdhocStaticTestView', () => {
-    mockReactComponents([TargetPageChangedView, StaticContentDetailsView])
+    mockReactComponents([TargetPageChangedView, StaticContentDetailsView]);
     let props: AdhocStaticTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
@@ -56,7 +56,7 @@ describe('AdhocStaticTestView', () => {
         visualizationStoreDataStub = {
             tests: {},
         } as VisualizationStoreData;
-        clickHandlerStub = () => { };
+        clickHandlerStub = () => {};
         selectedTest = -1;
         featureFlagStoreDataStub = {};
 

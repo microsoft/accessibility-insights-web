@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CommandBarButton, IButton, IOverflowSetItemProps, RefObject, TooltipHost } from '@fluentui/react';
+import {
+    CommandBarButton,
+    IButton,
+    IOverflowSetItemProps,
+    RefObject,
+    TooltipHost,
+} from '@fluentui/react';
 import { render } from '@testing-library/react';
 import {
     CommandBarButtonsMenu,
@@ -8,13 +14,16 @@ import {
 } from 'DetailsView/components/command-bar-buttons-menu';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
-import { getMockComponentClassPropsForCall, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 
 jest.mock('@fluentui/react');
 
 describe('CommandBarButtonsMenu', () => {
-    mockReactComponents([TooltipHost, CommandBarButton])
+    mockReactComponents([TooltipHost, CommandBarButton]);
 
     let renderExportReportComponentMock: IMock<() => JSX.Element>;
     let getStartOverMenuItemMock: IMock<() => StartOverMenuItem>;
@@ -44,7 +53,7 @@ describe('CommandBarButtonsMenu', () => {
         setupStartOverMenuItem();
 
         render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
-        const commandBarProps = getMockComponentClassPropsForCall(CommandBarButton)
+        const commandBarProps = getMockComponentClassPropsForCall(CommandBarButton);
 
         const overflowItems: IOverflowSetItemProps[] = commandBarProps.menuProps?.items;
 

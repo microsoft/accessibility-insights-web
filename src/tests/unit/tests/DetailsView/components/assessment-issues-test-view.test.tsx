@@ -37,7 +37,10 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BannerWarnings } from '../../../../../DetailsView/components/banner-warnings';
 import { DetailsListIssuesView } from '../../../../../DetailsView/components/details-list-issues-view';
 import { TargetChangeDialog } from '../../../../../DetailsView/components/target-change-dialog';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../DetailsView/components/banner-warnings');
 jest.mock('../../../../../DetailsView/components/target-change-dialog');
@@ -165,7 +168,11 @@ describe('AssessmentIssuesTestView', () => {
 
         const renderResult = render(<AssessmentIssuesTestView {...propsStub} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([BannerWarnings, TargetChangeDialog, DetailsListIssuesView]);
+        expectMockedComponentPropsToMatchSnapshots([
+            BannerWarnings,
+            TargetChangeDialog,
+            DetailsListIssuesView,
+        ]);
     });
 
     test('componentDidMount', () => {
