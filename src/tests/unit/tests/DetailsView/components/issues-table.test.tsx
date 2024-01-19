@@ -23,14 +23,14 @@ import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-pr
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock } from 'typemoq';
+import { ScanningSpinner } from '../../../../../common/components/scanning-spinner/scanning-spinner';
+import { FailedInstancesSection } from '../../../../../common/components/cards/failed-instances-section';
 import { IssueFilingDialog } from '../../../../../DetailsView/components/issue-filing-dialog';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
-import { ScanningSpinner } from '../../../../../common/components/scanning-spinner/scanning-spinner';
-import { FailedInstancesSection } from '../../../../../common/components/cards/failed-instances-section';
 jest.mock('../../../../../DetailsView/components/issue-filing-dialog');
 jest.mock('../../../../../common/components/scanning-spinner/scanning-spinner');
 jest.mock('../../../../../common/components/cards/failed-instances-section');
