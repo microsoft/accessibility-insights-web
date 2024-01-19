@@ -89,7 +89,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     }
 
     private getCardCount(): number {
-        if (this.props?.cardsViewData === null) {
+        if (this.props.cardsViewData === null) {
             return 0;
         }
         const { cards } = this.props.cardsViewData;
@@ -110,8 +110,8 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     private renderComponent(): JSX.Element {
         const cardCount = this.getCardCount();
-        const assessment = this.props.getProvider()?.forType(this.props.selectedVisualizationType);
-        const requirement = assessment?.requirements[0]?.key;
+        const assessment = this.props.getProvider().forType(this.props.selectedVisualizationType);
+        const requirement = assessment?.requirements[0].key;
         if (!this.props.issuesEnabled && cardCount > 0) {
             this.props.deps.detailsViewActionMessageCreator.enableFastPassVisualHelperWithoutScan(
                 this.props.selectedVisualizationType,
@@ -135,7 +135,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
             <>
                 <InstancesSection
                     deps={this.props.deps}
-                    cardsViewData={this.props?.cardsViewData}
+                    cardsViewData={this.props.cardsViewData}
                     userConfigurationStoreData={this.props.userConfigurationStoreData}
                     scanMetadata={this.props.scanMetadata}
                     shouldAlertFailuresCount={true}
@@ -157,7 +157,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         const { deps, userConfigurationStoreData, cardsViewStoreData } = this.props;
         const { cardInteractionSupport, cardsViewController, issueFilingDialogPropsFactory } = deps;
 
-        if (!cardInteractionSupport?.supportsIssueFiling) {
+        if (!cardInteractionSupport.supportsIssueFiling) {
             return null;
         }
 

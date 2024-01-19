@@ -1,45 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
-<StyledTooltipHostBase
-  aria-label="More actions"
-  content="More actions"
->
-  <CustomizedCommandBarButton
-    ariaLabel="More actions"
-    className="commandBarButtonsMenu"
-    componentRef={{}}
-    menuIconProps={
-      {
-        "className": "commandBarButtonsMenuButton",
-        "iconName": "More",
-      }
-    }
-    menuProps={
-      {
-        "className": "commandBarButtonsSubmenu",
-        "items": [
-          {
-            "key": "save assessment",
-            "onRender": [Function],
-          },
-          {
-            "key": "load assessment",
-            "onRender": [Function],
-          },
-          {
-            "key": "transfer to assessment",
-            "onRender": [Function],
-          },
-          {
-            "key": "start over",
-          },
-        ],
-      }
-    }
-    role="button"
-  />
-</StyledTooltipHostBase>
+<DocumentFragment>
+  <mock-styledtooltiphostbase
+    aria-label="More actions"
+    content="More actions"
+  >
+    <mock-customizedcommandbarbutton
+      arialabel="More actions"
+      classname="commandBarButtonsMenu"
+      componentref="[object Object]"
+      menuiconprops="[object Object]"
+      menuprops="[object Object]"
+      role="button"
+    />
+  </mock-styledtooltiphostbase>
+</DocumentFragment>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons,: render export report menuitem 1`] = `

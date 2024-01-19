@@ -20,7 +20,7 @@ export type InjectionFailedWarningProps = {
 export const InjectionFailedWarning = NamedFC<InjectionFailedWarningProps>(
     'injection-failed-warning',
     props => {
-        if (props.visualizationStoreData?.injectingState !== InjectingState.injectingFailed) {
+        if (props.visualizationStoreData.injectingState !== InjectingState.injectingFailed) {
             return null;
         } else {
             return (

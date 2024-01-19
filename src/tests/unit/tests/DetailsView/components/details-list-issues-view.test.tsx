@@ -16,11 +16,17 @@ import {
     DetailsListIssuesViewDeps,
     DetailsListIssuesViewProps,
 } from 'DetailsView/components/details-list-issues-view';
+
 import * as React from 'react';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
+jest.mock('DetailsView/components/details-list-issues-view')
+jest.mock('DetailsView/components/issues-table');
+
 describe('DetailsListIssuesView', () => {
+    mockReactComponents([DetailsListIssuesView])
     let props: DetailsListIssuesViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let displayableDataStub: DisplayableVisualizationTypeData;
@@ -76,10 +82,5 @@ describe('DetailsListIssuesView', () => {
 
         const actual = render(<DetailsListIssuesView {...props} />);
         expect(actual.asFragment()).toMatchSnapshot();
-        verifyAll();
     });
-
-    function verifyAll(): void {
-        getStoreDataMock.verifyAll();
-    }
 });

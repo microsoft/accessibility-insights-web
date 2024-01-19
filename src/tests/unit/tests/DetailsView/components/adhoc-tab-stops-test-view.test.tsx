@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
+import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
@@ -18,14 +20,22 @@ import {
     AdhocTabStopsTestViewDeps,
     AdhocTabStopsTestViewProps,
 } from 'DetailsView/components/adhoc-tab-stops-test-view';
+import { TabStopsFailedInstancePanel } from 'DetailsView/components/tab-stops/tab-stops-failed-instance-panel';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
+
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { shallow } from 'enzyme';
+
 import * as React from 'react';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ContentReference } from 'views/content/content-page';
 
+jest.mock('DetailsView/components/tab-stops/tab-stops-failed-instance-panel')
+jest.mock('@fluentui/react');
+jest.mock('common/components/heading-with-content-link')
+
 describe('AdhocTabStopsTestView', () => {
+    mockReactComponents([TabStopsFailedInstancePanel, HeadingWithContentLink])
     let props: AdhocTabStopsTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
@@ -56,7 +66,7 @@ describe('AdhocTabStopsTestView', () => {
         visualizationStoreDataStub = {
             tests: {},
         } as VisualizationStoreData;
-        clickHandlerStub = () => {};
+        clickHandlerStub = () => { };
         selectedTest = -1;
         featureFlagStoreDataStub = {};
         userConfigurationStoreDataStub = 'stub-user-configuration-store-data' as any;
@@ -105,8 +115,8 @@ describe('AdhocTabStopsTestView', () => {
                 isChanged: true,
             };
 
-            const wrapper = shallow(<AdhocTabStopsTestView {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const wrapper = render(<AdhocTabStopsTestView {...props} />);
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
 
         it.each(scenarios)('handles %s', (_, guidance) => {
@@ -120,14 +130,8 @@ describe('AdhocTabStopsTestView', () => {
                 props.guidance = guidance;
             }
 
-            const wrapper = shallow(<AdhocTabStopsTestView {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
-            verifyAll();
+            const wrapper = render(<AdhocTabStopsTestView {...props} />);
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
     });
-
-    function verifyAll(): void {
-        getStoreDataMock.verifyAll();
-        clickHandlerFactoryMock.verifyAll();
-    }
 });

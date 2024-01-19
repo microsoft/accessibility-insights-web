@@ -31,6 +31,7 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
     protected choiceGroup: IChoiceGroup;
 
     public render(): JSX.Element {
+        console.log("jsx--->", this.props)
         return (
             <ChoiceGroupPassFail
                 data-automation-id={tabStopsPassFailChoiceGroupAutomationId}

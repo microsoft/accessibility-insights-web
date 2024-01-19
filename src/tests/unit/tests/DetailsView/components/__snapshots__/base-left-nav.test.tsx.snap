@@ -1,24 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BaseLeftNav should render 1`] = `
-<StyledNavBase
-  className="detailsViewTestNavArea"
-  componentRef={[Function]}
-  groups={
-    [
-      {
-        "links": [
-          {},
-        ],
-      },
-    ]
-  }
-  linkAs={[Function]}
-  selectedKey="some key"
-  styles={
-    {
-      "chevronButton": "hidden",
-    }
-  }
-/>
+<DocumentFragment>
+  <mock-stylednavbase
+    classname="detailsViewTestNavArea"
+    groups="[object Object]"
+    selectedkey="some key"
+    styles="[object Object]"
+  />
+</DocumentFragment>
 `;

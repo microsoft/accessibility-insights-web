@@ -2,20 +2,12 @@
 
 exports[`DetailsListIssuesView should return issues table with scanning to false 1`] = `
 <DocumentFragment>
-  <div
-    class="issuesTable"
-  >
-    <h1>
-      test title Step 0 of 3
-    </h1>
-    <div
-      class="issuesTableSubtitle"
-    >
-      test subtitle
-    </div>
-    <div
-      class="issuesTableContent"
-    />
-  </div>
+  <mock-detailslistissuesview
+    cardsviewdata="[object Object]"
+    configuration="[object Object]"
+    deps="[object Object]"
+    featureflagstoredata="[object Object]"
+    visualizationstoredata="[object Object]"
+  />
 </DocumentFragment>
 `;

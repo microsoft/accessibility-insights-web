@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
@@ -15,14 +16,19 @@ import {
     AdhocIssuesTestView,
     AdhocIssuesTestViewProps,
 } from 'DetailsView/components/adhoc-issues-test-view';
+import { DetailsListIssuesView } from 'DetailsView/components/details-list-issues-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { shallow } from 'enzyme';
+
 import * as React from 'react';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
+jest.mock('DetailsView/components/details-list-issues-view')
+
 describe('AdhocIssuesTestView', () => {
+    mockReactComponents([DetailsListIssuesView])
     const visualizationStoreDataStub = {
         tests: {},
         scanning: 'test-scanning',
@@ -59,7 +65,7 @@ describe('AdhocIssuesTestView', () => {
         enabled: true,
     };
 
-    const clickHandlerStub = () => {};
+    const clickHandlerStub = () => { };
 
     let switcherNavConfigurationStub: DetailsViewSwitcherNavConfiguration;
     let warningConfigurationStub: WarningConfiguration;
@@ -90,9 +96,9 @@ describe('AdhocIssuesTestView', () => {
             .returns(() => clickHandlerStub)
             .verifiable();
 
-        const actual = shallow(<AdhocIssuesTestView {...props} />);
+        const actual = render(<AdhocIssuesTestView {...props} />);
 
-        expect(actual.getElement()).toMatchSnapshot();
+        expect(actual.asFragment()).toMatchSnapshot();
         verifyAll();
     });
 
@@ -101,8 +107,8 @@ describe('AdhocIssuesTestView', () => {
             isChanged: false,
         } as TabStoreData;
 
-        const actual = shallow(<AdhocIssuesTestView {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const actual = render(<AdhocIssuesTestView {...props} />);
+        expect(actual.asFragment()).toMatchSnapshot();
     });
 
     function verifyAll(): void {

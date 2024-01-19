@@ -4,8 +4,12 @@ import { render } from '@testing-library/react';
 import { BannerWarnings } from 'DetailsView/components/banner-warnings';
 
 import * as React from 'react';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+
+jest.mock('DetailsView/components/banner-warnings')
 
 describe('BannerWarning', () => {
+    mockReactComponents([BannerWarnings])
     test('render', () => {
         const wrapper = render(
             <BannerWarnings

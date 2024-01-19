@@ -1,92 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentIssuesTestView renders 1`] = `
-<div
-  className="issuesTestView"
->
-  <React.Fragment>
-    <BannerWarnings
-      deps={
-        {
-          "assessmentViewUpdateHandler": [typemoq mock object],
-          "getProvider": [Function],
-        }
-      }
-      test={-1}
-      visualizationStoreData={
-        {
-          "scanning": "test-scanning",
-          "tests": {},
-        }
-      }
-      warningConfiguration={{}}
-      warnings={[]}
+<DocumentFragment>
+  <div
+    class="issuesTestView"
+  >
+    <mock-bannerwarnings
+      deps="[object Object]"
+      test="-1"
+      visualizationstoredata="[object Object]"
+      warningconfiguration="[object Object]"
+      warnings=""
     />
-    <TargetChangeDialog
-      deps={
-        {
-          "assessmentViewUpdateHandler": [typemoq mock object],
-          "getProvider": [Function],
-        }
-      }
-      newTab={
-        {
-          "id": 0,
-          "title": "test-title",
-          "url": "test-url",
-        }
-      }
-      prevTab={{}}
+    <mock-targetchangedialog
+      deps="[object Object]"
+      newtab="[object Object]"
+      prevtab="[object Object]"
     />
-    <DetailsListIssuesView
-      assessmentStoreData={
-        {
-          "assessmentNavState": {
-            "selectedTestSubview": "test-subview",
-            "selectedTestType": -1,
-          },
-          "persistedTabInfo": {},
-        }
-      }
-      clickHandlerFactory={[typemoq mock object]}
-      configuration={
-        {
-          "displayableData": {
-            "title": "test title",
-          },
-          "getAssessmentData": [Function],
-          "getStoreData": [Function],
-          "getTestStatus": [Function],
-        }
-      }
-      deps={
-        {
-          "assessmentViewUpdateHandler": [typemoq mock object],
-          "getProvider": [Function],
-        }
-      }
-      instancesSection={[Function]}
-      scanIncompleteWarnings={[]}
-      selectedTest={-1}
-      switcherNavConfiguration={
-        {
-          "warningConfiguration": {},
-        }
-      }
-      tabStoreData={
-        {
-          "id": 0,
-          "title": "test-title",
-          "url": "test-url",
-        }
-      }
-      visualizationStoreData={
-        {
-          "scanning": "test-scanning",
-          "tests": {},
-        }
-      }
+    <mock-detailslistissuesview
+      assessmentstoredata="[object Object]"
+      clickhandlerfactory="undefined"
+      configuration="[object Object]"
+      deps="[object Object]"
+      scanincompletewarnings=""
+      selectedtest="-1"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      visualizationstoredata="[object Object]"
     />
-  </React.Fragment>
-</div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`AssessmentIssuesTestView renders: BannerWarnings props 1`] = `
+{
+  "deps": {
+    "assessmentViewUpdateHandler": [typemoq mock object],
+    "getProvider": [Function],
+  },
+  "test": -1,
+  "visualizationStoreData": {
+    "scanning": "test-scanning",
+    "tests": {},
+  },
+  "warningConfiguration": {},
+  "warnings": [],
+}
+`;
+
+exports[`AssessmentIssuesTestView renders: DetailsListIssuesView props 1`] = `
+{
+  "assessmentStoreData": {
+    "assessmentNavState": {
+      "selectedTestSubview": "test-subview",
+      "selectedTestType": -1,
+    },
+    "persistedTabInfo": {},
+  },
+  "clickHandlerFactory": [typemoq mock object],
+  "configuration": {
+    "displayableData": {
+      "title": "test title",
+    },
+    "getAssessmentData": [Function],
+    "getStoreData": [Function],
+    "getTestStatus": [Function],
+  },
+  "deps": {
+    "assessmentViewUpdateHandler": [typemoq mock object],
+    "getProvider": [Function],
+  },
+  "instancesSection": [Function],
+  "scanIncompleteWarnings": [],
+  "selectedTest": -1,
+  "switcherNavConfiguration": {
+    "warningConfiguration": {},
+  },
+  "tabStoreData": {
+    "id": 0,
+    "title": "test-title",
+    "url": "test-url",
+  },
+  "visualizationStoreData": {
+    "scanning": "test-scanning",
+    "tests": {},
+  },
+}
+`;
+
+exports[`AssessmentIssuesTestView renders: TargetChangeDialog props 1`] = `
+{
+  "deps": {
+    "assessmentViewUpdateHandler": [typemoq mock object],
+    "getProvider": [Function],
+  },
+  "newTab": {
+    "id": 0,
+    "title": "test-title",
+    "url": "test-url",
+  },
+  "prevTab": {},
+}
 `;

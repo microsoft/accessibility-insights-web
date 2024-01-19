@@ -1217,26 +1217,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                   </div>
                                   <div
                                     class="secondaryControlsWrapper"
-                                  >
-                                    <button
-                                      aria-label="undo"
-                                      class="ms-Button ms-Button--icon root-160"
-                                      data-is-focusable="true"
-                                      tabindex="-1"
-                                      type="button"
-                                    >
-                                      <span
-                                        class="ms-Button-flexContainer flexContainer-161"
-                                        data-automationid="splitbuttonprimary"
-                                      >
-                                        <i
-                                          aria-hidden="true"
-                                          class="ms-Icon root-105 ms-Button-icon icon-163"
-                                          data-icon-name="undo"
-                                        />
-                                      </span>
-                                    </button>
-                                  </div>
+                                  />
                                 </div>
                               </div>
                             </div>
@@ -1259,7 +1240,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                             aria-selected="false"
                             class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
                             data-automationid="DetailsRow"
-                            data-focuszone-id="FocusZone88"
+                            data-focuszone-id="FocusZone85"
                             data-is-focusable="true"
                             data-item-index="1"
                             data-selection-index="1"
@@ -1322,14 +1303,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                             <input
                                               aria-label="Pass"
                                               class="ms-ChoiceField-input input-154"
-                                              id="ChoiceGroup89-pass"
-                                              name="ChoiceGroup89"
+                                              id="ChoiceGroup86-pass"
+                                              name="ChoiceGroup86"
                                               tabindex="-1"
                                               type="radio"
                                             />
                                             <label
                                               class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
-                                              for="ChoiceGroup89-pass"
+                                              for="ChoiceGroup86-pass"
                                             />
                                           </div>
                                         </div>
@@ -1342,14 +1323,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                             <input
                                               aria-label="Fail"
                                               class="ms-ChoiceField-input input-154"
-                                              id="ChoiceGroup89-fail"
-                                              name="ChoiceGroup89"
+                                              id="ChoiceGroup86-fail"
+                                              name="ChoiceGroup86"
                                               tabindex="-1"
                                               type="radio"
                                             />
                                             <label
                                               class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
-                                              for="ChoiceGroup89-fail"
+                                              for="ChoiceGroup86-fail"
                                             />
                                           </div>
                                         </div>
@@ -1358,26 +1339,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                   </div>
                                   <div
                                     class="secondaryControlsWrapper"
-                                  >
-                                    <button
-                                      aria-label="undo"
-                                      class="ms-Button ms-Button--icon root-160"
-                                      data-is-focusable="true"
-                                      tabindex="-1"
-                                      type="button"
-                                    >
-                                      <span
-                                        class="ms-Button-flexContainer flexContainer-161"
-                                        data-automationid="splitbuttonprimary"
-                                      >
-                                        <i
-                                          aria-hidden="true"
-                                          class="ms-Icon root-105 ms-Button-icon icon-163"
-                                          data-icon-name="undo"
-                                        />
-                                      </span>
-                                    </button>
-                                  </div>
+                                  />
                                 </div>
                               </div>
                             </div>
@@ -1400,7 +1362,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                             aria-selected="false"
                             class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
                             data-automationid="DetailsRow"
-                            data-focuszone-id="FocusZone95"
+                            data-focuszone-id="FocusZone89"
                             data-is-focusable="true"
                             data-item-index="2"
                             data-selection-index="2"
@@ -1463,14 +1425,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                             <input
                                               aria-label="Pass"
                                               class="ms-ChoiceField-input input-154"
-                                              id="ChoiceGroup96-pass"
-                                              name="ChoiceGroup96"
+                                              id="ChoiceGroup90-pass"
+                                              name="ChoiceGroup90"
                                               tabindex="-1"
                                               type="radio"
                                             />
                                             <label
                                               class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
-                                              for="ChoiceGroup96-pass"
+                                              for="ChoiceGroup90-pass"
                                             />
                                           </div>
                                         </div>
@@ -1483,14 +1445,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                             <input
                                               aria-label="Fail"
                                               class="ms-ChoiceField-input input-154"
-                                              id="ChoiceGroup96-fail"
-                                              name="ChoiceGroup96"
+                                              id="ChoiceGroup90-fail"
+                                              name="ChoiceGroup90"
                                               tabindex="-1"
                                               type="radio"
                                             />
                                             <label
                                               class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
-                                              for="ChoiceGroup96-fail"
+                                              for="ChoiceGroup90-fail"
                                             />
                                           </div>
                                         </div>
@@ -1499,26 +1461,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                   </div>
                                   <div
                                     class="secondaryControlsWrapper"
-                                  >
-                                    <button
-                                      aria-label="undo"
-                                      class="ms-Button ms-Button--icon root-160"
-                                      data-is-focusable="true"
-                                      tabindex="-1"
-                                      type="button"
-                                    >
-                                      <span
-                                        class="ms-Button-flexContainer flexContainer-161"
-                                        data-automationid="splitbuttonprimary"
-                                      >
-                                        <i
-                                          aria-hidden="true"
-                                          class="ms-Icon root-105 ms-Button-icon icon-163"
-                                          data-icon-name="undo"
-                                        />
-                                      </span>
-                                    </button>
-                                  </div>
+                                  />
                                 </div>
                               </div>
                             </div>
@@ -1541,7 +1484,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                             aria-selected="false"
                             class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
                             data-automationid="DetailsRow"
-                            data-focuszone-id="FocusZone102"
+                            data-focuszone-id="FocusZone93"
                             data-is-focusable="true"
                             data-item-index="3"
                             data-selection-index="3"
@@ -1604,14 +1547,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                             <input
                                               aria-label="Pass"
                                               class="ms-ChoiceField-input input-154"
-                                              id="ChoiceGroup103-pass"
-                                              name="ChoiceGroup103"
+                                              id="ChoiceGroup94-pass"
+                                              name="ChoiceGroup94"
                                               tabindex="-1"
                                               type="radio"
                                             />
                                             <label
                                               class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
-                                              for="ChoiceGroup103-pass"
+                                              for="ChoiceGroup94-pass"
                                             />
                                           </div>
                                         </div>
@@ -1624,14 +1567,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                             <input
                                               aria-label="Fail"
                                               class="ms-ChoiceField-input input-154"
-                                              id="ChoiceGroup103-fail"
-                                              name="ChoiceGroup103"
+                                              id="ChoiceGroup94-fail"
+                                              name="ChoiceGroup94"
                                               tabindex="-1"
                                               type="radio"
                                             />
                                             <label
                                               class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
-                                              for="ChoiceGroup103-fail"
+                                              for="ChoiceGroup94-fail"
                                             />
                                           </div>
                                         </div>
@@ -1640,26 +1583,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                   </div>
                                   <div
                                     class="secondaryControlsWrapper"
-                                  >
-                                    <button
-                                      aria-label="undo"
-                                      class="ms-Button ms-Button--icon root-160"
-                                      data-is-focusable="true"
-                                      tabindex="-1"
-                                      type="button"
-                                    >
-                                      <span
-                                        class="ms-Button-flexContainer flexContainer-161"
-                                        data-automationid="splitbuttonprimary"
-                                      >
-                                        <i
-                                          aria-hidden="true"
-                                          class="ms-Icon root-105 ms-Button-icon icon-163"
-                                          data-icon-name="undo"
-                                        />
-                                      </span>
-                                    </button>
-                                  </div>
+                                  />
                                 </div>
                               </div>
                             </div>
@@ -1682,7 +1606,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                             aria-selected="false"
                             class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
                             data-automationid="DetailsRow"
-                            data-focuszone-id="FocusZone109"
+                            data-focuszone-id="FocusZone97"
                             data-is-focusable="true"
                             data-item-index="4"
                             data-selection-index="4"
@@ -1745,14 +1669,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                             <input
                                               aria-label="Pass"
                                               class="ms-ChoiceField-input input-154"
-                                              id="ChoiceGroup110-pass"
-                                              name="ChoiceGroup110"
+                                              id="ChoiceGroup98-pass"
+                                              name="ChoiceGroup98"
                                               tabindex="-1"
                                               type="radio"
                                             />
                                             <label
                                               class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
-                                              for="ChoiceGroup110-pass"
+                                              for="ChoiceGroup98-pass"
                                             />
                                           </div>
                                         </div>
@@ -1766,14 +1690,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                               aria-label="Fail"
                                               checked=""
                                               class="ms-ChoiceField-input input-154"
-                                              id="ChoiceGroup110-fail"
-                                              name="ChoiceGroup110"
+                                              id="ChoiceGroup98-fail"
+                                              name="ChoiceGroup98"
                                               tabindex="-1"
                                               type="radio"
                                             />
                                             <label
-                                              class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionFail field-168"
-                                              for="ChoiceGroup110-fail"
+                                              class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionFail field-160"
+                                              for="ChoiceGroup98-fail"
                                             />
                                           </div>
                                         </div>
@@ -1785,37 +1709,37 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                   >
                                     <button
                                       aria-label="undo"
-                                      class="ms-Button ms-Button--icon root-160"
+                                      class="ms-Button ms-Button--icon root-163"
                                       data-is-focusable="true"
                                       tabindex="-1"
                                       type="button"
                                     >
                                       <span
-                                        class="ms-Button-flexContainer flexContainer-161"
+                                        class="ms-Button-flexContainer flexContainer-164"
                                         data-automationid="splitbuttonprimary"
                                       >
                                         <i
                                           aria-hidden="true"
-                                          class="ms-Icon root-105 ms-Button-icon icon-163"
+                                          class="ms-Icon root-105 ms-Button-icon icon-166"
                                           data-icon-name="undo"
                                         />
                                       </span>
                                     </button>
                                     <button
                                       aria-label="add failure instance"
-                                      class="ms-Button ms-Button--icon root-160"
+                                      class="ms-Button ms-Button--icon root-163"
                                       data-automation-id="addTabStopsFailureInstance"
                                       data-is-focusable="true"
                                       tabindex="-1"
                                       type="button"
                                     >
                                       <span
-                                        class="ms-Button-flexContainer flexContainer-161"
+                                        class="ms-Button-flexContainer flexContainer-164"
                                         data-automationid="splitbuttonprimary"
                                       >
                                         <i
                                           aria-hidden="true"
-                                          class="ms-Icon root-105 ms-Button-icon icon-163"
+                                          class="ms-Icon root-105 ms-Button-icon icon-166"
                                           data-icon-name="add"
                                         />
                                       </span>
@@ -2062,26 +1986,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                 </div>
                                 <div
                                   class="secondaryControlsWrapper"
-                                >
-                                  <button
-                                    aria-label="undo"
-                                    class="ms-Button ms-Button--icon root-160"
-                                    data-is-focusable="true"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    <span
-                                      class="ms-Button-flexContainer flexContainer-161"
-                                      data-automationid="splitbuttonprimary"
-                                    >
-                                      <i
-                                        aria-hidden="true"
-                                        class="ms-Icon root-105 ms-Button-icon icon-163"
-                                        data-icon-name="undo"
-                                      />
-                                    </span>
-                                  </button>
-                                </div>
+                                />
                               </div>
                             </div>
                           </div>
@@ -2104,7 +2009,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                           aria-selected="false"
                           class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
                           data-automationid="DetailsRow"
-                          data-focuszone-id="FocusZone88"
+                          data-focuszone-id="FocusZone85"
                           data-is-focusable="true"
                           data-item-index="1"
                           data-selection-index="1"
@@ -2167,14 +2072,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                           <input
                                             aria-label="Pass"
                                             class="ms-ChoiceField-input input-154"
-                                            id="ChoiceGroup89-pass"
-                                            name="ChoiceGroup89"
+                                            id="ChoiceGroup86-pass"
+                                            name="ChoiceGroup86"
                                             tabindex="-1"
                                             type="radio"
                                           />
                                           <label
                                             class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
-                                            for="ChoiceGroup89-pass"
+                                            for="ChoiceGroup86-pass"
                                           />
                                         </div>
                                       </div>
@@ -2187,14 +2092,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                           <input
                                             aria-label="Fail"
                                             class="ms-ChoiceField-input input-154"
-                                            id="ChoiceGroup89-fail"
-                                            name="ChoiceGroup89"
+                                            id="ChoiceGroup86-fail"
+                                            name="ChoiceGroup86"
                                             tabindex="-1"
                                             type="radio"
                                           />
                                           <label
                                             class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
-                                            for="ChoiceGroup89-fail"
+                                            for="ChoiceGroup86-fail"
                                           />
                                         </div>
                                       </div>
@@ -2203,26 +2108,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                 </div>
                                 <div
                                   class="secondaryControlsWrapper"
-                                >
-                                  <button
-                                    aria-label="undo"
-                                    class="ms-Button ms-Button--icon root-160"
-                                    data-is-focusable="true"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    <span
-                                      class="ms-Button-flexContainer flexContainer-161"
-                                      data-automationid="splitbuttonprimary"
-                                    >
-                                      <i
-                                        aria-hidden="true"
-                                        class="ms-Icon root-105 ms-Button-icon icon-163"
-                                        data-icon-name="undo"
-                                      />
-                                    </span>
-                                  </button>
-                                </div>
+                                />
                               </div>
                             </div>
                           </div>
@@ -2245,7 +2131,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                           aria-selected="false"
                           class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
                           data-automationid="DetailsRow"
-                          data-focuszone-id="FocusZone95"
+                          data-focuszone-id="FocusZone89"
                           data-is-focusable="true"
                           data-item-index="2"
                           data-selection-index="2"
@@ -2308,14 +2194,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                           <input
                                             aria-label="Pass"
                                             class="ms-ChoiceField-input input-154"
-                                            id="ChoiceGroup96-pass"
-                                            name="ChoiceGroup96"
+                                            id="ChoiceGroup90-pass"
+                                            name="ChoiceGroup90"
                                             tabindex="-1"
                                             type="radio"
                                           />
                                           <label
                                             class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
-                                            for="ChoiceGroup96-pass"
+                                            for="ChoiceGroup90-pass"
                                           />
                                         </div>
                                       </div>
@@ -2328,14 +2214,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                           <input
                                             aria-label="Fail"
                                             class="ms-ChoiceField-input input-154"
-                                            id="ChoiceGroup96-fail"
-                                            name="ChoiceGroup96"
+                                            id="ChoiceGroup90-fail"
+                                            name="ChoiceGroup90"
                                             tabindex="-1"
                                             type="radio"
                                           />
                                           <label
                                             class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
-                                            for="ChoiceGroup96-fail"
+                                            for="ChoiceGroup90-fail"
                                           />
                                         </div>
                                       </div>
@@ -2344,26 +2230,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                 </div>
                                 <div
                                   class="secondaryControlsWrapper"
-                                >
-                                  <button
-                                    aria-label="undo"
-                                    class="ms-Button ms-Button--icon root-160"
-                                    data-is-focusable="true"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    <span
-                                      class="ms-Button-flexContainer flexContainer-161"
-                                      data-automationid="splitbuttonprimary"
-                                    >
-                                      <i
-                                        aria-hidden="true"
-                                        class="ms-Icon root-105 ms-Button-icon icon-163"
-                                        data-icon-name="undo"
-                                      />
-                                    </span>
-                                  </button>
-                                </div>
+                                />
                               </div>
                             </div>
                           </div>
@@ -2386,7 +2253,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                           aria-selected="false"
                           class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
                           data-automationid="DetailsRow"
-                          data-focuszone-id="FocusZone102"
+                          data-focuszone-id="FocusZone93"
                           data-is-focusable="true"
                           data-item-index="3"
                           data-selection-index="3"
@@ -2449,14 +2316,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                           <input
                                             aria-label="Pass"
                                             class="ms-ChoiceField-input input-154"
-                                            id="ChoiceGroup103-pass"
-                                            name="ChoiceGroup103"
+                                            id="ChoiceGroup94-pass"
+                                            name="ChoiceGroup94"
                                             tabindex="-1"
                                             type="radio"
                                           />
                                           <label
                                             class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
-                                            for="ChoiceGroup103-pass"
+                                            for="ChoiceGroup94-pass"
                                           />
                                         </div>
                                       </div>
@@ -2469,14 +2336,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                           <input
                                             aria-label="Fail"
                                             class="ms-ChoiceField-input input-154"
-                                            id="ChoiceGroup103-fail"
-                                            name="ChoiceGroup103"
+                                            id="ChoiceGroup94-fail"
+                                            name="ChoiceGroup94"
                                             tabindex="-1"
                                             type="radio"
                                           />
                                           <label
                                             class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-155"
-                                            for="ChoiceGroup103-fail"
+                                            for="ChoiceGroup94-fail"
                                           />
                                         </div>
                                       </div>
@@ -2485,26 +2352,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                 </div>
                                 <div
                                   class="secondaryControlsWrapper"
-                                >
-                                  <button
-                                    aria-label="undo"
-                                    class="ms-Button ms-Button--icon root-160"
-                                    data-is-focusable="true"
-                                    tabindex="-1"
-                                    type="button"
-                                  >
-                                    <span
-                                      class="ms-Button-flexContainer flexContainer-161"
-                                      data-automationid="splitbuttonprimary"
-                                    >
-                                      <i
-                                        aria-hidden="true"
-                                        class="ms-Icon root-105 ms-Button-icon icon-163"
-                                        data-icon-name="undo"
-                                      />
-                                    </span>
-                                  </button>
-                                </div>
+                                />
                               </div>
                             </div>
                           </div>
@@ -2527,7 +2375,7 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                           aria-selected="false"
                           class="ms-FocusZone css-127 ms-DetailsRow is-contentUnselectable root-142"
                           data-automationid="DetailsRow"
-                          data-focuszone-id="FocusZone109"
+                          data-focuszone-id="FocusZone97"
                           data-is-focusable="true"
                           data-item-index="4"
                           data-selection-index="4"
@@ -2590,14 +2438,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                           <input
                                             aria-label="Pass"
                                             class="ms-ChoiceField-input input-154"
-                                            id="ChoiceGroup110-pass"
-                                            name="ChoiceGroup110"
+                                            id="ChoiceGroup98-pass"
+                                            name="ChoiceGroup98"
                                             tabindex="-1"
                                             type="radio"
                                           />
                                           <label
                                             class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-155"
-                                            for="ChoiceGroup110-pass"
+                                            for="ChoiceGroup98-pass"
                                           />
                                         </div>
                                       </div>
@@ -2611,14 +2459,14 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                             aria-label="Fail"
                                             checked=""
                                             class="ms-ChoiceField-input input-154"
-                                            id="ChoiceGroup110-fail"
-                                            name="ChoiceGroup110"
+                                            id="ChoiceGroup98-fail"
+                                            name="ChoiceGroup98"
                                             tabindex="-1"
                                             type="radio"
                                           />
                                           <label
-                                            class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionFail field-168"
-                                            for="ChoiceGroup110-fail"
+                                            class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionFail field-160"
+                                            for="ChoiceGroup98-fail"
                                           />
                                         </div>
                                       </div>
@@ -2630,37 +2478,37 @@ exports[`TabStopsRequirementsTable renders undo icon button 1`] = `
                                 >
                                   <button
                                     aria-label="undo"
-                                    class="ms-Button ms-Button--icon root-160"
+                                    class="ms-Button ms-Button--icon root-163"
                                     data-is-focusable="true"
                                     tabindex="-1"
                                     type="button"
                                   >
                                     <span
-                                      class="ms-Button-flexContainer flexContainer-161"
+                                      class="ms-Button-flexContainer flexContainer-164"
                                       data-automationid="splitbuttonprimary"
                                     >
                                       <i
                                         aria-hidden="true"
-                                        class="ms-Icon root-105 ms-Button-icon icon-163"
+                                        class="ms-Icon root-105 ms-Button-icon icon-166"
                                         data-icon-name="undo"
                                       />
                                     </span>
                                   </button>
                                   <button
                                     aria-label="add failure instance"
-                                    class="ms-Button ms-Button--icon root-160"
+                                    class="ms-Button ms-Button--icon root-163"
                                     data-automation-id="addTabStopsFailureInstance"
                                     data-is-focusable="true"
                                     tabindex="-1"
                                     type="button"
                                   >
                                     <span
-                                      class="ms-Button-flexContainer flexContainer-161"
+                                      class="ms-Button-flexContainer flexContainer-164"
                                       data-automationid="splitbuttonprimary"
                                     >
                                       <i
                                         aria-hidden="true"
-                                        class="ms-Icon root-105 ms-Button-icon icon-163"
+                                        class="ms-Icon root-105 ms-Button-icon icon-166"
                                         data-icon-name="add"
                                       />
                                     </span>

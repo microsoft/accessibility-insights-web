@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
@@ -23,7 +24,6 @@ import {
     AssessmentTestViewProps,
 } from 'DetailsView/components/assessment-test-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { GettingStartedView } from 'DetailsView/components/getting-started-view';
 import { RequirementView } from 'DetailsView/components/requirement-view';
 import {
     GetRequirementViewComponentConfiguration,
@@ -31,11 +31,20 @@ import {
 } from 'DetailsView/components/requirement-view-component-configuration';
 import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
+import { BannerWarnings } from '../../../../../DetailsView/components/banner-warnings';
+import { GettingStartedView } from '../../../../../DetailsView/components/getting-started-view';
+import { TargetChangeDialog } from '../../../../../DetailsView/components/target-change-dialog';
+import { expectMockedComponentPropsToMatchSnapshots, getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('DetailsView/components/requirement-view');
+jest.mock('../../../../../DetailsView/components/target-change-dialog');
+jest.mock('../../../../../DetailsView/components/getting-started-view');
+jest.mock('../../../../../DetailsView/components/banner-warnings');
 
 describe('AssessmentTestView', () => {
+    mockReactComponents([RequirementView, TargetChangeDialog, GettingStartedView, BannerWarnings]);
     let props: AssessmentTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let getAssessmentDataMock: IMock<(data: AssessmentStoreData) => AssessmentData>;
@@ -144,23 +153,28 @@ describe('AssessmentTestView', () => {
 
     it('renders with a GettingStartedView when a Getting started item is selected', () => {
         setSelectedSubview(gettingStartedSubview);
-        const testSubject = shallow(<AssessmentTestView {...props} />);
+        const renderResult = render(<AssessmentTestView {...props} />);
 
-        expect(testSubject.exists(GettingStartedView)).toBe(true);
-        expect(testSubject.exists(RequirementView)).toBe(false);
+        const requirementView = getMockComponentClassPropsForCall(RequirementView);
+        const gettingStartedView = getMockComponentClassPropsForCall(GettingStartedView);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(gettingStartedView).toBeTruthy();
+        expect(requirementView).toBeFalsy();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([TargetChangeDialog, GettingStartedView, BannerWarnings]);
         verifyAll();
     });
 
     it('renders with a RequirementView when a requirement is selected', () => {
         setSelectedSubview(selectedTestStep);
-        const testSubject = shallow(<AssessmentTestView {...props} />);
+        const renderResult = render(<AssessmentTestView {...props} />);
+        const requirementView = getMockComponentClassPropsForCall(RequirementView);
+        const gettingStartedView = getMockComponentClassPropsForCall(GettingStartedView);
 
-        expect(testSubject.exists(RequirementView)).toBe(true);
-        expect(testSubject.exists(GettingStartedView)).toBe(false);
-
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(requirementView).toBeTruthy();
+        expect(gettingStartedView).toBeFalsy();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([RequirementView, TargetChangeDialog, BannerWarnings]);
         verifyAll();
     });
 
@@ -173,9 +187,9 @@ describe('AssessmentTestView', () => {
         ({ scanningInput, expectedRequirementViewProp }) => {
             setSelectedSubview(selectedTestStep);
             props.visualizationStoreData.scanning = scanningInput;
-            const testSubject = shallow(<AssessmentTestView {...props} />);
+            render(<AssessmentTestView {...props} />);
 
-            const actualProp = testSubject.find(RequirementView).prop('scanningInProgress');
+            const actualProp = getMockComponentClassPropsForCall(RequirementView).scanningInProgress;
             expect(actualProp).toBe(expectedRequirementViewProp);
         },
     );

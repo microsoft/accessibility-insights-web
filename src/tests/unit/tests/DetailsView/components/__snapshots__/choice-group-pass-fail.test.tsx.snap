@@ -1,184 +1,277 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChoiceGroupPassFail render 1`] = `
-<div
-  className="choiceGroupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    isLabelVisible={false}
-    onChange={[Function]}
-    options={
-      [
-        {
-          "ariaLabel": "Pass",
-          "key": "pass",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionPass",
-            "root": "radioButtonOption",
-          },
-          "text": "Pass",
-        },
-        {
-          "ariaLabel": "Fail",
-          "key": "fail",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionFail",
-            "root": "radioButtonOption",
-          },
-          "text": "Fail",
-        },
-      ]
-    }
-    selectedKey="unknown"
-    styles={
-      {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
+<DocumentFragment>
   <div
-    className="secondaryControlsWrapper"
+    class="choiceGroupContainer"
   >
-    <CustomizedIconButton
-      aria-label="add"
-      iconProps={
-        {
-          "iconName": "add",
-        }
-      }
-      noClick={[Function]}
-    />
+    <div
+      class="ms-ChoiceFieldGroup root-109"
+    >
+      <div
+        role="radiogroup"
+      >
+        <div
+          class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+        >
+          <div
+            class="ms-ChoiceField radioButtonOption root-110"
+          >
+            <div
+              class="ms-ChoiceField-wrapper"
+            >
+              <input
+                aria-label="Pass"
+                class="ms-ChoiceField-input input-111"
+                id="ChoiceGroup0-pass"
+                name="ChoiceGroup0"
+                type="radio"
+              />
+              <label
+                class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-112"
+                for="ChoiceGroup0-pass"
+              />
+            </div>
+          </div>
+          <div
+            class="ms-ChoiceField radioButtonOption root-110"
+          >
+            <div
+              class="ms-ChoiceField-wrapper"
+            >
+              <input
+                aria-label="Fail"
+                class="ms-ChoiceField-input input-111"
+                id="ChoiceGroup0-fail"
+                name="ChoiceGroup0"
+                type="radio"
+              />
+              <label
+                class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-112"
+                for="ChoiceGroup0-fail"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="secondaryControlsWrapper"
+    >
+      <button
+        aria-label="add"
+        class="ms-Button ms-Button--icon root-117"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-118"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon icon-120"
+            data-icon-name="add"
+          />
+        </span>
+      </button>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
-<div
-  className="choiceGroupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    isLabelVisible={false}
-    onChange={[Function]}
-    options={
-      [
-        {
-          "ariaLabel": "Pass",
-          "key": "pass",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionPass",
-            "root": "radioButtonOption",
-          },
-          "text": "Pass",
-        },
-        {
-          "ariaLabel": "Fail",
-          "key": "fail",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionFail",
-            "root": "radioButtonOption",
-          },
-          "text": "Fail",
-        },
-      ]
-    }
-    selectedKey="fail"
-    styles={
-      {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
+<DocumentFragment>
   <div
-    className="secondaryControlsWrapper"
+    class="choiceGroupContainer"
   >
-    <CustomizedIconButton
-      ariaLabel="undo"
-      iconProps={
-        {
-          "iconName": "undo",
-        }
-      }
-      onClick={[Function]}
-    />
-    <CustomizedIconButton
-      aria-label="add"
-      iconProps={
-        {
-          "iconName": "add",
-        }
-      }
-      noClick={[Function]}
-    />
+    <div
+      class="ms-ChoiceFieldGroup root-109"
+    >
+      <div
+        role="radiogroup"
+      >
+        <div
+          class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+        >
+          <div
+            class="ms-ChoiceField radioButtonOption root-110"
+          >
+            <div
+              class="ms-ChoiceField-wrapper"
+            >
+              <input
+                aria-label="Pass"
+                class="ms-ChoiceField-input input-111"
+                id="ChoiceGroup5-pass"
+                name="ChoiceGroup5"
+                type="radio"
+              />
+              <label
+                class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-112"
+                for="ChoiceGroup5-pass"
+              />
+            </div>
+          </div>
+          <div
+            class="ms-ChoiceField radioButtonOption root-110"
+          >
+            <div
+              class="ms-ChoiceField-wrapper"
+            >
+              <input
+                aria-label="Fail"
+                checked=""
+                class="ms-ChoiceField-input input-111"
+                id="ChoiceGroup5-fail"
+                name="ChoiceGroup5"
+                type="radio"
+              />
+              <label
+                class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionFail field-125"
+                for="ChoiceGroup5-fail"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="secondaryControlsWrapper"
+    >
+      <button
+        aria-label="undo"
+        class="ms-Button ms-Button--icon root-117"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-118"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon icon-120"
+            data-icon-name="undo"
+          />
+        </span>
+      </button>
+      <button
+        aria-label="add"
+        class="ms-Button ms-Button--icon root-117"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-118"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon icon-120"
+            data-icon-name="add"
+          />
+        </span>
+      </button>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
-<div
-  className="choiceGroupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    isLabelVisible={false}
-    onChange={[Function]}
-    options={
-      [
-        {
-          "ariaLabel": "Pass",
-          "key": "pass",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionPass",
-            "root": "radioButtonOption",
-          },
-          "text": "Pass",
-        },
-        {
-          "ariaLabel": "Fail",
-          "key": "fail",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionFail",
-            "root": "radioButtonOption",
-          },
-          "text": "Fail",
-        },
-      ]
-    }
-    selectedKey="pass"
-    styles={
-      {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
+<DocumentFragment>
   <div
-    className="secondaryControlsWrapper"
+    class="choiceGroupContainer"
   >
-    <CustomizedIconButton
-      ariaLabel="undo"
-      iconProps={
-        {
-          "iconName": "undo",
-        }
-      }
-      onClick={[Function]}
-    />
-    <CustomizedIconButton
-      aria-label="add"
-      iconProps={
-        {
-          "iconName": "add",
-        }
-      }
-      noClick={[Function]}
-    />
+    <div
+      class="ms-ChoiceFieldGroup root-109"
+    >
+      <div
+        role="radiogroup"
+      >
+        <div
+          class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
+        >
+          <div
+            class="ms-ChoiceField radioButtonOption root-110"
+          >
+            <div
+              class="ms-ChoiceField-wrapper"
+            >
+              <input
+                aria-label="Pass"
+                checked=""
+                class="ms-ChoiceField-input input-111"
+                id="ChoiceGroup13-pass"
+                name="ChoiceGroup13"
+                type="radio"
+              />
+              <label
+                class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionPass field-125"
+                for="ChoiceGroup13-pass"
+              />
+            </div>
+          </div>
+          <div
+            class="ms-ChoiceField radioButtonOption root-110"
+          >
+            <div
+              class="ms-ChoiceField-wrapper"
+            >
+              <input
+                aria-label="Fail"
+                class="ms-ChoiceField-input input-111"
+                id="ChoiceGroup13-fail"
+                name="ChoiceGroup13"
+                type="radio"
+              />
+              <label
+                class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-112"
+                for="ChoiceGroup13-fail"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="secondaryControlsWrapper"
+    >
+      <button
+        aria-label="undo"
+        class="ms-Button ms-Button--icon root-117"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-118"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon icon-120"
+            data-icon-name="undo"
+          />
+        </span>
+      </button>
+      <button
+        aria-label="add"
+        class="ms-Button ms-Button--icon root-117"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-118"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon icon-120"
+            data-icon-name="add"
+          />
+        </span>
+      </button>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

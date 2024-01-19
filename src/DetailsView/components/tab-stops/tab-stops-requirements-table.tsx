@@ -53,7 +53,7 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                     return (
                         <TabStopsChoiceGroup
                             status={
-                                TabStopRequirementStatuses[props.requirementState[item.id]?.status]
+                                TabStopRequirementStatuses[props.requirementState[item.id].status]
                             }
                             onUndoClicked={_ =>
                                 tabStopRequirementActionMessageCreator.resetStatusForRequirement(

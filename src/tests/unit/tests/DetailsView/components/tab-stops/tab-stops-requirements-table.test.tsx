@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DetailsList } from '@fluentui/react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import {
@@ -9,8 +8,6 @@ import {
     TabStopRequirementStatuses,
 } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
-import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
-import { TabStopsChoiceGroupsProps } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import {
     TabStopsRequirementsTable,
     TabStopsRequirementsTableProps,
@@ -20,10 +17,11 @@ import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { VisualizationScanResultStoreDataBuilder } from 'tests/unit/common/visualization-scan-result-store-data-builder';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 import { TabStopRequirementContent } from 'types/tab-stop-requirement-info';
 
 describe('TabStopsRequirementsTable', () => {
+
     let props: TabStopsRequirementsTableProps;
     let requirementState: TabStopRequirementState;
     let tabStopsRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
@@ -73,20 +71,18 @@ describe('TabStopsRequirementsTable', () => {
         expect(tabStopsChoiceGroup).toMatchSnapshot();
     });
 
-    test('renders undo icon button', () => {
-        props.requirementState = {
-            'input-focus': { status: 'fail', instances: [], isExpanded: false }
-        }
+    test('renders undo icon button', async () => {
+
+        props.requirementState['input-focus'].status = TabStopRequirementStatuses.fail;
 
         const testSubject = render(<TabStopsRequirementsTable {...props} />);
+
         expect(testSubject).toMatchSnapshot();
     });
 
     test('result column handlers', () => {
         //update props to make sure Undo button is visible
-        props.requirementState = {
-            'input-focus': { status: 'pass', instances: [], isExpanded: false }
-        }
+        props.requirementState['input-focus'].status = TabStopRequirementStatuses.pass;
         const eventStub = new EventStubFactory().createMouseClickEvent() as SupportedMouseEvent;
         console.log("eventStub", eventStub)
         const testSubject = render(<TabStopsRequirementsTable {...props} />);
@@ -100,9 +96,7 @@ describe('TabStopsRequirementsTable', () => {
 
     test('render Add icon button and handle event', () => {
         //update props to make sure Undo button is visible
-        props.requirementState = {
-            'input-focus': { status: 'fail', instances: [], isExpanded: false }
-        }
+        props.requirementState['input-focus'].status = TabStopRequirementStatuses.fail;
         const eventStub = new EventStubFactory().createMouseClickEvent() as SupportedMouseEvent;
 
         render(<TabStopsRequirementsTable {...props} />);
