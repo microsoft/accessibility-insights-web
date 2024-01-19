@@ -24,7 +24,7 @@ describe('SaveAssessmentButton', () => {
     useOriginalReactElements('@fluentui/react', ['ActionButton']);
     let propsStub: SaveAssessmentButtonProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
-    let eventStub: any;
+    let eventStub;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
 
