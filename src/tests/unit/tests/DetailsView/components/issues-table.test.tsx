@@ -23,8 +23,8 @@ import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-pr
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock } from 'typemoq';
-import { ScanningSpinner } from '../../../../../common/components/scanning-spinner/scanning-spinner';
 import { FailedInstancesSection } from '../../../../../common/components/cards/failed-instances-section';
+import { ScanningSpinner } from '../../../../../common/components/scanning-spinner/scanning-spinner';
 import { IssueFilingDialog } from '../../../../../DetailsView/components/issue-filing-dialog';
 import {
     expectMockedComponentPropsToMatchSnapshots,
