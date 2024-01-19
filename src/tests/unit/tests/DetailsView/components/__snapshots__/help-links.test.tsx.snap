@@ -5,65 +5,32 @@ exports[`HelpLinks linkInformation is shown properly 1`] = `
   <div
     class="helpLink"
   >
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
+    <mock-externallink
+      deps="[object Object]"
+      href="https://www.test1.com"
     >
-      <a
-        class="ms-Link insights-link insightsLink root-110"
-        href="https://www.test1.com"
-        target="_blank"
-      >
-        test1
-      </a>
-      <div
-        hidden=""
-        id="tooltip0"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      />
-    </div>
+      test1
+    </mock-externallink>
   </div>
   <div
     class="helpLink"
   >
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
+    <mock-externallink
+      deps="[object Object]"
+      href="https://www.test2.com"
     >
-      <a
-        class="ms-Link insights-link insightsLink root-110"
-        href="https://www.test2.com"
-        target="_blank"
-      >
-        test2
-      </a>
-      <div
-        hidden=""
-        id="tooltip1"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      />
-    </div>
+      test2
+    </mock-externallink>
   </div>
   <div
     class="helpLink"
   >
-    <div
-      class="ms-TooltipHost insightsTooltipHost root-109"
-      role="none"
+    <mock-externallink
+      deps="[object Object]"
+      href="https://www.test3.com"
     >
-      <a
-        class="ms-Link insights-link insightsLink root-110"
-        href="https://www.test3.com"
-        target="_blank"
-      >
-        test3
-      </a>
-      <div
-        hidden=""
-        id="tooltip2"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      />
-    </div>
+      test3
+    </mock-externallink>
   </div>
 </DocumentFragment>
 `;

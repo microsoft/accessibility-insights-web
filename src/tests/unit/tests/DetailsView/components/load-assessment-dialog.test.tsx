@@ -15,6 +15,7 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ChangeAssessmentDialog } from '../../../../../DetailsView/components/change-assessment-dialog';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -86,6 +87,7 @@ describe('LoadAssessmentDialog', () => {
         const renderResult = render(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog]);
     });
 
     it('should not show when isOpen is set to false', () => {
@@ -93,5 +95,6 @@ describe('LoadAssessmentDialog', () => {
         const renderResult = render(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog]);
     });
 });

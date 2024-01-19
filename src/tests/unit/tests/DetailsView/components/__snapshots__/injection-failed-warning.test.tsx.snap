@@ -2,33 +2,15 @@
 
 exports[`InjectionFailedWarning render with injection failed 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-MessageBar ms-MessageBar--warning ms-MessageBar-multiline messageBarHeightOverride root-109"
+  <mock-styledmessagebar
+    classname="messageBarHeightOverride"
+    messagebartype="5"
   >
     <div
-      class="ms-MessageBar-content content-110"
+      data-automation-id="injection-failed-warning-container"
     >
-      <div
-        aria-hidden="true"
-        class="ms-MessageBar-icon iconContainer-111"
-      >
-        <i
-          aria-hidden="true"
-          class="icon-118"
-          data-icon-name="Info"
-        />
-      </div>
-      <div
-        aria-live="polite"
-        class="ms-MessageBar-text text-113"
-        id="MessageBar0"
-        role="status"
-      >
-        <span
-          class="ms-MessageBar-innerText innerText-114"
-        />
-      </div>
+      Unable to communicate with target page. If you are using Microsoft Edge, make sure that the target page is not in Internet Explorer mode.
     </div>
-  </div>
+  </mock-styledmessagebar>
 </DocumentFragment>
 `;

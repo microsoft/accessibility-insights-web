@@ -9,6 +9,22 @@ exports[`InteractiveHeader render: isNavCollapsed equals false 1`] = `
 </DocumentFragment>
 `;
 
+exports[`InteractiveHeader render: isNavCollapsed equals false: Header props 1`] = `
+{
+  "deps": null,
+  "farItems": <GearOptionsButtonComponent
+    deps={null}
+    featureFlagData={null}
+  />,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": false,
+  },
+  "navMenu": undefined,
+  "showFarItems": undefined,
+  "showHeaderTitle": undefined,
+}
+`;
+
 exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
 <DocumentFragment>
   <mock-header
@@ -17,6 +33,26 @@ exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
     navmenu="[object Object]"
   />
 </DocumentFragment>
+`;
+
+exports[`InteractiveHeader render: isNavCollapsed equals true: Header props 1`] = `
+{
+  "deps": null,
+  "farItems": <GearOptionsButtonComponent
+    deps={null}
+    featureFlagData={null}
+  />,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": true,
+  },
+  "navMenu": <test-nav-menu
+    className="navMenu"
+    isSideNavOpen={false}
+    setSideNavOpen={null}
+  />,
+  "showFarItems": undefined,
+  "showHeaderTitle": undefined,
+}
 `;
 
 exports[`InteractiveHeader render: tabClosed equals false 1`] = `
@@ -29,6 +65,32 @@ exports[`InteractiveHeader render: tabClosed equals false 1`] = `
 </DocumentFragment>
 `;
 
+exports[`InteractiveHeader render: tabClosed equals false: Header props 1`] = `
+{
+  "deps": {
+    "dropdownClickHandler": {},
+  },
+  "farItems": <GearOptionsButtonComponent
+    deps={
+      {
+        "dropdownClickHandler": {},
+      }
+    }
+    featureFlagData={
+      {
+        "test-flag": true,
+      }
+    }
+  />,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": false,
+  },
+  "navMenu": undefined,
+  "showFarItems": undefined,
+  "showHeaderTitle": undefined,
+}
+`;
+
 exports[`InteractiveHeader render: tabClosed equals true 1`] = `
 <DocumentFragment>
   <mock-header
@@ -36,4 +98,15 @@ exports[`InteractiveHeader render: tabClosed equals true 1`] = `
     narrowmodestatus="[object Object]"
   />
 </DocumentFragment>
+`;
+
+exports[`InteractiveHeader render: tabClosed equals true: Header props 1`] = `
+{
+  "deps": {
+    "dropdownClickHandler": {},
+  },
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": false,
+  },
+}
 `;

@@ -15,8 +15,15 @@ import {
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import * as React from 'react';
 import { IMock, It, Mock } from 'typemoq';
+import { InsightsCommandButton } from '../../../../../common/components/controls/insights-command-button';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../common/components/controls/insights-command-button');
 
 describe('LoadAssessmentButton', () => {
+    mockReactComponents([InsightsCommandButton]);
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let assessmentDataParserMock: IMock<AssessmentDataParser>;
     let urlParserMock: IMock<UrlParser>;
@@ -61,6 +68,9 @@ describe('LoadAssessmentButton', () => {
     });
 
     it('should call load button click method on click', async () => {
+        useOriginalReactElements('../../../common/components/controls/insights-command-button', [
+            'InsightsCommandButton',
+        ]);
         handleLoadAssessmentButtonClickMock.setup(m => m(It.isAny())).verifiable();
         const renderResult = render(<LoadAssessmentButton {...props} />);
         await userEvent.click(renderResult.getByRole('button'));

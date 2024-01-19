@@ -10,12 +10,17 @@ import {
 } from 'DetailsView/components/getting-started-view';
 import * as React from 'react';
 import { ContentPageComponent } from 'views/content/content-page';
-import { ContentLink } from '../../../../../views/content/content-link';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
-jest.mock('../../../../../views/content/content-link');
+import { HeadingWithContentLink } from '../../../../../common/components/heading-with-content-link';
+import { NextRequirementButton } from '../../../../../DetailsView/components/next-requirement-button';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../DetailsView/components/next-requirement-button');
+jest.mock('../../../../../common/components/heading-with-content-link');
 
 describe('GettingStartedViewTest', () => {
-    mockReactComponents([ContentLink]);
+    mockReactComponents([HeadingWithContentLink, NextRequirementButton]);
     let props: GettingStartedViewProps;
 
     beforeEach(() => {
@@ -37,5 +42,6 @@ describe('GettingStartedViewTest', () => {
     it('renders with content from props', () => {
         const renderResult = render(<GettingStartedView {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([HeadingWithContentLink, NextRequirementButton]);
     });
 });

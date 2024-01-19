@@ -2,32 +2,11 @@
 
 exports[`LoadAssessmentButton should render per the snapshot 1`] = `
 <DocumentFragment>
-  <button
-    class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+  <mock-insightscommandbutton
     data-automation-id="load-assessment-button"
-    data-is-focusable="true"
-    type="button"
+    iconprops="[object Object]"
   >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-        data-icon-name="FabricOpenFolderHorizontal"
-      />
-      <span
-        class="ms-Button-textContainer textContainer-111"
-      >
-        <span
-          class="ms-Button-label label-113"
-          id="id__0"
-        >
-          Load assessment
-        </span>
-      </span>
-    </span>
-  </button>
+    Load assessment
+  </mock-insightscommandbutton>
 </DocumentFragment>
 `;

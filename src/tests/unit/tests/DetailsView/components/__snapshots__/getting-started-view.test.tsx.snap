@@ -6,22 +6,13 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
     class="gettingStartedView"
   >
     <div>
-      <div
-        class="headerWithContentLink gettingStartedHeader"
-      >
-        <h1>
-          <span
-            class="gettingStartedHeaderTitle"
-          >
-            some title
-          </span>
-        </h1>
-        <mock-contentlink
-          deps="[object Object]"
-          iconname="info"
-          reference="[object Object]"
-        />
-      </div>
+      <mock-headingwithcontentlink
+        deps="[object Object]"
+        guidance="[object Object]"
+        headerclass="gettingStartedHeader"
+        headingtitle="some title"
+        headingtitleclassname="gettingStartedHeaderTitle"
+      />
       <h2
         class="gettingStartedTitle"
       >
@@ -31,25 +22,35 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
         test-getting-started-content
       </div>
     </div>
-    <button
-      class="ms-Button ms-Button--default nextRequirementButton root-109"
-      data-is-focusable="true"
-      type="button"
-    >
-      <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
-      >
-        <span>
-          <i
-            aria-label="next"
-            class="root-105"
-            data-icon-name="ChevronRight"
-            role="img"
-          />
-        </span>
-      </span>
-    </button>
+    <mock-nextrequirementbutton
+      classname="nextRequirementButton"
+      deps="[object Object]"
+      nextrequirement="[object Object]"
+      nextrequirementvisualizationtype="-1"
+    />
   </div>
 </DocumentFragment>
+`;
+
+exports[`GettingStartedViewTest renders with content from props: HeadingWithContentLink props 1`] = `
+{
+  "deps": {},
+  "guidance": {
+    "pageTitle": "some page title",
+  },
+  "headerClass": "gettingStartedHeader",
+  "headingTitle": "some title",
+  "headingTitleClassName": "gettingStartedHeaderTitle",
+}
+`;
+
+exports[`GettingStartedViewTest renders with content from props: NextRequirementButton props 1`] = `
+{
+  "className": "nextRequirementButton",
+  "deps": {},
+  "nextRequirement": {
+    "key": "expectedNextRequirement",
+  },
+  "nextRequirementVisualizationType": -1,
+}
 `;

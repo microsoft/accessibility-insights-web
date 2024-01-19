@@ -4,8 +4,43 @@ exports[`InvalidLoadAssessmentDialog should not show when isOpen is set to false
 
 exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] = `
 <DocumentFragment>
-  <span
-    class="ms-layer"
-  />
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-styleddialogfooterbase>
+      <mock-customizedprimarybutton
+        data-automation-id="invalid-load-assessment-dialog-ok-button"
+      >
+        OK
+      </mock-customizedprimarybutton>
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
 </DocumentFragment>
+`;
+
+exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true: Dialog props 1`] = `
+{
+  "children": <StyledDialogFooterBase>
+    <CustomizedPrimaryButton
+      data-automation-id="invalid-load-assessment-dialog-ok-button"
+      onClick={[Function]}
+    >
+      OK
+    </CustomizedPrimaryButton>
+  </StyledDialogFooterBase>,
+  "dialogContentProps": {
+    "subText": "Please select a valid *.a11ywebassessment file",
+    "title": "Oops! Accessibility Insights can’t open this file.",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "containerClassName": "invalidLoadAssessmentDialog",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;

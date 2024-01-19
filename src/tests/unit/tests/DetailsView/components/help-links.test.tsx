@@ -8,8 +8,12 @@ import {
     HelpLinksDeps,
     HelpLinksProps,
 } from '../../../../../DetailsView/components/help-links';
+import { ExternalLink } from '../../../../../common/components/external-link';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../common/components/external-link');
 
 describe('HelpLinks', () => {
+    mockReactComponents([ExternalLink]);
     const deps = {} as HelpLinksDeps;
 
     test('linkInformation is shown properly', () => {

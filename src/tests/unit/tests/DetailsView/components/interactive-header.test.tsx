@@ -13,7 +13,10 @@ import {
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { Header } from '../../../../../common/components/header';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 jest.mock('../../../../../common/components/header');
 
 describe('InteractiveHeader', () => {
@@ -46,6 +49,7 @@ describe('InteractiveHeader', () => {
 
         const renderResult = render(<InteractiveHeader {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Header]);
     });
 
     it.each([false, true])('render: isNavCollapsed equals %s', isNavCollapsed => {
@@ -67,5 +71,6 @@ describe('InteractiveHeader', () => {
 
         const renderResult = render(<InteractiveHeader {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Header]);
     });
 });
