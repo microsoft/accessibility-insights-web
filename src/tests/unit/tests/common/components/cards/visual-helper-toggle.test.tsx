@@ -2,50 +2,55 @@
 // Licensed under the MIT License.
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Toggle } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import { VisualHelperToggle } from 'common/components/cards/visual-helper-toggle';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
-import { SupportedMouseEvent } from 'common/telemetry-data-factory';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { It, IMock, Mock } from 'typemoq';
+
+jest.mock('@fluentui/react');
 
 describe('VisualHelperToggle', () => {
+    mockReactComponents([Toggle]);
     let mockCardSelectionMessageCreator: IMock<AutomatedChecksCardSelectionMessageCreator>;
-    const stubClickEvent = {} as SupportedMouseEvent;
 
     beforeEach(() => {
-        mockCardSelectionMessageCreator = Mock.ofType(
-            AutomatedChecksCardSelectionMessageCreator,
-            MockBehavior.Strict,
-        );
+        mockCardSelectionMessageCreator = Mock.ofType(AutomatedChecksCardSelectionMessageCreator);
     });
 
     it.each([true, false])(
         'renders per snapshot with visualHelperEnabled %s',
         (visualHelperEnabled: boolean) => {
-            const testSubject = shallow(
+            const renderResult = render(
                 <VisualHelperToggle
                     visualHelperEnabled={visualHelperEnabled}
                     cardSelectionMessageCreator={mockCardSelectionMessageCreator.object}
                 />,
             );
-            expect(testSubject.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         },
     );
 
-    it('fires toggleVisualHelper when toggled', () => {
-        mockCardSelectionMessageCreator
-            .setup(m => m.toggleVisualHelper(stubClickEvent))
-            .verifiable();
+    it('fires toggleVisualHelper when toggled', async () => {
+        useOriginalReactElements('@fluentui/react', ['Toggle']);
+        mockCardSelectionMessageCreator.setup(m => m.toggleVisualHelper(It.isAny()));
 
-        const testSubject = shallow(
+        const renderResult = render(
             <VisualHelperToggle
                 visualHelperEnabled={false}
                 cardSelectionMessageCreator={mockCardSelectionMessageCreator.object}
             />,
         );
-        testSubject.simulate('click', stubClickEvent);
+        await userEvent.click(renderResult.getByRole('switch'));
 
         mockCardSelectionMessageCreator.verifyAll();
+        expectMockedComponentPropsToMatchSnapshots([Toggle]);
     });
 });
