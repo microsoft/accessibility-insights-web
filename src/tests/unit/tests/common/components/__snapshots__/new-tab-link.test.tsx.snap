@@ -2,20 +2,20 @@
 
 exports[`NewTabLink handles children 1`] = `
 <DocumentFragment>
-  <a
-    class="ms-Link insights-link root-109"
+  <mock-styledlinkbase
+    classname="insights-link"
     href="test"
     target="_blank"
   >
     link text
-  </a>
+  </mock-styledlinkbase>
 </DocumentFragment>
 `;
 
 exports[`NewTabLink renders content with custom className 1`] = `
 <DocumentFragment>
-  <a
-    class="ms-Link insights-link custom-class root-109"
+  <mock-styledlinkbase
+    classname="insights-link custom-class"
     href="test"
     target="_blank"
   />
@@ -24,8 +24,8 @@ exports[`NewTabLink renders content with custom className 1`] = `
 
 exports[`NewTabLink renders content without custom className 1`] = `
 <DocumentFragment>
-  <a
-    class="ms-Link insights-link root-109"
+  <mock-styledlinkbase
+    classname="insights-link"
     href="test"
     target="_blank"
   />

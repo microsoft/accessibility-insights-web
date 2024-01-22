@@ -1,11 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ILinkProps } from '@fluentui/react';
+import { ILinkProps, Link } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import * as React from 'react';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('@fluentui/react');
 
 describe('NewTabLink', () => {
+    mockReactComponents([Link]);
     it('renders content with custom className', () => {
         const props: ILinkProps = {
             href: 'test',
@@ -13,7 +16,6 @@ describe('NewTabLink', () => {
         };
 
         const renderResult = render(<NewTabLink {...props} />);
-
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -23,7 +25,6 @@ describe('NewTabLink', () => {
         };
 
         const renderResult = render(<NewTabLink {...props} />);
-
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -33,7 +34,7 @@ describe('NewTabLink', () => {
         };
 
         const renderResult = render(<NewTabLink {...props}>link text</NewTabLink>);
-
+        //const renderResult = getMockComponentClassPropsForCall(NewTabLink);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
