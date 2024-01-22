@@ -1,13 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IssueFilingNeedsSettingsHelpTextTest render with isOpen = false 1`] = `null`;
+exports[`IssueFilingNeedsSettingsHelpTextTest render with isOpen = false 1`] = `<DocumentFragment />`;
 
 exports[`IssueFilingNeedsSettingsHelpTextTest render with isOpen = true 1`] = `
-<div
-  aria-live="polite"
-  className="file-issue-button-help"
-  role="alert"
->
-  Go to Settings to configure issue filing.
-</div>
+<DocumentFragment>
+  <div
+    aria-live="polite"
+    class="file-issue-button-help"
+    role="alert"
+  >
+    Go to Settings to configure issue filing.
+  </div>
+</DocumentFragment>
 `;

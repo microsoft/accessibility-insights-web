@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GettingStartedNavLink renders 1`] = `
-<span
-  className="leftNavLinkContainer"
->
-  Getting started
-</span>
+<DocumentFragment>
+  <span
+    class="leftNavLinkContainer"
+  >
+    Getting started
+  </span>
+</DocumentFragment>
 `;

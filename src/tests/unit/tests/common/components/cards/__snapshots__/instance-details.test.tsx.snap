@@ -1,305 +1,422 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`InstanceDetails applies focused styling on card when hidden highlight button is focused: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails dispatches the card selection message when hidden highlight button is clicked: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails does not dispatch the card selection message when card is clicked if highlighting is not supported: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": false,
+      "supportsHighlighting": false,
+      "supportsIssueFiling": false,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails forwards focus and click events to hidden button when card is clicked: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
 exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
-<div
-  className="instanceDetailsCardContainer selected"
-  data-automation-id="instance-card"
->
+<DocumentFragment>
   <div
-    className="instanceDetailsCard selected interactive"
-    onClick={[Function]}
-    tabIndex={-1}
+    class="instanceDetailsCardContainer selected"
+    data-automation-id="instance-card"
   >
-    <div>
-      <table
-        className="reportInstanceTable"
-      >
-        <tbody>
-          <React.Fragment />
-          <React.Fragment />
-          <React.Fragment />
-        </tbody>
-      </table>
-      <button
-        aria-label="highlight test-id"
-        aria-pressed={true}
-        className="hiddenHighlightButton"
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-      />
-      <InstanceDetailsFooter
-        deps={
-          {
-            "cardInteractionSupport": {
-              "supportsCopyFailureDetails": true,
-              "supportsHighlighting": true,
-              "supportsIssueFiling": true,
-            },
-            "getPropertyConfigById": [Function],
-          }
-        }
-        result={
-          {
-            "descriptors": {},
-            "identifiers": {
-              "conciseName": "test-concise-name",
-              "identifier": "test-id",
-              "this-property-does-not-have-config": "some value",
-            },
-            "isSelected": true,
-            "resolution": {},
-            "ruleId": "image-alt",
-            "status": "fail",
-            "uid": "some-guid-here",
-          }
-        }
-      />
+    <div
+      class="instanceDetailsCard selected interactive"
+      tabindex="-1"
+    >
+      <div>
+        <table
+          class="reportInstanceTable"
+        >
+          <tbody />
+        </table>
+        <button
+          aria-label="highlight test-id"
+          aria-pressed="true"
+          class="hiddenHighlightButton"
+        />
+        <mock-instancedetailsfooter
+          deps="[object Object]"
+          result="[object Object]"
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
-<div
-  className="instanceDetailsCardContainer"
-  data-automation-id="instance-card"
->
+<DocumentFragment>
   <div
-    className="instanceDetailsCard interactive"
-    onClick={[Function]}
-    tabIndex={-1}
+    class="instanceDetailsCardContainer"
+    data-automation-id="instance-card"
   >
-    <div>
-      <table
-        className="reportInstanceTable"
-      >
-        <tbody>
-          <React.Fragment />
-          <React.Fragment />
-          <React.Fragment />
-        </tbody>
-      </table>
-      <button
-        aria-label="highlight test-id"
-        aria-pressed={false}
-        className="hiddenHighlightButton"
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-      />
-      <InstanceDetailsFooter
-        deps={
-          {
-            "cardInteractionSupport": {
-              "supportsCopyFailureDetails": true,
-              "supportsHighlighting": true,
-              "supportsIssueFiling": true,
-            },
-            "getPropertyConfigById": [Function],
-          }
-        }
-        result={
-          {
-            "descriptors": {},
-            "identifiers": {
-              "conciseName": "test-concise-name",
-              "identifier": "test-id",
-              "this-property-does-not-have-config": "some value",
-            },
-            "isSelected": false,
-            "resolution": {},
-            "ruleId": "image-alt",
-            "status": "fail",
-            "uid": "some-guid-here",
-          }
-        }
-      />
+    <div
+      class="instanceDetailsCard interactive"
+      tabindex="-1"
+    >
+      <div>
+        <table
+          class="reportInstanceTable"
+        >
+          <tbody />
+        </table>
+        <button
+          aria-label="highlight test-id"
+          aria-pressed="false"
+          class="hiddenHighlightButton"
+        />
+        <mock-instancedetailsfooter
+          deps="[object Object]"
+          result="[object Object]"
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`InstanceDetails isSelected drives the styling for the card: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {},
+    "identifiers": {
+      "conciseName": "test-concise-name",
+      "identifier": "test-id",
+      "this-property-does-not-have-config": "some value",
+    },
+    "isSelected": true,
+    "resolution": {},
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails isSelected drives the styling for the card: InstanceDetailsFooter props 2`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {},
+    "identifiers": {
+      "conciseName": "test-concise-name",
+      "identifier": "test-id",
+      "this-property-does-not-have-config": "some value",
+    },
+    "isSelected": false,
+    "resolution": {},
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
 `;
 
 exports[`InstanceDetails renders 1`] = `
-<div
-  className="instanceDetailsCardContainer"
-  data-automation-id="instance-card"
->
+<DocumentFragment>
   <div
-    className="instanceDetailsCard interactive"
-    onClick={[Function]}
-    tabIndex={-1}
+    class="instanceDetailsCardContainer"
+    data-automation-id="instance-card"
   >
-    <div>
-      <table
-        className="reportInstanceTable"
-      >
-        <tbody>
-          <React.Fragment>
-            <css-selector
-              deps={
-                {
-                  "cardInteractionSupport": {
-                    "supportsCopyFailureDetails": true,
-                    "supportsHighlighting": true,
-                    "supportsIssueFiling": true,
-                  },
-                  "getPropertyConfigById": [Function],
-                }
-              }
-              index={22}
-              propertyData="body img"
-            />
-          </React.Fragment>
-          <React.Fragment>
-            <snippet
-              deps={
-                {
-                  "cardInteractionSupport": {
-                    "supportsCopyFailureDetails": true,
-                    "supportsHighlighting": true,
-                    "supportsIssueFiling": true,
-                  },
-                  "getPropertyConfigById": [Function],
-                }
-              }
-              index={22}
-              propertyData="this is a sample snippet"
-            />
-          </React.Fragment>
-          <React.Fragment>
-            <how-to-fix-web
-              deps={
-                {
-                  "cardInteractionSupport": {
-                    "supportsCopyFailureDetails": true,
-                    "supportsHighlighting": true,
-                    "supportsIssueFiling": true,
-                  },
-                  "getPropertyConfigById": [Function],
-                }
-              }
-              index={22}
-              propertyData={
-                {
-                  "all": [],
-                  "any": [
-                    "Element does not have an alt attribute",
-                    "aria-label attribute does not exist or is empty",
-                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                  ],
-                  "none": [],
-                }
-              }
-            />
-          </React.Fragment>
-        </tbody>
-      </table>
-      <button
-        aria-label="highlight body img"
-        className="hiddenHighlightButton"
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-      />
-      <InstanceDetailsFooter
-        deps={
-          {
-            "cardInteractionSupport": {
-              "supportsCopyFailureDetails": true,
-              "supportsHighlighting": true,
-              "supportsIssueFiling": true,
-            },
-            "getPropertyConfigById": [Function],
-          }
-        }
-        result={
-          {
-            "descriptors": {
-              "snippet": "this is a sample snippet",
-            },
-            "identifiers": {
-              "conciseName": "body img",
-              "css-selector": "body img",
-              "identifier": "body img",
-            },
-            "resolution": {
-              "how-to-fix-web": {
-                "all": [],
-                "any": [
-                  "Element does not have an alt attribute",
-                  "aria-label attribute does not exist or is empty",
-                  "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                ],
-                "none": [],
-              },
-              "howToFixSummary": "sample how to fix summary",
-            },
-            "ruleId": "image-alt",
-            "status": "fail",
-            "uid": "some-guid-here",
-          }
-        }
-      />
+    <div
+      class="instanceDetailsCard interactive"
+      tabindex="-1"
+    >
+      <div>
+        <table
+          class="reportInstanceTable"
+        >
+          <tbody />
+        </table>
+        <button
+          aria-label="highlight body img"
+          class="hiddenHighlightButton"
+        />
+        <mock-instancedetailsfooter
+          deps="[object Object]"
+          result="[object Object]"
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`InstanceDetails renders nothing when there is no card row configuration for the property / no property 1`] = `
-<div
-  className="instanceDetailsCardContainer"
-  data-automation-id="instance-card"
->
+<DocumentFragment>
   <div
-    className="instanceDetailsCard interactive"
-    onClick={[Function]}
-    tabIndex={-1}
+    class="instanceDetailsCardContainer"
+    data-automation-id="instance-card"
   >
-    <div>
-      <table
-        className="reportInstanceTable"
-      >
-        <tbody>
-          <React.Fragment />
-          <React.Fragment />
-          <React.Fragment />
-        </tbody>
-      </table>
-      <button
-        aria-label="highlight test-id"
-        className="hiddenHighlightButton"
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-      />
-      <InstanceDetailsFooter
-        deps={
-          {
-            "cardInteractionSupport": {
-              "supportsCopyFailureDetails": true,
-              "supportsHighlighting": true,
-              "supportsIssueFiling": true,
-            },
-            "getPropertyConfigById": [Function],
-          }
-        }
-        result={
-          {
-            "descriptors": {},
-            "identifiers": {
-              "conciseName": "test-concise-name",
-              "identifier": "test-id",
-              "this-property-does-not-have-config": "some value",
-            },
-            "resolution": {},
-            "ruleId": "image-alt",
-            "status": "fail",
-            "uid": "some-guid-here",
-          }
-        }
-      />
+    <div
+      class="instanceDetailsCard interactive"
+      tabindex="-1"
+    >
+      <div>
+        <table
+          class="reportInstanceTable"
+        >
+          <tbody />
+        </table>
+        <button
+          aria-label="highlight test-id"
+          class="hiddenHighlightButton"
+        />
+        <mock-instancedetailsfooter
+          deps="[object Object]"
+          result="[object Object]"
+        />
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`InstanceDetails renders nothing when there is no card row configuration for the property / no property: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {},
+    "identifiers": {
+      "conciseName": "test-concise-name",
+      "identifier": "test-id",
+      "this-property-does-not-have-config": "some value",
+    },
+    "resolution": {},
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`InstanceDetails renders: InstanceDetailsFooter props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "getPropertyConfigById": [Function],
+  },
+  "narrowModeStatus": undefined,
+  "result": {
+    "descriptors": {
+      "snippet": "this is a sample snippet",
+    },
+    "identifiers": {
+      "conciseName": "body img",
+      "css-selector": "body img",
+      "identifier": "body img",
+    },
+    "resolution": {
+      "how-to-fix-web": {
+        "all": [],
+        "any": [
+          "Element does not have an alt attribute",
+          "aria-label attribute does not exist or is empty",
+          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+        ],
+        "none": [],
+      },
+      "howToFixSummary": "sample how to fix summary",
+    },
+    "ruleId": "image-alt",
+    "status": "fail",
+    "uid": "some-guid-here",
+  },
+  "rule": undefined,
+  "targetAppInfo": undefined,
+  "userConfigurationStoreData": undefined,
+}
 `;

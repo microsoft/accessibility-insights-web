@@ -1,121 +1,171 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`InstanceDetailsFooter renders as null when no card interactions are supported: CardFooterInstanceActionButtons props 1`] = `undefined`;
+
 exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web) 1`] = `
-<div
-  className="foot"
->
+<DocumentFragment>
   <div
-    className="highlightStatus"
+    class="foot"
   >
-    <HighlightVisibleIcon />
-    <StyledLabelBase>
-      Highlight visible
-    </StyledLabelBase>
+    <div
+      class="highlightStatus"
+    >
+      <mock-highlightvisibleicon />
+      <label
+        class="ms-Label root-109"
+      >
+        Highlight visible
+      </label>
+    </div>
+    <mock-cardfooterinstanceactionbuttons
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
+      userconfigurationstoredata="[object Object]"
+    />
   </div>
-  <CardFooterInstanceActionButtons
-    deps={
-      {
-        "cardInteractionSupport": {
-          "supportsCopyFailureDetails": true,
-          "supportsHighlighting": true,
-          "supportsIssueFiling": true,
-        },
-        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
-      }
-    }
-    issueDetailsData={{}}
-    kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={{}}
-  />
-</div>
+</DocumentFragment>
+`;
+
+exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web): CardFooterInstanceActionButtons props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "kebabMenuAriaLabel": "More Actions for failure instance body img in rule some-rule",
+  "narrowModeStatus": undefined,
+  "userConfigurationStoreData": {},
+}
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden" 1`] = `
-<div
-  className="foot"
->
+<DocumentFragment>
   <div
-    className="highlightStatus"
+    class="foot"
   >
-    <HighlightHiddenIcon />
-    <StyledLabelBase>
-      Highlight hidden
-    </StyledLabelBase>
+    <div
+      class="highlightStatus"
+    >
+      <mock-highlighthiddenicon />
+      <label
+        class="ms-Label root-109"
+      >
+        Highlight hidden
+      </label>
+    </div>
+    <mock-cardfooterinstanceactionbuttons
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
+      userconfigurationstoredata="[object Object]"
+    />
   </div>
-  <CardFooterInstanceActionButtons
-    deps={
-      {
-        "cardInteractionSupport": {
-          "supportsCopyFailureDetails": true,
-          "supportsHighlighting": true,
-          "supportsIssueFiling": true,
-        },
-        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
-      }
-    }
-    issueDetailsData={{}}
-    kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={{}}
-  />
-</div>
+</DocumentFragment>
+`;
+
+exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden": CardFooterInstanceActionButtons props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "kebabMenuAriaLabel": "More Actions for failure instance body img in rule some-rule",
+  "narrowModeStatus": undefined,
+  "userConfigurationStoreData": {},
+}
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable" 1`] = `
-<div
-  className="foot"
->
+<DocumentFragment>
   <div
-    className="highlightStatus"
+    class="foot"
   >
-    <HighlightUnavailableIcon />
-    <StyledLabelBase>
-      Highlight unavailable
-    </StyledLabelBase>
+    <div
+      class="highlightStatus"
+    >
+      <mock-highlightunavailableicon />
+      <label
+        class="ms-Label root-109"
+      >
+        Highlight unavailable
+      </label>
+    </div>
+    <mock-cardfooterinstanceactionbuttons
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
+      userconfigurationstoredata="[object Object]"
+    />
   </div>
-  <CardFooterInstanceActionButtons
-    deps={
-      {
-        "cardInteractionSupport": {
-          "supportsCopyFailureDetails": true,
-          "supportsHighlighting": true,
-          "supportsIssueFiling": true,
-        },
-        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
-      }
-    }
-    issueDetailsData={{}}
-    kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={{}}
-  />
-</div>
+</DocumentFragment>
+`;
+
+exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable": CardFooterInstanceActionButtons props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "kebabMenuAriaLabel": "More Actions for failure instance body img in rule some-rule",
+  "narrowModeStatus": undefined,
+  "userConfigurationStoreData": {},
+}
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible" 1`] = `
-<div
-  className="foot"
->
+<DocumentFragment>
   <div
-    className="highlightStatus"
+    class="foot"
   >
-    <HighlightVisibleIcon />
-    <StyledLabelBase>
-      Highlight visible
-    </StyledLabelBase>
+    <div
+      class="highlightStatus"
+    >
+      <mock-highlightvisibleicon />
+      <label
+        class="ms-Label root-109"
+      >
+        Highlight visible
+      </label>
+    </div>
+    <mock-cardfooterinstanceactionbuttons
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
+      userconfigurationstoredata="[object Object]"
+    />
   </div>
-  <CardFooterInstanceActionButtons
-    deps={
-      {
-        "cardInteractionSupport": {
-          "supportsCopyFailureDetails": true,
-          "supportsHighlighting": true,
-          "supportsIssueFiling": true,
-        },
-        "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
-      }
-    }
-    issueDetailsData={{}}
-    kebabMenuAriaLabel="More Actions for failure instance body img in rule some-rule"
-    userConfigurationStoreData={{}}
-  />
-</div>
+</DocumentFragment>
+`;
+
+exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible": CardFooterInstanceActionButtons props 1`] = `
+{
+  "deps": {
+    "cardInteractionSupport": {
+      "supportsCopyFailureDetails": true,
+      "supportsHighlighting": true,
+      "supportsIssueFiling": true,
+    },
+    "unifiedResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "kebabMenuAriaLabel": "More Actions for failure instance body img in rule some-rule",
+  "narrowModeStatus": undefined,
+  "userConfigurationStoreData": {},
+}
 `;

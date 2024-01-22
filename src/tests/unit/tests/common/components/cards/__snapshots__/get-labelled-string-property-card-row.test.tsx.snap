@@ -1,24 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GetLabelledStringPropertyCardRow renders null when property data is <> 1`] = `null`;
+exports[`GetLabelledStringPropertyCardRow renders null when property data is <> 1`] = `<DocumentFragment />`;
 
-exports[`GetLabelledStringPropertyCardRow renders null when property data is <null> 1`] = `null`;
+exports[`GetLabelledStringPropertyCardRow renders null when property data is <null> 1`] = `<DocumentFragment />`;
 
-exports[`GetLabelledStringPropertyCardRow renders null when property data is <undefined> 1`] = `null`;
+exports[`GetLabelledStringPropertyCardRow renders null when property data is <undefined> 1`] = `<DocumentFragment />`;
 
 exports[`GetLabelledStringPropertyCardRow renders with appropriate label/propertyData and contentClassName 1`] = `
-<SimpleCardRow
-  content="some string as propertyData"
-  contentClassName="test class name"
-  label="some label"
-  rowKey="some label-22"
-/>
+<DocumentFragment>
+  <mock-simplecardrow
+    content="some string as propertyData"
+    contentclassname="test class name"
+    label="some label"
+    rowkey="some label-22"
+  />
+</DocumentFragment>
 `;
 
 exports[`GetLabelledStringPropertyCardRow renders with appropriate label/propertyData without contentClassName 1`] = `
-<SimpleCardRow
-  content="some string as propertyData"
-  label="some label"
-  rowKey="some label-22"
-/>
+<DocumentFragment>
+  <mock-simplecardrow
+    content="some string as propertyData"
+    label="some label"
+    rowkey="some label-22"
+  />
+</DocumentFragment>
 `;

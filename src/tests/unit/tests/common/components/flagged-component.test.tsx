@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import {
@@ -26,11 +26,11 @@ describe('FlaggedComponentTest', () => {
             enableJSXElement: jsxElement,
         };
 
-        const wrapper = shallow(<FlaggedComponent {...props} />);
+        const renderResult = render(<FlaggedComponent {...props} />);
 
-        const div = wrapper.find(`.${className}`);
-        expect(div.exists()).toBeTruthy();
-        expect(div.text()).toBe(divText);
+        const div = renderResult.container.querySelector(`.${className}`);
+        expect(div).not.toBeNull();
+        expect(div.textContent).toBe(divText);
     });
 
     test('render for feature disable', () => {
@@ -44,11 +44,11 @@ describe('FlaggedComponentTest', () => {
             disableJSXElement: jsxElement,
         };
 
-        const wrapper = shallow(<FlaggedComponent {...props} />);
+        const renderResult = render(<FlaggedComponent {...props} />);
 
-        const div = wrapper.find(`.${className}`);
-        expect(div.exists()).toBe(true);
-        expect(div.text()).toBe(divText);
+        const div = renderResult.container.querySelector(`.${className}`);
+        expect(div).not.toBeNull();
+        expect(div.textContent).toBe(divText);
     });
 
     test('render for feature disable with no disableJSXElement', () => {
@@ -58,8 +58,8 @@ describe('FlaggedComponentTest', () => {
             enableJSXElement: jsxElement,
         };
 
-        const wrapper = shallow(<FlaggedComponent {...props} />);
+        const renderResult = render(<FlaggedComponent {...props} />);
 
-        expect(wrapper.children().length).toBe(0);
+        expect(renderResult.container.children.length).toBe(0);
     });
 });
