@@ -1,13 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ContextualMenu, IButton, IRefObject } from '@fluentui/react';
+import { ActionButton, ContextualMenu, IButton, IRefObject } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { StartOverContextMenuKeyOptions } from 'DetailsView/components/details-view-right-panel';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import * as React from 'react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
@@ -19,9 +21,10 @@ import {
     StartOverProps,
 } from '../../../../../DetailsView/components/start-over-dropdown';
 jest.mock('@fluentui/react');
+jest.mock('common/components/controls/insights-command-button');
 
 describe('StartOverDropdownTest', () => {
-    mockReactComponents([ContextualMenu]);
+    mockReactComponents([ContextualMenu, InsightsCommandButton]);
     let defaultProps: StartOverProps;
     let openDialogMock: IMock<(dialogType: StartOverDialogType) => void>;
 
@@ -42,13 +45,16 @@ describe('StartOverDropdownTest', () => {
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ContextualMenu]);
+        expectMockedComponentPropsToMatchSnapshots([InsightsCommandButton]);
+        expectMockedComponentPropsToMatchSnapshots([ActionButton], 'action button menu props');
     });
 
     it('render ContextualMenu', async () => {
         useOriginalReactElements('common/components/controls/insights-command-button', [
             'InsightsCommandButton',
         ]);
-        useOriginalReactElements('@fluentui/react', ['ActionButton']);
+        useOriginalReactElements('@fluentui/react', ['ActionButton', 'ContextualMenu']);
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
 
         await userEvent.click(renderResult.getByRole('button'));
@@ -96,12 +102,22 @@ describe('StartOverDropdownTest', () => {
             ...defaultProps,
             dropdownDirection: 'left',
         };
+        useOriginalReactElements('common/components/controls/insights-command-button', [
+            'InsightsCommandButton',
+        ]);
+        useOriginalReactElements('@fluentui/react', ['ActionButton', 'ContextualMenu']);
+
         const renderResult = render(<StartOverDropdown {...props} />);
         await userEvent.click(renderResult.getByRole('button'));
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('should open the start test over dialog', async () => {
+        useOriginalReactElements('common/components/controls/insights-command-button', [
+            'InsightsCommandButton',
+        ]);
+        useOriginalReactElements('@fluentui/react', ['ActionButton', 'ContextualMenu']);
+
         openDialogMock.setup(sds => sds('test')).verifiable(Times.once());
 
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
@@ -114,6 +130,10 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('should open the start assessment over dialog', async () => {
+        useOriginalReactElements('common/components/controls/insights-command-button', [
+            'InsightsCommandButton',
+        ]);
+        useOriginalReactElements('@fluentui/react', ['ActionButton', 'ContextualMenu']);
         openDialogMock.setup(sds => sds('assessment')).verifiable(Times.once());
 
         const renderResult = render(<StartOverDropdown {...defaultProps} />);

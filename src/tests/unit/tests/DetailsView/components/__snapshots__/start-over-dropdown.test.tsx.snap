@@ -2,7 +2,15 @@
 
 exports[`StartOverDropdownTest render 1`] = `
 <DocumentFragment>
-  <div />
+  <div>
+    <mock-insightscommandbutton
+      arialabel="start over menu"
+      componentref="[object Object]"
+      iconprops="[object Object]"
+      menuiconprops="[object Object]"
+      text="Start over"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -41,10 +49,8 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
         />
       </span>
     </button>
-    <mock-contextualmenu
-      directionalhint="7"
-      items="[object Object],[object Object]"
-      target="[object HTMLButtonElement]"
+    <span
+      class="ms-layer"
     />
   </div>
 </DocumentFragment>
@@ -73,7 +79,7 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
         >
           <span
             class="ms-Button-label label-113"
-            id="id__15"
+            id="id__30"
           >
             Start over
           </span>
@@ -85,11 +91,28 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
         />
       </span>
     </button>
-    <mock-contextualmenu
-      directionalhint="8"
-      items="[object Object],[object Object]"
-      target="[object HTMLButtonElement]"
+    <span
+      class="ms-layer"
     />
   </div>
 </DocumentFragment>
 `;
+
+exports[`StartOverDropdownTest render: ContextualMenu props 1`] = `undefined`;
+
+exports[`StartOverDropdownTest render: InsightsCommandButton props 1`] = `
+{
+  "ariaLabel": "start over menu",
+  "componentRef": {},
+  "iconProps": {
+    "iconName": "Refresh",
+  },
+  "menuIconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+  "text": "Start over",
+}
+`;
+
+exports[`StartOverDropdownTest render: action button menu props 1`] = `undefined`;
