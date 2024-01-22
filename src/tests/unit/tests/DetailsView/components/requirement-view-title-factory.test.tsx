@@ -37,8 +37,7 @@ describe('RequirementViewTitleFactoryTest', () => {
         it('renders content from props', () => {
             const renderResult = render(getRequirementViewTitleForAssessment(props));
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([GuidanceTags]);
-            expectMockedComponentPropsToMatchSnapshots([ContentPanelButton]);
+            expectMockedComponentPropsToMatchSnapshots([GuidanceTags, ContentPanelButton]);
         });
 
         it('renders content with info button and guidance tags', () => {

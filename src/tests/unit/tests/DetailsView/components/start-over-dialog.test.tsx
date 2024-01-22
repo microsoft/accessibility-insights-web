@@ -6,16 +6,25 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
+import { GenericDialog } from 'DetailsView/components/generic-dialog';
 import {
     StartOverDialog,
     StartOverDialogProps,
     StartOverDialogState,
 } from 'DetailsView/components/start-over-dialog';
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 
+jest.mock('DetailsView/components/generic-dialog');
+
 describe('StartOverDialog', () => {
+    mockReactComponents([GenericDialog]);
     let props: StartOverDialogProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let dismissDialogMock: IMock<() => void>;
@@ -58,6 +67,7 @@ describe('StartOverDialog', () => {
             const renderResult = render(<StartOverDialog {...props} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([GenericDialog]);
         },
     );
 
@@ -67,6 +77,7 @@ describe('StartOverDialog', () => {
         });
 
         it('dismiss dialog', () => {
+            useOriginalReactElements('DetailsView/components/generic-dialog', ['GenericDialog']);
             assessmentActionMessageCreatorMock
                 .setup(creator => creator.cancelStartOver(It.isAny(), It.isAny(), It.isAny()))
                 .verifiable(Times.once());
@@ -81,6 +92,7 @@ describe('StartOverDialog', () => {
         });
 
         it('start over test', () => {
+            useOriginalReactElements('DetailsView/components/generic-dialog', ['GenericDialog']);
             assessmentActionMessageCreatorMock
                 .setup(creator => creator.startOverTest(It.isAny(), It.isAny()))
                 .verifiable(Times.once());
@@ -101,6 +113,7 @@ describe('StartOverDialog', () => {
         });
 
         it('dismiss dialog', () => {
+            useOriginalReactElements('DetailsView/components/generic-dialog', ['GenericDialog']);
             assessmentActionMessageCreatorMock
                 .setup(creator => creator.cancelStartOverAllAssessments(It.isAny()))
                 .verifiable(Times.once());
@@ -115,6 +128,7 @@ describe('StartOverDialog', () => {
         });
 
         it('start over assessment', () => {
+            useOriginalReactElements('DetailsView/components/generic-dialog', ['GenericDialog']);
             assessmentActionMessageCreatorMock
                 .setup(creator => creator.startOverAllAssessments(It.isAny()))
                 .verifiable(Times.once());

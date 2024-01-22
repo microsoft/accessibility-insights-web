@@ -74,13 +74,6 @@ describe('QuickAssessToAssessmentDialog', () => {
     test('onclick: continue to assessment', async () => {
         props.isShown = true;
 
-        useOriginalReactElements('@fluentui/react', [
-            'DefaultButton',
-            'PrimaryButton',
-            'DialogFooter',
-            'Dialog',
-        ]);
-
         const renderResult = render(
             <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
         );

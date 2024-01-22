@@ -20,6 +20,7 @@ import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
+import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import {
     RequirementView,
     RequirementViewDeps,
@@ -42,12 +43,16 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPage, ContentPageComponent } from 'views/content/content-page';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('DetailsView/components/assessment-instance-table');
+jest.mock('DetailsView/components/requirement-instructions');
 
 describe('RequirementViewTest', () => {
-    mockReactComponents([AssessmentInstanceTable]);
+    mockReactComponents([AssessmentInstanceTable, RequirementInstructions]);
     let assessmentStub: Assessment;
     let requirementStub: Requirement;
     let otherRequirementStub: Requirement;
@@ -195,6 +200,7 @@ describe('RequirementViewTest', () => {
     it('renders with content from props', () => {
         const renderResult = render(<RequirementView {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([AssessmentInstanceTable]);
         getRequirementViewTitleMock.verifyAll();
         getRequirementContextSectionMock.verifyAll();
         getNextRequirementButtonConfigurationMock.verifyAll();

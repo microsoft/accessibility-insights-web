@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { fireEvent, render } from '@testing-library/react';
+import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
+import { VisualizationToggle } from 'common/components/visualization-toggle';
 import {
     StaticContentDetailsView,
     StaticContentDetailsViewDeps,
@@ -13,13 +15,18 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { ContentInclude } from 'views/content/content-include';
 import { ContentLink } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('views/content/content-include');
 jest.mock('views/content/content-link');
+jest.mock('common/components/heading-with-content-link');
+jest.mock('common/components/visualization-toggle');
 
 describe('StaticContentDetailsViewTest', () => {
-    mockReactComponents([ContentInclude, ContentLink]);
+    mockReactComponents([ContentInclude, HeadingWithContentLink, VisualizationToggle]);
 
     it('renders content page component', () => {
         const props = new StaticContentDetailsViewPropsBuilder().build();
@@ -30,6 +37,7 @@ describe('StaticContentDetailsViewTest', () => {
     });
 
     it('click the toggle', () => {
+        useOriginalReactElements('common/components/visualization-toggle', ['VisualizationToggle']);
         const clickHandlerMock = Mock.ofInstance(theEvent => {});
         clickHandlerMock.setup(chm => chm(It.isAny())).verifiable(Times.once());
 

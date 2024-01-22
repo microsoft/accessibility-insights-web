@@ -5,53 +5,33 @@ exports[`RequirementContextSectionFactoryTest getRequirementContextSectionForQui
   <div
     class="test-class-name"
   >
-    <section
-      class="requirementContextContainer"
-    >
-      <h3
-        class="contextHeading"
-      >
-        Why it matters
-      </h3>
-      WHY IT MATTERS
-      <h3
-        class="contextHeading"
-      >
-        Helpful resources
-      </h3>
-      <div
-        class="contextLinks"
-      >
-        <mock-contentpanelbutton
-          contenttitle="Info and examples"
-          deps="[object Object]"
-          reference="[object Object]"
-        >
-          Info and examples
-        </mock-contentpanelbutton>
-        <div
-          class="helpLink"
-        >
-          <div
-            class="ms-TooltipHost insightsTooltipHost root-109"
-            role="none"
-          >
-            <a
-              class="ms-Link insights-link insightsLink root-110"
-              href="test-resource-href"
-              target="_blank"
-            >
-              test-resource-text
-            </a>
-            <div
-              hidden=""
-              id="tooltip0"
-              style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+    <mock-requirementcontextsection
+      assessmentkey="test-assessment-key"
+      classname="test-class-name"
+      deps="[object Object]"
+      helpfulresourcelinks="[object Object]"
+      infoandexamples="[object Object]"
+    />
   </div>
 </DocumentFragment>
+`;
+
+exports[`RequirementContextSectionFactoryTest getRequirementContextSectionForQuickAssess renders content from props: ContentPanelButton props 1`] = `undefined`;
+
+exports[`RequirementContextSectionFactoryTest getRequirementContextSectionForQuickAssess renders content from props: RequirementContextSection props 1`] = `
+{
+  "assessmentKey": "test-assessment-key",
+  "className": "test-class-name",
+  "deps": {},
+  "helpfulResourceLinks": [
+    {
+      "href": "test-resource-href",
+      "text": "test-resource-text",
+    },
+  ],
+  "infoAndExamples": {
+    "pageTitle": "test-page-title",
+  },
+  "whyItMatters": [Function],
+}
 `;

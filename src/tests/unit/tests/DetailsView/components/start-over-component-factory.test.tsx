@@ -20,10 +20,18 @@ import {
     StartOverFactoryProps,
     StartOverMenuItem,
 } from 'DetailsView/components/start-over-component-factory';
+import { StartOverDropdown } from 'DetailsView/components/start-over-dropdown';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+jest.mock('DetailsView/components/start-over-dropdown');
+
 describe('StartOverComponentFactory', () => {
+    mockReactComponents([StartOverDropdown]);
     const theTitle = 'the title';
     const theTestStep = 'test step';
     const theTestType = VisualizationType.ColorSensoryAssessment;
@@ -153,6 +161,9 @@ describe('StartOverComponentFactory', () => {
                 });
 
                 it('handles action button on click properly', () => {
+                    useOriginalReactElements('DetailsView/components/start-over-dropdown', [
+                        'StartOverDropdown',
+                    ]);
                     const event = new EventStubFactory().createKeypressEvent() as any;
 
                     const actionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();

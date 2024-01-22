@@ -12,6 +12,7 @@ import {
 } from 'DetailsView/components/report-export-button';
 import * as React from 'react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -34,6 +35,7 @@ describe(ReportExportButton.displayName, () => {
     it('renders ReportExportButton', () => {
         const renderResult = render(<ReportExportButton {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([InsightsCommandButton]);
     });
 
     it('shows export dialog on click', async () => {

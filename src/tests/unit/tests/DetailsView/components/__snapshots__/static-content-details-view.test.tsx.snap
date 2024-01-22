@@ -5,56 +5,18 @@ exports[`StaticContentDetailsViewTest renders content page component 1`] = `
   <div
     class="staticContentInDetailsView"
   >
-    <div
-      class="headerWithContentLink undefined"
-    >
-      <h1>
-        <span>
-          my test title  test steps text 
-        </span>
-      </h1>
-      <mock-contentlink
-        deps="stub-deps"
-        iconname="info"
-        reference="stub-guidance"
-      />
-    </div>
-    <div
-      class="ms-Toggle is-checked is-enabled detailsViewToggle root-109"
-    >
-      <label
-        class="ms-Label ms-Toggle-label label-115"
-        for="Toggle0"
-        id="Toggle0-label"
-      >
-        my test toggle label
-      </label>
-      <div
-        class="ms-Toggle-innerContainer container-111"
-      >
-        <button
-          aria-checked="true"
-          aria-label="my test toggle label"
-          class="ms-Toggle-background pill-112"
-          data-is-focusable="true"
-          data-ktp-target="true"
-          id="Toggle0"
-          role="switch"
-          type="button"
-        >
-          <span
-            class="ms-Toggle-thumb thumb-113"
-          />
-        </button>
-        <label
-          class="ms-Label ms-Toggle-stateText text-116"
-          for="Toggle0"
-          id="Toggle0-stateText"
-        >
-          On
-        </label>
-      </div>
-    </div>
+    <mock-headingwithcontentlink
+      deps="stub-deps"
+      guidance="stub-guidance"
+      headingtitle="my test title"
+      secondarytext=" test steps text "
+    />
+    <mock-visualizationtoggle
+      checked="true"
+      classname="detailsViewToggle"
+      label="my test toggle label"
+      visualizationname="my test title"
+    />
     <mock-contentinclude
       content="stub-content"
       deps="stub-deps"

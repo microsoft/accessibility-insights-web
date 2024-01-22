@@ -15,9 +15,11 @@ import { IMock, Mock } from 'typemoq';
 import {
     mockReactComponents,
     getMockComponentClassPropsForCall,
+    expectMockedComponentPropsToMatchSnapshots,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
+
 describe('NextRequirementButton', () => {
     mockReactComponents([DefaultButton]);
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
@@ -41,6 +43,7 @@ describe('NextRequirementButton', () => {
     it('renders', () => {
         const renderResult = render(<NextRequirementButton {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([DefaultButton]);
     });
 
     it('validate next requirement button', () => {

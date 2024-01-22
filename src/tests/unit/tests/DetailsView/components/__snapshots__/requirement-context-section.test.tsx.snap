@@ -33,6 +33,17 @@ exports[`RequirementContextSectionTest renders content from props 1`] = `
 </DocumentFragment>
 `;
 
+exports[`RequirementContextSectionTest renders content from props: ContentPanelButton props 1`] = `
+{
+  "children": "Info and examples",
+  "contentTitle": "Info and examples",
+  "deps": {},
+  "reference": {
+    "pageTitle": "test-page-title",
+  },
+}
+`;
+
 exports[`RequirementContextSectionTest renders with helpfulResourceLinks 1`] = `
 <DocumentFragment>
   <section
@@ -85,4 +96,15 @@ exports[`RequirementContextSectionTest renders with helpfulResourceLinks 1`] = `
     </div>
   </section>
 </DocumentFragment>
+`;
+
+exports[`RequirementContextSectionTest renders with helpfulResourceLinks: ContentPanelButton props 1`] = `
+{
+  "children": "Info and examples",
+  "contentTitle": "Info and examples",
+  "deps": {},
+  "reference": {
+    "pageTitle": "test-page-title",
+  },
+}
 `;

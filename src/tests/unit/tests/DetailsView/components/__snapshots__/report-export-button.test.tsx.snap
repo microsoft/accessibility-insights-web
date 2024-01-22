@@ -11,3 +11,15 @@ exports[`ReportExportButton renders ReportExportButton 1`] = `
   </mock-insightscommandbutton>
 </DocumentFragment>
 `;
+
+exports[`ReportExportButton renders ReportExportButton: InsightsCommandButton props 1`] = `
+{
+  "children": "Export result",
+  "componentRef": {},
+  "data-automation-id": "report-export-button",
+  "iconProps": {
+    "iconName": "Export",
+  },
+  "onClick": [MockFunction],
+}
+`;

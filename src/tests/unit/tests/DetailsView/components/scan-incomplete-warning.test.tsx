@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { MessageBar } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
@@ -14,8 +15,12 @@ import {
     WarningConfiguration,
 } from 'DetailsView/components/warning-configuration';
 import * as React from 'react';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+
+jest.mock('@fluentui/react');
 
 describe('ScanIncompleteWarning', () => {
+    mockReactComponents([MessageBar]);
     let warningConfiguration: WarningConfiguration;
     let testStub: VisualizationType;
 

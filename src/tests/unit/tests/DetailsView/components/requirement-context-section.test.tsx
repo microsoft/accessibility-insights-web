@@ -9,7 +9,10 @@ import {
 import * as React from 'react';
 import { ContentPage, ContentPageComponent } from 'views/content/content-page';
 import { ContentPanelButton } from 'views/content/content-panel-button';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('views/content/content-panel-button');
 
@@ -27,11 +30,13 @@ describe('RequirementContextSectionTest', () => {
     it('renders content from props', () => {
         const renderResult = render(<RequirementContextSection {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ContentPanelButton]);
     });
 
     it('renders with helpfulResourceLinks', () => {
         props.helpfulResourceLinks = [{ href: 'test-guidance-href', text: 'test-guidance-text' }];
         const renderResult = render(<RequirementContextSection {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ContentPanelButton]);
     });
 });

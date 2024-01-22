@@ -7,9 +7,13 @@ import {
 } from 'DetailsView/components/base-left-nav';
 import { NavLinkButton, NavLinkButtonProps } from 'DetailsView/components/nav-link-button';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock } from 'typemoq';
 
+jest.mock('react-router-dom');
 describe('NavLinkButton', () => {
+    mockReactComponents([Link]);
     let onClickNavLinkMock: IMock<onBaseLeftNavItemClick>;
     let onRenderNavLinkMock: IMock<onBaseLeftNavItemRender>;
     let props: NavLinkButtonProps;

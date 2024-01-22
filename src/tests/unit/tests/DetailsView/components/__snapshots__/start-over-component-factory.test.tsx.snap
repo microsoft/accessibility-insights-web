@@ -23,40 +23,13 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuIt
   <div
     role="menuitem"
   >
-    <div>
-      <button
-        aria-label="start over menu"
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Refresh"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__0"
-            >
-              Start over
-            </span>
-          </span>
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-            data-icon-name="ChevronRight"
-          />
-        </span>
-      </button>
-    </div>
+    <mock-startoverdropdown
+      alltestsuffix="Assessment"
+      dropdowndirection="left"
+      rightpaneloptions="[object Object]"
+      singletestsuffix="the title"
+      switcherstartoverpreferences="[object Object]"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -144,40 +117,13 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuI
   <div
     role="menuitem"
   >
-    <div>
-      <button
-        aria-label="start over menu"
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Refresh"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__3"
-            >
-              Start over
-            </span>
-          </span>
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-            data-icon-name="ChevronRight"
-          />
-        </span>
-      </button>
-    </div>
+    <mock-startoverdropdown
+      alltestsuffix="Quick Assess"
+      dropdowndirection="left"
+      rightpaneloptions="[object Object]"
+      singletestsuffix=""
+      switcherstartoverpreferences="[object Object]"
+    />
   </div>
 </DocumentFragment>
 `;

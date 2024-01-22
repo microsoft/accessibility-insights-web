@@ -7,3 +7,17 @@ exports[`NextRequirementButton renders 1`] = `
   </mock-customizeddefaultbutton>
 </DocumentFragment>
 `;
+
+exports[`NextRequirementButton renders: CustomizedDefaultButton props 1`] = `
+{
+  "children": <span>
+    <Memo(Icon)
+      ariaLabel="next"
+      iconName="ChevronRight"
+    />
+  </span>,
+  "className": undefined,
+  "onClick": [Function],
+  "text": undefined,
+}
+`;
