@@ -34,7 +34,6 @@ describe('NewTabLink', () => {
         };
 
         const renderResult = render(<NewTabLink {...props}>link text</NewTabLink>);
-        //const renderResult = getMockComponentClassPropsForCall(NewTabLink);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
