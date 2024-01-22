@@ -1,20 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EnableTelemetrySettingDescription renders 1`] = `
-<React.Fragment>
-  <TelemetryNotice
-    deps={
-      {
-        "LinkComponent": [Function],
-      }
-    }
+<DocumentFragment>
+  <mock-telemetrynotice
+    deps="[object Object]"
   />
-  <PrivacyStatementText
-    deps={
-      {
-        "LinkComponent": [Function],
-      }
-    }
+  <mock-privacystatementtext
+    deps="[object Object]"
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`EnableTelemetrySettingDescription renders: PrivacyStatementText props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
+`;
+
+exports[`EnableTelemetrySettingDescription renders: TelemetryNotice props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
 `;

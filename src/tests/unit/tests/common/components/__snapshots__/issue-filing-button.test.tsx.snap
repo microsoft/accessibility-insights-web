@@ -1,49 +1,107 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
-"<Fragment>
-  <CustomizedDefaultButton className="file-issue-button" onClick={[Function: onClick]}>
-    <LadyBugSolidIcon />
-    <div className="ms-Button-label">
-      File issue
-    </div>
-  </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={true} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
-</Fragment>"
+<DocumentFragment>
+  <button
+    class="ms-Button ms-Button--default file-issue-button root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <mock-ladybugsolidicon />
+      <div
+        class="ms-Button-label"
+      >
+        File issue
+      </div>
+    </span>
+  </button>
+  <mock-issuefilingneedssettingshelptext
+    deps="[object Object]"
+    isopen="true"
+    issuefilingservicepropertiesmap="[object Object]"
+    selectedissuedata="[object Object]"
+    selectedissuefilingservice="[object Object]"
+    selectedissuefilingservicedata="[object Object]"
+  />
+</DocumentFragment>
 `;
 
 exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to false 1`] = `
-"<Fragment>
-  <CustomizedDefaultButton className="file-issue-button" onClick={[Function: onClick]}>
-    <LadyBugSolidIcon />
-    <div className="ms-Button-label">
-      File issue
-    </div>
-  </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
-</Fragment>"
+<DocumentFragment>
+  <button
+    class="ms-Button ms-Button--default file-issue-button root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <mock-ladybugsolidicon />
+      <div
+        class="ms-Button-label"
+      >
+        File issue
+      </div>
+    </span>
+  </button>
+  <mock-issuefilingneedssettingshelptext
+    deps="[object Object]"
+    isopen="false"
+    issuefilingservicepropertiesmap="[object Object]"
+    selectedissuedata="[object Object]"
+    selectedissuefilingservice="[object Object]"
+    selectedissuefilingservicedata="[object Object]"
+  />
+</DocumentFragment>
 `;
 
 exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
-"<Fragment>
-  <CustomizedDefaultButton className="file-issue-button" onClick={[Function: onClick]}>
-    <LadyBugSolidIcon />
-    <div className="ms-Button-label">
+<DocumentFragment>
+  <mock-customizeddefaultbutton
+    classname="file-issue-button"
+  >
+    <mock-ladybugsolidicon />
+    <div
+      class="ms-Button-label"
+    >
       File issue
     </div>
-  </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
-</Fragment>"
+  </mock-customizeddefaultbutton>
+  <mock-issuefilingneedssettingshelptext
+    deps="[object Object]"
+    isopen="false"
+    issuefilingservicepropertiesmap="[object Object]"
+    selectedissuedata="[object Object]"
+    selectedissuefilingservice="[object Object]"
+    selectedissuefilingservicedata="[object Object]"
+  />
+</DocumentFragment>
 `;
 
 exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
-"<Fragment>
-  <CustomizedDefaultButton className="file-issue-button" onClick={[Function: onClick]}>
-    <LadyBugSolidIcon />
-    <div className="ms-Button-label">
+<DocumentFragment>
+  <mock-customizeddefaultbutton
+    classname="file-issue-button"
+  >
+    <mock-ladybugsolidicon />
+    <div
+      class="ms-Button-label"
+    >
       File issue
     </div>
-  </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
-</Fragment>"
+  </mock-customizeddefaultbutton>
+  <mock-issuefilingneedssettingshelptext
+    deps="[object Object]"
+    isopen="false"
+    issuefilingservicepropertiesmap="[object Object]"
+    selectedissuedata="[object Object]"
+    selectedissuefilingservice="[object Object]"
+    selectedissuefilingservicedata="[object Object]"
+  />
+</DocumentFragment>
 `;
