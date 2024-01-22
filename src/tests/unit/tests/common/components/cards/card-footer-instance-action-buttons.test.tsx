@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ActionButton, IButton } from '@fluentui/react';
+import { render, RenderResult } from '@testing-library/react';
 import {
     CardFooterInstanceActionButtons,
     CardFooterInstanceActionButtonsDeps,
@@ -16,11 +17,20 @@ import { CardsViewController } from 'common/components/cards/cards-view-controll
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { Toast } from '../../../../../../common/components/toast';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
+jest.mock('../../../../../../common/components/toast');
 describe(CardFooterInstanceActionButtons, () => {
+    mockReactComponents([Toast, ActionButton]);
+
     let defaultProps: CardFooterInstanceActionButtonsProps;
     let defaultDeps: CardFooterInstanceActionButtonsDeps;
     let menuItemsBuilderMock: IMock<CardFooterMenuItemsBuilder>;
@@ -59,9 +69,9 @@ describe(CardFooterInstanceActionButtons, () => {
     it('renders as null with no menu items', () => {
         setupGetMenuItems([], defaultProps);
 
-        const rendered = shallow(<CardFooterInstanceActionButtons {...defaultProps} />);
+        const renderResult = render(<CardFooterInstanceActionButtons {...defaultProps} />);
 
-        expect(rendered.getElement()).toBeNull();
+        expect(renderResult.container.firstChild).toBeNull();
     });
 
     it('renders without copyFailureDetails supported', () => {
@@ -77,9 +87,9 @@ describe(CardFooterInstanceActionButtons, () => {
         };
         setupGetMenuItems(menuItems, props);
 
-        const rendered = shallow(<CardFooterInstanceActionButtons {...props} />);
+        const renderResult = render(<CardFooterInstanceActionButtons {...props} />);
 
-        expect(rendered.debug()).toMatchSnapshot('component snapshot');
+        expect(renderResult.asFragment()).toMatchSnapshot('component snapshot');
     });
 
     describe.each([true, false])('with isCardFooterCollapsed=%s', isCardFooterCollapsed => {
@@ -90,15 +100,16 @@ describe(CardFooterInstanceActionButtons, () => {
         it('renders per snapshot', () => {
             setupGetMenuItems(menuItems, defaultProps);
 
-            const rendered = shallow(<CardFooterInstanceActionButtons {...defaultProps} />);
+            const renderResult = render(<CardFooterInstanceActionButtons {...defaultProps} />);
 
-            verifySnapshots(rendered);
+            verifySnapshots(renderResult);
         });
 
-        function verifySnapshots(renderedElement: ShallowWrapper): void {
-            expect(renderedElement.debug()).toMatchSnapshot('component snapshot');
+        function verifySnapshots(renderedElement: RenderResult): void {
+            expect(renderedElement.asFragment()).toMatchSnapshot('component snapshot');
             if (isCardFooterCollapsed) {
-                expect(renderedElement.find(ActionButton).prop('menuProps')).toMatchSnapshot(
+                expectMockedComponentPropsToMatchSnapshots(
+                    [ActionButton],
                     'action button menu props',
                 );
             }
@@ -116,12 +127,10 @@ describe(CardFooterInstanceActionButtons, () => {
             };
             setupGetMenuItems(menuItems, newProps);
 
-            const rendered = shallow(<CardFooterInstanceActionButtons {...newProps} />);
+            const renderResult = render(<CardFooterInstanceActionButtons {...newProps} />);
 
-            expect(rendered.debug()).toMatchSnapshot('component snapshot');
-            expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot(
-                'action button menu props',
-            );
+            expect(renderResult.asFragment()).toMatchSnapshot('component snapshot');
+            expectMockedComponentPropsToMatchSnapshots([ActionButton], 'action button menu props');
         },
     );
 
@@ -141,12 +150,11 @@ describe(CardFooterInstanceActionButtons, () => {
                 return menuItems;
             });
 
-        const rendered = shallow(<CardFooterInstanceActionButtons {...defaultProps} />);
+        render(<CardFooterInstanceActionButtons {...defaultProps} />);
 
         // call ref callback to set rendered component's ref to our button mock
-        const kebabButtonRefCallback = rendered.find(ActionButton).prop('componentRef') as (
-            ref: IButton,
-        ) => void;
+        const kebabButtonRefCallback = getMockComponentClassPropsForCall(ActionButton)
+            .componentRef as (ref: IButton) => void;
         kebabButtonRefCallback(kebabButtonMock.object);
 
         menuItemsProps.onIssueFilingSettingsDialogDismissed();
@@ -170,7 +178,7 @@ describe(CardFooterInstanceActionButtons, () => {
                 return menuItems;
             });
 
-        shallow(
+        render(
             <CardFooterInstanceActionButtons
                 {...defaultProps}
                 deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }}

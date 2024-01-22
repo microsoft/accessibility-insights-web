@@ -2,17 +2,25 @@
 // Licensed under the MIT License.
 
 import { TextField } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { ActionAndCancelButtonsComponent } from 'DetailsView/components/action-and-cancel-buttons-component';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import {
     FailedInstancePanel,
     FailedInstancePanelProps,
 } from 'DetailsView/components/tab-stops/failed-instance-panel';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
+jest.mock('DetailsView/components/action-and-cancel-buttons-component');
+jest.mock('DetailsView/components/generic-panel');
 describe('FailedInstancePanel', () => {
+    mockReactComponents([TextField, ActionAndCancelButtonsComponent, GenericPanel]);
     let props: FailedInstancePanelProps;
     let onConfirmMock: IMock<() => void>;
     let onChangeMock: IMock<(_: React.SyntheticEvent, d: string) => void>;
@@ -34,15 +42,17 @@ describe('FailedInstancePanel', () => {
     });
 
     test('renders', () => {
-        const testSubject = shallow(<FailedInstancePanel {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<FailedInstancePanel {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('verify button behaviors', () => {
-        const testSubject = shallow(<FailedInstancePanel {...props} />);
-        const actionCancelButtonProps = testSubject.find(ActionAndCancelButtonsComponent).props();
-        const panelProps = testSubject.find(GenericPanel).props();
-        const descriptionTextFieldProps = testSubject.find(TextField).props();
+        render(<FailedInstancePanel {...props} />);
+        const actionCancelButtonProps = getMockComponentClassPropsForCall(
+            ActionAndCancelButtonsComponent,
+        );
+        const panelProps = getMockComponentClassPropsForCall(GenericPanel);
+        const descriptionTextFieldProps = getMockComponentClassPropsForCall(TextField);
 
         actionCancelButtonProps.primaryButtonOnClick(null);
 
@@ -54,7 +64,7 @@ describe('FailedInstancePanel', () => {
 
     test('primary button disabled without description', () => {
         props.instanceDescription = null;
-        const testSubject = shallow(<FailedInstancePanel {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<FailedInstancePanel {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
