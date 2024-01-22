@@ -13,7 +13,6 @@ import { BaseDataBuilder } from 'tests/unit/common/base-data-builder';
 import { NativeEventStub } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ContentInclude } from 'views/content/content-include';
-import { ContentLink } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
 import {
     mockReactComponents,
