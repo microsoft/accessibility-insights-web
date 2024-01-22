@@ -32,3 +32,67 @@ exports[`TelemetryMessagesList renders and matches snapshot 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`TelemetryMessagesList renders and matches snapshot: StyledWithViewportComponent props 1`] = `
+{
+  "columns": [
+    {
+      "fieldName": "timestamp",
+      "isResizable": true,
+      "key": "date",
+      "maxWidth": 130,
+      "minWidth": 100,
+      "name": "date & time",
+      "onRender": [Function],
+    },
+    {
+      "fieldName": "name",
+      "isResizable": true,
+      "key": "eventName",
+      "maxWidth": 130,
+      "minWidth": 100,
+      "name": "event name",
+    },
+    {
+      "fieldName": "source",
+      "isResizable": true,
+      "key": "source",
+      "maxWidth": 100,
+      "minWidth": 100,
+      "name": "source",
+    },
+    {
+      "fieldName": "triggeredBy",
+      "isResizable": true,
+      "key": "triggeredBy",
+      "maxWidth": 100,
+      "minWidth": 100,
+      "name": "triggeredBy",
+    },
+    {
+      "fieldName": "customProperties",
+      "isResizable": true,
+      "key": "customProperties",
+      "minWidth": 100,
+      "name": "custom properties",
+      "onRender": [Function],
+    },
+  ],
+  "items": [
+    {
+      "applicationBuild": "test-app-build",
+      "applicationName": "test-app-name",
+      "applicationVersion": "test-app-version",
+      "customProperties": {
+        "key1": "value1",
+        "key2": "value2",
+      },
+      "installationId": "test-installation-id",
+      "name": "test-name",
+      "source": "test-source",
+      "timestamp": 1,
+      "triggeredBy": "test-triggered-by",
+    },
+  ],
+}
+`;

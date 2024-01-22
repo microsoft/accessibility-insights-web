@@ -67,7 +67,7 @@ describe('ReactExtensionPoint', () => {
 
     it('renders children only when not specified', () => {
         const rendered = render(componentWithExtensions([]));
-        const c2 = rendered.container.querySelector('h2');
+        const c2 = rendered.getByRole('heading', { level: 2 });
         expect(c2).toHaveTextContent('My Child');
     });
 });

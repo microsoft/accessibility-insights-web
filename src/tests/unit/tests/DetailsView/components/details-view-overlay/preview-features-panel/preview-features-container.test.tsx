@@ -10,7 +10,10 @@ import {
 import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
 import * as React from 'react';
 import { Mock } from 'typemoq';
-import { mockReactComponents } from '../../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../../mock-helpers/mock-module-helpers';
 import { PreviewFeaturesToggleList } from '../../../../../../../DetailsView/components/preview-features-toggle-list';
 import { NoDisplayableFeatureFlagMessage } from '../../../../../../../DetailsView/components/no-displayable-preview-features-message';
 
@@ -54,6 +57,7 @@ describe('PreviewFeaturesContainerTest', () => {
             const renderResult = render(<PreviewFeaturesContainer {...props} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([PreviewFeaturesToggleList]);
         });
 
         it('special message when there is no preview features available', () => {
@@ -65,6 +69,7 @@ describe('PreviewFeaturesContainerTest', () => {
             const renderResult = render(<PreviewFeaturesContainer {...props} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([PreviewFeaturesToggleList]);
         });
     });
 });

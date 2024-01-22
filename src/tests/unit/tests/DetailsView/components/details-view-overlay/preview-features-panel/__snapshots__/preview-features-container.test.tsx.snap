@@ -18,6 +18,28 @@ exports[`PreviewFeaturesContainerTest renders all available preview features 1`]
 </DocumentFragment>
 `;
 
+exports[`PreviewFeaturesContainerTest renders all available preview features: PreviewFeaturesToggleList props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+  },
+  "displayedFeatureFlags": [
+    {
+      "displayableDescription": "test description 1",
+      "displayableName": "test name 1",
+      "enabled": true,
+      "id": "test-id-1",
+    },
+    {
+      "displayableDescription": "test description 2",
+      "displayableName": "test name 2",
+      "enabled": false,
+      "id": "test-id-2",
+    },
+  ],
+}
+`;
+
 exports[`PreviewFeaturesContainerTest renders special message when there is no preview features available 1`] = `
 <DocumentFragment>
   <div
@@ -27,3 +49,5 @@ exports[`PreviewFeaturesContainerTest renders special message when there is no p
   </div>
 </DocumentFragment>
 `;
+
+exports[`PreviewFeaturesContainerTest renders special message when there is no preview features available: PreviewFeaturesToggleList props 1`] = `undefined`;

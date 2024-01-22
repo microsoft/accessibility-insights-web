@@ -43,13 +43,10 @@ describe('TelemetrySettings', () => {
             };
 
             const renderResult = render(<TelemetrySettings {...props} />);
-
-            const enableTelemetrySettingDescription = getMockComponentClassPropsForCall(
-                EnableTelemetrySettingDescription,
-            );
+            const teleMetryDescription = getMockComponentClassPropsForCall(GenericToggle);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expect(enableTelemetrySettingDescription.deps.LinkComponent).toBe(
+            expect(teleMetryDescription.description.props.deps.LinkComponent).toBe(
                 props.deps.LinkComponent,
             );
         });

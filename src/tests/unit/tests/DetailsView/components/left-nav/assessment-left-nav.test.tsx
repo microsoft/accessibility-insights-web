@@ -18,7 +18,10 @@ import {
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 import { BaseLeftNav } from '../../../../../../DetailsView/components/base-left-nav';
 
 jest.mock('../../../../../../DetailsView/components/base-left-nav');
@@ -105,5 +108,6 @@ describe(AssessmentLeftNav.displayName, () => {
         const renderResult = render(<AssessmentLeftNav {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([BaseLeftNav]);
     });
 });

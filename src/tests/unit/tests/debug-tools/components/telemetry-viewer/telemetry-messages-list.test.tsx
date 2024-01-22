@@ -13,7 +13,10 @@ import {
 import { DebugToolsTelemetryMessage } from 'debug-tools/controllers/telemetry-listener';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 import { DetailsList } from '@fluentui/react';
 
 jest.mock('@fluentui/react');
@@ -54,6 +57,7 @@ describe('TelemetryMessagesList', () => {
         const renderResult = render(<TelemetryMessagesList {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([DetailsList]);
     });
 
     describe('custom renderers', () => {

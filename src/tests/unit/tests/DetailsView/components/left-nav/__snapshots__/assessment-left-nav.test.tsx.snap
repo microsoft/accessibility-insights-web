@@ -8,3 +8,18 @@ exports[`AssessmentLeftNav renders with reflow feature flag enabled 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`AssessmentLeftNav renders with reflow feature flag enabled: BaseLeftNav props 1`] = `
+{
+  "links": [
+    {
+      "status": 1,
+    },
+    {
+      "status": 1,
+    },
+  ],
+  "selectedKey": "some key",
+  "setNavComponentRef": [Function],
+}
+`;

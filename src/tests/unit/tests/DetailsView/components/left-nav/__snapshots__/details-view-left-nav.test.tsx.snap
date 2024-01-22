@@ -12,3 +12,14 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`DetailsViewLeftNav should render from switcher nav: Switcher props 1`] = `
+{
+  "deps": {
+    "assessmentsProviderWithFeaturesEnabled": [Function],
+    "getProvider": [Function],
+  },
+  "featureFlagStoreData": {},
+  "pivotKey": undefined,
+}
+`;
