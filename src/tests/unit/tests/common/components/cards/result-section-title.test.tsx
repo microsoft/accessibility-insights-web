@@ -1,13 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import {
     ResultSectionTitle,
     ResultSectionTitleProps,
 } from 'common/components/cards/result-section-title';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
+import { OutcomeChip } from 'reports/components/outcome-chip';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 
+jest.mock('reports/components/outcome-chip');
+
+mockReactComponents([OutcomeChip]);
 describe.each(allInstanceOutcomeTypes)(
     'ResultSectionTitle with outcomeType %s renders',
     outcomeType => {
@@ -28,8 +33,8 @@ describe.each(allInstanceOutcomeTypes)(
                 titleSize,
             };
 
-            const wrapped = shallow(<ResultSectionTitle {...props} />);
-            expect(wrapped.getElement()).toMatchSnapshot();
+            const renderResult = render(<ResultSectionTitle {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     },
 );

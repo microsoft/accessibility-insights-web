@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
 import { FocusComponent, FocusComponentProps } from 'common/components/focus-component';
 import { WindowUtils } from 'common/window-utils';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -35,8 +35,8 @@ describe('FocusComponent', () => {
     });
 
     test('render', () => {
-        const testSubject = shallow(<FocusComponent {...props} />);
-        expect(testSubject.getElement()).toBeNull();
+        const renderResult = render(<FocusComponent {...props} />);
+        expect(renderResult.container.firstChild).toBeNull();
     });
 
     test('componentDidMount adds focus listener', () => {
