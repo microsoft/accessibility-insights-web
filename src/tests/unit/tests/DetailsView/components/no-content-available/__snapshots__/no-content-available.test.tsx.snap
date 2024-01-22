@@ -1,24 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NoContentAvailable renders stale view for default 1`] = `
-<main
-  className="noContentAvailable"
->
-  <h1>
-    No content available
-  </h1>
-  <ul>
-    <li>
-      If the target page was closed, you can close this tab or reuse it for something else.
-    </li>
-    <li>
-      If the URL was changed on the target page, you can reactivate
-       
-      <Term>
-        Accessibility Insights for Web
-      </Term>
-       by selecting the extension icon on the browser toolbar or by using the extension keyboard shortcuts.
-    </li>
-  </ul>
-</main>
+<DocumentFragment>
+  <main
+    class="noContentAvailable"
+  >
+    <h1>
+      No content available
+    </h1>
+    <ul>
+      <li>
+        If the target page was closed, you can close this tab or reuse it for something else.
+      </li>
+      <li>
+        If the URL was changed on the target page, you can reactivate 
+        <strong>
+          Accessibility Insights for Web
+        </strong>
+         by selecting the extension icon on the browser toolbar or by using the extension keyboard shortcuts.
+      </li>
+    </ul>
+  </main>
+</DocumentFragment>
 `;

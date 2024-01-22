@@ -1,64 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RequirementTableSection render ManualTestStepView when requirement is manual 1`] = `
-<ManualTestStepView
-  assessmentInstanceTableHandler={
-    {
-      "changeRequirementStatus": null,
-    }
-  }
-  assessmentsProvider={
-    {
-      "all": null,
-    }
-  }
-  featureFlagStoreData={
-    {
-      "some feature flag": true,
-    }
-  }
-  manualTestStepResultMap={
-    {
-      "some manual test step result id": null,
-    }
-  }
-  pathSnippetStoreData={
-    {
-      "path": null,
-    }
-  }
-  step="some test view"
-  test={-1}
-/>
+<DocumentFragment>
+  <mock-manualteststepview
+    assessmentinstancetablehandler="[object Object]"
+    assessmentsprovider="[object Object]"
+    featureflagstoredata="[object Object]"
+    manualteststepresultmap="[object Object]"
+    pathsnippetstoredata="[object Object]"
+    step="some test view"
+    test="-1"
+  />
+</DocumentFragment>
+`;
+
+exports[`RequirementTableSection render ManualTestStepView when requirement is manual: ManualTestStepView props 1`] = `
+{
+  "assessmentInstanceTableHandler": {
+    "changeRequirementStatus": null,
+  },
+  "assessmentsProvider": {
+    "all": null,
+  },
+  "featureFlagStoreData": {
+    "some feature flag": true,
+  },
+  "manualTestStepResultMap": {
+    "some manual test step result id": null,
+  },
+  "pathSnippetStoreData": {
+    "path": null,
+  },
+  "step": "some test view",
+  "test": -1,
+}
 `;
 
 exports[`RequirementTableSection render Spinner when scanning in progress 1`] = `
-<StyledSpinnerBase
-  className="details-view-spinner"
-  label="Scanning"
-  size={3}
-/>
+<DocumentFragment>
+  <mock-styledspinnerbase
+    classname="details-view-spinner"
+    label="Scanning"
+    size="3"
+  />
+</DocumentFragment>
 `;
 
 exports[`RequirementTableSection render instance table 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <h3>
     Instances
   </h3>
-  <AssessmentInstanceTable
-    assessmentInstanceTableHandler={
-      {
-        "changeRequirementStatus": null,
-      }
-    }
-    assessmentNavState={
-      {
-        "selectedTestSubview": "some test view",
-        "selectedTestType": -1,
-      }
-    }
-    getDefaultMessage={[Function]}
-    instanceTableHeaderType="none"
+  <mock-assessmentinstancetable
+    assessmentinstancetablehandler="[object Object]"
+    assessmentnavstate="[object Object]"
+    instancetableheadertype="none"
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`RequirementTableSection render instance table: AssessmentInstanceTable props 1`] = `
+{
+  "assessmentDefaultMessageGenerator": undefined,
+  "assessmentInstanceTableHandler": {
+    "changeRequirementStatus": null,
+  },
+  "assessmentNavState": {
+    "selectedTestSubview": "some test view",
+    "selectedTestType": -1,
+  },
+  "getDefaultMessage": [Function],
+  "hasVisualHelper": undefined,
+  "instanceTableHeaderType": "none",
+  "instancesMap": undefined,
+}
 `;
