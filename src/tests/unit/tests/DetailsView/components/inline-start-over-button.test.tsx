@@ -11,6 +11,7 @@ import * as React from 'react';
 import { It, IMock, Mock } from 'typemoq';
 import { InsightsCommandButton } from '../../../../../common/components/controls/insights-command-button';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -32,8 +33,8 @@ describe(InlineStartOverButton.displayName, () => {
 
     it('renders', () => {
         const renderResult = render(<InlineStartOverButton {...props} />);
-
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([InsightsCommandButton]);
     });
 
     it('rescans on click', async () => {

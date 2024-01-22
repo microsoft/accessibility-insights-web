@@ -12,7 +12,7 @@ import {
     LoadAssessmentDialogProps,
 } from 'DetailsView/components/load-assessment-dialog';
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ChangeAssessmentDialog } from '../../../../../DetailsView/components/change-assessment-dialog';
 import {
     expectMockedComponentPropsToMatchSnapshots,
@@ -31,7 +31,7 @@ describe('LoadAssessmentDialog', () => {
     let newTab: Tab;
 
     beforeEach(() => {
-        urlParserMock = Mock.ofType(UrlParser);
+        urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
         assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
         prevTab = {
             id: 111,

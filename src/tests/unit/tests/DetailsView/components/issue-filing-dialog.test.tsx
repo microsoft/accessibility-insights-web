@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dialog, DialogFooter } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
-
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
@@ -20,13 +20,20 @@ import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-fi
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { EventStub, EventStubFactory } from '../../../common/event-stub-factory';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('@fluentui/react');
 jest.mock('../../../../../DetailsView/components/action-and-cancel-buttons-component');
 jest.mock('../../../../../issue-filing/components/issue-filing-settings-container');
 describe('IssueFilingDialog', () => {
-    mockReactComponents([ActionAndCancelButtonsComponent, IssueFilingSettingsContainer]);
+    mockReactComponents([
+        ActionAndCancelButtonsComponent,
+        IssueFilingSettingsContainer,
+        Dialog,
+        DialogFooter,
+    ]);
     let eventStub: EventStub;
     let isSettingsValidMock: IMock<Function>;
     let getSettingsFromStoreDataMock: IMock<Function>;
@@ -57,9 +64,9 @@ describe('IssueFilingDialog', () => {
     beforeEach(() => {
         serviceKey = 'gitHub';
         eventStub = new EventStubFactory().createMouseClickEvent();
-        isSettingsValidMock = Mock.ofInstance(data => null);
-        onCloseMock = Mock.ofInstance(() => null);
-        getSettingsFromStoreDataMock = Mock.ofInstance(data => null);
+        isSettingsValidMock = Mock.ofInstance(data => null, MockBehavior.Strict);
+        onCloseMock = Mock.ofInstance(() => null, MockBehavior.Strict);
+        getSettingsFromStoreDataMock = Mock.ofInstance(data => null, MockBehavior.Strict);
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         issueFilingActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
@@ -115,6 +122,7 @@ describe('IssueFilingDialog', () => {
         const renderResult = render(<IssueFilingDialog {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Dialog]);
     });
 
     it('render: validate correct callbacks to ActionAndCancelButtonsComponent (file issue on click and cancel)', () => {
@@ -195,6 +203,7 @@ describe('IssueFilingDialog', () => {
         issueFilingSettingsContainer.onPropertyUpdateCallback(payload);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Dialog]);
     });
 
     it('render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null', () => {
@@ -222,11 +231,12 @@ describe('IssueFilingDialog', () => {
         issueFilingSettingsContainer.onPropertyUpdateCallback(payload);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Dialog]);
     });
 
     it('render: validate callback (onSelectedServiceChange) sent to settings container', () => {
         const differentServiceKey = 'different_service';
-        const differentIsSettingsValidMock = Mock.ofInstance(data => null);
+        const differentIsSettingsValidMock = Mock.ofInstance(data => null, MockBehavior.Strict);
         const differentGetSettingsFromStoreDataMock = Mock.ofInstance(data => null);
         const differentServiceStub = {
             isSettingsValid: differentIsSettingsValidMock.object,
@@ -257,6 +267,7 @@ describe('IssueFilingDialog', () => {
         issueFilingSettingsContainer.onSelectedServiceChange(payload);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Dialog]);
     });
 
     const scenarios = [
@@ -288,6 +299,7 @@ describe('IssueFilingDialog', () => {
 
             renderResult.rerender(<IssueFilingDialog {...newProps} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([Dialog]);
         },
     );
 });

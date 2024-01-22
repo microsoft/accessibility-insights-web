@@ -17,6 +17,7 @@ import * as React from 'react';
 import { IMock, It, Mock } from 'typemoq';
 import { InsightsCommandButton } from '../../../../../common/components/controls/insights-command-button';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -65,6 +66,7 @@ describe('LoadAssessmentButton', () => {
     it('should render per the snapshot', () => {
         const renderResult = render(<LoadAssessmentButton {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([InsightsCommandButton]);
     });
 
     it('should call load button click method on click', async () => {

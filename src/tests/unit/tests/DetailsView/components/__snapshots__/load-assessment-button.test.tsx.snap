@@ -10,3 +10,14 @@ exports[`LoadAssessmentButton should render per the snapshot 1`] = `
   </mock-insightscommandbutton>
 </DocumentFragment>
 `;
+
+exports[`LoadAssessmentButton should render per the snapshot: InsightsCommandButton props 1`] = `
+{
+  "children": "Load assessment",
+  "data-automation-id": "load-assessment-button",
+  "iconProps": {
+    "iconName": "FabricOpenFolderHorizontal",
+  },
+  "onClick": [Function],
+}
+`;
