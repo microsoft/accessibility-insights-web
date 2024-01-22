@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DefaultButton, TextField } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
-import { DefaultButton, TextField } from '@fluentui/react';
 import { FailureInstancePanelDetails } from '../../../../../DetailsView/components/failure-instance-panel-details';
 import {
     mockReactComponents,
@@ -61,7 +61,6 @@ describe('FailureInstancePanelDetailsTest', () => {
     });
 
     it('triggers validation on click', async () => {
-        useOriginalReactElements('@fluentui/react', ['DefaultButton', 'TextField']);
         const renderResult = render(
             <FailureInstancePanelDetails
                 path={path}

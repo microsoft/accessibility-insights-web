@@ -67,6 +67,44 @@ exports[`ExportDialog renders with open false 1`] = `
 </DocumentFragment>
 `;
 
+exports[`ExportDialog renders with open false: Dialog props 1`] = `
+{
+  "children": [
+    <StyledTextFieldBase
+      ariaLabel="Provide result description"
+      autoFocus={true}
+      multiline={true}
+      onChange={[Function]}
+      resizable={false}
+      rows={8}
+      value="description"
+    />,
+    <StyledDialogFooterBase>
+      <CustomizedPrimaryButton
+        data-automation-id="single-export-to-html-button"
+        download="THE REPORT FILE NAME"
+        href="html file url"
+        onClick={[Function]}
+      >
+        Export
+      </CustomizedPrimaryButton>
+    </StyledDialogFooterBase>,
+  ],
+  "dialogContentProps": {
+    "subText": "Optional: please describe the result (it will be saved in the report).",
+    "title": "Provide result description",
+    "type": 0,
+  },
+  "hidden": true,
+  "modalProps": {
+    "containerClassName": "exportDialog",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
+`;
+
 exports[`ExportDialog renders with open true 1`] = `
 <DocumentFragment>
   <mock-dialog
@@ -92,6 +130,44 @@ exports[`ExportDialog renders with open true 1`] = `
     </mock-styleddialogfooterbase>
   </mock-dialog>
 </DocumentFragment>
+`;
+
+exports[`ExportDialog renders with open true: Dialog props 1`] = `
+{
+  "children": [
+    <StyledTextFieldBase
+      ariaLabel="Provide result description"
+      autoFocus={true}
+      multiline={true}
+      onChange={[Function]}
+      resizable={false}
+      rows={8}
+      value="description"
+    />,
+    <StyledDialogFooterBase>
+      <CustomizedPrimaryButton
+        data-automation-id="single-export-to-html-button"
+        download="THE REPORT FILE NAME"
+        href="html file url"
+        onClick={[Function]}
+      >
+        Export
+      </CustomizedPrimaryButton>
+    </StyledDialogFooterBase>,
+  ],
+  "dialogContentProps": {
+    "subText": "Optional: please describe the result (it will be saved in the report).",
+    "title": "Provide result description",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "containerClassName": "exportDialog",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`ExportDialog renders without export dropdown due to lack of service 1`] = `

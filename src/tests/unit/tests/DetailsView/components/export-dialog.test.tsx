@@ -1,22 +1,23 @@
+import { Dialog, DialogFooter, PrimaryButton, TextField } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { fireEvent, render } from '@testing-library/react';
-import { Dialog, DialogFooter, PrimaryButton, TextField } from '@fluentui/react';
 import { FeatureFlags } from 'common/feature-flags';
+import { ExportDropdown } from 'DetailsView/components/export-dropdown';
 import * as React from 'react';
 import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
 import { ReportExportService } from 'report-export/types/report-export-service';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { It, Mock, Times } from 'typemoq';
 import {
     ExportDialog,
     ExportDialogProps,
 } from '../../../../../DetailsView/components/export-dialog';
-import {
-    getMockComponentClassPropsForCall,
-    mockReactComponents,
-    useOriginalReactElements,
-} from 'tests/unit/mock-helpers/mock-module-helpers';
-import { ExportDropdown } from 'DetailsView/components/export-dropdown';
 jest.mock('@fluentui/react');
 jest.mock('DetailsView/components/export-dropdown');
 jest.mock('report-export/services/code-pen-report-export-service');
@@ -102,6 +103,7 @@ describe('ExportDialog', () => {
             props.isOpen = isOpen;
             onlyIncludeHtmlService();
             const renderResult = render(<ExportDialog {...props} />);
+            expectMockedComponentPropsToMatchSnapshots([Dialog]);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
 

@@ -1,5 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FluentSideNav componentDidUpdate: DetailsViewLeftNav props 1`] = `
+{
+  "isSideNavOpen": true,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": true,
+  },
+  "selectedPivot": 0,
+  "setNavComponentRef": [Function],
+  "setSideNavOpen": null,
+  "tabStoreData": {
+    "isClosed": false,
+  },
+}
+`;
+
+exports[`FluentSideNav dismiss side nav: DetailsViewLeftNav props 1`] = `
+{
+  "isSideNavOpen": false,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": true,
+  },
+  "selectedPivot": 0,
+  "setNavComponentRef": [Function],
+  "setSideNavOpen": [Function],
+  "tabStoreData": {
+    "isClosed": false,
+  },
+}
+`;
+
 exports[`FluentSideNav render nav bar 1`] = `
 <DocumentFragment>
   <div
@@ -15,7 +45,24 @@ exports[`FluentSideNav render nav bar 1`] = `
 </DocumentFragment>
 `;
 
+exports[`FluentSideNav render nav bar: DetailsViewLeftNav props 1`] = `
+{
+  "isSideNavOpen": false,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": false,
+  },
+  "selectedPivot": 0,
+  "setNavComponentRef": [Function],
+  "setSideNavOpen": null,
+  "tabStoreData": {
+    "isClosed": false,
+  },
+}
+`;
+
 exports[`FluentSideNav render null if tab is closed 1`] = `<DocumentFragment />`;
+
+exports[`FluentSideNav render null if tab is closed: DetailsViewLeftNav props 1`] = `undefined`;
 
 exports[`FluentSideNav render side nav 1`] = `
 <DocumentFragment>
@@ -34,4 +81,19 @@ exports[`FluentSideNav render side nav 1`] = `
     />
   </mock-genericpanel>
 </DocumentFragment>
+`;
+
+exports[`FluentSideNav render side nav: DetailsViewLeftNav props 1`] = `
+{
+  "isSideNavOpen": false,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": true,
+  },
+  "selectedPivot": 0,
+  "setNavComponentRef": [Function],
+  "setSideNavOpen": null,
+  "tabStoreData": {
+    "isClosed": false,
+  },
+}
 `;

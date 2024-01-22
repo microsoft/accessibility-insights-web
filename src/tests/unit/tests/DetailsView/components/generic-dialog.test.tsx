@@ -1,18 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dialog, DefaultButton, DialogFooter, PrimaryButton } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { fireEvent, render } from '@testing-library/react';
-import { DefaultButton, PrimaryButton } from '@fluentui/react';
-import { Dialog } from '@fluentui/react';
 import * as React from 'react';
 
 import {
     GenericDialog,
     GenericDialogProps,
 } from '../../../../../DetailsView/components/generic-dialog';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('GenericDialogTest', () => {
+    mockReactComponents([Dialog, DialogFooter, PrimaryButton, DefaultButton]);
+
     it('should render', () => {
         const props: GenericDialogProps = {
             title: 'test title',
@@ -22,6 +28,12 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
+        useOriginalReactElements('@fluentui/react', [
+            'Dialog',
+            'DialogFooter',
+            'PrimaryButton',
+            'DefaultButton',
+        ]);
         const renderResult = render(<GenericDialog {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
@@ -38,6 +50,12 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
+        useOriginalReactElements('@fluentui/react', [
+            'Dialog',
+            'DialogFooter',
+            'PrimaryButton',
+            'DefaultButton',
+        ]);
         const renderResult = render(<GenericDialog {...props} />);
         const button = renderResult.getByRole('button', { name: /Cancel/i });
         fireEvent.click(button);
@@ -55,7 +73,12 @@ describe('GenericDialogTest', () => {
             messageText: 'test message',
             primaryButtonText: 'test primary text',
         };
-
+        useOriginalReactElements('@fluentui/react', [
+            'Dialog',
+            'DialogFooter',
+            'PrimaryButton',
+            'DefaultButton',
+        ]);
         const renderResult = render(<GenericDialog {...props} />);
         const button = renderResult.getByRole('button', { name: /test primary text/i });
         fireEvent.click(button);
@@ -73,10 +96,12 @@ describe('GenericDialogTest', () => {
             messageText: 'test message',
             primaryButtonText: 'test primary text',
         };
-
-        //const renderResult = render(<GenericDialog {...props} />);
-        //renderResult.container.querySelector(Dialog).prop('onDismiss')();
-
+        useOriginalReactElements('@fluentui/react', [
+            'Dialog',
+            'DialogFooter',
+            'PrimaryButton',
+            'DefaultButton',
+        ]);
         const renderResult = render(<GenericDialog {...props} />);
         const button = renderResult.getByRole('button', { name: /Cancel/i });
         fireEvent.click(button);

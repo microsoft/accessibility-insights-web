@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { INav } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
@@ -10,6 +10,7 @@ import { FluentSideNav, FluentSideNavProps } from 'DetailsView/components/left-n
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -36,7 +37,7 @@ describe(FluentSideNav, () => {
         const renderResult = render(
             <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...props} />,
         );
-
+        expectMockedComponentPropsToMatchSnapshots([DetailsViewLeftNav]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -57,7 +58,7 @@ describe(FluentSideNav, () => {
         const renderResult = render(
             <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...props} />,
         );
-
+        expectMockedComponentPropsToMatchSnapshots([DetailsViewLeftNav]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -78,6 +79,7 @@ describe(FluentSideNav, () => {
         const renderResult = render(
             <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...props} />,
         );
+        expectMockedComponentPropsToMatchSnapshots([DetailsViewLeftNav]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -98,7 +100,7 @@ describe(FluentSideNav, () => {
         } as FluentSideNavProps;
 
         render(<FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...props} />);
-
+        expectMockedComponentPropsToMatchSnapshots([DetailsViewLeftNav]);
         const genericPanel = getMockComponentClassPropsForCall(GenericPanel);
         genericPanel.onDismiss({} as React.SyntheticEvent<HTMLElement, Event>);
         setSideNavOpenMock.verifyAll();
@@ -139,7 +141,7 @@ describe(FluentSideNav, () => {
         const { rerender } = render(
             <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...prevProps} />,
         );
-
+        expectMockedComponentPropsToMatchSnapshots([DetailsViewLeftNav]);
         const leftNav = getMockComponentClassPropsForCall(DetailsViewLeftNav);
         leftNav.setNavComponentRef(navStub);
 

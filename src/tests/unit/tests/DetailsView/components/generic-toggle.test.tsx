@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Toggle } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import { GenericToggle, GenericToggleProps } from 'DetailsView/components/generic-toggle';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { Toggle } from '@fluentui/react';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 
-jest.mock('../../../mock-helpers/mock-module-helpers');
+jest.mock('@fluentui/react');
 describe('GenericToggleTest', () => {
     mockReactComponents([Toggle]);
     type OnClick = GenericToggleProps['onClick'];
@@ -27,6 +30,7 @@ describe('GenericToggleTest', () => {
                 id: 'test-id-1',
             };
 
+            useOriginalReactElements('@fluentui/react', ['Toggle']);
             const renderResult = render(<GenericToggle {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
@@ -44,6 +48,7 @@ describe('GenericToggleTest', () => {
                 id: 'test-id-1',
             };
 
+            useOriginalReactElements('@fluentui/react', ['Toggle']);
             const renderResult = render(<GenericToggle {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
@@ -59,8 +64,8 @@ describe('GenericToggleTest', () => {
                 id: 'test-id-1',
             };
 
+            useOriginalReactElements('@fluentui/react', ['Toggle']);
             const renderResult = render(<GenericToggle {...props} />);
-            renderResult.debug();
 
             const toggle = renderResult.container.querySelector(`#${props.id}`);
             fireEvent.click(toggle);

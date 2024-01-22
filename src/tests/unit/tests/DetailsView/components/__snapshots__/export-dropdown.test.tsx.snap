@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ExportDropdown handles click on menu item: ContextualMenu props 1`] = `undefined`;
+
 exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
 <DocumentFragment>
   <div>
@@ -80,6 +82,10 @@ exports[`ExportDropdown handles click to show menu with feature flags but missin
 </DocumentFragment>
 `;
 
+exports[`ExportDropdown handles click to show menu with feature flags but missing json: ContextualMenu props 1`] = `undefined`;
+
+exports[`ExportDropdown handles click to show menu with feature flags: ContextualMenu props 1`] = `undefined`;
+
 exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
 <DocumentFragment>
   <div>
@@ -120,6 +126,8 @@ exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
 </DocumentFragment>
 `;
 
+exports[`ExportDropdown handles click to show menu without feature flags: ContextualMenu props 1`] = `undefined`;
+
 exports[`ExportDropdown renders without menu items 1`] = `
 <DocumentFragment>
   <div>
@@ -132,6 +140,8 @@ exports[`ExportDropdown renders without menu items 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`ExportDropdown renders without menu items: ContextualMenu props 1`] = `undefined`;
 
 exports[`ExportDropdown should dismiss the contextMenu 1`] = `
 <DocumentFragment>
@@ -172,3 +182,5 @@ exports[`ExportDropdown should dismiss the contextMenu 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`ExportDropdown should dismiss the contextMenu: ContextualMenu props 1`] = `undefined`;

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { ContextualMenu, PrimaryButton } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { fireEvent, render } from '@testing-library/react';
 
-import { ContextualMenu, PrimaryButton } from '@fluentui/react';
 import { FeatureFlags } from 'common/feature-flags';
 import { ExportDropdown, ExportDropdownProps } from 'DetailsView/components/export-dropdown';
 import * as React from 'react';
@@ -16,6 +16,7 @@ import {
 } from 'report-export/types/report-export-service';
 import { Mock } from 'typemoq';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
@@ -67,8 +68,7 @@ describe('ExportDropdown', () => {
 
     it('renders without menu items', () => {
         const renderResult = render(<ExportDropdown {...props} />);
-        renderResult.debug();
-
+        expectMockedComponentPropsToMatchSnapshots([ContextualMenu]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -77,6 +77,7 @@ describe('ExportDropdown', () => {
 
         useOriginalReactElements('@fluentui/react', ['PrimaryButton']);
         const renderResult = render(<ExportDropdown {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([ContextualMenu]);
         await userEvent.click(renderResult.getByRole('button'));
 
         expect(renderResult.asFragment()).toMatchSnapshot();
@@ -88,6 +89,7 @@ describe('ExportDropdown', () => {
 
         useOriginalReactElements('@fluentui/react', ['PrimaryButton']);
         const renderResult = render(<ExportDropdown {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([ContextualMenu]);
         await userEvent.click(renderResult.getByRole('button'));
 
         expect(renderResult.asFragment()).toMatchSnapshot();
@@ -99,6 +101,7 @@ describe('ExportDropdown', () => {
 
         useOriginalReactElements('@fluentui/react', ['PrimaryButton']);
         const renderResult = render(<ExportDropdown {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([ContextualMenu]);
         await userEvent.click(renderResult.getByRole('button'));
 
         expect(renderResult.asFragment()).toMatchSnapshot();
@@ -114,11 +117,11 @@ describe('ExportDropdown', () => {
 
         useOriginalReactElements('@fluentui/react', ['PrimaryButton']);
         const renderResult = render(<ExportDropdown {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([ContextualMenu]);
         const button = renderResult.getByRole('button');
         fireEvent.click(button);
 
         const menu = getMockComponentClassPropsForCall(ContextualMenu);
-        //console.log('Menu:' + menu);
         menu.items.find(elem => elem.key === 'html').onClick();
 
         expect(wasClicked).toBeTruthy();
@@ -129,6 +132,7 @@ describe('ExportDropdown', () => {
 
         useOriginalReactElements('@fluentui/react', ['PrimaryButton']);
         const renderResult = render(<ExportDropdown {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([ContextualMenu]);
         const button = renderResult.getByRole('button');
         fireEvent.click(button);
 

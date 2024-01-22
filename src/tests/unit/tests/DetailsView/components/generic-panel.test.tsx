@@ -26,7 +26,6 @@ describe('GenericPanel', () => {
             };
 
             const renderResult = render(<GenericPanel {...props}>{childContent}</GenericPanel>);
-            //expectMockedComponentPropsToMatchSnapshots([Panel]);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
@@ -34,7 +33,6 @@ describe('GenericPanel', () => {
             const props: GenericPanelProps = {};
 
             const renderResult = render(<GenericPanel {...props} />);
-            //expectMockedComponentPropsToMatchSnapshots([Panel]);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
