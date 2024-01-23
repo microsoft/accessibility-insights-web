@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { DetailsRow, FocusZone, GroupedList, SelectionZone, Spinner } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';

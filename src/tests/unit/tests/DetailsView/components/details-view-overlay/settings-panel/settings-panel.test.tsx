@@ -13,8 +13,8 @@ import {
     SettingsPanelProps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import * as React from 'react';
-import { mockReactComponents } from '../../../../../mock-helpers/mock-module-helpers';
 import { GenericPanel } from '../../../../../../../DetailsView/components/generic-panel';
+import { mockReactComponents } from '../../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../../DetailsView/components/generic-panel');
 describe('SettingsPanelTest', () => {

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { HighContrastSettings } from 'DetailsView/components/details-view-overlay/settings-panel/settings/high-contrast/high-contrast-settings';
@@ -10,13 +11,12 @@ import {
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
-import userEvent from '@testing-library/user-event';
+import { GenericToggle } from '../../../../../../../../../DetailsView/components/generic-toggle';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../../../../../mock-helpers/mock-module-helpers';
-import { GenericToggle } from '../../../../../../../../../DetailsView/components/generic-toggle';
 
 jest.mock('../../../../../../../../../DetailsView/components/generic-toggle');
 describe('HighContrastSettings', () => {

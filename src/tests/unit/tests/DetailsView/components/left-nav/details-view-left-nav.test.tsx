@@ -25,11 +25,11 @@ import {
     DetailsViewLeftNavProps,
 } from '../../../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { GetLeftNavSelectedKeyProps } from '../../../../../../DetailsView/components/left-nav/get-left-nav-selected-key';
+import { Switcher } from '../../../../../../DetailsView/components/switcher';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
-import { Switcher } from '../../../../../../DetailsView/components/switcher';
 
 jest.mock('../../../../../../DetailsView/components/switcher');
 describe(DetailsViewLeftNav.displayName, () => {

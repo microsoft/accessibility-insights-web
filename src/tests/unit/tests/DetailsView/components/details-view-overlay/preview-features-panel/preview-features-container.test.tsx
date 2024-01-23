@@ -10,12 +10,12 @@ import {
 import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
 import * as React from 'react';
 import { Mock } from 'typemoq';
+import { NoDisplayableFeatureFlagMessage } from '../../../../../../../DetailsView/components/no-displayable-preview-features-message';
+import { PreviewFeaturesToggleList } from '../../../../../../../DetailsView/components/preview-features-toggle-list';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../../mock-helpers/mock-module-helpers';
-import { PreviewFeaturesToggleList } from '../../../../../../../DetailsView/components/preview-features-toggle-list';
-import { NoDisplayableFeatureFlagMessage } from '../../../../../../../DetailsView/components/no-displayable-preview-features-message';
 
 jest.mock('../../../../../../../DetailsView/components/preview-features-toggle-list');
 jest.mock('../../../../../../../DetailsView/components/no-displayable-preview-features-message');

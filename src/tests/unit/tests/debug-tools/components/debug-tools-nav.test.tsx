@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { INavLink, Nav } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { DebugToolsNavActionCreator } from 'debug-tools/action-creators/debug-tools-nav-action-creator';
 import { DebugToolsNav, DebugToolsNavProps } from 'debug-tools/components/debug-tools-nav';
 import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';

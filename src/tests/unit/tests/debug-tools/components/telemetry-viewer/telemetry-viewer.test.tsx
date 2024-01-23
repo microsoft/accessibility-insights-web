@@ -11,12 +11,12 @@ import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import { isFunction } from 'lodash';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { TelemetryCommonFields } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-common-fields';
+import { TelemetryMessagesList } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
-import { TelemetryMessagesList } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-messages-list';
-import { TelemetryCommonFields } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-common-fields';
 
 jest.mock('../../../../../../debug-tools/components/telemetry-viewer/telemetry-messages-list');
 jest.mock('../../../../../../debug-tools/components/telemetry-viewer/telemetry-common-fields');

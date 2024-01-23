@@ -10,12 +10,12 @@ import {
 } from 'debug-tools/components/current-view/current-view';
 import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
 import * as React from 'react';
+import { StoresTree } from '../../../../../../debug-tools/components/stores-tree';
+import { TelemetryViewer } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-viewer';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
-import { TelemetryViewer } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-viewer';
-import { StoresTree } from '../../../../../../debug-tools/components/stores-tree';
 
 jest.mock('../../../../../../debug-tools/components/telemetry-viewer/telemetry-viewer');
 jest.mock('../../../../../../debug-tools/components/stores-tree');

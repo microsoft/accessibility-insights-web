@@ -9,6 +9,7 @@ import {
     ManualTestStatus,
     ManualTestStatusData,
 } from '../../../../../../common/types/store-data/manual-test-status';
+import { BaseLeftNav } from '../../../../../../DetailsView/components/base-left-nav';
 import {
     AssessmentLeftNav,
     AssessmentLeftNavDeps,
@@ -22,7 +23,6 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
-import { BaseLeftNav } from '../../../../../../DetailsView/components/base-left-nav';
 
 jest.mock('../../../../../../DetailsView/components/base-left-nav');
 describe(AssessmentLeftNav.displayName, () => {

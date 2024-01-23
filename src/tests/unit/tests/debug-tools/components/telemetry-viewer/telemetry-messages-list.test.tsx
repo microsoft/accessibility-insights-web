@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DetailsList } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { NamedFC } from 'common/react/named-fc';
 import {
@@ -17,7 +18,6 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
-import { DetailsList } from '@fluentui/react';
 
 jest.mock('@fluentui/react');
 describe('TelemetryMessagesList', () => {
