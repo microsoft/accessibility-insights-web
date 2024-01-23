@@ -114,5 +114,3 @@ exports[`StartOverDropdownTest render: InsightsCommandButton props 1`] = `
   "text": "Start over",
 }
 `;
-
-exports[`StartOverDropdownTest render: action button menu props 1`] = `undefined`;

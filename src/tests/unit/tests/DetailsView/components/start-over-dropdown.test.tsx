@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton, ContextualMenu, IButton, IRefObject } from '@fluentui/react';
+import { ContextualMenu, IButton, IRefObject } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
@@ -52,6 +52,7 @@ describe('StartOverDropdownTest', () => {
         useOriginalReactElements('common/components/controls/insights-command-button', [
             'InsightsCommandButton',
         ]);
+        useOriginalReactElements('@fluentui/react', ['ActionButton', 'ContextualMenu']);
 
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
 
