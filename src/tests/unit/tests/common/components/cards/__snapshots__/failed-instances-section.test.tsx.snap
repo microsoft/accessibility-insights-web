@@ -1,143 +1,202 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FailedInstancesSection renders null cards property 1`] = `null`;
+exports[`FailedInstancesSection renders null cards property 1`] = `<DocumentFragment />`;
 
-exports[`FailedInstancesSection renders null results 1`] = `null`;
+exports[`FailedInstancesSection renders null cards property: ResultSection props 1`] = `undefined`;
+
+exports[`FailedInstancesSection renders null results 1`] = `<DocumentFragment />`;
+
+exports[`FailedInstancesSection renders null results: ResultSection props 1`] = `undefined`;
 
 exports[`FailedInstancesSection renders with alerting off 1`] = `
-<ResultSection
-  badgeCount={0}
-  containerClassName="failedInstancesContainer"
-  deps={{}}
-  outcomeCounter={[Function]}
-  outcomeType="fail"
-  results={[]}
-  sectionHeadingLevel={2}
-  shouldAlertFailuresCount={false}
-  targetAppInfo={
-    {
-      "name": "page title",
-      "url": "page url",
-    }
-  }
-  title="Failed instances"
-/>
+<DocumentFragment>
+  <mock-resultsection
+    badgecount="0"
+    containerclassname="failedInstancesContainer"
+    deps="[object Object]"
+    outcometype="fail"
+    results=""
+    sectionheadinglevel="2"
+    shouldalertfailurescount="false"
+    targetappinfo="[object Object]"
+    title="Failed instances"
+  />
+</DocumentFragment>
+`;
+
+exports[`FailedInstancesSection renders with alerting off: ResultSection props 1`] = `
+{
+  "allCardsCollapsed": undefined,
+  "badgeCount": 0,
+  "cardSelectionMessageCreator": undefined,
+  "containerClassName": "failedInstancesContainer",
+  "deps": {},
+  "narrowModeStatus": undefined,
+  "outcomeCounter": [Function],
+  "outcomeType": "fail",
+  "results": [],
+  "sectionHeadingLevel": 2,
+  "shouldAlertFailuresCount": false,
+  "targetAppInfo": {
+    "name": "page title",
+    "url": "page url",
+  },
+  "title": "Failed instances",
+  "userConfigurationStoreData": undefined,
+  "visualHelperEnabled": undefined,
+}
 `;
 
 exports[`FailedInstancesSection renders with alerting on 1`] = `
-<ResultSection
-  badgeCount={0}
-  containerClassName="failedInstancesContainer"
-  deps={{}}
-  outcomeCounter={[Function]}
-  outcomeType="fail"
-  results={[]}
-  sectionHeadingLevel={2}
-  shouldAlertFailuresCount={true}
-  targetAppInfo={
-    {
-      "name": "page title",
-      "url": "page url",
-    }
-  }
-  title="Failed instances"
-/>
+<DocumentFragment>
+  <mock-resultsection
+    badgecount="0"
+    containerclassname="failedInstancesContainer"
+    deps="[object Object]"
+    outcometype="fail"
+    results=""
+    sectionheadinglevel="2"
+    shouldalertfailurescount="true"
+    targetappinfo="[object Object]"
+    title="Failed instances"
+  />
+</DocumentFragment>
+`;
+
+exports[`FailedInstancesSection renders with alerting on: ResultSection props 1`] = `
+{
+  "allCardsCollapsed": undefined,
+  "badgeCount": 0,
+  "cardSelectionMessageCreator": undefined,
+  "containerClassName": "failedInstancesContainer",
+  "deps": {},
+  "narrowModeStatus": undefined,
+  "outcomeCounter": [Function],
+  "outcomeType": "fail",
+  "results": [],
+  "sectionHeadingLevel": 2,
+  "shouldAlertFailuresCount": true,
+  "targetAppInfo": {
+    "name": "page title",
+    "url": "page url",
+  },
+  "title": "Failed instances",
+  "userConfigurationStoreData": undefined,
+  "visualHelperEnabled": undefined,
+}
 `;
 
 exports[`FailedInstancesSection renders with failures 1`] = `
-<ResultSection
-  badgeCount={2}
-  containerClassName="failedInstancesContainer"
-  deps={{}}
-  outcomeCounter={[Function]}
-  outcomeType="fail"
-  results={
-    [
-      {
-        "description": "sample-description",
-        "guidance": [
-          {
-            "href": "sample-guidance-href",
-            "text": "sample-guidance-text",
-          },
-        ],
-        "id": "some-rule",
-        "nodes": [
-          {
-            "descriptors": {
-              "snippet": "this is a sample snippet",
-            },
-            "identifiers": {
-              "conciseName": "body img",
-              "css-selector": "body img",
-              "identifier": "body img",
-            },
-            "resolution": {
-              "how-to-fix-web": {
-                "all": [],
-                "any": [
-                  "Element does not have an alt attribute",
-                  "aria-label attribute does not exist or is empty",
-                  "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                ],
-                "none": [],
-              },
-              "howToFixSummary": "sample how to fix summary",
-            },
-            "ruleId": "image-alt",
-            "status": "fail",
-            "uid": "some-guid-here",
-          },
-        ],
-        "url": "sample-url",
-      },
-      {
-        "description": "sample-description",
-        "guidance": [
-          {
-            "href": "sample-guidance-href",
-            "text": "sample-guidance-text",
-          },
-        ],
-        "id": "some-rule",
-        "nodes": [
-          {
-            "descriptors": {
-              "snippet": "this is a sample snippet",
-            },
-            "identifiers": {
-              "conciseName": "body img",
-              "css-selector": "body img",
-              "identifier": "body img",
-            },
-            "resolution": {
-              "how-to-fix-web": {
-                "all": [],
-                "any": [
-                  "Element does not have an alt attribute",
-                  "aria-label attribute does not exist or is empty",
-                  "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                ],
-                "none": [],
-              },
-              "howToFixSummary": "sample how to fix summary",
-            },
-            "ruleId": "image-alt",
-            "status": "fail",
-            "uid": "some-guid-here",
-          },
-        ],
-        "url": "sample-url",
-      },
-    ]
-  }
-  sectionHeadingLevel={2}
-  targetAppInfo={
+<DocumentFragment>
+  <mock-resultsection
+    badgecount="2"
+    containerclassname="failedInstancesContainer"
+    deps="[object Object]"
+    outcometype="fail"
+    results="[object Object],[object Object]"
+    sectionheadinglevel="2"
+    targetappinfo="[object Object]"
+    title="Failed instances"
+  />
+</DocumentFragment>
+`;
+
+exports[`FailedInstancesSection renders with failures: ResultSection props 1`] = `
+{
+  "allCardsCollapsed": undefined,
+  "badgeCount": 2,
+  "cardSelectionMessageCreator": undefined,
+  "containerClassName": "failedInstancesContainer",
+  "deps": {},
+  "narrowModeStatus": undefined,
+  "outcomeCounter": [Function],
+  "outcomeType": "fail",
+  "results": [
     {
-      "name": "page title",
-      "url": "page url",
-    }
-  }
-  title="Failed instances"
-/>
+      "description": "sample-description",
+      "guidance": [
+        {
+          "href": "sample-guidance-href",
+          "text": "sample-guidance-text",
+        },
+      ],
+      "id": "some-rule",
+      "nodes": [
+        {
+          "descriptors": {
+            "snippet": "this is a sample snippet",
+          },
+          "identifiers": {
+            "conciseName": "body img",
+            "css-selector": "body img",
+            "identifier": "body img",
+          },
+          "resolution": {
+            "how-to-fix-web": {
+              "all": [],
+              "any": [
+                "Element does not have an alt attribute",
+                "aria-label attribute does not exist or is empty",
+                "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+              ],
+              "none": [],
+            },
+            "howToFixSummary": "sample how to fix summary",
+          },
+          "ruleId": "image-alt",
+          "status": "fail",
+          "uid": "some-guid-here",
+        },
+      ],
+      "url": "sample-url",
+    },
+    {
+      "description": "sample-description",
+      "guidance": [
+        {
+          "href": "sample-guidance-href",
+          "text": "sample-guidance-text",
+        },
+      ],
+      "id": "some-rule",
+      "nodes": [
+        {
+          "descriptors": {
+            "snippet": "this is a sample snippet",
+          },
+          "identifiers": {
+            "conciseName": "body img",
+            "css-selector": "body img",
+            "identifier": "body img",
+          },
+          "resolution": {
+            "how-to-fix-web": {
+              "all": [],
+              "any": [
+                "Element does not have an alt attribute",
+                "aria-label attribute does not exist or is empty",
+                "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+              ],
+              "none": [],
+            },
+            "howToFixSummary": "sample how to fix summary",
+          },
+          "ruleId": "image-alt",
+          "status": "fail",
+          "uid": "some-guid-here",
+        },
+      ],
+      "url": "sample-url",
+    },
+  ],
+  "sectionHeadingLevel": 2,
+  "shouldAlertFailuresCount": undefined,
+  "targetAppInfo": {
+    "name": "page title",
+    "url": "page url",
+  },
+  "title": "Failed instances",
+  "userConfigurationStoreData": undefined,
+  "visualHelperEnabled": undefined,
+}
 `;

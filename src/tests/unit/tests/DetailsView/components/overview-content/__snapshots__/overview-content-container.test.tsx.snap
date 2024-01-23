@@ -1,84 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OverviewContainer component is defined and matches snapshot 1`] = `
-<div
-  className="overview"
-  data-automation-id="overviewContainerAutomationId"
->
-  <TargetChangeDialog
-    deps={
-      {
-        "actionInitiators": {
-          "openExternalLink": [MockFunction],
-        },
-        "assessmentsProviderWithFeaturesEnabled": [Function],
-        "detailsViewActionMessageCreator": {},
-        "detailsViewId": undefined,
-        "getAssessmentActionMessageCreator": [Function],
-        "getGetAssessmentSummaryModelFromProviderAndStoreData": [Function],
-        "getProvider": [Function],
-        "quickAssessRequirementKeys": [],
-        "urlParser": {},
-      }
-    }
-    newTab={
-      {
-        "id": -1,
-        "title": "some title",
-        "url": "some url",
-      }
-    }
-    prevTab={{}}
-  />
-  <section
-    className="overviewTextSummarySection"
+<DocumentFragment>
+  <div
+    class="overview"
+    data-automation-id="overviewContainerAutomationId"
   >
-    <OverviewHeading
-      getIntroComponent={[Function]}
+    <mock-targetchangedialog
+      deps="[object Object]"
+      newtab="[object Object]"
+      prevtab="[object Object]"
     />
-    <AssessmentReportSummary />
-  </section>
-  <section
-    className="overviewHelpSection"
-  >
-    <OverviewHelpSection
-      deps={
-        {
-          "actionInitiators": {
-            "openExternalLink": [MockFunction],
-          },
-          "assessmentsProviderWithFeaturesEnabled": [Function],
-          "detailsViewActionMessageCreator": {},
-          "detailsViewId": undefined,
-          "getAssessmentActionMessageCreator": [Function],
-          "getGetAssessmentSummaryModelFromProviderAndStoreData": [Function],
-          "getProvider": [Function],
-          "quickAssessRequirementKeys": [],
-          "urlParser": {},
-        }
-      }
-      getAboutComponent={[Function]}
-      linkDataSource={
-        [
-          {
-            "href": "Getting-started-link",
-            "text": "Getting started",
-          },
-          {
-            "href": "How-to-complete-a-test-link",
-            "text": "How to complete a test",
-          },
-          {
-            "href": "Ask-a-question-link",
-            "text": "Ask a question",
-          },
-          {
-            "href": "New-WCAG-2.1-success-criteria-link",
-            "text": "New WCAG 2.1 success criteria",
-          },
-        ]
-      }
-    />
-  </section>
-</div>
+    <section
+      class="overviewTextSummarySection"
+    >
+      <mock-overviewheading />
+      <mock-assessmentreportsummary />
+    </section>
+    <section
+      class="overviewHelpSection"
+    >
+      <mock-overviewhelpsection
+        deps="[object Object]"
+        linkdatasource="[object Object],[object Object],[object Object],[object Object]"
+      />
+    </section>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`OverviewContainer component is defined and matches snapshot: OverviewHeading props 1`] = `
+{
+  "getIntroComponent": [Function],
+}
+`;
+
+exports[`OverviewContainer component is defined and matches snapshot: OverviewHelpSection props 1`] = `
+{
+  "deps": {
+    "actionInitiators": {
+      "openExternalLink": [MockFunction],
+    },
+    "assessmentsProviderWithFeaturesEnabled": [Function],
+    "detailsViewActionMessageCreator": {},
+    "detailsViewId": undefined,
+    "getAssessmentActionMessageCreator": [Function],
+    "getGetAssessmentSummaryModelFromProviderAndStoreData": [Function],
+    "getProvider": [Function],
+    "quickAssessRequirementKeys": [],
+    "urlParser": {},
+  },
+  "getAboutComponent": [Function],
+  "linkDataSource": [
+    {
+      "href": "Getting-started-link",
+      "text": "Getting started",
+    },
+    {
+      "href": "How-to-complete-a-test-link",
+      "text": "How to complete a test",
+    },
+    {
+      "href": "Ask-a-question-link",
+      "text": "Ask a question",
+    },
+    {
+      "href": "New-WCAG-2.1-success-criteria-link",
+      "text": "New WCAG 2.1 success criteria",
+    },
+  ],
+}
+`;
+
+exports[`OverviewContainer component is defined and matches snapshot: TargetChangeDialog props 1`] = `
+{
+  "deps": {
+    "actionInitiators": {
+      "openExternalLink": [MockFunction],
+    },
+    "assessmentsProviderWithFeaturesEnabled": [Function],
+    "detailsViewActionMessageCreator": {},
+    "detailsViewId": undefined,
+    "getAssessmentActionMessageCreator": [Function],
+    "getGetAssessmentSummaryModelFromProviderAndStoreData": [Function],
+    "getProvider": [Function],
+    "quickAssessRequirementKeys": [],
+    "urlParser": {},
+  },
+  "newTab": {
+    "id": -1,
+    "title": "some title",
+    "url": "some url",
+  },
+  "prevTab": {},
+}
 `;

@@ -1,34 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeadingWithContentLink render null when reference is not defined 1`] = `
-"<div className="headerWithContentLink undefined">
-  <h1>
-    <span className={[undefined]}>
-      heading
-    </span>
-  </h1>
-  <ContentLink deps={{...}} reference={{...}} iconName="info" />
-</div>"
+<DocumentFragment>
+  <div
+    class="headerWithContentLink undefined"
+  >
+    <h1>
+      <span>
+        heading
+      </span>
+    </h1>
+    <mock-contentlink
+      deps="[object Object]"
+      iconname="info"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`HeadingWithContentLink renders with both text and icon 1`] = `
-"<div className="headerWithContentLink undefined">
-  <h1>
-    <span className={[undefined]}>
-      heading
-    </span>
-  </h1>
-  <ContentLink deps={{...}} reference="for/testing" iconName="info" />
-</div>"
+<DocumentFragment>
+  <div
+    class="headerWithContentLink undefined"
+  >
+    <h1>
+      <span>
+        heading
+      </span>
+    </h1>
+    <mock-contentlink
+      deps="[object Object]"
+      iconname="info"
+      reference="for/testing"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`HeadingWithContentLink renders with heading, secondary text, and icon 1`] = `
-"<div className="headerWithContentLink undefined">
-  <h1>
-    <span className={[undefined]}>
-      heading secondary
-    </span>
-  </h1>
-  <ContentLink deps={{...}} reference="for/testing" iconName="info" />
-</div>"
+<DocumentFragment>
+  <div
+    class="headerWithContentLink undefined"
+  >
+    <h1>
+      <span>
+        heading secondary
+      </span>
+    </h1>
+    <mock-contentlink
+      deps="[object Object]"
+      iconname="info"
+      reference="for/testing"
+    />
+  </div>
+</DocumentFragment>
 `;

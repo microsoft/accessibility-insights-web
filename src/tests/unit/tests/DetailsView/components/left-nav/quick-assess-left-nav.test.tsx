@@ -1,14 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { VisualizationType } from 'common/types/visualization-type';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import {
     ManualTestStatus,
     ManualTestStatusData,
 } from '../../../../../../common/types/store-data/manual-test-status';
+import { BaseLeftNav } from '../../../../../../DetailsView/components/base-left-nav';
 import {
     AssessmentLeftNavLink,
     TestRequirementLeftNavLink,
@@ -20,9 +21,17 @@ import {
     QuickAssessLeftNavDeps,
     QuickAssessLeftNavProps,
 } from '../../../../../../DetailsView/components/left-nav/quick-assess-left-nav';
+import { NavLinkButton } from '../../../../../../DetailsView/components/nav-link-button';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../DetailsView/components/nav-link-button');
+jest.mock('../../../../../../DetailsView/components/base-left-nav');
 describe(QuickAssessLeftNav.displayName, () => {
+    mockReactComponents([NavLinkButton, BaseLeftNav]);
     let overviewLinkStub: AssessmentLeftNavLink;
     let automatedChecksLinkStub: AssessmentLeftNavLink;
     let quickAssessChecksLinksStub: TestRequirementLeftNavLink[];
@@ -131,7 +140,8 @@ describe(QuickAssessLeftNav.displayName, () => {
     });
 
     it('renders left nav with appropriate params', () => {
-        const actual = shallow(<QuickAssessLeftNav {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const renderResult = render(<QuickAssessLeftNav {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([BaseLeftNav]);
     });
 });
