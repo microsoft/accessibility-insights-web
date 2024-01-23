@@ -44,6 +44,8 @@ exports[`RequirementContextSectionTest renders content from props: ContentPanelB
 }
 `;
 
+exports[`RequirementContextSectionTest renders content from props: HelpLinks props 1`] = `undefined`;
+
 exports[`RequirementContextSectionTest renders with helpfulResourceLinks 1`] = `
 <DocumentFragment>
   <section
@@ -72,27 +74,10 @@ exports[`RequirementContextSectionTest renders with helpfulResourceLinks 1`] = `
       >
         Info and examples
       </mock-contentpanelbutton>
-      <div
-        class="helpLink"
-      >
-        <div
-          class="ms-TooltipHost insightsTooltipHost root-109"
-          role="none"
-        >
-          <a
-            class="ms-Link insights-link insightsLink root-110"
-            href="test-guidance-href"
-            target="_blank"
-          >
-            test-guidance-text
-          </a>
-          <div
-            hidden=""
-            id="tooltip0"
-            style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-          />
-        </div>
-      </div>
+      <mock-helplinks
+        deps="[object Object]"
+        linkinformation="[object Object]"
+      />
     </div>
   </section>
 </DocumentFragment>
@@ -106,5 +91,17 @@ exports[`RequirementContextSectionTest renders with helpfulResourceLinks: Conten
   "reference": {
     "pageTitle": "test-page-title",
   },
+}
+`;
+
+exports[`RequirementContextSectionTest renders with helpfulResourceLinks: HelpLinks props 1`] = `
+{
+  "deps": {},
+  "linkInformation": [
+    {
+      "href": "test-guidance-href",
+      "text": "test-guidance-text",
+    },
+  ],
 }
 `;
