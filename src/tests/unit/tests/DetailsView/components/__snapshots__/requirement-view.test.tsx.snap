@@ -16,19 +16,17 @@ exports[`RequirementViewTest renders with content from props 1`] = `
           class="mainContent"
         >
           <mock-requirementinstructions />
-          <div
-            aria-label="Scan Complete"
-            aria-live="polite"
-            role="alert"
-          />
-          <h3>
-            Instances
-          </h3>
-          <mock-assessmentinstancetable
+          <mock-requirementtablesection
             assessmentinstancetablehandler="[object Object]"
             assessmentnavstate="[object Object]"
-            hasvisualhelper="false"
+            assessmentsprovider="undefined"
+            featureflagstoredata="[object Object]"
             instancesmap="[object Object]"
+            isrequirementscanned="true"
+            manualrequirementresultmap="[object Object]"
+            pathsnippetstoredata="[object Object]"
+            requirement="[object Object]"
+            selectedrequirementhasvisualhelper="false"
           />
         </div>
         <div>
@@ -45,7 +43,7 @@ exports[`RequirementViewTest renders with content from props 1`] = `
 </DocumentFragment>
 `;
 
-exports[`RequirementViewTest renders with content from props: AssessmentInstanceTable props 1`] = `
+exports[`RequirementViewTest renders with content from props: RequirementTableSection props 1`] = `
 {
   "assessmentDefaultMessageGenerator": undefined,
   "assessmentInstanceTableHandler": {
@@ -55,9 +53,39 @@ exports[`RequirementViewTest renders with content from props: AssessmentInstance
     "selectedTestSubview": "test-requirement-name",
     "selectedTestType": 0,
   },
-  "getDefaultMessage": undefined,
-  "hasVisualHelper": false,
-  "instanceTableHeaderType": undefined,
+  "assessmentsProvider": [typemoq mock object],
+  "featureFlagStoreData": {
+    "some feature flag": true,
+  },
   "instancesMap": {},
+  "isRequirementScanned": true,
+  "manualRequirementResultMap": {
+    "some manual test step result id": null,
+  },
+  "pathSnippetStoreData": {
+    "path": null,
+  },
+  "requirement": {
+    "guidanceLinks": [
+      {
+        "href": "test-guidance-href",
+        "text": "test-guidance-text",
+      },
+    ],
+    "helpfulResourceLinks": [
+      {
+        "href": "test-resource-href",
+        "text": "test-resource-text",
+      },
+    ],
+    "infoAndExamples": {
+      "pageTitle": "test-page-title",
+    },
+    "key": "test-requirement-key",
+    "name": "rest-requirement-name",
+    "whyItMatters": [Function],
+  },
+  "scanningInProgress": undefined,
+  "selectedRequirementHasVisualHelper": false,
 }
 `;
