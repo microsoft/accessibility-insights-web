@@ -14,6 +14,7 @@ import {
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -36,6 +37,7 @@ describe(DetailsViewContentWithLocalState, () => {
         } as DetailsViewContentWithLocalStateProps;
         const renderResult = render(<DetailsViewContentWithLocalState {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([NarrowModeDetector]);
     });
 
     describe('nav state change', () => {
@@ -66,6 +68,7 @@ describe(DetailsViewContentWithLocalState, () => {
             callSetNavOpen(detector, true, eventStub);
             const detectorCall2 = getMockComponentClassPropsForCall(NarrowModeDetector, 2);
             expect(detectorCall2.childrenProps.isSideNavOpen).toBe(true);
+
             detailsViewActionMessageCreatorMock.verifyAll();
         });
 
@@ -85,6 +88,7 @@ describe(DetailsViewContentWithLocalState, () => {
 
             const narrowProps3 = getMockComponentClassPropsForCall(NarrowModeDetector, 3);
             expect(narrowProps3.childrenProps.isSideNavOpen).toBe(false);
+
             detailsViewActionMessageCreatorMock.verifyAll();
         });
 

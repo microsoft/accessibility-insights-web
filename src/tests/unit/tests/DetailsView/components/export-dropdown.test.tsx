@@ -5,7 +5,6 @@ import { ContextualMenu, PrimaryButton } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-
 import { FeatureFlags } from 'common/feature-flags';
 import { ExportDropdown, ExportDropdownProps } from 'DetailsView/components/export-dropdown';
 import * as React from 'react';

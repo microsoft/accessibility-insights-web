@@ -8,3 +8,18 @@ exports[`DetailsViewContentWithLocalState render 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`DetailsViewContentWithLocalState render: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "isSideNavOpen": false,
+    "setSideNavOpen": [Function],
+    "storeState": {
+      "featureFlagStoreData": {},
+    },
+  },
+  "deps": undefined,
+  "isNarrowModeEnabled": true,
+}
+`;
