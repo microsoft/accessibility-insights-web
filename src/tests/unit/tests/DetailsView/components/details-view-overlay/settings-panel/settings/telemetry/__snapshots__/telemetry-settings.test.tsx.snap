@@ -54,6 +54,14 @@ exports[`TelemetrySettings renders with enabled = false 1`] = `
 </DocumentFragment>
 `;
 
+exports[`TelemetrySettings renders with enabled = false: EnableTelemetrySettingDescription props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
+`;
+
 exports[`TelemetrySettings renders with enabled = true 1`] = `
 <DocumentFragment>
   <div
@@ -106,4 +114,12 @@ exports[`TelemetrySettings renders with enabled = true 1`] = `
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`TelemetrySettings renders with enabled = true: EnableTelemetrySettingDescription props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
 `;

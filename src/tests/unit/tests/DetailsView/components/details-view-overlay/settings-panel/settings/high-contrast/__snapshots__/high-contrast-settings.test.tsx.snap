@@ -11,6 +11,18 @@ exports[`HighContrastSettings renders with enabled = false 1`] = `
 </DocumentFragment>
 `;
 
+exports[`HighContrastSettings renders with enabled = false: GenericToggle props 1`] = `
+{
+  "description": <React.Fragment>
+    Make text easier to see by using more distinct colors.
+  </React.Fragment>,
+  "enabled": false,
+  "id": "enable-high-contrast-mode",
+  "name": "Enable high contrast",
+  "onClick": [Function],
+}
+`;
+
 exports[`HighContrastSettings renders with enabled = true 1`] = `
 <DocumentFragment>
   <mock-generictoggle
@@ -20,4 +32,16 @@ exports[`HighContrastSettings renders with enabled = true 1`] = `
     name="Enable high contrast"
   />
 </DocumentFragment>
+`;
+
+exports[`HighContrastSettings renders with enabled = true: GenericToggle props 1`] = `
+{
+  "description": <React.Fragment>
+    Make text easier to see by using more distinct colors.
+  </React.Fragment>,
+  "enabled": true,
+  "id": "enable-high-contrast-mode",
+  "name": "Enable high contrast",
+  "onClick": [Function],
+}
 `;

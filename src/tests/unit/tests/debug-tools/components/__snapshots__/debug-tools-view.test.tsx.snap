@@ -9,12 +9,6 @@ exports[`DebugToolsView renders when storesHub.hasStoresData = false 1`] = `
 </DocumentFragment>
 `;
 
-exports[`DebugToolsView renders when storesHub.hasStoresData = false: CurrentView props 1`] = `undefined`;
-
-exports[`DebugToolsView renders when storesHub.hasStoresData = false: NarrowModeDetector props 1`] = `undefined`;
-
-exports[`DebugToolsView renders when storesHub.hasStoresData = false: ToolsNav props 1`] = `undefined`;
-
 exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
 <DocumentFragment>
   <div

@@ -69,7 +69,6 @@ describe('PreviewFeaturesContainerTest', () => {
             const renderResult = render(<PreviewFeaturesContainer {...props} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([PreviewFeaturesToggleList]);
         });
     });
 });

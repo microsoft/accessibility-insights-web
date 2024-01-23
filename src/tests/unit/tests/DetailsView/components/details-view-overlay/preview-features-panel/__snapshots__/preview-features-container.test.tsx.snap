@@ -49,5 +49,3 @@ exports[`PreviewFeaturesContainerTest renders special message when there is no p
   </div>
 </DocumentFragment>
 `;
-
-exports[`PreviewFeaturesContainerTest renders special message when there is no preview features available: PreviewFeaturesToggleList props 1`] = `undefined`;

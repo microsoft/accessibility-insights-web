@@ -12,6 +12,7 @@ import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 import userEvent from '@testing-library/user-event';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../../../../../mock-helpers/mock-module-helpers';
@@ -35,6 +36,7 @@ describe('HighContrastSettings', () => {
             const renderResult = render(<HighContrastSettings {...props} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([GenericToggle]);
         });
     });
 

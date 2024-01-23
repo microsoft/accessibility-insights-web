@@ -12,6 +12,7 @@ import {
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
@@ -46,6 +47,7 @@ describe('TelemetrySettings', () => {
             const teleMetryDescription = getMockComponentClassPropsForCall(GenericToggle);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([EnableTelemetrySettingDescription]);
             expect(teleMetryDescription.description.props.deps.LinkComponent).toBe(
                 props.deps.LinkComponent,
             );

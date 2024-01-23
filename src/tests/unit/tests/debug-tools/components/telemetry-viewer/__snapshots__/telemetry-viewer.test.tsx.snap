@@ -8,8 +8,6 @@ exports[`TelemetryViewer renders when there are no telemetry messages 1`] = `
 </DocumentFragment>
 `;
 
-exports[`TelemetryViewer renders when there are no telemetry messages: TelemetryMessagesList props 1`] = `undefined`;
-
 exports[`TelemetryViewer renders when there is at least one telemetry message 1`] = `
 <DocumentFragment>
   <mock-telemetrycommonfields

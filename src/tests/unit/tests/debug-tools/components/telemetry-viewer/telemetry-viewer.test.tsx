@@ -62,7 +62,6 @@ describe('TelemetryViewer', () => {
             const renderResult = render(<TelemetryViewer {...props} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([TelemetryMessagesList]);
         });
 
         it('when there is at least one telemetry message', () => {
