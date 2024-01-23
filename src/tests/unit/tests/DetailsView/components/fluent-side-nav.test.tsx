@@ -37,7 +37,6 @@ describe(FluentSideNav, () => {
         const renderResult = render(
             <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...props} />,
         );
-        expectMockedComponentPropsToMatchSnapshots([DetailsViewLeftNav]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 

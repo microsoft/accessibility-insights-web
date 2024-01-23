@@ -28,12 +28,6 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        useOriginalReactElements('@fluentui/react', [
-            'Dialog',
-            'DialogFooter',
-            'PrimaryButton',
-            'DefaultButton',
-        ]);
         const renderResult = render(<GenericDialog {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();

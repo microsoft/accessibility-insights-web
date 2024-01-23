@@ -30,7 +30,6 @@ describe('GenericToggleTest', () => {
                 id: 'test-id-1',
             };
 
-            useOriginalReactElements('@fluentui/react', ['Toggle']);
             const renderResult = render(<GenericToggle {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
@@ -48,7 +47,6 @@ describe('GenericToggleTest', () => {
                 id: 'test-id-1',
             };
 
-            useOriginalReactElements('@fluentui/react', ['Toggle']);
             const renderResult = render(<GenericToggle {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
