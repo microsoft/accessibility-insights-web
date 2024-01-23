@@ -3,165 +3,20 @@
 exports[`AssessmentInstanceTable with instances renders per snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <button
-      class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-114"
+    <mock-insightscommandbutton
       data-automation-id="assessment-instance-table-pass-unmarked-instances-button"
-      data-is-focusable="true"
-      type="button"
+      disabled="false"
+      iconprops="[object Object]"
     >
-      <span
-        class="ms-Button-flexContainer flexContainer-115"
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-117 commandBarButtonIcon"
-          data-icon-name="skypeCheck"
-        />
-        <span
-          class="ms-Button-textContainer textContainer-116"
-        >
-          <span
-            class="ms-Button-label label-118"
-            id="id__0"
-          >
-            Pass unmarked instances
-          </span>
-        </span>
-      </span>
-    </button>
-    <div
-      class="ms-Viewport"
-      style="min-width: 1px; min-height: 1px;"
-    >
-      <div
-        class="ms-DetailsList is-horizontalConstrained root-121"
-        data-automationid="DetailsList"
-        data-is-scrollable="false"
-      >
-        <div
-          aria-colcount="1"
-          aria-label="Use arrow keys to navigate inside the instances grid"
-          aria-rowcount="2"
-          role="grid"
-        >
-          <div
-            class="ms-DetailsList-headerWrapper"
-            role="presentation"
-          >
-            <div
-              class="ms-FocusZone css-139 ms-DetailsHeader root-123"
-              data-automationid="DetailsHeader"
-              data-focuszone-id="FocusZone5"
-              role="row"
-            >
-              <div
-                aria-labelledby="header4-col1-name"
-                aria-sort="none"
-                class="ms-DetailsHeader-cell is-actionable root-140"
-                data-automationid="ColumnsHeaderColumn"
-                data-is-draggable="false"
-                data-is-focusable="true"
-                data-item-key="col1"
-                draggable="false"
-                role="columnheader"
-                style="width: 120px;"
-                tabindex="0"
-              >
-                <span
-                  class="cellTooltip-148"
-                >
-                  <span
-                    class="ms-DetailsHeader-cellTitle cellTitle-146"
-                    id="header4-col1"
-                  >
-                    <span
-                      class="ms-DetailsHeader-cellName cellName-147"
-                      id="header4-col1-name"
-                    >
-                      col1
-                    </span>
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div
-            class="ms-DetailsList-contentWrapper"
-            role="presentation"
-          >
-            <div
-              class="ms-SelectionZone"
-              role="presentation"
-            >
-              <div
-                class="ms-FocusZone css-139 focusZone-122"
-                data-focuszone-id="FocusZone6"
-              >
-                <div
-                  class="ms-List"
-                  role="presentation"
-                >
-                  <div
-                    class="ms-List-surface"
-                    role="presentation"
-                  >
-                    <div
-                      class="ms-List-page"
-                      role="presentation"
-                    >
-                      <div
-                        class="ms-List-cell"
-                        data-automationid="ListCell"
-                        data-list-index="0"
-                        role="presentation"
-                      >
-                        <div>
-                          <div
-                            aria-rowindex="2"
-                            aria-selected="false"
-                            class="ms-FocusZone css-139 ms-DetailsRow is-contentUnselectable root-154"
-                            data-automationid="DetailsRow"
-                            data-focuszone-id="FocusZone9"
-                            data-is-focusable="true"
-                            data-item-index="0"
-                            data-selection-index="0"
-                            data-selection-touch-invoke="true"
-                            id="row7-0"
-                            role="row"
-                            style="min-width: 100px;"
-                          >
-                            <div
-                              class="ms-DetailsRow-fields fields-161"
-                              data-automationid="DetailsRowFields"
-                              role="presentation"
-                            >
-                              <div
-                                class="ms-DetailsRow-cell cell-157 cellUnpadded-155"
-                                data-automation-key="col1"
-                                data-automationid="DetailsRowCell"
-                                role="gridcell"
-                                style="width: 120px;"
-                              />
-                            </div>
-                            <span
-                              aria-checked="false"
-                              class="checkCover-160"
-                              data-selection-toggle="true"
-                              role="checkbox"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      Pass unmarked instances
+    </mock-insightscommandbutton>
+    <mock-styledwithviewportcomponent
+      arialabelforgrid="Use arrow keys to navigate inside the instances grid"
+      checkboxvisibility="2"
+      columns="[object Object]"
+      constrainmode="1"
+      items="[object Object]"
+    />
   </div>
 </DocumentFragment>
 `;
@@ -169,155 +24,99 @@ exports[`AssessmentInstanceTable with instances renders per snapshot 1`] = `
 exports[`AssessmentInstanceTable with instances renders per snapshot with "none" header type 1`] = `
 <DocumentFragment>
   <div>
-    <div
-      class="ms-Viewport"
-      style="min-width: 1px; min-height: 1px;"
-    >
-      <div
-        class="ms-DetailsList is-horizontalConstrained root-121"
-        data-automationid="DetailsList"
-        data-is-scrollable="false"
-      >
-        <div
-          aria-colcount="1"
-          aria-label="Use arrow keys to navigate inside the instances grid"
-          aria-rowcount="2"
-          role="grid"
-        >
-          <div
-            class="ms-DetailsList-headerWrapper"
-            role="presentation"
-          >
-            <div
-              class="ms-FocusZone css-139 ms-DetailsHeader root-123"
-              data-automationid="DetailsHeader"
-              data-focuszone-id="FocusZone12"
-              role="row"
-            >
-              <div
-                aria-labelledby="header11-col1-name"
-                aria-sort="none"
-                class="ms-DetailsHeader-cell is-actionable root-140"
-                data-automationid="ColumnsHeaderColumn"
-                data-is-draggable="false"
-                data-is-focusable="true"
-                data-item-key="col1"
-                draggable="false"
-                role="columnheader"
-                style="width: 120px;"
-                tabindex="0"
-              >
-                <span
-                  class="cellTooltip-148"
-                >
-                  <span
-                    class="ms-DetailsHeader-cellTitle cellTitle-146"
-                    id="header11-col1"
-                  >
-                    <span
-                      class="ms-DetailsHeader-cellName cellName-147"
-                      id="header11-col1-name"
-                    >
-                      col1
-                    </span>
-                  </span>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div
-            class="ms-DetailsList-contentWrapper"
-            role="presentation"
-          >
-            <div
-              class="ms-SelectionZone"
-              role="presentation"
-            >
-              <div
-                class="ms-FocusZone css-139 focusZone-122"
-                data-focuszone-id="FocusZone13"
-              >
-                <div
-                  class="ms-List"
-                  role="presentation"
-                >
-                  <div
-                    class="ms-List-surface"
-                    role="presentation"
-                  >
-                    <div
-                      class="ms-List-page"
-                      role="presentation"
-                    >
-                      <div
-                        class="ms-List-cell"
-                        data-automationid="ListCell"
-                        data-list-index="0"
-                        role="presentation"
-                      >
-                        <div>
-                          <div
-                            aria-rowindex="2"
-                            aria-selected="false"
-                            class="ms-FocusZone css-139 ms-DetailsRow is-contentUnselectable root-154"
-                            data-automationid="DetailsRow"
-                            data-focuszone-id="FocusZone16"
-                            data-is-focusable="true"
-                            data-item-index="0"
-                            data-selection-index="0"
-                            data-selection-touch-invoke="true"
-                            id="row14-0"
-                            role="row"
-                            style="min-width: 100px;"
-                          >
-                            <div
-                              class="ms-DetailsRow-fields fields-161"
-                              data-automationid="DetailsRowFields"
-                              role="presentation"
-                            >
-                              <div
-                                class="ms-DetailsRow-cell cell-157 cellUnpadded-155"
-                                data-automation-key="col1"
-                                data-automationid="DetailsRowCell"
-                                role="gridcell"
-                                style="width: 120px;"
-                              />
-                            </div>
-                            <span
-                              aria-checked="false"
-                              class="checkCover-160"
-                              data-selection-toggle="true"
-                              role="checkbox"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <mock-styledwithviewportcomponent
+      arialabelforgrid="Use arrow keys to navigate inside the instances grid"
+      checkboxvisibility="2"
+      columns="[object Object]"
+      constrainmode="1"
+      items="[object Object]"
+    />
   </div>
 </DocumentFragment>
 `;
 
+exports[`AssessmentInstanceTable with instances renders per snapshot with "none" header type: StyledWithViewportComponent props 1`] = `
+{
+  "ariaLabelForGrid": "Use arrow keys to navigate inside the instances grid",
+  "checkboxVisibility": 2,
+  "columns": [
+    {
+      "fieldName": "fieldName",
+      "key": "col1",
+      "minWidth": 0,
+      "name": "col1",
+    },
+  ],
+  "constrainMode": 1,
+  "items": [
+    {
+      "instance": {
+        "testStepResults": {
+          "step": {
+            "status": 1,
+          },
+        },
+      },
+      "key": "items[0]",
+      "statusChoiceGroup": null,
+      "visualizationButton": null,
+    },
+  ],
+  "onItemInvoked": [Function],
+  "onRenderRow": [Function],
+}
+`;
+
+exports[`AssessmentInstanceTable with instances renders per snapshot: InsightsCommandButton props 1`] = `
+{
+  "children": "Pass unmarked instances",
+  "data-automation-id": "assessment-instance-table-pass-unmarked-instances-button",
+  "disabled": false,
+  "iconProps": {
+    "iconName": "skypeCheck",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`AssessmentInstanceTable with instances renders per snapshot: StyledWithViewportComponent props 1`] = `
+{
+  "ariaLabelForGrid": "Use arrow keys to navigate inside the instances grid",
+  "checkboxVisibility": 2,
+  "columns": [
+    {
+      "fieldName": "fieldName",
+      "key": "col1",
+      "minWidth": 0,
+      "name": "col1",
+    },
+  ],
+  "constrainMode": 1,
+  "items": [
+    {
+      "instance": {
+        "testStepResults": {
+          "step": {
+            "status": 1,
+          },
+        },
+      },
+      "key": "items[0]",
+      "statusChoiceGroup": null,
+      "visualizationButton": null,
+    },
+  ],
+  "onItemInvoked": [Function],
+  "onRenderRow": [Function],
+}
+`;
+
 exports[`AssessmentInstanceTable with null instance data renders a spinner per snapshot 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-Spinner details-view-spinner root-110"
-  >
-    <div
-      class="ms-Spinner-circle ms-Spinner--large circle-111"
-    />
-    <div
-      class="ms-Spinner-label label-112"
-    >
-      Scanning
-    </div>
-  </div>
+  <mock-styledspinnerbase
+    classname="details-view-spinner"
+    label="Scanning"
+    size="3"
+  />
 </DocumentFragment>
 `;

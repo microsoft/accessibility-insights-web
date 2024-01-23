@@ -128,6 +128,8 @@ describe('AssessmentIssuesTestView', () => {
         } as VisualizationConfiguration;
 
         clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
+        updateHandlerMock = Mock.ofType(AssessmentViewUpdateHandler, MockBehavior.Strict);
+        assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
         updateHandlerMock = Mock.ofType(AssessmentViewUpdateHandler);
         assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl);
         assessmentProviderMock

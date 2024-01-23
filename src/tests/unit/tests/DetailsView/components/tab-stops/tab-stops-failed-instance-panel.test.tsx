@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
+import { FailedInstancePanel } from 'DetailsView/components/tab-stops/failed-instance-panel';
 import {
     TabStopsFailedInstancePanel,
     TabStopsFailedInstancePanelDeps,
@@ -13,10 +14,14 @@ import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab
 import { FailureInstanceState } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { getMockComponentClassPropsForCall, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { TabStopRequirementId, TabStopRequirementInfo } from 'types/tab-stop-requirement-info';
 
+jest.mock('DetailsView/components/tab-stops/failed-instance-panel');
+
 describe('TabStopsFailedInstancePanel', () => {
+    mockReactComponents([FailedInstancePanel])
     let props: TabStopsFailedInstancePanelProps;
     let tabStopRequirementsStub: TabStopRequirementInfo;
     let tabStopsTestViewControllerMock: IMock<TabStopsTestViewController>;
@@ -60,7 +65,7 @@ describe('TabStopsFailedInstancePanel', () => {
 
     test('render with failure instance action type CREATE', async () => {
         const requirementId: TabStopRequirementId = 'focus-indicator';
-
+        const description = 'description';
         props = {
             deps: {
                 tabStopRequirements: tabStopRequirementsStub,
@@ -76,62 +81,46 @@ describe('TabStopsFailedInstancePanel', () => {
                 actionType: CapturedInstanceActionType.CREATE,
             },
         };
-
-        const result = render(<TabStopsFailedInstancePanel {...props} />);
-        const getConfirmButton = screen.getByText('Add failed instance');
-        const getTexFieldValue = screen.getByLabelText('Comment');
-        //mock click behaviour for confirm button
-        fireEvent.click(getConfirmButton);
-        //mock onChange behaviour for input field
-        fireEvent.change(getTexFieldValue, { target: { value: 'test' } });
-        expect(result.asFragment()).toMatchSnapshot();
+        const testSubject = render(<TabStopsFailedInstancePanel {...props} />);
+        const getFailedInstanceProps = getMockComponentClassPropsForCall(FailedInstancePanel);
+        getFailedInstanceProps.onConfirm();
+        getFailedInstanceProps.onChange(null, description);
+        getFailedInstanceProps.onDismiss();
+        expect(testSubject.asFragment()).toMatchSnapshot();
+        tabStopsTestViewControllerMock.verify(m => m.dismissPanel(), Times.once());
+        tabStopsTestViewControllerMock.verify(m => m.updateDescription(description), Times.once());
+        tabStopRequirementActionMessageCreatorMock.verify(
+            m =>
+                m.addTabStopInstance(
+                    It.isValue({
+                        requirementId: failureState.selectedRequirementId,
+                        description: failureState.description,
+                    }),
+                ),
+            Times.once(),
+        );
     });
 
     test('render with failure instance action type EDIT', () => {
-        const requirementId: TabStopRequirementId = 'focus-indicator';
-        props = {
-            deps: {
-                tabStopRequirements: tabStopRequirementsStub,
-                tabStopsTestViewController: tabStopsTestViewControllerMock.object,
-                tabStopRequirementActionMessageCreator:
-                    tabStopRequirementActionMessageCreatorMock.object,
-            } as TabStopsFailedInstancePanelDeps,
-            failureInstanceState: {
-                isPanelOpen: true,
-                selectedRequirementId: requirementId,
-                selectedInstanceId: 'some instance id',
-                description: 'some description',
-                actionType: CapturedInstanceActionType.EDIT,
-            },
-        };
-        const result = render(<TabStopsFailedInstancePanel {...props} />);
-        //mock click behaviour for save button
-        const getSaveButton = screen.getByText('Save');
-        fireEvent.click(getSaveButton);
-        expect(result.asFragment()).toMatchSnapshot();
-    });
+        const description = 'description';
+        props.failureInstanceState.actionType = CapturedInstanceActionType.EDIT;
+        const testSubject = render(<TabStopsFailedInstancePanel {...props} />);
+        const panelProps = getMockComponentClassPropsForCall(FailedInstancePanel);
+        panelProps.onConfirm();
+        panelProps.onChange(null, description);
+        panelProps.onDismiss();
 
-    test('render with failure instance action type EDIT with description value as null', () => {
-        const requirementId: TabStopRequirementId = 'focus-indicator';
-        props = {
-            deps: {
-                tabStopRequirements: tabStopRequirementsStub,
-                tabStopsTestViewController: tabStopsTestViewControllerMock.object,
-                tabStopRequirementActionMessageCreator:
-                    tabStopRequirementActionMessageCreatorMock.object,
-            } as TabStopsFailedInstancePanelDeps,
-            failureInstanceState: {
-                isPanelOpen: true,
-                selectedRequirementId: requirementId,
-                selectedInstanceId: 'some instance id',
-                description: null,
-                actionType: CapturedInstanceActionType.EDIT,
-            },
-        };
-        const result = render(<TabStopsFailedInstancePanel {...props} />);
-        //mock click behaviour for save button
-        const getSaveButton = screen.getByText('Save');
-        fireEvent.click(getSaveButton);
-        expect(result.asFragment()).toMatchSnapshot();
+        expect(testSubject.asFragment()).toMatchSnapshot();
+        tabStopsTestViewControllerMock.verify(m => m.dismissPanel(), Times.once());
+        tabStopsTestViewControllerMock.verify(m => m.updateDescription(description), Times.once());
+        tabStopRequirementActionMessageCreatorMock.verify(
+            m =>
+                m.updateTabStopInstance(
+                    failureState.selectedRequirementId,
+                    failureState.selectedInstanceId,
+                    failureState.description,
+                ),
+            Times.once(),
+        );
     });
 });

@@ -8,52 +8,19 @@ exports[`ActionAndCancelButtonsComponent render with primary button href == null
     <div
       class="actionCancelButtonCol"
     >
-      <button
-        class="ms-Button ms-Button--default root-109"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__6"
-            >
-              Cancel
-            </span>
-          </span>
-        </span>
-      </button>
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
     </div>
     <div
       class="actionCancelButtonCol"
     >
-      <button
-        class="ms-Button ms-Button--primary root-117"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__9"
-            >
-              Test
-            </span>
-          </span>
-        </span>
-      </button>
+      <mock-customizeddefaultbutton
+        disabled="false"
+        primary="true"
+        target="_self"
+        text="Test"
+      />
     </div>
   </div>
 </DocumentFragment>
@@ -67,53 +34,20 @@ exports[`ActionAndCancelButtonsComponent render with primary button href == samp
     <div
       class="actionCancelButtonCol"
     >
-      <button
-        class="ms-Button ms-Button--default root-109"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__0"
-            >
-              Cancel
-            </span>
-          </span>
-        </span>
-      </button>
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
     </div>
     <div
       class="actionCancelButtonCol"
     >
-      <a
-        class="ms-Button ms-Button--primary root-117"
-        data-is-focusable="true"
+      <mock-customizeddefaultbutton
+        disabled="false"
         href="sample href"
+        primary="true"
         target="_blank"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__3"
-            >
-              Test
-            </span>
-          </span>
-        </span>
-      </a>
+        text="Test"
+      />
     </div>
   </div>
 </DocumentFragment>

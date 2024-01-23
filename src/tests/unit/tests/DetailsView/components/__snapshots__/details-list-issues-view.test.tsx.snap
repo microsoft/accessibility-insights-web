@@ -2,12 +2,95 @@
 
 exports[`DetailsListIssuesView should return issues table with scanning to false 1`] = `
 <DocumentFragment>
-  <mock-detailslistissuesview
+  <mock-issuestable
     cardsviewdata="[object Object]"
-    configuration="[object Object]"
     deps="[object Object]"
-    featureflagstoredata="[object Object]"
+    featureflags="[object Object]"
+    issuesenabled="true"
+    scanning="false"
+    stepstext="Step 0 of 3"
+    subtitle="[object Object]"
+    title="test title"
     visualizationstoredata="[object Object]"
   />
 </DocumentFragment>
+`;
+
+exports[`DetailsListIssuesView should return issues table with scanning to false: IssuesTable props 1`] = `
+{
+  "cardSelectionMessageCreator": undefined,
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
+        {
+          "description": "sample-description",
+          "guidance": [
+            {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [],
+      "unknown": [],
+    },
+    "visualHelperEnabled": true,
+  },
+  "cardsViewStoreData": undefined,
+  "deps": {
+    "detailsViewActionMessageCreator": {},
+    "getProvider": [Function],
+  },
+  "featureFlags": {},
+  "getProvider": [Function],
+  "includeStepsText": undefined,
+  "instancesSection": [Function],
+  "issuesEnabled": true,
+  "narrowModeStatus": undefined,
+  "scanMetadata": undefined,
+  "scanning": false,
+  "selectedVisualizationType": undefined,
+  "stepsText": "Step 0 of 3",
+  "subtitle": <React.Fragment>
+    test subtitle
+  </React.Fragment>,
+  "title": "test title",
+  "userConfigurationStoreData": undefined,
+  "visualizationStoreData": {
+    "scanning": null,
+    "tests": {},
+  },
+}
 `;

@@ -18,6 +18,39 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 </DocumentFragment>
 `;
 
+exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu: CustomizedCommandBarButton props 1`] = `
+{
+  "ariaLabel": "More actions",
+  "className": "commandBarButtonsMenu",
+  "componentRef": {},
+  "menuIconProps": {
+    "className": "commandBarButtonsMenuButton",
+    "iconName": "More",
+  },
+  "menuProps": {
+    "className": "commandBarButtonsSubmenu",
+    "items": [
+      {
+        "key": "save assessment",
+        "onRender": [Function],
+      },
+      {
+        "key": "load assessment",
+        "onRender": [Function],
+      },
+      {
+        "key": "transfer to assessment",
+        "onRender": [Function],
+      },
+      {
+        "key": "start over",
+      },
+    ],
+  },
+  "role": "button",
+}
+`;
+
 exports[`CommandBarButtonsMenu renders all child buttons,: render export report menuitem 1`] = `
 <div
   role="menuitem"

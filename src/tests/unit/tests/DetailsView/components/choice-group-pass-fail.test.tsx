@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IconButton } from '@fluentui/react';
+import { ChoiceGroup, IconButton } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
 import {
@@ -9,10 +9,15 @@ import {
 } from 'DetailsView/components/choice-group-pass-fail';
 import { onUndoClicked } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as React from 'react';
+import { mockReactComponents, useOriginalReactElements } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 import '@testing-library/jest-dom';
 
+
+jest.mock('@fluentui/react');
+
 describe('ChoiceGroupPassFail', () => {
+    mockReactComponents([ChoiceGroup, IconButton]);
     let props: ChoiceGroupPassFailProps;
     let onUndoClickedMock: IMock<onUndoClicked>;
 
@@ -24,9 +29,9 @@ describe('ChoiceGroupPassFail', () => {
                 { key: TabStopRequirementStatuses.fail, text: 'Fail' },
             ],
             selectedKey: TabStopRequirementStatuses.unknown,
-            onChange: () => {},
+            onChange: () => { },
             secondaryControls: (
-                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" noClick={() => {}} />
+                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" noClick={() => { }} />
             ),
             onUndoClickedPassThrough: onUndoClickedMock.object,
         };
@@ -52,7 +57,7 @@ describe('ChoiceGroupPassFail', () => {
     test('render label, aria-label is not defined', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.isLabelVisible = true;
-
+        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton']);
         const testSubject = render(<ChoiceGroupPassFail {...props} />);
         const options = testSubject.getAllByRole('radio');
 
@@ -65,7 +70,7 @@ describe('ChoiceGroupPassFail', () => {
     test('render options without label, aria-label is defined', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.isLabelVisible = false;
-
+        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton']);
         const testSubject = render(<ChoiceGroupPassFail {...props} />);
         const options = testSubject.getAllByRole('radio');
 
@@ -79,7 +84,7 @@ describe('ChoiceGroupPassFail', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
         const testSubject = render(<ChoiceGroupPassFail {...props} />);
-        expect(testSubject.container.querySelectorAll('.iconButton')).toBeTruthy();
+        expect(testSubject.getAllByRole('button')).toBeTruthy()
     });
 
     test('verify component is correctly used with undo', async () => {

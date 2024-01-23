@@ -2,6 +2,7 @@
 
 exports[`BannerWarning render 1`] = `
 <DocumentFragment>
-  <mock-bannerwarnings />
+  <mock-scanincompletewarning />
+  <mock-injection-failed-warning />
 </DocumentFragment>
 `;

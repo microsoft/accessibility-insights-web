@@ -2,14 +2,17 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import { BannerWarnings } from 'DetailsView/components/banner-warnings';
+import { InjectionFailedWarning } from 'DetailsView/components/injection-failed-warning';
+import { ScanIncompleteWarning } from 'DetailsView/components/scan-incomplete-warning';
 
 import * as React from 'react';
 import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 
-jest.mock('DetailsView/components/banner-warnings');
+jest.mock('DetailsView/components/scan-incomplete-warning');
+jest.mock('DetailsView/components/injection-failed-warning')
 
 describe('BannerWarning', () => {
-    mockReactComponents([BannerWarnings]);
+    mockReactComponents([ScanIncompleteWarning, InjectionFailedWarning]);
     test('render', () => {
         const wrapper = render(
             <BannerWarnings

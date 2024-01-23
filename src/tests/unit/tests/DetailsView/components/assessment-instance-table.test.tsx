@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IColumn } from '@fluentui/react';
+import { DetailsList, IColumn, Spinner } from '@fluentui/react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import {
     AssessmentDefaultMessageGenerator,
@@ -12,8 +12,8 @@ import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 
 import * as React from 'react';
-import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { InsightsCommandButton } from '../../../../../common/components/controls/insights-command-button';
 import {
     AssessmentResultType,
     GeneratedAssessmentInstance,
@@ -21,12 +21,16 @@ import {
 import {
     AssessmentInstanceTable,
     AssessmentInstanceTableProps,
-    passUnmarkedInstancesButtonAutomationId,
 } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DictionaryStringTo } from '../../../../../types/common-types';
+import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents, useOriginalReactElements } from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('@fluentui/react');
+jest.mock('../../../../../common/components/controls/insights-command-button');
 
 describe('AssessmentInstanceTable', () => {
+    mockReactComponents([Spinner, DetailsList, InsightsCommandButton]);
     let getDefaultMessageStub: IGetMessageGenerator;
     let getDefaultMessageMock: IMock<IGetMessageGenerator>;
     let assessmentDefaultMessageGeneratorMock: IMock<AssessmentDefaultMessageGenerator>;
@@ -136,6 +140,7 @@ describe('AssessmentInstanceTable', () => {
         it('renders per snapshot', () => {
             const testSubject = render(<AssessmentInstanceTable {...props} />);
             expect(testSubject.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([InsightsCommandButton, DetailsList]);
         });
 
         it('renders per snapshot with "none" header type', () => {
@@ -143,6 +148,7 @@ describe('AssessmentInstanceTable', () => {
                 <AssessmentInstanceTable {...props} instanceTableHeaderType={'none'} />,
             );
             expect(testSubject.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([DetailsList]);
         });
 
         it('prefers rendering with getDefaultMessage if non-null', () => {
@@ -164,26 +170,23 @@ describe('AssessmentInstanceTable', () => {
             const renderRow = jest.fn();
             const onItemInvoked = jest.fn();
 
-            const result = render(<AssessmentInstanceTable {...props} />);
-            const rowClick = result.container.querySelectorAll('.ms-DetailsRow');
+            useOriginalReactElements('common/components/controls/insights-command-button', ['InsightsCommandButton']);
+            useOriginalReactElements('@fluentui/react', ['Spinner', 'DetailsList', 'ActionButton']);
+            render(<AssessmentInstanceTable {...props} />);
+            const rowClick = screen.getAllByRole('row')
 
-            fireEvent.dblClick(rowClick[0], fakeItem);
-            fireEvent.click(rowClick[0], fakeItem);
+            fireEvent.dblClick(rowClick[1], fakeItem);
+            fireEvent.click(rowClick[1], fakeItem);
             expect(renderRow).toBeDefined();
             expect(onItemInvoked).toBeDefined();
         });
 
         describe('"Pass all unmarked instances" button', () => {
-            const passUnmarkedInstancesButtonSelector = `button${getAutomationIdSelector(
-                passUnmarkedInstancesButtonAutomationId,
-            )}`;
             it('is enabled if there is an instance with unknown status', () => {
                 testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
 
-                const testSubject = render(<AssessmentInstanceTable {...props} />);
-                const getUnmarkedSelector = testSubject.container.querySelectorAll(
-                    passUnmarkedInstancesButtonSelector,
-                );
+                render(<AssessmentInstanceTable {...props} />);
+                const getUnmarkedSelector = screen.getAllByRole('button')
 
                 expect(getUnmarkedSelector).not.toHaveProperty('disabled');
             });
@@ -194,11 +197,10 @@ describe('AssessmentInstanceTable', () => {
                 testStatus => {
                     testStepResults[selectedTestStep] = { status: testStatus };
 
-                    const testSubject = render(<AssessmentInstanceTable {...props} />);
-                    const getUnmarkedSelector = testSubject.container.querySelectorAll(
-                        passUnmarkedInstancesButtonSelector,
-                    );
-
+                    useOriginalReactElements('common/components/controls/insights-command-button', ['InsightsCommandButton']);
+                    useOriginalReactElements('@fluentui/react', ['Spinner', 'DetailsList', 'ActionButton']);
+                    render(<AssessmentInstanceTable {...props} />);
+                    const getUnmarkedSelector = screen.getAllByRole('button')
                     expect(getUnmarkedSelector[0]).toHaveProperty('disabled', true);
                 },
             );
@@ -212,12 +214,13 @@ describe('AssessmentInstanceTable', () => {
                         ),
                     )
                     .verifiable(Times.once());
+                useOriginalReactElements('common/components/controls/insights-command-button', ['InsightsCommandButton']);
+                useOriginalReactElements('@fluentui/react', ['Spinner', 'DetailsList', 'ActionButton']);
+                render(<AssessmentInstanceTable {...props} />);
 
-                const testSubject = render(<AssessmentInstanceTable {...props} />);
-                const buttonSelector = testSubject.container.querySelector(
-                    passUnmarkedInstancesButtonSelector,
-                );
-                fireEvent.click(buttonSelector);
+                const buttonSelector = screen.getAllByRole('button')
+                fireEvent.click(buttonSelector[0])
+
                 assessmentInstanceTableHandlerMock.verifyAll();
             });
         });

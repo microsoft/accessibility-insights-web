@@ -5,6 +5,13 @@ exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
   <div
     class="issuesTestView"
   >
+    <mock-bannerwarnings
+      deps="[object Object]"
+      test="-1"
+      visualizationstoredata="[object Object]"
+      warningconfiguration="[object Object]"
+      warnings=""
+    />
     <mock-detailslistissuesview
       clickhandlerfactory="undefined"
       configuration="[object Object]"

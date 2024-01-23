@@ -5,76 +5,19 @@ exports[`ChoiceGroupPassFail render 1`] = `
   <div
     class="choiceGroupContainer"
   >
-    <div
-      class="ms-ChoiceFieldGroup root-109"
-    >
-      <div
-        role="radiogroup"
-      >
-        <div
-          class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
-        >
-          <div
-            class="ms-ChoiceField radioButtonOption root-110"
-          >
-            <div
-              class="ms-ChoiceField-wrapper"
-            >
-              <input
-                aria-label="Pass"
-                class="ms-ChoiceField-input input-111"
-                id="ChoiceGroup0-pass"
-                name="ChoiceGroup0"
-                type="radio"
-              />
-              <label
-                class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-112"
-                for="ChoiceGroup0-pass"
-              />
-            </div>
-          </div>
-          <div
-            class="ms-ChoiceField radioButtonOption root-110"
-          >
-            <div
-              class="ms-ChoiceField-wrapper"
-            >
-              <input
-                aria-label="Fail"
-                class="ms-ChoiceField-input input-111"
-                id="ChoiceGroup0-fail"
-                name="ChoiceGroup0"
-                type="radio"
-              />
-              <label
-                class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-112"
-                for="ChoiceGroup0-fail"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <mock-styledchoicegroup
+      islabelvisible="false"
+      options="[object Object],[object Object]"
+      selectedkey="unknown"
+      styles="[object Object]"
+    />
     <div
       class="secondaryControlsWrapper"
     >
-      <button
+      <mock-customizediconbutton
         aria-label="add"
-        class="ms-Button ms-Button--icon root-117"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-118"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-120"
-            data-icon-name="add"
-          />
-        </span>
-      </button>
+        iconprops="[object Object]"
+      />
     </div>
   </div>
 </DocumentFragment>
@@ -85,94 +28,23 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
   <div
     class="choiceGroupContainer"
   >
-    <div
-      class="ms-ChoiceFieldGroup root-109"
-    >
-      <div
-        role="radiogroup"
-      >
-        <div
-          class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
-        >
-          <div
-            class="ms-ChoiceField radioButtonOption root-110"
-          >
-            <div
-              class="ms-ChoiceField-wrapper"
-            >
-              <input
-                aria-label="Pass"
-                class="ms-ChoiceField-input input-111"
-                id="ChoiceGroup5-pass"
-                name="ChoiceGroup5"
-                type="radio"
-              />
-              <label
-                class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionPass field-112"
-                for="ChoiceGroup5-pass"
-              />
-            </div>
-          </div>
-          <div
-            class="ms-ChoiceField radioButtonOption root-110"
-          >
-            <div
-              class="ms-ChoiceField-wrapper"
-            >
-              <input
-                aria-label="Fail"
-                checked=""
-                class="ms-ChoiceField-input input-111"
-                id="ChoiceGroup5-fail"
-                name="ChoiceGroup5"
-                type="radio"
-              />
-              <label
-                class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionFail field-125"
-                for="ChoiceGroup5-fail"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <mock-styledchoicegroup
+      islabelvisible="false"
+      options="[object Object],[object Object]"
+      selectedkey="fail"
+      styles="[object Object]"
+    />
     <div
       class="secondaryControlsWrapper"
     >
-      <button
-        aria-label="undo"
-        class="ms-Button ms-Button--icon root-117"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-118"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-120"
-            data-icon-name="undo"
-          />
-        </span>
-      </button>
-      <button
+      <mock-customizediconbutton
+        arialabel="undo"
+        iconprops="[object Object]"
+      />
+      <mock-customizediconbutton
         aria-label="add"
-        class="ms-Button ms-Button--icon root-117"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-118"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-120"
-            data-icon-name="add"
-          />
-        </span>
-      </button>
+        iconprops="[object Object]"
+      />
     </div>
   </div>
 </DocumentFragment>
@@ -183,94 +55,23 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
   <div
     class="choiceGroupContainer"
   >
-    <div
-      class="ms-ChoiceFieldGroup root-109"
-    >
-      <div
-        role="radiogroup"
-      >
-        <div
-          class="ms-ChoiceFieldGroup-flexContainer radioButtonGroup"
-        >
-          <div
-            class="ms-ChoiceField radioButtonOption root-110"
-          >
-            <div
-              class="ms-ChoiceField-wrapper"
-            >
-              <input
-                aria-label="Pass"
-                checked=""
-                class="ms-ChoiceField-input input-111"
-                id="ChoiceGroup13-pass"
-                name="ChoiceGroup13"
-                type="radio"
-              />
-              <label
-                class="ms-ChoiceField-field is-checked radioButtonOptionField radioButtonOptionPass field-125"
-                for="ChoiceGroup13-pass"
-              />
-            </div>
-          </div>
-          <div
-            class="ms-ChoiceField radioButtonOption root-110"
-          >
-            <div
-              class="ms-ChoiceField-wrapper"
-            >
-              <input
-                aria-label="Fail"
-                class="ms-ChoiceField-input input-111"
-                id="ChoiceGroup13-fail"
-                name="ChoiceGroup13"
-                type="radio"
-              />
-              <label
-                class="ms-ChoiceField-field radioButtonOptionField radioButtonOptionFail field-112"
-                for="ChoiceGroup13-fail"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <mock-styledchoicegroup
+      islabelvisible="false"
+      options="[object Object],[object Object]"
+      selectedkey="pass"
+      styles="[object Object]"
+    />
     <div
       class="secondaryControlsWrapper"
     >
-      <button
-        aria-label="undo"
-        class="ms-Button ms-Button--icon root-117"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-118"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-120"
-            data-icon-name="undo"
-          />
-        </span>
-      </button>
-      <button
+      <mock-customizediconbutton
+        arialabel="undo"
+        iconprops="[object Object]"
+      />
+      <mock-customizediconbutton
         aria-label="add"
-        class="ms-Button ms-Button--icon root-117"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-118"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-120"
-            data-icon-name="add"
-          />
-        </span>
-      </button>
+        iconprops="[object Object]"
+      />
     </div>
   </div>
 </DocumentFragment>

@@ -17,16 +17,16 @@ import {
     DetailsListIssuesViewProps,
 } from 'DetailsView/components/details-list-issues-view';
 
+import { IssuesTable } from 'DetailsView/components/issues-table';
 import * as React from 'react';
-import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
-jest.mock('DetailsView/components/details-list-issues-view');
 jest.mock('DetailsView/components/issues-table');
 
 describe('DetailsListIssuesView', () => {
-    mockReactComponents([DetailsListIssuesView]);
+    mockReactComponents([IssuesTable]);
     let props: DetailsListIssuesViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let displayableDataStub: DisplayableVisualizationTypeData;
@@ -55,7 +55,7 @@ describe('DetailsListIssuesView', () => {
         props = {
             deps: {
                 detailsViewActionMessageCreator,
-                getProvider: () => {},
+                getProvider: () => { },
             } as DetailsListIssuesViewDeps,
             configuration: {
                 getStoreData: getStoreDataMock.object,
@@ -81,6 +81,12 @@ describe('DetailsListIssuesView', () => {
         props.visualizationStoreData.scanning = null;
 
         const actual = render(<DetailsListIssuesView {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([IssuesTable])
+        verifyAll();
         expect(actual.asFragment()).toMatchSnapshot();
     });
+
+    function verifyAll(): void {
+        getStoreDataMock.verifyAll();
+    }
 });

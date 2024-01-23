@@ -10,3 +10,22 @@ exports[`BaseLeftNav should render 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`BaseLeftNav should render: StyledNavBase props 1`] = `
+{
+  "className": "detailsViewTestNavArea",
+  "componentRef": [Function],
+  "groups": [
+    {
+      "links": [
+        {},
+      ],
+    },
+  ],
+  "linkAs": [Function],
+  "selectedKey": "some key",
+  "styles": {
+    "chevronButton": "hidden",
+  },
+}
+`;

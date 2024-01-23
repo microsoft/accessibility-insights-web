@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { DetailsList } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import {
     TabStopRequirementState,
     TabStopRequirementStatuses,
 } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
+import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
+import { TabStopsChoiceGroup, TabStopsChoiceGroupsProps } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import {
     TabStopsRequirementsTable,
     TabStopsRequirementsTableProps,
@@ -17,10 +20,15 @@ import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { VisualizationScanResultStoreDataBuilder } from 'tests/unit/common/visualization-scan-result-store-data-builder';
-import { IMock, Mock } from 'typemoq';
+import { getMockComponentClassPropsForCall, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import { IMock, Mock, Times } from 'typemoq';
 import { TabStopRequirementContent } from 'types/tab-stop-requirement-info';
 
+jest.mock('@fluentui/react');
+jest.mock('DetailsView/components/tab-stops/tab-stops-choice-group')
+
 describe('TabStopsRequirementsTable', () => {
+    mockReactComponents([DetailsList, TabStopsChoiceGroup])
     let props: TabStopsRequirementsTableProps;
     let requirementState: TabStopRequirementState;
     let tabStopsRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
@@ -58,8 +66,9 @@ describe('TabStopsRequirementsTable', () => {
     });
 
     test('renders requirement column', () => {
-        const testSubject = render(<TabStopsRequirementsTable {...props} />);
-        const hasColumns = testSubject.container.querySelectorAll('.ms-details');
+        render(<TabStopsRequirementsTable {...props} />);
+        const hasColumns = getMockComponentClassPropsForCall(DetailsList).columns;
+
         expect(hasColumns).toMatchSnapshot();
     });
 
@@ -79,28 +88,28 @@ describe('TabStopsRequirementsTable', () => {
     });
 
     test('result column handlers', () => {
-        //update props to make sure Undo button is visible
-        props.requirementState['input-focus'].status = TabStopRequirementStatuses.pass;
-        const eventStub = new EventStubFactory().createMouseClickEvent() as SupportedMouseEvent;
-
-        const testSubject = render(<TabStopsRequirementsTable {...props} />);
-
-        const undoButton = testSubject.container.querySelectorAll('.ms-Button--icon');
-        const choiceGroupChange = testSubject.container.querySelectorAll('.ms-ChoiceFieldGroup');
-
-        fireEvent.click(undoButton[0], eventStub);
-        fireEvent.change(choiceGroupChange[0], eventStub);
-    });
-
-    test('render Add icon button and handle event', () => {
-        //update props to make sure Undo button is visible
-        props.requirementState['input-focus'].status = TabStopRequirementStatuses.fail;
-        const eventStub = new EventStubFactory().createMouseClickEvent() as SupportedMouseEvent;
-
+        const eventStub = new EventStubFactory().createKeypressEvent() as SupportedMouseEvent;
+        const actualRequirement = requirementsList[0]; // must match with state from builder which uses actual requirement.
         render(<TabStopsRequirementsTable {...props} />);
+        const columns = getMockComponentClassPropsForCall(DetailsList).columns;
+        const tabStopsChoiceGroup = columns[1].onRender(actualRequirement) as JSX.Element;
+        const renderedProps = tabStopsChoiceGroup.props as TabStopsChoiceGroupsProps;
 
-        const addButton = screen.getAllByLabelText('add failure instance');
+        renderedProps.onUndoClicked(eventStub);
+        renderedProps.onGroupChoiceChange(eventStub, TabStopRequirementStatuses.fail);
+        renderedProps.onAddFailureInstanceClicked(eventStub);
 
-        fireEvent.click(addButton[0], eventStub);
+        tabStopsRequirementActionMessageCreatorMock.verify(
+            m => m.resetStatusForRequirement(actualRequirement.id),
+            Times.once(),
+        );
+        tabStopsRequirementActionMessageCreatorMock.verify(
+            m => m.updateTabStopRequirementStatus(actualRequirement.id, 'fail'),
+            Times.once(),
+        );
+        tabStopsTestViewControllerMock.verify(
+            m => m.createNewFailureInstancePanel(actualRequirement.id),
+            Times.once(),
+        );
     });
 });

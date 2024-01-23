@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import { NavLinkButton } from 'DetailsView/components/nav-link-button';
 import * as React from 'react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -23,12 +24,13 @@ describe('BaseLeftNav', () => {
         const props: BaseLeftNavProps = {
             selectedKey: 'some key',
             links: [{} as BaseLeftNavLink],
-            setNavComponentRef: _ => {},
+            setNavComponentRef: _ => { },
         } as BaseLeftNavProps;
 
         const actual = render(<BaseLeftNav {...props} />);
         expect(actual.asFragment()).toMatchSnapshot();
         const hasNav = getMockComponentClassPropsForCall(Nav);
         expect(hasNav.linkAs).toEqual(NavLinkButton);
+        expectMockedComponentPropsToMatchSnapshots([Nav])
     });
 });

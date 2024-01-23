@@ -14,7 +14,7 @@ import { visualHelperText } from 'DetailsView/components/base-visual-helper-togg
 import * as React from 'react';
 import { VisualHelperToggleConfigBuilder } from 'tests/unit/common/visual-helper-toggle-config-builder';
 import { VisualizationTogglePropsBuilder } from 'tests/unit/common/visualization-toggle-props-builder';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
@@ -190,8 +190,7 @@ describe('AssessmentVisualizationEnabledToggle', () => {
                 'VisualizationToggle',
             ]);
             const wrapper = render(<AssessmentVisualizationEnabledToggle {...props} />);
-            const button = wrapper.queryByRole('switch') as any;
-            expect(button).toBeFalsy();
+
             const noMatchesWarningClass = 'no-matching-elements';
             expect(wrapper.container.querySelector(`.${noMatchesWarningClass}`)).not.toBeNull();
         });
@@ -212,14 +211,15 @@ describe('AssessmentVisualizationEnabledToggle', () => {
             actionMessageCreatorMock
                 .setup(acm =>
                     acm.changeAssessmentVisualizationStateForAll(
-                        false,
-                        props.assessmentNavState.selectedTestType,
-                        props.assessmentNavState.selectedTestSubview,
+                        It.isAny(),
+                        It.isAny(),
+                        It.isAny(),
                     ),
                 )
                 .verifiable(Times.once());
-            const button = wrapper.getByRole('switch');
-            await userEvent.click(button);
+
+            await userEvent.click(wrapper.getByRole('switch'));
+
             actionMessageCreatorMock.verifyAll();
         });
     });

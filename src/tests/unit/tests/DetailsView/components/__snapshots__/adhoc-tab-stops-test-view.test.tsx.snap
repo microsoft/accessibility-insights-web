@@ -20,71 +20,48 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
           Note: this test requires you to use a keyboard and to visually identify interactive elements.
         </em>
       </p>
-      <div
-        class=""
-      >
-        <div
-          class="requirementInstructions collapsibleContent"
-        >
-          <p>
-            The visual helper for this requirement highlights the elements in the target page that receive the input focus.
-          </p>
-          <ol>
-            <li>
-              Use your keyboard to move input focus through all the interactive elements on the page – 
-              <em>
-                please traverse the entire page before returning to this window
-              </em>
-              :
-              <ol>
-                <li>
-                  Use 
-                  <strong>
-                    Tab
-                  </strong>
-                   and 
-                  <strong>
-                    Shift+Tab
-                  </strong>
-                   to navigate between standalone controls. 
-                </li>
-                <li>
-                  Use the arrow keys to navigate between the focusable elements within a composite control.
-                </li>
-              </ol>
-            </li>
-            <li>
-              Record your results for each requirement:
-              <ol>
-                <li>
-                  If you find any failures, select 
-                  <strong>
-                    Fail
-                  </strong>
-                  , then add them as failure instances.
-                </li>
-                <li>
-                  Select 
-                  <strong>
-                    Pass
-                  </strong>
-                   if all instances meet the requirement.
-                </li>
-              </ol>
-            </li>
-            <li>
-              <em>
-                Review any auto-discovered failures to be sure they are valid.
-              </em>
-            </li>
-          </ol>
-        </div>
-      </div>
+      <mock-styledtogglebase
+        checked="true"
+        classname="visualHelperToggle"
+        id="tab-stops-visual-helper"
+        label="Visual helper"
+      />
+      <mock-collapsiblecomponent
+        content="[object Object]"
+        contentclassname="requirementInstructions"
+        header="[object Object]"
+      />
       <h2
         class="requirementTableTitle"
       >
         Record your results
       </h2>
+      <mock-themecustomizer
+        themefamily="fast-pass"
+        userconfigurationstoredata="stub-user-configuration-store-data"
+      >
+        <mock-tabstopsrequirementstable
+          deps="stub-deps"
+        />
+        <mock-tabstopsfailedinstancesection
+          alwaysrendersection="false"
+          deps="stub-deps"
+          sectionheadinglevel="2"
+        />
+        <mock-tabstopsfailedinstancepanel
+          deps="stub-deps"
+          failureinstancestate="[object Object]"
+        />
+        <mock-focuscomponent
+          deps="stub-deps"
+          tabbingenabled="true"
+        />
+        <mock-autodetectedfailuresdialog
+          deps="stub-deps"
+          userconfigurationstoredata="stub-user-configuration-store-data"
+          visualizationscanresultdata="[object Object]"
+        />
+      </mock-themecustomizer>
     </div>
   </div>
 </DocumentFragment>
@@ -109,71 +86,48 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
           Note: this test requires you to use a keyboard and to visually identify interactive elements.
         </em>
       </p>
-      <div
-        class=""
-      >
-        <div
-          class="requirementInstructions collapsibleContent"
-        >
-          <p>
-            The visual helper for this requirement highlights the elements in the target page that receive the input focus.
-          </p>
-          <ol>
-            <li>
-              Use your keyboard to move input focus through all the interactive elements on the page – 
-              <em>
-                please traverse the entire page before returning to this window
-              </em>
-              :
-              <ol>
-                <li>
-                  Use 
-                  <strong>
-                    Tab
-                  </strong>
-                   and 
-                  <strong>
-                    Shift+Tab
-                  </strong>
-                   to navigate between standalone controls. 
-                </li>
-                <li>
-                  Use the arrow keys to navigate between the focusable elements within a composite control.
-                </li>
-              </ol>
-            </li>
-            <li>
-              Record your results for each requirement:
-              <ol>
-                <li>
-                  If you find any failures, select 
-                  <strong>
-                    Fail
-                  </strong>
-                  , then add them as failure instances.
-                </li>
-                <li>
-                  Select 
-                  <strong>
-                    Pass
-                  </strong>
-                   if all instances meet the requirement.
-                </li>
-              </ol>
-            </li>
-            <li>
-              <em>
-                Review any auto-discovered failures to be sure they are valid.
-              </em>
-            </li>
-          </ol>
-        </div>
-      </div>
+      <mock-styledtogglebase
+        checked="true"
+        classname="visualHelperToggle"
+        id="tab-stops-visual-helper"
+        label="Visual helper"
+      />
+      <mock-collapsiblecomponent
+        content="[object Object]"
+        contentclassname="requirementInstructions"
+        header="[object Object]"
+      />
       <h2
         class="requirementTableTitle"
       >
         Record your results
       </h2>
+      <mock-themecustomizer
+        themefamily="fast-pass"
+        userconfigurationstoredata="stub-user-configuration-store-data"
+      >
+        <mock-tabstopsrequirementstable
+          deps="stub-deps"
+        />
+        <mock-tabstopsfailedinstancesection
+          alwaysrendersection="false"
+          deps="stub-deps"
+          sectionheadinglevel="2"
+        />
+        <mock-tabstopsfailedinstancepanel
+          deps="stub-deps"
+          failureinstancestate="[object Object]"
+        />
+        <mock-focuscomponent
+          deps="stub-deps"
+          tabbingenabled="true"
+        />
+        <mock-autodetectedfailuresdialog
+          deps="stub-deps"
+          userconfigurationstoredata="stub-user-configuration-store-data"
+          visualizationscanresultdata="[object Object]"
+        />
+      </mock-themecustomizer>
     </div>
   </div>
 </DocumentFragment>
@@ -181,18 +135,9 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
 
 exports[`AdhocTabStopsTestView render should return target page changed view as tab is changed 1`] = `
 <DocumentFragment>
-  <div
-    class="staticContentInDetailsView"
-  >
-    <h1>
-      test title
-    </h1>
-    <div
-      class="targetPageChangedSubtitle"
-    />
-    <p>
-      The target page has changed. Use the  button to scan the new target page.
-    </p>
-  </div>
+  <mock-targetpagechangedview
+    displayabledata="[object Object]"
+    visualizationtype="-1"
+  />
 </DocumentFragment>
 `;

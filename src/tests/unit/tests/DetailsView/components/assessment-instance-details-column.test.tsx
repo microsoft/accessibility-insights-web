@@ -27,9 +27,9 @@ describe('AssessmentInstanceDetailsColumn', () => {
         const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
         verifyBaseRender(wrapper, props);
 
-        const label = wrapper.container.querySelector(`.${styles.assessmentInstanceLabel}`);
+        const label = wrapper.getAllByText('labelText');
 
-        expect(label.innerHTML).toBe(props.labelText);
+        expect(label[0].innerHTML).toBe(props.labelText);
     });
 
     test('render: N/A instance', () => {
@@ -43,11 +43,12 @@ describe('AssessmentInstanceDetailsColumn', () => {
         const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
 
         verifyBaseRender(wrapper, props);
+        //using getAllByText here because getByLabelText will not work as we are 
+        //sending the label text as props, and its been used as value instead of html attribute.
+        const label = wrapper.getAllByText('N/A');
 
-        const label = wrapper.container.querySelector(`.${styles.assessmentInstanceLabel}`);
-
-        expect(label.innerHTML).toBeDefined();
-        expect(label.innerHTML).toBe(props.labelText);
+        expect(label[0].innerHTML).toBeDefined();
+        expect(label[0].innerHTML).toBe(props.labelText);
     });
 
     test('render: no label text', () => {
@@ -73,9 +74,9 @@ describe('AssessmentInstanceDetailsColumn', () => {
 
         verifyBaseRender(wrapper, props);
 
-        const label = wrapper.container.querySelector(`.${styles.assessmentInstanceLabel}`);
+        const label = wrapper.getAllByText('N/A');
 
-        expect(label.classList.contains(props.customClassName)).toEqual(true);
+        expect(label[0].classList.contains(props.customClassName)).toEqual(true);
     });
 
     function verifyBaseRender(

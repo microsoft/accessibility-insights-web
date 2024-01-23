@@ -15,6 +15,7 @@ import {
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -45,6 +46,7 @@ describe('CommandBarButtonsMenu', () => {
 
     it('renders CommandBarButtonsMenu', () => {
         const wrapper = render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
+        expectMockedComponentPropsToMatchSnapshots([CommandBarButton])
         expect(wrapper.asFragment()).toMatchSnapshot();
     });
 

@@ -16,6 +16,7 @@ import {
     AdhocIssuesTestView,
     AdhocIssuesTestViewProps,
 } from 'DetailsView/components/adhoc-issues-test-view';
+import { BannerWarnings } from 'DetailsView/components/banner-warnings';
 import { DetailsListIssuesView } from 'DetailsView/components/details-list-issues-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
@@ -26,9 +27,10 @@ import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 jest.mock('DetailsView/components/details-list-issues-view');
+jest.mock('DetailsView/components/banner-warnings')
 
 describe('AdhocIssuesTestView', () => {
-    mockReactComponents([DetailsListIssuesView]);
+    mockReactComponents([DetailsListIssuesView, BannerWarnings]);
     const visualizationStoreDataStub = {
         tests: {},
         scanning: 'test-scanning',
@@ -65,7 +67,7 @@ describe('AdhocIssuesTestView', () => {
         enabled: true,
     };
 
-    const clickHandlerStub = () => {};
+    const clickHandlerStub = () => { };
 
     let switcherNavConfigurationStub: DetailsViewSwitcherNavConfiguration;
     let warningConfigurationStub: WarningConfiguration;
