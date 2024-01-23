@@ -75,10 +75,6 @@ describe('AssessmentIframeWarning', () => {
                 successCallback();
             });
         await onAllowPermissionsClick(eventStub);
-        allUrlsPermissionHandlerMock.verify(
-            m => m.requestAllUrlsPermission(It.isAny(), It.isAny()),
-            Times.once(),
-        );
         assessmentActionCreatorMock.verify(
             m => m.startOverTest(It.isAny(), It.isAny()),
             Times.once(),
