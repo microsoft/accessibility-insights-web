@@ -14,7 +14,6 @@ import {
 } from 'DetailsView/components/start-over-dialog';
 import * as React from 'react';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -67,7 +66,6 @@ describe('StartOverDialog', () => {
             const renderResult = render(<StartOverDialog {...props} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([GenericDialog]);
         },
     );
 

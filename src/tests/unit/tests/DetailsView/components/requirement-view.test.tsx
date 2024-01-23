@@ -15,11 +15,11 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { TestStepData } from 'common/types/store-data/manual-test-status';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
 import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
+import { RequirementTableSection } from 'DetailsView/components/left-nav/requirement-table-section';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import {
     RequirementView,
@@ -48,11 +48,11 @@ import {
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
 
-jest.mock('DetailsView/components/assessment-instance-table');
+jest.mock('DetailsView/components/left-nav/requirement-table-section');
 jest.mock('DetailsView/components/requirement-instructions');
 
 describe('RequirementViewTest', () => {
-    mockReactComponents([AssessmentInstanceTable, RequirementInstructions]);
+    mockReactComponents([RequirementTableSection, RequirementInstructions]);
     let assessmentStub: Assessment;
     let requirementStub: Requirement;
     let otherRequirementStub: Requirement;
@@ -200,7 +200,7 @@ describe('RequirementViewTest', () => {
     it('renders with content from props', () => {
         const renderResult = render(<RequirementView {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([AssessmentInstanceTable]);
+        expectMockedComponentPropsToMatchSnapshots([RequirementTableSection]);
         getRequirementViewTitleMock.verifyAll();
         getRequirementContextSectionMock.verifyAll();
         getNextRequirementButtonConfigurationMock.verifyAll();

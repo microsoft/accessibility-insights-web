@@ -23,6 +23,7 @@ import {
 import { StartOverDropdown } from 'DetailsView/components/start-over-dropdown';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -93,6 +94,7 @@ describe('StartOverComponentFactory', () => {
             const props = getProps(true);
             const rendered = AssessmentStartOverFactory.getStartOverComponent(props);
             expect(rendered).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
 
         it('getStartOverMenuItem', () => {
@@ -101,6 +103,7 @@ describe('StartOverComponentFactory', () => {
             const renderResult = render(menuItem.onRender());
 
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
     });
 
@@ -109,6 +112,7 @@ describe('StartOverComponentFactory', () => {
             const props = getProps(true);
             const rendered = QuickAssessStartOverFactory.getStartOverComponent(props);
             expect(rendered).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
 
         it('getStartOverMenuItem', () => {
@@ -116,6 +120,7 @@ describe('StartOverComponentFactory', () => {
             const menuItem = QuickAssessStartOverFactory.getStartOverMenuItem(props);
             const renderResult = render(menuItem.onRender());
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
     });
 
@@ -149,6 +154,7 @@ describe('StartOverComponentFactory', () => {
                         const item = getComponentOrMenuItem(props);
 
                         expect(item).toMatchSnapshot();
+                        expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
                     });
 
                     test('scanning is true => component matches snapshot', () => {
@@ -157,6 +163,7 @@ describe('StartOverComponentFactory', () => {
                         const item = getComponentOrMenuItem(props);
 
                         expect(item).toMatchSnapshot();
+                        expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
                     });
                 });
 
