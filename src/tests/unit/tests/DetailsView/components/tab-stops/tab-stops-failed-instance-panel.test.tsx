@@ -14,14 +14,17 @@ import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab
 import { FailureInstanceState } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 
 import * as React from 'react';
-import { getMockComponentClassPropsForCall, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { TabStopRequirementId, TabStopRequirementInfo } from 'types/tab-stop-requirement-info';
 
 jest.mock('DetailsView/components/tab-stops/failed-instance-panel');
 
 describe('TabStopsFailedInstancePanel', () => {
-    mockReactComponents([FailedInstancePanel])
+    mockReactComponents([FailedInstancePanel]);
     let props: TabStopsFailedInstancePanelProps;
     let tabStopRequirementsStub: TabStopRequirementInfo;
     let tabStopsTestViewControllerMock: IMock<TabStopsTestViewController>;

@@ -27,7 +27,7 @@ import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 jest.mock('DetailsView/components/details-list-issues-view');
-jest.mock('DetailsView/components/banner-warnings')
+jest.mock('DetailsView/components/banner-warnings');
 
 describe('AdhocIssuesTestView', () => {
     mockReactComponents([DetailsListIssuesView, BannerWarnings]);
@@ -67,7 +67,7 @@ describe('AdhocIssuesTestView', () => {
         enabled: true,
     };
 
-    const clickHandlerStub = () => { };
+    const clickHandlerStub = () => {};
 
     let switcherNavConfigurationStub: DetailsViewSwitcherNavConfiguration;
     let warningConfigurationStub: WarningConfiguration;

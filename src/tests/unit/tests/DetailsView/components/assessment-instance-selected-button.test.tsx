@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Icon, IconButton } from '@fluentui/react';
+import { IconButton } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
@@ -9,15 +9,18 @@ import {
 } from 'DetailsView/components/assessment-instance-selected-button';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
-import { mockReactComponents, useOriginalReactElements } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 jest.mock('@fluentui/react');
 
 describe('AssessmentInstanceSelectedButton', () => {
-    mockReactComponents([IconButton])
+    mockReactComponents([IconButton]);
     describe('render', () => {
-        const onSelectedStub = () => { };
+        const onSelectedStub = () => {};
 
         const baseProps: Partial<AssessmentInstanceSelectedButtonProps> = {
             test: VisualizationType.HeadingsAssessment,
@@ -46,7 +49,7 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     describe('user interaction', () => {
-        useOriginalReactElements('@fluentui/react', ['IconButton'])
+        useOriginalReactElements('@fluentui/react', ['IconButton']);
         const eventStub = new EventStubFactory().createMouseClickEvent();
         let baseProps: Partial<AssessmentInstanceSelectedButtonProps>;
 

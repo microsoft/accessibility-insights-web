@@ -24,13 +24,13 @@ describe('BaseLeftNav', () => {
         const props: BaseLeftNavProps = {
             selectedKey: 'some key',
             links: [{} as BaseLeftNavLink],
-            setNavComponentRef: _ => { },
+            setNavComponentRef: _ => {},
         } as BaseLeftNavProps;
 
         const actual = render(<BaseLeftNav {...props} />);
         expect(actual.asFragment()).toMatchSnapshot();
         const hasNav = getMockComponentClassPropsForCall(Nav);
         expect(hasNav.linkAs).toEqual(NavLinkButton);
-        expectMockedComponentPropsToMatchSnapshots([Nav])
+        expectMockedComponentPropsToMatchSnapshots([Nav]);
     });
 });

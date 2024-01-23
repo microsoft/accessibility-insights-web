@@ -10,7 +10,10 @@ import {
 } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
-import { TabStopsChoiceGroup, TabStopsChoiceGroupsProps } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
+import {
+    TabStopsChoiceGroup,
+    TabStopsChoiceGroupsProps,
+} from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import {
     TabStopsRequirementsTable,
     TabStopsRequirementsTableProps,
@@ -20,15 +23,18 @@ import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { VisualizationScanResultStoreDataBuilder } from 'tests/unit/common/visualization-scan-result-store-data-builder';
-import { getMockComponentClassPropsForCall, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 import { TabStopRequirementContent } from 'types/tab-stop-requirement-info';
 
 jest.mock('@fluentui/react');
-jest.mock('DetailsView/components/tab-stops/tab-stops-choice-group')
+jest.mock('DetailsView/components/tab-stops/tab-stops-choice-group');
 
 describe('TabStopsRequirementsTable', () => {
-    mockReactComponents([DetailsList, TabStopsChoiceGroup])
+    mockReactComponents([DetailsList, TabStopsChoiceGroup]);
     let props: TabStopsRequirementsTableProps;
     let requirementState: TabStopRequirementState;
     let tabStopsRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
@@ -68,7 +74,7 @@ describe('TabStopsRequirementsTable', () => {
     test('renders requirement column', () => {
         render(<TabStopsRequirementsTable {...props} />);
         const hasColumns = getMockComponentClassPropsForCall(DetailsList).columns;
-
+        expect(hasColumns[0].onRender(requirementContentStub)).toMatchSnapshot();
         expect(hasColumns).toMatchSnapshot();
     });
 

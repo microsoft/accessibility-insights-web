@@ -9,7 +9,7 @@ import * as React from 'react';
 import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 
 jest.mock('DetailsView/components/scan-incomplete-warning');
-jest.mock('DetailsView/components/injection-failed-warning')
+jest.mock('DetailsView/components/injection-failed-warning');
 
 describe('BannerWarning', () => {
     mockReactComponents([ScanIncompleteWarning, InjectionFailedWarning]);

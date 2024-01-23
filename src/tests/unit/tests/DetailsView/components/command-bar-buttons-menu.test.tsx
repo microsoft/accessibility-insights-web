@@ -46,7 +46,7 @@ describe('CommandBarButtonsMenu', () => {
 
     it('renders CommandBarButtonsMenu', () => {
         const wrapper = render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
-        expectMockedComponentPropsToMatchSnapshots([CommandBarButton])
+        expectMockedComponentPropsToMatchSnapshots([CommandBarButton]);
         expect(wrapper.asFragment()).toMatchSnapshot();
     });
 

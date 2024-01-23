@@ -9,10 +9,12 @@ import {
 } from 'DetailsView/components/choice-group-pass-fail';
 import { onUndoClicked } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as React from 'react';
-import { mockReactComponents, useOriginalReactElements } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 import '@testing-library/jest-dom';
-
 
 jest.mock('@fluentui/react');
 
@@ -29,9 +31,9 @@ describe('ChoiceGroupPassFail', () => {
                 { key: TabStopRequirementStatuses.fail, text: 'Fail' },
             ],
             selectedKey: TabStopRequirementStatuses.unknown,
-            onChange: () => { },
+            onChange: () => {},
             secondaryControls: (
-                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" noClick={() => { }} />
+                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" noClick={() => {}} />
             ),
             onUndoClickedPassThrough: onUndoClickedMock.object,
         };
@@ -84,7 +86,7 @@ describe('ChoiceGroupPassFail', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
         const testSubject = render(<ChoiceGroupPassFail {...props} />);
-        expect(testSubject.getAllByRole('button')).toBeTruthy()
+        expect(testSubject.getAllByRole('button')).toBeTruthy();
     });
 
     test('verify component is correctly used with undo', async () => {

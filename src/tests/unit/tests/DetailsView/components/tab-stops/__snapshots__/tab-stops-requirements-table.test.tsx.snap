@@ -1,6 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabStopsRequirementsTable renders requirement column 1`] = `
+<span
+  className="requirementColumn"
+>
+  <span
+    className="requirementName"
+  >
+    test name
+  </span>
+  :
+   
+  test description
+</span>
+`;
+
+exports[`TabStopsRequirementsTable renders requirement column 2`] = `
 [
   {
     "key": "requirement",

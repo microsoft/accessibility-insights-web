@@ -24,7 +24,11 @@ import {
 } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents, useOriginalReactElements } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 jest.mock('../../../../../common/components/controls/insights-command-button');
@@ -170,10 +174,12 @@ describe('AssessmentInstanceTable', () => {
             const renderRow = jest.fn();
             const onItemInvoked = jest.fn();
 
-            useOriginalReactElements('common/components/controls/insights-command-button', ['InsightsCommandButton']);
+            useOriginalReactElements('common/components/controls/insights-command-button', [
+                'InsightsCommandButton',
+            ]);
             useOriginalReactElements('@fluentui/react', ['Spinner', 'DetailsList', 'ActionButton']);
             render(<AssessmentInstanceTable {...props} />);
-            const rowClick = screen.getAllByRole('row')
+            const rowClick = screen.getAllByRole('row');
 
             fireEvent.dblClick(rowClick[1], fakeItem);
             fireEvent.click(rowClick[1], fakeItem);
@@ -186,7 +192,7 @@ describe('AssessmentInstanceTable', () => {
                 testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
 
                 render(<AssessmentInstanceTable {...props} />);
-                const getUnmarkedSelector = screen.getAllByRole('button')
+                const getUnmarkedSelector = screen.getAllByRole('button');
 
                 expect(getUnmarkedSelector).not.toHaveProperty('disabled');
             });
@@ -197,10 +203,16 @@ describe('AssessmentInstanceTable', () => {
                 testStatus => {
                     testStepResults[selectedTestStep] = { status: testStatus };
 
-                    useOriginalReactElements('common/components/controls/insights-command-button', ['InsightsCommandButton']);
-                    useOriginalReactElements('@fluentui/react', ['Spinner', 'DetailsList', 'ActionButton']);
+                    useOriginalReactElements('common/components/controls/insights-command-button', [
+                        'InsightsCommandButton',
+                    ]);
+                    useOriginalReactElements('@fluentui/react', [
+                        'Spinner',
+                        'DetailsList',
+                        'ActionButton',
+                    ]);
                     render(<AssessmentInstanceTable {...props} />);
-                    const getUnmarkedSelector = screen.getAllByRole('button')
+                    const getUnmarkedSelector = screen.getAllByRole('button');
                     expect(getUnmarkedSelector[0]).toHaveProperty('disabled', true);
                 },
             );
@@ -214,12 +226,18 @@ describe('AssessmentInstanceTable', () => {
                         ),
                     )
                     .verifiable(Times.once());
-                useOriginalReactElements('common/components/controls/insights-command-button', ['InsightsCommandButton']);
-                useOriginalReactElements('@fluentui/react', ['Spinner', 'DetailsList', 'ActionButton']);
+                useOriginalReactElements('common/components/controls/insights-command-button', [
+                    'InsightsCommandButton',
+                ]);
+                useOriginalReactElements('@fluentui/react', [
+                    'Spinner',
+                    'DetailsList',
+                    'ActionButton',
+                ]);
                 render(<AssessmentInstanceTable {...props} />);
 
-                const buttonSelector = screen.getAllByRole('button')
-                fireEvent.click(buttonSelector[0])
+                const buttonSelector = screen.getAllByRole('button');
+                fireEvent.click(buttonSelector[0]);
 
                 assessmentInstanceTableHandlerMock.verifyAll();
             });

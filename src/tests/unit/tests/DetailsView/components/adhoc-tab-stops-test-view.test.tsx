@@ -44,13 +44,24 @@ jest.mock('common/components/heading-with-content-link');
 jest.mock('common/components/collapsible-component');
 jest.mock('common/components/theme-family-customizer');
 jest.mock('DetailsView/components/tab-stops/tab-stops-requirements-table');
-jest.mock('DetailsView/components/tab-stops-failed-instance-section')
-jest.mock('common/components/focus-component')
-jest.mock('DetailsView/components/auto-detected-failures-dialog')
-jest.mock('DetailsView/components/target-page-changed-view')
+jest.mock('DetailsView/components/tab-stops-failed-instance-section');
+jest.mock('common/components/focus-component');
+jest.mock('DetailsView/components/auto-detected-failures-dialog');
+jest.mock('DetailsView/components/target-page-changed-view');
 
 describe('AdhocTabStopsTestView', () => {
-    mockReactComponents([TabStopsFailedInstancePanel, HeadingWithContentLink, Toggle, CollapsibleComponent, ThemeFamilyCustomizer, TabStopsRequirementsTable, TabStopsFailedInstanceSection, FocusComponent, AutoDetectedFailuresDialog, TargetPageChangedView]);
+    mockReactComponents([
+        TabStopsFailedInstancePanel,
+        HeadingWithContentLink,
+        Toggle,
+        CollapsibleComponent,
+        ThemeFamilyCustomizer,
+        TabStopsRequirementsTable,
+        TabStopsFailedInstanceSection,
+        FocusComponent,
+        AutoDetectedFailuresDialog,
+        TargetPageChangedView,
+    ]);
     let props: AdhocTabStopsTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
@@ -81,7 +92,7 @@ describe('AdhocTabStopsTestView', () => {
         visualizationStoreDataStub = {
             tests: {},
         } as VisualizationStoreData;
-        clickHandlerStub = () => { };
+        clickHandlerStub = () => {};
         selectedTest = -1;
         featureFlagStoreDataStub = {};
         userConfigurationStoreDataStub = 'stub-user-configuration-store-data' as any;
@@ -147,7 +158,7 @@ describe('AdhocTabStopsTestView', () => {
 
             const wrapper = render(<AdhocTabStopsTestView {...props} />);
             expect(wrapper.asFragment()).toMatchSnapshot();
-            verifyAll()
+            verifyAll();
         });
     });
 

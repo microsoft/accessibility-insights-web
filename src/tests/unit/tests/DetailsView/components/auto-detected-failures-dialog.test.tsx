@@ -14,10 +14,9 @@ import {
 } from 'DetailsView/components/auto-detected-failures-dialog';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import "@testing-library/jest-dom";
+import '@testing-library/jest-dom';
 
 describe('AutoDetectedFailuresDialog', () => {
-
     let props: AutoDetectedFailuresDialogProps;
     let visualizationScanResultData: VisualizationScanResultData;
     let userConfigurationStoreData: UserConfigurationStoreData;
@@ -69,7 +68,7 @@ describe('AutoDetectedFailuresDialog', () => {
 
         beforeEach(() => {
             wrapper = render(<AutoDetectedFailuresDialog {...prevProps} {...prevState} />);
-            wrapper.rerender(<AutoDetectedFailuresDialog {...props} />)
+            wrapper.rerender(<AutoDetectedFailuresDialog {...props} />);
         });
 
         it('renders when dialog is enabled', () => {
@@ -77,16 +76,16 @@ describe('AutoDetectedFailuresDialog', () => {
         });
 
         it('is dismissed when "got it" button is clicked', () => {
-            const gotItButton = wrapper.getAllByRole('button')
+            const gotItButton = wrapper.getAllByRole('button');
 
-            fireEvent.click(gotItButton[0])
+            fireEvent.click(gotItButton[0]);
 
             expect(wrapper.asFragment()).toMatchSnapshot();
         });
 
         it('is dismissed when onDismiss is called', () => {
-            const dismissButton = wrapper.getAllByRole('button')
-            fireEvent.click(dismissButton[0])
+            const dismissButton = wrapper.getAllByRole('button');
+            fireEvent.click(dismissButton[0]);
             expect(wrapper.asFragment()).toMatchSnapshot();
         });
 
@@ -95,8 +94,8 @@ describe('AutoDetectedFailuresDialog', () => {
                 .setup(ucmcm => ucmcm.setAutoDetectedFailuresDialogState(true))
                 .verifiable(Times.once());
 
-            const checkBox = wrapper.getAllByRole('checkbox')
-            fireEvent.click(checkBox[0], { target: { checked: true } })
+            const checkBox = wrapper.getAllByRole('checkbox');
+            fireEvent.click(checkBox[0], { target: { checked: true } });
 
             expect(wrapper.asFragment()).toMatchSnapshot();
         });
@@ -106,8 +105,8 @@ describe('AutoDetectedFailuresDialog', () => {
                 .setup(ucmcm => ucmcm.setAutoDetectedFailuresDialogState(true))
                 .verifiable(Times.once());
 
-            const checkBox = wrapper.getAllByRole('checkbox')
-            fireEvent.click(checkBox[0], undefined)
+            const checkBox = wrapper.getAllByRole('checkbox');
+            fireEvent.click(checkBox[0], undefined);
             expect(wrapper.asFragment()).toMatchSnapshot();
         });
     });
@@ -116,14 +115,13 @@ describe('AutoDetectedFailuresDialog', () => {
         let wrapper: RenderResult;
         beforeEach(() => {
             wrapper = render(<AutoDetectedFailuresDialog {...prevProps} {...prevState} />);
-
         });
         it('displays dialog on tabbing completed', () => {
             const hasDialog = wrapper.container.querySelectorAll('.ms-Dialog-main');
             expect(hasDialog[0]).toBeFalsy();
-            wrapper.rerender(<AutoDetectedFailuresDialog {...props} />)
+            wrapper.rerender(<AutoDetectedFailuresDialog {...props} />);
 
-            const newHasDialog = wrapper.container.querySelector('.ms-Dialog-main')
+            const newHasDialog = wrapper.container.querySelector('.ms-Dialog-main');
 
             expect(newHasDialog).toBeDefined();
         });
@@ -133,7 +131,7 @@ describe('AutoDetectedFailuresDialog', () => {
 
             const hasDialog = wrapper.container.querySelectorAll('.ms-Dialog-main');
             expect(hasDialog[0]).toBeFalsy();
-            const newHasDialog = wrapper.container.querySelector('.ms-Dialog-main')
+            const newHasDialog = wrapper.container.querySelector('.ms-Dialog-main');
             expect(newHasDialog).toBeFalsy();
         });
 
@@ -142,7 +140,7 @@ describe('AutoDetectedFailuresDialog', () => {
 
             const wrapper = render(<AutoDetectedFailuresDialog {...props} />);
 
-            wrapper.rerender(<AutoDetectedFailuresDialog {...props} />)
+            wrapper.rerender(<AutoDetectedFailuresDialog {...props} />);
             expect(wrapper.asFragment()).toMatchSnapshot();
         });
     });

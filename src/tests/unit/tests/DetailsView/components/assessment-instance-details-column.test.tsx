@@ -43,7 +43,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
         const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
 
         verifyBaseRender(wrapper, props);
-        //using getAllByText here because getByLabelText will not work as we are 
+        //using getAllByText here because getByLabelText will not work as we are
         //sending the label text as props, and its been used as value instead of html attribute.
         const label = wrapper.getAllByText('N/A');
 
