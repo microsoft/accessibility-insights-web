@@ -1,15 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoadAssessmentButton should render per the snapshot 1`] = `
-<InsightsCommandButton
-  data-automation-id="load-assessment-button"
-  iconProps={
-    {
-      "iconName": "FabricOpenFolderHorizontal",
-    }
-  }
-  onClick={[Function]}
->
-  Load assessment
-</InsightsCommandButton>
+<DocumentFragment>
+  <mock-insightscommandbutton
+    data-automation-id="load-assessment-button"
+    iconprops="[object Object]"
+  >
+    Load assessment
+  </mock-insightscommandbutton>
+</DocumentFragment>
+`;
+
+exports[`LoadAssessmentButton should render per the snapshot: InsightsCommandButton props 1`] = `
+{
+  "children": "Load assessment",
+  "data-automation-id": "load-assessment-button",
+  "iconProps": {
+    "iconName": "FabricOpenFolderHorizontal",
+  },
+  "onClick": [Function],
+}
 `;

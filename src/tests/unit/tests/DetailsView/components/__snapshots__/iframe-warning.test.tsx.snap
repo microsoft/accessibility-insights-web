@@ -1,34 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentIframeWarning render 1`] = `
-<IframeWarning
-  onAllowPermissionsClick={[Function]}
-/>
+<DocumentFragment>
+  <div
+    data-automation-id="iframe-warning-container"
+  >
+    There are iframes in the target page. To have complete results, 
+    <mock-styledlinkbase
+      classname="insights-link"
+    >
+      give Accessibility Insights additional permissions
+    </mock-styledlinkbase>
+    ; this will trigger a rescan of the test.
+    <mock-newtablink
+      href="https://accessibilityinsights.io/docs/en/web/reference/faq#why-does-accessibility-insights-for-web-ask-for-additional-permissions-when-it-detects-iframes"
+    >
+      Learn more here.
+    </mock-newtablink>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`FastPassIframeWarning render 1`] = `
-<IframeWarning
-  onAllowPermissionsClick={[Function]}
-/>
+<DocumentFragment>
+  <div
+    data-automation-id="iframe-warning-container"
+  >
+    There are iframes in the target page. To have complete results, 
+    <mock-styledlinkbase
+      classname="insights-link"
+    >
+      give Accessibility Insights additional permissions
+    </mock-styledlinkbase>
+    ; this will trigger a rescan of the test.
+    <mock-newtablink
+      href="https://accessibilityinsights.io/docs/en/web/reference/faq#why-does-accessibility-insights-for-web-ask-for-additional-permissions-when-it-detects-iframes"
+    >
+      Learn more here.
+    </mock-newtablink>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`IframeWarning render 1`] = `
-<div
-  data-automation-id="iframe-warning-container"
->
-  There are iframes in the target page. To have complete results,
-   
-  <StyledLinkBase
-    className="insights-link"
-    onClick={[Function]}
+<DocumentFragment>
+  <div
+    data-automation-id="iframe-warning-container"
   >
-    give Accessibility Insights additional permissions
-  </StyledLinkBase>
-  ; this will trigger a rescan of the test.
-  <NewTabLink
-    href="https://accessibilityinsights.io/docs/en/web/reference/faq#why-does-accessibility-insights-for-web-ask-for-additional-permissions-when-it-detects-iframes"
-  >
-    Learn more here.
-  </NewTabLink>
-</div>
+    There are iframes in the target page. To have complete results, 
+    <mock-styledlinkbase
+      classname="insights-link"
+    >
+      give Accessibility Insights additional permissions
+    </mock-styledlinkbase>
+    ; this will trigger a rescan of the test.
+    <mock-newtablink
+      href="https://accessibilityinsights.io/docs/en/web/reference/faq#why-does-accessibility-insights-for-web-ask-for-additional-permissions-when-it-detects-iframes"
+    >
+      Learn more here.
+    </mock-newtablink>
+  </div>
+</DocumentFragment>
 `;
