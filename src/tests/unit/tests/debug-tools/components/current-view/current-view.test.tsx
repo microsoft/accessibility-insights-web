@@ -36,7 +36,6 @@ describe('CurrentView', () => {
         const renderResult = render(<CurrentView {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        //needs to review below condition
         //In snapshot getting undefined, to avoid the undefined value added below if else condition.
         if (selectedTool === 'stores') expectMockedComponentPropsToMatchSnapshots([StoresTree]);
         else expectMockedComponentPropsToMatchSnapshots([TelemetryViewer]);

@@ -48,7 +48,6 @@ describe('DebugToolsView', () => {
             const renderResult = render(<DebugTools deps={deps} storeState={storeState} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
-            //needs to review below condition
             //In snapshot getting undefined, to avoid the undefined value added below if condition.
             if (hasStoreData) {
                 expectMockedComponentPropsToMatchSnapshots([
