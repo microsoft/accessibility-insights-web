@@ -26,9 +26,6 @@ describe('ExportDropdown', () => {
     mockReactComponents([ContextualMenu, PrimaryButton]);
 
     const generateExportsMock = Mock.ofType<() => void>();
-    const event = {
-        currentTarget: 'test target',
-    } as React.MouseEvent<any>;
     let props: ExportDropdownProps;
 
     const makeReportExportServiceStub = (key: ReportExportServiceKey): ReportExportService => {

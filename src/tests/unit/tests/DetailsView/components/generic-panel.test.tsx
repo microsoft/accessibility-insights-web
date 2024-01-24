@@ -4,10 +4,7 @@ import { Panel } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { GenericPanel, GenericPanelProps } from 'DetailsView/components/generic-panel';
 import * as React from 'react';
-import {
-    expectMockedComponentPropsToMatchSnapshots,
-    mockReactComponents,
-} from '../../../mock-helpers/mock-module-helpers';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('GenericPanel', () => {

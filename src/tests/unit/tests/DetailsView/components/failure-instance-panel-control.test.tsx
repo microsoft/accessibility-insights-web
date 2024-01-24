@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { ActionButton, Link, TextField } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';

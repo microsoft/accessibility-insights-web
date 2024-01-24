@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { Dialog, DialogFooter, PrimaryButton, TextField } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
