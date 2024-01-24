@@ -2,8 +2,24 @@
 
 exports[`GenericDialogTest should render 1`] = `
 <DocumentFragment>
-  <span
-    class="ms-layer"
-  />
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <div
+      class="dialogBody"
+    >
+      test message
+    </div>
+    <mock-styleddialogfooterbase>
+      <mock-customizedprimarybutton
+        text="test primary text"
+      />
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
 </DocumentFragment>
 `;
