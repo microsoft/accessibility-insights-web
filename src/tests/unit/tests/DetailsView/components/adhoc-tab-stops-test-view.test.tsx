@@ -34,7 +34,10 @@ import { TargetPageChangedView } from 'DetailsView/components/target-page-change
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 
 import * as React from 'react';
-import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ContentReference } from 'views/content/content-page';
 
@@ -142,6 +145,7 @@ describe('AdhocTabStopsTestView', () => {
             };
 
             const wrapper = render(<AdhocTabStopsTestView {...props} />);
+
             expect(wrapper.asFragment()).toMatchSnapshot();
         });
 
@@ -157,6 +161,7 @@ describe('AdhocTabStopsTestView', () => {
             }
 
             const wrapper = render(<AdhocTabStopsTestView {...props} />);
+            expectMockedComponentPropsToMatchSnapshots([CollapsibleComponent]);
             expect(wrapper.asFragment()).toMatchSnapshot();
             verifyAll();
         });

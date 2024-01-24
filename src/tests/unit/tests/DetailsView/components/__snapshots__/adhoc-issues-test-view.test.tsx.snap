@@ -31,47 +31,21 @@ exports[`AdhocIssuesTestView should return target page changed view as tab is ch
   <div
     class="issuesTestView"
   >
-    <div
-      class="staticContentInDetailsView"
-    >
-      <h1>
-        test title
-      </h1>
-      <div
-        class="targetPageChangedSubtitle"
-      />
-      <p>
-        The target page has changed. Use the 
-        <button
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton inlineStartOverButton root-109"
-          data-automation-id="inline-start-over-button"
-          data-is-focusable="true"
-          type="button"
-        >
-          <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
-          >
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
-            >
-              <span
-                class="ms-Button-label label-113"
-                id="id__0"
-              >
-                Start over
-              </span>
-            </span>
-          </span>
-        </button>
-         button to scan the new target page.
-      </p>
-    </div>
+    <mock-targetpagechangedview
+      displayabledata="[object Object]"
+      visualizationtype="-1"
+    />
   </div>
 </DocumentFragment>
+`;
+
+exports[`AdhocIssuesTestView should return target page changed view as tab is changed: TargetPageChangedView props 1`] = `
+{
+  "detailsViewActionMessageCreator": undefined,
+  "displayableData": {
+    "title": "test title",
+  },
+  "toggleClickHandler": [Function],
+  "visualizationType": -1,
+}
 `;

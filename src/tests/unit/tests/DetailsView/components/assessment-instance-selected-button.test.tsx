@@ -49,7 +49,6 @@ describe('AssessmentInstanceSelectedButton', () => {
     });
 
     describe('user interaction', () => {
-        useOriginalReactElements('@fluentui/react', ['IconButton']);
         const eventStub = new EventStubFactory().createMouseClickEvent();
         let baseProps: Partial<AssessmentInstanceSelectedButtonProps>;
 
@@ -70,12 +69,14 @@ describe('AssessmentInstanceSelectedButton', () => {
 
         it.each([true, false])(
             'onButtonClicked: with visualization enabled = %s',
+
             isVisualizationEnabled => {
                 const props: AssessmentInstanceSelectedButtonProps = {
                     ...baseProps,
                     isVisualizationEnabled,
                     isVisible: true,
                 } as AssessmentInstanceSelectedButtonProps;
+                useOriginalReactElements('@fluentui/react', ['IconButton']);
 
                 onSelectedMock
                     .setup(handler =>

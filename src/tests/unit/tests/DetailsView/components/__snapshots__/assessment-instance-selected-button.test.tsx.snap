@@ -2,100 +2,52 @@
 
 exports[`AssessmentInstanceSelectedButton render when element is not selected and is not visible 1`] = `
 <DocumentFragment>
-  <button
+  <mock-customizediconbutton
     aria-checked="false"
-    aria-disabled="true"
     aria-label="Visualization"
-    class="ms-Button ms-Button--icon is-disabled instanceVisibilityButton testInstanceSelectedHiddenButton root-117"
-    data-is-focusable="false"
-    disabled=""
+    classname="instanceVisibilityButton testInstanceSelectedHiddenButton"
+    disabled="true"
+    iconprops="[object Object]"
     role="checkbox"
-    type="button"
-  >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon icon-118"
-        data-icon-name="hide2"
-      />
-    </span>
-  </button>
+  />
 </DocumentFragment>
 `;
 
 exports[`AssessmentInstanceSelectedButton render when element is not selected and is visible 1`] = `
 <DocumentFragment>
-  <button
+  <mock-customizediconbutton
     aria-checked="false"
     aria-label="Visualization"
-    class="ms-Button ms-Button--icon instanceVisibilityButton root-109"
-    data-is-focusable="true"
+    classname="instanceVisibilityButton"
+    disabled="false"
+    iconprops="[object Object]"
     role="checkbox"
-    type="button"
-  >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon icon-112"
-        data-icon-name="checkBox"
-      />
-    </span>
-  </button>
+  />
 </DocumentFragment>
 `;
 
 exports[`AssessmentInstanceSelectedButton render when element is selected and visible 1`] = `
 <DocumentFragment>
-  <button
-    aria-checked="false"
+  <mock-customizediconbutton
+    aria-checked="true"
     aria-label="Visualization"
-    class="ms-Button ms-Button--icon instanceVisibilityButton root-109"
-    data-is-focusable="true"
+    classname="instanceVisibilityButton"
+    disabled="false"
+    iconprops="[object Object]"
     role="checkbox"
-    type="button"
-  >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon testInstanceSelected testInstanceSelectedVisible icon-112 testInstanceSelected testInstanceSelectedVisible"
-        data-icon-name="view"
-      />
-    </span>
-  </button>
+  />
 </DocumentFragment>
 `;
 
 exports[`AssessmentInstanceSelectedButton render when element is selected but hidden 1`] = `
 <DocumentFragment>
-  <button
-    aria-checked="false"
-    aria-disabled="true"
+  <mock-customizediconbutton
+    aria-checked="true"
     aria-label="Visualization"
-    class="ms-Button ms-Button--icon is-disabled instanceVisibilityButton testInstanceSelectedHiddenButton root-117"
-    data-is-focusable="false"
-    disabled=""
+    classname="instanceVisibilityButton testInstanceSelectedHiddenButton"
+    disabled="true"
+    iconprops="[object Object]"
     role="checkbox"
-    type="button"
-  >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon testInstanceSelected testInstanceSelectedHidden icon-118 testInstanceSelected testInstanceSelectedHidden"
-        data-icon-name="hide2"
-      />
-    </span>
-  </button>
+  />
 </DocumentFragment>
 `;

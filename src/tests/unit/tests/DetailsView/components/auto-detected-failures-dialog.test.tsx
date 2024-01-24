@@ -72,7 +72,7 @@ describe('AutoDetectedFailuresDialog', () => {
         });
 
         it('renders when dialog is enabled', () => {
-            expect(wrapper.asFragment()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('is dismissed when "got it" button is clicked', () => {
@@ -80,13 +80,13 @@ describe('AutoDetectedFailuresDialog', () => {
 
             fireEvent.click(gotItButton[0]);
 
-            expect(wrapper.asFragment()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('is dismissed when onDismiss is called', () => {
             const dismissButton = wrapper.getAllByRole('button');
             fireEvent.click(dismissButton[0]);
-            expect(wrapper.asFragment()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('box appears checked when "dont show again" box is clicked', () => {
@@ -97,7 +97,7 @@ describe('AutoDetectedFailuresDialog', () => {
             const checkBox = wrapper.getAllByRole('checkbox');
             fireEvent.click(checkBox[0], { target: { checked: true } });
 
-            expect(wrapper.asFragment()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('nothing happens when checkbox change is undefined', () => {
@@ -107,7 +107,7 @@ describe('AutoDetectedFailuresDialog', () => {
 
             const checkBox = wrapper.getAllByRole('checkbox');
             fireEvent.click(checkBox[0], undefined);
-            expect(wrapper.asFragment()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
     });
 
@@ -141,7 +141,7 @@ describe('AutoDetectedFailuresDialog', () => {
             const wrapper = render(<AutoDetectedFailuresDialog {...props} />);
 
             wrapper.rerender(<AutoDetectedFailuresDialog {...props} />);
-            expect(wrapper.asFragment()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
     });
 });

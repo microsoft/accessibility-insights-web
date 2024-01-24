@@ -67,6 +67,76 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
 </DocumentFragment>
 `;
 
+exports[`AdhocTabStopsTestView render handles guidance: CollapsibleComponent props 1`] = `
+{
+  "content": <React.Fragment>
+    <p>
+      The visual helper for this requirement highlights the elements in the target page that receive the input focus.
+    </p>
+    <ol>
+      <li>
+        Use your keyboard to move input focus through all the interactive elements on the page –
+         
+        <Emphasis>
+          please traverse the entire page before returning to this window
+        </Emphasis>
+        :
+        <ol>
+          <li>
+            Use 
+            <Term>
+              Tab
+            </Term>
+             and
+             
+            <Term>
+              Shift+Tab
+            </Term>
+             to navigate between standalone controls.
+             
+          </li>
+          <li>
+            Use the arrow keys to navigate between the focusable elements within a composite control.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Record your results for each requirement:
+        <ol>
+          <li>
+            If you find any failures, select 
+            <Term>
+              Fail
+            </Term>
+            , then add them as failure instances.
+          </li>
+          <li>
+            Select 
+            <Term>
+              Pass
+            </Term>
+             if all instances meet the requirement.
+          </li>
+        </ol>
+      </li>
+      <li>
+        <Emphasis>
+          Review any auto-discovered failures to be sure they are valid.
+        </Emphasis>
+      </li>
+    </ol>
+  </React.Fragment>,
+  "contentClassName": "requirementInstructions",
+  "header": <span
+    aria-level={2}
+    className="requirementHowToTestHeader"
+    role="heading"
+  >
+    How to test
+  </span>,
+}
+`;
+
 exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
 <DocumentFragment>
   <div
@@ -131,6 +201,76 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`AdhocTabStopsTestView render handles no guidance: CollapsibleComponent props 1`] = `
+{
+  "content": <React.Fragment>
+    <p>
+      The visual helper for this requirement highlights the elements in the target page that receive the input focus.
+    </p>
+    <ol>
+      <li>
+        Use your keyboard to move input focus through all the interactive elements on the page –
+         
+        <Emphasis>
+          please traverse the entire page before returning to this window
+        </Emphasis>
+        :
+        <ol>
+          <li>
+            Use 
+            <Term>
+              Tab
+            </Term>
+             and
+             
+            <Term>
+              Shift+Tab
+            </Term>
+             to navigate between standalone controls.
+             
+          </li>
+          <li>
+            Use the arrow keys to navigate between the focusable elements within a composite control.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Record your results for each requirement:
+        <ol>
+          <li>
+            If you find any failures, select 
+            <Term>
+              Fail
+            </Term>
+            , then add them as failure instances.
+          </li>
+          <li>
+            Select 
+            <Term>
+              Pass
+            </Term>
+             if all instances meet the requirement.
+          </li>
+        </ol>
+      </li>
+      <li>
+        <Emphasis>
+          Review any auto-discovered failures to be sure they are valid.
+        </Emphasis>
+      </li>
+    </ol>
+  </React.Fragment>,
+  "contentClassName": "requirementInstructions",
+  "header": <span
+    aria-level={2}
+    className="requirementHowToTestHeader"
+    role="heading"
+  >
+    How to test
+  </span>,
+}
 `;
 
 exports[`AdhocTabStopsTestView render should return target page changed view as tab is changed 1`] = `

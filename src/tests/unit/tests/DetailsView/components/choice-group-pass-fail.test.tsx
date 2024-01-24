@@ -29,6 +29,7 @@ describe('ChoiceGroupPassFail', () => {
             options: [
                 { key: TabStopRequirementStatuses.pass, text: 'Pass' },
                 { key: TabStopRequirementStatuses.fail, text: 'Fail' },
+                { key: TabStopRequirementStatuses.unknown, text: 'unknown' as any },
             ],
             selectedKey: TabStopRequirementStatuses.unknown,
             onChange: () => {},
@@ -40,44 +41,45 @@ describe('ChoiceGroupPassFail', () => {
     });
 
     test('render', () => {
-        const wrapper = render(<ChoiceGroupPassFail {...props} />);
-        expect(wrapper.asFragment()).toMatchSnapshot();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('render: selectedKey is set to FAIL', () => {
         props.selectedKey = TabStopRequirementStatuses.fail;
-        const actual = render(<ChoiceGroupPassFail {...props} />);
-        expect(actual.asFragment()).toMatchSnapshot();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('render: selectedKey is set to PASS', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
-        const actual = render(<ChoiceGroupPassFail {...props} />);
-        expect(actual.asFragment()).toMatchSnapshot();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('render label, aria-label is not defined', () => {
+        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton']);
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.isLabelVisible = true;
-        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton']);
-        const testSubject = render(<ChoiceGroupPassFail {...props} />);
-        const options = testSubject.getAllByRole('radio');
 
-        expect(options[0]).not.toHaveProperty('aria-label');
-        expect(options[1]).not.toHaveProperty('aria-label');
-        expect(testSubject.queryByLabelText('Pass')).not.toBeNull();
-        expect(testSubject.queryByLabelText('Fail')).not.toBeNull();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        const options = renderResult.getAllByRole('radio');
+
+        expect(options[0]).not.toHaveAttribute('aria-label');
+        expect(options[1]).not.toHaveAttribute('aria-label');
+        expect(renderResult.queryByLabelText('Pass')).not.toBeNull();
+        expect(renderResult.queryByLabelText('Fail')).not.toBeNull();
     });
 
     test('render options without label, aria-label is defined', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.isLabelVisible = false;
-        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton']);
-        const testSubject = render(<ChoiceGroupPassFail {...props} />);
-        const options = testSubject.getAllByRole('radio');
 
-        expect(options[0].getAttribute('aria-label')).toEqual('Pass');
-        expect(options[1].getAttribute('aria-label')).toEqual('Fail');
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        const options = renderResult.getAllByRole('radio');
+
+        expect(options[0]).toHaveAttribute('aria-label', 'Pass');
+        expect(options[1]).toHaveAttribute('aria-label', 'Fail');
         expect(options[0].textContent).toEqual('');
         expect(options[1].textContent).toEqual('');
     });
@@ -85,27 +87,23 @@ describe('ChoiceGroupPassFail', () => {
     test('verify undo button is present with selection', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
-        const testSubject = render(<ChoiceGroupPassFail {...props} />);
-        expect(testSubject.getAllByRole('button')).toBeTruthy();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        expect(renderResult.getByRole('button')).not.toBeNull();
     });
 
-    test('verify component is correctly used with undo', async () => {
+    test('verify component is correctly used with undo', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
 
-        const testSubject = render(<ChoiceGroupPassFail {...props} />);
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
 
         const eventStub = {} as React.MouseEvent<HTMLElement>;
-        const undoButton = testSubject.getAllByRole('button');
 
-        const radioButton = testSubject.getAllByRole('radio');
+        const options = renderResult.getAllByRole('radio');
+        const undoButton = renderResult.getByRole('button');
+        fireEvent.click(undoButton, eventStub);
 
-        expect(undoButton).not.toBeNull();
-
-        const getUndoLink = testSubject.container.querySelectorAll('.ms-Button--icon');
-
-        fireEvent.click(getUndoLink[0], eventStub);
-        expect(radioButton[0]).toHaveFocus();
+        expect(options[0]).toHaveFocus();
 
         onUndoClickedMock.verify(m => m(It.isAny()), Times.once());
     });

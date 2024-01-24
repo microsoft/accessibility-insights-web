@@ -19,18 +19,23 @@ import {
 import { BannerWarnings } from 'DetailsView/components/banner-warnings';
 import { DetailsListIssuesView } from 'DetailsView/components/details-list-issues-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 
 import * as React from 'react';
-import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 jest.mock('DetailsView/components/details-list-issues-view');
 jest.mock('DetailsView/components/banner-warnings');
+jest.mock('DetailsView/components/target-page-changed-view');
 
 describe('AdhocIssuesTestView', () => {
-    mockReactComponents([DetailsListIssuesView, BannerWarnings]);
+    mockReactComponents([DetailsListIssuesView, BannerWarnings, TargetPageChangedView]);
     const visualizationStoreDataStub = {
         tests: {},
         scanning: 'test-scanning',
@@ -99,7 +104,7 @@ describe('AdhocIssuesTestView', () => {
             .verifiable();
 
         const actual = render(<AdhocIssuesTestView {...props} />);
-
+        expectMockedComponentPropsToMatchSnapshots([TargetPageChangedView]);
         expect(actual.asFragment()).toMatchSnapshot();
         verifyAll();
     });

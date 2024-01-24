@@ -7,7 +7,7 @@ exports[`ChoiceGroupPassFail render 1`] = `
   >
     <mock-styledchoicegroup
       islabelvisible="false"
-      options="[object Object],[object Object]"
+      options="[object Object],[object Object],[object Object]"
       selectedkey="unknown"
       styles="[object Object]"
     />
@@ -30,7 +30,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
   >
     <mock-styledchoicegroup
       islabelvisible="false"
-      options="[object Object],[object Object]"
+      options="[object Object],[object Object],[object Object]"
       selectedkey="fail"
       styles="[object Object]"
     />
@@ -57,7 +57,7 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
   >
     <mock-styledchoicegroup
       islabelvisible="false"
-      options="[object Object],[object Object]"
+      options="[object Object],[object Object],[object Object]"
       selectedkey="pass"
       styles="[object Object]"
     />
