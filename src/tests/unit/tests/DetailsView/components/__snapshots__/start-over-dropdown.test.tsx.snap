@@ -49,8 +49,10 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
         />
       </span>
     </button>
-    <span
-      class="ms-layer"
+    <mock-contextualmenu
+      directionalhint="7"
+      items="[object Object],[object Object]"
+      target="[object HTMLButtonElement]"
     />
   </div>
 </DocumentFragment>
@@ -79,7 +81,7 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
         >
           <span
             class="ms-Button-label label-113"
-            id="id__30"
+            id="id__15"
           >
             Start over
           </span>
@@ -91,8 +93,10 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
         />
       </span>
     </button>
-    <span
-      class="ms-layer"
+    <mock-contextualmenu
+      directionalhint="8"
+      items="[object Object],[object Object]"
+      target="[object HTMLButtonElement]"
     />
   </div>
 </DocumentFragment>

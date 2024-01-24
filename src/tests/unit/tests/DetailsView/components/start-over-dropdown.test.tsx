@@ -52,7 +52,7 @@ describe('StartOverDropdownTest', () => {
         useOriginalReactElements('common/components/controls/insights-command-button', [
             'InsightsCommandButton',
         ]);
-        useOriginalReactElements('@fluentui/react', ['ActionButton', 'ContextualMenu']);
+        useOriginalReactElements('@fluentui/react', ['ActionButton']);
 
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
 
