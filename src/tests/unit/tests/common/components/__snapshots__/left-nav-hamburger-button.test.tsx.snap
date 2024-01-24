@@ -1,16 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LeftNavHamburgerButton renders per snapshot 1`] = `
-<CustomizedIconButton
-  aria-expanded={false}
-  ariaLabel="test-aria-label"
-  className="leftNavHamburgerButton some-class"
-  data-automation-id="left-nav-hamburger-button"
-  iconProps={
-    {
-      "iconName": "GlobalNavButton",
-    }
-  }
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <mock-customizediconbutton
+    aria-expanded="false"
+    arialabel="test-aria-label"
+    data-automation-id="left-nav-hamburger-button"
+    iconprops="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`LeftNavHamburgerButton renders per snapshot: CustomizedIconButton props 1`] = `
+{
+  "aria-expanded": false,
+  "ariaLabel": "test-aria-label",
+  "className": undefined,
+  "data-automation-id": "left-nav-hamburger-button",
+  "iconProps": {
+    "iconName": "GlobalNavButton",
+  },
+  "onClick": [Function],
+}
 `;

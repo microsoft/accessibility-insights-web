@@ -1,18 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TestViewLeftNavLink renders 1`] = `
-<span
-  aria-hidden="true"
-  className="leftNavLinkContainer"
-  data-automation-id="test-view-left-nav-link"
->
-  <i>
-    test-props-renderIcon
-  </i>
+<DocumentFragment>
   <span
-    className="testName"
+    aria-hidden="true"
+    class="leftNavLinkContainer"
+    data-automation-id="test-view-left-nav-link"
   >
-    test-props-link-name
+    <i>
+      test-props-renderIcon
+    </i>
+    <span
+      class="testName"
+    >
+      test-props-link-name
+    </span>
   </span>
-</span>
+</DocumentFragment>
 `;

@@ -1,14 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`VisualizationBasedLeftNav renders with index icon 1`] = `
-<BaseLeftNav
-  links={
-    [
-      {},
-      {},
-    ]
-  }
-  selectedKey="some key"
-  setNavComponentRef={[Function]}
-/>
+<DocumentFragment>
+  <mock-baseleftnav
+    links="[object Object],[object Object]"
+    selectedkey="some key"
+  />
+</DocumentFragment>
+`;
+
+exports[`VisualizationBasedLeftNav renders with index icon: BaseLeftNav props 1`] = `
+{
+  "links": [
+    {},
+    {},
+  ],
+  "selectedKey": "some key",
+  "setNavComponentRef": [Function],
+}
 `;

@@ -1,23 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FastPassLeftNav renders visualization based left nav with appropriate params 1`] = `
-<VisualizationBasedLeftNav
-  deps={
-    {
-      "getNavLinkHandler": [Function],
-    }
-  }
-  featureFlagStoreData={{}}
-  onLinkClick={[Function]}
-  onRightPanelContentSwitch={[Function]}
-  selectedKey="some string"
-  setNavComponentRef={[Function]}
-  visualizations={
-    [
-      1,
-      3,
-      29,
-    ]
-  }
-/>
+<DocumentFragment>
+  <mock-visualizationbasedleftnav
+    deps="[object Object]"
+    featureflagstoredata="[object Object]"
+    selectedkey="some string"
+    visualizations="1,3,29"
+  />
+</DocumentFragment>
+`;
+
+exports[`FastPassLeftNav renders visualization based left nav with appropriate params: VisualizationBasedLeftNav props 1`] = `
+{
+  "deps": {
+    "getNavLinkHandler": [Function],
+  },
+  "featureFlagStoreData": {},
+  "onLinkClick": [Function],
+  "onRightPanelContentSwitch": [Function],
+  "selectedKey": "some string",
+  "setNavComponentRef": [Function],
+  "visualizations": [
+    1,
+    3,
+    29,
+  ],
+}
 `;

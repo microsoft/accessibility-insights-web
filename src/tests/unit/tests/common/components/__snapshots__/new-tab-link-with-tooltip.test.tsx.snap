@@ -1,74 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NewTabLinkWithTooltip handles children 1`] = `
-<StyledTooltipHostBase
-  calloutProps={
-    {
-      "styles": {
-        "beak": "insightsTooltip",
-        "root": "insightsTooltip",
-      },
-    }
-  }
-  content="tooltip text"
-  styles={
-    {
-      "root": "insightsTooltipHost",
-    }
-  }
->
-  <NewTabLink
+<DocumentFragment>
+  <mock-styledtooltiphostbase
+    calloutprops="[object Object]"
+    content="tooltip text"
+    styles="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`NewTabLinkWithTooltip handles children: StyledTooltipHostBase props 1`] = `
+{
+  "calloutProps": {
+    "styles": {
+      "beak": "insightsTooltip",
+      "root": "insightsTooltip",
+    },
+  },
+  "children": <NewTabLink
     className="insightsLink"
     href="test"
   >
     link text
-  </NewTabLink>
-</StyledTooltipHostBase>
+  </NewTabLink>,
+  "content": "tooltip text",
+  "styles": {
+    "root": "insightsTooltipHost",
+  },
+}
 `;
 
 exports[`NewTabLinkWithTooltip renders with null tooltip content 1`] = `
-<StyledTooltipHostBase
-  calloutProps={
-    {
-      "styles": {
-        "beak": "insightsTooltip",
-        "root": "insightsTooltip",
-      },
-    }
-  }
-  styles={
-    {
-      "root": "insightsTooltipHost",
-    }
-  }
->
-  <NewTabLink
+<DocumentFragment>
+  <mock-styledtooltiphostbase
+    calloutprops="[object Object]"
+    styles="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`NewTabLinkWithTooltip renders with null tooltip content: StyledTooltipHostBase props 1`] = `
+{
+  "calloutProps": {
+    "styles": {
+      "beak": "insightsTooltip",
+      "root": "insightsTooltip",
+    },
+  },
+  "children": <NewTabLink
     className="insightsLink"
     href="test"
-  />
-</StyledTooltipHostBase>
+  />,
+  "content": undefined,
+  "styles": {
+    "root": "insightsTooltipHost",
+  },
+}
 `;
 
 exports[`NewTabLinkWithTooltip renders with tooltip content 1`] = `
-<StyledTooltipHostBase
-  calloutProps={
-    {
-      "styles": {
-        "beak": "insightsTooltip",
-        "root": "insightsTooltip",
-      },
-    }
-  }
-  content="tooltip text"
-  styles={
-    {
-      "root": "insightsTooltipHost",
-    }
-  }
->
-  <NewTabLink
+<DocumentFragment>
+  <mock-styledtooltiphostbase
+    calloutprops="[object Object]"
+    content="tooltip text"
+    styles="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`NewTabLinkWithTooltip renders with tooltip content: StyledTooltipHostBase props 1`] = `
+{
+  "calloutProps": {
+    "styles": {
+      "beak": "insightsTooltip",
+      "root": "insightsTooltip",
+    },
+  },
+  "children": <NewTabLink
     className="insightsLink"
     href="test"
-  />
-</StyledTooltipHostBase>
+  />,
+  "content": "tooltip text",
+  "styles": {
+    "root": "insightsTooltipHost",
+  },
+}
 `;

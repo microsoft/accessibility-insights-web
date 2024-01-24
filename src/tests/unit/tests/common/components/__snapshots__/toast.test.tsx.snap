@@ -1,21 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ToastTest render: render content 1`] = `
-<div
-  aria-live="polite"
-  class="toastContainer"
->
+<DocumentFragment>
   <div
-    class="ms-fadeIn100 toastContent"
+    aria-live="polite"
+    class="toastContainer"
   >
-    hello world
+    <div
+      class="ms-fadeIn100 toastContent"
+    >
+      hello world
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ToastTest render: render nothing before show() is called 1`] = `
-<div
-  aria-live="polite"
-  class="toastContainer"
-/>
+<DocumentFragment>
+  <div
+    aria-live="polite"
+    class="toastContainer"
+  />
+</DocumentFragment>
 `;

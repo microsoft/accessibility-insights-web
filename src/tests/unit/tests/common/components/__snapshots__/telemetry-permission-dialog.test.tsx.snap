@@ -1,57 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetryPermissionDialogTest render dialog 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "title": "We need your help",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "className": "telemetry-permission-dialog-modal",
-      "containerClassName": "insights-dialog-main-override telemetry-permission-dialog",
-      "isBlocking": true,
-    }
-  }
->
-  <div
-    className="telemetry-permission-details"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
   >
-    <TelemetryNotice
-      deps={
-        {
-          "LinkComponent": [Function],
+    <div
+      class="telemetry-permission-details"
+    >
+      <mock-telemetrynotice
+        deps="[object Object]"
+      />
+    </div>
+    <div
+      class="telemetry-checkbox-section"
+    >
+      <mock-styledcheckboxbase
+        checked="true"
+        classname="telemetry-agree-checkbox"
+        label="I agree to enable telemetry"
+      />
+      <mock-privacystatementpopuptext
+        deps="[object Object]"
+      />
+    </div>
+    <mock-styleddialogfooterbase>
+      <mock-customizedprimarybutton
+        classname="start-using-product-button"
+        text="OK"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`TelemetryPermissionDialogTest render dialog: Dialog props 1`] = `
+{
+  "children": [
+    <div
+      className="telemetry-permission-details"
+    >
+      <TelemetryNotice
+        deps={
+          {
+            "LinkComponent": [Function],
+          }
         }
-      }
-    />
-  </div>
-  <div
-    className="telemetry-checkbox-section"
-  >
-    <StyledCheckboxBase
-      checked={true}
-      className="telemetry-agree-checkbox"
-      label="I agree to enable telemetry"
-      onChange={[Function]}
-    />
-    <PrivacyStatementPopupText
-      deps={
-        {
-          "LinkComponent": [Function],
+      />
+    </div>,
+    <div
+      className="telemetry-checkbox-section"
+    >
+      <StyledCheckboxBase
+        checked={true}
+        className="telemetry-agree-checkbox"
+        label="I agree to enable telemetry"
+        onChange={[Function]}
+      />
+      <PrivacyStatementPopupText
+        deps={
+          {
+            "LinkComponent": [Function],
+          }
         }
-      }
-    />
-  </div>
-  <StyledDialogFooterBase>
-    <CustomizedPrimaryButton
-      className="start-using-product-button"
-      onClick={[Function]}
-      text="OK"
-    />
-  </StyledDialogFooterBase>
-</Dialog>
+      />
+    </div>,
+    <StyledDialogFooterBase>
+      <CustomizedPrimaryButton
+        className="start-using-product-button"
+        onClick={[Function]}
+        text="OK"
+      />
+    </StyledDialogFooterBase>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "title": "We need your help",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "telemetry-permission-dialog-modal",
+    "containerClassName": "insights-dialog-main-override telemetry-permission-dialog",
+    "isBlocking": true,
+  },
+}
+`;
+
+exports[`TelemetryPermissionDialogTest render dialog: PrivacyStatementPopupText props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
+`;
+
+exports[`TelemetryPermissionDialogTest render dialog: TelemetryNotice props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
 `;

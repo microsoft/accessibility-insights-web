@@ -1,13 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = false 1`] = `<BrandWhite />`;
+exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = false 1`] = `
+<DocumentFragment>
+  <mock-brandwhite />
+</DocumentFragment>
+`;
 
-exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = true 1`] = `<BrandBlue />`;
+exports[`HeaderIconComponent renders with invertColors = false and high contrast mode = true 1`] = `
+<DocumentFragment>
+  <mock-brandblue />
+</DocumentFragment>
+`;
 
-exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = false 1`] = `<BrandBlue />`;
+exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = false 1`] = `
+<DocumentFragment>
+  <mock-brandblue />
+</DocumentFragment>
+`;
 
-exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = true 1`] = `<BrandWhite />`;
+exports[`HeaderIconComponent renders with invertColors = true and high contrast mode = true 1`] = `
+<DocumentFragment>
+  <mock-brandwhite />
+</DocumentFragment>
+`;
 
-exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = false 1`] = `<BrandWhite />`;
+exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = false 1`] = `
+<DocumentFragment>
+  <mock-brandwhite />
+</DocumentFragment>
+`;
 
-exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = true 1`] = `<BrandBlue />`;
+exports[`HeaderIconComponent renders with invertColors = undefined and high contrast mode = true 1`] = `
+<DocumentFragment>
+  <mock-brandblue />
+</DocumentFragment>
+`;

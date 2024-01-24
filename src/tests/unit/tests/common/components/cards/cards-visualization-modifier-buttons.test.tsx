@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import {
     CardsVisualizationModifierButtonsProps,
     ExpandCollapseOnlyModifierButtons,
     ExpandCollapseVisualHelperModifierButtons,
 } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ExpandCollapseAllButton } from '../../../../../../common/components/cards/expand-collapse-all-button';
+import { VisualHelperToggle } from '../../../../../../common/components/cards/visual-helper-toggle';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
 const stubProps: CardsVisualizationModifierButtonsProps = {
     visualHelperEnabled: true,
@@ -15,16 +18,20 @@ const stubProps: CardsVisualizationModifierButtonsProps = {
     cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
 };
 
+jest.mock('../../../../../../common/components/cards/expand-collapse-all-button');
+jest.mock('../../../../../../common/components/cards/visual-helper-toggle');
 describe('ExpandCollapseVisualHelperModifierButtons', () => {
+    mockReactComponents([VisualHelperToggle, ExpandCollapseAllButton]);
     it('renders per snapshot', () => {
-        const testSubject = shallow(<ExpandCollapseVisualHelperModifierButtons {...stubProps} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<ExpandCollapseVisualHelperModifierButtons {...stubProps} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
 
 describe('ExpandCollapseOnlyModifierButtons', () => {
+    mockReactComponents([VisualHelperToggle, ExpandCollapseAllButton]);
     it('renders per snapshot', () => {
-        const testSubject = shallow(<ExpandCollapseOnlyModifierButtons {...stubProps} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<ExpandCollapseOnlyModifierButtons {...stubProps} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
