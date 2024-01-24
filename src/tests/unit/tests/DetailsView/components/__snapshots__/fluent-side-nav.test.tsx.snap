@@ -62,8 +62,6 @@ exports[`FluentSideNav render nav bar: DetailsViewLeftNav props 1`] = `
 
 exports[`FluentSideNav render null if tab is closed 1`] = `<DocumentFragment />`;
 
-exports[`FluentSideNav render null if tab is closed: DetailsViewLeftNav props 1`] = `undefined`;
-
 exports[`FluentSideNav render side nav 1`] = `
 <DocumentFragment>
   <mock-genericpanel
