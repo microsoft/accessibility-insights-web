@@ -2,124 +2,54 @@
 
 exports[`TelemetrySettings renders with enabled = false 1`] = `
 <DocumentFragment>
-  <div
-    class="genericToggleComponent"
-  >
-    <div
-      class="toggleContainer"
-    >
-      <div
-        class="toggleName"
-      >
-        Help improve test-product-name
-      </div>
-      <div
-        class="ms-Toggle is-enabled toggle root-109"
-      >
-        <div
-          class="ms-Toggle-innerContainer container-111"
-        >
-          <button
-            aria-checked="false"
-            aria-label="Help improve test-product-name"
-            class="ms-Toggle-background pill-116"
-            data-is-focusable="true"
-            data-ktp-target="true"
-            id="enable-telemetry"
-            role="switch"
-            type="button"
-          >
-            <span
-              class="ms-Toggle-thumb thumb-117"
-            />
-          </button>
-          <label
-            class="ms-Label ms-Toggle-stateText text-115"
-            for="enable-telemetry"
-            id="enable-telemetry-stateText"
-          >
-            Off
-          </label>
-        </div>
-      </div>
-    </div>
-    <div
-      class="toggleDescription"
-    >
-      <mock-enabletelemetrysettingdescription
-        deps="[object Object]"
-      />
-    </div>
-  </div>
+  <mock-generictoggle
+    description="[object Object]"
+    enabled="false"
+    id="enable-telemetry"
+    name="Help improve test-product-name"
+  />
 </DocumentFragment>
 `;
 
-exports[`TelemetrySettings renders with enabled = false: EnableTelemetrySettingDescription props 1`] = `
+exports[`TelemetrySettings renders with enabled = false: GenericToggle props 1`] = `
 {
-  "deps": {
-    "LinkComponent": [Function],
-  },
+  "description": <EnableTelemetrySettingDescription
+    deps={
+      {
+        "LinkComponent": [Function],
+      }
+    }
+  />,
+  "enabled": false,
+  "id": "enable-telemetry",
+  "name": "Help improve test-product-name",
+  "onClick": [Function],
 }
 `;
 
 exports[`TelemetrySettings renders with enabled = true 1`] = `
 <DocumentFragment>
-  <div
-    class="genericToggleComponent"
-  >
-    <div
-      class="toggleContainer"
-    >
-      <div
-        class="toggleName"
-      >
-        Help improve test-product-name
-      </div>
-      <div
-        class="ms-Toggle is-checked is-enabled toggle root-109"
-      >
-        <div
-          class="ms-Toggle-innerContainer container-111"
-        >
-          <button
-            aria-checked="true"
-            aria-label="Help improve test-product-name"
-            class="ms-Toggle-background pill-112"
-            data-is-focusable="true"
-            data-ktp-target="true"
-            id="enable-telemetry"
-            role="switch"
-            type="button"
-          >
-            <span
-              class="ms-Toggle-thumb thumb-113"
-            />
-          </button>
-          <label
-            class="ms-Label ms-Toggle-stateText text-115"
-            for="enable-telemetry"
-            id="enable-telemetry-stateText"
-          >
-            On
-          </label>
-        </div>
-      </div>
-    </div>
-    <div
-      class="toggleDescription"
-    >
-      <mock-enabletelemetrysettingdescription
-        deps="[object Object]"
-      />
-    </div>
-  </div>
+  <mock-generictoggle
+    description="[object Object]"
+    enabled="true"
+    id="enable-telemetry"
+    name="Help improve test-product-name"
+  />
 </DocumentFragment>
 `;
 
-exports[`TelemetrySettings renders with enabled = true: EnableTelemetrySettingDescription props 1`] = `
+exports[`TelemetrySettings renders with enabled = true: GenericToggle props 1`] = `
 {
-  "deps": {
-    "LinkComponent": [Function],
-  },
+  "description": <EnableTelemetrySettingDescription
+    deps={
+      {
+        "LinkComponent": [Function],
+      }
+    }
+  />,
+  "enabled": true,
+  "id": "enable-telemetry",
+  "name": "Help improve test-product-name",
+  "onClick": [Function],
 }
 `;

@@ -30,9 +30,6 @@ describe('TelemetrySettings', () => {
 
     describe('renders', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
-            useOriginalReactElements('../../../DetailsView/components/generic-toggle', [
-                'GenericToggle',
-            ]);
             const props: TelemetrySettingsProps = {
                 deps: {
                     LinkComponent: NewTabLink,
@@ -47,7 +44,7 @@ describe('TelemetrySettings', () => {
             const teleMetryDescription = getMockComponentClassPropsForCall(GenericToggle);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([EnableTelemetrySettingDescription]);
+            expectMockedComponentPropsToMatchSnapshots([GenericToggle]);
             expect(teleMetryDescription.description.props.deps.LinkComponent).toBe(
                 props.deps.LinkComponent,
             );
