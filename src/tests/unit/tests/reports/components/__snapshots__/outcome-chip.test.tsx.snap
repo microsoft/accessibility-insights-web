@@ -1,113 +1,187 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OutcomeChip render fail 1`] = `
-<span
-  className="outcome-chip outcome-chip-fail"
-  title="4 Failed"
->
+<DocumentFragment>
   <span
-    className="icon"
+    class="outcome-chip outcome-chip-fail"
+    title="4 Failed"
   >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
+    <span
+      class="icon"
+    >
+      <span
+        class="check-container"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          height="16"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="8"
+            cy="8"
+            fill="#E81123"
+            r="8"
+          />
+          <path
+            d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+            fill="var(--neutral-0)"
+          />
+        </svg>
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="count"
+      data-automation-id="count"
+    >
+       4
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      4 Failed
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="count"
-    data-automation-id="count"
-  >
-     
-    4
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    4 Failed
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`OutcomeChip render inapplicable 1`] = `
-<span
-  className="outcome-chip outcome-chip-inapplicable"
-  title="4 Not applicable"
->
+<DocumentFragment>
   <span
-    className="icon"
+    class="outcome-chip outcome-chip-inapplicable"
+    title="4 Not applicable"
   >
-    <OutcomeIcon
-      outcomeType="inapplicable"
-    />
+    <span
+      class="icon"
+    >
+      <span
+        class="check-container"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          height="16"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="8"
+            cy="8"
+            fill="#737373"
+            r="8"
+          />
+          <line
+            stroke="white"
+            stroke-linecap="round"
+            stroke-width="1.5"
+            x1="5.66064"
+            x2="10.2568"
+            y1="5.625"
+            y2="10.2212"
+          />
+        </svg>
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="count"
+      data-automation-id="count"
+    >
+       4
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      4 Not applicable
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="count"
-    data-automation-id="count"
-  >
-     
-    4
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    4 Not applicable
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`OutcomeChip render incomplete 1`] = `
-<span
-  className="outcome-chip outcome-chip-incomplete"
-  title="2 Incomplete"
->
+<DocumentFragment>
   <span
-    className="icon"
+    class="outcome-chip outcome-chip-incomplete"
+    title="2 Incomplete"
   >
-    <OutcomeIcon
-      outcomeType="incomplete"
-    />
+    <span
+      class="icon"
+    >
+      <span
+        class="check-container"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="count"
+      data-automation-id="count"
+    >
+       2
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      2 Incomplete
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="count"
-    data-automation-id="count"
-  >
-     
-    2
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    2 Incomplete
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`OutcomeChip render pass 1`] = `
-<span
-  className="outcome-chip outcome-chip-pass"
-  title="3 Passed"
->
+<DocumentFragment>
   <span
-    className="icon"
+    class="outcome-chip outcome-chip-pass"
+    title="3 Passed"
   >
-    <OutcomeIcon
-      outcomeType="pass"
-    />
+    <span
+      class="icon"
+    >
+      <span
+        class="check-container"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          height="16"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="8"
+            cy="8"
+            fill="#228722"
+            r="8"
+          />
+          <path
+            clip-rule="evenodd"
+            d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+            fill="var(--neutral-0)"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="count"
+      data-automation-id="count"
+    >
+       3
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      3 Passed
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="count"
-    data-automation-id="count"
-  >
-     
-    3
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    3 Passed
-  </span>
-</span>
+</DocumentFragment>
 `;

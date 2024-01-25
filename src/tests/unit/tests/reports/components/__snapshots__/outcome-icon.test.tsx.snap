@@ -1,152 +1,226 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckIcon render 1`] = `
-<span
-  className="check-container"
->
-  <svg
-    aria-hidden="true"
-    fill="none"
-    height="16"
-    role="img"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
+<DocumentFragment>
+  <span
+    class="check-container"
   >
-    <circle
-      cx="8"
-      cy="8"
-      fill="#228722"
-      r="8"
-    />
-    <path
-      clipRule="evenodd"
-      d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-      fill="var(--neutral-0)"
-      fillRule="evenodd"
-    />
-  </svg>
-</span>
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="16"
+      role="img"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="8"
+        cy="8"
+        fill="#228722"
+        r="8"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+        fill="var(--neutral-0)"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
 `;
 
 exports[`CheckIconInverted render 1`] = `
-<span
-  className="check-container"
->
-  <svg
-    aria-hidden="true"
-    fill="none"
-    height="16"
-    role="img"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
+<DocumentFragment>
+  <span
+    class="check-container"
   >
-    <path
-      clipRule="evenodd"
-      d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM6.0616 11.1442L6.05904 11.1417L4.27459 9.35718C3.90847 8.99104 3.90847 8.39747 4.27459 8.03134C4.64071 7.66524 5.2343 7.66524 5.60041 8.03134L6.72452 9.15545L10.6054 5.27457C10.9715 4.90848 11.5651 4.90848 11.9312 5.27457C12.2974 5.64071 12.2974 6.23427 11.9312 6.60041L7.391 11.1406L7.38742 11.1442C7.06707 11.4646 6.57256 11.5046 6.20867 11.2643C6.15668 11.23 6.10737 11.19 6.0616 11.1442Z"
-      fill="white"
-      fillRule="evenodd"
-    />
-  </svg>
-</span>
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="16"
+      role="img"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM6.0616 11.1442L6.05904 11.1417L4.27459 9.35718C3.90847 8.99104 3.90847 8.39747 4.27459 8.03134C4.64071 7.66524 5.2343 7.66524 5.60041 8.03134L6.72452 9.15545L10.6054 5.27457C10.9715 4.90848 11.5651 4.90848 11.9312 5.27457C12.2974 5.64071 12.2974 6.23427 11.9312 6.60041L7.391 11.1406L7.38742 11.1442C7.06707 11.4646 6.57256 11.5046 6.20867 11.2643C6.15668 11.23 6.10737 11.19 6.0616 11.1442Z"
+        fill="white"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
 `;
 
 exports[`CircleIcon render 1`] = `
-<span
-  className="check-container"
-/>
+<DocumentFragment>
+  <span
+    class="check-container"
+  />
+</DocumentFragment>
 `;
 
 exports[`CrossIconInverted render 1`] = `
-<span
-  className="check-container"
->
-  <svg
-    aria-hidden="true"
-    fill="none"
-    height="16"
-    role="img"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
+<DocumentFragment>
+  <span
+    class="check-container"
   >
-    <path
-      clipRule="evenodd"
-      d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58172 0 0 3.58173 0 8C0 12.4183 3.58172 16 8 16ZM10.9947 4.99466C10.7018 4.70178 10.2269 4.70178 9.93401 4.99466L8 6.92868L6.06599 4.99466C5.77309 4.70178 5.29823 4.70178 5.00533 4.99466C4.71243 5.28757 4.71243 5.76242 5.00533 6.05533L6.93933 7.98932L4.99467 9.93399C4.70177 10.2269 4.70177 10.7018 4.99467 10.9947C5.28756 11.2876 5.76243 11.2876 6.05532 10.9947L8 9.04999L9.94467 10.9947C10.2376 11.2876 10.7124 11.2876 11.0053 10.9947C11.2982 10.7018 11.2982 10.2269 11.0053 9.93399L9.06066 7.98932L10.9947 6.05533C11.2876 5.76242 11.2876 5.28757 10.9947 4.99466Z"
-      fill="var(--neutral-0)"
-      fillRule="evenodd"
-    />
-  </svg>
-</span>
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="16"
+      role="img"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        clip-rule="evenodd"
+        d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58172 0 0 3.58173 0 8C0 12.4183 3.58172 16 8 16ZM10.9947 4.99466C10.7018 4.70178 10.2269 4.70178 9.93401 4.99466L8 6.92868L6.06599 4.99466C5.77309 4.70178 5.29823 4.70178 5.00533 4.99466C4.71243 5.28757 4.71243 5.76242 5.00533 6.05533L6.93933 7.98932L4.99467 9.93399C4.70177 10.2269 4.70177 10.7018 4.99467 10.9947C5.28756 11.2876 5.76243 11.2876 6.05532 10.9947L8 9.04999L9.94467 10.9947C10.2376 11.2876 10.7124 11.2876 11.0053 10.9947C11.2982 10.7018 11.2982 10.2269 11.0053 9.93399L9.06066 7.98932L10.9947 6.05533C11.2876 5.76242 11.2876 5.28757 10.9947 4.99466Z"
+        fill="var(--neutral-0)"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
 `;
 
 exports[`InapplicableIcon render 1`] = `
-<span
-  className="check-container"
->
-  <svg
-    aria-hidden="true"
-    fill="none"
-    height="16"
-    role="img"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
+<DocumentFragment>
+  <span
+    class="check-container"
   >
-    <circle
-      cx="8"
-      cy="8"
-      fill="#737373"
-      r="8"
-    />
-    <line
-      stroke="white"
-      strokeLinecap="round"
-      strokeWidth="1.5"
-      x1="5.66064"
-      x2="10.2568"
-      y1="5.625"
-      y2="10.2212"
-    />
-  </svg>
-</span>
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="16"
+      role="img"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="8"
+        cy="8"
+        fill="#737373"
+        r="8"
+      />
+      <line
+        stroke="white"
+        stroke-linecap="round"
+        stroke-width="1.5"
+        x1="5.66064"
+        x2="10.2568"
+        y1="5.625"
+        y2="10.2212"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
 `;
 
 exports[`InapplicableIconInverted render 1`] = `
-<span
-  className="check-container"
->
-  <svg
-    aria-hidden="true"
-    fill="none"
-    height="16"
-    role="img"
-    viewBox="0 0 16 16"
-    width="16"
-    xmlns="http://www.w3.org/2000/svg"
+<DocumentFragment>
+  <span
+    class="check-container"
   >
-    <circle
-      cx="8"
-      cy="8"
-      fill="white"
-      r="8"
-    />
-    <line
-      stroke="#737373"
-      strokeLinecap="round"
-      strokeWidth="1.5"
-      x1="5.66064"
-      x2="10.2568"
-      y1="5.625"
-      y2="10.2212"
-    />
-  </svg>
-</span>
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="16"
+      role="img"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="8"
+        cy="8"
+        fill="white"
+        r="8"
+      />
+      <line
+        stroke="#737373"
+        stroke-linecap="round"
+        stroke-width="1.5"
+        x1="5.66064"
+        x2="10.2568"
+        y1="5.625"
+        y2="10.2212"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
 `;
 
-exports[`OutcomeIcon render fail 1`] = `<CrossIcon />`;
+exports[`OutcomeIcon render fail 1`] = `
+<DocumentFragment>
+  <span
+    class="check-container"
+  >
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="16"
+      role="img"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="8"
+        cy="8"
+        fill="#E81123"
+        r="8"
+      />
+      <path
+        d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+        fill="var(--neutral-0)"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
+`;
 
-exports[`OutcomeIcon render incomplete 1`] = `<CircleIcon />`;
+exports[`OutcomeIcon render incomplete 1`] = `
+<DocumentFragment>
+  <span
+    class="check-container"
+  />
+</DocumentFragment>
+`;
 
-exports[`OutcomeIcon render pass 1`] = `<CheckIcon />`;
+exports[`OutcomeIcon render pass 1`] = `
+<DocumentFragment>
+  <span
+    class="check-container"
+  >
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height="16"
+      role="img"
+      viewBox="0 0 16 16"
+      width="16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="8"
+        cy="8"
+        fill="#228722"
+        r="8"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+        fill="var(--neutral-0)"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
+</DocumentFragment>
+`;
