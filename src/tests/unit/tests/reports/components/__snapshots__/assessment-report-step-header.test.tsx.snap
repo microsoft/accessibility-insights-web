@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentReportStepHeader matches snapshot 1`] = `
+<div
+  className="step-header"
+>
+  <h4
+    className="step-header-name"
+  >
+    REQUIREMENT
+    :
+    <span
+      className="screen-reader-only"
+    >
+      42 FAIL-tested
+    </span>
+  </h4>
+  <span
+    className="step-header-description"
+  >
+    <p>
+      DESCRIPTION
+    </p>
+  </span>
+  -
+  <GuidanceLinks
+    LinkComponent={[Function]}
+    classNameForDiv="test-guidance-links-group"
+    links={
+      [
+        {
+          "href": "LINK_URL",
+          "text": "LINK_TEXT",
+        },
+      ]
+    }
+  />
+  <OutcomeChip
+    count={42}
+    outcomeType="fail"
+  />
+  <GuidanceTags
+    deps={
+      {
+        "LinkComponent": [Function],
+        "getGuidanceTagsFromGuidanceLinks": [Function],
+        "outcomeTypeSemanticsFromTestStatus": [Function],
+      }
+    }
+    links={
+      [
+        {
+          "href": "LINK_URL",
+          "text": "LINK_TEXT",
+        },
+      ]
+    }
+  />
+</div>
+`;
