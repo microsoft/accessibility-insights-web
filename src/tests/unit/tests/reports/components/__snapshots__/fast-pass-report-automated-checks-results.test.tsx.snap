@@ -1,15 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FastPassReportSummary renders automated checks not run message if automated checks are null 1`] = `
-"<p>
-  Automated checks were not run.
-</p>"
+<DocumentFragment>
+  <p>
+    Automated checks were not run.
+  </p>
+</DocumentFragment>
 `;
 
 exports[`FastPassReportSummary renders with pass/fail/incomplete elements if automated checks exist 1`] = `
-"<Fragment>
-  <FailedInstancesSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} cardsViewData={{...}} />
-  <IncompleteChecksSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} cardsViewData={{...}} testKey="automated-checks" />
-  <PassedChecksSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} cardsViewData={{...}} testKey="automated-checks" />
-</Fragment>"
+<DocumentFragment>
+  <mock-resultsection
+    allcardscollapsed="true"
+    badgecount="1"
+    containerclassname="failedInstancesContainer"
+    deps="[object Object]"
+    outcometype="fail"
+    results="[object Object]"
+    sectionheadinglevel="3"
+    shouldalertfailurescount="false"
+    targetappinfo="[object Object]"
+    title="Failed instances"
+    visualhelperenabled="true"
+  />
+  <mock-collapsibleresultsection
+    badgecount="0"
+    cardruleresults=""
+    containerclassname="result-section"
+    containerid="incomplete-checks-section"
+    deps="[object Object]"
+    headinglevel="3"
+    outcometype="incomplete"
+    testkey="automated-checks"
+    title="Incomplete checks"
+  />
+  <mock-collapsibleresultsection
+    badgecount="0"
+    cardruleresults=""
+    containerclassname="result-section"
+    containerid="passed-checks-section"
+    deps="[object Object]"
+    headinglevel="3"
+    outcometype="pass"
+    testkey="automated-checks"
+    title="Passed checks"
+  />
+</DocumentFragment>
 `;

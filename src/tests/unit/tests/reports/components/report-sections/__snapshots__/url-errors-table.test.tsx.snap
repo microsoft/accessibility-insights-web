@@ -1,66 +1,128 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UrlErrorsTable renders 1`] = `
-<SummaryResultsTable
-  columns={
-    [
-      {
-        "contentType": "text",
-        "header": "Error type",
-      },
-      {
-        "contentType": "url",
-        "header": "URL",
-      },
-      {
-        "contentType": "text",
-        "header": "Error description",
-      },
-    ]
-  }
-  id="table-id"
-  rows={
-    [
-      [
-        "type1",
-        <NewTabLink
-          href="https://url.com/1"
+<DocumentFragment>
+  <table
+    class="summaryResultsTable"
+    id="table-id"
+  >
+    <thead>
+      <tr>
+        <th
+          id="table-id-header0"
         >
-          https://url.com/1
-        </NewTabLink>,
-        <NewTabLink
-          href="error log file 1"
+          Error type
+        </th>
+        <th
+          id="table-id-header1"
         >
-          error description 1
-        </NewTabLink>,
-      ],
-      [
-        "type2",
-        <NewTabLink
-          href="https://url.com/2"
+          URL
+        </th>
+        <th
+          id="table-id-header2"
         >
-          https://url.com/2
-        </NewTabLink>,
-        <NewTabLink
-          href="error log file 2"
+          Error description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          class="textCell"
+          headers="table-id-header0"
         >
-          error description 2
-        </NewTabLink>,
-      ],
-      [
-        "type3",
-        <NewTabLink
-          href="https://url.com/3"
+          type1
+        </td>
+        <td
+          class="urlCell"
+          headers="table-id-header1"
         >
-          https://url.com/3
-        </NewTabLink>,
-        <NewTabLink
-          href="error log file 3"
+          <a
+            class="ms-Link insights-link root-109"
+            href="https://url.com/1"
+            target="_blank"
+          >
+            https://url.com/1
+          </a>
+        </td>
+        <td
+          class="textCell"
+          headers="table-id-header2"
         >
-          error description 3
-        </NewTabLink>,
-      ],
-    ]
-  }
-/>
+          <a
+            class="ms-Link insights-link root-109"
+            href="error log file 1"
+            target="_blank"
+          >
+            error description 1
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="textCell"
+          headers="table-id-header0"
+        >
+          type2
+        </td>
+        <td
+          class="urlCell"
+          headers="table-id-header1"
+        >
+          <a
+            class="ms-Link insights-link root-109"
+            href="https://url.com/2"
+            target="_blank"
+          >
+            https://url.com/2
+          </a>
+        </td>
+        <td
+          class="textCell"
+          headers="table-id-header2"
+        >
+          <a
+            class="ms-Link insights-link root-109"
+            href="error log file 2"
+            target="_blank"
+          >
+            error description 2
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="textCell"
+          headers="table-id-header0"
+        >
+          type3
+        </td>
+        <td
+          class="urlCell"
+          headers="table-id-header1"
+        >
+          <a
+            class="ms-Link insights-link root-109"
+            href="https://url.com/3"
+            target="_blank"
+          >
+            https://url.com/3
+          </a>
+        </td>
+        <td
+          class="textCell"
+          headers="table-id-header2"
+        >
+          <a
+            class="ms-Link insights-link root-109"
+            href="error log file 3"
+            target="_blank"
+          >
+            error description 3
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
 `;

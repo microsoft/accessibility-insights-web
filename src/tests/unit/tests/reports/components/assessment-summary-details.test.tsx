@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import {
     AssessmentSummaryDetails,
@@ -17,8 +17,8 @@ describe('AssessmentSummaryDetails', () => {
                         .reportSummaryDetailsData,
             };
 
-            const wrapper = shallow(<AssessmentSummaryDetails {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<AssessmentSummaryDetails {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         test('Renders an OutcomeIconSet for 7 items', () => {
@@ -33,8 +33,8 @@ describe('AssessmentSummaryDetails', () => {
                 ],
             };
 
-            const wrapper = shallow(<AssessmentSummaryDetails {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<AssessmentSummaryDetails {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         test('Renders an OutcomeChipSet for 8 items', () => {
@@ -49,8 +49,8 @@ describe('AssessmentSummaryDetails', () => {
                 ],
             };
 
-            const wrapper = shallow(<AssessmentSummaryDetails {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<AssessmentSummaryDetails {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 });

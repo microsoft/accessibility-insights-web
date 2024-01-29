@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { TabStopsReportInstanceList } from 'reports/components/report-sections/tab-stops-report-instance-list';
 
@@ -9,7 +9,7 @@ describe('TabStopsReportInstanceList', () => {
         const props = {
             instances: [],
         };
-        const wrapper = shallow(<TabStopsReportInstanceList {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<TabStopsReportInstanceList {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

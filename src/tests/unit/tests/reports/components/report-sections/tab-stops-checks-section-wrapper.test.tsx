@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NamedFC } from 'common/react/named-fc';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
     SectionDeps,
@@ -48,8 +48,8 @@ describe('TabStopChecksSectionWrapper', () => {
             featureFlagStoreData: {},
         };
 
-        const wrapper = shallow(<TabStopsChecksSectionWrapper {...props} />);
+        const renderResult = render(<TabStopsChecksSectionWrapper {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

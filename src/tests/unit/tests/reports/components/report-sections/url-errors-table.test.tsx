@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { UrlErrorsTable } from 'reports/components/report-sections/url-errors-table';
 
@@ -27,8 +27,8 @@ describe(UrlErrorsTable.displayName, () => {
             },
         ];
 
-        const wrapper = shallow(<UrlErrorsTable errors={errors} id="table-id" />);
+        const renderResult = render(<UrlErrorsTable errors={errors} id="table-id" />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

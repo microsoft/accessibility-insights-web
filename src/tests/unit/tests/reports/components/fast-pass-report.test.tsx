@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
     FastPassReport,
@@ -12,8 +12,18 @@ import {
 import { Mock } from 'typemoq';
 
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
+import { CollapsibleResultSection } from '../../../../../reports/components/report-sections/collapsible-result-section';
+import { TabStopsFailedInstanceSection } from '../../../../../DetailsView/components/tab-stops-failed-instance-section';
+import { ResultSection } from '../../../../../common/components/cards/result-section';
+import { FastPassReportSummary } from '../../../../../reports/components/fast-pass-report-summary';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../reports/components/report-sections/collapsible-result-section');
+jest.mock('../../../../../DetailsView/components/tab-stops-failed-instance-section');
+jest.mock('../../../../../common/components/cards/result-section');
+jest.mock('../../../../../reports/components/fast-pass-report-summary');
 
 describe(FastPassReport.displayName, () => {
+    mockReactComponents([CollapsibleResultSection, TabStopsFailedInstanceSection, ResultSection, FastPassReportSummary]);
     it('renders', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';
@@ -87,8 +97,8 @@ describe(FastPassReport.displayName, () => {
             sectionHeadingLevel: 3,
         };
 
-        const wrapper = shallow(<FastPassReport {...props} />);
+        const renderResult = render(<FastPassReport {...props} />);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

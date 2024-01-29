@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
     AssessmentReportStepList,
@@ -9,8 +9,12 @@ import {
     AssessmentReportStepListProps,
 } from 'reports/components/assessment-report-step-list';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
+import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../reports/components/assessment-report-step-header');
 
 describe('AssessmentReportStepListTest', () => {
+    mockReactComponents([AssessmentReportStepHeader]);
     const deps: AssessmentReportStepListDeps = {
         outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
     } as AssessmentReportStepListDeps;
@@ -22,8 +26,8 @@ describe('AssessmentReportStepListTest', () => {
             steps: AssessmentReportBuilderTestHelper.getRequirementReportModelPass(),
         };
 
-        const wrapper = shallow(<AssessmentReportStepList {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<AssessmentReportStepList {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders pass without instances when showInstances is false', () => {
@@ -35,8 +39,8 @@ describe('AssessmentReportStepListTest', () => {
             steps,
         };
 
-        const wrapper = shallow(<AssessmentReportStepList {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<AssessmentReportStepList {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders fail', () => {
@@ -46,8 +50,8 @@ describe('AssessmentReportStepListTest', () => {
             steps: AssessmentReportBuilderTestHelper.getRequirementReportModelFail(),
         };
 
-        const wrapper = shallow(<AssessmentReportStepList {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<AssessmentReportStepList {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders incomplete', () => {
@@ -57,7 +61,7 @@ describe('AssessmentReportStepListTest', () => {
             steps: AssessmentReportBuilderTestHelper.getRequirementReportModelUnknownStep3(),
         };
 
-        const wrapper = shallow(<AssessmentReportStepList {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<AssessmentReportStepList {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

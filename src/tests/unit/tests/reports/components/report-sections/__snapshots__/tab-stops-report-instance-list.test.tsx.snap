@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabStopsReportInstanceList renders 1`] = `
-<div
-  className="instanceList"
->
-  <ReportInstanceList
-    instances={[]}
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="instanceList"
+  >
+    <div />
+  </div>
+</DocumentFragment>
 `;

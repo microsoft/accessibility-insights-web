@@ -1,69 +1,131 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UrlScanResultsTable renders 1`] = `
-<SummaryResultsTable
-  columns={
-    [
-      {
-        "contentType": "text",
-        "header": "# failure instances (6)",
-      },
-      {
-        "contentType": "url",
-        "header": "URL",
-      },
-      {
-        "contentType": "text",
-        "header": "Link to report",
-      },
-    ]
-  }
-  id="table-id"
-  rows={
-    [
-      [
-        "1",
-        <NewTabLink
-          href="https://url.com/1"
+<DocumentFragment>
+  <table
+    class="summaryResultsTable"
+    id="table-id"
+  >
+    <thead>
+      <tr>
+        <th
+          id="table-id-header0"
         >
-          https://url.com/1
-        </NewTabLink>,
-        <NewTabLink
-          aria-label="Report for https://url.com/1"
-          href="report location 1"
+          # failure instances (6)
+        </th>
+        <th
+          id="table-id-header1"
         >
-          Report
-        </NewTabLink>,
-      ],
-      [
-        "2",
-        <NewTabLink
-          href="https://url.com/2"
+          URL
+        </th>
+        <th
+          id="table-id-header2"
         >
-          https://url.com/2
-        </NewTabLink>,
-        <NewTabLink
-          aria-label="Report for https://url.com/2"
-          href="report location 2"
+          Link to report
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          class="textCell"
+          headers="table-id-header0"
         >
-          Report
-        </NewTabLink>,
-      ],
-      [
-        "3",
-        <NewTabLink
-          href="https://url.com/3"
+          1
+        </td>
+        <td
+          class="urlCell"
+          headers="table-id-header1"
         >
-          https://url.com/3
-        </NewTabLink>,
-        <NewTabLink
-          aria-label="Report for https://url.com/3"
-          href="report location 3"
+          <a
+            class="ms-Link insights-link root-109"
+            href="https://url.com/1"
+            target="_blank"
+          >
+            https://url.com/1
+          </a>
+        </td>
+        <td
+          class="textCell"
+          headers="table-id-header2"
         >
-          Report
-        </NewTabLink>,
-      ],
-    ]
-  }
-/>
+          <a
+            aria-label="Report for https://url.com/1"
+            class="ms-Link insights-link root-109"
+            href="report location 1"
+            target="_blank"
+          >
+            Report
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="textCell"
+          headers="table-id-header0"
+        >
+          2
+        </td>
+        <td
+          class="urlCell"
+          headers="table-id-header1"
+        >
+          <a
+            class="ms-Link insights-link root-109"
+            href="https://url.com/2"
+            target="_blank"
+          >
+            https://url.com/2
+          </a>
+        </td>
+        <td
+          class="textCell"
+          headers="table-id-header2"
+        >
+          <a
+            aria-label="Report for https://url.com/2"
+            class="ms-Link insights-link root-109"
+            href="report location 2"
+            target="_blank"
+          >
+            Report
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <td
+          class="textCell"
+          headers="table-id-header0"
+        >
+          3
+        </td>
+        <td
+          class="urlCell"
+          headers="table-id-header1"
+        >
+          <a
+            class="ms-Link insights-link root-109"
+            href="https://url.com/3"
+            target="_blank"
+          >
+            https://url.com/3
+          </a>
+        </td>
+        <td
+          class="textCell"
+          headers="table-id-header2"
+        >
+          <a
+            aria-label="Report for https://url.com/3"
+            class="ms-Link insights-link root-109"
+            href="report location 3"
+            target="_blank"
+          >
+            Report
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</DocumentFragment>
 `;

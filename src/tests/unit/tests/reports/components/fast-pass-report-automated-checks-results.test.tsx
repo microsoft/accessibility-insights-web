@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { FastPassReportDeps } from 'reports/components/fast-pass-report';
 import {
@@ -12,8 +12,14 @@ import {
 } from 'reports/components/report-sections/fast-pass-report-automated-checks-results';
 import { Mock } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
+import { CollapsibleResultSection } from '../../../../../reports/components/report-sections/collapsible-result-section';
+import { ResultSection } from '../../../../../common/components/cards/result-section';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../reports/components/report-sections/collapsible-result-section');
+jest.mock('../../../../../common/components/cards/result-section');
 
 describe('FastPassReportSummary', () => {
+    mockReactComponents([CollapsibleResultSection, ResultSection]);
     let props: FastPassReportAutomatedChecksResultsProps;
     beforeEach(() => {
         const pageTitle = 'page-title';
@@ -78,13 +84,13 @@ describe('FastPassReportSummary', () => {
     });
 
     it('renders with pass/fail/incomplete elements if automated checks exist', () => {
-        const rendered = shallow(<FastPassReportAutomatedChecksResults {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        const renderResult = render(<FastPassReportAutomatedChecksResults {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders automated checks not run message if automated checks are null', () => {
         props.results.automatedChecks = null;
-        const rendered = shallow(<FastPassReportAutomatedChecksResults {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        const renderResult = render(<FastPassReportAutomatedChecksResults {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
