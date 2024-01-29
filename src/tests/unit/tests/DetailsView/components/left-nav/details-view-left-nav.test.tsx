@@ -6,7 +6,6 @@ import { generateAssessmentTestKey } from 'DetailsView/components/left-nav/left-
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
 import {
     AssessmentData,
     AssessmentNavState,
@@ -17,7 +16,6 @@ import { VisualizationType } from '../../../../../../common/types/visualization-
 import { DetailsRightPanelConfiguration } from '../../../../../../DetailsView/components/details-view-right-panel';
 import {
     DetailsViewSwitcherNavConfiguration,
-    LeftNavProps,
 } from '../../../../../../DetailsView/components/details-view-switcher-nav';
 import {
     DetailsViewLeftNav,
@@ -30,10 +28,12 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
+import { AssessmentLeftNav } from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
 
 jest.mock('../../../../../../DetailsView/components/switcher');
+jest.mock('../../../../../../DetailsView/components/left-nav/assessment-left-nav');
 describe(DetailsViewLeftNav.displayName, () => {
-    mockReactComponents([Switcher]);
+    mockReactComponents([Switcher, AssessmentLeftNav]);
     it('should render from switcher nav', () => {
         const selectedTestStub: VisualizationType = -1;
         const selectedKeyStub: string = 'some key';
@@ -48,10 +48,7 @@ describe(DetailsViewLeftNav.displayName, () => {
             (theProps: GetLeftNavSelectedKeyProps) => null,
             MockBehavior.Strict,
         );
-        const LeftNavStub: Readonly<ReactFCWithDisplayName<LeftNavProps>> = NamedFC<LeftNavProps>(
-            'test',
-            _ => null,
-        );
+        
         const assessmentDataStub: { [key: string]: AssessmentData } = {
             x: { testStepStatus: {} } as AssessmentData,
         };
@@ -69,7 +66,7 @@ describe(DetailsViewLeftNav.displayName, () => {
         } as DetailsRightPanelConfiguration;
 
         const switcherNavConfig: DetailsViewSwitcherNavConfiguration = {
-            LeftNav: LeftNavStub,
+            LeftNav: AssessmentLeftNav,
         } as DetailsViewSwitcherNavConfiguration;
 
         const deps = {
@@ -106,6 +103,6 @@ describe(DetailsViewLeftNav.displayName, () => {
 
         const renderResult = render(<DetailsViewLeftNav {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Switcher]);
+        expectMockedComponentPropsToMatchSnapshots([Switcher, AssessmentLeftNav]);
     });
 });

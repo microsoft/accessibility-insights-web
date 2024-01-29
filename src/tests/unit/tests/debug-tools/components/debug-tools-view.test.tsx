@@ -16,6 +16,7 @@ import { DebugToolsNav } from '../../../../../debug-tools/components/debug-tools
 import { NarrowModeDetector } from '../../../../../DetailsView/components/narrow-mode-detector';
 import {
     expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
 
@@ -55,6 +56,11 @@ describe('DebugToolsView', () => {
                     NarrowModeDetector,
                     CurrentView,
                 ]);
+            }
+            else {
+                expect(getMockComponentClassPropsForCall(DebugToolsNav)).toBeUndefined();
+                expect(getMockComponentClassPropsForCall(NarrowModeDetector)).toBeUndefined();
+                expect(getMockComponentClassPropsForCall(CurrentView)).toBeUndefined();
             }
         });
     });

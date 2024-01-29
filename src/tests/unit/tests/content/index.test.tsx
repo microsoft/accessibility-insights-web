@@ -24,9 +24,7 @@ describe('content', () => {
             const renderResult = render(<ThisPage deps={deps} />);
             const headerExists =
                 renderResult.queryAllByRole('heading', { level: 1 }) ||
-                renderResult.queryAllByRole('heading', { level: 2 }) ||
-                renderResult.queryAllByRole('Title') ||
-                renderResult.queryAllByRole('GuidanceTitle');
+                renderResult.queryAllByRole('heading', { level: 2 });
 
             expect(headerExists).not.toBeNull();
         }),

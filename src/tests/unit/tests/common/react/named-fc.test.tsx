@@ -9,20 +9,12 @@ describe('NamedFC', () => {
     const MyFC = NamedFC('MyFC', () => <span>TEXT</span>);
 
     it('applies correct displayName', () => {
-        expect(MyFC.displayName).toMatchSnapshot('MyFC');
+        expect(MyFC.displayName).toEqual('MyFC');
     });
 
     it('renders as expected', () => {
         const renderResult = render(<MyFC />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-    });
-
-    it('shallow renders with correct displayName', () => {
-        const Outside = () => <MyFC />;
-
-        const renderResult = render(<Outside />);
-
-        expect(renderResult.asFragment()).toMatchSnapshot('<MyFC />');
     });
 });
