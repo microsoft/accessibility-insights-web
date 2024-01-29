@@ -27,7 +27,9 @@ describe(SummaryResultsTable.displayName, () => {
             ['cell1', 'cell2', <div key="cell3">cell3</div>],
             ['cell4', 'cell5', <div key="cell6">cell6</div>],
         ];
-        const renderResult = render(<SummaryResultsTable columns={columns} rows={rows} id="table-id" />);
+        const renderResult = render(
+            <SummaryResultsTable columns={columns} rows={rows} id="table-id" />,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

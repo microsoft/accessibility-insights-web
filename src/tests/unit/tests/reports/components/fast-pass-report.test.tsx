@@ -23,7 +23,12 @@ jest.mock('../../../../../common/components/cards/result-section');
 jest.mock('../../../../../reports/components/fast-pass-report-summary');
 
 describe(FastPassReport.displayName, () => {
-    mockReactComponents([CollapsibleResultSection, TabStopsFailedInstanceSection, ResultSection, FastPassReportSummary]);
+    mockReactComponents([
+        CollapsibleResultSection,
+        TabStopsFailedInstanceSection,
+        ResultSection,
+        FastPassReportSummary,
+    ]);
     it('renders', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';

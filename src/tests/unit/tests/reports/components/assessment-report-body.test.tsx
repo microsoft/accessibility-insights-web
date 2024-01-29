@@ -16,7 +16,7 @@ jest.mock('../../../../../reports/components/assessment-report-step-header');
 jest.mock('../../../../../reports/components/formatted-date');
 
 describe('AssessmentReportBody', () => {
-    mockReactComponents([AssessmentReportStepHeader, FormattedDate])
+    mockReactComponents([AssessmentReportStepHeader, FormattedDate]);
     test('render', () => {
         const deps: AssessmentReportBodyDeps = {
             outcomeTypeSemanticsFromTestStatus: {
