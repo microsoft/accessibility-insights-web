@@ -17,6 +17,7 @@ import { DetailsRightPanelConfiguration } from '../../../../../../DetailsView/co
 import {
     DetailsViewSwitcherNavConfiguration,
 } from '../../../../../../DetailsView/components/details-view-switcher-nav';
+import { AssessmentLeftNav } from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
 import {
     DetailsViewLeftNav,
     DetailsViewLeftNavDeps,
@@ -28,7 +29,6 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
-import { AssessmentLeftNav } from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
 
 jest.mock('../../../../../../DetailsView/components/switcher');
 jest.mock('../../../../../../DetailsView/components/left-nav/assessment-left-nav');
