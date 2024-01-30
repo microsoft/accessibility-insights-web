@@ -624,7 +624,7 @@ exports[`AssessmentReport render 1`] = `
             </td>
             <td>
               <mock-formatteddate
-                date="Sat Jan 01 2000 05:30:00 GMT+0530 (India Standard Time)"
+                date="Sat Jan 01 2000 00:00:00 GMT+0000 (Coordinated Universal Time)"
                 deps="[object Object]"
               />
             </td>
