@@ -17,6 +17,7 @@ import { ContentReference } from 'views/content/content-page';
 import {
     mockReactComponents,
     useOriginalReactElements,
+    getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('views/content/content-include');
@@ -36,7 +37,6 @@ describe('StaticContentDetailsViewTest', () => {
     });
 
     it('click the toggle', () => {
-        useOriginalReactElements('common/components/visualization-toggle', ['VisualizationToggle']);
         const clickHandlerMock = Mock.ofInstance(theEvent => {});
         clickHandlerMock.setup(chm => chm(It.isAny())).verifiable(Times.once());
 
@@ -45,8 +45,7 @@ describe('StaticContentDetailsViewTest', () => {
         );
         const props: StaticContentDetailsViewProps = propsBuilder.build();
         const renderResult = render(<StaticContentDetailsView {...props} />);
-        const onClick = renderResult.getByRole('switch');
-        fireEvent.click(onClick);
+        getMockComponentClassPropsForCall(VisualizationToggle).onClick();
         propsBuilder.verifyAll();
     });
 });

@@ -96,7 +96,7 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
     <mock-contextualmenu
       directionalhint="8"
       items="[object Object],[object Object]"
-      target="[object HTMLButtonElement]"
+      target="test target"
     />
   </div>
 </DocumentFragment>

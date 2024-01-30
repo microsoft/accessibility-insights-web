@@ -57,7 +57,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
             .with('disabled', false)
             .build();
 
-        assertVisualizationToggle(expectedToggleProps, toggle);
+        assertVisualizationToggle(expectedToggleProps, renderResult);
         assertSnapshotMatch(renderResult);
     });
 
@@ -93,12 +93,14 @@ describe('RestartScanVisualHelperToggleTest', () => {
 
     function assertVisualizationToggle(
         expectedProps: VisualizationToggleProps,
-        visualizationToggle: RenderResult,
+        renderResult: RenderResult,
     ): void {
+        const visualizationToggle = renderResult.container.querySelector(
+            'mock-VisualizationToggle',
+        );
         expect(visualizationToggle).not.toBeNull();
 
-        const actualProps = visualizationToggle;
-
+        const actualProps = getMockComponentClassPropsForCall(VisualizationToggle);
         forEach(expectedProps, (value, key) => {
             expect(actualProps[key]).toBe(value);
         });

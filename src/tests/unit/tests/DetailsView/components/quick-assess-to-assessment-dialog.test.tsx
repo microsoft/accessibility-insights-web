@@ -13,11 +13,13 @@ import { It, IMock, Mock, Times } from 'typemoq';
 import {
     mockReactComponents,
     useOriginalReactElements,
+    getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('QuickAssessToAssessmentDialog', () => {
     mockReactComponents([DefaultButton, PrimaryButton, DialogFooter, Dialog]);
+
     let dataTransferViewControllerMock: IMock<DataTransferViewController>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let props: QuickAssessToAssessmentDialogProps;
@@ -51,20 +53,12 @@ describe('QuickAssessToAssessmentDialog', () => {
 
     test('onclick: cancel', async () => {
         props.isShown = true;
-        useOriginalReactElements('@fluentui/react', [
-            'DefaultButton',
-            'PrimaryButton',
-            'DialogFooter',
-            'Dialog',
-        ]);
 
         const renderResult = render(
             <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
         );
 
-        const onClick = renderResult.getAllByRole('button');
-        fireEvent.click(onClick[0]);
-
+        getMockComponentClassPropsForCall(DefaultButton).onClick();
         dataTransferViewControllerMock.verify(
             m => m.hideQuickAssessToAssessmentConfirmDialog(),
             Times.once(),
@@ -77,9 +71,7 @@ describe('QuickAssessToAssessmentDialog', () => {
         const renderResult = render(
             <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
         );
-
-        const onClick = renderResult.getAllByRole('button');
-        fireEvent.click(onClick[1]);
+        getMockComponentClassPropsForCall(PrimaryButton).onClick();
 
         detailsViewActionMessageCreatorMock.verify(
             m => m.confirmDataTransferToAssessment(It.isAny()),

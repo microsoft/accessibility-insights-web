@@ -16,6 +16,7 @@ import * as React from 'react';
 import {
     mockReactComponents,
     useOriginalReactElements,
+    getMockComponentClassPropsForCall,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -75,31 +76,28 @@ describe('StartOverDialog', () => {
         });
 
         it('dismiss dialog', () => {
-            useOriginalReactElements('DetailsView/components/generic-dialog', ['GenericDialog']);
             assessmentActionMessageCreatorMock
                 .setup(creator => creator.cancelStartOver(It.isAny(), It.isAny(), It.isAny()))
                 .verifiable(Times.once());
+
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
             const renderResult = render(<StartOverDialog {...props} />);
+            getMockComponentClassPropsForCall(GenericDialog).onCancelButtonClick();
 
-            const onClick = renderResult.getAllByRole('button');
-            fireEvent.click(onClick[1]);
             assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
 
         it('start over test', () => {
-            useOriginalReactElements('DetailsView/components/generic-dialog', ['GenericDialog']);
             assessmentActionMessageCreatorMock
                 .setup(creator => creator.startOverTest(It.isAny(), It.isAny()))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
             const renderResult = render(<StartOverDialog {...props} />);
+            getMockComponentClassPropsForCall(GenericDialog).onPrimaryButtonClick();
 
-            const onClick = renderResult.getAllByRole('button');
-            fireEvent.click(onClick[0]);
             assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
@@ -111,31 +109,26 @@ describe('StartOverDialog', () => {
         });
 
         it('dismiss dialog', () => {
-            useOriginalReactElements('DetailsView/components/generic-dialog', ['GenericDialog']);
             assessmentActionMessageCreatorMock
                 .setup(creator => creator.cancelStartOverAllAssessments(It.isAny()))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
             const renderResult = render(<StartOverDialog {...props} />);
+            getMockComponentClassPropsForCall(GenericDialog).onCancelButtonClick();
 
-            const onClick = renderResult.getAllByRole('button');
-            fireEvent.click(onClick[1]);
             assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();
         });
 
         it('start over assessment', () => {
-            useOriginalReactElements('DetailsView/components/generic-dialog', ['GenericDialog']);
             assessmentActionMessageCreatorMock
                 .setup(creator => creator.startOverAllAssessments(It.isAny()))
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
             const renderResult = render(<StartOverDialog {...props} />);
-
-            const onClick = renderResult.getAllByRole('button');
-            fireEvent.click(onClick[0]);
+            getMockComponentClassPropsForCall(GenericDialog).onPrimaryButtonClick();
 
             assessmentActionMessageCreatorMock.verifyAll();
             dismissDialogMock.verifyAll();

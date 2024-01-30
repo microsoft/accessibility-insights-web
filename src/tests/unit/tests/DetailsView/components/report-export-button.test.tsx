@@ -15,6 +15,7 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
+    getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('common/components/controls/insights-command-button');
@@ -39,13 +40,8 @@ describe(ReportExportButton.displayName, () => {
     });
 
     it('shows export dialog on click', async () => {
-        useOriginalReactElements('common/components/controls/insights-command-button', [
-            'InsightsCommandButton',
-        ]);
-
-        const renderResult = render(<ReportExportButton {...props} />);
-        await userEvent.click(renderResult.getByRole('button'));
-
+        render(<ReportExportButton {...props} />);
+        getMockComponentClassPropsForCall(InsightsCommandButton).onClick();
         expect(showDialogMock).toHaveBeenCalledTimes(1);
     });
 });
