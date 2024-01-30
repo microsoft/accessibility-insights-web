@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ChoiceGroup, IconButton } from '@fluentui/react';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
 import {
     ChoiceGroupPassFail,
@@ -10,6 +10,8 @@ import {
 import { onUndoClicked } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as React from 'react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -49,12 +51,14 @@ describe('ChoiceGroupPassFail', () => {
         props.selectedKey = TabStopRequirementStatuses.fail;
         const renderResult = render(<ChoiceGroupPassFail {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroup, IconButton]);
     });
 
     test('render: selectedKey is set to PASS', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         const renderResult = render(<ChoiceGroupPassFail {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroup, IconButton]);
     });
 
     test('render label, aria-label is not defined', () => {
@@ -92,6 +96,7 @@ describe('ChoiceGroupPassFail', () => {
     });
 
     test('verify component is correctly used with undo', () => {
+        useOriginalReactElements('@fluentui/react', ['IconButton']);
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
 
@@ -100,8 +105,7 @@ describe('ChoiceGroupPassFail', () => {
         const eventStub = {} as React.MouseEvent<HTMLElement>;
 
         const options = renderResult.getAllByRole('radio');
-        const undoButton = renderResult.getByRole('button');
-        fireEvent.click(undoButton, eventStub);
+        getMockComponentClassPropsForCall(IconButton).onClick(eventStub);
 
         expect(options[0]).toHaveFocus();
 

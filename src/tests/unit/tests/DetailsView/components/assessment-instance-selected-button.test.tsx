@@ -10,6 +10,7 @@ import {
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import {
+    getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -89,10 +90,8 @@ describe('AssessmentInstanceSelectedButton', () => {
                     )
                     .verifiable(Times.once());
 
-                const wrapped = render(<AssessmentInstanceSelectedButton {...props} />);
-
-                const iconButton = wrapped.getByRole('checkbox');
-                fireEvent.click(iconButton, eventStub);
+                render(<AssessmentInstanceSelectedButton {...props} />);
+                getMockComponentClassPropsForCall(IconButton).onClick(eventStub);
 
                 onSelectedMock.verifyAll();
             },

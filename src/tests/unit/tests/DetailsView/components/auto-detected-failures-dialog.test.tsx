@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { fireEvent, render, RenderResult } from '@testing-library/react';
+import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
+import { render, RenderResult } from '@testing-library/react';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
@@ -13,10 +14,18 @@ import {
     AutoDetectedFailuresDialogProps,
 } from 'DetailsView/components/auto-detected-failures-dialog';
 import * as React from 'react';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 import '@testing-library/jest-dom';
 
+jest.mock('@fluentui/react');
+
 describe('AutoDetectedFailuresDialog', () => {
+    mockReactComponents([Dialog, DialogFooter, Stack, Stack.Item, Checkbox, PrimaryButton]);
     let props: AutoDetectedFailuresDialogProps;
     let visualizationScanResultData: VisualizationScanResultData;
     let userConfigurationStoreData: UserConfigurationStoreData;
@@ -76,16 +85,14 @@ describe('AutoDetectedFailuresDialog', () => {
         });
 
         it('is dismissed when "got it" button is clicked', () => {
-            const gotItButton = wrapper.getAllByRole('button');
-
-            fireEvent.click(gotItButton[0]);
+            useOriginalReactElements('@fluentui/react', ['PrimaryButton']);
+            getMockComponentClassPropsForCall(PrimaryButton).onClick();
 
             expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('is dismissed when onDismiss is called', () => {
-            const dismissButton = wrapper.getAllByRole('button');
-            fireEvent.click(dismissButton[0]);
+            getMockComponentClassPropsForCall(Dialog).onDismiss();
             expect(wrapper.baseElement).toMatchSnapshot();
         });
 
@@ -94,8 +101,8 @@ describe('AutoDetectedFailuresDialog', () => {
                 .setup(ucmcm => ucmcm.setAutoDetectedFailuresDialogState(true))
                 .verifiable(Times.once());
 
-            const checkBox = wrapper.getAllByRole('checkbox');
-            fireEvent.click(checkBox[0], { target: { checked: true } });
+            useOriginalReactElements('@fluentui/react', ['Checkbox']);
+            getMockComponentClassPropsForCall(Checkbox).onChange(undefined, true);
 
             expect(wrapper.baseElement).toMatchSnapshot();
         });
@@ -105,8 +112,8 @@ describe('AutoDetectedFailuresDialog', () => {
                 .setup(ucmcm => ucmcm.setAutoDetectedFailuresDialogState(true))
                 .verifiable(Times.once());
 
-            const checkBox = wrapper.getAllByRole('checkbox');
-            fireEvent.click(checkBox[0], undefined);
+            useOriginalReactElements('@fluentui/react', ['Checkbox']);
+            getMockComponentClassPropsForCall(Checkbox).onChange(undefined);
             expect(wrapper.baseElement).toMatchSnapshot();
         });
     });

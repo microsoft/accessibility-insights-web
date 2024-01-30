@@ -1,596 +1,262 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AutoDetectedFailuresDialog on componentDidUpdate does not display dialog when dialog is disabled 1`] = `
-<body
-  class=""
->
-  <div
-    id="fluent-default-layer-host"
-    style="position: fixed; z-index: 1000000;"
-  />
+<body>
   <div />
   <div />
 </body>
 `;
 
 exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "dont show again" box is clicked 1`] = `
-<body
-  class="css-0"
->
-  <div
-    id="fluent-default-layer-host"
-    style="position: fixed; z-index: 1000000;"
-  >
-    <div
-      class="ms-Layer ms-Layer--fixed root-116"
-      data-portal-element="true"
+<body>
+  <div>
+    <mock-dialog
+      dialogcontentprops="[object Object]"
+      hidden="false"
+      modalprops="[object Object]"
     >
       <div
-        class="ms-Fabric ms-Layer-content content-118"
+        class="dialogBody"
       >
-        <div
-          aria-labelledby="Dialog18-title"
-          aria-modal="true"
-          role="dialog"
-          style="outline: none;"
+        <ul>
+          <li>
+            Review each finding to be sure it's valid
+          </li>
+          <li>
+            Add any more failures you discovered manually
+          </li>
+        </ul>
+      </div>
+      <mock-styleddialogfooterbase>
+        <mock-stack
+          horizontal="true"
+          horizontalalign="space-between"
+          tokens="[object Object]"
+          verticalalign="center"
+          wrap="true"
         >
-          <div
-            class="ms-Modal is-open ms-Dialog root-111"
-            role="document"
+          <mock-stackitem
+            disableshrink="true"
+            grow="true"
           >
             <div
-              aria-hidden="true"
-              class="ms-Overlay ms-Overlay--dark root-120"
-            />
-            <div
-              class="ms-Dialog-main insightsDialogMainOverride main-112"
-              id="ModalFocusTrapZone19"
+              class="ms-Checkbox is-checked is-enabled root-117"
             >
-              <div
-                aria-hidden="true"
-                data-is-focus-trap-zone-bumper="true"
-                data-is-visible="true"
-                style="pointer-events: none; position: fixed;"
-                tabindex="0"
+              <input
+                checked=""
+                class="input-118"
+                data-ktp-execute-target="true"
+                id="checkbox-6"
+                type="checkbox"
               />
-              <div
-                class="ms-Modal-scrollableContent scrollableContent-113"
-                data-is-scrollable="true"
+              <label
+                class="ms-Checkbox-label label-119"
+                for="checkbox-6"
               >
                 <div
-                  class="content-121"
+                  class="ms-Checkbox-checkbox checkbox-120"
+                  data-ktp-target="true"
                 >
-                  <div
-                    class="ms-Dialog-header header-123"
-                  >
-                    <div
-                      aria-level="1"
-                      class="ms-Dialog-title title-126"
-                      id="Dialog18-title"
-                      role="heading"
-                    >
-                      Possible failures auto-detected
-                    </div>
-                    <div
-                      class="topButton-127"
-                    />
-                  </div>
-                  <div
-                    class="ms-Dialog-inner inner-124"
-                  >
-                    <div
-                      class="ms-Dialog-content innerContent-125"
-                    >
-                      <div
-                        class="dialogBody"
-                      >
-                        <ul>
-                          <li>
-                            Review each finding to be sure it's valid
-                          </li>
-                          <li>
-                            Add any more failures you discovered manually
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div
-                      class="ms-Dialog-actions actions-128"
-                    >
-                      <div
-                        class="ms-Dialog-actionsRight actionsRight-130"
-                      >
-                        <span
-                          class="ms-Dialog-action action-129"
-                        >
-                          <div
-                            class="ms-Stack css-132"
-                          >
-                            <div
-                              class="ms-Stack-inner css-131"
-                            >
-                              <div
-                                class="ms-StackItem css-133"
-                              >
-                                <div
-                                  class="ms-Checkbox is-checked is-enabled root-150"
-                                >
-                                  <input
-                                    class="input-135"
-                                    data-ktp-execute-target="true"
-                                    id="checkbox-20"
-                                    type="checkbox"
-                                  />
-                                  <label
-                                    class="ms-Checkbox-label label-136"
-                                    for="checkbox-20"
-                                  >
-                                    <div
-                                      class="ms-Checkbox-checkbox checkbox-151"
-                                      data-ktp-target="true"
-                                    >
-                                      <i
-                                        aria-hidden="true"
-                                        class="ms-Checkbox-checkmark checkmark-153"
-                                        data-icon-name="CheckMark"
-                                      />
-                                    </div>
-                                    <span
-                                      class="ms-Checkbox-text text-139"
-                                    >
-                                      Don't show again
-                                    </span>
-                                  </label>
-                                </div>
-                              </div>
-                              <div
-                                class="ms-StackItem css-141"
-                              >
-                                <button
-                                  class="ms-Button ms-Button--primary root-142"
-                                  data-is-focusable="true"
-                                  type="button"
-                                >
-                                  <span
-                                    class="ms-Button-flexContainer flexContainer-143"
-                                    data-automationid="splitbuttonprimary"
-                                  >
-                                    <span
-                                      class="ms-Button-textContainer textContainer-144"
-                                    >
-                                      <span
-                                        class="ms-Button-label label-146"
-                                        id="id__21"
-                                      >
-                                        Got it
-                                      </span>
-                                    </span>
-                                  </span>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <i
+                    aria-hidden="true"
+                    class="ms-Checkbox-checkmark checkmark-123"
+                    data-icon-name="CheckMark"
+                  />
                 </div>
-              </div>
-              <div
-                aria-hidden="true"
-                data-is-focus-trap-zone-bumper="true"
-                data-is-visible="true"
-                style="pointer-events: none; position: fixed;"
-                tabindex="0"
-              />
+                <span
+                  class="ms-Checkbox-text text-122"
+                >
+                  Don't show again
+                </span>
+              </label>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    aria-hidden="true"
-  >
-    <span
-      class="ms-layer"
-    />
+          </mock-stackitem>
+          <mock-stackitem
+            grow="true"
+          >
+            <button
+              class="ms-Button ms-Button--primary root-109"
+              data-is-focusable="true"
+              type="button"
+            >
+              <span
+                class="ms-Button-flexContainer flexContainer-110"
+                data-automationid="splitbuttonprimary"
+              >
+                <span
+                  class="ms-Button-textContainer textContainer-111"
+                >
+                  <span
+                    class="ms-Button-label label-113"
+                    id="id__3"
+                  >
+                    Got it
+                  </span>
+                </span>
+              </span>
+            </button>
+          </mock-stackitem>
+        </mock-stack>
+      </mock-styleddialogfooterbase>
+    </mock-dialog>
   </div>
 </body>
 `;
 
 exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when "got it" button is clicked 1`] = `
-<body
-  class=""
->
-  <div
-    id="fluent-default-layer-host"
-    style="position: fixed; z-index: 1000000;"
-  />
+<body>
   <div />
 </body>
 `;
 
 exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when onDismiss is called 1`] = `
-<body
-  class=""
->
-  <div
-    id="fluent-default-layer-host"
-    style="position: fixed; z-index: 1000000;"
-  />
+<body>
   <div />
 </body>
 `;
 
 exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when checkbox change is undefined 1`] = `
-<body
-  class="css-0"
->
-  <div
-    id="fluent-default-layer-host"
-    style="position: fixed; z-index: 1000000;"
-  >
-    <div
-      class="ms-Layer ms-Layer--fixed root-116"
-      data-portal-element="true"
+<body>
+  <div>
+    <mock-dialog
+      dialogcontentprops="[object Object]"
+      hidden="false"
+      modalprops="[object Object]"
     >
       <div
-        class="ms-Fabric ms-Layer-content content-118"
+        class="dialogBody"
       >
-        <div
-          aria-labelledby="Dialog24-title"
-          aria-modal="true"
-          role="dialog"
-          style="outline: none;"
+        <ul>
+          <li>
+            Review each finding to be sure it's valid
+          </li>
+          <li>
+            Add any more failures you discovered manually
+          </li>
+        </ul>
+      </div>
+      <mock-styleddialogfooterbase>
+        <mock-stack
+          horizontal="true"
+          horizontalalign="space-between"
+          tokens="[object Object]"
+          verticalalign="center"
+          wrap="true"
         >
-          <div
-            class="ms-Modal is-open ms-Dialog root-111"
-            role="document"
+          <mock-stackitem
+            disableshrink="true"
+            grow="true"
           >
             <div
-              aria-hidden="true"
-              class="ms-Overlay ms-Overlay--dark root-120"
-            />
-            <div
-              class="ms-Dialog-main insightsDialogMainOverride main-112"
-              id="ModalFocusTrapZone25"
+              class="ms-Checkbox is-enabled root-124"
             >
-              <div
-                aria-hidden="true"
-                data-is-focus-trap-zone-bumper="true"
-                data-is-visible="true"
-                style="pointer-events: none; position: fixed;"
-                tabindex="0"
+              <input
+                class="input-118"
+                data-ktp-execute-target="true"
+                id="checkbox-7"
+                type="checkbox"
               />
-              <div
-                class="ms-Modal-scrollableContent scrollableContent-113"
-                data-is-scrollable="true"
+              <label
+                class="ms-Checkbox-label label-119"
+                for="checkbox-7"
               >
                 <div
-                  class="content-121"
+                  class="ms-Checkbox-checkbox checkbox-125"
+                  data-ktp-target="true"
                 >
-                  <div
-                    class="ms-Dialog-header header-123"
-                  >
-                    <div
-                      aria-level="1"
-                      class="ms-Dialog-title title-126"
-                      id="Dialog24-title"
-                      role="heading"
-                    >
-                      Possible failures auto-detected
-                    </div>
-                    <div
-                      class="topButton-127"
-                    />
-                  </div>
-                  <div
-                    class="ms-Dialog-inner inner-124"
-                  >
-                    <div
-                      class="ms-Dialog-content innerContent-125"
-                    >
-                      <div
-                        class="dialogBody"
-                      >
-                        <ul>
-                          <li>
-                            Review each finding to be sure it's valid
-                          </li>
-                          <li>
-                            Add any more failures you discovered manually
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div
-                      class="ms-Dialog-actions actions-128"
-                    >
-                      <div
-                        class="ms-Dialog-actionsRight actionsRight-130"
-                      >
-                        <span
-                          class="ms-Dialog-action action-129"
-                        >
-                          <div
-                            class="ms-Stack css-132"
-                          >
-                            <div
-                              class="ms-Stack-inner css-131"
-                            >
-                              <div
-                                class="ms-StackItem css-133"
-                              >
-                                <div
-                                  class="ms-Checkbox is-checked is-enabled root-150"
-                                >
-                                  <input
-                                    class="input-135"
-                                    data-ktp-execute-target="true"
-                                    id="checkbox-26"
-                                    type="checkbox"
-                                  />
-                                  <label
-                                    class="ms-Checkbox-label label-136"
-                                    for="checkbox-26"
-                                  >
-                                    <div
-                                      class="ms-Checkbox-checkbox checkbox-151"
-                                      data-ktp-target="true"
-                                    >
-                                      <i
-                                        aria-hidden="true"
-                                        class="ms-Checkbox-checkmark checkmark-153"
-                                        data-icon-name="CheckMark"
-                                      />
-                                    </div>
-                                    <span
-                                      class="ms-Checkbox-text text-139"
-                                    >
-                                      Don't show again
-                                    </span>
-                                  </label>
-                                </div>
-                              </div>
-                              <div
-                                class="ms-StackItem css-141"
-                              >
-                                <button
-                                  class="ms-Button ms-Button--primary root-142"
-                                  data-is-focusable="true"
-                                  type="button"
-                                >
-                                  <span
-                                    class="ms-Button-flexContainer flexContainer-143"
-                                    data-automationid="splitbuttonprimary"
-                                  >
-                                    <span
-                                      class="ms-Button-textContainer textContainer-144"
-                                    >
-                                      <span
-                                        class="ms-Button-label label-146"
-                                        id="id__27"
-                                      >
-                                        Got it
-                                      </span>
-                                    </span>
-                                  </span>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <i
+                    aria-hidden="true"
+                    class="ms-Checkbox-checkmark checkmark-127"
+                    data-icon-name="CheckMark"
+                  />
                 </div>
-              </div>
-              <div
-                aria-hidden="true"
-                data-is-focus-trap-zone-bumper="true"
-                data-is-visible="true"
-                style="pointer-events: none; position: fixed;"
-                tabindex="0"
-              />
+                <span
+                  class="ms-Checkbox-text text-122"
+                >
+                  Don't show again
+                </span>
+              </label>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    aria-hidden="true"
-  >
-    <span
-      class="ms-layer"
-    />
+          </mock-stackitem>
+          <mock-stackitem
+            grow="true"
+          >
+            <button
+              class="ms-Button ms-Button--primary root-109"
+              data-is-focusable="true"
+              type="button"
+            >
+              <span
+                class="ms-Button-flexContainer flexContainer-110"
+                data-automationid="splitbuttonprimary"
+              >
+                <span
+                  class="ms-Button-textContainer textContainer-111"
+                >
+                  <span
+                    class="ms-Button-label label-113"
+                    id="id__8"
+                  >
+                    Got it
+                  </span>
+                </span>
+              </span>
+            </button>
+          </mock-stackitem>
+        </mock-stack>
+      </mock-styleddialogfooterbase>
+    </mock-dialog>
   </div>
 </body>
 `;
 
 exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is enabled 1`] = `
-<body
-  class="css-0"
->
-  <div
-    aria-hidden="true"
-  >
-    <span
-      class="ms-layer"
-    />
-  </div>
-  <div
-    id="fluent-default-layer-host"
-    style="position: fixed; z-index: 1000000;"
-  >
-    <div
-      class="ms-Layer ms-Layer--fixed root-116"
-      data-portal-element="true"
+<body>
+  <div>
+    <mock-dialog
+      dialogcontentprops="[object Object]"
+      hidden="false"
+      modalprops="[object Object]"
     >
       <div
-        class="ms-Fabric ms-Layer-content content-118"
+        class="dialogBody"
       >
-        <div
-          aria-labelledby="Dialog0-title"
-          aria-modal="true"
-          role="dialog"
-          style="outline: none;"
-        >
-          <div
-            class="ms-Modal is-open ms-Dialog root-111"
-            role="document"
-          >
-            <div
-              aria-hidden="true"
-              class="ms-Overlay ms-Overlay--dark root-120"
-            />
-            <div
-              class="ms-Dialog-main insightsDialogMainOverride main-112"
-              id="ModalFocusTrapZone1"
-            >
-              <div
-                aria-hidden="true"
-                data-is-focus-trap-zone-bumper="true"
-                data-is-visible="true"
-                style="pointer-events: none; position: fixed;"
-                tabindex="0"
-              />
-              <div
-                class="ms-Modal-scrollableContent scrollableContent-113"
-                data-is-scrollable="true"
-              >
-                <div
-                  class="content-121"
-                >
-                  <div
-                    class="ms-Dialog-header header-123"
-                  >
-                    <div
-                      aria-level="1"
-                      class="ms-Dialog-title title-126"
-                      id="Dialog0-title"
-                      role="heading"
-                    >
-                      Possible failures auto-detected
-                    </div>
-                    <div
-                      class="topButton-127"
-                    />
-                  </div>
-                  <div
-                    class="ms-Dialog-inner inner-124"
-                  >
-                    <div
-                      class="ms-Dialog-content innerContent-125"
-                    >
-                      <div
-                        class="dialogBody"
-                      >
-                        <ul>
-                          <li>
-                            Review each finding to be sure it's valid
-                          </li>
-                          <li>
-                            Add any more failures you discovered manually
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div
-                      class="ms-Dialog-actions actions-128"
-                    >
-                      <div
-                        class="ms-Dialog-actionsRight actionsRight-130"
-                      >
-                        <span
-                          class="ms-Dialog-action action-129"
-                        >
-                          <div
-                            class="ms-Stack css-132"
-                          >
-                            <div
-                              class="ms-Stack-inner css-131"
-                            >
-                              <div
-                                class="ms-StackItem css-133"
-                              >
-                                <div
-                                  class="ms-Checkbox is-enabled root-134"
-                                >
-                                  <input
-                                    class="input-135"
-                                    data-ktp-execute-target="true"
-                                    id="checkbox-2"
-                                    type="checkbox"
-                                  />
-                                  <label
-                                    class="ms-Checkbox-label label-136"
-                                    for="checkbox-2"
-                                  >
-                                    <div
-                                      class="ms-Checkbox-checkbox checkbox-137"
-                                      data-ktp-target="true"
-                                    >
-                                      <i
-                                        aria-hidden="true"
-                                        class="ms-Checkbox-checkmark checkmark-140"
-                                        data-icon-name="CheckMark"
-                                      />
-                                    </div>
-                                    <span
-                                      class="ms-Checkbox-text text-139"
-                                    >
-                                      Don't show again
-                                    </span>
-                                  </label>
-                                </div>
-                              </div>
-                              <div
-                                class="ms-StackItem css-141"
-                              >
-                                <button
-                                  class="ms-Button ms-Button--primary root-142"
-                                  data-is-focusable="true"
-                                  type="button"
-                                >
-                                  <span
-                                    class="ms-Button-flexContainer flexContainer-143"
-                                    data-automationid="splitbuttonprimary"
-                                  >
-                                    <span
-                                      class="ms-Button-textContainer textContainer-144"
-                                    >
-                                      <span
-                                        class="ms-Button-label label-146"
-                                        id="id__3"
-                                      >
-                                        Got it
-                                      </span>
-                                    </span>
-                                  </span>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                aria-hidden="true"
-                data-is-focus-trap-zone-bumper="true"
-                data-is-visible="true"
-                style="pointer-events: none; position: fixed;"
-                tabindex="0"
-              />
-            </div>
-          </div>
-        </div>
+        <ul>
+          <li>
+            Review each finding to be sure it's valid
+          </li>
+          <li>
+            Add any more failures you discovered manually
+          </li>
+        </ul>
       </div>
-    </div>
+      <mock-styleddialogfooterbase>
+        <mock-stack
+          horizontal="true"
+          horizontalalign="space-between"
+          tokens="[object Object]"
+          verticalalign="center"
+          wrap="true"
+        >
+          <mock-stackitem
+            disableshrink="true"
+            grow="true"
+          >
+            <mock-styledcheckboxbase
+              checked="false"
+              label="Don't show again"
+            />
+          </mock-stackitem>
+          <mock-stackitem
+            grow="true"
+          >
+            <mock-customizedprimarybutton
+              text="Got it"
+            />
+          </mock-stackitem>
+        </mock-stack>
+      </mock-styleddialogfooterbase>
+    </mock-dialog>
   </div>
 </body>
 `;

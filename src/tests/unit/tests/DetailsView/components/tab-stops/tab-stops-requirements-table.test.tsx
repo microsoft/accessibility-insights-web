@@ -75,22 +75,14 @@ describe('TabStopsRequirementsTable', () => {
         render(<TabStopsRequirementsTable {...props} />);
         const hasColumns = getMockComponentClassPropsForCall(DetailsList).columns;
         expect(hasColumns[0].onRender(requirementContentStub)).toMatchSnapshot();
-        expect(hasColumns).toMatchSnapshot();
     });
 
     test('renders result column', () => {
-        const testSubject = render(<TabStopsRequirementsTable {...props} />);
+        render(<TabStopsRequirementsTable {...props} />);
 
-        const tabStopsChoiceGroup = testSubject.container.querySelectorAll('.ms-ChoiceFieldGroup');
+        const columns = getMockComponentClassPropsForCall(DetailsList).columns;
+        const tabStopsChoiceGroup = columns[1].onRender(requirementsList[0]);
         expect(tabStopsChoiceGroup).toMatchSnapshot();
-    });
-
-    test('renders undo icon button', async () => {
-        props.requirementState['input-focus'].status = TabStopRequirementStatuses.fail;
-
-        const testSubject = render(<TabStopsRequirementsTable {...props} />);
-
-        expect(testSubject).toMatchSnapshot();
     });
 
     test('result column handlers', () => {

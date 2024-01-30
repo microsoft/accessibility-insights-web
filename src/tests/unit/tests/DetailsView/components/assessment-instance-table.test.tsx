@@ -26,6 +26,7 @@ import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handl
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import {
     expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -162,7 +163,7 @@ describe('AssessmentInstanceTable', () => {
             } as DefaultMessageInterface;
 
             render(<AssessmentInstanceTable {...props} />);
-            const hasMessage = screen.queryAllByText('Message from getDefaultMessage');
+            const hasMessage = screen.getByText('Message from getDefaultMessage');
             expect(hasMessage).toBeDefined();
 
             getDefaultMessageMock.verifyAll();
@@ -171,24 +172,19 @@ describe('AssessmentInstanceTable', () => {
         it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", async () => {
             const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
 
-            const renderRow = jest.fn();
-            const onItemInvoked = jest.fn();
-
-            useOriginalReactElements('common/components/controls/insights-command-button', [
-                'InsightsCommandButton',
-            ]);
             useOriginalReactElements('@fluentui/react', ['Spinner', 'DetailsList', 'ActionButton']);
             render(<AssessmentInstanceTable {...props} />);
             const rowClick = screen.getAllByRole('row');
 
-            fireEvent.dblClick(rowClick[1], fakeItem);
             fireEvent.click(rowClick[1], fakeItem);
-            expect(renderRow).toBeDefined();
-            expect(onItemInvoked).toBeDefined();
+            getMockComponentClassPropsForCall(DetailsList).onItemInvoked(fakeItem);
         });
 
         describe('"Pass all unmarked instances" button', () => {
             it('is enabled if there is an instance with unknown status', () => {
+                useOriginalReactElements('common/components/controls/insights-command-button', [
+                    'InsightsCommandButton',
+                ]);
                 testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
 
                 render(<AssessmentInstanceTable {...props} />);
@@ -226,9 +222,6 @@ describe('AssessmentInstanceTable', () => {
                         ),
                     )
                     .verifiable(Times.once());
-                useOriginalReactElements('common/components/controls/insights-command-button', [
-                    'InsightsCommandButton',
-                ]);
                 useOriginalReactElements('@fluentui/react', [
                     'Spinner',
                     'DetailsList',
@@ -236,8 +229,7 @@ describe('AssessmentInstanceTable', () => {
                 ]);
                 render(<AssessmentInstanceTable {...props} />);
 
-                const buttonSelector = screen.getAllByRole('button');
-                fireEvent.click(buttonSelector[0]);
+                getMockComponentClassPropsForCall(InsightsCommandButton).onClick();
 
                 assessmentInstanceTableHandlerMock.verifyAll();
             });
