@@ -12,7 +12,7 @@ import { AssessmentReportStepHeader } from '../../../../../reports/components/as
 import { FormattedDate } from '../../../../../reports/components/formatted-date';
 import {
     expectMockedComponentPropsToMatchSnapshots,
-    mockReactComponents
+    mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 jest.mock('../../../../../reports/components/assessment-report-step-header');
