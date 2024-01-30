@@ -10,13 +10,12 @@ import {
     FastPassReportProps,
 } from 'reports/components/fast-pass-report';
 import { Mock } from 'typemoq';
-
-import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
-import { CollapsibleResultSection } from '../../../../../reports/components/report-sections/collapsible-result-section';
-import { TabStopsFailedInstanceSection } from '../../../../../DetailsView/components/tab-stops-failed-instance-section';
 import { ResultSection } from '../../../../../common/components/cards/result-section';
+import { TabStopsFailedInstanceSection } from '../../../../../DetailsView/components/tab-stops-failed-instance-section';
 import { FastPassReportSummary } from '../../../../../reports/components/fast-pass-report-summary';
+import { CollapsibleResultSection } from '../../../../../reports/components/report-sections/collapsible-result-section';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 jest.mock('../../../../../reports/components/report-sections/collapsible-result-section');
 jest.mock('../../../../../DetailsView/components/tab-stops-failed-instance-section');
 jest.mock('../../../../../common/components/cards/result-section');

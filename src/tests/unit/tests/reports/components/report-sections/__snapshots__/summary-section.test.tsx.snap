@@ -14,66 +14,192 @@ exports[`SummarySection AllOutcomesSummarySection renders BaseSummarySection wit
 `;
 
 exports[`SummarySection BaseSummarySection: failure only 1`] = `
-<DocumentFragment>
-  <mock-basesummarysection
-    cardsviewdata="[object Object]"
-    outcometypesshown="pass"
+<div
+  className="summary-section"
+>
+  <h2>
+    Summary
+  </h2>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      [
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      {
+        "fail": 3,
+        "inapplicable": 0,
+        "incomplete": 0,
+        "pass": 0,
+        "review": 0,
+      }
+    }
   />
-</DocumentFragment>
+</div>
 `;
 
 exports[`SummarySection BaseSummarySection: failures + not applicable + passes 1`] = `
-<DocumentFragment>
-  <mock-basesummarysection
-    cardsviewdata="[object Object]"
-    outcometypesshown="pass"
+<div
+  className="summary-section"
+>
+  <h2>
+    Summary
+  </h2>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      [
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      {
+        "fail": 3,
+        "inapplicable": 3,
+        "incomplete": 0,
+        "pass": 2,
+        "review": 0,
+      }
+    }
   />
-</DocumentFragment>
+</div>
 `;
 
 exports[`SummarySection BaseSummarySection: failures + not applicable only 1`] = `
-<DocumentFragment>
-  <mock-basesummarysection
-    cardsviewdata="[object Object]"
-    outcometypesshown="pass"
+<div
+  className="summary-section"
+>
+  <h2>
+    Summary
+  </h2>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      [
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      {
+        "fail": 3,
+        "inapplicable": 3,
+        "incomplete": 0,
+        "pass": 0,
+        "review": 0,
+      }
+    }
   />
-</DocumentFragment>
+</div>
 `;
 
 exports[`SummarySection BaseSummarySection: failures + passes only 1`] = `
-<DocumentFragment>
-  <mock-basesummarysection
-    cardsviewdata="[object Object]"
-    outcometypesshown="pass"
+<div
+  className="summary-section"
+>
+  <h2>
+    Summary
+  </h2>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      [
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      {
+        "fail": 3,
+        "inapplicable": 0,
+        "incomplete": 0,
+        "pass": 2,
+        "review": 0,
+      }
+    }
   />
-</DocumentFragment>
+</div>
 `;
 
 exports[`SummarySection BaseSummarySection: not applicable + passes only 1`] = `
-<DocumentFragment>
-  <mock-basesummarysection
-    cardsviewdata="[object Object]"
-    outcometypesshown="pass"
+<div
+  className="summary-section"
+>
+  <h2>
+    Summary
+  </h2>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      [
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      {
+        "fail": 0,
+        "inapplicable": 3,
+        "incomplete": 0,
+        "pass": 2,
+        "review": 0,
+      }
+    }
   />
-</DocumentFragment>
+</div>
 `;
 
 exports[`SummarySection BaseSummarySection: not applicable only 1`] = `
-<DocumentFragment>
-  <mock-basesummarysection
-    cardsviewdata="[object Object]"
-    outcometypesshown="pass"
+<div
+  className="summary-section"
+>
+  <h2>
+    Summary
+  </h2>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      [
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      {
+        "fail": 0,
+        "inapplicable": 3,
+        "incomplete": 0,
+        "pass": 0,
+        "review": 0,
+      }
+    }
   />
-</DocumentFragment>
+</div>
 `;
 
 exports[`SummarySection BaseSummarySection: passes only 1`] = `
-<DocumentFragment>
-  <mock-basesummarysection
-    cardsviewdata="[object Object]"
-    outcometypesshown="pass"
+<div
+  className="summary-section"
+>
+  <h2>
+    Summary
+  </h2>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      [
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      {
+        "fail": 0,
+        "inapplicable": 0,
+        "incomplete": 0,
+        "pass": 2,
+        "review": 0,
+      }
+    }
   />
-</DocumentFragment>
+</div>
 `;
 
 exports[`SummarySection PassFailSummarySection renders BaseSummarySection with only pass and failed outcome types 1`] = `

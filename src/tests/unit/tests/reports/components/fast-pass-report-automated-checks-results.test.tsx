@@ -11,10 +11,10 @@ import {
     FastPassReportAutomatedChecksResultsProps,
 } from 'reports/components/report-sections/fast-pass-report-automated-checks-results';
 import { Mock } from 'typemoq';
-import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
-import { CollapsibleResultSection } from '../../../../../reports/components/report-sections/collapsible-result-section';
 import { ResultSection } from '../../../../../common/components/cards/result-section';
+import { CollapsibleResultSection } from '../../../../../reports/components/report-sections/collapsible-result-section';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 jest.mock('../../../../../reports/components/report-sections/collapsible-result-section');
 jest.mock('../../../../../common/components/cards/result-section');
 

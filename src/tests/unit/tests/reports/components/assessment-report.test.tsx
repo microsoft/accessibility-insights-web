@@ -5,10 +5,10 @@ import * as React from 'react';
 
 import { AssessmentReport, AssessmentReportDeps } from 'reports/components/assessment-report';
 import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
-import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
 import { FormattedDate } from '../../../../../reports/components/formatted-date';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 jest.mock('../../../../../reports/components/assessment-report-step-header');
 jest.mock('../../../../../reports/components/formatted-date');
 

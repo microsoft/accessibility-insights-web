@@ -8,9 +8,9 @@ import {
     AssessmentReportStepListDeps,
     AssessmentReportStepListProps,
 } from 'reports/components/assessment-report-step-list';
-import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 jest.mock('../../../../../reports/components/assessment-report-step-header');
 
 describe('AssessmentReportStepListTest', () => {
