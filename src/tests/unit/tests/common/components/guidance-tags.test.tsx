@@ -1,20 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { GuidanceTags, GuidanceTagsProps } from 'common/components/guidance-tags';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { GuidanceLink } from 'common/types/store-data/guidance-links';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 describe('GuidanceTags', () => {
     let getGuidanceTagsFromGuidanceLinksMock: IMock<GetGuidanceTagsFromGuidanceLinks>;
 
     beforeEach(() => {
-        getGuidanceTagsFromGuidanceLinksMock = Mock.ofType<GetGuidanceTagsFromGuidanceLinks>(
-            null,
-            MockBehavior.Strict,
-        );
+        getGuidanceTagsFromGuidanceLinksMock = Mock.ofType(null);
     });
 
     test.each([null, []])('tags is: %p', (tags?: GuidanceLink[]) => {
@@ -24,8 +21,8 @@ describe('GuidanceTags', () => {
             },
             links: tags,
         };
-        const testSubject = shallow(<GuidanceTags {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<GuidanceTags {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('renders tags', () => {
@@ -62,7 +59,7 @@ describe('GuidanceTags', () => {
             .setup(mock => mock(sampleLinks))
             .returns(() => sampleTags);
 
-        const testSubject = shallow(<GuidanceTags {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<GuidanceTags {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

@@ -1,36 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HelpLinks linkInformation is shown properly 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="helpLink"
+    class="helpLink"
   >
-    <ExternalLink
-      deps={{}}
+    <mock-externallink
+      deps="[object Object]"
       href="https://www.test1.com"
     >
       test1
-    </ExternalLink>
+    </mock-externallink>
   </div>
   <div
-    className="helpLink"
+    class="helpLink"
   >
-    <ExternalLink
-      deps={{}}
+    <mock-externallink
+      deps="[object Object]"
       href="https://www.test2.com"
     >
       test2
-    </ExternalLink>
+    </mock-externallink>
   </div>
   <div
-    className="helpLink"
+    class="helpLink"
   >
-    <ExternalLink
-      deps={{}}
+    <mock-externallink
+      deps="[object Object]"
       href="https://www.test3.com"
     >
       test3
-    </ExternalLink>
+    </mock-externallink>
   </div>
-</React.Fragment>
+</DocumentFragment>
 `;

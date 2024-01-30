@@ -1,16 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IButtonProps, IconButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { GearMenuButton, GearMenuButtonProps } from 'common/components/gear-menu-button';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlags } from 'common/feature-flags';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('@fluentui/react');
 
 describe('GearMenuButton', () => {
     describe('renders', () => {
+        mockReactComponents([IconButton]);
         const props: GearMenuButtonProps = {
             deps: {
                 dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,
@@ -21,19 +30,20 @@ describe('GearMenuButton', () => {
         it.each([true, false])('proper button with scoping enabled = %s', isScopingEnabled => {
             props.featureFlagData = { [FeatureFlags[FeatureFlags.scoping]]: isScopingEnabled };
 
-            const testSubject = shallow(<GearMenuButton {...props} />);
-            expect(testSubject.getElement()).toMatchSnapshot();
+            const renderResult = render(<GearMenuButton {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([IconButton]);
         });
 
         it('no down chevron menu icon', () => {
-            const wrapped = shallow(<GearMenuButton {...props} />);
-            const testSubject = wrapped.find<IButtonProps>(IconButton).prop('onRenderMenuIcon');
-
+            render(<GearMenuButton {...props} />);
+            const testSubject = getMockComponentClassPropsForCall(IconButton).onRenderMenuIcon;
             expect(testSubject()).toBeNull();
         });
     });
 
     describe('user interaction', () => {
+        mockReactComponents([IconButton]);
         const eventStub = new EventStubFactory().createKeypressEvent() as any;
 
         let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
@@ -51,11 +61,12 @@ describe('GearMenuButton', () => {
                 featureFlagData: { [FeatureFlags[FeatureFlags.scoping]]: true },
             };
 
-            const testSubject = shallow(<GearMenuButton {...props} />);
-            buttonProps = testSubject.find(IconButton).props();
+            render(<GearMenuButton {...props} />);
+            buttonProps = getMockComponentClassPropsForCall(IconButton);
         });
 
         it('handle settings menu item click', () => {
+            useOriginalReactElements('@fluentui/react', ['IconButton']);
             dropdownClickHandlerMock.verify(
                 handler => handler.openSettingsPanelHandler(It.isAny()),
                 Times.never(),
@@ -68,6 +79,7 @@ describe('GearMenuButton', () => {
         });
 
         it('handle preview features menu item click', () => {
+            useOriginalReactElements('@fluentui/react', ['IconButton']);
             dropdownClickHandlerMock.verify(
                 handler => handler.openPreviewFeaturesPanelHandler(It.isAny()),
                 Times.never(),
@@ -80,6 +92,7 @@ describe('GearMenuButton', () => {
         });
 
         it('handle scoping menu item click', () => {
+            useOriginalReactElements('@fluentui/react', ['IconButton']);
             dropdownClickHandlerMock.verify(
                 handler => handler.openScopingPanelHandler(It.isAny()),
                 Times.never(),
