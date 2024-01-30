@@ -5,6 +5,10 @@ import { InstanceDetailsGroup } from 'common/components/cards/instance-details-g
 import { RuleContent, RuleContentProps } from 'common/components/cards/rule-content';
 import * as React from 'react';
 import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../../../../../../common/configs/needs-review-rule-resources';
+import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -27,6 +31,6 @@ describe('RuleContent', () => {
         const renderResult = render(<RuleContent {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsGroup]);
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsGroup, RuleResources]);
     });
 });

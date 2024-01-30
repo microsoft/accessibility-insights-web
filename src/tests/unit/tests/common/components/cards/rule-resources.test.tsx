@@ -14,6 +14,11 @@ import { GuidanceLink } from 'common/types/store-data/guidance-links';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../../../../../../common/configs/needs-review-rule-resources';
+import { InstanceOutcomeType } from '../../../../../../reports/components/instance-outcome-type';
+import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';

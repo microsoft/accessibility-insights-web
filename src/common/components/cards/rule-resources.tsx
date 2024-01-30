@@ -44,7 +44,7 @@ export const RuleResources = NamedFC<RuleResourcesProps>(
             }
 
             const ruleId = rule.id;
-            const ruleUrl = deps.IsOutcomeNeedsReview(ruleId, outcomeType)
+            const ruleUrl = deps.IsOutcomeNeedsReview(outcomeType)
                 ? deps.GetNeedsReviewRuleResourcesUrl(ruleId)
                 : rule.url;
 

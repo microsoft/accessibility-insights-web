@@ -1,12 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RuleContent renders 1`] = `
-
 <DocumentFragment>
   <mock-ruleresources
+    deps="[object Object]"
     rule="[object Object]"
   />
   <mock-instancedetailsgroup
+    deps="[object Object]"
     rule="[object Object]"
   />
 </DocumentFragment>
@@ -14,6 +15,22 @@ exports[`RuleContent renders 1`] = `
 
 exports[`RuleContent renders: InstanceDetailsGroup props 1`] = `
 {
+  "deps": {
+    "GetNeedsReviewRuleResourcesUrl": [Function],
+    "IsOutcomeNeedsReview": [Function],
+  },
+  "rule": {
+    "id": "test-id",
+  },
+}
+`;
+
+exports[`RuleContent renders: RuleResources props 1`] = `
+{
+  "deps": {
+    "GetNeedsReviewRuleResourcesUrl": [Function],
+    "IsOutcomeNeedsReview": [Function],
+  },
   "rule": {
     "id": "test-id",
   },
