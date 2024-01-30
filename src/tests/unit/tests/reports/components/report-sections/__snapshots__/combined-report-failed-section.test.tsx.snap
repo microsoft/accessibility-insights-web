@@ -1,12 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CombinedReportFailedSection renders 1`] = `
-"<div className="result-section">
-  <div id="collapsible-header">
-    <CombinedResultSectionTitle outcomeCount={1} outcomeType="fail" title="Failed rules" />
+<DocumentFragment>
+  <div
+    class="result-section"
+  >
+    <div
+      id="collapsible-header"
+    >
+      <span
+        class="combinedReportResultSectionTitle"
+      >
+        <span
+          class="screen-reader-only"
+        >
+          Failed rules 1
+        </span>
+        <span
+          aria-hidden="true"
+          class="heading"
+        >
+          Failed rules (1)
+        </span>
+      </span>
+    </div>
+    <div
+      id="collapsible-content"
+    >
+      <mock-ruleswithinstances
+        deps="[object Object]"
+        headinglevel="4"
+        outcometype="fail"
+        rules="[object Object]"
+      />
+    </div>
   </div>
-  <div id="collapsible-content">
-    <ResultSectionContent deps={{...}} outcomeType="fail" targetAppInfo={[undefined]} results={{...}} visualHelperEnabled={true} allCardsCollapsed={true} userConfigurationStoreData={{...}} outcomeCounter={[Function: countByIdentifierUrls]} headingLevel={4} />
-  </div>
-</div>"
+</DocumentFragment>
 `;

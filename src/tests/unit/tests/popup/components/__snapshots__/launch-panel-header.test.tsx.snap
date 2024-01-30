@@ -1,162 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LaunchPanelHeaderTest renders 1`] = `
-<Header
-  subtitle="test subtitle"
-  title="test title"
->
-  <React.Fragment>
-    <FlaggedComponent
-      enableJSXElement={
-        <CustomizedIconButton
-          ariaLabel="open debug tools"
-          iconProps={
-            {
-              "iconName": "Cat",
-            }
-          }
-        />
-      }
-      featureFlag="debugTools"
-      featureFlagStoreData={{}}
-    />
-    <GearOptionsButtonComponent
-      deps={
-        {
-          "dropdownClickHandler": {},
-          "launchPanelHeaderClickHandler": {},
-          "popupActionMessageCreator": {},
-        }
-      }
-      featureFlagData={{}}
-    />
-    <HamburgerMenuButton
-      deps={
-        {
-          "dropdownClickHandler": {},
-          "launchPanelHeaderClickHandler": {},
-          "popupActionMessageCreator": {},
-        }
-      }
-      featureFlagData={{}}
-      header={
-        LaunchPanelHeader {
-          "context": {},
-          "props": {
-            "deps": {
-              "dropdownClickHandler": {},
-              "launchPanelHeaderClickHandler": {},
-              "popupActionMessageCreator": {},
-            },
-            "dropdownClickHandler": {},
-            "featureFlags": {},
-            "openAdhocToolsPanel": [Function],
-            "openFeedbackDialog": {},
-            "openGettingStartedDialog": {},
-            "popupWindow": {},
-            "subtitle": "test subtitle",
-            "title": "test title",
-          },
-          "refs": {},
-          "setState": [Function],
-          "state": {},
-          "updater": Updater {
-            "_callbacks": [],
-            "_renderer": ReactShallowRenderer {
-              "_context": {},
-              "_didScheduleRenderPhaseUpdate": false,
-              "_dispatcher": {
-                "readContext": [Function],
-                "useCallback": [Function],
-                "useContext": [Function],
-                "useDebugValue": [Function],
-                "useDeferredValue": [Function],
-                "useEffect": [Function],
-                "useImperativeHandle": [Function],
-                "useLayoutEffect": [Function],
-                "useMemo": [Function],
-                "useReducer": [Function],
-                "useRef": [Function],
-                "useResponder": [Function],
-                "useState": [Function],
-                "useTransition": [Function],
-              },
-              "_element": <LaunchPanelHeader
-                deps={
-                  {
-                    "dropdownClickHandler": {},
-                    "launchPanelHeaderClickHandler": {},
-                    "popupActionMessageCreator": {},
-                  }
-                }
-                dropdownClickHandler={{}}
-                featureFlags={{}}
-                openAdhocToolsPanel={[Function]}
-                openFeedbackDialog={{}}
-                openGettingStartedDialog={{}}
-                popupWindow={{}}
-                subtitle="test subtitle"
-                title="test title"
-              />,
-              "_firstWorkInProgressHook": null,
-              "_forcedUpdate": false,
-              "_instance": [Circular],
-              "_isReRender": false,
-              "_newState": null,
-              "_numberOfReRenders": 0,
-              "_renderPhaseUpdates": null,
-              "_rendered": <Header
-                subtitle="test subtitle"
-                title="test title"
-              >
-                <React.Fragment>
-                  <FlaggedComponent
-                    enableJSXElement={
-                      <CustomizedIconButton
-                        ariaLabel="open debug tools"
-                        iconProps={
-                          {
-                            "iconName": "Cat",
-                          }
-                        }
-                      />
-                    }
-                    featureFlag="debugTools"
-                    featureFlagStoreData={{}}
-                  />
-                  <GearOptionsButtonComponent
-                    deps={
-                      {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
-                      }
-                    }
-                    featureFlagData={{}}
-                  />
-                  <HamburgerMenuButton
-                    deps={
-                      {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
-                      }
-                    }
-                    featureFlagData={{}}
-                    header={[Circular]}
-                    popupWindow={{}}
-                  />
-                </React.Fragment>
-              </Header>,
-              "_rendering": false,
-              "_updater": [Circular],
-              "_workInProgressHook": null,
-            },
-          },
-        }
-      }
-      popupWindow={{}}
-    />
-  </React.Fragment>
-</Header>
+<DocumentFragment>
+  <header
+    class="launchPanelHeader"
+  >
+    <h1
+      class="title"
+    >
+      test title
+    </h1>
+    <div
+      class="children"
+    >
+      <mock-flaggedcomponent
+        enablejsxelement="[object Object]"
+        featureflag="debugTools"
+        featureflagstoredata="[object Object]"
+      />
+      <button
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-label="manage settings"
+        class="ms-Button ms-Button--icon ms-Button--hasMenu gearMenuButton root-109"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon icon-112"
+            data-icon-name="Gear"
+          />
+        </span>
+      </button>
+      <button
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-label="help menu"
+        class="ms-Button ms-Button--icon ms-Button--hasMenu hamburgerMenuButton root-109"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon icon-112"
+            data-icon-name="GlobalNavButton"
+          />
+        </span>
+      </button>
+    </div>
+    <div
+      class="subtitle"
+    >
+      test subtitle
+    </div>
+  </header>
+</DocumentFragment>
 `;

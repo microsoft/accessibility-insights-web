@@ -1,13 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
 import { CardResult, CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
 import { CombinedReportSummarySection } from 'reports/components/report-sections/combined-report-summary-section';
+import { UrlsSummarySection } from 'reports/components/report-sections/urls-summary-section';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+
+jest.mock('reports/components/report-sections/urls-summary-section');
 
 describe(CombinedReportSummarySection.displayName, () => {
+    mockReactComponents([UrlsSummarySection])
     const urlResultCounts = {
         passedUrls: 1,
         failedUrls: 2,
@@ -52,8 +58,8 @@ describe(CombinedReportSummarySection.displayName, () => {
                 cards,
             },
         } as unknown as CombinedReportSectionProps;
-        const wrapper = shallow(<CombinedReportSummarySection {...props} />);
+        const wrapper = render(<CombinedReportSummarySection {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 });

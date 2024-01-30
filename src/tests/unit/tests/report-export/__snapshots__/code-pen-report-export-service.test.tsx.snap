@@ -1,24 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CodePenReportExportService exportForm renders 1`] = `
-<form
-  action="https://codepen.io/pen/define"
-  method="POST"
-  rel="noopener"
-  style={
-    {
-      "visibility": "hidden",
-    }
-  }
-  target="_blank"
->
-  <input
-    name="data"
-    type="hidden"
-    value="{"title":"test-html-filename","description":"test-description","html":"test-html","editors":"100"}"
-  />
-  <button
-    type="submit"
-  />
-</form>
+<DocumentFragment>
+  <form
+    action="https://codepen.io/pen/define"
+    method="POST"
+    rel="noopener"
+    style="visibility: hidden;"
+    target="_blank"
+  >
+    <input
+      name="data"
+      type="hidden"
+      value="{"title":"test-html-filename","description":"test-description","html":"test-html","editors":"100"}"
+    />
+    <button
+      type="submit"
+    />
+  </form>
+</DocumentFragment>
 `;

@@ -1,18 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
+import { ResultSectionContent } from 'common/components/cards/result-section-content';
+import { RulesWithInstances } from 'common/components/cards/rules-with-instances';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { shallow } from 'enzyme';
+
 import * as React from 'react';
 import {
     CombinedReportFailedSectionProps,
     CombinedReportFailedSection,
     CombinedReportFailedSectionDeps,
 } from 'reports/components/report-sections/combined-report-failed-section';
+import { mockReactComponents, useOriginalReactElements } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { It, Mock, MockBehavior } from 'typemoq';
 
+jest.mock('common/components/cards/rules-with-instances');
+
 describe('CombinedReportFailedSection', () => {
+    mockReactComponents([RulesWithInstances])
     it('renders', () => {
         const collapsibleControlMock = Mock.ofType<
             (props: CollapsibleComponentCardsProps) => JSX.Element
@@ -47,7 +54,7 @@ describe('CombinedReportFailedSection', () => {
                 </>
             ));
 
-        const wrapper = shallow(<CombinedReportFailedSection {...props} />);
-        expect(wrapper.debug()).toMatchSnapshot();
+        const wrapper = render(<CombinedReportFailedSection {...props} />);
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 });

@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { act, fireEvent, render } from '@testing-library/react';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { mount, shallow } from 'enzyme';
+
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import {
     LaunchPanelHeader,
@@ -12,9 +13,14 @@ import {
 } from 'popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';
 import * as React from 'react';
+
+import { getMockComponentClassPropsForCall, mockReactComponents, useOriginalReactElements } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, Times } from 'typemoq';
 
+jest.mock('common/components/flagged-component');
+
 describe('LaunchPanelHeaderTest', () => {
+    mockReactComponents([FlaggedComponent])
     let props: LaunchPanelHeaderProps;
 
     beforeEach(() => {
@@ -31,32 +37,36 @@ describe('LaunchPanelHeaderTest', () => {
             openFeedbackDialog: {} as any,
             popupWindow: {} as Window,
             featureFlags: {} as FeatureFlagStoreData,
-            openAdhocToolsPanel: () => {},
+            openAdhocToolsPanel: () => { },
             dropdownClickHandler: {} as DropdownClickHandler,
         };
     });
 
     it('renders', () => {
-        const wrapped = shallow(<LaunchPanelHeader {...props} />);
+        const wrapped = render(<LaunchPanelHeader {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(wrapped.asFragment()).toMatchSnapshot();
     });
 
-    it('handle open debug tools button activation', () => {
+    it('handle open debug tools button activation', async () => {
+        useOriginalReactElements('common/components/flagged-component', ['FlaggedComponent'])
         const dropdownClickHandlerMock = Mock.ofType<DropdownClickHandler>();
         props.deps.dropdownClickHandler = dropdownClickHandlerMock.object;
 
-        const wrapped = mount(<LaunchPanelHeader {...props} />);
+        render(<LaunchPanelHeader {...props} />);
 
         dropdownClickHandlerMock
             .setup(handler => handler.openDebugTools())
             .verifiable(Times.once());
 
-        const flaggedComponent = wrapped.find(FlaggedComponent);
+        const flaggedComponentProps = getMockComponentClassPropsForCall(FlaggedComponent).enableJSXElement;
 
-        const wrappedIconButton = shallow(flaggedComponent.prop('enableJSXElement'));
+        const wrappedIconButton = render(flaggedComponentProps);
 
-        wrappedIconButton.simulate('click');
+        const button = wrappedIconButton.queryAllByRole('button');
+        await act(async () => {
+            await fireEvent.click(button[0])
+        })
 
         dropdownClickHandlerMock.verifyAll();
     });

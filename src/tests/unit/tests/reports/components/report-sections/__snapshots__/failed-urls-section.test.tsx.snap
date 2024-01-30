@@ -1,21 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FailedUrlsSection renders 1`] = `
-<CollapsibleUrlResultSection
-  badgeCount={1}
-  containerId="failed-urls-section"
-  content={
-    <UrlScanResultsTable
-      id="failed-urls-table"
-      results={
-        [
-          {},
-        ]
-      }
-    />
-  }
-  deps={{}}
-  outcomeType="fail"
-  title="Failed URLs"
-/>
+<DocumentFragment>
+  <mock-collapsibleurlresultsection
+    badgecount="1"
+    containerid="failed-urls-section"
+    content="[object Object]"
+    deps="[object Object]"
+    outcometype="fail"
+    title="Failed URLs"
+  />
+</DocumentFragment>
 `;

@@ -1,23 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CombinedReportRulesOnlySections CombinedReportNotApplicableSection renders 1`] = `
-"<div className="result-section">
-  <div id="collapsible-header">
-    <CombinedResultSectionTitle outcomeCount={0} outcomeType="inapplicable" title="Not applicable rules" titleSize="title" />
+<DocumentFragment>
+  <div
+    class="result-section"
+  >
+    <div
+      id="collapsible-header"
+    >
+      <mock-combinedresultsectiontitle
+        outcomecount="0"
+        outcometype="inapplicable"
+        title="Not applicable rules"
+        titlesize="title"
+      />
+    </div>
+    <div
+      id="collapsible-content"
+    >
+      <div
+        class="ruleDetailsGroup"
+      />
+    </div>
   </div>
-  <div id="collapsible-content">
-    <RulesOnly deps={{...}} cardRuleResults={{...}} outcomeType="inapplicable" />
-  </div>
-</div>"
+</DocumentFragment>
 `;
 
 exports[`CombinedReportRulesOnlySections CombinedReportPassedSection renders 1`] = `
-"<div className="result-section">
-  <div id="collapsible-header">
-    <CombinedResultSectionTitle outcomeCount={0} outcomeType="pass" title="Passed rules" titleSize="title" />
+<DocumentFragment>
+  <div
+    class="result-section"
+  >
+    <div
+      id="collapsible-header"
+    >
+      <mock-combinedresultsectiontitle
+        outcomecount="0"
+        outcometype="pass"
+        title="Passed rules"
+        titlesize="title"
+      />
+    </div>
+    <div
+      id="collapsible-content"
+    >
+      <div
+        class="ruleDetailsGroup"
+      />
+    </div>
   </div>
-  <div id="collapsible-content">
-    <RulesOnly deps={{...}} cardRuleResults={{...}} outcomeType="pass" />
-  </div>
-</div>"
+</DocumentFragment>
 `;
