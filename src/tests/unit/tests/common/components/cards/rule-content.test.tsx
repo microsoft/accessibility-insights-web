@@ -1,14 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
+import { InstanceDetailsGroup } from 'common/components/cards/instance-details-group';
 import { RuleContent, RuleContentProps } from 'common/components/cards/rule-content';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
-    getNeedsReviewRuleResourcesUrl,
-    isOutcomeNeedsReview,
-} from '../../../../../../common/configs/needs-review-rule-resources';
-
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { RuleResources } from '../../../../../../common/components/cards/rule-resources';
+jest.mock('common/components/cards/instance-details-group');
+jest.mock('../../../../../../common/components/cards/rule-resources');
 describe('RuleContent', () => {
+    mockReactComponents([InstanceDetailsGroup, RuleResources]);
     it('renders', () => {
         const props = {
             rule: {
@@ -20,8 +24,9 @@ describe('RuleContent', () => {
             },
         } as RuleContentProps;
 
-        const wrapper = shallow(<RuleContent {...props} />);
+        const renderResult = render(<RuleContent {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsGroup]);
     });
 });

@@ -1,17 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LeftNavIndexIcon render 1`] = `
-<span
-  className="indexCircle"
->
-  1
-</span>
+<DocumentFragment>
+  <span
+    class="indexCircle"
+  >
+    1
+  </span>
+</DocumentFragment>
 `;
 
 exports[`LeftNavStatusIcon render 1`] = `
-<StatusIcon
-  className="left-nav-icon some class"
-  level="test"
-  status={0}
-/>
+<DocumentFragment>
+  <mock-statusicon
+    classname="left-nav-icon some class"
+    level="test"
+    status="0"
+  />
+</DocumentFragment>
 `;

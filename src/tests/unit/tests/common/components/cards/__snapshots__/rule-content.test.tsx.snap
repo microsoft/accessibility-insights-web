@@ -1,32 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RuleContent renders 1`] = `
-<React.Fragment>
-  <RuleResources
-    deps={
-      {
-        "GetNeedsReviewRuleResourcesUrl": [Function],
-        "IsOutcomeNeedsReview": [Function],
-      }
-    }
-    rule={
-      {
-        "id": "test-id",
-      }
-    }
+
+<DocumentFragment>
+  <mock-ruleresources
+    rule="[object Object]"
   />
-  <InstanceDetailsGroup
-    deps={
-      {
-        "GetNeedsReviewRuleResourcesUrl": [Function],
-        "IsOutcomeNeedsReview": [Function],
-      }
-    }
-    rule={
-      {
-        "id": "test-id",
-      }
-    }
+  <mock-instancedetailsgroup
+    rule="[object Object]"
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`RuleContent renders: InstanceDetailsGroup props 1`] = `
+{
+  "rule": {
+    "id": "test-id",
+  },
+}
 `;

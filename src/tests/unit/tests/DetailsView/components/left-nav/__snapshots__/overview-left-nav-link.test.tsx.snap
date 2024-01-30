@@ -1,30 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OverviewLeftNavLink renders 1`] = `
-<span
-  aria-hidden="true"
-  className="leftNavLinkContainer"
->
-  <span>
-    <Memo(Icon)
-      className="linkIcon left-nav-icon"
-      iconName="home"
-    />
-  </span>
+<DocumentFragment>
   <span
-    className="ms-Button-label overview-label"
+    aria-hidden="true"
+    class="leftNavLinkContainer"
   >
-    <span
-      className="overview-name"
-    >
-      test-props-link-name
+    <span>
+      <mock-mockconstructor
+        classname="linkIcon left-nav-icon"
+        iconname="home"
+      />
     </span>
     <span
-      className="overview-percent"
+      class="ms-Button-label overview-label"
     >
-      42
-      % Completed
+      <span
+        class="overview-name"
+      >
+        test-props-link-name
+      </span>
+      <span
+        class="overview-percent"
+      >
+        42% Completed
+      </span>
     </span>
   </span>
-</span>
+</DocumentFragment>
 `;

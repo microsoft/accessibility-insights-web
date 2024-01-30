@@ -1,162 +1,228 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="content-class-name collapsibleContent"
+    class=""
   >
-    <div>
-      Some content
+    <mock-customizedactionbutton
+      aria-expanded="true"
+      classname="collapsible"
+      iconprops="[object Object]"
+    >
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
+    <div
+      class="content-class-name collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentTest render expanded with content-class-name: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`CollapsibleComponentTest render expanded without content-class-name 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="collapsibleContent"
+    class=""
   >
-    <div>
-      Some content
+    <mock-customizedactionbutton
+      aria-expanded="true"
+      classname="collapsible"
+      iconprops="[object Object]"
+    >
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
+    <div
+      class="collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentTest render expanded without content-class-name: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`CollapsibleComponentTest render with container-class-name 1`] = `
-<div
-  className="a-container"
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="collapsibleContent"
+    class="a-container"
   >
-    <div>
-      Some content
+    <mock-customizedactionbutton
+      aria-expanded="true"
+      classname="collapsible"
+      iconprops="[object Object]"
+    >
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
+    <div
+      class="collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentTest render with container-class-name: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`CollapsibleComponentTest render without container-class-name 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="collapsibleContent"
+    class=""
   >
-    <div>
-      Some content
+    <mock-customizedactionbutton
+      aria-expanded="true"
+      classname="collapsible"
+      iconprops="[object Object]"
+    >
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
+    <div
+      class="collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentTest render without container-class-name: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`CollapsibleComponentTest toggle from expanded to collapsed: CustomizedActionButton props 1`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`CollapsibleComponentTest toggle from expanded to collapsed: CustomizedActionButton props 2`] = `
+{
+  "aria-expanded": true,
+  "children": <div>
+    Some header
+  </div>,
+  "className": "collapsible",
+  "iconProps": {
+    "iconName": "ChevronDown",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={false}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronRight",
-      }
-    }
-    onClick={[Function]}
+<DocumentFragment>
+  <div
+    class=""
   >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
-</div>
+    <mock-customizedactionbutton
+      aria-expanded="true"
+      classname="collapsible"
+      iconprops="[object Object]"
+    >
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`] = `
-<div
-  className=""
->
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsible"
-    iconProps={
-      {
-        "iconName": "ChevronDown",
-      }
-    }
-    onClick={[Function]}
-  >
-    <div>
-      Some header
-    </div>
-  </CustomizedActionButton>
+<DocumentFragment>
   <div
-    className="collapsibleContent"
+    class=""
   >
-    <div>
-      Some content
+    <mock-customizedactionbutton
+      aria-expanded="true"
+      classname="collapsible"
+      iconprops="[object Object]"
+    >
+      <div>
+        Some header
+      </div>
+    </mock-customizedactionbutton>
+    <div
+      class="collapsibleContent"
+    >
+      <div>
+        Some content
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

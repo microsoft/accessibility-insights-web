@@ -1,15 +1,32 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import {
     ResultSection,
     ResultSectionDeps,
     ResultSectionProps,
 } from 'common/components/cards/result-section';
-import { HeadingLevel } from 'common/components/heading-element-for-level';
-import { shallow } from 'enzyme';
+import { ResultSectionContent } from 'common/components/cards/result-section-content';
+import { HeadingLevel, HeadingElementForLevel } from 'common/components/heading-element-for-level';
 import * as React from 'react';
+import { OutcomeChip } from 'reports/components/outcome-chip';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { ResultSectionTitle } from '../../../../../../common/components/cards/result-section-title';
+jest.mock('common/components/cards/result-section-content');
+jest.mock('reports/components/outcome-chip');
+jest.mock('common/components/heading-element-for-level');
+jest.mock('../../../../../../common/components/cards/result-section-title');
 
 describe('ResultSection', () => {
+    mockReactComponents([
+        ResultSectionContent,
+        OutcomeChip,
+        HeadingElementForLevel,
+        ResultSectionTitle,
+    ]);
     const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => headingLevel + 1;
     describe('renders', () => {
         const shouldAlertValues = [false, true, undefined];
@@ -26,8 +43,9 @@ describe('ResultSection', () => {
                     sectionHeadingLevel: 2,
                 } as ResultSectionProps;
 
-                const wrapper = shallow(<ResultSection {...props} />);
-                expect(wrapper.getElement()).toMatchSnapshot();
+                const renderResult = render(<ResultSection {...props} />);
+                expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([ResultSectionContent]);
             },
         );
     });

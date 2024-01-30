@@ -2,14 +2,18 @@
 // Licensed under the MIT License.
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { ContentLink } from 'views/content/content-link';
 import { ContentPage } from 'views/content/content-page';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('views/content/content-link');
 describe('HeadingWithContentLink', () => {
+    mockReactComponents([ContentLink]);
     const contentPath = 'for/testing';
     const content = {
         for: {
@@ -35,14 +39,14 @@ describe('HeadingWithContentLink', () => {
     const secondaryText = 'secondary';
 
     it('render null when reference is not defined', () => {
-        const result = shallow(
+        const renderResult = render(
             <HeadingWithContentLink deps={deps} guidance={null} headingTitle={headingTitle} />,
         );
-        expect(result.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders with both text and icon', () => {
-        const result = shallow(
+        const renderResult = render(
             <HeadingWithContentLink
                 deps={deps}
                 guidance={contentPath}
@@ -50,11 +54,11 @@ describe('HeadingWithContentLink', () => {
                 iconName="test icon"
             />,
         );
-        expect(result.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders with heading, secondary text, and icon', () => {
-        const result = shallow(
+        const renderResult = render(
             <HeadingWithContentLink
                 deps={deps}
                 guidance={contentPath}
@@ -63,6 +67,6 @@ describe('HeadingWithContentLink', () => {
                 iconName="test icon"
             />,
         );
-        expect(result.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

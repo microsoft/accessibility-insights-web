@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IButtonProps, IconButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import {
     HamburgerMenuButton,
     HamburgerMenuButtonDeps,
@@ -9,16 +10,22 @@ import {
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
-import { shallow } from 'enzyme';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('@fluentui/react');
 
 describe('HamburgerMenuButton', () => {
     describe('renders', () => {
+        mockReactComponents([IconButton]);
         const deps: HamburgerMenuButtonDeps = {
             launchPanelHeaderClickHandler: Mock.ofType(LaunchPanelHeaderClickHandler).object,
             popupActionMessageCreator: Mock.ofType(PopupActionMessageCreator).object,
@@ -31,13 +38,14 @@ describe('HamburgerMenuButton', () => {
         };
 
         it('proper button and menu item props', () => {
-            const testSubject = shallow(<HamburgerMenuButton {...props} />);
-            expect(testSubject.getElement()).toMatchSnapshot();
+            const renderResult = render(<HamburgerMenuButton {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([IconButton]);
         });
 
         it('no down chevron menu icon', () => {
-            const wrapped = shallow(<HamburgerMenuButton {...props} />);
-            const testSubject = wrapped.find<IButtonProps>(IconButton).prop('onRenderMenuIcon');
+            render(<HamburgerMenuButton {...props} />);
+            const testSubject = getMockComponentClassPropsForCall(IconButton).onRenderMenuIcon;
 
             expect(testSubject()).toBeNull();
         });
@@ -67,8 +75,8 @@ describe('HamburgerMenuButton', () => {
                 popupWindow: popupWindowMock.object,
             };
 
-            const testObject = shallow(<HamburgerMenuButton {...props} />);
-            buttonProps = testObject.find(IconButton).props();
+            render(<HamburgerMenuButton {...props} />);
+            buttonProps = getMockComponentClassPropsForCall(IconButton);
         });
 
         it('handle fast-pass', () => {

@@ -1,26 +1,37 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DefaultButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import {
     IssueFilingButton,
     IssueFilingButtonDeps,
     IssueFilingButtonProps,
 } from 'common/components/issue-filing-button';
+import { IssueFilingNeedsSettingsHelpText } from 'common/components/issue-filing-needs-settings-help-text';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentRenderer } from 'common/types/issue-filing-needs-setting-content';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
-
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { It, IMock, Mock, Times } from 'typemoq';
+import { LadyBugSolidIcon } from '../../../../../../src/common/icons/lady-bug-solid-icon';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
+jest.mock('@fluentui/react');
+jest.mock('common/components/issue-filing-needs-settings-help-text');
+jest.mock('../../../../../../src/common/icons/lady-bug-solid-icon');
 describe('IssueFilingButtonTest', () => {
+    mockReactComponents([IssueFilingNeedsSettingsHelpText, LadyBugSolidIcon, DefaultButton]);
     const testKey: string = 'test';
     const eventStub = new EventStubFactory().createNativeMouseClickEvent() as any;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
@@ -65,7 +76,7 @@ describe('IssueFilingButtonTest', () => {
             .setup(bp => bp.forKey(testKey))
             .returns(() => testIssueFilingServiceStub)
             .verifiable();
-        needsSettingsContentRenderer = NamedFC('testRenderer', () => <>needs settings</>);
+        needsSettingsContentRenderer = IssueFilingNeedsSettingsHelpText;
     });
 
     test.each([true, false])('render: isSettingsValid: %s', isSettingsValid => {
@@ -80,13 +91,13 @@ describe('IssueFilingButtonTest', () => {
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
-        const wrapper = shallow(<IssueFilingButton {...props} />);
-        expect(wrapper.debug()).toMatchSnapshot();
+        const renderResult = render(<IssueFilingButton {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
 
         issueFilingServiceProviderMock.verifyAll();
     });
 
-    test('onclick: valid settings, file bug and set %s to false', () => {
+    test('onclick: valid settings, file bug and set %s to false', async () => {
         const props: IssueFilingButtonProps = {
             deps: {
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
@@ -98,20 +109,21 @@ describe('IssueFilingButtonTest', () => {
             needsSettingsContentRenderer,
         };
         issueFilingActionMessageCreatorMock
-            .setup(creator =>
-                creator.fileIssue(eventStub, testKey, props.issueDetailsData, toolData),
-            )
+            .setup(creator => creator.fileIssue(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
             .verifiable(Times.once());
-        const wrapper = shallow<IssueFilingButton>(<IssueFilingButton {...props} />);
+        useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+        const renderResult = render(<IssueFilingButton {...props} />);
+        await userEvent.click(renderResult.getByRole('button'));
 
-        wrapper.find(DefaultButton).simulate('click', eventStub);
-
-        expect(wrapper.debug()).toMatchSnapshot();
-        expect(wrapper.state().showNeedsSettingsContent).toBe(false);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        const needSettingProps = getMockComponentClassPropsForCall(
+            IssueFilingNeedsSettingsHelpText,
+        );
+        expect(needSettingProps.isOpen).toBe(false);
         issueFilingActionMessageCreatorMock.verifyAll();
     });
 
-    test('onclick: invalid settings, %s', () => {
+    test('onclick: invalid settings, %s', async () => {
         testIssueFilingServiceStub.isSettingsValid = () => false;
         issueFilingActionMessageCreatorMock
             .setup(messageCreator =>
@@ -128,14 +140,20 @@ describe('IssueFilingButtonTest', () => {
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
-        const wrapper = shallow<IssueFilingButton>(<IssueFilingButton {...props} />);
-        expect(wrapper.state().showNeedsSettingsContent).toBe(false);
+        useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+        const renderResult = render(<IssueFilingButton {...props} />);
+        const needSettingProps = getMockComponentClassPropsForCall(
+            IssueFilingNeedsSettingsHelpText,
+        );
+        expect(needSettingProps.isOpen).toBe(false);
 
-        wrapper.find(DefaultButton).simulate('click', eventStub);
-
-        expect(wrapper.debug()).toMatchSnapshot();
-
+        await userEvent.click(renderResult.getByRole('button'));
+        expect(renderResult.asFragment()).toMatchSnapshot();
         issueFilingActionMessageCreatorMock.verifyAll();
-        expect(wrapper.state().showNeedsSettingsContent).toBe(true);
+        const needSettingPropsAfterClick = getMockComponentClassPropsForCall(
+            IssueFilingNeedsSettingsHelpText,
+            2,
+        );
+        expect(needSettingPropsAfterClick.isOpen).toBe(true);
     });
 });

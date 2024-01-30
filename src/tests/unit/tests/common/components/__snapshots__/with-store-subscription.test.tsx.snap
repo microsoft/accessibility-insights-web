@@ -1,13 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`withStoreSubscription render: after store change 1`] = `
-<h1>
-  after change
-</h1>
+<div>
+  <h1>
+    after change
+  </h1>
+</div>
 `;
 
 exports[`withStoreSubscription render: before store change 1`] = `
-<h1>
-  before change
-</h1>
+<div>
+  <h1>
+    before change
+  </h1>
+</div>
 `;
