@@ -5,14 +5,14 @@ import { InstanceDetailsGroup } from 'common/components/cards/instance-details-g
 import { RuleContent, RuleContentProps } from 'common/components/cards/rule-content';
 import * as React from 'react';
 import {
-    getNeedsReviewRuleResourcesUrl,
-    isOutcomeNeedsReview,
-} from '../../../../../../common/configs/needs-review-rule-resources';
-import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { RuleResources } from '../../../../../../common/components/cards/rule-resources';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../../../../../../common/configs/needs-review-rule-resources';
 jest.mock('common/components/cards/instance-details-group');
 jest.mock('../../../../../../common/components/cards/rule-resources');
 describe('RuleContent', () => {
