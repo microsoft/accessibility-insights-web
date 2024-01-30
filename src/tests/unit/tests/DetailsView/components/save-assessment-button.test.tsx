@@ -54,7 +54,8 @@ describe('SaveAssessmentButton', () => {
         it('snapshot of dialog', () => {
             wrapper = render(<SaveAssessmentButton {...propsStub} />);
             fireEvent.click(wrapper.getByRole('link'));
-            expect(wrapper.asFragment()).toMatchSnapshot();
+            const dialog = wrapper.container.querySelector('mock-Dialog');
+            expect(dialog).toMatchSnapshot();
         });
 
         it('dialog is visible', () => {
@@ -83,8 +84,7 @@ describe('SaveAssessmentButton', () => {
             wrapper = render(<SaveAssessmentButton {...propsStub} />);
             fireEvent.click(wrapper.getByRole('link'));
             await userEvent.click(wrapper.getByRole('button'));
-            const openDialog = wrapper.container.querySelector('.is-open');
-            expect(openDialog).toBeNull();
+            expect(getMockComponentClassPropsForCall(Dialog, 3).hidden).toEqual(true);
         });
 
         it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {

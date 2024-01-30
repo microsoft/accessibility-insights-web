@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
@@ -15,7 +15,6 @@ import {
 import * as React from 'react';
 import {
     mockReactComponents,
-    useOriginalReactElements,
     getMockComponentClassPropsForCall,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -82,7 +81,7 @@ describe('StartOverDialog', () => {
 
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
-            const renderResult = render(<StartOverDialog {...props} />);
+            render(<StartOverDialog {...props} />);
             getMockComponentClassPropsForCall(GenericDialog).onCancelButtonClick();
 
             assessmentActionMessageCreatorMock.verifyAll();
@@ -95,7 +94,7 @@ describe('StartOverDialog', () => {
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
-            const renderResult = render(<StartOverDialog {...props} />);
+            render(<StartOverDialog {...props} />);
             getMockComponentClassPropsForCall(GenericDialog).onPrimaryButtonClick();
 
             assessmentActionMessageCreatorMock.verifyAll();
@@ -114,7 +113,7 @@ describe('StartOverDialog', () => {
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
-            const renderResult = render(<StartOverDialog {...props} />);
+            render(<StartOverDialog {...props} />);
             getMockComponentClassPropsForCall(GenericDialog).onCancelButtonClick();
 
             assessmentActionMessageCreatorMock.verifyAll();
@@ -127,7 +126,7 @@ describe('StartOverDialog', () => {
                 .verifiable(Times.once());
             dismissDialogMock.setup(cd => cd()).verifiable(Times.once());
 
-            const renderResult = render(<StartOverDialog {...props} />);
+            render(<StartOverDialog {...props} />);
             getMockComponentClassPropsForCall(GenericDialog).onPrimaryButtonClick();
 
             assessmentActionMessageCreatorMock.verifyAll();

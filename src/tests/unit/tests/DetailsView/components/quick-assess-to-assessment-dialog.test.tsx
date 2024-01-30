@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DefaultButton, PrimaryButton, Dialog, DialogFooter } from '@fluentui/react';
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     QuickAssessToAssessmentDialog,
@@ -12,7 +12,6 @@ import * as React from 'react';
 import { It, IMock, Mock, Times } from 'typemoq';
 import {
     mockReactComponents,
-    useOriginalReactElements,
     getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
 
@@ -54,9 +53,7 @@ describe('QuickAssessToAssessmentDialog', () => {
     test('onclick: cancel', async () => {
         props.isShown = true;
 
-        const renderResult = render(
-            <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
-        );
+        render(<QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>);
 
         getMockComponentClassPropsForCall(DefaultButton).onClick();
         dataTransferViewControllerMock.verify(
@@ -68,9 +65,7 @@ describe('QuickAssessToAssessmentDialog', () => {
     test('onclick: continue to assessment', async () => {
         props.isShown = true;
 
-        const renderResult = render(
-            <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
-        );
+        render(<QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>);
         getMockComponentClassPropsForCall(PrimaryButton).onClick();
 
         detailsViewActionMessageCreatorMock.verify(

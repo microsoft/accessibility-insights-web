@@ -4,7 +4,6 @@
 import { IButton } from '@fluentui/react';
 
 import { render } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import {
     ReportExportButton,
@@ -14,7 +13,6 @@ import * as React from 'react';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
-    useOriginalReactElements,
     getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
 

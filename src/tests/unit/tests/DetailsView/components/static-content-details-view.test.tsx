@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import { VisualizationToggle } from 'common/components/visualization-toggle';
 import {
@@ -16,7 +16,6 @@ import { ContentInclude } from 'views/content/content-include';
 import { ContentReference } from 'views/content/content-page';
 import {
     mockReactComponents,
-    useOriginalReactElements,
     getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
 
@@ -44,7 +43,7 @@ describe('StaticContentDetailsViewTest', () => {
             It.isAny(),
         );
         const props: StaticContentDetailsViewProps = propsBuilder.build();
-        const renderResult = render(<StaticContentDetailsView {...props} />);
+        render(<StaticContentDetailsView {...props} />);
         getMockComponentClassPropsForCall(VisualizationToggle).onClick();
         propsBuilder.verifyAll();
     });
