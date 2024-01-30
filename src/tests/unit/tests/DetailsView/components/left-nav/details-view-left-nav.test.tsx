@@ -14,9 +14,7 @@ import {
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { DetailsRightPanelConfiguration } from '../../../../../../DetailsView/components/details-view-right-panel';
-import {
-    DetailsViewSwitcherNavConfiguration,
-} from '../../../../../../DetailsView/components/details-view-switcher-nav';
+import { DetailsViewSwitcherNavConfiguration } from '../../../../../../DetailsView/components/details-view-switcher-nav';
 import { AssessmentLeftNav } from '../../../../../../DetailsView/components/left-nav/assessment-left-nav';
 import {
     DetailsViewLeftNav,
@@ -48,7 +46,7 @@ describe(DetailsViewLeftNav.displayName, () => {
             (theProps: GetLeftNavSelectedKeyProps) => null,
             MockBehavior.Strict,
         );
-        
+
         const assessmentDataStub: { [key: string]: AssessmentData } = {
             x: { testStepStatus: {} } as AssessmentData,
         };

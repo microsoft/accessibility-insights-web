@@ -56,8 +56,7 @@ describe('DebugToolsView', () => {
                     NarrowModeDetector,
                     CurrentView,
                 ]);
-            }
-            else {
+            } else {
                 expect(getMockComponentClassPropsForCall(DebugToolsNav)).toBeUndefined();
                 expect(getMockComponentClassPropsForCall(NarrowModeDetector)).toBeUndefined();
                 expect(getMockComponentClassPropsForCall(CurrentView)).toBeUndefined();
