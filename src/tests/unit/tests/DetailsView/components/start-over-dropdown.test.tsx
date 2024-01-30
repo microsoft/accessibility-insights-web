@@ -86,7 +86,7 @@ describe('StartOverDropdownTest', () => {
                 defaultProps.rightPanelOptions = rightPanelOptions;
                 defaultProps.switcherStartOverPreferences = switcherPreferences;
 
-                const renderResult = render(<StartOverDropdown {...defaultProps} />);
+                render(<StartOverDropdown {...defaultProps} />);
                 getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
                     currentTarget: 'test target',
                 });
@@ -115,7 +115,7 @@ describe('StartOverDropdownTest', () => {
     it('should open the start test over dialog', async () => {
         openDialogMock.setup(sds => sds('test')).verifiable(Times.once());
 
-        const renderResult = render(<StartOverDropdown {...defaultProps} />);
+        render(<StartOverDropdown {...defaultProps} />);
         getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
             currentTarget: 'test target',
         });
@@ -129,7 +129,7 @@ describe('StartOverDropdownTest', () => {
     it('should open the start assessment over dialog', async () => {
         openDialogMock.setup(sds => sds('assessment')).verifiable(Times.once());
 
-        const renderResult = render(<StartOverDropdown {...defaultProps} />);
+        render(<StartOverDropdown {...defaultProps} />);
         getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
             currentTarget: 'test target',
         });

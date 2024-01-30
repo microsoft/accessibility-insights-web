@@ -50,7 +50,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
 
         expect(textDiv).not.toBeNull();
 
-        const toggle = getMockComponentClassPropsForCall(VisualizationToggle);
+        getMockComponentClassPropsForCall(VisualizationToggle);
 
         const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder()
             .with('checked', true)
