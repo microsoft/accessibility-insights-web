@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from 'enzyme';
+import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import {
@@ -58,11 +59,15 @@ describe('ReactExtensionPoint', () => {
 
     it('renders extension when specified', () => {
         const rendered = render(componentWithExtensions(extensions));
-        expect(rendered.html()).toEqual('<h1>My Title</h1><h2>My Child</h2>');
+        const c1 = rendered.getByRole('heading', { level: 1 });
+        expect(c1).toHaveTextContent('My Title');
+        const c2 = rendered.getByRole('heading', { level: 2 });
+        expect(c2).toHaveTextContent('My Child');
     });
 
     it('renders children only when not specified', () => {
         const rendered = render(componentWithExtensions([]));
-        expect(rendered.html()).toEqual('<h2>My Child</h2>');
+        const c2 = rendered.getByRole('heading', { level: 2 });
+        expect(c2).toHaveTextContent('My Child');
     });
 });

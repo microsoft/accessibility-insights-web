@@ -1,93 +1,98 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetryMessagesList custom renderers onRenderCustomProperties when custom properties is present 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <span>
     {"key1":"value1","key2":"value2"}
   </span>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`TelemetryMessagesList custom renderers onRenderCustomProperties when there is not custom properties 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <span>
     -
   </span>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`TelemetryMessagesList custom renderers onRenderTimestamp (from the column onRender) matches snapshot 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <span>
     formatted-datetime
   </span>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`TelemetryMessagesList renders and matches snapshot 1`] = `
-<StyledWithViewportComponent
-  columns={
-    [
-      {
-        "fieldName": "timestamp",
-        "isResizable": true,
-        "key": "date",
-        "maxWidth": 130,
-        "minWidth": 100,
-        "name": "date & time",
-        "onRender": [Function],
+<DocumentFragment>
+  <mock-styledwithviewportcomponent
+    columns="[object Object],[object Object],[object Object],[object Object],[object Object]"
+    items="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`TelemetryMessagesList renders and matches snapshot: StyledWithViewportComponent props 1`] = `
+{
+  "columns": [
+    {
+      "fieldName": "timestamp",
+      "isResizable": true,
+      "key": "date",
+      "maxWidth": 130,
+      "minWidth": 100,
+      "name": "date & time",
+      "onRender": [Function],
+    },
+    {
+      "fieldName": "name",
+      "isResizable": true,
+      "key": "eventName",
+      "maxWidth": 130,
+      "minWidth": 100,
+      "name": "event name",
+    },
+    {
+      "fieldName": "source",
+      "isResizable": true,
+      "key": "source",
+      "maxWidth": 100,
+      "minWidth": 100,
+      "name": "source",
+    },
+    {
+      "fieldName": "triggeredBy",
+      "isResizable": true,
+      "key": "triggeredBy",
+      "maxWidth": 100,
+      "minWidth": 100,
+      "name": "triggeredBy",
+    },
+    {
+      "fieldName": "customProperties",
+      "isResizable": true,
+      "key": "customProperties",
+      "minWidth": 100,
+      "name": "custom properties",
+      "onRender": [Function],
+    },
+  ],
+  "items": [
+    {
+      "applicationBuild": "test-app-build",
+      "applicationName": "test-app-name",
+      "applicationVersion": "test-app-version",
+      "customProperties": {
+        "key1": "value1",
+        "key2": "value2",
       },
-      {
-        "fieldName": "name",
-        "isResizable": true,
-        "key": "eventName",
-        "maxWidth": 130,
-        "minWidth": 100,
-        "name": "event name",
-      },
-      {
-        "fieldName": "source",
-        "isResizable": true,
-        "key": "source",
-        "maxWidth": 100,
-        "minWidth": 100,
-        "name": "source",
-      },
-      {
-        "fieldName": "triggeredBy",
-        "isResizable": true,
-        "key": "triggeredBy",
-        "maxWidth": 100,
-        "minWidth": 100,
-        "name": "triggeredBy",
-      },
-      {
-        "fieldName": "customProperties",
-        "isResizable": true,
-        "key": "customProperties",
-        "minWidth": 100,
-        "name": "custom properties",
-        "onRender": [Function],
-      },
-    ]
-  }
-  items={
-    [
-      {
-        "applicationBuild": "test-app-build",
-        "applicationName": "test-app-name",
-        "applicationVersion": "test-app-version",
-        "customProperties": {
-          "key1": "value1",
-          "key2": "value2",
-        },
-        "installationId": "test-installation-id",
-        "name": "test-name",
-        "source": "test-source",
-        "timestamp": 1,
-        "triggeredBy": "test-triggered-by",
-      },
-    ]
-  }
-/>
+      "installationId": "test-installation-id",
+      "name": "test-name",
+      "source": "test-source",
+      "timestamp": 1,
+      "triggeredBy": "test-triggered-by",
+    },
+  ],
+}
 `;
