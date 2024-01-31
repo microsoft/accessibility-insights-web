@@ -15,6 +15,8 @@ import {
 } from '../../../../../../common/configs/needs-review-rule-resources';
 jest.mock('common/components/cards/instance-details-group');
 jest.mock('../../../../../../common/components/cards/rule-resources');
+jest.mock('common/configs/needs-review-rule-resources');
+
 describe('RuleContent', () => {
     mockReactComponents([InstanceDetailsGroup, RuleResources]);
     it('renders', () => {

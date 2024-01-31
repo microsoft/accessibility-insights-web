@@ -83,8 +83,20 @@ exports[`RuleResources renders with {
 }: GuidanceTags props 1`] = `
 {
   "deps": {
-    "GetNeedsReviewRuleResourcesUrl": [Function],
-    "IsOutcomeNeedsReview": [Function],
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction] {
+      "calls": [
+        [
+          "pass",
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    },
     "LinkComponent": [MockFunction] {
       "calls": [
         [
@@ -202,8 +214,20 @@ exports[`RuleResources renders with {
 }: GuidanceTags props 1`] = `
 {
   "deps": {
-    "GetNeedsReviewRuleResourcesUrl": [Function],
-    "IsOutcomeNeedsReview": [Function],
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction] {
+      "calls": [
+        [
+          "pass",
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    },
     "LinkComponent": [MockFunction] {
       "calls": [
         [
@@ -296,8 +320,20 @@ exports[`RuleResources renders with {
 }: GuidanceTags props 1`] = `
 {
   "deps": {
-    "GetNeedsReviewRuleResourcesUrl": [Function],
-    "IsOutcomeNeedsReview": [Function],
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction] {
+      "calls": [
+        [
+          "pass",
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    },
     "LinkComponent": [Function],
   },
   "links": null,
@@ -324,7 +360,7 @@ exports[`RuleResources renders with {
     >
       <a
         class="ms-Link insights-link root-109"
-        href="https://accessibilityinsights.io/info-examples/web/needs-review/some-rule"
+        href="test-url"
         target="_blank"
       >
         More information about some-rule
@@ -362,8 +398,20 @@ exports[`RuleResources renders with {
 }: GuidanceTags props 1`] = `
 {
   "deps": {
-    "GetNeedsReviewRuleResourcesUrl": [Function],
-    "IsOutcomeNeedsReview": [Function],
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction] {
+      "calls": [
+        [
+          "review",
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    },
     "LinkComponent": [Function],
   },
   "links": null,
@@ -466,8 +514,8 @@ exports[`RuleResources renders with {
 }: GuidanceTags props 1`] = `
 {
   "deps": {
-    "GetNeedsReviewRuleResourcesUrl": [Function],
-    "IsOutcomeNeedsReview": [Function],
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction],
     "LinkComponent": [Function],
   },
   "links": [

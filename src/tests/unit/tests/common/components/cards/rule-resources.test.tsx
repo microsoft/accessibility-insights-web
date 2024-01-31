@@ -27,6 +27,7 @@ import { exampleUnifiedRuleResult } from './sample-view-model-data';
 jest.mock('common/components/guidance-tags');
 jest.mock('common/components/guidance-links');
 jest.mock('common/components/external-link');
+jest.mock('common/configs/needs-review-rule-resources');
 
 describe('RuleResources', () => {
     mockReactComponents([GuidanceTags, GuidanceLinks, ExternalLink]);

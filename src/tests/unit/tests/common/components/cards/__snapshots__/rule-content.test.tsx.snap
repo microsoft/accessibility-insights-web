@@ -16,8 +16,8 @@ exports[`RuleContent renders 1`] = `
 exports[`RuleContent renders: InstanceDetailsGroup props 1`] = `
 {
   "deps": {
-    "GetNeedsReviewRuleResourcesUrl": [Function],
-    "IsOutcomeNeedsReview": [Function],
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction],
   },
   "rule": {
     "id": "test-id",
@@ -28,8 +28,8 @@ exports[`RuleContent renders: InstanceDetailsGroup props 1`] = `
 exports[`RuleContent renders: RuleResources props 1`] = `
 {
   "deps": {
-    "GetNeedsReviewRuleResourcesUrl": [Function],
-    "IsOutcomeNeedsReview": [Function],
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction],
   },
   "rule": {
     "id": "test-id",
