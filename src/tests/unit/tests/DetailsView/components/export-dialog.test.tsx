@@ -33,7 +33,6 @@ describe('ExportDialog', () => {
         CodePenReportExportService.exportForm,
         ExportDropdown,
     ]);
-    //CodePenReportExportService.exportForm;
     const onCloseMock = Mock.ofInstance(() => {});
     const onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
     const exportResultsClickedTelemetryMock =
