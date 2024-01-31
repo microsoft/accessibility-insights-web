@@ -9,8 +9,8 @@ export class AssessmentReportBodyHeader extends React.Component {
                 <h1>Assessment report</h1>
                 <p>
                     This report shows the overall accessibility of the website or web app through a
-                    combination of automated and manual tests that cover all the WCAG 2.1 AA success
-                    criteria.
+                    combination of automated and manual tests that cover all the WCAG 2.1 AA and 2.2
+                    AA success criteria.
                 </p>
             </div>
         );
