@@ -8,6 +8,7 @@ import {
     AssessmentReportBodyProps,
 } from 'reports/components/assessment-report-body';
 import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
+import { AssessmentReportAssessmentList } from '../../../../../reports/components/assessment-report-assessment-list';
 import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
 import { AssessmentReportSummary } from '../../../../../reports/components/assessment-report-summary';
 import { AssessmentScanDetails } from '../../../../../reports/components/assessment-scan-details';
