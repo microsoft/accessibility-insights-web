@@ -9,15 +9,14 @@ import {
 } from 'reports/components/assessment-report-body';
 import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
 import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
+import { AssessmentReportSummary } from '../../../../../reports/components/assessment-report-summary';
+import { AssessmentScanDetails } from '../../../../../reports/components/assessment-scan-details';
+import { OutcomeChip } from '../../../../../reports/components/outcome-chip';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
-import { AssessmentReportSummary } from '../../../../../reports/components/assessment-report-summary';
-import { AssessmentReportAssessmentList } from '../../../../../reports/components/assessment-report-assessment-list';
-import { AssessmentScanDetails } from '../../../../../reports/components/assessment-scan-details';
-import { OutcomeChip } from '../../../../../reports/components/outcome-chip';
 jest.mock('../../../../../reports/components/assessment-report-step-header');
 jest.mock('../../../../../reports/components/assessment-report-summary');
 jest.mock('../../../../../reports/components/assessment-report-assessment-list');
