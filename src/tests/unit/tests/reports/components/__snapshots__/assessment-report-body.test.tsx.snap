@@ -16,412 +16,14 @@ exports[`AssessmentReportBody render 1`] = `
         This report shows the overall accessibility of the website or web app through a combination of automated and manual tests that cover all the WCAG 2.1 AA success criteria.
       </p>
     </div>
-    <div
-      class="assessmentReportSummary"
-    >
-      <h2>
-        Summary
-      </h2>
-      <div
-        aria-label="13% Passed, 37% Incomplete, 50% Failed"
-        class="outcome-summary-bar"
-        data-automation-id="outcome-summary-bar"
-        role="img"
-      >
-        <div
-          style="flex-grow: 13;"
-        >
-          <span
-            class="pass summary-bar-left-edge"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                aria-hidden="true"
-                fill="none"
-                height="16"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#228722"
-                  r="8"
-                />
-                <path
-                  clip-rule="evenodd"
-                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-                  fill="var(--neutral-0)"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </span>
-            13%
-          </span>
-        </div>
-        <div
-          style="flex-grow: 37;"
-        >
-          <span
-            class="incomplete"
-          >
-            <span
-              class="check-container"
-            />
-            37%
-          </span>
-        </div>
-        <div
-          style="flex-grow: 50;"
-        >
-          <span
-            class="fail summary-bar-right-edge"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                aria-hidden="true"
-                fill="none"
-                height="16"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#E81123"
-                  r="8"
-                />
-                <path
-                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                  fill="var(--neutral-0)"
-                />
-              </svg>
-            </span>
-            50%
-          </span>
-        </div>
-      </div>
-      <h3
-        class="testDetailsText"
-      >
-        Test details
-      </h3>
-      <div
-        class="assessmentSummaryDetails"
-        role="table"
-      >
-        <div
-          class="assessmentSummaryDetailsBody"
-          role="rowgroup"
-        >
-          <div
-            class="assessmentSummaryDetailsRow"
-            role="row"
-          >
-            <div
-              class="testSummary"
-            >
-              <div
-                class="testSummaryDisplayName"
-                role="cell"
-              >
-                Assessment1
-              </div>
-              <div
-                class="testSummaryStatus"
-                data-automation-id="test-summary-status/Assessment1"
-                role="cell"
-              >
-                <div
-                  class="outcome-icon-set"
-                  title="1 Passed, 1 Incomplete, 2 Failed"
-                >
-                  <span
-                    class="outcome-icon outcome-icon-pass"
-                  >
-                    <span
-                      class="check-container"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        fill="none"
-                        height="16"
-                        role="img"
-                        viewBox="0 0 16 16"
-                        width="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle
-                          cx="8"
-                          cy="8"
-                          fill="#228722"
-                          r="8"
-                        />
-                        <path
-                          clip-rule="evenodd"
-                          d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-                          fill="var(--neutral-0)"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                  </span>
-                  <span
-                    class="outcome-icon outcome-icon-incomplete"
-                  >
-                    <span
-                      class="check-container"
-                    />
-                  </span>
-                  <span
-                    class="outcome-icon outcome-icon-fail"
-                  >
-                    <span
-                      class="check-container"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        fill="none"
-                        height="16"
-                        role="img"
-                        viewBox="0 0 16 16"
-                        width="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle
-                          cx="8"
-                          cy="8"
-                          fill="#E81123"
-                          r="8"
-                        />
-                        <path
-                          d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                          fill="var(--neutral-0)"
-                        />
-                      </svg>
-                    </span>
-                  </span>
-                  <span
-                    class="outcome-icon outcome-icon-fail"
-                  >
-                    <span
-                      class="check-container"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        fill="none"
-                        height="16"
-                        role="img"
-                        viewBox="0 0 16 16"
-                        width="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle
-                          cx="8"
-                          cy="8"
-                          fill="#E81123"
-                          r="8"
-                        />
-                        <path
-                          d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                          fill="var(--neutral-0)"
-                        />
-                      </svg>
-                    </span>
-                  </span>
-                  <span
-                    class="screen-reader-only"
-                  >
-                    1 Passed, 1 Incomplete, 2 Failed
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="assessmentSummaryDetailsRow"
-            role="row"
-          >
-            <div
-              class="testSummary"
-            >
-              <div
-                class="testSummaryDisplayName"
-                role="cell"
-              >
-                Assessment2
-              </div>
-              <div
-                class="testSummaryStatus"
-                data-automation-id="test-summary-status/Assessment2"
-                role="cell"
-              >
-                <div
-                  class="outcome-icon-set"
-                  title="0 Passed, 1 Incomplete, 1 Failed"
-                >
-                  <span
-                    class="outcome-icon outcome-icon-incomplete"
-                  >
-                    <span
-                      class="check-container"
-                    />
-                  </span>
-                  <span
-                    class="outcome-icon outcome-icon-fail"
-                  >
-                    <span
-                      class="check-container"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        fill="none"
-                        height="16"
-                        role="img"
-                        viewBox="0 0 16 16"
-                        width="16"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle
-                          cx="8"
-                          cy="8"
-                          fill="#E81123"
-                          r="8"
-                        />
-                        <path
-                          d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                          fill="var(--neutral-0)"
-                        />
-                      </svg>
-                    </span>
-                  </span>
-                  <span
-                    class="screen-reader-only"
-                  >
-                    0 Passed, 1 Incomplete, 1 Failed
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="assessment-scan-details"
-    >
-      <h3>
-        Scan details
-      </h3>
-      <table>
-        <tbody>
-          <tr>
-            <td
-              class="icon"
-            >
-              <svg
-                aria-hidden="true"
-                fill="none"
-                height="16"
-                role="img"
-                viewBox="0 0 17 16"
-                width="17"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.82353 0C9.5579 0 10.2662 0.0963542 10.9485 0.289062C11.6308 0.476562 12.2688 0.744792 12.8626 1.09375C13.4563 1.4375 13.9954 1.85417 14.4798 2.34375C14.9694 2.82812 15.386 3.36719 15.7298 3.96094C16.0787 4.55469 16.347 5.19271 16.5345 5.875C16.7272 6.55729 16.8235 7.26562 16.8235 8C16.8235 8.73438 16.7272 9.44271 16.5345 10.125C16.347 10.8073 16.0787 11.4453 15.7298 12.0391C15.386 12.6328 14.9694 13.1745 14.4798 13.6641C13.9954 14.1484 13.4563 14.5651 12.8626 14.9141C12.2688 15.2578 11.6308 15.526 10.9485 15.7188C10.2662 15.9062 9.5579 16 8.82353 16C8.08915 16 7.38082 15.9062 6.69853 15.7188C6.01624 15.526 5.37822 15.2578 4.78447 14.9141C4.19072 14.5651 3.64905 14.1484 3.15947 13.6641C2.67509 13.1745 2.25843 12.6328 1.90947 12.0391C1.56572 11.4453 1.29749 10.8099 1.10478 10.1328C0.917279 9.45052 0.823529 8.73958 0.823529 8C0.823529 7.26562 0.917279 6.55729 1.10478 5.875C1.29749 5.19271 1.56572 4.55469 1.90947 3.96094C2.25843 3.36719 2.67509 2.82812 3.15947 2.34375C3.64905 1.85417 4.19072 1.4375 4.78447 1.09375C5.37822 0.744792 6.01363 0.476562 6.69072 0.289062C7.37301 0.0963542 8.08395 0 8.82353 0ZM15.1438 5C14.9459 4.57812 14.7063 4.18229 14.4251 3.8125C14.1438 3.4375 13.8313 3.09635 13.4876 2.78906C13.1438 2.48177 12.7714 2.20833 12.3704 1.96875C11.9694 1.72917 11.5501 1.53385 11.1126 1.38281C11.3001 1.64323 11.4694 1.91927 11.6204 2.21094C11.7714 2.5026 11.9043 2.80469 12.0188 3.11719C12.1386 3.42448 12.2402 3.73698 12.3235 4.05469C12.4069 4.3724 12.4798 4.6875 12.5423 5H15.1438ZM15.8235 8C15.8235 7.30729 15.7272 6.64062 15.5345 6H12.6985C12.7402 6.33333 12.7714 6.66667 12.7923 7C12.8131 7.32812 12.8235 7.66146 12.8235 8C12.8235 8.33854 12.8131 8.67448 12.7923 9.00781C12.7714 9.33594 12.7402 9.66667 12.6985 10H15.5345C15.7272 9.35938 15.8235 8.69271 15.8235 8ZM8.82353 15C9.07874 15 9.31572 14.9297 9.53447 14.7891C9.75843 14.6484 9.96415 14.4635 10.1517 14.2344C10.3392 14.0052 10.5058 13.7474 10.6517 13.4609C10.8027 13.1693 10.9355 12.875 11.0501 12.5781C11.1647 12.2812 11.261 11.9948 11.3392 11.7188C11.4173 11.4427 11.4772 11.2031 11.5188 11H6.12822C6.16988 11.2031 6.22978 11.4427 6.3079 11.7188C6.38603 11.9948 6.48238 12.2812 6.59697 12.5781C6.71155 12.875 6.84176 13.1693 6.98759 13.4609C7.13863 13.7474 7.3079 14.0052 7.4954 14.2344C7.6829 14.4635 7.88603 14.6484 8.10478 14.7891C8.32874 14.9297 8.56832 15 8.82353 15ZM11.6907 10C11.7324 9.66667 11.7636 9.33594 11.7845 9.00781C11.8105 8.67448 11.8235 8.33854 11.8235 8C11.8235 7.66146 11.8105 7.32812 11.7845 7C11.7636 6.66667 11.7324 6.33333 11.6907 6H5.95634C5.91468 6.33333 5.88082 6.66667 5.85478 7C5.83395 7.32812 5.82353 7.66146 5.82353 8C5.82353 8.33854 5.83395 8.67448 5.85478 9.00781C5.88082 9.33594 5.91468 9.66667 5.95634 10H11.6907ZM1.82353 8C1.82353 8.69271 1.91988 9.35938 2.11259 10H4.94853C4.90686 9.66667 4.87561 9.33594 4.85478 9.00781C4.83395 8.67448 4.82353 8.33854 4.82353 8C4.82353 7.66146 4.83395 7.32812 4.85478 7C4.87561 6.66667 4.90686 6.33333 4.94853 6H2.11259C1.91988 6.64062 1.82353 7.30729 1.82353 8ZM8.82353 1C8.56832 1 8.32874 1.07031 8.10478 1.21094C7.88603 1.35156 7.6829 1.53646 7.4954 1.76562C7.3079 1.99479 7.13863 2.25521 6.98759 2.54688C6.84176 2.83333 6.71155 3.125 6.59697 3.42188C6.48238 3.71875 6.38603 4.00521 6.3079 4.28125C6.22978 4.55729 6.16988 4.79688 6.12822 5H11.5188C11.4772 4.79688 11.4173 4.55729 11.3392 4.28125C11.261 4.00521 11.1647 3.71875 11.0501 3.42188C10.9355 3.125 10.8027 2.83333 10.6517 2.54688C10.5058 2.25521 10.3392 1.99479 10.1517 1.76562C9.96415 1.53646 9.75843 1.35156 9.53447 1.21094C9.31572 1.07031 9.07874 1 8.82353 1ZM6.53447 1.38281C6.09697 1.53385 5.6777 1.72917 5.27665 1.96875C4.87561 2.20833 4.50322 2.48177 4.15947 2.78906C3.81572 3.09635 3.50322 3.4375 3.22197 3.8125C2.94072 4.18229 2.70113 4.57812 2.50322 5H5.10478C5.16728 4.6875 5.2402 4.3724 5.32353 4.05469C5.40686 3.73698 5.50582 3.42448 5.6204 3.11719C5.7402 2.80469 5.87561 2.5026 6.02665 2.21094C6.1777 1.91927 6.34697 1.64323 6.53447 1.38281ZM2.50322 11C2.70113 11.4219 2.94072 11.8203 3.22197 12.1953C3.50322 12.5651 3.81572 12.9036 4.15947 13.2109C4.50322 13.5182 4.87561 13.7917 5.27665 14.0312C5.6777 14.2708 6.09697 14.4661 6.53447 14.6172C6.34697 14.3568 6.1777 14.0807 6.02665 13.7891C5.87561 13.4974 5.7402 13.1979 5.6204 12.8906C5.50582 12.5781 5.40686 12.263 5.32353 11.9453C5.2402 11.6276 5.16728 11.3125 5.10478 11H2.50322ZM11.1126 14.6172C11.5501 14.4661 11.9694 14.2708 12.3704 14.0312C12.7714 13.7917 13.1438 13.5182 13.4876 13.2109C13.8313 12.9036 14.1438 12.5651 14.4251 12.1953C14.7063 11.8203 14.9459 11.4219 15.1438 11H12.5423C12.4798 11.3125 12.4069 11.6276 12.3235 11.9453C12.2402 12.263 12.1386 12.5781 12.0188 12.8906C11.9043 13.1979 11.7714 13.4974 11.6204 13.7891C11.4694 14.0807 11.3001 14.3568 11.1126 14.6172Z"
-                  fill="#737373"
-                />
-              </svg>
-            </td>
-            <td>
-              <a
-                class="ms-Link insights-link root-109"
-                href="url"
-                id="new-tab-link-with-confirmation-dialog__0"
-                target="_blank"
-                title="Navigate to target page"
-              >
-                url
-              </a>
-              <script>
-                (function (linkId, doc, confirmCallback) {
-  const targetPageLink = doc.getElementById(linkId);
-  targetPageLink.addEventListener('click', function (event) {
-    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
-
-    if (result === false) {
-      event.preventDefault();
-    }
-  });
-})("new-tab-link-with-confirmation-dialog__0", document, confirm);
-              </script>
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="icon"
-            >
-              <svg
-                aria-hidden="true"
-                fill="none"
-                height="16"
-                role="img"
-                viewBox="0 0 17 16"
-                width="17"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.82353 16C8.09697 16 7.39677 15.9062 6.72294 15.7188C6.05497 15.5312 5.42802 15.2676 4.84208 14.9277C4.26201 14.582 3.73173 14.1719 3.25126 13.6973C2.77665 13.2168 2.3665 12.6865 2.02079 12.1064C1.68095 11.5205 1.41728 10.8936 1.22978 10.2256C1.04228 9.55176 0.948529 8.85156 0.948529 8.125C0.948529 7.39844 1.04228 6.70117 1.22978 6.0332C1.41728 5.35937 1.68095 4.73242 2.02079 4.15234C2.3665 3.56641 2.77665 3.03613 3.25126 2.56152C3.73173 2.08105 4.26201 1.6709 4.84208 1.33105C5.42802 0.985352 6.05497 0.71875 6.72294 0.53125C7.39677 0.34375 8.09697 0.25 8.82353 0.25C9.55009 0.25 10.2474 0.34375 10.9153 0.53125C11.5892 0.71875 12.2161 0.985352 12.7962 1.33105C13.3821 1.6709 13.9124 2.08105 14.387 2.56152C14.8675 3.03613 15.2776 3.56641 15.6175 4.15234C15.9632 4.73242 16.2298 5.35937 16.4173 6.0332C16.6048 6.70117 16.6985 7.39844 16.6985 8.125C16.6985 8.85156 16.6048 9.55176 16.4173 10.2256C16.2298 10.8936 15.9632 11.5205 15.6175 12.1064C15.2776 12.6865 14.8675 13.2168 14.387 13.6973C13.9124 14.1719 13.3821 14.582 12.7962 14.9277C12.2161 15.2676 11.5892 15.5312 10.9153 15.7188C10.2474 15.9062 9.55009 16 8.82353 16ZM8.82353 1.375C7.89189 1.375 7.01591 1.55371 6.1956 1.91113C5.38115 2.2627 4.6663 2.74609 4.05107 3.36133C3.44169 3.9707 2.95829 4.68555 2.60087 5.50586C2.24931 6.32031 2.07353 7.19336 2.07353 8.125C2.07353 9.05664 2.24931 9.93262 2.60087 10.7529C2.95829 11.5674 3.44169 12.2822 4.05107 12.8975C4.6663 13.5068 5.38115 13.9902 6.1956 14.3477C7.01591 14.6992 7.89189 14.875 8.82353 14.875C9.75517 14.875 10.6282 14.6992 11.4427 14.3477C12.263 13.9902 12.9778 13.5068 13.5872 12.8975C14.2024 12.2822 14.6858 11.5674 15.0374 10.7529C15.3948 9.93262 15.5735 9.05664 15.5735 8.125C15.5735 7.19336 15.3948 6.32031 15.0374 5.50586C14.6858 4.68555 14.2024 3.9707 13.5872 3.36133C12.9778 2.74609 12.263 2.2627 11.4427 1.91113C10.6282 1.55371 9.75517 1.375 8.82353 1.375ZM8.82353 8.125V3.625H7.69853V9.25H12.1985V8.125H8.82353Z"
-                  fill="#737373"
-                />
-              </svg>
-            </td>
-            <td>
-              <mock-formatteddate
-                date="Sat Jan 01 2000 00:00:00 GMT+0000 (Coordinated Universal Time)"
-                deps="[object Object]"
-              />
-            </td>
-          </tr>
-          <tr>
-            <td
-              class="icon"
-            >
-              <svg
-                aria-hidden="true"
-                fill="none"
-                height="16"
-                role="img"
-                viewBox="0 0 16 15"
-                width="17"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M16 11.2891V0.289062H-7.62939e-06V11.2891H1.99999V15L5.71093 11.2891H16ZM1 1.28906H15L15 10.2891H5.28906L3 12.5781V10.2891H1V1.28906ZM9.99999 6.28906H8.99999V4.28906H11V6.28906C11 6.42969 10.974 6.55859 10.9219 6.67969C10.8698 6.80078 10.7982 6.90625 10.707 6.99609C10.6159 7.08594 10.5104 7.16016 10.3906 7.21094C10.2708 7.26172 10.1406 7.28906 9.99999 7.28906V6.28906ZM4.99999 6.28906H5.99999V7.28906C6.14062 7.28906 6.27083 7.26172 6.39062 7.21094C6.51041 7.16016 6.61588 7.08594 6.70702 6.99609C6.79817 6.90625 6.86978 6.80078 6.92187 6.67969C6.97395 6.55859 6.99999 6.42969 6.99999 6.28906V4.28906H4.99999V6.28906Z"
-                  fill="#737373"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </td>
-            <td
-              class="assessment-scan-details-description"
-            >
-              test-description
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <mock-assessmentreportsummary
+      summary="[object Object]"
+    />
+    <mock-assessmentscandetails
+      deps="[object Object]"
+      description="test-description"
+      details="[object Object]"
+    />
     <div
       class="details-section"
     >
@@ -429,255 +31,16 @@ exports[`AssessmentReportBody render 1`] = `
         class="details-section-header"
       >
         Failed tests
-        <span
-          class="outcome-chip outcome-chip-fail"
-          title="3 Failed"
-        >
-          <span
-            class="icon"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                aria-hidden="true"
-                fill="none"
-                height="16"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#E81123"
-                  r="8"
-                />
-                <path
-                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                  fill="var(--neutral-0)"
-                />
-              </svg>
-            </span>
-          </span>
-          <span
-            aria-hidden="true"
-            class="count"
-            data-automation-id="count"
-          >
-             3
-          </span>
-          <span
-            class="screen-reader-only"
-          >
-            3 Failed
-          </span>
-        </span>
+        <mock-outcomechip
+          count="3"
+          outcometype="fail"
+        />
       </h2>
-      <div>
-        <div
-          class="assessment-details"
-        >
-          <h3
-            class="assessment-header"
-          >
-            Assessment1
-            <span
-              class="outcome-chip outcome-chip-fail"
-              title="2 Failed"
-            >
-              <span
-                class="icon"
-              >
-                <span
-                  class="check-container"
-                >
-                  <svg
-                    aria-hidden="true"
-                    fill="none"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="8"
-                      cy="8"
-                      fill="#E81123"
-                      r="8"
-                    />
-                    <path
-                      d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                      fill="var(--neutral-0)"
-                    />
-                  </svg>
-                </span>
-              </span>
-              <span
-                aria-hidden="true"
-                class="count"
-                data-automation-id="count"
-              >
-                 2
-              </span>
-              <span
-                class="screen-reader-only"
-              >
-                2 Failed
-              </span>
-            </span>
-          </h3>
-          <div>
-            <div
-              class="step-details"
-            >
-              <mock-assessmentreportstepheader
-                deps="[object Object]"
-                header="[object Object]"
-                instancecount="1"
-                status="2"
-              />
-              <div>
-                <table
-                  class="instance-details"
-                >
-                  <tbody>
-                    <tr
-                      class="instance-pair-details"
-                    >
-                      <th
-                        class="instance-key"
-                      >
-                        Path
-                      </th>
-                      <td
-                        class="instance-value"
-                      >
-                        target1
-                      </td>
-                    </tr>
-                    <tr
-                      class="instance-pair-details"
-                    >
-                      <th
-                        class="instance-key"
-                      >
-                        Snippet
-                      </th>
-                      <td
-                        class="instance-value"
-                      >
-                        someHtml
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div
-              class="step-details"
-            >
-              <mock-assessmentreportstepheader
-                deps="[object Object]"
-                header="[object Object]"
-                instancecount="1"
-                status="2"
-              />
-              <div>
-                <table
-                  class="instance-details"
-                >
-                  <tbody>
-                    <tr
-                      class="instance-pair-details"
-                    >
-                      <th
-                        class="instance-key"
-                      >
-                        Comment
-                      </th>
-                      <td
-                        class="instance-value"
-                      >
-                        comment
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="assessment-details"
-        >
-          <h3
-            class="assessment-header"
-          >
-            Assessment2
-            <span
-              class="outcome-chip outcome-chip-fail"
-              title="1 Failed"
-            >
-              <span
-                class="icon"
-              >
-                <span
-                  class="check-container"
-                >
-                  <svg
-                    aria-hidden="true"
-                    fill="none"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="8"
-                      cy="8"
-                      fill="#E81123"
-                      r="8"
-                    />
-                    <path
-                      d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                      fill="var(--neutral-0)"
-                    />
-                  </svg>
-                </span>
-              </span>
-              <span
-                aria-hidden="true"
-                class="count"
-                data-automation-id="count"
-              >
-                 1
-              </span>
-              <span
-                class="screen-reader-only"
-              >
-                1 Failed
-              </span>
-            </span>
-          </h3>
-          <div>
-            <div
-              class="step-details"
-            >
-              <mock-assessmentreportstepheader
-                deps="[object Object]"
-                header="[object Object]"
-                instancecount="0"
-                status="2"
-              />
-              <div />
-            </div>
-          </div>
-        </div>
-      </div>
+      <mock-assessmentreportassessmentlist
+        assessments="[object Object],[object Object]"
+        deps="[object Object]"
+        status="2"
+      />
     </div>
     <div
       class="details-section"
@@ -686,123 +49,16 @@ exports[`AssessmentReportBody render 1`] = `
         class="details-section-header"
       >
         Incomplete tests
-        <span
-          class="outcome-chip outcome-chip-incomplete"
-          title="2 Incomplete"
-        >
-          <span
-            class="icon"
-          >
-            <span
-              class="check-container"
-            />
-          </span>
-          <span
-            aria-hidden="true"
-            class="count"
-            data-automation-id="count"
-          >
-             2
-          </span>
-          <span
-            class="screen-reader-only"
-          >
-            2 Incomplete
-          </span>
-        </span>
+        <mock-outcomechip
+          count="2"
+          outcometype="incomplete"
+        />
       </h2>
-      <div>
-        <div
-          class="assessment-details"
-        >
-          <h3
-            class="assessment-header"
-          >
-            Assessment1
-            <span
-              class="outcome-chip outcome-chip-incomplete"
-              title="1 Incomplete"
-            >
-              <span
-                class="icon"
-              >
-                <span
-                  class="check-container"
-                />
-              </span>
-              <span
-                aria-hidden="true"
-                class="count"
-                data-automation-id="count"
-              >
-                 1
-              </span>
-              <span
-                class="screen-reader-only"
-              >
-                1 Incomplete
-              </span>
-            </span>
-          </h3>
-          <div>
-            <div
-              class="step-details"
-            >
-              <mock-assessmentreportstepheader
-                deps="[object Object]"
-                header="[object Object]"
-                instancecount="1"
-                status="1"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          class="assessment-details"
-        >
-          <h3
-            class="assessment-header"
-          >
-            Assessment2
-            <span
-              class="outcome-chip outcome-chip-incomplete"
-              title="1 Incomplete"
-            >
-              <span
-                class="icon"
-              >
-                <span
-                  class="check-container"
-                />
-              </span>
-              <span
-                aria-hidden="true"
-                class="count"
-                data-automation-id="count"
-              >
-                 1
-              </span>
-              <span
-                class="screen-reader-only"
-              >
-                1 Incomplete
-              </span>
-            </span>
-          </h3>
-          <div>
-            <div
-              class="step-details"
-            >
-              <mock-assessmentreportstepheader
-                deps="[object Object]"
-                header="[object Object]"
-                instancecount="0"
-                status="1"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <mock-assessmentreportassessmentlist
+        assessments="[object Object],[object Object]"
+        deps="[object Object]"
+        status="1"
+      />
     </div>
     <div
       class="details-section"
@@ -811,136 +67,154 @@ exports[`AssessmentReportBody render 1`] = `
         class="details-section-header"
       >
         Passed tests
-        <span
-          class="outcome-chip outcome-chip-pass"
-          title="1 Passed"
-        >
-          <span
-            class="icon"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                aria-hidden="true"
-                fill="none"
-                height="16"
-                role="img"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#228722"
-                  r="8"
-                />
-                <path
-                  clip-rule="evenodd"
-                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-                  fill="var(--neutral-0)"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </span>
-          </span>
-          <span
-            aria-hidden="true"
-            class="count"
-            data-automation-id="count"
-          >
-             1
-          </span>
-          <span
-            class="screen-reader-only"
-          >
-            1 Passed
-          </span>
-        </span>
+        <mock-outcomechip
+          count="1"
+          outcometype="pass"
+        />
       </h2>
-      <div>
-        <div
-          class="assessment-details"
-        >
-          <h3
-            class="assessment-header"
-          >
-            Assessment1
-            <span
-              class="outcome-chip outcome-chip-pass"
-              title="1 Passed"
-            >
-              <span
-                class="icon"
-              >
-                <span
-                  class="check-container"
-                >
-                  <svg
-                    aria-hidden="true"
-                    fill="none"
-                    height="16"
-                    role="img"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="8"
-                      cy="8"
-                      fill="#228722"
-                      r="8"
-                    />
-                    <path
-                      clip-rule="evenodd"
-                      d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-                      fill="var(--neutral-0)"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </span>
-              </span>
-              <span
-                aria-hidden="true"
-                class="count"
-                data-automation-id="count"
-              >
-                 1
-              </span>
-              <span
-                class="screen-reader-only"
-              >
-                1 Passed
-              </span>
-            </span>
-          </h3>
-          <div>
-            <div
-              class="step-details"
-            >
-              <mock-assessmentreportstepheader
-                deps="[object Object]"
-                header="[object Object]"
-                instancecount="1"
-                status="0"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <mock-assessmentreportassessmentlist
+        assessments="[object Object]"
+        deps="[object Object]"
+        status="0"
+      />
     </div>
   </div>
 </DocumentFragment>
 `;
 
-exports[`AssessmentReportBody render: FormattedDate props 1`] = `
+exports[`AssessmentReportBody render: AssessmentReportAssessmentList props 1`] = `
 {
-  "date": 2000-01-01T00:00:00.000Z,
+  "assessments": [
+    {
+      "displayName": "Assessment1",
+      "key": "assessment1",
+      "steps": [
+        {
+          "defaultMessageComponent": null,
+          "header": {
+            "description": null,
+            "displayName": "Step2A",
+            "guidanceLinks": [],
+            "requirementType": "assisted",
+          },
+          "instances": [
+            {
+              "props": [
+                {
+                  "key": "Path",
+                  "value": "target1",
+                },
+                {
+                  "key": "Snippet",
+                  "value": "someHtml",
+                },
+              ],
+            },
+          ],
+          "key": "step2a",
+          "showPassingInstances": false,
+        },
+        {
+          "defaultMessageComponent": null,
+          "header": {
+            "description": null,
+            "displayName": "Step4A",
+            "guidanceLinks": [],
+            "requirementType": "manual",
+          },
+          "instances": [
+            {
+              "props": [
+                {
+                  "key": "Comment",
+                  "value": "comment",
+                },
+              ],
+            },
+          ],
+          "key": "step4a",
+          "showPassingInstances": false,
+        },
+      ],
+    },
+    {
+      "displayName": "Assessment2",
+      "key": "assessment2",
+      "steps": [
+        {
+          "defaultMessageComponent": null,
+          "header": {
+            "description": null,
+            "displayName": "Step2B",
+            "guidanceLinks": [],
+            "requirementType": "manual",
+          },
+          "instances": [],
+          "key": "step2b",
+          "showPassingInstances": true,
+        },
+      ],
+    },
+  ],
   "deps": {
     "outcomeTypeSemanticsFromTestStatus": {
       "stub": "outcomeTypeSemanticsFromTestStatus",
     },
   },
+  "status": 2,
+}
+`;
+
+exports[`AssessmentReportBody render: AssessmentReportSummary props 1`] = `
+{
+  "summary": {
+    "byPercentage": {
+      "fail": 50,
+      "incomplete": 37,
+      "pass": 13,
+    },
+    "byRequirement": {
+      "fail": 3,
+      "incomplete": 2,
+      "pass": 1,
+    },
+    "reportSummaryDetailsData": [
+      {
+        "displayName": "Assessment1",
+        "fail": 2,
+        "incomplete": 1,
+        "pass": 1,
+      },
+      {
+        "displayName": "Assessment2",
+        "fail": 1,
+        "incomplete": 1,
+        "pass": 0,
+      },
+    ],
+  },
+}
+`;
+
+exports[`AssessmentReportBody render: AssessmentScanDetails props 1`] = `
+{
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "description": "test-description",
+  "details": {
+    "reportDate": 2000-01-01T00:00:00.000Z,
+    "targetPage": "title",
+    "url": "url",
+  },
+}
+`;
+
+exports[`AssessmentReportBody render: OutcomeChip props 1`] = `
+{
+  "count": 3,
+  "outcomeType": "fail",
 }
 `;

@@ -5,17 +5,29 @@ import * as React from 'react';
 import { AssessmentReport, AssessmentReportDeps } from 'reports/components/assessment-report';
 import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
 import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
-import { FormattedDate } from '../../../../../reports/components/formatted-date';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
+import { AssessmentReportSummary } from '../../../../../reports/components/assessment-report-summary';
+import { AssessmentReportAssessmentList } from '../../../../../reports/components/assessment-report-assessment-list';
+import { AssessmentScanDetails } from '../../../../../reports/components/assessment-scan-details';
+import { OutcomeChip } from '../../../../../reports/components/outcome-chip';
 jest.mock('../../../../../reports/components/assessment-report-step-header');
-jest.mock('../../../../../reports/components/formatted-date');
+jest.mock('../../../../../reports/components/assessment-report-summary');
+jest.mock('../../../../../reports/components/assessment-report-assessment-list');
+jest.mock('../../../../../reports/components/assessment-scan-details');
+jest.mock('../../../../../reports/components/outcome-chip');
 
 describe('AssessmentReport', () => {
-    mockReactComponents([AssessmentReportStepHeader, FormattedDate]);
+    mockReactComponents([
+        AssessmentReportStepHeader,
+        AssessmentReportSummary,
+        AssessmentReportAssessmentList,
+        AssessmentScanDetails,
+        OutcomeChip,
+    ]);
     test('render', () => {
         const deps: AssessmentReportDeps = {
             outcomeTypeSemanticsFromTestStatus: {
@@ -39,6 +51,11 @@ describe('AssessmentReport', () => {
             />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([FormattedDate]);
+        expectMockedComponentPropsToMatchSnapshots([
+            AssessmentReportSummary,
+            AssessmentReportAssessmentList,
+            AssessmentScanDetails,
+            OutcomeChip,
+        ]);
     });
 });
