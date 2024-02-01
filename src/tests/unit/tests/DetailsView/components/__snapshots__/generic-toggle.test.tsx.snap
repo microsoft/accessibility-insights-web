@@ -1,123 +1,127 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GenericToggleTest renders description content is JSX.Element 1`] = `
-<div
-  className="genericToggleComponent"
->
+<DocumentFragment>
   <div
-    className="toggleContainer"
+    class="genericToggleComponent"
   >
     <div
-      className="toggleName"
+      class="toggleContainer"
     >
-      test name
+      <div
+        class="toggleName"
+      >
+        test name
+      </div>
+      <mock-styledtogglebase
+        arialabel="test name"
+        checked="true"
+        classname="toggle"
+        id="test-id-1"
+        offtext="Off"
+        ontext="On"
+      />
     </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={true}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
+    <div
+      class="toggleDescription"
+    >
+      <h1>
+        hello
+      </h1>
+    </div>
   </div>
-  <div
-    className="toggleDescription"
-  >
-    <h1>
-      hello
-    </h1>
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`GenericToggleTest renders description content is string 1`] = `
-<div
-  className="genericToggleComponent"
->
+<DocumentFragment>
   <div
-    className="toggleContainer"
+    class="genericToggleComponent"
   >
     <div
-      className="toggleName"
+      class="toggleContainer"
     >
-      test name
+      <div
+        class="toggleName"
+      >
+        test name
+      </div>
+      <mock-styledtogglebase
+        arialabel="test name"
+        checked="true"
+        classname="toggle"
+        id="test-id-1"
+        offtext="Off"
+        ontext="On"
+      />
     </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={true}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
+    <div
+      class="toggleDescription"
+    >
+      test string description
+    </div>
   </div>
-  <div
-    className="toggleDescription"
-  >
-    test string description
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`GenericToggleTest renders toggle enable = false 1`] = `
-<div
-  className="genericToggleComponent"
->
+<DocumentFragment>
   <div
-    className="toggleContainer"
+    class="genericToggleComponent"
   >
     <div
-      className="toggleName"
+      class="toggleContainer"
     >
-      test name
+      <div
+        class="toggleName"
+      >
+        test name
+      </div>
+      <mock-styledtogglebase
+        arialabel="test name"
+        checked="false"
+        classname="toggle"
+        id="test-id-1"
+        offtext="Off"
+        ontext="On"
+      />
     </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={false}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
+    <div
+      class="toggleDescription"
+    >
+      test description
+    </div>
   </div>
-  <div
-    className="toggleDescription"
-  >
-    test description
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`GenericToggleTest renders toggle enable = true 1`] = `
-<div
-  className="genericToggleComponent"
->
+<DocumentFragment>
   <div
-    className="toggleContainer"
+    class="genericToggleComponent"
   >
     <div
-      className="toggleName"
+      class="toggleContainer"
     >
-      test name
+      <div
+        class="toggleName"
+      >
+        test name
+      </div>
+      <mock-styledtogglebase
+        arialabel="test name"
+        checked="true"
+        classname="toggle"
+        id="test-id-1"
+        offtext="Off"
+        ontext="On"
+      />
     </div>
-    <StyledToggleBase
-      ariaLabel="test name"
-      checked={true}
-      className="toggle"
-      id="test-id-1"
-      offText="Off"
-      onClick={[Function]}
-      onText="On"
-    />
+    <div
+      class="toggleDescription"
+    >
+      test description
+    </div>
   </div>
-  <div
-    className="toggleDescription"
-  >
-    test description
-  </div>
-</div>
+</DocumentFragment>
 `;

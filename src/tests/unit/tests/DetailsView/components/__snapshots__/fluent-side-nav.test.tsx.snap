@@ -1,57 +1,97 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FluentSideNav render nav bar 1`] = `
-<div
-  id="sideNavContainer"
->
-  <DetailsViewLeftNav
-    isSideNavOpen={false}
-    narrowModeStatus={
-      {
-        "isHeaderAndNavCollapsed": false,
-      }
-    }
-    selectedPivot={0}
-    setNavComponentRef={[Function]}
-    setSideNavOpen={null}
-    tabStoreData={
-      {
-        "isClosed": false,
-      }
-    }
-  />
-</div>
+exports[`FluentSideNav componentDidUpdate: DetailsViewLeftNav props 1`] = `
+{
+  "isSideNavOpen": true,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": true,
+  },
+  "selectedPivot": 0,
+  "setNavComponentRef": [Function],
+  "setSideNavOpen": null,
+  "tabStoreData": {
+    "isClosed": false,
+  },
+}
 `;
 
-exports[`FluentSideNav render null if tab is closed 1`] = `null`;
+exports[`FluentSideNav dismiss side nav: DetailsViewLeftNav props 1`] = `
+{
+  "isSideNavOpen": false,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": true,
+  },
+  "selectedPivot": 0,
+  "setNavComponentRef": [Function],
+  "setSideNavOpen": [Function],
+  "tabStoreData": {
+    "isClosed": false,
+  },
+}
+`;
+
+exports[`FluentSideNav render nav bar 1`] = `
+<DocumentFragment>
+  <div
+    id="sideNavContainer"
+  >
+    <mock-detailsviewleftnav
+      issidenavopen="false"
+      narrowmodestatus="[object Object]"
+      selectedpivot="0"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FluentSideNav render nav bar: DetailsViewLeftNav props 1`] = `
+{
+  "isSideNavOpen": false,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": false,
+  },
+  "selectedPivot": 0,
+  "setNavComponentRef": [Function],
+  "setSideNavOpen": null,
+  "tabStoreData": {
+    "isClosed": false,
+  },
+}
+`;
+
+exports[`FluentSideNav render null if tab is closed 1`] = `<DocumentFragment />`;
 
 exports[`FluentSideNav render side nav 1`] = `
-<GenericPanel
-  className="leftNavPanel"
-  hasCloseButton={false}
-  isLightDismiss={true}
-  isOpen={false}
-  onDismiss={[Function]}
-  onRenderHeader={[Function]}
-  onRenderNavigation={[Function]}
-  onRenderNavigationContent={[Function]}
-  type={8}
->
-  <DetailsViewLeftNav
-    isSideNavOpen={false}
-    narrowModeStatus={
-      {
-        "isHeaderAndNavCollapsed": true,
-      }
-    }
-    selectedPivot={0}
-    setNavComponentRef={[Function]}
-    setSideNavOpen={null}
-    tabStoreData={
-      {
-        "isClosed": false,
-      }
-    }
-  />
-</GenericPanel>
+<DocumentFragment>
+  <mock-genericpanel
+    classname="leftNavPanel"
+    hasclosebutton="false"
+    islightdismiss="true"
+    isopen="false"
+    type="8"
+  >
+    <mock-detailsviewleftnav
+      issidenavopen="false"
+      narrowmodestatus="[object Object]"
+      selectedpivot="0"
+      tabstoredata="[object Object]"
+    />
+  </mock-genericpanel>
+</DocumentFragment>
+`;
+
+exports[`FluentSideNav render side nav: DetailsViewLeftNav props 1`] = `
+{
+  "isSideNavOpen": false,
+  "narrowModeStatus": {
+    "isHeaderAndNavCollapsed": true,
+  },
+  "selectedPivot": 0,
+  "setNavComponentRef": [Function],
+  "setSideNavOpen": null,
+  "tabStoreData": {
+    "isClosed": false,
+  },
+}
 `;
