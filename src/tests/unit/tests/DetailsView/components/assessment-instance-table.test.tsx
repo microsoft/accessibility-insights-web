@@ -171,26 +171,29 @@ describe('AssessmentInstanceTable', () => {
 
         it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", async () => {
             const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
+            useOriginalReactElements('@fluentui/react', ['DetailsList']);
+            assessmentInstanceTableHandlerMock
+                .setup(a => a.updateFocusedTarget(fakeItem.instance.target))
+                .verifiable(Times.once());
 
-            useOriginalReactElements('@fluentui/react', ['Spinner', 'DetailsList', 'ActionButton']);
             render(<AssessmentInstanceTable {...props} />);
             const rowClick = screen.getAllByRole('row');
 
             fireEvent.click(rowClick[1], fakeItem);
             getMockComponentClassPropsForCall(DetailsList).onItemInvoked(fakeItem);
+            assessmentInstanceTableHandlerMock.verifyAll();
         });
 
         describe('"Pass all unmarked instances" button', () => {
             it('is enabled if there is an instance with unknown status', () => {
-                useOriginalReactElements('common/components/controls/insights-command-button', [
-                    'InsightsCommandButton',
-                ]);
                 testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
 
                 render(<AssessmentInstanceTable {...props} />);
-                const getUnmarkedSelector = screen.getAllByRole('button');
 
-                expect(getUnmarkedSelector).not.toHaveProperty('disabled');
+                const hasDisabledProps =
+                    getMockComponentClassPropsForCall(InsightsCommandButton).disabled;
+
+                expect(hasDisabledProps).toEqual(false);
             });
 
             it.each([ManualTestStatus.FAIL, ManualTestStatus.PASS])(

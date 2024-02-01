@@ -12,7 +12,6 @@ import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
-    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -77,7 +76,6 @@ describe('AssessmentInstanceSelectedButton', () => {
                     isVisualizationEnabled,
                     isVisible: true,
                 } as AssessmentInstanceSelectedButtonProps;
-                useOriginalReactElements('@fluentui/react', ['IconButton']);
 
                 onSelectedMock
                     .setup(handler =>

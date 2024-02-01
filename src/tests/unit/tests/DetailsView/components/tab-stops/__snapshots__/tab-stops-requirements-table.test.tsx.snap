@@ -34,3 +34,88 @@ exports[`TabStopsRequirementsTable renders table 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`TabStopsRequirementsTable renders table: StyledWithViewportComponent props 1`] = `
+{
+  "checkboxVisibility": 2,
+  "className": "requirementTable",
+  "columns": [
+    {
+      "key": "requirement",
+      "minWidth": 100,
+      "name": "Requirement",
+      "onRender": [Function],
+    },
+    {
+      "className": "passFailColumnCell",
+      "key": "result",
+      "maxWidth": 124,
+      "minWidth": 124,
+      "name": "Pass / Fail",
+      "onRender": [Function],
+    },
+  ],
+  "items": [
+    {
+      "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
+      "guidance": [
+        {
+          "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
+          "tags": [],
+          "text": "WCAG 2.1.1",
+        },
+      ],
+      "id": "keyboard-navigation",
+      "name": "Keyboard navigation",
+    },
+    {
+      "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
+      "guidance": [
+        {
+          "href": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html",
+          "tags": [],
+          "text": "WCAG 2.1.2",
+        },
+      ],
+      "id": "keyboard-traps",
+      "name": "Keyboard traps",
+    },
+    {
+      "description": "All interactive elements give a visible indication when they have input focus. (Manual)",
+      "guidance": [
+        {
+          "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
+          "tags": [],
+          "text": "WCAG 2.4.7",
+        },
+      ],
+      "id": "focus-indicator",
+      "name": "Focus indicator",
+    },
+    {
+      "description": "The tab order is consistent with the logical order that's communicated visually. (Partially automated)",
+      "guidance": [
+        {
+          "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
+          "tags": [],
+          "text": "WCAG 2.4.3",
+        },
+      ],
+      "id": "tab-order",
+      "name": "Tab order",
+    },
+    {
+      "description": "Input focus does not move unexpectedly without the user initiating it. (Manual)",
+      "guidance": [
+        {
+          "href": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html",
+          "tags": [],
+          "text": "WCAG 2.3.1",
+        },
+      ],
+      "id": "input-focus",
+      "name": "Input focus",
+    },
+  ],
+}
+`;

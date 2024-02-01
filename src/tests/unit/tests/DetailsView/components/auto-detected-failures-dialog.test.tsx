@@ -112,7 +112,6 @@ describe('AutoDetectedFailuresDialog', () => {
                 .setup(ucmcm => ucmcm.setAutoDetectedFailuresDialogState(true))
                 .verifiable(Times.once());
 
-            useOriginalReactElements('@fluentui/react', ['Checkbox']);
             getMockComponentClassPropsForCall(Checkbox).onChange(undefined);
             expect(wrapper.baseElement).toMatchSnapshot();
         });
@@ -124,11 +123,11 @@ describe('AutoDetectedFailuresDialog', () => {
             wrapper = render(<AutoDetectedFailuresDialog {...prevProps} {...prevState} />);
         });
         it('displays dialog on tabbing completed', () => {
-            const hasDialog = wrapper.container.querySelectorAll('.ms-Dialog-main');
-            expect(hasDialog[0]).toBeFalsy();
+            const hasDialog = wrapper.container.querySelector('mock-dialog');
+            expect(hasDialog).toBeFalsy();
             wrapper.rerender(<AutoDetectedFailuresDialog {...props} />);
 
-            const newHasDialog = wrapper.container.querySelector('.ms-Dialog-main');
+            const newHasDialog = wrapper.container.querySelector('mock-dialog');
 
             expect(newHasDialog).toBeDefined();
         });
@@ -136,9 +135,9 @@ describe('AutoDetectedFailuresDialog', () => {
         it('does not display dialog with no results', () => {
             visualizationScanResultData.tabStops.requirements = null;
 
-            const hasDialog = wrapper.container.querySelectorAll('.ms-Dialog-main');
-            expect(hasDialog[0]).toBeFalsy();
-            const newHasDialog = wrapper.container.querySelector('.ms-Dialog-main');
+            const hasDialog = wrapper.container.querySelector('mock-dialog');
+            expect(hasDialog).toBeFalsy();
+            const newHasDialog = wrapper.container.querySelector('mock-dialog');
             expect(newHasDialog).toBeFalsy();
         });
 

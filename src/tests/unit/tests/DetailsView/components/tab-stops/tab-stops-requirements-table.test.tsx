@@ -24,6 +24,7 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { VisualizationScanResultStoreDataBuilder } from 'tests/unit/common/visualization-scan-result-store-data-builder';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -69,6 +70,7 @@ describe('TabStopsRequirementsTable', () => {
     test('renders table', () => {
         const testSubject = render(<TabStopsRequirementsTable {...props} />);
         expect(testSubject.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([DetailsList]);
     });
 
     test('renders requirement column', () => {
