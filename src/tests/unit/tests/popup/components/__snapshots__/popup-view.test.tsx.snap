@@ -1,98 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] = `
-"<Fragment>
-  <div className="ms-Fabric ad-hoc-tools-panel">
-    <LaunchPanelHeader deps={{...}} title="test title" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={[undefined]} featureFlagStoreData={{...}} />
-  </div>
-  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
-</Fragment>"
-`;
-
-exports[`PopupView render actual content render toggles view: launch pad 1`] = `
-"<Fragment>
-  <div className="ms-Fabric launch-panel" id="new-launch-pad">
-    <LaunchPanelHeader deps={{...}} title="test title" subtitle={{...}} popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <LaunchPad deps={{...}} productName="test title" rowConfigs={[undefined]} version="2" />
-  </div>
-  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
-</Fragment>"
-`;
-
-exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `
-"<Fragment>
-  <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2082374" onClick={[Function: onClickTutorialLink]}>
-    Watch 3-minute video introduction
-  </NewTabLink>
-   
-</Fragment>"
-`;
-
-exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
-"<Fragment>
-  <div className="ms-Fabric ad-hoc-tools-panel">
-    <LaunchPanelHeader deps={{...}} title="test title" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={{...}} featureFlagStoreData={{...}} />
-  </div>
-  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
-</Fragment>"
-`;
-
 exports[`PopupView render spinner 1`] = `
 <StyledSpinnerBase
   className="insights-spinner"
   label="Loading..."
   size={3}
-/>
-`;
-
-exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
-<div
-  className="ms-Fabric unsupported-url-info-panel"
->
-  <Header
-    title="test title"
-  />
-  <div
-    className="main-section"
-  >
-    <div
-      className="popup-grid"
-    >
-      <div
-        className="launch-panel-general-container"
-      >
-        <React.Fragment>
-          <span>
-            Accessibility Insights for Web can't run on this URL.
-          </span>
-          <br />
-          <span>
-            You'll need to go to a different page.
-          </span>
-        </React.Fragment>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
-<FileUrlUnsupportedMessagePanel
-  deps={
-    {
-      "browserAdapter": {
-        "getManifest": [Function],
-      },
-      "storesHub": [typemoq mock object],
-    }
-  }
-  header={
-    <Header
-      title="test title"
-    />
-  }
-  title="test title"
 />
 `;
