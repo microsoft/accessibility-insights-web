@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ContextualMenu, IButton, IRefObject } from '@fluentui/react';
 import { render } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
 
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { StartOverContextMenuKeyOptions } from 'DetailsView/components/details-view-right-panel';
@@ -12,7 +11,6 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
-    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 
