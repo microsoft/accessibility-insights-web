@@ -17,42 +17,17 @@ exports[`StartOverDropdownTest render 1`] = `
 exports[`StartOverDropdownTest render ContextualMenu 1`] = `
 <DocumentFragment>
   <div>
-    <button
-      aria-label="start over menu"
-      class="ms-Button ms-Button--action ms-Button--command root-109"
-      data-is-focusable="true"
-      type="button"
-    >
-      <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
-          data-icon-name="Refresh"
-        />
-        <span
-          class="ms-Button-textContainer textContainer-111"
-        >
-          <span
-            class="ms-Button-label label-113"
-            id="id__0"
-          >
-            Start over
-          </span>
-        </span>
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-          data-icon-name="ChevronDown"
-        />
-      </span>
-    </button>
+    <mock-insightscommandbutton
+      arialabel="start over menu"
+      componentref="[object Object]"
+      iconprops="[object Object]"
+      menuiconprops="[object Object]"
+      text="Start over"
+    />
     <mock-contextualmenu
       directionalhint="7"
       items="[object Object],[object Object]"
-      target="[object HTMLButtonElement]"
+      target="test event"
     />
   </div>
 </DocumentFragment>
@@ -61,38 +36,13 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
 exports[`StartOverDropdownTest render with dropdown on left 1`] = `
 <DocumentFragment>
   <div>
-    <button
-      aria-label="start over menu"
-      class="ms-Button ms-Button--action ms-Button--command root-109"
-      data-is-focusable="true"
-      type="button"
-    >
-      <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
-      >
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-icon icon-112"
-          data-icon-name="Refresh"
-        />
-        <span
-          class="ms-Button-textContainer textContainer-111"
-        >
-          <span
-            class="ms-Button-label label-113"
-            id="id__15"
-          >
-            Start over
-          </span>
-        </span>
-        <i
-          aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-          data-icon-name="ChevronRight"
-        />
-      </span>
-    </button>
+    <mock-insightscommandbutton
+      arialabel="start over menu"
+      componentref="[object Object]"
+      iconprops="[object Object]"
+      menuiconprops="[object Object]"
+      text="Start over"
+    />
     <mock-contextualmenu
       directionalhint="8"
       items="[object Object],[object Object]"

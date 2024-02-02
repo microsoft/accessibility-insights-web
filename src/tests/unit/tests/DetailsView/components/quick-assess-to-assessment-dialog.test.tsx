@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { DefaultButton, PrimaryButton, Dialog, DialogFooter } from '@fluentui/react';
 import { render } from '@testing-library/react';
+import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     QuickAssessToAssessmentDialog,
@@ -55,7 +56,7 @@ describe('QuickAssessToAssessmentDialog', () => {
 
         render(<QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>);
 
-        getMockComponentClassPropsForCall(DefaultButton).onClick();
+        await getMockComponentClassPropsForCall(DefaultButton).onClick();
         dataTransferViewControllerMock.verify(
             m => m.hideQuickAssessToAssessmentConfirmDialog(),
             Times.once(),
@@ -64,9 +65,10 @@ describe('QuickAssessToAssessmentDialog', () => {
 
     test('onclick: continue to assessment', async () => {
         props.isShown = true;
+        const eventStub = {} as SupportedMouseEvent;
 
         render(<QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>);
-        getMockComponentClassPropsForCall(PrimaryButton).onClick();
+        getMockComponentClassPropsForCall(PrimaryButton).onClick(eventStub);
 
         detailsViewActionMessageCreatorMock.verify(
             m => m.confirmDataTransferToAssessment(It.isAny()),

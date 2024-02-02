@@ -49,15 +49,11 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('render ContextualMenu', async () => {
-        useOriginalReactElements('common/components/controls/insights-command-button', [
-            'InsightsCommandButton',
-        ]);
-        useOriginalReactElements('@fluentui/react', ['ActionButton']);
-
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
 
-        await userEvent.click(renderResult.getByRole('button'));
-
+        getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+            currentTarget: 'test event',
+        });
         expect(renderResult.asFragment()).toMatchSnapshot();
 
         const mockProps = getMockComponentClassPropsForCall(ContextualMenu);
@@ -100,6 +96,7 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('render with dropdown on left', async () => {
+        mockReactComponents([InsightsCommandButton]);
         const props: StartOverProps = {
             ...defaultProps,
             dropdownDirection: 'left',
