@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
@@ -10,7 +11,6 @@ import {
 import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { StartOverComponentFactory } from 'DetailsView/components/start-over-component-factory';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -31,14 +31,22 @@ import {
     DetailsViewSwitcherNavConfiguration,
     LeftNavProps,
 } from '../../../../DetailsView/components/details-view-switcher-nav';
+import { QuickAssessToAssessmentDialog } from '../../../../DetailsView/components/quick-assess-to-assessment-dialog';
 import { DetailsViewBody, DetailsViewBodyProps } from '../../../../DetailsView/details-view-body';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
+jest.mock('DetailsView/components/left-nav/fluent-side-nav');
+jest.mock('../../../../DetailsView/components/quick-assess-to-assessment-dialog');
 describe('DetailsViewBody', () => {
+    mockReactComponents([FluentSideNav, QuickAssessToAssessmentDialog]);
     let selectedTest: VisualizationType;
     let configFactoryStub: VisualizationConfigurationFactory;
     let clickHandlerFactoryStub: DetailsViewToggleClickHandlerFactory;
@@ -129,17 +137,17 @@ describe('DetailsViewBody', () => {
         });
 
         test('render', () => {
-            const wrapper = shallow(<DetailsViewBody {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<DetailsViewBody {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
 
-            wrapper.find(FluentSideNav).props().onRightPanelContentSwitch();
+            getMockComponentClassPropsForCall(FluentSideNav).onRightPanelContentSwitch();
         });
 
         test('onRightPanelContentSwitch calls setSideNavOpen with false', () => {
-            const wrapper = shallow(<DetailsViewBody {...props} />);
+            render(<DetailsViewBody {...props} />);
             setSideNavOpenMock.setup(sm => sm(false)).verifiable();
 
-            wrapper.find(FluentSideNav).props().onRightPanelContentSwitch();
+            getMockComponentClassPropsForCall(FluentSideNav).onRightPanelContentSwitch();
 
             setSideNavOpenMock.verifyAll();
         });

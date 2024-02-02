@@ -1,97 +1,115 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewContainer render content render once; should call details view opened 1`] = `
-<DetailsViewContentWithLocalState
-  deps={
-    {
-      "detailsViewActionMessageCreator": [typemoq mock object],
-      "storesHub": [typemoq mock object],
-    }
-  }
-  storeState={
-    {
-      "tabStoreData": {
-        "isClosed": false,
-        "isOriginChanged": false,
-      },
-      "visualizationStoreData": {
-        "selectedDetailsViewPivot": -1,
-      },
-    }
-  }
-/>
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
+  />
+</DocumentFragment>
 `;
 
 exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "storesHub": [typemoq mock object],
-        },
-      }
-    }
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    isNarrowModeEnabled={false}
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="false"
   />
-  <NoContentAvailable />
-</React.Fragment>
+  <main
+    class="noContentAvailable"
+  >
+    <h1>
+      No content available
+    </h1>
+    <ul>
+      <li>
+        If the target page was closed, you can close this tab or reuse it for something else.
+      </li>
+      <li>
+        If the URL was changed on the target page, you can reactivate 
+        <strong>
+          Accessibility Insights for Web
+        </strong>
+         by selecting the extension icon on the browser toolbar or by using the extension keyboard shortcuts.
+      </li>
+    </ul>
+  </main>
+</DocumentFragment>
 `;
 
 exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "storesHub": [typemoq mock object],
-        },
-      }
-    }
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    isNarrowModeEnabled={true}
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
   />
-  <NoContentAvailable />
-</React.Fragment>
+  <main
+    class="noContentAvailable"
+  >
+    <h1>
+      No content available
+    </h1>
+    <ul>
+      <li>
+        If the target page was closed, you can close this tab or reuse it for something else.
+      </li>
+      <li>
+        If the URL was changed on the target page, you can reactivate 
+        <strong>
+          Accessibility Insights for Web
+        </strong>
+         by selecting the extension icon on the browser toolbar or by using the extension keyboard shortcuts.
+      </li>
+    </ul>
+  </main>
+</DocumentFragment>
 `;
 
 exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "storesHub": [typemoq mock object],
-        },
-      }
-    }
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    isNarrowModeEnabled={true}
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
   />
-  <NoContentAvailable />
-</React.Fragment>
+  <main
+    class="noContentAvailable"
+  >
+    <h1>
+      No content available
+    </h1>
+    <ul>
+      <li>
+        If the target page was closed, you can close this tab or reuse it for something else.
+      </li>
+      <li>
+        If the URL was changed on the target page, you can reactivate 
+        <strong>
+          Accessibility Insights for Web
+        </strong>
+         by selecting the extension icon on the browser toolbar or by using the extension keyboard shortcuts.
+      </li>
+    </ul>
+  </main>
+</DocumentFragment>
 `;
 
 exports[`DetailsViewContainer render renders spinner when stores not ready 1`] = `
-<StyledSpinnerBase
-  className="details-view-spinner"
-  label="Loading..."
-  size={3}
-/>
+<DocumentFragment>
+  <div
+    class="ms-Spinner details-view-spinner root-110"
+  >
+    <div
+      class="ms-Spinner-circle ms-Spinner--large circle-111"
+    />
+    <div
+      class="ms-Spinner-label label-112"
+    >
+      Loading...
+    </div>
+  </div>
+</DocumentFragment>
 `;

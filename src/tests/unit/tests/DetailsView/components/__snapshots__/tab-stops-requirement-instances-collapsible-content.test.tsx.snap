@@ -1,43 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
-<StyledWithViewportComponent
-  checkboxVisibility={2}
-  columns={
-    [
-      {
-        "columnActionsMode": 0,
-        "fieldName": "description",
-        "isResizable": true,
-        "key": "failureDescription",
-        "minWidth": 100,
-        "name": "Failure description",
-        "onRender": [Function],
-      },
-      {
-        "columnActionsMode": 0,
-        "fieldName": "instanceActionButtons",
-        "isIconOnly": true,
-        "isResizable": false,
-        "key": "instanceActionButtons",
-        "maxWidth": 124,
-        "minWidth": 124,
-        "name": "instance actions",
-        "onRender": [Function],
-      },
-    ]
-  }
-  constrainMode={1}
-  items={
-    [
-      {
-        "description": "test-description",
-        "id": "test-instance-id",
-      },
-    ]
-  }
-  onRenderDetailsHeader={[Function]}
-/>
+<DocumentFragment>
+  <mock-styledwithviewportcomponent
+    checkboxvisibility="2"
+    columns="[object Object],[object Object]"
+    constrainmode="1"
+    items="[object Object]"
+  />
+</DocumentFragment>
 `;
 
 exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance details column 1`] = `

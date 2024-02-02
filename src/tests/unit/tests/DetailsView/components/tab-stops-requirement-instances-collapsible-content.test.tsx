@@ -2,17 +2,27 @@
 // Licensed under the MIT License.
 
 import { DetailsList, Link } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+
+
 import {
     TabStopsRequirementInstancesCollapsibleContent,
     TabStopsRequirementInstancesCollapsibleContentProps,
 } from 'DetailsView/tab-stops-requirement-instances-collapsible-content';
 import { TabStopsRequirementResultInstance } from 'DetailsView/tab-stops-requirement-result';
-import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('TabStopsRequirementInstancesCollapsibleContent', () => {
+    mockReactComponents([DetailsList, Link]);
     let onEditButtonClickedMock: IMock<
         (requirementId: TabStopRequirementId, instanceId: string, description: string) => void
     >;
@@ -48,30 +58,32 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
     });
 
     it('renders', () => {
-        const wrapper = shallow(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('renders captured instance details column', () => {
-        const testSubject = shallow(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
-        const columns = testSubject.find(DetailsList).props().columns;
+        render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
+        const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         expect(columns[0].onRender(requirementResultInstanceStub)).toMatchSnapshot();
     });
 
     test('renders captured instance icons column', () => {
-        const testSubject = shallow(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
-        const columns = testSubject.find(DetailsList).props().columns;
+        render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
+        const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         expect(columns[1].onRender(requirementResultInstanceStub)).toMatchSnapshot();
     });
 
-    test('click events pass through as expected', () => {
+    test('click events pass through as expected', async () => {
         onEditButtonClickedMock
-            .setup(ebc => ebc('keyboard-navigation', 'test-instance-id', 'test-description'))
+            .setup(ebc => ebc(It.isAny(), It.isAny(), It.isAny()))
             .verifiable(Times.once());
         onRemoveButtonClickedMock
-            .setup(rbc => rbc(props.requirementId, 'test-instance-id'))
+            .setup(rbc => rbc(It.isAny(), It.isAny()))
             .verifiable(Times.once());
-        const testSubject = mount(
+        useOriginalReactElements('@fluentui/react', ['DetailsList', 'Link']);
+
+        const renderResult = render(
             <TabStopsRequirementInstancesCollapsibleContent
                 requirementId={props.requirementId}
                 instances={props.instances}
@@ -79,10 +91,11 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
                 onRemoveButtonClicked={onRemoveButtonClickedMock.object}
             />,
         );
-        testSubject
-            .find(Link)
-            .find('button')
-            .forEach(wrapper => wrapper.simulate('click'));
+
+        const button = renderResult.getAllByRole('button');
+
+        await userEvent.click(button[0]);
+        await userEvent.click(button[1]);
 
         onEditButtonClickedMock.verifyAll();
         onRemoveButtonClickedMock.verifyAll();

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
@@ -12,7 +13,6 @@ import {
     TabStopsRequirementsWithInstancesDeps,
     TabStopsRequirementsWithInstancesProps,
 } from 'DetailsView/tab-stops-requirements-with-instances';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock } from 'typemoq';
 
@@ -77,8 +77,8 @@ describe('TabStopsRequirementsWithInstances', () => {
         tabStopsFailedCounterMock
             .setup(m => m.getTotalFailedByRequirementId(It.isAny(), It.isAny()))
             .returns(() => 2);
-        const wrapper = shallow(<TabStopsRequirementsWithInstances {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<TabStopsRequirementsWithInstances {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders empty div when instance count === 0', () => {
@@ -88,8 +88,8 @@ describe('TabStopsRequirementsWithInstances', () => {
         tabStopsFailedCounterMock
             .setup(m => m.getFailedInstancesByRequirementId(It.isAny(), It.isAny()))
             .returns(() => 0);
-        const wrapper = shallow(<TabStopsRequirementsWithInstances {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<TabStopsRequirementsWithInstances {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders component instance count === 0', () => {
@@ -105,8 +105,8 @@ describe('TabStopsRequirementsWithInstances', () => {
                 headingLevel: 3,
             } as CollapsibleComponentCardsProps;
         };
-        const wrapper = shallow(<TabStopsRequirementsWithInstances {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<TabStopsRequirementsWithInstances {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     function getCollapsibleControlStub(): ReactFCWithDisplayName<CollapsibleComponentCardsProps> {

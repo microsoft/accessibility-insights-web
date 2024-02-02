@@ -11,15 +11,12 @@ exports[`TransferToAssessmentButton getTransferToAssessmentButton 1`] = `
 `;
 
 exports[`TransferToAssessmentButton render 1`] = `
-<InsightsCommandButton
-  data-automation-id="transfer-to-assessment-button"
-  iconProps={
-    {
-      "iconName": "fabricMoveToFolder",
-    }
-  }
-  onClick={[Function]}
->
-  Move to assessment
-</InsightsCommandButton>
+<DocumentFragment>
+  <mock-insightscommandbutton
+    data-automation-id="transfer-to-assessment-button"
+    iconprops="[object Object]"
+  >
+    Move to assessment
+  </mock-insightscommandbutton>
+</DocumentFragment>
 `;

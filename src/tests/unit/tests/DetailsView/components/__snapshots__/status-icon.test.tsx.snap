@@ -1,46 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StatusIcon render for FAIL 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Failed requirement"
-  className="status-icon negative-outcome-icon"
-  iconName="StatusErrorFull"
-/>
+<DocumentFragment>
+  <i
+    aria-label="Failed requirement"
+    aria-live="polite"
+    class="status-icon negative-outcome-icon root-105"
+    data-icon-name="StatusErrorFull"
+    role="img"
+  />
+</DocumentFragment>
 `;
 
 exports[`StatusIcon render for PASS 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Passed test"
-  className="status-icon positive-outcome-icon"
-  iconName="completedSolid"
-/>
+<DocumentFragment>
+  <i
+    aria-label="Passed test"
+    aria-live="polite"
+    class="status-icon positive-outcome-icon root-105"
+    data-icon-name="completedSolid"
+    role="img"
+  />
+</DocumentFragment>
 `;
 
 exports[`StatusIcon render for PASS with extra class name 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Passed test"
-  className="status-icon positive-outcome-icon test"
-  iconName="completedSolid"
-/>
+<DocumentFragment>
+  <i
+    aria-label="Passed test"
+    aria-live="polite"
+    class="status-icon positive-outcome-icon test root-105"
+    data-icon-name="completedSolid"
+    role="img"
+  />
+</DocumentFragment>
 `;
 
 exports[`StatusIcon render for UNKNOWN 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Incomplete requirement"
-  className="status-icon"
-  iconName="circleRing"
-/>
+<DocumentFragment>
+  <i
+    aria-label="Incomplete requirement"
+    aria-live="polite"
+    class="status-icon root-105"
+    data-icon-name="circleRing"
+    role="img"
+  />
+</DocumentFragment>
 `;
 
 exports[`StatusIcon render for default 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Incomplete requirement"
-  className="status-icon"
-  iconName="circleRing"
-/>
+<DocumentFragment>
+  <i
+    aria-label="Incomplete requirement"
+    aria-live="polite"
+    class="status-icon root-105"
+    data-icon-name="circleRing"
+    role="img"
+  />
+</DocumentFragment>
 `;

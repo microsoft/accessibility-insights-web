@@ -1,72 +1,141 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TargetPageChangedView renders with subtitle=test subtitle content and feature flag= false 1`] = `
-<div
-  className="staticContentInDetailsView"
->
-  <h1>
-    test title
-  </h1>
+<DocumentFragment>
   <div
-    className="targetPageChangedSubtitle"
+    class="staticContentInDetailsView"
   >
-    test subtitle content
-  </div>
-  <p>
-    <React.Fragment>
+    <h1>
+      test title
+    </h1>
+    <div
+      class="targetPageChangedSubtitle"
+    >
+      test subtitle content
+    </div>
+    <p>
       The target page has changed. Use the 
-      <InlineStartOverButton
-        detailsViewActionMessageCreator={{}}
-        selectedTest={2}
-      />
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton inlineStartOverButton root-109"
+        data-automation-id="inline-start-over-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Refresh"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__6"
+            >
+              Start over
+            </span>
+          </span>
+        </span>
+      </button>
        button to scan the new target page.
-    </React.Fragment>
-  </p>
-</div>
+    </p>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TargetPageChangedView renders with subtitle=undefined and feature flag= false 1`] = `
-<div
-  className="staticContentInDetailsView"
->
-  <h1>
-    test title
-  </h1>
+<DocumentFragment>
   <div
-    className="targetPageChangedSubtitle"
-  />
-  <p>
-    <React.Fragment>
+    class="staticContentInDetailsView"
+  >
+    <h1>
+      test title
+    </h1>
+    <div
+      class="targetPageChangedSubtitle"
+    />
+    <p>
       The target page has changed. Use the 
-      <InlineStartOverButton
-        detailsViewActionMessageCreator={{}}
-        selectedTest={2}
-      />
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton inlineStartOverButton root-109"
+        data-automation-id="inline-start-over-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Refresh"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__3"
+            >
+              Start over
+            </span>
+          </span>
+        </span>
+      </button>
        button to scan the new target page.
-    </React.Fragment>
-  </p>
-</div>
+    </p>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TargetPageChangedView renders with subtitle=undefined and feature flag= true 1`] = `
-<div
-  className="staticContentInDetailsView"
->
-  <h1>
-    test title
-  </h1>
+<DocumentFragment>
   <div
-    className="targetPageChangedSubtitle"
-  />
-  <p>
-    <React.Fragment>
+    class="staticContentInDetailsView"
+  >
+    <h1>
+      test title
+    </h1>
+    <div
+      class="targetPageChangedSubtitle"
+    />
+    <p>
       The target page has changed. Use the 
-      <InlineStartOverButton
-        detailsViewActionMessageCreator={{}}
-        selectedTest={2}
-      />
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton inlineStartOverButton root-109"
+        data-automation-id="inline-start-over-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Refresh"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__0"
+            >
+              Start over
+            </span>
+          </span>
+        </span>
+      </button>
        button to scan the new target page.
-    </React.Fragment>
-  </p>
-</div>
+    </p>
+  </div>
+</DocumentFragment>
 `;

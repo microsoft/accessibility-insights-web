@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -8,11 +9,17 @@ import {
     DetailsViewContainer,
     DetailsViewContainerProps,
 } from 'DetailsView/details-view-container';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
+import { NarrowModeDetector } from '../../../../DetailsView/components/narrow-mode-detector';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../DetailsView/components/narrow-mode-detector');
 describe('DetailsViewContainer', () => {
+    mockReactComponents([NarrowModeDetector]);
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
@@ -33,8 +40,8 @@ describe('DetailsViewContainer', () => {
             storesHubMock.setup(mock => mock.hasStores()).returns(() => true);
             storesHubMock.setup(mock => mock.hasStoreData()).returns(() => false);
 
-            const rendered = shallow(<DetailsViewContainer {...props} />);
-            expect(rendered.getElement()).toMatchSnapshot();
+            const renderResult = render(<DetailsViewContainer {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 
@@ -51,8 +58,8 @@ describe('DetailsViewContainer', () => {
 
             storesHubMock.setup(mock => mock.hasStores()).returns(() => false);
 
-            const rendered = shallow(<DetailsViewContainer {...props} />);
-            expect(rendered.getElement()).toMatchSnapshot();
+            const renderResult = render(<DetailsViewContainer {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('show NoContentAvailable when target tab is closed', () => {
@@ -73,8 +80,8 @@ describe('DetailsViewContainer', () => {
             storesHubMock.setup(mock => mock.hasStores()).returns(() => true);
             storesHubMock.setup(mock => mock.hasStoreData()).returns(() => true);
 
-            const rendered = shallow(<DetailsViewContainer {...props} />);
-            expect(rendered.getElement()).toMatchSnapshot();
+            const renderResult = render(<DetailsViewContainer {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('shows NoContentAvailable when target page is changed and no permissions granted', () => {
@@ -99,11 +106,14 @@ describe('DetailsViewContainer', () => {
             storesHubMock.setup(mock => mock.hasStores()).returns(() => true);
             storesHubMock.setup(mock => mock.hasStoreData()).returns(() => true);
 
-            const rendered = shallow(<DetailsViewContainer {...props} />);
-            expect(rendered.getElement()).toMatchSnapshot();
+            const renderResult = render(<DetailsViewContainer {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('render once; should call details view opened', () => {
+            useOriginalReactElements('DetailsView/actions/details-view-action-message-creator', [
+                'DetailsViewActionMessageCreator',
+            ]);
             const storesHubMock = Mock.ofType(ClientStoresHub);
             const selectedDetailsViewPivotStub: DetailsViewPivotType = -1;
             const props: DetailsViewContainerProps = {
@@ -129,12 +139,15 @@ describe('DetailsViewContainer', () => {
                 .setup(mock => mock.detailsViewOpened(selectedDetailsViewPivotStub))
                 .verifiable();
 
-            const rendered = shallow(<DetailsViewContainer {...props} />);
-            expect(rendered.getElement()).toMatchSnapshot();
+            const renderResult = render(<DetailsViewContainer {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
             detailsViewActionMessageCreator.verifyAll();
         });
 
         it('render twice; should not call details view opened on second render', () => {
+            useOriginalReactElements('DetailsView/actions/details-view-action-message-creator', [
+                'DetailsViewActionMessageCreator',
+            ]);
             const storesHubMock = Mock.ofType(ClientStoresHub);
             const selectedDetailsViewPivotStub: DetailsViewPivotType = -1;
             const props: DetailsViewContainerProps = {
