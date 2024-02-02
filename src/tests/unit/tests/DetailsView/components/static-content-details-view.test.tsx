@@ -45,7 +45,7 @@ describe('StaticContentDetailsViewTest', () => {
         );
         const props: StaticContentDetailsViewProps = propsBuilder.build();
         render(<StaticContentDetailsView {...props} />);
-        getMockComponentClassPropsForCall(VisualizationToggle).onClick();
+        getMockComponentClassPropsForCall(VisualizationToggle).onClick(event);
         propsBuilder.verifyAll();
     });
 });
