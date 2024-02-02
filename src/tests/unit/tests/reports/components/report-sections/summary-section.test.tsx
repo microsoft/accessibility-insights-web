@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { InstanceOutcomeType } from 'reports/components/instance-outcome-type';
 import {
@@ -10,8 +10,12 @@ import {
     PassFailSummarySection,
     SummarySectionProps,
 } from 'reports/components/report-sections/summary-section';
+import { OutcomeSummaryBar } from '../../../../../../reports/components/outcome-summary-bar';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../../reports/components/outcome-summary-bar');
 
 describe('SummarySection', () => {
+    mockReactComponents([OutcomeSummaryBar]);
     const noViolations = [];
     const noPasses = [];
     const noNonApplicable = [];
@@ -103,28 +107,42 @@ describe('SummarySection', () => {
         const props: SummarySectionProps = {
             cardsViewData: cardsViewData,
         };
-        const wrapper = shallow(<BaseSummarySection {...props} outcomeTypesShown={outcomeTypes} />);
+        const renderResult = render(
+            <BaseSummarySection {...props} outcomeTypesShown={outcomeTypes} />,
+        );
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     describe('AllOutcomesSummarySection', () => {
         test('renders BaseSummarySection with all outcome types', () => {
             const props: SummarySectionProps = {
-                cardsViewData: {} as CardsViewModel,
+                cardsViewData: {
+                    cards: {
+                        fail: noViolations,
+                        pass: noPasses,
+                        inapplicable: nonApplicable,
+                    },
+                } as CardsViewModel,
             };
-            const wrapper = shallow(<AllOutcomesSummarySection {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<AllOutcomesSummarySection {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 
-    describe('PassFailSummarySection', () => {
+    describe('PassFailSummarySection: %s', () => {
         test('renders BaseSummarySection with only pass and failed outcome types', () => {
             const props: SummarySectionProps = {
-                cardsViewData: {} as CardsViewModel,
+                cardsViewData: {
+                    cards: {
+                        fail: noViolations,
+                        pass: noPasses,
+                        inapplicable: nonApplicable,
+                    },
+                } as CardsViewModel,
             };
-            const wrapper = shallow(<PassFailSummarySection {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<PassFailSummarySection {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 });

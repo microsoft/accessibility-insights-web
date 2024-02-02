@@ -1,215 +1,154 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SummarySection AllOutcomesSummarySection renders BaseSummarySection with all outcome types 1`] = `
-<BaseSummarySection
-  cardsViewData={{}}
-  outcomeTypesShown={
-    [
-      "fail",
-      "pass",
-      "inapplicable",
-    ]
-  }
-/>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="fail,pass,inapplicable"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`SummarySection BaseSummarySection: failure only 1`] = `
-<div
-  className="summary-section"
->
-  <h2>
-    Summary
-  </h2>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "pass",
-      ]
-    }
-    iconStyleInverted={true}
-    outcomeStats={
-      {
-        "fail": 3,
-        "inapplicable": 0,
-        "incomplete": 0,
-        "pass": 0,
-        "review": 0,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="pass"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`SummarySection BaseSummarySection: failures + not applicable + passes 1`] = `
-<div
-  className="summary-section"
->
-  <h2>
-    Summary
-  </h2>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "pass",
-      ]
-    }
-    iconStyleInverted={true}
-    outcomeStats={
-      {
-        "fail": 3,
-        "inapplicable": 3,
-        "incomplete": 0,
-        "pass": 2,
-        "review": 0,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="pass"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`SummarySection BaseSummarySection: failures + not applicable only 1`] = `
-<div
-  className="summary-section"
->
-  <h2>
-    Summary
-  </h2>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "pass",
-      ]
-    }
-    iconStyleInverted={true}
-    outcomeStats={
-      {
-        "fail": 3,
-        "inapplicable": 3,
-        "incomplete": 0,
-        "pass": 0,
-        "review": 0,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="pass"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`SummarySection BaseSummarySection: failures + passes only 1`] = `
-<div
-  className="summary-section"
->
-  <h2>
-    Summary
-  </h2>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "pass",
-      ]
-    }
-    iconStyleInverted={true}
-    outcomeStats={
-      {
-        "fail": 3,
-        "inapplicable": 0,
-        "incomplete": 0,
-        "pass": 2,
-        "review": 0,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="pass"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`SummarySection BaseSummarySection: not applicable + passes only 1`] = `
-<div
-  className="summary-section"
->
-  <h2>
-    Summary
-  </h2>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "pass",
-      ]
-    }
-    iconStyleInverted={true}
-    outcomeStats={
-      {
-        "fail": 0,
-        "inapplicable": 3,
-        "incomplete": 0,
-        "pass": 2,
-        "review": 0,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="pass"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`SummarySection BaseSummarySection: not applicable only 1`] = `
-<div
-  className="summary-section"
->
-  <h2>
-    Summary
-  </h2>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "pass",
-      ]
-    }
-    iconStyleInverted={true}
-    outcomeStats={
-      {
-        "fail": 0,
-        "inapplicable": 3,
-        "incomplete": 0,
-        "pass": 0,
-        "review": 0,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="pass"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`SummarySection BaseSummarySection: passes only 1`] = `
-<div
-  className="summary-section"
->
-  <h2>
-    Summary
-  </h2>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "pass",
-      ]
-    }
-    iconStyleInverted={true}
-    outcomeStats={
-      {
-        "fail": 0,
-        "inapplicable": 0,
-        "incomplete": 0,
-        "pass": 2,
-        "review": 0,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="pass"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
-exports[`SummarySection PassFailSummarySection renders BaseSummarySection with only pass and failed outcome types 1`] = `
-<BaseSummarySection
-  cardsViewData={{}}
-  outcomeTypesShown={
-    [
-      "fail",
-      "pass",
-    ]
-  }
-/>
+exports[`SummarySection PassFailSummarySection: %s renders BaseSummarySection with only pass and failed outcome types 1`] = `
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="fail,pass"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
