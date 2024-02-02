@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SaveAssessmentButton on dialog enabled snapshot of dialog 1`] = `
+exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = `
 <mock-dialog
   dialogcontentprops="[object Object]"
-  hidden="false"
+  hidden="true"
   modalprops="[object Object]"
 >
   <div

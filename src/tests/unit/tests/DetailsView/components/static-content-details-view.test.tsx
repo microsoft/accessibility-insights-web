@@ -10,7 +10,7 @@ import {
 } from 'DetailsView/components/static-content-details-view';
 import * as React from 'react';
 import { BaseDataBuilder } from 'tests/unit/common/base-data-builder';
-import { NativeEventStub } from 'tests/unit/common/event-stub-factory';
+import { EventStubFactory, NativeEventStub } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ContentInclude } from 'views/content/content-include';
 import { ContentReference } from 'views/content/content-page';
@@ -36,11 +36,12 @@ describe('StaticContentDetailsViewTest', () => {
     });
 
     it('click the toggle', () => {
+        const event = new EventStubFactory().createMouseClickEvent() as any;
         const clickHandlerMock = Mock.ofInstance(theEvent => {});
-        clickHandlerMock.setup(chm => chm(It.isAny())).verifiable(Times.once());
+        clickHandlerMock.setup(chm => chm(event)).verifiable(Times.once());
 
         const propsBuilder = new StaticContentDetailsViewPropsBuilder().setupOnToggleClickMock(
-            It.isAny(),
+            event,
         );
         const props: StaticContentDetailsViewProps = propsBuilder.build();
         render(<StaticContentDetailsView {...props} />);
