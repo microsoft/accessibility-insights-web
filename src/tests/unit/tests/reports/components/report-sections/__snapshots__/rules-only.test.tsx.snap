@@ -1,35 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RulesOnly renders 1`] = `
-<div
-  className="ruleDetailsGroup"
->
-  <FullRuleHeader
-    cardRuleResult={
-      {
-        "id": "1",
-      }
-    }
-    deps={{}}
-    outcomeType="pass"
-  />
-  <FullRuleHeader
-    cardRuleResult={
-      {
-        "id": "2",
-      }
-    }
-    deps={{}}
-    outcomeType="pass"
-  />
-  <FullRuleHeader
-    cardRuleResult={
-      {
-        "id": "3",
-      }
-    }
-    deps={{}}
-    outcomeType="pass"
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="ruleDetailsGroup"
+  >
+    <mock-fullruleheader
+      cardruleresult="[object Object]"
+      deps="[object Object]"
+      outcometype="pass"
+    />
+    <mock-fullruleheader
+      cardruleresult="[object Object]"
+      deps="[object Object]"
+      outcometype="pass"
+    />
+    <mock-fullruleheader
+      cardruleresult="[object Object]"
+      deps="[object Object]"
+      outcometype="pass"
+    />
+  </div>
+</DocumentFragment>
 `;

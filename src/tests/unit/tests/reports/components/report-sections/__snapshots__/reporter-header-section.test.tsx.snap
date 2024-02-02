@@ -1,13 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReporterHeaderSection renders 1`] = `
-<HeaderSection
-  headerText="Accessibility Insights"
-  targetAppInfo={
-    {
-      "name": "page-title",
-      "url": "url://page",
-    }
-  }
-/>
+<DocumentFragment>
+  <mock-headersection
+    headertext="Accessibility Insights"
+    targetappinfo="[object Object]"
+  />
+</DocumentFragment>
 `;

@@ -1,23 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NotScannedUrlsSection renders 1`] = `
-<CollapsibleUrlResultSection
-  badgeCount={3}
-  containerId="not-scanned-urls-section"
-  content={
-    <UrlErrorsTable
-      errors={
-        [
-          {},
-          {},
-          {},
-        ]
-      }
-      id="not-scanned-urls-table"
-    />
-  }
-  deps={{}}
-  outcomeType="unscannable"
-  title="Not scanned URLs"
-/>
+<DocumentFragment>
+  <mock-collapsibleurlresultsection
+    badgecount="3"
+    containerid="not-scanned-urls-section"
+    content="[object Object]"
+    deps="[object Object]"
+    outcometype="unscannable"
+    title="Not scanned URLs"
+  />
+</DocumentFragment>
 `;

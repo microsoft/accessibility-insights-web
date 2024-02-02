@@ -1,13 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { ScanMetadata, ScanTimespan } from 'common/types/store-data/unified-data-interface';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { IMock, Mock } from 'typemoq';
+import { DateIcon } from '../../../../../../common/icons/date-icon';
+import { UrlIcon } from '../../../../../../common/icons/url-icon';
+import { NewTabLinkWithConfirmationDialog } from '../../../../../../reports/components/new-tab-link-confirmation-dialog';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../reports/components/new-tab-link-confirmation-dialog');
+jest.mock('../../../../../../common/icons/date-icon');
+jest.mock('../../../../../../common/icons/url-icon');
 describe(SummaryReportDetailsSection.displayName, () => {
+    mockReactComponents([NewTabLinkWithConfirmationDialog, UrlIcon, DateIcon]);
     const scanStart = new Date(0, 1, 2, 3);
     const scanComplete = new Date(4, 5, 6, 7);
     const durationSeconds = 10;
@@ -49,7 +57,7 @@ describe(SummaryReportDetailsSection.displayName, () => {
             secondsToTimeString: secondsToTimeStringMock.object,
         } as SummaryReportSectionProps;
 
-        const wrapper = shallow(<SummaryReportDetailsSection {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<SummaryReportDetailsSection {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

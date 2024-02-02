@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CardRuleResult } from 'common/types/store-data/card-view-model';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
 import {
@@ -9,8 +9,19 @@ import {
     FullRuleHeaderDeps,
     FullRuleHeaderProps,
 } from 'reports/components/report-sections/full-rule-header';
+import { GuidanceLinks } from '../../../../../../common/components/guidance-links';
+import { GuidanceTags } from '../../../../../../common/components/guidance-tags';
+import { NewTabLink } from '../../../../../../common/components/new-tab-link';
+import { OutcomeChip } from '../../../../../../reports/components/outcome-chip';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../reports/components/outcome-chip');
+jest.mock('../../../../../../common/components/guidance-links');
+jest.mock('../../../../../../common/components/guidance-tags');
+jest.mock('../../../../../../common/components/new-tab-link');
 describe('FullRuleHeader', () => {
+    mockReactComponents([OutcomeChip, GuidanceLinks, GuidanceTags, NewTabLink]);
+
     let depsStub: FullRuleHeaderDeps;
     let rule: CardRuleResult;
 
@@ -41,9 +52,9 @@ describe('FullRuleHeader', () => {
             outcomeType,
         };
 
-        const wrapped = shallow(<FullRuleHeader {...props} />);
+        const renderResult = render(<FullRuleHeader {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('guidance links and the containing parenthesis are not rendered without guidance', () => {
@@ -54,9 +65,9 @@ describe('FullRuleHeader', () => {
             outcomeType: 'fail',
         };
 
-        const wrapped = shallow(<FullRuleHeader {...props} />);
+        const renderResult = render(<FullRuleHeader {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('ruleId is displayed as text when there is no url provided for a link', () => {
@@ -67,8 +78,8 @@ describe('FullRuleHeader', () => {
             outcomeType: 'fail',
         };
 
-        const wrapped = shallow(<FullRuleHeader {...props} />);
+        const renderResult = render(<FullRuleHeader {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

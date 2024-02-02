@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { forOwn } from 'lodash';
 import * as React from 'react';
 
@@ -30,9 +30,9 @@ describe('ReportCollapsibleContainerControl', () => {
                     isExpanded: false,
                 };
                 const control = ReportCollapsibleContainerControl(props);
-                const result = shallow(control);
+                const renderResult = render(control);
 
-                expect(result.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
         });
     });

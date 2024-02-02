@@ -1,210 +1,218 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`makeDetailsSection renders with description:  1`] = `
-<div
-  className="scan-details-section"
->
-  <h2>
-    Scan details
-  </h2>
-  <ul
-    className="details-section-list"
+<DocumentFragment>
+  <div
+    class="scan-details-section"
   >
-    <li>
-      <span
-        className="icon"
-      >
-        <UrlIcon />
-      </span>
-      <span
-        className="screen-reader-only"
-      >
-        item label
-      </span>
-      <span
-        className="text"
-      >
-        item content
-      </span>
-    </li>
-    <li>
-      <span
-        className="icon"
-      >
-        <DateIcon />
-      </span>
-      <span
-        className="screen-reader-only"
-      >
-        scan date:
-      </span>
-      <span
-        className="text"
-      >
-        2018-03-12 11:24 PM UTC
-      </span>
-    </li>
-  </ul>
-</div>
+    <h2>
+      Scan details
+    </h2>
+    <ul
+      class="details-section-list"
+    >
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-urlicon />
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          item label
+        </span>
+        <span
+          class="text"
+        >
+          item content
+        </span>
+      </li>
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-dateicon />
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          scan date:
+        </span>
+        <span
+          class="text"
+        >
+          2018-03-12 11:24 PM UTC
+        </span>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`makeDetailsSection renders with description: description-text 1`] = `
-<div
-  className="scan-details-section"
->
-  <h2>
-    Scan details
-  </h2>
-  <ul
-    className="details-section-list"
+<DocumentFragment>
+  <div
+    class="scan-details-section"
   >
-    <li>
-      <span
-        className="icon"
-      >
-        <UrlIcon />
-      </span>
-      <span
-        className="screen-reader-only"
-      >
-        item label
-      </span>
-      <span
-        className="text"
-      >
-        item content
-      </span>
-    </li>
-    <li>
-      <span
-        className="icon"
-      >
-        <DateIcon />
-      </span>
-      <span
-        className="screen-reader-only"
-      >
-        scan date:
-      </span>
-      <span
-        className="text"
-      >
-        2018-03-12 11:24 PM UTC
-      </span>
-    </li>
-    <li>
-      <span
-        className="icon"
-      >
-        <CommentIcon />
-      </span>
-      <span
-        className="screen-reader-only"
-      >
-        comment:
-      </span>
-      <span
-        className="text description-text"
-      >
-        description-text
-      </span>
-    </li>
-  </ul>
-</div>
+    <h2>
+      Scan details
+    </h2>
+    <ul
+      class="details-section-list"
+    >
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-urlicon />
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          item label
+        </span>
+        <span
+          class="text"
+        >
+          item content
+        </span>
+      </li>
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-dateicon />
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          scan date:
+        </span>
+        <span
+          class="text"
+        >
+          2018-03-12 11:24 PM UTC
+        </span>
+      </li>
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-commenticon />
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          comment:
+        </span>
+        <span
+          class="text description-text"
+        >
+          description-text
+        </span>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`makeDetailsSection renders with description: null 1`] = `
-<div
-  className="scan-details-section"
->
-  <h2>
-    Scan details
-  </h2>
-  <ul
-    className="details-section-list"
+<DocumentFragment>
+  <div
+    class="scan-details-section"
   >
-    <li>
-      <span
-        className="icon"
-      >
-        <UrlIcon />
-      </span>
-      <span
-        className="screen-reader-only"
-      >
-        item label
-      </span>
-      <span
-        className="text"
-      >
-        item content
-      </span>
-    </li>
-    <li>
-      <span
-        className="icon"
-      >
-        <DateIcon />
-      </span>
-      <span
-        className="screen-reader-only"
-      >
-        scan date:
-      </span>
-      <span
-        className="text"
-      >
-        2018-03-12 11:24 PM UTC
-      </span>
-    </li>
-  </ul>
-</div>
+    <h2>
+      Scan details
+    </h2>
+    <ul
+      class="details-section-list"
+    >
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-urlicon />
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          item label
+        </span>
+        <span
+          class="text"
+        >
+          item content
+        </span>
+      </li>
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-dateicon />
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          scan date:
+        </span>
+        <span
+          class="text"
+        >
+          2018-03-12 11:24 PM UTC
+        </span>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`makeDetailsSection renders with description: undefined 1`] = `
-<div
-  className="scan-details-section"
->
-  <h2>
-    Scan details
-  </h2>
-  <ul
-    className="details-section-list"
+<DocumentFragment>
+  <div
+    class="scan-details-section"
   >
-    <li>
-      <span
-        className="icon"
-      >
-        <UrlIcon />
-      </span>
-      <span
-        className="screen-reader-only"
-      >
-        item label
-      </span>
-      <span
-        className="text"
-      >
-        item content
-      </span>
-    </li>
-    <li>
-      <span
-        className="icon"
-      >
-        <DateIcon />
-      </span>
-      <span
-        className="screen-reader-only"
-      >
-        scan date:
-      </span>
-      <span
-        className="text"
-      >
-        2018-03-12 11:24 PM UTC
-      </span>
-    </li>
-  </ul>
-</div>
+    <h2>
+      Scan details
+    </h2>
+    <ul
+      class="details-section-list"
+    >
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-urlicon />
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          item label
+        </span>
+        <span
+          class="text"
+        >
+          item content
+        </span>
+      </li>
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-dateicon />
+        </span>
+        <span
+          class="screen-reader-only"
+        >
+          scan date:
+        </span>
+        <span
+          class="text"
+        >
+          2018-03-12 11:24 PM UTC
+        </span>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
 `;
