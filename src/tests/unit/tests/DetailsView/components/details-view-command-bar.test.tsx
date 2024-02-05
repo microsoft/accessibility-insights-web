@@ -41,8 +41,6 @@ import {
 } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialog } from 'DetailsView/components/export-dialog';
 import { InvalidLoadAssessmentDialog } from 'DetailsView/components/invalid-load-assessment-dialog';
-import { LoadAssessmentButtonProps } from 'DetailsView/components/load-assessment-button';
-import { getLoadButtonForAssessment } from 'DetailsView/components/load-assessment-button-factory';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentDialog } from 'DetailsView/components/load-assessment-dialog';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
@@ -96,7 +94,6 @@ describe('DetailsViewCommandBar', () => {
     const thePageUrl = 'command-bar-test-url';
     const reportExportDialogStub = <div>Export dialog</div>;
     const saveAssessmentStub = <div>Save assessment</div>;
-    const loadAssessmentStub = <div>Load assessment</div>;
     const transferToAssessmentStub = <div>Transfer to assessment stub</div>;
     const assessmentStub: Assessment = {
         title: 'SingleTest',
