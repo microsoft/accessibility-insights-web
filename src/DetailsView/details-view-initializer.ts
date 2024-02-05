@@ -112,6 +112,10 @@ import { allCardInteractionsSupported } from '../common/components/cards/card-in
 import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../common/configs/needs-review-rule-resources';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -739,6 +743,8 @@ if (tabId != null) {
                 defaultRulesMap: getDefaultRulesMap(),
                 convertAssessmentStoreDataToScanNodeResults,
                 convertUnifiedStoreDataToScanNodeResults,
+                GetNeedsReviewRuleResourcesUrl: getNeedsReviewRuleResourcesUrl,
+                IsOutcomeNeedsReview: isOutcomeNeedsReview,
             };
 
             const renderer = new DetailsViewRenderer(
