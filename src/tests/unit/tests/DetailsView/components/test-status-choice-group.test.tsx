@@ -9,7 +9,7 @@ import { TestStatusChoiceGroup } from 'DetailsView/components/test-status-choice
 import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
-    mockReactComponents
+    mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, Times } from 'typemoq';
 
@@ -85,14 +85,10 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('verify undo button', () => {
-
-
         onUndoMock.setup(o => o(props.test, props.step, props.selector)).verifiable(Times.once());
-        
+
         render(<TestStatusChoiceGroup {...props} />);
         getMockComponentClassPropsForCall(ChoiceGroupPassFail).onUndoClickedPassThrough();
-        onUndoMock.verifyAll()
-    })
-
-
+        onUndoMock.verifyAll();
+    });
 });

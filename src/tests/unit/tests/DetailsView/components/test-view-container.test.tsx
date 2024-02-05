@@ -22,9 +22,9 @@ import { IMock, Mock, Times } from 'typemoq';
 describe('TestViewContainer', () => {
     const selectedTest: VisualizationType = -1;
     const elementStub = (
-            <div>
-                <div />
-            </div>
+        <div>
+            <div />
+        </div>
     );
     const automatedChecksCardSelectionMessageCreatorStub =
         {} as AutomatedChecksCardSelectionMessageCreator;
@@ -95,7 +95,7 @@ describe('TestViewContainer', () => {
             .returns(() => elementStub)
             .verifiable(Times.once());
         const renderResult = render(<TestViewContainer {...props} />);
-        
+
         expect(renderResult.container.querySelector('div')).not.toBeNull();
 
         getTestViewContainerMock.verifyAll();
