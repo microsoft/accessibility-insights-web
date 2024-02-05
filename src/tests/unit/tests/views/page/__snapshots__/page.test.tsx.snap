@@ -1,19 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`page view renders 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {},
-      }
-    }
-    deps={{}}
-    isNarrowModeEnabled={true}
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
   />
   <main>
     INSIDE
   </main>
-</React.Fragment>
+</DocumentFragment>
 `;
