@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
-import { startsWith } from 'lodash';
 import * as React from 'react';
 import { InlineImage, InlineImageProps, InlineImageType } from 'reports/components/inline-image';
 import '@testing-library/jest-dom';
