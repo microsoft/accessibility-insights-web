@@ -14,10 +14,10 @@ import {
     AssessmentReportStepList,
     AssessmentReportStepListDeps,
 } from 'reports/components/assessment-report-step-list';
-import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../reports/components/outcome-chip';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 jest.mock('reports/components/assessment-report-step-list');
 jest.mock('../../../../../reports/components/outcome-chip');
 jest.mock('../../../../../reports/components/assessment-report-step-header');
