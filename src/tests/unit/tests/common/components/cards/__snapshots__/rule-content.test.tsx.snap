@@ -3,9 +3,11 @@
 exports[`RuleContent renders 1`] = `
 <DocumentFragment>
   <mock-ruleresources
+    deps="[object Object]"
     rule="[object Object]"
   />
   <mock-instancedetailsgroup
+    deps="[object Object]"
     rule="[object Object]"
   />
 </DocumentFragment>
@@ -13,6 +15,22 @@ exports[`RuleContent renders 1`] = `
 
 exports[`RuleContent renders: InstanceDetailsGroup props 1`] = `
 {
+  "deps": {
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction],
+  },
+  "rule": {
+    "id": "test-id",
+  },
+}
+`;
+
+exports[`RuleContent renders: RuleResources props 1`] = `
+{
+  "deps": {
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction],
+  },
   "rule": {
     "id": "test-id",
   },

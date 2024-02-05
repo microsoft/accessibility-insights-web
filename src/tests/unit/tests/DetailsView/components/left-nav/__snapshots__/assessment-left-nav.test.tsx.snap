@@ -1,18 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentLeftNav renders with reflow feature flag enabled 1`] = `
-<BaseLeftNav
-  links={
-    [
-      {
-        "status": 1,
-      },
-      {
-        "status": 1,
-      },
-    ]
-  }
-  selectedKey="some key"
-  setNavComponentRef={[Function]}
-/>
+<DocumentFragment>
+  <mock-baseleftnav
+    links="[object Object],[object Object]"
+    selectedkey="some key"
+  />
+</DocumentFragment>
+`;
+
+exports[`AssessmentLeftNav renders with reflow feature flag enabled: BaseLeftNav props 1`] = `
+{
+  "links": [
+    {
+      "status": 1,
+    },
+    {
+      "status": 1,
+    },
+  ],
+  "selectedKey": "some key",
+  "setNavComponentRef": [Function],
+}
 `;
