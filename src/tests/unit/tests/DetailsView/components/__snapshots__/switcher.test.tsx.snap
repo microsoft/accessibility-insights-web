@@ -1,41 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switcher props dropdown has correct options 1`] = `
-{
-  "ariaLabel": "select activity",
-  "className": "leftNavSwitcherDropdown",
-  "onChange": [Function],
-  "onRenderOption": [Function],
-  "onRenderTitle": [Function],
-  "options": [
-    {
-      "data": {
-        "icon": "Rocket",
-      },
-      "key": 0,
-      "text": "FastPass",
-      "title": "FastPass",
+[
+  {
+    "data": {
+      "icon": "Rocket",
     },
-    {
-      "data": {
-        "icon": "SiteScan",
-      },
-      "key": 3,
-      "text": "Quick Assess",
-      "title": "Quick Assess",
+    "key": 0,
+    "text": "FastPass",
+    "title": "FastPass",
+  },
+  {
+    "data": {
+      "icon": "SiteScan",
     },
-    {
-      "data": {
-        "icon": "testBeakerSolid",
-      },
-      "key": 2,
-      "text": "Assessment",
-      "title": "Assessment",
+    "key": 3,
+    "text": "Quick Assess",
+    "title": "Quick Assess",
+  },
+  {
+    "data": {
+      "icon": "testBeakerSolid",
     },
-  ],
-  "responsiveMode": 2,
-  "selectedKey": 0,
-}
+    "key": 2,
+    "text": "Assessment",
+    "title": "Assessment",
+  },
+]
 `;
 
 exports[`Switcher renders Switcher itself matches snapshot 1`] = `

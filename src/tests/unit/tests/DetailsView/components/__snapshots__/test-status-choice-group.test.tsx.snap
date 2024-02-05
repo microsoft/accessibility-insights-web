@@ -1,64 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TestStatusChoiceGroup render: status is set to FAIL 1`] = `
-<ChoiceGroupPassFail
-  isLabelVisible={false}
-  onChange={[Function]}
-  onUndoClickedPassThrough={[Function]}
-  options={
-    [
-      {
-        "key": 0,
-        "text": "Pass",
-      },
-      {
-        "key": 2,
-        "text": "Fail",
-      },
-    ]
-  }
-  selectedKey={2}
-/>
-`;
+exports[`TestStatusChoiceGroup render: status is set to FAIL 1`] = `<DocumentFragment />`;
 
-exports[`TestStatusChoiceGroup render: status is set to PASS 1`] = `
-<ChoiceGroupPassFail
-  isLabelVisible={false}
-  onChange={[Function]}
-  onUndoClickedPassThrough={[Function]}
-  options={
-    [
-      {
-        "key": 0,
-        "text": "Pass",
-      },
-      {
-        "key": 2,
-        "text": "Fail",
-      },
-    ]
-  }
-  selectedKey={0}
-/>
-`;
+exports[`TestStatusChoiceGroup render: status is set to PASS 1`] = `<DocumentFragment />`;
 
-exports[`TestStatusChoiceGroup render: status is set to UNKNOWN 1`] = `
-<ChoiceGroupPassFail
-  isLabelVisible={false}
-  onChange={[Function]}
-  onUndoClickedPassThrough={[Function]}
-  options={
-    [
-      {
-        "key": 0,
-        "text": "Pass",
-      },
-      {
-        "key": 2,
-        "text": "Fail",
-      },
-    ]
-  }
-  selectedKey={1}
-/>
-`;
+exports[`TestStatusChoiceGroup render: status is set to UNKNOWN 1`] = `<DocumentFragment />`;

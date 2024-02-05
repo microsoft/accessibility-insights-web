@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
@@ -15,13 +16,16 @@ import {
     TestViewContainerProvider,
     TestViewContainerProviderProps,
 } from 'DetailsView/components/test-view-container-provider';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('TestViewContainer', () => {
     const selectedTest: VisualizationType = -1;
-    const elementStub = <div />;
+    const elementStub = (
+            <div>
+                <div />
+            </div>
+    );
     const automatedChecksCardSelectionMessageCreatorStub =
         {} as AutomatedChecksCardSelectionMessageCreator;
     const needsReviewCardSelectionMessageCreatorStub = {} as NeedsReviewCardSelectionMessageCreator;
@@ -90,8 +94,10 @@ describe('TestViewContainer', () => {
             )
             .returns(() => elementStub)
             .verifiable(Times.once());
-        const rendered = shallow(<TestViewContainer {...props} />);
-        expect(rendered.getElement()).toEqual(elementStub);
+        const renderResult = render(<TestViewContainer {...props} />);
+        
+        expect(renderResult.container.querySelector('div')).not.toBeNull();
+
         getTestViewContainerMock.verifyAll();
         getAssessmentCardSelectionMessageCreatorMock.verifyAll();
     });

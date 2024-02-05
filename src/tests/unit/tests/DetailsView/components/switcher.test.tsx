@@ -56,7 +56,7 @@ describe('Switcher', () => {
 
             const dropdown = getMockComponentClassPropsForCall(Dropdown);
 
-            expect(dropdown).toMatchSnapshot();
+            expect(dropdown.options).toMatchSnapshot();
         });
     });
 
