@@ -1,7 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`content renders 1`] = `
-"<Content deps={{...}}>
-  <THE-CONTENT deps={{...}} options={{...}} />
-</Content>"
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
+  />
+  <main>
+    <div
+      class="content-container"
+    >
+      <div
+        class="content-left"
+      />
+      <div
+        class="content"
+      >
+        <the-content
+          deps="[object Object]"
+          options="[object Object]"
+        />
+      </div>
+      <div
+        class="content-right"
+      />
+    </div>
+  </main>
+</DocumentFragment>
 `;
