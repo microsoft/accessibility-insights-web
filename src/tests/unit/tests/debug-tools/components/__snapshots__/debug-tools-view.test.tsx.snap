@@ -1,60 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DebugToolsView renders when storesHub.hasStoresData = false 1`] = `
-<StyledSpinnerBase
-  label="Loading"
-  size={3}
-/>
+<DocumentFragment>
+  <mock-styledspinnerbase
+    label="Loading"
+    size="3"
+  />
+</DocumentFragment>
 `;
 
 exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
-<div
-  className="debugToolsContainer"
->
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "storesHub": [typemoq mock object],
-        },
-      }
-    }
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    isNarrowModeEnabled={true}
-  />
-  <ToolsNav
-    className="nav"
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    state={
-      {
-        "userConfigurationStoreData": {
-          "isFirstTime": true,
-        },
-      }
-    }
-  />
-  <CurrentView
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    storeState={
-      {
-        "userConfigurationStoreData": {
-          "isFirstTime": true,
-        },
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="debugToolsContainer"
+  >
+    <mock-narrowmodedetector
+      childrenprops="[object Object]"
+      deps="[object Object]"
+      isnarrowmodeenabled="true"
+    />
+    <mock-toolsnav
+      classname="nav"
+      deps="[object Object]"
+      state="[object Object]"
+    />
+    <mock-currentview
+      deps="[object Object]"
+      storestate="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DebugToolsView renders when storesHub.hasStoresData = true: CurrentView props 1`] = `
+{
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "storeState": {
+    "userConfigurationStoreData": {
+      "isFirstTime": true,
+    },
+  },
+}
+`;
+
+exports[`DebugToolsView renders when storesHub.hasStoresData = true: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "storesHub": [typemoq mock object],
+    },
+  },
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": true,
+}
+`;
+
+exports[`DebugToolsView renders when storesHub.hasStoresData = true: ToolsNav props 1`] = `
+{
+  "className": "nav",
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "state": {
+    "userConfigurationStoreData": {
+      "isFirstTime": true,
+    },
+  },
+}
 `;

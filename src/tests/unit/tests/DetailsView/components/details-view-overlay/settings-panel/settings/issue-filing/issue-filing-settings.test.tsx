@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -8,13 +9,19 @@ import {
     SettingsDeps,
     SettingsProps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
-import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
+import { IssueFilingSettingsContainer } from '../../../../../../../../../issue-filing/components/issue-filing-settings-container';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../../../../issue-filing/components/issue-filing-settings-container');
 describe('IssueFilingSettings', () => {
+    mockReactComponents([IssueFilingSettingsContainer]);
     let userData: UserConfigurationStoreData;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let testIssueFilingServiceStub: IssueFilingService;
@@ -63,8 +70,9 @@ describe('IssueFilingSettings', () => {
             },
         };
 
-        const wrapped = shallow(<IssueFilingSettings {...props} />);
+        const renderResult = render(<IssueFilingSettings {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([IssueFilingSettingsContainer]);
     });
 });

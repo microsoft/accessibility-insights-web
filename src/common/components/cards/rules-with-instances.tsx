@@ -73,6 +73,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         key={`${rule.id}-rule-group`}
                         deps={deps}
                         rule={rule}
+                        outcomeType={outcomeType}
                         userConfigurationStoreData={userConfigurationStoreData}
                         targetAppInfo={targetAppInfo}
                         cardSelectionMessageCreator={cardSelectionMessageCreator}

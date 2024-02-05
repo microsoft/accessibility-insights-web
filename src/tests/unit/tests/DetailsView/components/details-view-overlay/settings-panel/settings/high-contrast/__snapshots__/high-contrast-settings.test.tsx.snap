@@ -1,29 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HighContrastSettings renders with enabled = false 1`] = `
-<GenericToggle
-  description={
-    <React.Fragment>
-      Make text easier to see by using more distinct colors.
-    </React.Fragment>
-  }
-  enabled={false}
-  id="enable-high-contrast-mode"
-  name="Enable high contrast"
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <mock-generictoggle
+    description="[object Object]"
+    enabled="false"
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+  />
+</DocumentFragment>
+`;
+
+exports[`HighContrastSettings renders with enabled = false: GenericToggle props 1`] = `
+{
+  "description": <React.Fragment>
+    Make text easier to see by using more distinct colors.
+  </React.Fragment>,
+  "enabled": false,
+  "id": "enable-high-contrast-mode",
+  "name": "Enable high contrast",
+  "onClick": [Function],
+}
 `;
 
 exports[`HighContrastSettings renders with enabled = true 1`] = `
-<GenericToggle
-  description={
-    <React.Fragment>
-      Make text easier to see by using more distinct colors.
-    </React.Fragment>
-  }
-  enabled={true}
-  id="enable-high-contrast-mode"
-  name="Enable high contrast"
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <mock-generictoggle
+    description="[object Object]"
+    enabled="true"
+    id="enable-high-contrast-mode"
+    name="Enable high contrast"
+  />
+</DocumentFragment>
+`;
+
+exports[`HighContrastSettings renders with enabled = true: GenericToggle props 1`] = `
+{
+  "description": <React.Fragment>
+    Make text easier to see by using more distinct colors.
+  </React.Fragment>,
+  "enabled": true,
+  "id": "enable-high-contrast-mode",
+  "name": "Enable high contrast",
+  "onClick": [Function],
+}
 `;

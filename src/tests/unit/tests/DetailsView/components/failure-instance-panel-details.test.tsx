@@ -1,49 +1,78 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { DefaultButton, TextField } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
-import { DefaultButton, TextField } from '../../../../../../node_modules/@fluentui/react';
 import { FailureInstancePanelDetails } from '../../../../../DetailsView/components/failure-instance-panel-details';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('FailureInstancePanelDetailsTest', () => {
+    mockReactComponents([TextField, DefaultButton]);
     const path = 'Given Path';
     const snippet = 'Snippet for Given Path';
-    const onSelectorChangeMock = Mock.ofInstance((value: string) => {});
-    const onValidateSelectorMock = Mock.ofInstance(() => {});
+    const onSelectorChangeMock = Mock.ofInstance((event, value: string) => {});
+    const onValidateSelectorMock = Mock.ofInstance(event => {});
 
     beforeEach(() => {
         onSelectorChangeMock.reset();
         onValidateSelectorMock.reset();
     });
 
-    const rendered = shallow(
-        <FailureInstancePanelDetails
-            path={path}
-            snippet={snippet}
-            onSelectorChange={onSelectorChangeMock.object}
-            onValidateSelector={onValidateSelectorMock.object}
-        ></FailureInstancePanelDetails>,
-    );
-
     it('renders', () => {
-        expect(rendered.exists());
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(
+            <FailureInstancePanelDetails
+                path={path}
+                snippet={snippet}
+                onSelectorChange={onSelectorChangeMock.object}
+                onValidateSelector={onValidateSelectorMock.object}
+            ></FailureInstancePanelDetails>,
+        );
+
+        expect(renderResult).toBeTruthy();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('triggers selector change on typing', () => {
-        const newPath = 'updated path';
-        onSelectorChangeMock.setup(dc => dc(It.isValue(newPath))).verifiable(Times.once());
+        useOriginalReactElements('@fluentui/react', ['DefaultButton', 'TextField']);
+        const renderResult = render(
+            <FailureInstancePanelDetails
+                path={path}
+                snippet={snippet}
+                onSelectorChange={onSelectorChangeMock.object}
+                onValidateSelector={onValidateSelectorMock.object}
+            ></FailureInstancePanelDetails>,
+        );
 
-        const textField = rendered.find(TextField);
-        textField.simulate('change', newPath);
+        const newPath = 'updated path';
+        onSelectorChangeMock
+            .setup(dc => dc(It.isAny(), It.isValue(newPath)))
+            .verifiable(Times.once());
+
+        const textField = renderResult.getByRole('textbox');
+        fireEvent.change(textField, { target: { value: newPath } });
         onSelectorChangeMock.verifyAll();
     });
 
-    it('triggers validation on click', () => {
-        onValidateSelectorMock.setup(getter => getter()).verifiable(Times.once());
+    it('triggers validation on click', async () => {
+        const renderResult = render(
+            <FailureInstancePanelDetails
+                path={path}
+                snippet={snippet}
+                onSelectorChange={onSelectorChangeMock.object}
+                onValidateSelector={onValidateSelectorMock.object}
+            ></FailureInstancePanelDetails>,
+        );
 
-        rendered.find(DefaultButton).simulate('click');
+        onValidateSelectorMock.setup(getter => getter(It.isAny())).verifiable(Times.once());
+
+        await userEvent.click(renderResult.getByRole('button'));
         onValidateSelectorMock.verifyAll();
     });
 });
