@@ -10,7 +10,10 @@ import {
     AssessmentReportAssessmentListDeps,
     AssessmentReportAssessmentListProps,
 } from 'reports/components/assessment-report-assessment-list';
-import { AssessmentReportStepList, AssessmentReportStepListDeps } from 'reports/components/assessment-report-step-list';
+import {
+    AssessmentReportStepList,
+    AssessmentReportStepListDeps,
+} from 'reports/components/assessment-report-step-list';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../reports/components/outcome-chip';
@@ -67,7 +70,8 @@ describe('AssessmentReportAssessmentListTest', () => {
     }
 
     function testAssessmentHeader(
-        assessment: AssessmentDetailsReportModel, wrapper: RenderResult
+        assessment: AssessmentDetailsReportModel,
+        wrapper: RenderResult,
     ): void {
         expect(wrapper.container.querySelector('.assessment-details')).not.toBeNull();
         expect(wrapper.getByText(assessment.displayName)).not.toBeNull();
