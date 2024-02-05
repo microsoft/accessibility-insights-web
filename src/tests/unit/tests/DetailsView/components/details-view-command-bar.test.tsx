@@ -501,20 +501,6 @@ describe('DetailsViewCommandBar', () => {
             );
     }
 
-    function setupLoadAssessmentButtonFactory(
-        expectedProps?: Partial<LoadAssessmentButtonFactory>,
-        useOriginalReactElements?: boolean,
-    ): void {
-        const argMatcher = isNil(expectedProps) ? It.isAny() : It.isObjectWith(expectedProps);
-        loadAssessmentButtonFactoryMock
-            .setup(r => r(argMatcher))
-            .returns(() =>
-                useOriginalReactElements
-                    ? getLoadButtonForAssessment(expectedProps as LoadAssessmentButtonProps)
-                    : loadAssessmentStub,
-            );
-    }
-
     function setupTransferToAssessmentButtonFactory(
         expectedProps?: Partial<TransferToAssessmentButtonProps>,
     ): void {

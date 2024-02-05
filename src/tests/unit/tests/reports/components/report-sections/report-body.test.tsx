@@ -38,7 +38,6 @@ import { exampleUnifiedStatusResults } from '../../../common/components/cards/sa
 jest.mock('../../../../../../reports/components/report-sections/content-container');
 jest.mock('../../../../../../reports/components/report-sections/header-section');
 jest.mock('../../../../../../reports/components/report-sections/summary-section');
-//jest.mock('../../../../../../reports/components/report-sec tions/content-container');
 jest.mock('../../../../../../reports/components/report-sections/footer-section');
 jest.mock('../../../../../../reports/components/new-tab-link-confirmation-dialog');
 jest.mock('../../../../../../common/components/cards/result-section');
@@ -126,25 +125,6 @@ describe('ReportBody', () => {
     });
 
     const createSectionFactoryStub = () => {
-        //const createBasicComponent = (name: string) => {
-        //    return NamedFC(name, () => {
-        //        return <div />;
-        //    });
-        //};
-
-        //const BodySection = createBasicComponent('body-section');
-        //const ContentContainer = createBasicComponent('content-container');
-        //const Header = createBasicComponent('header-section');
-        //const Title = createBasicComponent('title-section');
-        //const Summary = createBasicComponent('summary-section');
-        //const Details = createBasicComponent('details-section');
-        //const ResultSection = createBasicComponent('result-section');
-        //const FailedInstances = createBasicComponent('failed-instances-section');
-        //const PassedChecks = createBasicComponent('passed-checks-section');
-        //const NotApplicableChecks = createBasicComponent('not-applicable-checks-section');
-        //const Footer = createBasicComponent('footer-section');
-        //const FooterText = createBasicComponent('footer-text');
-
         const sectionFactoryStub = {
             BodySection: BodySection,
             ContentContainer: ContentContainer,
