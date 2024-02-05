@@ -1,25 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContentPanel renders closed 1`] = `
-"<StyledPanelBase isOpen={false} onDismiss={[undefined]} type={3} isLightDismiss={true} closeButtonAriaLabel="Close panel" headerText="THE CONTENT TITLE" headerTextProps={{...}} headerClassName="content-header">
-  <div className="content">
-    <ContentPageComponent deps={{...}} />
-  </div>
-</StyledPanelBase>"
-`;
+exports[`ContentPanel renders closed 1`] = `<DocumentFragment />`;
 
 exports[`ContentPanel renders from content 1`] = `
-"<StyledPanelBase isOpen={true} onDismiss={[undefined]} type={3} isLightDismiss={true} closeButtonAriaLabel="Close panel" headerText="THE CONTENT TITLE" headerTextProps={{...}} headerClassName="content-header">
-  <div className="content">
-    <ContentPageComponent deps={{...}} />
-  </div>
-</StyledPanelBase>"
+<DocumentFragment>
+  <span
+    class="ms-layer"
+  />
+</DocumentFragment>
 `;
 
 exports[`ContentPanel renders from path 1`] = `
-"<StyledPanelBase isOpen={true} onDismiss={[undefined]} type={3} isLightDismiss={true} closeButtonAriaLabel="Close panel" headerText="THE CONTENT TITLE" headerTextProps={{...}} headerClassName="content-header">
-  <div className="content">
-    <ContentPageComponent deps={{...}} />
-  </div>
-</StyledPanelBase>"
+<DocumentFragment>
+  <span
+    class="ms-layer"
+  />
+</DocumentFragment>
 `;
