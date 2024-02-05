@@ -1,18 +1,38 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dialog, PrimaryButton, TextField } from '@fluentui/react';
+
+import { Dialog, DialogFooter, PrimaryButton, TextField } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+
 import { FeatureFlags } from 'common/feature-flags';
-import { shallow } from 'enzyme';
+import { ExportDropdown } from 'DetailsView/components/export-dropdown';
 import * as React from 'react';
 import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
 import { ReportExportService } from 'report-export/types/report-export-service';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { It, Mock, Times } from 'typemoq';
 import {
     ExportDialog,
     ExportDialogProps,
 } from '../../../../../DetailsView/components/export-dialog';
-
+jest.mock('@fluentui/react');
+jest.mock('DetailsView/components/export-dropdown');
+jest.mock('report-export/services/code-pen-report-export-service');
 describe('ExportDialog', () => {
+    mockReactComponents([
+        Dialog,
+        PrimaryButton,
+        TextField,
+        DialogFooter,
+        CodePenReportExportService.exportForm,
+        ExportDropdown,
+    ]);
     const onCloseMock = Mock.ofInstance(() => {});
     const onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
     const exportResultsClickedTelemetryMock =
@@ -35,13 +55,21 @@ describe('ExportDialog', () => {
     let props: ExportDialogProps;
 
     const onlyIncludeHtmlService = () => {
-        props.reportExportServices = [
-            {
-                key: 'html',
-                generateMenuItem: () => null,
-                exportForm: CodePenReportExportService.exportForm,
-            },
-        ] as ReportExportService[];
+        props.reportExportServices = reportExportServicesStub.filter(
+            service => service.key === 'html',
+        ) as ReportExportService[];
+    };
+
+    const useReportExportServicesWithActualForm = () => {
+        const exportForm = jest.requireActual(
+            'report-export/services/code-pen-report-export-service',
+        ).CodePenReportExportService.exportForm;
+        props.reportExportServices = reportExportServicesStub.map(service => {
+            return {
+                ...service,
+                exportForm,
+            };
+        }) as ReportExportService[];
     };
 
     beforeEach(() => {
@@ -76,8 +104,9 @@ describe('ExportDialog', () => {
         it.each(isOpenOptions)('with open %p', isOpen => {
             props.isOpen = isOpen;
             onlyIncludeHtmlService();
-            const wrapper = shallow(<ExportDialog {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<ExportDialog {...props} />);
+            expectMockedComponentPropsToMatchSnapshots([Dialog]);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('with export dropdown', () => {
@@ -87,8 +116,8 @@ describe('ExportDialog', () => {
                 .verifiable(Times.once());
 
             props.isOpen = true;
-            const wrapper = shallow(<ExportDialog {...props} />);
-            const elem = wrapper.debug();
+            const renderResult = render(<ExportDialog {...props} />);
+            const elem = renderResult.asFragment();
             expect(elem).toMatchSnapshot();
         });
 
@@ -100,11 +129,12 @@ describe('ExportDialog', () => {
                 .verifiable(Times.once());
 
             props.isOpen = true;
-            const wrapper = shallow(<ExportDialog {...props} />);
-            expect(wrapper.debug()).toMatchSnapshot();
+            const renderResult = render(<ExportDialog {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('with CodePen export form', () => {
+            useReportExportServicesWithActualForm();
             const formProps = {
                 htmlExportData: props.htmlExportData,
                 htmlFileName: props.htmlFileName,
@@ -114,9 +144,9 @@ describe('ExportDialog', () => {
                 onSubmit: jest.fn(),
             };
 
-            const wrapped = shallow(<CodePenReportExportService.exportForm {...formProps} />);
+            const renderResult = render(<CodePenReportExportService.exportForm {...formProps} />);
 
-            expect(wrapped.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 
@@ -124,9 +154,9 @@ describe('ExportDialog', () => {
         it('closes the dialog onDismiss', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
             generateExportsMock.setup(getter => getter()).verifiable(Times.never());
-            const wrapper = shallow(<ExportDialog {...props} />);
+            render(<ExportDialog {...props} />);
 
-            wrapper.find(Dialog).prop('onDismiss')();
+            getMockComponentClassPropsForCall(Dialog).onDismiss();
 
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
@@ -134,7 +164,13 @@ describe('ExportDialog', () => {
             generateExportsMock.verifyAll();
         });
 
-        it('handles click on export button', () => {
+        it('handles click on export button', async () => {
+            useOriginalReactElements('@fluentui/react', [
+                'Dialog',
+                'PrimaryButton',
+                'TextField',
+                'DialogFooter',
+            ]);
             const unchangedDescription = 'description';
             onlyIncludeHtmlService();
             onDescriptionChangeMock
@@ -145,14 +181,11 @@ describe('ExportDialog', () => {
             generateExportsMock.setup(getter => getter()).verifiable(Times.once());
 
             exportResultsClickedTelemetryMock
-                .setup(a => a(props.reportExportFormat, 'html', eventStub))
+                .setup(a => a(It.isAny(), 'html', It.isAny()))
                 .verifiable(Times.once());
-
-            const wrapper = shallow(<ExportDialog {...props} />);
-
-            const component = wrapper.find(PrimaryButton);
-
-            component.simulate('click', eventStub);
+            props.isOpen = true;
+            const renderResult = render(<ExportDialog {...props} />);
+            await userEvent.click(renderResult.getByRole('link'));
 
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
@@ -167,10 +200,9 @@ describe('ExportDialog', () => {
                 .setup(handler => handler(It.isValue(changedDescription)))
                 .verifiable(Times.once());
 
-            const wrapper = shallow(<ExportDialog {...props} />);
-
-            const textField = wrapper.find(TextField);
-            textField.simulate('change', eventStub, changedDescription);
+            const renderResult = render(<ExportDialog {...props} />);
+            const textField = renderResult.getByRole('textbox');
+            fireEvent.change(textField, { target: { value: changedDescription } });
 
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();

@@ -1,14 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { INavLink, Nav } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { DebugToolsNavActionCreator } from 'debug-tools/action-creators/debug-tools-nav-action-creator';
 import { DebugToolsNav, DebugToolsNavProps } from 'debug-tools/components/debug-tools-nav';
 import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('DebugToolsNav', () => {
+    mockReactComponents([Nav]);
     let props: DebugToolsNavProps;
     let debugToolsNavActionCreatorMock: IMock<DebugToolsNavActionCreator>;
 
@@ -28,17 +35,18 @@ describe('DebugToolsNav', () => {
     });
 
     it('renders', () => {
-        const wrapped = shallow(<DebugToolsNav {...props} />);
+        const renderResult = render(<DebugToolsNav {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Nav]);
     });
 
     it('handles user link click', () => {
-        const wrapped = shallow(<DebugToolsNav {...props} />);
+        render(<DebugToolsNav {...props} />);
 
-        const nav = wrapped.find(Nav);
+        const nav = getMockComponentClassPropsForCall(Nav);
 
-        const onLinkClick = nav.prop('onLinkClick');
+        const onLinkClick = nav.onLinkClick;
 
         onLinkClick(null, { key: 'test-key' } as INavLink);
 

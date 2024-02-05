@@ -1,32 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingSettings renders 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <h3
     id="issue-filing-heading"
   >
     Issue filing
   </h3>
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingServiceProvider": [typemoq mock object],
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "buildStoreData": [Function],
-        "displayName": "TEST",
-        "fileIssue": [Function],
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "test",
-        "settingsForm": [Function],
-      }
-    }
+  <mock-issuefilingsettingscontainer
+    deps="[object Object]"
+    selectedissuefilingservice="[object Object]"
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingSettings renders: IssueFilingSettingsContainer props 1`] = `
+{
+  "deps": {
+    "issueFilingServiceProvider": [typemoq mock object],
+    "userConfigMessageCreator": [typemoq mock object],
+  },
+  "onPropertyUpdateCallback": [Function],
+  "onSelectedServiceChange": [Function],
+  "selectedIssueFilingService": {
+    "buildStoreData": [Function],
+    "displayName": "TEST",
+    "fileIssue": [Function],
+    "getSettingsFromStoreData": [Function],
+    "isSettingsValid": [Function],
+    "key": "test",
+    "settingsForm": [Function],
+  },
+  "selectedIssueFilingServiceData": undefined,
+}
 `;

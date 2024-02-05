@@ -1,32 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetryCommonFields renders and match snapshot 1`] = `
-<div
-  className="container"
->
-  <strong>
-    Build:
-  </strong>
-  <span>
-    test-app-build
-  </span>
-  <strong>
-    Name:
-  </strong>
-  <span>
-    test-app-name
-  </span>
-  <strong>
-    Version:
-  </strong>
-  <span>
-    test-app-version
-  </span>
-  <strong>
-    Installation Id:
-  </strong>
-  <span>
-    test-installation-id
-  </span>
-</div>
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <strong>
+      Build:
+    </strong>
+    <span>
+      test-app-build
+    </span>
+    <strong>
+      Name:
+    </strong>
+    <span>
+      test-app-name
+    </span>
+    <strong>
+      Version:
+    </strong>
+    <span>
+      test-app-version
+    </span>
+    <strong>
+      Installation Id:
+    </strong>
+    <span>
+      test-installation-id
+    </span>
+  </div>
+</DocumentFragment>
 `;
