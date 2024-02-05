@@ -1,43 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentPanelButton renders from content 1`] = `
-<CustomizedActionButton
-  ariaLabel="info and examples"
-  iconProps={
-    {
-      "iconName": "iconName",
-    }
-  }
-  onClick={[Function]}
->
-  TEXT
-</CustomizedActionButton>
+<DocumentFragment>
+  <button
+    aria-label="info and examples"
+    class="ms-Button ms-Button--action ms-Button--command root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-105 ms-Button-icon icon-112"
+        data-icon-name="iconName"
+      />
+      <span
+        class="ms-Button-textContainer textContainer-111"
+      >
+        <span
+          class="ms-Button-label label-113"
+          id="id__0"
+        >
+          TEXT
+        </span>
+      </span>
+    </span>
+  </button>
+</DocumentFragment>
 `;
 
 exports[`ContentPanelButton renders from path 1`] = `
-<CustomizedActionButton
-  ariaLabel="info and examples"
-  iconProps={
-    {
-      "iconName": "iconName",
-    }
-  }
-  onClick={[Function]}
->
-  TEXT
-</CustomizedActionButton>
+<DocumentFragment>
+  <button
+    aria-label="info and examples"
+    class="ms-Button ms-Button--action ms-Button--command root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <i
+        aria-hidden="true"
+        class="ms-Icon root-105 ms-Button-icon icon-112"
+        data-icon-name="iconName"
+      />
+      <span
+        class="ms-Button-textContainer textContainer-111"
+      >
+        <span
+          class="ms-Button-label label-113"
+          id="id__3"
+        >
+          TEXT
+        </span>
+      </span>
+    </span>
+  </button>
+</DocumentFragment>
 `;
 
 exports[`ContentPanelButton renders without iconName 1`] = `
-<CustomizedActionButton
-  ariaLabel="info and examples"
-  iconProps={
-    {
-      "iconName": undefined,
-    }
-  }
-  onClick={[Function]}
->
-  TEXT
-</CustomizedActionButton>
+<DocumentFragment>
+  <button
+    aria-label="info and examples"
+    class="ms-Button ms-Button--action ms-Button--command root-109"
+    data-is-focusable="true"
+    type="button"
+  >
+    <span
+      class="ms-Button-flexContainer flexContainer-110"
+      data-automationid="splitbuttonprimary"
+    >
+      <span
+        class="ms-Button-textContainer textContainer-111"
+      >
+        <span
+          class="ms-Button-label label-113"
+          id="id__6"
+        >
+          TEXT
+        </span>
+      </span>
+    </span>
+  </button>
+</DocumentFragment>
 `;

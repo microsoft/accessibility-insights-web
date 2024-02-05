@@ -1,31 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`content view renders 1`] = `
-<Page
-  deps={
-    {
-      "textContent": {
-        "applicationTitle": "THE_APPLICATION_TITLE",
-      },
-    }
-  }
->
-  <div
-    className="content-container"
-  >
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
+  />
+  <main>
     <div
-      className="content-left"
-    />
-    <div
-      className="content"
+      class="content-container"
     >
-      <p>
-        THE CONTENT
-      </p>
+      <div
+        class="content-left"
+      />
+      <div
+        class="content"
+      >
+        <p>
+          THE CONTENT
+        </p>
+      </div>
+      <div
+        class="content-right"
+      />
     </div>
-    <div
-      className="content-right"
-    />
-  </div>
-</Page>
+  </main>
+</DocumentFragment>
 `;

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { ContentPage } from 'views/content/content-page';
 import { ContentPanelButton } from 'views/content/content-panel-button';
@@ -20,7 +20,7 @@ describe('ContentPanelButton', () => {
     };
 
     it('renders from content', () => {
-        const wrapped = shallow(
+        const renderResult = render(
             <ContentPanelButton
                 deps={deps}
                 reference={content.for.testing}
@@ -31,11 +31,11 @@ describe('ContentPanelButton', () => {
             </ContentPanelButton>,
         );
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders from path', () => {
-        const wrapped = shallow(
+        const renderResult = render(
             <ContentPanelButton
                 deps={deps}
                 reference={'for/testing'}
@@ -46,16 +46,16 @@ describe('ContentPanelButton', () => {
             </ContentPanelButton>,
         );
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders without iconName', () => {
-        const wrapped = shallow(
+        const renderResult = render(
             <ContentPanelButton deps={deps} reference={'for/testing'} contentTitle={contentTitle}>
                 TEXT
             </ContentPanelButton>,
         );
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
