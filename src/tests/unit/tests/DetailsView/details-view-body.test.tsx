@@ -28,14 +28,14 @@ import {
     DetailsViewSwitcherNavConfiguration,
     LeftNavProps,
 } from '../../../../DetailsView/components/details-view-switcher-nav';
+import { QuickAssessCommandBar } from '../../../../DetailsView/components/quick-assess-command-bar';
 import { QuickAssessToAssessmentDialog } from '../../../../DetailsView/components/quick-assess-to-assessment-dialog';
+import { TargetPageHiddenBar } from '../../../../DetailsView/components/target-page-hidden-bar';
 import { DetailsViewBody, DetailsViewBodyProps } from '../../../../DetailsView/details-view-body';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
-import { QuickAssessCommandBar } from '../../../../DetailsView/components/quick-assess-command-bar';
-import { TargetPageHiddenBar } from '../../../../DetailsView/components/target-page-hidden-bar';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,

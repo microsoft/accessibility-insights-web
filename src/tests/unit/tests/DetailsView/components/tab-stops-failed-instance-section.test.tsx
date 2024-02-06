@@ -15,8 +15,8 @@ import {
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { TabStopsRequirementsWithInstances } from '../../../../../DetailsView/tab-stops-requirements-with-instances';
 import { ResultSectionTitle } from '../../../../../common/components/cards/result-section-title';
+import { TabStopsRequirementsWithInstances } from '../../../../../DetailsView/tab-stops-requirements-with-instances';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,

@@ -6,7 +6,6 @@ import {
     CardsCollapsibleControl,
     CollapsibleComponentCardsProps,
 } from 'common/components/cards/collapsible-component-cards';
-import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
@@ -26,7 +25,6 @@ describe('TabStopsRequirementsWithInstances', () => {
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
     let tabStopsRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
     let tabStopsTestViewControllerMock: IMock<TabStopsTestViewController>;
-    const CollapsibleControlStub = getCollapsibleControlStub();
     let depsStub: TabStopsRequirementsWithInstancesDeps;
     let props: TabStopsRequirementsWithInstancesProps;
     let getCollapsibleComponentPropsWithInstance: (
@@ -112,8 +110,4 @@ describe('TabStopsRequirementsWithInstances', () => {
         const renderResult = render(<TabStopsRequirementsWithInstances {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
-
-    function getCollapsibleControlStub(): ReactFCWithDisplayName<CollapsibleComponentCardsProps> {
-        return NamedFC<CollapsibleComponentCardsProps>('CollapsibleControlStub', _ => null);
-    }
 });
