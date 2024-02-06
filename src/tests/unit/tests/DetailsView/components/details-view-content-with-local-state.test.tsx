@@ -1,17 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewContentProps } from 'DetailsView/components/details-view-content';
 import {
     DetailsViewContentWithLocalState,
     DetailsViewContentWithLocalStateProps,
 } from 'DetailsView/components/details-view-content-with-local-state';
-import { NarrowModeDetectorProps } from 'DetailsView/components/narrow-mode-detector';
-import { shallow, ShallowWrapper } from 'enzyme';
+import {
+    NarrowModeDetector,
+    NarrowModeDetectorProps,
+} from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('DetailsView/components/narrow-mode-detector');
 describe(DetailsViewContentWithLocalState, () => {
+    mockReactComponents([NarrowModeDetector]);
+
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
@@ -24,8 +35,9 @@ describe(DetailsViewContentWithLocalState, () => {
                 featureFlagStoreData: {},
             } as any,
         } as DetailsViewContentWithLocalStateProps;
-        const wrapper = shallow(<DetailsViewContentWithLocalState {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<DetailsViewContentWithLocalState {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([NarrowModeDetector]);
     });
 
     describe('nav state change', () => {
@@ -48,40 +60,45 @@ describe(DetailsViewContentWithLocalState, () => {
                 .setup(d => d.leftNavPanelExpanded(eventStub))
                 .verifiable(Times.once());
 
-            const wrapper = shallow(<DetailsViewContentWithLocalState {...props} />);
+            render(<DetailsViewContentWithLocalState {...props} />);
 
-            expect(wrapper.state('isSideNavOpen')).toBe(false);
+            const detector = getMockComponentClassPropsForCall(NarrowModeDetector);
+            expect(detector.childrenProps.isSideNavOpen).toBe(false);
 
-            callSetNavOpen(wrapper, true, eventStub);
+            callSetNavOpen(detector, true, eventStub);
+            const detectorCall2 = getMockComponentClassPropsForCall(NarrowModeDetector, 2);
+            expect(detectorCall2.childrenProps.isSideNavOpen).toBe(true);
 
-            expect(wrapper.state('isSideNavOpen')).toBe(true);
             detailsViewActionMessageCreatorMock.verifyAll();
         });
 
         test('nav closed and no telemetry sent', () => {
             detailsViewActionMessageCreatorMock
                 .setup(d => d.leftNavPanelExpanded(It.isAny()))
-                .verifiable(Times.never());
+                .verifiable(Times.once());
 
-            const wrapper = shallow(<DetailsViewContentWithLocalState {...props} />);
-            wrapper.setState({ isSideNavOpen: true });
+            render(<DetailsViewContentWithLocalState {...props} />);
+            const narrowProps = getMockComponentClassPropsForCall(NarrowModeDetector);
+            callSetNavOpen(narrowProps, true);
 
-            expect(wrapper.state('isSideNavOpen')).toBe(true);
+            const narrowProps2 = getMockComponentClassPropsForCall(NarrowModeDetector, 2);
+            expect(narrowProps2.childrenProps.isSideNavOpen).toBe(true);
 
-            callSetNavOpen(wrapper, false);
+            callSetNavOpen(narrowProps2, false);
 
-            expect(wrapper.state('isSideNavOpen')).toBe(false);
+            const narrowProps3 = getMockComponentClassPropsForCall(NarrowModeDetector, 3);
+            expect(narrowProps3.childrenProps.isSideNavOpen).toBe(false);
+
             detailsViewActionMessageCreatorMock.verifyAll();
         });
 
         function callSetNavOpen(
-            wrapper: ShallowWrapper<any, {}>,
+            wrapper: any,
             isOpen: boolean,
             event?: React.MouseEvent<any>,
         ): void {
-            const setNavOpen = (
-                wrapper.childAt(0).props() as NarrowModeDetectorProps<DetailsViewContentProps>
-            ).childrenProps.setSideNavOpen;
+            const setNavOpen = (wrapper as NarrowModeDetectorProps<DetailsViewContentProps>)
+                .childrenProps.setSideNavOpen;
             setNavOpen(isOpen, event);
         }
     });

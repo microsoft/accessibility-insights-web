@@ -1,16 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CommandBarButton, IButton, IOverflowSetItemProps, RefObject } from '@fluentui/react';
+import {
+    CommandBarButton,
+    IButton,
+    IOverflowSetItemProps,
+    RefObject,
+    TooltipHost,
+} from '@fluentui/react';
+import { render } from '@testing-library/react';
 import {
     CommandBarButtonsMenu,
     CommandBarButtonsMenuProps,
 } from 'DetailsView/components/command-bar-buttons-menu';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 
+jest.mock('@fluentui/react');
+
 describe('CommandBarButtonsMenu', () => {
+    mockReactComponents([TooltipHost, CommandBarButton]);
+
     let renderExportReportComponentMock: IMock<() => JSX.Element>;
     let getStartOverMenuItemMock: IMock<() => StartOverMenuItem>;
     let commandBarButtonsMenuProps: CommandBarButtonsMenuProps;
@@ -30,21 +45,22 @@ describe('CommandBarButtonsMenu', () => {
     });
 
     it('renders CommandBarButtonsMenu', () => {
-        const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const wrapper = render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
+        expectMockedComponentPropsToMatchSnapshots([CommandBarButton]);
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
     it('renders all child buttons,', () => {
         setupExportReportMenuItem();
         setupStartOverMenuItem();
 
-        const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
-        const commandBarButtonElement = wrapper.find(CommandBarButton);
-        const renderedProps = commandBarButtonElement.getElement().props;
-        const overflowItems: IOverflowSetItemProps[] = renderedProps.menuProps?.items;
+        render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
+        const commandBarProps = getMockComponentClassPropsForCall(CommandBarButton);
 
-        expect(overflowItems).toBeDefined();
-        expect(overflowItems).toHaveLength(5);
+        const overflowItems: IOverflowSetItemProps[] = commandBarProps.menuProps?.items;
+
+        expect(commandBarProps.menuProps?.items).toBeDefined();
+        expect(commandBarProps.menuProps?.items).toHaveLength(5);
 
         expect(overflowItems[0].onRender()).toMatchSnapshot('render export report menuitem');
         expect(overflowItems[1].onRender()).toMatchSnapshot('render save assessment menuitem');

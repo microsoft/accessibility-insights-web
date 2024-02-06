@@ -1,67 +1,63 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FailedInstancePanel primary button disabled without description 1`] = `
-<GenericPanel
-  className="failureInstancePanel"
-  closeButtonAriaLabel="Close failure instance panel"
-  hasCloseButton={true}
-  headerText="some header"
-  isOpen={true}
-  onDismiss={[Function]}
->
-  <StyledTextFieldBase
-    className="observedFailureTextfield"
-    data-automation-id="addFailedInstanceTextArea"
-    label="Comment"
-    multiline={true}
-    onChange={[Function]}
-    placeholder="Comment"
-    resizable={false}
-    rows={8}
-    value=""
-  />
-  <div>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDataAutomationId="primaryAddFailedInstanceButton"
-      primaryButtonDisabled={true}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="some confirm text"
+<DocumentFragment>
+  <mock-genericpanel
+    classname="failureInstancePanel"
+    closebuttonarialabel="Close failure instance panel"
+    hasclosebutton="true"
+    headertext="some header"
+    isopen="true"
+  >
+    <mock-styledtextfieldbase
+      classname="observedFailureTextfield"
+      data-automation-id="addFailedInstanceTextArea"
+      label="Comment"
+      multiline="true"
+      placeholder="Comment"
+      resizable="false"
+      rows="8"
+      value=""
     />
-  </div>
-</GenericPanel>
+    <div>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondataautomationid="primaryAddFailedInstanceButton"
+        primarybuttondisabled="true"
+        primarybuttontext="some confirm text"
+      />
+    </div>
+  </mock-genericpanel>
+</DocumentFragment>
 `;
 
 exports[`FailedInstancePanel renders 1`] = `
-<GenericPanel
-  className="failureInstancePanel"
-  closeButtonAriaLabel="Close failure instance panel"
-  hasCloseButton={true}
-  headerText="some header"
-  isOpen={true}
-  onDismiss={[Function]}
->
-  <StyledTextFieldBase
-    className="observedFailureTextfield"
-    data-automation-id="addFailedInstanceTextArea"
-    label="Comment"
-    multiline={true}
-    onChange={[Function]}
-    placeholder="Comment"
-    resizable={false}
-    rows={8}
-    value="some description"
-  />
-  <div>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDataAutomationId="primaryAddFailedInstanceButton"
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="some confirm text"
+<DocumentFragment>
+  <mock-genericpanel
+    classname="failureInstancePanel"
+    closebuttonarialabel="Close failure instance panel"
+    hasclosebutton="true"
+    headertext="some header"
+    isopen="true"
+  >
+    <mock-styledtextfieldbase
+      classname="observedFailureTextfield"
+      data-automation-id="addFailedInstanceTextArea"
+      label="Comment"
+      multiline="true"
+      placeholder="Comment"
+      resizable="false"
+      rows="8"
+      value="some description"
     />
-  </div>
-</GenericPanel>
+    <div>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondataautomationid="primaryAddFailedInstanceButton"
+        primarybuttondisabled="false"
+        primarybuttontext="some confirm text"
+      />
+    </div>
+  </mock-genericpanel>
+</DocumentFragment>
 `;

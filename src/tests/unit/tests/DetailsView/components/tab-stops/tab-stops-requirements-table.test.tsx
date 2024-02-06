@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { DetailsList } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import {
     TabStopRequirementState,
@@ -9,20 +10,32 @@ import {
 } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
-import { TabStopsChoiceGroupsProps } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
+import {
+    TabStopsChoiceGroup,
+    TabStopsChoiceGroupsProps,
+} from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import {
     TabStopsRequirementsTable,
     TabStopsRequirementsTableProps,
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
-import { shallow } from 'enzyme';
+
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { VisualizationScanResultStoreDataBuilder } from 'tests/unit/common/visualization-scan-result-store-data-builder';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 import { TabStopRequirementContent } from 'types/tab-stop-requirement-info';
 
+jest.mock('@fluentui/react');
+jest.mock('DetailsView/components/tab-stops/tab-stops-choice-group');
+
 describe('TabStopsRequirementsTable', () => {
+    mockReactComponents([DetailsList, TabStopsChoiceGroup]);
     let props: TabStopsRequirementsTableProps;
     let requirementState: TabStopRequirementState;
     let tabStopsRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
@@ -44,6 +57,7 @@ describe('TabStopsRequirementsTable', () => {
                 tabStopsTestViewController: tabStopsTestViewControllerMock.object,
             },
             requirementState: requirementState,
+            status: 'fail',
         };
         requirementContentStub = {
             id: 'test id',
@@ -54,19 +68,21 @@ describe('TabStopsRequirementsTable', () => {
     });
 
     test('renders table', () => {
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const testSubject = render(<TabStopsRequirementsTable {...props} />);
+        expect(testSubject.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([DetailsList]);
     });
 
     test('renders requirement column', () => {
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        const columns = testSubject.find(DetailsList).props().columns;
-        expect(columns[0].onRender(requirementContentStub)).toMatchSnapshot();
+        render(<TabStopsRequirementsTable {...props} />);
+        const hasColumns = getMockComponentClassPropsForCall(DetailsList).columns;
+        expect(hasColumns[0].onRender(requirementContentStub)).toMatchSnapshot();
     });
 
     test('renders result column', () => {
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        const columns = testSubject.find(DetailsList).props().columns;
+        render(<TabStopsRequirementsTable {...props} />);
+
+        const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         const tabStopsChoiceGroup = columns[1].onRender(requirementsList[0]);
         expect(tabStopsChoiceGroup).toMatchSnapshot();
     });
@@ -74,8 +90,8 @@ describe('TabStopsRequirementsTable', () => {
     test('result column handlers', () => {
         const eventStub = new EventStubFactory().createKeypressEvent() as SupportedMouseEvent;
         const actualRequirement = requirementsList[0]; // must match with state from builder which uses actual requirement.
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        const columns = testSubject.find(DetailsList).props().columns;
+        render(<TabStopsRequirementsTable {...props} />);
+        const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         const tabStopsChoiceGroup = columns[1].onRender(actualRequirement) as JSX.Element;
         const renderedProps = tabStopsChoiceGroup.props as TabStopsChoiceGroupsProps;
 

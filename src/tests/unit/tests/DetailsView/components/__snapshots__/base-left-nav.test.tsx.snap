@@ -1,24 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BaseLeftNav should render 1`] = `
-<StyledNavBase
-  className="detailsViewTestNavArea"
-  componentRef={[Function]}
-  groups={
-    [
-      {
-        "links": [
-          {},
-        ],
-      },
-    ]
-  }
-  linkAs={[Function]}
-  selectedKey="some key"
-  styles={
+<DocumentFragment>
+  <mock-stylednavbase
+    classname="detailsViewTestNavArea"
+    groups="[object Object]"
+    selectedkey="some key"
+    styles="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`BaseLeftNav should render: StyledNavBase props 1`] = `
+{
+  "className": "detailsViewTestNavArea",
+  "componentRef": [Function],
+  "groups": [
     {
-      "chevronButton": "hidden",
-    }
-  }
-/>
+      "links": [
+        {},
+      ],
+    },
+  ],
+  "linkAs": [Function],
+  "selectedKey": "some key",
+  "styles": {
+    "chevronButton": "hidden",
+  },
+}
 `;

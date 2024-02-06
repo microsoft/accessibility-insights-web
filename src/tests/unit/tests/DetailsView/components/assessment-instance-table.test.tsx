@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsList, IColumn } from '@fluentui/react';
+import { DetailsList, IColumn, Spinner } from '@fluentui/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import {
     AssessmentDefaultMessageGenerator,
     DefaultMessageInterface,
@@ -9,10 +10,10 @@ import {
 } from 'assessments/assessment-default-message-generator';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
-import { mount, shallow } from 'enzyme';
+
 import * as React from 'react';
-import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { InsightsCommandButton } from '../../../../../common/components/controls/insights-command-button';
 import {
     AssessmentResultType,
     GeneratedAssessmentInstance,
@@ -20,12 +21,21 @@ import {
 import {
     AssessmentInstanceTable,
     AssessmentInstanceTableProps,
-    passUnmarkedInstancesButtonAutomationId,
 } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DictionaryStringTo } from '../../../../../types/common-types';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('@fluentui/react');
+jest.mock('../../../../../common/components/controls/insights-command-button');
 
 describe('AssessmentInstanceTable', () => {
+    mockReactComponents([Spinner, DetailsList, InsightsCommandButton]);
     let getDefaultMessageStub: IGetMessageGenerator;
     let getDefaultMessageMock: IMock<IGetMessageGenerator>;
     let assessmentDefaultMessageGeneratorMock: IMock<AssessmentDefaultMessageGenerator>;
@@ -70,8 +80,8 @@ describe('AssessmentInstanceTable', () => {
                 getDefaultMessageMock.object,
             );
 
-            const testSubject = shallow(<AssessmentInstanceTable {...props} />);
-            expect(testSubject.getElement()).toMatchSnapshot();
+            const testSubject = render(<AssessmentInstanceTable {...props} />);
+            expect(testSubject.asFragment()).toMatchSnapshot();
         });
     });
 
@@ -133,15 +143,17 @@ describe('AssessmentInstanceTable', () => {
         });
 
         it('renders per snapshot', () => {
-            const testSubject = shallow(<AssessmentInstanceTable {...props} />);
-            expect(testSubject.getElement()).toMatchSnapshot();
+            const testSubject = render(<AssessmentInstanceTable {...props} />);
+            expect(testSubject.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([InsightsCommandButton, DetailsList]);
         });
 
         it('renders per snapshot with "none" header type', () => {
-            const testSubject = shallow(
+            const testSubject = render(
                 <AssessmentInstanceTable {...props} instanceTableHeaderType={'none'} />,
             );
-            expect(testSubject.getElement()).toMatchSnapshot();
+            expect(testSubject.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([DetailsList]);
         });
 
         it('prefers rendering with getDefaultMessage if non-null', () => {
@@ -150,46 +162,57 @@ describe('AssessmentInstanceTable', () => {
                 instanceCount: 1,
             } as DefaultMessageInterface;
 
-            const testSubject = shallow(<AssessmentInstanceTable {...props} />);
-            expect(testSubject.getElement()).toEqual(defaultMessage.message);
+            render(<AssessmentInstanceTable {...props} />);
+            const hasMessage = screen.getByText('Message from getDefaultMessage');
+            expect(hasMessage).toBeDefined();
 
             getDefaultMessageMock.verifyAll();
         });
 
-        it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", () => {
+        it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", async () => {
             const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
+            useOriginalReactElements('@fluentui/react', ['DetailsList']);
             assessmentInstanceTableHandlerMock
                 .setup(a => a.updateFocusedTarget(fakeItem.instance.target))
                 .verifiable(Times.once());
 
-            const testSubject = mount(<AssessmentInstanceTable {...props} />);
-            testSubject.find(DetailsList).prop('onItemInvoked')(fakeItem);
+            render(<AssessmentInstanceTable {...props} />);
+            const rowClick = screen.getAllByRole('row');
 
+            fireEvent.click(rowClick[1], fakeItem);
+            getMockComponentClassPropsForCall(DetailsList).onItemInvoked(fakeItem);
             assessmentInstanceTableHandlerMock.verifyAll();
         });
 
         describe('"Pass all unmarked instances" button', () => {
-            const passUnmarkedInstancesButtonSelector = `button${getAutomationIdSelector(
-                passUnmarkedInstancesButtonAutomationId,
-            )}`;
             it('is enabled if there is an instance with unknown status', () => {
                 testStepResults[selectedTestStep] = { status: ManualTestStatus.UNKNOWN };
 
-                const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                expect(
-                    testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled'),
-                ).toBeUndefined();
+                render(<AssessmentInstanceTable {...props} />);
+
+                const hasDisabledProps =
+                    getMockComponentClassPropsForCall(InsightsCommandButton).disabled;
+
+                expect(hasDisabledProps).toEqual(false);
             });
 
             it.each([ManualTestStatus.FAIL, ManualTestStatus.PASS])(
                 'is disabled if all instances are in non-UNKNOWN status %p',
+
                 testStatus => {
                     testStepResults[selectedTestStep] = { status: testStatus };
 
-                    const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                    expect(
-                        testSubject.find(passUnmarkedInstancesButtonSelector).prop('disabled'),
-                    ).toBe(true);
+                    useOriginalReactElements('common/components/controls/insights-command-button', [
+                        'InsightsCommandButton',
+                    ]);
+                    useOriginalReactElements('@fluentui/react', [
+                        'Spinner',
+                        'DetailsList',
+                        'ActionButton',
+                    ]);
+                    render(<AssessmentInstanceTable {...props} />);
+                    const getUnmarkedSelector = screen.getAllByRole('button');
+                    expect(getUnmarkedSelector[0]).toHaveProperty('disabled', true);
                 },
             );
 
@@ -202,9 +225,14 @@ describe('AssessmentInstanceTable', () => {
                         ),
                     )
                     .verifiable(Times.once());
+                useOriginalReactElements('@fluentui/react', [
+                    'Spinner',
+                    'DetailsList',
+                    'ActionButton',
+                ]);
+                render(<AssessmentInstanceTable {...props} />);
 
-                const testSubject = mount(<AssessmentInstanceTable {...props} />);
-                testSubject.find(passUnmarkedInstancesButtonSelector).simulate('click');
+                getMockComponentClassPropsForCall(InsightsCommandButton).onClick();
 
                 assessmentInstanceTableHandlerMock.verifyAll();
             });

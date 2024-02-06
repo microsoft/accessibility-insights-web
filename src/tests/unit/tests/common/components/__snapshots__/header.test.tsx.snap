@@ -1,123 +1,151 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header renders in narrow mode 1`] = `
-<header
-  className="headerBar"
->
-  <WithStoreSubscriptionForHeaderIconComponent
-    deps={
-      {
-        "textContent": {
-          "applicationTitle": "THE_APPLICATION_TITLE",
-        },
-      }
-    }
-  />
-  <div />
-  <div
-    className="spacer"
-  />
-  <div
-    className="farItems"
-  />
-</header>
+<DocumentFragment>
+  <header
+    class="headerBar"
+  >
+    <mock-withstoresubscriptionforheadericoncomponent
+      deps="[object Object]"
+    />
+    <div />
+    <div
+      class="spacer"
+    />
+    <div
+      class="farItems"
+    />
+  </header>
+</DocumentFragment>
+`;
+
+exports[`Header renders in narrow mode: WithStoreSubscriptionForHeaderIconComponent props 1`] = `
+{
+  "deps": {
+    "textContent": {
+      "applicationTitle": "THE_APPLICATION_TITLE",
+    },
+  },
+}
 `;
 
 exports[`Header renders per snapshot 1`] = `
-<header
-  className="headerBar"
->
-  <WithStoreSubscriptionForHeaderIconComponent
-    deps={
-      {
-        "textContent": {
-          "applicationTitle": "THE_APPLICATION_TITLE",
-        },
-      }
-    }
-  />
-  <span
-    className="headerTitle"
+<DocumentFragment>
+  <header
+    class="headerBar"
   >
-    THE_APPLICATION_TITLE
-  </span>
-  <div />
-  <div
-    className="spacer"
-  />
-  <div
-    className="farItems"
-  />
-</header>
+    <mock-withstoresubscriptionforheadericoncomponent
+      deps="[object Object]"
+    />
+    <span
+      class="headerTitle"
+    >
+      THE_APPLICATION_TITLE
+    </span>
+    <div />
+    <div
+      class="spacer"
+    />
+    <div
+      class="farItems"
+    />
+  </header>
+</DocumentFragment>
+`;
+
+exports[`Header renders per snapshot: WithStoreSubscriptionForHeaderIconComponent props 1`] = `
+{
+  "deps": {
+    "textContent": {
+      "applicationTitle": "THE_APPLICATION_TITLE",
+    },
+  },
+}
 `;
 
 exports[`Header renders with showFarItems equals false 1`] = `
-<header
-  className="headerBar"
->
-  <WithStoreSubscriptionForHeaderIconComponent
-    deps={
-      {
-        "textContent": {
-          "applicationTitle": "THE_APPLICATION_TITLE",
-        },
-      }
-    }
-  />
-  <span
-    className="headerTitle"
+<DocumentFragment>
+  <header
+    class="headerBar"
   >
-    THE_APPLICATION_TITLE
-  </span>
-  <div />
-  <div
-    className="spacer"
-  />
-</header>
+    <mock-withstoresubscriptionforheadericoncomponent
+      deps="[object Object]"
+    />
+    <span
+      class="headerTitle"
+    >
+      THE_APPLICATION_TITLE
+    </span>
+    <div />
+    <div
+      class="spacer"
+    />
+  </header>
+</DocumentFragment>
+`;
+
+exports[`Header renders with showFarItems equals false: WithStoreSubscriptionForHeaderIconComponent props 1`] = `
+{
+  "deps": {
+    "textContent": {
+      "applicationTitle": "THE_APPLICATION_TITLE",
+    },
+  },
+}
 `;
 
 exports[`Header renders with showFarItems equals true 1`] = `
-<header
-  className="headerBar"
->
-  <WithStoreSubscriptionForHeaderIconComponent
-    deps={
-      {
-        "textContent": {
-          "applicationTitle": "THE_APPLICATION_TITLE",
-        },
-      }
-    }
-  />
-  <span
-    className="headerTitle"
+<DocumentFragment>
+  <header
+    class="headerBar"
   >
-    THE_APPLICATION_TITLE
-  </span>
-  <div />
-  <div
-    className="spacer"
-  />
-  <div
-    className="farItems"
-  >
-    <div>
-      THis is far items!
+    <mock-withstoresubscriptionforheadericoncomponent
+      deps="[object Object]"
+    />
+    <span
+      class="headerTitle"
+    >
+      THE_APPLICATION_TITLE
+    </span>
+    <div />
+    <div
+      class="spacer"
+    />
+    <div
+      class="farItems"
+    >
+      <div>
+        THis is far items!
+      </div>
     </div>
-  </div>
-</header>
+  </header>
+</DocumentFragment>
+`;
+
+exports[`Header renders with showFarItems equals true: WithStoreSubscriptionForHeaderIconComponent props 1`] = `
+{
+  "deps": {
+    "textContent": {
+      "applicationTitle": "THE_APPLICATION_TITLE",
+    },
+  },
+}
 `;
 
 exports[`Header renders without header title 1`] = `
-<header
-  className="headerBar"
->
-  <div />
-  <div
-    className="spacer"
-  />
-  <div
-    className="farItems"
-  />
-</header>
+<DocumentFragment>
+  <header
+    class="headerBar"
+  >
+    <div />
+    <div
+      class="spacer"
+    />
+    <div
+      class="farItems"
+    />
+  </header>
+</DocumentFragment>
 `;
+
+exports[`Header renders without header title: WithStoreSubscriptionForHeaderIconComponent props 1`] = `undefined`;

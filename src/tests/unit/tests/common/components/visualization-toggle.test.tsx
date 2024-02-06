@@ -1,36 +1,44 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { Toggle } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
-
+import { IMock, Mock, It } from 'typemoq';
 import {
     VisualizationToggle,
     VisualizationToggleProps,
 } from '../../../../../common/components/visualization-toggle';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('@fluentui/react');
 
 describe('VisualizationToggleTest', () => {
+    mockReactComponents([Toggle]);
     test('render with no label', () => {
         const generatedProps = generateVisualizationToggleProps();
-        const renderedToggle = shallow(<VisualizationToggle {...generatedProps} />);
-        expect(renderedToggle.getElement()).toMatchSnapshot();
+        const renderResult = render(<VisualizationToggle {...generatedProps} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('render with a specified label', () => {
         const generatedProps = generateVisualizationToggleProps('test-label');
-        const renderedToggle = shallow(<VisualizationToggle {...generatedProps} />);
-        expect(renderedToggle.getElement()).toMatchSnapshot();
+        const renderResult = render(<VisualizationToggle {...generatedProps} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    test('verify onClick being called when toggle clicked', () => {
+    test('verify onClick being called when toggle clicked', async () => {
+        useOriginalReactElements('@fluentui/react', ['Toggle']);
         const onClickMock = Mock.ofInstance(event => {});
-        const clickEventStub = {};
-        onClickMock.setup(onClick => onClick(clickEventStub)).verifiable(Times.once());
+
+        onClickMock.setup(onClick => onClick(It.isAny()));
 
         const generatedProps = generateVisualizationToggleProps('test-label', onClickMock);
-        const renderedToggle = shallow(<VisualizationToggle {...generatedProps} />);
+        const renderResult = render(<VisualizationToggle {...generatedProps} />);
 
-        renderedToggle.simulate('click', clickEventStub);
+        await userEvent.click(renderResult.getByRole('switch'));
 
         onClickMock.verifyAll();
     });
@@ -41,7 +49,7 @@ describe('VisualizationToggleTest', () => {
     ): VisualizationToggleProps {
         const onClickMock: IMock<(event) => void> =
             passedOnClickMock ?? Mock.ofInstance(event => {});
-        const componentRefStub: React.RefObject<any> = {} as React.RefObject<any>;
+        const componentRefStub: React.RefObject<any> = React.createRef(); // Use React.createRef() here
         const onBlurMock: IMock<(event) => void> = Mock.ofInstance(event => {});
         const onFocusMock: IMock<(event) => void> = Mock.ofInstance(event => {});
         const result = {

@@ -1,11 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Toggle } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
 import { GenericToggle, GenericToggleProps } from 'DetailsView/components/generic-toggle';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('GenericToggleTest', () => {
+    mockReactComponents([Toggle]);
     type OnClick = GenericToggleProps['onClick'];
     let onClickMock: IMock<OnClick>;
 
@@ -23,8 +30,8 @@ describe('GenericToggleTest', () => {
                 id: 'test-id-1',
             };
 
-            const wrapped = shallow(<GenericToggle {...props} />);
-            expect(wrapped.getElement()).toMatchSnapshot();
+            const renderResult = render(<GenericToggle {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it.each`
@@ -40,13 +47,13 @@ describe('GenericToggleTest', () => {
                 id: 'test-id-1',
             };
 
-            const wrapped = shallow(<GenericToggle {...props} />);
-            expect(wrapped.getElement()).toMatchSnapshot();
+            const renderResult = render(<GenericToggle {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 
     describe('user interaction', () => {
-        it('handles toggle click', () => {
+        it('handles toggle click', async () => {
             const props: GenericToggleProps = {
                 name: 'test name',
                 description: 'test description',
@@ -55,14 +62,14 @@ describe('GenericToggleTest', () => {
                 id: 'test-id-1',
             };
 
-            const wrapped = shallow(<GenericToggle {...props} />);
+            useOriginalReactElements('@fluentui/react', ['Toggle']);
+            const renderResult = render(<GenericToggle {...props} />);
 
-            const toggle = wrapped.find(`#${props.id}`);
-            const eventStub: any = {};
-            toggle.simulate('click', eventStub);
+            const toggle = renderResult.container.querySelector(`#${props.id}`);
+            fireEvent.click(toggle);
 
             onClickMock.verify(
-                handler => handler(props.id, !props.enabled, eventStub),
+                handler => handler(props.id, !props.enabled, It.isAny()),
                 Times.once(),
             );
         });

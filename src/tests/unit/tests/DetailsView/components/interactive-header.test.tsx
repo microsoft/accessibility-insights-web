@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { ExpandCollpaseLeftNavButtonProps } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
@@ -10,10 +11,16 @@ import {
     InteractiveHeaderProps,
 } from 'DetailsView/components/interactive-header';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Header } from '../../../../../common/components/header';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../common/components/header');
 
 describe('InteractiveHeader', () => {
+    mockReactComponents([Header]);
     let navMenuStub: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
 
     beforeEach(() => {
@@ -40,8 +47,9 @@ describe('InteractiveHeader', () => {
             setSideNavOpen: null,
         };
 
-        const rendered = shallow(<InteractiveHeader {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<InteractiveHeader {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Header]);
     });
 
     it.each([false, true])('render: isNavCollapsed equals %s', isNavCollapsed => {
@@ -61,7 +69,8 @@ describe('InteractiveHeader', () => {
             setSideNavOpen: null,
         };
 
-        const rendered = shallow(<InteractiveHeader {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<InteractiveHeader {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Header]);
     });
 });

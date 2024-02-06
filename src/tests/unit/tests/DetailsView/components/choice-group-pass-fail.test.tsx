@@ -1,17 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroup, IconButton } from '@fluentui/react';
+import { ChoiceGroup, IconButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
 import {
     ChoiceGroupPassFail,
     ChoiceGroupPassFailProps,
 } from 'DetailsView/components/choice-group-pass-fail';
 import { onUndoClicked } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
-import { mount, shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { IMock, It, Mock, Times } from 'typemoq';
+import '@testing-library/jest-dom';
+
+jest.mock('@fluentui/react');
 
 describe('ChoiceGroupPassFail', () => {
+    mockReactComponents([ChoiceGroup, IconButton]);
     let props: ChoiceGroupPassFailProps;
     let onUndoClickedMock: IMock<onUndoClicked>;
 
@@ -21,6 +31,7 @@ describe('ChoiceGroupPassFail', () => {
             options: [
                 { key: TabStopRequirementStatuses.pass, text: 'Pass' },
                 { key: TabStopRequirementStatuses.fail, text: 'Fail' },
+                { key: TabStopRequirementStatuses.unknown, text: 'unknown' as any },
             ],
             selectedKey: TabStopRequirementStatuses.unknown,
             onChange: () => {},
@@ -32,72 +43,72 @@ describe('ChoiceGroupPassFail', () => {
     });
 
     test('render', () => {
-        const wrapper = shallow(<ChoiceGroupPassFail {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('render: selectedKey is set to FAIL', () => {
         props.selectedKey = TabStopRequirementStatuses.fail;
-        const actual = shallow(<ChoiceGroupPassFail {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroup, IconButton]);
     });
 
     test('render: selectedKey is set to PASS', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
-        const actual = shallow(<ChoiceGroupPassFail {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroup, IconButton]);
     });
 
     test('render label, aria-label is not defined', () => {
+        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton']);
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.isLabelVisible = true;
 
-        const testSubject = mount(<ChoiceGroupPassFail {...props} />);
-        const options = testSubject.find('input');
-        expect(options.at(0).props()['aria-label']).toBeUndefined();
-        expect(options.at(1).props()['aria-label']).toBeUndefined();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        const options = renderResult.getAllByRole('radio');
 
-        const labels = testSubject.find('label');
-        expect(labels.at(0).text()).toEqual('Pass');
-        expect(labels.at(1).text()).toEqual('Fail');
+        expect(options[0]).not.toHaveAttribute('aria-label');
+        expect(options[1]).not.toHaveAttribute('aria-label');
+        expect(renderResult.queryByLabelText('Pass')).not.toBeNull();
+        expect(renderResult.queryByLabelText('Fail')).not.toBeNull();
     });
 
     test('render options without label, aria-label is defined', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.isLabelVisible = false;
 
-        const testSubject = mount(<ChoiceGroupPassFail {...props} />);
-        const options = testSubject.find('input');
-        expect(options.at(0).props()['aria-label']).toEqual('Pass');
-        expect(options.at(1).props()['aria-label']).toEqual('Fail');
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        const options = renderResult.getAllByRole('radio');
 
-        const labels = testSubject.find('label');
-        expect(labels.at(0).text()).toEqual('');
-        expect(labels.at(1).text()).toEqual('');
+        expect(options[0]).toHaveAttribute('aria-label', 'Pass');
+        expect(options[1]).toHaveAttribute('aria-label', 'Fail');
+        expect(options[0].textContent).toEqual('');
+        expect(options[1].textContent).toEqual('');
     });
 
     test('verify undo button is present with selection', () => {
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
-        const testSubject = mount(<ChoiceGroupPassFail {...props} />);
-        expect(testSubject.find(IconButton).exists()).toBeTruthy();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+        expect(renderResult.getByRole('button')).not.toBeNull();
     });
 
     test('verify component is correctly used with undo', () => {
+        useOriginalReactElements('@fluentui/react', ['IconButton']);
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
 
-        const testSubject = shallow(<ChoiceGroupPassFail {...props} />);
-        const choiceGroupMock = Mock.ofType<IChoiceGroup>();
+        const renderResult = render(<ChoiceGroupPassFail {...props} />);
+
         const eventStub = {} as React.MouseEvent<HTMLElement>;
 
-        const setComponentRef = testSubject.find(ChoiceGroup).prop('componentRef') as any;
-        const undoLinkOnClicked = testSubject.find(IconButton).prop('onClick');
+        const options = renderResult.getAllByRole('radio');
+        getMockComponentClassPropsForCall(IconButton).onClick(eventStub);
 
-        setComponentRef(choiceGroupMock.object);
-        undoLinkOnClicked(eventStub);
+        expect(options[0]).toHaveFocus();
 
-        choiceGroupMock.verify(m => m.focus(), Times.once());
-        onUndoClickedMock.verify(m => m(eventStub), Times.once());
+        onUndoClickedMock.verify(m => m(It.isAny()), Times.once());
     });
 });

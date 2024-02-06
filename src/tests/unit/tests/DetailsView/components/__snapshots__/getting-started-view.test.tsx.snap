@@ -1,39 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GettingStartedViewTest renders with content from props 1`] = `
-<div
-  className="gettingStartedView"
->
-  <div>
-    <HeadingWithContentLink
-      deps={{}}
-      guidance={
-        {
-          "pageTitle": "some page title",
-        }
-      }
-      headerClass="gettingStartedHeader"
-      headingTitle="some title"
-      headingTitleClassName="gettingStartedHeaderTitle"
-    />
-    <h2
-      className="gettingStartedTitle"
-    >
-      Getting started
-    </h2>
+<DocumentFragment>
+  <div
+    class="gettingStartedView"
+  >
     <div>
-      test-getting-started-content
+      <mock-headingwithcontentlink
+        deps="[object Object]"
+        guidance="[object Object]"
+        headerclass="gettingStartedHeader"
+        headingtitle="some title"
+        headingtitleclassname="gettingStartedHeaderTitle"
+      />
+      <h2
+        class="gettingStartedTitle"
+      >
+        Getting started
+      </h2>
+      <div>
+        test-getting-started-content
+      </div>
     </div>
+    <mock-nextrequirementbutton
+      classname="nextRequirementButton"
+      deps="[object Object]"
+      nextrequirement="[object Object]"
+      nextrequirementvisualizationtype="-1"
+    />
   </div>
-  <NextRequirementButton
-    className="nextRequirementButton"
-    deps={{}}
-    nextRequirement={
-      {
-        "key": "expectedNextRequirement",
-      }
-    }
-    nextRequirementVisualizationType={-1}
-  />
-</div>
+</DocumentFragment>
+`;
+
+exports[`GettingStartedViewTest renders with content from props: HeadingWithContentLink props 1`] = `
+{
+  "deps": {},
+  "guidance": {
+    "pageTitle": "some page title",
+  },
+  "headerClass": "gettingStartedHeader",
+  "headingTitle": "some title",
+  "headingTitleClassName": "gettingStartedHeaderTitle",
+}
+`;
+
+exports[`GettingStartedViewTest renders with content from props: NextRequirementButton props 1`] = `
+{
+  "className": "nextRequirementButton",
+  "deps": {},
+  "nextRequirement": {
+    "key": "expectedNextRequirement",
+  },
+  "nextRequirementVisualizationType": -1,
+}
 `;
