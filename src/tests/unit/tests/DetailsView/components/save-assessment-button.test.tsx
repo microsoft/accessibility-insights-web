@@ -77,9 +77,13 @@ describe('SaveAssessmentButton', () => {
         let wrapper: RenderResult;
         describe('interaction', () => {
             beforeEach(() => {
-                useOriginalReactElements('@fluentui/react', ['Dialog', 'DialogFooter', 'Stack',
+                useOriginalReactElements('@fluentui/react', [
+                    'Dialog',
+                    'DialogFooter',
+                    'Stack',
                     'Checkbox',
-                    'PrimaryButton',]);
+                    'PrimaryButton',
+                ]);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
                 fireEvent.click(wrapper.getByRole('link'));
@@ -100,7 +104,7 @@ describe('SaveAssessmentButton', () => {
                 // The "Don't show again" checkbox logic is inverted
                 const checkbox = wrapper.getByRole('checkbox');
                 // Check "Don't show again" = true
-              
+
                 fireEvent.click(checkbox);
                 // showSaveAssessmentDialog = false ("Enable the dialog" = false)
                 userConfigMessageCreatorMock.verify(
