@@ -78,7 +78,7 @@
         "@esbuild-plugins/node-resolve": "^0.2.2",
         "@swc/core": "^1.3.107",
         "@swc/jest": "^0.2.29",
-        "@testing-library/jest-dom": "^6.1.6",
+        "@testing-library/jest-dom": "^6.4.2",
         "@testing-library/react": "12.1.2",
         "@types/chrome": "0.0.256",
         "@types/enzyme": "^3.10.18",
