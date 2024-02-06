@@ -3,6 +3,7 @@
 import { DefaultButton, PrimaryButton, Dialog, DialogFooter } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
+import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     QuickAssessToAssessmentDialog,
@@ -71,15 +72,15 @@ describe('QuickAssessToAssessmentDialog', () => {
         getMockComponentClassPropsForCall(PrimaryButton).onClick(eventStub);
 
         detailsViewActionMessageCreatorMock.verify(
-            m => m.confirmDataTransferToAssessment(It.isAny()),
+            m => m.confirmDataTransferToAssessment(eventStub),
             Times.once(),
         );
         detailsViewActionMessageCreatorMock.verify(
-            m => m.sendPivotItemClicked(It.isAny()),
+            m => m.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]),
             Times.once(),
         );
         detailsViewActionMessageCreatorMock.verify(
-            m => m.changeRightContentPanel(It.isAny()),
+            m => m.changeRightContentPanel('Overview'),
             Times.once(),
         );
         dataTransferViewControllerMock.verify(
