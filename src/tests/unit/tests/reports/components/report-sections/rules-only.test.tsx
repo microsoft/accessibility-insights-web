@@ -5,7 +5,10 @@ import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import * as React from 'react';
 import { RulesOnly, RulesOnlyDeps } from 'reports/components/report-sections/rules-only';
 import { FullRuleHeader } from '../../../../../../reports/components/report-sections/full-rule-header';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../reports/components/report-sections/full-rule-header');
 describe('RulesOnly', () => {
@@ -24,5 +27,6 @@ describe('RulesOnly', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([FullRuleHeader]);
     });
 });

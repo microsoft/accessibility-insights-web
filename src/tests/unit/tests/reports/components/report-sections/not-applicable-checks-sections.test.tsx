@@ -8,16 +8,12 @@ import {
     NotApplicableChecksSectionProps,
 } from 'reports/components/report-sections/not-applicable-checks-section';
 import { SectionDeps } from 'reports/components/report-sections/report-section-factory';
-import { ResultSectionTitle } from '../../../../../../common/components/cards/result-section-title';
 import { CollapsibleResultSection } from '../../../../../../reports/components/report-sections/collapsible-result-section';
-import { RulesOnly } from '../../../../../../reports/components/report-sections/rules-only';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../reports/components/report-sections/collapsible-result-section');
-jest.mock('../../../../../../common/components/cards/result-section-title');
-jest.mock('../../../../../../reports/components/report-sections/rules-only');
 describe('NotApplicableChecksSection', () => {
-    mockReactComponents([CollapsibleResultSection, ResultSectionTitle, RulesOnly]);
+    mockReactComponents([CollapsibleResultSection]);
     it('renders', () => {
         const props: NotApplicableChecksSectionProps = {
             deps: {} as SectionDeps,

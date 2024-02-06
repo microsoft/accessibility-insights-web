@@ -8,3 +8,13 @@ exports[`ReporterHeaderSection renders 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`ReporterHeaderSection renders: HeaderSection props 1`] = `
+{
+  "headerText": "Accessibility Insights",
+  "targetAppInfo": {
+    "name": "page-title",
+    "url": "url://page",
+  },
+}
+`;

@@ -13,7 +13,10 @@ import { GuidanceLinks } from '../../../../../../common/components/guidance-link
 import { GuidanceTags } from '../../../../../../common/components/guidance-tags';
 import { NewTabLink } from '../../../../../../common/components/new-tab-link';
 import { OutcomeChip } from '../../../../../../reports/components/outcome-chip';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../reports/components/outcome-chip');
 jest.mock('../../../../../../common/components/guidance-links');
@@ -55,6 +58,7 @@ describe('FullRuleHeader', () => {
         const renderResult = render(<FullRuleHeader {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([GuidanceTags, GuidanceLinks]);
     });
 
     test('guidance links and the containing parenthesis are not rendered without guidance', () => {
@@ -66,8 +70,8 @@ describe('FullRuleHeader', () => {
         };
 
         const renderResult = render(<FullRuleHeader {...props} />);
-
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([GuidanceTags, GuidanceLinks]);
     });
 
     test('ruleId is displayed as text when there is no url provided for a link', () => {
@@ -79,7 +83,7 @@ describe('FullRuleHeader', () => {
         };
 
         const renderResult = render(<FullRuleHeader {...props} />);
-
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([GuidanceTags, GuidanceLinks]);
     });
 });

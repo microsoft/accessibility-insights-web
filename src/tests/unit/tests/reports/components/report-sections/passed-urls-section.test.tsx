@@ -8,7 +8,10 @@ import {
 } from 'reports/components/report-sections/passed-urls-section';
 import { SummaryScanError, SummaryScanResult } from 'reports/package/accessibilityInsightsReport';
 import { CollapsibleUrlResultSection } from '../../../../../../reports/components/report-sections/collapsible-url-result-section';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../reports/components/report-sections/collapsible-url-result-section');
 describe(PassedUrlsSection.displayName, () => {
@@ -29,5 +32,6 @@ describe(PassedUrlsSection.displayName, () => {
         const renderResult = render(<PassedUrlsSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([CollapsibleUrlResultSection]);
     });
 });

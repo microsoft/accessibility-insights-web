@@ -5,7 +5,10 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { ReporterHeaderSection } from 'reports/components/report-sections/reporter-header-section';
 import { HeaderSection } from '../../../../../../reports/components/report-sections/header-section';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../reports/components/report-sections/header-section');
 describe('ReporterHeaderSection', () => {
@@ -20,5 +23,6 @@ describe('ReporterHeaderSection', () => {
         } as ScanMetadata;
         const renderResult = render(<ReporterHeaderSection scanMetadata={scanMetadata} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([HeaderSection]);
     });
 });

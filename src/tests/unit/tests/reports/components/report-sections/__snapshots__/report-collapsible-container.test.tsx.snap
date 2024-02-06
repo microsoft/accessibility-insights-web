@@ -5,8 +5,9 @@ exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: s
   <div
     class="collapsible-container collapsed"
   >
-    <h5
-      class="headingElementForLevel title-container"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
     >
       <button
         aria-controls="content-container-some-id"
@@ -18,7 +19,7 @@ exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: s
           Some header
         </div>
       </button>
-    </h5>
+    </mock-headingelementforlevel>
     <div
       aria-hidden="true"
       class="collapsible-content"
@@ -37,8 +38,9 @@ exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: u
   <div
     class="collapsible-container collapsed"
   >
-    <h5
-      class="headingElementForLevel title-container"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
     >
       <button
         aria-controls="content-container-some-id"
@@ -49,7 +51,7 @@ exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: u
           Some header
         </div>
       </button>
-    </h5>
+    </mock-headingelementforlevel>
     <div
       aria-hidden="true"
       class="collapsible-content"
@@ -68,8 +70,9 @@ exports[`ReportCollapsibleContainerControl render with containerClassName set to
   <div
     class="collapsible-container a-container collapsed"
   >
-    <h5
-      class="headingElementForLevel title-container"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
     >
       <button
         aria-controls="content-container-some-id"
@@ -80,7 +83,7 @@ exports[`ReportCollapsibleContainerControl render with containerClassName set to
           Some header
         </div>
       </button>
-    </h5>
+    </mock-headingelementforlevel>
     <div
       aria-hidden="true"
       class="collapsible-content"
@@ -99,8 +102,9 @@ exports[`ReportCollapsibleContainerControl render with containerClassName set to
   <div
     class="collapsible-container collapsed"
   >
-    <h5
-      class="headingElementForLevel title-container"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
     >
       <button
         aria-controls="content-container-some-id"
@@ -111,7 +115,7 @@ exports[`ReportCollapsibleContainerControl render with containerClassName set to
           Some header
         </div>
       </button>
-    </h5>
+    </mock-headingelementforlevel>
     <div
       aria-hidden="true"
       class="collapsible-content"
@@ -130,8 +134,9 @@ exports[`ReportCollapsibleContainerControl render with contentClassName set to: 
   <div
     class="collapsible-container collapsed"
   >
-    <h5
-      class="headingElementForLevel title-container"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
     >
       <button
         aria-controls="content-container-some-id"
@@ -142,7 +147,7 @@ exports[`ReportCollapsibleContainerControl render with contentClassName set to: 
           Some header
         </div>
       </button>
-    </h5>
+    </mock-headingelementforlevel>
     <div
       aria-hidden="true"
       class="collapsible-content"
@@ -161,8 +166,9 @@ exports[`ReportCollapsibleContainerControl render with contentClassName set to: 
   <div
     class="collapsible-container collapsed"
   >
-    <h5
-      class="headingElementForLevel title-container"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
     >
       <button
         aria-controls="content-container-some-id"
@@ -173,7 +179,7 @@ exports[`ReportCollapsibleContainerControl render with contentClassName set to: 
           Some header
         </div>
       </button>
-    </h5>
+    </mock-headingelementforlevel>
     <div
       aria-hidden="true"
       class="collapsible-content"
@@ -192,8 +198,9 @@ exports[`ReportCollapsibleContainerControl render with id set to: some id 1`] = 
   <div
     class="collapsible-container collapsed"
   >
-    <h5
-      class="headingElementForLevel title-container"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
     >
       <button
         aria-controls="content-container-some id"
@@ -204,7 +211,7 @@ exports[`ReportCollapsibleContainerControl render with id set to: some id 1`] = 
           Some header
         </div>
       </button>
-    </h5>
+    </mock-headingelementforlevel>
     <div
       aria-hidden="true"
       class="collapsible-content"
@@ -223,8 +230,9 @@ exports[`ReportCollapsibleContainerControl render with id set to: undefined 1`] 
   <div
     class="collapsible-container collapsed"
   >
-    <h5
-      class="headingElementForLevel title-container"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
     >
       <button
         aria-controls="content-container-undefined"
@@ -235,7 +243,7 @@ exports[`ReportCollapsibleContainerControl render with id set to: undefined 1`] 
           Some header
         </div>
       </button>
-    </h5>
+    </mock-headingelementforlevel>
     <div
       aria-hidden="true"
       class="collapsible-content"

@@ -41,6 +41,15 @@ exports[`FullRuleHeader guidance links and the containing parenthesis are not re
 </DocumentFragment>
 `;
 
+exports[`FullRuleHeader guidance links and the containing parenthesis are not rendered without guidance: GuidanceLinks props 1`] = `undefined`;
+
+exports[`FullRuleHeader guidance links and the containing parenthesis are not rendered without guidance: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": null,
+}
+`;
+
 exports[`FullRuleHeader renders, outcomeType = fail 1`] = `
 <DocumentFragment>
   <div
@@ -88,6 +97,38 @@ exports[`FullRuleHeader renders, outcomeType = fail 1`] = `
 </DocumentFragment>
 `;
 
+exports[`FullRuleHeader renders, outcomeType = fail: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = fail: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
 exports[`FullRuleHeader renders, outcomeType = inapplicable 1`] = `
 <DocumentFragment>
   <div
@@ -125,6 +166,38 @@ exports[`FullRuleHeader renders, outcomeType = inapplicable 1`] = `
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`FullRuleHeader renders, outcomeType = inapplicable: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = inapplicable: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
 `;
 
 exports[`FullRuleHeader renders, outcomeType = incomplete 1`] = `
@@ -166,6 +239,38 @@ exports[`FullRuleHeader renders, outcomeType = incomplete 1`] = `
 </DocumentFragment>
 `;
 
+exports[`FullRuleHeader renders, outcomeType = incomplete: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = incomplete: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
 exports[`FullRuleHeader renders, outcomeType = pass 1`] = `
 <DocumentFragment>
   <div
@@ -203,6 +308,38 @@ exports[`FullRuleHeader renders, outcomeType = pass 1`] = `
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`FullRuleHeader renders, outcomeType = pass: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = pass: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
 `;
 
 exports[`FullRuleHeader renders, outcomeType = review 1`] = `
@@ -244,6 +381,38 @@ exports[`FullRuleHeader renders, outcomeType = review 1`] = `
 </DocumentFragment>
 `;
 
+exports[`FullRuleHeader renders, outcomeType = review: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = review: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
 exports[`FullRuleHeader ruleId is displayed as text when there is no url provided for a link 1`] = `
 <DocumentFragment>
   <div
@@ -283,4 +452,36 @@ exports[`FullRuleHeader ruleId is displayed as text when there is no url provide
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`FullRuleHeader ruleId is displayed as text when there is no url provided for a link: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader ruleId is displayed as text when there is no url provided for a link: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
 `;

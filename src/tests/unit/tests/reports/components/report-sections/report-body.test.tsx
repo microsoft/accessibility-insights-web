@@ -13,47 +13,38 @@ import {
 import { Mock } from 'typemoq';
 
 import { FailedInstancesSection } from '../../../../../../common/components/cards/failed-instances-section';
-import { ResultSection } from '../../../../../../common/components/cards/result-section';
-import { NewTabLink } from '../../../../../../common/components/new-tab-link';
-import { NewTabLinkWithConfirmationDialog } from '../../../../../../reports/components/new-tab-link-confirmation-dialog';
 import { AutomatedChecksTitleSection } from '../../../../../../reports/components/report-sections/automated-checks-title-section';
 import { BodySection } from '../../../../../../reports/components/report-sections/body-section';
-import { CollapsibleResultSection } from '../../../../../../reports/components/report-sections/collapsible-result-section';
 import { ContentContainer } from '../../../../../../reports/components/report-sections/content-container';
 import { DetailsSection } from '../../../../../../reports/components/report-sections/details-section';
 import { FooterSection } from '../../../../../../reports/components/report-sections/footer-section';
 import { FooterText } from '../../../../../../reports/components/report-sections/footer-text';
-import { HeaderSection } from '../../../../../../reports/components/report-sections/header-section';
 import { NotApplicableChecksSection } from '../../../../../../reports/components/report-sections/not-applicable-checks-section';
 import { PassedChecksSection } from '../../../../../../reports/components/report-sections/passed-checks-section';
 import { ReporterHeaderSection } from '../../../../../../reports/components/report-sections/reporter-header-section';
 import { ResultsContainer } from '../../../../../../reports/components/report-sections/results-container';
-import {
-    AllOutcomesSummarySection,
-    BaseSummarySection,
-} from '../../../../../../reports/components/report-sections/summary-section';
+import { AllOutcomesSummarySection } from '../../../../../../reports/components/report-sections/summary-section';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
 
-jest.mock('../../../../../../reports/components/report-sections/content-container');
-jest.mock('../../../../../../reports/components/report-sections/header-section');
-jest.mock('../../../../../../reports/components/report-sections/summary-section');
-jest.mock('../../../../../../reports/components/report-sections/footer-section');
-jest.mock('../../../../../../reports/components/new-tab-link-confirmation-dialog');
-jest.mock('../../../../../../common/components/cards/result-section');
-jest.mock('../../../../../../reports/components/report-sections/collapsible-result-section');
-jest.mock('../../../../../../common/components/new-tab-link');
+jest.mock('../../../../../../reports/components/report-sections/automated-checks-title-section');
+jest.mock('../../../../../../reports/components/report-sections/details-section');
+jest.mock('../../../../../../reports/components/report-sections/reporter-header-section');
+jest.mock('../../../../../../reports/components/report-sections/footer-text');
+jest.mock('../../../../../../reports/components/report-sections/results-container');
+jest.mock('../../../../../../common/components/cards/failed-instances-section');
+jest.mock('../../../../../../reports/components/report-sections/passed-checks-section');
+jest.mock('../../../../../../reports/components/report-sections/not-applicable-checks-section');
 describe('ReportBody', () => {
     mockReactComponents([
-        HeaderSection,
-        ContentContainer,
-        AllOutcomesSummarySection,
-        BaseSummarySection,
-        NewTabLinkWithConfirmationDialog,
-        ResultSection,
-        CollapsibleResultSection,
-        NewTabLink,
-        FooterSection,
+        AutomatedChecksTitleSection,
+        DetailsSection,
+        ReporterHeaderSection,
+        FooterText,
+        ResultsContainer,
+        FailedInstancesSection,
+        PassedChecksSection,
+        NotApplicableChecksSection,
     ]);
     it('renders', () => {
         const pageTitle = 'page-title';
@@ -120,7 +111,6 @@ describe('ReportBody', () => {
         };
 
         const renderResult = render(<ReportBody {...props} />);
-        renderResult.debug();
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 

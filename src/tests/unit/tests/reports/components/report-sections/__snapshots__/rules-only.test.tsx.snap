@@ -23,3 +23,13 @@ exports[`RulesOnly renders 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`RulesOnly renders: FullRuleHeader props 1`] = `
+{
+  "cardRuleResult": {
+    "id": "1",
+  },
+  "deps": {},
+  "outcomeType": "pass",
+}
+`;

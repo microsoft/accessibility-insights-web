@@ -12,3 +12,22 @@ exports[`PassedUrlsSection renders 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`PassedUrlsSection renders: CollapsibleUrlResultSection props 1`] = `
+{
+  "badgeCount": 2,
+  "containerId": "passed-urls-section",
+  "content": <UrlScanResultsTable
+    id="passed-urls-table"
+    results={
+      [
+        {},
+        {},
+      ]
+    }
+  />,
+  "deps": {},
+  "outcomeType": "pass",
+  "title": "Passed URLs",
+}
+`;
