@@ -12,6 +12,7 @@ import { DataTransferViewController } from 'DetailsView/data-transfer-view-contr
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -34,6 +35,7 @@ describe('TransferToAssessmentButton', () => {
     test('render', () => {
         const renderResult = render(<TransferToAssessmentButton {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([InsightsCommandButton]);
         expect(getMockComponentClassPropsForCall(InsightsCommandButton).onClick).toEqual(
             dataTransferViewControllerMock.object.showQuickAssessToAssessmentConfirmDialog,
         );
@@ -42,5 +44,6 @@ describe('TransferToAssessmentButton', () => {
     test('getTransferToAssessmentButton', () => {
         const testSubject = getTransferToAssessmentButton(props);
         expect(testSubject).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([InsightsCommandButton]);
     });
 });

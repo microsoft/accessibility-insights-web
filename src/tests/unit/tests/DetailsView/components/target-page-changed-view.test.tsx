@@ -9,8 +9,12 @@ import {
     TargetPageChangedViewProps,
 } from 'DetailsView/components/target-page-changed-view';
 import * as React from 'react';
+import { InlineStartOverButton } from '../../../../../DetailsView/components/inline-start-over-button';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../DetailsView/components/inline-start-over-button');
 
 describe('TargetPageChangedView', () => {
+    mockReactComponents([InlineStartOverButton]);
     it.each`
         subtitle                   | isCardsUIEnabled
         ${undefined}               | ${true}

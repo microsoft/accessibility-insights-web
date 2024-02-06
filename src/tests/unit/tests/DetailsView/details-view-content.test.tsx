@@ -60,7 +60,10 @@ import { InteractiveHeader } from '../../../../DetailsView/components/interactiv
 import { DetailsViewBody } from '../../../../DetailsView/details-view-body';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
-import { mockReactComponents } from '../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../mock-helpers/mock-module-helpers';
 import { DetailsViewContainerPropsBuilder } from './details-view-container-props-builder';
 import { StoreMocks } from './store-mocks';
 
@@ -387,6 +390,11 @@ describe(DetailsViewContent.displayName, () => {
                 />,
             );
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([
+                InteractiveHeader,
+                DetailsViewOverlay,
+                DetailsViewBody,
+            ]);
 
             clickHandlerFactoryMock.verifyAll();
             getCardSelectionViewDataMock.verifyAll();

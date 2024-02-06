@@ -10,6 +10,38 @@ exports[`DetailsViewContainer render content render once; should call details vi
 </DocumentFragment>
 `;
 
+exports[`DetailsViewContainer render content render once; should call details view opened: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "detailsViewActionMessageCreator": [typemoq mock object],
+      "storesHub": [typemoq mock object],
+    },
+    "isSideNavOpen": false,
+    "setSideNavOpen": [Function],
+    "storeState": {
+      "tabStoreData": {
+        "isClosed": false,
+        "isOriginChanged": false,
+      },
+      "visualizationStoreData": {
+        "selectedDetailsViewPivot": -1,
+      },
+    },
+  },
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": true,
+}
+`;
+
+exports[`DetailsViewContainer render content render once; should call details view opened: NoContentAvailable props 1`] = `undefined`;
+
+exports[`DetailsViewContainer render content render once; should call details view opened: StyledSpinnerBase props 1`] = `undefined`;
+
 exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded 1`] = `
 <DocumentFragment>
   <mock-narrowmodedetector
@@ -17,27 +49,28 @@ exports[`DetailsViewContainer render content show NoContentAvailable when stores
     deps="[object Object]"
     isnarrowmodeenabled="false"
   />
-  <main
-    class="noContentAvailable"
-  >
-    <h1>
-      No content available
-    </h1>
-    <ul>
-      <li>
-        If the target page was closed, you can close this tab or reuse it for something else.
-      </li>
-      <li>
-        If the URL was changed on the target page, you can reactivate 
-        <strong>
-          Accessibility Insights for Web
-        </strong>
-         by selecting the extension icon on the browser toolbar or by using the extension keyboard shortcuts.
-      </li>
-    </ul>
-  </main>
+  <mock-nocontentavailable />
 </DocumentFragment>
 `;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "storesHub": [typemoq mock object],
+    },
+  },
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": false,
+}
+`;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded: NoContentAvailable props 1`] = `{}`;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded: StyledSpinnerBase props 1`] = `undefined`;
 
 exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed 1`] = `
 <DocumentFragment>
@@ -46,27 +79,28 @@ exports[`DetailsViewContainer render content show NoContentAvailable when target
     deps="[object Object]"
     isnarrowmodeenabled="true"
   />
-  <main
-    class="noContentAvailable"
-  >
-    <h1>
-      No content available
-    </h1>
-    <ul>
-      <li>
-        If the target page was closed, you can close this tab or reuse it for something else.
-      </li>
-      <li>
-        If the URL was changed on the target page, you can reactivate 
-        <strong>
-          Accessibility Insights for Web
-        </strong>
-         by selecting the extension icon on the browser toolbar or by using the extension keyboard shortcuts.
-      </li>
-    </ul>
-  </main>
+  <mock-nocontentavailable />
 </DocumentFragment>
 `;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "storesHub": [typemoq mock object],
+    },
+  },
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": true,
+}
+`;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed: NoContentAvailable props 1`] = `{}`;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed: StyledSpinnerBase props 1`] = `undefined`;
 
 exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted 1`] = `
 <DocumentFragment>
@@ -75,41 +109,47 @@ exports[`DetailsViewContainer render content shows NoContentAvailable when targe
     deps="[object Object]"
     isnarrowmodeenabled="true"
   />
-  <main
-    class="noContentAvailable"
-  >
-    <h1>
-      No content available
-    </h1>
-    <ul>
-      <li>
-        If the target page was closed, you can close this tab or reuse it for something else.
-      </li>
-      <li>
-        If the URL was changed on the target page, you can reactivate 
-        <strong>
-          Accessibility Insights for Web
-        </strong>
-         by selecting the extension icon on the browser toolbar or by using the extension keyboard shortcuts.
-      </li>
-    </ul>
-  </main>
+  <mock-nocontentavailable />
 </DocumentFragment>
 `;
 
+exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "storesHub": [typemoq mock object],
+    },
+  },
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": true,
+}
+`;
+
+exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted: NoContentAvailable props 1`] = `{}`;
+
+exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted: StyledSpinnerBase props 1`] = `undefined`;
+
 exports[`DetailsViewContainer render renders spinner when stores not ready 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-Spinner details-view-spinner root-110"
-  >
-    <div
-      class="ms-Spinner-circle ms-Spinner--large circle-111"
-    />
-    <div
-      class="ms-Spinner-label label-112"
-    >
-      Loading...
-    </div>
-  </div>
+  <mock-styledspinnerbase
+    classname="details-view-spinner"
+    label="Loading..."
+    size="3"
+  />
 </DocumentFragment>
+`;
+
+exports[`DetailsViewContainer render renders spinner when stores not ready: NarrowModeDetector props 1`] = `undefined`;
+
+exports[`DetailsViewContainer render renders spinner when stores not ready: NoContentAvailable props 1`] = `undefined`;
+
+exports[`DetailsViewContainer render renders spinner when stores not ready: StyledSpinnerBase props 1`] = `
+{
+  "className": "details-view-spinner",
+  "label": "Loading...",
+  "size": 3,
+}
 `;

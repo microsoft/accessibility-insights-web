@@ -20,6 +20,42 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
 />
 `;
 
+exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance details column: StyledWithViewportComponent props 1`] = `
+{
+  "checkboxVisibility": 2,
+  "columns": [
+    {
+      "columnActionsMode": 0,
+      "fieldName": "description",
+      "isResizable": true,
+      "key": "failureDescription",
+      "minWidth": 100,
+      "name": "Failure description",
+      "onRender": [Function],
+    },
+    {
+      "columnActionsMode": 0,
+      "fieldName": "instanceActionButtons",
+      "isIconOnly": true,
+      "isResizable": false,
+      "key": "instanceActionButtons",
+      "maxWidth": 124,
+      "minWidth": 124,
+      "name": "instance actions",
+      "onRender": [Function],
+    },
+  ],
+  "constrainMode": 1,
+  "items": [
+    {
+      "description": "test-description",
+      "id": "test-instance-id",
+    },
+  ],
+  "onRenderDetailsHeader": [Function],
+}
+`;
+
 exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance icons column 1`] = `
 <React.Fragment>
   <StyledLinkBase
@@ -41,4 +77,76 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
     />
   </StyledLinkBase>
 </React.Fragment>
+`;
+
+exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance icons column: StyledWithViewportComponent props 1`] = `
+{
+  "checkboxVisibility": 2,
+  "columns": [
+    {
+      "columnActionsMode": 0,
+      "fieldName": "description",
+      "isResizable": true,
+      "key": "failureDescription",
+      "minWidth": 100,
+      "name": "Failure description",
+      "onRender": [Function],
+    },
+    {
+      "columnActionsMode": 0,
+      "fieldName": "instanceActionButtons",
+      "isIconOnly": true,
+      "isResizable": false,
+      "key": "instanceActionButtons",
+      "maxWidth": 124,
+      "minWidth": 124,
+      "name": "instance actions",
+      "onRender": [Function],
+    },
+  ],
+  "constrainMode": 1,
+  "items": [
+    {
+      "description": "test-description",
+      "id": "test-instance-id",
+    },
+  ],
+  "onRenderDetailsHeader": [Function],
+}
+`;
+
+exports[`TabStopsRequirementInstancesCollapsibleContent renders: StyledWithViewportComponent props 1`] = `
+{
+  "checkboxVisibility": 2,
+  "columns": [
+    {
+      "columnActionsMode": 0,
+      "fieldName": "description",
+      "isResizable": true,
+      "key": "failureDescription",
+      "minWidth": 100,
+      "name": "Failure description",
+      "onRender": [Function],
+    },
+    {
+      "columnActionsMode": 0,
+      "fieldName": "instanceActionButtons",
+      "isIconOnly": true,
+      "isResizable": false,
+      "key": "instanceActionButtons",
+      "maxWidth": 124,
+      "minWidth": 124,
+      "name": "instance actions",
+      "onRender": [Function],
+    },
+  ],
+  "constrainMode": 1,
+  "items": [
+    {
+      "description": "test-description",
+      "id": "test-instance-id",
+    },
+  ],
+  "onRenderDetailsHeader": [Function],
+}
 `;

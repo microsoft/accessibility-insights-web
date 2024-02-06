@@ -4,10 +4,7 @@ import { render } from '@testing-library/react';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
-import {
-    DetailsViewCommandBarDeps,
-    DetailsViewCommandBarProps,
-} from 'DetailsView/components/details-view-command-bar';
+import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { StartOverComponentFactory } from 'DetailsView/components/start-over-component-factory';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
@@ -37,16 +34,25 @@ import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/ha
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import { QuickAssessCommandBar } from '../../../../DetailsView/components/quick-assess-command-bar';
+import { TargetPageHiddenBar } from '../../../../DetailsView/components/target-page-hidden-bar';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
-
 jest.mock('DetailsView/components/left-nav/fluent-side-nav');
 jest.mock('../../../../DetailsView/components/quick-assess-to-assessment-dialog');
+jest.mock('../../../../DetailsView/components/quick-assess-command-bar');
+jest.mock('../../../../DetailsView/components/target-page-hidden-bar');
 describe('DetailsViewBody', () => {
-    mockReactComponents([FluentSideNav, QuickAssessToAssessmentDialog]);
+    mockReactComponents([
+        FluentSideNav,
+        QuickAssessToAssessmentDialog,
+        QuickAssessCommandBar,
+        TargetPageHiddenBar,
+    ]);
     let selectedTest: VisualizationType;
     let configFactoryStub: VisualizationConfigurationFactory;
     let clickHandlerFactoryStub: DetailsViewToggleClickHandlerFactory;
@@ -62,8 +68,7 @@ describe('DetailsViewBody', () => {
             selectedTest = -1;
             const RightPanelStub: Readonly<ReactFCWithDisplayName<RightPanelProps>> =
                 NamedFC<RightPanelProps>('test', _ => null);
-            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewCommandBarProps>> =
-                NamedFC<DetailsViewCommandBarProps>('test', _ => null);
+            const CommandBarStub = QuickAssessCommandBar;
             const LeftNavStub: Readonly<ReactFCWithDisplayName<LeftNavProps>> =
                 NamedFC<LeftNavProps>('test', _ => null);
             rightPanelConfig = {
@@ -139,6 +144,12 @@ describe('DetailsViewBody', () => {
         test('render', () => {
             const renderResult = render(<DetailsViewBody {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([
+                FluentSideNav,
+                QuickAssessToAssessmentDialog,
+                QuickAssessCommandBar,
+                TargetPageHiddenBar,
+            ]);
 
             getMockComponentClassPropsForCall(FluentSideNav).onRightPanelContentSwitch();
         });

@@ -15,33 +15,10 @@ exports[`TargetPageChangedView renders with subtitle=test subtitle content and f
     </div>
     <p>
       The target page has changed. Use the 
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton inlineStartOverButton root-109"
-        data-automation-id="inline-start-over-button"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Refresh"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__6"
-            >
-              Start over
-            </span>
-          </span>
-        </span>
-      </button>
+      <mock-inlinestartoverbutton
+        detailsviewactionmessagecreator="[object Object]"
+        selectedtest="2"
+      />
        button to scan the new target page.
     </p>
   </div>
@@ -61,33 +38,10 @@ exports[`TargetPageChangedView renders with subtitle=undefined and feature flag=
     />
     <p>
       The target page has changed. Use the 
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton inlineStartOverButton root-109"
-        data-automation-id="inline-start-over-button"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Refresh"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__3"
-            >
-              Start over
-            </span>
-          </span>
-        </span>
-      </button>
+      <mock-inlinestartoverbutton
+        detailsviewactionmessagecreator="[object Object]"
+        selectedtest="2"
+      />
        button to scan the new target page.
     </p>
   </div>
@@ -107,33 +61,10 @@ exports[`TargetPageChangedView renders with subtitle=undefined and feature flag=
     />
     <p>
       The target page has changed. Use the 
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton inlineStartOverButton root-109"
-        data-automation-id="inline-start-over-button"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Refresh"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__0"
-            >
-              Start over
-            </span>
-          </span>
-        </span>
-      </button>
+      <mock-inlinestartoverbutton
+        detailsviewactionmessagecreator="[object Object]"
+        selectedtest="2"
+      />
        button to scan the new target page.
     </p>
   </div>

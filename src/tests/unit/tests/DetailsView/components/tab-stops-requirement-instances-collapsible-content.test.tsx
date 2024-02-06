@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DetailsList, Link } from '@fluentui/react';
+import { DetailsList } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
@@ -14,6 +14,7 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
@@ -21,7 +22,7 @@ import {
 
 jest.mock('@fluentui/react');
 describe('TabStopsRequirementInstancesCollapsibleContent', () => {
-    mockReactComponents([DetailsList, Link]);
+    mockReactComponents([DetailsList]);
     let onEditButtonClickedMock: IMock<
         (requirementId: TabStopRequirementId, instanceId: string, description: string) => void
     >;
@@ -59,18 +60,21 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
     it('renders', () => {
         const renderResult = render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([DetailsList]);
     });
 
     test('renders captured instance details column', () => {
         render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
         const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         expect(columns[0].onRender(requirementResultInstanceStub)).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([DetailsList]);
     });
 
     test('renders captured instance icons column', () => {
         render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
         const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         expect(columns[1].onRender(requirementResultInstanceStub)).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([DetailsList]);
     });
 
     test('click events pass through as expected', async () => {

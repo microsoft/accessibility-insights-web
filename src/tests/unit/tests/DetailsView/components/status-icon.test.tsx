@@ -1,12 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Icon } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import * as React from 'react';
-
 import { ManualTestStatus } from '../../../../../common/types/store-data/manual-test-status';
 import { StatusIcon } from '../../../../../DetailsView/components/status-icon';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('@fluentui/react', () => ({
+    Icon: jest.fn(),
+}));
 
 describe('StatusIcon', () => {
+    mockReactComponents([Icon]);
     test('render for PASS', () => {
         const renderResult = render(<StatusIcon status={ManualTestStatus.PASS} level="test" />);
         expect(renderResult.asFragment()).toMatchSnapshot();

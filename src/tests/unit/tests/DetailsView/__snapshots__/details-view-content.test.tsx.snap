@@ -45,3 +45,515 @@ exports[`DetailsViewContent render renders normally 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`DetailsViewContent render renders normally: DetailsViewBody props 1`] = `
+{
+  "assessmentCardsViewData": {
+    "allCardsCollapsed": true,
+  },
+  "assessmentInstanceTableHandler": [typemoq mock object],
+  "assessmentStoreData": {
+    "assessmentNavState": {
+      "selectedTestSubview": null,
+      "selectedTestType": null,
+    },
+    "assessments": {},
+    "persistedTabInfo": null,
+    "resultDescription": "",
+  },
+  "automatedChecksCardsViewData": {
+    "allCardsCollapsed": false,
+  },
+  "cardsViewStoreData": undefined,
+  "clickHandlerFactory": undefined,
+  "dataTransferViewStoreData": {
+    "showQuickAssessToAssessmentConfirmDialog": false,
+  },
+  "deps": {
+    "convertAssessmentStoreDataToScanNodeResults": [Function],
+    "convertUnifiedStoreDataToScanNodeResults": [Function],
+    "defaultRulesMap": {
+      "some-rule": {
+        "a11yCriteria": null,
+        "help": "some help",
+        "id": "some-rule",
+      },
+    },
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "dropdownClickHandler": [typemoq mock object],
+    "getAssessmentInstanceTableHandler": [Function],
+    "getCardSelectionViewData": [Function],
+    "getCardViewData": [Function],
+    "getDateFromTimestamp": [Function],
+    "getDetailsRightPanelConfiguration": [Function],
+    "getDetailsSwitcherNavConfiguration": [Function],
+    "isResultHighlightUnavailable": [Function],
+    "storesHub": [typemoq mock object],
+    "visualizationConfigurationFactory": [typemoq mock object],
+  },
+  "detailsViewStoreData": {
+    "contentPath": "",
+    "contentTitle": "",
+    "currentPanel": {
+      "isContentOpen": false,
+      "isPreviewFeaturesOpen": false,
+      "isScopingOpen": false,
+      "isSettingsOpen": false,
+    },
+    "detailsViewRightContentPanel": "TestView",
+  },
+  "dropdownClickHandler": [typemoq mock object],
+  "featureFlagStoreData": {
+    "logTelemetryToConsole": false,
+  },
+  "getOverviewHeadingIntro": undefined,
+  "getOverviewHelpSectionAbout": undefined,
+  "isSideNavOpen": false,
+  "issuesTableHandler": undefined,
+  "linkDataSource": undefined,
+  "narrowModeStatus": {
+    "isCardFooterCollapsed": false,
+    "isCommandBarCollapsed": false,
+    "isHeaderAndNavCollapsed": false,
+    "isVirtualKeyboardCollapsed": false,
+  },
+  "needsReviewCardsViewData": {
+    "allCardsCollapsed": true,
+    "visualHelperEnabled": true,
+  },
+  "pathSnippetStoreData": {
+    "path": null,
+    "snippet": null,
+  },
+  "rightPanelConfiguration": {},
+  "scanIncompleteWarnings": undefined,
+  "scanMetadata": {
+    "targetAppInfo": {
+      "name": "DetailsViewContainerTest title",
+      "url": "http://detailsViewContainerTest/url/",
+    },
+    "timespan": {
+      "scanComplete": 1900-02-02T03:00:00.000Z,
+    },
+    "toolData": {
+      "applicationProperties": {
+        "name": "some app",
+      },
+    },
+  },
+  "selectedTest": -1,
+  "setSideNavOpen": [Function],
+  "switcherNavConfiguration": {
+    "getSelectedAssessmentCardSelectionStoreData": [Function],
+    "getSelectedAssessmentStoreData": [Function],
+    "getSelectedDetailsView": [Function],
+  },
+  "tabStopRequirementData": {
+    "focus-indicator": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "unknown",
+    },
+    "input-focus": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "unknown",
+    },
+    "keyboard-navigation": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "unknown",
+    },
+    "keyboard-traps": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "unknown",
+    },
+    "tab-order": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "unknown",
+    },
+  },
+  "tabStopsViewStoreData": {
+    "failureInstanceState": {
+      "actionType": "CREATE",
+      "description": null,
+      "isPanelOpen": false,
+      "selectedInstanceId": null,
+      "selectedRequirementId": null,
+    },
+  },
+  "tabStoreData": {
+    "id": 1,
+    "isChanged": false,
+    "isClosed": false,
+    "isOriginChanged": false,
+    "isPageHidden": false,
+    "title": "DetailsViewContainerTest title",
+    "url": "http://detailsViewContainerTest/url/",
+  },
+  "testViewContainerProvider": undefined,
+  "userConfigurationStoreData": {
+    "bugService": "gitHub",
+    "bugServicePropertiesMap": {
+      "gitHub": {
+        "repository": "gitHub-repository",
+      },
+    },
+    "enableHighContrast": false,
+    "enableTelemetry": true,
+    "isFirstTime": false,
+    "lastSelectedHighContrast": false,
+    "showAutoDetectedFailuresDialog": true,
+    "showSaveAssessmentDialog": true,
+  },
+  "visualizationConfigurationFactory": [typemoq mock object],
+  "visualizationScanResultData": {
+    "accessibleNames": {
+      "fullAxeResultsMap": null,
+      "fullIdToRuleResultMap": null,
+      "scanResult": null,
+    },
+    "color": {
+      "fullAxeResultsMap": null,
+      "fullIdToRuleResultMap": null,
+      "scanResult": null,
+    },
+    "headings": {
+      "fullAxeResultsMap": null,
+      "fullIdToRuleResultMap": null,
+      "scanResult": null,
+    },
+    "issues": {
+      "fullAxeResultsMap": null,
+      "fullIdToRuleResultMap": null,
+      "scanResult": null,
+    },
+    "landmarks": {
+      "fullAxeResultsMap": null,
+      "fullIdToRuleResultMap": null,
+      "scanResult": null,
+    },
+    "needsReview": {
+      "fullAxeResultsMap": null,
+      "fullIdToRuleResultMap": null,
+      "scanResult": null,
+    },
+    "tabStops": {
+      "needToCollectTabbingResults": true,
+      "requirements": {
+        "focus-indicator": {
+          "instances": [],
+          "isExpanded": false,
+          "status": "unknown",
+        },
+        "input-focus": {
+          "instances": [],
+          "isExpanded": false,
+          "status": "unknown",
+        },
+        "keyboard-navigation": {
+          "instances": [],
+          "isExpanded": false,
+          "status": "unknown",
+        },
+        "keyboard-traps": {
+          "instances": [],
+          "isExpanded": false,
+          "status": "unknown",
+        },
+        "tab-order": {
+          "instances": [],
+          "isExpanded": false,
+          "status": "unknown",
+        },
+      },
+      "tabbedElements": null,
+      "tabbingCompleted": false,
+    },
+  },
+  "visualizationStoreData": {
+    "focusedTarget": null,
+    "injectingState": "notInjecting",
+    "scanning": null,
+    "selectedAdhocDetailsView": -1,
+    "selectedDetailsViewPivot": 0,
+    "selectedFastPassDetailsView": 1,
+    "tests": {
+      "adhoc": {
+        "accessibleNames": {
+          "enabled": false,
+        },
+        "color": {
+          "enabled": false,
+        },
+        "headings": {
+          "enabled": false,
+        },
+        "issues": {
+          "enabled": false,
+        },
+        "landmarks": {
+          "enabled": false,
+        },
+        "needsReview": {
+          "enabled": false,
+        },
+        "tabStops": {
+          "enabled": false,
+        },
+      },
+      "assessments": {
+        "audioVideoOnly": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "automated-checks": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "cognitive": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "color": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "contrast": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "customWidgets": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "errors": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "headings": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "images": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "keyboardInteraction": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "landmarks": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "language": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "linksAssessment": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "liveMultimedia": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "nativeWidgets": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "page": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "parsing": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "pointerMotion": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "prerecordedMultimedia": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "repetitiveContent": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "semanticsAssessment": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "sequence": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "textLegibility": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "timedEvents": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "visibleFocusOrder": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+      },
+      "quickAssess": {
+        "automated-checks": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "contrast": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "headings": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "images": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "keyboardInteraction": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "linksAssessment": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "nativeWidgets": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "repetitiveContent": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "textLegibility": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+        "visibleFocusOrder": {
+          "enabled": false,
+          "stepStatus": {},
+        },
+      },
+    },
+  },
+}
+`;
+
+exports[`DetailsViewContent render renders normally: DetailsViewOverlay props 1`] = `
+{
+  "deps": {
+    "convertAssessmentStoreDataToScanNodeResults": [Function],
+    "convertUnifiedStoreDataToScanNodeResults": [Function],
+    "defaultRulesMap": {
+      "some-rule": {
+        "a11yCriteria": null,
+        "help": "some help",
+        "id": "some-rule",
+      },
+    },
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "dropdownClickHandler": [typemoq mock object],
+    "getAssessmentInstanceTableHandler": [Function],
+    "getCardSelectionViewData": [Function],
+    "getCardViewData": [Function],
+    "getDateFromTimestamp": [Function],
+    "getDetailsRightPanelConfiguration": [Function],
+    "getDetailsSwitcherNavConfiguration": [Function],
+    "isResultHighlightUnavailable": [Function],
+    "storesHub": [typemoq mock object],
+    "visualizationConfigurationFactory": [typemoq mock object],
+  },
+  "detailsViewStoreData": {
+    "contentPath": "",
+    "contentTitle": "",
+    "currentPanel": {
+      "isContentOpen": false,
+      "isPreviewFeaturesOpen": false,
+      "isScopingOpen": false,
+      "isSettingsOpen": false,
+    },
+    "detailsViewRightContentPanel": "TestView",
+  },
+  "featureFlagStoreData": {
+    "logTelemetryToConsole": false,
+  },
+  "inspectActionMessageCreator": undefined,
+  "previewFeatureFlagsHandler": undefined,
+  "scopingActionMessageCreator": undefined,
+  "scopingStoreData": {
+    "selectors": {
+      "exclude": [],
+      "include": [],
+    },
+  },
+  "userConfigurationStoreData": {
+    "bugService": "gitHub",
+    "bugServicePropertiesMap": {
+      "gitHub": {
+        "repository": "gitHub-repository",
+      },
+    },
+    "enableHighContrast": false,
+    "enableTelemetry": true,
+    "isFirstTime": false,
+    "lastSelectedHighContrast": false,
+    "showAutoDetectedFailuresDialog": true,
+    "showSaveAssessmentDialog": true,
+  },
+}
+`;
+
+exports[`DetailsViewContent render renders normally: InteractiveHeader props 1`] = `
+{
+  "deps": {
+    "convertAssessmentStoreDataToScanNodeResults": [Function],
+    "convertUnifiedStoreDataToScanNodeResults": [Function],
+    "defaultRulesMap": {
+      "some-rule": {
+        "a11yCriteria": null,
+        "help": "some help",
+        "id": "some-rule",
+      },
+    },
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "dropdownClickHandler": [typemoq mock object],
+    "getAssessmentInstanceTableHandler": [Function],
+    "getCardSelectionViewData": [Function],
+    "getCardViewData": [Function],
+    "getDateFromTimestamp": [Function],
+    "getDetailsRightPanelConfiguration": [Function],
+    "getDetailsSwitcherNavConfiguration": [Function],
+    "isResultHighlightUnavailable": [Function],
+    "storesHub": [typemoq mock object],
+    "visualizationConfigurationFactory": [typemoq mock object],
+  },
+  "featureFlagStoreData": {
+    "logTelemetryToConsole": false,
+  },
+  "isSideNavOpen": false,
+  "narrowModeStatus": {
+    "isCardFooterCollapsed": false,
+    "isCommandBarCollapsed": false,
+    "isHeaderAndNavCollapsed": false,
+    "isVirtualKeyboardCollapsed": false,
+  },
+  "navMenu": undefined,
+  "selectedPivot": 0,
+  "setSideNavOpen": [Function],
+  "tabClosed": false,
+}
+`;

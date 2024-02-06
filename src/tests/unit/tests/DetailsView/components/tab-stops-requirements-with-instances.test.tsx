@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 
 import { render } from '@testing-library/react';
-import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
+import {
+    CardsCollapsibleControl,
+    CollapsibleComponentCardsProps,
+} from 'common/components/cards/collapsible-component-cards';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
@@ -15,8 +18,11 @@ import {
 } from 'DetailsView/tab-stops-requirements-with-instances';
 import * as React from 'react';
 import { IMock, It, Mock } from 'typemoq';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('common/components/cards/collapsible-component-cards');
 
 describe('TabStopsRequirementsWithInstances', () => {
+    mockReactComponents([CardsCollapsibleControl]);
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
     let tabStopsRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
     let tabStopsTestViewControllerMock: IMock<TabStopsTestViewController>;
@@ -41,9 +47,7 @@ describe('TabStopsRequirementsWithInstances', () => {
             } as CollapsibleComponentCardsProps;
         };
         depsStub = {
-            collapsibleControl: (props: CollapsibleComponentCardsProps) => (
-                <CollapsibleControlStub {...props} />
-            ),
+            collapsibleControl: CardsCollapsibleControl,
             tabStopsFailedCounter: tabStopsFailedCounterMock.object,
             tabStopsTestViewController: tabStopsTestViewControllerMock.object,
             tabStopRequirementActionMessageCreator:

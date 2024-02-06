@@ -10,6 +10,8 @@ exports[`TransferToAssessmentButton getTransferToAssessmentButton 1`] = `
 />
 `;
 
+exports[`TransferToAssessmentButton getTransferToAssessmentButton: InsightsCommandButton props 1`] = `undefined`;
+
 exports[`TransferToAssessmentButton render 1`] = `
 <DocumentFragment>
   <mock-insightscommandbutton
@@ -19,4 +21,15 @@ exports[`TransferToAssessmentButton render 1`] = `
     Move to assessment
   </mock-insightscommandbutton>
 </DocumentFragment>
+`;
+
+exports[`TransferToAssessmentButton render: InsightsCommandButton props 1`] = `
+{
+  "children": "Move to assessment",
+  "data-automation-id": "transfer-to-assessment-button",
+  "iconProps": {
+    "iconName": "fabricMoveToFolder",
+  },
+  "onClick": [Function],
+}
 `;

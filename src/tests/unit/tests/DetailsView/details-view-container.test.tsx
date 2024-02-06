@@ -12,14 +12,18 @@ import {
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import { NarrowModeDetector } from '../../../../DetailsView/components/narrow-mode-detector';
+import { NoContentAvailable } from '../../../../DetailsView/components/no-content-available/no-content-available';
+import { Spinner } from '@fluentui/react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../mock-helpers/mock-module-helpers';
-
+jest.mock('../../../../DetailsView/components/no-content-available/no-content-available');
+jest.mock('@fluentui/react');
 jest.mock('../../../../DetailsView/components/narrow-mode-detector');
 describe('DetailsViewContainer', () => {
-    mockReactComponents([NarrowModeDetector]);
+    mockReactComponents([NarrowModeDetector, NoContentAvailable, Spinner]);
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
@@ -42,6 +46,11 @@ describe('DetailsViewContainer', () => {
 
             const renderResult = render(<DetailsViewContainer {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([
+                NarrowModeDetector,
+                NoContentAvailable,
+                Spinner,
+            ]);
         });
     });
 
@@ -60,6 +69,11 @@ describe('DetailsViewContainer', () => {
 
             const renderResult = render(<DetailsViewContainer {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([
+                NarrowModeDetector,
+                NoContentAvailable,
+                Spinner,
+            ]);
         });
 
         it('show NoContentAvailable when target tab is closed', () => {
@@ -82,6 +96,11 @@ describe('DetailsViewContainer', () => {
 
             const renderResult = render(<DetailsViewContainer {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([
+                NarrowModeDetector,
+                NoContentAvailable,
+                Spinner,
+            ]);
         });
 
         it('shows NoContentAvailable when target page is changed and no permissions granted', () => {
@@ -108,6 +127,11 @@ describe('DetailsViewContainer', () => {
 
             const renderResult = render(<DetailsViewContainer {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([
+                NarrowModeDetector,
+                NoContentAvailable,
+                Spinner,
+            ]);
         });
 
         it('render once; should call details view opened', () => {
@@ -141,6 +165,11 @@ describe('DetailsViewContainer', () => {
 
             const renderResult = render(<DetailsViewContainer {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([
+                NarrowModeDetector,
+                NoContentAvailable,
+                Spinner,
+            ]);
             detailsViewActionMessageCreator.verifyAll();
         });
 

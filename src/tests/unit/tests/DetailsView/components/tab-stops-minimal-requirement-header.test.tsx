@@ -11,8 +11,12 @@ import {
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { OutcomeChip } from '../../../../../reports/components/outcome-chip';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../reports/components/outcome-chip');
 
 describe('TabStopsMinimalRequirementHeader', () => {
+    mockReactComponents([OutcomeChip]);
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
 
     const requirement = {

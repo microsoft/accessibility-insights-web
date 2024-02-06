@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { render } from '@testing-library/react';
-import { HeadingLevel } from 'common/components/heading-element-for-level';
+import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import {
     TabStopsInstanceSectionPropsFactory,
     TabStopsInstanceSectionPropsFactoryProps,
@@ -16,11 +16,21 @@ import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { TabStopsRequirementsWithInstances } from '../../../../../DetailsView/tab-stops-requirements-with-instances';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { ResultSectionTitle } from '../../../../../common/components/cards/result-section-title';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('common/components/heading-element-for-level');
+jest.mock('../../../../../common/components/cards/result-section-title');
 
 jest.mock('../../../../../DetailsView/tab-stops-requirements-with-instances');
 describe('TabStopsFailedInstanceSection', () => {
-    mockReactComponents([TabStopsRequirementsWithInstances]);
+    mockReactComponents([
+        TabStopsRequirementsWithInstances,
+        HeadingElementForLevel,
+        ResultSectionTitle,
+    ]);
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
     let tabStopsInstanceSectionPropsFactoryMock: IMock<TabStopsInstanceSectionPropsFactory>;
     let props: TabStopsFailedInstanceSectionProps;
@@ -78,6 +88,7 @@ describe('TabStopsFailedInstanceSection', () => {
         const renderResult = render(<TabStopsFailedInstanceSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([TabStopsRequirementsWithInstances]);
         tabStopsFailedCounterMock.verifyAll();
         tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });
@@ -101,6 +112,7 @@ describe('TabStopsFailedInstanceSection', () => {
         const renderResult = render(<TabStopsFailedInstanceSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([TabStopsRequirementsWithInstances]);
         tabStopsFailedCounterMock.verifyAll();
         tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });
@@ -120,6 +132,7 @@ describe('TabStopsFailedInstanceSection', () => {
         const renderResult = render(<TabStopsFailedInstanceSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([TabStopsRequirementsWithInstances]);
         tabStopsFailedCounterMock.verifyAll();
         tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });

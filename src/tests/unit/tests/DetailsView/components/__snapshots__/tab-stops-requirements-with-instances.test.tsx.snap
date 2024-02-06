@@ -2,7 +2,16 @@
 
 exports[`TabStopsRequirementsWithInstances renders component instance count === 0 1`] = `
 <DocumentFragment>
-  <div />
+  <div>
+    <mock-cardscollapsiblecontrol
+      headinglevel="3"
+      id="keyboard-navigation00 Failed test requirement name 1 test requirement description 1"
+    />
+    <mock-cardscollapsiblecontrol
+      headinglevel="3"
+      id="keyboard-traps10 Failed test requirement name 2 test requirement description 2"
+    />
+  </div>
 </DocumentFragment>
 `;
 
@@ -14,6 +23,15 @@ exports[`TabStopsRequirementsWithInstances renders empty div when instance count
 
 exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] = `
 <DocumentFragment>
-  <div />
+  <div>
+    <mock-cardscollapsiblecontrol
+      headinglevel="3"
+      id="keyboard-navigation02 Failed test requirement name 1 test requirement description 1"
+    />
+    <mock-cardscollapsiblecontrol
+      headinglevel="3"
+      id="keyboard-traps12 Failed test requirement name 2 test requirement description 2"
+    />
+  </div>
 </DocumentFragment>
 `;
