@@ -11,7 +11,7 @@ import {
 } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import * as React from 'react';
-import { It, IMock, Mock, Times } from 'typemoq';
+import {  IMock, Mock, Times } from 'typemoq';
 import {
     mockReactComponents,
     getMockComponentClassPropsForCall,
