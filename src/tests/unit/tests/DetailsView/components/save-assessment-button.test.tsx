@@ -77,20 +77,15 @@ describe('SaveAssessmentButton', () => {
         let wrapper: RenderResult;
         describe('interaction', () => {
             beforeEach(() => {
-                useOriginalReactElements('@fluentui/react', ['Dialog', 'DialogFooter']);
+                useOriginalReactElements('@fluentui/react', ['Dialog', 'DialogFooter', 'Stack',
+                    'Checkbox',
+                    'PrimaryButton',]);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
                 fireEvent.click(wrapper.getByRole('link'));
             });
 
             it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
-                useOriginalReactElements('@fluentui/react', [
-                    'Dialog',
-                    'DialogFooter',
-                    'Stack',
-                    'Checkbox',
-                    'PrimaryButton',
-                ]);
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
 
                 await userEvent.click(
@@ -105,11 +100,11 @@ describe('SaveAssessmentButton', () => {
                 // The "Don't show again" checkbox logic is inverted
                 const checkbox = wrapper.getByRole('checkbox');
                 // Check "Don't show again" = true
-                // checkbox.simulate('change', null, true);
+              
                 fireEvent.click(checkbox);
                 // showSaveAssessmentDialog = false ("Enable the dialog" = false)
                 userConfigMessageCreatorMock.verify(
-                    x => x.setSaveAssessmentDialogState(It.isAny()),
+                    x => x.setSaveAssessmentDialogState(false),
                     Times.atLeastOnce(),
                 );
             });
