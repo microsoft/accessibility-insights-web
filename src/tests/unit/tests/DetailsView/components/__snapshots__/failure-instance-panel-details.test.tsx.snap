@@ -1,43 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FailureInstancePanelDetailsTest renders 1`] = `
-<div>
-  <StyledTextFieldBase
-    label="CSS Selector"
-    multiline={true}
-    onChange={[Function]}
-    placeholder="CSS Selector"
-    resizable={false}
-    rows={4}
-    styles={[Function]}
-    value="Given Path"
-  />
-  <div
-    className="failureInstanceSelectorNote"
-  >
-    Note: If the CSS selector maps to multiple snippets, the first will be selected
-  </div>
+<DocumentFragment>
   <div>
-    <CustomizedDefaultButton
-      disabled={false}
-      onClick={[Function]}
-      text="Validate CSS selector"
+    <mock-styledtextfieldbase
+      label="CSS Selector"
+      multiline="true"
+      placeholder="CSS Selector"
+      resizable="false"
+      rows="4"
+      value="Given Path"
     />
-  </div>
-  <div
-    aria-atomic="true"
-    aria-live="polite"
-  >
     <div
-      className="failureInstanceSnippetTitle"
+      class="failureInstanceSelectorNote"
     >
-      Code Snippet
+      Note: If the CSS selector maps to multiple snippets, the first will be selected
+    </div>
+    <div>
+      <mock-customizeddefaultbutton
+        disabled="false"
+        text="Validate CSS selector"
+      />
     </div>
     <div
-      className="failureInstanceSnippetFilledBody"
+      aria-atomic="true"
+      aria-live="polite"
     >
-      Snippet for Given Path
+      <div
+        class="failureInstanceSnippetTitle"
+      >
+        Code Snippet
+      </div>
+      <div
+        class="failureInstanceSnippetFilledBody"
+      >
+        Snippet for Given Path
+      </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

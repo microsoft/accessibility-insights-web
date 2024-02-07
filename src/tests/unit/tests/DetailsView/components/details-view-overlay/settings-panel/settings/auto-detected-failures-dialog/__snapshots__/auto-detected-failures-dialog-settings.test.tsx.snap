@@ -1,21 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AutoDetectedFailuresDialogSettings renders with enabled = false 1`] = `
-<GenericToggle
-  description="Show the tab stops automatically detected failures dialog."
-  enabled={false}
-  id="enable-auto-detected-failures-dialog"
-  name="Enable automatically detected failures dialog"
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <mock-generictoggle
+    description="Show the tab stops automatically detected failures dialog."
+    enabled="false"
+    id="enable-auto-detected-failures-dialog"
+    name="Enable automatically detected failures dialog"
+  />
+</DocumentFragment>
 `;
 
 exports[`AutoDetectedFailuresDialogSettings renders with enabled = true 1`] = `
-<GenericToggle
-  description="Show the tab stops automatically detected failures dialog."
-  enabled={true}
-  id="enable-auto-detected-failures-dialog"
-  name="Enable automatically detected failures dialog"
-  onClick={[Function]}
-/>
+<DocumentFragment>
+  <mock-generictoggle
+    description="Show the tab stops automatically detected failures dialog."
+    enabled="true"
+    id="enable-auto-detected-failures-dialog"
+    name="Enable automatically detected failures dialog"
+  />
+</DocumentFragment>
 `;

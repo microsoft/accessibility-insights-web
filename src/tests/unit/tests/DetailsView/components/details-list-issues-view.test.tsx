@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
@@ -15,12 +16,20 @@ import {
     DetailsListIssuesViewDeps,
     DetailsListIssuesViewProps,
 } from 'DetailsView/components/details-list-issues-view';
-import { shallow } from 'enzyme';
+
+import { IssuesTable } from 'DetailsView/components/issues-table';
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
+jest.mock('DetailsView/components/issues-table');
+
 describe('DetailsListIssuesView', () => {
+    mockReactComponents([IssuesTable]);
     let props: DetailsListIssuesViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let displayableDataStub: DisplayableVisualizationTypeData;
@@ -49,6 +58,7 @@ describe('DetailsListIssuesView', () => {
         props = {
             deps: {
                 detailsViewActionMessageCreator,
+                getProvider: () => {},
             } as DetailsListIssuesViewDeps,
             configuration: {
                 getStoreData: getStoreDataMock.object,
@@ -73,9 +83,10 @@ describe('DetailsListIssuesView', () => {
     it('should return issues table with scanning to false', () => {
         props.visualizationStoreData.scanning = null;
 
-        const actual = shallow(<DetailsListIssuesView {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const actual = render(<DetailsListIssuesView {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([IssuesTable]);
         verifyAll();
+        expect(actual.asFragment()).toMatchSnapshot();
     });
 
     function verifyAll(): void {

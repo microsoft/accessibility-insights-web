@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
@@ -17,9 +17,30 @@ import {
     OverviewContainer,
     OverviewContainerDeps,
 } from '../../../../../../DetailsView/components/overview-content/overview-content-container';
-import { OverviewHelpSectionDeps } from '../../../../../../DetailsView/components/overview-content/overview-help-section';
+import { OverviewHeading } from '../../../../../../DetailsView/components/overview-content/overview-heading';
+import {
+    OverviewHelpSection,
+    OverviewHelpSectionDeps,
+} from '../../../../../../DetailsView/components/overview-content/overview-help-section';
+import { TargetChangeDialog } from '../../../../../../DetailsView/components/target-change-dialog';
+import { AssessmentReportSummary } from '../../../../../../reports/components/assessment-report-summary';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
+
+jest.mock('../../../../../../DetailsView/components/overview-content/overview-help-section');
+jest.mock('../../../../../../reports/components/assessment-report-summary');
+jest.mock('../../../../../../DetailsView/components/overview-content/overview-heading');
+jest.mock('../../../../../../DetailsView/components/target-change-dialog');
 
 describe('OverviewContainer', () => {
+    mockReactComponents([
+        OverviewHelpSection,
+        AssessmentReportSummary,
+        OverviewHeading,
+        TargetChangeDialog,
+    ]);
     const urlParserMock = {} as UrlParser;
 
     const openExternalLink = jest.fn();
@@ -119,10 +140,15 @@ describe('OverviewContainer', () => {
             getOverviewHelpSectionAbout={getOverviewHelpSectionAboutMock.object}
         />
     );
-    const wrapper = shallow(component);
 
     test('component is defined and matches snapshot', () => {
+        const renderResult = render(component);
         expect(component).toBeDefined();
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([
+            OverviewHelpSection,
+            OverviewHeading,
+            TargetChangeDialog,
+        ]);
     });
 });

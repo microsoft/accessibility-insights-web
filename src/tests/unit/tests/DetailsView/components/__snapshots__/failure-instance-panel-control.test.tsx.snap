@@ -1,170 +1,295 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FailureInstancePanelControlTest closeFailureInstancePanel: CustomizedActionButton props 1`] = `
+{
+  "ariaDescription": "Open add a failure instance panel",
+  "ariaLabel": "Add a failure instance",
+  "children": "Add a failure instance",
+  "iconProps": {
+    "iconName": "Add",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`FailureInstancePanelControlTest closeFailureInstancePanel: FlaggedComponent props 1`] = `
+{
+  "enableJSXElement": <FailureInstancePanelDetails
+    onSelectorChange={[Function]}
+    onValidateSelector={[Function]}
+    path={null}
+    snippet={null}
+  />,
+  "featureFlag": "manualInstanceDetails",
+  "featureFlagStoreData": {},
+}
+`;
+
+exports[`FailureInstancePanelControlTest componentDidUpdate reassigns state: CustomizedActionButton props 1`] = `
+{
+  "ariaDescription": "Open add a failure instance panel",
+  "ariaLabel": "Add a failure instance",
+  "children": "Add a failure instance",
+  "iconProps": {
+    "iconName": "Add",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`FailureInstancePanelControlTest componentDidUpdate reassigns state: FlaggedComponent props 1`] = `undefined`;
+
+exports[`FailureInstancePanelControlTest onAddFailureInstance: CustomizedActionButton props 1`] = `
+{
+  "ariaDescription": "Open add a failure instance panel",
+  "ariaLabel": "Add a failure instance",
+  "children": "Add a failure instance",
+  "iconProps": {
+    "iconName": "Add",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`FailureInstancePanelControlTest onAddFailureInstance: FlaggedComponent props 1`] = `undefined`;
+
+exports[`FailureInstancePanelControlTest onFailureDescriptionChange: CustomizedActionButton props 1`] = `
+{
+  "ariaDescription": "Open add a failure instance panel",
+  "ariaLabel": "Add a failure instance",
+  "children": "Add a failure instance",
+  "iconProps": {
+    "iconName": "Add",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`FailureInstancePanelControlTest onFailureDescriptionChange: FlaggedComponent props 1`] = `undefined`;
+
+exports[`FailureInstancePanelControlTest onSaveEditedFailureInstance: CustomizedActionButton props 1`] = `undefined`;
+
+exports[`FailureInstancePanelControlTest onSaveEditedFailureInstance: FlaggedComponent props 1`] = `undefined`;
+
+exports[`FailureInstancePanelControlTest onSelectorChange : CustomizedActionButton props 1`] = `
+{
+  "ariaDescription": "Open add a failure instance panel",
+  "ariaLabel": "Add a failure instance",
+  "children": "Add a failure instance",
+  "iconProps": {
+    "iconName": "Add",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`FailureInstancePanelControlTest onSelectorChange : FlaggedComponent props 1`] = `undefined`;
+
+exports[`FailureInstancePanelControlTest onValidateSelector : CustomizedActionButton props 1`] = `
+{
+  "ariaDescription": "Open add a failure instance panel",
+  "ariaLabel": "Add a failure instance",
+  "children": "Add a failure instance",
+  "iconProps": {
+    "iconName": "Add",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`FailureInstancePanelControlTest onValidateSelector : FlaggedComponent props 1`] = `undefined`;
+
+exports[`FailureInstancePanelControlTest openFailureInstancePanel: CustomizedActionButton props 1`] = `
+{
+  "ariaDescription": "Open add a failure instance panel",
+  "ariaLabel": "Add a failure instance",
+  "children": "Add a failure instance",
+  "iconProps": {
+    "iconName": "Add",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`FailureInstancePanelControlTest openFailureInstancePanel: FlaggedComponent props 1`] = `undefined`;
+
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: create without instance 1`] = `
-<React.Fragment>
-  <CustomizedActionButton
-    ariaDescription="Open add a failure instance panel"
-    ariaLabel="Add a failure instance"
-    iconProps={
-      {
-        "iconName": "Add",
-      }
-    }
-    onClick={[Function]}
+<DocumentFragment>
+  <mock-customizedactionbutton
+    ariadescription="Open add a failure instance panel"
+    arialabel="Add a failure instance"
+    iconprops="[object Object]"
   >
     Add a failure instance
-  </CustomizedActionButton>
-  <GenericPanel
-    className="failureInstancePanel"
-    closeButtonAriaLabel="Close failure instance panel"
-    hasCloseButton={true}
-    headerText="Add a failure instance"
-    isOpen={false}
-    onDismiss={[Function]}
+  </mock-customizedactionbutton>
+  <mock-genericpanel
+    classname="failureInstancePanel"
+    closebuttonarialabel="Close failure instance panel"
+    hasclosebutton="true"
+    headertext="Add a failure instance"
+    isopen="false"
   >
-    <FlaggedComponent
-      enableJSXElement={
-        <FailureInstancePanelDetails
-          onSelectorChange={[Function]}
-          onValidateSelector={[Function]}
-          path={null}
-          snippet={null}
-        />
-      }
-      featureFlag="manualInstanceDetails"
-      featureFlagStoreData={{}}
+    <mock-flaggedcomponent
+      enablejsxelement="[object Object]"
+      featureflag="manualInstanceDetails"
+      featureflagstoredata="[object Object]"
     />
-    <StyledTextFieldBase
-      className="observedFailureTextfield"
+    <mock-styledtextfieldbase
+      classname="observedFailureTextfield"
       label="Comment"
-      multiline={true}
-      onChange={[Function]}
+      multiline="true"
       placeholder="Comment"
-      resizable={false}
-      rows={8}
-      styles={[Function]}
+      resizable="false"
+      rows="8"
       value=""
     />
     <div>
-      <ActionAndCancelButtonsComponent
-        cancelButtonOnClick={[Function]}
-        isHidden={false}
-        primaryButtonDisabled={true}
-        primaryButtonOnClick={[Function]}
-        primaryButtonText="Add failed instance"
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="true"
+        primarybuttontext="Add failed instance"
       />
     </div>
-  </GenericPanel>
-</React.Fragment>
+  </mock-genericpanel>
+</DocumentFragment>
+`;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: create without instance: CustomizedActionButton props 1`] = `
+{
+  "ariaDescription": "Open add a failure instance panel",
+  "ariaLabel": "Add a failure instance",
+  "children": "Add a failure instance",
+  "iconProps": {
+    "iconName": "Add",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: create without instance: FlaggedComponent props 1`] = `
+{
+  "enableJSXElement": <FailureInstancePanelDetails
+    onSelectorChange={[Function]}
+    onValidateSelector={[Function]}
+    path={null}
+    snippet={null}
+  />,
+  "featureFlag": "manualInstanceDetails",
+  "featureFlagStoreData": {},
+}
 `;
 
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance 1`] = `
-<React.Fragment>
-  <StyledLinkBase
-    className="editButton"
-    onClick={[Function]}
+<DocumentFragment>
+  <mock-styledlinkbase
+    classname="editButton"
+  />
+  <mock-genericpanel
+    classname="failureInstancePanel"
+    closebuttonarialabel="Close failure instance panel"
+    hasclosebutton="true"
+    headertext="Edit failure instance"
+    isopen="false"
   >
-    <Memo(Icon)
-      ariaLabel="edit instance"
-      iconName="edit"
+    <mock-flaggedcomponent
+      enablejsxelement="[object Object]"
+      featureflag="manualInstanceDetails"
+      featureflagstoredata="[object Object]"
     />
-  </StyledLinkBase>
-  <GenericPanel
-    className="failureInstancePanel"
-    closeButtonAriaLabel="Close failure instance panel"
-    hasCloseButton={true}
-    headerText="Edit failure instance"
-    isOpen={false}
-    onDismiss={[Function]}
-  >
-    <FlaggedComponent
-      enableJSXElement={
-        <FailureInstancePanelDetails
-          onSelectorChange={[Function]}
-          onValidateSelector={[Function]}
-          path={null}
-          snippet={null}
-        />
-      }
-      featureFlag="manualInstanceDetails"
-      featureFlagStoreData={{}}
-    />
-    <StyledTextFieldBase
-      className="observedFailureTextfield"
+    <mock-styledtextfieldbase
+      classname="observedFailureTextfield"
       label="Comment"
-      multiline={true}
-      onChange={[Function]}
+      multiline="true"
       placeholder="Comment"
-      resizable={false}
-      rows={8}
-      styles={[Function]}
+      resizable="false"
+      rows="8"
       value=""
     />
     <div>
-      <ActionAndCancelButtonsComponent
-        cancelButtonOnClick={[Function]}
-        isHidden={false}
-        primaryButtonDisabled={true}
-        primaryButtonOnClick={[Function]}
-        primaryButtonText="Save"
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="true"
+        primarybuttontext="Save"
       />
     </div>
-  </GenericPanel>
-</React.Fragment>
+  </mock-genericpanel>
+</DocumentFragment>
+`;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance: CustomizedActionButton props 1`] = `undefined`;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance: FlaggedComponent props 1`] = `
+{
+  "enableJSXElement": <FailureInstancePanelDetails
+    onSelectorChange={[Function]}
+    onValidateSelector={[Function]}
+    path={null}
+    snippet={null}
+  />,
+  "featureFlag": "manualInstanceDetails",
+  "featureFlagStoreData": {},
+}
 `;
 
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: partial original instance 1`] = `
-<React.Fragment>
-  <CustomizedActionButton
-    ariaDescription="Open add a failure instance panel"
-    ariaLabel="Add a failure instance"
-    iconProps={
-      {
-        "iconName": "Add",
-      }
-    }
-    onClick={[Function]}
+<DocumentFragment>
+  <mock-customizedactionbutton
+    ariadescription="Open add a failure instance panel"
+    arialabel="Add a failure instance"
+    iconprops="[object Object]"
   >
     Add a failure instance
-  </CustomizedActionButton>
-  <GenericPanel
-    className="failureInstancePanel"
-    closeButtonAriaLabel="Close failure instance panel"
-    hasCloseButton={true}
-    headerText="Add a failure instance"
-    isOpen={false}
-    onDismiss={[Function]}
+  </mock-customizedactionbutton>
+  <mock-genericpanel
+    classname="failureInstancePanel"
+    closebuttonarialabel="Close failure instance panel"
+    hasclosebutton="true"
+    headertext="Add a failure instance"
+    isopen="false"
   >
-    <FlaggedComponent
-      enableJSXElement={
-        <FailureInstancePanelDetails
-          onSelectorChange={[Function]}
-          onValidateSelector={[Function]}
-        />
-      }
-      featureFlag="manualInstanceDetails"
-      featureFlagStoreData={null}
+    <mock-flaggedcomponent
+      enablejsxelement="[object Object]"
+      featureflag="manualInstanceDetails"
     />
-    <StyledTextFieldBase
-      className="observedFailureTextfield"
+    <mock-styledtextfieldbase
+      classname="observedFailureTextfield"
       label="Comment"
-      multiline={true}
-      onChange={[Function]}
+      multiline="true"
       placeholder="Comment"
-      resizable={false}
-      rows={8}
-      styles={[Function]}
+      resizable="false"
+      rows="8"
       value="original text"
     />
     <div>
-      <ActionAndCancelButtonsComponent
-        cancelButtonOnClick={[Function]}
-        isHidden={false}
-        primaryButtonDisabled={false}
-        primaryButtonOnClick={[Function]}
-        primaryButtonText="Add failed instance"
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="false"
+        primarybuttontext="Add failed instance"
       />
     </div>
-  </GenericPanel>
-</React.Fragment>
+  </mock-genericpanel>
+</DocumentFragment>
+`;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: partial original instance: CustomizedActionButton props 1`] = `
+{
+  "ariaDescription": "Open add a failure instance panel",
+  "ariaLabel": "Add a failure instance",
+  "children": "Add a failure instance",
+  "iconProps": {
+    "iconName": "Add",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: partial original instance: FlaggedComponent props 1`] = `
+{
+  "enableJSXElement": <FailureInstancePanelDetails
+    onSelectorChange={[Function]}
+    onValidateSelector={[Function]}
+  />,
+  "featureFlag": "manualInstanceDetails",
+  "featureFlagStoreData": null,
+}
 `;

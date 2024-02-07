@@ -1,49 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeadingElementForLevel should render a h1 1`] = `
-<h1
-  className="headingElementForLevel a class"
->
-  A Heading
-</h1>
+<DocumentFragment>
+  <h1
+    class="headingElementForLevel a class"
+  >
+    A Heading
+  </h1>
+</DocumentFragment>
 `;
 
 exports[`HeadingElementForLevel should render a h2 1`] = `
-<h2
-  className="headingElementForLevel a class"
->
-  A Heading
-</h2>
+<DocumentFragment>
+  <h2
+    class="headingElementForLevel a class"
+  >
+    A Heading
+  </h2>
+</DocumentFragment>
 `;
 
 exports[`HeadingElementForLevel should render a h3 1`] = `
-<h3
-  className="headingElementForLevel a class"
->
-  A Heading
-</h3>
+<DocumentFragment>
+  <h3
+    class="headingElementForLevel a class"
+  >
+    A Heading
+  </h3>
+</DocumentFragment>
 `;
 
 exports[`HeadingElementForLevel should render a h4 1`] = `
-<h4
-  className="headingElementForLevel a class"
->
-  A Heading
-</h4>
+<DocumentFragment>
+  <h4
+    class="headingElementForLevel a class"
+  >
+    A Heading
+  </h4>
+</DocumentFragment>
 `;
 
 exports[`HeadingElementForLevel should render a h5 1`] = `
-<h5
-  className="headingElementForLevel a class"
->
-  A Heading
-</h5>
+<DocumentFragment>
+  <h5
+    class="headingElementForLevel a class"
+  >
+    A Heading
+  </h5>
+</DocumentFragment>
 `;
 
 exports[`HeadingElementForLevel should render a h6 1`] = `
-<h6
-  className="headingElementForLevel a class"
->
-  A Heading
-</h6>
+<DocumentFragment>
+  <h6
+    class="headingElementForLevel a class"
+  >
+    A Heading
+  </h6>
+</DocumentFragment>
 `;

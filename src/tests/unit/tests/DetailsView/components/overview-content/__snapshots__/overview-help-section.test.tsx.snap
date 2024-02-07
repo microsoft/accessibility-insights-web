@@ -1,20 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OverviewHelpSection help text is shown properly 1`] = `
-<section
-  className="overviewHelpContainer"
->
-  <h3
-    className="helpHeading"
+<DocumentFragment>
+  <section
+    class="overviewHelpContainer"
   >
-    Help
-  </h3>
-  <HelpLinks
-    deps={{}}
-    linkInformation={[]}
-  />
-  <div>
-    ABOUT OVERVIEW
-  </div>
-</section>
+    <h3
+      class="helpHeading"
+    >
+      Help
+    </h3>
+    <mock-helplinks
+      deps="[object Object]"
+      linkinformation=""
+    />
+    <div>
+      ABOUT OVERVIEW
+    </div>
+  </section>
+</DocumentFragment>
 `;

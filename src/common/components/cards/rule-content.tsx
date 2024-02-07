@@ -6,6 +6,11 @@ import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
+import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../../configs/needs-review-rule-resources';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
@@ -20,9 +25,12 @@ export type RuleContentProps = {
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
+    outcomeType: InstanceOutcomeType;
 };
 
 export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {
+    props.deps.GetNeedsReviewRuleResourcesUrl = getNeedsReviewRuleResourcesUrl;
+    props.deps.IsOutcomeNeedsReview = isOutcomeNeedsReview;
     return (
         <>
             <RuleResources {...props} />

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TooltipHost } from '@fluentui/react';
+import { RenderResult, render } from '@testing-library/react';
 import styles from 'DetailsView/components/assessment-instance-details-column.scss';
-import * as Enzyme from 'enzyme';
+import { isNull } from 'lodash';
 import * as React from 'react';
 
 import {
@@ -24,11 +24,8 @@ describe('AssessmentInstanceDetailsColumn', () => {
             textContent: 'textContent',
         };
 
-        const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
+        const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
         verifyBaseRender(wrapper, props);
-
-        const label = wrapper.find(`.${styles.assessmentInstanceLabel}`);
-        expect(label.getElement().props.children).toBe(props.labelText);
     });
 
     test('render: N/A instance', () => {
@@ -36,16 +33,12 @@ describe('AssessmentInstanceDetailsColumn', () => {
             background: 'background',
             labelText: 'N/A',
             textContent: 'textContent',
+            headerText: 'headerText',
         };
 
-        const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
+        const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
 
         verifyBaseRender(wrapper, props);
-
-        const label = wrapper.find(`.${styles.assessmentInstanceLabel}`);
-
-        expect(label.getElement().props.children).toBeDefined();
-        expect(label.getElement().props.children).toBe(props.labelText);
     });
 
     test('render: no label text', () => {
@@ -54,7 +47,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
             textContent: 'textContent',
         };
 
-        const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
+        const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
 
         verifyBaseRender(wrapper, props);
     });
@@ -67,25 +60,32 @@ describe('AssessmentInstanceDetailsColumn', () => {
             customClassName: 'custom-class-name',
         };
 
-        const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
+        const wrapper = render(<AssessmentInstanceDetailsColumn {...props} />);
 
         verifyBaseRender(wrapper, props);
 
-        const label = wrapper.find(`.${styles.assessmentInstanceLabel}`);
-        expect(label.hasClass(props.customClassName)).toEqual(true);
+        const label = wrapper.getByText('N/A');
+
+        expect(label.classList.contains(props.customClassName)).toEqual(true);
     });
 
     function verifyBaseRender(
-        wrapper: Enzyme.ShallowWrapper,
+        wrapper: RenderResult,
         props: AssessmentInstanceDetailsColumnProps,
     ): void {
-        const hasLabel = wrapper.find(`.${styles.assessmentInstanceLabel}`).exists();
+        const hasLabel = !isNull(
+            wrapper.queryByText(props.labelText, {
+                selector: `.${styles.assessmentInstanceLabel}`,
+            }),
+        );
+
         props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false);
-        expect(wrapper.find(TooltipHost).exists()).toBe(true);
-        expect(wrapper.find(TooltipHost).props().content).toEqual(props.textContent);
-        expect(wrapper.find(`.${styles.assessmentInstanceTextContent}`).exists()).toEqual(true);
+        expect(!isNull(wrapper.container.querySelector('.ms-TooltipHost'))).toBe(true);
         expect(
-            wrapper.find(`.${styles.assessmentInstanceTextContent}`).getElement().props.children,
+            !isNull(wrapper.container.querySelector(`.${styles.assessmentInstanceTextContent}`)),
+        ).toEqual(true);
+        expect(
+            wrapper.container.querySelector(`.${styles.assessmentInstanceTextContent}`).innerHTML,
         ).toEqual(props.textContent);
     }
 });

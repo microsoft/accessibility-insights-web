@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { DisplayableFeatureFlag } from 'common/types/store-data/displayable-feature-flag';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
@@ -7,11 +8,19 @@ import {
     PreviewFeaturesContainerProps,
 } from 'DetailsView/components/details-view-overlay/preview-features-panel/preview-features-container';
 import { PreviewFeatureFlagsHandler } from 'DetailsView/handlers/preview-feature-flags-handler';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
+import { NoDisplayableFeatureFlagMessage } from '../../../../../../../DetailsView/components/no-displayable-preview-features-message';
+import { PreviewFeaturesToggleList } from '../../../../../../../DetailsView/components/preview-features-toggle-list';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../../DetailsView/components/preview-features-toggle-list');
+jest.mock('../../../../../../../DetailsView/components/no-displayable-preview-features-message');
 describe('PreviewFeaturesContainerTest', () => {
+    mockReactComponents([PreviewFeaturesToggleList, NoDisplayableFeatureFlagMessage]);
     let displayableFeatureFlagsStub: DisplayableFeatureFlag[] = [
         {
             id: 'test-id-1',
@@ -45,9 +54,10 @@ describe('PreviewFeaturesContainerTest', () => {
                 .setup(handler => handler.getDisplayableFeatureFlags(featureFlagStoreDataStub))
                 .returns(() => displayableFeatureFlagsStub);
 
-            const testSubject = shallow(<PreviewFeaturesContainer {...props} />);
+            const renderResult = render(<PreviewFeaturesContainer {...props} />);
 
-            expect(testSubject.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([PreviewFeaturesToggleList]);
         });
 
         it('special message when there is no preview features available', () => {
@@ -56,9 +66,9 @@ describe('PreviewFeaturesContainerTest', () => {
             previewFeatureFlagsHandlerMock
                 .setup(handler => handler.getDisplayableFeatureFlags(featureFlagStoreDataStub))
                 .returns(() => displayableFeatureFlagsStub);
-            const testSubject = shallow(<PreviewFeaturesContainer {...props} />);
+            const renderResult = render(<PreviewFeaturesContainer {...props} />);
 
-            expect(testSubject.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 });
