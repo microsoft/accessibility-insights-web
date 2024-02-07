@@ -55,7 +55,7 @@ describe('StartOverDropdownTest', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
 
         const mockProps = getMockComponentClassPropsForCall(ContextualMenu);
-        expect(mockProps.target).not.toBeNull();
+        expect(mockProps.target).toBe('test event');
     });
 
     const menuButtonOptions = [true, false];
@@ -141,7 +141,7 @@ describe('StartOverDropdownTest', () => {
             currentTarget: 'test target',
         });
         getMockComponentClassPropsForCall(ContextualMenu).onDismiss();
-        const mockContextualmenu = renderResult.container.querySelector('mock-contextual-menu');
+        const mockContextualmenu = renderResult.container.querySelector('mock-contextualmenu');
         expect(mockContextualmenu).toBeNull();
     });
 });

@@ -90,17 +90,11 @@ describe('SaveAssessmentButton', () => {
             });
 
             it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
-                wrapper = render(<SaveAssessmentButton {...propsStub} />);
-
-                await userEvent.click(
-                    wrapper.container.querySelector('mock-customizedprimarybutton'),
-                );
+                await userEvent.click(wrapper.getByRole('button'));
                 expect(getMockComponentClassPropsForCall(Dialog, 3).hidden).toEqual(true);
             });
 
             it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
-                wrapper = render(<SaveAssessmentButton {...propsStub} />);
-
                 // The "Don't show again" checkbox logic is inverted
                 const checkbox = wrapper.getByRole('checkbox');
                 // Check "Don't show again" = true
@@ -114,8 +108,6 @@ describe('SaveAssessmentButton', () => {
             });
 
             it('should call saveAssessment on click', async () => {
-                wrapper = render(<SaveAssessmentButton {...propsStub} />);
-
                 assessmentActionMessageCreatorMock.verify(
                     x => x.saveAssessment(It.isAny()),
                     Times.atLeastOnce(),

@@ -69,7 +69,7 @@ class StaticContentDetailsViewPropsBuilder extends BaseDataBuilder<StaticContent
     }
 
     public setupOnToggleClickMock(event: NativeEventStub): StaticContentDetailsViewPropsBuilder {
-        this.onToggleClickMock.setup(click => click(It.isAny())).verifiable(Times.once());
+        this.onToggleClickMock.setup(click => click(It.isValue(event))).verifiable(Times.once());
 
         return this;
     }
