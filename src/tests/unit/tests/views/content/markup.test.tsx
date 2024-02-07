@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT Liceimport { userEvent } from '@testing-library/user-event';
+// Licensed under the MIT License
 
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
