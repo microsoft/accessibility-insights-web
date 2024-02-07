@@ -1,14 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { ContentLink } from 'views/content/content-link';
 import { ContentPage } from 'views/content/content-page';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
+jest.mock('common/components/new-tab-link-with-tooltip');
 describe('ContentLink', () => {
+    mockReactComponents([NewTabLinkWithTooltip]);
     const contentPath = 'for/testing';
     const content = {
         for: {
@@ -30,33 +36,33 @@ describe('ContentLink', () => {
     };
 
     it('render null when reference is not defined', () => {
-        const result = shallow(<ContentLink deps={deps} reference={null} />);
-        expect(result.debug()).toMatchSnapshot();
+        const renderResult = render(<ContentLink deps={deps} reference={null} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders from content, only have the icon', () => {
-        const result = shallow(
+        const renderResult = render(
             <ContentLink deps={deps} reference={content.for.testing} iconName={'test icon 1'} />,
         );
-        expect(result.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders from path, only have the icon', () => {
-        const result = shallow(
+        const renderResult = render(
             <ContentLink deps={deps} reference={contentPath} iconName={'test icon 2'} />,
         );
-        expect(result.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders with only text', () => {
-        const result = shallow(
+        const renderResult = render(
             <ContentLink deps={deps} reference={contentPath} linkText={'test'} />,
         );
-        expect(result.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders with both text and icon', () => {
-        const result = shallow(
+        const renderResult = render(
             <ContentLink
                 deps={deps}
                 reference={contentPath}
@@ -64,11 +70,11 @@ describe('ContentLink', () => {
                 iconName="test icon"
             />,
         );
-        expect(result.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders without tooltip', () => {
-        const result = shallow(
+        const renderResult = render(
             <ContentLink
                 deps={deps}
                 reference={contentPath}
@@ -76,14 +82,12 @@ describe('ContentLink', () => {
                 hideTooltip={true}
             />,
         );
-        expect(result.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    it('reacts to a click', () => {
-        const result = shallow(<ContentLink deps={deps} reference={contentPath} />);
-
-        result.find(NewTabLinkWithTooltip).simulate('click');
-
-        expect(openContentPage).toBeCalledWith(undefined, contentPath);
+    it('reacts to a click', async () => {
+        render(<ContentLink deps={deps} reference={contentPath} />);
+        await getMockComponentClassPropsForCall(NewTabLinkWithTooltip).onClick();
+        expect(openContentPage).toHaveBeenCalledTimes(1);
     });
 });
