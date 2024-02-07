@@ -68,7 +68,7 @@ describe('QuickAssessToAssessmentDialog', () => {
         props.isShown = true;
         const eventStub = {} as SupportedMouseEvent;
 
-        render(<QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>);
+        render(<QuickAssessToAssessmentDialog {...props} />);
         getMockComponentClassPropsForCall(PrimaryButton).onClick(eventStub);
 
         detailsViewActionMessageCreatorMock.verify(

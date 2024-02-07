@@ -91,8 +91,7 @@ describe('ReportExportComponent', () => {
 
         render(<ReportExportComponent {...props} />);
 
-        const exportDialog = getMockComponentClassPropsForCall(ExportDialog);
-        exportDialog.onClose();
+        getMockComponentClassPropsForCall(ExportDialog).onClose();
 
         dismissDialogMock.verifyAll();
     });
@@ -101,9 +100,7 @@ describe('ReportExportComponent', () => {
         afterDialogDismissedMock.setup(d => d()).verifiable(Times.once());
 
         render(<ReportExportComponent {...props} />);
-        const exportDialog = getMockComponentClassPropsForCall(ExportDialog);
-        exportDialog.afterDismissed();
-
+        getMockComponentClassPropsForCall(ExportDialog).afterDismissed();
         afterDialogDismissedMock.verifyAll();
     });
 
