@@ -1,367 +1,689 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentPage .Markup <Column> renders 1`] = `
-<div
-  className="column"
->
-  INSIDE COLUMN
-</div>
+<DocumentFragment>
+  <div
+    class="column"
+  >
+    INSIDE COLUMN
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Columns> renders 1`] = `
-<div
-  className="columns"
->
-  INSIDE COLUMNS
-</div>
+<DocumentFragment>
+  <div
+    class="columns"
+  >
+    INSIDE COLUMNS
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Do> renders 1`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="do-header"
+    class="column"
   >
-    <h2>
-      Do
-    </h2>
-    <CheckIcon />
+    <div
+      class="do-header"
+    >
+      <h2>
+        Do
+      </h2>
+      <span
+        class="check-container"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          height="16"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="8"
+            cy="8"
+            fill="#228722"
+            r="8"
+          />
+          <path
+            clip-rule="evenodd"
+            d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+            fill="var(--neutral-0)"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+    </div>
+    <div
+      class="do-section"
+    >
+      THINGS TO DO
+    </div>
   </div>
-  <div
-    className="do-section"
-  >
-    THINGS TO DO
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Dont> renders 1`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="dont-header"
+    class="column"
   >
-    <h2>
-      Don't
-    </h2>
-    <CrossIcon />
+    <div
+      class="dont-header"
+    >
+      <h2>
+        Don't
+      </h2>
+      <span
+        class="check-container"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          height="16"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="8"
+            cy="8"
+            fill="#E81123"
+            r="8"
+          />
+          <path
+            d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+            fill="var(--neutral-0)"
+          />
+        </svg>
+      </span>
+    </div>
+    <div
+      class="dont-section"
+    >
+      DON'T DO THIS
+    </div>
   </div>
-  <div
-    className="dont-section"
-  >
-    DON'T DO THIS
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Fail> renders 1`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="fail-header"
+    class="column"
   >
-    <CrossIcon />
-     
-    <h3>
-      Fail
-    </h3>
+    <div
+      class="fail-header"
+    >
+      <span
+        class="check-container"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          height="16"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="8"
+            cy="8"
+            fill="#E81123"
+            r="8"
+          />
+          <path
+            d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+            fill="var(--neutral-0)"
+          />
+        </svg>
+      </span>
+       
+      <h3>
+        Fail
+      </h3>
+    </div>
+    <div
+      class="fail-section"
+    >
+      I FAILED :(
+    </div>
   </div>
-  <div
-    className="fail-section"
-  >
-    I FAILED :(
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Highlight> renders 1`] = `
-<span
-  className="highlight"
->
-  HIGHLIGHTED
-</span>
+<DocumentFragment>
+  <span
+    class="highlight"
+  >
+    HIGHLIGHTED
+  </span>
+</DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <HyperLink> renders 1`] = `
-<NewTabLink
-  href="http://my.link"
-  onClick={[Function]}
->
-  LINK TEXT
-</NewTabLink>
-`;
+exports[`ContentPage .Markup <HyperLink> renders 1`] = `<DocumentFragment />`;
 
-exports[`ContentPage .Markup <Include> renders 1`] = `"<ContentPageComponent deps={{...}} options={{...}} />"`;
+exports[`ContentPage .Markup <Include> renders 1`] = `
+<DocumentFragment>
+  <div>
+    INCLUDE
+  </div>
+</DocumentFragment>
+`;
 
 exports[`ContentPage .Markup <Inline> renders 1`] = `
-<div
-  className="content-inline"
->
-  INLINED
-</div>
+<DocumentFragment>
+  <div
+    class="content-inline"
+  >
+    INLINED
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 1`] = `
-<span
-  className="landmarks-legend main-landmark"
->
-  TEST
-</span>
+<DocumentFragment>
+  <span
+    class="landmarks-legend main-landmark"
+  >
+    TEST
+  </span>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 2`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="do-header"
+    class="column"
   >
-    <h2>
-      Do
-    </h2>
-    <CheckIcon />
+    <div
+      class="do-header"
+    >
+      <h2>
+        Do
+      </h2>
+      <span
+        class="check-container"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          height="16"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="8"
+            cy="8"
+            fill="#228722"
+            r="8"
+          />
+          <path
+            clip-rule="evenodd"
+            d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+            fill="var(--neutral-0)"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+    </div>
+    <div
+      class="do-section"
+    >
+      THINGS TO DO
+    </div>
   </div>
-  <div
-    className="do-section"
-  >
-    THINGS TO DO
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Links> renders with many links 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="content-hyperlinks"
+    class="content-hyperlinks"
   >
-    <HyperLink
+    <a
+      class="ms-Link insights-link root-109"
       href="about:blank"
+      target="_blank"
     >
       One
-    </HyperLink>
-    <HyperLink
+    </a>
+    <a
+      class="ms-Link insights-link root-109"
       href="about:blank"
+      target="_blank"
     >
       Two
-    </HyperLink>
-    <HyperLink
+    </a>
+    <a
+      class="ms-Link insights-link root-109"
       href="about:blank"
+      target="_blank"
     >
       Three
-    </HyperLink>
+    </a>
   </div>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Links> renders with one link 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="content-hyperlinks"
+    class="content-hyperlinks"
   >
-    <HyperLink
+    <a
+      class="ms-Link insights-link root-109"
       href="about:blank"
+      target="_blank"
     >
       One
-    </HyperLink>
+    </a>
   </div>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Links> renders with text 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="content-hyperlinks"
+    class="content-hyperlinks"
   >
     Some text
   </div>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Pass> renders 1`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="pass-header"
+    class="column"
   >
-    <CheckIcon />
-     
-    <h3>
-      Pass
-    </h3>
+    <div
+      class="pass-header"
+    >
+      <span
+        class="check-container"
+      >
+        <svg
+          aria-hidden="true"
+          fill="none"
+          height="16"
+          role="img"
+          viewBox="0 0 16 16"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="8"
+            cy="8"
+            fill="#228722"
+            r="8"
+          />
+          <path
+            clip-rule="evenodd"
+            d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+            fill="var(--neutral-0)"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+       
+      <h3>
+        Pass
+      </h3>
+    </div>
+    <div
+      class="pass-section"
+    >
+      I PASSED :)
+    </div>
   </div>
-  <div
-    className="pass-section"
-  >
-    I PASSED :)
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <PassFail> renders with example headers 1`] = `
-<div
-  className="pass-fail-grid"
->
+<DocumentFragment>
   <div
-    className="fail-section"
+    class="pass-fail-grid"
   >
     <div
-      className="fail-header"
+      class="fail-section"
     >
-      <CrossIcon />
-       
-      <h3>
-        Fail
-      </h3>
+      <div
+        class="fail-header"
+      >
+        <span
+          class="check-container"
+        >
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="8"
+              cy="8"
+              fill="#E81123"
+              r="8"
+            />
+            <path
+              d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+              fill="var(--neutral-0)"
+            />
+          </svg>
+        </span>
+         
+        <h3>
+          Fail
+        </h3>
+      </div>
+      <p>
+        I FAILED :(
+      </p>
     </div>
-    <p>
-      I FAILED :(
-    </p>
-  </div>
-  <div
-    className="fail-example"
-  >
-    <CodeExample
-      title="How I failed"
-    >
-      This is the failure [example].
-    </CodeExample>
-  </div>
-  <div
-    className="pass-section"
-  >
     <div
-      className="pass-header"
+      class="fail-example"
     >
-      <CheckIcon />
-       
-      <h3>
-        Pass
-      </h3>
+      <div
+        class="code-example"
+      >
+        <div
+          class="code-example-title"
+        >
+          <h4>
+            How I failed
+          </h4>
+        </div>
+        <div
+          class="code-example-code"
+        >
+          <div
+            class="insights-code"
+          >
+            This is the failure 
+            <span
+              class="highlight"
+            >
+              example
+            </span>
+            .
+          </div>
+        </div>
+      </div>
     </div>
-    <p>
-      I PASSED!
-    </p>
-  </div>
-  <div
-    className="pass-example"
-  >
-    <CodeExample
-      title={
-        <React.Fragment>
-          How I 
-          <b>
-            passed
-          </b>
-        </React.Fragment>
-      }
+    <div
+      class="pass-section"
     >
-      This is the passing [example].
-    </CodeExample>
+      <div
+        class="pass-header"
+      >
+        <span
+          class="check-container"
+        >
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="8"
+              cy="8"
+              fill="#228722"
+              r="8"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+              fill="var(--neutral-0)"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+         
+        <h3>
+          Pass
+        </h3>
+      </div>
+      <p>
+        I PASSED!
+      </p>
+    </div>
+    <div
+      class="pass-example"
+    >
+      <div
+        class="code-example"
+      >
+        <div
+          class="code-example-title"
+        >
+          <h4>
+            How I 
+            <b>
+              passed
+            </b>
+          </h4>
+        </div>
+        <div
+          class="code-example-code"
+        >
+          <div
+            class="insights-code"
+          >
+            This is the passing 
+            <span
+              class="highlight"
+            >
+              example
+            </span>
+            .
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <PassFail> renders without example headers 1`] = `
-<div
-  className="pass-fail-grid"
->
+<DocumentFragment>
   <div
-    className="fail-section"
+    class="pass-fail-grid"
   >
     <div
-      className="fail-header"
+      class="fail-section"
     >
-      <CrossIcon />
-       
-      <h3>
-        Fail
-      </h3>
+      <div
+        class="fail-header"
+      >
+        <span
+          class="check-container"
+        >
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="8"
+              cy="8"
+              fill="#E81123"
+              r="8"
+            />
+            <path
+              d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+              fill="var(--neutral-0)"
+            />
+          </svg>
+        </span>
+         
+        <h3>
+          Fail
+        </h3>
+      </div>
+      <p>
+        I FAILED :(
+      </p>
     </div>
-    <p>
-      I FAILED :(
-    </p>
-  </div>
-  <div
-    className="fail-example"
-  >
-    <CodeExample>
-      This is the failure [example].
-    </CodeExample>
-  </div>
-  <div
-    className="pass-section"
-  >
     <div
-      className="pass-header"
+      class="fail-example"
     >
-      <CheckIcon />
-       
-      <h3>
-        Pass
-      </h3>
+      <div
+        class="code-example"
+      >
+        <div
+          class="code-example-code"
+        >
+          <div
+            class="insights-code"
+          >
+            This is the failure 
+            <span
+              class="highlight"
+            >
+              example
+            </span>
+            .
+          </div>
+        </div>
+      </div>
     </div>
-    <p>
-      I PASSED!
-    </p>
+    <div
+      class="pass-section"
+    >
+      <div
+        class="pass-header"
+      >
+        <span
+          class="check-container"
+        >
+          <svg
+            aria-hidden="true"
+            fill="none"
+            height="16"
+            role="img"
+            viewBox="0 0 16 16"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="8"
+              cy="8"
+              fill="#228722"
+              r="8"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+              fill="var(--neutral-0)"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+         
+        <h3>
+          Pass
+        </h3>
+      </div>
+      <p>
+        I PASSED!
+      </p>
+    </div>
+    <div
+      class="pass-example"
+    >
+      <div
+        class="code-example"
+      >
+        <div
+          class="code-example-code"
+        >
+          <div
+            class="insights-code"
+          >
+            This is the passing 
+            <span
+              class="highlight"
+            >
+              example
+            </span>
+            .
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div
-    className="pass-example"
-  >
-    <CodeExample>
-      This is the passing [example].
-    </CodeExample>
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <ProblemList> renders 1`] = `
-<ul
-  className="accessibility-problems-list"
->
-  list content
-</ul>
+<DocumentFragment>
+  <ul
+    class="accessibility-problems-list"
+  >
+    list content
+  </ul>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Table> renders 1`] = `
-<ul
-  className="table"
->
-  table content
-</ul>
+<DocumentFragment>
+  <ul
+    class="table"
+  >
+    table content
+  </ul>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where options not specified 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <h1>
     TEST
   </h1>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === false 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <h1>
     TEST
   </h1>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === null 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <h1>
     TEST
   </h1>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
-<React.Fragment>
-  <HelmetWrapper
-    defer={true}
-    encodeSpecialCharacters={true}
-  >
-    <title>
-      TEST
-       - 
-      THE_APPLICATION_TITLE
-    </title>
-  </HelmetWrapper>
+<DocumentFragment>
   <h1>
     TEST
   </h1>
-</React.Fragment>
+</DocumentFragment>
 `;
