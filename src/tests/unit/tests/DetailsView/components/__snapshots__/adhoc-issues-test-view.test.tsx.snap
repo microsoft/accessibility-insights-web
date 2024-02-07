@@ -1,69 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
-<div
-  className="issuesTestView"
->
-  <React.Fragment>
-    <BannerWarnings
-      deps={{}}
-      test={-1}
-      visualizationStoreData={
-        {
-          "scanning": "test-scanning",
-          "tests": {},
-        }
-      }
-      warningConfiguration={{}}
-      warnings={[]}
+<DocumentFragment>
+  <div
+    class="issuesTestView"
+  >
+    <mock-bannerwarnings
+      deps="[object Object]"
+      test="-1"
+      visualizationstoredata="[object Object]"
+      warningconfiguration="[object Object]"
+      warnings=""
     />
-    <DetailsListIssuesView
-      clickHandlerFactory={[typemoq mock object]}
-      configuration={
-        {
-          "displayableData": {
-            "title": "test title",
-          },
-          "getStoreData": [Function],
-        }
-      }
-      deps={{}}
-      instancesSection={[Function]}
-      scanIncompleteWarnings={[]}
-      selectedTest={-1}
-      switcherNavConfiguration={
-        {
-          "warningConfiguration": {},
-        }
-      }
-      tabStoreData={
-        {
-          "isChanged": false,
-        }
-      }
-      visualizationStoreData={
-        {
-          "scanning": "test-scanning",
-          "tests": {},
-        }
-      }
+    <mock-detailslistissuesview
+      clickhandlerfactory="undefined"
+      configuration="[object Object]"
+      deps="[object Object]"
+      scanincompletewarnings=""
+      selectedtest="-1"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      visualizationstoredata="[object Object]"
     />
-  </React.Fragment>
-</div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`AdhocIssuesTestView should return target page changed view as tab is changed 1`] = `
-<div
-  className="issuesTestView"
->
-  <TargetPageChangedView
-    displayableData={
-      {
-        "title": "test title",
-      }
-    }
-    toggleClickHandler={[Function]}
-    visualizationType={-1}
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="issuesTestView"
+  >
+    <mock-targetpagechangedview
+      displayabledata="[object Object]"
+      visualizationtype="-1"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`AdhocIssuesTestView should return target page changed view as tab is changed: TargetPageChangedView props 1`] = `
+{
+  "detailsViewActionMessageCreator": undefined,
+  "displayableData": {
+    "title": "test title",
+  },
+  "toggleClickHandler": [Function],
+  "visualizationType": -1,
+}
 `;
