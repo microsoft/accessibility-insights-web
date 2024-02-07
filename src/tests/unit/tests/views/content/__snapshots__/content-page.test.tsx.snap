@@ -1,72 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentPage .create passes options through to Markup 1`] = `
-<React.Fragment>
+<DocumentFragment>
   TEST STRING
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .create renders 1`] = `
-<React.Fragment>
+<DocumentFragment>
   MY CONTENT
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .provider doesn't find extraPath/forest/thePage 1`] = `
-<h1>
-  Cannot find 
-  extraPath/forest/thePage
-</h1>
+<DocumentFragment>
+  <h1>
+    Cannot find extraPath/forest/thePage
+  </h1>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .provider doesn't find forest 1`] = `
-<h1>
-  Cannot find 
-  forest
-</h1>
+<DocumentFragment>
+  <h1>
+    Cannot find forest
+  </h1>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .provider doesn't find forest/notThePage 1`] = `
-<h1>
-  Cannot find 
-  forest/notThePage
-</h1>
+<DocumentFragment>
+  <h1>
+    Cannot find forest/notThePage
+  </h1>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .provider doesn't find notForest/thePage 1`] = `
-<h1>
-  Cannot find 
-  notForest/thePage
-</h1>
+<DocumentFragment>
+  <h1>
+    Cannot find notForest/thePage
+  </h1>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .provider doesn't find thePage 1`] = `
-<h1>
-  Cannot find 
-  thePage
-</h1>
+<DocumentFragment>
+  <h1>
+    Cannot find thePage
+  </h1>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .provider finds forest/thePage 1`] = `
-<React.Fragment>
+<DocumentFragment>
   THE PAGE
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage ContentCreator links renders 1`] = `
-<NewTabLink
-  href="testLink href"
-  onClick={[Function]}
->
-  testLink text
-</NewTabLink>
+{
+  "children": "testLink text",
+  "href": "testLink href",
+  "onClick": [Function],
+}
 `;
 
 exports[`ContentPage ContentCreator links renders, children is text 1`] = `
-<NewTabLink
-  href="testLink href"
-  onClick={[Function]}
->
-  OVERRIDE
-</NewTabLink>
+{
+  "children": "OVERRIDE",
+  "href": "testLink href",
+  "onClick": [Function],
+}
 `;

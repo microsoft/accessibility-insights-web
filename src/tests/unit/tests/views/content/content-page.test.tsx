@@ -1,12 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { ContentCreator, ContentPage, ContentPageDeps } from 'views/content/content-page';
-
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('common/components/new-tab-link');
 describe('ContentPage', () => {
     const deps = Mock.ofType<ContentPageDeps>().object;
 
@@ -16,8 +20,8 @@ describe('ContentPage', () => {
                 return <>MY CONTENT</>;
             });
 
-            const result = shallow(<MyPage deps={deps} />);
-            expect(result.getElement()).toMatchSnapshot();
+            const renderResult = render(<MyPage deps={deps} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('passes options through to Markup', () => {
@@ -25,10 +29,10 @@ describe('ContentPage', () => {
                 return <>{(Markup as any).options.testString}</>;
             });
 
-            const result = shallow(
+            const renderResult = render(
                 <MyPage deps={deps} options={{ setPageTitle: true, testString: 'TEST STRING' }} />,
             );
-            expect(result.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 
@@ -68,8 +72,8 @@ describe('ContentPage', () => {
 
         it('finds forest/thePage', () => {
             const MyPage = provider.getPage('forest/thePage');
-            const result = shallow(<MyPage deps={deps} />);
-            expect(result.getElement()).toMatchSnapshot();
+            const renderResult = render(<MyPage deps={deps} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         [
@@ -82,13 +86,14 @@ describe('ContentPage', () => {
             it(`doesn't find ${page}`, () => {
                 const MyPage = provider.getPage(page);
                 expect(MyPage.displayName).toEqual('ContentPageComponent');
-                const result = shallow(<MyPage deps={deps} />);
-                expect(result.getElement()).toMatchSnapshot();
+                const renderResult = render(<MyPage deps={deps} />);
+                expect(renderResult.asFragment()).toMatchSnapshot();
             }),
         );
     });
 
     describe('ContentCreator links', () => {
+        mockReactComponents([NewTabLink]);
         const linksMap = {
             testLink: { text: 'testLink text', href: 'testLink href' },
         };
@@ -98,21 +103,21 @@ describe('ContentPage', () => {
         it('renders', () => {
             const MyPage = create(({ Link }) => <Link.testLink />);
 
-            const wrapped = mount(<MyPage deps={deps} />);
+            const renderResult = render(<MyPage deps={deps} />);
+            renderResult.debug();
+            const link = getMockComponentClassPropsForCall(NewTabLink);
 
-            const link = wrapped.find(NewTabLink);
-
-            expect(link.getElement()).toMatchSnapshot();
+            expect(link).toMatchSnapshot();
         });
 
         it('renders, children is text', () => {
             const MyPage = create(({ Link }) => <Link.testLink>OVERRIDE</Link.testLink>);
 
-            const wrapped = mount(<MyPage deps={deps} />);
+            render(<MyPage deps={deps} />);
 
-            const link = wrapped.find(NewTabLink);
+            const link = getMockComponentClassPropsForCall(NewTabLink);
 
-            expect(link.getElement()).toMatchSnapshot();
+            expect(link).toMatchSnapshot();
         });
     });
 });
