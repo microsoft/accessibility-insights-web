@@ -1,57 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ActionAndCancelButtonsComponent render with primary button href == null 1`] = `
-<div
-  className="actionAndCancelButtonsComponent"
-  hidden={false}
->
+<DocumentFragment>
   <div
-    className="actionCancelButtonCol"
+    class="actionAndCancelButtonsComponent"
   >
-    <CustomizedDefaultButton
-      onClick={[Function]}
-      text="Cancel"
-    />
+    <div
+      class="actionCancelButtonCol"
+    >
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
+    </div>
+    <div
+      class="actionCancelButtonCol"
+    >
+      <mock-customizeddefaultbutton
+        disabled="false"
+        primary="true"
+        target="_self"
+        text="Test"
+      />
+    </div>
   </div>
-  <div
-    className="actionCancelButtonCol"
-  >
-    <CustomizedDefaultButton
-      disabled={false}
-      href={null}
-      onClick={[Function]}
-      primary={true}
-      target="_self"
-      text="Test"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ActionAndCancelButtonsComponent render with primary button href == sample href 1`] = `
-<div
-  className="actionAndCancelButtonsComponent"
-  hidden={false}
->
+<DocumentFragment>
   <div
-    className="actionCancelButtonCol"
+    class="actionAndCancelButtonsComponent"
   >
-    <CustomizedDefaultButton
-      onClick={[Function]}
-      text="Cancel"
-    />
+    <div
+      class="actionCancelButtonCol"
+    >
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
+    </div>
+    <div
+      class="actionCancelButtonCol"
+    >
+      <mock-customizeddefaultbutton
+        disabled="false"
+        href="sample href"
+        primary="true"
+        target="_blank"
+        text="Test"
+      />
+    </div>
   </div>
-  <div
-    className="actionCancelButtonCol"
-  >
-    <CustomizedDefaultButton
-      disabled={false}
-      href="sample href"
-      onClick={[Function]}
-      primary={true}
-      target="_blank"
-      text="Test"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;
