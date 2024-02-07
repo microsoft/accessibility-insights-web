@@ -25,32 +25,38 @@ describe('ContentPanel', () => {
     };
 
     it('renders from content', () => {
-        const renderResult = render(<ContentPanel
-            deps={deps}
-            content={content.for.testing}
-            isOpen={true}
-            contentTitle={contentTitle}
-        />);
+        const renderResult = render(
+            <ContentPanel
+                deps={deps}
+                content={content.for.testing}
+                isOpen={true}
+                contentTitle={contentTitle}
+            />,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders from path', () => {
-        const renderResult = render(<ContentPanel
-            deps={deps}
-            content={'for/testing'}
-            isOpen={true}
-            contentTitle={contentTitle}
-        />);
+        const renderResult = render(
+            <ContentPanel
+                deps={deps}
+                content={'for/testing'}
+                isOpen={true}
+                contentTitle={contentTitle}
+            />,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders closed', () => {
-        const renderResult = render(<ContentPanel
-            deps={deps}
-            content={'for/testing'}
-            isOpen={false}
-            contentTitle={contentTitle}
-        />);
+        const renderResult = render(
+            <ContentPanel
+                deps={deps}
+                content={'for/testing'}
+                isOpen={false}
+                contentTitle={contentTitle}
+            />,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
