@@ -2,7 +2,7 @@
 
 exports[`TabStopChecksSectionWrapper renders 1`] = `
 <DocumentFragment>
-  <div
+  <mock-passedcheckssection
     cardsviewdata="[object Object]"
     deps="[object Object]"
     featureflagstoredata="[object Object]"
@@ -11,4 +11,267 @@ exports[`TabStopChecksSectionWrapper renders 1`] = `
     testkey="tab-stops"
   />
 </DocumentFragment>
+`;
+
+exports[`TabStopChecksSectionWrapper renders: PassedChecksSection props 1`] = `
+{
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
+        {
+          "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
+          "guidance": [
+            {
+              "href": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html",
+              "tags": [],
+              "text": "WCAG 2.1.2",
+            },
+          ],
+          "id": "Keyboard traps",
+          "isExpanded": false,
+          "nodes": [],
+          "url": "",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [
+        {
+          "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
+          "guidance": [
+            {
+              "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
+              "tags": [],
+              "text": "WCAG 2.1.1",
+            },
+          ],
+          "id": "Keyboard navigation",
+          "isExpanded": false,
+          "nodes": [],
+          "url": "",
+        },
+        {
+          "description": "The tab order is consistent with the logical order that's communicated visually. (Partially automated)",
+          "guidance": [
+            {
+              "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
+              "tags": [],
+              "text": "WCAG 2.4.3",
+            },
+          ],
+          "id": "Tab order",
+          "isExpanded": false,
+          "nodes": [],
+          "url": "",
+        },
+      ],
+      "unknown": [
+        {
+          "description": "All interactive elements give a visible indication when they have input focus. (Manual)",
+          "guidance": [
+            {
+              "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
+              "tags": [],
+              "text": "WCAG 2.4.7",
+            },
+          ],
+          "id": "Focus indicator",
+          "isExpanded": false,
+          "nodes": [],
+          "url": "",
+        },
+        {
+          "description": "Input focus does not move unexpectedly without the user initiating it. (Manual)",
+          "guidance": [
+            {
+              "href": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html",
+              "tags": [],
+              "text": "WCAG 2.3.1",
+            },
+          ],
+          "id": "Input focus",
+          "isExpanded": false,
+          "nodes": [],
+          "url": "",
+        },
+      ],
+    },
+    "visualHelperEnabled": false,
+  },
+  "checksSection": [MockFunction] {
+    "calls": [
+      [
+        [Circular],
+        {},
+      ],
+    ],
+    "results": [
+      {
+        "type": "return",
+        "value": <mock-PassedChecksSection
+          cardsViewData={
+            {
+              "allCardsCollapsed": true,
+              "cards": {
+                "fail": [
+                  {
+                    "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
+                    "guidance": [
+                      {
+                        "href": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html",
+                        "tags": [],
+                        "text": "WCAG 2.1.2",
+                      },
+                    ],
+                    "id": "Keyboard traps",
+                    "isExpanded": false,
+                    "nodes": [],
+                    "url": "",
+                  },
+                ],
+                "inapplicable": [],
+                "pass": [
+                  {
+                    "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
+                    "guidance": [
+                      {
+                        "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
+                        "tags": [],
+                        "text": "WCAG 2.1.1",
+                      },
+                    ],
+                    "id": "Keyboard navigation",
+                    "isExpanded": false,
+                    "nodes": [],
+                    "url": "",
+                  },
+                  {
+                    "description": "The tab order is consistent with the logical order that's communicated visually. (Partially automated)",
+                    "guidance": [
+                      {
+                        "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
+                        "tags": [],
+                        "text": "WCAG 2.4.3",
+                      },
+                    ],
+                    "id": "Tab order",
+                    "isExpanded": false,
+                    "nodes": [],
+                    "url": "",
+                  },
+                ],
+                "unknown": [
+                  {
+                    "description": "All interactive elements give a visible indication when they have input focus. (Manual)",
+                    "guidance": [
+                      {
+                        "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
+                        "tags": [],
+                        "text": "WCAG 2.4.7",
+                      },
+                    ],
+                    "id": "Focus indicator",
+                    "isExpanded": false,
+                    "nodes": [],
+                    "url": "",
+                  },
+                  {
+                    "description": "Input focus does not move unexpectedly without the user initiating it. (Manual)",
+                    "guidance": [
+                      {
+                        "href": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html",
+                        "tags": [],
+                        "text": "WCAG 2.3.1",
+                      },
+                    ],
+                    "id": "Input focus",
+                    "isExpanded": false,
+                    "nodes": [],
+                    "url": "",
+                  },
+                ],
+              },
+              "visualHelperEnabled": false,
+            }
+          }
+          checksSection={
+            [MockFunction] {
+              "calls": [
+                [
+                  [Circular],
+                  {},
+                ],
+              ],
+              "results": [Circular],
+            }
+          }
+          deps={{}}
+          featureFlagStoreData={{}}
+          sectionHeadingLevel={3}
+          tabStops={
+            {
+              "focus-indicator": {
+                "instances": [],
+                "isExpanded": false,
+                "status": "unknown",
+              },
+              "input-focus": {
+                "instances": [],
+                "isExpanded": false,
+                "status": "unknown",
+              },
+              "keyboard-navigation": {
+                "instances": [],
+                "isExpanded": false,
+                "status": "pass",
+              },
+              "keyboard-traps": {
+                "instances": [],
+                "isExpanded": false,
+                "status": "fail",
+              },
+              "tab-order": {
+                "instances": [],
+                "isExpanded": false,
+                "status": "pass",
+              },
+            }
+          }
+          testKey="tab-stops"
+        />,
+      },
+    ],
+  },
+  "deps": {},
+  "featureFlagStoreData": {},
+  "sectionHeadingLevel": 3,
+  "tabStops": {
+    "focus-indicator": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "unknown",
+    },
+    "input-focus": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "unknown",
+    },
+    "keyboard-navigation": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "pass",
+    },
+    "keyboard-traps": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "fail",
+    },
+    "tab-order": {
+      "instances": [],
+      "isExpanded": false,
+      "status": "pass",
+    },
+  },
+  "testKey": "tab-stops",
+}
 `;
