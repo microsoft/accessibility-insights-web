@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { productName } from 'content/strings/application';
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
