@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { FooterTextForUnified } from 'reports/components/report-sections/footer-text-for-unified';
 

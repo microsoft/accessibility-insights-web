@@ -3,7 +3,6 @@
 
 import { render } from '@testing-library/react';
 import { CardResult, CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
 import { CombinedReportSummarySection } from 'reports/components/report-sections/combined-report-summary-section';

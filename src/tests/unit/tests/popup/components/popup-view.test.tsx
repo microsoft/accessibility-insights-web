@@ -3,7 +3,6 @@
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Header } from 'common/components/header';
-import { NewTabLink } from 'common/components/new-tab-link';
 import { TelemetryPermissionDialog } from 'common/components/telemetry-permission-dialog';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
@@ -12,7 +11,6 @@ import {
     LaunchPanelType,
 } from 'common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { shallow } from 'enzyme';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { AdHocToolsPanel } from 'popup/components/ad-hoc-tools-panel';
 import { LaunchPad } from 'popup/components/launch-pad';
@@ -30,7 +28,6 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
-    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseDataBuilder } from '../../../common/base-data-builder';

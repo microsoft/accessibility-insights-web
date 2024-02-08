@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
-import { ResultSectionContent } from 'common/components/cards/result-section-content';
 import { RulesWithInstances } from 'common/components/cards/rules-with-instances';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 
@@ -12,10 +11,7 @@ import {
     CombinedReportFailedSection,
     CombinedReportFailedSectionDeps,
 } from 'reports/components/report-sections/combined-report-failed-section';
-import {
-    mockReactComponents,
-    useOriginalReactElements,
-} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { It, Mock, MockBehavior } from 'typemoq';
 

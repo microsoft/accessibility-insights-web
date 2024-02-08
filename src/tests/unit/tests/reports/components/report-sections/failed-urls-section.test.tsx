@@ -8,7 +8,10 @@ import {
     FailedUrlsSectionDeps,
 } from 'reports/components/report-sections/failed-urls-section';
 import { SummaryScanResult, SummaryScanError } from 'reports/package/accessibilityInsightsReport';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 
 jest.mock('reports/components/report-sections/collapsible-url-result-section');
 
@@ -30,6 +33,6 @@ describe(FailedUrlsSection.displayName, () => {
         const wrapper = render(<FailedUrlsSection {...props} />);
 
         expect(wrapper.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([CollapsibleUrlResultSection])
+        expectMockedComponentPropsToMatchSnapshots([CollapsibleUrlResultSection]);
     });
 });
