@@ -19,8 +19,8 @@ import { DetailsSection } from '../../../../../reports/components/report-section
 import { FastPassReportAutomatedChecksResults } from '../../../../../reports/components/report-sections/fast-pass-report-automated-checks-results';
 import { FastPassResultsTitleSection } from '../../../../../reports/components/report-sections/fast-pass-results-title-section';
 import { FastPassTitleSection } from '../../../../../reports/components/report-sections/fast-pass-title-section';
-import { ReportFooter } from '../../../../../reports/components/report-sections/report-footer';
 import { FooterText } from '../../../../../reports/components/report-sections/footer-text';
+import { ReportFooter } from '../../../../../reports/components/report-sections/report-footer';
 import { ResultsContainer } from '../../../../../reports/components/report-sections/results-container';
 import { TabStopsChecksSectionWrapper } from '../../../../../reports/components/report-sections/tab-stops-checks-section-wrapper';
 import { WebReportHead } from '../../../../../reports/components/web-report-head';
