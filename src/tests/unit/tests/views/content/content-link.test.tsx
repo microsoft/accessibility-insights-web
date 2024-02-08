@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import * as React from 'react';
@@ -12,7 +13,6 @@ import {
 import { ContentLink } from 'views/content/content-link';
 import { ContentPage } from 'views/content/content-page';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
-import userEvent from '@testing-library/user-event';
 
 jest.mock('common/components/new-tab-link-with-tooltip');
 jest.mock('common/components/new-tab-link');
