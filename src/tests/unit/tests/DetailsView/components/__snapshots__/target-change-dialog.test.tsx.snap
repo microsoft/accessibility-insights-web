@@ -2,194 +2,373 @@
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab detailsViewId matches current detailsViewId 1`] = `
 <DocumentFragment>
-  <mock-blockingdialog
-    dialogcontentprops="[object Object]"
-    hidden="false"
-    modalprops="[object Object]"
-  >
-    <div
-      id="target-change-dialog-description"
-    >
-      <div>
-        There is already an assessment running on 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          id="previous-target-page-link"
-        />
-        . Would you like to continue your current assessment on the new target of 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          content="https://www.abc.com"
-          id="current-target-page-link"
-        />
-        ?
-      </div>
-      <p>
-        <strong>
-          Note
-        </strong>
-        : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-      </p>
-      <p>
-        If 'Start new' is selected, all previous progress will be lost.
-      </p>
-    </div>
-  </mock-blockingdialog>
+  <mock-changeassessmentdialog
+    deps="[object Object]"
+    dialogcontenttitle="Assessment in progress"
+    dialogfirsttext="[object Object]"
+    dialognotetext="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+    dialogwarningtext="If 'Start new' is selected, all previous progress will be lost."
+    divid="target-change-dialog-description"
+    isopen="true"
+    leftbuttontext="Continue previous"
+    prevtab="[object Object]"
+    rightbuttondataautomationid="target-change-start-new-button"
+    rightbuttonstyle="restartButton"
+    rightbuttontext="Start new"
+    subtitleariaid="target-change-dialog-description"
+  />
 </DocumentFragment>
 `;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab detailsViewId matches current detailsViewId: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.abc.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "differentDetailsViewId",
+    "id": 456,
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
+`;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab detailsViewId matches current detailsViewId: StyledTooltipHostBase props 1`] = `undefined`;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed 1`] = `
 <DocumentFragment>
-  <mock-blockingdialog
-    dialogcontentprops="[object Object]"
-    hidden="false"
-    modalprops="[object Object]"
-  >
-    <div
-      id="target-change-dialog-description"
-    >
-      <div>
-        There is already an assessment running on 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          content="https://www.abc.com"
-          id="previous-target-page-link"
-        />
-        . Would you like to continue your current assessment on the new target of 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          content="https://www.def.com"
-          id="current-target-page-link"
-        />
-        ?
-      </div>
-      <p>
-        <strong>
-          Note
-        </strong>
-        : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-      </p>
-      <p>
-        If 'Start new' is selected, all previous progress will be lost.
-      </p>
-    </div>
-  </mock-blockingdialog>
+  <mock-changeassessmentdialog
+    deps="[object Object]"
+    dialogcontenttitle="Assessment in progress"
+    dialogfirsttext="[object Object]"
+    dialognotetext="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+    dialogwarningtext="If 'Start new' is selected, all previous progress will be lost."
+    divid="target-change-dialog-description"
+    isopen="true"
+    leftbuttontext="Continue previous"
+    prevtab="[object Object]"
+    rightbuttondataautomationid="target-change-start-new-button"
+    rightbuttonstyle="restartButton"
+    rightbuttontext="Start new"
+    subtitleariaid="target-change-dialog-description"
+  />
 </DocumentFragment>
 `;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.def.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "differentDetailsViewId",
+    "id": 111,
+    "title": "test title 1",
+    "url": "https://www.abc.com",
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
+`;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed: StyledTooltipHostBase props 1`] = `undefined`;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same and also url doesn't change 1`] = `
 <DocumentFragment>
-  <mock-blockingdialog
-    dialogcontentprops="[object Object]"
-    hidden="false"
-    modalprops="[object Object]"
-  >
-    <div
-      id="target-change-dialog-description"
-    >
-      <div>
-        There is already an assessment running on 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          content="https://www.abc.com"
-          id="previous-target-page-link"
-        />
-        . Would you like to continue your current assessment on the new target of 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          content="https://www.abc.com"
-          id="current-target-page-link"
-        />
-        ?
-      </div>
-      <p>
-        <strong>
-          Note
-        </strong>
-        : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-      </p>
-      <p>
-        If 'Start new' is selected, all previous progress will be lost.
-      </p>
-    </div>
-  </mock-blockingdialog>
+  <mock-changeassessmentdialog
+    deps="[object Object]"
+    dialogcontenttitle="Assessment in progress"
+    dialogfirsttext="[object Object]"
+    dialognotetext="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+    dialogwarningtext="If 'Start new' is selected, all previous progress will be lost."
+    divid="target-change-dialog-description"
+    isopen="true"
+    leftbuttontext="Continue previous"
+    prevtab="[object Object]"
+    rightbuttondataautomationid="target-change-start-new-button"
+    rightbuttonstyle="restartButton"
+    rightbuttontext="Start new"
+    subtitleariaid="target-change-dialog-description"
+  />
 </DocumentFragment>
 `;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same and also url doesn't change: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.abc.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "detailsViewId",
+    "id": 111,
+    "title": "test title 1",
+    "url": "https://www.abc.com",
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
+`;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same and also url doesn't change: StyledTooltipHostBase props 1`] = `undefined`;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same but url changes 1`] = `
 <DocumentFragment>
-  <mock-blockingdialog
-    dialogcontentprops="[object Object]"
-    hidden="false"
-    modalprops="[object Object]"
-  >
-    <div
-      id="target-change-dialog-description"
-    >
-      <div>
-        There is already an assessment running on 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          content="https://www.abc.com"
-          id="previous-target-page-link"
-        />
-        . Would you like to continue your current assessment on the new target of 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          content="https://www.def.com"
-          id="current-target-page-link"
-        />
-        ?
-      </div>
-      <p>
-        <strong>
-          Note
-        </strong>
-        : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-      </p>
-      <p>
-        If 'Start new' is selected, all previous progress will be lost.
-      </p>
-    </div>
-  </mock-blockingdialog>
+  <mock-changeassessmentdialog
+    deps="[object Object]"
+    dialogcontenttitle="Assessment in progress"
+    dialogfirsttext="[object Object]"
+    dialognotetext="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+    dialogwarningtext="If 'Start new' is selected, all previous progress will be lost."
+    divid="target-change-dialog-description"
+    isopen="true"
+    leftbuttontext="Continue previous"
+    prevtab="[object Object]"
+    rightbuttondataautomationid="target-change-start-new-button"
+    rightbuttonstyle="restartButton"
+    rightbuttontext="Start new"
+    subtitleariaid="target-change-dialog-description"
+  />
 </DocumentFragment>
 `;
 
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same but url changes: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.def.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "detailsViewId",
+    "id": 111,
+    "title": "test title 1",
+    "url": "https://www.abc.com",
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
+`;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same but url changes: StyledTooltipHostBase props 1`] = `undefined`;
+
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when target tab id changed 1`] = `
 <DocumentFragment>
-  <mock-blockingdialog
-    dialogcontentprops="[object Object]"
-    hidden="false"
-    modalprops="[object Object]"
-  >
-    <div
-      id="target-change-dialog-description"
-    >
-      <div>
-        There is already an assessment running on 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          content="https://www.abc.com"
-          id="previous-target-page-link"
-        />
-        . Would you like to continue your current assessment on the new target of 
-        <mock-styledtooltiphostbase
-          calloutprops="[object Object]"
-          content="https://www.def.com"
-          id="current-target-page-link"
-        />
-        ?
-      </div>
-      <p>
-        <strong>
-          Note
-        </strong>
-        : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-      </p>
-      <p>
-        If 'Start new' is selected, all previous progress will be lost.
-      </p>
-    </div>
-  </mock-blockingdialog>
+  <mock-changeassessmentdialog
+    deps="[object Object]"
+    dialogcontenttitle="Assessment in progress"
+    dialogfirsttext="[object Object]"
+    dialognotetext="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+    dialogwarningtext="If 'Start new' is selected, all previous progress will be lost."
+    divid="target-change-dialog-description"
+    isopen="true"
+    leftbuttontext="Continue previous"
+    prevtab="[object Object]"
+    rightbuttondataautomationid="target-change-start-new-button"
+    rightbuttonstyle="restartButton"
+    rightbuttontext="Start new"
+    subtitleariaid="target-change-dialog-description"
+  />
 </DocumentFragment>
 `;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when target tab id changed: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.def.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "detailsViewId",
+    "id": 111,
+    "title": "test title 1",
+    "url": "https://www.abc.com",
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
+`;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when target tab id changed: StyledTooltipHostBase props 1`] = `undefined`;

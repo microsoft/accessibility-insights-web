@@ -1,7 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TestStatusChoiceGroup render: status is set to FAIL 1`] = `<DocumentFragment />`;
+exports[`TestStatusChoiceGroup render: status is set to FAIL 1`] = `
+<DocumentFragment>
+  <mock-choicegrouppassfail
+    islabelvisible="false"
+    options="[object Object],[object Object]"
+    selectedkey="2"
+  />
+</DocumentFragment>
+`;
 
-exports[`TestStatusChoiceGroup render: status is set to PASS 1`] = `<DocumentFragment />`;
+exports[`TestStatusChoiceGroup render: status is set to PASS 1`] = `
+<DocumentFragment>
+  <mock-choicegrouppassfail
+    islabelvisible="false"
+    options="[object Object],[object Object]"
+    selectedkey="0"
+  />
+</DocumentFragment>
+`;
 
-exports[`TestStatusChoiceGroup render: status is set to UNKNOWN 1`] = `<DocumentFragment />`;
+exports[`TestStatusChoiceGroup render: status is set to UNKNOWN 1`] = `
+<DocumentFragment>
+  <mock-choicegrouppassfail
+    islabelvisible="false"
+    options="[object Object],[object Object]"
+    selectedkey="1"
+  />
+</DocumentFragment>
+`;

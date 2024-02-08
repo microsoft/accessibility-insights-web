@@ -13,8 +13,8 @@ import {
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
-
 jest.mock('@fluentui/react');
+
 describe('Switcher', () => {
     mockReactComponents([Dropdown]);
     let defaultProps: SwitcherProps;
@@ -42,16 +42,13 @@ describe('Switcher', () => {
             render(<Switcher {...defaultProps} />);
 
             const options = getMockComponentClassPropsForCall(Dropdown).options;
-
-            const renderOptions =
-                getMockComponentClassPropsForCall(Dropdown).onRenderOption(options);
-
-            expect(renderOptions).toMatchSnapshot();
+            expect(options).toMatchSnapshot();
         });
     });
 
     describe('props', () => {
         it('dropdown has correct options', () => {
+            useOriginalReactElements('@fluentui/react', ['Dropdown']);
             render(<Switcher {...defaultProps} />);
 
             const dropdown = getMockComponentClassPropsForCall(Dropdown);

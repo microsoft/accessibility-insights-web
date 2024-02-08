@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dialog, TooltipHost } from '@fluentui/react';
+import { Dialog, Link, TooltipHost } from '@fluentui/react';
 import { render } from '@testing-library/react';
-
+import '@testing-library/jest-dom';
 import { BlockingDialog } from 'common/components/blocking-dialog';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { Tab } from 'common/types/store-data/itab';
@@ -15,17 +15,21 @@ import {
     TargetChangeDialogProps,
 } from 'DetailsView/components/target-change-dialog';
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { ChangeAssessmentDialog } from '../../../../../DetailsView/components/change-assessment-dialog';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
-
-jest.mock('common/components/blocking-dialog');
+jest.mock('../../../../../DetailsView/components/change-assessment-dialog');
 jest.mock('@fluentui/react');
+jest.mock('common/components/blocking-dialog');
+
 describe('TargetChangeDialog test set for prev tab null', () => {
-    mockReactComponents([BlockingDialog, TooltipHost]);
-    const urlParserMock = Mock.ofType(UrlParser);
+    mockReactComponents([ChangeAssessmentDialog, TooltipHost, Link, BlockingDialog]);
+    const urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
 
     test.each([
         null,
@@ -101,6 +105,9 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     });
 
     test('should show dialog when target tab id changed', () => {
+        useOriginalReactElements('@fluentui/react', ['TooltipHost']);
+        //useOriginalReactElements('../../../DetailsView/components/change-assessment-dialog', ['ChangeAssessmentDialog']);
+        useOriginalReactElements('@fluentui/react', ['Link']);
         urlParserMock
             .setup(urlParserObject => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
             .returns(() => true)
@@ -113,9 +120,12 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         };
 
         render(<TargetChangeDialog {...targetChangeProps} />);
-        expect(getMockComponentClassPropsForCall(BlockingDialog)).toBeTruthy();
-        expect(getMockComponentClassPropsForCall(TooltipHost)).toBeTruthy();
-        expect(getMockComponentClassPropsForCall(BlockingDialog).hidden).toBe(false);
+        expect(getMockComponentClassPropsForCall(ChangeAssessmentDialog)).toBeTruthy();
+        const toolTipHost =
+            getMockComponentClassPropsForCall(ChangeAssessmentDialog).dialogFirstText.props
+                .children[2].type.displayName;
+        expect(toolTipHost).toBe('StyledTooltipHostBase');
+        expect(getMockComponentClassPropsForCall(BlockingDialog)).toBeFalsy();
     });
 
     test('snapshot: render when target tab id changed', () => {
@@ -138,6 +148,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const renderResult = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog, TooltipHost]);
     });
 
     test('snapshot: render when previous tab info shows app is refreshed', () => {
@@ -159,6 +170,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const renderResult = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog, TooltipHost]);
     });
 
     test('snapshot: render when tab ids are same but url changes', () => {
@@ -183,6 +195,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const renderResult = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog, TooltipHost]);
     });
 
     test("snapshot: render when tab ids are same and also url doesn't change", () => {
@@ -204,6 +217,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const renderResult = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog, TooltipHost]);
     });
 
     test('snapshot: render the only information available in prevTab detailsViewId matches current detailsViewId', () => {
@@ -229,5 +243,6 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const renderResult = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog, TooltipHost]);
     });
 });
