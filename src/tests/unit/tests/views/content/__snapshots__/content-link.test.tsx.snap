@@ -65,13 +65,11 @@ exports[`ContentLink renders with only text 1`] = `
 
 exports[`ContentLink renders without tooltip 1`] = `
 <DocumentFragment>
-  <a
+  <mock-newtablink
     aria-label="test guidance"
-    class="ms-Link insights-link root-109"
     href="/insights.html#/content/for/testing"
-    target="_blank"
   >
     test
-  </a>
+  </mock-newtablink>
 </DocumentFragment>
 `;
