@@ -27,13 +27,18 @@ describe('CodePenReportExportService', () => {
             const wrapped = render(<ExportForm {...props} />);
             const onMenuItemClick = jest.fn();
             wrapped.debug();
-            CodePenReportExportService.generateMenuItem(onMenuItemClick, undefined, undefined).onClick();
+            CodePenReportExportService.generateMenuItem(
+                onMenuItemClick,
+                undefined,
+                undefined,
+            ).onClick();
 
             expect(wrapped.asFragment()).toMatchSnapshot();
         });
 
         it('submit the form right after the first render', () => {
             type OnSubmit = ReportExportFormProps['onSubmit'];
+            HTMLFormElement.prototype.requestSubmit = jest.fn();
             const onSubmitMock = Mock.ofType<OnSubmit>();
 
             props.onSubmit = onSubmitMock.object;
@@ -44,5 +49,3 @@ describe('CodePenReportExportService', () => {
         });
     });
 });
-
-

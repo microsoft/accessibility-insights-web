@@ -1,9 +1,135 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PopupView render actual content Launch type is null 1`] = `undefined`;
+
+exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] = `undefined`;
+
+exports[`PopupView render actual content render toggles view: launch pad 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-Fabric launch-panel"
+    id="new-launch-pad"
+  >
+    <mock-launchpanelheader
+      deps="[object Object]"
+      featureflags="[object Object]"
+      subtitle="[object Object]"
+      title="test title"
+    />
+    <mock-launchpad
+      deps="[object Object]"
+      productname="test title"
+      version="2"
+    />
+  </div>
+  <mock-telemetrypermissiondialog
+    deps="[object Object]"
+    isfirsttime="true"
+  />
+</DocumentFragment>
+`;
+
+exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `undefined`;
+
+exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `undefined`;
+
 exports[`PopupView render spinner 1`] = `
 <StyledSpinnerBase
   className="insights-spinner"
   label="Loading..."
   size={3}
 />
+`;
+
+exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
+<div
+  className="ms-Fabric unsupported-url-info-panel"
+>
+  <Header
+    title="test title"
+  />
+  <div
+    className="main-section"
+  >
+    <div
+      className="popup-grid"
+    >
+      <div
+        className="launch-panel-general-container"
+      >
+        <React.Fragment>
+          <span>
+            Accessibility Insights for Web can't run on this URL.
+          </span>
+          <br />
+          <span>
+            You'll need to go to a different page.
+          </span>
+        </React.Fragment>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-Fabric unsupported-url-info-panel"
+  >
+    <header
+      class="launchPanelHeader"
+    >
+      <h1
+        class="title"
+      >
+        test title
+      </h1>
+      <div
+        class="children"
+      />
+      <div
+        class="subtitle"
+      />
+    </header>
+    <div
+      class="main-section"
+    >
+      <div
+        class="popup-grid"
+      >
+        <div
+          class="launch-panel-general-container"
+        >
+          Your browser settings don't allow Accessibility Insights for Web to run on file URLs.
+        </div>
+        <div>
+          <div>
+            To allow this extension to run on file URLs:
+          </div>
+          <div>
+            1. Open 
+            <button
+              aria-label="open test title extension page"
+              class="ms-Link insights-link root-110"
+              type="button"
+            >
+              test title extension page
+            </button>
+            .
+          </div>
+          <div>
+            2. Enable 
+            <span
+              class="ms-fontWeight-semibold"
+            >
+              Allow Access to file URLs
+            </span>
+            .
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
 `;

@@ -44,7 +44,7 @@ class CodePenExportForm extends React.Component<ReportExportFormProps> {
                         editors: '100', // collapse CSS and JS editors
                     })}
                 />
-                <button type="submit" ref={this.buttonRef} />
+                <button type="button" ref={this.buttonRef} />
             </form>
         );
     }

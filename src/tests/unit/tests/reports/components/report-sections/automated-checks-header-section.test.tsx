@@ -10,7 +10,7 @@ import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers
 jest.mock('reports/components/report-sections/header-section');
 
 describe('AutomatedChecksHeaderSection', () => {
-    mockReactComponents([HeaderSection])
+    mockReactComponents([HeaderSection]);
     it('renders', () => {
         const targetAppInfo = {
             name: 'page-title',

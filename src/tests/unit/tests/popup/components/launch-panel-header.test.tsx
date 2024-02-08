@@ -14,13 +14,17 @@ import {
 import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-header-click-handler';
 import * as React from 'react';
 
-import { getMockComponentClassPropsForCall, mockReactComponents, useOriginalReactElements } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, Times } from 'typemoq';
 
 jest.mock('common/components/flagged-component');
 
 describe('LaunchPanelHeaderTest', () => {
-    mockReactComponents([FlaggedComponent])
+    mockReactComponents([FlaggedComponent]);
     let props: LaunchPanelHeaderProps;
 
     beforeEach(() => {
@@ -37,7 +41,7 @@ describe('LaunchPanelHeaderTest', () => {
             openFeedbackDialog: {} as any,
             popupWindow: {} as Window,
             featureFlags: {} as FeatureFlagStoreData,
-            openAdhocToolsPanel: () => { },
+            openAdhocToolsPanel: () => {},
             dropdownClickHandler: {} as DropdownClickHandler,
         };
     });
@@ -49,7 +53,7 @@ describe('LaunchPanelHeaderTest', () => {
     });
 
     it('handle open debug tools button activation', async () => {
-        useOriginalReactElements('common/components/flagged-component', ['FlaggedComponent'])
+        useOriginalReactElements('common/components/flagged-component', ['FlaggedComponent']);
         const dropdownClickHandlerMock = Mock.ofType<DropdownClickHandler>();
         props.deps.dropdownClickHandler = dropdownClickHandlerMock.object;
 
@@ -59,14 +63,15 @@ describe('LaunchPanelHeaderTest', () => {
             .setup(handler => handler.openDebugTools())
             .verifiable(Times.once());
 
-        const flaggedComponentProps = getMockComponentClassPropsForCall(FlaggedComponent).enableJSXElement;
+        const flaggedComponentProps =
+            getMockComponentClassPropsForCall(FlaggedComponent).enableJSXElement;
 
         const wrappedIconButton = render(flaggedComponentProps);
 
         const button = wrappedIconButton.queryAllByRole('button');
         await act(async () => {
-            await fireEvent.click(button[0])
-        })
+            await fireEvent.click(button[0]);
+        });
 
         dropdownClickHandlerMock.verifyAll();
     });

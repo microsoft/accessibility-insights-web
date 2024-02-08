@@ -13,7 +13,7 @@ import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers
 jest.mock('reports/components/report-sections/urls-summary-section');
 
 describe(CombinedReportSummarySection.displayName, () => {
-    mockReactComponents([UrlsSummarySection])
+    mockReactComponents([UrlsSummarySection]);
     const urlResultCounts = {
         passedUrls: 1,
         failedUrls: 2,

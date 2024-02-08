@@ -10,7 +10,7 @@ describe('BodySection', () => {
             <div key="1">1</div>,
             <div key="2" id="2">
                 2
-            </div>
+            </div>,
         ];
 
         const wrapped = render(<BodySection>{children}</BodySection>);

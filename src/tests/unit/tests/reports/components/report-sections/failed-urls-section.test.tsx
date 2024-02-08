@@ -13,7 +13,7 @@ import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers
 jest.mock('reports/components/report-sections/collapsible-url-result-section');
 
 describe(FailedUrlsSection.displayName, () => {
-    mockReactComponents([CollapsibleUrlResultSection])
+    mockReactComponents([CollapsibleUrlResultSection]);
     const failed = [{}] as SummaryScanResult[];
     const passed = [{}, {}] as SummaryScanResult[];
     const unscannable = [{}, {}, {}] as SummaryScanError[];

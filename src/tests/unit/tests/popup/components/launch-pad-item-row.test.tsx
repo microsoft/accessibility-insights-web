@@ -2,8 +2,14 @@
 // Licensed under the MIT License.
 import { Icon } from '@fluentui/react';
 import { Link } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, Times } from 'typemoq';
 
 import {
@@ -11,18 +17,16 @@ import {
     LaunchPadItemRowProps,
 } from '../../../../../popup/components/launch-pad-item-row';
 import { EventStubFactory } from '../../../common/event-stub-factory';
-import { render } from '@testing-library/react';
-import { getMockComponentClassPropsForCall, mockReactComponents, useOriginalReactElements } from 'tests/unit/mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 
 describe('LaunchPadItemRow', () => {
-    mockReactComponents([Link])
+    mockReactComponents([Link]);
     const descriptionClassName = 'launch-pad-item-description';
 
     const eventStubFactory = new EventStubFactory();
 
-    const onClickTitleMock = Mock.ofInstance((ev?) => { });
+    const onClickTitleMock = Mock.ofInstance((ev?) => {});
 
     const props: LaunchPadItemRowProps = {
         title: 'test title',
@@ -80,7 +84,7 @@ describe('LaunchPadItemRow', () => {
     });
 
     test('on link click', () => {
-        useOriginalReactElements('@fluentui/react', ['Link'])
+        useOriginalReactElements('@fluentui/react', ['Link']);
         const event = eventStubFactory.createKeypressEvent() as any;
 
         onClickTitleMock.setup(handler => handler(event)).verifiable(Times.once());

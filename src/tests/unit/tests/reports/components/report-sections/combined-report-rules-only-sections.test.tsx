@@ -14,10 +14,10 @@ import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { It, Mock, MockBehavior } from 'typemoq';
 
-jest.mock('common/components/cards/combined-report-result-section-title')
+jest.mock('common/components/cards/combined-report-result-section-title');
 
 describe('CombinedReportRulesOnlySections', () => {
-    mockReactComponents([CombinedReportResultSectionTitle])
+    mockReactComponents([CombinedReportResultSectionTitle]);
     let props: CombinedReportRulesOnlySectionProps;
     beforeEach(() => {
         const collapsibleControlMock = Mock.ofType<

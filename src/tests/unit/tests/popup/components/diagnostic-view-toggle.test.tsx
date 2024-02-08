@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Link } from '@fluentui/react';
+import { Link, Spinner, Toggle } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
@@ -12,7 +13,7 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { mount, shallow } from 'enzyme';
+
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import {
     DiagnosticViewToggle,
@@ -21,15 +22,25 @@ import {
 import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggle-click-handler';
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
-import { ContentLinkDeps } from 'views/content/content-link';
+import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentProvider } from 'views/content/content-page';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
+jest.mock('views/content/content-link');
+jest.mock('common/components/visualization-toggle');
+jest.mock('@fluentui/react');
+
 describe('DiagnosticViewToggleTest', () => {
+    mockReactComponents([ContentLink, VisualizationToggle, Spinner, Link]);
     const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory(
         Assessments,
         assessmentsProviderForRequirements(Assessments, QuickAssessRequirementMap),
@@ -49,9 +60,9 @@ describe('DiagnosticViewToggleTest', () => {
                 .setupVisualizationStoreData(data)
                 .build();
 
-            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            const wrapper = render(<DiagnosticViewToggle {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
 
         it('toggle when scanning for a different visualization', () => {
@@ -65,9 +76,9 @@ describe('DiagnosticViewToggleTest', () => {
                 .setupVisualizationStoreData(data)
                 .build();
 
-            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            const wrapper = render(<DiagnosticViewToggle {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
 
         it('toggle when not scanning', () => {
@@ -78,9 +89,9 @@ describe('DiagnosticViewToggleTest', () => {
                 testTelemetrySource,
             ).build();
 
-            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            const wrapper = render(<DiagnosticViewToggle {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
 
         it('details view link when the test does not have a guidance', () => {
@@ -91,14 +102,19 @@ describe('DiagnosticViewToggleTest', () => {
                 testTelemetrySource,
             ).build();
 
-            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            const wrapper = render(<DiagnosticViewToggle {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
     });
 
     describe('user interaction: ', () => {
         it('handles click on details view link, it will open FastPass when Assessment enabled', () => {
+            useOriginalReactElements('common/components/visualization-toggle', [
+                'VisualizationToggle',
+            ]);
+            useOriginalReactElements('@fluentui/react', ['Link']);
+
             const visualizationType = VisualizationType.Issues;
             const event = eventStubFactory.createKeypressEvent();
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(
@@ -110,14 +126,16 @@ describe('DiagnosticViewToggleTest', () => {
                 .setupOpenDetailsViewCall(event)
                 .build();
 
-            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
-
-            wrapper.find(Link).simulate('click', event);
+            render(<DiagnosticViewToggle {...props} />);
+            getMockComponentClassPropsForCall(Link).onClick(event);
 
             propsBuilder.verifyAll();
         });
 
         it('handles click the visualization toggle', () => {
+            useOriginalReactElements('common/components/visualization-toggle', [
+                'VisualizationToggle',
+            ]);
             const visualizationType = VisualizationType.Headings;
             const event = eventStubFactory.createKeypressEvent();
 
@@ -128,14 +146,15 @@ describe('DiagnosticViewToggleTest', () => {
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
-            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
+            render(<DiagnosticViewToggle {...props} />);
 
-            wrapper.find(VisualizationToggle).simulate('click', event);
+            getMockComponentClassPropsForCall(VisualizationToggle).onClick(event);
 
             propsBuilder.verifyAll();
         });
 
         it('handles click on the link when spinner is present', () => {
+            useOriginalReactElements('@fluentui/react', ['Link']);
             const visualizationType = VisualizationType.Issues;
             const data = new VisualizationStoreDataBuilder().with('scanning', 'issues').build();
 
@@ -150,8 +169,9 @@ describe('DiagnosticViewToggleTest', () => {
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
-            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
-            wrapper.find(Link).simulate('click', event);
+            render(<DiagnosticViewToggle {...props} />);
+
+            getMockComponentClassPropsForCall(Link).onClick(event);
 
             propsBuilder.verifyAll();
         });
@@ -167,8 +187,8 @@ describe('DiagnosticViewToggleTest', () => {
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
-            const wrapper = shallow(<DiagnosticViewToggle {...props} />);
-            wrapper.find(Link).simulate('click', event);
+            render(<DiagnosticViewToggle {...props} />);
+            getMockComponentClassPropsForCall(Link).onClick(event);
 
             propsBuilder.verifyAll();
         });
@@ -193,7 +213,12 @@ describe('DiagnosticViewToggleTest', () => {
     });
 
     describe('life cycle events', () => {
+        mockReactComponents([Toggle]);
         it('sets focus when componentDidMount', () => {
+            useOriginalReactElements('common/components/visualization-toggle', [
+                'VisualizationToggle',
+            ]);
+            useOriginalReactElements('@fluentui/react', ['Toggle']);
             const visualizationType = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
@@ -208,16 +233,15 @@ describe('DiagnosticViewToggleTest', () => {
 
             const props = propsBuilder.build();
 
-            const wrapper = mount(<DiagnosticViewToggle {...props} />);
-            wrapper.setState({
-                isFocused: true,
-            });
-            const toggle = wrapper.find(VisualizationToggle).props().componentRef.current;
-            jest.spyOn(toggle, 'focus');
+            const wrapper = render(<DiagnosticViewToggle {...props} />);
 
-            wrapper.instance().componentDidMount();
+            const toggleButton = wrapper.getByRole('switch');
 
-            expect(toggle.focus).toHaveBeenCalledTimes(1);
+            fireEvent.focus(toggleButton);
+
+            wrapper.rerender(<DiagnosticViewToggle {...props} />);
+
+            expect(document.activeElement).toBe(toggleButton);
         });
 
         it('sets focus when componentDidUpdate', () => {
@@ -234,17 +258,15 @@ describe('DiagnosticViewToggleTest', () => {
                 .setupDeps(depsMock.object);
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
+            const wrapper = render(<DiagnosticViewToggle {...props} />);
 
-            const wrapper = mount(<DiagnosticViewToggle {...props} />);
-            wrapper.setState({
-                isFocused: true,
-            });
-            const toggle = wrapper.find(VisualizationToggle).props().componentRef.current;
-            jest.spyOn(toggle, 'focus');
+            const toggleButton = wrapper.getByRole('switch');
 
-            wrapper.instance().componentDidUpdate(props, props);
+            fireEvent.focus(toggleButton);
 
-            expect(toggle.focus).toHaveBeenCalledTimes(1);
+            wrapper.rerender(<DiagnosticViewToggle {...props} />);
+
+            expect(document.activeElement).toBe(toggleButton);
         });
     });
 
@@ -305,9 +327,9 @@ describe('DiagnosticViewToggleTest', () => {
     });
 
     it('addUserEventListener', () => {
+        useOriginalReactElements('@fluentui/react', ['Spinner']);
         const visualizationType = VisualizationType.TabStops;
         const event = eventStubFactory.createKeypressEvent();
-
         const depsMock = createDepsMock();
 
         const propsBuilder = new DiagnosticViewTogglePropsBuilder(
@@ -326,6 +348,7 @@ describe('DiagnosticViewToggleTest', () => {
         (testObject as any)._userEventListenerAdded = false;
 
         const addUserEventListenerFunction = (testObject as any).addUserEventListener;
+
         addUserEventListenerFunction();
 
         expect((testObject as any).userEventListenerAdded).toBe(true);

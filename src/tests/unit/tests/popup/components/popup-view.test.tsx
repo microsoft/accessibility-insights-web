@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { Header } from 'common/components/header';
 import { NewTabLink } from 'common/components/new-tab-link';
+import { TelemetryPermissionDialog } from 'common/components/telemetry-permission-dialog';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import {
@@ -12,6 +14,7 @@ import {
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
+import { AdHocToolsPanel } from 'popup/components/ad-hoc-tools-panel';
 import { LaunchPad } from 'popup/components/launch-pad';
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import {
@@ -24,15 +27,30 @@ import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggl
 import { PopupViewControllerHandler } from 'popup/handlers/popup-view-controller-handler';
 import { LaunchPadRowConfigurationFactory } from 'popup/launch-pad-row-configuration-factory';
 import * as React from 'react';
-import { getMockComponentClassPropsForCall, mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 
-
-jest.mock('popup/components/launch-pad')
+jest.mock('popup/components/launch-pad');
+jest.mock('common/components/telemetry-permission-dialog');
+jest.mock('common/components/header');
+jest.mock('popup/components/ad-hoc-tools-panel');
+jest.mock('popup/components/launch-pad');
+jest.mock('popup/components/launch-panel-header');
 
 describe('PopupView', () => {
+    mockReactComponents([
+        LaunchPad,
+        TelemetryPermissionDialog,
+        LaunchPanelHeader,
+        AdHocToolsPanel,
+        Header,
+    ]);
     const browserAdapterStub = {
         getManifest: getManifestStub,
     } as BrowserAdapter;
@@ -68,7 +86,6 @@ describe('PopupView', () => {
     });
 
     describe('render actual content', () => {
-        mockReactComponents([LaunchPad])
         let actionMessageCreatorStrictMock: IMock<PopupActionMessageCreator>;
         let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
         let handlerMock: IMock<PopupViewControllerHandler>;
@@ -123,7 +140,8 @@ describe('PopupView', () => {
             } as PopupViewControllerDeps;
         });
 
-        test('render toggles view: launch pad', () => {
+        test('render toggles view: launch pad', async () => {
+            //  useOriginalReactElements('popup/components/launch-panel-header', ['LaunchPanelHeader'])
             actionMessageCreatorStrictMock
                 .setup(acm => acm.openLaunchPad(launchPanelStateStoreState.launchPanelType))
                 .verifiable();
@@ -144,131 +162,172 @@ describe('PopupView', () => {
                 .with('storeState', storeState)
                 .build();
             props.deps.storesHub = storesHubMock.object;
+            //jest.spyOn(props.popupHandlers, 'popupViewControllerHandler').mockImplementationOnce(() => handlerMock.object)
+            //props.popupHandlers.popupViewControllerHandler.openLaunchPad = jest.fn().mockImplementation(handlerMock.object.openLaunchPad);
+            //jest.spyOn(props.popupHandlers.popupViewControllerHandler, 'openLaunchPad').mockImplementationOnce(handlerMock.object.openLaunchPad)
 
             actionMessageCreatorStrictMock.setup(amc => amc.openTutorial(It.isAny()));
 
             const rendered = render(<PopupView {...props} />);
 
+            rendered.debug();
             expect(rendered.asFragment()).toMatchSnapshot();
 
             //const Subtitle = () => rendered.find(LaunchPanelHeader).prop('subtitle') as JSX.Element;
-            const Subtitle = () => getMockComponentClassPropsForCall(LaunchPanelHeader).subtitle as JSX.Element
-            //const renderedSubtitle = shallow(<Subtitle />);
+            const Subtitle = () => getMockComponentClassPropsForCall(LaunchPanelHeader).subtitle;
             const renderedSubtitle = render(<Subtitle />);
-            expect(renderedSubtitle.asFragment()).toMatchSnapshot('subtitle');
+            // jest.spyOn(props.popupHandlers.popupViewControllerHandler, 'openLaunchPad')
+            // renderedSubtitle.debug();
+            expect(renderedSubtitle.debug()).toMatchSnapshot('subtitle');
+            const link = await renderedSubtitle.findByText('Watch 3-minute video introduction');
             //const link = renderedSubtitle.find(NewTabLink);
-            const link = screen.getByRole('link');
+            //const link = renderedSubtitle.getByRole('link')
 
             //link.simulate('click');
-            fireEvent.click(link)
+            fireEvent.click(link);
             actionMessageCreatorStrictMock.verify(ac => ac.openTutorial(It.isAny()), Times.once());
 
             handlerMock.verifyAll();
         });
 
-        // test('render toggles view: ad-hoc tools', () => {
-        //     const adHocLaunchPanelStateStoreState: LaunchPanelStoreData = {
-        //         launchPanelType: LaunchPanelType.AdhocToolsPanel,
-        //     };
-        //     storeState.launchPanelStateStoreData = adHocLaunchPanelStateStoreState;
-        //     actionMessageCreatorStrictMock
-        //         .setup(acm => acm.openLaunchPad(adHocLaunchPanelStateStoreState.launchPanelType))
-        //         .verifiable();
-        //     const props = createDefaultPropsBuilder(storesHubMock.object)
-        //         .withDefaultTitleAndSubtitle()
-        //         .with('deps', deps)
-        //         .with('popupHandlers', {
-        //             diagnosticViewClickHandler: clickHandlerMock.object,
-        //             popupViewControllerHandler: handlerMock.object,
-        //             launchPanelHeaderClickHandler: null,
-        //             shortcutModifyHandler: shortcutModifyHandlerStub as any,
-        //         })
-        //         .with('hasAccess', true)
-        //         .with(
-        //             'launchPadRowConfigurationFactory',
-        //             launchPadRowConfigurationFactoryMock.object,
-        //         )
-        //         .with('storeState', storeState)
-        //         .build();
-        //     props.deps.storesHub = storesHubMock.object;
+        test('render toggles view: ad-hoc tools', () => {
+            const adHocLaunchPanelStateStoreState: LaunchPanelStoreData = {
+                launchPanelType: LaunchPanelType.AdhocToolsPanel,
+            };
+            storeState.launchPanelStateStoreData = adHocLaunchPanelStateStoreState;
+            actionMessageCreatorStrictMock
+                .setup(acm => acm.openLaunchPad(adHocLaunchPanelStateStoreState.launchPanelType))
+                .verifiable();
+            const props = createDefaultPropsBuilder(storesHubMock.object)
+                .withDefaultTitleAndSubtitle()
+                .with('deps', deps)
+                .with('popupHandlers', {
+                    diagnosticViewClickHandler: clickHandlerMock.object,
+                    popupViewControllerHandler: handlerMock.object,
+                    launchPanelHeaderClickHandler: null,
+                    shortcutModifyHandler: shortcutModifyHandlerStub as any,
+                })
+                .with('hasAccess', true)
+                .with(
+                    'launchPadRowConfigurationFactory',
+                    launchPadRowConfigurationFactoryMock.object,
+                )
+                .with('storeState', storeState)
+                .build();
+            props.deps.storesHub = storesHubMock.object;
 
-        //     const rendered = shallow(<PopupView {...props} />);
+            const rendered = render(<PopupView {...props} />);
 
-        //     expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
 
-        //     handlerMock.verifyAll();
-        // });
+            handlerMock.verifyAll();
+        });
 
-        // test('renderAdHocToolsPanel', () => {
-        //     const launchPanelStateStoreStateStub = {
-        //         launchPanelType: LaunchPanelType.AdhocToolsPanel,
-        //     };
+        test('renderAdHocToolsPanel', () => {
+            const launchPanelStateStoreStateStub = {
+                launchPanelType: LaunchPanelType.AdhocToolsPanel,
+            };
 
-        //     storeState.launchPanelStateStoreData = launchPanelStateStoreStateStub;
+            storeState.launchPanelStateStoreData = launchPanelStateStoreStateStub;
 
-        //     actionMessageCreatorStrictMock
-        //         .setup(acm => acm.openLaunchPad(launchPanelStateStoreStateStub.launchPanelType))
-        //         .verifiable();
+            actionMessageCreatorStrictMock
+                .setup(acm => acm.openLaunchPad(launchPanelStateStoreStateStub.launchPanelType))
+                .verifiable();
 
-        //     const props = createDefaultPropsBuilder(storesHubMock.object)
-        //         .withDefaultTitleAndSubtitle()
-        //         .with('deps', deps)
-        //         .with('popupHandlers', {
-        //             diagnosticViewClickHandler: null,
-        //             popupViewControllerHandler: handlerMock.object,
-        //             launchPanelHeaderClickHandler: null,
-        //             shortcutModifyHandler: null,
-        //         })
-        //         .with('hasAccess', true)
-        //         .with('diagnosticViewToggleFactory', null)
-        //         .with(
-        //             'launchPadRowConfigurationFactory',
-        //             launchPadRowConfigurationFactoryMock.object,
-        //         )
-        //         .with('storeState', storeState)
-        //         .build();
-        //     props.deps.storesHub = storesHubMock.object;
-        //     const rendered = shallow(<PopupView {...props} />);
+            const props = createDefaultPropsBuilder(storesHubMock.object)
+                .withDefaultTitleAndSubtitle()
+                .with('deps', deps)
+                .with('popupHandlers', {
+                    diagnosticViewClickHandler: null,
+                    popupViewControllerHandler: handlerMock.object,
+                    launchPanelHeaderClickHandler: null,
+                    shortcutModifyHandler: null,
+                })
+                .with('hasAccess', true)
+                .with('diagnosticViewToggleFactory', null)
+                .with(
+                    'launchPadRowConfigurationFactory',
+                    launchPadRowConfigurationFactoryMock.object,
+                )
+                .with('storeState', storeState)
+                .build();
+            props.deps.storesHub = storesHubMock.object;
+            const rendered = render(<PopupView {...props} />);
 
-        //     expect(rendered.debug()).toMatchSnapshot();
-        //     handlerMock.verifyAll();
-        // });
+            expect(rendered.debug()).toMatchSnapshot();
+            handlerMock.verifyAll();
+        });
+
+        test('Launch type is null', () => {
+            const launchPanelStateStoreStateStub = {
+                launchPanelType: null,
+            };
+
+            storeState.launchPanelStateStoreData = launchPanelStateStoreStateStub;
+
+            actionMessageCreatorStrictMock
+                .setup(acm => acm.openLaunchPad(launchPanelStateStoreStateStub.launchPanelType))
+                .verifiable();
+
+            const props = createDefaultPropsBuilder(storesHubMock.object)
+                .withDefaultTitleAndSubtitle()
+                .with('deps', deps)
+                .with('popupHandlers', {
+                    diagnosticViewClickHandler: null,
+                    popupViewControllerHandler: handlerMock.object,
+                    launchPanelHeaderClickHandler: null,
+                    shortcutModifyHandler: null,
+                })
+                .with('hasAccess', true)
+                .with('diagnosticViewToggleFactory', null)
+                .with(
+                    'launchPadRowConfigurationFactory',
+                    launchPadRowConfigurationFactoryMock.object,
+                )
+                .with('storeState', storeState)
+                .build();
+            props.deps.storesHub = storesHubMock.object;
+            const rendered = render(<PopupView {...props} />);
+
+            expect(rendered.debug()).toMatchSnapshot();
+            handlerMock.verifyAll();
+        });
     });
 
-    // test('renderFailureMsgPanelForChromeUrl', () => {
-    //     const storesHubMock = createDefaultStoresHubMock();
+    test('renderFailureMsgPanelForChromeUrl', () => {
+        const storesHubMock = createDefaultStoresHubMock();
 
-    //     const props = createDefaultPropsBuilder(storesHubMock.object)
-    //         .withDefaultTitleAndSubtitle()
-    //         .with('popupHandlers', {
-    //             gettingStartedDialogHandler: {} as any,
-    //         } as any)
-    //         .with('targetTabUrl', 'chrome://extensions')
-    //         .with('hasAccess', false)
-    //         .with('diagnosticViewToggleFactory', null)
-    //         .build();
+        const props = createDefaultPropsBuilder(storesHubMock.object)
+            .withDefaultTitleAndSubtitle()
+            .with('popupHandlers', {
+                gettingStartedDialogHandler: {} as any,
+            } as any)
+            .with('targetTabUrl', 'chrome://extensions')
+            .with('hasAccess', false)
+            .with('diagnosticViewToggleFactory', null)
+            .build();
 
-    //     const testObject = new PopupView(props);
+        const testObject = new PopupView(props);
 
-    //     expect(testObject.render()).toMatchSnapshot();
-    // });
+        expect(testObject.render()).toMatchSnapshot();
+    });
 
-    // test('renderFailureMsgPanelForFileUrl', () => {
-    //     const storesHubMock = createDefaultStoresHubMock();
+    test('renderFailureMsgPanelForFileUrl', () => {
+        const storesHubMock = createDefaultStoresHubMock();
 
-    //     const props = createDefaultPropsBuilder(storesHubMock.object)
-    //         .withDefaultTitleAndSubtitle()
-    //         .with('popupHandlers', {
-    //             gettingStartedDialogHandler: {} as any,
-    //         } as any)
-    //         .with('targetTabUrl', 'file:///')
-    //         .with('hasAccess', false)
-    //         .with('diagnosticViewToggleFactory', null)
-    //         .build();
+        const props = createDefaultPropsBuilder(storesHubMock.object)
+            .withDefaultTitleAndSubtitle()
+            .with('popupHandlers', {
+                gettingStartedDialogHandler: {} as any,
+            } as any)
+            .with('targetTabUrl', 'file:///')
+            .with('hasAccess', false)
+            .with('diagnosticViewToggleFactory', null)
+            .build();
 
-    //     const wrapped = shallow(<PopupView {...props} />);
-    //     expect(wrapped.getElement()).toMatchSnapshot();
-    // });
+        const wrapped = render(<PopupView {...props} />);
+        expect(wrapped.asFragment()).toMatchSnapshot();
+    });
 
     function createDefaultPropsBuilder(storeHub: ClientStoresHub<any>): PopupViewPropsBuilder {
         return new PopupViewPropsBuilder()
