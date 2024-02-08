@@ -31,32 +31,7 @@ exports[`ContentPage .Markup <Do> renders 1`] = `
       <h2>
         Do
       </h2>
-      <span
-        class="check-container"
-      >
-        <svg
-          aria-hidden="true"
-          fill="none"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="8"
-            cy="8"
-            fill="#228722"
-            r="8"
-          />
-          <path
-            clip-rule="evenodd"
-            d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-            fill="var(--neutral-0)"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </span>
+      <mock-checkicon />
     </div>
     <div
       class="do-section"
@@ -78,30 +53,7 @@ exports[`ContentPage .Markup <Dont> renders 1`] = `
       <h2>
         Don't
       </h2>
-      <span
-        class="check-container"
-      >
-        <svg
-          aria-hidden="true"
-          fill="none"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="8"
-            cy="8"
-            fill="#E81123"
-            r="8"
-          />
-          <path
-            d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-            fill="var(--neutral-0)"
-          />
-        </svg>
-      </span>
+      <mock-crossicon />
     </div>
     <div
       class="dont-section"
@@ -120,30 +72,7 @@ exports[`ContentPage .Markup <Fail> renders 1`] = `
     <div
       class="fail-header"
     >
-      <span
-        class="check-container"
-      >
-        <svg
-          aria-hidden="true"
-          fill="none"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="8"
-            cy="8"
-            fill="#E81123"
-            r="8"
-          />
-          <path
-            d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-            fill="var(--neutral-0)"
-          />
-        </svg>
-      </span>
+      <mock-crossicon />
        
       <h3>
         Fail
@@ -209,32 +138,7 @@ exports[`ContentPage .Markup <LandmarkLegend> renders 2`] = `
       <h2>
         Do
       </h2>
-      <span
-        class="check-container"
-      >
-        <svg
-          aria-hidden="true"
-          fill="none"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="8"
-            cy="8"
-            fill="#228722"
-            r="8"
-          />
-          <path
-            clip-rule="evenodd"
-            d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-            fill="var(--neutral-0)"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </span>
+      <mock-checkicon />
     </div>
     <div
       class="do-section"
@@ -250,27 +154,21 @@ exports[`ContentPage .Markup <Links> renders with many links 1`] = `
   <div
     class="content-hyperlinks"
   >
-    <a
-      class="ms-Link insights-link root-109"
+    <mock-newtablink
       href="about:blank"
-      target="_blank"
     >
       One
-    </a>
-    <a
-      class="ms-Link insights-link root-109"
+    </mock-newtablink>
+    <mock-newtablink
       href="about:blank"
-      target="_blank"
     >
       Two
-    </a>
-    <a
-      class="ms-Link insights-link root-109"
+    </mock-newtablink>
+    <mock-newtablink
       href="about:blank"
-      target="_blank"
     >
       Three
-    </a>
+    </mock-newtablink>
   </div>
 </DocumentFragment>
 `;
@@ -280,13 +178,11 @@ exports[`ContentPage .Markup <Links> renders with one link 1`] = `
   <div
     class="content-hyperlinks"
   >
-    <a
-      class="ms-Link insights-link root-109"
+    <mock-newtablink
       href="about:blank"
-      target="_blank"
     >
       One
-    </a>
+    </mock-newtablink>
   </div>
 </DocumentFragment>
 `;
@@ -309,32 +205,7 @@ exports[`ContentPage .Markup <Pass> renders 1`] = `
     <div
       class="pass-header"
     >
-      <span
-        class="check-container"
-      >
-        <svg
-          aria-hidden="true"
-          fill="none"
-          height="16"
-          role="img"
-          viewBox="0 0 16 16"
-          width="16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="8"
-            cy="8"
-            fill="#228722"
-            r="8"
-          />
-          <path
-            clip-rule="evenodd"
-            d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-            fill="var(--neutral-0)"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </span>
+      <mock-checkicon />
        
       <h3>
         Pass
@@ -360,30 +231,7 @@ exports[`ContentPage .Markup <PassFail> renders with example headers 1`] = `
       <div
         class="fail-header"
       >
-        <span
-          class="check-container"
-        >
-          <svg
-            aria-hidden="true"
-            fill="none"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="8"
-              cy="8"
-              fill="#E81123"
-              r="8"
-            />
-            <path
-              d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-              fill="var(--neutral-0)"
-            />
-          </svg>
-        </span>
+        <mock-crossicon />
          
         <h3>
           Fail
@@ -429,32 +277,7 @@ exports[`ContentPage .Markup <PassFail> renders with example headers 1`] = `
       <div
         class="pass-header"
       >
-        <span
-          class="check-container"
-        >
-          <svg
-            aria-hidden="true"
-            fill="none"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="8"
-              cy="8"
-              fill="#228722"
-              r="8"
-            />
-            <path
-              clip-rule="evenodd"
-              d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-              fill="var(--neutral-0)"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </span>
+        <mock-checkicon />
          
         <h3>
           Pass
@@ -512,30 +335,7 @@ exports[`ContentPage .Markup <PassFail> renders without example headers 1`] = `
       <div
         class="fail-header"
       >
-        <span
-          class="check-container"
-        >
-          <svg
-            aria-hidden="true"
-            fill="none"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="8"
-              cy="8"
-              fill="#E81123"
-              r="8"
-            />
-            <path
-              d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-              fill="var(--neutral-0)"
-            />
-          </svg>
-        </span>
+        <mock-crossicon />
          
         <h3>
           Fail
@@ -574,32 +374,7 @@ exports[`ContentPage .Markup <PassFail> renders without example headers 1`] = `
       <div
         class="pass-header"
       >
-        <span
-          class="check-container"
-        >
-          <svg
-            aria-hidden="true"
-            fill="none"
-            height="16"
-            role="img"
-            viewBox="0 0 16 16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="8"
-              cy="8"
-              fill="#228722"
-              r="8"
-            />
-            <path
-              clip-rule="evenodd"
-              d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-              fill="var(--neutral-0)"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </span>
+        <mock-checkicon />
          
         <h3>
           Pass
@@ -682,6 +457,14 @@ exports[`ContentPage .Markup <Title> renders where setPageTitle === null 1`] = `
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
 <DocumentFragment>
+  <mock-helmetwrapper
+    defer="true"
+    encodespecialcharacters="true"
+  >
+    <title>
+      TEST - THE_APPLICATION_TITLE
+    </title>
+  </mock-helmetwrapper>
   <h1>
     TEST
   </h1>

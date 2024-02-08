@@ -3,14 +3,25 @@
 
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { CheckIcon } from 'common/icons/check-icon';
+import { CrossIcon } from 'common/icons/cross-icon';
 import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
 import { create } from 'content/common';
 import * as React from 'react';
+import { Helmet } from 'react-helmet';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { It, Mock, Times } from 'typemoq';
 
 import { createMarkup } from 'views/content/markup';
 
+jest.mock('common/icons/check-icon');
+jest.mock('common/icons/cross-icon');
+jest.mock('common/components/new-tab-link');
+jest.mock('react-helmet');
+
 describe('ContentPage', () => {
+    mockReactComponents([CheckIcon, CrossIcon, NewTabLink, Helmet]);
     const contentActionMessageCreatorMock = Mock.ofType<ContentActionMessageCreator>();
     const applicationTitle = 'THE_APPLICATION_TITLE';
     const deps = {
