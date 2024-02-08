@@ -8,7 +8,6 @@ import { HeaderSection } from 'reports/components/report-sections/header-section
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
-    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 
 jest.mock('reports/components/report-sections/header-section');
