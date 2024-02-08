@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
-import { BaseButton, Button } from '../../../../../../node_modules/@fluentui/react';
+import { BaseButton, Button, DefaultButton } from '../../../../../../node_modules/@fluentui/react';
 import { CopyIssueDetailsButton } from '../../../../../common/components/copy-issue-details-button';
+import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import {
@@ -16,8 +17,13 @@ import {
 } from '../../../../../injected/components/command-bar';
 import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
 import { EventStubFactory } from '../../../common/event-stub-factory';
+import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../common/components/copy-issue-details-button');
+jest.mock('../../../../../../node_modules/@fluentui/react');
+jest.mock('../../../../../common/components/issue-filing-button');
 
 describe('CommandBar', () => {
+    mockReactComponents([CopyIssueDetailsButton, DefaultButton, IssueFilingButton]);
     const ruleResult = {
         failureSummary: 'RR-failureSummary',
         guidanceLinks: [
@@ -76,9 +82,9 @@ describe('CommandBar', () => {
                 shouldShowInspectButtonMessage: () => show,
             };
 
-            const wrapper = shallow(<CommandBar {...props} />);
+            const renderResult = render(<CommandBar {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
             axeConverterMock.verifyAll();
         });
 
@@ -91,9 +97,9 @@ describe('CommandBar', () => {
                     shouldShowInsecureOriginPageMessage: show,
                 };
 
-                const wrapper = shallow(<CommandBar {...props} />);
+                const renderResult = render(<CommandBar {...props} />);
 
-                expect(wrapper.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
                 axeConverterMock.verifyAll();
             },
         );
@@ -102,7 +108,7 @@ describe('CommandBar', () => {
     describe('click handlers', () => {
         const eventStub = new EventStubFactory().createKeypressEvent() as any;
 
-        test('for inspect button', () => {
+        test('for inspect button', async () => {
             const onClickMock = Mock.ofInstance(
                 (
                     event: React.MouseEvent<
@@ -113,7 +119,7 @@ describe('CommandBar', () => {
                         | HTMLButtonElement,
                         MouseEvent
                     >,
-                ) => {},
+                ) => { },
             );
 
             const props = {
@@ -121,31 +127,27 @@ describe('CommandBar', () => {
                 onClickInspectButton: onClickMock.object,
             };
 
-            const wrapper = shallow(<CommandBar {...props} />);
+            render(<CommandBar {...props} />);
 
-            const button = wrapper.find('.insights-dialog-button-inspect');
+            await getMockComponentClassPropsForCall(DefaultButton).onClick;
 
-            button.simulate('click', eventStub);
-
-            onClickMock.verify(onClick => onClick(eventStub), Times.once());
+            onClickMock.setup(onClick => onClick(eventStub)).verifiable(Times.once());
             axeConverterMock.verifyAll();
         });
 
-        test('for copy issue details button', () => {
-            const onClickMock = Mock.ofInstance((event: React.MouseEvent<any, MouseEvent>) => {});
+        test('for copy issue details button', async () => {
+            const onClickMock = Mock.ofInstance((event: React.MouseEvent<any, MouseEvent>) => { });
 
             const props = {
                 ...defaultCommandBarProps,
                 onClickCopyIssueDetailsButton: onClickMock.object,
             };
 
-            const wrapper = shallow(<CommandBar {...props} />);
+            render(<CommandBar {...props} />);
 
-            const button = wrapper.find(CopyIssueDetailsButton);
+            await getMockComponentClassPropsForCall(CopyIssueDetailsButton).onClick;
 
-            button.prop('onClick')(eventStub);
-
-            onClickMock.verify(onClick => onClick(eventStub), Times.once());
+            onClickMock.setup(onClick => onClick(eventStub)).verifiable(Times.once());
             axeConverterMock.verifyAll();
         });
     });

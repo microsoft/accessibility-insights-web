@@ -1,9 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UIFactory exports ContentView 1`] = `
-<Content
-  deps={
-    {
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
+  />
+  <main>
+    <div
+      class="content-container"
+    >
+      <div
+        class="content-left"
+      />
+      <div
+        class="content"
+      >
+        CONTENTS
+      </div>
+      <div
+        class="content-right"
+      />
+    </div>
+  </main>
+</DocumentFragment>
+`;
+
+exports[`UIFactory exports ContentView: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
       "getNarrowModeThresholds": [Function],
       "storeActionMessageCreator": {
         "getAllStates": [Function],
@@ -19,9 +47,25 @@ exports[`UIFactory exports ContentView 1`] = `
       "textContent": {
         "applicationTitle": "THE_APPLICATION_TITLE",
       },
-    }
-  }
->
-  CONTENTS
-</Content>
+    },
+  },
+  "deps": {
+    "getNarrowModeThresholds": [Function],
+    "storeActionMessageCreator": {
+      "getAllStates": [Function],
+    },
+    "storesHub": {
+      "addChangedListenerToAllStores": [Function],
+      "getAllStoreData": [Function],
+      "hasStoreData": [Function],
+      "hasStores": [Function],
+      "removeChangedListenerFromAllStores": [Function],
+      "stores": [],
+    },
+    "textContent": {
+      "applicationTitle": "THE_APPLICATION_TITLE",
+    },
+  },
+  "isNarrowModeEnabled": true,
+}
 `;

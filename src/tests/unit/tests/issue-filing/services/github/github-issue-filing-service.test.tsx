@@ -1,17 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { TextField } from '@fluentui/react';
 import { IssueFilingServicePropertiesMap } from 'common/types/store-data/user-configuration-store';
 import { SettingsDeps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
-import { shallow } from 'enzyme';
 import { OnPropertyUpdateCallback } from 'issue-filing/components/issue-filing-settings-container';
 import { getGitHubIssueFilingService } from 'issue-filing/services/github/github-issue-filing-service';
 import { GitHubIssueFilingSettings } from 'issue-filing/services/github/github-issue-filing-settings';
 import { SettingsFormProps } from 'issue-filing/types/settings-form-props';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('GithubIssueFilingServiceTest', () => {
+    mockReactComponents([TextField]);
     let props: SettingsFormProps<GitHubIssueFilingSettings>;
     let onPropertyUpdateCallbackMock: IMock<OnPropertyUpdateCallback>;
 
@@ -79,22 +82,22 @@ describe('GithubIssueFilingServiceTest', () => {
     describe('settingsForm', () => {
         it('renders', () => {
             const Component = gitHubIssueFilingService.settingsForm;
-            const wrapper = shallow(<Component {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Component {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('renders with no valid settings object', () => {
             const Component = gitHubIssueFilingService.settingsForm;
             props.settings = null;
-            const wrapper = shallow(<Component {...props} />);
-            const textField = wrapper.find(TextField);
-            expect(textField.exists()).toBe(true);
-            expect(textField.props().value).toEqual('');
+            render(<Component {...props} />);
+            const textField = getMockComponentClassPropsForCall(TextField);
+            expect(textField).not.toBeNull();
+            expect(textField.value).toEqual('');
         });
 
         it('onChange', () => {
             const Component = gitHubIssueFilingService.settingsForm;
-            const wrapper = shallow(<Component {...props} />);
+            render(<Component {...props} />);
             const newRepositoryValue = 'new repo';
             const payload = {
                 issueFilingServiceName: gitHubIssueFilingService.key,
@@ -104,7 +107,9 @@ describe('GithubIssueFilingServiceTest', () => {
             onPropertyUpdateCallbackMock
                 .setup(updateCallback => updateCallback(It.isValue(payload)))
                 .verifiable(Times.once());
-            wrapper.find(TextField).props().onChange(null, newRepositoryValue);
+
+            const textField = getMockComponentClassPropsForCall(TextField);
+            textField.onChange(null, newRepositoryValue);
             onPropertyUpdateCallbackMock.verifyAll();
         });
     });

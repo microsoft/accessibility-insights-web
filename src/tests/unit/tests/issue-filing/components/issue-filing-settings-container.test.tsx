@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
@@ -16,15 +16,19 @@ import {
 } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
+import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { IssueFilingChoiceGroup } from '../../../../../issue-filing/components/issue-filing-choice-group';
+import { AzureBoardsSettingsForm } from '../../../../../issue-filing/services/azure-boards/azure-boards-settings-form';
 
+jest.mock('issue-filing/services/azure-boards/azure-boards-settings-form');
+jest.mock('issue-filing/components/issue-filing-choice-group');
 describe('IssueFilingSettingsContainerTest', () => {
+    mockReactComponents([IssueFilingChoiceGroup, AzureBoardsSettingsForm]);
     const issueFilingServicesProviderMock = Mock.ofType(IssueFilingServiceProvider);
     const selectedIssueFilingService: IssueFilingService = {
         key: 'test',
         displayName: 'TEST',
-        settingsForm: formProps => {
-            return <>{formProps}</>;
-        },
+        settingsForm: AzureBoardsSettingsForm,
     } as IssueFilingService;
     const issueFilingServices = [selectedIssueFilingService];
     const userConfigurationStoreData: UserConfigurationStoreData = {
@@ -50,7 +54,8 @@ describe('IssueFilingSettingsContainerTest', () => {
         issueFilingServicesProviderMock
             .setup(mock => mock.allVisible())
             .returns(() => issueFilingServices);
-        const wrapper = shallow(<IssueFilingSettingsContainer {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<IssueFilingSettingsContainer {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([IssueFilingChoiceGroup]);
     });
 });

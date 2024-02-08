@@ -1,26 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    FixInstructionPanel,
-    FixInstructionPanelProps,
-} from 'common/components/fix-instruction-panel';
+import { render } from '@testing-library/react';
+import { FixInstructionPanel, FixInstructionPanelProps } from 'common/components/fix-instruction-panel';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
 import { CheckType } from 'common/types/check-type';
 import { FormattedCheckResult } from 'common/types/store-data/visualization-scan-result-data';
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, It, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock } from 'typemoq';
 
 describe('FixInstructionPanelTests', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
     let recommendation: RecommendColor;
 
     beforeEach(() => {
-        fixInstructionProcessorMock = Mock.ofType<FixInstructionProcessor>(
-            undefined,
-            MockBehavior.Strict,
-        );
+        fixInstructionProcessorMock = Mock.ofType(undefined);
         fixInstructionProcessorMock
             .setup(processor => processor.process(It.isAnyString(), recommendation))
             .returns(instruction => <>{instruction}</>);
@@ -50,9 +44,9 @@ describe('FixInstructionPanelTests', () => {
             },
         };
 
-        const wrapped = shallow(<FixInstructionPanel {...props} />);
+        const renderResult = render(<FixInstructionPanel {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('render instruction only one check', () => {
@@ -74,9 +68,10 @@ describe('FixInstructionPanelTests', () => {
             },
         };
 
-        const wrapped = shallow(<FixInstructionPanel {...props} />);
+        const renderResult = render(<FixInstructionPanel {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+
     });
 
     test('render none checks', () => {
@@ -103,9 +98,9 @@ describe('FixInstructionPanelTests', () => {
             },
         };
 
-        const wrapped = shallow(<FixInstructionPanel {...props} />);
+        const renderResult = render(<FixInstructionPanel {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('render nothing', () => {
@@ -121,9 +116,9 @@ describe('FixInstructionPanelTests', () => {
             },
         };
 
-        const wrapped = shallow(<FixInstructionPanel {...props} />);
+        const renderResult = render(<FixInstructionPanel {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     function renderTitleAsDiv(titleText: string): JSX.Element {

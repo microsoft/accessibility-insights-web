@@ -1,15 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
 import { CheckIcon } from 'common/icons/check-icon';
 import { CrossIcon } from 'common/icons/cross-icon';
 import { NarrowModeThresholds } from 'common/narrow-mode-thresholds';
-import { shallow } from 'enzyme';
 import { UIFactory } from 'packages/accessibility-insights-ui/ui-factory';
 import * as React from 'react';
 import { GuidanceTitle } from 'views/content/guidance-title';
+import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { NarrowModeDetector } from '../../../../../DetailsView/components/narrow-mode-detector';
 
+jest.mock('DetailsView/components/narrow-mode-detector');
 describe('UIFactory', () => {
+    mockReactComponents([NarrowModeDetector]);
     const applicationTitle = 'THE_APPLICATION_TITLE';
     const narrowModeThresholds = {
         collapseHeaderAndNavThreshold: 600,
@@ -74,7 +78,8 @@ describe('UIFactory', () => {
     });
 
     it('exports ContentView', () => {
-        const wrapper = shallow(<ui.ContentView>CONTENTS</ui.ContentView>);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<ui.ContentView>CONTENTS</ui.ContentView>);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([NarrowModeDetector]);
     });
 });
