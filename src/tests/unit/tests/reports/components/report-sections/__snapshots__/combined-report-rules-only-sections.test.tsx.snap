@@ -18,8 +18,10 @@ exports[`CombinedReportRulesOnlySections CombinedReportNotApplicableSection rend
     <div
       id="collapsible-content"
     >
-      <div
-        class="ruleDetailsGroup"
+      <mock-rulesonly
+        cardruleresults=""
+        deps="[object Object]"
+        outcometype="inapplicable"
       />
     </div>
   </div>
@@ -44,8 +46,10 @@ exports[`CombinedReportRulesOnlySections CombinedReportPassedSection renders 1`]
     <div
       id="collapsible-content"
     >
-      <div
-        class="ruleDetailsGroup"
+      <mock-rulesonly
+        cardruleresults=""
+        deps="[object Object]"
+        outcometype="pass"
       />
     </div>
   </div>

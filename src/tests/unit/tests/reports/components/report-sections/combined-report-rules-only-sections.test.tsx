@@ -10,14 +10,16 @@ import {
     CombinedReportPassedSection,
     CombinedReportRulesOnlySectionProps,
 } from 'reports/components/report-sections/combined-report-rules-only-sections';
+import { RulesOnly } from 'reports/components/report-sections/rules-only';
 import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { It, Mock, MockBehavior } from 'typemoq';
 
 jest.mock('common/components/cards/combined-report-result-section-title');
+jest.mock('reports/components/report-sections/rules-only');
 
 describe('CombinedReportRulesOnlySections', () => {
-    mockReactComponents([CombinedReportResultSectionTitle]);
+    mockReactComponents([CombinedReportResultSectionTitle, RulesOnly]);
     let props: CombinedReportRulesOnlySectionProps;
     beforeEach(() => {
         const collapsibleControlMock = Mock.ofType<

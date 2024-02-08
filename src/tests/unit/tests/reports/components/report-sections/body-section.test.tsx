@@ -12,8 +12,8 @@ describe('BodySection', () => {
                 2
             </div>,
         ];
-
         const wrapped = render(<BodySection>{children}</BodySection>);
-        expect(wrapped).toMatchSnapshot();
+
+        expect(wrapped.container.firstElementChild).toMatchSnapshot();
     });
 });

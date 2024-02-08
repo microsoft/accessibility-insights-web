@@ -138,3 +138,17 @@ exports[`DiagnosticViewToggleTest renders toggle when scanning for a different v
   </div>
 </DocumentFragment>
 `;
+
+exports[`DiagnosticViewToggleTest renders toggle when scanning for a different visualization: VisualizationToggle props 1`] = `
+{
+  "checked": false,
+  "componentRef": {
+    "current": null,
+  },
+  "disabled": true,
+  "onBlur": [Function],
+  "onClick": [Function],
+  "onFocus": [Function],
+  "visualizationName": "Headings",
+}
+`;

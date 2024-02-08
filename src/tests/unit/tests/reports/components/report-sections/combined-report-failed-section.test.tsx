@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
+import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
+import { ResultSectionContent } from 'common/components/cards/result-section-content';
 import { RulesWithInstances } from 'common/components/cards/rules-with-instances';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 
@@ -16,9 +18,15 @@ import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/
 import { It, Mock, MockBehavior } from 'typemoq';
 
 jest.mock('common/components/cards/rules-with-instances');
+jest.mock('common/components/cards/result-section-content');
+jest.mock('common/components/cards/combined-report-result-section-title');
 
 describe('CombinedReportFailedSection', () => {
-    mockReactComponents([RulesWithInstances]);
+    mockReactComponents([
+        RulesWithInstances,
+        ResultSectionContent,
+        CombinedReportResultSectionTitle,
+    ]);
     it('renders', () => {
         const collapsibleControlMock = Mock.ofType<
             (props: CollapsibleComponentCardsProps) => JSX.Element

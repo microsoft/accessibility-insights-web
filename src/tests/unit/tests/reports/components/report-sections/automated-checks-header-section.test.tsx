@@ -5,7 +5,11 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { AutomatedChecksHeaderSection } from 'reports/components/report-sections/automated-checks-header-section';
 import { HeaderSection } from 'reports/components/report-sections/header-section';
-import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 
 jest.mock('reports/components/report-sections/header-section');
 
@@ -19,7 +23,7 @@ describe('AutomatedChecksHeaderSection', () => {
         const scanMetadata = {
             targetAppInfo,
         } as ScanMetadata;
-        const wrapper = render(<AutomatedChecksHeaderSection scanMetadata={scanMetadata} />);
-        expect(wrapper.asFragment()).toMatchSnapshot();
+        render(<AutomatedChecksHeaderSection scanMetadata={scanMetadata} />);
+        expectMockedComponentPropsToMatchSnapshots([HeaderSection]);
     });
 });

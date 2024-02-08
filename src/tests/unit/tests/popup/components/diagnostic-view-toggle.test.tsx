@@ -23,6 +23,7 @@ import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggl
 import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
@@ -79,6 +80,7 @@ describe('DiagnosticViewToggleTest', () => {
             const wrapper = render(<DiagnosticViewToggle {...props} />);
 
             expect(wrapper.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([VisualizationToggle]);
         });
 
         it('toggle when not scanning', () => {

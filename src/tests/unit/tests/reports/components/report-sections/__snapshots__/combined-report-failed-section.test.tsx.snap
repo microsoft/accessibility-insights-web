@@ -8,30 +8,22 @@ exports[`CombinedReportFailedSection renders 1`] = `
     <div
       id="collapsible-header"
     >
-      <span
-        class="combinedReportResultSectionTitle"
-      >
-        <span
-          class="screen-reader-only"
-        >
-          Failed rules 1
-        </span>
-        <span
-          aria-hidden="true"
-          class="heading"
-        >
-          Failed rules (1)
-        </span>
-      </span>
+      <mock-combinedresultsectiontitle
+        outcomecount="1"
+        outcometype="fail"
+        title="Failed rules"
+      />
     </div>
     <div
       id="collapsible-content"
     >
-      <mock-ruleswithinstances
+      <mock-resultsectioncontent
+        allcardscollapsed="true"
         deps="[object Object]"
         headinglevel="4"
         outcometype="fail"
-        rules="[object Object]"
+        results="[object Object]"
+        visualhelperenabled="true"
       />
     </div>
   </div>
