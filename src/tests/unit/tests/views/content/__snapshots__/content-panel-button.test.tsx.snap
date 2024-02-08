@@ -2,91 +2,66 @@
 
 exports[`ContentPanelButton renders from content 1`] = `
 <DocumentFragment>
-  <button
-    aria-label="info and examples"
-    class="ms-Button ms-Button--action ms-Button--command root-109"
-    data-is-focusable="true"
-    type="button"
+  <mock-customizedactionbutton
+    arialabel="info and examples"
+    iconprops="[object Object]"
   >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon icon-112"
-        data-icon-name="iconName"
-      />
-      <span
-        class="ms-Button-textContainer textContainer-111"
-      >
-        <span
-          class="ms-Button-label label-113"
-          id="id__0"
-        >
-          TEXT
-        </span>
-      </span>
-    </span>
-  </button>
+    TEXT
+  </mock-customizedactionbutton>
 </DocumentFragment>
+`;
+
+exports[`ContentPanelButton renders from content: CustomizedActionButton props 1`] = `
+{
+  "ariaLabel": "info and examples",
+  "children": "TEXT",
+  "iconProps": {
+    "iconName": "iconName",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`ContentPanelButton renders from path 1`] = `
 <DocumentFragment>
-  <button
-    aria-label="info and examples"
-    class="ms-Button ms-Button--action ms-Button--command root-109"
-    data-is-focusable="true"
-    type="button"
+  <mock-customizedactionbutton
+    arialabel="info and examples"
+    iconprops="[object Object]"
   >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <i
-        aria-hidden="true"
-        class="ms-Icon root-105 ms-Button-icon icon-112"
-        data-icon-name="iconName"
-      />
-      <span
-        class="ms-Button-textContainer textContainer-111"
-      >
-        <span
-          class="ms-Button-label label-113"
-          id="id__3"
-        >
-          TEXT
-        </span>
-      </span>
-    </span>
-  </button>
+    TEXT
+  </mock-customizedactionbutton>
 </DocumentFragment>
+`;
+
+exports[`ContentPanelButton renders from path: CustomizedActionButton props 1`] = `
+{
+  "ariaLabel": "info and examples",
+  "children": "TEXT",
+  "iconProps": {
+    "iconName": "iconName",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`ContentPanelButton renders without iconName 1`] = `
 <DocumentFragment>
-  <button
-    aria-label="info and examples"
-    class="ms-Button ms-Button--action ms-Button--command root-109"
-    data-is-focusable="true"
-    type="button"
+  <mock-customizedactionbutton
+    arialabel="info and examples"
+    iconprops="[object Object]"
   >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
-    >
-      <span
-        class="ms-Button-textContainer textContainer-111"
-      >
-        <span
-          class="ms-Button-label label-113"
-          id="id__6"
-        >
-          TEXT
-        </span>
-      </span>
-    </span>
-  </button>
+    TEXT
+  </mock-customizedactionbutton>
 </DocumentFragment>
+`;
+
+exports[`ContentPanelButton renders without iconName: CustomizedActionButton props 1`] = `
+{
+  "ariaLabel": "info and examples",
+  "children": "TEXT",
+  "iconProps": {
+    "iconName": undefined,
+  },
+  "onClick": [Function],
+}
 `;

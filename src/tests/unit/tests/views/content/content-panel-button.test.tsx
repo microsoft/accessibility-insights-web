@@ -11,7 +11,7 @@ import { ContentPage } from 'views/content/content-page';
 import { ContentPanelButton } from 'views/content/content-panel-button';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
-jest.mock('views/content/content-panel-button');
+jest.mock('@fluentui/react');
 
 describe('ContentPanelButton', () => {
     mockReactComponents([ActionButton]);
