@@ -1,8 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PopupView render actual content Launch type is null 1`] = `undefined`;
+exports[`PopupView render actual content Launch type is null 1`] = `
+<DocumentFragment>
+  <mock-telemetrypermissiondialog
+    deps="[object Object]"
+    isfirsttime="true"
+  />
+</DocumentFragment>
+`;
 
-exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] = `undefined`;
+exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-Fabric ad-hoc-tools-panel"
+  >
+    <mock-launchpanelheader
+      deps="[object Object]"
+      featureflags="[object Object]"
+      title="test title"
+    />
+    <mock-adhoctoolspanel
+      featureflagstoredata="[object Object]"
+    />
+  </div>
+  <mock-telemetrypermissiondialog
+    deps="[object Object]"
+    isfirsttime="true"
+  />
+</DocumentFragment>
+`;
 
 exports[`PopupView render actual content render toggles view: launch pad 1`] = `
 <DocumentFragment>
@@ -31,7 +57,26 @@ exports[`PopupView render actual content render toggles view: launch pad 1`] = `
 
 exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `undefined`;
 
-exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `undefined`;
+exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
+<DocumentFragment>
+  <div
+    class="ms-Fabric ad-hoc-tools-panel"
+  >
+    <mock-launchpanelheader
+      deps="[object Object]"
+      featureflags="[object Object]"
+      title="test title"
+    />
+    <mock-adhoctoolspanel
+      featureflagstoredata="[object Object]"
+    />
+  </div>
+  <mock-telemetrypermissiondialog
+    deps="[object Object]"
+    isfirsttime="true"
+  />
+</DocumentFragment>
+`;
 
 exports[`PopupView render spinner 1`] = `
 <StyledSpinnerBase

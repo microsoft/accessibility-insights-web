@@ -138,7 +138,6 @@ describe('PopupView', () => {
         });
 
         test('render toggles view: launch pad', async () => {
-            //  useOriginalReactElements('popup/components/launch-panel-header', ['LaunchPanelHeader'])
             actionMessageCreatorStrictMock
                 .setup(acm => acm.openLaunchPad(launchPanelStateStoreState.launchPanelType))
                 .verifiable();
@@ -159,28 +158,17 @@ describe('PopupView', () => {
                 .with('storeState', storeState)
                 .build();
             props.deps.storesHub = storesHubMock.object;
-            //jest.spyOn(props.popupHandlers, 'popupViewControllerHandler').mockImplementationOnce(() => handlerMock.object)
-            //props.popupHandlers.popupViewControllerHandler.openLaunchPad = jest.fn().mockImplementation(handlerMock.object.openLaunchPad);
-            //jest.spyOn(props.popupHandlers.popupViewControllerHandler, 'openLaunchPad').mockImplementationOnce(handlerMock.object.openLaunchPad)
 
             actionMessageCreatorStrictMock.setup(amc => amc.openTutorial(It.isAny()));
 
             const rendered = render(<PopupView {...props} />);
 
-            rendered.debug();
             expect(rendered.asFragment()).toMatchSnapshot();
 
-            //const Subtitle = () => rendered.find(LaunchPanelHeader).prop('subtitle') as JSX.Element;
             const Subtitle = () => getMockComponentClassPropsForCall(LaunchPanelHeader).subtitle;
             const renderedSubtitle = render(<Subtitle />);
-            // jest.spyOn(props.popupHandlers.popupViewControllerHandler, 'openLaunchPad')
-            // renderedSubtitle.debug();
             expect(renderedSubtitle.debug()).toMatchSnapshot('subtitle');
             const link = await renderedSubtitle.findByText('Watch 3-minute video introduction');
-            //const link = renderedSubtitle.find(NewTabLink);
-            //const link = renderedSubtitle.getByRole('link')
-
-            //link.simulate('click');
             fireEvent.click(link);
             actionMessageCreatorStrictMock.verify(ac => ac.openTutorial(It.isAny()), Times.once());
 
@@ -215,7 +203,7 @@ describe('PopupView', () => {
 
             const rendered = render(<PopupView {...props} />);
 
-            expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.asFragment()).toMatchSnapshot();
 
             handlerMock.verifyAll();
         });
@@ -251,7 +239,7 @@ describe('PopupView', () => {
             props.deps.storesHub = storesHubMock.object;
             const rendered = render(<PopupView {...props} />);
 
-            expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.asFragment()).toMatchSnapshot();
             handlerMock.verifyAll();
         });
 
@@ -286,7 +274,7 @@ describe('PopupView', () => {
             props.deps.storesHub = storesHubMock.object;
             const rendered = render(<PopupView {...props} />);
 
-            expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.asFragment()).toMatchSnapshot();
             handlerMock.verifyAll();
         });
     });
