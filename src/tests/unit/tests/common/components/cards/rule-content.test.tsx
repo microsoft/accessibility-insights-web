@@ -9,8 +9,13 @@ import {
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { RuleResources } from '../../../../../../common/components/cards/rule-resources';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../../../../../../common/configs/needs-review-rule-resources';
 jest.mock('common/components/cards/instance-details-group');
 jest.mock('../../../../../../common/components/cards/rule-resources');
+jest.mock('common/configs/needs-review-rule-resources');
 
 describe('RuleContent', () => {
     mockReactComponents([InstanceDetailsGroup, RuleResources]);
@@ -19,11 +24,15 @@ describe('RuleContent', () => {
             rule: {
                 id: 'test-id',
             },
+            deps: {
+                GetNeedsReviewRuleResourcesUrl: getNeedsReviewRuleResourcesUrl,
+                IsOutcomeNeedsReview: isOutcomeNeedsReview,
+            },
         } as RuleContentProps;
 
         const renderResult = render(<RuleContent {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsGroup]);
+        expectMockedComponentPropsToMatchSnapshots([InstanceDetailsGroup, RuleResources]);
     });
 });

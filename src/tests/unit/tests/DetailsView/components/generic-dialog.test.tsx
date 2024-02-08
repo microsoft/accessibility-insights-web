@@ -1,16 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, PrimaryButton } from '@fluentui/react';
-import { Dialog } from '@fluentui/react';
-import { shallow } from 'enzyme';
+import { Dialog, DefaultButton, DialogFooter, PrimaryButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
+
 import * as React from 'react';
 
 import {
     GenericDialog,
     GenericDialogProps,
 } from '../../../../../DetailsView/components/generic-dialog';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('GenericDialogTest', () => {
+    mockReactComponents([Dialog, DialogFooter, PrimaryButton, DefaultButton]);
+
     it('should render', () => {
         const props: GenericDialogProps = {
             title: 'test title',
@@ -20,12 +27,12 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props} />);
+        const renderResult = render(<GenericDialog {...props} />);
 
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    it('should handle onDismiss properly', () => {
+    it('should handle onDismiss properly', async () => {
         const onDismissMock = jest.fn();
 
         const props: GenericDialogProps = {
@@ -36,13 +43,13 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props} />);
-        rendered.find(DefaultButton).simulate('click');
+        render(<GenericDialog {...props} />);
+        getMockComponentClassPropsForCall(Dialog).onDismiss();
 
         expect(onDismissMock).toHaveBeenCalledTimes(1);
     });
 
-    it('should handle onStartOver properly', () => {
+    it('should handle onStartOver properly', async () => {
         const onPrimaryButtonClickMock = jest.fn();
 
         const props: GenericDialogProps = {
@@ -53,8 +60,8 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props} />);
-        rendered.find(PrimaryButton).simulate('click');
+        render(<GenericDialog {...props} />);
+        getMockComponentClassPropsForCall(PrimaryButton).onClick(event);
 
         expect(onPrimaryButtonClickMock).toHaveBeenCalledTimes(1);
     });
@@ -70,8 +77,8 @@ describe('GenericDialogTest', () => {
             primaryButtonText: 'test primary text',
         };
 
-        const rendered = shallow(<GenericDialog {...props} />);
-        rendered.find(Dialog).prop('onDismiss')();
+        render(<GenericDialog {...props} />);
+        getMockComponentClassPropsForCall(Dialog).onDismiss();
 
         expect(onCancelButtonClickMock).toHaveBeenCalledTimes(1);
     });

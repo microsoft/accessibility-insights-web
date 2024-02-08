@@ -1,34 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
-<div
-  className="leftNav main-nav"
->
-  <Switcher
-    deps={
-      {
-        "assessmentsProviderWithFeaturesEnabled": [Function],
-        "getProvider": [Function],
-      }
-    }
-    featureFlagStoreData={{}}
-  />
-  <test
-    assessmentsData={
-      {
-        "x": {},
-      }
-    }
-    assessmentsProvider={{}}
-    deps={
-      {
-        "assessmentsProviderWithFeaturesEnabled": [Function],
-        "getProvider": [Function],
-      }
-    }
-    featureFlagStoreData={{}}
-    selectedKey="some key"
-    setNavComponentRef={[Function]}
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="leftNav main-nav"
+  >
+    <mock-switcher
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+    />
+    <mock-assessmentleftnav
+      assessmentsdata="[object Object]"
+      assessmentsprovider="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      selectedkey="some key"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewLeftNav should render from switcher nav: AssessmentLeftNav props 1`] = `
+{
+  "assessmentsData": {
+    "x": {},
+  },
+  "assessmentsProvider": {},
+  "deps": {
+    "assessmentsProviderWithFeaturesEnabled": [Function],
+    "getProvider": [Function],
+  },
+  "expandedTest": undefined,
+  "featureFlagStoreData": {},
+  "onRightPanelContentSwitch": undefined,
+  "selectedKey": "some key",
+  "setNavComponentRef": [Function],
+}
+`;
+
+exports[`DetailsViewLeftNav should render from switcher nav: Switcher props 1`] = `
+{
+  "deps": {
+    "assessmentsProviderWithFeaturesEnabled": [Function],
+    "getProvider": [Function],
+  },
+  "featureFlagStoreData": {},
+  "pivotKey": undefined,
+}
 `;

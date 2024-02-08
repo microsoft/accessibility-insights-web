@@ -1,198 +1,264 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutoDetectedFailuresDialog on componentDidUpdate does not display dialog when dialog is disabled 1`] = `null`;
-
-exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "dont show again" box is clicked 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "title": "Possible failures auto-detected",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "containerClassName": "insightsDialogMainOverride",
-    }
-  }
-  onDismiss={[Function]}
->
-  <div
-    className="dialogBody"
-  >
-    <ul>
-      <li>
-        Review each finding to be sure it's valid
-      </li>
-      <li>
-        Add any more failures you discovered manually
-      </li>
-    </ul>
-  </div>
-  <StyledDialogFooterBase>
-    <Stack
-      horizontal={true}
-      horizontalAlign="space-between"
-      tokens={
-        {
-          "childrenGap": 6,
-        }
-      }
-      verticalAlign="center"
-      wrap={true}
-    >
-      <StackItem
-        disableShrink={true}
-        grow={true}
-      >
-        <StyledCheckboxBase
-          checked={true}
-          label="Don't show again"
-          onChange={[Function]}
-        />
-      </StackItem>
-      <StackItem
-        grow={true}
-      >
-        <CustomizedPrimaryButton
-          onClick={[Function]}
-          text="Got it"
-        />
-      </StackItem>
-    </Stack>
-  </StyledDialogFooterBase>
-</Dialog>
+exports[`AutoDetectedFailuresDialog on componentDidUpdate does not display dialog when dialog is disabled 1`] = `
+<body>
+  <div />
+  <div />
+</body>
 `;
 
-exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when "got it" button is clicked 1`] = `null`;
+exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "dont show again" box is clicked 1`] = `
+<body>
+  <div>
+    <mock-dialog
+      dialogcontentprops="[object Object]"
+      hidden="false"
+      modalprops="[object Object]"
+    >
+      <div
+        class="dialogBody"
+      >
+        <ul>
+          <li>
+            Review each finding to be sure it's valid
+          </li>
+          <li>
+            Add any more failures you discovered manually
+          </li>
+        </ul>
+      </div>
+      <mock-styleddialogfooterbase>
+        <mock-stack
+          horizontal="true"
+          horizontalalign="space-between"
+          tokens="[object Object]"
+          verticalalign="center"
+          wrap="true"
+        >
+          <mock-stackitem
+            disableshrink="true"
+            grow="true"
+          >
+            <div
+              class="ms-Checkbox is-checked is-enabled root-117"
+            >
+              <input
+                checked=""
+                class="input-118"
+                data-ktp-execute-target="true"
+                id="checkbox-6"
+                type="checkbox"
+              />
+              <label
+                class="ms-Checkbox-label label-119"
+                for="checkbox-6"
+              >
+                <div
+                  class="ms-Checkbox-checkbox checkbox-120"
+                  data-ktp-target="true"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Checkbox-checkmark checkmark-123"
+                    data-icon-name="CheckMark"
+                  />
+                </div>
+                <span
+                  class="ms-Checkbox-text text-122"
+                >
+                  Don't show again
+                </span>
+              </label>
+            </div>
+          </mock-stackitem>
+          <mock-stackitem
+            grow="true"
+          >
+            <button
+              class="ms-Button ms-Button--primary root-109"
+              data-is-focusable="true"
+              type="button"
+            >
+              <span
+                class="ms-Button-flexContainer flexContainer-110"
+                data-automationid="splitbuttonprimary"
+              >
+                <span
+                  class="ms-Button-textContainer textContainer-111"
+                >
+                  <span
+                    class="ms-Button-label label-113"
+                    id="id__3"
+                  >
+                    Got it
+                  </span>
+                </span>
+              </span>
+            </button>
+          </mock-stackitem>
+        </mock-stack>
+      </mock-styleddialogfooterbase>
+    </mock-dialog>
+  </div>
+</body>
+`;
 
-exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when onDismiss is called 1`] = `null`;
+exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when "got it" button is clicked 1`] = `
+<body>
+  <div />
+</body>
+`;
+
+exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when onDismiss is called 1`] = `
+<body>
+  <div />
+</body>
+`;
 
 exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when checkbox change is undefined 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "title": "Possible failures auto-detected",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "containerClassName": "insightsDialogMainOverride",
-    }
-  }
-  onDismiss={[Function]}
->
-  <div
-    className="dialogBody"
-  >
-    <ul>
-      <li>
-        Review each finding to be sure it's valid
-      </li>
-      <li>
-        Add any more failures you discovered manually
-      </li>
-    </ul>
-  </div>
-  <StyledDialogFooterBase>
-    <Stack
-      horizontal={true}
-      horizontalAlign="space-between"
-      tokens={
-        {
-          "childrenGap": 6,
-        }
-      }
-      verticalAlign="center"
-      wrap={true}
+<body>
+  <div>
+    <mock-dialog
+      dialogcontentprops="[object Object]"
+      hidden="false"
+      modalprops="[object Object]"
     >
-      <StackItem
-        disableShrink={true}
-        grow={true}
+      <div
+        class="dialogBody"
       >
-        <StyledCheckboxBase
-          checked={false}
-          label="Don't show again"
-          onChange={[Function]}
-        />
-      </StackItem>
-      <StackItem
-        grow={true}
-      >
-        <CustomizedPrimaryButton
-          onClick={[Function]}
-          text="Got it"
-        />
-      </StackItem>
-    </Stack>
-  </StyledDialogFooterBase>
-</Dialog>
+        <ul>
+          <li>
+            Review each finding to be sure it's valid
+          </li>
+          <li>
+            Add any more failures you discovered manually
+          </li>
+        </ul>
+      </div>
+      <mock-styleddialogfooterbase>
+        <mock-stack
+          horizontal="true"
+          horizontalalign="space-between"
+          tokens="[object Object]"
+          verticalalign="center"
+          wrap="true"
+        >
+          <mock-stackitem
+            disableshrink="true"
+            grow="true"
+          >
+            <div
+              class="ms-Checkbox is-enabled root-124"
+            >
+              <input
+                class="input-118"
+                data-ktp-execute-target="true"
+                id="checkbox-7"
+                type="checkbox"
+              />
+              <label
+                class="ms-Checkbox-label label-119"
+                for="checkbox-7"
+              >
+                <div
+                  class="ms-Checkbox-checkbox checkbox-125"
+                  data-ktp-target="true"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Checkbox-checkmark checkmark-127"
+                    data-icon-name="CheckMark"
+                  />
+                </div>
+                <span
+                  class="ms-Checkbox-text text-122"
+                >
+                  Don't show again
+                </span>
+              </label>
+            </div>
+          </mock-stackitem>
+          <mock-stackitem
+            grow="true"
+          >
+            <button
+              class="ms-Button ms-Button--primary root-109"
+              data-is-focusable="true"
+              type="button"
+            >
+              <span
+                class="ms-Button-flexContainer flexContainer-110"
+                data-automationid="splitbuttonprimary"
+              >
+                <span
+                  class="ms-Button-textContainer textContainer-111"
+                >
+                  <span
+                    class="ms-Button-label label-113"
+                    id="id__8"
+                  >
+                    Got it
+                  </span>
+                </span>
+              </span>
+            </button>
+          </mock-stackitem>
+        </mock-stack>
+      </mock-styleddialogfooterbase>
+    </mock-dialog>
+  </div>
+</body>
 `;
 
 exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is enabled 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "title": "Possible failures auto-detected",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "containerClassName": "insightsDialogMainOverride",
-    }
-  }
-  onDismiss={[Function]}
->
-  <div
-    className="dialogBody"
-  >
-    <ul>
-      <li>
-        Review each finding to be sure it's valid
-      </li>
-      <li>
-        Add any more failures you discovered manually
-      </li>
-    </ul>
-  </div>
-  <StyledDialogFooterBase>
-    <Stack
-      horizontal={true}
-      horizontalAlign="space-between"
-      tokens={
-        {
-          "childrenGap": 6,
-        }
-      }
-      verticalAlign="center"
-      wrap={true}
+<body>
+  <div>
+    <mock-dialog
+      dialogcontentprops="[object Object]"
+      hidden="false"
+      modalprops="[object Object]"
     >
-      <StackItem
-        disableShrink={true}
-        grow={true}
+      <div
+        class="dialogBody"
       >
-        <StyledCheckboxBase
-          checked={false}
-          label="Don't show again"
-          onChange={[Function]}
-        />
-      </StackItem>
-      <StackItem
-        grow={true}
-      >
-        <CustomizedPrimaryButton
-          onClick={[Function]}
-          text="Got it"
-        />
-      </StackItem>
-    </Stack>
-  </StyledDialogFooterBase>
-</Dialog>
+        <ul>
+          <li>
+            Review each finding to be sure it's valid
+          </li>
+          <li>
+            Add any more failures you discovered manually
+          </li>
+        </ul>
+      </div>
+      <mock-styleddialogfooterbase>
+        <mock-stack
+          horizontal="true"
+          horizontalalign="space-between"
+          tokens="[object Object]"
+          verticalalign="center"
+          wrap="true"
+        >
+          <mock-stackitem
+            disableshrink="true"
+            grow="true"
+          >
+            <mock-styledcheckboxbase
+              checked="false"
+              label="Don't show again"
+            />
+          </mock-stackitem>
+          <mock-stackitem
+            grow="true"
+          >
+            <mock-customizedprimarybutton
+              text="Got it"
+            />
+          </mock-stackitem>
+        </mock-stack>
+      </mock-styleddialogfooterbase>
+    </mock-dialog>
+  </div>
+</body>
 `;
 
-exports[`AutoDetectedFailuresDialog renders when dialog is not enabled 1`] = `null`;
+exports[`AutoDetectedFailuresDialog renders when dialog is not enabled 1`] = `<DocumentFragment />`;

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScopingContainerTest render 1`] = `
+<div
+  class="scopingDescription"
+>
+  <div>
+    <p>
+      Run tests on specific portions of your code by indicating specific selectors.
+    </p>
+    <p>
+      To add a Selector, type the Selector’s name in the appropriate text box and click the “+ Add Selector” button.
+    </p>
+    <p>
+      Note: iframe Selectors need to be entered in the following format: iframeSelector; selectorWithinIframe
+    </p>
+    <p>
+      Any selectors entered need to follow CSS selector syntax. For example, a selector needs to be prefaced with a 
+      <strong>
+        #
+      </strong>
+       if it represents an id (e.g. 
+      <strong>
+        #idName
+      </strong>
+      ) and with a 
+      <strong>
+        .
+      </strong>
+       if it represents a class (e.g. 
+      <strong>
+        .className
+      </strong>
+       or
+       
+      <strong>
+        .class1.class2
+      </strong>
+       for elements with two classes)
+    </p>
+  </div>
+</div>
+`;

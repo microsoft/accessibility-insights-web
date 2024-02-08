@@ -1,37 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetrySettings renders with enabled = false 1`] = `
-<GenericToggle
-  description={
-    <EnableTelemetrySettingDescription
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
+<DocumentFragment>
+  <mock-generictoggle
+    description="[object Object]"
+    enabled="false"
+    id="enable-telemetry"
+    name="Help improve test-product-name"
+  />
+</DocumentFragment>
+`;
+
+exports[`TelemetrySettings renders with enabled = false: GenericToggle props 1`] = `
+{
+  "description": <EnableTelemetrySettingDescription
+    deps={
+      {
+        "LinkComponent": [Function],
       }
-    />
-  }
-  enabled={false}
-  id="enable-telemetry"
-  name="Help improve test-product-name"
-  onClick={[Function]}
-/>
+    }
+  />,
+  "enabled": false,
+  "id": "enable-telemetry",
+  "name": "Help improve test-product-name",
+  "onClick": [Function],
+}
 `;
 
 exports[`TelemetrySettings renders with enabled = true 1`] = `
-<GenericToggle
-  description={
-    <EnableTelemetrySettingDescription
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
+<DocumentFragment>
+  <mock-generictoggle
+    description="[object Object]"
+    enabled="true"
+    id="enable-telemetry"
+    name="Help improve test-product-name"
+  />
+</DocumentFragment>
+`;
+
+exports[`TelemetrySettings renders with enabled = true: GenericToggle props 1`] = `
+{
+  "description": <EnableTelemetrySettingDescription
+    deps={
+      {
+        "LinkComponent": [Function],
       }
-    />
-  }
-  enabled={true}
-  id="enable-telemetry"
-  name="Help improve test-product-name"
-  onClick={[Function]}
-/>
+    }
+  />,
+  "enabled": true,
+  "id": "enable-telemetry",
+  "name": "Help improve test-product-name",
+  "onClick": [Function],
+}
 `;
