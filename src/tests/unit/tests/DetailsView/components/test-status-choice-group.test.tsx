@@ -6,11 +6,11 @@ import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { ChoiceGroupPassFail } from 'DetailsView/components/choice-group-pass-fail';
 import { TestStatusChoiceGroup } from 'DetailsView/components/test-status-choice-group';
 import * as React from 'react';
-import { Mock, Times } from 'typemoq';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
+import { Mock, Times } from 'typemoq';
 jest.mock('DetailsView/components/choice-group-pass-fail');
 jest.mock('@fluentui/react');
 
