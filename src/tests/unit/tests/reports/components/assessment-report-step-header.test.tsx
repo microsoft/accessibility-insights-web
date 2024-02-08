@@ -14,14 +14,20 @@ import { OutcomeChip } from 'reports/components/outcome-chip';
 import { RequirementOutcomeType } from 'reports/components/requirement-outcome-type';
 import { Mock } from 'typemoq';
 import '@testing-library/jest-dom';
+import { GuidanceLinks } from '../../../../../common/components/guidance-links';
+import { GuidanceTags } from '../../../../../common/components/guidance-tags';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
+
 jest.mock('reports/components/outcome-chip');
+jest.mock('../../../../../common/components/guidance-links');
+jest.mock('../../../../../common/components/guidance-tags');
 
 describe('AssessmentReportStepHeader', () => {
-    mockReactComponents([OutcomeChip]);
+    mockReactComponents([OutcomeChip, GuidanceLinks, GuidanceTags]);
     function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {
         return {
             description: <p>DESCRIPTION</p>,
@@ -54,6 +60,7 @@ describe('AssessmentReportStepHeader', () => {
             />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([GuidanceLinks, GuidanceTags]);
     });
 
     const outcomePairs: [ManualTestStatus, RequirementOutcomeType][] = [

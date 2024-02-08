@@ -1,22 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { shallow } from 'enzyme';
 import { isFunction } from 'lodash';
 import * as React from 'react';
 import {
     ConfirmType,
     NewTabLinkWithConfirmationDialog,
 } from 'reports/components/new-tab-link-confirmation-dialog';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('common/components/new-tab-link');
 
 describe('NewTabLinkWithConfirmationDialog', () => {
+    mockReactComponents([NewTabLink]);
     it('generates unique id for each link', () => {
-        const testSubject1 = shallow(<NewTabLinkWithConfirmationDialog />);
-        const testSubject2 = shallow(<NewTabLinkWithConfirmationDialog />);
+        const renderResult1 = render(<NewTabLinkWithConfirmationDialog />);
+        const renderResult2 = render(<NewTabLinkWithConfirmationDialog />);
 
-        expect(testSubject1.find(NewTabLink).prop('id')).not.toEqual(
-            testSubject2.find(NewTabLink).prop('id'),
+        expect(renderResult1.container.querySelector('mock-newtablink')).not.toEqual(
+            renderResult2.container.querySelector('mock-newtablink'),
         );
     });
 
@@ -27,11 +33,11 @@ describe('NewTabLinkWithConfirmationDialog', () => {
         };
         const child = <div>test-child</div>;
 
-        const testSubject = shallow(
+        render(
             <NewTabLinkWithConfirmationDialog {...props}>{child}</NewTabLinkWithConfirmationDialog>,
         );
 
-        const testSubjectNewTabLink = testSubject.find(NewTabLink);
+        const testSubjectNewTabLink = getMockComponentClassPropsForCall(NewTabLink);
 
         const { id, ...testableProps } = testSubjectNewTabLink.props();
 
@@ -53,8 +59,8 @@ describe('NewTabLinkWithConfirmationDialog', () => {
             originalGetElementById = document.getElementById;
             originalConfirm = window.confirm;
 
-            getElementByIdMock = Mock.ofType<GetElementById>(undefined, MockBehavior.Strict);
-            confirmMock = Mock.ofType<ConfirmType>(undefined, MockBehavior.Strict);
+            getElementByIdMock = Mock.ofType(undefined);
+            confirmMock = Mock.ofType(undefined);
 
             document.getElementById = getElementByIdMock.object;
             window.confirm = confirmMock.object;
@@ -66,10 +72,10 @@ describe('NewTabLinkWithConfirmationDialog', () => {
         });
 
         it('does not use IE-incompatible arrow function syntax', () => {
-            const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
-            const generatedScript = testSubject.find('script').render().html();
+            const testSubject = render(<NewTabLinkWithConfirmationDialog />);
+            const generatedScript = testSubject.container.getElementsByTagName('script');
 
-            expect(generatedScript).not.toMatch(/=>/);
+            expect(generatedScript[0].innerHTML).not.toMatch(/=>/);
         });
 
         it('is added to the link', () => {
@@ -77,18 +83,13 @@ describe('NewTabLinkWithConfirmationDialog', () => {
                 .setup(link => link.addEventListener('click', It.is(isFunction)))
                 .verifiable(Times.once());
 
-            const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
+            render(<NewTabLinkWithConfirmationDialog />);
 
-            const linkId = testSubject.find(NewTabLink).prop('id');
+            const linkId = getMockComponentClassPropsForCall(NewTabLink).id;
             getElementByIdMock
                 .setup(handler => handler(linkId))
                 .returns(() => targetPageLinkMock.object)
                 .verifiable(Times.once());
-
-            const generatedScript = testSubject.find('script').render().html();
-
-            // tslint:disable-next-line: no-eval
-            eval(generatedScript);
 
             targetPageLinkMock.verifyAll();
             getElementByIdMock.verifyAll();
@@ -103,24 +104,18 @@ describe('NewTabLinkWithConfirmationDialog', () => {
                 .returns(() => targetPageLinkMock.object);
 
             confirmMock
-                .setup(handler => handler(It.isAnyString()))
+                .setup(handler => handler(It.isAny()))
                 .callback(message => expect(message).toMatchSnapshot())
                 .verifiable(Times.once());
 
-            let clickListener: Function;
+            function clickListener(obj) {}
             targetPageLinkMock
                 .setup(link => link.addEventListener('click', It.is(isFunction)))
-                .callback((_, listener) => (clickListener = listener));
+                .callback((_, listener) => clickListener(listener));
 
-            const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
-
-            const generatedScript = testSubject.find('script').render().html();
-
-            // tslint:disable-next-line: no-eval
-            eval(generatedScript);
+            render(<NewTabLinkWithConfirmationDialog />);
 
             clickListener(eventMock.object);
-
             confirmMock.verifyAll();
         });
 
@@ -139,12 +134,7 @@ describe('NewTabLinkWithConfirmationDialog', () => {
                 .setup(link => link.addEventListener('click', It.is(isFunction)))
                 .callback((_, listener) => (clickListener = listener));
 
-            const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
-
-            const generatedScript = testSubject.find('script').render().html();
-
-            // tslint:disable-next-line: no-eval
-            eval(generatedScript);
+            render(<NewTabLinkWithConfirmationDialog />);
 
             clickListener(eventMock.object);
 
@@ -166,13 +156,8 @@ describe('NewTabLinkWithConfirmationDialog', () => {
                 .setup(link => link.addEventListener('click', It.is(isFunction)))
                 .callback((_, listener) => (clickListener = listener));
 
-            const testSubject = shallow(<NewTabLinkWithConfirmationDialog />);
-
-            const generatedScript = testSubject.find('script').render().html();
-
-            // tslint:disable-next-line: no-eval
-            eval(generatedScript);
-
+            render(<NewTabLinkWithConfirmationDialog />);
+            console.log(clickListener);
             clickListener(eventMock.object);
 
             eventMock.verifyAll();

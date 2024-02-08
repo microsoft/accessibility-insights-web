@@ -17,6 +17,24 @@ exports[`SummarySection AllOutcomesSummarySection renders BaseSummarySection wit
 </DocumentFragment>
 `;
 
+exports[`SummarySection AllOutcomesSummarySection renders BaseSummarySection with all outcome types: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "fail",
+    "pass",
+    "inapplicable",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 0,
+    "inapplicable": 3,
+    "incomplete": 0,
+    "pass": 0,
+    "review": 0,
+  },
+}
+`;
+
 exports[`SummarySection BaseSummarySection: failure only 1`] = `
 <DocumentFragment>
   <div
@@ -32,6 +50,22 @@ exports[`SummarySection BaseSummarySection: failure only 1`] = `
     />
   </div>
 </DocumentFragment>
+`;
+
+exports[`SummarySection BaseSummarySection: failure only: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "pass",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 3,
+    "inapplicable": 0,
+    "incomplete": 0,
+    "pass": 0,
+    "review": 0,
+  },
+}
 `;
 
 exports[`SummarySection BaseSummarySection: failures + not applicable + passes 1`] = `
@@ -51,6 +85,22 @@ exports[`SummarySection BaseSummarySection: failures + not applicable + passes 1
 </DocumentFragment>
 `;
 
+exports[`SummarySection BaseSummarySection: failures + not applicable + passes: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "pass",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 3,
+    "inapplicable": 3,
+    "incomplete": 0,
+    "pass": 2,
+    "review": 0,
+  },
+}
+`;
+
 exports[`SummarySection BaseSummarySection: failures + not applicable only 1`] = `
 <DocumentFragment>
   <div
@@ -66,6 +116,22 @@ exports[`SummarySection BaseSummarySection: failures + not applicable only 1`] =
     />
   </div>
 </DocumentFragment>
+`;
+
+exports[`SummarySection BaseSummarySection: failures + not applicable only: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "pass",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 3,
+    "inapplicable": 3,
+    "incomplete": 0,
+    "pass": 0,
+    "review": 0,
+  },
+}
 `;
 
 exports[`SummarySection BaseSummarySection: failures + passes only 1`] = `
@@ -85,6 +151,22 @@ exports[`SummarySection BaseSummarySection: failures + passes only 1`] = `
 </DocumentFragment>
 `;
 
+exports[`SummarySection BaseSummarySection: failures + passes only: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "pass",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 3,
+    "inapplicable": 0,
+    "incomplete": 0,
+    "pass": 2,
+    "review": 0,
+  },
+}
+`;
+
 exports[`SummarySection BaseSummarySection: not applicable + passes only 1`] = `
 <DocumentFragment>
   <div
@@ -100,6 +182,22 @@ exports[`SummarySection BaseSummarySection: not applicable + passes only 1`] = `
     />
   </div>
 </DocumentFragment>
+`;
+
+exports[`SummarySection BaseSummarySection: not applicable + passes only: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "pass",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 0,
+    "inapplicable": 3,
+    "incomplete": 0,
+    "pass": 2,
+    "review": 0,
+  },
+}
 `;
 
 exports[`SummarySection BaseSummarySection: not applicable only 1`] = `
@@ -119,6 +217,22 @@ exports[`SummarySection BaseSummarySection: not applicable only 1`] = `
 </DocumentFragment>
 `;
 
+exports[`SummarySection BaseSummarySection: not applicable only: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "pass",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 0,
+    "inapplicable": 3,
+    "incomplete": 0,
+    "pass": 0,
+    "review": 0,
+  },
+}
+`;
+
 exports[`SummarySection BaseSummarySection: passes only 1`] = `
 <DocumentFragment>
   <div
@@ -136,6 +250,22 @@ exports[`SummarySection BaseSummarySection: passes only 1`] = `
 </DocumentFragment>
 `;
 
+exports[`SummarySection BaseSummarySection: passes only: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "pass",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 0,
+    "inapplicable": 0,
+    "incomplete": 0,
+    "pass": 2,
+    "review": 0,
+  },
+}
+`;
+
 exports[`SummarySection PassFailSummarySection: %s renders BaseSummarySection with only pass and failed outcome types 1`] = `
 <DocumentFragment>
   <div
@@ -151,4 +281,21 @@ exports[`SummarySection PassFailSummarySection: %s renders BaseSummarySection wi
     />
   </div>
 </DocumentFragment>
+`;
+
+exports[`SummarySection PassFailSummarySection: %s renders BaseSummarySection with only pass and failed outcome types: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "fail",
+    "pass",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 0,
+    "inapplicable": 3,
+    "incomplete": 0,
+    "pass": 0,
+    "review": 0,
+  },
+}
 `;

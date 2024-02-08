@@ -2,127 +2,73 @@
 
 exports[`UrlErrorsTable renders 1`] = `
 <DocumentFragment>
-  <table
-    class="summaryResultsTable"
+  <mock-summaryresultstable
+    columns="[object Object],[object Object],[object Object]"
     id="table-id"
-  >
-    <thead>
-      <tr>
-        <th
-          id="table-id-header0"
-        >
-          Error type
-        </th>
-        <th
-          id="table-id-header1"
-        >
-          URL
-        </th>
-        <th
-          id="table-id-header2"
-        >
-          Error description
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td
-          class="textCell"
-          headers="table-id-header0"
-        >
-          type1
-        </td>
-        <td
-          class="urlCell"
-          headers="table-id-header1"
-        >
-          <a
-            class="ms-Link insights-link root-109"
-            href="https://url.com/1"
-            target="_blank"
-          >
-            https://url.com/1
-          </a>
-        </td>
-        <td
-          class="textCell"
-          headers="table-id-header2"
-        >
-          <a
-            class="ms-Link insights-link root-109"
-            href="error log file 1"
-            target="_blank"
-          >
-            error description 1
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td
-          class="textCell"
-          headers="table-id-header0"
-        >
-          type2
-        </td>
-        <td
-          class="urlCell"
-          headers="table-id-header1"
-        >
-          <a
-            class="ms-Link insights-link root-109"
-            href="https://url.com/2"
-            target="_blank"
-          >
-            https://url.com/2
-          </a>
-        </td>
-        <td
-          class="textCell"
-          headers="table-id-header2"
-        >
-          <a
-            class="ms-Link insights-link root-109"
-            href="error log file 2"
-            target="_blank"
-          >
-            error description 2
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td
-          class="textCell"
-          headers="table-id-header0"
-        >
-          type3
-        </td>
-        <td
-          class="urlCell"
-          headers="table-id-header1"
-        >
-          <a
-            class="ms-Link insights-link root-109"
-            href="https://url.com/3"
-            target="_blank"
-          >
-            https://url.com/3
-          </a>
-        </td>
-        <td
-          class="textCell"
-          headers="table-id-header2"
-        >
-          <a
-            class="ms-Link insights-link root-109"
-            href="error log file 3"
-            target="_blank"
-          >
-            error description 3
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    rows="type1,[object Object],[object Object],type2,[object Object],[object Object],type3,[object Object],[object Object]"
+  />
 </DocumentFragment>
+`;
+
+exports[`UrlErrorsTable renders: NewTabLink props 1`] = `undefined`;
+
+exports[`UrlErrorsTable renders: SummaryResultsTable props 1`] = `
+{
+  "columns": [
+    {
+      "contentType": "text",
+      "header": "Error type",
+    },
+    {
+      "contentType": "url",
+      "header": "URL",
+    },
+    {
+      "contentType": "text",
+      "header": "Error description",
+    },
+  ],
+  "id": "table-id",
+  "rows": [
+    [
+      "type1",
+      <NewTabLink
+        href="https://url.com/1"
+      >
+        https://url.com/1
+      </NewTabLink>,
+      <NewTabLink
+        href="error log file 1"
+      >
+        error description 1
+      </NewTabLink>,
+    ],
+    [
+      "type2",
+      <NewTabLink
+        href="https://url.com/2"
+      >
+        https://url.com/2
+      </NewTabLink>,
+      <NewTabLink
+        href="error log file 2"
+      >
+        error description 2
+      </NewTabLink>,
+    ],
+    [
+      "type3",
+      <NewTabLink
+        href="https://url.com/3"
+      >
+        https://url.com/3
+      </NewTabLink>,
+      <NewTabLink
+        href="error log file 3"
+      >
+        error description 3
+      </NewTabLink>,
+    ],
+  ],
+}
 `;

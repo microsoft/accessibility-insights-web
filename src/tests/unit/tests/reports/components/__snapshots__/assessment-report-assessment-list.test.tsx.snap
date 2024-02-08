@@ -43,6 +43,65 @@ exports[`AssessmentReportAssessmentListTest render: fail 1`] = `
 </DocumentFragment>
 `;
 
+exports[`AssessmentReportAssessmentListTest render: fail: AssessmentReportStepList props 1`] = `
+{
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "status": 2,
+  "steps": [
+    {
+      "defaultMessageComponent": null,
+      "header": {
+        "description": null,
+        "displayName": "Step2A",
+        "guidanceLinks": [],
+        "requirementType": "assisted",
+      },
+      "instances": [
+        {
+          "props": [
+            {
+              "key": "Path",
+              "value": "target1",
+            },
+            {
+              "key": "Snippet",
+              "value": "someHtml",
+            },
+          ],
+        },
+      ],
+      "key": "step2a",
+      "showPassingInstances": false,
+    },
+    {
+      "defaultMessageComponent": null,
+      "header": {
+        "description": null,
+        "displayName": "Step4A",
+        "guidanceLinks": [],
+        "requirementType": "manual",
+      },
+      "instances": [
+        {
+          "props": [
+            {
+              "key": "Comment",
+              "value": "comment",
+            },
+          ],
+        },
+      ],
+      "key": "step4a",
+      "showPassingInstances": false,
+    },
+  ],
+}
+`;
+
 exports[`AssessmentReportAssessmentListTest render: incomplete 1`] = `
 <DocumentFragment>
   <div>
@@ -86,6 +145,44 @@ exports[`AssessmentReportAssessmentListTest render: incomplete 1`] = `
 </DocumentFragment>
 `;
 
+exports[`AssessmentReportAssessmentListTest render: incomplete: AssessmentReportStepList props 1`] = `
+{
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "status": 1,
+  "steps": [
+    {
+      "defaultMessageComponent": null,
+      "header": {
+        "description": null,
+        "displayName": "Step3A",
+        "guidanceLinks": [],
+        "requirementType": "assisted",
+      },
+      "instances": [
+        {
+          "props": [
+            {
+              "key": "Path",
+              "value": "target2",
+            },
+            {
+              "key": "Snippet",
+              "value": "someHtml",
+            },
+          ],
+        },
+      ],
+      "key": "step3a",
+      "showPassingInstances": false,
+    },
+  ],
+}
+`;
+
 exports[`AssessmentReportAssessmentListTest render: pass 1`] = `
 <DocumentFragment>
   <div>
@@ -109,4 +206,47 @@ exports[`AssessmentReportAssessmentListTest render: pass 1`] = `
     </div>
   </div>
 </DocumentFragment>
+`;
+
+exports[`AssessmentReportAssessmentListTest render: pass: AssessmentReportStepList props 1`] = `
+{
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "status": 0,
+  "steps": [
+    {
+      "defaultMessageComponent": null,
+      "header": {
+        "description": null,
+        "displayName": "Step1A",
+        "guidanceLinks": [
+          {
+            "href": "link1A",
+            "text": "link1A",
+          },
+        ],
+        "requirementType": "assisted",
+      },
+      "instances": [
+        {
+          "props": [
+            {
+              "key": "Path",
+              "value": "target1",
+            },
+            {
+              "key": "Snippet",
+              "value": "someHtml",
+            },
+          ],
+        },
+      ],
+      "key": "step1a",
+      "showPassingInstances": false,
+    },
+  ],
+}
 `;

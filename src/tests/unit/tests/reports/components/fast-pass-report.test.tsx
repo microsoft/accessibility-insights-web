@@ -10,23 +10,55 @@ import {
     FastPassReportProps,
 } from 'reports/components/fast-pass-report';
 import { Mock } from 'typemoq';
-import { ResultSection } from '../../../../../common/components/cards/result-section';
 import { TabStopsFailedInstanceSection } from '../../../../../DetailsView/components/tab-stops-failed-instance-section';
 import { FastPassReportSummary } from '../../../../../reports/components/fast-pass-report-summary';
-import { CollapsibleResultSection } from '../../../../../reports/components/report-sections/collapsible-result-section';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
-jest.mock('../../../../../reports/components/report-sections/collapsible-result-section');
+import { WebReportHead } from '../../../../../reports/components/web-report-head';
+import { BodySection } from '../../../../../reports/components/report-sections/body-section';
+import { AutomatedChecksHeaderSection } from '../../../../../reports/components/report-sections/automated-checks-header-section';
+import { ContentContainer } from '../../../../../reports/components/report-sections/content-container';
+import { FastPassTitleSection } from '../../../../../reports/components/report-sections/fast-pass-title-section';
+import { DetailsSection } from '../../../../../reports/components/report-sections/details-section';
+import { FastPassReportAutomatedChecksResults } from '../../../../../reports/components/report-sections/fast-pass-report-automated-checks-results';
+import { ReportFooter } from '../../../../../reports/components/report-sections/report-footer';
+import { FooterText } from '../../../../../reports/components/report-sections/footer-text';
+import { ResultsContainer } from '../../../../../reports/components/report-sections/results-container';
+import { FastPassResultsTitleSection } from '../../../../../reports/components/report-sections/fast-pass-results-title-section';
+import { TabStopsChecksSectionWrapper } from '../../../../../reports/components/report-sections/tab-stops-checks-section-wrapper';
+jest.mock('../../../../../reports/components/web-report-head');
 jest.mock('../../../../../DetailsView/components/tab-stops-failed-instance-section');
-jest.mock('../../../../../common/components/cards/result-section');
+jest.mock('../../../../../reports/components/report-sections/body-section');
 jest.mock('../../../../../reports/components/fast-pass-report-summary');
+jest.mock('../../../../../reports/components/report-sections/automated-checks-header-section');
+jest.mock('../../../../../reports/components/report-sections/content-container');
+jest.mock('../../../../../reports/components/report-sections/fast-pass-title-section');
+jest.mock('../../../../../reports/components/report-sections/details-section');
+jest.mock(
+    '../../../../../reports/components/report-sections/fast-pass-report-automated-checks-results',
+);
+jest.mock('../../../../../reports/components/report-sections/report-footer');
+jest.mock('../../../../../reports/components/report-sections/footer-text');
+jest.mock('../../../../../reports/components/report-sections/results-container');
+jest.mock('../../../../../reports/components/report-sections/fast-pass-results-title-section');
+jest.mock('../../../../../reports/components/report-sections/tab-stops-checks-section-wrapper');
 
 describe(FastPassReport.displayName, () => {
     mockReactComponents([
-        CollapsibleResultSection,
-        TabStopsFailedInstanceSection,
-        ResultSection,
+        WebReportHead,
+        BodySection,
+        AutomatedChecksHeaderSection,
+        ContentContainer,
+        FastPassTitleSection,
+        DetailsSection,
         FastPassReportSummary,
+        ResultsContainer,
+        FastPassResultsTitleSection,
+        FastPassReportAutomatedChecksResults,
+        TabStopsFailedInstanceSection,
+        TabStopsChecksSectionWrapper,
+        ReportFooter,
+        FooterText,
     ]);
     it('renders', () => {
         const pageTitle = 'page-title';

@@ -3,8 +3,12 @@
 import { render } from '@testing-library/react';
 import * as React from 'react';
 import { OutcomeChipSet } from 'reports/components/outcome-chip-set';
+import { OutcomeChip } from '../../../../../reports/components/outcome-chip';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../reports/components/outcome-chip');
 
 describe('OutcomeChipSet', () => {
+    mockReactComponents([OutcomeChip]);
     describe('render', () => {
         test('render with all properties', () => {
             const renderResult = render(<OutcomeChipSet pass={3} incomplete={2} fail={4} />);

@@ -9,12 +9,17 @@ import {
     AssessmentReportStepListProps,
 } from 'reports/components/assessment-report-step-list';
 import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { ReportInstanceList } from '../../../../../reports/components/report-instance-list';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 jest.mock('../../../../../reports/components/assessment-report-step-header');
+jest.mock('../../../../../reports/components/report-instance-list');
 
 describe('AssessmentReportStepListTest', () => {
-    mockReactComponents([AssessmentReportStepHeader]);
+    mockReactComponents([AssessmentReportStepHeader, ReportInstanceList]);
     const deps: AssessmentReportStepListDeps = {
         outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
     } as AssessmentReportStepListDeps;
@@ -28,6 +33,10 @@ describe('AssessmentReportStepListTest', () => {
 
         const renderResult = render(<AssessmentReportStepList {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([
+            AssessmentReportStepHeader,
+            ReportInstanceList,
+        ]);
     });
 
     it('renders pass without instances when showInstances is false', () => {
@@ -41,6 +50,10 @@ describe('AssessmentReportStepListTest', () => {
 
         const renderResult = render(<AssessmentReportStepList {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([
+            AssessmentReportStepHeader,
+            ReportInstanceList,
+        ]);
     });
 
     it('renders fail', () => {
@@ -63,5 +76,9 @@ describe('AssessmentReportStepListTest', () => {
 
         const renderResult = render(<AssessmentReportStepList {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([
+            AssessmentReportStepHeader,
+            ReportInstanceList,
+        ]);
     });
 });

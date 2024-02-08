@@ -23,21 +23,47 @@ exports[`AssessmentReportStepHeader matches snapshot 1`] = `
       </p>
     </span>
     -
-    <span
-      class="test-guidance-links-group"
-    >
-      <a
-        class="ms-Link insights-link root-109"
-        href="LINK_URL"
-        target="_blank"
-      >
-        LINK_TEXT
-      </a>
-    </span>
+    <mock-guidancelinks
+      classnamefordiv="test-guidance-links-group"
+      links="[object Object]"
+    />
     <mock-outcomechip
       count="42"
       outcometype="fail"
     />
+    <mock-guidancetags
+      deps="[object Object]"
+      links="[object Object]"
+    />
   </div>
 </DocumentFragment>
+`;
+
+exports[`AssessmentReportStepHeader matches snapshot: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [Function],
+  "classNameForDiv": "test-guidance-links-group",
+  "links": [
+    {
+      "href": "LINK_URL",
+      "text": "LINK_TEXT",
+    },
+  ],
+}
+`;
+
+exports[`AssessmentReportStepHeader matches snapshot: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+    "getGuidanceTagsFromGuidanceLinks": [Function],
+    "outcomeTypeSemanticsFromTestStatus": [Function],
+  },
+  "links": [
+    {
+      "href": "LINK_URL",
+      "text": "LINK_TEXT",
+    },
+  ],
+}
 `;

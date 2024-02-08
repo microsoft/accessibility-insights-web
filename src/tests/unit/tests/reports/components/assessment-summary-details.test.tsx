@@ -7,8 +7,14 @@ import {
     AssessmentSummaryDetailsProps,
 } from 'reports/components/assessment-summary-details';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
+import { OutcomeIconSet } from '../../../../../reports/components/outcome-icon-set';
+import { OutcomeChipSet } from '../../../../../reports/components/outcome-chip-set';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../reports/components/outcome-icon-set');
+jest.mock('../../../../../reports/components/outcome-chip-set');
 
 describe('AssessmentSummaryDetails', () => {
+    mockReactComponents([OutcomeIconSet, OutcomeChipSet]);
     describe('render', () => {
         test('Correct composition', () => {
             const props: AssessmentSummaryDetailsProps = {

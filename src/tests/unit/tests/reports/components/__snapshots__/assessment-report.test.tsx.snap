@@ -2,469 +2,236 @@
 
 exports[`AssessmentReport render 1`] = `
 <DocumentFragment>
-  <header
-    data-automation-id="report-header-section"
-  >
-    <div
-      class="reportHeaderBar"
-    >
-      <svg
-        aria-hidden="true"
-        class="header-icon"
-        fill="none"
-        role="img"
-        viewBox="0 0 48 48"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <mask
-          height="43"
-          id="mask0"
-          maskUnits="userSpaceOnUse"
-          style="mask-type: alpha;"
-          width="48"
-          x="0"
-          y="3"
-        >
-          <path
-            d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7633 43.8309 7.27934C38.347 1.79544 29.4558 1.79543 23.9719 7.27934C18.488 1.79544 9.59684 1.79544 4.11293 7.27934C-1.37098 12.7633 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
-            fill="white"
-          />
-        </mask>
-        <g
-          mask="url(#mask0)"
-        >
-          <path
-            d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7633 43.8309 7.27934C38.347 1.79544 29.4558 1.79543 23.9719 7.27934C18.488 1.79544 9.59684 1.79544 4.11293 7.27934C-1.37098 12.7633 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
-            fill="white"
-          />
-          <rect
-            fill="#D6E9F7"
-            height="42.2726"
-            transform="rotate(45 43.9494 7.24556)"
-            width="14.0948"
-            x="43.9494"
-            y="7.24556"
-          />
-          <mask
-            height="31"
-            id="mask1"
-            maskUnits="userSpaceOnUse"
-            style="mask-type: alpha;"
-            width="30"
-            x="-6"
-            y="-3"
-          >
-            <path
-              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
-              fill="#CFEBFF"
-            />
-            <path
-              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
-              fill="url(#paint0_linear)"
-            />
-          </mask>
-          <g
-            mask="url(#mask1)"
-          >
-            <path
-              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
-              fill="white"
-            />
-            <path
-              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
-              fill="url(#paint1_linear)"
-            />
-            <rect
-              fill="#D6E9F7"
-              height="42.2726"
-              transform="rotate(-45 4.54834 6.88206)"
-              width="16.3577"
-              x="4.54834"
-              y="6.88206"
-            />
-            <rect
-              fill="url(#paint2_linear)"
-              height="42.2726"
-              transform="rotate(-45 4.54834 6.88206)"
-              width="16.3577"
-              x="4.54834"
-              y="6.88206"
-            />
-          </g>
-          <g
-            filter="url(#filter0_d)"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M34.0764 27.3564C39.8071 27.3483 44.4461 22.6961 44.438 16.9655C44.4299 11.2349 39.7778 6.59585 34.0472 6.60393C28.3165 6.61201 23.6775 11.2642 23.6856 16.9948C23.6888 19.2829 24.4324 21.397 25.6895 23.1108L23.4287 25.3788C22.8852 25.395 22.3466 25.6109 21.9324 26.0265L17.1218 30.8526C16.4185 31.5582 16.4203 32.7005 17.126 33.4038L17.6952 33.9713C18.4009 34.6746 19.5431 34.6728 20.2465 33.9671L25.057 29.141C25.4715 28.7252 25.6857 28.1855 25.6998 27.6415L27.9603 25.3737C29.6766 26.6235 31.7907 27.3596 34.0764 27.3564ZM34.0368 23.2439C37.4964 23.2579 40.3122 20.4647 40.3262 17.0051C40.3401 13.5456 37.5469 10.7298 34.0874 10.7158C30.6279 10.7018 27.812 13.495 27.7981 16.9545C27.7841 20.4141 30.5773 23.2299 34.0368 23.2439Z"
-              fill="#004880"
-              fill-rule="evenodd"
-            />
-          </g>
-        </g>
-        <defs>
-          <filter
-            color-interpolation-filters="sRGB"
-            filterUnits="userSpaceOnUse"
-            height="29.5269"
-            id="filter0_d"
-            width="29.5246"
-            x="15.748"
-            y="6.50654"
-          >
-            <feflood
-              flood-opacity="0"
-              result="BackgroundImageFix"
-            />
-            <fecolormatrix
-              in="SourceAlpha"
-              type="matrix"
-              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-            />
-            <feoffset
-              dy="0.725705"
-            />
-            <fegaussianblur
-              stdDeviation="0.40317"
-            />
-            <fecolormatrix
-              type="matrix"
-              values="0 0 0 0 0.0447352 0 0 0 0 0.305769 0 0 0 0 0.492222 0 0 0 0.51 0"
-            />
-            <feblend
-              in2="BackgroundImageFix"
-              mode="normal"
-              result="effect1_dropShadow"
-            />
-            <feblend
-              in="SourceGraphic"
-              in2="effect1_dropShadow"
-              mode="normal"
-              result="shape"
-            />
-          </filter>
-          <lineargradient
-            gradientUnits="userSpaceOnUse"
-            id="paint0_linear"
-            x1="14.3166"
-            x2="5.92409"
-            y1="16.8744"
-            y2="8.23504"
-          >
-            <stop
-              offset="0"
-              stop-color="#073A5F"
-              stop-opacity="0.3"
-            />
-            <stop
-              offset="1"
-              stop-color="#CFEBFF"
-              stop-opacity="0"
-            />
-          </lineargradient>
-          <lineargradient
-            gradientUnits="userSpaceOnUse"
-            id="paint1_linear"
-            x1="14.3166"
-            x2="5.92409"
-            y1="16.8744"
-            y2="8.23504"
-          >
-            <stop
-              offset="0"
-              stop-color="#165B8E"
-              stop-opacity="0.29"
-            />
-            <stop
-              offset="1"
-              stop-color="white"
-              stop-opacity="0"
-            />
-          </lineargradient>
-          <lineargradient
-            gradientUnits="userSpaceOnUse"
-            id="paint2_linear"
-            x1="11.3179"
-            x2="11.0819"
-            y1="20.1024"
-            y2="11.1606"
-          >
-            <stop
-              offset="0"
-              stop-color="#165B8E"
-              stop-opacity="0.29"
-            />
-            <stop
-              offset="1"
-              stop-color="#D6E9F7"
-              stop-opacity="0"
-            />
-          </lineargradient>
-        </defs>
-      </svg>
-      <div
-        class="headerText"
-      >
-        Accessibility Insights for Web
-      </div>
-    </div>
-    <div
-      class="reportHeaderCommandBar"
-    >
-      <div
-        class="targetPage"
-      >
-        Target page: 
-        <a
-          class="ms-Link insights-link root-109"
-          href="url"
-          id="new-tab-link-with-confirmation-dialog__0"
-          target="_blank"
-          title="title"
-        >
-          title
-        </a>
-        <script>
-          (function (linkId, doc, confirmCallback) {
-  const targetPageLink = doc.getElementById(linkId);
-  targetPageLink.addEventListener('click', function (event) {
-    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
-
-    if (result === false) {
-      event.preventDefault();
-    }
-  });
-})("new-tab-link-with-confirmation-dialog__0", document, confirm);
-        </script>
-      </div>
-    </div>
-  </header>
-  <div
-    class="assessment-report-body"
-    role="main"
-  >
-    <div
-      class="assessment-report-body-header"
-    >
-      <h1>
-        Assessment report
-      </h1>
-      <p>
-        This report shows the overall accessibility of the website or web app through a combination of automated and manual tests that cover all the WCAG 2.1 AA and 2.2 AA success criteria.
-      </p>
-    </div>
-    <mock-assessmentreportsummary
-      summary="[object Object]"
-    />
-    <mock-assessmentscandetails
-      deps="[object Object]"
-      description="test string"
-      details="[object Object]"
-    />
-    <div
-      class="details-section"
-    >
-      <h2
-        class="details-section-header"
-      >
-        Failed tests
-        <mock-outcomechip
-          count="3"
-          outcometype="fail"
-        />
-      </h2>
-      <mock-assessmentreportassessmentlist
-        assessments="[object Object],[object Object]"
-        deps="[object Object]"
-        status="2"
-      />
-    </div>
-    <div
-      class="details-section"
-    >
-      <h2
-        class="details-section-header"
-      >
-        Incomplete tests
-        <mock-outcomechip
-          count="2"
-          outcometype="incomplete"
-        />
-      </h2>
-      <mock-assessmentreportassessmentlist
-        assessments="[object Object],[object Object]"
-        deps="[object Object]"
-        status="1"
-      />
-    </div>
-    <div
-      class="details-section"
-    >
-      <h2
-        class="details-section-header"
-      >
-        Passed tests
-        <mock-outcomechip
-          count="1"
-          outcometype="pass"
-        />
-      </h2>
-      <mock-assessmentreportassessmentlist
-        assessments="[object Object]"
-        deps="[object Object]"
-        status="0"
-      />
-    </div>
-  </div>
-  <footer
-    class="report-footer"
-  >
-    This assessment report was generated using Accessibility Insights for Web ProductVersion (axe-core axeVersion), a tool that helps debug and find accessibility issues earlier on chromeVersion. Get more information & download this tool at 
-    <a
-      class="link report-footer-link"
-      href="http://aka.ms/AccessibilityInsights"
-      rel="noreferrer"
-      target="_blank"
-    >
-      http://aka.ms/AccessibilityInsights
-    </a>
-  </footer>
+  <mock-headersection
+    headertext="Accessibility Insights for Web"
+    targetappinfo="[object Object]"
+  />
+  <mock-assessmentreportbody
+    bodyheader="[object Object]"
+    data="[object Object]"
+    deps="[object Object]"
+    description="test string"
+  />
+  <mock-assessmentreportfooter
+    axeversion="axeVersion"
+    chromeversion="chromeVersion"
+    extensionversion="ProductVersion"
+  />
 </DocumentFragment>
 `;
 
-exports[`AssessmentReport render: AssessmentReportAssessmentList props 1`] = `
+exports[`AssessmentReport render: AssessmentReportBody props 1`] = `
 {
-  "assessments": [
-    {
-      "displayName": "Assessment1",
-      "key": "assessment1",
-      "steps": [
-        {
-          "defaultMessageComponent": null,
-          "header": {
-            "description": null,
-            "displayName": "Step2A",
-            "guidanceLinks": [],
-            "requirementType": "assisted",
-          },
-          "instances": [
-            {
-              "props": [
-                {
-                  "key": "Path",
-                  "value": "target1",
-                },
-                {
-                  "key": "Snippet",
-                  "value": "someHtml",
-                },
-              ],
-            },
-          ],
-          "key": "step2a",
-          "showPassingInstances": false,
-        },
-        {
-          "defaultMessageComponent": null,
-          "header": {
-            "description": null,
-            "displayName": "Step4A",
-            "guidanceLinks": [],
-            "requirementType": "manual",
-          },
-          "instances": [
-            {
-              "props": [
-                {
-                  "key": "Comment",
-                  "value": "comment",
-                },
-              ],
-            },
-          ],
-          "key": "step4a",
-          "showPassingInstances": false,
-        },
-      ],
-    },
-    {
-      "displayName": "Assessment2",
-      "key": "assessment2",
-      "steps": [
-        {
-          "defaultMessageComponent": null,
-          "header": {
-            "description": null,
-            "displayName": "Step2B",
-            "guidanceLinks": [],
-            "requirementType": "manual",
-          },
-          "instances": [],
-          "key": "step2b",
-          "showPassingInstances": true,
-        },
-      ],
-    },
-  ],
-  "deps": {
-    "outcomeTypeSemanticsFromTestStatus": {
-      "stub": "outcomeTypeSemanticsFromTestStatus",
-    },
-  },
-  "status": 2,
-}
-`;
-
-exports[`AssessmentReport render: AssessmentReportSummary props 1`] = `
-{
-  "summary": {
-    "byPercentage": {
-      "fail": 50,
-      "incomplete": 37,
-      "pass": 13,
-    },
-    "byRequirement": {
-      "fail": 3,
-      "incomplete": 2,
-      "pass": 1,
-    },
-    "reportSummaryDetailsData": [
+  "bodyHeader": <AssessmentReportBodyHeader />,
+  "data": {
+    "failedDetailsData": [
       {
         "displayName": "Assessment1",
-        "fail": 2,
-        "incomplete": 1,
-        "pass": 1,
+        "key": "assessment1",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step2A",
+              "guidanceLinks": [],
+              "requirementType": "assisted",
+            },
+            "instances": [
+              {
+                "props": [
+                  {
+                    "key": "Path",
+                    "value": "target1",
+                  },
+                  {
+                    "key": "Snippet",
+                    "value": "someHtml",
+                  },
+                ],
+              },
+            ],
+            "key": "step2a",
+            "showPassingInstances": false,
+          },
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step4A",
+              "guidanceLinks": [],
+              "requirementType": "manual",
+            },
+            "instances": [
+              {
+                "props": [
+                  {
+                    "key": "Comment",
+                    "value": "comment",
+                  },
+                ],
+              },
+            ],
+            "key": "step4a",
+            "showPassingInstances": false,
+          },
+        ],
       },
       {
         "displayName": "Assessment2",
-        "fail": 1,
-        "incomplete": 1,
-        "pass": 0,
+        "key": "assessment2",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step2B",
+              "guidanceLinks": [],
+              "requirementType": "manual",
+            },
+            "instances": [],
+            "key": "step2b",
+            "showPassingInstances": true,
+          },
+        ],
       },
     ],
+    "incompleteDetailsData": [
+      {
+        "displayName": "Assessment1",
+        "key": "assessment1",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step3A",
+              "guidanceLinks": [],
+              "requirementType": "assisted",
+            },
+            "instances": [
+              {
+                "props": [
+                  {
+                    "key": "Path",
+                    "value": "target2",
+                  },
+                  {
+                    "key": "Snippet",
+                    "value": "someHtml",
+                  },
+                ],
+              },
+            ],
+            "key": "step3a",
+            "showPassingInstances": false,
+          },
+        ],
+      },
+      {
+        "displayName": "Assessment2",
+        "key": "assessment2",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step1B",
+              "guidanceLinks": [],
+              "requirementType": "assisted",
+            },
+            "instances": [],
+            "key": "step1b",
+            "showPassingInstances": true,
+          },
+        ],
+      },
+    ],
+    "passedDetailsData": [
+      {
+        "displayName": "Assessment1",
+        "key": "assessment1",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step1A",
+              "guidanceLinks": [
+                {
+                  "href": "link1A",
+                  "text": "link1A",
+                },
+              ],
+              "requirementType": "assisted",
+            },
+            "instances": [
+              {
+                "props": [
+                  {
+                    "key": "Path",
+                    "value": "target1",
+                  },
+                  {
+                    "key": "Snippet",
+                    "value": "someHtml",
+                  },
+                ],
+              },
+            ],
+            "key": "step1a",
+            "showPassingInstances": false,
+          },
+        ],
+      },
+    ],
+    "scanDetails": {
+      "reportDate": 2000-01-01T00:00:00.000Z,
+      "targetPage": "title",
+      "url": "url",
+    },
+    "summary": {
+      "byPercentage": {
+        "fail": 50,
+        "incomplete": 37,
+        "pass": 13,
+      },
+      "byRequirement": {
+        "fail": 3,
+        "incomplete": 2,
+        "pass": 1,
+      },
+      "reportSummaryDetailsData": [
+        {
+          "displayName": "Assessment1",
+          "fail": 2,
+          "incomplete": 1,
+          "pass": 1,
+        },
+        {
+          "displayName": "Assessment2",
+          "fail": 1,
+          "incomplete": 1,
+          "pass": 0,
+        },
+      ],
+    },
   },
-}
-`;
-
-exports[`AssessmentReport render: AssessmentScanDetails props 1`] = `
-{
   "deps": {
     "outcomeTypeSemanticsFromTestStatus": {
       "stub": "outcomeTypeSemanticsFromTestStatus",
     },
   },
   "description": "test string",
-  "details": {
-    "reportDate": 2000-01-01T00:00:00.000Z,
-    "targetPage": "title",
-    "url": "url",
-  },
 }
 `;
 
-exports[`AssessmentReport render: OutcomeChip props 1`] = `
+exports[`AssessmentReport render: HeaderSection props 1`] = `
 {
-  "count": 3,
-  "outcomeType": "fail",
+  "headerText": "Accessibility Insights for Web",
+  "targetAppInfo": {
+    "name": "title",
+    "url": "url",
+  },
 }
 `;

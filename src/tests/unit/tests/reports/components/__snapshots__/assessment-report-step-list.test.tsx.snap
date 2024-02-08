@@ -12,42 +12,9 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
         instancecount="1"
         status="2"
       />
-      <div>
-        <table
-          class="instance-details"
-        >
-          <tbody>
-            <tr
-              class="instance-pair-details"
-            >
-              <th
-                class="instance-key"
-              >
-                Path
-              </th>
-              <td
-                class="instance-value"
-              >
-                target1
-              </td>
-            </tr>
-            <tr
-              class="instance-pair-details"
-            >
-              <th
-                class="instance-key"
-              >
-                Snippet
-              </th>
-              <td
-                class="instance-value"
-              >
-                someHtml
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <mock-reportinstancelist
+        instances="[object Object]"
+      />
     </div>
     <div
       class="step-details"
@@ -58,28 +25,9 @@ exports[`AssessmentReportStepListTest renders fail 1`] = `
         instancecount="1"
         status="2"
       />
-      <div>
-        <table
-          class="instance-details"
-        >
-          <tbody>
-            <tr
-              class="instance-pair-details"
-            >
-              <th
-                class="instance-key"
-              >
-                Comment
-              </th>
-              <td
-                class="instance-value"
-              >
-                comment
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <mock-reportinstancelist
+        instances="[object Object]"
+      />
     </div>
   </div>
 </DocumentFragment>
@@ -101,6 +49,27 @@ exports[`AssessmentReportStepListTest renders incomplete 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`AssessmentReportStepListTest renders incomplete: AssessmentReportStepHeader props 1`] = `
+{
+  "defaultMessageComponent": null,
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "header": {
+    "description": null,
+    "displayName": "Step3A",
+    "guidanceLinks": [],
+    "requirementType": "assisted",
+  },
+  "instanceCount": 1,
+  "status": 1,
+}
+`;
+
+exports[`AssessmentReportStepListTest renders incomplete: ReportInstanceList props 1`] = `undefined`;
 
 exports[`AssessmentReportStepListTest renders pass 1`] = `
 <DocumentFragment>
@@ -135,3 +104,55 @@ exports[`AssessmentReportStepListTest renders pass without instances when showIn
   </div>
 </DocumentFragment>
 `;
+
+exports[`AssessmentReportStepListTest renders pass without instances when showInstances is false: AssessmentReportStepHeader props 1`] = `
+{
+  "defaultMessageComponent": null,
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "header": {
+    "description": null,
+    "displayName": "Step1A",
+    "guidanceLinks": [
+      {
+        "href": "link1A",
+        "text": "link1A",
+      },
+    ],
+    "requirementType": "assisted",
+  },
+  "instanceCount": 1,
+  "status": 0,
+}
+`;
+
+exports[`AssessmentReportStepListTest renders pass without instances when showInstances is false: ReportInstanceList props 1`] = `undefined`;
+
+exports[`AssessmentReportStepListTest renders pass: AssessmentReportStepHeader props 1`] = `
+{
+  "defaultMessageComponent": null,
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "header": {
+    "description": null,
+    "displayName": "Step1A",
+    "guidanceLinks": [
+      {
+        "href": "link1A",
+        "text": "link1A",
+      },
+    ],
+    "requirementType": "assisted",
+  },
+  "instanceCount": 1,
+  "status": 0,
+}
+`;
+
+exports[`AssessmentReportStepListTest renders pass: ReportInstanceList props 1`] = `undefined`;

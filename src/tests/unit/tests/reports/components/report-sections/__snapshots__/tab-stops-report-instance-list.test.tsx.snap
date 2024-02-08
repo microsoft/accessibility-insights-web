@@ -5,7 +5,9 @@ exports[`TabStopsReportInstanceList renders 1`] = `
   <div
     class="instanceList"
   >
-    <div />
+    <mock-reportinstancelist
+      instances=""
+    />
   </div>
 </DocumentFragment>
 `;

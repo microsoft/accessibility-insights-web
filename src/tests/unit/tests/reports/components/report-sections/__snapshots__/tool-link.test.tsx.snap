@@ -2,13 +2,12 @@
 
 exports[`ToolLink renders 1`] = `
 <DocumentFragment>
-  <a
-    class="ms-Link insights-link tool-name-link root-109"
+  <mock-newtablink
+    classname="tool-name-link"
     href="http://aka.ms/AccessibilityInsights"
-    target="_blank"
     title="Get more information and download Accessibility Insights for Web"
   >
     http://aka.ms/AccessibilityInsights
-  </a>
+  </mock-newtablink>
 </DocumentFragment>
 `;

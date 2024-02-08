@@ -3,7 +3,6 @@
 import { RenderResult, render } from '@testing-library/react';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import * as React from 'react';
-
 import { AssessmentDetailsReportModel } from 'reports/assessment-report-model';
 import {
     AssessmentReportAssessmentList,
@@ -14,16 +13,17 @@ import {
     AssessmentReportStepList,
     AssessmentReportStepListDeps,
 } from 'reports/components/assessment-report-step-list';
-import { AssessmentReportStepHeader } from '../../../../../reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../reports/components/outcome-chip';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 jest.mock('reports/components/assessment-report-step-list');
 jest.mock('../../../../../reports/components/outcome-chip');
-jest.mock('../../../../../reports/components/assessment-report-step-header');
 
 describe('AssessmentReportAssessmentListTest', () => {
-    mockReactComponents([AssessmentReportStepHeader, AssessmentReportStepList, OutcomeChip]);
+    mockReactComponents([AssessmentReportStepList, OutcomeChip]);
     const deps: AssessmentReportAssessmentListDeps = {
         outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
     } as AssessmentReportStepListDeps;
@@ -67,6 +67,7 @@ describe('AssessmentReportAssessmentListTest', () => {
         });
 
         expect(wrapper.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([AssessmentReportStepList]);
     }
 
     function testAssessmentHeader(

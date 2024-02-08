@@ -11,7 +11,10 @@ import {
     SummarySectionProps,
 } from 'reports/components/report-sections/summary-section';
 import { OutcomeSummaryBar } from '../../../../../../reports/components/outcome-summary-bar';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 jest.mock('../../../../../../reports/components/outcome-summary-bar');
 
 describe('SummarySection', () => {
@@ -112,6 +115,7 @@ describe('SummarySection', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([OutcomeSummaryBar]);
     });
 
     describe('AllOutcomesSummarySection', () => {
@@ -127,6 +131,7 @@ describe('SummarySection', () => {
             };
             const renderResult = render(<AllOutcomesSummarySection {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([OutcomeSummaryBar]);
         });
     });
 
@@ -143,6 +148,7 @@ describe('SummarySection', () => {
             };
             const renderResult = render(<PassFailSummarySection {...props} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([OutcomeSummaryBar]);
         });
     });
 });

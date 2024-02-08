@@ -2,130 +2,76 @@
 
 exports[`UrlScanResultsTable renders 1`] = `
 <DocumentFragment>
-  <table
-    class="summaryResultsTable"
+  <mock-summaryresultstable
+    columns="[object Object],[object Object],[object Object]"
     id="table-id"
-  >
-    <thead>
-      <tr>
-        <th
-          id="table-id-header0"
-        >
-          # failure instances (6)
-        </th>
-        <th
-          id="table-id-header1"
-        >
-          URL
-        </th>
-        <th
-          id="table-id-header2"
-        >
-          Link to report
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td
-          class="textCell"
-          headers="table-id-header0"
-        >
-          1
-        </td>
-        <td
-          class="urlCell"
-          headers="table-id-header1"
-        >
-          <a
-            class="ms-Link insights-link root-109"
-            href="https://url.com/1"
-            target="_blank"
-          >
-            https://url.com/1
-          </a>
-        </td>
-        <td
-          class="textCell"
-          headers="table-id-header2"
-        >
-          <a
-            aria-label="Report for https://url.com/1"
-            class="ms-Link insights-link root-109"
-            href="report location 1"
-            target="_blank"
-          >
-            Report
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td
-          class="textCell"
-          headers="table-id-header0"
-        >
-          2
-        </td>
-        <td
-          class="urlCell"
-          headers="table-id-header1"
-        >
-          <a
-            class="ms-Link insights-link root-109"
-            href="https://url.com/2"
-            target="_blank"
-          >
-            https://url.com/2
-          </a>
-        </td>
-        <td
-          class="textCell"
-          headers="table-id-header2"
-        >
-          <a
-            aria-label="Report for https://url.com/2"
-            class="ms-Link insights-link root-109"
-            href="report location 2"
-            target="_blank"
-          >
-            Report
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td
-          class="textCell"
-          headers="table-id-header0"
-        >
-          3
-        </td>
-        <td
-          class="urlCell"
-          headers="table-id-header1"
-        >
-          <a
-            class="ms-Link insights-link root-109"
-            href="https://url.com/3"
-            target="_blank"
-          >
-            https://url.com/3
-          </a>
-        </td>
-        <td
-          class="textCell"
-          headers="table-id-header2"
-        >
-          <a
-            aria-label="Report for https://url.com/3"
-            class="ms-Link insights-link root-109"
-            href="report location 3"
-            target="_blank"
-          >
-            Report
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    rows="1,[object Object],[object Object],2,[object Object],[object Object],3,[object Object],[object Object]"
+  />
 </DocumentFragment>
+`;
+
+exports[`UrlScanResultsTable renders: NewTabLink props 1`] = `undefined`;
+
+exports[`UrlScanResultsTable renders: SummaryResultsTable props 1`] = `
+{
+  "columns": [
+    {
+      "contentType": "text",
+      "header": "# failure instances (6)",
+    },
+    {
+      "contentType": "url",
+      "header": "URL",
+    },
+    {
+      "contentType": "text",
+      "header": "Link to report",
+    },
+  ],
+  "id": "table-id",
+  "rows": [
+    [
+      "1",
+      <NewTabLink
+        href="https://url.com/1"
+      >
+        https://url.com/1
+      </NewTabLink>,
+      <NewTabLink
+        aria-label="Report for https://url.com/1"
+        href="report location 1"
+      >
+        Report
+      </NewTabLink>,
+    ],
+    [
+      "2",
+      <NewTabLink
+        href="https://url.com/2"
+      >
+        https://url.com/2
+      </NewTabLink>,
+      <NewTabLink
+        aria-label="Report for https://url.com/2"
+        href="report location 2"
+      >
+        Report
+      </NewTabLink>,
+    ],
+    [
+      "3",
+      <NewTabLink
+        href="https://url.com/3"
+      >
+        https://url.com/3
+      </NewTabLink>,
+      <NewTabLink
+        aria-label="Report for https://url.com/3"
+        href="report location 3"
+      >
+        Report
+      </NewTabLink>,
+    ],
+  ],
+}
 `;

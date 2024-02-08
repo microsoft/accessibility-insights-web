@@ -6,8 +6,17 @@ import {
     UrlsSummarySection,
     UrlsSummarySectionProps,
 } from 'reports/components/report-sections/urls-summary-section';
+import { OutcomeSummaryBar } from '../../../../../../reports/components/outcome-summary-bar';
+import { OutcomeChip } from '../../../../../../reports/components/outcome-chip';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../../reports/components/outcome-summary-bar');
+jest.mock('../../../../../../reports/components/outcome-chip');
 
 describe(UrlsSummarySection.displayName, () => {
+    mockReactComponents([OutcomeSummaryBar, OutcomeChip]);
     const props: UrlsSummarySectionProps = {
         passedUrlsCount: 1,
         failedUrlsCount: 2,
@@ -19,5 +28,6 @@ describe(UrlsSummarySection.displayName, () => {
         const renderResult = render(<UrlsSummarySection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([OutcomeSummaryBar, OutcomeChip]);
     });
 });

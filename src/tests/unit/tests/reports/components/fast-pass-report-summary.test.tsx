@@ -10,8 +10,15 @@ import {
 } from 'reports/components/fast-pass-report-summary';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
+import { OutcomeSummaryBar } from '../../../../../reports/components/outcome-summary-bar';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../reports/components/outcome-summary-bar');
 
 describe('FastPassReportSummary', () => {
+    mockReactComponents([OutcomeSummaryBar]);
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
     let props: FastPassReportSummaryProps;
     let deps: FastPassReportSummaryDeps;
@@ -82,5 +89,6 @@ describe('FastPassReportSummary', () => {
 
         const renderResult = render(<FastPassReportSummary {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([OutcomeSummaryBar]);
     });
 });

@@ -11,15 +11,20 @@ import {
     FastPassReportAutomatedChecksResultsProps,
 } from 'reports/components/report-sections/fast-pass-report-automated-checks-results';
 import { Mock } from 'typemoq';
-import { ResultSection } from '../../../../../common/components/cards/result-section';
-import { CollapsibleResultSection } from '../../../../../reports/components/report-sections/collapsible-result-section';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { FailedInstancesSection } from '../../../../../common/components/cards/failed-instances-section';
+import { IncompleteChecksSection } from '../../../../../reports/components/report-sections/incomplete-checks-section';
+import { PassedChecksSection } from '../../../../../reports/components/report-sections/passed-checks-section';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
-jest.mock('../../../../../reports/components/report-sections/collapsible-result-section');
-jest.mock('../../../../../common/components/cards/result-section');
+jest.mock('../../../../../common/components/cards/failed-instances-section');
+jest.mock('../../../../../reports/components/report-sections/incomplete-checks-section');
+jest.mock('../../../../../reports/components/report-sections/passed-checks-section');
 
 describe('FastPassReportSummary', () => {
-    mockReactComponents([CollapsibleResultSection, ResultSection]);
+    mockReactComponents([FailedInstancesSection, IncompleteChecksSection, PassedChecksSection]);
     let props: FastPassReportAutomatedChecksResultsProps;
     beforeEach(() => {
         const pageTitle = 'page-title';
@@ -86,6 +91,11 @@ describe('FastPassReportSummary', () => {
     it('renders with pass/fail/incomplete elements if automated checks exist', () => {
         const renderResult = render(<FastPassReportAutomatedChecksResults {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([
+            FailedInstancesSection,
+            IncompleteChecksSection,
+            PassedChecksSection,
+        ]);
     });
 
     it('renders automated checks not run message if automated checks are null', () => {
