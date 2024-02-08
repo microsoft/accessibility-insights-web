@@ -3,13 +3,7 @@
 exports[`FooterText renders 1`] = `
 <DocumentFragment>
   This automated checks result was generated using app-name app-version (axe-core engine-version), a tool that helps debug and find accessibility issues earlier on environmentName. Get more information & download this tool at 
-  <mock-newtablink
-    classname="tool-name-link"
-    href="http://aka.ms/AccessibilityInsights"
-    title="Get more information and download Accessibility Insights for Web"
-  >
-    http://aka.ms/AccessibilityInsights
-  </mock-newtablink>
+  <mock-toollink />
   .
 </DocumentFragment>
 `;

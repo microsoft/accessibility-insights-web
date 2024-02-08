@@ -2,28 +2,24 @@
 
 exports[`ReportBody renders 1`] = `
 <DocumentFragment>
-  <mock-automatedchecksheadersection
-    cardsviewdata="[object Object]"
-    deps="[object Object]"
-    description="test description"
-    fixinstructionprocessor="undefined"
-    pagetitle="page-title"
-    pageurl="url:target-page"
-    recommendcolor="undefined"
-    scanmetadata="[object Object]"
-    scanresult="[object Object]"
-    sectionfactory="[object Object]"
-    sectionheadinglevel="3"
-    shouldalertfailurescount="false"
-    targetappinfo="[object Object]"
-    tooldata="[object Object]"
-  />
-  <main
-    class="outer-container"
-  >
-    <div
-      class="content-container"
-    >
+  <mock-bodysection>
+    <mock-automatedchecksheadersection
+      cardsviewdata="[object Object]"
+      deps="[object Object]"
+      description="test description"
+      fixinstructionprocessor="undefined"
+      pagetitle="page-title"
+      pageurl="url:target-page"
+      recommendcolor="undefined"
+      scanmetadata="[object Object]"
+      scanresult="[object Object]"
+      sectionfactory="[object Object]"
+      sectionheadinglevel="3"
+      shouldalertfailurescount="false"
+      targetappinfo="[object Object]"
+      tooldata="[object Object]"
+    />
+    <mock-contentsection>
       <mock-automatedcheckstitlesection />
       <mock-detailssection
         cardsviewdata="[object Object]"
@@ -41,116 +37,22 @@ exports[`ReportBody renders 1`] = `
         targetappinfo="[object Object]"
         tooldata="[object Object]"
       />
-      <div
-        class="summary-section"
-      >
-        <h2>
-          Summary
-        </h2>
-        <div
-          aria-label="1 Failed, 0 Passed, 0 Not applicable"
-          class="outcome-summary-bar"
-          data-automation-id="outcome-summary-bar"
-          role="img"
-        >
-          <div
-            style="flex-grow: 1;"
-          >
-            <span
-              class="fail summary-bar-left-edge"
-            >
-              <span
-                class="check-container"
-              >
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58172 0 0 3.58173 0 8C0 12.4183 3.58172 16 8 16ZM10.9947 4.99466C10.7018 4.70178 10.2269 4.70178 9.93401 4.99466L8 6.92868L6.06599 4.99466C5.77309 4.70178 5.29823 4.70178 5.00533 4.99466C4.71243 5.28757 4.71243 5.76242 5.00533 6.05533L6.93933 7.98932L4.99467 9.93399C4.70177 10.2269 4.70177 10.7018 4.99467 10.9947C5.28756 11.2876 5.76243 11.2876 6.05532 10.9947L8 9.04999L9.94467 10.9947C10.2376 11.2876 10.7124 11.2876 11.0053 10.9947C11.2982 10.7018 11.2982 10.2269 11.0053 9.93399L9.06066 7.98932L10.9947 6.05533C11.2876 5.76242 11.2876 5.28757 10.9947 4.99466Z"
-                    fill="var(--neutral-0)"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </span>
-              1
-            </span>
-          </div>
-          <div
-            style="flex-grow: 0;"
-          >
-            <span
-              class="pass"
-            >
-              <span
-                class="check-container"
-              >
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM6.0616 11.1442L6.05904 11.1417L4.27459 9.35718C3.90847 8.99104 3.90847 8.39747 4.27459 8.03134C4.64071 7.66524 5.2343 7.66524 5.60041 8.03134L6.72452 9.15545L10.6054 5.27457C10.9715 4.90848 11.5651 4.90848 11.9312 5.27457C12.2974 5.64071 12.2974 6.23427 11.9312 6.60041L7.391 11.1406L7.38742 11.1442C7.06707 11.4646 6.57256 11.5046 6.20867 11.2643C6.15668 11.23 6.10737 11.19 6.0616 11.1442Z"
-                    fill="white"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </span>
-              0
-            </span>
-          </div>
-          <div
-            style="flex-grow: 0;"
-          >
-            <span
-              class="inapplicable summary-bar-right-edge"
-            >
-              <span
-                class="check-container"
-              >
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  height="16"
-                  role="img"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle
-                    cx="8"
-                    cy="8"
-                    fill="white"
-                    r="8"
-                  />
-                  <line
-                    stroke="#737373"
-                    stroke-linecap="round"
-                    stroke-width="1.5"
-                    x1="5.66064"
-                    x2="10.2568"
-                    y1="5.625"
-                    y2="10.2212"
-                  />
-                </svg>
-              </span>
-              0
-            </span>
-          </div>
-        </div>
-      </div>
+      <mock-alloutcomessummarysection
+        cardsviewdata="[object Object]"
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        pagetitle="page-title"
+        pageurl="url:target-page"
+        recommendcolor="undefined"
+        scanmetadata="[object Object]"
+        scanresult="[object Object]"
+        sectionfactory="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+        targetappinfo="[object Object]"
+        tooldata="[object Object]"
+      />
       <mock-resultscontainer
         cardsviewdata="[object Object]"
         deps="[object Object]"
@@ -216,33 +118,25 @@ exports[`ReportBody renders 1`] = `
           tooldata="[object Object]"
         />
       </mock-resultscontainer>
-    </div>
-  </main>
-  <div
-    class="reportFooterContainer"
-  >
-    <div
-      class="reportFooter"
-      role="contentinfo"
-    >
-      This automated checks result was generated using 
-      <b
-        id="tool-name"
-      >
-        Accessibility Insights for Web
-      </b>
-      , a tool that helps debug and find accessibility issues earlier. Get more information & download this tool at 
-      <a
-        aria-labelledby="tool-name"
-        class="ms-Link insights-link root-109"
-        href="http://aka.ms/AccessibilityInsights"
-        target="_blank"
-        title="Get more information and download Accessibility Insights for Web"
-      >
-        http://aka.ms/AccessibilityInsights
-      </a>
-      .
-    </div>
-  </div>
+    </mock-contentsection>
+    <mock-footersection>
+      <mock-footertext
+        cardsviewdata="[object Object]"
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        pagetitle="page-title"
+        pageurl="url:target-page"
+        recommendcolor="undefined"
+        scanmetadata="[object Object]"
+        scanresult="[object Object]"
+        sectionfactory="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+        targetappinfo="[object Object]"
+        tooldata="[object Object]"
+      />
+    </mock-footersection>
+  </mock-bodysection>
 </DocumentFragment>
 `;

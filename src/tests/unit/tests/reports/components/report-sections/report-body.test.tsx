@@ -19,6 +19,7 @@ import { ContentContainer } from '../../../../../../reports/components/report-se
 import { DetailsSection } from '../../../../../../reports/components/report-sections/details-section';
 import { FooterSection } from '../../../../../../reports/components/report-sections/footer-section';
 import { FooterText } from '../../../../../../reports/components/report-sections/footer-text';
+import { HeaderSection } from '../../../../../../reports/components/report-sections/header-section';
 import { NotApplicableChecksSection } from '../../../../../../reports/components/report-sections/not-applicable-checks-section';
 import { PassedChecksSection } from '../../../../../../reports/components/report-sections/passed-checks-section';
 import { ReporterHeaderSection } from '../../../../../../reports/components/report-sections/reporter-header-section';
@@ -26,6 +27,12 @@ import { ResultsContainer } from '../../../../../../reports/components/report-se
 import { AllOutcomesSummarySection } from '../../../../../../reports/components/report-sections/summary-section';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
+
+jest.mock('../../../../../../reports/components/report-sections/body-section');
+jest.mock('../../../../../../reports/components/report-sections/content-container');
+jest.mock('../../../../../../reports/components/report-sections/header-section');
+jest.mock('../../../../../../reports/components/report-sections/summary-section');
+jest.mock('../../../../../../reports/components/report-sections/footer-section');
 
 jest.mock('../../../../../../reports/components/report-sections/automated-checks-title-section');
 jest.mock('../../../../../../reports/components/report-sections/details-section');
@@ -37,6 +44,11 @@ jest.mock('../../../../../../reports/components/report-sections/passed-checks-se
 jest.mock('../../../../../../reports/components/report-sections/not-applicable-checks-section');
 describe('ReportBody', () => {
     mockReactComponents([
+        BodySection,
+        ContentContainer,
+        HeaderSection,
+        AllOutcomesSummarySection,
+        FooterSection,
         AutomatedChecksTitleSection,
         DetailsSection,
         ReporterHeaderSection,
