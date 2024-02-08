@@ -9,12 +9,12 @@ import {
     FastPassReportSummaryProps,
 } from 'reports/components/fast-pass-report-summary';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 import { OutcomeSummaryBar } from '../../../../../reports/components/outcome-summary-bar';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
+import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 jest.mock('../../../../../reports/components/outcome-summary-bar');
 
 describe('FastPassReportSummary', () => {

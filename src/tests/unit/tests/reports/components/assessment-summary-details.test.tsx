@@ -6,10 +6,10 @@ import {
     AssessmentSummaryDetails,
     AssessmentSummaryDetailsProps,
 } from 'reports/components/assessment-summary-details';
-import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
-import { OutcomeIconSet } from '../../../../../reports/components/outcome-icon-set';
 import { OutcomeChipSet } from '../../../../../reports/components/outcome-chip-set';
+import { OutcomeIconSet } from '../../../../../reports/components/outcome-icon-set';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 jest.mock('../../../../../reports/components/outcome-icon-set');
 jest.mock('../../../../../reports/components/outcome-chip-set');
 

@@ -3,8 +3,8 @@
 import { render } from '@testing-library/react';
 import * as React from 'react';
 import { UrlScanResultsTable } from 'reports/components/report-sections/url-scan-results-table';
-import { SummaryResultsTable } from '../../../../../../reports/components/report-sections/summary-results-table';
 import { NewTabLink } from '../../../../../../common/components/new-tab-link';
+import { SummaryResultsTable } from '../../../../../../reports/components/report-sections/summary-results-table';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,

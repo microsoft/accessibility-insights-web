@@ -4,9 +4,9 @@ import { render } from '@testing-library/react';
 import * as React from 'react';
 import { AssessmentReport, AssessmentReportDeps } from 'reports/components/assessment-report';
 import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
-import { HeaderSection } from '../../../../../reports/components/report-sections/header-section';
 import { AssessmentReportBody } from '../../../../../reports/components/assessment-report-body';
 import { AssessmentReportFooter } from '../../../../../reports/components/assessment-report-footer';
+import { HeaderSection } from '../../../../../reports/components/report-sections/header-section';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,

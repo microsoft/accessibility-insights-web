@@ -6,8 +6,8 @@ import {
     UrlsSummarySection,
     UrlsSummarySectionProps,
 } from 'reports/components/report-sections/urls-summary-section';
-import { OutcomeSummaryBar } from '../../../../../../reports/components/outcome-summary-bar';
 import { OutcomeChip } from '../../../../../../reports/components/outcome-chip';
+import { OutcomeSummaryBar } from '../../../../../../reports/components/outcome-summary-bar';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
