@@ -3,14 +3,7 @@
 exports[`FooterTextForService renders: footer 1`] = `
 <DocumentFragment>
   This automated checks result was generated using the app-name that helps find some of the most common accessibility issues. The scan was performed in a clean browser environment, using engine-name engine-version and environmentName with a display resolution of 800x600. For a complete WCAG 2.1 compliance assessment please visit 
-  <a
-    class="ms-Link insights-link tool-name-link root-109"
-    href="http://aka.ms/AccessibilityInsights"
-    target="_blank"
-    title="Get more information and download Accessibility Insights for Web"
-  >
-    http://aka.ms/AccessibilityInsights
-  </a>
+  <mock-toollink />
   .
 </DocumentFragment>
 `;

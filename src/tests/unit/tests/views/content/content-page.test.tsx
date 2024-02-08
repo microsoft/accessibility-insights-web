@@ -7,6 +7,7 @@ import { Mock } from 'typemoq';
 
 import { ContentCreator, ContentPage, ContentPageDeps } from 'views/content/content-page';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -15,6 +16,7 @@ describe('ContentPage', () => {
     const deps = Mock.ofType<ContentPageDeps>().object;
 
     describe('.create', () => {
+        mockReactComponents([NewTabLink]);
         it('renders', () => {
             const MyPage = ContentPage.create(({ Markup, Link }) => {
                 return <>MY CONTENT</>;
@@ -33,6 +35,7 @@ describe('ContentPage', () => {
                 <MyPage deps={deps} options={{ setPageTitle: true, testString: 'TEST STRING' }} />,
             );
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
         });
     });
 
@@ -74,6 +77,7 @@ describe('ContentPage', () => {
             const MyPage = provider.getPage('forest/thePage');
             const renderResult = render(<MyPage deps={deps} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
         });
 
         [
@@ -88,6 +92,7 @@ describe('ContentPage', () => {
                 expect(MyPage.displayName).toEqual('ContentPageComponent');
                 const renderResult = render(<MyPage deps={deps} />);
                 expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
             }),
         );
     });
@@ -102,10 +107,9 @@ describe('ContentPage', () => {
 
         it('renders', () => {
             const MyPage = create(({ Link }) => <Link.testLink />);
-
-            const renderResult = render(<MyPage deps={deps} />);
-            renderResult.debug();
+            render(<MyPage deps={deps} />);
             const link = getMockComponentClassPropsForCall(NewTabLink);
+            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
 
             expect(link).toMatchSnapshot();
         });
@@ -116,8 +120,10 @@ describe('ContentPage', () => {
             render(<MyPage deps={deps} />);
 
             const link = getMockComponentClassPropsForCall(NewTabLink);
+            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
 
             expect(link).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
         });
     });
 });

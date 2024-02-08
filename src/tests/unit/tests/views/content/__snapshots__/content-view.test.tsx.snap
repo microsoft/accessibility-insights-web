@@ -2,12 +2,9 @@
 
 exports[`content view renders 1`] = `
 <DocumentFragment>
-  <mock-narrowmodedetector
-    childrenprops="[object Object]"
+  <mock-page
     deps="[object Object]"
-    isnarrowmodeenabled="true"
-  />
-  <main>
+  >
     <div
       class="content-container"
     >
@@ -25,6 +22,6 @@ exports[`content view renders 1`] = `
         class="content-right"
       />
     </div>
-  </main>
+  </mock-page>
 </DocumentFragment>
 `;

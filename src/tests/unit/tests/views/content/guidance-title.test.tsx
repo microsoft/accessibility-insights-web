@@ -12,9 +12,7 @@ describe('guidance title', () => {
     mockReactComponents([Helmet]);
     test('has correct structure', () => {
         const renderResult = render(<GuidanceTitle name={'test'} />);
-        expect(screen.getByText(`Guidance for test - ${productName}`).innerHTML).toEqual(
-            `Guidance for test - ${productName}`,
-        );
+        expect(renderResult.getByText(`Guidance for test - ${productName}`)).not.toBeNull();
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

@@ -1,29 +1,34 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedFC } from 'common/react/named-fc';
-import { mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { MemoryRouter } from 'react-router-dom';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { Content } from 'views/content/content';
 import { ContentRouteDeps, InsightsRoutes } from 'views/insights/insights-router';
 
-const StubContentRootComponent = NamedFC('StubContentRoot', () => <p>Stub content</p>);
+jest.mock('views/content/content');
 
 describe('InsightsRoutes', () => {
+    mockReactComponents([Content]);
     const deps: ContentRouteDeps = {
-        ContentRootComponent: StubContentRootComponent,
+        ContentRootComponent: Content,
     } as ContentRouteDeps;
 
     it('renders /content/ route with Content component for correct reference', () => {
-        const result = mount(
+        const renderResult = render(
             <MemoryRouter initialEntries={['/content/the/content/path']}>
                 <InsightsRoutes deps={deps} />
             </MemoryRouter>,
         );
+        renderResult.debug();
+        const contentRootComponent = getMockComponentClassPropsForCall(Content);
+        expect(contentRootComponent).not.toBeNull();
 
-        const contentRootComponent = result.find(StubContentRootComponent);
-        expect(contentRootComponent).toHaveLength(1);
-
-        expect(contentRootComponent.prop('deps')).toBe(deps);
-        expect(contentRootComponent.prop('reference')).toBe('the/content/path');
+        expect(contentRootComponent.deps).toBe(deps);
+        expect(contentRootComponent.reference).toBe('the/content/path');
     });
 });

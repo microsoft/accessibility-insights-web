@@ -3,9 +3,13 @@
 import { render } from '@testing-library/react';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
+import { ToolLink } from 'reports/components/report-sections/tool-link';
 import { FooterTextForService } from 'reports/package/footer-text-for-service';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 
+jest.mock('reports/components/report-sections/tool-link');
 describe('FooterTextForService', () => {
+ mockReactComponents([ToolLink]);
     it('renders', () => {
         const toolData: ToolData = {
             scanEngineProperties: {
