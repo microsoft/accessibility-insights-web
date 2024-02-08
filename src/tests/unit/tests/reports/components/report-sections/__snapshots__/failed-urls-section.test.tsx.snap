@@ -12,3 +12,21 @@ exports[`FailedUrlsSection renders 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`FailedUrlsSection renders: CollapsibleUrlResultSection props 1`] = `
+{
+  "badgeCount": 1,
+  "containerId": "failed-urls-section",
+  "content": <UrlScanResultsTable
+    id="failed-urls-table"
+    results={
+      [
+        {},
+      ]
+    }
+  />,
+  "deps": {},
+  "outcomeType": "fail",
+  "title": "Failed URLs",
+}
+`;
