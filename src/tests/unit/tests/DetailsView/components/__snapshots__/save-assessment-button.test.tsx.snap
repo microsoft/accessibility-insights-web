@@ -1,45 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = `
-<mock-dialog
-  dialogcontentprops="[object Object]"
-  hidden="true"
-  modalprops="[object Object]"
->
-  <div
-    class="dialogBody"
+<DocumentFragment>
+  <mock-customizedactionbutton
+    download="download"
+    href="url"
+    iconprops="[object Object]"
   >
-    To load this assessment, use the 
-    <strong>
-      Load assessment
-    </strong>
-     button in the Accessibility Insights Assessment command bar.
-  </div>
-  <mock-styleddialogfooterbase>
-    <mock-stack
-      horizontal="true"
-      horizontalalign="space-between"
-      tokens="[object Object]"
-      verticalalign="center"
-      wrap="true"
+    Save assessment
+  </mock-customizedactionbutton>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <div
+      class="dialogBody"
     >
-      <mock-stackitem
-        disableshrink="true"
-        grow="true"
+      To load this assessment, use the 
+      <strong>
+        Load assessment
+      </strong>
+       button in the Accessibility Insights Assessment command bar.
+    </div>
+    <mock-styleddialogfooterbase>
+      <mock-stack
+        horizontal="true"
+        horizontalalign="space-between"
+        tokens="[object Object]"
+        verticalalign="center"
+        wrap="true"
       >
-        <mock-styledcheckboxbase
-          label="Don't show again"
-          value="false"
-        />
-      </mock-stackitem>
-      <mock-stackitem
-        grow="true"
-      >
-        <mock-customizedprimarybutton
-          text="Got it"
-        />
-      </mock-stackitem>
-    </mock-stack>
-  </mock-styleddialogfooterbase>
-</mock-dialog>
+        <mock-stackitem
+          disableshrink="true"
+          grow="true"
+        >
+          <mock-styledcheckboxbase
+            label="Don't show again"
+            value="false"
+          />
+        </mock-stackitem>
+        <mock-stackitem
+          grow="true"
+        >
+          <mock-customizedprimarybutton
+            text="Got it"
+          />
+        </mock-stackitem>
+      </mock-stack>
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
 `;

@@ -76,7 +76,7 @@ describe('StartOverDropdownTest', () => {
                 ? `${optionKey} item IS rendered`
                 : `${optionKey} item IS NOT rendered`;
 
-            test(`${casePrefix} - rightPanelOptions.${optionName} is ${rightPanelOptionEnabled} & switcherStartOverPreferences.${optionName} is ${switcherPreferencesOptionEnabled}`, async () => {
+            test(`${casePrefix} - rightPanelOptions.${optionName} is ${rightPanelOptionEnabled} & switcherStartOverPreferences.${optionName} is ${switcherPreferencesOptionEnabled}`, () => {
                 defaultProps.rightPanelOptions = rightPanelOptions;
                 defaultProps.switcherStartOverPreferences = switcherPreferences;
 
@@ -93,7 +93,7 @@ describe('StartOverDropdownTest', () => {
         });
     });
 
-    it('render with dropdown on left', async () => {
+    it('render with dropdown on left', () => {
         mockReactComponents([InsightsCommandButton]);
         const props: StartOverProps = {
             ...defaultProps,
@@ -107,7 +107,7 @@ describe('StartOverDropdownTest', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    it('should open the start test over dialog', async () => {
+    it('should open the start test over dialog', () => {
         openDialogMock.setup(sds => sds('test')).verifiable(Times.once());
 
         render(<StartOverDropdown {...defaultProps} />);
@@ -121,7 +121,7 @@ describe('StartOverDropdownTest', () => {
         openDialogMock.verifyAll();
     });
 
-    it('should open the start assessment over dialog', async () => {
+    it('should open the start assessment over dialog', () => {
         openDialogMock.setup(sds => sds('assessment')).verifiable(Times.once());
 
         render(<StartOverDropdown {...defaultProps} />);
@@ -135,7 +135,7 @@ describe('StartOverDropdownTest', () => {
         openDialogMock.verifyAll();
     });
 
-    it('should dismiss the contextMenu', async () => {
+    it('should dismiss the contextMenu', () => {
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
         getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
             currentTarget: 'test target',

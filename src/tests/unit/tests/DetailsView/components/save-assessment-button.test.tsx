@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
+import {
+    ActionButton,
+    Checkbox,
+    Dialog,
+    DialogFooter,
+    PrimaryButton,
+    Stack,
+} from '@fluentui/react';
 import { fireEvent, render, RenderResult, act } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
@@ -22,8 +29,16 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 jest.mock('@fluentui/react');
 describe('SaveAssessmentButton', () => {
-    mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
-    useOriginalReactElements('@fluentui/react', ['ActionButton']);
+    mockReactComponents([
+        Dialog,
+        DialogFooter,
+        Stack,
+        Checkbox,
+        Stack.Item,
+        PrimaryButton,
+        ActionButton,
+    ]);
+
     let propsStub: SaveAssessmentButtonProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
@@ -50,24 +65,17 @@ describe('SaveAssessmentButton', () => {
         describe('render', () => {
             beforeEach(() => {
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                fireEvent.click(wrapper.getByRole('link'));
+                fireEvent.click(wrapper.container.querySelector('mock-customizedactionbutton'));
             });
             it('snapshot of dialog', () => {
-                wrapper = render(<SaveAssessmentButton {...propsStub} />);
-
-                const dialog = wrapper.container.querySelector('mock-Dialog');
-                expect(dialog).toMatchSnapshot();
+                expect(wrapper.asFragment()).toMatchSnapshot();
             });
 
             it('dialog is visible', () => {
-                wrapper = render(<SaveAssessmentButton {...propsStub} />);
-
                 expect(getMockComponentClassPropsForCall(Dialog, 2).hidden).toEqual(false);
             });
 
             it('dialog is hidden (dismissed) when onDismiss is called', () => {
-                wrapper = render(<SaveAssessmentButton {...propsStub} />);
-
                 act(() => {
                     getMockComponentClassPropsForCall(Dialog, 2).onDismiss();
                 });
@@ -83,6 +91,7 @@ describe('SaveAssessmentButton', () => {
                     'Stack',
                     'Checkbox',
                     'PrimaryButton',
+                    'ActionButton',
                 ]);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
