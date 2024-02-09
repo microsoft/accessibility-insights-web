@@ -12,3 +12,14 @@ exports[`page view renders 1`] = `
   </main>
 </DocumentFragment>
 `;
+
+exports[`page view renders: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {},
+  },
+  "deps": {},
+  "isNarrowModeEnabled": true,
+}
+`;

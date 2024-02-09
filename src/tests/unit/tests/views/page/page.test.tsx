@@ -5,7 +5,10 @@ import * as React from 'react';
 
 import { Page, PageDeps } from 'views/page/page';
 import { NarrowModeDetector } from '../../../../../DetailsView/components/narrow-mode-detector';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../DetailsView/components/narrow-mode-detector');
 describe('page view', () => {
@@ -13,5 +16,6 @@ describe('page view', () => {
     it('renders', () => {
         const renderResult = render(<Page deps={{} as PageDeps}>INSIDE</Page>);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([NarrowModeDetector]);
     });
 });
