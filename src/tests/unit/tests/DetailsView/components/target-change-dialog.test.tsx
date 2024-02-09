@@ -1,26 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { TooltipHost, Link } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { BlockingDialog } from 'common/components/blocking-dialog';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { Tab } from 'common/types/store-data/itab';
 import { UrlParser } from 'common/url-parser';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { ChangeAssessmentDialog } from 'DetailsView/components/change-assessment-dialog';
 import {
     TargetChangeDialog,
     TargetChangeDialogDeps,
     TargetChangeDialogProps,
 } from 'DetailsView/components/target-change-dialog';
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
-import { ChangeAssessmentDialog } from 'DetailsView/components/change-assessment-dialog';
+import { IMock, It, Mock, Times } from 'typemoq';
+
 
 jest.mock('DetailsView/components/change-assessment-dialog');
 jest.mock('@fluentui/react');
