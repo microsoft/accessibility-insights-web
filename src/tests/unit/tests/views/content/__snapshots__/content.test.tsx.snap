@@ -2,30 +2,13 @@
 
 exports[`content renders 1`] = `
 <DocumentFragment>
-  <mock-narrowmodedetector
-    childrenprops="[object Object]"
+  <mock-content
     deps="[object Object]"
-    isnarrowmodeenabled="true"
-  />
-  <main>
-    <div
-      class="content-container"
-    >
-      <div
-        class="content-left"
-      />
-      <div
-        class="content"
-      >
-        <the-content
-          deps="[object Object]"
-          options="[object Object]"
-        />
-      </div>
-      <div
-        class="content-right"
-      />
-    </div>
-  </main>
+  >
+    <the-content
+      deps="[object Object]"
+      options="[object Object]"
+    />
+  </mock-content>
 </DocumentFragment>
 `;
