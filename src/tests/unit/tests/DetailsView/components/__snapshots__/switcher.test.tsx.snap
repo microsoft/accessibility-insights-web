@@ -48,30 +48,11 @@ exports[`Switcher renders Switcher itself matches snapshot 1`] = `
 `;
 
 exports[`Switcher renders option renderer override matches snapshot 1`] = `
-[
-  {
-    "data": {
-      "icon": "Rocket",
-    },
-    "key": 0,
-    "text": "FastPass",
-    "title": "FastPass",
-  },
-  {
-    "data": {
-      "icon": "SiteScan",
-    },
-    "key": 3,
-    "text": "Quick Assess",
-    "title": "Quick Assess",
-  },
-  {
-    "data": {
-      "icon": "testBeakerSolid",
-    },
-    "key": 2,
-    "text": "Assessment",
-    "title": "Assessment",
-  },
-]
+<span
+  className="switcherDropdownOption"
+>
+  <span
+    data-automation-id="switcher-option"
+  />
+</span>
 `;

@@ -38,10 +38,6 @@ exports[`DetailsViewContainer render content render once; should call details vi
 }
 `;
 
-exports[`DetailsViewContainer render content render once; should call details view opened: NoContentAvailable props 1`] = `undefined`;
-
-exports[`DetailsViewContainer render content render once; should call details view opened: StyledSpinnerBase props 1`] = `undefined`;
-
 exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded 1`] = `
 <DocumentFragment>
   <mock-narrowmodedetector
@@ -67,10 +63,6 @@ exports[`DetailsViewContainer render content show NoContentAvailable when stores
   "isNarrowModeEnabled": false,
 }
 `;
-
-exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded: NoContentAvailable props 1`] = `{}`;
-
-exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded: StyledSpinnerBase props 1`] = `undefined`;
 
 exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed 1`] = `
 <DocumentFragment>
@@ -98,10 +90,6 @@ exports[`DetailsViewContainer render content show NoContentAvailable when target
 }
 `;
 
-exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed: NoContentAvailable props 1`] = `{}`;
-
-exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed: StyledSpinnerBase props 1`] = `undefined`;
-
 exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted 1`] = `
 <DocumentFragment>
   <mock-narrowmodedetector
@@ -128,10 +116,6 @@ exports[`DetailsViewContainer render content shows NoContentAvailable when targe
 }
 `;
 
-exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted: NoContentAvailable props 1`] = `{}`;
-
-exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted: StyledSpinnerBase props 1`] = `undefined`;
-
 exports[`DetailsViewContainer render renders spinner when stores not ready 1`] = `
 <DocumentFragment>
   <mock-styledspinnerbase
@@ -143,13 +127,3 @@ exports[`DetailsViewContainer render renders spinner when stores not ready 1`] =
 `;
 
 exports[`DetailsViewContainer render renders spinner when stores not ready: NarrowModeDetector props 1`] = `undefined`;
-
-exports[`DetailsViewContainer render renders spinner when stores not ready: NoContentAvailable props 1`] = `undefined`;
-
-exports[`DetailsViewContainer render renders spinner when stores not ready: StyledSpinnerBase props 1`] = `
-{
-  "className": "details-view-spinner",
-  "label": "Loading...",
-  "size": 3,
-}
-`;

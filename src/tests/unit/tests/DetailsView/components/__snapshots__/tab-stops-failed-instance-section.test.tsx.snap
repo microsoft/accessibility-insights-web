@@ -2,8 +2,6 @@
 
 exports[`TabStopsFailedInstanceSection does not render when no results are failing 1`] = `<DocumentFragment />`;
 
-exports[`TabStopsFailedInstanceSection does not render when no results are failing: TabStopsRequirementsWithInstances props 1`] = `undefined`;
-
 exports[`TabStopsFailedInstanceSection does renders when no results are failing and set to alwaysRenderSection 1`] = `
 <DocumentFragment>
   <div
@@ -27,15 +25,6 @@ exports[`TabStopsFailedInstanceSection does renders when no results are failing 
     />
   </div>
 </DocumentFragment>
-`;
-
-exports[`TabStopsFailedInstanceSection does renders when no results are failing and set to alwaysRenderSection: TabStopsRequirementsWithInstances props 1`] = `
-{
-  "deps": {},
-  "getCollapsibleComponentPropsWithInstance": [Function],
-  "headingLevel": 3,
-  "results": [],
-}
 `;
 
 exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `

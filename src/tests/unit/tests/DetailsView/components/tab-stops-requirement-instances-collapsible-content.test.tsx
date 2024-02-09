@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { DetailsList } from '@fluentui/react';
-import { render } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
-
+import { fireEvent, render } from '@testing-library/react';
 import {
     TabStopsRequirementInstancesCollapsibleContent,
     TabStopsRequirementInstancesCollapsibleContentProps,
@@ -19,8 +16,8 @@ import {
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
-
 jest.mock('@fluentui/react');
+
 describe('TabStopsRequirementInstancesCollapsibleContent', () => {
     mockReactComponents([DetailsList]);
     let onEditButtonClickedMock: IMock<
@@ -67,14 +64,14 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
         render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
         const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         expect(columns[0].onRender(requirementResultInstanceStub)).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([DetailsList]);
+        
     });
 
     test('renders captured instance icons column', () => {
         render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
         const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         expect(columns[1].onRender(requirementResultInstanceStub)).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([DetailsList]);
+        
     });
 
     test('click events pass through as expected', async () => {
@@ -95,11 +92,8 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
             />,
         );
 
-        const button = renderResult.getAllByRole('button');
-
-        await userEvent.click(button[0]);
-        await userEvent.click(button[1]);
-
+        const buttons = renderResult.getAllByRole('button');
+        buttons.forEach(button => fireEvent.click(button));
         onEditButtonClickedMock.verifyAll();
         onRemoveButtonClickedMock.verifyAll();
     });

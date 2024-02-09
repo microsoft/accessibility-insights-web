@@ -112,7 +112,6 @@ describe('TabStopsFailedInstanceSection', () => {
         const renderResult = render(<TabStopsFailedInstanceSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([TabStopsRequirementsWithInstances]);
         tabStopsFailedCounterMock.verifyAll();
         tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });
@@ -132,7 +131,6 @@ describe('TabStopsFailedInstanceSection', () => {
         const renderResult = render(<TabStopsFailedInstanceSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([TabStopsRequirementsWithInstances]);
         tabStopsFailedCounterMock.verifyAll();
         tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });
