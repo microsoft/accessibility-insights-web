@@ -10,7 +10,10 @@ import { GitHubIssueFilingSettings } from 'issue-filing/services/github/github-i
 import { SettingsFormProps } from 'issue-filing/types/settings-form-props';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('GithubIssueFilingServiceTest', () => {

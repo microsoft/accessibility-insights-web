@@ -98,7 +98,7 @@ describe('IssueDetailsNavigationControls', () => {
             const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
             const nextButton = renderResult.getByRole('button', {
-                name: /Next/i
+                name: /Next/i,
             });
             expect(nextButton).not.toBeNull();
             //expect(nextButton).toHaveLength(1);
@@ -115,7 +115,7 @@ describe('IssueDetailsNavigationControls', () => {
             const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
             const backButton = renderResult.getByRole('button', {
-                name: /Back/i
+                name: /Back/i,
             });
 
             expect(backButton).not.toBeNull();

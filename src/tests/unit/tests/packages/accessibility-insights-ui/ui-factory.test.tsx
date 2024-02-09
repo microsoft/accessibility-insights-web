@@ -8,7 +8,10 @@ import { NarrowModeThresholds } from 'common/narrow-mode-thresholds';
 import { UIFactory } from 'packages/accessibility-insights-ui/ui-factory';
 import * as React from 'react';
 import { GuidanceTitle } from 'views/content/guidance-title';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { NarrowModeDetector } from '../../../../../DetailsView/components/narrow-mode-detector';
 
 jest.mock('DetailsView/components/narrow-mode-detector');

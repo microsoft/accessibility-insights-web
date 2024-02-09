@@ -12,7 +12,10 @@ import {
 } from '../../../../../issue-filing/components/issue-filing-choice-group';
 import { OnSelectedServiceChange } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('IssueFilingChoiceGroupTest', () => {

@@ -11,7 +11,11 @@ import { SettingsFormProps } from 'issue-filing/types/settings-form-props';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, Times } from 'typemoq';
-import { expectMockedComponentPropsToMatchSnapshots, getMockComponentClassPropsForCall, mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('AzureBoardsSettingsForm', () => {
@@ -89,7 +93,9 @@ describe('AzureBoardsSettingsForm', () => {
 
             render(<AzureBoardsSettingsForm {...props} />);
 
-            getMockComponentClassPropsForCall(Dropdown).onChange(null, { key: newIssueDetailsFieldKey });
+            getMockComponentClassPropsForCall(Dropdown).onChange(null, {
+                key: newIssueDetailsFieldKey,
+            });
 
             onPropertyUpdateCallbackMock.verifyAll();
         });

@@ -16,7 +16,10 @@ import {
 } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
-import { expectMockedComponentPropsToMatchSnapshots, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { IssueFilingChoiceGroup } from '../../../../../issue-filing/components/issue-filing-choice-group';
 import { AzureBoardsSettingsForm } from '../../../../../issue-filing/services/azure-boards/azure-boards-settings-form';
 

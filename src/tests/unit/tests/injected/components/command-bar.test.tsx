@@ -17,7 +17,10 @@ import {
 } from '../../../../../injected/components/command-bar';
 import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
 import { EventStubFactory } from '../../../common/event-stub-factory';
-import { getMockComponentClassPropsForCall, mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 jest.mock('../../../../../common/components/copy-issue-details-button');
 jest.mock('../../../../../../node_modules/@fluentui/react');
 jest.mock('../../../../../common/components/issue-filing-button');
@@ -119,7 +122,7 @@ describe('CommandBar', () => {
                         | HTMLButtonElement,
                         MouseEvent
                     >,
-                ) => { },
+                ) => {},
             );
 
             const props = {
@@ -136,7 +139,7 @@ describe('CommandBar', () => {
         });
 
         test('for copy issue details button', async () => {
-            const onClickMock = Mock.ofInstance((event: React.MouseEvent<any, MouseEvent>) => { });
+            const onClickMock = Mock.ofInstance((event: React.MouseEvent<any, MouseEvent>) => {});
 
             const props = {
                 ...defaultCommandBarProps,

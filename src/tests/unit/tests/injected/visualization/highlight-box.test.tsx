@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import {
@@ -49,12 +49,12 @@ describe('HighlightBox', () => {
 
     test('renders null when boxConfig is null', () => {
         props.boxConfig = null;
-        const testObject = shallow(<HighlightBox {...props} />);
-        expect(testObject.getElement()).toMatchSnapshot();
+        const renderResult = render(<HighlightBox {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('renders with appropriate styles/elements when boxConfig is set', () => {
-        const testObject = shallow(<HighlightBox {...props} />);
-        expect(testObject.getElement()).toMatchSnapshot();
+        const renderResult = render(<HighlightBox {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
