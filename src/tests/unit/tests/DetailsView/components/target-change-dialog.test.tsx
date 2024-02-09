@@ -8,7 +8,11 @@ import { Tab } from 'common/types/store-data/itab';
 import { UrlParser } from 'common/url-parser';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { TargetChangeDialog, TargetChangeDialogDeps, TargetChangeDialogProps } from 'DetailsView/components/target-change-dialog';
+import {
+    TargetChangeDialog,
+    TargetChangeDialogDeps,
+    TargetChangeDialogProps,
+} from 'DetailsView/components/target-change-dialog';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
@@ -25,39 +29,41 @@ describe('TargetChangeDialog test set for prev tab null', () => {
     mockReactComponents([ChangeAssessmentDialog, BlockingDialog, TooltipHost, Link]);
     const urlParserMock = Mock.ofType(UrlParser);
 
-    test.each([null, undefined, {} as PersistedTabInfo, { detailsViewId: 'testId' } as PersistedTabInfo])(
-        'should render null when prevTab does not exists',
-        (prevTab) => {
-            const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-            const assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
+    test.each([
+        null,
+        undefined,
+        {} as PersistedTabInfo,
+        { detailsViewId: 'testId' } as PersistedTabInfo,
+    ])('should render null when prevTab does not exists', prevTab => {
+        const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        const assessmentActionMessageCreatorMock = Mock.ofType(AssessmentActionMessageCreator);
 
-            const newTab = {
-                id: 111,
-                url: 'https://www.def.com',
-                title: 'test title',
-            };
+        const newTab = {
+            id: 111,
+            url: 'https://www.def.com',
+            title: 'test title',
+        };
 
-            urlParserMock
-                .setup((urlParserObject) => urlParserObject.areURLsEqual(It.isAny(), newTab.url))
-                .returns(() => true)
-                .verifiable(Times.never());
+        urlParserMock
+            .setup(urlParserObject => urlParserObject.areURLsEqual(It.isAny(), newTab.url))
+            .returns(() => true)
+            .verifiable(Times.never());
 
-            const targetChangeProps: TargetChangeDialogProps = {
-                deps: {
-                    urlParser: urlParserMock.object,
-                    getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
-                    detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-                    detailsViewId: '',
-                },
-                prevTab: prevTab,
-                newTab: newTab,
-            };
+        const targetChangeProps: TargetChangeDialogProps = {
+            deps: {
+                urlParser: urlParserMock.object,
+                getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
+                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
+                detailsViewId: '',
+            },
+            prevTab: prevTab,
+            newTab: newTab,
+        };
 
-            render(<TargetChangeDialog {...targetChangeProps} />);
-            expect(getMockComponentClassPropsForCall(ChangeAssessmentDialog).isOpen).toBe(false);
-            urlParserMock.verifyAll();
-        },
-    );
+        render(<TargetChangeDialog {...targetChangeProps} />);
+        expect(getMockComponentClassPropsForCall(ChangeAssessmentDialog).isOpen).toBe(false);
+        urlParserMock.verifyAll();
+    });
 });
 
 describe('TargetChangeDialog test sets for same prev tab and newTab values', () => {
@@ -101,7 +107,9 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         };
 
         urlParserMock
-            .setup((urlParserObject) => urlParserObject.areURLsEqual(It.isValue(prevTab.url), It.isValue(newTab.url)))
+            .setup(urlParserObject =>
+                urlParserObject.areURLsEqual(It.isValue(prevTab.url), It.isValue(newTab.url)),
+            )
             .returns(() => true)
             .verifiable();
 
@@ -122,7 +130,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         };
 
         urlParserMock
-            .setup((urlParserObject) => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
             .returns(() => true)
             .verifiable(Times.never());
 
@@ -146,7 +154,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
         };
 
         urlParserMock
-            .setup((urlParserObject) => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
             .returns(() => true)
             .verifiable();
 
@@ -167,7 +175,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             id: 123,
         };
         urlParserMock
-            .setup((urlParserObject) => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
             .returns(() => false)
             .verifiable();
 
@@ -192,7 +200,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             id: 123,
         };
         urlParserMock
-            .setup((urlParserObject) => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
             .returns(() => false)
             .verifiable(Times.never());
 
@@ -207,9 +215,11 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
     });
 
     test('should show dialog when target tab id changed', () => {
-        useOriginalReactElements('DetailsView/components/change-assessment-dialog', ['ChangeAssessmentDialog']);
+        useOriginalReactElements('DetailsView/components/change-assessment-dialog', [
+            'ChangeAssessmentDialog',
+        ]);
         urlParserMock
-            .setup((urlParserObject) => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLsEqual(prevTab.url, newTab.url))
             .returns(() => true)
             .verifiable(Times.once());
 
@@ -223,7 +233,8 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         expect(getMockComponentClassPropsForCall(BlockingDialog)).not.toBeNull();
         expect(getMockComponentClassPropsForCall(TooltipHost)).not.toBeNull();
-        const tooltipHostCalls = (TooltipHost as any).mock?.calls || (TooltipHost as any).render.mock.calls;
+        const tooltipHostCalls =
+            (TooltipHost as any).mock?.calls || (TooltipHost as any).render.mock.calls;
         expect(tooltipHostCalls.length).toEqual(2);
         expect(getMockComponentClassPropsForCall(BlockingDialog).hidden).toBe(false);
     });

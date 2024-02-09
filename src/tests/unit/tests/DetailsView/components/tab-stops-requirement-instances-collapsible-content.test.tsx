@@ -64,14 +64,12 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
         render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
         const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         expect(columns[0].onRender(requirementResultInstanceStub)).toMatchSnapshot();
-        
     });
 
     test('renders captured instance icons column', () => {
         render(<TabStopsRequirementInstancesCollapsibleContent {...props} />);
         const columns = getMockComponentClassPropsForCall(DetailsList).columns;
         expect(columns[1].onRender(requirementResultInstanceStub)).toMatchSnapshot();
-        
     });
 
     test('click events pass through as expected', async () => {

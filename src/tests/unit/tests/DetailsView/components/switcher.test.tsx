@@ -60,12 +60,12 @@ describe('Switcher', () => {
                 )
                 .verifiable(Times.once());
             render(<Switcher {...defaultProps} />);
-            const dropdown = getMockComponentClassPropsForCall(Dropdown);        
+            const dropdown = getMockComponentClassPropsForCall(Dropdown);
             expect(dropdown.selectedKey).toBe(DetailsViewPivotType.fastPass);
             dropdown.onChange(null, {
                 key: DetailsViewPivotType.assessment,
             } as IDropdownOption);
-            const dropdown2 = getMockComponentClassPropsForCall(Dropdown,2);
+            const dropdown2 = getMockComponentClassPropsForCall(Dropdown, 2);
             expect(dropdown2.selectedKey).toBe(DetailsViewPivotType.assessment);
             detailsViewActionMessageCreatorMock.verifyAll();
         });
@@ -78,13 +78,13 @@ describe('Switcher', () => {
         it('pivotKey has changed', () => {
             useOriginalReactElements('@fluentui/react', ['Dropdown']);
             const component = render(<Switcher {...defaultProps} />);
-            component.rerender(<Switcher {...newProps} />); 
+            component.rerender(<Switcher {...newProps} />);
             expect(component.getByText('Assessment')).toBeTruthy();
         });
         it('pivotKey has not changed', () => {
             useOriginalReactElements('@fluentui/react', ['Dropdown']);
             const component = render(<Switcher {...defaultProps} />);
-            component.rerender(<Switcher {...defaultProps} />);    
+            component.rerender(<Switcher {...defaultProps} />);
             expect(component.getByText('FastPass')).toBeTruthy();
         });
     });
