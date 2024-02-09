@@ -10,7 +10,10 @@ import { ContentActionMessageCreator } from 'common/message-creators/content-act
 import { create } from 'content/common';
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
-import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { It, Mock, Times } from 'typemoq';
 
 import { createMarkup } from 'views/content/markup';
@@ -59,6 +62,7 @@ describe('ContentPage', () => {
         it('<Title> renders where options not specified', () => {
             const renderResult = render(<Title>TEST</Title>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         [true, false, null].forEach(value =>
@@ -66,62 +70,79 @@ describe('ContentPage', () => {
                 const Markup = createMarkup(deps, { setPageTitle: value });
                 const renderResult = render(<Markup.Title>TEST</Markup.Title>);
                 expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([
+                    CheckIcon,
+                    CrossIcon,
+                    NewTabLink,
+                    Helmet,
+                ]);
             }),
         );
 
         it('<LandmarkLegend> renders', () => {
             const renderResult = render(<LandmarkLegend role="main">TEST</LandmarkLegend>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<Table> renders', () => {
             const renderResult = render(<Table>table content</Table>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<ProblemList> renders', () => {
             const renderResult = render(<ProblemList>list content</ProblemList>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<LandmarkLegend> renders', () => {
             const renderResult = render(<Do>THINGS TO DO</Do>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<Do> renders', () => {
             const renderResult = render(<Do>THINGS TO DO</Do>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<Dont> renders', () => {
             const renderResult = render(<Dont>DON'T DO THIS</Dont>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<Pass> renders', () => {
             const renderResult = render(<Pass>I PASSED :)</Pass>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<Fail> renders', () => {
             const renderResult = render(<Fail>I FAILED :(</Fail>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<Columns> renders', () => {
             const renderResult = render(<Columns>INSIDE COLUMNS</Columns>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<Column> renders', () => {
             const renderResult = render(<Column>INSIDE COLUMN</Column>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<Inline> renders', () => {
             const renderResult = render(<Inline>INLINED</Inline>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         it('<Include> renders', () => {
@@ -133,6 +154,7 @@ describe('ContentPage', () => {
                 />,
             );
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         describe('<PassFail>', () => {
@@ -146,6 +168,12 @@ describe('ContentPage', () => {
                     />,
                 );
                 expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([
+                    CheckIcon,
+                    CrossIcon,
+                    NewTabLink,
+                    Helmet,
+                ]);
             });
 
             it('renders with example headers', () => {
@@ -172,6 +200,12 @@ describe('ContentPage', () => {
                     />,
                 );
                 expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([
+                    CheckIcon,
+                    CrossIcon,
+                    NewTabLink,
+                    Helmet,
+                ]);
             });
         });
 
@@ -181,6 +215,12 @@ describe('ContentPage', () => {
             const renderResult = render(<HyperLink href={href}>LINK TEXT</HyperLink>);
             it('renders', () => {
                 expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([
+                    CheckIcon,
+                    CrossIcon,
+                    NewTabLink,
+                    Helmet,
+                ]);
             });
 
             it('registers click with event', async () => {
@@ -194,6 +234,7 @@ describe('ContentPage', () => {
         it('<Highlight> renders', () => {
             const renderResult = render(<Highlight>HIGHLIGHTED</Highlight>);
             expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([CheckIcon, CrossIcon, NewTabLink, Helmet]);
         });
 
         describe('<Links>', () => {
@@ -204,11 +245,23 @@ describe('ContentPage', () => {
             it('renders with text', () => {
                 const renderResult = render(<Links>Some text</Links>);
                 expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([
+                    CheckIcon,
+                    CrossIcon,
+                    NewTabLink,
+                    Helmet,
+                ]);
             });
 
             it('renders with one link', () => {
                 const renderResult = render(<Links>{link1}</Links>);
                 expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([
+                    CheckIcon,
+                    CrossIcon,
+                    NewTabLink,
+                    Helmet,
+                ]);
             });
 
             it('renders with many links', () => {
@@ -220,6 +273,12 @@ describe('ContentPage', () => {
                     </Links>,
                 );
                 expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([
+                    CheckIcon,
+                    CrossIcon,
+                    NewTabLink,
+                    Helmet,
+                ]);
             });
         });
     });
