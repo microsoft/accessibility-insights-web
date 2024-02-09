@@ -15,7 +15,7 @@ exports[`CodePenReportExportService exportForm renders 1`] = `
       value="{"title":"test-html-filename","description":"test-description","html":"test-html","editors":"100"}"
     />
     <button
-      type="button"
+      type="submit"
     />
   </form>
 </DocumentFragment>
