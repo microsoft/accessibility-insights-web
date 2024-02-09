@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 
 import { ContentView, ContentViewDeps } from 'views/content/content-view';
 import { Page } from 'views/page/page';
@@ -28,5 +31,6 @@ describe('content view', () => {
         const renderResult = render(component);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Page]);
     });
 });

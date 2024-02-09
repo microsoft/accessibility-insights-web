@@ -25,3 +25,30 @@ exports[`content view renders 1`] = `
   </mock-page>
 </DocumentFragment>
 `;
+
+exports[`content view renders: Page props 1`] = `
+{
+  "children": <div
+    className="content-container"
+  >
+    <div
+      className="content-left"
+    />
+    <div
+      className="content"
+    >
+      <p>
+        THE CONTENT
+      </p>
+    </div>
+    <div
+      className="content-right"
+    />
+  </div>,
+  "deps": {
+    "textContent": {
+      "applicationTitle": "THE_APPLICATION_TITLE",
+    },
+  },
+}
+`;
