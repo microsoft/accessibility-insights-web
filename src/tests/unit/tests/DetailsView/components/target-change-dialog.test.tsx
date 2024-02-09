@@ -22,7 +22,6 @@ import {
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-
 jest.mock('DetailsView/components/change-assessment-dialog');
 jest.mock('@fluentui/react');
 jest.mock('common/components/blocking-dialog');
