@@ -15,8 +15,6 @@ exports[`OutcomeIconSet render render all zero 1`] = `
 </DocumentFragment>
 `;
 
-exports[`OutcomeIconSet render render all zero: OutcomeIcon props 1`] = `undefined`;
-
 exports[`OutcomeIconSet render render incomplete zero 1`] = `
 <DocumentFragment>
   <div
@@ -79,12 +77,6 @@ exports[`OutcomeIconSet render render incomplete zero 1`] = `
     </span>
   </div>
 </DocumentFragment>
-`;
-
-exports[`OutcomeIconSet render render incomplete zero: OutcomeIcon props 1`] = `
-{
-  "outcomeType": "pass",
-}
 `;
 
 exports[`OutcomeIconSet render render with all properties 1`] = `
@@ -163,10 +155,4 @@ exports[`OutcomeIconSet render render with all properties 1`] = `
     </span>
   </div>
 </DocumentFragment>
-`;
-
-exports[`OutcomeIconSet render render with all properties: OutcomeIcon props 1`] = `
-{
-  "outcomeType": "pass",
-}
 `;
