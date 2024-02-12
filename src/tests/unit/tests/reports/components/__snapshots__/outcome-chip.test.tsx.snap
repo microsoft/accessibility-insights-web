@@ -29,12 +29,6 @@ exports[`OutcomeChip render fail 1`] = `
 </DocumentFragment>
 `;
 
-exports[`OutcomeChip render fail: OutcomeIcon props 1`] = `
-{
-  "outcomeType": "fail",
-}
-`;
-
 exports[`OutcomeChip render inapplicable 1`] = `
 <DocumentFragment>
   <span
@@ -62,12 +56,6 @@ exports[`OutcomeChip render inapplicable 1`] = `
     </span>
   </span>
 </DocumentFragment>
-`;
-
-exports[`OutcomeChip render inapplicable: OutcomeIcon props 1`] = `
-{
-  "outcomeType": "inapplicable",
-}
 `;
 
 exports[`OutcomeChip render incomplete 1`] = `
@@ -99,12 +87,6 @@ exports[`OutcomeChip render incomplete 1`] = `
 </DocumentFragment>
 `;
 
-exports[`OutcomeChip render incomplete: OutcomeIcon props 1`] = `
-{
-  "outcomeType": "incomplete",
-}
-`;
-
 exports[`OutcomeChip render pass 1`] = `
 <DocumentFragment>
   <span
@@ -132,10 +114,4 @@ exports[`OutcomeChip render pass 1`] = `
     </span>
   </span>
 </DocumentFragment>
-`;
-
-exports[`OutcomeChip render pass: OutcomeIcon props 1`] = `
-{
-  "outcomeType": "pass",
-}
 `;
