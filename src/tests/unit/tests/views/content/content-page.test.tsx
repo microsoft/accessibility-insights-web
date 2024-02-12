@@ -35,7 +35,6 @@ describe('ContentPage', () => {
                 <MyPage deps={deps} options={{ setPageTitle: true, testString: 'TEST STRING' }} />,
             );
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
         });
     });
 
@@ -77,7 +76,6 @@ describe('ContentPage', () => {
             const MyPage = provider.getPage('forest/thePage');
             const renderResult = render(<MyPage deps={deps} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
         });
 
         [
@@ -92,13 +90,11 @@ describe('ContentPage', () => {
                 expect(MyPage.displayName).toEqual('ContentPageComponent');
                 const renderResult = render(<MyPage deps={deps} />);
                 expect(renderResult.asFragment()).toMatchSnapshot();
-                expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
             }),
         );
     });
 
     describe('ContentCreator links', () => {
-        mockReactComponents([NewTabLink]);
         const linksMap = {
             testLink: { text: 'testLink text', href: 'testLink href' },
         };
@@ -107,23 +103,16 @@ describe('ContentPage', () => {
 
         it('renders', () => {
             const MyPage = create(({ Link }) => <Link.testLink />);
-            render(<MyPage deps={deps} />);
-            const link = getMockComponentClassPropsForCall(NewTabLink);
-            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
-
-            expect(link).toMatchSnapshot();
+            const renderResult = render(<MyPage deps={deps} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('renders, children is text', () => {
             const MyPage = create(({ Link }) => <Link.testLink>OVERRIDE</Link.testLink>);
 
-            render(<MyPage deps={deps} />);
+            const renderResult = render(<MyPage deps={deps} />);
 
-            const link = getMockComponentClassPropsForCall(NewTabLink);
-            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
-
-            expect(link).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([NewTabLink]);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 });

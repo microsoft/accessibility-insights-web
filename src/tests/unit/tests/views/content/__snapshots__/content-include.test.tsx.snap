@@ -10,8 +10,6 @@ exports[`ContentInclude renders from content 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentInclude renders from content: Content props 1`] = `undefined`;
-
 exports[`ContentInclude renders from path 1`] = `
 <DocumentFragment>
   <div
@@ -21,5 +19,3 @@ exports[`ContentInclude renders from path 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`ContentInclude renders from path: Content props 1`] = `undefined`;

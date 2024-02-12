@@ -6,8 +6,6 @@ exports[`ContentPage .create passes options through to Markup 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .create passes options through to Markup: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .create renders 1`] = `
 <DocumentFragment>
   MY CONTENT
@@ -21,8 +19,6 @@ exports[`ContentPage .provider doesn't find extraPath/forest/thePage 1`] = `
   </h1>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .provider doesn't find extraPath/forest/thePage: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .provider doesn't find forest 1`] = `
 <DocumentFragment>
@@ -40,10 +36,6 @@ exports[`ContentPage .provider doesn't find forest/notThePage 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .provider doesn't find forest/notThePage: NewTabLink props 1`] = `undefined`;
-
-exports[`ContentPage .provider doesn't find forest: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .provider doesn't find notForest/thePage 1`] = `
 <DocumentFragment>
   <h1>
@@ -51,8 +43,6 @@ exports[`ContentPage .provider doesn't find notForest/thePage 1`] = `
   </h1>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .provider doesn't find notForest/thePage: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .provider doesn't find thePage 1`] = `
 <DocumentFragment>
@@ -62,52 +52,28 @@ exports[`ContentPage .provider doesn't find thePage 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .provider doesn't find thePage: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .provider finds forest/thePage 1`] = `
 <DocumentFragment>
   THE PAGE
 </DocumentFragment>
 `;
 
-exports[`ContentPage .provider finds forest/thePage: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage ContentCreator links renders 1`] = `
-{
-  "children": "testLink text",
-  "href": "testLink href",
-  "onClick": [Function],
-}
+<DocumentFragment>
+  <mock-newtablink
+    href="testLink href"
+  >
+    testLink text
+  </mock-newtablink>
+</DocumentFragment>
 `;
 
 exports[`ContentPage ContentCreator links renders, children is text 1`] = `
-{
-  "children": "OVERRIDE",
-  "href": "testLink href",
-  "onClick": [Function],
-}
-`;
-
-exports[`ContentPage ContentCreator links renders, children is text: NewTabLink props 1`] = `
-{
-  "children": "OVERRIDE",
-  "href": "testLink href",
-  "onClick": [Function],
-}
-`;
-
-exports[`ContentPage ContentCreator links renders, children is text: NewTabLink props 2`] = `
-{
-  "children": "OVERRIDE",
-  "href": "testLink href",
-  "onClick": [Function],
-}
-`;
-
-exports[`ContentPage ContentCreator links renders: NewTabLink props 1`] = `
-{
-  "children": "testLink text",
-  "href": "testLink href",
-  "onClick": [Function],
-}
+<DocumentFragment>
+  <mock-newtablink
+    href="testLink href"
+  >
+    OVERRIDE
+  </mock-newtablink>
+</DocumentFragment>
 `;

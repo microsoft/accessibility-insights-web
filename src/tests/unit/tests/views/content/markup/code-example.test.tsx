@@ -1,11 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
+import { CodeBlock } from 'assessments/markup';
 import * as React from 'react';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 
 import { CodeExample } from 'views/content/markup/code-example';
 
+jest.mock('assessments/markup');
+
 describe('<CodeExample>', () => {
+    mockReactComponents([CodeBlock]);
     it('renders with title', () => {
         const renderResult = render(<CodeExample title="title">code</CodeExample>);
 

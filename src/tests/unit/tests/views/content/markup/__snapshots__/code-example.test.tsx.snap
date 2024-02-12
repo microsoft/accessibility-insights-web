@@ -8,9 +8,7 @@ exports[`<CodeExample> renders with a highlight that breaks in the middle of mul
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         Line 1
         <br />
         Line 2 
@@ -24,7 +22,7 @@ exports[`<CodeExample> renders with a highlight that breaks in the middle of mul
         Line 3
         <br />
         Line 4
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -38,9 +36,7 @@ exports[`<CodeExample> renders with a highlight that spans multiple lines 1`] = 
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         Line 1
         <br />
         <span
@@ -52,7 +48,7 @@ exports[`<CodeExample> renders with a highlight that spans multiple lines 1`] = 
         </span>
         <br />
         Line 4
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -66,9 +62,7 @@ exports[`<CodeExample> renders with a line breaks and a highlighted line 1`] = `
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         Line 1
         <br />
         <span
@@ -78,7 +72,7 @@ exports[`<CodeExample> renders with a line breaks and a highlighted line 1`] = `
         </span>
         <br />
         Line 3
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -92,13 +86,11 @@ exports[`<CodeExample> renders with a single line break 1`] = `
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         Line 1
         <br />
         Line 2
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -112,15 +104,13 @@ exports[`<CodeExample> renders with empty highlighted region 1`] = `
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         Empty 
         <span
           class="highlight"
         />
          highlight
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -134,9 +124,7 @@ exports[`<CodeExample> renders with many highlighted regions 1`] = `
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         With 
         <span
           class="highlight"
@@ -156,7 +144,7 @@ exports[`<CodeExample> renders with many highlighted regions 1`] = `
           highlights
         </span>
         .
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -170,11 +158,9 @@ exports[`<CodeExample> renders with no highlighted region 1`] = `
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         No highlight
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -188,11 +174,9 @@ exports[`<CodeExample> renders with no title 1`] = `
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         code
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -206,9 +190,7 @@ exports[`<CodeExample> renders with one highlighted region 1`] = `
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         One 
         <span
           class="highlight"
@@ -216,7 +198,7 @@ exports[`<CodeExample> renders with one highlighted region 1`] = `
           single
         </span>
          highlight
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -237,11 +219,9 @@ exports[`<CodeExample> renders with title 1`] = `
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         code
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>
@@ -255,16 +235,14 @@ exports[`<CodeExample> renders with unterminated highlighted region 1`] = `
     <div
       class="code-example-code"
     >
-      <div
-        class="insights-code"
-      >
+      <mock-codeblock>
         One 
         <span
           class="highlight"
         >
           unterminated highlight
         </span>
-      </div>
+      </mock-codeblock>
     </div>
   </div>
 </DocumentFragment>

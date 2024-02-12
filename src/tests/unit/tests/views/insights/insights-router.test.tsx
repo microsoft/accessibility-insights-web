@@ -19,12 +19,11 @@ describe('InsightsRoutes', () => {
     } as ContentRouteDeps;
 
     it('renders /content/ route with Content component for correct reference', () => {
-        const renderResult = render(
+        render(
             <MemoryRouter initialEntries={['/content/the/content/path']}>
                 <InsightsRoutes deps={deps} />
             </MemoryRouter>,
         );
-        renderResult.debug();
         const contentRootComponent = getMockComponentClassPropsForCall(Content);
         expect(contentRootComponent).not.toBeNull();
 
