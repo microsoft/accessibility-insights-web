@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { Link } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { AdHocToolsPanel, AdHocToolsPanelProps } from 'popup/components/ad-hoc-tools-panel';
 import { DiagnosticViewToggleFactory } from 'popup/components/diagnostic-view-toggle-factory';
@@ -83,7 +83,7 @@ describe('AdHocToolsPanelTest', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    test('back link clicked', async () => {
+    test('back link clicked', () => {
         diagnosticViewToggleFactoryMock
             .setup(factory => factory.createTogglesForAdHocToolsPanel())
             .returns(() => []);

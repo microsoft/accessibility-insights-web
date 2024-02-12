@@ -12,11 +12,11 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
-import { NarrowModeDetector } from '../../../../../DetailsView/components/narrow-mode-detector';
+import { ContentView } from '../../../../../views/content/content-view';
+jest.mock('../../../../../views/content/content-view');
 
-jest.mock('DetailsView/components/narrow-mode-detector');
 describe('UIFactory', () => {
-    mockReactComponents([NarrowModeDetector]);
+    mockReactComponents([ContentView]);
     const applicationTitle = 'THE_APPLICATION_TITLE';
     const narrowModeThresholds = {
         collapseHeaderAndNavThreshold: 600,
@@ -83,6 +83,6 @@ describe('UIFactory', () => {
     it('exports ContentView', () => {
         const renderResult = render(<ui.ContentView>CONTENTS</ui.ContentView>);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([NarrowModeDetector]);
+        expectMockedComponentPropsToMatchSnapshots([ContentView]);
     });
 });

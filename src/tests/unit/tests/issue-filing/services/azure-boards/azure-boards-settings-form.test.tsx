@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { Dropdown, TextField } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { SettingsDeps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from 'issue-filing/components/issue-filing-settings-container';
 import { getAzureBoardsIssueFilingService } from 'issue-filing/services/azure-boards/azure-boards-issue-filing-service';

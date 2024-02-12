@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
 import { TextField } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { IssueFilingServicePropertiesMap } from 'common/types/store-data/user-configuration-store';
 import { SettingsDeps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from 'issue-filing/components/issue-filing-settings-container';
@@ -111,8 +111,7 @@ describe('GithubIssueFilingServiceTest', () => {
                 .setup(updateCallback => updateCallback(It.isValue(payload)))
                 .verifiable(Times.once());
 
-            const textField = getMockComponentClassPropsForCall(TextField);
-            textField.onChange(null, newRepositoryValue);
+            getMockComponentClassPropsForCall(TextField).onChange(null, newRepositoryValue);
             onPropertyUpdateCallbackMock.verifyAll();
         });
     });

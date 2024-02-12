@@ -6,53 +6,17 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     class="insights-dialog-next-and-back-container"
   >
     <div>
-      <button
-        class="ms-Button ms-Button--default root-109"
+      <mock-customizeddefaultbutton
         data-automation-id="back"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__6"
-            >
-              &lt; Back
-            </span>
-          </span>
-        </span>
-      </button>
+        text="< Back"
+      />
     </div>
     <div />
     <div>
-      <button
-        class="ms-Button ms-Button--default root-109"
+      <mock-customizeddefaultbutton
         data-automation-id="next"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__9"
-            >
-              Next &gt;
-            </span>
-          </span>
-        </span>
-      </button>
+        text="Next >"
+      />
     </div>
   </div>
 </DocumentFragment>
@@ -64,28 +28,10 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     class="insights-dialog-next-and-back-container"
   >
     <div>
-      <button
-        class="ms-Button ms-Button--default root-109"
+      <mock-customizeddefaultbutton
         data-automation-id="back"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__3"
-            >
-              &lt; Back
-            </span>
-          </span>
-        </span>
-      </button>
+        text="< Back"
+      />
     </div>
     <div />
     <div />
@@ -101,28 +47,10 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     <div />
     <div />
     <div>
-      <button
-        class="ms-Button ms-Button--default root-109"
+      <mock-customizeddefaultbutton
         data-automation-id="next"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__0"
-            >
-              Next &gt;
-            </span>
-          </span>
-        </span>
-      </button>
+        text="Next >"
+      />
     </div>
   </div>
 </DocumentFragment>
@@ -150,53 +78,17 @@ exports[`IssueDetailsNavigationControls render handles failures count multiple f
     class="insights-dialog-next-and-back-container"
   >
     <div>
-      <button
-        class="ms-Button ms-Button--default root-109"
+      <mock-customizeddefaultbutton
         data-automation-id="back"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__12"
-            >
-              &lt; Back
-            </span>
-          </span>
-        </span>
-      </button>
+        text="< Back"
+      />
     </div>
     <div />
     <div>
-      <button
-        class="ms-Button ms-Button--default root-109"
+      <mock-customizeddefaultbutton
         data-automation-id="next"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__15"
-            >
-              Next &gt;
-            </span>
-          </span>
-        </span>
-      </button>
+        text="Next >"
+      />
     </div>
   </div>
 </DocumentFragment>

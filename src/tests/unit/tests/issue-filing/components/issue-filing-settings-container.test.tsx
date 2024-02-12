@@ -9,19 +9,19 @@ import {
     IssueFilingServiceProperties,
     UserConfigurationStoreData,
 } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingChoiceGroup } from '../../../../../issue-filing/components/issue-filing-choice-group';
 import {
     IssueFilingSettingsContainer,
     IssueFilingSettingsContainerDeps,
     IssueFilingSettingsContainerProps,
 } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
+import { AzureBoardsSettingsForm } from '../../../../../issue-filing/services/azure-boards/azure-boards-settings-form';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
-import { IssueFilingChoiceGroup } from '../../../../../issue-filing/components/issue-filing-choice-group';
-import { AzureBoardsSettingsForm } from '../../../../../issue-filing/services/azure-boards/azure-boards-settings-form';
 
 jest.mock('issue-filing/services/azure-boards/azure-boards-settings-form');
 jest.mock('issue-filing/components/issue-filing-choice-group');

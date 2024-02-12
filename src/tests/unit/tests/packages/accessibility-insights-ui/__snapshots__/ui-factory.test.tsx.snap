@@ -2,53 +2,17 @@
 
 exports[`UIFactory exports ContentView 1`] = `
 <DocumentFragment>
-  <mock-narrowmodedetector
-    childrenprops="[object Object]"
+  <mock-content
     deps="[object Object]"
-    isnarrowmodeenabled="true"
-  />
-  <main>
-    <div
-      class="content-container"
-    >
-      <div
-        class="content-left"
-      />
-      <div
-        class="content"
-      >
-        CONTENTS
-      </div>
-      <div
-        class="content-right"
-      />
-    </div>
-  </main>
+  >
+    CONTENTS
+  </mock-content>
 </DocumentFragment>
 `;
 
-exports[`UIFactory exports ContentView: NarrowModeDetector props 1`] = `
+exports[`UIFactory exports ContentView: Content props 1`] = `
 {
-  "Component": [Function],
-  "childrenProps": {
-    "deps": {
-      "getNarrowModeThresholds": [Function],
-      "storeActionMessageCreator": {
-        "getAllStates": [Function],
-      },
-      "storesHub": {
-        "addChangedListenerToAllStores": [Function],
-        "getAllStoreData": [Function],
-        "hasStoreData": [Function],
-        "hasStores": [Function],
-        "removeChangedListenerFromAllStores": [Function],
-        "stores": [],
-      },
-      "textContent": {
-        "applicationTitle": "THE_APPLICATION_TITLE",
-      },
-    },
-  },
+  "children": "CONTENTS",
   "deps": {
     "getNarrowModeThresholds": [Function],
     "storeActionMessageCreator": {
@@ -66,6 +30,5 @@ exports[`UIFactory exports ContentView: NarrowModeDetector props 1`] = `
       "applicationTitle": "THE_APPLICATION_TITLE",
     },
   },
-  "isNarrowModeEnabled": true,
 }
 `;

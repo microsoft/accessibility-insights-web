@@ -1,10 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Dialog } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { FixInstructionPanel } from 'common/components/fix-instruction-panel';
+import { GuidanceLinks } from 'common/components/guidance-links';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { CancelIcon } from 'common/icons/cancel-icon';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
-import { shallow } from 'enzyme';
+import { IssueDetailsNavigationControls } from 'injected/components/issue-details-navigation-controls';
 import * as React from 'react';
-import { Mock, Times } from 'typemoq';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { It, Mock, Times } from 'typemoq';
 
 import { CommandBar } from '../../../../../injected/components/command-bar';
 import {
@@ -15,6 +24,14 @@ import {
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
+jest.mock('@fluentui/react');
+jest.mock('common/components/guidance-links');
+jest.mock('../../../../../injected/components/command-bar');
+jest.mock('common/icons/cancel-icon');
+jest.mock('injected/components/issue-details-navigation-controls');
+jest.mock('common/components/new-tab-link');
+jest.mock('common/components/fix-instruction-panel');
+
 type DetailsDialogTestCase = {
     isDevToolsOpen: boolean;
     helpUrl?: string;
@@ -22,6 +39,15 @@ type DetailsDialogTestCase = {
 };
 
 describe('DetailsDialog', () => {
+    mockReactComponents([
+        FixInstructionPanel,
+        GuidanceLinks,
+        NewTabLink,
+        Dialog,
+        CommandBar,
+        CancelIcon,
+        IssueDetailsNavigationControls,
+    ]);
     const ruleId: string = 'ruleId';
     const help: string = 'help';
 
@@ -105,15 +131,14 @@ describe('DetailsDialog', () => {
                 dialogHandler: dialogDetailsHandlerMockObject as any,
             };
 
-            const wrapper = shallow(<DetailsDialog {...props} />);
+            const wrapper = render(<DetailsDialog {...props} />);
+            expect(wrapper.asFragment()).toMatchSnapshot();
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-
-            expect(wrapper.state()).toMatchSnapshot('verify initial state');
-
-            expect(
-                wrapper.find(Dialog).props().dialogContentProps.topButtonsProps[0].onRenderIcon(),
-            ).toMatchSnapshot('verify close button');
+            const dialogProps =
+                getMockComponentClassPropsForCall(
+                    Dialog,
+                ).dialogContentProps.topButtonsProps[0].onRenderIcon();
+            expect(dialogProps).toMatchSnapshot('verify close button');
         });
     });
 
@@ -156,18 +181,13 @@ describe('DetailsDialog', () => {
                     deps,
                     failedRules: expectedFailedRules,
                     dialogHandler: dialogDetailsHandlerMockObject,
-                };
+                } as any;
 
-                const wrapper = shallow<DetailsDialog>(<DetailsDialog {...props} />);
-
-                const commandBar = wrapper.find(CommandBar);
-
-                commandBar.prop('onClickCopyIssueDetailsButton')(eventStub);
-
-                clickHandlerMock.verify(
-                    handler => handler(wrapper.instance(), eventStub),
-                    Times.once(),
+                render(<DetailsDialog {...props} />);
+                getMockComponentClassPropsForCall(CommandBar).onClickCopyIssueDetailsButton(
+                    eventStub,
                 );
+                clickHandlerMock.verify(handler => handler(It.isAny(), eventStub), Times.once());
             });
 
             test('on click inspect button', () => {
@@ -191,17 +211,11 @@ describe('DetailsDialog', () => {
                     dialogHandler: dialogDetailsHandlerMockObject,
                 };
 
-                const wrapper = shallow<DetailsDialog>(<DetailsDialog {...props} />);
+                render(<DetailsDialog {...props} />);
 
-                const commandBar = wrapper.find(CommandBar);
-                const onClick = commandBar.prop('onClickInspectButton');
+                getMockComponentClassPropsForCall(CommandBar).onClickInspectButton(eventStub);
 
-                onClick(eventStub);
-
-                clickHandlerMock.verify(
-                    handler => handler(wrapper.instance(), eventStub),
-                    Times.once(),
-                );
+                clickHandlerMock.verify(handler => handler(It.isAny(), eventStub), Times.once());
             });
 
             test('should should inspect button message', () => {
@@ -225,13 +239,12 @@ describe('DetailsDialog', () => {
                     dialogHandler: dialogDetailsHandlerMockObject,
                 };
 
-                const wrapper = shallow<DetailsDialog>(<DetailsDialog {...props} />);
+                render(<DetailsDialog {...props} />);
 
-                const commandBar = wrapper.find(CommandBar);
 
-                commandBar.prop('shouldShowInspectButtonMessage')();
+                getMockComponentClassPropsForCall(CommandBar).shouldShowInspectButtonMessage();
 
-                handlerMock.verify(handler => handler(wrapper.instance()), Times.once());
+                handlerMock.verify(handler => handler(It.isAny()), Times.once());
             });
         });
     });
@@ -247,6 +260,7 @@ describe('DetailsDialog', () => {
             shouldShowInspectButtonMessage: () => false,
             isTargetPageOriginSecure: () => true,
             shouldShowInsecureOriginPageMessage: () => false,
+            componentWillUnmount: () => jest.fn(),
         };
     };
 });
