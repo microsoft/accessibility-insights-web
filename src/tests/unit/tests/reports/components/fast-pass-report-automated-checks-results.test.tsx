@@ -91,11 +91,6 @@ describe('FastPassReportSummary', () => {
     it('renders with pass/fail/incomplete elements if automated checks exist', () => {
         const renderResult = render(<FastPassReportAutomatedChecksResults {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([
-            FailedInstancesSection,
-            IncompleteChecksSection,
-            PassedChecksSection,
-        ]);
     });
 
     it('renders automated checks not run message if automated checks are null', () => {

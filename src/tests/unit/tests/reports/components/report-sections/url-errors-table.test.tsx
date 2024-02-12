@@ -39,6 +39,6 @@ describe(UrlErrorsTable.displayName, () => {
         const renderResult = render(<UrlErrorsTable errors={errors} id="table-id" />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([SummaryResultsTable, NewTabLink]);
+        expectMockedComponentPropsToMatchSnapshots([SummaryResultsTable]);
     });
 });

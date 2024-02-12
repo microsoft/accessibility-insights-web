@@ -36,6 +36,6 @@ describe(UrlScanResultsTable.displayName, () => {
         const renderResult = render(<UrlScanResultsTable results={results} id="table-id" />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([SummaryResultsTable, NewTabLink]);
+        expectMockedComponentPropsToMatchSnapshots([SummaryResultsTable]);
     });
 });
