@@ -20,6 +20,57 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 </DocumentFragment>
 `;
 
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab detailsViewId matches current detailsViewId: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.abc.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "differentDetailsViewId",
+    "id": 456,
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
+`;
+
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed 1`] = `
 <DocumentFragment>
   <mock-changeassessmentdialog
@@ -38,6 +89,59 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     subtitleariaid="target-change-dialog-description"
   />
 </DocumentFragment>
+`;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.def.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "differentDetailsViewId",
+    "id": 111,
+    "title": "test title 1",
+    "url": "https://www.abc.com",
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
 `;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same and also url doesn't change 1`] = `
@@ -60,6 +164,59 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 </DocumentFragment>
 `;
 
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same and also url doesn't change: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.abc.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "detailsViewId",
+    "id": 111,
+    "title": "test title 1",
+    "url": "https://www.abc.com",
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
+`;
+
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same but url changes 1`] = `
 <DocumentFragment>
   <mock-changeassessmentdialog
@@ -80,6 +237,59 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
 </DocumentFragment>
 `;
 
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same but url changes: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.def.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "detailsViewId",
+    "id": 111,
+    "title": "test title 1",
+    "url": "https://www.abc.com",
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
+`;
+
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when target tab id changed 1`] = `
 <DocumentFragment>
   <mock-changeassessmentdialog
@@ -98,4 +308,57 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     subtitleariaid="target-change-dialog-description"
   />
 </DocumentFragment>
+`;
+
+exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when target tab id changed: ChangeAssessmentDialog props 1`] = `
+{
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "detailsViewId": "detailsViewId",
+    "getAssessmentActionMessageCreator": [Function],
+    "urlParser": [typemoq mock object],
+  },
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment on the new target of
+     
+    <StyledTooltipHostBase
+      calloutProps={
+        {
+          "gapSpace": 0,
+        }
+      }
+      content="https://www.def.com"
+      id="current-target-page-link"
+    >
+      <StyledLinkBase
+        as="a"
+        className="insights-link"
+        onClick={[Function]}
+        role="link"
+        tabIndex={0}
+      >
+        test title 2
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+    ?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
+  "dialogWarningText": "If 'Start new' is selected, all previous progress will be lost.",
+  "divId": "target-change-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "detailsViewId": "detailsViewId",
+    "id": 111,
+    "title": "test title 1",
+    "url": "https://www.abc.com",
+  },
+  "rightButtonDataAutomationId": "target-change-start-new-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "restartButton",
+  "rightButtonText": "Start new",
+  "subtitleAriaId": "target-change-dialog-description",
+}
 `;

@@ -21,7 +21,7 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('TestViewContainer', () => {
     const selectedTest: VisualizationType = -1;
-    const elementStub = <div></div>;
+    const elementStub = <div />;
     const automatedChecksCardSelectionMessageCreatorStub =
         {} as AutomatedChecksCardSelectionMessageCreator;
     const needsReviewCardSelectionMessageCreatorStub = {} as NeedsReviewCardSelectionMessageCreator;

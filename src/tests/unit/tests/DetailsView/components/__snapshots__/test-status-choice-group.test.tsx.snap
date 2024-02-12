@@ -10,6 +10,25 @@ exports[`TestStatusChoiceGroup render: status is set to FAIL 1`] = `
 </DocumentFragment>
 `;
 
+exports[`TestStatusChoiceGroup render: status is set to FAIL: ChoiceGroupPassFail props 1`] = `
+{
+  "isLabelVisible": false,
+  "onChange": [Function],
+  "onUndoClickedPassThrough": [Function],
+  "options": [
+    {
+      "key": 0,
+      "text": "Pass",
+    },
+    {
+      "key": 2,
+      "text": "Fail",
+    },
+  ],
+  "selectedKey": 2,
+}
+`;
+
 exports[`TestStatusChoiceGroup render: status is set to PASS 1`] = `
 <DocumentFragment>
   <mock-choicegrouppassfail
@@ -20,6 +39,25 @@ exports[`TestStatusChoiceGroup render: status is set to PASS 1`] = `
 </DocumentFragment>
 `;
 
+exports[`TestStatusChoiceGroup render: status is set to PASS: ChoiceGroupPassFail props 1`] = `
+{
+  "isLabelVisible": false,
+  "onChange": [Function],
+  "onUndoClickedPassThrough": [Function],
+  "options": [
+    {
+      "key": 0,
+      "text": "Pass",
+    },
+    {
+      "key": 2,
+      "text": "Fail",
+    },
+  ],
+  "selectedKey": 0,
+}
+`;
+
 exports[`TestStatusChoiceGroup render: status is set to UNKNOWN 1`] = `
 <DocumentFragment>
   <mock-choicegrouppassfail
@@ -28,4 +66,23 @@ exports[`TestStatusChoiceGroup render: status is set to UNKNOWN 1`] = `
     selectedkey="1"
   />
 </DocumentFragment>
+`;
+
+exports[`TestStatusChoiceGroup render: status is set to UNKNOWN: ChoiceGroupPassFail props 1`] = `
+{
+  "isLabelVisible": false,
+  "onChange": [Function],
+  "onUndoClickedPassThrough": [Function],
+  "options": [
+    {
+      "key": 0,
+      "text": "Pass",
+    },
+    {
+      "key": 2,
+      "text": "Fail",
+    },
+  ],
+  "selectedKey": 1,
+}
 `;

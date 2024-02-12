@@ -44,6 +44,5 @@ describe('TransferToAssessmentButton', () => {
     test('getTransferToAssessmentButton', () => {
         const testSubject = getTransferToAssessmentButton(props);
         expect(testSubject).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([InsightsCommandButton]);
     });
 });

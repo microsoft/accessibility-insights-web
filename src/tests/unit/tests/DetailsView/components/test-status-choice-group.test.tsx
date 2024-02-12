@@ -1,21 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IconButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { ChoiceGroupPassFail } from 'DetailsView/components/choice-group-pass-fail';
 import { TestStatusChoiceGroup } from 'DetailsView/components/test-status-choice-group';
 import * as React from 'react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, Times } from 'typemoq';
 jest.mock('DetailsView/components/choice-group-pass-fail');
-jest.mock('@fluentui/react');
 
 describe('TestStatusChoiceGroup', () => {
-    mockReactComponents([IconButton, ChoiceGroupPassFail]);
+    mockReactComponents([ChoiceGroupPassFail]);
     let props;
     let onUndoMock;
     let onGroupChoiceChangeMock;
@@ -49,12 +48,13 @@ describe('TestStatusChoiceGroup', () => {
         expect(choiceGroupProps).toMatchObject({
             selectedKey: ManualTestStatus.UNKNOWN,
         });
-        expect(component.queryByRole('button')).not.toBeTruthy(); // new line added
+        expect(component.queryByRole('button')).toBeFalsy();
     });
 
     test('render: status is set to UNKNOWN', () => {
         const actual = render(<TestStatusChoiceGroup {...props} />);
         expect(actual.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroupPassFail]);
     });
 
     test('render: status is set to PASS', () => {
@@ -66,12 +66,14 @@ describe('TestStatusChoiceGroup', () => {
 
         const wrapper = render(<TestStatusChoiceGroup {...props} />);
         expect(wrapper.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroupPassFail]);
     });
 
     test('render: status is set to FAIL', () => {
         props.status = ManualTestStatus.FAIL;
         const actual = render(<TestStatusChoiceGroup {...props} />);
         expect(actual.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroupPassFail]);
     });
 
     test('verify onChange', () => {

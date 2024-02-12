@@ -10,8 +10,6 @@ exports[`TransferToAssessmentButton getTransferToAssessmentButton 1`] = `
 />
 `;
 
-exports[`TransferToAssessmentButton getTransferToAssessmentButton: InsightsCommandButton props 1`] = `undefined`;
-
 exports[`TransferToAssessmentButton render 1`] = `
 <DocumentFragment>
   <mock-insightscommandbutton

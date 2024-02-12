@@ -16,6 +16,7 @@ import {
 } from 'DetailsView/components/target-change-dialog';
 import * as React from 'react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
@@ -121,6 +122,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const wrapper = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(wrapper.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog]);
     });
 
     test('snapshot: render when previous tab info shows app is refreshed', () => {
@@ -142,6 +144,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const renderResult = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog]);
     });
 
     test('snapshot: render when tab ids are same but url changes', () => {
@@ -166,6 +169,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const renderResult = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog]);
     });
 
     test("snapshot: render when tab ids are same and also url doesn't change", () => {
@@ -187,6 +191,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const renderResult = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog]);
     });
 
     test('snapshot: render the only information available in prevTab detailsViewId matches current detailsViewId', () => {
@@ -212,6 +217,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
 
         const renderResult = render(<TargetChangeDialog {...targetChangeProps} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChangeAssessmentDialog]);
     });
 
     test('should show dialog when target tab id changed', () => {
