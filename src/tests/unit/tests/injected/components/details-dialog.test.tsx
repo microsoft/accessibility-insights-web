@@ -241,7 +241,6 @@ describe('DetailsDialog', () => {
 
                 render(<DetailsDialog {...props} />);
 
-
                 getMockComponentClassPropsForCall(CommandBar).shouldShowInspectButtonMessage();
 
                 handlerMock.verify(handler => handler(It.isAny()), Times.once());
