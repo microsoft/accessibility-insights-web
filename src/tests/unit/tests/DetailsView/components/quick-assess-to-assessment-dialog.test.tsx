@@ -38,17 +38,13 @@ describe('QuickAssessToAssessmentDialog', () => {
 
     test('dialog is hidden when isShown is false', () => {
         props.isShown = false;
-        const renderResult = render(
-            <QuickAssessToAssessmentDialog {...props} />,
-        );
+        const renderResult = render(<QuickAssessToAssessmentDialog {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('dialog is not hidden when isShown is true', () => {
         props.isShown = true;
-        const renderResult = render(
-            <QuickAssessToAssessmentDialog {...props} />,
-        );
+        const renderResult = render(<QuickAssessToAssessmentDialog {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
