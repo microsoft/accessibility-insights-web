@@ -39,7 +39,7 @@ describe('QuickAssessToAssessmentDialog', () => {
     test('dialog is hidden when isShown is false', () => {
         props.isShown = false;
         const renderResult = render(
-            <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
+            <QuickAssessToAssessmentDialog {...props} />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
@@ -47,7 +47,7 @@ describe('QuickAssessToAssessmentDialog', () => {
     test('dialog is not hidden when isShown is true', () => {
         props.isShown = true;
         const renderResult = render(
-            <QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>,
+            <QuickAssessToAssessmentDialog {...props} />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
@@ -55,7 +55,7 @@ describe('QuickAssessToAssessmentDialog', () => {
     test('onclick: cancel', async () => {
         props.isShown = true;
 
-        render(<QuickAssessToAssessmentDialog {...props}></QuickAssessToAssessmentDialog>);
+        render(<QuickAssessToAssessmentDialog {...props} />);
 
         await getMockComponentClassPropsForCall(DefaultButton).onClick();
         dataTransferViewControllerMock.verify(
