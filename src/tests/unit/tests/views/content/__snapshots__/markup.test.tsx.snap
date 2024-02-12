@@ -10,14 +10,6 @@ exports[`ContentPage .Markup <Column> renders 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <Column> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Column> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Column> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Column> renders: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .Markup <Columns> renders 1`] = `
 <DocumentFragment>
   <div
@@ -27,14 +19,6 @@ exports[`ContentPage .Markup <Columns> renders 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <Columns> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Columns> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Columns> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Columns> renders: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .Markup <Do> renders 1`] = `
 <DocumentFragment>
@@ -58,14 +42,6 @@ exports[`ContentPage .Markup <Do> renders 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <Do> renders: CheckIcon props 1`] = `{}`;
-
-exports[`ContentPage .Markup <Do> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Do> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Do> renders: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .Markup <Dont> renders 1`] = `
 <DocumentFragment>
   <div
@@ -87,14 +63,6 @@ exports[`ContentPage .Markup <Dont> renders 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <Dont> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Dont> renders: CrossIcon props 1`] = `{}`;
-
-exports[`ContentPage .Markup <Dont> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Dont> renders: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .Markup <Fail> renders 1`] = `
 <DocumentFragment>
@@ -119,14 +87,6 @@ exports[`ContentPage .Markup <Fail> renders 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <Fail> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Fail> renders: CrossIcon props 1`] = `{}`;
-
-exports[`ContentPage .Markup <Fail> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Fail> renders: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .Markup <Highlight> renders 1`] = `
 <DocumentFragment>
   <span
@@ -137,23 +97,15 @@ exports[`ContentPage .Markup <Highlight> renders 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <Highlight> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Highlight> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Highlight> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Highlight> renders: NewTabLink props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <HyperLink> renders 1`] = `<DocumentFragment />`;
-
-exports[`ContentPage .Markup <HyperLink> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <HyperLink> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <HyperLink> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <HyperLink> renders: NewTabLink props 1`] = `undefined`;
+exports[`ContentPage .Markup <HyperLink> renders 1`] = `
+<DocumentFragment>
+  <mock-newtablink
+    href="http://my.link"
+  >
+    LINK TEXT
+  </mock-newtablink>
+</DocumentFragment>
+`;
 
 exports[`ContentPage .Markup <Include> renders 1`] = `
 <DocumentFragment>
@@ -162,14 +114,6 @@ exports[`ContentPage .Markup <Include> renders 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <Include> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Include> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Include> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Include> renders: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .Markup <Inline> renders 1`] = `
 <DocumentFragment>
@@ -180,14 +124,6 @@ exports[`ContentPage .Markup <Inline> renders 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <Inline> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Inline> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Inline> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Inline> renders: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 1`] = `
 <DocumentFragment>
@@ -221,22 +157,6 @@ exports[`ContentPage .Markup <LandmarkLegend> renders 2`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <LandmarkLegend> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <LandmarkLegend> renders: CheckIcon props 2`] = `{}`;
-
-exports[`ContentPage .Markup <LandmarkLegend> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <LandmarkLegend> renders: CrossIcon props 2`] = `undefined`;
-
-exports[`ContentPage .Markup <LandmarkLegend> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <LandmarkLegend> renders: HelmetWrapper props 2`] = `undefined`;
-
-exports[`ContentPage .Markup <LandmarkLegend> renders: NewTabLink props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <LandmarkLegend> renders: NewTabLink props 2`] = `undefined`;
-
 exports[`ContentPage .Markup <Links> renders with many links 1`] = `
 <DocumentFragment>
   <div
@@ -261,20 +181,6 @@ exports[`ContentPage .Markup <Links> renders with many links 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <Links> renders with many links: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Links> renders with many links: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Links> renders with many links: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Links> renders with many links: NewTabLink props 1`] = `
-{
-  "children": "One",
-  "href": "about:blank",
-  "onClick": [Function],
-}
-`;
-
 exports[`ContentPage .Markup <Links> renders with one link 1`] = `
 <DocumentFragment>
   <div
@@ -289,20 +195,6 @@ exports[`ContentPage .Markup <Links> renders with one link 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <Links> renders with one link: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Links> renders with one link: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Links> renders with one link: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Links> renders with one link: NewTabLink props 1`] = `
-{
-  "children": "One",
-  "href": "about:blank",
-  "onClick": [Function],
-}
-`;
-
 exports[`ContentPage .Markup <Links> renders with text 1`] = `
 <DocumentFragment>
   <div
@@ -312,14 +204,6 @@ exports[`ContentPage .Markup <Links> renders with text 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <Links> renders with text: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Links> renders with text: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Links> renders with text: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Links> renders with text: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .Markup <Pass> renders 1`] = `
 <DocumentFragment>
@@ -343,14 +227,6 @@ exports[`ContentPage .Markup <Pass> renders 1`] = `
   </div>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <Pass> renders: CheckIcon props 1`] = `{}`;
-
-exports[`ContentPage .Markup <Pass> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Pass> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Pass> renders: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .Markup <PassFail> renders with example headers 1`] = `
 <DocumentFragment>
@@ -456,14 +332,6 @@ exports[`ContentPage .Markup <PassFail> renders with example headers 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <PassFail> renders with example headers: CheckIcon props 1`] = `{}`;
-
-exports[`ContentPage .Markup <PassFail> renders with example headers: CrossIcon props 1`] = `{}`;
-
-exports[`ContentPage .Markup <PassFail> renders with example headers: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <PassFail> renders with example headers: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .Markup <PassFail> renders without example headers 1`] = `
 <DocumentFragment>
   <div
@@ -551,14 +419,6 @@ exports[`ContentPage .Markup <PassFail> renders without example headers 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <PassFail> renders without example headers: CheckIcon props 1`] = `{}`;
-
-exports[`ContentPage .Markup <PassFail> renders without example headers: CrossIcon props 1`] = `{}`;
-
-exports[`ContentPage .Markup <PassFail> renders without example headers: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <PassFail> renders without example headers: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .Markup <ProblemList> renders 1`] = `
 <DocumentFragment>
   <ul
@@ -568,14 +428,6 @@ exports[`ContentPage .Markup <ProblemList> renders 1`] = `
   </ul>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <ProblemList> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <ProblemList> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <ProblemList> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <ProblemList> renders: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .Markup <Table> renders 1`] = `
 <DocumentFragment>
@@ -587,14 +439,6 @@ exports[`ContentPage .Markup <Table> renders 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <Table> renders: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Table> renders: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Table> renders: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Table> renders: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .Markup <Title> renders where options not specified 1`] = `
 <DocumentFragment>
   <h1>
@@ -602,14 +446,6 @@ exports[`ContentPage .Markup <Title> renders where options not specified 1`] = `
   </h1>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <Title> renders where options not specified: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where options not specified: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where options not specified: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where options not specified: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === false 1`] = `
 <DocumentFragment>
@@ -619,14 +455,6 @@ exports[`ContentPage .Markup <Title> renders where setPageTitle === false 1`] = 
 </DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <Title> renders where setPageTitle === false: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === false: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === false: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === false: NewTabLink props 1`] = `undefined`;
-
 exports[`ContentPage .Markup <Title> renders where setPageTitle === null 1`] = `
 <DocumentFragment>
   <h1>
@@ -634,14 +462,6 @@ exports[`ContentPage .Markup <Title> renders where setPageTitle === null 1`] = `
   </h1>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === null: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === null: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === null: HelmetWrapper props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === null: NewTabLink props 1`] = `undefined`;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
 <DocumentFragment>
@@ -658,21 +478,3 @@ exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
   </h1>
 </DocumentFragment>
 `;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === true: CheckIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === true: CrossIcon props 1`] = `undefined`;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === true: HelmetWrapper props 1`] = `
-{
-  "children": <title>
-    TEST
-     - 
-    THE_APPLICATION_TITLE
-  </title>,
-  "defer": true,
-  "encodeSpecialCharacters": true,
-}
-`;
-
-exports[`ContentPage .Markup <Title> renders where setPageTitle === true: NewTabLink props 1`] = `undefined`;
