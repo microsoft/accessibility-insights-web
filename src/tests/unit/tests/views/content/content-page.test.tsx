@@ -6,11 +6,7 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { ContentCreator, ContentPage, ContentPageDeps } from 'views/content/content-page';
-import {
-    expectMockedComponentPropsToMatchSnapshots,
-    getMockComponentClassPropsForCall,
-    mockReactComponents,
-} from '../../../mock-helpers/mock-module-helpers';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('common/components/new-tab-link');
 describe('ContentPage', () => {
     const deps = Mock.ofType<ContentPageDeps>().object;
