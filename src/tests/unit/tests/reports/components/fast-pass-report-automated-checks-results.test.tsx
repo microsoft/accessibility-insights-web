@@ -14,10 +14,7 @@ import { Mock } from 'typemoq';
 import { FailedInstancesSection } from '../../../../../common/components/cards/failed-instances-section';
 import { IncompleteChecksSection } from '../../../../../reports/components/report-sections/incomplete-checks-section';
 import { PassedChecksSection } from '../../../../../reports/components/report-sections/passed-checks-section';
-import {
-    expectMockedComponentPropsToMatchSnapshots,
-    mockReactComponents,
-} from '../../../mock-helpers/mock-module-helpers';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 jest.mock('../../../../../common/components/cards/failed-instances-section');
 jest.mock('../../../../../reports/components/report-sections/incomplete-checks-section');

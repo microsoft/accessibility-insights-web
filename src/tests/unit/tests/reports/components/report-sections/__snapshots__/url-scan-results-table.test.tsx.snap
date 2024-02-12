@@ -10,8 +10,6 @@ exports[`UrlScanResultsTable renders 1`] = `
 </DocumentFragment>
 `;
 
-exports[`UrlScanResultsTable renders: NewTabLink props 1`] = `undefined`;
-
 exports[`UrlScanResultsTable renders: SummaryResultsTable props 1`] = `
 {
   "columns": [

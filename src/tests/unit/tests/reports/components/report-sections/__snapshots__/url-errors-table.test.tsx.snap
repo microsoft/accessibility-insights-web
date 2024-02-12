@@ -10,8 +10,6 @@ exports[`UrlErrorsTable renders 1`] = `
 </DocumentFragment>
 `;
 
-exports[`UrlErrorsTable renders: NewTabLink props 1`] = `undefined`;
-
 exports[`UrlErrorsTable renders: SummaryResultsTable props 1`] = `
 {
   "columns": [
