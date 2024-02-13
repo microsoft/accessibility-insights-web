@@ -1,73 +1,124 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RestartScanVisualHelperToggleTest onClick: step enabled = false 1`] = `
-<div
-  className="visual-helper"
->
+<DocumentFragment>
   <div
-    className="visual-helper-text"
+    class="visual-helper"
   >
-    Visual helper
+    <div
+      class="visual-helper-text"
+    >
+      Visual helper
+    </div>
+    <div
+      aria-hidden="false"
+    >
+      <div
+        class="ms-Toggle is-enabled visual-helper-toggle root-109"
+      >
+        <div
+          class="ms-Toggle-innerContainer container-111"
+        >
+          <button
+            aria-checked="false"
+            aria-disabled="false"
+            aria-label="Visual helper"
+            class="ms-Toggle-background pill-116"
+            data-automation-id="visual-helper-toggle"
+            data-is-focusable="true"
+            data-ktp-target="true"
+            id="Toggle1"
+            role="switch"
+            type="button"
+          >
+            <span
+              class="ms-Toggle-thumb thumb-117"
+            />
+          </button>
+          <label
+            class="ms-Label ms-Toggle-stateText text-115"
+            for="Toggle1"
+            id="Toggle1-stateText"
+          >
+            Off
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
-  <div
-    aria-hidden={false}
-  >
-    <VisualizationToggle
-      checked={false}
-      className="visual-helper-toggle"
-      data-automation-id="visual-helper-toggle"
-      disabled={false}
-      onClick={[Function]}
-      visualizationName="Visual helper"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`RestartScanVisualHelperToggleTest onClick: step enabled = true 1`] = `
-<div
-  className="visual-helper"
->
+<DocumentFragment>
   <div
-    className="visual-helper-text"
+    class="visual-helper"
   >
-    Visual helper
+    <div
+      class="visual-helper-text"
+    >
+      Visual helper
+    </div>
+    <div
+      aria-hidden="false"
+    >
+      <div
+        class="ms-Toggle is-checked is-enabled visual-helper-toggle root-109"
+      >
+        <div
+          class="ms-Toggle-innerContainer container-111"
+        >
+          <button
+            aria-checked="true"
+            aria-disabled="false"
+            aria-label="Visual helper"
+            class="ms-Toggle-background pill-112"
+            data-automation-id="visual-helper-toggle"
+            data-is-focusable="true"
+            data-ktp-target="true"
+            id="Toggle0"
+            role="switch"
+            type="button"
+          >
+            <span
+              class="ms-Toggle-thumb thumb-113"
+            />
+          </button>
+          <label
+            class="ms-Label ms-Toggle-stateText text-115"
+            for="Toggle0"
+            id="Toggle0-stateText"
+          >
+            On
+          </label>
+        </div>
+      </div>
+    </div>
   </div>
-  <div
-    aria-hidden={false}
-  >
-    <VisualizationToggle
-      checked={true}
-      className="visual-helper-toggle"
-      data-automation-id="visual-helper-toggle"
-      disabled={false}
-      onClick={[Function]}
-      visualizationName="Visual helper"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`RestartScanVisualHelperToggleTest render 1`] = `
-<div
-  className="visual-helper"
->
+<DocumentFragment>
   <div
-    className="visual-helper-text"
+    class="visual-helper"
   >
-    Visual helper
+    <div
+      class="visual-helper-text"
+    >
+      Visual helper
+    </div>
+    <div
+      aria-hidden="false"
+    >
+      <mock-visualizationtoggle
+        checked="true"
+        classname="visual-helper-toggle"
+        data-automation-id="visual-helper-toggle"
+        disabled="false"
+        visualizationname="Visual helper"
+      />
+    </div>
   </div>
-  <div
-    aria-hidden={false}
-  >
-    <VisualizationToggle
-      checked={true}
-      className="visual-helper-toggle"
-      data-automation-id="visual-helper-toggle"
-      disabled={false}
-      onClick={[Function]}
-      visualizationName="Visual helper"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;

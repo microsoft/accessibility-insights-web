@@ -18,26 +18,38 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverCompon
 />
 `;
 
+exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverComponent: StartOverDropdown props 1`] = `undefined`;
+
 exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuItem 1`] = `
-<div
-  role="menuitem"
->
-  <StartOverDropdown
-    allTestSuffix="Assessment"
-    dropdownDirection="left"
-    rightPanelOptions={
-      {
-        "showTest": true,
-      }
-    }
-    singleTestSuffix="the title"
-    switcherStartOverPreferences={
-      {
-        "showTest": true,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    role="menuitem"
+  >
+    <mock-startoverdropdown
+      alltestsuffix="Assessment"
+      dropdowndirection="left"
+      rightpaneloptions="[object Object]"
+      singletestsuffix="the title"
+      switcherstartoverpreferences="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuItem: StartOverDropdown props 1`] = `
+{
+  "allTestSuffix": "Assessment",
+  "buttonRef": undefined,
+  "dropdownDirection": "left",
+  "openDialog": undefined,
+  "rightPanelOptions": {
+    "showTest": true,
+  },
+  "singleTestSuffix": "the title",
+  "switcherStartOverPreferences": {
+    "showTest": true,
+  },
+}
 `;
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is false => component matches snapshot 1`] = `
@@ -56,6 +68,8 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
 />
 `;
 
+exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is false => component matches snapshot: StartOverDropdown props 1`] = `undefined`;
+
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is true => component matches snapshot 1`] = `
 <InsightsCommandButton
   className="startOverMenuItem"
@@ -72,6 +86,8 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
 />
 `;
 
+exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is true => component matches snapshot: StartOverDropdown props 1`] = `undefined`;
+
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is false => component matches snapshot 1`] = `
 {
   "className": "startOverMenuItem",
@@ -86,6 +102,8 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
 }
 `;
 
+exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is false => component matches snapshot: StartOverDropdown props 1`] = `undefined`;
+
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is true => component matches snapshot 1`] = `
 {
   "className": "startOverMenuItem",
@@ -99,6 +117,8 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
   "text": "Start over",
 }
 `;
+
+exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is true => component matches snapshot: StartOverDropdown props 1`] = `undefined`;
 
 exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverComponent 1`] = `
 <StartOverDropdown
@@ -118,24 +138,36 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverCompo
 />
 `;
 
+exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverComponent: StartOverDropdown props 1`] = `undefined`;
+
 exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuItem 1`] = `
-<div
-  role="menuitem"
->
-  <StartOverDropdown
-    allTestSuffix="Quick Assess"
-    dropdownDirection="left"
-    rightPanelOptions={
-      {
-        "showTest": true,
-      }
-    }
-    singleTestSuffix=""
-    switcherStartOverPreferences={
-      {
-        "showTest": false,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    role="menuitem"
+  >
+    <mock-startoverdropdown
+      alltestsuffix="Quick Assess"
+      dropdowndirection="left"
+      rightpaneloptions="[object Object]"
+      singletestsuffix=""
+      switcherstartoverpreferences="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuItem: StartOverDropdown props 1`] = `
+{
+  "allTestSuffix": "Quick Assess",
+  "buttonRef": undefined,
+  "dropdownDirection": "left",
+  "openDialog": undefined,
+  "rightPanelOptions": {
+    "showTest": true,
+  },
+  "singleTestSuffix": "",
+  "switcherStartOverPreferences": {
+    "showTest": false,
+  },
+}
 `;
