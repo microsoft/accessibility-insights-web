@@ -81,6 +81,82 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
 </DocumentFragment>
 `;
 
+exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: CommandBar props 1`] = `
+{
+  "currentRuleIndex": 0,
+  "deps": {
+    "browserAdapter": {
+      "getUrl": [Function],
+    },
+    "issueDetailsTextGenerator": null,
+    "issueFilingActionMessageCreator": null,
+    "targetPageActionMessageCreator": {
+      "copyIssueDetailsClicked": [Function],
+    },
+    "windowUtils": null,
+  },
+  "devToolsShortcut": "shortcut",
+  "failedRules": {
+    "ruleId": {
+      "all": [],
+      "any": [],
+      "failureSummary": "failureSummary",
+      "guidanceLinks": [
+        {
+          "href": "http://example.com",
+          "text": "Guidance Link",
+        },
+      ],
+      "help": "help",
+      "helpUrl": "help-relative",
+      "html": "html",
+      "id": "id1",
+      "none": [],
+      "ruleId": "ruleId",
+      "selector": "selector",
+      "status": false,
+    },
+  },
+  "hasSecureTargetPage": true,
+  "onClickCopyIssueDetailsButton": [Function],
+  "onClickInspectButton": [Function],
+  "shouldShowInsecureOriginPageMessage": false,
+  "shouldShowInspectButtonMessage": [Function],
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: FixInstructionPanel props 1`] = `
+{
+  "checkType": 0,
+  "checks": [],
+  "deps": {
+    "browserAdapter": {
+      "getUrl": [Function],
+    },
+    "issueDetailsTextGenerator": null,
+    "issueFilingActionMessageCreator": null,
+    "targetPageActionMessageCreator": {
+      "copyIssueDetailsClicked": [Function],
+    },
+    "windowUtils": null,
+  },
+  "renderTitleElement": [Function],
+}
+`;
+
+exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "http://example.com",
+      "text": "Guidance Link",
+    },
+  ],
+}
+`;
+
 exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
@@ -164,6 +240,82 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
 </DocumentFragment>
 `;
 
+exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: CommandBar props 1`] = `
+{
+  "currentRuleIndex": 0,
+  "deps": {
+    "browserAdapter": {
+      "getUrl": [Function],
+    },
+    "issueDetailsTextGenerator": null,
+    "issueFilingActionMessageCreator": null,
+    "targetPageActionMessageCreator": {
+      "copyIssueDetailsClicked": [Function],
+    },
+    "windowUtils": null,
+  },
+  "devToolsShortcut": "shortcut",
+  "failedRules": {
+    "ruleId": {
+      "all": [],
+      "any": [],
+      "failureSummary": "failureSummary",
+      "guidanceLinks": [
+        {
+          "href": "http://example.com",
+          "text": "Guidance Link",
+        },
+      ],
+      "help": "help",
+      "helpUrl": "http://extension/help1",
+      "html": "html",
+      "id": "id1",
+      "none": [],
+      "ruleId": "ruleId",
+      "selector": "selector",
+      "status": false,
+    },
+  },
+  "hasSecureTargetPage": true,
+  "onClickCopyIssueDetailsButton": [Function],
+  "onClickInspectButton": [Function],
+  "shouldShowInsecureOriginPageMessage": false,
+  "shouldShowInspectButtonMessage": [Function],
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: FixInstructionPanel props 1`] = `
+{
+  "checkType": 0,
+  "checks": [],
+  "deps": {
+    "browserAdapter": {
+      "getUrl": [Function],
+    },
+    "issueDetailsTextGenerator": null,
+    "issueFilingActionMessageCreator": null,
+    "targetPageActionMessageCreator": {
+      "copyIssueDetailsClicked": [Function],
+    },
+    "windowUtils": null,
+  },
+  "renderTitleElement": [Function],
+}
+`;
+
+exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "http://example.com",
+      "text": "Guidance Link",
+    },
+  ],
+}
+`;
+
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
@@ -245,6 +397,82 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
     </div>
   </mock-dialog>
 </DocumentFragment>
+`;
+
+exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: CommandBar props 1`] = `
+{
+  "currentRuleIndex": 0,
+  "deps": {
+    "browserAdapter": {
+      "getUrl": [Function],
+    },
+    "issueDetailsTextGenerator": null,
+    "issueFilingActionMessageCreator": null,
+    "targetPageActionMessageCreator": {
+      "copyIssueDetailsClicked": [Function],
+    },
+    "windowUtils": null,
+  },
+  "devToolsShortcut": "shortcut",
+  "failedRules": {
+    "ruleId": {
+      "all": [],
+      "any": [],
+      "failureSummary": "failureSummary",
+      "guidanceLinks": [
+        {
+          "href": "http://example.com",
+          "text": "Guidance Link",
+        },
+      ],
+      "help": "help",
+      "helpUrl": "http://extension/help1",
+      "html": "html",
+      "id": "id1",
+      "none": [],
+      "ruleId": "ruleId",
+      "selector": "selector",
+      "status": false,
+    },
+  },
+  "hasSecureTargetPage": true,
+  "onClickCopyIssueDetailsButton": [Function],
+  "onClickInspectButton": [Function],
+  "shouldShowInsecureOriginPageMessage": false,
+  "shouldShowInspectButtonMessage": [Function],
+  "userConfigurationStoreData": undefined,
+}
+`;
+
+exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: FixInstructionPanel props 1`] = `
+{
+  "checkType": 0,
+  "checks": [],
+  "deps": {
+    "browserAdapter": {
+      "getUrl": [Function],
+    },
+    "issueDetailsTextGenerator": null,
+    "issueFilingActionMessageCreator": null,
+    "targetPageActionMessageCreator": {
+      "copyIssueDetailsClicked": [Function],
+    },
+    "windowUtils": null,
+  },
+  "renderTitleElement": [Function],
+}
+`;
+
+exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "http://example.com",
+      "text": "Guidance Link",
+    },
+  ],
+}
 `;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: verify close button 1`] = `<CancelIcon />`;

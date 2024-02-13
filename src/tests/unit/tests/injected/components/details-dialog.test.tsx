@@ -12,6 +12,7 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    expectMockedComponentPropsToMatchSnapshots
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { It, Mock, Times } from 'typemoq';
 
@@ -139,6 +140,7 @@ describe('DetailsDialog', () => {
                     Dialog,
                 ).dialogContentProps.topButtonsProps[0].onRenderIcon();
             expect(dialogProps).toMatchSnapshot('verify close button');
+            expectMockedComponentPropsToMatchSnapshots([FixInstructionPanel, CommandBar, GuidanceLinks]);
         });
     });
 

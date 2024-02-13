@@ -108,10 +108,10 @@ describe('IssueDetailsNavigationControls', () => {
             const nextButton = renderResult.getByRole('button', {
                 name: /Next/i,
             });
-            expect(nextButton).not.toBeNull();
+            expect(nextButton.childNodes).toHaveLength(1);
 
             await userEvent.click(nextButton);
-
+            
             navigationHandlerMock.verify(
                 handler => handler.nextButtonClickHandler(controlProps.container),
                 Times.once(),
@@ -126,7 +126,7 @@ describe('IssueDetailsNavigationControls', () => {
                 name: /Back/i,
             });
 
-            expect(backButton).not.toBeNull();
+            expect(backButton.childNodes).toHaveLength(1);
 
             await userEvent.click(backButton);
 
