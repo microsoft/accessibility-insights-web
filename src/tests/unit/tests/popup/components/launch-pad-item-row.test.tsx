@@ -84,7 +84,6 @@ describe('LaunchPadItemRow', () => {
     });
 
     test('on link click', () => {
-        useOriginalReactElements('@fluentui/react', ['Link']);
         const event = eventStubFactory.createKeypressEvent() as any;
 
         onClickTitleMock.setup(handler => handler(event)).verifiable(Times.once());

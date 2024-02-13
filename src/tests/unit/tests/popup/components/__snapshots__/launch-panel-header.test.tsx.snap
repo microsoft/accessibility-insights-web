@@ -18,44 +18,16 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
         featureflag="debugTools"
         featureflagstoredata="[object Object]"
       />
-      <button
-        aria-expanded="false"
-        aria-haspopup="true"
-        aria-label="manage settings"
-        class="ms-Button ms-Button--icon ms-Button--hasMenu gearMenuButton root-109"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-112"
-            data-icon-name="Gear"
-          />
-        </span>
-      </button>
-      <button
-        aria-expanded="false"
-        aria-haspopup="true"
-        aria-label="help menu"
-        class="ms-Button ms-Button--icon ms-Button--hasMenu hamburgerMenuButton root-109"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon icon-112"
-            data-icon-name="GlobalNavButton"
-          />
-        </span>
-      </button>
+      <mock-gearoptionsbuttoncomponent
+        deps="[object Object]"
+        featureflagdata="[object Object]"
+      />
+      <mock-hamburgermenubutton
+        deps="[object Object]"
+        featureflagdata="[object Object]"
+        header="[object Object]"
+        popupwindow="[object Object]"
+      />
     </div>
     <div
       class="subtitle"

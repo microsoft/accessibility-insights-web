@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { act, fireEvent, render } from '@testing-library/react';
+import { IconButton } from '@fluentui/react';
+import { act, render } from '@testing-library/react';
 import { FlaggedComponent } from 'common/components/flagged-component';
+import { GearMenuButton } from 'common/components/gear-menu-button';
+import { HamburgerMenuButton } from 'common/components/hamburger-menu-button';
+import { Header } from 'common/components/header';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 
@@ -17,14 +21,17 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
-    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, Times } from 'typemoq';
 
 jest.mock('common/components/flagged-component');
+jest.mock('common/components/header');
+jest.mock('common/components/hamburger-menu-button');
+jest.mock('common/components/gear-menu-button');
+jest.mock('@fluentui/react');
 
 describe('LaunchPanelHeaderTest', () => {
-    mockReactComponents([FlaggedComponent]);
+    mockReactComponents([FlaggedComponent, Header, GearMenuButton, HamburgerMenuButton]);
     let props: LaunchPanelHeaderProps;
 
     beforeEach(() => {
@@ -53,7 +60,6 @@ describe('LaunchPanelHeaderTest', () => {
     });
 
     it('handle open debug tools button activation', async () => {
-        useOriginalReactElements('common/components/flagged-component', ['FlaggedComponent']);
         const dropdownClickHandlerMock = Mock.ofType<DropdownClickHandler>();
         props.deps.dropdownClickHandler = dropdownClickHandlerMock.object;
 
@@ -66,11 +72,10 @@ describe('LaunchPanelHeaderTest', () => {
         const flaggedComponentProps =
             getMockComponentClassPropsForCall(FlaggedComponent).enableJSXElement;
 
-        const wrappedIconButton = render(flaggedComponentProps);
+        render(flaggedComponentProps);
 
-        const button = wrappedIconButton.queryAllByRole('button');
-        await act(async () => {
-            await fireEvent.click(button[0]);
+        await act(() => {
+            getMockComponentClassPropsForCall(IconButton).onClick();
         });
 
         dropdownClickHandlerMock.verifyAll();

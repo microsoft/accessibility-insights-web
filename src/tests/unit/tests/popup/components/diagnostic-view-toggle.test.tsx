@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Link, Spinner, Toggle } from '@fluentui/react';
+import { Link, Spinner } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
@@ -112,11 +112,6 @@ describe('DiagnosticViewToggleTest', () => {
 
     describe('user interaction: ', () => {
         it('handles click on details view link, it will open FastPass when Assessment enabled', () => {
-            useOriginalReactElements('common/components/visualization-toggle', [
-                'VisualizationToggle',
-            ]);
-            useOriginalReactElements('@fluentui/react', ['Link']);
-
             const visualizationType = VisualizationType.Issues;
             const event = eventStubFactory.createKeypressEvent();
             const propsBuilder = new DiagnosticViewTogglePropsBuilder(
@@ -135,9 +130,6 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('handles click the visualization toggle', () => {
-            useOriginalReactElements('common/components/visualization-toggle', [
-                'VisualizationToggle',
-            ]);
             const visualizationType = VisualizationType.Headings;
             const event = eventStubFactory.createKeypressEvent();
 
@@ -156,7 +148,6 @@ describe('DiagnosticViewToggleTest', () => {
         });
 
         it('handles click on the link when spinner is present', () => {
-            useOriginalReactElements('@fluentui/react', ['Link']);
             const visualizationType = VisualizationType.Issues;
             const data = new VisualizationStoreDataBuilder().with('scanning', 'issues').build();
 
@@ -215,7 +206,6 @@ describe('DiagnosticViewToggleTest', () => {
     });
 
     describe('life cycle events', () => {
-        mockReactComponents([Toggle]);
         it('sets focus when componentDidMount', () => {
             useOriginalReactElements('common/components/visualization-toggle', [
                 'VisualizationToggle',
@@ -329,7 +319,6 @@ describe('DiagnosticViewToggleTest', () => {
     });
 
     it('addUserEventListener', () => {
-        useOriginalReactElements('@fluentui/react', ['Spinner']);
         const visualizationType = VisualizationType.TabStops;
         const event = eventStubFactory.createKeypressEvent();
         const depsMock = createDepsMock();

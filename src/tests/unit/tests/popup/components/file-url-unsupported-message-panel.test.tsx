@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { NewTabLink } from 'common/components/new-tab-link';
 import {
@@ -12,7 +12,7 @@ import * as React from 'react';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import {
     mockReactComponents,
-    useOriginalReactElements,
+    getMockComponentClassPropsForCall,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, MockBehavior } from 'typemoq';
 import { Tabs } from 'webextension-polyfill';
@@ -37,7 +37,6 @@ describe('FileUrlUnsupportedMessagePanel', () => {
     });
 
     it('has a NewTabLink that uses createActiveTab to open the manage extension page', async () => {
-        useOriginalReactElements('common/components/new-tab-link', ['NewTabLink']);
         const stubExtensionPageUrl = 'protocol://extension-page';
         const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
         browserAdapterMock
@@ -55,10 +54,9 @@ describe('FileUrlUnsupportedMessagePanel', () => {
             header: <>irrelevant</>,
         };
 
-        const wrapper = render(<FileUrlUnsupportedMessagePanel {...props} />);
-        wrapper.debug();
-        const link = wrapper.getAllByRole('button');
-        fireEvent.click(link[0]);
+        render(<FileUrlUnsupportedMessagePanel {...props} />);
+
+        getMockComponentClassPropsForCall(NewTabLink).onClick(event);
 
         await flushSettledPromises();
         browserAdapterMock.verifyAll();
