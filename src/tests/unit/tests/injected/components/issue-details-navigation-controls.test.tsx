@@ -111,7 +111,7 @@ describe('IssueDetailsNavigationControls', () => {
             expect(nextButton.childNodes).toHaveLength(1);
 
             await userEvent.click(nextButton);
-            
+
             navigationHandlerMock.verify(
                 handler => handler.nextButtonClickHandler(controlProps.container),
                 Times.once(),
