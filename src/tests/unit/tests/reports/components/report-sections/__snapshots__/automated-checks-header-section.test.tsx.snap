@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AutomatedChecksHeaderSection renders 1`] = `
+<DocumentFragment>
+  <mock-headersection
+    headertext="Accessibility Insights for Web"
+    targetappinfo="[object Object]"
+  />
+</DocumentFragment>
+`;
+
 exports[`AutomatedChecksHeaderSection renders: HeaderSection props 1`] = `
 {
   "headerText": "Accessibility Insights for Web",

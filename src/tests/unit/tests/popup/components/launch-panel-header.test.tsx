@@ -19,6 +19,7 @@ import { LaunchPanelHeaderClickHandler } from 'popup/handlers/launch-panel-heade
 import * as React from 'react';
 
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -55,11 +56,15 @@ describe('LaunchPanelHeaderTest', () => {
 
     it('renders', () => {
         const wrapped = render(<LaunchPanelHeader {...props} />);
-
+        expectMockedComponentPropsToMatchSnapshots([
+            FlaggedComponent,
+            GearMenuButton,
+            HamburgerMenuButton,
+        ]);
         expect(wrapped.asFragment()).toMatchSnapshot();
     });
 
-    it('handle open debug tools button activation', async () => {
+    it('handle open debug tools button activation', () => {
         const dropdownClickHandlerMock = Mock.ofType<DropdownClickHandler>();
         props.deps.dropdownClickHandler = dropdownClickHandlerMock.object;
 
@@ -74,7 +79,7 @@ describe('LaunchPanelHeaderTest', () => {
 
         render(flaggedComponentProps);
 
-        await act(() => {
+        act(() => {
             getMockComponentClassPropsForCall(IconButton).onClick();
         });
 

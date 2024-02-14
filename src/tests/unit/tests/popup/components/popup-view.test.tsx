@@ -13,6 +13,7 @@ import {
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { AdHocToolsPanel } from 'popup/components/ad-hoc-tools-panel';
+import { FileUrlUnsupportedMessagePanel } from 'popup/components/file-url-unsupported-message-panel';
 import { LaunchPad } from 'popup/components/launch-pad';
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import {
@@ -39,6 +40,8 @@ jest.mock('common/components/header');
 jest.mock('popup/components/ad-hoc-tools-panel');
 jest.mock('popup/components/launch-pad');
 jest.mock('popup/components/launch-panel-header');
+jest.mock('popup/components/file-url-unsupported-message-panel');
+jest.mock('react-router-dom');
 
 describe('PopupView', () => {
     mockReactComponents([
@@ -47,6 +50,7 @@ describe('PopupView', () => {
         LaunchPanelHeader,
         AdHocToolsPanel,
         Header,
+        FileUrlUnsupportedMessagePanel,
     ]);
     const browserAdapterStub = {
         getManifest: getManifestStub,
@@ -137,7 +141,7 @@ describe('PopupView', () => {
             } as PopupViewControllerDeps;
         });
 
-        test('render toggles view: launch pad', async () => {
+        test('render toggles view: launch pad', () => {
             actionMessageCreatorStrictMock
                 .setup(acm => acm.openLaunchPad(launchPanelStateStoreState.launchPanelType))
                 .verifiable();
@@ -168,10 +172,11 @@ describe('PopupView', () => {
             const Subtitle = () => getMockComponentClassPropsForCall(LaunchPanelHeader).subtitle;
             const renderedSubtitle = render(<Subtitle />);
             expect(renderedSubtitle.debug()).toMatchSnapshot('subtitle');
-            const link = await renderedSubtitle.findByText('Watch 3-minute video introduction');
+            const link = renderedSubtitle.getByText('Watch 3-minute video introduction');
             fireEvent.click(link);
             actionMessageCreatorStrictMock.verify(ac => ac.openTutorial(It.isAny()), Times.once());
-
+            expect(renderedSubtitle.debug()).toMatchSnapshot('subtitle');
+            expect(Subtitle()).toMatchSnapshot('subtitle');
             handlerMock.verifyAll();
         });
 

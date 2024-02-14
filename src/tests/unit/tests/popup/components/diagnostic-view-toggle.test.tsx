@@ -13,7 +13,6 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import {
     DiagnosticViewToggle,

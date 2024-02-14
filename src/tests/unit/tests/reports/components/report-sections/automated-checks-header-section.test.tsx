@@ -22,7 +22,8 @@ describe('AutomatedChecksHeaderSection', () => {
         const scanMetadata = {
             targetAppInfo,
         } as ScanMetadata;
-        render(<AutomatedChecksHeaderSection scanMetadata={scanMetadata} />);
+        const renderResult = render(<AutomatedChecksHeaderSection scanMetadata={scanMetadata} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([HeaderSection]);
     });
 });

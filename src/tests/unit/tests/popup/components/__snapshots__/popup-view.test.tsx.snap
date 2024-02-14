@@ -57,6 +57,20 @@ exports[`PopupView render actual content render toggles view: launch pad 1`] = `
 
 exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `undefined`;
 
+exports[`PopupView render actual content render toggles view: launch pad: subtitle 2`] = `undefined`;
+
+exports[`PopupView render actual content render toggles view: launch pad: subtitle 3`] = `
+<React.Fragment>
+  <NewTabLink
+    href="https://go.microsoft.com/fwlink/?linkid=2082374"
+    onClick={[Function]}
+  >
+    Watch 3-minute video introduction
+  </NewTabLink>
+   
+</React.Fragment>
+`;
+
 exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
 <DocumentFragment>
   <div
@@ -119,62 +133,10 @@ exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
 
 exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
 <DocumentFragment>
-  <div
-    class="ms-Fabric unsupported-url-info-panel"
-  >
-    <header
-      class="launchPanelHeader"
-    >
-      <h1
-        class="title"
-      >
-        test title
-      </h1>
-      <div
-        class="children"
-      />
-      <div
-        class="subtitle"
-      />
-    </header>
-    <div
-      class="main-section"
-    >
-      <div
-        class="popup-grid"
-      >
-        <div
-          class="launch-panel-general-container"
-        >
-          Your browser settings don't allow Accessibility Insights for Web to run on file URLs.
-        </div>
-        <div>
-          <div>
-            To allow this extension to run on file URLs:
-          </div>
-          <div>
-            1. Open 
-            <button
-              aria-label="open test title extension page"
-              class="ms-Link insights-link root-110"
-              type="button"
-            >
-              test title extension page
-            </button>
-            .
-          </div>
-          <div>
-            2. Enable 
-            <span
-              class="ms-fontWeight-semibold"
-            >
-              Allow Access to file URLs
-            </span>
-            .
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <mock-fileurlunsupportedmessagepanel
+    deps="[object Object]"
+    header="[object Object]"
+    title="test title"
+  />
 </DocumentFragment>
 `;
