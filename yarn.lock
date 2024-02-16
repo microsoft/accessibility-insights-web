@@ -2349,9 +2349,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:^6.1.6":
-  version: 6.2.1
-  resolution: "@testing-library/jest-dom@npm:6.2.1"
+"@testing-library/jest-dom@npm:^6.4.2":
+  version: 6.4.2
+  resolution: "@testing-library/jest-dom@npm:6.4.2"
   dependencies:
     "@adobe/css-tools": ^4.3.2
     "@babel/runtime": ^7.9.2
@@ -2378,7 +2378,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 36bb8c23fd102a572bb22e37933c5134c6b4737c9d1ca575d2abde64bd5ffbb5f571caa76c1d8ab0b384670fcc680353f1ef563a2d9a6d46d00c47b4eb38969b
+  checksum: 631aeadbf4e738080ae095242cf1a29a0b4ee2f09c8bdd0d3f00a923707da64c1617e088ba9a961d098481afabdc1d19149fb7ef98edf15132348eb222f345ae
   languageName: node
   linkType: hard
 
@@ -3311,7 +3311,7 @@ __metadata:
     jest: ^29.7.0
     jest-file-snapshot: ^0.5.0
     jest-junit: ^16.0.0
-    prettier: ^3.1.1
+    prettier: ^3.2.4
     typescript: ^4.9.5
   languageName: unknown
   linkType: soft
@@ -3358,7 +3358,7 @@ __metadata:
     "@microsoft/applicationinsights-web": ^2.8.15
     "@swc/core": ^1.3.107
     "@swc/jest": ^0.2.29
-    "@testing-library/jest-dom": ^6.1.6
+    "@testing-library/jest-dom": ^6.4.2
     "@testing-library/react": 12.1.2
     "@testing-library/user-event": ^14.5.2
     "@types/chrome": 0.0.256
@@ -3423,7 +3423,7 @@ __metadata:
     playwright: ^1.41.1
     postcss: ^8.4.33
     postcss-modules: ^6.0.0
-    prettier: ^3.1.1
+    prettier: ^3.2.4
     react: ^16.14.0
     react-dom: ^16.14.0
     react-helmet: ^6.1.0
@@ -11283,12 +11283,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "prettier@npm:3.1.1"
+"prettier@npm:^3.2.4":
+  version: 3.2.4
+  resolution: "prettier@npm:3.2.4"
   bin:
     prettier: bin/prettier.cjs
-  checksum: e386855e3a1af86a748e16953f168be555ce66d6233f4ba54eb6449b88eb0c6b2ca79441b11eae6d28a7f9a5c96440ce50864b9d5f6356d331d39d6bb66c648e
+  checksum: 6ec9385a836e0b9bac549e585101c086d1521c31d7b882d5c8bb7d7646da0693da5f31f4fff6dc080710e5e2d34c85e6fb2f8766876b3645c8be2f33b9c3d1a3
   languageName: node
   linkType: hard
 

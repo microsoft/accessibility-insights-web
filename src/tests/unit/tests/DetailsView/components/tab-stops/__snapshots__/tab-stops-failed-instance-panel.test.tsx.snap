@@ -1,27 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabStopsFailedInstancePanel render with failure instance action type CREATE 1`] = `
-<FailedInstancePanel
-  confirmButtonText="Add failed instance"
-  headerText="Add a failed instance for some name for requirement"
-  instanceDescription="some description"
-  isOpen={true}
-  onChange={[Function]}
-  onConfirm={[Function]}
-  onDismiss={[Function]}
-/>
+<DocumentFragment>
+  <mock-failedinstancepanel
+    confirmbuttontext="Add failed instance"
+    headertext="Add a failed instance for some name for requirement"
+    instancedescription="some description"
+    isopen="true"
+  />
+</DocumentFragment>
 `;
 
 exports[`TabStopsFailedInstancePanel render with failure instance action type EDIT 1`] = `
-<FailedInstancePanel
-  confirmButtonText="Save"
-  headerText="Edit failed instance for some name for requirement"
-  instanceDescription="some description"
-  isOpen={true}
-  onChange={[Function]}
-  onConfirm={[Function]}
-  onDismiss={[Function]}
-/>
+<DocumentFragment>
+  <mock-failedinstancepanel
+    confirmbuttontext="Save"
+    headertext="Edit failed instance for some name for requirement"
+    instancedescription="some description"
+    isopen="true"
+  />
+</DocumentFragment>
 `;
 
-exports[`TabStopsFailedInstancePanel render with no selected requirement id 1`] = `null`;
+exports[`TabStopsFailedInstancePanel render with no selected requirement id 1`] = `<DocumentFragment />`;

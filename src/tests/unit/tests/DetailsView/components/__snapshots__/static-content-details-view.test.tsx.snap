@@ -1,9 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StaticContentDetailsViewTest renders content page component 1`] = `
-"<div className="staticContentInDetailsView">
-  <HeadingWithContentLink deps="stub-deps" headingTitle="my test title" secondaryText=" test steps text " guidance="stub-guidance" />
-  <VisualizationToggle checked={true} onClick={[Function: proxy]} label="my test toggle label" className="detailsViewToggle" visualizationName="my test title" />
-  <ContentInclude deps="stub-deps" content="stub-content" />
-</div>"
+<DocumentFragment>
+  <div
+    class="staticContentInDetailsView"
+  >
+    <mock-headingwithcontentlink
+      deps="stub-deps"
+      guidance="stub-guidance"
+      headingtitle="my test title"
+      secondarytext=" test steps text "
+    />
+    <mock-visualizationtoggle
+      checked="true"
+      classname="detailsViewToggle"
+      label="my test toggle label"
+      visualizationname="my test title"
+    />
+    <mock-contentinclude
+      content="stub-content"
+      deps="stub-deps"
+    />
+  </div>
+</DocumentFragment>
 `;

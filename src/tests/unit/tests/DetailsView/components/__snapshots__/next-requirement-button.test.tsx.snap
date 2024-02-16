@@ -1,14 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NextRequirementButton renders 1`] = `
-<CustomizedDefaultButton
-  onClick={[Function]}
->
-  <span>
+<DocumentFragment>
+  <mock-customizeddefaultbutton>
+    <span />
+  </mock-customizeddefaultbutton>
+</DocumentFragment>
+`;
+
+exports[`NextRequirementButton renders: CustomizedDefaultButton props 1`] = `
+{
+  "children": <span>
     <Memo(Icon)
       ariaLabel="next"
       iconName="ChevronRight"
     />
-  </span>
-</CustomizedDefaultButton>
+  </span>,
+  "className": undefined,
+  "onClick": [Function],
+  "text": undefined,
+}
 `;
