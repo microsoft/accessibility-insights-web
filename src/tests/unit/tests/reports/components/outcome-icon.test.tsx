@@ -14,6 +14,11 @@ import {
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 
+jest.mock('common/icons/check-icon');
+jest.mock('common/icons/circle-icon');
+jest.mock('common/icons/inapplicable-icon');
+jest.mock('common/icons/cross-icon');
+
 describe('OutcomeIcon', () => {
     mockReactComponents([
         CheckIcon,
