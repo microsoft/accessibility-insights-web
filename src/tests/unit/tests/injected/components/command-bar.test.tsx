@@ -137,9 +137,9 @@ describe('CommandBar', () => {
 
             render(<CommandBar {...props} />);
 
-            getMockComponentClassPropsForCall(DefaultButton).onClick();
+            getMockComponentClassPropsForCall(DefaultButton).onClick(eventStub);
 
-            onClickMock.setup(onClick => onClick(eventStub)).verifiable(Times.once());
+            onClickMock.verify(onClick => onClick(eventStub), Times.once());
             axeConverterMock.verifyAll();
         });
 
@@ -153,9 +153,9 @@ describe('CommandBar', () => {
 
             render(<CommandBar {...props} />);
 
-            getMockComponentClassPropsForCall(CopyIssueDetailsButton).onClick();
+            getMockComponentClassPropsForCall(CopyIssueDetailsButton).onClick(eventStub);
 
-            onClickMock.setup(onClick => onClick(eventStub)).verifiable(Times.once());
+            onClickMock.verify(onClick => onClick(eventStub), Times.once());
             axeConverterMock.verifyAll();
         });
     });

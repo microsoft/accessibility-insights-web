@@ -14,7 +14,7 @@ import {
     mockReactComponents,
     expectMockedComponentPropsToMatchSnapshots,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
-import { It, Mock, Times } from 'typemoq';
+import { Mock, Times } from 'typemoq';
 
 import { CommandBar } from '../../../../../injected/components/command-bar';
 import {
@@ -189,11 +189,15 @@ describe('DetailsDialog', () => {
                     dialogHandler: dialogDetailsHandlerMockObject,
                 } as any;
 
+                const testSubject = new DetailsDialog(props);
+                render(testSubject.render());
+
                 render(<DetailsDialog {...props} />);
                 getMockComponentClassPropsForCall(CommandBar).onClickCopyIssueDetailsButton(
                     eventStub,
                 );
-                clickHandlerMock.verify(handler => handler(It.isAny(), eventStub), Times.once());
+
+                clickHandlerMock.verify(handler => handler(testSubject, eventStub), Times.once());
             });
 
             test('on click inspect button', () => {
@@ -217,11 +221,14 @@ describe('DetailsDialog', () => {
                     dialogHandler: dialogDetailsHandlerMockObject,
                 };
 
+                const testSubject = new DetailsDialog(props);
+                render(testSubject.render());
+
                 render(<DetailsDialog {...props} />);
 
                 getMockComponentClassPropsForCall(CommandBar).onClickInspectButton(eventStub);
 
-                clickHandlerMock.verify(handler => handler(It.isAny(), eventStub), Times.once());
+                clickHandlerMock.verify(handler => handler(testSubject, eventStub), Times.once());
             });
 
             test('should should inspect button message', () => {
@@ -244,12 +251,14 @@ describe('DetailsDialog', () => {
                     failedRules: expectedFailedRules,
                     dialogHandler: dialogDetailsHandlerMockObject,
                 };
+                const testSubject = new DetailsDialog(props);
+                render(testSubject.render());
 
                 render(<DetailsDialog {...props} />);
 
                 getMockComponentClassPropsForCall(CommandBar).shouldShowInspectButtonMessage();
 
-                handlerMock.verify(handler => handler(It.isAny()), Times.once());
+                handlerMock.verify(handler => handler(testSubject), Times.once());
             });
         });
     });
