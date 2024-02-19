@@ -2,39 +2,26 @@
 
 exports[`LaunchPanelHeaderTest renders 1`] = `
 <DocumentFragment>
-  <header
-    class="launchPanelHeader"
+  <mock-header
+    subtitle="test subtitle"
+    title="test title"
   >
-    <h1
-      class="title"
-    >
-      test title
-    </h1>
-    <div
-      class="children"
-    >
-      <mock-flaggedcomponent
-        enablejsxelement="[object Object]"
-        featureflag="debugTools"
-        featureflagstoredata="[object Object]"
-      />
-      <mock-gearoptionsbuttoncomponent
-        deps="[object Object]"
-        featureflagdata="[object Object]"
-      />
-      <mock-hamburgermenubutton
-        deps="[object Object]"
-        featureflagdata="[object Object]"
-        header="[object Object]"
-        popupwindow="[object Object]"
-      />
-    </div>
-    <div
-      class="subtitle"
-    >
-      test subtitle
-    </div>
-  </header>
+    <mock-flaggedcomponent
+      enablejsxelement="[object Object]"
+      featureflag="debugTools"
+      featureflagstoredata="[object Object]"
+    />
+    <mock-gearoptionsbuttoncomponent
+      deps="[object Object]"
+      featureflagdata="[object Object]"
+    />
+    <mock-hamburgermenubutton
+      deps="[object Object]"
+      featureflagdata="[object Object]"
+      header="[object Object]"
+      popupwindow="[object Object]"
+    />
+  </mock-header>
 </DocumentFragment>
 `;
 
@@ -113,26 +100,153 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
             "actualDuration": 0,
             "actualStartTime": -1,
             "alternate": null,
-            "child": null,
+            "child": FiberNode {
+              "_debugHookTypes": null,
+              "_debugID": 14,
+              "_debugIsCurrentlyTiming": false,
+              "_debugNeedsRemount": false,
+              "_debugOwner": [Circular],
+              "_debugSource": null,
+              "actualDuration": 0,
+              "actualStartTime": -1,
+              "alternate": null,
+              "child": null,
+              "childExpirationTime": 0,
+              "dependencies": null,
+              "effectTag": 0,
+              "elementType": "mock-FlaggedComponent",
+              "expirationTime": 0,
+              "firstEffect": null,
+              "index": 0,
+              "key": null,
+              "lastEffect": null,
+              "memoizedProps": {
+                "children": undefined,
+                "enableJSXElement": <CustomizedIconButton
+                  ariaLabel="open debug tools"
+                  iconProps={
+                    {
+                      "iconName": "Cat",
+                    }
+                  }
+                />,
+                "featureFlag": "debugTools",
+                "featureFlagStoreData": {},
+              },
+              "memoizedState": null,
+              "mode": 0,
+              "nextEffect": null,
+              "pendingProps": {
+                "children": undefined,
+                "enableJSXElement": <CustomizedIconButton
+                  ariaLabel="open debug tools"
+                  iconProps={
+                    {
+                      "iconName": "Cat",
+                    }
+                  }
+                />,
+                "featureFlag": "debugTools",
+                "featureFlagStoreData": {},
+              },
+              "ref": null,
+              "return": [Circular],
+              "selfBaseDuration": 0,
+              "sibling": null,
+              "stateNode": <mock-flaggedcomponent
+                enablejsxelement="[object Object]"
+                featureflag="debugTools"
+                featureflagstoredata="[object Object]"
+              />,
+              "tag": 5,
+              "treeBaseDuration": 0,
+              "type": "mock-FlaggedComponent",
+              "updateQueue": null,
+            },
             "childExpirationTime": 0,
             "dependencies": null,
-            "effectTag": 0,
-            "elementType": "h1",
+            "effectTag": 1,
+            "elementType": [MockFunction] {
+              "calls": [
+                [
+                  {
+                    "enableJSXElement": <CustomizedIconButton
+                      ariaLabel="open debug tools"
+                      iconProps={
+                        {
+                          "iconName": "Cat",
+                        }
+                      }
+                    />,
+                    "featureFlag": "debugTools",
+                    "featureFlagStoreData": {},
+                  },
+                  {},
+                ],
+              ],
+              "results": [
+                {
+                  "type": "return",
+                  "value": {
+                    "_reactInternalFiber": [Circular],
+                    "_reactInternalInstance": {},
+                    "context": {},
+                    "props": {
+                      "enableJSXElement": <CustomizedIconButton
+                        ariaLabel="open debug tools"
+                        iconProps={
+                          {
+                            "iconName": "Cat",
+                          }
+                        }
+                      />,
+                      "featureFlag": "debugTools",
+                      "featureFlagStoreData": {},
+                    },
+                    "refs": {},
+                    "render": [Function],
+                    "state": null,
+                    "updater": {
+                      "enqueueForceUpdate": [Function],
+                      "enqueueReplaceState": [Function],
+                      "enqueueSetState": [Function],
+                      "isMounted": [Function],
+                    },
+                  },
+                },
+              ],
+            },
             "expirationTime": 0,
             "firstEffect": null,
             "index": 0,
             "key": null,
             "lastEffect": null,
             "memoizedProps": {
-              "children": "test title",
-              "className": "title",
+              "enableJSXElement": <CustomizedIconButton
+                ariaLabel="open debug tools"
+                iconProps={
+                  {
+                    "iconName": "Cat",
+                  }
+                }
+              />,
+              "featureFlag": "debugTools",
+              "featureFlagStoreData": {},
             },
             "memoizedState": null,
             "mode": 0,
             "nextEffect": null,
             "pendingProps": {
-              "children": "test title",
-              "className": "title",
+              "enableJSXElement": <CustomizedIconButton
+                ariaLabel="open debug tools"
+                iconProps={
+                  {
+                    "iconName": "Cat",
+                  }
+                }
+              />,
+              "featureFlag": "debugTools",
+              "featureFlagStoreData": {},
             },
             "ref": null,
             "return": [Circular],
@@ -149,7 +263,7 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
               "alternate": null,
               "child": FiberNode {
                 "_debugHookTypes": null,
-                "_debugID": 15,
+                "_debugID": 17,
                 "_debugIsCurrentlyTiming": false,
                 "_debugNeedsRemount": false,
                 "_debugOwner": [Circular],
@@ -157,638 +271,106 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                 "actualDuration": 0,
                 "actualStartTime": -1,
                 "alternate": null,
-                "child": FiberNode {
-                  "_debugHookTypes": null,
-                  "_debugID": 19,
-                  "_debugIsCurrentlyTiming": false,
-                  "_debugNeedsRemount": false,
-                  "_debugOwner": [Circular],
-                  "_debugSource": null,
-                  "actualDuration": 0,
-                  "actualStartTime": -1,
-                  "alternate": null,
-                  "child": null,
-                  "childExpirationTime": 0,
-                  "dependencies": null,
-                  "effectTag": 0,
-                  "elementType": "mock-FlaggedComponent",
-                  "expirationTime": 0,
-                  "firstEffect": null,
-                  "index": 0,
-                  "key": null,
-                  "lastEffect": null,
-                  "memoizedProps": {
-                    "children": undefined,
-                    "enableJSXElement": <CustomizedIconButton
-                      ariaLabel="open debug tools"
-                      iconProps={
-                        {
-                          "iconName": "Cat",
-                        }
-                      }
-                    />,
-                    "featureFlag": "debugTools",
-                    "featureFlagStoreData": {},
-                  },
-                  "memoizedState": null,
-                  "mode": 0,
-                  "nextEffect": null,
-                  "pendingProps": {
-                    "children": undefined,
-                    "enableJSXElement": <CustomizedIconButton
-                      ariaLabel="open debug tools"
-                      iconProps={
-                        {
-                          "iconName": "Cat",
-                        }
-                      }
-                    />,
-                    "featureFlag": "debugTools",
-                    "featureFlagStoreData": {},
-                  },
-                  "ref": null,
-                  "return": [Circular],
-                  "selfBaseDuration": 0,
-                  "sibling": null,
-                  "stateNode": <mock-flaggedcomponent
-                    enablejsxelement="[object Object]"
-                    featureflag="debugTools"
-                    featureflagstoredata="[object Object]"
-                  />,
-                  "tag": 5,
-                  "treeBaseDuration": 0,
-                  "type": "mock-FlaggedComponent",
-                  "updateQueue": null,
-                },
+                "child": null,
                 "childExpirationTime": 0,
                 "dependencies": null,
-                "effectTag": 1,
-                "elementType": [MockFunction] {
-                  "calls": [
-                    [
-                      {
-                        "enableJSXElement": <CustomizedIconButton
-                          ariaLabel="open debug tools"
-                          iconProps={
-                            {
-                              "iconName": "Cat",
-                            }
-                          }
-                        />,
-                        "featureFlag": "debugTools",
-                        "featureFlagStoreData": {},
-                      },
-                      {},
-                    ],
-                  ],
-                  "results": [
-                    {
-                      "type": "return",
-                      "value": {
-                        "_reactInternalFiber": [Circular],
-                        "_reactInternalInstance": {},
-                        "context": {},
-                        "props": {
-                          "enableJSXElement": <CustomizedIconButton
-                            ariaLabel="open debug tools"
-                            iconProps={
-                              {
-                                "iconName": "Cat",
-                              }
-                            }
-                          />,
-                          "featureFlag": "debugTools",
-                          "featureFlagStoreData": {},
-                        },
-                        "refs": {},
-                        "render": [Function],
-                        "state": null,
-                        "updater": {
-                          "enqueueForceUpdate": [Function],
-                          "enqueueReplaceState": [Function],
-                          "enqueueSetState": [Function],
-                          "isMounted": [Function],
-                        },
-                      },
-                    },
-                  ],
-                },
+                "effectTag": 0,
+                "elementType": "mock-GearOptionsButtonComponent",
                 "expirationTime": 0,
                 "firstEffect": null,
                 "index": 0,
                 "key": null,
                 "lastEffect": null,
                 "memoizedProps": {
-                  "enableJSXElement": <CustomizedIconButton
-                    ariaLabel="open debug tools"
-                    iconProps={
-                      {
-                        "iconName": "Cat",
-                      }
-                    }
-                  />,
-                  "featureFlag": "debugTools",
-                  "featureFlagStoreData": {},
+                  "children": undefined,
+                  "deps": {
+                    "dropdownClickHandler": {},
+                    "launchPanelHeaderClickHandler": {},
+                    "popupActionMessageCreator": {},
+                  },
+                  "featureFlagData": {},
                 },
                 "memoizedState": null,
                 "mode": 0,
                 "nextEffect": null,
                 "pendingProps": {
-                  "enableJSXElement": <CustomizedIconButton
-                    ariaLabel="open debug tools"
-                    iconProps={
-                      {
-                        "iconName": "Cat",
-                      }
-                    }
-                  />,
-                  "featureFlag": "debugTools",
-                  "featureFlagStoreData": {},
+                  "children": undefined,
+                  "deps": {
+                    "dropdownClickHandler": {},
+                    "launchPanelHeaderClickHandler": {},
+                    "popupActionMessageCreator": {},
+                  },
+                  "featureFlagData": {},
                 },
                 "ref": null,
                 "return": [Circular],
                 "selfBaseDuration": 0,
-                "sibling": FiberNode {
-                  "_debugHookTypes": null,
-                  "_debugID": 16,
-                  "_debugIsCurrentlyTiming": false,
-                  "_debugNeedsRemount": false,
-                  "_debugOwner": [Circular],
-                  "_debugSource": null,
-                  "actualDuration": 0,
-                  "actualStartTime": -1,
-                  "alternate": null,
-                  "child": FiberNode {
-                    "_debugHookTypes": null,
-                    "_debugID": 22,
-                    "_debugIsCurrentlyTiming": false,
-                    "_debugNeedsRemount": false,
-                    "_debugOwner": [Circular],
-                    "_debugSource": null,
-                    "actualDuration": 0,
-                    "actualStartTime": -1,
-                    "alternate": null,
-                    "child": null,
-                    "childExpirationTime": 0,
-                    "dependencies": null,
-                    "effectTag": 0,
-                    "elementType": "mock-GearOptionsButtonComponent",
-                    "expirationTime": 0,
-                    "firstEffect": null,
-                    "index": 0,
-                    "key": null,
-                    "lastEffect": null,
-                    "memoizedProps": {
-                      "children": undefined,
-                      "deps": {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
-                      },
-                      "featureFlagData": {},
-                    },
-                    "memoizedState": null,
-                    "mode": 0,
-                    "nextEffect": null,
-                    "pendingProps": {
-                      "children": undefined,
-                      "deps": {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
-                      },
-                      "featureFlagData": {},
-                    },
-                    "ref": null,
-                    "return": [Circular],
-                    "selfBaseDuration": 0,
-                    "sibling": null,
-                    "stateNode": <mock-gearoptionsbuttoncomponent
-                      deps="[object Object]"
-                      featureflagdata="[object Object]"
-                    />,
-                    "tag": 5,
-                    "treeBaseDuration": 0,
-                    "type": "mock-GearOptionsButtonComponent",
-                    "updateQueue": null,
-                  },
-                  "childExpirationTime": 0,
-                  "dependencies": null,
-                  "effectTag": 1,
-                  "elementType": [MockFunction] {
-                    "calls": [
-                      [
-                        {
-                          "deps": {
-                            "dropdownClickHandler": {},
-                            "launchPanelHeaderClickHandler": {},
-                            "popupActionMessageCreator": {},
-                          },
-                          "featureFlagData": {},
-                        },
-                        {},
-                      ],
-                    ],
-                    "results": [
-                      {
-                        "type": "return",
-                        "value": <mock-GearOptionsButtonComponent
-                          deps={
-                            {
-                              "dropdownClickHandler": {},
-                              "launchPanelHeaderClickHandler": {},
-                              "popupActionMessageCreator": {},
-                            }
-                          }
-                          featureFlagData={{}}
-                        />,
-                      },
-                    ],
-                  },
-                  "expirationTime": 0,
-                  "firstEffect": null,
-                  "index": 1,
-                  "key": null,
-                  "lastEffect": null,
-                  "memoizedProps": {
-                    "deps": {
-                      "dropdownClickHandler": {},
-                      "launchPanelHeaderClickHandler": {},
-                      "popupActionMessageCreator": {},
-                    },
-                    "featureFlagData": {},
-                  },
-                  "memoizedState": null,
-                  "mode": 0,
-                  "nextEffect": null,
-                  "pendingProps": {
-                    "deps": {
-                      "dropdownClickHandler": {},
-                      "launchPanelHeaderClickHandler": {},
-                      "popupActionMessageCreator": {},
-                    },
-                    "featureFlagData": {},
-                  },
-                  "ref": null,
-                  "return": [Circular],
-                  "selfBaseDuration": 0,
-                  "sibling": FiberNode {
-                    "_debugHookTypes": null,
-                    "_debugID": 17,
-                    "_debugIsCurrentlyTiming": false,
-                    "_debugNeedsRemount": false,
-                    "_debugOwner": [Circular],
-                    "_debugSource": null,
-                    "actualDuration": 0,
-                    "actualStartTime": -1,
-                    "alternate": null,
-                    "child": FiberNode {
-                      "_debugHookTypes": null,
-                      "_debugID": 25,
-                      "_debugIsCurrentlyTiming": false,
-                      "_debugNeedsRemount": false,
-                      "_debugOwner": [Circular],
-                      "_debugSource": null,
-                      "actualDuration": 0,
-                      "actualStartTime": -1,
-                      "alternate": null,
-                      "child": null,
-                      "childExpirationTime": 0,
-                      "dependencies": null,
-                      "effectTag": 0,
-                      "elementType": "mock-HamburgerMenuButton",
-                      "expirationTime": 0,
-                      "firstEffect": null,
-                      "index": 0,
-                      "key": null,
-                      "lastEffect": null,
-                      "memoizedProps": {
-                        "children": undefined,
-                        "deps": {
-                          "dropdownClickHandler": {},
-                          "launchPanelHeaderClickHandler": {},
-                          "popupActionMessageCreator": {},
-                        },
-                        "featureFlagData": {},
-                        "header": [Circular],
-                        "popupWindow": {},
-                      },
-                      "memoizedState": null,
-                      "mode": 0,
-                      "nextEffect": null,
-                      "pendingProps": {
-                        "children": undefined,
-                        "deps": {
-                          "dropdownClickHandler": {},
-                          "launchPanelHeaderClickHandler": {},
-                          "popupActionMessageCreator": {},
-                        },
-                        "featureFlagData": {},
-                        "header": [Circular],
-                        "popupWindow": {},
-                      },
-                      "ref": null,
-                      "return": [Circular],
-                      "selfBaseDuration": 0,
-                      "sibling": null,
-                      "stateNode": <mock-hamburgermenubutton
-                        deps="[object Object]"
-                        featureflagdata="[object Object]"
-                        header="[object Object]"
-                        popupwindow="[object Object]"
-                      />,
-                      "tag": 5,
-                      "treeBaseDuration": 0,
-                      "type": "mock-HamburgerMenuButton",
-                      "updateQueue": null,
-                    },
-                    "childExpirationTime": 0,
-                    "dependencies": null,
-                    "effectTag": 1,
-                    "elementType": [MockFunction] {
-                      "calls": [
-                        [
-                          [Circular],
-                          {},
-                        ],
-                      ],
-                      "results": [
-                        {
-                          "type": "return",
-                          "value": <mock-HamburgerMenuButton
-                            deps={
-                              {
-                                "dropdownClickHandler": {},
-                                "launchPanelHeaderClickHandler": {},
-                                "popupActionMessageCreator": {},
-                              }
-                            }
-                            featureFlagData={{}}
-                            header={[Circular]}
-                            popupWindow={{}}
-                          />,
-                        },
-                      ],
-                    },
-                    "expirationTime": 0,
-                    "firstEffect": null,
-                    "index": 2,
-                    "key": null,
-                    "lastEffect": null,
-                    "memoizedProps": [Circular],
-                    "memoizedState": null,
-                    "mode": 0,
-                    "nextEffect": null,
-                    "pendingProps": [Circular],
-                    "ref": null,
-                    "return": [Circular],
-                    "selfBaseDuration": 0,
-                    "sibling": null,
-                    "stateNode": null,
-                    "tag": 0,
-                    "treeBaseDuration": 0,
-                    "type": [MockFunction] {
-                      "calls": [
-                        [
-                          [Circular],
-                          {},
-                        ],
-                      ],
-                      "results": [
-                        {
-                          "type": "return",
-                          "value": <mock-HamburgerMenuButton
-                            deps={
-                              {
-                                "dropdownClickHandler": {},
-                                "launchPanelHeaderClickHandler": {},
-                                "popupActionMessageCreator": {},
-                              }
-                            }
-                            featureFlagData={{}}
-                            header={[Circular]}
-                            popupWindow={{}}
-                          />,
-                        },
-                      ],
-                    },
-                    "updateQueue": null,
-                  },
-                  "stateNode": null,
-                  "tag": 0,
-                  "treeBaseDuration": 0,
-                  "type": [MockFunction] {
-                    "calls": [
-                      [
-                        {
-                          "deps": {
-                            "dropdownClickHandler": {},
-                            "launchPanelHeaderClickHandler": {},
-                            "popupActionMessageCreator": {},
-                          },
-                          "featureFlagData": {},
-                        },
-                        {},
-                      ],
-                    ],
-                    "results": [
-                      {
-                        "type": "return",
-                        "value": <mock-GearOptionsButtonComponent
-                          deps={
-                            {
-                              "dropdownClickHandler": {},
-                              "launchPanelHeaderClickHandler": {},
-                              "popupActionMessageCreator": {},
-                            }
-                          }
-                          featureFlagData={{}}
-                        />,
-                      },
-                    ],
-                  },
-                  "updateQueue": null,
-                },
-                "stateNode": {
-                  "_reactInternalFiber": [Circular],
-                  "_reactInternalInstance": {},
-                  "context": {},
-                  "props": {
-                    "enableJSXElement": <CustomizedIconButton
-                      ariaLabel="open debug tools"
-                      iconProps={
-                        {
-                          "iconName": "Cat",
-                        }
-                      }
-                    />,
-                    "featureFlag": "debugTools",
-                    "featureFlagStoreData": {},
-                  },
-                  "refs": {},
-                  "render": [Function],
-                  "state": null,
-                  "updater": {
-                    "enqueueForceUpdate": [Function],
-                    "enqueueReplaceState": [Function],
-                    "enqueueSetState": [Function],
-                    "isMounted": [Function],
-                  },
-                },
-                "tag": 1,
+                "sibling": null,
+                "stateNode": <mock-gearoptionsbuttoncomponent
+                  deps="[object Object]"
+                  featureflagdata="[object Object]"
+                />,
+                "tag": 5,
                 "treeBaseDuration": 0,
-                "type": [MockFunction] {
-                  "calls": [
-                    [
-                      {
-                        "enableJSXElement": <CustomizedIconButton
-                          ariaLabel="open debug tools"
-                          iconProps={
-                            {
-                              "iconName": "Cat",
-                            }
-                          }
-                        />,
-                        "featureFlag": "debugTools",
-                        "featureFlagStoreData": {},
-                      },
-                      {},
-                    ],
-                  ],
-                  "results": [
-                    {
-                      "type": "return",
-                      "value": {
-                        "_reactInternalFiber": [Circular],
-                        "_reactInternalInstance": {},
-                        "context": {},
-                        "props": {
-                          "enableJSXElement": <CustomizedIconButton
-                            ariaLabel="open debug tools"
-                            iconProps={
-                              {
-                                "iconName": "Cat",
-                              }
-                            }
-                          />,
-                          "featureFlag": "debugTools",
-                          "featureFlagStoreData": {},
-                        },
-                        "refs": {},
-                        "render": [Function],
-                        "state": null,
-                        "updater": {
-                          "enqueueForceUpdate": [Function],
-                          "enqueueReplaceState": [Function],
-                          "enqueueSetState": [Function],
-                          "isMounted": [Function],
-                        },
-                      },
-                    },
-                  ],
-                },
-                "updateQueue": {
-                  "baseQueue": null,
-                  "baseState": null,
-                  "effects": null,
-                  "shared": {
-                    "pending": null,
-                  },
-                },
+                "type": "mock-GearOptionsButtonComponent",
+                "updateQueue": null,
               },
               "childExpirationTime": 0,
               "dependencies": null,
-              "effectTag": 0,
-              "elementType": "div",
+              "effectTag": 1,
+              "elementType": [MockFunction] {
+                "calls": [
+                  [
+                    {
+                      "deps": {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
+                      },
+                      "featureFlagData": {},
+                    },
+                    {},
+                  ],
+                ],
+                "results": [
+                  {
+                    "type": "return",
+                    "value": <mock-GearOptionsButtonComponent
+                      deps={
+                        {
+                          "dropdownClickHandler": {},
+                          "launchPanelHeaderClickHandler": {},
+                          "popupActionMessageCreator": {},
+                        }
+                      }
+                      featureFlagData={{}}
+                    />,
+                  },
+                ],
+              },
               "expirationTime": 0,
               "firstEffect": null,
               "index": 1,
               "key": null,
               "lastEffect": null,
               "memoizedProps": {
-                "children": <React.Fragment>
-                  <FlaggedComponent
-                    enableJSXElement={
-                      <CustomizedIconButton
-                        ariaLabel="open debug tools"
-                        iconProps={
-                          {
-                            "iconName": "Cat",
-                          }
-                        }
-                      />
-                    }
-                    featureFlag="debugTools"
-                    featureFlagStoreData={{}}
-                  />
-                  <GearOptionsButtonComponent
-                    deps={
-                      {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
-                      }
-                    }
-                    featureFlagData={{}}
-                  />
-                  <HamburgerMenuButton
-                    deps={
-                      {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
-                      }
-                    }
-                    featureFlagData={{}}
-                    header={[Circular]}
-                    popupWindow={{}}
-                  />
-                </React.Fragment>,
-                "className": "children",
+                "deps": {
+                  "dropdownClickHandler": {},
+                  "launchPanelHeaderClickHandler": {},
+                  "popupActionMessageCreator": {},
+                },
+                "featureFlagData": {},
               },
               "memoizedState": null,
               "mode": 0,
               "nextEffect": null,
               "pendingProps": {
-                "children": <React.Fragment>
-                  <FlaggedComponent
-                    enableJSXElement={
-                      <CustomizedIconButton
-                        ariaLabel="open debug tools"
-                        iconProps={
-                          {
-                            "iconName": "Cat",
-                          }
-                        }
-                      />
-                    }
-                    featureFlag="debugTools"
-                    featureFlagStoreData={{}}
-                  />
-                  <GearOptionsButtonComponent
-                    deps={
-                      {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
-                      }
-                    }
-                    featureFlagData={{}}
-                  />
-                  <HamburgerMenuButton
-                    deps={
-                      {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
-                      }
-                    }
-                    featureFlagData={{}}
-                    header={[Circular]}
-                    popupWindow={{}}
-                  />
-                </React.Fragment>,
-                "className": "children",
+                "deps": {
+                  "dropdownClickHandler": {},
+                  "launchPanelHeaderClickHandler": {},
+                  "popupActionMessageCreator": {},
+                },
+                "featureFlagData": {},
               },
               "ref": null,
               "return": [Circular],
@@ -803,153 +385,442 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                 "actualDuration": 0,
                 "actualStartTime": -1,
                 "alternate": null,
-                "child": null,
+                "child": FiberNode {
+                  "_debugHookTypes": null,
+                  "_debugID": 20,
+                  "_debugIsCurrentlyTiming": false,
+                  "_debugNeedsRemount": false,
+                  "_debugOwner": [Circular],
+                  "_debugSource": null,
+                  "actualDuration": 0,
+                  "actualStartTime": -1,
+                  "alternate": null,
+                  "child": null,
+                  "childExpirationTime": 0,
+                  "dependencies": null,
+                  "effectTag": 0,
+                  "elementType": "mock-HamburgerMenuButton",
+                  "expirationTime": 0,
+                  "firstEffect": null,
+                  "index": 0,
+                  "key": null,
+                  "lastEffect": null,
+                  "memoizedProps": {
+                    "children": undefined,
+                    "deps": {
+                      "dropdownClickHandler": {},
+                      "launchPanelHeaderClickHandler": {},
+                      "popupActionMessageCreator": {},
+                    },
+                    "featureFlagData": {},
+                    "header": [Circular],
+                    "popupWindow": {},
+                  },
+                  "memoizedState": null,
+                  "mode": 0,
+                  "nextEffect": null,
+                  "pendingProps": {
+                    "children": undefined,
+                    "deps": {
+                      "dropdownClickHandler": {},
+                      "launchPanelHeaderClickHandler": {},
+                      "popupActionMessageCreator": {},
+                    },
+                    "featureFlagData": {},
+                    "header": [Circular],
+                    "popupWindow": {},
+                  },
+                  "ref": null,
+                  "return": [Circular],
+                  "selfBaseDuration": 0,
+                  "sibling": null,
+                  "stateNode": <mock-hamburgermenubutton
+                    deps="[object Object]"
+                    featureflagdata="[object Object]"
+                    header="[object Object]"
+                    popupwindow="[object Object]"
+                  />,
+                  "tag": 5,
+                  "treeBaseDuration": 0,
+                  "type": "mock-HamburgerMenuButton",
+                  "updateQueue": null,
+                },
                 "childExpirationTime": 0,
                 "dependencies": null,
-                "effectTag": 0,
-                "elementType": "div",
+                "effectTag": 1,
+                "elementType": [MockFunction] {
+                  "calls": [
+                    [
+                      [Circular],
+                      {},
+                    ],
+                  ],
+                  "results": [
+                    {
+                      "type": "return",
+                      "value": <mock-HamburgerMenuButton
+                        deps={
+                          {
+                            "dropdownClickHandler": {},
+                            "launchPanelHeaderClickHandler": {},
+                            "popupActionMessageCreator": {},
+                          }
+                        }
+                        featureFlagData={{}}
+                        header={[Circular]}
+                        popupWindow={{}}
+                      />,
+                    },
+                  ],
+                },
                 "expirationTime": 0,
                 "firstEffect": null,
                 "index": 2,
                 "key": null,
                 "lastEffect": null,
-                "memoizedProps": {
-                  "children": "test subtitle",
-                  "className": "subtitle",
-                },
+                "memoizedProps": [Circular],
                 "memoizedState": null,
                 "mode": 0,
                 "nextEffect": null,
-                "pendingProps": {
-                  "children": "test subtitle",
-                  "className": "subtitle",
-                },
+                "pendingProps": [Circular],
                 "ref": null,
                 "return": [Circular],
                 "selfBaseDuration": 0,
                 "sibling": null,
-                "stateNode": <div
-                  class="subtitle"
-                >
-                  test subtitle
-                </div>,
-                "tag": 5,
+                "stateNode": null,
+                "tag": 0,
                 "treeBaseDuration": 0,
-                "type": "div",
+                "type": [MockFunction] {
+                  "calls": [
+                    [
+                      [Circular],
+                      {},
+                    ],
+                  ],
+                  "results": [
+                    {
+                      "type": "return",
+                      "value": <mock-HamburgerMenuButton
+                        deps={
+                          {
+                            "dropdownClickHandler": {},
+                            "launchPanelHeaderClickHandler": {},
+                            "popupActionMessageCreator": {},
+                          }
+                        }
+                        featureFlagData={{}}
+                        header={[Circular]}
+                        popupWindow={{}}
+                      />,
+                    },
+                  ],
+                },
                 "updateQueue": null,
               },
-              "stateNode": <div
-                class="children"
-              >
-                <mock-flaggedcomponent
-                  enablejsxelement="[object Object]"
-                  featureflag="debugTools"
-                  featureflagstoredata="[object Object]"
-                />
-                <mock-gearoptionsbuttoncomponent
-                  deps="[object Object]"
-                  featureflagdata="[object Object]"
-                />
-                <mock-hamburgermenubutton
-                  deps="[object Object]"
-                  featureflagdata="[object Object]"
-                  header="[object Object]"
-                  popupwindow="[object Object]"
-                />
-              </div>,
-              "tag": 5,
+              "stateNode": null,
+              "tag": 0,
               "treeBaseDuration": 0,
-              "type": "div",
+              "type": [MockFunction] {
+                "calls": [
+                  [
+                    {
+                      "deps": {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
+                      },
+                      "featureFlagData": {},
+                    },
+                    {},
+                  ],
+                ],
+                "results": [
+                  {
+                    "type": "return",
+                    "value": <mock-GearOptionsButtonComponent
+                      deps={
+                        {
+                          "dropdownClickHandler": {},
+                          "launchPanelHeaderClickHandler": {},
+                          "popupActionMessageCreator": {},
+                        }
+                      }
+                      featureFlagData={{}}
+                    />,
+                  },
+                ],
+              },
               "updateQueue": null,
             },
-            "stateNode": <h1
-              class="title"
-            >
-              test title
-            </h1>,
-            "tag": 5,
+            "stateNode": {
+              "_reactInternalFiber": [Circular],
+              "_reactInternalInstance": {},
+              "context": {},
+              "props": {
+                "enableJSXElement": <CustomizedIconButton
+                  ariaLabel="open debug tools"
+                  iconProps={
+                    {
+                      "iconName": "Cat",
+                    }
+                  }
+                />,
+                "featureFlag": "debugTools",
+                "featureFlagStoreData": {},
+              },
+              "refs": {},
+              "render": [Function],
+              "state": null,
+              "updater": {
+                "enqueueForceUpdate": [Function],
+                "enqueueReplaceState": [Function],
+                "enqueueSetState": [Function],
+                "isMounted": [Function],
+              },
+            },
+            "tag": 1,
             "treeBaseDuration": 0,
-            "type": "h1",
-            "updateQueue": null,
+            "type": [MockFunction] {
+              "calls": [
+                [
+                  {
+                    "enableJSXElement": <CustomizedIconButton
+                      ariaLabel="open debug tools"
+                      iconProps={
+                        {
+                          "iconName": "Cat",
+                        }
+                      }
+                    />,
+                    "featureFlag": "debugTools",
+                    "featureFlagStoreData": {},
+                  },
+                  {},
+                ],
+              ],
+              "results": [
+                {
+                  "type": "return",
+                  "value": {
+                    "_reactInternalFiber": [Circular],
+                    "_reactInternalInstance": {},
+                    "context": {},
+                    "props": {
+                      "enableJSXElement": <CustomizedIconButton
+                        ariaLabel="open debug tools"
+                        iconProps={
+                          {
+                            "iconName": "Cat",
+                          }
+                        }
+                      />,
+                      "featureFlag": "debugTools",
+                      "featureFlagStoreData": {},
+                    },
+                    "refs": {},
+                    "render": [Function],
+                    "state": null,
+                    "updater": {
+                      "enqueueForceUpdate": [Function],
+                      "enqueueReplaceState": [Function],
+                      "enqueueSetState": [Function],
+                      "isMounted": [Function],
+                    },
+                  },
+                },
+              ],
+            },
+            "updateQueue": {
+              "baseQueue": null,
+              "baseState": null,
+              "effects": null,
+              "shared": {
+                "pending": null,
+              },
+            },
           },
           "childExpirationTime": 0,
           "dependencies": null,
           "effectTag": 0,
-          "elementType": "header",
+          "elementType": "mock-Header",
           "expirationTime": 0,
           "firstEffect": null,
           "index": 0,
           "key": null,
           "lastEffect": null,
           "memoizedProps": {
-            "children": [
-              <h1
-                className="title"
-              >
-                test title
-              </h1>,
-              <div
-                className="children"
-              >
-                <React.Fragment>
-                  <FlaggedComponent
-                    enableJSXElement={
-                      <CustomizedIconButton
-                        ariaLabel="open debug tools"
-                        iconProps={
-                          {
-                            "iconName": "Cat",
-                          }
-                        }
-                      />
-                    }
-                    featureFlag="debugTools"
-                    featureFlagStoreData={{}}
-                  />
-                  <GearOptionsButtonComponent
-                    deps={
+            "children": <React.Fragment>
+              <FlaggedComponent
+                enableJSXElement={
+                  <CustomizedIconButton
+                    ariaLabel="open debug tools"
+                    iconProps={
                       {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
+                        "iconName": "Cat",
                       }
                     }
-                    featureFlagData={{}}
                   />
-                  <HamburgerMenuButton
-                    deps={
-                      {
-                        "dropdownClickHandler": {},
-                        "launchPanelHeaderClickHandler": {},
-                        "popupActionMessageCreator": {},
-                      }
-                    }
-                    featureFlagData={{}}
-                    header={[Circular]}
-                    popupWindow={{}}
-                  />
-                </React.Fragment>
-              </div>,
-              <div
-                className="subtitle"
-              >
-                test subtitle
-              </div>,
-            ],
-            "className": "launchPanelHeader",
+                }
+                featureFlag="debugTools"
+                featureFlagStoreData={{}}
+              />
+              <GearOptionsButtonComponent
+                deps={
+                  {
+                    "dropdownClickHandler": {},
+                    "launchPanelHeaderClickHandler": {},
+                    "popupActionMessageCreator": {},
+                  }
+                }
+                featureFlagData={{}}
+              />
+              <HamburgerMenuButton
+                deps={
+                  {
+                    "dropdownClickHandler": {},
+                    "launchPanelHeaderClickHandler": {},
+                    "popupActionMessageCreator": {},
+                  }
+                }
+                featureFlagData={{}}
+                header={[Circular]}
+                popupWindow={{}}
+              />
+            </React.Fragment>,
+            "subtitle": "test subtitle",
+            "title": "test title",
           },
           "memoizedState": null,
           "mode": 0,
           "nextEffect": null,
           "pendingProps": {
-            "children": [
-              <h1
-                className="title"
-              >
-                test title
-              </h1>,
-              <div
-                className="children"
+            "children": <React.Fragment>
+              <FlaggedComponent
+                enableJSXElement={
+                  <CustomizedIconButton
+                    ariaLabel="open debug tools"
+                    iconProps={
+                      {
+                        "iconName": "Cat",
+                      }
+                    }
+                  />
+                }
+                featureFlag="debugTools"
+                featureFlagStoreData={{}}
+              />
+              <GearOptionsButtonComponent
+                deps={
+                  {
+                    "dropdownClickHandler": {},
+                    "launchPanelHeaderClickHandler": {},
+                    "popupActionMessageCreator": {},
+                  }
+                }
+                featureFlagData={{}}
+              />
+              <HamburgerMenuButton
+                deps={
+                  {
+                    "dropdownClickHandler": {},
+                    "launchPanelHeaderClickHandler": {},
+                    "popupActionMessageCreator": {},
+                  }
+                }
+                featureFlagData={{}}
+                header={[Circular]}
+                popupWindow={{}}
+              />
+            </React.Fragment>,
+            "subtitle": "test subtitle",
+            "title": "test title",
+          },
+          "ref": null,
+          "return": [Circular],
+          "selfBaseDuration": 0,
+          "sibling": null,
+          "stateNode": <mock-header
+            subtitle="test subtitle"
+            title="test title"
+          >
+            <mock-flaggedcomponent
+              enablejsxelement="[object Object]"
+              featureflag="debugTools"
+              featureflagstoredata="[object Object]"
+            />
+            <mock-gearoptionsbuttoncomponent
+              deps="[object Object]"
+              featureflagdata="[object Object]"
+            />
+            <mock-hamburgermenubutton
+              deps="[object Object]"
+              featureflagdata="[object Object]"
+              header="[object Object]"
+              popupwindow="[object Object]"
+            />
+          </mock-header>,
+          "tag": 5,
+          "treeBaseDuration": 0,
+          "type": "mock-Header",
+          "updateQueue": null,
+        },
+        "childExpirationTime": 0,
+        "dependencies": null,
+        "effectTag": 1,
+        "elementType": [MockFunction] {
+          "calls": [
+            [
+              {
+                "children": <React.Fragment>
+                  <FlaggedComponent
+                    enableJSXElement={
+                      <CustomizedIconButton
+                        ariaLabel="open debug tools"
+                        iconProps={
+                          {
+                            "iconName": "Cat",
+                          }
+                        }
+                      />
+                    }
+                    featureFlag="debugTools"
+                    featureFlagStoreData={{}}
+                  />
+                  <GearOptionsButtonComponent
+                    deps={
+                      {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
+                      }
+                    }
+                    featureFlagData={{}}
+                  />
+                  <HamburgerMenuButton
+                    deps={
+                      {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
+                      }
+                    }
+                    featureFlagData={{}}
+                    header={[Circular]}
+                    popupWindow={{}}
+                  />
+                </React.Fragment>,
+                "subtitle": "test subtitle",
+                "title": "test title",
+              },
+              {},
+            ],
+          ],
+          "results": [
+            {
+              "type": "return",
+              "value": <mock-Header
+                subtitle="test subtitle"
+                title="test title"
               >
                 <React.Fragment>
                   <FlaggedComponent
@@ -989,61 +860,10 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                     popupWindow={{}}
                   />
                 </React.Fragment>
-              </div>,
-              <div
-                className="subtitle"
-              >
-                test subtitle
-              </div>,
-            ],
-            "className": "launchPanelHeader",
-          },
-          "ref": null,
-          "return": [Circular],
-          "selfBaseDuration": 0,
-          "sibling": null,
-          "stateNode": <header
-            class="launchPanelHeader"
-          >
-            <h1
-              class="title"
-            >
-              test title
-            </h1>
-            <div
-              class="children"
-            >
-              <mock-flaggedcomponent
-                enablejsxelement="[object Object]"
-                featureflag="debugTools"
-                featureflagstoredata="[object Object]"
-              />
-              <mock-gearoptionsbuttoncomponent
-                deps="[object Object]"
-                featureflagdata="[object Object]"
-              />
-              <mock-hamburgermenubutton
-                deps="[object Object]"
-                featureflagdata="[object Object]"
-                header="[object Object]"
-                popupwindow="[object Object]"
-              />
-            </div>
-            <div
-              class="subtitle"
-            >
-              test subtitle
-            </div>
-          </header>,
-          "tag": 5,
-          "treeBaseDuration": 0,
-          "type": "header",
-          "updateQueue": null,
+              </mock-Header>,
+            },
+          ],
         },
-        "childExpirationTime": 0,
-        "dependencies": null,
-        "effectTag": 1,
-        "elementType": [Function],
         "expirationTime": 0,
         "firstEffect": null,
         "index": 0,
@@ -1143,7 +963,103 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
         "stateNode": null,
         "tag": 0,
         "treeBaseDuration": 0,
-        "type": [Function],
+        "type": [MockFunction] {
+          "calls": [
+            [
+              {
+                "children": <React.Fragment>
+                  <FlaggedComponent
+                    enableJSXElement={
+                      <CustomizedIconButton
+                        ariaLabel="open debug tools"
+                        iconProps={
+                          {
+                            "iconName": "Cat",
+                          }
+                        }
+                      />
+                    }
+                    featureFlag="debugTools"
+                    featureFlagStoreData={{}}
+                  />
+                  <GearOptionsButtonComponent
+                    deps={
+                      {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
+                      }
+                    }
+                    featureFlagData={{}}
+                  />
+                  <HamburgerMenuButton
+                    deps={
+                      {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
+                      }
+                    }
+                    featureFlagData={{}}
+                    header={[Circular]}
+                    popupWindow={{}}
+                  />
+                </React.Fragment>,
+                "subtitle": "test subtitle",
+                "title": "test title",
+              },
+              {},
+            ],
+          ],
+          "results": [
+            {
+              "type": "return",
+              "value": <mock-Header
+                subtitle="test subtitle"
+                title="test title"
+              >
+                <React.Fragment>
+                  <FlaggedComponent
+                    enableJSXElement={
+                      <CustomizedIconButton
+                        ariaLabel="open debug tools"
+                        iconProps={
+                          {
+                            "iconName": "Cat",
+                          }
+                        }
+                      />
+                    }
+                    featureFlag="debugTools"
+                    featureFlagStoreData={{}}
+                  />
+                  <GearOptionsButtonComponent
+                    deps={
+                      {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
+                      }
+                    }
+                    featureFlagData={{}}
+                  />
+                  <HamburgerMenuButton
+                    deps={
+                      {
+                        "dropdownClickHandler": {},
+                        "launchPanelHeaderClickHandler": {},
+                        "popupActionMessageCreator": {},
+                      }
+                    }
+                    featureFlagData={{}}
+                    header={[Circular]}
+                    popupWindow={{}}
+                  />
+                </React.Fragment>
+              </mock-Header>,
+            },
+          ],
+        },
         "updateQueue": null,
       },
       "childExpirationTime": 0,
@@ -1232,39 +1148,26 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
             "callbackNode": null,
             "callbackPriority": 90,
             "containerInfo": <div>
-              <header
-                class="launchPanelHeader"
+              <mock-header
+                subtitle="test subtitle"
+                title="test title"
               >
-                <h1
-                  class="title"
-                >
-                  test title
-                </h1>
-                <div
-                  class="children"
-                >
-                  <mock-flaggedcomponent
-                    enablejsxelement="[object Object]"
-                    featureflag="debugTools"
-                    featureflagstoredata="[object Object]"
-                  />
-                  <mock-gearoptionsbuttoncomponent
-                    deps="[object Object]"
-                    featureflagdata="[object Object]"
-                  />
-                  <mock-hamburgermenubutton
-                    deps="[object Object]"
-                    featureflagdata="[object Object]"
-                    header="[object Object]"
-                    popupwindow="[object Object]"
-                  />
-                </div>
-                <div
-                  class="subtitle"
-                >
-                  test subtitle
-                </div>
-              </header>
+                <mock-flaggedcomponent
+                  enablejsxelement="[object Object]"
+                  featureflag="debugTools"
+                  featureflagstoredata="[object Object]"
+                />
+                <mock-gearoptionsbuttoncomponent
+                  deps="[object Object]"
+                  featureflagdata="[object Object]"
+                />
+                <mock-hamburgermenubutton
+                  deps="[object Object]"
+                  featureflagdata="[object Object]"
+                  header="[object Object]"
+                  popupwindow="[object Object]"
+                />
+              </mock-header>
             </div>,
             "context": {},
             "current": [Circular],
@@ -1366,39 +1269,26 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
           "callbackNode": null,
           "callbackPriority": 90,
           "containerInfo": <div>
-            <header
-              class="launchPanelHeader"
+            <mock-header
+              subtitle="test subtitle"
+              title="test title"
             >
-              <h1
-                class="title"
-              >
-                test title
-              </h1>
-              <div
-                class="children"
-              >
-                <mock-flaggedcomponent
-                  enablejsxelement="[object Object]"
-                  featureflag="debugTools"
-                  featureflagstoredata="[object Object]"
-                />
-                <mock-gearoptionsbuttoncomponent
-                  deps="[object Object]"
-                  featureflagdata="[object Object]"
-                />
-                <mock-hamburgermenubutton
-                  deps="[object Object]"
-                  featureflagdata="[object Object]"
-                  header="[object Object]"
-                  popupwindow="[object Object]"
-                />
-              </div>
-              <div
-                class="subtitle"
-              >
-                test subtitle
-              </div>
-            </header>
+              <mock-flaggedcomponent
+                enablejsxelement="[object Object]"
+                featureflag="debugTools"
+                featureflagstoredata="[object Object]"
+              />
+              <mock-gearoptionsbuttoncomponent
+                deps="[object Object]"
+                featureflagdata="[object Object]"
+              />
+              <mock-hamburgermenubutton
+                deps="[object Object]"
+                featureflagdata="[object Object]"
+                header="[object Object]"
+                popupwindow="[object Object]"
+              />
+            </mock-header>
           </div>,
           "context": {},
           "current": [Circular],

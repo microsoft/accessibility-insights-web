@@ -56,7 +56,7 @@ describe('FileUrlUnsupportedMessagePanel', () => {
 
         render(<FileUrlUnsupportedMessagePanel {...props} />);
 
-        getMockComponentClassPropsForCall(NewTabLink).onClick(event);
+        getMockComponentClassPropsForCall(NewTabLink).onClick();
 
         await flushSettledPromises();
         browserAdapterMock.verifyAll();

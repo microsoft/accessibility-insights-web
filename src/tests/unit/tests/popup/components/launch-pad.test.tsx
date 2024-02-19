@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import { toolName } from 'content/strings/application';
 import * as React from 'react';
 
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { ExternalLink } from '../../../../../common/components/external-link';
 import {
     LaunchPad,
@@ -15,7 +16,11 @@ import { LaunchPadItemRow } from '../../../../../popup/components/launch-pad-ite
 
 const AXE_CORE_VERSION = 'axe.core.version';
 
+jest.mock('../../../../../common/components/external-link');
+jest.mock('../../../../../popup/components/launch-pad-item-row');
+
 describe('LaunchPad', () => {
+    mockReactComponents([ExternalLink, LaunchPadItemRow]);
     const rowConfigs: LaunchPadRowConfiguration[] = [
         {
             iconName: 'Rocket',
@@ -108,6 +113,6 @@ describe('LaunchPad', () => {
             </div>
         );
 
-        expect(render(testObject.render()).debug()).toEqual(render(expected).debug());
+        expect(render(testObject.render()).asFragment()).toEqual(render(expected).asFragment());
     });
 });

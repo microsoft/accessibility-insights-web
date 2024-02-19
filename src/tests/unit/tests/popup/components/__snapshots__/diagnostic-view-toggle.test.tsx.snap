@@ -143,7 +143,9 @@ exports[`DiagnosticViewToggleTest renders toggle when scanning for a different v
 {
   "checked": false,
   "componentRef": {
-    "current": null,
+    "current": {
+      "focus": [MockFunction],
+    },
   },
   "disabled": true,
   "onBlur": [Function],

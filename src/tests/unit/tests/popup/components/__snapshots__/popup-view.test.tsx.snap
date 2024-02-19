@@ -55,9 +55,27 @@ exports[`PopupView render actual content render toggles view: launch pad 1`] = `
 </DocumentFragment>
 `;
 
-exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `undefined`;
+exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `
+<DocumentFragment>
+  <mock-newtablink
+    href="https://go.microsoft.com/fwlink/?linkid=2082374"
+  >
+    Watch 3-minute video introduction
+  </mock-newtablink>
+   
+</DocumentFragment>
+`;
 
-exports[`PopupView render actual content render toggles view: launch pad: subtitle 2`] = `undefined`;
+exports[`PopupView render actual content render toggles view: launch pad: subtitle 2`] = `
+<DocumentFragment>
+  <mock-newtablink
+    href="https://go.microsoft.com/fwlink/?linkid=2082374"
+  >
+    Watch 3-minute video introduction
+  </mock-newtablink>
+   
+</DocumentFragment>
+`;
 
 exports[`PopupView render actual content render toggles view: launch pad: subtitle 3`] = `
 <React.Fragment>

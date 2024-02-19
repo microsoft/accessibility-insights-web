@@ -3,6 +3,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Header } from 'common/components/header';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { TelemetryPermissionDialog } from 'common/components/telemetry-permission-dialog';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
@@ -42,6 +43,7 @@ jest.mock('popup/components/launch-pad');
 jest.mock('popup/components/launch-panel-header');
 jest.mock('popup/components/file-url-unsupported-message-panel');
 jest.mock('react-router-dom');
+jest.mock('common/components/new-tab-link');
 
 describe('PopupView', () => {
     mockReactComponents([
@@ -51,6 +53,7 @@ describe('PopupView', () => {
         AdHocToolsPanel,
         Header,
         FileUrlUnsupportedMessagePanel,
+        NewTabLink,
     ]);
     const browserAdapterStub = {
         getManifest: getManifestStub,
@@ -171,11 +174,11 @@ describe('PopupView', () => {
 
             const Subtitle = () => getMockComponentClassPropsForCall(LaunchPanelHeader).subtitle;
             const renderedSubtitle = render(<Subtitle />);
-            expect(renderedSubtitle.debug()).toMatchSnapshot('subtitle');
+            expect(renderedSubtitle.asFragment()).toMatchSnapshot('subtitle');
             const link = renderedSubtitle.getByText('Watch 3-minute video introduction');
             fireEvent.click(link);
             actionMessageCreatorStrictMock.verify(ac => ac.openTutorial(It.isAny()), Times.once());
-            expect(renderedSubtitle.debug()).toMatchSnapshot('subtitle');
+            expect(renderedSubtitle.asFragment()).toMatchSnapshot('subtitle');
             expect(Subtitle()).toMatchSnapshot('subtitle');
             handlerMock.verifyAll();
         });
@@ -278,7 +281,6 @@ describe('PopupView', () => {
                 .build();
             props.deps.storesHub = storesHubMock.object;
             const rendered = render(<PopupView {...props} />);
-
             expect(rendered.asFragment()).toMatchSnapshot();
             handlerMock.verifyAll();
         });
