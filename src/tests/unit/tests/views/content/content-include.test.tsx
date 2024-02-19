@@ -7,7 +7,6 @@ import { ContentInclude } from 'views/content/content-include';
 import { ContentPage } from 'views/content/content-page';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
-jest.mock('views/content/content');
 describe('ContentInclude', () => {
     const content = {
         for: {

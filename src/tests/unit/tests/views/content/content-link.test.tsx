@@ -15,9 +15,10 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 
 jest.mock('common/components/new-tab-link-with-tooltip');
 jest.mock('common/components/new-tab-link');
+jest.mock('@fluentui/react')
 
 describe('ContentLink', () => {
-    mockReactComponents([NewTabLinkWithTooltip, NewTabLink]);
+    mockReactComponents([NewTabLinkWithTooltip, NewTabLink, (Icon as any).type]);
     const contentPath = 'for/testing';
     const content = {
         for: {
