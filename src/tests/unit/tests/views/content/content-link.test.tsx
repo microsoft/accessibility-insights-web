@@ -12,10 +12,11 @@ import {
 import { ContentLink } from 'views/content/content-link';
 import { ContentPage } from 'views/content/content-page';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
+import { Icon } from '@fluentui/react';
 
 jest.mock('common/components/new-tab-link-with-tooltip');
 jest.mock('common/components/new-tab-link');
-jest.mock('@fluentui/react')
+jest.mock('@fluentui/react');
 
 describe('ContentLink', () => {
     mockReactComponents([NewTabLinkWithTooltip, NewTabLink, (Icon as any).type]);
