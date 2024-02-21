@@ -192,7 +192,6 @@ describe('DetailsDialog', () => {
                 const testSubject = new DetailsDialog(props);
                 render(testSubject.render());
 
-                render(<DetailsDialog {...props} />);
                 getMockComponentClassPropsForCall(CommandBar).onClickCopyIssueDetailsButton(
                     eventStub,
                 );
@@ -224,8 +223,6 @@ describe('DetailsDialog', () => {
                 const testSubject = new DetailsDialog(props);
                 render(testSubject.render());
 
-                render(<DetailsDialog {...props} />);
-
                 getMockComponentClassPropsForCall(CommandBar).onClickInspectButton(eventStub);
 
                 clickHandlerMock.verify(handler => handler(testSubject, eventStub), Times.once());
@@ -253,8 +250,6 @@ describe('DetailsDialog', () => {
                 };
                 const testSubject = new DetailsDialog(props);
                 render(testSubject.render());
-
-                render(<DetailsDialog {...props} />);
 
                 getMockComponentClassPropsForCall(CommandBar).shouldShowInspectButtonMessage();
 
