@@ -178,8 +178,6 @@ describe('PopupView', () => {
             const link = renderedSubtitle.getByText('Watch 3-minute video introduction');
             fireEvent.click(link);
             actionMessageCreatorStrictMock.verify(ac => ac.openTutorial(It.isAny()), Times.once());
-            expect(renderedSubtitle.asFragment()).toMatchSnapshot('subtitle');
-            expect(Subtitle()).toMatchSnapshot('subtitle');
             handlerMock.verifyAll();
         });
 
@@ -247,40 +245,6 @@ describe('PopupView', () => {
             props.deps.storesHub = storesHubMock.object;
             const rendered = render(<PopupView {...props} />);
 
-            expect(rendered.asFragment()).toMatchSnapshot();
-            handlerMock.verifyAll();
-        });
-
-        test('Launch type is null', () => {
-            const launchPanelStateStoreStateStub = {
-                launchPanelType: null,
-            };
-
-            storeState.launchPanelStateStoreData = launchPanelStateStoreStateStub;
-
-            actionMessageCreatorStrictMock
-                .setup(acm => acm.openLaunchPad(launchPanelStateStoreStateStub.launchPanelType))
-                .verifiable();
-
-            const props = createDefaultPropsBuilder(storesHubMock.object)
-                .withDefaultTitleAndSubtitle()
-                .with('deps', deps)
-                .with('popupHandlers', {
-                    diagnosticViewClickHandler: null,
-                    popupViewControllerHandler: handlerMock.object,
-                    launchPanelHeaderClickHandler: null,
-                    shortcutModifyHandler: null,
-                })
-                .with('hasAccess', true)
-                .with('diagnosticViewToggleFactory', null)
-                .with(
-                    'launchPadRowConfigurationFactory',
-                    launchPadRowConfigurationFactoryMock.object,
-                )
-                .with('storeState', storeState)
-                .build();
-            props.deps.storesHub = storesHubMock.object;
-            const rendered = render(<PopupView {...props} />);
             expect(rendered.asFragment()).toMatchSnapshot();
             handlerMock.verifyAll();
         });

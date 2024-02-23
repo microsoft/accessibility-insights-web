@@ -224,17 +224,17 @@ describe('DiagnosticViewToggleTest', () => {
                 .setupOpenDetailsViewCall(event)
                 .setupDeps(depsMock.object);
 
-            const props = propsBuilder.build();
+            const props: DiagnosticViewToggleProps = propsBuilder.build();
 
-            const wrapper = render(<DiagnosticViewToggle {...props} />);
+            const component = React.createElement(DiagnosticViewToggle, props);
 
-            const toggleProps = getMockComponentClassPropsForCall(VisualizationToggle);
-            const toggle = toggleProps.componentRef.current;
-            wrapper.rerender(<DiagnosticViewToggle {...props} />);
-            toggleProps.onFocus();
-
-            expect(toggle.focus).toHaveBeenCalledTimes(1);
+            const testObject = TestUtils.renderIntoDocument(component);
+            (testObject as any)._isMounted = false;
+            (testObject as any).state.isFocused = true;
+            (testObject as any).componentDidMount();
+            expect((testObject as any).toggle.current.focus).toHaveBeenCalledTimes(1);
         });
+
 
         it('sets focus when componentDidUpdate', () => {
             const visualizationType = VisualizationType.TabStops;
@@ -250,14 +250,14 @@ describe('DiagnosticViewToggleTest', () => {
                 .setupDeps(depsMock.object);
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
-            const wrapper = render(<DiagnosticViewToggle {...props} />);
-            wrapper.rerender(<DiagnosticViewToggle {...props} />);
 
-            const toggleProps = getMockComponentClassPropsForCall(VisualizationToggle);
-            const toggle = toggleProps.componentRef.current;
-            // sets state.isFocused to true
-            toggleProps.onFocus();
-            expect(toggle.focus).toHaveBeenCalledTimes(1);
+            const component = React.createElement(DiagnosticViewToggle, props);
+
+            const testObject = TestUtils.renderIntoDocument(component);
+            (testObject as any)._isMounted = true;
+            (testObject as any).state.isFocused = true;
+            (testObject as any).componentDidUpdate();
+            expect((testObject as any).toggle.current.focus).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -367,8 +367,8 @@ class DiagnosticViewTogglePropsBuilder {
     private clickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
     private telemetrySource: TelemetryEventSource;
     private shortcutCommands: chrome.commands.Command[] = ShortcutCommandsTestData;
-    private querySelectorMock = Mock.ofInstance(selector => {});
-    private addEventListenerMock = Mock.ofInstance((e, ev) => {});
+    private querySelectorMock = Mock.ofInstance(selector => { });
+    private addEventListenerMock = Mock.ofInstance((e, ev) => { });
     private featureFlags: DictionaryStringTo<boolean> = {};
     private deps: ContentLinkDeps = {} as ContentLinkDeps;
     private configurationStub: VisualizationConfiguration;

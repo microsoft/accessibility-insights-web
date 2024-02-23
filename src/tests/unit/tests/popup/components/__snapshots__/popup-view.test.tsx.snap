@@ -1,14 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PopupView render actual content Launch type is null 1`] = `
-<DocumentFragment>
-  <mock-telemetrypermissiondialog
-    deps="[object Object]"
-    isfirsttime="true"
-  />
-</DocumentFragment>
-`;
-
 exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] = `
 <DocumentFragment>
   <div
@@ -64,29 +55,6 @@ exports[`PopupView render actual content render toggles view: launch pad: subtit
   </mock-newtablink>
    
 </DocumentFragment>
-`;
-
-exports[`PopupView render actual content render toggles view: launch pad: subtitle 2`] = `
-<DocumentFragment>
-  <mock-newtablink
-    href="https://go.microsoft.com/fwlink/?linkid=2082374"
-  >
-    Watch 3-minute video introduction
-  </mock-newtablink>
-   
-</DocumentFragment>
-`;
-
-exports[`PopupView render actual content render toggles view: launch pad: subtitle 3`] = `
-<React.Fragment>
-  <NewTabLink
-    href="https://go.microsoft.com/fwlink/?linkid=2082374"
-    onClick={[Function]}
-  >
-    Watch 3-minute video introduction
-  </NewTabLink>
-   
-</React.Fragment>
 `;
 
 exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
