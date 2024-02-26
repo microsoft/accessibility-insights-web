@@ -3,7 +3,6 @@
 exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = `
 <DocumentFragment>
   <mock-changeassessmentdialog
-    deps="[object Object]"
     dialogcontenttitle="Assessment in progress"
     dialogfirsttext="[object Object]"
     dialognotetext="If 'Continue previous' is selected, the assessment selected will not be loaded."
@@ -22,11 +21,6 @@ exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = 
 
 exports[`LoadAssessmentDialog should not show when isOpen is set to false: ChangeAssessmentDialog props 1`] = `
 {
-  "deps": {
-    "detailsViewId": undefined,
-    "getAssessmentActionMessageCreator": [Function],
-    "urlParser": [typemoq mock object],
-  },
   "dialogContentTitle": "Assessment in progress",
   "dialogFirstText": <React.Fragment>
     Would you like to continue your current assessment or load the new assessment?
@@ -53,7 +47,6 @@ exports[`LoadAssessmentDialog should not show when isOpen is set to false: Chang
 exports[`LoadAssessmentDialog should show when isOpen is set to true 1`] = `
 <DocumentFragment>
   <mock-changeassessmentdialog
-    deps="[object Object]"
     dialogcontenttitle="Assessment in progress"
     dialogfirsttext="[object Object]"
     dialognotetext="If 'Continue previous' is selected, the assessment selected will not be loaded."
@@ -72,11 +65,6 @@ exports[`LoadAssessmentDialog should show when isOpen is set to true 1`] = `
 
 exports[`LoadAssessmentDialog should show when isOpen is set to true: ChangeAssessmentDialog props 1`] = `
 {
-  "deps": {
-    "detailsViewId": undefined,
-    "getAssessmentActionMessageCreator": [Function],
-    "urlParser": [typemoq mock object],
-  },
   "dialogContentTitle": "Assessment in progress",
   "dialogFirstText": <React.Fragment>
     Would you like to continue your current assessment or load the new assessment?
