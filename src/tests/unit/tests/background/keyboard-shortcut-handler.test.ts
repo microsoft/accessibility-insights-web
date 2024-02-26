@@ -179,7 +179,6 @@ describe('KeyboardShortcutHandler', () => {
             await commandCallback(configuration.chromeCommand);
 
             expect(receivedMessage).toEqual({
-                tabId: existingTabId,
                 messageType: Messages.Visualizations.Common.Toggle,
                 payload: {
                     enabled: true,
@@ -216,7 +215,6 @@ describe('KeyboardShortcutHandler', () => {
             await commandCallback(configuration.chromeCommand);
 
             expect(receivedMessage).toEqual({
-                tabId: existingTabId,
                 messageType: Messages.Visualizations.Common.Toggle,
                 payload: {
                     enabled: false,

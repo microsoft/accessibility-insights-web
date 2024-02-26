@@ -104,7 +104,6 @@ describe('FeatureFlagsControllerTest', () => {
     test('resetFeatureFlags', async () => {
         const message: InterpreterMessage = {
             messageType: Messages.FeatureFlags.ResetFeatureFlag,
-            tabId: null,
         };
         interpreterMock
             .setup(i => i.interpret(It.isObjectWith(message)))
