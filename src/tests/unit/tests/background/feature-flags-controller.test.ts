@@ -7,7 +7,7 @@ import { Interpreter } from 'background/interpreter';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { FeatureFlags } from '../../../../common/feature-flags';
-import { Message } from '../../../../common/message';
+import { InterpreterMessage } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 
@@ -73,10 +73,9 @@ describe('FeatureFlagsControllerTest', () => {
             feature,
             enabled,
         };
-        const message: Message = {
+        const message: InterpreterMessage = {
             messageType: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
-            tabId: null,
         };
 
         interpreterMock
@@ -103,7 +102,7 @@ describe('FeatureFlagsControllerTest', () => {
     });
 
     test('resetFeatureFlags', async () => {
-        const message: Message = {
+        const message: InterpreterMessage = {
             messageType: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };

@@ -74,7 +74,6 @@ describe('ExtensionDetailsViewController', () => {
                     i(3, {
                         messageType: Messages.Visualizations.DetailsView.Close,
                         payload: null,
-                        tabId: 3,
                     }),
                 )
                 .returns(() => ({ messageHandled: true, result: undefined }))
@@ -258,7 +257,6 @@ describe('ExtensionDetailsViewController', () => {
             interpretMessageForTabMock
                 .setup(i =>
                     i(targetTabId, {
-                        tabId: targetTabId,
                         payload: null,
                         messageType: Messages.Visualizations.DetailsView.Close,
                     }),
@@ -486,7 +484,6 @@ describe('ExtensionDetailsViewController', () => {
             interpretMessageForTabMock
                 .setup(i =>
                     i(targetTabId, {
-                        tabId: targetTabId,
                         payload: null,
                         messageType: Messages.Visualizations.DetailsView.Close,
                     }),

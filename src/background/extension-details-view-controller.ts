@@ -123,7 +123,6 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         const response = this.interpretMessageForTab(targetTabId, {
             messageType: Messages.Visualizations.DetailsView.Close,
             payload: null,
-            tabId: targetTabId,
         });
         await response.result;
     }

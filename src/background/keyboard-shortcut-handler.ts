@@ -169,7 +169,6 @@ export class KeyboardShortcutHandler {
         };
 
         const response = this.tabContextManager.interpretMessageForTab(tabId, {
-            tabId: tabId,
             messageType: action,
             payload,
         });
