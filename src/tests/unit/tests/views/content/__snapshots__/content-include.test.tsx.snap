@@ -1,13 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentInclude renders from content 1`] = `
-"<div className="content">
-  <ContentPageComponent deps={{...}} />
-</div>"
+<DocumentFragment>
+  <div
+    class="content"
+  >
+    CONTENT FOR TESTING
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ContentInclude renders from path 1`] = `
-"<div className="content">
-  <ContentPageComponent deps={{...}} />
-</div>"
+<DocumentFragment>
+  <div
+    class="content"
+  >
+    CONTENT FOR TESTING
+  </div>
+</DocumentFragment>
 `;

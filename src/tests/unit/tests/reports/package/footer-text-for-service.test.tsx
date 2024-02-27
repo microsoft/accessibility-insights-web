@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ToolLink } from 'reports/components/report-sections/tool-link';
 import { FooterTextForService } from 'reports/package/footer-text-for-service';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 
+jest.mock('reports/components/report-sections/tool-link');
 describe('FooterTextForService', () => {
+ mockReactComponents([ToolLink]);
     it('renders', () => {
         const toolData: ToolData = {
             scanEngineProperties: {
@@ -24,7 +28,7 @@ describe('FooterTextForService', () => {
         } as ScanMetadata;
 
 
-        const footerWrapper = shallow(<FooterTextForService  {...{ scanMetadata }} />);
-        expect(footerWrapper.getElement()).toMatchSnapshot('footer');
+        const renderResult = render(<FooterTextForService  {...{ scanMetadata }} />);
+        expect(renderResult.asFragment()).toMatchSnapshot('footer');
     });
 });
