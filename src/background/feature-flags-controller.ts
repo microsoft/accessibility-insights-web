@@ -43,6 +43,7 @@ export class FeatureFlagsController {
         const message: InterpreterMessage = {
             messageType: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
+            tabId: null,
         };
         const response = this.interpreter.interpret(message);
 

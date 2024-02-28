@@ -17,7 +17,7 @@ import { WebVisualizationConfigurationFactory } from 'common/configs/web-visuali
 import { DisplayableStrings } from 'common/constants/displayable-strings';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
-import { Message } from 'common/message';
+import { InterpreterMessage } from 'common/message';
 import { Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
@@ -167,18 +167,19 @@ describe('KeyboardShortcutHandler', () => {
             const configuration =
                 visualizationConfigurationFactory.getConfiguration(visualizationType);
 
-            let receivedMessage: Message;
+            let receivedMessage: InterpreterMessage;
             tabContextManagerMock
                 .setup(t => t.interpretMessageForTab(existingTabId, It.isAny()))
                 .returns((_tabId, message) => {
                     receivedMessage = message;
+                    receivedMessage.tabId = _tabId;
                     return { messageHandled: true, result: Promise.resolve() };
                 })
                 .verifiable();
 
             await commandCallback(configuration.chromeCommand);
-
             expect(receivedMessage).toEqual({
+                tabId: existingTabId,
                 messageType: Messages.Visualizations.Common.Toggle,
                 payload: {
                     enabled: true,
@@ -203,11 +204,12 @@ describe('KeyboardShortcutHandler', () => {
             const configuration =
                 visualizationConfigurationFactory.getConfiguration(visualizationType);
 
-            let receivedMessage: Message;
+            let receivedMessage: InterpreterMessage;
             tabContextManagerMock
                 .setup(t => t.interpretMessageForTab(existingTabId, It.isAny()))
                 .returns((_tabId, message) => {
                     receivedMessage = message;
+                    receivedMessage.tabId = _tabId;
                     return { messageHandled: true, result: Promise.resolve() };
                 })
                 .verifiable();
@@ -215,6 +217,7 @@ describe('KeyboardShortcutHandler', () => {
             await commandCallback(configuration.chromeCommand);
 
             expect(receivedMessage).toEqual({
+                tabId: existingTabId,
                 messageType: Messages.Visualizations.Common.Toggle,
                 payload: {
                     enabled: false,
