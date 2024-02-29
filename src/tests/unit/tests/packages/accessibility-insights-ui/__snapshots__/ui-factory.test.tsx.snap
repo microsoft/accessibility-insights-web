@@ -1,27 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UIFactory exports ContentView 1`] = `
-<Content
-  deps={
-    {
-      "getNarrowModeThresholds": [Function],
-      "storeActionMessageCreator": {
-        "getAllStates": [Function],
-      },
-      "storesHub": {
-        "addChangedListenerToAllStores": [Function],
-        "getAllStoreData": [Function],
-        "hasStoreData": [Function],
-        "hasStores": [Function],
-        "removeChangedListenerFromAllStores": [Function],
-        "stores": [],
-      },
-      "textContent": {
-        "applicationTitle": "THE_APPLICATION_TITLE",
-      },
-    }
-  }
->
-  CONTENTS
-</Content>
+<DocumentFragment>
+  <mock-content
+    deps="[object Object]"
+  >
+    CONTENTS
+  </mock-content>
+</DocumentFragment>
+`;
+
+exports[`UIFactory exports ContentView: Content props 1`] = `
+{
+  "children": "CONTENTS",
+  "deps": {
+    "getNarrowModeThresholds": [Function],
+    "storeActionMessageCreator": {
+      "getAllStates": [Function],
+    },
+    "storesHub": {
+      "addChangedListenerToAllStores": [Function],
+      "getAllStoreData": [Function],
+      "hasStoreData": [Function],
+      "hasStores": [Function],
+      "removeChangedListenerFromAllStores": [Function],
+      "stores": [],
+    },
+    "textContent": {
+      "applicationTitle": "THE_APPLICATION_TITLE",
+    },
+  },
+}
 `;

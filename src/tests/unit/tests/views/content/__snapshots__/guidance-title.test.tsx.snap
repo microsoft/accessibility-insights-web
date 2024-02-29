@@ -1,20 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`guidance title has correct structure 1`] = `
-<React.Fragment>
-  <HelmetWrapper
-    defer={true}
-    encodeSpecialCharacters={true}
+<DocumentFragment>
+  <mock-helmetwrapper
+    defer="true"
+    encodespecialcharacters="true"
   >
     <title>
-      Guidance for 
-      test
-       - 
-      Accessibility Insights for Web
+      Guidance for test - Accessibility Insights for Web
     </title>
-  </HelmetWrapper>
+  </mock-helmetwrapper>
   <h1>
     test
   </h1>
-</React.Fragment>
+</DocumentFragment>
 `;

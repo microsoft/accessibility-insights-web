@@ -1,38 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RequirementViewTitleFactoryTest getRequirementViewTitleForAssessment renders content from props 1`] = `
-<h1
-  className="requirementViewTitle"
->
-  test-requirement-name
-  <GuidanceTags
-    deps={{}}
-    links={
-      [
-        {
-          "href": "test-guidance-href",
-          "text": "test-guidance-text",
-        },
-      ]
-    }
-  />
-  <ContentPanelButton
-    contentTitle="test-requirement-name"
-    deps={{}}
-    iconName="info"
-    reference={
-      {
-        "pageTitle": "test-page-title",
-      }
-    }
-  />
-</h1>
+<DocumentFragment>
+  <h1
+    class="requirementViewTitle"
+  >
+    test-requirement-name
+    <mock-guidancetags
+      deps="[object Object]"
+      links="[object Object]"
+    />
+    <mock-contentpanelbutton
+      contenttitle="test-requirement-name"
+      deps="[object Object]"
+      iconname="info"
+      reference="[object Object]"
+    />
+  </h1>
+</DocumentFragment>
+`;
+
+exports[`RequirementViewTitleFactoryTest getRequirementViewTitleForAssessment renders content from props: ContentPanelButton props 1`] = `
+{
+  "contentTitle": "test-requirement-name",
+  "deps": {},
+  "iconName": "info",
+  "reference": {
+    "pageTitle": "test-page-title",
+  },
+}
+`;
+
+exports[`RequirementViewTitleFactoryTest getRequirementViewTitleForAssessment renders content from props: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "test-guidance-href",
+      "text": "test-guidance-text",
+    },
+  ],
+}
 `;
 
 exports[`RequirementViewTitleFactoryTest getRequirementViewTitleForQuickAssess renders content from props 1`] = `
-<h1
-  className="requirementViewTitle"
->
-  test-requirement-name
-</h1>
+<DocumentFragment>
+  <h1
+    class="requirementViewTitle"
+  >
+    test-requirement-name
+  </h1>
+</DocumentFragment>
 `;

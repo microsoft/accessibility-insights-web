@@ -1,37 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SaveAssessmentButton on dialog enabled snapshot of dialog 1`] = `
-<React.Fragment>
-  <InsightsCommandButton
+exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = `
+<DocumentFragment>
+  <mock-customizedactionbutton
     download="download"
     href="url"
-    iconProps={
-      {
-        "iconName": "Save",
-      }
-    }
-    onClick={[Function]}
+    iconprops="[object Object]"
   >
     Save assessment
-  </InsightsCommandButton>
-  <Dialog
-    dialogContentProps={
-      {
-        "title": "Assessment saved",
-        "type": 0,
-      }
-    }
-    hidden={false}
-    modalProps={
-      {
-        "containerClassName": "insightsDialogMainOverride",
-        "isBlocking": false,
-      }
-    }
-    onDismiss={[Function]}
+  </mock-customizedactionbutton>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
   >
     <div
-      className="dialogBody"
+      class="dialogBody"
     >
       To load this assessment, use the 
       <strong>
@@ -39,38 +23,32 @@ exports[`SaveAssessmentButton on dialog enabled snapshot of dialog 1`] = `
       </strong>
        button in the Accessibility Insights Assessment command bar.
     </div>
-    <StyledDialogFooterBase>
-      <Stack
-        horizontal={true}
-        horizontalAlign="space-between"
-        tokens={
-          {
-            "childrenGap": 6,
-          }
-        }
-        verticalAlign="center"
-        wrap={true}
+    <mock-styleddialogfooterbase>
+      <mock-stack
+        horizontal="true"
+        horizontalalign="space-between"
+        tokens="[object Object]"
+        verticalalign="center"
+        wrap="true"
       >
-        <StackItem
-          disableShrink={true}
-          grow={true}
+        <mock-stackitem
+          disableshrink="true"
+          grow="true"
         >
-          <StyledCheckboxBase
+          <mock-styledcheckboxbase
             label="Don't show again"
-            onChange={[Function]}
-            value={false}
+            value="false"
           />
-        </StackItem>
-        <StackItem
-          grow={true}
+        </mock-stackitem>
+        <mock-stackitem
+          grow="true"
         >
-          <CustomizedPrimaryButton
-            onClick={[Function]}
+          <mock-customizedprimarybutton
             text="Got it"
           />
-        </StackItem>
-      </Stack>
-    </StyledDialogFooterBase>
-  </Dialog>
-</React.Fragment>
+        </mock-stackitem>
+      </mock-stack>
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
 `;

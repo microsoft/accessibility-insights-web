@@ -1,19 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { FileURLProvider } from 'common/file-url-provider';
 import {
     ReportExportComponent,
     ReportExportComponentDeps,
     ReportExportComponentProps,
 } from 'DetailsView/components/report-export-component';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportExportService } from 'report-export/types/report-export-service';
 import { ReportNameGenerator } from 'reports/report-name-generator';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ExportDialog } from '../../../../../DetailsView/components/export-dialog';
+import {
+    mockReactComponents,
+    getMockComponentClassPropsForCall,
+} from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('../../../../../DetailsView/components/export-dialog');
 
 describe('ReportExportComponent', () => {
+    mockReactComponents([ExportDialog]);
     let deps: ReportExportComponentDeps;
     let props: ReportExportComponentProps;
     let reportNameGeneratorMock: IMock<ReportNameGenerator>;
@@ -36,7 +43,7 @@ describe('ReportExportComponent', () => {
     ];
 
     beforeEach(() => {
-        reportNameGeneratorMock = Mock.ofType<ReportNameGenerator>(null);
+        reportNameGeneratorMock = Mock.ofType(null);
         fileUrlProviderMock = Mock.ofType<FileURLProvider>();
         deps = {
             reportNameGenerator: reportNameGeneratorMock.object,
@@ -70,21 +77,21 @@ describe('ReportExportComponent', () => {
 
     test('render with dialog closed', () => {
         props.isOpen = false;
-        const wrapper = shallow(<ReportExportComponent {...props} />);
-        expect(wrapper.debug()).toMatchSnapshot();
+        const renderResult = render(<ReportExportComponent {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('render with dialog open', () => {
-        const wrapper = shallow(<ReportExportComponent {...props} />);
-        expect(wrapper.debug()).toMatchSnapshot();
+        const renderResult = render(<ReportExportComponent {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('dismiss dialog', () => {
         dismissDialogMock.setup(d => d()).verifiable(Times.once());
 
-        const wrapper = shallow(<ReportExportComponent {...props} />);
-        const exportDialog = wrapper.find(ExportDialog);
-        exportDialog.props().onClose();
+        render(<ReportExportComponent {...props} />);
+
+        getMockComponentClassPropsForCall(ExportDialog).onClose();
 
         dismissDialogMock.verifyAll();
     });
@@ -92,10 +99,8 @@ describe('ReportExportComponent', () => {
     test('afterDialogDismissed', () => {
         afterDialogDismissedMock.setup(d => d()).verifiable(Times.once());
 
-        const wrapper = shallow(<ReportExportComponent {...props} />);
-        const exportDialog = wrapper.find(ExportDialog);
-        exportDialog.props().afterDismissed();
-
+        render(<ReportExportComponent {...props} />);
+        getMockComponentClassPropsForCall(ExportDialog).afterDismissed();
         afterDialogDismissedMock.verifyAll();
     });
 
@@ -109,11 +114,11 @@ describe('ReportExportComponent', () => {
             .returns(() => exportName);
         getDescriptionMock.setup(g => g()).returns(() => exportDescription);
 
-        const wrapper = shallow(<ReportExportComponent {...prevProps} />);
-        wrapper.setProps(props);
-        wrapper.update();
+        const renderResult = render(<ReportExportComponent {...prevProps} />);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+        renderResult.rerender(<ReportExportComponent {...props} />);
+
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     // We expect fabric's TextView.value and our htmlGenerator to take responsibility for
@@ -127,19 +132,21 @@ describe('ReportExportComponent', () => {
             .returns(() => null)
             .verifiable(Times.once());
 
-        const wrapper = shallow(<ReportExportComponent {...props} />);
+        const renderResult = render(<ReportExportComponent {...props} />);
 
-        const dialog = wrapper.find(ExportDialog);
-        dialog.props().onDescriptionChange(testContentWithSpecials);
+        const dialog = getMockComponentClassPropsForCall(ExportDialog);
+        dialog.onDescriptionChange(testContentWithSpecials);
 
-        expect(wrapper.debug()).toMatchSnapshot(testContentWithSpecials);
+        expect(renderResult.asFragment()).toMatchSnapshot(testContentWithSpecials);
 
         updateDescriptionMock.verifyAll();
     });
 
     test('clicking export on the dialog triggers generateExports, generates json and html with the current exportDescription', () => {
-        const wrapper = shallow(<ReportExportComponent {...props} />);
-        wrapper.setState({ exportDescription: testContentWithSpecials });
+        const renderResult = render(<ReportExportComponent {...props} />);
+
+        const dialog = getMockComponentClassPropsForCall(ExportDialog);
+        dialog.onDescriptionChange(testContentWithSpecials);
 
         const htmlData = 'test html';
         const jsonData = 'test json';
@@ -162,11 +169,9 @@ describe('ReportExportComponent', () => {
             .returns(() => 'json url')
             .verifiable(Times.once());
 
-        const dialog = wrapper.find(ExportDialog);
+        dialog.generateExports();
 
-        dialog.props().generateExports();
-
-        expect(wrapper.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
 
         htmlGeneratorMock.verifyAll();
         jsonGeneratorMock.verifyAll();

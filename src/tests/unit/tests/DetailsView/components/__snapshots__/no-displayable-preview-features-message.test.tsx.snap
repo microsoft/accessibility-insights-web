@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`no displayableFeatureFlags message test the no feature flag message component 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="noPreviewFeatureMessage"
+    class="noPreviewFeatureMessage"
   >
     No preview features are currently available to manage. Follow this page for future cool features.
   </div>
-</React.Fragment>
+</DocumentFragment>
 `;

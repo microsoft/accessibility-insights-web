@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
@@ -13,13 +14,20 @@ import {
     AdhocStaticTestViewDeps,
     AdhocStaticTestViewProps,
 } from 'DetailsView/components/adhoc-static-test-view';
+import { StaticContentDetailsView } from 'DetailsView/components/static-content-details-view';
+import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { shallow } from 'enzyme';
+
 import * as React from 'react';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ContentReference } from 'views/content/content-page';
 
+jest.mock('DetailsView/components/target-page-changed-view');
+jest.mock('DetailsView/components/static-content-details-view');
+
 describe('AdhocStaticTestView', () => {
+    mockReactComponents([TargetPageChangedView, StaticContentDetailsView]);
     let props: AdhocStaticTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
@@ -81,8 +89,8 @@ describe('AdhocStaticTestView', () => {
         };
         props.content = Mock.ofType<ContentReference>().object;
 
-        const actual = shallow(<AdhocStaticTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
+        const actual = render(<AdhocStaticTestView {...props} />);
+        expect(actual.asFragment()).toMatchSnapshot();
         verifyAll();
     });
 
@@ -111,8 +119,8 @@ describe('AdhocStaticTestView', () => {
                 props.guidance = guidance;
             }
 
-            const wrapper = shallow(<AdhocStaticTestView {...props} />);
-            expect(wrapper.debug()).toMatchSnapshot();
+            const wrapper = render(<AdhocStaticTestView {...props} />);
+            expect(wrapper.asFragment()).toMatchSnapshot();
             verifyAll();
         });
     });

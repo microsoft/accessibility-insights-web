@@ -1,21 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HighlightBox renders null when boxConfig is null 1`] = `null`;
+exports[`HighlightBox renders null when boxConfig is null 1`] = `<DocumentFragment />`;
 
 exports[`HighlightBox renders with appropriate styles/elements when boxConfig is set 1`] = `
-<div
-  className="insights-highlight-text some class name"
-  onClick={[Function]}
-  style={
-    {
-      "background": "green",
-      "color": "red",
-      "cursor": "auto",
-      "textAlign": "center",
-      "width": "100",
-    }
-  }
->
-  some text
-</div>
+<DocumentFragment>
+  <div
+    class="insights-highlight-text some class name"
+    style="background: green; color: red; cursor: auto; text-align: center;"
+  >
+    some text
+  </div>
+</DocumentFragment>
 `;

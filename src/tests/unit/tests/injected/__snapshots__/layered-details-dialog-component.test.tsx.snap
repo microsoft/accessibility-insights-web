@@ -1,17 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LayeredDetailsDialogComponent renders per snapshot 1`] = `
-<LayerHost
-  dir="ltr"
-  id="insights-dialog-layer-host"
->
-  <DetailsDialog
-    deps={
-      {
-        "getRTL": [Function],
-      }
-    }
-    devToolActionMessageCreator="devToolActionMessageCreator"
-  />
-</LayerHost>
+<DocumentFragment>
+  <mock-layerhost
+    dir="ltr"
+    id="insights-dialog-layer-host"
+  >
+    <mock-detailsdialog
+      deps="[object Object]"
+      devtoolactionmessagecreator="devToolActionMessageCreator"
+    />
+  </mock-layerhost>
+</DocumentFragment>
+`;
+
+exports[`LayeredDetailsDialogComponent renders per snapshot: DetailsDialog props 1`] = `
+{
+  "deps": {
+    "getRTL": [Function],
+  },
+  "devToolActionMessageCreator": "devToolActionMessageCreator",
+}
 `;

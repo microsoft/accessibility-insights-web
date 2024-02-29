@@ -1,91 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": false, "nextButtonDisabled": false} 1`] = `
-<div
-  className="insights-dialog-next-and-back-container"
->
-  <div>
-    <CustomizedDefaultButton
-      data-automation-id="back"
-      onClick={[Function]}
-      text="< Back"
-    />
+<DocumentFragment>
+  <div
+    class="insights-dialog-next-and-back-container"
+  >
+    <div>
+      <mock-customizeddefaultbutton
+        data-automation-id="back"
+        text="< Back"
+      />
+    </div>
+    <div />
+    <div>
+      <mock-customizeddefaultbutton
+        data-automation-id="next"
+        text="Next >"
+      />
+    </div>
   </div>
-  <div />
-  <div>
-    <CustomizedDefaultButton
-      data-automation-id="next"
-      onClick={[Function]}
-      text="Next >"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": false, "nextButtonDisabled": true} 1`] = `
-<div
-  className="insights-dialog-next-and-back-container"
->
-  <div>
-    <CustomizedDefaultButton
-      data-automation-id="back"
-      onClick={[Function]}
-      text="< Back"
-    />
+<DocumentFragment>
+  <div
+    class="insights-dialog-next-and-back-container"
+  >
+    <div>
+      <mock-customizeddefaultbutton
+        data-automation-id="back"
+        text="< Back"
+      />
+    </div>
+    <div />
+    <div />
   </div>
-  <div />
-  <div />
-</div>
+</DocumentFragment>
 `;
 
 exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": true, "nextButtonDisabled": false} 1`] = `
-<div
-  className="insights-dialog-next-and-back-container"
->
-  <div />
-  <div />
-  <div>
-    <CustomizedDefaultButton
-      data-automation-id="next"
-      onClick={[Function]}
-      text="Next >"
-    />
+<DocumentFragment>
+  <div
+    class="insights-dialog-next-and-back-container"
+  >
+    <div />
+    <div />
+    <div>
+      <mock-customizeddefaultbutton
+        data-automation-id="next"
+        text="Next >"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": true, "nextButtonDisabled": true} 1`] = `
-<div
-  className="insights-dialog-next-and-back-container"
->
-  <div />
-  <div />
-  <div />
-</div>
+<DocumentFragment>
+  <div
+    class="insights-dialog-next-and-back-container"
+  >
+    <div />
+    <div />
+    <div />
+  </div>
+</DocumentFragment>
 `;
 
-exports[`IssueDetailsNavigationControls render handles failures count 0 failures 1`] = `null`;
+exports[`IssueDetailsNavigationControls render handles failures count 0 failures 1`] = `<DocumentFragment />`;
 
-exports[`IssueDetailsNavigationControls render handles failures count 1 failure 1`] = `null`;
+exports[`IssueDetailsNavigationControls render handles failures count 1 failure 1`] = `<DocumentFragment />`;
 
 exports[`IssueDetailsNavigationControls render handles failures count multiple failures 1`] = `
-<div
-  className="insights-dialog-next-and-back-container"
->
-  <div>
-    <CustomizedDefaultButton
-      data-automation-id="back"
-      onClick={[Function]}
-      text="< Back"
-    />
+<DocumentFragment>
+  <div
+    class="insights-dialog-next-and-back-container"
+  >
+    <div>
+      <mock-customizeddefaultbutton
+        data-automation-id="back"
+        text="< Back"
+      />
+    </div>
+    <div />
+    <div>
+      <mock-customizeddefaultbutton
+        data-automation-id="next"
+        text="Next >"
+      />
+    </div>
   </div>
-  <div />
-  <div>
-    <CustomizedDefaultButton
-      data-automation-id="next"
-      onClick={[Function]}
-      text="Next >"
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;

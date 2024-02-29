@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
@@ -30,12 +31,23 @@ import {
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { BannerWarnings } from '../../../../../DetailsView/components/banner-warnings';
+import { DetailsListIssuesView } from '../../../../../DetailsView/components/details-list-issues-view';
+import { TargetChangeDialog } from '../../../../../DetailsView/components/target-change-dialog';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('../../../../../DetailsView/components/banner-warnings');
+jest.mock('../../../../../DetailsView/components/target-change-dialog');
+jest.mock('../../../../../DetailsView/components/details-list-issues-view');
 
 describe('AssessmentIssuesTestView', () => {
+    mockReactComponents([BannerWarnings, TargetChangeDialog, DetailsListIssuesView]);
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let getTestStatusMock: IMock<(data: ScanData, step?: string) => boolean>;
     let getAssessmentDataMock: IMock<(data: AssessmentStoreData) => AssessmentData>;
@@ -118,6 +130,8 @@ describe('AssessmentIssuesTestView', () => {
         clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
         updateHandlerMock = Mock.ofType(AssessmentViewUpdateHandler, MockBehavior.Strict);
         assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl, MockBehavior.Strict);
+        updateHandlerMock = Mock.ofType(AssessmentViewUpdateHandler);
+        assessmentProviderMock = Mock.ofType(AssessmentsProviderImpl);
         assessmentProviderMock
             .setup(m => m.forType(selectedTestTypeStub))
             .returns(() => assessmentStub)
@@ -154,8 +168,13 @@ describe('AssessmentIssuesTestView', () => {
     it('renders', () => {
         updateHandlerMock.setup(u => u.onMount(getUpdateHandlerProps())).verifiable(Times.once());
 
-        const actual = shallow(<AssessmentIssuesTestView {...propsStub} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const renderResult = render(<AssessmentIssuesTestView {...propsStub} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([
+            BannerWarnings,
+            TargetChangeDialog,
+            DetailsListIssuesView,
+        ]);
     });
 
     test('componentDidMount', () => {

@@ -1,27 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SummaryReportHead renders 1`] = `
-<head>
+<DocumentFragment>
   <meta
-    charSet="UTF-8"
+    charset="UTF-8"
   />
   <title>
-    Accessibility Insights
-     automated checks result
+    Accessibility Insights automated checks result
   </title>
-  <style
-    dangerouslySetInnerHTML={
-      {
-        "__html": "<<CSS:../reports/automated-checks-report.css>>",
-      }
-    }
-  />
-  <style
-    dangerouslySetInnerHTML={
-      {
-        "__html": "<<CSS:../../packages/report/bundle/report.css>>",
-      }
-    }
-  />
-</head>
+  <style>
+    &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
+  </style>
+  <style>
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
+  </style>
+</DocumentFragment>
 `;
