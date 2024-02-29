@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
@@ -25,6 +26,7 @@ export type ResultSectionContentProps = {
     deps: ResultSectionContentDeps;
     results: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
+    fixInstructionProcessor?: FixInstructionProcessor;
     userConfigurationStoreData: UserConfigurationStoreData | null;
     targetAppInfo: TargetAppData;
     visualHelperEnabled: boolean;
@@ -41,6 +43,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
         const {
             results,
             outcomeType,
+            fixInstructionProcessor,
             deps,
             userConfigurationStoreData,
             targetAppInfo,
@@ -52,7 +55,6 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
         if (results.length === 0) {
             return null;
         }
-        console.log(props, "fixprops");
         return (
             <>
                 {cardSelectionMessageCreator !== undefined && (
@@ -65,6 +67,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     deps={deps}
                     rules={results}
                     outcomeType={outcomeType}
+                    fixInstructionProcessor={fixInstructionProcessor}
                     userConfigurationStoreData={userConfigurationStoreData}
                     targetAppInfo={targetAppInfo}
                     outcomeCounter={outcomeCounter}
