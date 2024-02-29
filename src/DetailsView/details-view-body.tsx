@@ -2,12 +2,15 @@
 // Licensed under the MIT License.
 import classNames from 'classnames';
 import { CardsViewStoreData } from 'common/components/cards/cards-view-store-data';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { OverviewHeadingIntroFactory } from 'DetailsView/components/overview-content/overview-heading-intro';
+import { OverviewHelpSectionAboutFactory } from 'DetailsView/components/overview-content/overview-help-section-about';
 import {
     QuickAssessToAssessmentDialog,
     QuickAssessToAssessmentDialogDeps,
@@ -80,6 +83,9 @@ export interface DetailsViewBodyProps {
     tabStopRequirementData: TabStopRequirementState;
     dataTransferViewStoreData: DataTransferViewStoreData;
     testViewContainerProvider: TestViewContainerProvider;
+    getOverviewHeadingIntro: OverviewHeadingIntroFactory;
+    linkDataSource: HyperlinkDefinition[];
+    getOverviewHelpSectionAbout: OverviewHelpSectionAboutFactory;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
