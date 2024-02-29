@@ -18,7 +18,6 @@ import { GuidanceLinks } from '../../../../../common/components/guidance-links';
 import { GuidanceTags } from '../../../../../common/components/guidance-tags';
 import {
     expectMockedComponentPropsToMatchSnapshots,
-    getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
 
@@ -105,19 +104,18 @@ describe('AssessmentReportStepHeader', () => {
                                 />
                             );
 
+                            const renderResult = render(component);
+
                             it(`will have OutcomeChip with count of ${expectedCount} and outcomeType of ${outcomeType}`, () => {
                                 render(component);
-                                const chip = getMockComponentClassPropsForCall(OutcomeChip);
-                                expect(chip.count).toEqual(expectedCount);
-                                expect(chip.outcomeType).toEqual(outcomeType);
+                                expectMockedComponentPropsToMatchSnapshots([OutcomeChip]);
                             });
+
+                            const messageWrapper =
+                                renderResult.container.querySelector('.no-failure-view');
 
                             if (defaultMessageComponent && outcomeType === 'pass') {
                                 it('will have a message about no instances', () => {
-                                    const renderResult = render(component);
-                                    const messageWrapper =
-                                        renderResult.container.querySelector('.no-failure-view');
-
                                     expect(messageWrapper).not.toBeNull();
                                     expect(messageWrapper).toHaveTextContent(
                                         'No failing instances',
@@ -125,9 +123,6 @@ describe('AssessmentReportStepHeader', () => {
                                 });
                             } else {
                                 it('will have no message', () => {
-                                    const renderResult = render(component);
-                                    const messageWrapper =
-                                        renderResult.container.querySelector('.no-failure-view');
                                     expect(messageWrapper).toBeNull();
                                 });
                             }

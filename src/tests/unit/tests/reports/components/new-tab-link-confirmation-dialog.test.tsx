@@ -18,11 +18,11 @@ jest.mock('common/components/new-tab-link');
 describe('NewTabLinkWithConfirmationDialog', () => {
     mockReactComponents([NewTabLink]);
     it('generates unique id for each link', () => {
-        const renderResult1 = render(<NewTabLinkWithConfirmationDialog />);
-        const renderResult2 = render(<NewTabLinkWithConfirmationDialog />);
+        render(<NewTabLinkWithConfirmationDialog />);
+        render(<NewTabLinkWithConfirmationDialog />);
 
-        expect(renderResult1.container.querySelector('mock-newtablink')).not.toEqual(
-            renderResult2.container.querySelector('mock-newtablink'),
+        expect(getMockComponentClassPropsForCall(NewTabLink, 1).id).not.toEqual(
+            getMockComponentClassPropsForCall(NewTabLink, 2).id,
         );
     });
 
@@ -72,7 +72,7 @@ describe('NewTabLinkWithConfirmationDialog', () => {
         it('does not use IE-incompatible arrow function syntax', () => {
             const renderResult = render(<NewTabLinkWithConfirmationDialog />);
             const generatedScript = renderResult.container.querySelector('script').innerHTML;
-            expect(generatedScript[0]).not.toMatch(/=>/);
+            expect(generatedScript).not.toMatch(/=>/);
         });
 
         it('is added to the link', () => {

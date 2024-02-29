@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RenderResult, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import * as React from 'react';
 import { AssessmentDetailsReportModel } from 'reports/assessment-report-model';
@@ -60,10 +60,13 @@ describe('AssessmentReportAssessmentListTest', () => {
 
     function testAssessments(assessments: AssessmentReportAssessmentListProps): void {
         const wrapper = render(<AssessmentReportAssessmentList {...assessments} />);
+        const wrappingDiv = wrapper.container.firstElementChild;
         assessments.assessments.forEach((assessment, index) => {
-            expect(wrapper.container.querySelector('.assessment-details')).not.toBeNull();
-            expect(wrapper.getByText(assessment.displayName)).not.toBeNull();
-            testAssessmentHeader(assessment, wrapper);
+            const assessmentDiv = wrappingDiv.children[index];
+            expect(assessmentDiv.childNodes.length).toBe(2);
+            expect(assessmentDiv.classList.contains('assessment-details')).toBe(true);
+
+            testAssessmentHeader(assessment, assessmentDiv.children[0]);
         });
 
         expect(wrapper.asFragment()).toMatchSnapshot();
@@ -72,9 +75,12 @@ describe('AssessmentReportAssessmentListTest', () => {
 
     function testAssessmentHeader(
         assessment: AssessmentDetailsReportModel,
-        wrapper: RenderResult,
+        assessmentHeader: Element,
     ): void {
-        expect(wrapper.container.querySelector('.assessment-details')).not.toBeNull();
-        expect(wrapper.getByText(assessment.displayName)).not.toBeNull();
+        expect(assessmentHeader.classList.contains('assessment-header')).toBe(true);
+        expect(assessmentHeader.childNodes.length).toBe(2);
+
+        const headerName = assessmentHeader.childNodes[0];
+        expect(headerName.textContent).toBe(assessment.displayName);
     }
 });

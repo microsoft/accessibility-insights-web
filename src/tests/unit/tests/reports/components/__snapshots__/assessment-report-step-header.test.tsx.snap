@@ -1,5 +1,131 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AssessmentReportStepHeader in fail section assisted requirements with instance count of 0 will have OutcomeChip with count of 0 and outcomeType of fail: OutcomeChip props 1`] = `
+{
+  "count": 0,
+  "outcomeType": "fail",
+}
+`;
+
+exports[`AssessmentReportStepHeader in fail section assisted requirements with instance count of 1 will have OutcomeChip with count of 1 and outcomeType of fail: OutcomeChip props 1`] = `
+{
+  "count": 1,
+  "outcomeType": "fail",
+}
+`;
+
+exports[`AssessmentReportStepHeader in fail section assisted requirements with instance count of 42 will have OutcomeChip with count of 42 and outcomeType of fail: OutcomeChip props 1`] = `
+{
+  "count": 42,
+  "outcomeType": "fail",
+}
+`;
+
+exports[`AssessmentReportStepHeader in fail section manual requirements with instance count of 0 will have OutcomeChip with count of 0 and outcomeType of fail: OutcomeChip props 1`] = `
+{
+  "count": 0,
+  "outcomeType": "fail",
+}
+`;
+
+exports[`AssessmentReportStepHeader in fail section manual requirements with instance count of 1 will have OutcomeChip with count of 1 and outcomeType of fail: OutcomeChip props 1`] = `
+{
+  "count": 1,
+  "outcomeType": "fail",
+}
+`;
+
+exports[`AssessmentReportStepHeader in fail section manual requirements with instance count of 42 will have OutcomeChip with count of 42 and outcomeType of fail: OutcomeChip props 1`] = `
+{
+  "count": 42,
+  "outcomeType": "fail",
+}
+`;
+
+exports[`AssessmentReportStepHeader in incomplete section assisted requirements with instance count of 0 will have OutcomeChip with count of 0 and outcomeType of incomplete: OutcomeChip props 1`] = `
+{
+  "count": 0,
+  "outcomeType": "incomplete",
+}
+`;
+
+exports[`AssessmentReportStepHeader in incomplete section assisted requirements with instance count of 1 will have OutcomeChip with count of 1 and outcomeType of incomplete: OutcomeChip props 1`] = `
+{
+  "count": 1,
+  "outcomeType": "incomplete",
+}
+`;
+
+exports[`AssessmentReportStepHeader in incomplete section assisted requirements with instance count of 42 will have OutcomeChip with count of 42 and outcomeType of incomplete: OutcomeChip props 1`] = `
+{
+  "count": 42,
+  "outcomeType": "incomplete",
+}
+`;
+
+exports[`AssessmentReportStepHeader in incomplete section manual requirements with instance count of 0 will have OutcomeChip with count of 0 and outcomeType of incomplete: OutcomeChip props 1`] = `
+{
+  "count": 0,
+  "outcomeType": "incomplete",
+}
+`;
+
+exports[`AssessmentReportStepHeader in incomplete section manual requirements with instance count of 1 will have OutcomeChip with count of 1 and outcomeType of incomplete: OutcomeChip props 1`] = `
+{
+  "count": 1,
+  "outcomeType": "incomplete",
+}
+`;
+
+exports[`AssessmentReportStepHeader in incomplete section manual requirements with instance count of 42 will have OutcomeChip with count of 42 and outcomeType of incomplete: OutcomeChip props 1`] = `
+{
+  "count": 42,
+  "outcomeType": "incomplete",
+}
+`;
+
+exports[`AssessmentReportStepHeader in pass section assisted requirements with instance count of 0 will have OutcomeChip with count of 0 and outcomeType of pass: OutcomeChip props 1`] = `
+{
+  "count": 0,
+  "outcomeType": "pass",
+}
+`;
+
+exports[`AssessmentReportStepHeader in pass section assisted requirements with instance count of 1 will have OutcomeChip with count of 1 and outcomeType of pass: OutcomeChip props 1`] = `
+{
+  "count": 1,
+  "outcomeType": "pass",
+}
+`;
+
+exports[`AssessmentReportStepHeader in pass section assisted requirements with instance count of 42 will have OutcomeChip with count of 42 and outcomeType of pass: OutcomeChip props 1`] = `
+{
+  "count": 42,
+  "outcomeType": "pass",
+}
+`;
+
+exports[`AssessmentReportStepHeader in pass section manual requirements with instance count of 0 will have OutcomeChip with count of 1 and outcomeType of pass: OutcomeChip props 1`] = `
+{
+  "count": 1,
+  "outcomeType": "pass",
+}
+`;
+
+exports[`AssessmentReportStepHeader in pass section manual requirements with instance count of 1 will have OutcomeChip with count of 1 and outcomeType of pass: OutcomeChip props 1`] = `
+{
+  "count": 1,
+  "outcomeType": "pass",
+}
+`;
+
+exports[`AssessmentReportStepHeader in pass section manual requirements with instance count of 42 will have OutcomeChip with count of 42 and outcomeType of pass: OutcomeChip props 1`] = `
+{
+  "count": 42,
+  "outcomeType": "pass",
+}
+`;
+
 exports[`AssessmentReportStepHeader matches snapshot 1`] = `
 <DocumentFragment>
   <div

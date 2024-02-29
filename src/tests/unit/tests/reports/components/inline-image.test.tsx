@@ -44,9 +44,10 @@ describe('InlineImageTest', () => {
         const props: InlineImageProps = { imageType, alt };
 
         const renderResult = render(<InlineImage {...props} />);
-        expect(renderResult.getAllByRole('img')).toBeTruthy();
-        const element: any = renderResult.getByAltText(alt);
+        expect(renderResult.container.firstChild).not.toBeNull();
+
+        const element = renderResult.getByRole('img', { name: alt }) as HTMLImageElement;
         expect(element.src).toContain('data:image/png;base64,iVBO');
-        expect(element).toBeTruthy();
+        expect(element.alt).toEqual(alt);
     }
 });
