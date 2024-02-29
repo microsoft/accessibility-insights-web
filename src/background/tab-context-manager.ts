@@ -30,7 +30,6 @@ export class TabContextManager {
         const tabContext = this.targetPageTabIdToContextMap[tabId];
         if (tabContext) {
             const interpreter = tabContext.interpreter;
-            console.log(tabId, 'Real value');
             return interpreter.interpret(message);
         }
 
