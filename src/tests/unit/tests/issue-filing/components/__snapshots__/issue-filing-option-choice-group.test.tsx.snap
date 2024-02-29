@@ -1,18 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingChoiceGroupTest render 1`] = `
-<StyledChoiceGroup
-  ariaLabelledBy="issue-filing-heading"
-  className="issue-filing-choice-group"
-  onChange={[Function]}
-  options={
-    [
-      {
-        "key": "test bug service key",
-        "text": "test bug service name",
-      },
-    ]
-  }
-  selectedKey="test bug service key"
-/>
+<DocumentFragment>
+  <mock-styledchoicegroup
+    arialabelledby="issue-filing-heading"
+    classname="issue-filing-choice-group"
+    options="[object Object]"
+    selectedkey="test bug service key"
+  />
+</DocumentFragment>
+`;
+
+exports[`IssueFilingChoiceGroupTest render: StyledChoiceGroup props 1`] = `
+{
+  "ariaLabelledBy": "issue-filing-heading",
+  "className": "issue-filing-choice-group",
+  "onChange": [Function],
+  "options": [
+    {
+      "key": "test bug service key",
+      "text": "test bug service name",
+    },
+  ],
+  "selectedKey": "test bug service key",
+}
 `;

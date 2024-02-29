@@ -1,25 +1,38 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
+import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
 import { VisualizationToggle } from 'common/components/visualization-toggle';
 import {
     StaticContentDetailsView,
     StaticContentDetailsViewDeps,
     StaticContentDetailsViewProps,
 } from 'DetailsView/components/static-content-details-view';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { BaseDataBuilder } from 'tests/unit/common/base-data-builder';
 import { EventStubFactory, NativeEventStub } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { ContentInclude } from 'views/content/content-include';
 import { ContentReference } from 'views/content/content-page';
+import {
+    mockReactComponents,
+    getMockComponentClassPropsForCall,
+} from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('views/content/content-include');
+jest.mock('views/content/content-link');
+jest.mock('common/components/heading-with-content-link');
+jest.mock('common/components/visualization-toggle');
 
 describe('StaticContentDetailsViewTest', () => {
+    mockReactComponents([ContentInclude, HeadingWithContentLink, VisualizationToggle]);
+
     it('renders content page component', () => {
         const props = new StaticContentDetailsViewPropsBuilder().build();
 
-        const actual = shallow(<StaticContentDetailsView {...props} />);
+        const renderResult = render(<StaticContentDetailsView {...props} />);
 
-        expect(actual.debug()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('click the toggle', () => {
@@ -31,9 +44,8 @@ describe('StaticContentDetailsViewTest', () => {
             event,
         );
         const props: StaticContentDetailsViewProps = propsBuilder.build();
-        const testObject = shallow(<StaticContentDetailsView {...props} />);
-        const visualizationToggle = testObject.find(VisualizationToggle);
-        visualizationToggle.prop('onClick')(event);
+        render(<StaticContentDetailsView {...props} />);
+        getMockComponentClassPropsForCall(VisualizationToggle).onClick(event);
         propsBuilder.verifyAll();
     });
 });

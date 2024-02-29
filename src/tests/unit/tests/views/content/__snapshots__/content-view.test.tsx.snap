@@ -1,16 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`content view renders 1`] = `
-<Page
-  deps={
-    {
-      "textContent": {
-        "applicationTitle": "THE_APPLICATION_TITLE",
-      },
-    }
-  }
->
-  <div
+<DocumentFragment>
+  <mock-page
+    deps="[object Object]"
+  >
+    <div
+      class="content-container"
+    >
+      <div
+        class="content-left"
+      />
+      <div
+        class="content"
+      >
+        <p>
+          THE CONTENT
+        </p>
+      </div>
+      <div
+        class="content-right"
+      />
+    </div>
+  </mock-page>
+</DocumentFragment>
+`;
+
+exports[`content view renders: Page props 1`] = `
+{
+  "children": <div
     className="content-container"
   >
     <div
@@ -26,6 +44,11 @@ exports[`content view renders 1`] = `
     <div
       className="content-right"
     />
-  </div>
-</Page>
+  </div>,
+  "deps": {
+    "textContent": {
+      "applicationTitle": "THE_APPLICATION_TITLE",
+    },
+  },
+}
 `;

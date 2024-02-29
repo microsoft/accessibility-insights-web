@@ -1,19 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GithubIssueFilingServiceTest settingsForm renders 1`] = `
-<React.Fragment>
-  <StyledTextFieldBase
+<DocumentFragment>
+  <mock-styledtextfieldbase
     aria-describedby="github-description"
-    className="issue-setting"
+    classname="issue-setting"
     label="Enter your GitHub issues URL"
-    onChange={[Function]}
     value="repo"
   />
   <span
-    className="textfield-description"
+    class="textfield-description"
     id="github-description"
   >
     example: https://github.com/owner/repo/issues
   </span>
-</React.Fragment>
+</DocumentFragment>
 `;

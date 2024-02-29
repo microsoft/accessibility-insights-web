@@ -1,82 +1,107 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RequirementContextSectionTest renders content from props 1`] = `
-<section
-  className="requirementContextContainer"
->
-  <h3
-    className="contextHeading"
+<DocumentFragment>
+  <section
+    class="requirementContextContainer"
   >
-    Why it matters
-  </h3>
-  <ContentPageComponent
-    deps={{}}
-  />
-  <h3
-    className="contextHeading"
-  >
-    Helpful resources
-  </h3>
-  <div
-    className="contextLinks"
-  >
-    <ContentPanelButton
-      contentTitle="Info and examples"
-      deps={{}}
-      reference={
-        {
-          "pageTitle": "test-page-title",
-        }
-      }
+    <h3
+      class="contextHeading"
     >
-      Info and examples
-    </ContentPanelButton>
-  </div>
-</section>
+      Why it matters
+    </h3>
+    <p>
+      WHY IT MATTERS CONTENT FOR TESTING'
+    </p>
+    <h3
+      class="contextHeading"
+    >
+      Helpful resources
+    </h3>
+    <div
+      class="contextLinks"
+    >
+      <mock-contentpanelbutton
+        contenttitle="Info and examples"
+        deps="[object Object]"
+        reference="[object Object]"
+      >
+        Info and examples
+      </mock-contentpanelbutton>
+    </div>
+  </section>
+</DocumentFragment>
 `;
 
+exports[`RequirementContextSectionTest renders content from props: ContentPanelButton props 1`] = `
+{
+  "children": "Info and examples",
+  "contentTitle": "Info and examples",
+  "deps": {},
+  "reference": {
+    "pageTitle": "test-page-title",
+  },
+}
+`;
+
+exports[`RequirementContextSectionTest renders content from props: HelpLinks props 1`] = `undefined`;
+
 exports[`RequirementContextSectionTest renders with helpfulResourceLinks 1`] = `
-<section
-  className="requirementContextContainer"
->
-  <h3
-    className="contextHeading"
+<DocumentFragment>
+  <section
+    class="requirementContextContainer"
   >
-    Why it matters
-  </h3>
-  <ContentPageComponent
-    deps={{}}
-  />
-  <h3
-    className="contextHeading"
-  >
-    Helpful resources
-  </h3>
-  <div
-    className="contextLinks"
-  >
-    <ContentPanelButton
-      contentTitle="Info and examples"
-      deps={{}}
-      reference={
-        {
-          "pageTitle": "test-page-title",
-        }
-      }
+    <h3
+      class="contextHeading"
     >
-      Info and examples
-    </ContentPanelButton>
-    <HelpLinks
-      deps={{}}
-      linkInformation={
-        [
-          {
-            "href": "test-guidance-href",
-            "text": "test-guidance-text",
-          },
-        ]
-      }
-    />
-  </div>
-</section>
+      Why it matters
+    </h3>
+    <p>
+      WHY IT MATTERS CONTENT FOR TESTING'
+    </p>
+    <h3
+      class="contextHeading"
+    >
+      Helpful resources
+    </h3>
+    <div
+      class="contextLinks"
+    >
+      <mock-contentpanelbutton
+        contenttitle="Info and examples"
+        deps="[object Object]"
+        reference="[object Object]"
+      >
+        Info and examples
+      </mock-contentpanelbutton>
+      <mock-helplinks
+        deps="[object Object]"
+        linkinformation="[object Object]"
+      />
+    </div>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`RequirementContextSectionTest renders with helpfulResourceLinks: ContentPanelButton props 1`] = `
+{
+  "children": "Info and examples",
+  "contentTitle": "Info and examples",
+  "deps": {},
+  "reference": {
+    "pageTitle": "test-page-title",
+  },
+}
+`;
+
+exports[`RequirementContextSectionTest renders with helpfulResourceLinks: HelpLinks props 1`] = `
+{
+  "deps": {},
+  "linkInformation": [
+    {
+      "href": "test-guidance-href",
+      "text": "test-guidance-text",
+    },
+  ],
+}
 `;

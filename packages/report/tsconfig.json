@@ -4,6 +4,6 @@
         "target": "es2017",
         "module": "amd",
         "lib": ["es2017", "dom", "scripthost"],
-        "typeRoots": ["../../node_modules/@types"]
-    }
+        "typeRoots": ["../../node_modules/@types"],
+    },
 }

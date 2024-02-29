@@ -1,43 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentPanelButton renders from content 1`] = `
-<CustomizedActionButton
-  ariaLabel="info and examples"
-  iconProps={
-    {
-      "iconName": "iconName",
-    }
-  }
-  onClick={[Function]}
->
-  TEXT
-</CustomizedActionButton>
+<DocumentFragment>
+  <mock-customizedactionbutton
+    arialabel="info and examples"
+    iconprops="[object Object]"
+  >
+    TEXT
+  </mock-customizedactionbutton>
+</DocumentFragment>
+`;
+
+exports[`ContentPanelButton renders from content: CustomizedActionButton props 1`] = `
+{
+  "ariaLabel": "info and examples",
+  "children": "TEXT",
+  "iconProps": {
+    "iconName": "iconName",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`ContentPanelButton renders from path 1`] = `
-<CustomizedActionButton
-  ariaLabel="info and examples"
-  iconProps={
-    {
-      "iconName": "iconName",
-    }
-  }
-  onClick={[Function]}
->
-  TEXT
-</CustomizedActionButton>
+<DocumentFragment>
+  <mock-customizedactionbutton
+    arialabel="info and examples"
+    iconprops="[object Object]"
+  >
+    TEXT
+  </mock-customizedactionbutton>
+</DocumentFragment>
+`;
+
+exports[`ContentPanelButton renders from path: CustomizedActionButton props 1`] = `
+{
+  "ariaLabel": "info and examples",
+  "children": "TEXT",
+  "iconProps": {
+    "iconName": "iconName",
+  },
+  "onClick": [Function],
+}
 `;
 
 exports[`ContentPanelButton renders without iconName 1`] = `
-<CustomizedActionButton
-  ariaLabel="info and examples"
-  iconProps={
-    {
-      "iconName": undefined,
-    }
-  }
-  onClick={[Function]}
->
-  TEXT
-</CustomizedActionButton>
+<DocumentFragment>
+  <mock-customizedactionbutton
+    arialabel="info and examples"
+    iconprops="[object Object]"
+  >
+    TEXT
+  </mock-customizedactionbutton>
+</DocumentFragment>
+`;
+
+exports[`ContentPanelButton renders without iconName: CustomizedActionButton props 1`] = `
+{
+  "ariaLabel": "info and examples",
+  "children": "TEXT",
+  "iconProps": {
+    "iconName": undefined,
+  },
+  "onClick": [Function],
+}
 `;

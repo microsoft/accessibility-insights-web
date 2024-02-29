@@ -1,12 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { ActionButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { ContentPage } from 'views/content/content-page';
 import { ContentPanelButton } from 'views/content/content-panel-button';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
+jest.mock('@fluentui/react');
+
 describe('ContentPanelButton', () => {
+    mockReactComponents([ActionButton]);
     const content = {
         for: {
             testing: ContentPage.create(() => 'CONTENT FOR TESTING' as any),
@@ -20,7 +28,7 @@ describe('ContentPanelButton', () => {
     };
 
     it('renders from content', () => {
-        const wrapped = shallow(
+        const renderResult = render(
             <ContentPanelButton
                 deps={deps}
                 reference={content.for.testing}
@@ -31,11 +39,12 @@ describe('ContentPanelButton', () => {
             </ContentPanelButton>,
         );
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
     });
 
     it('renders from path', () => {
-        const wrapped = shallow(
+        const renderResult = render(
             <ContentPanelButton
                 deps={deps}
                 reference={'for/testing'}
@@ -46,16 +55,18 @@ describe('ContentPanelButton', () => {
             </ContentPanelButton>,
         );
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
     });
 
     it('renders without iconName', () => {
-        const wrapped = shallow(
+        const renderResult = render(
             <ContentPanelButton deps={deps} reference={'for/testing'} contentTitle={contentTitle}>
                 TEXT
             </ContentPanelButton>,
         );
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
     });
 });

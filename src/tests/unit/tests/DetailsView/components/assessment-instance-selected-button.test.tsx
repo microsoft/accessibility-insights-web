@@ -1,17 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IconButton } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     AssessmentInstanceSelectedButton,
     AssessmentInstanceSelectedButtonProps,
 } from 'DetailsView/components/assessment-instance-selected-button';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+jest.mock('@fluentui/react');
+
 describe('AssessmentInstanceSelectedButton', () => {
+    mockReactComponents([IconButton]);
     describe('render', () => {
         const onSelectedStub = () => {};
 
@@ -35,9 +42,9 @@ describe('AssessmentInstanceSelectedButton', () => {
                 isVisible,
             } as AssessmentInstanceSelectedButtonProps;
 
-            const wrapped = shallow(<AssessmentInstanceSelectedButton {...props} />);
+            const wrapped = render(<AssessmentInstanceSelectedButton {...props} />);
 
-            expect(wrapped.getElement()).toMatchSnapshot();
+            expect(wrapped.asFragment()).toMatchSnapshot();
         });
     });
 
@@ -62,6 +69,7 @@ describe('AssessmentInstanceSelectedButton', () => {
 
         it.each([true, false])(
             'onButtonClicked: with visualization enabled = %s',
+
             isVisualizationEnabled => {
                 const props: AssessmentInstanceSelectedButtonProps = {
                     ...baseProps,
@@ -80,11 +88,8 @@ describe('AssessmentInstanceSelectedButton', () => {
                     )
                     .verifiable(Times.once());
 
-                const wrapped = shallow(<AssessmentInstanceSelectedButton {...props} />);
-
-                const iconButton = wrapped.find(IconButton);
-
-                iconButton.simulate('click', eventStub);
+                render(<AssessmentInstanceSelectedButton {...props} />);
+                getMockComponentClassPropsForCall(IconButton).onClick(eventStub);
 
                 onSelectedMock.verifyAll();
             },
@@ -101,12 +106,11 @@ describe('AssessmentInstanceSelectedButton', () => {
                 .setup(handler => handler(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
                 .verifiable(Times.never());
 
-            const wrapped = shallow(<AssessmentInstanceSelectedButton {...props} />);
+            const wrapped = render(<AssessmentInstanceSelectedButton {...props} />);
 
-            const iconButton = wrapped.find(IconButton);
+            const iconButton = wrapped.getByRole('checkbox');
 
-            iconButton.simulate('click', eventStub);
-
+            fireEvent.click(iconButton, eventStub);
             onSelectedMock.verifyAll();
         });
     });

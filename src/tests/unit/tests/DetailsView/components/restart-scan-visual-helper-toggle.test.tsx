@@ -1,9 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { fireEvent, render, RenderResult } from '@testing-library/react';
+import { VisualHelperToggle } from 'common/components/cards/visual-helper-toggle';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { shallow, ShallowWrapper } from 'enzyme';
 import { forEach } from 'lodash';
 import * as React from 'react';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 import {
     VisualizationToggle,
@@ -14,7 +20,11 @@ import { RestartScanVisualHelperToggle } from '../../../../../DetailsView/compon
 import { VisualHelperToggleConfigBuilder } from '../../../common/visual-helper-toggle-config-builder';
 import { VisualizationTogglePropsBuilder } from '../../../common/visualization-toggle-props-builder';
 
+jest.mock('common/components/visualization-toggle');
+jest.mock('common/components/cards/visual-helper-toggle');
+
 describe('RestartScanVisualHelperToggleTest', () => {
+    mockReactComponents([VisualizationToggle, VisualHelperToggle]);
     const stepKey = 'assessment-1-step-1';
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
 
@@ -29,26 +39,26 @@ describe('RestartScanVisualHelperToggleTest', () => {
             .withActionMessageCreator(assessmentActionMessageCreatorMock.object)
             .build();
 
-        const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
+        const renderResult = render(<RestartScanVisualHelperToggle {...props} />);
 
         const visualHelperClass = 'visual-helper';
-        const toggleDiv = wrapper.find(`.${visualHelperClass}`);
+        const toggleDiv = renderResult.container.querySelector(`.${visualHelperClass}`);
 
-        expect(toggleDiv.exists()).toBe(true);
+        expect(toggleDiv).not.toBeNull();
 
-        const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
+        const textDiv = toggleDiv.querySelector(`.${visualHelperClass}-text`);
 
-        expect(textDiv.exists()).toBe(true);
+        expect(textDiv).not.toBeNull();
 
-        const toggle = wrapper.find(VisualizationToggle);
+        getMockComponentClassPropsForCall(VisualizationToggle);
 
         const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder()
             .with('checked', true)
             .with('disabled', false)
             .build();
 
-        assertVisualizationToggle(expectedToggleProps, toggle);
-        assertSnapshotMatch(wrapper);
+        assertVisualizationToggle(expectedToggleProps, renderResult);
+        assertSnapshotMatch(renderResult);
     });
 
     test.each([true, false])('onClick: step enabled = %s', stepIsEnabled => {
@@ -57,7 +67,11 @@ describe('RestartScanVisualHelperToggleTest', () => {
             .withToggleStepScanned(false)
             .withActionMessageCreator(assessmentActionMessageCreatorMock.object)
             .build();
-        const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
+
+        useOriginalReactElements('../../../common/components/visualization-toggle', [
+            'VisualizationToggle',
+        ]);
+        const renderResult = render(<RestartScanVisualHelperToggle {...props} />);
         assessmentActionMessageCreatorMock.reset();
         assessmentActionMessageCreatorMock
             .setup(acm => {
@@ -70,27 +84,30 @@ describe('RestartScanVisualHelperToggleTest', () => {
             })
             .verifiable(Times.once());
 
-        wrapper.find(VisualizationToggle).simulate('click');
+        const onClick = renderResult.getByRole('switch');
+        fireEvent.click(onClick);
 
         assessmentActionMessageCreatorMock.verifyAll();
-        assertSnapshotMatch(wrapper);
+        assertSnapshotMatch(renderResult);
     });
 
     function assertVisualizationToggle(
         expectedProps: VisualizationToggleProps,
-        visualizationToggle: ShallowWrapper<VisualizationToggleProps>,
+        renderResult: RenderResult,
     ): void {
-        expect(visualizationToggle.exists()).toBe(true);
+        const visualizationToggle = renderResult.container.querySelector(
+            'mock-VisualizationToggle',
+        );
+        expect(visualizationToggle).not.toBeNull();
 
-        const actualProps = visualizationToggle.props();
-
+        const actualProps = getMockComponentClassPropsForCall(VisualizationToggle);
         forEach(expectedProps, (value, key) => {
             expect(actualProps[key]).toBe(value);
         });
     }
 
-    function assertSnapshotMatch(toggleWrapper: ShallowWrapper): void {
-        expect(toggleWrapper.getElement()).toMatchSnapshot();
+    function assertSnapshotMatch(toggleWrapper: RenderResult): void {
+        expect(toggleWrapper.asFragment()).toMatchSnapshot();
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {
