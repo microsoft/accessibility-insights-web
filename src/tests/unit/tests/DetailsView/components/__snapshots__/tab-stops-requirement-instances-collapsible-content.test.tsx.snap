@@ -45,7 +45,6 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
   background="#767676"
   headerText="Comment"
   textContent="test requirement description"
-  tooltipId="test-instance-id"
 />
 `;
 
