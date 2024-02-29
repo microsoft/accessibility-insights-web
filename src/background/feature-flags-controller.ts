@@ -55,6 +55,7 @@ export class FeatureFlagsController {
     public async resetFeatureFlags(): Promise<void> {
         const message: InterpreterMessage = {
             messageType: Messages.FeatureFlags.ResetFeatureFlag,
+            tabId: null,
         };
         const response = this.interpreter.interpret(message);
 
