@@ -7,6 +7,7 @@ import { RulesOnly, RulesOnlyDeps } from 'reports/components/report-sections/rul
 import { FullRuleHeader } from '../../../../../../reports/components/report-sections/full-rule-header';
 import {
     expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
 
@@ -27,6 +28,8 @@ describe('RulesOnly', () => {
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([FullRuleHeader]);
+        expect(getMockComponentClassPropsForCall(FullRuleHeader, 1)).toMatchSnapshot();
+        expect(getMockComponentClassPropsForCall(FullRuleHeader, 2)).toMatchSnapshot();
+        expect(getMockComponentClassPropsForCall(FullRuleHeader, 3)).toMatchSnapshot();
     });
 });

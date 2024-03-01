@@ -8,7 +8,10 @@ import {
 } from 'reports/components/report-sections/not-scanned-urls-section';
 import { SummaryScanResult, SummaryScanError } from 'reports/package/accessibilityInsightsReport';
 import { CollapsibleUrlResultSection } from '../../../../../../reports/components/report-sections/collapsible-url-result-section';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../reports/components/report-sections/collapsible-url-result-section');
 describe(NotScannedUrlsSection.displayName, () => {
@@ -29,5 +32,6 @@ describe(NotScannedUrlsSection.displayName, () => {
         const renderResult = render(<NotScannedUrlsSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([CollapsibleUrlResultSection]);
     });
 });

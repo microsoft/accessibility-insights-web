@@ -24,10 +24,30 @@ exports[`RulesOnly renders 1`] = `
 </DocumentFragment>
 `;
 
-exports[`RulesOnly renders: FullRuleHeader props 1`] = `
+exports[`RulesOnly renders 2`] = `
 {
   "cardRuleResult": {
     "id": "1",
+  },
+  "deps": {},
+  "outcomeType": "pass",
+}
+`;
+
+exports[`RulesOnly renders 3`] = `
+{
+  "cardRuleResult": {
+    "id": "2",
+  },
+  "deps": {},
+  "outcomeType": "pass",
+}
+`;
+
+exports[`RulesOnly renders 4`] = `
+{
+  "cardRuleResult": {
+    "id": "3",
   },
   "deps": {},
   "outcomeType": "pass",
