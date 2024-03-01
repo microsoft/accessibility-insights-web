@@ -31,7 +31,6 @@ export interface TargetChangeDialogProps {
 
 export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChangeDialog', props => {
     const dialogProps: ChangeAssessmentDialogProps = {
-        deps: props.deps,
         prevTab: props.prevTab,
         dialogContentTitle: 'Assessment in progress',
         subtitleAriaId: 'target-change-dialog-description',
@@ -59,7 +58,6 @@ export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChange
         rightButtonStyle: styles.restartButton,
         rightButtonDataAutomationId: 'target-change-start-new-button',
     };
-
     return <ChangeAssessmentDialog {...dialogProps} />;
 
     function renderCurrentTabLink(tab: Tab): JSX.Element {

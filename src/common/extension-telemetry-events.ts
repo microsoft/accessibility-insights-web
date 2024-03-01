@@ -192,6 +192,7 @@ export type AssessmentTelemetryData = {
 
 export type RequirementActionTelemetryData = {
     selectedRequirement: string;
+    selectedTest: string;
 } & BaseTelemetryData;
 
 export type ModifiedCommandsTelemetryData = {
