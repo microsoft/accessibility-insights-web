@@ -21,6 +21,7 @@ import { ScannerRuleInfo, ScannerRuleInfoMap } from 'scanner/scanner-rule-info';
 
 export type ScanNodeResult = UnifiedResult & {
     rule: UnifiedRule;
+    isSelected?: boolean;
 };
 
 export type ConvertResultsToCardSelectionStoreDataCallback = (
@@ -73,6 +74,7 @@ export function convertUnifiedStoreDataToScanNodeResults(
         const result: ScanNodeResult = {
             ...unifiedResult,
             rule,
+            isSelected: false,
         };
 
         return result;
