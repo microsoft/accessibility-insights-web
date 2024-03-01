@@ -1,10 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { UrlErrorsTable } from 'reports/components/report-sections/url-errors-table';
+import { NewTabLink } from '../../../../../../common/components/new-tab-link';
+import { SummaryResultsTable } from '../../../../../../reports/components/report-sections/summary-results-table';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../../reports/components/report-sections/summary-results-table');
+jest.mock('../../../../../../common/components/new-tab-link');
 
 describe(UrlErrorsTable.displayName, () => {
+    mockReactComponents([SummaryResultsTable, NewTabLink]);
     it('renders', () => {
         const errors = [
             {
@@ -27,8 +36,9 @@ describe(UrlErrorsTable.displayName, () => {
             },
         ];
 
-        const wrapper = shallow(<UrlErrorsTable errors={errors} id="table-id" />);
+        const renderResult = render(<UrlErrorsTable errors={errors} id="table-id" />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([SummaryResultsTable]);
     });
 });

@@ -1,53 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FastPassReportSummary renders per the snapshot 1`] = `
-<div
-  className="summary-section"
->
-  <h2>
-    Summary
-  </h2>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "fail",
-        "incomplete",
-        "pass",
-      ]
-    }
-    outcomeStats={
-      {
-        "fail": 3,
-        "incomplete": 0,
-        "pass": 1,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="fail,incomplete,pass"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
 `;
 
 exports[`FastPassReportSummary renders when automated checks are null 1`] = `
-<div
-  className="summary-section"
->
-  <h2>
-    Summary
-  </h2>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "fail",
-        "incomplete",
-        "pass",
-      ]
-    }
-    outcomeStats={
-      {
-        "fail": 2,
-        "incomplete": 0,
-        "pass": 1,
-      }
-    }
-  />
-</div>
+<DocumentFragment>
+  <div
+    class="summary-section"
+  >
+    <h2>
+      Summary
+    </h2>
+    <mock-outcomesummarybar
+      alloutcometypes="fail,incomplete,pass"
+      outcomestats="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FastPassReportSummary renders when automated checks are null: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "fail",
+    "incomplete",
+    "pass",
+  ],
+  "outcomeStats": {
+    "fail": 2,
+    "incomplete": 0,
+    "pass": 1,
+  },
+}
 `;

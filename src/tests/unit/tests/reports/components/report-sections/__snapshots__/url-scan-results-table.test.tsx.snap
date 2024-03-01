@@ -1,69 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UrlScanResultsTable renders 1`] = `
-<SummaryResultsTable
-  columns={
+<DocumentFragment>
+  <mock-summaryresultstable
+    columns="[object Object],[object Object],[object Object]"
+    id="table-id"
+    rows="1,[object Object],[object Object],2,[object Object],[object Object],3,[object Object],[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`UrlScanResultsTable renders: SummaryResultsTable props 1`] = `
+{
+  "columns": [
+    {
+      "contentType": "text",
+      "header": "# failure instances (6)",
+    },
+    {
+      "contentType": "url",
+      "header": "URL",
+    },
+    {
+      "contentType": "text",
+      "header": "Link to report",
+    },
+  ],
+  "id": "table-id",
+  "rows": [
     [
-      {
-        "contentType": "text",
-        "header": "# failure instances (6)",
-      },
-      {
-        "contentType": "url",
-        "header": "URL",
-      },
-      {
-        "contentType": "text",
-        "header": "Link to report",
-      },
-    ]
-  }
-  id="table-id"
-  rows={
+      "1",
+      <NewTabLink
+        href="https://url.com/1"
+      >
+        https://url.com/1
+      </NewTabLink>,
+      <NewTabLink
+        aria-label="Report for https://url.com/1"
+        href="report location 1"
+      >
+        Report
+      </NewTabLink>,
+    ],
     [
-      [
-        "1",
-        <NewTabLink
-          href="https://url.com/1"
-        >
-          https://url.com/1
-        </NewTabLink>,
-        <NewTabLink
-          aria-label="Report for https://url.com/1"
-          href="report location 1"
-        >
-          Report
-        </NewTabLink>,
-      ],
-      [
-        "2",
-        <NewTabLink
-          href="https://url.com/2"
-        >
-          https://url.com/2
-        </NewTabLink>,
-        <NewTabLink
-          aria-label="Report for https://url.com/2"
-          href="report location 2"
-        >
-          Report
-        </NewTabLink>,
-      ],
-      [
-        "3",
-        <NewTabLink
-          href="https://url.com/3"
-        >
-          https://url.com/3
-        </NewTabLink>,
-        <NewTabLink
-          aria-label="Report for https://url.com/3"
-          href="report location 3"
-        >
-          Report
-        </NewTabLink>,
-      ],
-    ]
-  }
-/>
+      "2",
+      <NewTabLink
+        href="https://url.com/2"
+      >
+        https://url.com/2
+      </NewTabLink>,
+      <NewTabLink
+        aria-label="Report for https://url.com/2"
+        href="report location 2"
+      >
+        Report
+      </NewTabLink>,
+    ],
+    [
+      "3",
+      <NewTabLink
+        href="https://url.com/3"
+      >
+        https://url.com/3
+      </NewTabLink>,
+      <NewTabLink
+        aria-label="Report for https://url.com/3"
+        href="report location 3"
+      >
+        Report
+      </NewTabLink>,
+    ],
+  ],
+}
 `;
