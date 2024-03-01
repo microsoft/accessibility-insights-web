@@ -6,7 +6,6 @@ import * as React from 'react';
 import { RulesOnly, RulesOnlyDeps } from 'reports/components/report-sections/rules-only';
 import { FullRuleHeader } from '../../../../../../reports/components/report-sections/full-rule-header';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
