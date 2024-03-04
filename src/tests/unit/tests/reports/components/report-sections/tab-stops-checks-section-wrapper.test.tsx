@@ -1,18 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedFC } from 'common/react/named-fc';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
-import {
-    SectionDeps,
-    SectionProps,
-} from 'reports/components/report-sections/report-section-factory';
+import { SectionDeps } from 'reports/components/report-sections/report-section-factory';
 import {
     TabStopsChecksSectionWrapper,
     TabStopsChecksSectionWrapperProps,
 } from 'reports/components/report-sections/tab-stops-checks-section-wrapper';
-
+import { PassedChecksSection } from '../../../../../../reports/components/report-sections/passed-checks-section';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../../reports/components/report-sections/passed-checks-section');
 describe('TabStopChecksSectionWrapper', () => {
+    mockReactComponents([PassedChecksSection]);
     it('renders', () => {
         const props: TabStopsChecksSectionWrapperProps = {
             deps: {} as SectionDeps,
@@ -43,13 +45,14 @@ describe('TabStopChecksSectionWrapper', () => {
                     isExpanded: false,
                 },
             },
-            checksSection: NamedFC<SectionProps>('test', props => <div {...props} />),
+            checksSection: PassedChecksSection,
             sectionHeadingLevel: 3,
             featureFlagStoreData: {},
         };
 
-        const wrapper = shallow(<TabStopsChecksSectionWrapper {...props} />);
+        const renderResult = render(<TabStopsChecksSectionWrapper {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([PassedChecksSection]);
     });
 });

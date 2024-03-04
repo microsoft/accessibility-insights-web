@@ -1,13 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AutomatedChecksHeaderSection renders 1`] = `
-<HeaderSection
-  headerText="Accessibility Insights for Web"
-  targetAppInfo={
-    {
-      "name": "page-title",
-      "url": "url://page",
-    }
-  }
-/>
+<DocumentFragment>
+  <mock-headersection
+    headertext="Accessibility Insights for Web"
+    targetappinfo="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`AutomatedChecksHeaderSection renders: HeaderSection props 1`] = `
+{
+  "headerText": "Accessibility Insights for Web",
+  "targetAppInfo": {
+    "name": "page-title",
+    "url": "url://page",
+  },
+}
 `;

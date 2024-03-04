@@ -1,29 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FooterSection renders 1`] = `
-<div
-  className="reportFooterContainer"
->
+<DocumentFragment>
   <div
-    className="reportFooter"
-    role="contentinfo"
+    class="reportFooterContainer"
   >
-    This automated checks result was generated using 
-    <b
-      id="tool-name"
+    <div
+      class="reportFooter"
+      role="contentinfo"
     >
-      Accessibility Insights for Web
-    </b>
-    , a tool that helps debug and find accessibility issues earlier. Get more information & download this tool at
-     
-    <NewTabLink
-      aria-labelledby="tool-name"
-      href="http://aka.ms/AccessibilityInsights"
-      title="Get more information and download Accessibility Insights for Web"
-    >
-      http://aka.ms/AccessibilityInsights
-    </NewTabLink>
-    .
+      This automated checks result was generated using 
+      <b
+        id="tool-name"
+      >
+        Accessibility Insights for Web
+      </b>
+      , a tool that helps debug and find accessibility issues earlier. Get more information & download this tool at 
+      <mock-newtablink
+        aria-labelledby="tool-name"
+        href="http://aka.ms/AccessibilityInsights"
+        title="Get more information and download Accessibility Insights for Web"
+      >
+        http://aka.ms/AccessibilityInsights
+      </mock-newtablink>
+      .
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

@@ -1,181 +1,181 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommandBar renders renders, shows copy button insecure origin message: false 1`] = `
-<div
-  className="insights-dialog-target-button-container"
->
-  <CustomizedDefaultButton
-    className="insights-dialog-button-inspect"
+<DocumentFragment>
+  <div
+    class="insights-dialog-target-button-container"
   >
-    <FileHTMLIcon />
-    <div
-      className="ms-Button-label"
+    <mock-customizeddefaultbutton
+      classname="insights-dialog-button-inspect"
     >
-      Inspect HTML
-    </div>
-  </CustomizedDefaultButton>
-  <React.Fragment>
-    <CopyIssueDetailsButton
-      deps={
-        {
-          "axeResultToIssueFilingDataConverter": [typemoq mock object],
-        }
-      }
-      issueDetailsData={{}}
+      <mock-filehtmlicon />
+      <div
+        class="ms-Button-label"
+      >
+        Inspect HTML
+      </div>
+    </mock-customizeddefaultbutton>
+    <mock-copyissuedetailsbutton
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
     />
-    <IssueFilingButton
-      deps={
-        {
-          "axeResultToIssueFilingDataConverter": [typemoq mock object],
-        }
-      }
-      issueDetailsData={{}}
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={
-        {
-          "bugService": "None",
-          "isFirstTime": false,
-        }
-      }
+    <mock-issuefilingbutton
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
-  </React.Fragment>
-</div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CommandBar renders renders, shows copy button insecure origin message: false: IssueFilingButton props 1`] = `
+{
+  "deps": {
+    "axeResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "needsSettingsContentRenderer": [Function],
+  "userConfigurationStoreData": {
+    "bugService": "None",
+    "isFirstTime": false,
+  },
+}
 `;
 
 exports[`CommandBar renders renders, shows copy button insecure origin message: true 1`] = `
-<div
-  className="insights-dialog-target-button-container"
->
-  <CustomizedDefaultButton
-    className="insights-dialog-button-inspect"
-  >
-    <FileHTMLIcon />
-    <div
-      className="ms-Button-label"
-    >
-      Inspect HTML
-    </div>
-  </CustomizedDefaultButton>
-  <React.Fragment>
-    <CopyIssueDetailsButton
-      deps={
-        {
-          "axeResultToIssueFilingDataConverter": [typemoq mock object],
-        }
-      }
-      issueDetailsData={{}}
-    />
-    <IssueFilingButton
-      deps={
-        {
-          "axeResultToIssueFilingDataConverter": [typemoq mock object],
-        }
-      }
-      issueDetailsData={{}}
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={
-        {
-          "bugService": "None",
-          "isFirstTime": false,
-        }
-      }
-    />
-  </React.Fragment>
+<DocumentFragment>
   <div
-    className="copy-issue-details-button-help"
-    role="alert"
+    class="insights-dialog-target-button-container"
   >
-    To copy failure details, first open the Accessibility Insights for Web page.
+    <mock-customizeddefaultbutton
+      classname="insights-dialog-button-inspect"
+    >
+      <mock-filehtmlicon />
+      <div
+        class="ms-Button-label"
+      >
+        Inspect HTML
+      </div>
+    </mock-customizeddefaultbutton>
+    <mock-copyissuedetailsbutton
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+    />
+    <mock-issuefilingbutton
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <div
+      class="copy-issue-details-button-help"
+      role="alert"
+    >
+      To copy failure details, first open the Accessibility Insights for Web page.
+    </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`CommandBar renders renders, shows copy button insecure origin message: true: IssueFilingButton props 1`] = `
+{
+  "deps": {
+    "axeResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "needsSettingsContentRenderer": [Function],
+  "userConfigurationStoreData": {
+    "bugService": "None",
+    "isFirstTime": false,
+  },
+}
 `;
 
 exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
-<div
-  className="insights-dialog-target-button-container"
->
-  <CustomizedDefaultButton
-    className="insights-dialog-button-inspect"
+<DocumentFragment>
+  <div
+    class="insights-dialog-target-button-container"
   >
-    <FileHTMLIcon />
-    <div
-      className="ms-Button-label"
+    <mock-customizeddefaultbutton
+      classname="insights-dialog-button-inspect"
     >
-      Inspect HTML
-    </div>
-  </CustomizedDefaultButton>
-  <React.Fragment>
-    <CopyIssueDetailsButton
-      deps={
-        {
-          "axeResultToIssueFilingDataConverter": [typemoq mock object],
-        }
-      }
-      issueDetailsData={{}}
+      <mock-filehtmlicon />
+      <div
+        class="ms-Button-label"
+      >
+        Inspect HTML
+      </div>
+    </mock-customizeddefaultbutton>
+    <mock-copyissuedetailsbutton
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
     />
-    <IssueFilingButton
-      deps={
-        {
-          "axeResultToIssueFilingDataConverter": [typemoq mock object],
-        }
-      }
-      issueDetailsData={{}}
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={
-        {
-          "bugService": "None",
-          "isFirstTime": false,
-        }
-      }
+    <mock-issuefilingbutton
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
-  </React.Fragment>
-</div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CommandBar renders renders, shows inspect button message: false: IssueFilingButton props 1`] = `
+{
+  "deps": {
+    "axeResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "needsSettingsContentRenderer": [Function],
+  "userConfigurationStoreData": {
+    "bugService": "None",
+    "isFirstTime": false,
+  },
+}
 `;
 
 exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
-<div
-  className="insights-dialog-target-button-container"
->
-  <CustomizedDefaultButton
-    className="insights-dialog-button-inspect"
-  >
-    <FileHTMLIcon />
-    <div
-      className="ms-Button-label"
-    >
-      Inspect HTML
-    </div>
-  </CustomizedDefaultButton>
-  <React.Fragment>
-    <CopyIssueDetailsButton
-      deps={
-        {
-          "axeResultToIssueFilingDataConverter": [typemoq mock object],
-        }
-      }
-      issueDetailsData={{}}
-    />
-    <IssueFilingButton
-      deps={
-        {
-          "axeResultToIssueFilingDataConverter": [typemoq mock object],
-        }
-      }
-      issueDetailsData={{}}
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={
-        {
-          "bugService": "None",
-          "isFirstTime": false,
-        }
-      }
-    />
-  </React.Fragment>
+<DocumentFragment>
   <div
-    className="insights-dialog-inspect-disabled"
-    role="alert"
+    class="insights-dialog-target-button-container"
   >
-    To use the Inspect HTML button, first open the developer tools (dev-tools-shortcut).
+    <mock-customizeddefaultbutton
+      classname="insights-dialog-button-inspect"
+    >
+      <mock-filehtmlicon />
+      <div
+        class="ms-Button-label"
+      >
+        Inspect HTML
+      </div>
+    </mock-customizeddefaultbutton>
+    <mock-copyissuedetailsbutton
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+    />
+    <mock-issuefilingbutton
+      deps="[object Object]"
+      issuedetailsdata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <div
+      class="insights-dialog-inspect-disabled"
+      role="alert"
+    >
+      To use the Inspect HTML button, first open the developer tools (dev-tools-shortcut).
+    </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`CommandBar renders renders, shows inspect button message: true: IssueFilingButton props 1`] = `
+{
+  "deps": {
+    "axeResultToIssueFilingDataConverter": [typemoq mock object],
+  },
+  "issueDetailsData": {},
+  "needsSettingsContentRenderer": [Function],
+  "userConfigurationStoreData": {
+    "bugService": "None",
+    "isFirstTime": false,
+  },
+}
 `;

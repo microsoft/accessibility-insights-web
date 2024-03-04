@@ -1,183 +1,158 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentReportStepListTest renders fail 1`] = `
-<div>
-  <div
-    className="step-details"
-  >
-    <AssessmentReportStepHeader
-      defaultMessageComponent={null}
-      deps={
-        {
-          "outcomeTypeSemanticsFromTestStatus": {
-            "stub": "outcomeTypeSemanticsFromTestStatus",
-          },
-        }
-      }
-      header={
-        {
-          "description": null,
-          "displayName": "Step2A",
-          "guidanceLinks": [],
-          "requirementType": "assisted",
-        }
-      }
-      instanceCount={1}
-      status={2}
-    />
-    <ReportInstanceList
-      instances={
-        [
-          {
-            "props": [
-              {
-                "key": "Path",
-                "value": "target1",
-              },
-              {
-                "key": "Snippet",
-                "value": "someHtml",
-              },
-            ],
-          },
-        ]
-      }
-    />
+<DocumentFragment>
+  <div>
+    <div
+      class="step-details"
+    >
+      <mock-assessmentreportstepheader
+        deps="[object Object]"
+        header="[object Object]"
+        instancecount="1"
+        status="2"
+      />
+      <mock-reportinstancelist
+        instances="[object Object]"
+      />
+    </div>
+    <div
+      class="step-details"
+    >
+      <mock-assessmentreportstepheader
+        deps="[object Object]"
+        header="[object Object]"
+        instancecount="1"
+        status="2"
+      />
+      <mock-reportinstancelist
+        instances="[object Object]"
+      />
+    </div>
   </div>
-  <div
-    className="step-details"
-  >
-    <AssessmentReportStepHeader
-      defaultMessageComponent={null}
-      deps={
-        {
-          "outcomeTypeSemanticsFromTestStatus": {
-            "stub": "outcomeTypeSemanticsFromTestStatus",
-          },
-        }
-      }
-      header={
-        {
-          "description": null,
-          "displayName": "Step4A",
-          "guidanceLinks": [],
-          "requirementType": "manual",
-        }
-      }
-      instanceCount={1}
-      status={2}
-    />
-    <ReportInstanceList
-      instances={
-        [
-          {
-            "props": [
-              {
-                "key": "Comment",
-                "value": "comment",
-              },
-            ],
-          },
-        ]
-      }
-    />
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`AssessmentReportStepListTest renders incomplete 1`] = `
-<div>
-  <div
-    className="step-details"
-  >
-    <AssessmentReportStepHeader
-      defaultMessageComponent={null}
-      deps={
-        {
-          "outcomeTypeSemanticsFromTestStatus": {
-            "stub": "outcomeTypeSemanticsFromTestStatus",
-          },
-        }
-      }
-      header={
-        {
-          "description": null,
-          "displayName": "Step3A",
-          "guidanceLinks": [],
-          "requirementType": "assisted",
-        }
-      }
-      instanceCount={1}
-      status={1}
-    />
+<DocumentFragment>
+  <div>
+    <div
+      class="step-details"
+    >
+      <mock-assessmentreportstepheader
+        deps="[object Object]"
+        header="[object Object]"
+        instancecount="1"
+        status="1"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
+exports[`AssessmentReportStepListTest renders incomplete: AssessmentReportStepHeader props 1`] = `
+{
+  "defaultMessageComponent": null,
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "header": {
+    "description": null,
+    "displayName": "Step3A",
+    "guidanceLinks": [],
+    "requirementType": "assisted",
+  },
+  "instanceCount": 1,
+  "status": 1,
+}
+`;
+
+exports[`AssessmentReportStepListTest renders incomplete: ReportInstanceList props 1`] = `undefined`;
+
 exports[`AssessmentReportStepListTest renders pass 1`] = `
-<div>
-  <div
-    className="step-details"
-  >
-    <AssessmentReportStepHeader
-      defaultMessageComponent={null}
-      deps={
-        {
-          "outcomeTypeSemanticsFromTestStatus": {
-            "stub": "outcomeTypeSemanticsFromTestStatus",
-          },
-        }
-      }
-      header={
-        {
-          "description": null,
-          "displayName": "Step1A",
-          "guidanceLinks": [
-            {
-              "href": "link1A",
-              "text": "link1A",
-            },
-          ],
-          "requirementType": "assisted",
-        }
-      }
-      instanceCount={1}
-      status={0}
-    />
+<DocumentFragment>
+  <div>
+    <div
+      class="step-details"
+    >
+      <mock-assessmentreportstepheader
+        deps="[object Object]"
+        header="[object Object]"
+        instancecount="1"
+        status="0"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`AssessmentReportStepListTest renders pass without instances when showInstances is false 1`] = `
-<div>
-  <div
-    className="step-details"
-  >
-    <AssessmentReportStepHeader
-      defaultMessageComponent={null}
-      deps={
-        {
-          "outcomeTypeSemanticsFromTestStatus": {
-            "stub": "outcomeTypeSemanticsFromTestStatus",
-          },
-        }
-      }
-      header={
-        {
-          "description": null,
-          "displayName": "Step1A",
-          "guidanceLinks": [
-            {
-              "href": "link1A",
-              "text": "link1A",
-            },
-          ],
-          "requirementType": "assisted",
-        }
-      }
-      instanceCount={1}
-      status={0}
-    />
+<DocumentFragment>
+  <div>
+    <div
+      class="step-details"
+    >
+      <mock-assessmentreportstepheader
+        deps="[object Object]"
+        header="[object Object]"
+        instancecount="1"
+        status="0"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
+
+exports[`AssessmentReportStepListTest renders pass without instances when showInstances is false: AssessmentReportStepHeader props 1`] = `
+{
+  "defaultMessageComponent": null,
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "header": {
+    "description": null,
+    "displayName": "Step1A",
+    "guidanceLinks": [
+      {
+        "href": "link1A",
+        "text": "link1A",
+      },
+    ],
+    "requirementType": "assisted",
+  },
+  "instanceCount": 1,
+  "status": 0,
+}
+`;
+
+exports[`AssessmentReportStepListTest renders pass without instances when showInstances is false: ReportInstanceList props 1`] = `undefined`;
+
+exports[`AssessmentReportStepListTest renders pass: AssessmentReportStepHeader props 1`] = `
+{
+  "defaultMessageComponent": null,
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "header": {
+    "description": null,
+    "displayName": "Step1A",
+    "guidanceLinks": [
+      {
+        "href": "link1A",
+        "text": "link1A",
+      },
+    ],
+    "requirementType": "assisted",
+  },
+  "instanceCount": 1,
+  "status": 0,
+}
+`;
+
+exports[`AssessmentReportStepListTest renders pass: ReportInstanceList props 1`] = `undefined`;

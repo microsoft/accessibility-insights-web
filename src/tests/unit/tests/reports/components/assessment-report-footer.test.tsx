@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import {
     AssessmentReportFooter,
@@ -15,8 +15,8 @@ describe('AssessmentReportFooter', () => {
             chromeVersion: 'chromeVersion',
         };
 
-        const wrapper = shallow(<AssessmentReportFooter {...props} />);
+        const renderResult = render(<AssessmentReportFooter {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

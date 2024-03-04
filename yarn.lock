@@ -2475,13 +2475,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/chrome@npm:0.0.256":
-  version: 0.0.256
-  resolution: "@types/chrome@npm:0.0.256"
+"@types/chrome@npm:0.0.260":
+  version: 0.0.260
+  resolution: "@types/chrome@npm:0.0.260"
   dependencies:
     "@types/filesystem": "*"
     "@types/har-format": "*"
-  checksum: 95aab8e0e48da420533bbdd013f65afec1839c6370c90e9e571746a5d25588ee8922486ffaeef64abbce9d98805922637e6f968ef4a01582b10e29c895549d3a
+  checksum: d42651cdd8b8b19cace6f4e1677a841a51b263b3308c838a69af4d328da68e94c56a81b6ed46a54bf86034599d17d2136b803d732144e714d06b34f99bc4852a
   languageName: node
   linkType: hard
 
@@ -3361,7 +3361,7 @@ __metadata:
     "@testing-library/jest-dom": ^6.4.2
     "@testing-library/react": 12.1.2
     "@testing-library/user-event": ^14.5.2
-    "@types/chrome": 0.0.256
+    "@types/chrome": 0.0.260
     "@types/enzyme": ^3.10.18
     "@types/enzyme-adapter-react-16": ^1.0.9
     "@types/jest": ^29.5.11
@@ -3421,7 +3421,7 @@ __metadata:
     mini-css-extract-plugin: 2.7.7
     npm-run-all: ^4.1.5
     playwright: ^1.41.1
-    postcss: ^8.4.33
+    postcss: ^8.4.35
     postcss-modules: ^6.0.0
     prettier: ^3.2.4
     react: ^16.14.0
@@ -8091,9 +8091,9 @@ __metadata:
   linkType: hard
 
 "ip@npm:^1.1.5":
-  version: 1.1.5
-  resolution: "ip@npm:1.1.5"
-  checksum: 30133981f082a060a32644f6a7746e9ba7ac9e2bc07ecc8bbdda3ee8ca9bec1190724c390e45a1ee7695e7edfd2a8f7dda2c104ec5f7ac5068c00648504c7e5a
+  version: 1.1.9
+  resolution: "ip@npm:1.1.9"
+  checksum: b6d91fd45a856e3bd6d4f601ea0619d90f3517638f6918ebd079f959a8a6308568d8db5ef4fdf037e0d9cfdcf264f46833dfeea81ca31309cf0a7eb4b1307b84
   languageName: node
   linkType: hard
 
@@ -11249,7 +11249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.31, postcss@npm:^8.4.33":
+"postcss@npm:^8.4.31":
   version: 8.4.33
   resolution: "postcss@npm:8.4.33"
   dependencies:
@@ -11257,6 +11257,17 @@ __metadata:
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
   checksum: 6f98b2af4b76632a3de20c4f47bf0e984a1ce1a531cf11adcb0b1d63a6cbda0aae4165e578b66c32ca4879038e3eaad386a6be725a8fb4429c78e3c1ab858fe9
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.4.35":
+  version: 8.4.35
+  resolution: "postcss@npm:8.4.35"
+  dependencies:
+    nanoid: ^3.3.7
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: cf3c3124d3912a507603f6d9a49b3783f741075e9aa73eb592a6dd9194f9edab9d20a8875d16d137d4f779fe7b6fbd1f5727e39bfd1c3003724980ee4995e1da
   languageName: node
   linkType: hard
 

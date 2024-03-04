@@ -1,7 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`content renders 1`] = `
-"<Content deps={{...}}>
-  <THE-CONTENT deps={{...}} options={{...}} />
-</Content>"
+<DocumentFragment>
+  <mock-content
+    deps="[object Object]"
+  >
+    <the-content
+      deps="[object Object]"
+      options="[object Object]"
+    />
+  </mock-content>
+</DocumentFragment>
 `;

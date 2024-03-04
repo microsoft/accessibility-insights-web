@@ -1,293 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentReportBody render 1`] = `
-<div
-  className="assessment-report-body"
-  role="main"
->
-  <AssessmentReportBodyHeader />
-  <AssessmentReportSummary
-    summary={
-      {
-        "byPercentage": {
-          "fail": 50,
-          "incomplete": 37,
-          "pass": 13,
-        },
-        "byRequirement": {
-          "fail": 3,
-          "incomplete": 2,
-          "pass": 1,
-        },
-        "reportSummaryDetailsData": [
-          {
-            "displayName": "Assessment1",
-            "fail": 2,
-            "incomplete": 1,
-            "pass": 1,
-          },
-          {
-            "displayName": "Assessment2",
-            "fail": 1,
-            "incomplete": 1,
-            "pass": 0,
-          },
-        ],
-      }
-    }
-  />
-  <AssessmentScanDetails
-    deps={
-      {
-        "outcomeTypeSemanticsFromTestStatus": {
-          "stub": "outcomeTypeSemanticsFromTestStatus",
-        },
-      }
-    }
-    description="test-description"
-    details={
-      {
-        "reportDate": 2000-01-01T00:00:00.000Z,
-        "targetPage": "title",
-        "url": "url",
-      }
-    }
-  />
+<DocumentFragment>
   <div
-    className="details-section"
+    class="assessment-report-body"
+    role="main"
   >
-    <h2
-      className="details-section-header"
-    >
-      Failed tests
-      <OutcomeChip
-        count={3}
-        outcomeType="fail"
-      />
-    </h2>
-    <AssessmentReportAssessmentList
-      assessments={
-        [
-          {
-            "displayName": "Assessment1",
-            "key": "assessment1",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step2A",
-                  "guidanceLinks": [],
-                  "requirementType": "assisted",
-                },
-                "instances": [
-                  {
-                    "props": [
-                      {
-                        "key": "Path",
-                        "value": "target1",
-                      },
-                      {
-                        "key": "Snippet",
-                        "value": "someHtml",
-                      },
-                    ],
-                  },
-                ],
-                "key": "step2a",
-                "showPassingInstances": false,
-              },
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step4A",
-                  "guidanceLinks": [],
-                  "requirementType": "manual",
-                },
-                "instances": [
-                  {
-                    "props": [
-                      {
-                        "key": "Comment",
-                        "value": "comment",
-                      },
-                    ],
-                  },
-                ],
-                "key": "step4a",
-                "showPassingInstances": false,
-              },
-            ],
-          },
-          {
-            "displayName": "Assessment2",
-            "key": "assessment2",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step2B",
-                  "guidanceLinks": [],
-                  "requirementType": "manual",
-                },
-                "instances": [],
-                "key": "step2b",
-                "showPassingInstances": true,
-              },
-            ],
-          },
-        ]
-      }
-      deps={
-        {
-          "outcomeTypeSemanticsFromTestStatus": {
-            "stub": "outcomeTypeSemanticsFromTestStatus",
-          },
-        }
-      }
-      status={2}
+    <mock-assessmentreportbodyheader />
+    <mock-assessmentreportsummary
+      summary="[object Object]"
     />
-  </div>
-  <div
-    className="details-section"
-  >
-    <h2
-      className="details-section-header"
-    >
-      Incomplete tests
-      <OutcomeChip
-        count={2}
-        outcomeType="incomplete"
-      />
-    </h2>
-    <AssessmentReportAssessmentList
-      assessments={
-        [
-          {
-            "displayName": "Assessment1",
-            "key": "assessment1",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step3A",
-                  "guidanceLinks": [],
-                  "requirementType": "assisted",
-                },
-                "instances": [
-                  {
-                    "props": [
-                      {
-                        "key": "Path",
-                        "value": "target2",
-                      },
-                      {
-                        "key": "Snippet",
-                        "value": "someHtml",
-                      },
-                    ],
-                  },
-                ],
-                "key": "step3a",
-                "showPassingInstances": false,
-              },
-            ],
-          },
-          {
-            "displayName": "Assessment2",
-            "key": "assessment2",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step1B",
-                  "guidanceLinks": [],
-                  "requirementType": "assisted",
-                },
-                "instances": [],
-                "key": "step1b",
-                "showPassingInstances": true,
-              },
-            ],
-          },
-        ]
-      }
-      deps={
-        {
-          "outcomeTypeSemanticsFromTestStatus": {
-            "stub": "outcomeTypeSemanticsFromTestStatus",
-          },
-        }
-      }
-      status={1}
+    <mock-assessmentscandetails
+      deps="[object Object]"
+      description="test-description"
+      details="[object Object]"
     />
-  </div>
-  <div
-    className="details-section"
-  >
-    <h2
-      className="details-section-header"
+    <div
+      class="details-section"
     >
-      Passed tests
-      <OutcomeChip
-        count={1}
-        outcomeType="pass"
+      <h2
+        class="details-section-header"
+      >
+        Failed tests
+        <mock-outcomechip
+          count="3"
+          outcometype="fail"
+        />
+      </h2>
+      <mock-assessmentreportassessmentlist
+        assessments="[object Object],[object Object]"
+        deps="[object Object]"
+        status="2"
       />
-    </h2>
-    <AssessmentReportAssessmentList
-      assessments={
-        [
-          {
-            "displayName": "Assessment1",
-            "key": "assessment1",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step1A",
-                  "guidanceLinks": [
-                    {
-                      "href": "link1A",
-                      "text": "link1A",
-                    },
-                  ],
-                  "requirementType": "assisted",
-                },
-                "instances": [
-                  {
-                    "props": [
-                      {
-                        "key": "Path",
-                        "value": "target1",
-                      },
-                      {
-                        "key": "Snippet",
-                        "value": "someHtml",
-                      },
-                    ],
-                  },
-                ],
-                "key": "step1a",
-                "showPassingInstances": false,
-              },
-            ],
-          },
-        ]
-      }
-      deps={
-        {
-          "outcomeTypeSemanticsFromTestStatus": {
-            "stub": "outcomeTypeSemanticsFromTestStatus",
-          },
-        }
-      }
-      status={0}
-    />
+    </div>
+    <div
+      class="details-section"
+    >
+      <h2
+        class="details-section-header"
+      >
+        Incomplete tests
+        <mock-outcomechip
+          count="2"
+          outcometype="incomplete"
+        />
+      </h2>
+      <mock-assessmentreportassessmentlist
+        assessments="[object Object],[object Object]"
+        deps="[object Object]"
+        status="1"
+      />
+    </div>
+    <div
+      class="details-section"
+    >
+      <h2
+        class="details-section-header"
+      >
+        Passed tests
+        <mock-outcomechip
+          count="1"
+          outcometype="pass"
+        />
+      </h2>
+      <mock-assessmentreportassessmentlist
+        assessments="[object Object]"
+        deps="[object Object]"
+        status="0"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`AssessmentReportBody render: AssessmentReportAssessmentList props 1`] = `
+{
+  "assessments": [
+    {
+      "displayName": "Assessment1",
+      "key": "assessment1",
+      "steps": [
+        {
+          "defaultMessageComponent": null,
+          "header": {
+            "description": null,
+            "displayName": "Step2A",
+            "guidanceLinks": [],
+            "requirementType": "assisted",
+          },
+          "instances": [
+            {
+              "props": [
+                {
+                  "key": "Path",
+                  "value": "target1",
+                },
+                {
+                  "key": "Snippet",
+                  "value": "someHtml",
+                },
+              ],
+            },
+          ],
+          "key": "step2a",
+          "showPassingInstances": false,
+        },
+        {
+          "defaultMessageComponent": null,
+          "header": {
+            "description": null,
+            "displayName": "Step4A",
+            "guidanceLinks": [],
+            "requirementType": "manual",
+          },
+          "instances": [
+            {
+              "props": [
+                {
+                  "key": "Comment",
+                  "value": "comment",
+                },
+              ],
+            },
+          ],
+          "key": "step4a",
+          "showPassingInstances": false,
+        },
+      ],
+    },
+    {
+      "displayName": "Assessment2",
+      "key": "assessment2",
+      "steps": [
+        {
+          "defaultMessageComponent": null,
+          "header": {
+            "description": null,
+            "displayName": "Step2B",
+            "guidanceLinks": [],
+            "requirementType": "manual",
+          },
+          "instances": [],
+          "key": "step2b",
+          "showPassingInstances": true,
+        },
+      ],
+    },
+  ],
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "status": 2,
+}
+`;
+
+exports[`AssessmentReportBody render: AssessmentReportSummary props 1`] = `
+{
+  "summary": {
+    "byPercentage": {
+      "fail": 50,
+      "incomplete": 37,
+      "pass": 13,
+    },
+    "byRequirement": {
+      "fail": 3,
+      "incomplete": 2,
+      "pass": 1,
+    },
+    "reportSummaryDetailsData": [
+      {
+        "displayName": "Assessment1",
+        "fail": 2,
+        "incomplete": 1,
+        "pass": 1,
+      },
+      {
+        "displayName": "Assessment2",
+        "fail": 1,
+        "incomplete": 1,
+        "pass": 0,
+      },
+    ],
+  },
+}
+`;
+
+exports[`AssessmentReportBody render: AssessmentScanDetails props 1`] = `
+{
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "description": "test-description",
+  "details": {
+    "reportDate": 2000-01-01T00:00:00.000Z,
+    "targetPage": "title",
+    "url": "url",
+  },
+}
+`;
+
+exports[`AssessmentReportBody render: OutcomeChip props 1`] = `
+{
+  "count": 3,
+  "outcomeType": "fail",
+}
 `;

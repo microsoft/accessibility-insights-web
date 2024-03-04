@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { toolName } from 'content/strings/application';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { ExternalLink } from '../../../../../common/components/external-link';
 import {
     LaunchPad,
@@ -15,7 +16,11 @@ import { LaunchPadItemRow } from '../../../../../popup/components/launch-pad-ite
 
 const AXE_CORE_VERSION = 'axe.core.version';
 
+jest.mock('../../../../../common/components/external-link');
+jest.mock('../../../../../popup/components/launch-pad-item-row');
+
 describe('LaunchPad', () => {
+    mockReactComponents([ExternalLink, LaunchPadItemRow]);
     const rowConfigs: LaunchPadRowConfiguration[] = [
         {
             iconName: 'Rocket',
@@ -108,6 +113,6 @@ describe('LaunchPad', () => {
             </div>
         );
 
-        expect(shallow(testObject.render()).debug()).toEqual(shallow(expected).debug());
+        expect(render(testObject.render()).asFragment()).toEqual(render(expected).asFragment());
     });
 });

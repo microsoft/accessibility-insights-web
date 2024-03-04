@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import {
     SummaryResultsTable,
@@ -27,9 +27,9 @@ describe(SummaryResultsTable.displayName, () => {
             ['cell1', 'cell2', <div key="cell3">cell3</div>],
             ['cell4', 'cell5', <div key="cell6">cell6</div>],
         ];
-        const wrapped = shallow(
+        const renderResult = render(
             <SummaryResultsTable columns={columns} rows={rows} id="table-id" />,
         );
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
