@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { BodySection } from 'reports/components/report-sections/body-section';
 
@@ -12,9 +12,8 @@ describe('BodySection', () => {
                 2
             </div>,
         ];
+        const wrapped = render(<BodySection>{children}</BodySection>);
 
-        const wrapped = shallow(<BodySection>{children}</BodySection>);
-
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(wrapped.container.firstElementChild).toMatchSnapshot();
     });
 });

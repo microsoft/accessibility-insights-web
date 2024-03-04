@@ -1,20 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentContainer renders 1`] = `
-<main
-  className="outer-container"
->
-  <div
-    className="content-container"
+<DocumentFragment>
+  <main
+    class="outer-container"
   >
-    <div>
-      1
-    </div>
     <div
-      id="2"
+      class="content-container"
     >
-      2
+      <div>
+        1
+      </div>
+      <div
+        id="2"
+      >
+        2
+      </div>
     </div>
-  </div>
-</main>
+  </main>
+</DocumentFragment>
 `;

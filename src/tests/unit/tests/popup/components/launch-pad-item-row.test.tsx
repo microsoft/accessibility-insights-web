@@ -2,9 +2,13 @@
 // Licensed under the MIT License.
 import { Icon } from '@fluentui/react';
 import { Link } from '@fluentui/react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, Times } from 'typemoq';
 
 import {
@@ -13,7 +17,10 @@ import {
 } from '../../../../../popup/components/launch-pad-item-row';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
+jest.mock('@fluentui/react');
+
 describe('LaunchPadItemRow', () => {
+    mockReactComponents([Link]);
     const descriptionClassName = 'launch-pad-item-description';
 
     const eventStubFactory = new EventStubFactory();
@@ -80,9 +87,9 @@ describe('LaunchPadItemRow', () => {
 
         onClickTitleMock.setup(handler => handler(event)).verifiable(Times.once());
 
-        const renderedItemRow = shallow(<LaunchPadItemRow {...props} />);
-        const link = renderedItemRow.find(Link);
-        link.prop('onClick')(event);
+        render(<LaunchPadItemRow {...props} />);
+        const linkProps = getMockComponentClassPropsForCall(Link);
+        linkProps.onClick(event);
 
         onClickTitleMock.verifyAll();
     });
