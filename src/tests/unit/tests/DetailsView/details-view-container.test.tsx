@@ -17,7 +17,6 @@ import { NoContentAvailable } from '../../../../DetailsView/components/no-conten
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
-    useOriginalReactElements,
 } from '../../mock-helpers/mock-module-helpers';
 jest.mock('../../../../DetailsView/components/no-content-available/no-content-available');
 jest.mock('@fluentui/react');
@@ -119,9 +118,6 @@ describe('DetailsViewContainer', () => {
         });
 
         it('render once; should call details view opened', () => {
-            useOriginalReactElements('DetailsView/actions/details-view-action-message-creator', [
-                'DetailsViewActionMessageCreator',
-            ]);
             const storesHubMock = Mock.ofType(ClientStoresHub);
             const selectedDetailsViewPivotStub: DetailsViewPivotType = -1;
             const props: DetailsViewContainerProps = {
@@ -154,9 +150,6 @@ describe('DetailsViewContainer', () => {
         });
 
         it('render twice; should not call details view opened on second render', () => {
-            useOriginalReactElements('DetailsView/actions/details-view-action-message-creator', [
-                'DetailsViewActionMessageCreator',
-            ]);
             const storesHubMock = Mock.ofType(ClientStoresHub);
             const selectedDetailsViewPivotStub: DetailsViewPivotType = -1;
             const props: DetailsViewContainerProps = {

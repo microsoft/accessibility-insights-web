@@ -6,12 +6,10 @@ import * as React from 'react';
 import { ManualTestStatus } from '../../../../../common/types/store-data/manual-test-status';
 import { StatusIcon } from '../../../../../DetailsView/components/status-icon';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
-jest.mock('@fluentui/react', () => ({
-    Icon: jest.fn(),
-}));
+jest.mock('@fluentui/react');
 
 describe('StatusIcon', () => {
-    mockReactComponents([Icon]);
+    mockReactComponents([(Icon as any).type]);
     test('render for PASS', () => {
         const renderResult = render(<StatusIcon status={ManualTestStatus.PASS} level="test" />);
         expect(renderResult.asFragment()).toMatchSnapshot();

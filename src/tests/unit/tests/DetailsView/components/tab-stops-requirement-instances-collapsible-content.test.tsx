@@ -8,7 +8,7 @@ import {
 } from 'DetailsView/tab-stops-requirement-instances-collapsible-content';
 import { TabStopsRequirementResultInstance } from 'DetailsView/tab-stops-requirement-result';
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import {
     expectMockedComponentPropsToMatchSnapshots,
@@ -74,10 +74,10 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
 
     test('click events pass through as expected', async () => {
         onEditButtonClickedMock
-            .setup(ebc => ebc(It.isAny(), It.isAny(), It.isAny()))
+            .setup(ebc => ebc('keyboard-navigation', 'test-instance-id', 'test-description'))
             .verifiable(Times.once());
         onRemoveButtonClickedMock
-            .setup(rbc => rbc(It.isAny(), It.isAny()))
+            .setup(rbc => rbc(props.requirementId, 'test-instance-id'))
             .verifiable(Times.once());
         useOriginalReactElements('@fluentui/react', ['DetailsList', 'Link']);
 

@@ -91,9 +91,9 @@ describe('TestViewContainer', () => {
             .returns(() => elementStub)
             .verifiable(Times.once());
         const renderResult = render(<TestViewContainer {...props} />);
-
-        expect(renderResult.container.querySelector('div')).not.toBeNull();
-
+        const stubResult = render(elementStub);
+        expect(renderResult.container.isEqualNode(stubResult.container)).toBeTruthy()
+        
         getTestViewContainerMock.verifyAll();
         getAssessmentCardSelectionMessageCreatorMock.verifyAll();
     });

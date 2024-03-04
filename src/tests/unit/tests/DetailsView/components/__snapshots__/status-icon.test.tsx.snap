@@ -2,7 +2,7 @@
 
 exports[`StatusIcon render for FAIL 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
+  <mock-stylediconbase
     aria-live="polite"
     arialabel="Failed requirement"
     classname="status-icon negative-outcome-icon"
@@ -13,7 +13,7 @@ exports[`StatusIcon render for FAIL 1`] = `
 
 exports[`StatusIcon render for PASS 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
+  <mock-stylediconbase
     aria-live="polite"
     arialabel="Passed test"
     classname="status-icon positive-outcome-icon"
@@ -24,7 +24,7 @@ exports[`StatusIcon render for PASS 1`] = `
 
 exports[`StatusIcon render for PASS with extra class name 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
+  <mock-stylediconbase
     aria-live="polite"
     arialabel="Passed test"
     classname="status-icon positive-outcome-icon test"
@@ -35,7 +35,7 @@ exports[`StatusIcon render for PASS with extra class name 1`] = `
 
 exports[`StatusIcon render for UNKNOWN 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
+  <mock-stylediconbase
     aria-live="polite"
     arialabel="Incomplete requirement"
     classname="status-icon"
@@ -46,7 +46,7 @@ exports[`StatusIcon render for UNKNOWN 1`] = `
 
 exports[`StatusIcon render for default 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
+  <mock-stylediconbase
     aria-live="polite"
     arialabel="Incomplete requirement"
     classname="status-icon"
