@@ -25,7 +25,10 @@ import { PassedChecksSection } from '../../../../../../reports/components/report
 import { ReporterHeaderSection } from '../../../../../../reports/components/report-sections/reporter-header-section';
 import { ResultsContainer } from '../../../../../../reports/components/report-sections/results-container';
 import { AllOutcomesSummarySection } from '../../../../../../reports/components/report-sections/summary-section';
-import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
 
 jest.mock('../../../../../../reports/components/report-sections/body-section');
@@ -124,6 +127,16 @@ describe('ReportBody', () => {
 
         const renderResult = render(<ReportBody {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([
+            HeaderSection,
+            DetailsSection,
+            AllOutcomesSummarySection,
+            ResultsContainer,
+            FailedInstancesSection,
+            PassedChecksSection,
+            NotApplicableChecksSection,
+            FooterText,
+        ]);
     });
 
     const createSectionFactoryStub = () => {
