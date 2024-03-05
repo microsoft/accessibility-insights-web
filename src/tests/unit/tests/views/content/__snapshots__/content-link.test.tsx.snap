@@ -1,34 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContentLink render null when reference is not defined 1`] = `""`;
+exports[`ContentLink render null when reference is not defined 1`] = `<DocumentFragment />`;
 
 exports[`ContentLink renders from content, only have the icon 1`] = `
-"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} tooltipContent="Guidance" aria-label="Guidance">
-  <Icon iconName="test icon 1" />
-</NewTabLinkWithTooltip>"
+<DocumentFragment>
+  <mock-newtablinkwithtooltip
+    aria-label="Guidance"
+    href="/insights.html#/content/for/testing"
+    tooltipcontent="Guidance"
+  >
+    <mock-stylediconbase
+      iconname="test icon 1"
+    />
+  </mock-newtablinkwithtooltip>
+</DocumentFragment>
 `;
 
 exports[`ContentLink renders from path, only have the icon 1`] = `
-"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} tooltipContent="Guidance" aria-label="Guidance">
-  <Icon iconName="test icon 2" />
-</NewTabLinkWithTooltip>"
+<DocumentFragment>
+  <mock-newtablinkwithtooltip
+    aria-label="Guidance"
+    href="/insights.html#/content/for/testing"
+    tooltipcontent="Guidance"
+  >
+    <mock-stylediconbase
+      iconname="test icon 2"
+    />
+  </mock-newtablinkwithtooltip>
+</DocumentFragment>
 `;
 
 exports[`ContentLink renders with both text and icon 1`] = `
-"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} tooltipContent="Guidance" aria-label="test guidance">
-  <Icon iconName="test icon" />
-  test
-</NewTabLinkWithTooltip>"
+<DocumentFragment>
+  <mock-newtablinkwithtooltip
+    aria-label="test guidance"
+    href="/insights.html#/content/for/testing"
+    tooltipcontent="Guidance"
+  >
+    <mock-stylediconbase
+      iconname="test icon"
+    />
+    test
+  </mock-newtablinkwithtooltip>
+</DocumentFragment>
 `;
 
 exports[`ContentLink renders with only text 1`] = `
-"<NewTabLinkWithTooltip href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} tooltipContent="Guidance" aria-label="test guidance">
-  test
-</NewTabLinkWithTooltip>"
+<DocumentFragment>
+  <mock-newtablinkwithtooltip
+    aria-label="test guidance"
+    href="/insights.html#/content/for/testing"
+    tooltipcontent="Guidance"
+  >
+    test
+  </mock-newtablinkwithtooltip>
+</DocumentFragment>
 `;
 
 exports[`ContentLink renders without tooltip 1`] = `
-"<NewTabLink href="/insights.html#/content/for/testing" onClick={[Function: handleLinkClick]} aria-label="test guidance">
-  test
-</NewTabLink>"
+<DocumentFragment>
+  <mock-newtablink
+    aria-label="test guidance"
+    href="/insights.html#/content/for/testing"
+  >
+    test
+  </mock-newtablink>
+</DocumentFragment>
 `;

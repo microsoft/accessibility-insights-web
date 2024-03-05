@@ -1,367 +1,480 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentPage .Markup <Column> renders 1`] = `
-<div
-  className="column"
->
-  INSIDE COLUMN
-</div>
+<DocumentFragment>
+  <div
+    class="column"
+  >
+    INSIDE COLUMN
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Columns> renders 1`] = `
-<div
-  className="columns"
->
-  INSIDE COLUMNS
-</div>
+<DocumentFragment>
+  <div
+    class="columns"
+  >
+    INSIDE COLUMNS
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Do> renders 1`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="do-header"
+    class="column"
   >
-    <h2>
-      Do
-    </h2>
-    <CheckIcon />
+    <div
+      class="do-header"
+    >
+      <h2>
+        Do
+      </h2>
+      <mock-checkicon />
+    </div>
+    <div
+      class="do-section"
+    >
+      THINGS TO DO
+    </div>
   </div>
-  <div
-    className="do-section"
-  >
-    THINGS TO DO
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Dont> renders 1`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="dont-header"
+    class="column"
   >
-    <h2>
-      Don't
-    </h2>
-    <CrossIcon />
+    <div
+      class="dont-header"
+    >
+      <h2>
+        Don't
+      </h2>
+      <mock-crossicon />
+    </div>
+    <div
+      class="dont-section"
+    >
+      DON'T DO THIS
+    </div>
   </div>
-  <div
-    className="dont-section"
-  >
-    DON'T DO THIS
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Fail> renders 1`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="fail-header"
+    class="column"
   >
-    <CrossIcon />
-     
-    <h3>
-      Fail
-    </h3>
+    <div
+      class="fail-header"
+    >
+      <mock-crossicon />
+       
+      <h3>
+        Fail
+      </h3>
+    </div>
+    <div
+      class="fail-section"
+    >
+      I FAILED :(
+    </div>
   </div>
-  <div
-    className="fail-section"
-  >
-    I FAILED :(
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Highlight> renders 1`] = `
-<span
-  className="highlight"
->
-  HIGHLIGHTED
-</span>
+<DocumentFragment>
+  <span
+    class="highlight"
+  >
+    HIGHLIGHTED
+  </span>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <HyperLink> renders 1`] = `
-<NewTabLink
-  href="http://my.link"
-  onClick={[Function]}
->
-  LINK TEXT
-</NewTabLink>
+<DocumentFragment>
+  <mock-newtablink
+    href="http://my.link"
+  >
+    LINK TEXT
+  </mock-newtablink>
+</DocumentFragment>
 `;
 
-exports[`ContentPage .Markup <Include> renders 1`] = `"<ContentPageComponent deps={{...}} options={{...}} />"`;
+exports[`ContentPage .Markup <Include> renders 1`] = `
+<DocumentFragment>
+  <div>
+    INCLUDE
+  </div>
+</DocumentFragment>
+`;
 
 exports[`ContentPage .Markup <Inline> renders 1`] = `
-<div
-  className="content-inline"
->
-  INLINED
-</div>
+<DocumentFragment>
+  <div
+    class="content-inline"
+  >
+    INLINED
+  </div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 1`] = `
-<span
-  className="landmarks-legend main-landmark"
->
-  TEST
-</span>
+<DocumentFragment>
+  <span
+    class="landmarks-legend main-landmark"
+  >
+    TEST
+  </span>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 2`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="do-header"
+    class="column"
   >
-    <h2>
-      Do
-    </h2>
-    <CheckIcon />
+    <div
+      class="do-header"
+    >
+      <h2>
+        Do
+      </h2>
+      <mock-checkicon />
+    </div>
+    <div
+      class="do-section"
+    >
+      THINGS TO DO
+    </div>
   </div>
-  <div
-    className="do-section"
-  >
-    THINGS TO DO
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Links> renders with many links 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="content-hyperlinks"
+    class="content-hyperlinks"
   >
-    <HyperLink
+    <mock-newtablink
       href="about:blank"
     >
       One
-    </HyperLink>
-    <HyperLink
+    </mock-newtablink>
+    <mock-newtablink
       href="about:blank"
     >
       Two
-    </HyperLink>
-    <HyperLink
+    </mock-newtablink>
+    <mock-newtablink
       href="about:blank"
     >
       Three
-    </HyperLink>
+    </mock-newtablink>
   </div>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Links> renders with one link 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="content-hyperlinks"
+    class="content-hyperlinks"
   >
-    <HyperLink
+    <mock-newtablink
       href="about:blank"
     >
       One
-    </HyperLink>
+    </mock-newtablink>
   </div>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Links> renders with text 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="content-hyperlinks"
+    class="content-hyperlinks"
   >
     Some text
   </div>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Pass> renders 1`] = `
-<Column>
+<DocumentFragment>
   <div
-    className="pass-header"
+    class="column"
   >
-    <CheckIcon />
-     
-    <h3>
-      Pass
-    </h3>
+    <div
+      class="pass-header"
+    >
+      <mock-checkicon />
+       
+      <h3>
+        Pass
+      </h3>
+    </div>
+    <div
+      class="pass-section"
+    >
+      I PASSED :)
+    </div>
   </div>
-  <div
-    className="pass-section"
-  >
-    I PASSED :)
-  </div>
-</Column>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <PassFail> renders with example headers 1`] = `
-<div
-  className="pass-fail-grid"
->
+<DocumentFragment>
   <div
-    className="fail-section"
+    class="pass-fail-grid"
   >
     <div
-      className="fail-header"
+      class="fail-section"
     >
-      <CrossIcon />
-       
-      <h3>
-        Fail
-      </h3>
+      <div
+        class="fail-header"
+      >
+        <mock-crossicon />
+         
+        <h3>
+          Fail
+        </h3>
+      </div>
+      <p>
+        I FAILED :(
+      </p>
     </div>
-    <p>
-      I FAILED :(
-    </p>
-  </div>
-  <div
-    className="fail-example"
-  >
-    <CodeExample
-      title="How I failed"
-    >
-      This is the failure [example].
-    </CodeExample>
-  </div>
-  <div
-    className="pass-section"
-  >
     <div
-      className="pass-header"
+      class="fail-example"
     >
-      <CheckIcon />
-       
-      <h3>
-        Pass
-      </h3>
+      <div
+        class="code-example"
+      >
+        <div
+          class="code-example-title"
+        >
+          <h4>
+            How I failed
+          </h4>
+        </div>
+        <div
+          class="code-example-code"
+        >
+          <div
+            class="insights-code"
+          >
+            This is the failure 
+            <span
+              class="highlight"
+            >
+              example
+            </span>
+            .
+          </div>
+        </div>
+      </div>
     </div>
-    <p>
-      I PASSED!
-    </p>
-  </div>
-  <div
-    className="pass-example"
-  >
-    <CodeExample
-      title={
-        <React.Fragment>
-          How I 
-          <b>
-            passed
-          </b>
-        </React.Fragment>
-      }
+    <div
+      class="pass-section"
     >
-      This is the passing [example].
-    </CodeExample>
+      <div
+        class="pass-header"
+      >
+        <mock-checkicon />
+         
+        <h3>
+          Pass
+        </h3>
+      </div>
+      <p>
+        I PASSED!
+      </p>
+    </div>
+    <div
+      class="pass-example"
+    >
+      <div
+        class="code-example"
+      >
+        <div
+          class="code-example-title"
+        >
+          <h4>
+            How I 
+            <b>
+              passed
+            </b>
+          </h4>
+        </div>
+        <div
+          class="code-example-code"
+        >
+          <div
+            class="insights-code"
+          >
+            This is the passing 
+            <span
+              class="highlight"
+            >
+              example
+            </span>
+            .
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <PassFail> renders without example headers 1`] = `
-<div
-  className="pass-fail-grid"
->
+<DocumentFragment>
   <div
-    className="fail-section"
+    class="pass-fail-grid"
   >
     <div
-      className="fail-header"
+      class="fail-section"
     >
-      <CrossIcon />
-       
-      <h3>
-        Fail
-      </h3>
+      <div
+        class="fail-header"
+      >
+        <mock-crossicon />
+         
+        <h3>
+          Fail
+        </h3>
+      </div>
+      <p>
+        I FAILED :(
+      </p>
     </div>
-    <p>
-      I FAILED :(
-    </p>
-  </div>
-  <div
-    className="fail-example"
-  >
-    <CodeExample>
-      This is the failure [example].
-    </CodeExample>
-  </div>
-  <div
-    className="pass-section"
-  >
     <div
-      className="pass-header"
+      class="fail-example"
     >
-      <CheckIcon />
-       
-      <h3>
-        Pass
-      </h3>
+      <div
+        class="code-example"
+      >
+        <div
+          class="code-example-code"
+        >
+          <div
+            class="insights-code"
+          >
+            This is the failure 
+            <span
+              class="highlight"
+            >
+              example
+            </span>
+            .
+          </div>
+        </div>
+      </div>
     </div>
-    <p>
-      I PASSED!
-    </p>
+    <div
+      class="pass-section"
+    >
+      <div
+        class="pass-header"
+      >
+        <mock-checkicon />
+         
+        <h3>
+          Pass
+        </h3>
+      </div>
+      <p>
+        I PASSED!
+      </p>
+    </div>
+    <div
+      class="pass-example"
+    >
+      <div
+        class="code-example"
+      >
+        <div
+          class="code-example-code"
+        >
+          <div
+            class="insights-code"
+          >
+            This is the passing 
+            <span
+              class="highlight"
+            >
+              example
+            </span>
+            .
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div
-    className="pass-example"
-  >
-    <CodeExample>
-      This is the passing [example].
-    </CodeExample>
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <ProblemList> renders 1`] = `
-<ul
-  className="accessibility-problems-list"
->
-  list content
-</ul>
+<DocumentFragment>
+  <ul
+    class="accessibility-problems-list"
+  >
+    list content
+  </ul>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Table> renders 1`] = `
-<ul
-  className="table"
->
-  table content
-</ul>
+<DocumentFragment>
+  <ul
+    class="table"
+  >
+    table content
+  </ul>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where options not specified 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <h1>
     TEST
   </h1>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === false 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <h1>
     TEST
   </h1>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === null 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <h1>
     TEST
   </h1>
-</React.Fragment>
+</DocumentFragment>
 `;
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
-<React.Fragment>
-  <HelmetWrapper
-    defer={true}
-    encodeSpecialCharacters={true}
+<DocumentFragment>
+  <mock-helmetwrapper
+    defer="true"
+    encodespecialcharacters="true"
   >
     <title>
-      TEST
-       - 
-      THE_APPLICATION_TITLE
+      TEST - THE_APPLICATION_TITLE
     </title>
-  </HelmetWrapper>
+  </mock-helmetwrapper>
   <h1>
     TEST
   </h1>
-</React.Fragment>
+</DocumentFragment>
 `;

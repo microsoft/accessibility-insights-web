@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import { ContentContainer } from 'reports/components/report-sections/content-container';
@@ -14,8 +14,8 @@ describe('ContentContainer', () => {
             </div>,
         ];
 
-        const wrapped = shallow(<ContentContainer>{children}</ContentContainer>);
+        const wrapped = render(<ContentContainer>{children}</ContentContainer>);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(wrapped.asFragment()).toMatchSnapshot();
     });
 });

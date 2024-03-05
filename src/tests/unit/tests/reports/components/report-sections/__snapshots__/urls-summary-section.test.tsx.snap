@@ -1,55 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UrlsSummarySection renders 1`] = `
-<div
-  className="urlsSummarySection"
->
-  <React.Fragment>
+<DocumentFragment>
+  <div
+    class="urlsSummarySection"
+  >
     <h2>
       URLs
     </h2>
     <span
-      className="totalUrls"
+      class="totalUrls"
     >
       6
     </span>
      total URLs scanned
-  </React.Fragment>
-  <OutcomeSummaryBar
-    allOutcomeTypes={
-      [
-        "fail",
-        "unscannable",
-        "pass",
-      ]
-    }
-    iconStyleInverted={true}
-    outcomeStats={
-      {
-        "fail": 2,
-        "pass": 1,
-        "unscannable": 3,
-      }
-    }
-    textLabel={true}
-  />
-  <div
-    className="failureInstances"
-  >
-    <h2>
-      Failure Instances
-    </h2>
-    <span
-      className="failureOutcomeChip"
+    <mock-outcomesummarybar
+      alloutcometypes="fail,unscannable,pass"
+      iconstyleinverted="true"
+      outcomestats="[object Object]"
+      textlabel="true"
+    />
+    <div
+      class="failureInstances"
     >
-      <OutcomeChip
-        count={10}
-        outcomeType="fail"
-      />
-      <span>
-        Failure instances were detected
+      <h2>
+        Failure Instances
+      </h2>
+      <span
+        class="failureOutcomeChip"
+      >
+        <mock-outcomechip
+          count="10"
+          outcometype="fail"
+        />
+        <span>
+          Failure instances were detected
+        </span>
       </span>
-    </span>
+    </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`UrlsSummarySection renders: OutcomeChip props 1`] = `
+{
+  "count": 10,
+  "outcomeType": "fail",
+}
+`;
+
+exports[`UrlsSummarySection renders: OutcomeSummaryBar props 1`] = `
+{
+  "allOutcomeTypes": [
+    "fail",
+    "unscannable",
+    "pass",
+  ],
+  "iconStyleInverted": true,
+  "outcomeStats": {
+    "fail": 2,
+    "pass": 1,
+    "unscannable": 3,
+  },
+  "textLabel": true,
+}
 `;

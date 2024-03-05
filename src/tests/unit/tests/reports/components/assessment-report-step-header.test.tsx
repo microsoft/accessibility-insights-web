@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { RequirementHeaderReportModel, RequirementType } from 'reports/assessment-report-model';
 import {
@@ -13,8 +13,20 @@ import {
 import { OutcomeChip } from 'reports/components/outcome-chip';
 import { RequirementOutcomeType } from 'reports/components/requirement-outcome-type';
 import { Mock } from 'typemoq';
+import '@testing-library/jest-dom';
+import { GuidanceLinks } from '../../../../../common/components/guidance-links';
+import { GuidanceTags } from '../../../../../common/components/guidance-tags';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('reports/components/outcome-chip');
+jest.mock('../../../../../common/components/guidance-links');
+jest.mock('../../../../../common/components/guidance-tags');
 
 describe('AssessmentReportStepHeader', () => {
+    mockReactComponents([OutcomeChip, GuidanceLinks, GuidanceTags]);
     function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {
         return {
             description: <p>DESCRIPTION</p>,
@@ -37,7 +49,7 @@ describe('AssessmentReportStepHeader', () => {
     test('matches snapshot', () => {
         const header = genHeader('assisted');
 
-        const actual = shallow(
+        const renderResult = render(
             <AssessmentReportStepHeader
                 deps={deps}
                 status={FAIL}
@@ -46,7 +58,8 @@ describe('AssessmentReportStepHeader', () => {
                 defaultMessageComponent={null}
             />,
         );
-        expect(actual.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([GuidanceLinks, GuidanceTags]);
     });
 
     const outcomePairs: [ManualTestStatus, RequirementOutcomeType][] = [
@@ -91,27 +104,26 @@ describe('AssessmentReportStepHeader', () => {
                                 />
                             );
 
-                            const wrapper = shallow(component);
+                            const renderResult = render(component);
 
                             it(`will have OutcomeChip with count of ${expectedCount} and outcomeType of ${outcomeType}`, () => {
-                                const chip = wrapper.find(OutcomeChip).getElement();
-                                expect(chip).toEqual(
-                                    <OutcomeChip count={expectedCount} outcomeType={outcomeType} />,
-                                );
+                                render(component);
+                                expectMockedComponentPropsToMatchSnapshots([OutcomeChip]);
                             });
 
-                            const messageWrapper = wrapper.find('.no-failure-view');
+                            const messageWrapper =
+                                renderResult.container.querySelector('.no-failure-view');
 
                             if (defaultMessageComponent && outcomeType === 'pass') {
                                 it('will have a message about no instances', () => {
-                                    expect(messageWrapper.exists()).toBe(true);
-                                    expect(messageWrapper.getElement()).toEqual(
-                                        <div className="no-failure-view">No failing instances</div>,
+                                    expect(messageWrapper).not.toBeNull();
+                                    expect(messageWrapper).toHaveTextContent(
+                                        'No failing instances',
                                     );
                                 });
                             } else {
                                 it('will have no message', () => {
-                                    expect(messageWrapper.exists()).toBe(false);
+                                    expect(messageWrapper).toBeNull();
                                 });
                             }
                         }),

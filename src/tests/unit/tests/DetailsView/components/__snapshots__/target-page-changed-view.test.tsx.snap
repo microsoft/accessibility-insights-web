@@ -1,72 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TargetPageChangedView renders with subtitle=test subtitle content and feature flag= false 1`] = `
-<div
-  className="staticContentInDetailsView"
->
-  <h1>
-    test title
-  </h1>
+<DocumentFragment>
   <div
-    className="targetPageChangedSubtitle"
+    class="staticContentInDetailsView"
   >
-    test subtitle content
-  </div>
-  <p>
-    <React.Fragment>
+    <h1>
+      test title
+    </h1>
+    <div
+      class="targetPageChangedSubtitle"
+    >
+      test subtitle content
+    </div>
+    <p>
       The target page has changed. Use the 
-      <InlineStartOverButton
-        detailsViewActionMessageCreator={{}}
-        selectedTest={2}
+      <mock-inlinestartoverbutton
+        detailsviewactionmessagecreator="[object Object]"
+        selectedtest="2"
       />
        button to scan the new target page.
-    </React.Fragment>
-  </p>
-</div>
+    </p>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TargetPageChangedView renders with subtitle=undefined and feature flag= false 1`] = `
-<div
-  className="staticContentInDetailsView"
->
-  <h1>
-    test title
-  </h1>
+<DocumentFragment>
   <div
-    className="targetPageChangedSubtitle"
-  />
-  <p>
-    <React.Fragment>
+    class="staticContentInDetailsView"
+  >
+    <h1>
+      test title
+    </h1>
+    <div
+      class="targetPageChangedSubtitle"
+    />
+    <p>
       The target page has changed. Use the 
-      <InlineStartOverButton
-        detailsViewActionMessageCreator={{}}
-        selectedTest={2}
+      <mock-inlinestartoverbutton
+        detailsviewactionmessagecreator="[object Object]"
+        selectedtest="2"
       />
        button to scan the new target page.
-    </React.Fragment>
-  </p>
-</div>
+    </p>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TargetPageChangedView renders with subtitle=undefined and feature flag= true 1`] = `
-<div
-  className="staticContentInDetailsView"
->
-  <h1>
-    test title
-  </h1>
+<DocumentFragment>
   <div
-    className="targetPageChangedSubtitle"
-  />
-  <p>
-    <React.Fragment>
+    class="staticContentInDetailsView"
+  >
+    <h1>
+      test title
+    </h1>
+    <div
+      class="targetPageChangedSubtitle"
+    />
+    <p>
       The target page has changed. Use the 
-      <InlineStartOverButton
-        detailsViewActionMessageCreator={{}}
-        selectedTest={2}
+      <mock-inlinestartoverbutton
+        detailsviewactionmessagecreator="[object Object]"
+        selectedtest="2"
       />
        button to scan the new target page.
-    </React.Fragment>
-  </p>
-</div>
+    </p>
+  </div>
+</DocumentFragment>
 `;

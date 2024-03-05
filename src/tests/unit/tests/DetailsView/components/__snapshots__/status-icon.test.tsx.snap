@@ -1,46 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StatusIcon render for FAIL 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Failed requirement"
-  className="status-icon negative-outcome-icon"
-  iconName="StatusErrorFull"
-/>
+<DocumentFragment>
+  <mock-stylediconbase
+    aria-live="polite"
+    arialabel="Failed requirement"
+    classname="status-icon negative-outcome-icon"
+    iconname="StatusErrorFull"
+  />
+</DocumentFragment>
 `;
 
 exports[`StatusIcon render for PASS 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Passed test"
-  className="status-icon positive-outcome-icon"
-  iconName="completedSolid"
-/>
+<DocumentFragment>
+  <mock-stylediconbase
+    aria-live="polite"
+    arialabel="Passed test"
+    classname="status-icon positive-outcome-icon"
+    iconname="completedSolid"
+  />
+</DocumentFragment>
 `;
 
 exports[`StatusIcon render for PASS with extra class name 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Passed test"
-  className="status-icon positive-outcome-icon test"
-  iconName="completedSolid"
-/>
+<DocumentFragment>
+  <mock-stylediconbase
+    aria-live="polite"
+    arialabel="Passed test"
+    classname="status-icon positive-outcome-icon test"
+    iconname="completedSolid"
+  />
+</DocumentFragment>
 `;
 
 exports[`StatusIcon render for UNKNOWN 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Incomplete requirement"
-  className="status-icon"
-  iconName="circleRing"
-/>
+<DocumentFragment>
+  <mock-stylediconbase
+    aria-live="polite"
+    arialabel="Incomplete requirement"
+    classname="status-icon"
+    iconname="circleRing"
+  />
+</DocumentFragment>
 `;
 
 exports[`StatusIcon render for default 1`] = `
-<StyledIconBase
-  aria-live="polite"
-  ariaLabel="Incomplete requirement"
-  className="status-icon"
-  iconName="circleRing"
-/>
+<DocumentFragment>
+  <mock-stylediconbase
+    aria-live="polite"
+    arialabel="Incomplete requirement"
+    classname="status-icon"
+    iconname="circleRing"
+  />
+</DocumentFragment>
 `;

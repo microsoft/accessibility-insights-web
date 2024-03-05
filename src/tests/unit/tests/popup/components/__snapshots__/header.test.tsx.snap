@@ -1,79 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header render with children: non-empty children 1`] = `
-<header
-  className="launchPanelHeader"
->
-  <h1
-    className="title"
+<DocumentFragment>
+  <header
+    class="launchPanelHeader"
   >
-    test-title
-  </h1>
-  <div
-    className="children"
-  >
-    <span>
-      test children
-    </span>
-  </div>
-  <div
-    className="subtitle"
-  />
-</header>
+    <h1
+      class="title"
+    >
+      test-title
+    </h1>
+    <div
+      class="children"
+    >
+      <span>
+        test children
+      </span>
+    </div>
+    <div
+      class="subtitle"
+    />
+  </header>
+</DocumentFragment>
 `;
 
 exports[`Header render with children: null children 1`] = `
-<header
-  className="launchPanelHeader"
->
-  <h1
-    className="title"
+<DocumentFragment>
+  <header
+    class="launchPanelHeader"
   >
-    test-title
-  </h1>
-  <div
-    className="children"
-  />
-  <div
-    className="subtitle"
-  />
-</header>
+    <h1
+      class="title"
+    >
+      test-title
+    </h1>
+    <div
+      class="children"
+    />
+    <div
+      class="subtitle"
+    />
+  </header>
+</DocumentFragment>
 `;
 
 exports[`Header render with subtitle <test-sub-title> 1`] = `
-<header
-  className="launchPanelHeader"
->
-  <h1
-    className="title"
+<DocumentFragment>
+  <header
+    class="launchPanelHeader"
   >
-    test-title
-  </h1>
-  <div
-    className="children"
-  />
-  <div
-    className="subtitle"
-  >
-    test-sub-title
-  </div>
-</header>
+    <h1
+      class="title"
+    >
+      test-title
+    </h1>
+    <div
+      class="children"
+    />
+    <div
+      class="subtitle"
+    >
+      test-sub-title
+    </div>
+  </header>
+</DocumentFragment>
 `;
 
 exports[`Header render with subtitle <undefined> 1`] = `
-<header
-  className="launchPanelHeader"
->
-  <h1
-    className="title"
+<DocumentFragment>
+  <header
+    class="launchPanelHeader"
   >
-    test-title
-  </h1>
-  <div
-    className="children"
-  />
-  <div
-    className="subtitle"
-  />
-</header>
+    <h1
+      class="title"
+    >
+      test-title
+    </h1>
+    <div
+      class="children"
+    />
+    <div
+      class="subtitle"
+    />
+  </header>
+</DocumentFragment>
 `;

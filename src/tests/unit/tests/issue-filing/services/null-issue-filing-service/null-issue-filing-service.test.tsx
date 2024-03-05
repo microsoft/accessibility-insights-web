@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import {
@@ -41,7 +41,7 @@ describe('NullIssueFilingService', () => {
             onPropertyUpdateCallback: () => {},
         };
 
-        const wrapper = shallow(<Component {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<Component {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

@@ -1,66 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UrlErrorsTable renders 1`] = `
-<SummaryResultsTable
-  columns={
+<DocumentFragment>
+  <mock-summaryresultstable
+    columns="[object Object],[object Object],[object Object]"
+    id="table-id"
+    rows="type1,[object Object],[object Object],type2,[object Object],[object Object],type3,[object Object],[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`UrlErrorsTable renders: SummaryResultsTable props 1`] = `
+{
+  "columns": [
+    {
+      "contentType": "text",
+      "header": "Error type",
+    },
+    {
+      "contentType": "url",
+      "header": "URL",
+    },
+    {
+      "contentType": "text",
+      "header": "Error description",
+    },
+  ],
+  "id": "table-id",
+  "rows": [
     [
-      {
-        "contentType": "text",
-        "header": "Error type",
-      },
-      {
-        "contentType": "url",
-        "header": "URL",
-      },
-      {
-        "contentType": "text",
-        "header": "Error description",
-      },
-    ]
-  }
-  id="table-id"
-  rows={
+      "type1",
+      <NewTabLink
+        href="https://url.com/1"
+      >
+        https://url.com/1
+      </NewTabLink>,
+      <NewTabLink
+        href="error log file 1"
+      >
+        error description 1
+      </NewTabLink>,
+    ],
     [
-      [
-        "type1",
-        <NewTabLink
-          href="https://url.com/1"
-        >
-          https://url.com/1
-        </NewTabLink>,
-        <NewTabLink
-          href="error log file 1"
-        >
-          error description 1
-        </NewTabLink>,
-      ],
-      [
-        "type2",
-        <NewTabLink
-          href="https://url.com/2"
-        >
-          https://url.com/2
-        </NewTabLink>,
-        <NewTabLink
-          href="error log file 2"
-        >
-          error description 2
-        </NewTabLink>,
-      ],
-      [
-        "type3",
-        <NewTabLink
-          href="https://url.com/3"
-        >
-          https://url.com/3
-        </NewTabLink>,
-        <NewTabLink
-          href="error log file 3"
-        >
-          error description 3
-        </NewTabLink>,
-      ],
-    ]
-  }
-/>
+      "type2",
+      <NewTabLink
+        href="https://url.com/2"
+      >
+        https://url.com/2
+      </NewTabLink>,
+      <NewTabLink
+        href="error log file 2"
+      >
+        error description 2
+      </NewTabLink>,
+    ],
+    [
+      "type3",
+      <NewTabLink
+        href="https://url.com/3"
+      >
+        https://url.com/3
+      </NewTabLink>,
+      <NewTabLink
+        href="error log file 3"
+      >
+        error description 3
+      </NewTabLink>,
+    ],
+  ],
+}
 `;

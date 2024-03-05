@@ -1,52 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Head renders 1`] = `
-<head>
+<DocumentFragment>
   <meta
-    charSet="UTF-8"
+    charset="UTF-8"
   />
   <title>
-    some title preface
-     
-    some title
+    some title preface some title
   </title>
-  <style
-    dangerouslySetInnerHTML={
-      {
-        "__html": "<<CSS:../reports/automated-checks-report.css>>",
-      }
-    }
-  />
-  <style
-    dangerouslySetInnerHTML={
-      {
-        "__html": "some style sheet",
-      }
-    }
-  />
-</head>
+  <style>
+    &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
+  </style>
+  <style>
+    some style sheet
+  </style>
+</DocumentFragment>
 `;
 
 exports[`ReporterHead renders 1`] = `
-<Head
-  bundledStyles={
-    {
-      "styleSheet": "<<CSS:../../packages/report/bundle/report.css>>",
-    }
-  }
-  title="automated checks result"
-  titlePreface="Accessibility Insights"
-/>
+<DocumentFragment>
+  <meta
+    charset="UTF-8"
+  />
+  <title>
+    Accessibility Insights automated checks result
+  </title>
+  <style>
+    &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
+  </style>
+  <style>
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
+  </style>
+</DocumentFragment>
 `;
 
 exports[`WebReportHead renders 1`] = `
-<Head
-  bundledStyles={
-    {
-      "styleSheet": "<<CSS:detailsView.css>>",
-    }
-  }
-  title="FastPass results"
-  titlePreface="Accessibility Insights for Web"
-/>
+<DocumentFragment>
+  <meta
+    charset="UTF-8"
+  />
+  <title>
+    Accessibility Insights for Web FastPass results
+  </title>
+  <style>
+    &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
+  </style>
+  <style>
+    &lt;&lt;CSS:detailsView.css&gt;&gt;
+  </style>
+</DocumentFragment>
 `;
