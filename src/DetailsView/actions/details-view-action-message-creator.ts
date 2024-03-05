@@ -199,9 +199,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public enableFastPassVisualHelperWithoutScan(
-        test: VisualizationType,
-    ): void {
+    public enableFastPassVisualHelperWithoutScan(test: VisualizationType): void {
         const payload: ToggleActionPayload = {
             test,
         };
@@ -258,9 +256,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.dispatchMessage(message);
     };
 
-    public rescanVisualizationWithoutTelemetry = (
-        test: VisualizationType,
-    ) => {
+    public rescanVisualizationWithoutTelemetry = (test: VisualizationType) => {
         const payload: ToggleActionPayload = {
             test: test,
         };
