@@ -26,7 +26,7 @@ import { ReporterHeaderSection } from '../../../../../../reports/components/repo
 import { ResultsContainer } from '../../../../../../reports/components/report-sections/results-container';
 import { AllOutcomesSummarySection } from '../../../../../../reports/components/report-sections/summary-section';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
@@ -127,16 +127,7 @@ describe('ReportBody', () => {
 
         const renderResult = render(<ReportBody {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([
-            HeaderSection,
-            DetailsSection,
-            AllOutcomesSummarySection,
-            ResultsContainer,
-            FailedInstancesSection,
-            PassedChecksSection,
-            NotApplicableChecksSection,
-            FooterText,
-        ]);
+        expect(getMockComponentClassPropsForCall(BodySection).children).toMatchSnapshot();
     });
 
     const createSectionFactoryStub = () => {
