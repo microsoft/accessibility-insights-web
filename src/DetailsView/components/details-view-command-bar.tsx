@@ -53,6 +53,8 @@ import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
+import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
+import { QuickAssessToAssessmentDialog } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
@@ -105,6 +107,7 @@ export interface DetailsViewCommandBarProps {
     tabStopRequirementData: TabStopRequirementState;
     userConfigurationStoreData: UserConfigurationStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    dataTransferViewStoreData: DataTransferViewStoreData;
 }
 export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
@@ -112,6 +115,7 @@ export class DetailsViewCommandBar extends React.Component<
 > {
     public exportDialogCloseFocus?: IButton;
     public startOverDialogCloseFocus?: IButton;
+    public transferToAssessmentDialogCloseFocus?: IButton;
 
     public constructor(props) {
         super(props);
@@ -119,6 +123,7 @@ export class DetailsViewCommandBar extends React.Component<
             isInvalidLoadAssessmentDialogOpen: false,
             isLoadAssessmentDialogOpen: false,
             isReportExportDialogOpen: false,
+            isMoveToAssessmentDialogOpen: false,
             loadedAssessmentData: {} as VersionedAssessmentData,
             startOverDialogState: 'none',
         };
@@ -137,6 +142,7 @@ export class DetailsViewCommandBar extends React.Component<
                 {this.renderInvalidLoadAssessmentDialog()}
                 {this.renderLoadAssessmentDialog()}
                 {this.renderStartOverDialog()}
+                {this.renderMoveToAssessmentDialog()}
             </div>
         );
     }
@@ -208,6 +214,7 @@ export class DetailsViewCommandBar extends React.Component<
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref ?? undefined;
                     this.startOverDialogCloseFocus = ref ?? undefined;
+                    this.transferToAssessmentDialogCloseFocus = ref ?? undefined;
                 }}
             />
         );
@@ -218,6 +225,9 @@ export class DetailsViewCommandBar extends React.Component<
     private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
 
     private focusReportExportButton = () => this.exportDialogCloseFocus?.focus();
+
+    private focusTransferToAssessmentButton = () =>
+        this.transferToAssessmentDialogCloseFocus?.focus();
 
     private renderExportButton = () => {
         const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
@@ -266,6 +276,7 @@ export class DetailsViewCommandBar extends React.Component<
     private renderTransferToAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.TransferToAssessmentButton({
             ...this.props,
+            buttonRef: ref => (this.transferToAssessmentDialogCloseFocus = ref ?? undefined),
         });
     };
 
@@ -372,5 +383,17 @@ export class DetailsViewCommandBar extends React.Component<
         };
 
         return <StartOverDialog {...dialogProps} />;
+    }
+
+    private renderMoveToAssessmentDialog(): JSX.Element {
+        return (
+            <QuickAssessToAssessmentDialog
+                isShown={
+                    this.props.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog
+                }
+                afterDialogDismissed={this.focusTransferToAssessmentButton}
+                {...this.props}
+            />
+        );
     }
 }

@@ -8,10 +8,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import {
-    QuickAssessToAssessmentDialog,
-    QuickAssessToAssessmentDialogDeps,
-} from 'DetailsView/components/quick-assess-to-assessment-dialog';
+import { QuickAssessToAssessmentDialogDeps } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
@@ -97,7 +94,6 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                         <div className={styles.detailsViewBodyContentPane}>
                             {this.getTargetPageHiddenBar()}
                             <div className={styles.view} role="main">
-                                {this.renderQuickAssessToAssessmentDialog()}
                                 {this.renderRightPanel()}
                             </div>
                         </div>
@@ -142,16 +138,5 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
     private renderRightPanel(): JSX.Element {
         return <this.props.rightPanelConfiguration.RightPanel {...this.props} />;
-    }
-
-    private renderQuickAssessToAssessmentDialog(): JSX.Element {
-        return (
-            <QuickAssessToAssessmentDialog
-                isShown={
-                    this.props.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog
-                }
-                deps={this.props.deps}
-            />
-        );
     }
 }
