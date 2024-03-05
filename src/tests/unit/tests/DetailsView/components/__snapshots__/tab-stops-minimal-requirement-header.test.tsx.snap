@@ -1,33 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabStopsMinimalRequirementHeader renders 1`] = `
-<span
-  className="requirementDetail"
->
-  <span>
-    <span
-      aria-hidden="true"
-    >
-      <OutcomeChip
-        count={2}
-        outcomeType="fail"
-      />
+<DocumentFragment>
+  <span
+    class="requirementDetail"
+  >
+    <span>
+      <span
+        aria-hidden="true"
+      >
+        <mock-outcomechip
+          count="2"
+          outcometype="fail"
+        />
+      </span>
+    </span>
+    <span>
+      <span
+        class="requirementDetailsId"
+      >
+        <strong>
+          test requirement name
+        </strong>
+      </span>
+      : 
+      <span
+        class="requirementDetailDescription"
+      >
+        test requirement description
+      </span>
     </span>
   </span>
-  <span>
-    <span
-      className="requirementDetailsId"
-    >
-      <strong>
-        test requirement name
-      </strong>
-    </span>
-    : 
-    <span
-      className="requirementDetailDescription"
-    >
-      test requirement description
-    </span>
-  </span>
-</span>
+</DocumentFragment>
 `;

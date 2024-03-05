@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -7,10 +8,13 @@ import {
     TargetPageChangedView,
     TargetPageChangedViewProps,
 } from 'DetailsView/components/target-page-changed-view';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import { InlineStartOverButton } from '../../../../../DetailsView/components/inline-start-over-button';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../DetailsView/components/inline-start-over-button');
 
 describe('TargetPageChangedView', () => {
+    mockReactComponents([InlineStartOverButton]);
     it.each`
         subtitle                   | isCardsUIEnabled
         ${undefined}               | ${true}
@@ -37,9 +41,9 @@ describe('TargetPageChangedView', () => {
                 detailsViewActionMessageCreator,
             };
 
-            const wrapped = shallow(<TargetPageChangedView {...props} />);
+            const renderResult = render(<TargetPageChangedView {...props} />);
 
-            expect(wrapped.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         },
     );
 });
