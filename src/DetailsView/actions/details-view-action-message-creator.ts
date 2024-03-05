@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    AssessmentToggleActionPayload,
     BaseActionPayload,
     OnDetailsViewInitializedPayload,
     OnDetailsViewOpenPayload,
@@ -202,11 +201,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public enableFastPassVisualHelperWithoutScan(
         test: VisualizationType,
-        requirement?: string,
     ): void {
-        const payload: AssessmentToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test,
-            requirement,
         };
 
         this.dispatcher.dispatchMessage({
@@ -263,11 +260,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public rescanVisualizationWithoutTelemetry = (
         test: VisualizationType,
-        requirement?: string,
     ) => {
-        const payload: AssessmentToggleActionPayload = {
+        const payload: ToggleActionPayload = {
             test: test,
-            requirement,
         };
         const message: Message = {
             messageType: Messages.Visualizations.Common.RescanVisualization,
