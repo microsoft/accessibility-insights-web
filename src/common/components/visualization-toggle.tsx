@@ -13,6 +13,7 @@ export interface VisualizationToggleProps {
     componentRef?: React.RefObject<IToggle>;
     onBlur?: (ev) => void;
     onFocus?: (ev) => void;
+    'data-automation-id'?: string;
 }
 
 export class VisualizationToggle extends React.Component<VisualizationToggleProps> {
@@ -29,6 +30,7 @@ export class VisualizationToggle extends React.Component<VisualizationToggleProp
             componentRef: this.props.componentRef,
             onBlur: this.props.onBlur,
             onFocus: this.props.onFocus,
+            'data-automation-id': this.props['data-automation-id'],
         };
 
         return <Toggle {...props} />;

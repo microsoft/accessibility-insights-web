@@ -63,6 +63,7 @@ describe('VisualizationToggleTest', () => {
             componentRef: componentRefStub,
             onFocus: onFocusMock.object,
             onBlur: onBlurMock.object,
+            'data-automation-id': 'test-automation-id',
         } as VisualizationToggleProps;
 
         if (labelValue) {
