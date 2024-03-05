@@ -30,8 +30,10 @@ export const QuickAssessToAssessmentDialog = NamedFC<QuickAssessToAssessmentDial
             hidden: !props.isShown,
             title: 'Continue to Assessment',
             onDismiss: dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog,
-            onDismissed: props.afterDialogDismissed,
             containerClassName: commonDialogStyles.insightsDialogMainOverride,
+            modalProps: {
+                onDismissed: props.afterDialogDismissed,
+            },
         };
 
         const descriptionText =
