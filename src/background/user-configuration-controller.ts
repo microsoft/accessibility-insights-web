@@ -15,7 +15,6 @@ export class UserConfigurationController {
         const message: InterpreterMessage = {
             messageType: Messages.UserConfig.SetHighContrastConfig,
             payload: payload,
-            tabId: null,
         };
         const response = this.interpreter.interpret(message);
         await response.result;
@@ -28,7 +27,6 @@ export class UserConfigurationController {
         const message: InterpreterMessage = {
             messageType: Messages.UserConfig.SetTelemetryConfig,
             payload: payload,
-            tabId: null,
         };
         const response = this.interpreter.interpret(message);
         await response.result;

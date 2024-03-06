@@ -16,7 +16,6 @@ describe('UserConfigurationController', () => {
         interpreterMock
             .setup(i => i.interpret(It.isAny()))
             .returns(() => ({ messageHandled: true, result: undefined }));
-
         testSubject = new UserConfigurationController(interpreterMock.object);
     });
 
@@ -26,7 +25,6 @@ describe('UserConfigurationController', () => {
             const expectedMessage: InterpreterMessage = {
                 messageType: Messages.UserConfig.SetHighContrastConfig,
                 payload: { enableHighContrast: enabled },
-                tabId: null,
             };
             await testSubject.setHighContrastMode(enabled);
             interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
@@ -39,7 +37,6 @@ describe('UserConfigurationController', () => {
             const expectedMessage: InterpreterMessage = {
                 messageType: Messages.UserConfig.SetTelemetryConfig,
                 payload: { enableTelemetry: enabled },
-                tabId: null,
             };
             await testSubject.setTelemetryState(enabled);
             interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
