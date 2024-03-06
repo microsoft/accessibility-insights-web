@@ -17,7 +17,7 @@
                 background-color: canvas;
 
                 &:focus::after {
-                    content: "";
+                    content: '';
                     position: absolute;
                     inset: 2px;
                     border: 1px solid transparent;
