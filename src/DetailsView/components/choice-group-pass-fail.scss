@@ -16,6 +16,15 @@
                 color: buttontext;
                 background-color: canvas;
 
+                &:focus::after {
+                    content: "";
+                    position: absolute;
+                    inset: 2px;
+                    border: 1px solid transparent;
+                    outline: buttontext solid 2px;
+                    z-index: 1;
+                }
+
                 &:hover {
                     color: highlight;
                     background-color: canvas;
