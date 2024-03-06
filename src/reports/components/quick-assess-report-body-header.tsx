@@ -9,7 +9,7 @@ export class QuickAssessReportBodyHeader extends React.Component {
                 <h1>QuickAssess report</h1>
                 <p>
                     This report shows the results from a combination of assisted and manual tests
-                    that cover limited aspects of the WCAG 2.1 AA success criteria.
+                    that cover limited aspects of the WCAG 2.1 AA and 2.2 AA success criteria.
                 </p>
             </div>
         );

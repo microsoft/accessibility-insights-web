@@ -1,88 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RequirementViewTest renders with content from props 1`] = `
-<div
-  className="requirementView"
->
-  <div>
+<DocumentFragment>
+  <div
+    class="requirementView"
+  >
     <div>
-      TITLE MOCK ELEMENT
+      <div>
+        TITLE MOCK ELEMENT
+      </div>
+      <div
+        class="requirementContent"
+      >
+        <div
+          class="mainContent"
+        >
+          <mock-requirementinstructions />
+          <mock-requirementtablesection
+            assessmentinstancetablehandler="[object Object]"
+            assessmentnavstate="[object Object]"
+            assessmentsprovider="undefined"
+            featureflagstoredata="[object Object]"
+            instancesmap="[object Object]"
+            isrequirementscanned="true"
+            manualrequirementresultmap="[object Object]"
+            pathsnippetstoredata="[object Object]"
+            requirement="[object Object]"
+            selectedrequirementhasvisualhelper="false"
+          />
+        </div>
+        <div>
+          REQUIREMENT CONTEXT SECTION MOCK ELEMENT
+        </div>
+      </div>
     </div>
     <div
-      className="requirementContent"
+      class="nextRequirementButtonContainer"
     >
-      <div
-        className="mainContent"
-      >
-        <React.Fragment>
-          <RequirementInstructions />
-          <RequirementTableSection
-            assessmentInstanceTableHandler={
-              {
-                "changeRequirementStatus": null,
-              }
-            }
-            assessmentNavState={
-              {
-                "selectedTestSubview": "test-requirement-name",
-                "selectedTestType": 0,
-              }
-            }
-            assessmentsProvider={[typemoq mock object]}
-            featureFlagStoreData={
-              {
-                "some feature flag": true,
-              }
-            }
-            instancesMap={{}}
-            isRequirementScanned={true}
-            manualRequirementResultMap={
-              {
-                "some manual test step result id": null,
-              }
-            }
-            pathSnippetStoreData={
-              {
-                "path": null,
-              }
-            }
-            requirement={
-              {
-                "guidanceLinks": [
-                  {
-                    "href": "test-guidance-href",
-                    "text": "test-guidance-text",
-                  },
-                ],
-                "helpfulResourceLinks": [
-                  {
-                    "href": "test-resource-href",
-                    "text": "test-resource-text",
-                  },
-                ],
-                "infoAndExamples": {
-                  "pageTitle": "test-page-title",
-                },
-                "key": "test-requirement-key",
-                "name": "rest-requirement-name",
-                "whyItMatters": [Function],
-              }
-            }
-            selectedRequirementHasVisualHelper={false}
-          />
-        </React.Fragment>
-      </div>
-      <div>
-        REQUIREMENT CONTEXT SECTION MOCK ELEMENT
-      </div>
+      next requirement stub
     </div>
   </div>
-  <div
-    className="nextRequirementButtonContainer"
-  >
-    <React.Fragment>
-      next requirement stub
-    </React.Fragment>
-  </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`RequirementViewTest renders with content from props: RequirementTableSection props 1`] = `
+{
+  "assessmentDefaultMessageGenerator": undefined,
+  "assessmentInstanceTableHandler": {
+    "changeRequirementStatus": null,
+  },
+  "assessmentNavState": {
+    "selectedTestSubview": "test-requirement-name",
+    "selectedTestType": 0,
+  },
+  "assessmentsProvider": [typemoq mock object],
+  "featureFlagStoreData": {
+    "some feature flag": true,
+  },
+  "instancesMap": {},
+  "isRequirementScanned": true,
+  "manualRequirementResultMap": {
+    "some manual test step result id": null,
+  },
+  "pathSnippetStoreData": {
+    "path": null,
+  },
+  "requirement": {
+    "guidanceLinks": [
+      {
+        "href": "test-guidance-href",
+        "text": "test-guidance-text",
+      },
+    ],
+    "helpfulResourceLinks": [
+      {
+        "href": "test-resource-href",
+        "text": "test-resource-text",
+      },
+    ],
+    "infoAndExamples": {
+      "pageTitle": "test-page-title",
+    },
+    "key": "test-requirement-key",
+    "name": "rest-requirement-name",
+    "whyItMatters": [Function],
+  },
+  "scanningInProgress": undefined,
+  "selectedRequirementHasVisualHelper": false,
+}
 `;

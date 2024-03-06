@@ -1,36 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TelemetryViewer renders when there are no telemetry messages 1`] = `
-<strong>
-  No telemetry messages yet. Use the extension to see something here.
-</strong>
+<DocumentFragment>
+  <strong>
+    No telemetry messages yet. Use the extension to see something here.
+  </strong>
+</DocumentFragment>
 `;
 
 exports[`TelemetryViewer renders when there is at least one telemetry message 1`] = `
-<React.Fragment>
-  <TelemetryCommonFields
-    applicationBuild="test-application-build"
-    applicationName="test-application-name"
-    applicationVersion="test-application-version"
-    installationId="test-installation-id"
+<DocumentFragment>
+  <mock-telemetrycommonfields
+    applicationbuild="test-application-build"
+    applicationname="test-application-name"
+    applicationversion="test-application-version"
+    installationid="test-installation-id"
   />
-  <TelemetryMessagesList
-    deps={
-      {
-        "telemetryListener": [typemoq mock object],
-      }
-    }
-    items={
-      [
-        {
-          "applicationBuild": "test-application-build",
-          "applicationName": "test-application-name",
-          "applicationVersion": "test-application-version",
-          "installationId": "test-installation-id",
-          "key": "value",
-        },
-      ]
-    }
+  <mock-telemetrymessageslist
+    deps="[object Object]"
+    items="[object Object]"
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`TelemetryViewer renders when there is at least one telemetry message: TelemetryMessagesList props 1`] = `
+{
+  "deps": {
+    "telemetryListener": [typemoq mock object],
+  },
+  "items": [
+    {
+      "applicationBuild": "test-application-build",
+      "applicationName": "test-application-name",
+      "applicationVersion": "test-application-version",
+      "installationId": "test-installation-id",
+      "key": "value",
+    },
+  ],
+}
 `;

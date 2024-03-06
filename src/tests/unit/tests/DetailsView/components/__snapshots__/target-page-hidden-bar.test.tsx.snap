@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TargetPageHiddenBar renders per snapshot to indicate that the target page is hidden 1`] = `
-"<StyledMessageBar className="messageBarHeightOverride" messageBarType={5}>
-  The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.
-</StyledMessageBar>"
+<DocumentFragment>
+  <mock-styledmessagebar
+    classname="messageBarHeightOverride"
+    messagebartype="5"
+  >
+    The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.
+  </mock-styledmessagebar>
+</DocumentFragment>
 `;

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import { NamedFC } from '../../../../../common/react/named-fc';
@@ -13,16 +13,8 @@ describe('NamedFC', () => {
     });
 
     it('renders as expected', () => {
-        const rendered = shallow(<MyFC />);
+        const renderResult = render(<MyFC />);
 
-        expect(rendered.debug()).toEqual('<span>\n  TEXT\n</span>');
-    });
-
-    it('shallow renders with correct displayName', () => {
-        const Outside = () => <MyFC />;
-
-        const rendered = shallow(<Outside />);
-
-        expect(rendered.debug()).toEqual('<MyFC />');
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

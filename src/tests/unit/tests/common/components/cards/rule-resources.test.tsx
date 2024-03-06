@@ -17,12 +17,17 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
-
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../../../../../../common/configs/needs-review-rule-resources';
+import { InstanceOutcomeType } from '../../../../../../reports/components/instance-outcome-type';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 jest.mock('common/components/guidance-tags');
 jest.mock('common/components/guidance-links');
 jest.mock('common/components/external-link');
+jest.mock('common/configs/needs-review-rule-resources');
 
 describe('RuleResources', () => {
     mockReactComponents([GuidanceTags, GuidanceLinks, ExternalLink]);
@@ -36,6 +41,7 @@ describe('RuleResources', () => {
             url: string;
             guidanceLinks: GuidanceLink[];
             linkComponent: keyof typeof linkComponents;
+            outcomeType: InstanceOutcomeType;
         };
 
         const testCases: TestCases[] = [
@@ -43,16 +49,35 @@ describe('RuleResources', () => {
                 url: 'test-url',
                 guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
                 linkComponent: 'ExternalLink',
+                outcomeType: 'pass',
             },
             {
                 url: null,
                 guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
                 linkComponent: 'NewTabLink',
+                outcomeType: 'pass',
             },
-            { url: 'test-url', guidanceLinks: [], linkComponent: 'ExternalLink' },
-            { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' },
-            { url: null, guidanceLinks: [], linkComponent: 'ExternalLink' },
-            { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' },
+            {
+                url: 'test-url',
+                guidanceLinks: [],
+                linkComponent: 'ExternalLink',
+                outcomeType: 'pass',
+            },
+            {
+                url: 'test-url',
+                guidanceLinks: null,
+                linkComponent: 'NewTabLink',
+                outcomeType: 'pass',
+            },
+            { url: null, guidanceLinks: [], linkComponent: 'ExternalLink', outcomeType: 'pass' },
+            { url: null, guidanceLinks: null, linkComponent: 'NewTabLink', outcomeType: 'pass' },
+            {
+                url: 'test-url',
+                guidanceLinks: null,
+                linkComponent: 'NewTabLink',
+                outcomeType: 'review',
+            },
+            { url: null, guidanceLinks: [], linkComponent: 'ExternalLink', outcomeType: 'review' },
         ];
 
         it.each(testCases)('with %o', testCase => {
@@ -64,7 +89,10 @@ describe('RuleResources', () => {
                 rule,
                 deps: {
                     LinkComponent: linkComponents[testCase.linkComponent],
+                    IsOutcomeNeedsReview: isOutcomeNeedsReview,
+                    GetNeedsReviewRuleResourcesUrl: getNeedsReviewRuleResourcesUrl,
                 } as RuleResourcesDeps,
+                outcomeType: testCase.outcomeType,
             };
 
             const renderResult = render(<RuleResources {...props} />);

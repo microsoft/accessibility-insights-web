@@ -1,15 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Link } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import * as Enzyme from 'enzyme';
-import { shallow } from 'enzyme';
 import { AdHocToolsPanel, AdHocToolsPanelProps } from 'popup/components/ad-hoc-tools-panel';
 import { DiagnosticViewToggleFactory } from 'popup/components/diagnostic-view-toggle-factory';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('AdHocToolsPanelTest', () => {
+    mockReactComponents([Link]);
     const diagnosticViewToggleFactoryMock = Mock.ofType(DiagnosticViewToggleFactory);
     const flagName: string = 'showAccessibleNames';
 
@@ -29,8 +34,8 @@ describe('AdHocToolsPanelTest', () => {
             featureFlagStoreData: {},
         };
 
-        const wrapper = shallow(<AdHocToolsPanel {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<AdHocToolsPanel {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('adhoc panel with needs review sixth toggle matches snapshot', () => {
@@ -50,8 +55,8 @@ describe('AdHocToolsPanelTest', () => {
             featureFlagStoreData: {},
         };
 
-        const wrapper = shallow(<AdHocToolsPanel {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<AdHocToolsPanel {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('adhoc tools panel with accessible names feature', () => {
@@ -74,8 +79,8 @@ describe('AdHocToolsPanelTest', () => {
             featureFlagStoreData: featureFlagStoreData,
         };
 
-        const wrapper = shallow(<AdHocToolsPanel {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const renderResult = render(<AdHocToolsPanel {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     test('back link clicked', () => {
@@ -92,9 +97,9 @@ describe('AdHocToolsPanelTest', () => {
             featureFlagStoreData: {},
         };
 
-        const wrapper = Enzyme.shallow(<AdHocToolsPanel {...props} />);
+        render(<AdHocToolsPanel {...props} />);
 
-        wrapper.find(Link).simulate('click');
+        getMockComponentClassPropsForCall(Link).onClick();
 
         backLinkHandlerMock.verifyAll();
     });

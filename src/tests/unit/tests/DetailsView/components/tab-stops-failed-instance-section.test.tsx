@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { HeadingLevel } from 'common/components/heading-element-for-level';
+import { render } from '@testing-library/react';
+import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import {
     TabStopsInstanceSectionPropsFactory,
     TabStopsInstanceSectionPropsFactoryProps,
@@ -12,11 +13,24 @@ import {
     TabStopsFailedInstanceSectionProps,
 } from 'DetailsView/components/tab-stops-failed-instance-section';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { ResultSectionTitle } from '../../../../../common/components/cards/result-section-title';
+import { TabStopsRequirementsWithInstances } from '../../../../../DetailsView/tab-stops-requirements-with-instances';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('common/components/heading-element-for-level');
+jest.mock('../../../../../common/components/cards/result-section-title');
 
+jest.mock('../../../../../DetailsView/tab-stops-requirements-with-instances');
 describe('TabStopsFailedInstanceSection', () => {
+    mockReactComponents([
+        TabStopsRequirementsWithInstances,
+        HeadingElementForLevel,
+        ResultSectionTitle,
+    ]);
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
     let tabStopsInstanceSectionPropsFactoryMock: IMock<TabStopsInstanceSectionPropsFactory>;
     let props: TabStopsFailedInstanceSectionProps;
@@ -71,9 +85,10 @@ describe('TabStopsFailedInstanceSection', () => {
             .returns(() => 10)
             .verifiable(Times.once());
 
-        const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
+        const renderResult = render(<TabStopsFailedInstanceSection {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([TabStopsRequirementsWithInstances]);
         tabStopsFailedCounterMock.verifyAll();
         tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });
@@ -94,9 +109,9 @@ describe('TabStopsFailedInstanceSection', () => {
             .returns(() => 0)
             .verifiable(Times.once());
 
-        const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
+        const renderResult = render(<TabStopsFailedInstanceSection {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
         tabStopsFailedCounterMock.verifyAll();
         tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });
@@ -113,9 +128,9 @@ describe('TabStopsFailedInstanceSection', () => {
             .returns(() => 0)
             .verifiable(Times.once());
 
-        const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
+        const renderResult = render(<TabStopsFailedInstanceSection {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
         tabStopsFailedCounterMock.verifyAll();
         tabStopsInstanceSectionPropsFactoryMock.verifyAll();
     });

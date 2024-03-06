@@ -1,227 +1,237 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentReport render 1`] = `
-<React.Fragment>
-  <HeaderSection
-    headerText="Accessibility Insights for Web"
-    targetAppInfo={
-      {
-        "name": "title",
-        "url": "url",
-      }
-    }
+<DocumentFragment>
+  <mock-headersection
+    headertext="Accessibility Insights for Web"
+    targetappinfo="[object Object]"
   />
-  <AssessmentReportBody
-    bodyHeader={<AssessmentReportBodyHeader />}
-    data={
-      {
-        "failedDetailsData": [
-          {
-            "displayName": "Assessment1",
-            "key": "assessment1",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step2A",
-                  "guidanceLinks": [],
-                  "requirementType": "assisted",
-                },
-                "instances": [
-                  {
-                    "props": [
-                      {
-                        "key": "Path",
-                        "value": "target1",
-                      },
-                      {
-                        "key": "Snippet",
-                        "value": "someHtml",
-                      },
-                    ],
-                  },
-                ],
-                "key": "step2a",
-                "showPassingInstances": false,
-              },
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step4A",
-                  "guidanceLinks": [],
-                  "requirementType": "manual",
-                },
-                "instances": [
-                  {
-                    "props": [
-                      {
-                        "key": "Comment",
-                        "value": "comment",
-                      },
-                    ],
-                  },
-                ],
-                "key": "step4a",
-                "showPassingInstances": false,
-              },
-            ],
-          },
-          {
-            "displayName": "Assessment2",
-            "key": "assessment2",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step2B",
-                  "guidanceLinks": [],
-                  "requirementType": "manual",
-                },
-                "instances": [],
-                "key": "step2b",
-                "showPassingInstances": true,
-              },
-            ],
-          },
-        ],
-        "incompleteDetailsData": [
-          {
-            "displayName": "Assessment1",
-            "key": "assessment1",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step3A",
-                  "guidanceLinks": [],
-                  "requirementType": "assisted",
-                },
-                "instances": [
-                  {
-                    "props": [
-                      {
-                        "key": "Path",
-                        "value": "target2",
-                      },
-                      {
-                        "key": "Snippet",
-                        "value": "someHtml",
-                      },
-                    ],
-                  },
-                ],
-                "key": "step3a",
-                "showPassingInstances": false,
-              },
-            ],
-          },
-          {
-            "displayName": "Assessment2",
-            "key": "assessment2",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step1B",
-                  "guidanceLinks": [],
-                  "requirementType": "assisted",
-                },
-                "instances": [],
-                "key": "step1b",
-                "showPassingInstances": true,
-              },
-            ],
-          },
-        ],
-        "passedDetailsData": [
-          {
-            "displayName": "Assessment1",
-            "key": "assessment1",
-            "steps": [
-              {
-                "defaultMessageComponent": null,
-                "header": {
-                  "description": null,
-                  "displayName": "Step1A",
-                  "guidanceLinks": [
-                    {
-                      "href": "link1A",
-                      "text": "link1A",
-                    },
-                  ],
-                  "requirementType": "assisted",
-                },
-                "instances": [
-                  {
-                    "props": [
-                      {
-                        "key": "Path",
-                        "value": "target1",
-                      },
-                      {
-                        "key": "Snippet",
-                        "value": "someHtml",
-                      },
-                    ],
-                  },
-                ],
-                "key": "step1a",
-                "showPassingInstances": false,
-              },
-            ],
-          },
-        ],
-        "scanDetails": {
-          "reportDate": 2000-01-01T00:00:00.000Z,
-          "targetPage": "title",
-          "url": "url",
-        },
-        "summary": {
-          "byPercentage": {
-            "fail": 50,
-            "incomplete": 37,
-            "pass": 13,
-          },
-          "byRequirement": {
-            "fail": 3,
-            "incomplete": 2,
-            "pass": 1,
-          },
-          "reportSummaryDetailsData": [
-            {
-              "displayName": "Assessment1",
-              "fail": 2,
-              "incomplete": 1,
-              "pass": 1,
-            },
-            {
-              "displayName": "Assessment2",
-              "fail": 1,
-              "incomplete": 1,
-              "pass": 0,
-            },
-          ],
-        },
-      }
-    }
-    deps={
-      {
-        "outcomeTypeSemanticsFromTestStatus": {
-          "stub": "outcomeTypeSemanticsFromTestStatus",
-        },
-      }
-    }
+  <mock-assessmentreportbody
+    bodyheader="[object Object]"
+    data="[object Object]"
+    deps="[object Object]"
     description="test string"
   />
-  <AssessmentReportFooter
-    axeVersion="axeVersion"
-    chromeVersion="chromeVersion"
-    extensionVersion="ProductVersion"
+  <mock-assessmentreportfooter
+    axeversion="axeVersion"
+    chromeversion="chromeVersion"
+    extensionversion="ProductVersion"
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`AssessmentReport render: AssessmentReportBody props 1`] = `
+{
+  "bodyHeader": <AssessmentReportBodyHeader />,
+  "data": {
+    "failedDetailsData": [
+      {
+        "displayName": "Assessment1",
+        "key": "assessment1",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step2A",
+              "guidanceLinks": [],
+              "requirementType": "assisted",
+            },
+            "instances": [
+              {
+                "props": [
+                  {
+                    "key": "Path",
+                    "value": "target1",
+                  },
+                  {
+                    "key": "Snippet",
+                    "value": "someHtml",
+                  },
+                ],
+              },
+            ],
+            "key": "step2a",
+            "showPassingInstances": false,
+          },
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step4A",
+              "guidanceLinks": [],
+              "requirementType": "manual",
+            },
+            "instances": [
+              {
+                "props": [
+                  {
+                    "key": "Comment",
+                    "value": "comment",
+                  },
+                ],
+              },
+            ],
+            "key": "step4a",
+            "showPassingInstances": false,
+          },
+        ],
+      },
+      {
+        "displayName": "Assessment2",
+        "key": "assessment2",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step2B",
+              "guidanceLinks": [],
+              "requirementType": "manual",
+            },
+            "instances": [],
+            "key": "step2b",
+            "showPassingInstances": true,
+          },
+        ],
+      },
+    ],
+    "incompleteDetailsData": [
+      {
+        "displayName": "Assessment1",
+        "key": "assessment1",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step3A",
+              "guidanceLinks": [],
+              "requirementType": "assisted",
+            },
+            "instances": [
+              {
+                "props": [
+                  {
+                    "key": "Path",
+                    "value": "target2",
+                  },
+                  {
+                    "key": "Snippet",
+                    "value": "someHtml",
+                  },
+                ],
+              },
+            ],
+            "key": "step3a",
+            "showPassingInstances": false,
+          },
+        ],
+      },
+      {
+        "displayName": "Assessment2",
+        "key": "assessment2",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step1B",
+              "guidanceLinks": [],
+              "requirementType": "assisted",
+            },
+            "instances": [],
+            "key": "step1b",
+            "showPassingInstances": true,
+          },
+        ],
+      },
+    ],
+    "passedDetailsData": [
+      {
+        "displayName": "Assessment1",
+        "key": "assessment1",
+        "steps": [
+          {
+            "defaultMessageComponent": null,
+            "header": {
+              "description": null,
+              "displayName": "Step1A",
+              "guidanceLinks": [
+                {
+                  "href": "link1A",
+                  "text": "link1A",
+                },
+              ],
+              "requirementType": "assisted",
+            },
+            "instances": [
+              {
+                "props": [
+                  {
+                    "key": "Path",
+                    "value": "target1",
+                  },
+                  {
+                    "key": "Snippet",
+                    "value": "someHtml",
+                  },
+                ],
+              },
+            ],
+            "key": "step1a",
+            "showPassingInstances": false,
+          },
+        ],
+      },
+    ],
+    "scanDetails": {
+      "reportDate": 2000-01-01T00:00:00.000Z,
+      "targetPage": "title",
+      "url": "url",
+    },
+    "summary": {
+      "byPercentage": {
+        "fail": 50,
+        "incomplete": 37,
+        "pass": 13,
+      },
+      "byRequirement": {
+        "fail": 3,
+        "incomplete": 2,
+        "pass": 1,
+      },
+      "reportSummaryDetailsData": [
+        {
+          "displayName": "Assessment1",
+          "fail": 2,
+          "incomplete": 1,
+          "pass": 1,
+        },
+        {
+          "displayName": "Assessment2",
+          "fail": 1,
+          "incomplete": 1,
+          "pass": 0,
+        },
+      ],
+    },
+  },
+  "deps": {
+    "outcomeTypeSemanticsFromTestStatus": {
+      "stub": "outcomeTypeSemanticsFromTestStatus",
+    },
+  },
+  "description": "test string",
+}
+`;
+
+exports[`AssessmentReport render: HeaderSection props 1`] = `
+{
+  "headerText": "Accessibility Insights for Web",
+  "targetAppInfo": {
+    "name": "title",
+    "url": "url",
+  },
+}
 `;

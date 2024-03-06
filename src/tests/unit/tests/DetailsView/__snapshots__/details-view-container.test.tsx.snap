@@ -1,15 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewContainer render content render once; should call details view opened 1`] = `
-<DetailsViewContentWithLocalState
-  deps={
-    {
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
+  />
+</DocumentFragment>
+`;
+
+exports[`DetailsViewContainer render content render once; should call details view opened: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "storesHub": [typemoq mock object],
-    }
-  }
-  storeState={
-    {
+    },
+    "isSideNavOpen": false,
+    "setSideNavOpen": [Function],
+    "storeState": {
       "tabStoreData": {
         "isClosed": false,
         "isOriginChanged": false,
@@ -17,81 +28,102 @@ exports[`DetailsViewContainer render content render once; should call details vi
       "visualizationStoreData": {
         "selectedDetailsViewPivot": -1,
       },
-    }
-  }
-/>
+    },
+  },
+  "deps": {
+    "detailsViewActionMessageCreator": [typemoq mock object],
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": true,
+}
 `;
 
 exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "storesHub": [typemoq mock object],
-        },
-      }
-    }
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    isNarrowModeEnabled={false}
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="false"
   />
-  <NoContentAvailable />
-</React.Fragment>
+  <mock-nocontentavailable />
+</DocumentFragment>
+`;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "storesHub": [typemoq mock object],
+    },
+  },
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": false,
+}
 `;
 
 exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "storesHub": [typemoq mock object],
-        },
-      }
-    }
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    isNarrowModeEnabled={true}
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
   />
-  <NoContentAvailable />
-</React.Fragment>
+  <mock-nocontentavailable />
+</DocumentFragment>
+`;
+
+exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "storesHub": [typemoq mock object],
+    },
+  },
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": true,
+}
 `;
 
 exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted 1`] = `
-<React.Fragment>
-  <NarrowModeDetector
-    Component={[Function]}
-    childrenProps={
-      {
-        "deps": {
-          "storesHub": [typemoq mock object],
-        },
-      }
-    }
-    deps={
-      {
-        "storesHub": [typemoq mock object],
-      }
-    }
-    isNarrowModeEnabled={true}
+<DocumentFragment>
+  <mock-narrowmodedetector
+    childrenprops="[object Object]"
+    deps="[object Object]"
+    isnarrowmodeenabled="true"
   />
-  <NoContentAvailable />
-</React.Fragment>
+  <mock-nocontentavailable />
+</DocumentFragment>
+`;
+
+exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted: NarrowModeDetector props 1`] = `
+{
+  "Component": [Function],
+  "childrenProps": {
+    "deps": {
+      "storesHub": [typemoq mock object],
+    },
+  },
+  "deps": {
+    "storesHub": [typemoq mock object],
+  },
+  "isNarrowModeEnabled": true,
+}
 `;
 
 exports[`DetailsViewContainer render renders spinner when stores not ready 1`] = `
-<StyledSpinnerBase
-  className="details-view-spinner"
-  label="Loading..."
-  size={3}
-/>
+<DocumentFragment>
+  <mock-styledspinnerbase
+    classname="details-view-spinner"
+    label="Loading..."
+    size="3"
+  />
+</DocumentFragment>
 `;
+
+exports[`DetailsViewContainer render renders spinner when stores not ready: NarrowModeDetector props 1`] = `undefined`;

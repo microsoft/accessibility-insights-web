@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import {
     TelemetryCommonFields,
     TelemetryCommonFieldsProps,
 } from 'debug-tools/components/telemetry-viewer/telemetry-common-fields';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('TelemetryCommonFields', () => {
@@ -16,8 +16,8 @@ describe('TelemetryCommonFields', () => {
     };
 
     it('renders and match snapshot', () => {
-        const wrapped = shallow(<TelemetryCommonFields {...props} />);
+        const renderResult = render(<TelemetryCommonFields {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

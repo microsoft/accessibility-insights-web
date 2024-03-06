@@ -1,110 +1,145 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentTestView renders with a GettingStartedView when a Getting started item is selected 1`] = `
-<React.Fragment>
-  <BannerWarnings
-    deps={
-      {
-        "getAssessmentActionMessageCreator": [Function],
-        "getProvider": [Function],
-      }
-    }
-    test={-1}
-    visualizationStoreData={
-      {
-        "scanning": "test-scanning",
-        "tests": {},
-      }
-    }
-    warningConfiguration={{}}
+<DocumentFragment>
+  <mock-bannerwarnings
+    deps="[object Object]"
+    test="-1"
+    visualizationstoredata="[object Object]"
+    warningconfiguration="[object Object]"
   />
-  <TargetChangeDialog
-    deps={
-      {
-        "getAssessmentActionMessageCreator": [Function],
-        "getProvider": [Function],
-      }
-    }
-    newTab={
-      {
-        "id": -2,
-        "title": "test title",
-        "url": "test url",
-      }
-    }
+  <mock-targetchangedialog
+    deps="[object Object]"
+    newtab="[object Object]"
   />
-  <GettingStartedView
-    assessment={{}}
-    deps={
-      {
-        "getAssessmentActionMessageCreator": [Function],
-        "getProvider": [Function],
-      }
-    }
+  <mock-gettingstartedview
+    assessment="[object Object]"
+    deps="[object Object]"
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`AssessmentTestView renders with a GettingStartedView when a Getting started item is selected: BannerWarnings props 1`] = `
+{
+  "deps": {
+    "getAssessmentActionMessageCreator": [Function],
+    "getProvider": [Function],
+  },
+  "test": -1,
+  "visualizationStoreData": {
+    "scanning": "test-scanning",
+    "tests": {},
+  },
+  "warningConfiguration": {},
+  "warnings": undefined,
+}
+`;
+
+exports[`AssessmentTestView renders with a GettingStartedView when a Getting started item is selected: GettingStartedView props 1`] = `
+{
+  "assessment": {},
+  "deps": {
+    "getAssessmentActionMessageCreator": [Function],
+    "getProvider": [Function],
+  },
+}
+`;
+
+exports[`AssessmentTestView renders with a GettingStartedView when a Getting started item is selected: TargetChangeDialog props 1`] = `
+{
+  "deps": {
+    "getAssessmentActionMessageCreator": [Function],
+    "getProvider": [Function],
+  },
+  "newTab": {
+    "id": -2,
+    "title": "test title",
+    "url": "test url",
+  },
+  "prevTab": undefined,
+}
 `;
 
 exports[`AssessmentTestView renders with a RequirementView when a requirement is selected 1`] = `
-<React.Fragment>
-  <BannerWarnings
-    deps={
-      {
-        "getAssessmentActionMessageCreator": [Function],
-        "getProvider": [Function],
-      }
-    }
-    test={-1}
-    visualizationStoreData={
-      {
-        "scanning": "test-scanning",
-        "tests": {},
-      }
-    }
-    warningConfiguration={{}}
+<DocumentFragment>
+  <mock-bannerwarnings
+    deps="[object Object]"
+    test="-1"
+    visualizationstoredata="[object Object]"
+    warningconfiguration="[object Object]"
   />
-  <TargetChangeDialog
-    deps={
-      {
-        "getAssessmentActionMessageCreator": [Function],
-        "getProvider": [Function],
-      }
-    }
-    newTab={
-      {
-        "id": -2,
-        "title": "test title",
-        "url": "test url",
-      }
-    }
+  <mock-targetchangedialog
+    deps="[object Object]"
+    newtab="[object Object]"
   />
-  <RequirementView
-    assessmentData={{}}
-    assessmentInstanceTableHandler={{}}
-    assessmentNavState={
-      {
-        "selectedTestSubview": "step",
-        "selectedTestType": -1,
-      }
-    }
-    currentTarget={
-      {
-        "id": -2,
-        "title": "test title",
-        "url": "test url",
-      }
-    }
-    deps={
-      {
-        "getAssessmentActionMessageCreator": [Function],
-        "getProvider": [Function],
-      }
-    }
-    featureFlagStoreData={{}}
-    isRequirementEnabled={false}
-    pathSnippetStoreData={{}}
-    requirementViewComponentConfiguration={{}}
-    scanningInProgress={true}
+  <mock-requirementview
+    assessmentdata="[object Object]"
+    assessmentinstancetablehandler="[object Object]"
+    assessmentnavstate="[object Object]"
+    currenttarget="[object Object]"
+    deps="[object Object]"
+    featureflagstoredata="[object Object]"
+    isrequirementenabled="false"
+    pathsnippetstoredata="[object Object]"
+    requirementviewcomponentconfiguration="[object Object]"
+    scanninginprogress="true"
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`AssessmentTestView renders with a RequirementView when a requirement is selected: BannerWarnings props 1`] = `
+{
+  "deps": {
+    "getAssessmentActionMessageCreator": [Function],
+    "getProvider": [Function],
+  },
+  "test": -1,
+  "visualizationStoreData": {
+    "scanning": "test-scanning",
+    "tests": {},
+  },
+  "warningConfiguration": {},
+  "warnings": undefined,
+}
+`;
+
+exports[`AssessmentTestView renders with a RequirementView when a requirement is selected: RequirementView props 1`] = `
+{
+  "assessmentData": {},
+  "assessmentInstanceTableHandler": {},
+  "assessmentNavState": {
+    "selectedTestSubview": "step",
+    "selectedTestType": -1,
+  },
+  "currentTarget": {
+    "id": -2,
+    "title": "test title",
+    "url": "test url",
+  },
+  "deps": {
+    "getAssessmentActionMessageCreator": [Function],
+    "getProvider": [Function],
+  },
+  "featureFlagStoreData": {},
+  "isRequirementEnabled": false,
+  "pathSnippetStoreData": {},
+  "prevTarget": undefined,
+  "requirementViewComponentConfiguration": {},
+  "scanningInProgress": true,
+}
+`;
+
+exports[`AssessmentTestView renders with a RequirementView when a requirement is selected: TargetChangeDialog props 1`] = `
+{
+  "deps": {
+    "getAssessmentActionMessageCreator": [Function],
+    "getProvider": [Function],
+  },
+  "newTab": {
+    "id": -2,
+    "title": "test title",
+    "url": "test url",
+  },
+  "prevTab": undefined,
+}
 `;

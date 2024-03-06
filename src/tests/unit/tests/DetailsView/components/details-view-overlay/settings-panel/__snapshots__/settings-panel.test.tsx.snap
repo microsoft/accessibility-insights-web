@@ -1,225 +1,108 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SettingsPanelTest render - isPanelOpen = false 1`] = `
-<GenericPanel
-  className="settingsPanel"
-  closeButtonAriaLabel="Close settings panel"
-  hasCloseButton={true}
-  headerText="Settings"
-  innerPanelAutomationId="settings-panel"
-  isOpen={false}
-  layerProps={
-    {
-      "className": undefined,
-    }
-  }
-  onDismiss={[Function]}
->
-  <TestSettings
-    deps={
-      {
-        "detailsViewActionMessageCreator": {
-          "closeSettingsPanel": [Function],
-        },
-        "settingsProvider": {
-          "all": [Function],
-        },
-        "userConfigMessageCreator": {},
-      }
-    }
-    featureFlagData={
-      {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={{}}
-  />
-  <TestSettings
-    deps={
-      {
-        "detailsViewActionMessageCreator": {
-          "closeSettingsPanel": [Function],
-        },
-        "settingsProvider": {
-          "all": [Function],
-        },
-        "userConfigMessageCreator": {},
-      }
-    }
-    featureFlagData={
-      {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={{}}
-  />
-  <TestSettings
-    deps={
-      {
-        "detailsViewActionMessageCreator": {
-          "closeSettingsPanel": [Function],
-        },
-        "settingsProvider": {
-          "all": [Function],
-        },
-        "userConfigMessageCreator": {},
-      }
-    }
-    featureFlagData={
-      {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={{}}
-  />
-</GenericPanel>
+<DocumentFragment>
+  <mock-genericpanel
+    classname="settingsPanel"
+    closebuttonarialabel="Close settings panel"
+    hasclosebutton="true"
+    headertext="Settings"
+    innerpanelautomationid="settings-panel"
+    isopen="false"
+    layerprops="[object Object]"
+  >
+    <div
+      class="test-settings"
+    >
+      <div>
+        test-settings-1
+      </div>
+    </div>
+    <div
+      class="test-settings"
+    >
+      <div>
+        test-settings-2
+      </div>
+    </div>
+    <div
+      class="test-settings"
+    >
+      <div>
+        test-settings-3
+      </div>
+    </div>
+  </mock-genericpanel>
+</DocumentFragment>
 `;
 
 exports[`SettingsPanelTest render - isPanelOpen = true 1`] = `
-<GenericPanel
-  className="settingsPanel"
-  closeButtonAriaLabel="Close settings panel"
-  hasCloseButton={true}
-  headerText="Settings"
-  innerPanelAutomationId="settings-panel"
-  isOpen={true}
-  layerProps={
-    {
-      "className": undefined,
-    }
-  }
-  onDismiss={[Function]}
->
-  <TestSettings
-    deps={
-      {
-        "detailsViewActionMessageCreator": {
-          "closeSettingsPanel": [Function],
-        },
-        "settingsProvider": {
-          "all": [Function],
-        },
-        "userConfigMessageCreator": {},
-      }
-    }
-    featureFlagData={
-      {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={{}}
-  />
-  <TestSettings
-    deps={
-      {
-        "detailsViewActionMessageCreator": {
-          "closeSettingsPanel": [Function],
-        },
-        "settingsProvider": {
-          "all": [Function],
-        },
-        "userConfigMessageCreator": {},
-      }
-    }
-    featureFlagData={
-      {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={{}}
-  />
-  <TestSettings
-    deps={
-      {
-        "detailsViewActionMessageCreator": {
-          "closeSettingsPanel": [Function],
-        },
-        "settingsProvider": {
-          "all": [Function],
-        },
-        "userConfigMessageCreator": {},
-      }
-    }
-    featureFlagData={
-      {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={{}}
-  />
-</GenericPanel>
+<DocumentFragment>
+  <mock-genericpanel
+    classname="settingsPanel"
+    closebuttonarialabel="Close settings panel"
+    hasclosebutton="true"
+    headertext="Settings"
+    innerpanelautomationid="settings-panel"
+    isopen="true"
+    layerprops="[object Object]"
+  >
+    <div
+      class="test-settings"
+    >
+      <div>
+        test-settings-1
+      </div>
+    </div>
+    <div
+      class="test-settings"
+    >
+      <div>
+        test-settings-2
+      </div>
+    </div>
+    <div
+      class="test-settings"
+    >
+      <div>
+        test-settings-3
+      </div>
+    </div>
+  </mock-genericpanel>
+</DocumentFragment>
 `;
 
 exports[`SettingsPanelTest render - with custom layer class name 1`] = `
-<GenericPanel
-  className="settingsPanel"
-  closeButtonAriaLabel="Close settings panel"
-  hasCloseButton={true}
-  headerText="Settings"
-  innerPanelAutomationId="settings-panel"
-  layerProps={
-    {
-      "className": "test-layer-class-name",
-    }
-  }
-  onDismiss={[Function]}
->
-  <TestSettings
-    deps={
-      {
-        "detailsViewActionMessageCreator": {
-          "closeSettingsPanel": [Function],
-        },
-        "settingsProvider": {
-          "all": [Function],
-        },
-        "userConfigMessageCreator": {},
-      }
-    }
-    featureFlagData={
-      {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={{}}
-  />
-  <TestSettings
-    deps={
-      {
-        "detailsViewActionMessageCreator": {
-          "closeSettingsPanel": [Function],
-        },
-        "settingsProvider": {
-          "all": [Function],
-        },
-        "userConfigMessageCreator": {},
-      }
-    }
-    featureFlagData={
-      {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={{}}
-  />
-  <TestSettings
-    deps={
-      {
-        "detailsViewActionMessageCreator": {
-          "closeSettingsPanel": [Function],
-        },
-        "settingsProvider": {
-          "all": [Function],
-        },
-        "userConfigMessageCreator": {},
-      }
-    }
-    featureFlagData={
-      {
-        "test-flag": false,
-      }
-    }
-    userConfigurationStoreState={{}}
-  />
-</GenericPanel>
+<DocumentFragment>
+  <mock-genericpanel
+    classname="settingsPanel"
+    closebuttonarialabel="Close settings panel"
+    hasclosebutton="true"
+    headertext="Settings"
+    innerpanelautomationid="settings-panel"
+    layerprops="[object Object]"
+  >
+    <div
+      class="test-settings"
+    >
+      <div>
+        test-settings-1
+      </div>
+    </div>
+    <div
+      class="test-settings"
+    >
+      <div>
+        test-settings-2
+      </div>
+    </div>
+    <div
+      class="test-settings"
+    >
+      <div>
+        test-settings-3
+      </div>
+    </div>
+  </mock-genericpanel>
+</DocumentFragment>
 `;

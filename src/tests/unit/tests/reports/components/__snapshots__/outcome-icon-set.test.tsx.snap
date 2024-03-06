@@ -1,152 +1,158 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OutcomeIconSet render render all zero 1`] = `
-<div
-  className="outcome-icon-set"
-  title="0 Passed, 0 Incomplete, 0 Failed"
->
-  <span
-    className="screen-reader-only"
+<DocumentFragment>
+  <div
+    class="outcome-icon-set"
+    title="0 Passed, 0 Incomplete, 0 Failed"
   >
-    0 Passed, 0 Incomplete, 0 Failed
-  </span>
-</div>
+    <span
+      class="screen-reader-only"
+    >
+      0 Passed, 0 Incomplete, 0 Failed
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`OutcomeIconSet render render incomplete zero 1`] = `
-<div
-  className="outcome-icon-set"
-  title="3 Passed, 0 Incomplete, 4 Failed"
->
-  <span
-    className="outcome-icon outcome-icon-pass"
+<DocumentFragment>
+  <div
+    class="outcome-icon-set"
+    title="3 Passed, 0 Incomplete, 4 Failed"
   >
-    <OutcomeIcon
-      outcomeType="pass"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-pass"
-  >
-    <OutcomeIcon
-      outcomeType="pass"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-pass"
-  >
-    <OutcomeIcon
-      outcomeType="pass"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-fail"
-  >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-fail"
-  >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-fail"
-  >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-fail"
-  >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    3 Passed, 0 Incomplete, 4 Failed
-  </span>
-</div>
+    <span
+      class="outcome-icon outcome-icon-pass"
+    >
+      <mock-outcomeicon
+        outcometype="pass"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-pass"
+    >
+      <mock-outcomeicon
+        outcometype="pass"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-pass"
+    >
+      <mock-outcomeicon
+        outcometype="pass"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-fail"
+    >
+      <mock-outcomeicon
+        outcometype="fail"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-fail"
+    >
+      <mock-outcomeicon
+        outcometype="fail"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-fail"
+    >
+      <mock-outcomeicon
+        outcometype="fail"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-fail"
+    >
+      <mock-outcomeicon
+        outcometype="fail"
+      />
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      3 Passed, 0 Incomplete, 4 Failed
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`OutcomeIconSet render render with all properties 1`] = `
-<div
-  className="outcome-icon-set"
-  title="3 Passed, 2 Incomplete, 4 Failed"
->
-  <span
-    className="outcome-icon outcome-icon-pass"
+<DocumentFragment>
+  <div
+    class="outcome-icon-set"
+    title="3 Passed, 2 Incomplete, 4 Failed"
   >
-    <OutcomeIcon
-      outcomeType="pass"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-pass"
-  >
-    <OutcomeIcon
-      outcomeType="pass"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-pass"
-  >
-    <OutcomeIcon
-      outcomeType="pass"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-incomplete"
-  >
-    <OutcomeIcon
-      outcomeType="incomplete"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-incomplete"
-  >
-    <OutcomeIcon
-      outcomeType="incomplete"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-fail"
-  >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-fail"
-  >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-fail"
-  >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
-  </span>
-  <span
-    className="outcome-icon outcome-icon-fail"
-  >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    3 Passed, 2 Incomplete, 4 Failed
-  </span>
-</div>
+    <span
+      class="outcome-icon outcome-icon-pass"
+    >
+      <mock-outcomeicon
+        outcometype="pass"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-pass"
+    >
+      <mock-outcomeicon
+        outcometype="pass"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-pass"
+    >
+      <mock-outcomeicon
+        outcometype="pass"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-incomplete"
+    >
+      <mock-outcomeicon
+        outcometype="incomplete"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-incomplete"
+    >
+      <mock-outcomeicon
+        outcometype="incomplete"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-fail"
+    >
+      <mock-outcomeicon
+        outcometype="fail"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-fail"
+    >
+      <mock-outcomeicon
+        outcometype="fail"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-fail"
+    >
+      <mock-outcomeicon
+        outcometype="fail"
+      />
+    </span>
+    <span
+      class="outcome-icon outcome-icon-fail"
+    >
+      <mock-outcomeicon
+        outcometype="fail"
+      />
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      3 Passed, 2 Incomplete, 4 Failed
+    </span>
+  </div>
+</DocumentFragment>
 `;

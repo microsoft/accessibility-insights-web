@@ -1,43 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GenericPanel renders isPanelOpen: false 1`] = `
-<StyledPanelBase
-  className="genericPanel panel-custom-class"
-  closeButtonAriaLabel="close button label"
-  hasCloseButton={true}
-  headerClassName="headerText"
-  headerText="panel title"
-  isLightDismiss={true}
-  isOpen={false}
-  onDismiss={[Function]}
->
-  <div>
-    child content
-  </div>
-</StyledPanelBase>
+<DocumentFragment>
+  <mock-styledpanelbase
+    classname="genericPanel panel-custom-class"
+    closebuttonarialabel="close button label"
+    hasclosebutton="true"
+    headerclassname="headerText"
+    headertext="panel title"
+    islightdismiss="true"
+    isopen="false"
+  >
+    <div>
+      child content
+    </div>
+  </mock-styledpanelbase>
+</DocumentFragment>
 `;
 
 exports[`GenericPanel renders isPanelOpen: true 1`] = `
-<StyledPanelBase
-  className="genericPanel panel-custom-class"
-  closeButtonAriaLabel="close button label"
-  hasCloseButton={true}
-  headerClassName="headerText"
-  headerText="panel title"
-  isLightDismiss={true}
-  isOpen={true}
-  onDismiss={[Function]}
->
-  <div>
-    child content
-  </div>
-</StyledPanelBase>
+<DocumentFragment>
+  <mock-styledpanelbase
+    classname="genericPanel panel-custom-class"
+    closebuttonarialabel="close button label"
+    hasclosebutton="true"
+    headerclassname="headerText"
+    headertext="panel title"
+    islightdismiss="true"
+    isopen="true"
+  >
+    <div>
+      child content
+    </div>
+  </mock-styledpanelbase>
+</DocumentFragment>
 `;
 
 exports[`GenericPanel renders minimal content 1`] = `
-<StyledPanelBase
-  className="genericPanel"
-  headerClassName="headerText"
-  isLightDismiss={true}
-/>
+<DocumentFragment>
+  <mock-styledpanelbase
+    classname="genericPanel"
+    headerclassname="headerText"
+    islightdismiss="true"
+  />
+</DocumentFragment>
 `;

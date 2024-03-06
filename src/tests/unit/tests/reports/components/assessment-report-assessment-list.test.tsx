@@ -1,19 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
-import * as Enzyme from 'enzyme';
 import * as React from 'react';
-
 import { AssessmentDetailsReportModel } from 'reports/assessment-report-model';
 import {
     AssessmentReportAssessmentList,
     AssessmentReportAssessmentListDeps,
     AssessmentReportAssessmentListProps,
 } from 'reports/components/assessment-report-assessment-list';
-import { AssessmentReportStepListDeps } from 'reports/components/assessment-report-step-list';
+import {
+    AssessmentReportStepList,
+    AssessmentReportStepListDeps,
+} from 'reports/components/assessment-report-step-list';
+import { OutcomeChip } from '../../../../../reports/components/outcome-chip';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
+jest.mock('reports/components/assessment-report-step-list');
+jest.mock('../../../../../reports/components/outcome-chip');
 
 describe('AssessmentReportAssessmentListTest', () => {
+    mockReactComponents([AssessmentReportStepList, OutcomeChip]);
     const deps: AssessmentReportAssessmentListDeps = {
         outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
     } as AssessmentReportStepListDeps;
@@ -49,28 +59,28 @@ describe('AssessmentReportAssessmentListTest', () => {
     });
 
     function testAssessments(assessments: AssessmentReportAssessmentListProps): void {
-        const wrapper = Enzyme.shallow(<AssessmentReportAssessmentList {...assessments} />);
-
+        const wrapper = render(<AssessmentReportAssessmentList {...assessments} />);
+        const wrappingDiv = wrapper.container.firstElementChild;
         assessments.assessments.forEach((assessment, index) => {
-            const assessmentDiv = wrapper.childAt(index);
-            expect(assessmentDiv.children()).toHaveLength(2);
-            expect(assessmentDiv.hasClass('assessment-details')).toBe(true);
-            expect(assessmentDiv.key()).toEqual(assessment.key);
+            const assessmentDiv = wrappingDiv.children[index];
+            expect(assessmentDiv.childNodes.length).toBe(2);
+            expect(assessmentDiv.classList.contains('assessment-details')).toBe(true);
 
-            testAssessmentHeader(assessment, assessmentDiv.childAt(0));
+            testAssessmentHeader(assessment, assessmentDiv.children[0]);
         });
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([AssessmentReportStepList]);
     }
 
     function testAssessmentHeader(
         assessment: AssessmentDetailsReportModel,
-        assessmentHeader: Enzyme.ShallowWrapper<any, any>,
+        assessmentHeader: Element,
     ): void {
-        expect(assessmentHeader.hasClass('assessment-header')).toBe(true);
-        expect(assessmentHeader.children()).toHaveLength(2);
+        expect(assessmentHeader.classList.contains('assessment-header')).toBe(true);
+        expect(assessmentHeader.childNodes.length).toBe(2);
 
-        const headerName = assessmentHeader.childAt(0);
-        expect(headerName.text()).toEqual(assessment.displayName);
+        const headerName = assessmentHeader.childNodes[0];
+        expect(headerName.textContent).toBe(assessment.displayName);
     }
 });

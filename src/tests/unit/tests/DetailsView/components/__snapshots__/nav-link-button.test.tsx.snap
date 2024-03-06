@@ -1,42 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NavLinkButton renders as button element 1`] = `
-<StyledLinkBase
-  aria-expanded={true}
-  aria-label="some title"
-  className="navLinkButton some class name"
-  onClick={[Function]}
-  title="some title"
-/>
+<DocumentFragment>
+  <mock-styledlinkbase
+    aria-expanded="true"
+    aria-label="some title"
+    title="some title"
+  />
+</DocumentFragment>
 `;
 
 exports[`NavLinkButton renders with href set 1`] = `
-<StyledLinkBase
-  aria-expanded={true}
-  aria-label="some title"
-  className="navLinkButton some class name"
-  href="#"
-  onClick={[Function]}
-  title="some title"
-/>
+<DocumentFragment>
+  <mock-styledlinkbase
+    aria-expanded="true"
+    aria-label="some title"
+    href="#"
+    title="some title"
+  />
+</DocumentFragment>
 `;
 
 exports[`NavLinkButton renders with the proper aria-label 1`] = `
-<StyledLinkBase
-  aria-expanded={true}
-  aria-label="some title (current page)"
-  className="navLinkButton some class name"
-  onClick={[Function]}
-  title="some title"
-/>
+<DocumentFragment>
+  <mock-styledlinkbase
+    aria-expanded="true"
+    aria-label="some title (current page)"
+    title="some title"
+  />
+</DocumentFragment>
 `;
 
 exports[`NavLinkButton renders with using name instead of title 1`] = `
-<StyledLinkBase
-  aria-expanded={true}
-  aria-label="some title"
-  className="navLinkButton some class name"
-  onClick={[Function]}
-  title="some title"
-/>
+<DocumentFragment>
+  <mock-styledlinkbase
+    aria-expanded="true"
+    aria-label="some title"
+    title="some title"
+  />
+</DocumentFragment>
 `;

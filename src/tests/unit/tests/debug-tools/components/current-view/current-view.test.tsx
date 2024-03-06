@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
 import {
     CurrentView,
     CurrentViewDeps,
@@ -8,10 +9,18 @@ import {
     CurrentViewState,
 } from 'debug-tools/components/current-view/current-view';
 import { ToolsNavKey } from 'debug-tools/stores/debug-tools-nav-store';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import { StoresTree } from '../../../../../../debug-tools/components/stores-tree';
+import { TelemetryViewer } from '../../../../../../debug-tools/components/telemetry-viewer/telemetry-viewer';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../debug-tools/components/telemetry-viewer/telemetry-viewer');
+jest.mock('../../../../../../debug-tools/components/stores-tree');
 describe('CurrentView', () => {
+    mockReactComponents([TelemetryViewer, StoresTree]);
     const selectedToolValues: ToolsNavKey[] = ['stores', 'telemetryViewer'];
 
     it.each(selectedToolValues)('renders for selected tool = %s', selectedTool => {
@@ -24,8 +33,11 @@ describe('CurrentView', () => {
             } as CurrentViewState,
         };
 
-        const wrapped = shallow(<CurrentView {...props} />);
+        const renderResult = render(<CurrentView {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        //In snapshot getting undefined, to avoid the undefined value added below if else condition.
+        if (selectedTool === 'stores') expectMockedComponentPropsToMatchSnapshots([StoresTree]);
+        else expectMockedComponentPropsToMatchSnapshots([TelemetryViewer]);
     });
 });

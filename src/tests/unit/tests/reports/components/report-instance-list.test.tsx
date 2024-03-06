@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { ReportInstanceList } from 'reports/components/report-instance-list';
 import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
@@ -13,9 +13,9 @@ describe('ReportInstanceListTest', () => {
                     AssessmentReportBuilderTestHelper.getInstanceReportModelStep1PassStep2Fail(),
             };
 
-            const wrapper = shallow(<ReportInstanceList {...props} />);
+            const renderResult = render(<ReportInstanceList {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         test('comment', () => {
@@ -24,9 +24,9 @@ describe('ReportInstanceListTest', () => {
                     AssessmentReportBuilderTestHelper.getInstanceReportModelManualStep4Fail(),
             };
 
-            const wrapper = shallow(<ReportInstanceList {...props} />);
+            const renderResult = render(<ReportInstanceList {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         test('object prop value instance', () => {
@@ -34,9 +34,9 @@ describe('ReportInstanceListTest', () => {
                 instances: AssessmentReportBuilderTestHelper.getInstanceWithObjectValueProp(),
             };
 
-            const wrapper = shallow(<ReportInstanceList {...props} />);
+            const renderResult = render(<ReportInstanceList {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         test('simple rows first - property bag rows second', () => {
@@ -45,9 +45,9 @@ describe('ReportInstanceListTest', () => {
                     AssessmentReportBuilderTestHelper.getInstanceWithMixOfSimpleAndComplexValues(),
             };
 
-            const wrapper = shallow(<ReportInstanceList {...props} />);
+            const renderResult = render(<ReportInstanceList {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
 });

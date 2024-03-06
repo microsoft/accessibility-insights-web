@@ -1,58 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FixInstructionPanelTests render all checks 1`] = `
-<div>
+<DocumentFragment>
   <div>
-    Fix ALL of the following:
+    <div>
+      Fix ALL of the following:
+    </div>
+    <ul>
+      <li>
+        message
+      </li>
+      <li>
+        message
+      </li>
+    </ul>
   </div>
-  <ul>
-    <li>
-      <React.Fragment>
-        message
-      </React.Fragment>
-    </li>
-    <li>
-      <React.Fragment>
-        message
-      </React.Fragment>
-    </li>
-  </ul>
-</div>
+</DocumentFragment>
 `;
 
 exports[`FixInstructionPanelTests render instruction only one check 1`] = `
-<div>
+<DocumentFragment>
   <div>
-    Fix the following:
-  </div>
-  <ul>
-    <li>
-      <React.Fragment>
+    <div>
+      Fix the following:
+    </div>
+    <ul>
+      <li>
         message
-      </React.Fragment>
-    </li>
-  </ul>
-</div>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`FixInstructionPanelTests render none checks 1`] = `
-<div>
+<DocumentFragment>
   <div>
-    Fix ALL of the following:
+    <div>
+      Fix ALL of the following:
+    </div>
+    <ul>
+      <li>
+        message
+      </li>
+      <li>
+        message
+      </li>
+    </ul>
   </div>
-  <ul>
-    <li>
-      <React.Fragment>
-        message
-      </React.Fragment>
-    </li>
-    <li>
-      <React.Fragment>
-        message
-      </React.Fragment>
-    </li>
-  </ul>
-</div>
+</DocumentFragment>
 `;
 
-exports[`FixInstructionPanelTests render nothing 1`] = `null`;
+exports[`FixInstructionPanelTests render nothing 1`] = `<DocumentFragment />`;

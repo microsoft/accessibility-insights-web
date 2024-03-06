@@ -13,6 +13,7 @@ export interface CardRuleResult {
     url?: string;
     guidance?: GuidanceLink[];
     isExpanded: boolean;
+    status?: string;
 }
 export type CardRuleResultsByStatus = {
     [key in CardRuleResultStatus]: CardRuleResult[];

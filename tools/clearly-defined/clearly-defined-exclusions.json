@@ -1,5 +1,6 @@
 [
     "@swc/core",
+    "@testing-library/jest-dom",
     "@typescript-eslint/parser",
     "-/core-js-bundle",
     "-/esbuild",

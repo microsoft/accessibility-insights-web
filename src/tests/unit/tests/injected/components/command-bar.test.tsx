@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
-import { BaseButton, Button } from '../../../../../../node_modules/@fluentui/react';
+import { BaseButton, Button, DefaultButton } from '../../../../../../node_modules/@fluentui/react';
 import { CopyIssueDetailsButton } from '../../../../../common/components/copy-issue-details-button';
+import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
+import { FileHTMLIcon } from '../../../../../common/icons/file-html-icon';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import {
@@ -16,8 +18,18 @@ import {
 } from '../../../../../injected/components/command-bar';
 import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
 import { EventStubFactory } from '../../../common/event-stub-factory';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    expectMockedComponentPropsToMatchSnapshots,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../common/components/copy-issue-details-button');
+jest.mock('../../../../../../node_modules/@fluentui/react');
+jest.mock('../../../../../common/components/issue-filing-button');
+jest.mock('../../../../../common/icons/file-html-icon');
 
 describe('CommandBar', () => {
+    mockReactComponents([CopyIssueDetailsButton, DefaultButton, IssueFilingButton, FileHTMLIcon]);
     const ruleResult = {
         failureSummary: 'RR-failureSummary',
         guidanceLinks: [
@@ -76,9 +88,10 @@ describe('CommandBar', () => {
                 shouldShowInspectButtonMessage: () => show,
             };
 
-            const wrapper = shallow(<CommandBar {...props} />);
+            const renderResult = render(<CommandBar {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([IssueFilingButton]);
             axeConverterMock.verifyAll();
         });
 
@@ -91,9 +104,10 @@ describe('CommandBar', () => {
                     shouldShowInsecureOriginPageMessage: show,
                 };
 
-                const wrapper = shallow(<CommandBar {...props} />);
+                const renderResult = render(<CommandBar {...props} />);
 
-                expect(wrapper.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
+                expectMockedComponentPropsToMatchSnapshots([IssueFilingButton]);
                 axeConverterMock.verifyAll();
             },
         );
@@ -121,11 +135,9 @@ describe('CommandBar', () => {
                 onClickInspectButton: onClickMock.object,
             };
 
-            const wrapper = shallow(<CommandBar {...props} />);
+            render(<CommandBar {...props} />);
 
-            const button = wrapper.find('.insights-dialog-button-inspect');
-
-            button.simulate('click', eventStub);
+            getMockComponentClassPropsForCall(DefaultButton).onClick(eventStub);
 
             onClickMock.verify(onClick => onClick(eventStub), Times.once());
             axeConverterMock.verifyAll();
@@ -139,11 +151,9 @@ describe('CommandBar', () => {
                 onClickCopyIssueDetailsButton: onClickMock.object,
             };
 
-            const wrapper = shallow(<CommandBar {...props} />);
+            render(<CommandBar {...props} />);
 
-            const button = wrapper.find(CopyIssueDetailsButton);
-
-            button.prop('onClick')(eventStub);
+            getMockComponentClassPropsForCall(CopyIssueDetailsButton).onClick(eventStub);
 
             onClickMock.verify(onClick => onClick(eventStub), Times.once());
             axeConverterMock.verifyAll();
