@@ -124,7 +124,14 @@ describe('ReportBody', () => {
 
         const renderResult = render(<ReportBody {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expect(getMockComponentClassPropsForCall(BodySection).children).toMatchSnapshot();
+
+        // Check that sectionProps are as expected for one section since all sections are passed
+        // the same props. Remove sectionFactory from the snapshot since it's a large object with
+        // redundant information.
+        const sectionProps = getMockComponentClassPropsForCall(ReporterHeaderSection);
+        expect({ ...sectionProps, sectionFactory: 'Removed for Snapshot' }).toMatchSnapshot(
+            'sectionProps',
+        );
     });
 
     const createSectionFactoryStub = () => {
