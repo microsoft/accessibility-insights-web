@@ -55,7 +55,7 @@ import {
     getStartOverComponentForAssessment,
 } from 'DetailsView/components/start-over-component-factory';
 import { StartOverDialog } from 'DetailsView/components/start-over-dialog';
-import { TransferToAssessmentButtonProps } from 'DetailsView/components/transfer-to-assessment-button';
+import { TransferToAssessmentButtonProps, getTransferToAssessmentButton } from 'DetailsView/components/transfer-to-assessment-button';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import { isNil } from 'lodash';
 import * as React from 'react';
@@ -70,6 +70,7 @@ import {
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock } from 'typemoq';
+import { QuickAssessToAssessmentDialog } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 
 jest.mock('DetailsView/components/report-export-button');
 jest.mock('DetailsView/components/load-assessment-dialog');
@@ -78,6 +79,7 @@ jest.mock('DetailsView/components/export-dialog');
 jest.mock('DetailsView/components/command-bar-buttons-menu');
 jest.mock('DetailsView/components/invalid-load-assessment-dialog');
 jest.mock('common/components/new-tab-link-with-tooltip');
+jest.mock('DetailsView/components/quick-assess-to-assessment-dialog');
 describe('DetailsViewCommandBar', () => {
     mockReactComponents([
         ReportExportButton,
@@ -86,7 +88,9 @@ describe('DetailsViewCommandBar', () => {
         CommandBarButtonsMenu,
         InvalidLoadAssessmentDialog,
         NewTabLinkWithTooltip,
+        ReportExportButton,
         ExportDialog,
+        QuickAssessToAssessmentDialog
     ]);
     const thePageTitle = 'command-bar-test-tab-title';
     const thePageUrl = 'command-bar-test-url';
@@ -205,9 +209,12 @@ describe('DetailsViewCommandBar', () => {
             _ => null,
         );
 
-        const actualSwitcherNavConfiguration = GetDetailsSwitcherNavConfiguration({
+        const actualSwitcherNavConfiguration = {
+            ...GetDetailsSwitcherNavConfiguration({
             selectedDetailsViewPivot: DetailsViewPivotType.assessment,
-        });
+            }),
+            TransferToAssessmentButton: getTransferToAssessmentButton
+        };
 
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
             CommandBar: switcherNavButtonOverrides?.includes('CommandBar')
@@ -267,6 +274,7 @@ describe('DetailsViewCommandBar', () => {
                 isCommandBarCollapsed,
             },
             rightPanelConfiguration,
+            dataTransferViewStoreData: { showQuickAssessToAssessmentConfirmDialog: false },
         } as DetailsViewCommandBarProps;
     }
 
@@ -374,6 +382,19 @@ describe('DetailsViewCommandBar', () => {
         expect(renderResult.asFragment()).toMatchSnapshot('start assessment over dialog open');
     });
 
+    test('renders transfer to assessment dialog', async () => {
+        const props = getProps();
+        setupTransferToAssessmentButtonFactory(props)
+        const renderResult = render(<DetailsViewCommandBar {...props} />);
+        expect(getMockComponentClassPropsForCall(QuickAssessToAssessmentDialog, 1).isShown).toBe(false)
+        expect(renderResult.asFragment()).toMatchSnapshot('transfer to assessment dialog hidden');
+        props.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog = true;
+        setupTransferToAssessmentButtonFactory(props)
+        renderResult.rerender(<DetailsViewCommandBar {...props} />);
+        expect(getMockComponentClassPropsForCall(QuickAssessToAssessmentDialog, 2).isShown).toBe(true)
+        expect(renderResult.asFragment()).toMatchSnapshot('transfer to assessment dialog open');
+    });
+
     describe('Button focus', () => {
         beforeEach(() => {
             useOriginalReactElements('DetailsView/components/command-bar-buttons-menu', [
@@ -407,6 +428,40 @@ describe('DetailsViewCommandBar', () => {
             expect(textArea).toHaveFocus();
             getMockComponentCall(ExportDialog, 2)[0].afterDismissed();
             expect(exportButton).toHaveFocus();
+        });
+
+        test('do not change focus to transfer assessment button when focus ref is not set', async () => {
+            useOriginalReactElements('DetailsView/components/quick-assess-to-assessment-dialog', ['QuickAssessToAssessmentDialog']);
+            useOriginalReactElements
+            const props = getProps(['CommandBar']);
+            let setRef;
+            transferToAssessmentButtonFactoryMock.setup(m => m(It.isAny())).callback(props => {
+                setRef = props.buttonRef
+            })
+            const renderResult = render(<DetailsViewCommandBar {...props} />);
+            expect(setRef).toBeDefined()
+            expect(renderResult.baseElement).toHaveFocus();
+            setRef(undefined)
+            getMockComponentCall(QuickAssessToAssessmentDialog)[0].afterDialogDismissed();
+            expect(renderResult.baseElement).toHaveFocus();
+        });
+
+        test('focus transfer assessment button when focus ref is set', async () => {
+            useOriginalReactElements('DetailsView/components/quick-assess-to-assessment-dialog', ['QuickAssessToAssessmentDialog']);
+            const props = getProps(['TransferToAssessmentButton','CommandBar']);
+            const renderResult = render(<DetailsViewCommandBar {...props} />);
+            const transferButton = renderResult.getByRole('button', {
+                name: 'Move to assessment',
+            });
+            expect(transferButton).not.toHaveFocus();
+            getMockComponentCall(QuickAssessToAssessmentDialog)[0].afterDialogDismissed();
+            expect(transferButton).toHaveFocus();
+            props.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog = true;
+            renderResult.rerender(<DetailsViewCommandBar {...props} />); //open the dialog
+            const continueButton = renderResult.getByRole('button', { name: 'Continue to Assessment' });
+            expect(continueButton).toHaveFocus();
+            getMockComponentCall(QuickAssessToAssessmentDialog, 1)[0].afterDialogDismissed();
+            expect(transferButton).toHaveFocus();
         });
 
         test('do not change focus to start over button when focus ref is not set', async () => {
