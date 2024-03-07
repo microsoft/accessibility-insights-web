@@ -142,7 +142,7 @@ export class DetailsViewCommandBar extends React.Component<
                 {this.renderInvalidLoadAssessmentDialog()}
                 {this.renderLoadAssessmentDialog()}
                 {this.renderStartOverDialog()}
-                {this.renderMoveToAssessmentDialog()}
+                {this.renderTransferToAssessmentDialog()}
             </div>
         );
     }
@@ -266,17 +266,29 @@ export class DetailsViewCommandBar extends React.Component<
         });
     };
 
-    private renderLoadAssessmentButton = (): JSX.Element | null => {
-        return this.props.switcherNavConfiguration.LoadAssessmentButton({
-            ...this.props,
-            handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
-        });
-    };
-
     private renderTransferToAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.TransferToAssessmentButton({
             ...this.props,
             buttonRef: ref => (this.transferToAssessmentDialogCloseFocus = ref ?? undefined),
+        });
+    };
+
+    private renderTransferToAssessmentDialog(): JSX.Element {
+        return (
+            <QuickAssessToAssessmentDialog
+                isShown={
+                    this.props.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog
+                }
+                afterDialogDismissed={this.focusTransferToAssessmentButton}
+                {...this.props}
+            />
+        );
+    }
+
+    private renderLoadAssessmentButton = (): JSX.Element | null => {
+        return this.props.switcherNavConfiguration.LoadAssessmentButton({
+            ...this.props,
+            handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
         });
     };
 
@@ -383,17 +395,5 @@ export class DetailsViewCommandBar extends React.Component<
         };
 
         return <StartOverDialog {...dialogProps} />;
-    }
-
-    private renderMoveToAssessmentDialog(): JSX.Element {
-        return (
-            <QuickAssessToAssessmentDialog
-                isShown={
-                    this.props.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog
-                }
-                afterDialogDismissed={this.focusTransferToAssessmentButton}
-                {...this.props}
-            />
-        );
     }
 }
