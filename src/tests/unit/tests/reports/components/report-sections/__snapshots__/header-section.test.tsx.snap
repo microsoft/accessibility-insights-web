@@ -1,26 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HeaderSection renders 1`] = `
-<header
-  data-automation-id="report-header-section"
->
-  <HeaderBar
-    headerText="some header text"
-  />
-  <div
-    className="reportHeaderCommandBar"
+<DocumentFragment>
+  <header
+    data-automation-id="report-header-section"
   >
+    <mock-headerbar
+      headertext="some header text"
+    />
     <div
-      className="targetPage"
+      class="reportHeaderCommandBar"
     >
-      Target page: 
-      <NewTabLinkWithConfirmationDialog
-        href="url://page"
-        title="page-title"
+      <div
+        class="targetPage"
       >
-        page-title
-      </NewTabLinkWithConfirmationDialog>
+        Target page: 
+        <mock-newtablinkwithconfirmationdialog
+          href="url://page"
+          title="page-title"
+        >
+          page-title
+        </mock-newtablinkwithconfirmationdialog>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
+</DocumentFragment>
 `;

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { SummaryReportSummarySection } from 'reports/components/report-sections/summary-report-summary-section';
@@ -9,8 +9,12 @@ import {
     SummaryScanResult,
     SummaryScanError,
 } from 'reports/package/accessibilityInsightsReport';
+import { UrlsSummarySection } from '../../../../../../reports/components/report-sections/urls-summary-section';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../reports/components/report-sections/urls-summary-section');
 describe('SummaryReportSummarySection', () => {
+    mockReactComponents([UrlsSummarySection]);
     const failed = [
         {
             url: 'https://url.com/failed1',
@@ -35,8 +39,8 @@ describe('SummaryReportSummarySection', () => {
         const props = {
             results,
         } as SummaryReportSectionProps;
-        const wrapper = shallow(<SummaryReportSummarySection {...props} />);
+        const renderResult = render(<SummaryReportSummarySection {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

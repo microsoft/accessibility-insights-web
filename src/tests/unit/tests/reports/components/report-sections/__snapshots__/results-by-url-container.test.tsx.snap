@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ResultsByUrlContainer renders 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="urlResultsContainer"
+    class="urlResultsContainer"
   >
     <div
-      className="resultsHeading"
+      class="resultsHeading"
     >
       <h2>
         Results by URL
@@ -21,12 +21,8 @@ exports[`ResultsByUrlContainer renders 1`] = `
       2
     </div>
   </div>
-  <script
-    dangerouslySetInnerHTML={
-      {
-        "__html": "test script",
-      }
-    }
-  />
-</React.Fragment>
+  <script>
+    test script
+  </script>
+</DocumentFragment>
 `;
