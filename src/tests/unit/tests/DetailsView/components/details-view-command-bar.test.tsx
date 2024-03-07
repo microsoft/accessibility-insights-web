@@ -78,7 +78,6 @@ jest.mock('DetailsView/components/export-dialog');
 jest.mock('DetailsView/components/command-bar-buttons-menu');
 jest.mock('DetailsView/components/invalid-load-assessment-dialog');
 jest.mock('common/components/new-tab-link-with-tooltip');
-jest.mock('DetailsView/components/report-export-button');
 describe('DetailsViewCommandBar', () => {
     mockReactComponents([
         ReportExportButton,
@@ -87,7 +86,6 @@ describe('DetailsViewCommandBar', () => {
         CommandBarButtonsMenu,
         InvalidLoadAssessmentDialog,
         NewTabLinkWithTooltip,
-        ReportExportButton,
         ExportDialog,
     ]);
     const thePageTitle = 'command-bar-test-tab-title';
