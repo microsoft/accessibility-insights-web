@@ -11,9 +11,7 @@ import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-na
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { OverviewHeadingIntroFactory } from 'DetailsView/components/overview-content/overview-heading-intro';
 import { OverviewHelpSectionAboutFactory } from 'DetailsView/components/overview-content/overview-help-section-about';
-import {
-    QuickAssessToAssessmentDialogDeps,
-} from 'DetailsView/components/quick-assess-to-assessment-dialog';
+import { QuickAssessToAssessmentDialogDeps } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import { TestViewContainerProvider } from 'DetailsView/components/test-view-container-provider';
 import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';

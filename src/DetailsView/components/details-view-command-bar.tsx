@@ -25,6 +25,7 @@ import {
     LoadAssessmentDialogDeps,
 } from 'DetailsView/components/load-assessment-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { QuickAssessToAssessmentDialog } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import {
     ReportExportDialogFactoryDeps,
@@ -48,13 +49,12 @@ import {
     TransferToAssessmentButtonDeps,
     TransferToAssessmentButtonProps,
 } from 'DetailsView/components/transfer-to-assessment-button';
+import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
-import { QuickAssessToAssessmentDialog } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
