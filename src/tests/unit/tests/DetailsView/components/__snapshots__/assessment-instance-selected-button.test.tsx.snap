@@ -3,8 +3,8 @@
 exports[`AssessmentInstanceSelectedButton render when element is not selected and is not visible 1`] = `
 <DocumentFragment>
   <mock-customizediconbutton
-    aria-checked="false"
     aria-label="Visualization"
+    checked="false"
     classname="instanceVisibilityButton testInstanceSelectedHiddenButton"
     disabled="true"
     iconprops="[object Object]"
@@ -16,8 +16,8 @@ exports[`AssessmentInstanceSelectedButton render when element is not selected an
 exports[`AssessmentInstanceSelectedButton render when element is not selected and is visible 1`] = `
 <DocumentFragment>
   <mock-customizediconbutton
-    aria-checked="false"
     aria-label="Visualization"
+    checked="false"
     classname="instanceVisibilityButton"
     disabled="false"
     iconprops="[object Object]"
@@ -29,8 +29,8 @@ exports[`AssessmentInstanceSelectedButton render when element is not selected an
 exports[`AssessmentInstanceSelectedButton render when element is selected and visible 1`] = `
 <DocumentFragment>
   <mock-customizediconbutton
-    aria-checked="true"
     aria-label="Visualization"
+    checked="true"
     classname="instanceVisibilityButton"
     disabled="false"
     iconprops="[object Object]"
@@ -42,8 +42,8 @@ exports[`AssessmentInstanceSelectedButton render when element is selected and vi
 exports[`AssessmentInstanceSelectedButton render when element is selected but hidden 1`] = `
 <DocumentFragment>
   <mock-customizediconbutton
-    aria-checked="true"
     aria-label="Visualization"
+    checked="true"
     classname="instanceVisibilityButton testInstanceSelectedHiddenButton"
     disabled="true"
     iconprops="[object Object]"
