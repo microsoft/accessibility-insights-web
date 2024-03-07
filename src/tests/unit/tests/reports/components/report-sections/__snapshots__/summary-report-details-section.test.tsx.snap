@@ -1,80 +1,82 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SummaryReportDetailsSection renders 1`] = `
-<div
-  className="crawlDetailsSection"
->
-  <h2>
-    Scan details
-  </h2>
-  <ul
-    className="crawlDetailsSectionList"
+<DocumentFragment>
+  <div
+    class="crawlDetailsSection"
   >
-    <li
-      className="targetSite"
+    <h2>
+      Scan details
+    </h2>
+    <ul
+      class="crawlDetailsSectionList"
     >
-      <span
-        className="icon"
+      <li
+        class="targetSite"
       >
-        <UrlIcon />
-      </span>
-      <span
-        className="label"
-      >
-        Target site 
-      </span>
-      <span
-        className="text"
-      >
-        <NewTabLinkWithConfirmationDialog
-          href="page url"
-          title="page name"
+        <span
+          class="icon"
         >
-          page url
-        </NewTabLinkWithConfirmationDialog>
-      </span>
-    </li>
-    <li>
-      <span
-        className="icon"
-      >
-        <DateIcon />
-      </span>
-      <span
-        className="label"
-      >
-        Scans started 
-      </span>
-      <span
-        className="text"
-      >
-        scan start time
-      </span>
-    </li>
-    <li>
-      <span
-        className="noIcon label"
-      >
-        Scans completed 
-      </span>
-      <span
-        className="text"
-      >
-        scan end time
-      </span>
-    </li>
-    <li>
-      <span
-        className="noIcon label"
-      >
-        Duration 
-      </span>
-      <span
-        className="text"
-      >
-        scan duration
-      </span>
-    </li>
-  </ul>
-</div>
+          <mock-urlicon />
+        </span>
+        <span
+          class="label"
+        >
+          Target site 
+        </span>
+        <span
+          class="text"
+        >
+          <mock-newtablinkwithconfirmationdialog
+            href="page url"
+            title="page name"
+          >
+            page url
+          </mock-newtablinkwithconfirmationdialog>
+        </span>
+      </li>
+      <li>
+        <span
+          class="icon"
+        >
+          <mock-dateicon />
+        </span>
+        <span
+          class="label"
+        >
+          Scans started 
+        </span>
+        <span
+          class="text"
+        >
+          scan start time
+        </span>
+      </li>
+      <li>
+        <span
+          class="noIcon label"
+        >
+          Scans completed 
+        </span>
+        <span
+          class="text"
+        >
+          scan end time
+        </span>
+      </li>
+      <li>
+        <span
+          class="noIcon label"
+        >
+          Duration 
+        </span>
+        <span
+          class="text"
+        >
+          scan duration
+        </span>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
 `;

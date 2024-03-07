@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportFooter } from 'reports/components/report-sections/report-footer';
 
@@ -19,8 +19,8 @@ describe('ReportFooter', () => {
             },
         };
 
-        const wrapper = shallow(<ReportFooter {...{ toolData }}>Footer Text</ReportFooter>);
+        const renderResult = render(<ReportFooter {...{ toolData }}>Footer Text</ReportFooter>);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

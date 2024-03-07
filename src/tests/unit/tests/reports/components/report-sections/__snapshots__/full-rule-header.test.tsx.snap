@@ -1,433 +1,487 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FullRuleHeader guidance links and the containing parenthesis are not rendered without guidance 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="rule-detail"
+    class="rule-detail"
   >
     <div>
       <span
         aria-hidden="true"
       >
-        <OutcomeChip
-          count={1}
-          outcomeType="fail"
+        <mock-outcomechip
+          count="1"
+          outcometype="fail"
         />
       </span>
        
       <span
-        className="rule-details-id"
+        class="rule-details-id"
       >
-        <NewTabLink
+        <mock-newtablink
           aria-describedby="failed-rule-rule id-description"
           aria-label="rule rule id"
           href="url://help.url"
         >
           rule id
-        </NewTabLink>
+        </mock-newtablink>
       </span>
       : 
       <span
-        className="rule-details-description"
+        class="rule-details-description"
         id="failed-rule-rule id-description"
       >
         rule description
       </span>
-      <GuidanceTags
-        deps={{}}
-        links={null}
+      <mock-guidancetags
+        deps="[object Object]"
       />
     </div>
   </div>
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`FullRuleHeader guidance links and the containing parenthesis are not rendered without guidance: GuidanceLinks props 1`] = `undefined`;
+
+exports[`FullRuleHeader guidance links and the containing parenthesis are not rendered without guidance: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": null,
+}
 `;
 
 exports[`FullRuleHeader renders, outcomeType = fail 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="rule-detail"
+    class="rule-detail"
   >
     <div>
       <span
         aria-hidden="true"
       >
-        <OutcomeChip
-          count={1}
-          outcomeType="fail"
+        <mock-outcomechip
+          count="1"
+          outcometype="fail"
         />
       </span>
        
       <span
-        className="rule-details-id"
+        class="rule-details-id"
       >
-        <NewTabLink
+        <mock-newtablink
           aria-describedby="failed-rule-rule id-description"
           aria-label="rule rule id"
           href="url://help.url"
         >
           rule id
-        </NewTabLink>
+        </mock-newtablink>
       </span>
       : 
       <span
-        className="rule-details-description"
+        class="rule-details-description"
         id="failed-rule-rule id-description"
       >
         rule description
       </span>
-      <React.Fragment>
-        (
-        <GuidanceLinks
-          links={
-            [
-              {
-                "href": "url://guidance-01.link",
-                "text": "guidance-01",
-              },
-              {
-                "href": "url://guidance-02.link",
-                "text": "guidance-02",
-              },
-            ]
-          }
-        />
-        )
-      </React.Fragment>
-      <GuidanceTags
-        deps={{}}
-        links={
-          [
-            {
-              "href": "url://guidance-01.link",
-              "text": "guidance-01",
-            },
-            {
-              "href": "url://guidance-02.link",
-              "text": "guidance-02",
-            },
-          ]
-        }
+      (
+      <mock-guidancelinks
+        links="[object Object],[object Object]"
+      />
+      )
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object],[object Object]"
       />
     </div>
   </div>
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`FullRuleHeader renders, outcomeType = fail: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = fail: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
 `;
 
 exports[`FullRuleHeader renders, outcomeType = inapplicable 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="rule-detail"
+    class="rule-detail"
   >
     <div>
        
       <span
-        className="rule-details-id"
+        class="rule-details-id"
       >
-        <NewTabLink
+        <mock-newtablink
           aria-describedby="not-applicable-rule-rule id-description"
           aria-label="rule rule id"
           href="url://help.url"
         >
           rule id
-        </NewTabLink>
+        </mock-newtablink>
       </span>
       : 
       <span
-        className="rule-details-description"
+        class="rule-details-description"
         id="not-applicable-rule-rule id-description"
       >
         rule description
       </span>
-      <React.Fragment>
-        (
-        <GuidanceLinks
-          links={
-            [
-              {
-                "href": "url://guidance-01.link",
-                "text": "guidance-01",
-              },
-              {
-                "href": "url://guidance-02.link",
-                "text": "guidance-02",
-              },
-            ]
-          }
-        />
-        )
-      </React.Fragment>
-      <GuidanceTags
-        deps={{}}
-        links={
-          [
-            {
-              "href": "url://guidance-01.link",
-              "text": "guidance-01",
-            },
-            {
-              "href": "url://guidance-02.link",
-              "text": "guidance-02",
-            },
-          ]
-        }
+      (
+      <mock-guidancelinks
+        links="[object Object],[object Object]"
+      />
+      )
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object],[object Object]"
       />
     </div>
   </div>
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`FullRuleHeader renders, outcomeType = inapplicable: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = inapplicable: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
 `;
 
 exports[`FullRuleHeader renders, outcomeType = incomplete 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="rule-detail"
+    class="rule-detail"
   >
     <div>
        
       <span
-        className="rule-details-id"
+        class="rule-details-id"
       >
-        <NewTabLink
+        <mock-newtablink
           aria-describedby="incomplete-rule-rule id-description"
           aria-label="rule rule id"
           href="url://help.url"
         >
           rule id
-        </NewTabLink>
+        </mock-newtablink>
       </span>
       : 
       <span
-        className="rule-details-description"
+        class="rule-details-description"
         id="incomplete-rule-rule id-description"
       >
         rule description
       </span>
-      <React.Fragment>
-        (
-        <GuidanceLinks
-          links={
-            [
-              {
-                "href": "url://guidance-01.link",
-                "text": "guidance-01",
-              },
-              {
-                "href": "url://guidance-02.link",
-                "text": "guidance-02",
-              },
-            ]
-          }
-        />
-        )
-      </React.Fragment>
-      <GuidanceTags
-        deps={{}}
-        links={
-          [
-            {
-              "href": "url://guidance-01.link",
-              "text": "guidance-01",
-            },
-            {
-              "href": "url://guidance-02.link",
-              "text": "guidance-02",
-            },
-          ]
-        }
+      (
+      <mock-guidancelinks
+        links="[object Object],[object Object]"
+      />
+      )
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object],[object Object]"
       />
     </div>
   </div>
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`FullRuleHeader renders, outcomeType = incomplete: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = incomplete: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
 `;
 
 exports[`FullRuleHeader renders, outcomeType = pass 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="rule-detail"
+    class="rule-detail"
   >
     <div>
        
       <span
-        className="rule-details-id"
+        class="rule-details-id"
       >
-        <NewTabLink
+        <mock-newtablink
           aria-describedby="passed-rule-rule id-description"
           aria-label="rule rule id"
           href="url://help.url"
         >
           rule id
-        </NewTabLink>
+        </mock-newtablink>
       </span>
       : 
       <span
-        className="rule-details-description"
+        class="rule-details-description"
         id="passed-rule-rule id-description"
       >
         rule description
       </span>
-      <React.Fragment>
-        (
-        <GuidanceLinks
-          links={
-            [
-              {
-                "href": "url://guidance-01.link",
-                "text": "guidance-01",
-              },
-              {
-                "href": "url://guidance-02.link",
-                "text": "guidance-02",
-              },
-            ]
-          }
-        />
-        )
-      </React.Fragment>
-      <GuidanceTags
-        deps={{}}
-        links={
-          [
-            {
-              "href": "url://guidance-01.link",
-              "text": "guidance-01",
-            },
-            {
-              "href": "url://guidance-02.link",
-              "text": "guidance-02",
-            },
-          ]
-        }
+      (
+      <mock-guidancelinks
+        links="[object Object],[object Object]"
+      />
+      )
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object],[object Object]"
       />
     </div>
   </div>
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`FullRuleHeader renders, outcomeType = pass: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = pass: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
 `;
 
 exports[`FullRuleHeader renders, outcomeType = review 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="rule-detail"
+    class="rule-detail"
   >
     <div>
        
       <span
-        className="rule-details-id"
+        class="rule-details-id"
       >
-        <NewTabLink
+        <mock-newtablink
           aria-describedby="needs-review-rule-rule id-description"
           aria-label="rule rule id"
           href="url://help.url"
         >
           rule id
-        </NewTabLink>
+        </mock-newtablink>
       </span>
       : 
       <span
-        className="rule-details-description"
+        class="rule-details-description"
         id="needs-review-rule-rule id-description"
       >
         rule description
       </span>
-      <React.Fragment>
-        (
-        <GuidanceLinks
-          links={
-            [
-              {
-                "href": "url://guidance-01.link",
-                "text": "guidance-01",
-              },
-              {
-                "href": "url://guidance-02.link",
-                "text": "guidance-02",
-              },
-            ]
-          }
-        />
-        )
-      </React.Fragment>
-      <GuidanceTags
-        deps={{}}
-        links={
-          [
-            {
-              "href": "url://guidance-01.link",
-              "text": "guidance-01",
-            },
-            {
-              "href": "url://guidance-02.link",
-              "text": "guidance-02",
-            },
-          ]
-        }
+      (
+      <mock-guidancelinks
+        links="[object Object],[object Object]"
+      />
+      )
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object],[object Object]"
       />
     </div>
   </div>
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`FullRuleHeader renders, outcomeType = review: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader renders, outcomeType = review: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
 `;
 
 exports[`FullRuleHeader ruleId is displayed as text when there is no url provided for a link 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="rule-detail"
+    class="rule-detail"
   >
     <div>
       <span
         aria-hidden="true"
       >
-        <OutcomeChip
-          count={1}
-          outcomeType="fail"
+        <mock-outcomechip
+          count="1"
+          outcometype="fail"
         />
       </span>
        
       <span
-        className="rule-details-id"
+        class="rule-details-id"
       >
-        <React.Fragment>
-          rule id
-        </React.Fragment>
+        rule id
       </span>
       : 
       <span
-        className="rule-details-description"
+        class="rule-details-description"
         id="failed-rule-rule id-description"
       >
         rule description
       </span>
-      <React.Fragment>
-        (
-        <GuidanceLinks
-          links={
-            [
-              {
-                "href": "url://guidance-01.link",
-                "text": "guidance-01",
-              },
-              {
-                "href": "url://guidance-02.link",
-                "text": "guidance-02",
-              },
-            ]
-          }
-        />
-        )
-      </React.Fragment>
-      <GuidanceTags
-        deps={{}}
-        links={
-          [
-            {
-              "href": "url://guidance-01.link",
-              "text": "guidance-01",
-            },
-            {
-              "href": "url://guidance-02.link",
-              "text": "guidance-02",
-            },
-          ]
-        }
+      (
+      <mock-guidancelinks
+        links="[object Object],[object Object]"
+      />
+      )
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object],[object Object]"
       />
     </div>
   </div>
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`FullRuleHeader ruleId is displayed as text when there is no url provided for a link: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": undefined,
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
+`;
+
+exports[`FullRuleHeader ruleId is displayed as text when there is no url provided for a link: GuidanceTags props 1`] = `
+{
+  "deps": {},
+  "links": [
+    {
+      "href": "url://guidance-01.link",
+      "text": "guidance-01",
+    },
+    {
+      "href": "url://guidance-02.link",
+      "text": "guidance-02",
+    },
+  ],
+}
 `;

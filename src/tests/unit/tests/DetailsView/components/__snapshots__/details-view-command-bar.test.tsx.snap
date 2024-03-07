@@ -1,2179 +1,1901 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
+exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid load assessment dialog hidden 1`] = `
+<DocumentFragment>
   <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
   >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
     >
       <span
-        className="targetPageTitle"
+        id="switch-to-target"
       >
-        command-bar-test-tab-title
+        Target page: 
       </span>
-    </NewTabLinkWithTooltip>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__15"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="load-assessment-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="FabricOpenFolderHorizontal"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__18"
+            >
+              Load assessment
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
   </div>
-  <CommandBarButtonsMenu
-    buttonRef={[Function]}
-    getStartOverMenuItem={[Function]}
-    loadAssessmentButton={
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid load assessment dialog open 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__15"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="load-assessment-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="FabricOpenFolderHorizontal"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__18"
+            >
+              Load assessment
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="true"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders load assessment dialog: load assessment dialog hidden 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__9"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="load-assessment-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="FabricOpenFolderHorizontal"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__12"
+            >
+              Load assessment
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders load assessment dialog: load assessment dialog open 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__9"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="load-assessment-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="FabricOpenFolderHorizontal"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__12"
+            >
+              Load assessment
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="true"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders report export dialog: export dialog hidden 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__6"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders report export dialog: export dialog open 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__6"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename="Assessment_20240307_commandbartesttabtit.html"
+      htmlfileurl="#"
+      isopen="true"
+      jsonexportdata=""
+      jsonfilename="Assessment_20240307_commandbartesttabtit.json"
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders start assessment over dialog: start assessment over dialog hidden 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__30"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
       <div>
-        Load assessment
+        <button
+          aria-label="start over menu"
+          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+          data-is-focusable="true"
+          type="button"
+        >
+          <span
+            class="ms-Button-flexContainer flexContainer-110"
+            data-automationid="splitbuttonprimary"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+              data-icon-name="Refresh"
+            />
+            <span
+              class="ms-Button-textContainer textContainer-111"
+            >
+              <span
+                class="ms-Button-label label-113"
+                id="id__33"
+              >
+                Start over
+              </span>
+            </span>
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+              data-icon-name="ChevronDown"
+            />
+          </span>
+        </button>
+        <span
+          class="ms-layer"
+        />
       </div>
-    }
-    renderExportReportButton={[Function]}
-    saveAssessmentButton={
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders start assessment over dialog: start assessment over dialog open 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__30"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
       <div>
-        Save assessment
+        <button
+          aria-label="start over menu"
+          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+          data-is-focusable="true"
+          type="button"
+        >
+          <span
+            class="ms-Button-flexContainer flexContainer-110"
+            data-automationid="splitbuttonprimary"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+              data-icon-name="Refresh"
+            />
+            <span
+              class="ms-Button-textContainer textContainer-111"
+            >
+              <span
+                class="ms-Button-label label-113"
+                id="id__33"
+              >
+                Start over
+              </span>
+            </span>
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+              data-icon-name="ChevronDown"
+            />
+          </span>
+        </button>
       </div>
-    }
-    transferToAssessmentButton={
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="assessment"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders start test over dialog: start test over dialog hidden 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__21"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
       <div>
-        Transfer to assessment stub
+        <button
+          aria-label="start over menu"
+          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+          data-is-focusable="true"
+          type="button"
+        >
+          <span
+            class="ms-Button-flexContainer flexContainer-110"
+            data-automationid="splitbuttonprimary"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+              data-icon-name="Refresh"
+            />
+            <span
+              class="ms-Button-textContainer textContainer-111"
+            >
+              <span
+                class="ms-Button-label label-113"
+                id="id__24"
+              >
+                Start over
+              </span>
+            </span>
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+              data-icon-name="ChevronDown"
+            />
+          </span>
+        </button>
+        <span
+          class="ms-layer"
+        />
       </div>
-    }
-  />
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": true,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": true,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": true,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders start test over dialog: start test over dialog open 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        data-automation-id="report-export-button"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <i
+            aria-hidden="true"
+            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+            data-icon-name="Export"
+          />
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__21"
+            >
+              Export result
+            </span>
+          </span>
+        </span>
+      </button>
+      <div>
+        <button
+          aria-label="start over menu"
+          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+          data-is-focusable="true"
+          type="button"
+        >
+          <span
+            class="ms-Button-flexContainer flexContainer-110"
+            data-automationid="splitbuttonprimary"
+          >
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+              data-icon-name="Refresh"
+            />
+            <span
+              class="ms-Button-textContainer textContainer-111"
+            >
+              <span
+                class="ms-Button-label label-113"
+                id="id__24"
+              >
+                Start over
+              </span>
+            </span>
+            <i
+              aria-hidden="true"
+              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+              data-icon-name="ChevronDown"
+            />
+          </span>
+        </button>
+      </div>
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="test"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <mock-commandbarbuttonsmenu />
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders with buttons collapsed into a menu: CommandBarButtonsMenu props 1`] = `
+{
+  "buttonRef": [Function],
+  "getStartOverMenuItem": [Function],
+  "loadAssessmentButton": undefined,
+  "renderExportReportButton": [Function],
+  "saveAssessmentButton": undefined,
+  "transferToAssessmentButton": undefined,
+}
 `;
 
 exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
+<DocumentFragment>
   <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
   >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
     >
       <span
-        className="targetPageTitle"
+        id="switch-to-target"
       >
-        command-bar-test-tab-title
+        Target page: 
       </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <ReportExportButton
-      buttonRef={[Function]}
-      showReportExportDialog={[Function]}
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <mock-reportexportbutton />
+      <div>
+        Save assessment
+      </div>
+      <div>
+        Transfer to assessment stub
+      </div>
+      <button
+        class="ms-Button ms-Button--action ms-Button--command root-109"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__0"
+            >
+              Start Over Component
+            </span>
+          </span>
+        </span>
+      </button>
+    </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
     />
-    <div>
-      Save assessment
-    </div>
-    <div>
-      Transfer to assessment stub
-    </div>
-    <CustomizedActionButton>
-      Start Over Component
-    </CustomizedActionButton>
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
   </div>
-  <div>
-    Export dialog
-  </div>
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`DetailsViewCommandBar renders with export button, without start over 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
+<DocumentFragment>
   <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
   >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
     >
       <span
-        className="targetPageTitle"
+        id="switch-to-target"
       >
-        command-bar-test-tab-title
+        Target page: 
       </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <ReportExportButton
-      buttonRef={[Function]}
-      showReportExportDialog={[Function]}
-    />
-    <div>
-      Save assessment
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
     </div>
-    <div>
-      Transfer to assessment stub
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <mock-reportexportbutton />
+      <div>
+        Save assessment
+      </div>
+      <div>
+        Transfer to assessment stub
+      </div>
     </div>
-  </div>
-  <div>
-    Export dialog
-  </div>
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`DetailsViewCommandBar renders with invalid load assessment dialog hidden 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
-  <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
-  >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
-    >
-      <span
-        className="targetPageTitle"
-      >
-        command-bar-test-tab-title
-      </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <ReportExportButton
-      buttonRef={[Function]}
-      showReportExportDialog={[Function]}
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
     />
   </div>
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`DetailsViewCommandBar renders with invalid load assessment dialog open 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
-  <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
-  >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
-    >
-      <span
-        className="targetPageTitle"
-      >
-        command-bar-test-tab-title
-      </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <ReportExportButton
-      buttonRef={[Function]}
-      showReportExportDialog={[Function]}
-    />
-  </div>
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={true}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`DetailsViewCommandBar renders with load assessment dialog hidden 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
-  <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
-  >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
-    >
-      <span
-        className="targetPageTitle"
-      >
-        command-bar-test-tab-title
-      </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <ReportExportButton
-      buttonRef={[Function]}
-      showReportExportDialog={[Function]}
-    />
-  </div>
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
-  <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
-  >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
-    >
-      <span
-        className="targetPageTitle"
-      >
-        command-bar-test-tab-title
-      </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <ReportExportButton
-      buttonRef={[Function]}
-      showReportExportDialog={[Function]}
-    />
-  </div>
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={true}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
-  <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
-  >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
-    >
-      <span
-        className="targetPageTitle"
-      >
-        command-bar-test-tab-title
-      </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <ReportExportButton
-      buttonRef={[Function]}
-      showReportExportDialog={[Function]}
-    />
-  </div>
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`] = `
-"<div className="detailsViewCommandBar" role="region" aria-label="command bar">
-  <div className="detailsViewTargetPage" aria-labelledby="switch-to-target">
-    <span id="switch-to-target">
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip tooltipContent="Switch to target page: command-bar-test-tab-title" role="link" className="targetPageLink" onClick={[Function: proxy]} aria-label="Switch to target page: command-bar-test-tab-title">
-      <span className="targetPageTitle">
-        command-bar-test-tab-title
-      </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div className="detailsViewCommandButtons">
-    <ReportExportButton showReportExportDialog={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
-  </div>
-  <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
-  <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
-  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState="assessment" dismissDialog={[Function (anonymous)]} />
-</div>"
-`;
-
-exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
-"<div className="detailsViewCommandBar" role="region" aria-label="command bar">
-  <div className="detailsViewTargetPage" aria-labelledby="switch-to-target">
-    <span id="switch-to-target">
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip tooltipContent="Switch to target page: command-bar-test-tab-title" role="link" className="targetPageLink" onClick={[Function: proxy]} aria-label="Switch to target page: command-bar-test-tab-title">
-      <span className="targetPageTitle">
-        command-bar-test-tab-title
-      </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div className="detailsViewCommandButtons">
-    <ReportExportButton showReportExportDialog={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
-  </div>
-  <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
-  <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
-  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState="test" dismissDialog={[Function (anonymous)]} />
-</div>"
+</DocumentFragment>
 `;
 
 exports[`DetailsViewCommandBar renders without export button and without start over 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
+<DocumentFragment>
   <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
   >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
     >
       <span
-        className="targetPageTitle"
+        id="switch-to-target"
       >
-        command-bar-test-tab-title
+        Target page: 
       </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <div>
-      Save assessment
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
     </div>
-    <div>
-      Transfer to assessment stub
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <div>
+        Save assessment
+      </div>
+      <div>
+        Transfer to assessment stub
+      </div>
     </div>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
   </div>
-  <div>
-    Export dialog
-  </div>
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`DetailsViewCommandBar renders without export button, with start over 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
+<DocumentFragment>
   <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
   >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
     >
       <span
-        className="targetPageTitle"
+        id="switch-to-target"
       >
-        command-bar-test-tab-title
+        Target page: 
       </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <div>
-      Save assessment
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
     </div>
-    <div>
-      Transfer to assessment stub
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <div>
+        Save assessment
+      </div>
+      <div>
+        Transfer to assessment stub
+      </div>
+      <button
+        class="ms-Button ms-Button--action ms-Button--command root-109"
+        data-is-focusable="true"
+        type="button"
+      >
+        <span
+          class="ms-Button-flexContainer flexContainer-110"
+          data-automationid="splitbuttonprimary"
+        >
+          <span
+            class="ms-Button-textContainer textContainer-111"
+          >
+            <span
+              class="ms-Button-label label-113"
+              id="id__3"
+            >
+              Start Over Component
+            </span>
+          </span>
+        </span>
+      </button>
     </div>
-    <CustomizedActionButton>
-      Start Over Component
-    </CustomizedActionButton>
+    <mock-exportdialog
+      deps="[object Object]"
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+    />
   </div>
-  <div>
-    Export dialog
-  </div>
-  <InvalidLoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <LoadAssessmentDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    isOpen={false}
-    loadedAssessmentData={{}}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    onClose={[Function]}
-    prevTab={
-      {
-        "detailsViewId": undefined,
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabId={5}
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-  <StartOverDialog
-    assessmentStoreData={
-      {
-        "persistedTabInfo": {
-          "detailsViewId": undefined,
-          "id": 5,
-          "isClosed": false,
-          "title": "command-bar-test-tab-title",
-        },
-      }
-    }
-    deps={
-      {
-        "detailsViewActionMessageCreator": [typemoq mock object],
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    narrowModeStatus={
-      {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "LoadAssessmentButton": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentButton": [Function],
-        "StartOverComponentFactory": {
-          "getStartOverComponent": [Function],
-        },
-        "TransferToAssessmentButton": [Function],
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
+</DocumentFragment>
 `;

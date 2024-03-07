@@ -1,15 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import { forOwn } from 'lodash';
 import * as React from 'react';
 
+import { HeadingElementForLevel } from '../../../../../../common/components/heading-element-for-level';
 import {
     ReportCollapsibleContainerControl,
     ReportCollapsibleContainerProps,
 } from '../../../../../../reports/components/report-sections/report-collapsible-container';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../common/components/heading-element-for-level');
 describe('ReportCollapsibleContainerControl', () => {
+    mockReactComponents([HeadingElementForLevel]);
     const optionalPropertiesObject = {
         contentClassName: [undefined, 'content-class-name-a'],
         containerClassName: [undefined, 'a-container'],
@@ -30,9 +34,9 @@ describe('ReportCollapsibleContainerControl', () => {
                     isExpanded: false,
                 };
                 const control = ReportCollapsibleContainerControl(props);
-                const result = shallow(control);
+                const renderResult = render(control);
 
-                expect(result.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
         });
     });

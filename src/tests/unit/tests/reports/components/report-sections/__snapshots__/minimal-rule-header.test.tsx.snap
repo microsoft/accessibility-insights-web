@@ -1,154 +1,164 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
-<span
-  className="rule-detail"
-  data-automation-id="rule-detail"
->
+<DocumentFragment>
   <span
-    className="outcomeChipContainer"
+    class="rule-detail"
+    data-automation-id="rule-detail"
   >
     <span
-      aria-hidden="true"
+      class="outcomeChipContainer"
     >
-      <OutcomeChip
-        count={2}
-        outcomeType="fail"
-      />
+      <span
+        aria-hidden="true"
+      >
+        <mock-outcomechip
+          count="2"
+          outcometype="fail"
+        />
+      </span>
+    </span>
+    <span>
+      <span
+        class="rule-details-id"
+        data-automation-id="cards-rule-id"
+      >
+        <strong>
+          rule id
+        </strong>
+      </span>
+      : 
+      <span
+        class="rule-details-description"
+      >
+        rule description
+      </span>
     </span>
   </span>
-  <span>
-    <span
-      className="rule-details-id"
-      data-automation-id="cards-rule-id"
-    >
-      <strong>
-        rule id
-      </strong>
-    </span>
-    : 
-    <span
-      className="rule-details-description"
-    >
-      rule description
-    </span>
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`MinimalRuleHeader renders, outcomeType = inapplicable 1`] = `
-<span
-  className="rule-detail"
-  data-automation-id="rule-detail"
->
+<DocumentFragment>
   <span
-    className="outcomeChipContainer"
-  />
-  <span>
+    class="rule-detail"
+    data-automation-id="rule-detail"
+  >
     <span
-      className="rule-details-id"
-      data-automation-id="cards-rule-id"
-    >
-      <strong>
-        rule id
-      </strong>
-    </span>
-    : 
-    <span
-      className="rule-details-description"
-    >
-      rule description
+      class="outcomeChipContainer"
+    />
+    <span>
+      <span
+        class="rule-details-id"
+        data-automation-id="cards-rule-id"
+      >
+        <strong>
+          rule id
+        </strong>
+      </span>
+      : 
+      <span
+        class="rule-details-description"
+      >
+        rule description
+      </span>
     </span>
   </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`MinimalRuleHeader renders, outcomeType = incomplete 1`] = `
-<span
-  className="rule-detail"
-  data-automation-id="rule-detail"
->
+<DocumentFragment>
   <span
-    className="outcomeChipContainer"
-  />
-  <span>
+    class="rule-detail"
+    data-automation-id="rule-detail"
+  >
     <span
-      className="rule-details-id"
-      data-automation-id="cards-rule-id"
-    >
-      <strong>
-        rule id
-      </strong>
-    </span>
-    : 
-    <span
-      className="rule-details-description"
-    >
-      rule description
+      class="outcomeChipContainer"
+    />
+    <span>
+      <span
+        class="rule-details-id"
+        data-automation-id="cards-rule-id"
+      >
+        <strong>
+          rule id
+        </strong>
+      </span>
+      : 
+      <span
+        class="rule-details-description"
+      >
+        rule description
+      </span>
     </span>
   </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`MinimalRuleHeader renders, outcomeType = pass 1`] = `
-<span
-  className="rule-detail"
-  data-automation-id="rule-detail"
->
+<DocumentFragment>
   <span
-    className="outcomeChipContainer"
-  />
-  <span>
+    class="rule-detail"
+    data-automation-id="rule-detail"
+  >
     <span
-      className="rule-details-id"
-      data-automation-id="cards-rule-id"
-    >
-      <strong>
-        rule id
-      </strong>
-    </span>
-    : 
-    <span
-      className="rule-details-description"
-    >
-      rule description
+      class="outcomeChipContainer"
+    />
+    <span>
+      <span
+        class="rule-details-id"
+        data-automation-id="cards-rule-id"
+      >
+        <strong>
+          rule id
+        </strong>
+      </span>
+      : 
+      <span
+        class="rule-details-description"
+      >
+        rule description
+      </span>
     </span>
   </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`MinimalRuleHeader renders, outcomeType = review 1`] = `
-<span
-  className="rule-detail"
-  data-automation-id="rule-detail"
->
+<DocumentFragment>
   <span
-    className="outcomeChipContainer"
+    class="rule-detail"
+    data-automation-id="rule-detail"
   >
     <span
-      aria-hidden="true"
+      class="outcomeChipContainer"
     >
-      <OutcomeChip
-        count={2}
-        outcomeType="review"
-      />
+      <span
+        aria-hidden="true"
+      >
+        <mock-outcomechip
+          count="2"
+          outcometype="review"
+        />
+      </span>
+    </span>
+    <span>
+      <span
+        class="rule-details-id"
+        data-automation-id="cards-rule-id"
+      >
+        <strong>
+          rule id
+        </strong>
+      </span>
+      : 
+      <span
+        class="rule-details-description"
+      >
+        rule description
+      </span>
     </span>
   </span>
-  <span>
-    <span
-      className="rule-details-id"
-      data-automation-id="cards-rule-id"
-    >
-      <strong>
-        rule id
-      </strong>
-    </span>
-    : 
-    <span
-      className="rule-details-description"
-    >
-      rule description
-    </span>
-  </span>
-</span>
+</DocumentFragment>
 `;

@@ -1,15 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CardRuleResult, CardsViewModel } from 'common/types/store-data/card-view-model';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
     IncompleteChecksSection,
     IncompleteChecksSectionProps,
 } from 'reports/components/report-sections/incomplete-checks-section';
 import { SectionDeps } from 'reports/components/report-sections/report-section-factory';
+import { CollapsibleResultSection } from '../../../../../../reports/components/report-sections/collapsible-result-section';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+
+jest.mock('../../../../../../reports/components/report-sections/collapsible-result-section');
 
 describe('IncompleteChecksSection', () => {
+    mockReactComponents([CollapsibleResultSection]);
     it('renders', () => {
         const props: IncompleteChecksSectionProps = {
             deps: {} as SectionDeps,
@@ -24,9 +29,9 @@ describe('IncompleteChecksSection', () => {
             sectionHeadingLevel: 3,
         };
 
-        const wrapper = shallow(<IncompleteChecksSection {...props} />);
+        const renderResult = render(<IncompleteChecksSection {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders when card data is missing', () => {
@@ -40,8 +45,8 @@ describe('IncompleteChecksSection', () => {
             sectionHeadingLevel: 3,
         };
 
-        const wrapper = shallow(<IncompleteChecksSection {...props} />);
+        const renderResult = render(<IncompleteChecksSection {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
