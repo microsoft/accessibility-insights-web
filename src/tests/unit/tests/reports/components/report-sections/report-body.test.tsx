@@ -132,6 +132,51 @@ describe('ReportBody', () => {
         expect({ ...sectionProps, sectionFactory: 'Removed for Snapshot' }).toMatchSnapshot(
             'sectionProps',
         );
+
+        const detailsSectionProps = getMockComponentClassPropsForCall(DetailsSection);
+        expect({ ...detailsSectionProps, sectionFactory: 'Removed for Snapshot' }).toMatchSnapshot(
+            'detailsSectionProps',
+        );
+
+        const allOutcomesSummarySectionProps =
+            getMockComponentClassPropsForCall(AllOutcomesSummarySection);
+        expect({
+            ...allOutcomesSummarySectionProps,
+            sectionFactory: 'Removed for Snapshot',
+        }).toMatchSnapshot('allOutcomesSummarySectionProps');
+
+        const resultsContainerProps = getMockComponentClassPropsForCall(ResultsContainer);
+        expect({
+            ...resultsContainerProps,
+            sectionFactory: 'Removed for Snapshot',
+            children: 'Removed for Snapshot',
+        }).toMatchSnapshot('resultsContainerProps');
+
+        const failedInstancesSectionProps =
+            getMockComponentClassPropsForCall(FailedInstancesSection);
+        expect({
+            ...failedInstancesSectionProps,
+            sectionFactory: 'Removed for Snapshot',
+        }).toMatchSnapshot('failedInstancesSectionProps');
+
+        const passedChecksSectionProps = getMockComponentClassPropsForCall(PassedChecksSection);
+        expect({
+            ...passedChecksSectionProps,
+            sectionFactory: 'Removed for Snapshot',
+        }).toMatchSnapshot('passedChecksSectionProps');
+
+        const notApplicableChecksSectionProps = getMockComponentClassPropsForCall(
+            NotApplicableChecksSection,
+        );
+        expect({
+            ...notApplicableChecksSectionProps,
+            sectionFactory: 'Removed for Snapshot',
+        }).toMatchSnapshot('notApplicableChecksSectionProps');
+
+        const footerTextPropsProps = getMockComponentClassPropsForCall(FooterText);
+        expect({ ...footerTextPropsProps, sectionFactory: 'Removed for Snapshot' }).toMatchSnapshot(
+            'footerTextPropsProps',
+        );
     });
 
     const createSectionFactoryStub = () => {
