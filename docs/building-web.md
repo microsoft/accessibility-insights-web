@@ -73,7 +73,7 @@ IDEs/Editors like VSCode will run the TypeScript compiler in the background prov
 
 ### Testing
 
-We use [Jest](https://github.com/facebook/jest) as our test framework, along with [typemoq](https://github.com/florinn/typemoq) and [enzyme](https://github.com/enzymejs/enzyme). We make liberal use of [Snapshot Testing](https://jestjs.io/docs/en/snapshot-testing) for unit tests of React components.
+We use [Jest](https://github.com/facebook/jest) as our test framework, along with [typemoq](https://github.com/florinn/typemoq) and [react-testing-library](https://github.com/testing-library/react-testing-library). We make liberal use of [Snapshot Testing](https://jestjs.io/docs/en/snapshot-testing) for unit tests of React components.
 
 #### Unit Tests
 
