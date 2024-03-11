@@ -3,7 +3,7 @@
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { InterpreterResponse, Message } from 'common/message';
+import { InterpreterMessage, InterpreterResponse } from 'common/message';
 import { Messages } from 'common/messages';
 import { isEmpty } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -12,7 +12,9 @@ import { Tabs } from 'webextension-polyfill';
 
 describe('ExtensionDetailsViewController', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
-    let interpretMessageForTabMock: IMock<(tabId: number, message: Message) => InterpreterResponse>;
+    let interpretMessageForTabMock: IMock<
+        (tabId: number, message: InterpreterMessage) => InterpreterResponse
+    >;
     let testSubject: ExtensionDetailsViewController;
     let tabIdToDetailsViewMap: DictionaryStringTo<number>;
     const indexedDBDataKey: string = 'tabIdToDetailsViewMap';
@@ -74,6 +76,7 @@ describe('ExtensionDetailsViewController', () => {
                     i(3, {
                         messageType: Messages.Visualizations.DetailsView.Close,
                         payload: null,
+                        tabId: 3,
                     }),
                 )
                 .returns(() => ({ messageHandled: true, result: undefined }))
@@ -259,6 +262,7 @@ describe('ExtensionDetailsViewController', () => {
                     i(targetTabId, {
                         payload: null,
                         messageType: Messages.Visualizations.DetailsView.Close,
+                        tabId: targetTabId,
                     }),
                 )
                 .returns(() => ({ messageHandled: true, result: undefined }))
@@ -486,6 +490,7 @@ describe('ExtensionDetailsViewController', () => {
                     i(targetTabId, {
                         payload: null,
                         messageType: Messages.Visualizations.DetailsView.Close,
+                        tabId: targetTabId,
                     }),
                 )
                 .returns(() => ({ messageHandled: true, result: undefined }))
