@@ -52,7 +52,6 @@ describe('LoadAssessmentDialog', () => {
                 detailsViewId: undefined,
             },
             prevTab: prevTab,
-            newTab: newTab,
             tabId: 5,
             loadedAssessmentData: {} as VersionedAssessmentData,
             onClose: () => {},

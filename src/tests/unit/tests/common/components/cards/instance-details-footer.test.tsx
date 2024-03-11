@@ -81,7 +81,6 @@ describe('InstanceDetailsFooter', () => {
             result: resultStub,
             rule: ruleStub,
             targetAppInfo: targetAppInfo,
-            highlightState: 'hidden',
             userConfigurationStoreData: {} as UserConfigurationStoreData,
         };
     });
