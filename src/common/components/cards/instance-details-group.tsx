@@ -5,7 +5,7 @@ import { CardSelectionMessageCreator } from 'common/message-creators/card-select
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
-
+import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import {
     TargetAppData,
     UnifiedRule,
@@ -61,6 +61,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
                             {...{ index }}
                             deps={deps}
                             result={node}
+                            getPropertyConfigById={getPropertyConfiguration}
                             userConfigurationStoreData={userConfigurationStoreData}
                             rule={unifiedRule}
                             targetAppInfo={targetAppInfo}
