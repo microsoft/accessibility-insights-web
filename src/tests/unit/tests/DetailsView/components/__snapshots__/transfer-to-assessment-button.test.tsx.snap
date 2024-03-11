@@ -24,6 +24,7 @@ exports[`TransferToAssessmentButton render 1`] = `
 exports[`TransferToAssessmentButton render: InsightsCommandButton props 1`] = `
 {
   "children": "Move to assessment",
+  "componentRef": undefined,
   "data-automation-id": "transfer-to-assessment-button",
   "iconProps": {
     "iconName": "fabricMoveToFolder",

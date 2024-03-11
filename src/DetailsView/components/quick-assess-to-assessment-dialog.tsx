@@ -17,6 +17,7 @@ export type QuickAssessToAssessmentDialogDeps = {
 export interface QuickAssessToAssessmentDialogProps {
     deps: QuickAssessToAssessmentDialogDeps;
     isShown: boolean;
+    afterDialogDismissed: () => void;
 }
 
 export const continueToAssessmentButtonAutomationId = 'continue-to-assessment-button';
@@ -29,7 +30,10 @@ export const QuickAssessToAssessmentDialog = NamedFC<QuickAssessToAssessmentDial
             hidden: !props.isShown,
             title: 'Continue to Assessment',
             onDismiss: dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog,
-            containerClassName: commonDialogStyles.insightsDialogMainOverride,
+            modalProps: {
+                onDismissed: props.afterDialogDismissed,
+                containerClassName: commonDialogStyles.insightsDialogMainOverride,
+            },
         };
 
         const descriptionText =

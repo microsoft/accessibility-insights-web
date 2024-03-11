@@ -146,7 +146,6 @@ describe('DetailsViewBody', () => {
             expect(renderResult.asFragment()).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([
                 FluentSideNav,
-                QuickAssessToAssessmentDialog,
                 QuickAssessCommandBar,
                 TargetPageHiddenBar,
             ]);
