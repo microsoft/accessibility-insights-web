@@ -9,7 +9,7 @@ FROM mcr.microsoft.com/playwright:v1.42.1-focal AS setup
 
 USER root
 
-# We need to update certificates before we can successfully update and install node
+# We need to update certificates before we can successfully update and install node 
 # This is a workaround for https://github.com/nodesource/distributions/issues/1266
 #
 # We pin nodejs 16.x instead of accepting Playwright's default for consistency with
