@@ -314,6 +314,10 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders report export dialog', async () => {
+        const originalDate = Date;
+        const mockDate = new Date('2024-03-07T12:00:00Z');
+        global.Date = jest.fn(() => mockDate) as unknown as typeof Date;
+        global.Date.now = jest.fn(() => mockDate.getTime()) as unknown as typeof Date.now;
         const props = getProps();
         useOriginalReactElements('DetailsView/components/report-export-button', [
             'ReportExportButton',
@@ -325,6 +329,7 @@ describe('DetailsViewCommandBar', () => {
         await userEvent.click(exportButton);
         expect(getMockComponentClassPropsForCall(ExportDialog, 2).isOpen).toBe(true);
         expect(renderResult.asFragment()).toMatchSnapshot('export dialog open');
+        global.Date = originalDate;
     });
 
     test('renders load assessment dialog', async () => {
