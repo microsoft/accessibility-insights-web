@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { TabContextFactory } from 'background/tab-context-factory';
-import { InterpreterMessage, InterpreterResponse, Message } from '../common/message';
+import { InterpreterMessage, InterpreterResponse } from '../common/message';
 import { TabToContextMap } from './tab-context';
 
 export class TabContextManager {

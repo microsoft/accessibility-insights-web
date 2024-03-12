@@ -8,7 +8,7 @@ import { TabContextManager } from 'background/tab-context-manager';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { BrowserMessageResponse } from 'common/browser-adapters/browser-message-handler';
 import { EventResponseFactory } from 'common/browser-adapters/event-response-factory';
-import { InterpreterMessage, InterpreterResponse } from 'common/message';
+import { InterpreterMessage, InterpreterResponse, Message } from 'common/message';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe(BackgroundMessageDistributor, () => {
@@ -66,10 +66,9 @@ describe(BackgroundMessageDistributor, () => {
             messageType: 'type',
             payload: {},
         };
-        const globalOnlyMessage: InterpreterMessage = {
+        const globalOnlyMessage: Message = {
             messageType: 'type',
             payload: {},
-            tabId: null,
         };
 
         let globalInterpreterResponse: InterpreterResponse;
