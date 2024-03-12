@@ -1,78 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabStopsFailedInstanceSection does not render when no results are failing 1`] = `null`;
+exports[`TabStopsFailedInstanceSection does not render when no results are failing 1`] = `<DocumentFragment />`;
 
 exports[`TabStopsFailedInstanceSection does renders when no results are failing and set to alwaysRenderSection 1`] = `
-<div
-  className="tabStopsFailureInstanceSection"
-  data-automation-id="tab-stops-failure-instance-section"
->
-  <HeadingElementForLevel
-    headingLevel={2}
+<DocumentFragment>
+  <div
+    class="tabStopsFailureInstanceSection"
+    data-automation-id="tab-stops-failure-instance-section"
   >
-    <ResultSectionTitle
-      badgeCount={0}
-      outcomeType="fail"
-      title="Failed instances"
-      titleSize="title"
+    <mock-headingelementforlevel
+      headinglevel="2"
+    >
+      <mock-resultsectiontitle
+        badgecount="0"
+        outcometype="fail"
+        title="Failed instances"
+        titlesize="title"
+      />
+    </mock-headingelementforlevel>
+    <mock-tabstopsrequirementswithinstances
+      deps="[object Object]"
+      headinglevel="3"
+      results=""
     />
-  </HeadingElementForLevel>
-  <TabStopsRequirementsWithInstances
-    deps={{}}
-    getCollapsibleComponentPropsWithInstance={[Function]}
-    headingLevel={3}
-    results={[]}
-  />
-</div>
+  </div>
+</DocumentFragment>
 `;
 
 exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
-<div
-  className="tabStopsFailureInstanceSection"
-  data-automation-id="tab-stops-failure-instance-section"
->
-  <HeadingElementForLevel
-    headingLevel={2}
+<DocumentFragment>
+  <div
+    class="tabStopsFailureInstanceSection"
+    data-automation-id="tab-stops-failure-instance-section"
   >
-    <ResultSectionTitle
-      badgeCount={10}
-      outcomeType="fail"
-      title="Failed instances"
-      titleSize="title"
+    <mock-headingelementforlevel
+      headinglevel="2"
+    >
+      <mock-resultsectiontitle
+        badgecount="10"
+        outcometype="fail"
+        title="Failed instances"
+        titlesize="title"
+      />
+    </mock-headingelementforlevel>
+    <mock-tabstopsrequirementswithinstances
+      deps="[object Object]"
+      headinglevel="3"
+      results="[object Object],[object Object]"
     />
-  </HeadingElementForLevel>
-  <TabStopsRequirementsWithInstances
-    deps={{}}
-    getCollapsibleComponentPropsWithInstance={[Function]}
-    headingLevel={3}
-    results={
-      [
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TabStopsFailedInstanceSection renders with failing results: TabStopsRequirementsWithInstances props 1`] = `
+{
+  "deps": {},
+  "getCollapsibleComponentPropsWithInstance": [Function],
+  "headingLevel": 3,
+  "results": [
+    {
+      "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
+      "id": "keyboard-navigation",
+      "instances": [
         {
-          "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
-          "id": "keyboard-navigation",
-          "instances": [
-            {
-              "description": "test desc 1",
-              "id": "test-id-1",
-            },
-          ],
-          "isExpanded": false,
-          "name": "Keyboard navigation",
+          "description": "test desc 1",
+          "id": "test-id-1",
         },
+      ],
+      "isExpanded": false,
+      "name": "Keyboard navigation",
+    },
+    {
+      "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
+      "id": "keyboard-traps",
+      "instances": [
         {
-          "description": "There are no interactive elements that “trap” input focus and prevent navigating away. (Partially automated)",
-          "id": "keyboard-traps",
-          "instances": [
-            {
-              "description": "test desc 2",
-              "id": "test-id-2",
-            },
-          ],
-          "isExpanded": false,
-          "name": "Keyboard traps",
+          "description": "test desc 2",
+          "id": "test-id-2",
         },
-      ]
-    }
-  />
-</div>
+      ],
+      "isExpanded": false,
+      "name": "Keyboard traps",
+    },
+  ],
+}
 `;

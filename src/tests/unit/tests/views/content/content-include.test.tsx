@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import { ContentInclude } from 'views/content/content-include';
@@ -24,12 +24,12 @@ describe('ContentInclude', () => {
     };
 
     it('renders from content', () => {
-        const result = shallow(<ContentInclude deps={deps} content={content.for.testing} />);
-        expect(result.debug()).toMatchSnapshot();
+        const renderResult = render(<ContentInclude deps={deps} content={content.for.testing} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders from path', () => {
-        const result = shallow(<ContentInclude deps={deps} content={'for/testing'} />);
-        expect(result.debug()).toMatchSnapshot();
+        const renderResult = render(<ContentInclude deps={deps} content={'for/testing'} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

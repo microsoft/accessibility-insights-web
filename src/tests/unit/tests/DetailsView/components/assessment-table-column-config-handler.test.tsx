@@ -147,7 +147,6 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
                 background={'#767676'}
                 headerText={'Comment:'}
                 textContent={item.instance.description}
-                tooltipId={item.instance.id}
                 customClassName="not-applicable"
             />
         );

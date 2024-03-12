@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
     FastPassReportSummary,
@@ -9,9 +9,16 @@ import {
     FastPassReportSummaryProps,
 } from 'reports/components/fast-pass-report-summary';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { OutcomeSummaryBar } from '../../../../../reports/components/outcome-summary-bar';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
+jest.mock('../../../../../reports/components/outcome-summary-bar');
 
 describe('FastPassReportSummary', () => {
+    mockReactComponents([OutcomeSummaryBar]);
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
     let props: FastPassReportSummaryProps;
     let deps: FastPassReportSummaryDeps;
@@ -48,8 +55,8 @@ describe('FastPassReportSummary', () => {
             .returns(() => 2)
             .verifiable(Times.once());
 
-        const rendered = shallow(<FastPassReportSummary {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<FastPassReportSummary {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders when automated checks are null', () => {
@@ -80,7 +87,8 @@ describe('FastPassReportSummary', () => {
             .returns(() => 2)
             .verifiable(Times.once());
 
-        const rendered = shallow(<FastPassReportSummary {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+        const renderResult = render(<FastPassReportSummary {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([OutcomeSummaryBar]);
     });
 });

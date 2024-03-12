@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
     CollapsibleResultSection,
@@ -22,7 +22,7 @@ describe('CollapsibleResultSection', () => {
             containerId: 'container-id',
         } as CollapsibleResultSectionProps;
 
-        const wrapper = shallow(<CollapsibleResultSection {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const wrapper = render(<CollapsibleResultSection {...props} />);
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 });

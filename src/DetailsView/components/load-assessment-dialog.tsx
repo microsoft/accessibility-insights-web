@@ -45,7 +45,6 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>(
         };
 
         const dialogProps: ChangeAssessmentDialogProps = {
-            deps: props.deps,
             prevTab: props.prevTab,
             dialogContentTitle: 'Assessment in progress',
             subtitleAriaId: 'load-assessment-dialog-description',

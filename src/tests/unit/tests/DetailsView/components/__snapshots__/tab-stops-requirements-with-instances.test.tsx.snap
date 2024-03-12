@@ -1,37 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabStopsRequirementsWithInstances renders component instance count === 0 1`] = `
-<div>
-  <React.Fragment>
-    <CollapsibleControlStub
-      headingLevel={3}
+<DocumentFragment>
+  <div>
+    <mock-cardscollapsiblecontrol
+      headinglevel="3"
       id="keyboard-navigation00 Failed test requirement name 1 test requirement description 1"
     />
-  </React.Fragment>
-  <React.Fragment>
-    <CollapsibleControlStub
-      headingLevel={3}
+    <mock-cardscollapsiblecontrol
+      headinglevel="3"
       id="keyboard-traps10 Failed test requirement name 2 test requirement description 2"
     />
-  </React.Fragment>
-</div>
+  </div>
+</DocumentFragment>
 `;
 
-exports[`TabStopsRequirementsWithInstances renders empty div when instance count === 0 1`] = `<div />`;
+exports[`TabStopsRequirementsWithInstances renders empty div when instance count === 0 1`] = `
+<DocumentFragment>
+  <div />
+</DocumentFragment>
+`;
 
 exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] = `
-<div>
-  <React.Fragment>
-    <CollapsibleControlStub
-      headingLevel={3}
+<DocumentFragment>
+  <div>
+    <mock-cardscollapsiblecontrol
+      headinglevel="3"
       id="keyboard-navigation02 Failed test requirement name 1 test requirement description 1"
     />
-  </React.Fragment>
-  <React.Fragment>
-    <CollapsibleControlStub
-      headingLevel={3}
+    <mock-cardscollapsiblecontrol
+      headinglevel="3"
       id="keyboard-traps12 Failed test requirement name 2 test requirement description 2"
     />
-  </React.Fragment>
-</div>
+  </div>
+</DocumentFragment>
 `;

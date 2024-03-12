@@ -1,148 +1,154 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentSummaryDetails render Correct composition 1`] = `
-<div
-  className="assessmentSummaryDetails"
-  role="table"
->
+<DocumentFragment>
   <div
-    className="assessmentSummaryDetailsBody"
-    role="rowgroup"
+    class="assessmentSummaryDetails"
+    role="table"
   >
     <div
-      className="assessmentSummaryDetailsRow"
-      role="row"
+      class="assessmentSummaryDetailsBody"
+      role="rowgroup"
     >
       <div
-        className="testSummary"
+        class="assessmentSummaryDetailsRow"
+        role="row"
       >
         <div
-          className="testSummaryDisplayName"
-          role="cell"
+          class="testSummary"
         >
-          Assessment1
-        </div>
-        <div
-          className="testSummaryStatus"
-          data-automation-id="test-summary-status/Assessment1"
-          role="cell"
-        >
-          <OutcomeIconSet
-            displayName="Assessment1"
-            fail={2}
-            incomplete={1}
-            pass={1}
-          />
+          <div
+            class="testSummaryDisplayName"
+            role="cell"
+          >
+            Assessment1
+          </div>
+          <div
+            class="testSummaryStatus"
+            data-automation-id="test-summary-status/Assessment1"
+            role="cell"
+          >
+            <mock-outcomeiconset
+              displayname="Assessment1"
+              fail="2"
+              incomplete="1"
+              pass="1"
+            />
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      className="assessmentSummaryDetailsRow"
-      role="row"
-    >
       <div
-        className="testSummary"
+        class="assessmentSummaryDetailsRow"
+        role="row"
       >
         <div
-          className="testSummaryDisplayName"
-          role="cell"
+          class="testSummary"
         >
-          Assessment2
-        </div>
-        <div
-          className="testSummaryStatus"
-          data-automation-id="test-summary-status/Assessment2"
-          role="cell"
-        >
-          <OutcomeIconSet
-            displayName="Assessment2"
-            fail={1}
-            incomplete={1}
-            pass={0}
-          />
+          <div
+            class="testSummaryDisplayName"
+            role="cell"
+          >
+            Assessment2
+          </div>
+          <div
+            class="testSummaryStatus"
+            data-automation-id="test-summary-status/Assessment2"
+            role="cell"
+          >
+            <mock-outcomeiconset
+              displayname="Assessment2"
+              fail="1"
+              incomplete="1"
+              pass="0"
+            />
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1`] = `
-<div
-  className="assessmentSummaryDetails"
-  role="table"
->
+<DocumentFragment>
   <div
-    className="assessmentSummaryDetailsBody"
-    role="rowgroup"
+    class="assessmentSummaryDetails"
+    role="table"
   >
     <div
-      className="assessmentSummaryDetailsRow"
-      role="row"
+      class="assessmentSummaryDetailsBody"
+      role="rowgroup"
     >
       <div
-        className="testSummary"
+        class="assessmentSummaryDetailsRow"
+        role="row"
       >
         <div
-          className="testSummaryDisplayName"
-          role="cell"
+          class="testSummary"
         >
-          test
-        </div>
-        <div
-          className="testSummaryStatus"
-          data-automation-id="test-summary-status/test"
-          role="cell"
-        >
-          <OutcomeChipSet
-            displayName="test"
-            fail={0}
-            incomplete={8}
-            pass={0}
-          />
+          <div
+            class="testSummaryDisplayName"
+            role="cell"
+          >
+            test
+          </div>
+          <div
+            class="testSummaryStatus"
+            data-automation-id="test-summary-status/test"
+            role="cell"
+          >
+            <mock-outcomechipset
+              displayname="test"
+              fail="0"
+              incomplete="8"
+              pass="0"
+            />
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`AssessmentSummaryDetails render Renders an OutcomeIconSet for 7 items 1`] = `
-<div
-  className="assessmentSummaryDetails"
-  role="table"
->
+<DocumentFragment>
   <div
-    className="assessmentSummaryDetailsBody"
-    role="rowgroup"
+    class="assessmentSummaryDetails"
+    role="table"
   >
     <div
-      className="assessmentSummaryDetailsRow"
-      role="row"
+      class="assessmentSummaryDetailsBody"
+      role="rowgroup"
     >
       <div
-        className="testSummary"
+        class="assessmentSummaryDetailsRow"
+        role="row"
       >
         <div
-          className="testSummaryDisplayName"
-          role="cell"
+          class="testSummary"
         >
-          test
-        </div>
-        <div
-          className="testSummaryStatus"
-          data-automation-id="test-summary-status/test"
-          role="cell"
-        >
-          <OutcomeIconSet
-            displayName="test"
-            fail={0}
-            incomplete={7}
-            pass={0}
-          />
+          <div
+            class="testSummaryDisplayName"
+            role="cell"
+          >
+            test
+          </div>
+          <div
+            class="testSummaryStatus"
+            data-automation-id="test-summary-status/test"
+            role="cell"
+          >
+            <mock-outcomeiconset
+              displayname="test"
+              fail="0"
+              incomplete="7"
+              pass="0"
+            />
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

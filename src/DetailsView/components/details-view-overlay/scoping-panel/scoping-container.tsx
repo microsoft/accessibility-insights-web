@@ -8,10 +8,12 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { InspectMode } from 'common/types/store-data/inspect-modes';
 import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
+import { ScopingPanelDeps } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-panel';
 import * as React from 'react';
 import styles from './scoping-container.scss';
 
 export interface ScopingContainerProps {
+    deps: ScopingPanelDeps;
     featureFlagData: FeatureFlagStoreData;
     scopingSelectorsData: ScopingStoreData;
     scopingActionMessageCreator: ScopingActionMessageCreator;

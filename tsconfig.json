@@ -8,7 +8,7 @@
         "rootDir": "./",
         "baseUrl": "./src",
         "strictNullChecks": false,
-        "noUnusedLocals": true,
+        "noUnusedLocals": true
     },
     "include": [
         ".eslintrc.js",
@@ -17,6 +17,6 @@
         "src/**/*.js",
         "deploy/**/*",
         "tools/**/*",
-        "./*.js",
-    ],
+        "./*.js"
+    ]
 }

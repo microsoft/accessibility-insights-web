@@ -1,113 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OutcomeChip render fail 1`] = `
-<span
-  className="outcome-chip outcome-chip-fail"
-  title="4 Failed"
->
+<DocumentFragment>
   <span
-    className="icon"
+    class="outcome-chip outcome-chip-fail"
+    title="4 Failed"
   >
-    <OutcomeIcon
-      outcomeType="fail"
-    />
+    <span
+      class="icon"
+    >
+      <mock-outcomeicon
+        outcometype="fail"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="count"
+      data-automation-id="count"
+    >
+       4
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      4 Failed
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="count"
-    data-automation-id="count"
-  >
-     
-    4
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    4 Failed
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`OutcomeChip render inapplicable 1`] = `
-<span
-  className="outcome-chip outcome-chip-inapplicable"
-  title="4 Not applicable"
->
+<DocumentFragment>
   <span
-    className="icon"
+    class="outcome-chip outcome-chip-inapplicable"
+    title="4 Not applicable"
   >
-    <OutcomeIcon
-      outcomeType="inapplicable"
-    />
+    <span
+      class="icon"
+    >
+      <mock-outcomeicon
+        outcometype="inapplicable"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="count"
+      data-automation-id="count"
+    >
+       4
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      4 Not applicable
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="count"
-    data-automation-id="count"
-  >
-     
-    4
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    4 Not applicable
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`OutcomeChip render incomplete 1`] = `
-<span
-  className="outcome-chip outcome-chip-incomplete"
-  title="2 Incomplete"
->
+<DocumentFragment>
   <span
-    className="icon"
+    class="outcome-chip outcome-chip-incomplete"
+    title="2 Incomplete"
   >
-    <OutcomeIcon
-      outcomeType="incomplete"
-    />
+    <span
+      class="icon"
+    >
+      <mock-outcomeicon
+        outcometype="incomplete"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="count"
+      data-automation-id="count"
+    >
+       2
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      2 Incomplete
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="count"
-    data-automation-id="count"
-  >
-     
-    2
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    2 Incomplete
-  </span>
-</span>
+</DocumentFragment>
 `;
 
 exports[`OutcomeChip render pass 1`] = `
-<span
-  className="outcome-chip outcome-chip-pass"
-  title="3 Passed"
->
+<DocumentFragment>
   <span
-    className="icon"
+    class="outcome-chip outcome-chip-pass"
+    title="3 Passed"
   >
-    <OutcomeIcon
-      outcomeType="pass"
-    />
+    <span
+      class="icon"
+    >
+      <mock-outcomeicon
+        outcometype="pass"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="count"
+      data-automation-id="count"
+    >
+       3
+    </span>
+    <span
+      class="screen-reader-only"
+    >
+      3 Passed
+    </span>
   </span>
-  <span
-    aria-hidden="true"
-    className="count"
-    data-automation-id="count"
-  >
-     
-    3
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    3 Passed
-  </span>
-</span>
+</DocumentFragment>
 `;

@@ -1,17 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
-import { shallow } from 'enzyme';
+import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
+
 import * as React from 'react';
 import {
     CombinedReportNotApplicableSection,
     CombinedReportPassedSection,
     CombinedReportRulesOnlySectionProps,
 } from 'reports/components/report-sections/combined-report-rules-only-sections';
+import { RulesOnly } from 'reports/components/report-sections/rules-only';
+import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { It, Mock, MockBehavior } from 'typemoq';
 
+jest.mock('common/components/cards/combined-report-result-section-title');
+jest.mock('reports/components/report-sections/rules-only');
+
 describe('CombinedReportRulesOnlySections', () => {
+    mockReactComponents([CombinedReportResultSectionTitle, RulesOnly]);
     let props: CombinedReportRulesOnlySectionProps;
     beforeEach(() => {
         const collapsibleControlMock = Mock.ofType<
@@ -43,15 +51,15 @@ describe('CombinedReportRulesOnlySections', () => {
 
     describe('CombinedReportPassedSection', () => {
         it('renders', () => {
-            const wrapper = shallow(<CombinedReportPassedSection {...props} />);
-            expect(wrapper.debug()).toMatchSnapshot();
+            const wrapper = render(<CombinedReportPassedSection {...props} />);
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
     });
 
     describe('CombinedReportNotApplicableSection', () => {
         it('renders', () => {
-            const wrapper = shallow(<CombinedReportNotApplicableSection {...props} />);
-            expect(wrapper.debug()).toMatchSnapshot();
+            const wrapper = render(<CombinedReportNotApplicableSection {...props} />);
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
     });
 });

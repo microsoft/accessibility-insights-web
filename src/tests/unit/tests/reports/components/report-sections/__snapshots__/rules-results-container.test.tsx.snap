@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RulesResultsContainer renders 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="rulesResultsContainer"
+    class="rulesResultsContainer"
   >
     <div
-      className="resultsHeading"
+      class="resultsHeading"
     >
       <h2>
         Rules
@@ -21,12 +21,8 @@ exports[`RulesResultsContainer renders 1`] = `
       2
     </div>
   </div>
-  <script
-    dangerouslySetInnerHTML={
-      {
-        "__html": "test script",
-      }
-    }
-  />
-</React.Fragment>
+  <script>
+    test script
+  </script>
+</DocumentFragment>
 `;

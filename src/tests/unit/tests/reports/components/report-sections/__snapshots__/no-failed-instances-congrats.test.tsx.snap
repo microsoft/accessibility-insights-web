@@ -1,221 +1,241 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NoFailedInstancesCongrats with outcomeType fail renders per snapshot with custom message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No failed automated checks were found. Continue investigating!
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No failed automated checks were found. Continue investigating!
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`NoFailedInstancesCongrats with outcomeType fail renders per snapshot with default message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`NoFailedInstancesCongrats with outcomeType inapplicable renders per snapshot with custom message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No failed automated checks were found. Continue investigating!
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No failed automated checks were found. Continue investigating!
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`NoFailedInstancesCongrats with outcomeType inapplicable renders per snapshot with default message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`NoFailedInstancesCongrats with outcomeType incomplete renders per snapshot with custom message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No failed automated checks were found. Continue investigating!
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No failed automated checks were found. Continue investigating!
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`NoFailedInstancesCongrats with outcomeType incomplete renders per snapshot with default message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`NoFailedInstancesCongrats with outcomeType pass renders per snapshot with custom message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No failed automated checks were found. Continue investigating!
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No failed automated checks were found. Continue investigating!
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`NoFailedInstancesCongrats with outcomeType pass renders per snapshot with default message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`NoFailedInstancesCongrats with outcomeType review renders per snapshot with custom message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No instances to review were found. Continue investigating!
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No instances to review were found. Continue investigating!
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;
 
 exports[`NoFailedInstancesCongrats with outcomeType review renders per snapshot with default message 1`] = `
-<div
-  className="reportCongratsMessage"
->
+<DocumentFragment>
   <div
-    className="reportCongratsHead"
+    class="reportCongratsMessage"
   >
-    Congratulations!
+    <div
+      class="reportCongratsHead"
+    >
+      Congratulations!
+    </div>
+    <div
+      class="reportCongratsInfo"
+    >
+      No instances to review were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
+    </div>
+    <mock-inlineimage
+      alt=""
+      classname="sleepingAda"
+      imagetype="6"
+    />
   </div>
-  <div
-    className="reportCongratsInfo"
-  >
-    No instances to review were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
-  </div>
-  <InlineImage
-    alt=""
-    className="sleepingAda"
-    imageType={6}
-  />
-</div>
+</DocumentFragment>
 `;

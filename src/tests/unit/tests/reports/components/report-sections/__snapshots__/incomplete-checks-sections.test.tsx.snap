@@ -1,33 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IncompleteChecksSection renders 1`] = `
-<CollapsibleResultSection
-  badgeCount={3}
-  cardRuleResults={
-    [
-      {},
-      {},
-      {},
-    ]
-  }
-  containerClassName="result-section"
-  containerId="incomplete-checks-section"
-  deps={{}}
-  headingLevel={3}
-  outcomeType="incomplete"
-  title="Incomplete checks"
-/>
+<DocumentFragment>
+  <mock-collapsibleresultsection
+    badgecount="3"
+    cardruleresults="[object Object],[object Object],[object Object]"
+    containerclassname="result-section"
+    containerid="incomplete-checks-section"
+    deps="[object Object]"
+    headinglevel="3"
+    outcometype="incomplete"
+    title="Incomplete checks"
+  />
+</DocumentFragment>
 `;
 
 exports[`IncompleteChecksSection renders when card data is missing 1`] = `
-<CollapsibleResultSection
-  badgeCount={0}
-  cardRuleResults={[]}
-  containerClassName="result-section"
-  containerId="incomplete-checks-section"
-  deps={{}}
-  headingLevel={3}
-  outcomeType="incomplete"
-  title="Incomplete checks"
-/>
+<DocumentFragment>
+  <mock-collapsibleresultsection
+    badgecount="0"
+    cardruleresults=""
+    containerclassname="result-section"
+    containerid="incomplete-checks-section"
+    deps="[object Object]"
+    headinglevel="3"
+    outcometype="incomplete"
+    title="Incomplete checks"
+  />
+</DocumentFragment>
 `;
