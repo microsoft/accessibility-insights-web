@@ -13,7 +13,7 @@ USER root
 # This is a workaround for https://github.com/nodesource/distributions/issues/1266
 #
 # We pin nodejs 16.x instead of accepting Playwright's default for consistency with
-# our other build environments.
+# our other build environments. 
 RUN apt-get update && \
   apt-get install ca-certificates && \
   apt-get update && \
