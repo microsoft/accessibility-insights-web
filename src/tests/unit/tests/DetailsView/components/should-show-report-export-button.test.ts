@@ -53,6 +53,7 @@ describe('ShouldShowReportExportButton', () => {
             tabStopRequirementData: null,
             userConfigurationStoreData,
             featureFlagStoreData: null,
+            dataTransferViewStoreData: null,
         } as DetailsViewCommandBarProps;
     }
 
