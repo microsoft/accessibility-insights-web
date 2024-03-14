@@ -24,5 +24,5 @@ export type HandledInterpreterResponse = {
 };
 
 export interface PayloadCallback<Payload> {
-    (payload: Payload, tabId?: number): void | Promise<void>;
+    (payload: Payload, tabId?: number | null): void | Promise<void>;
 }

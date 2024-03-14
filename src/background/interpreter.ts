@@ -19,7 +19,7 @@ export class Interpreter {
                 messageHandled: true,
                 result: this.messageToActionMapping[message.messageType](
                     message.payload,
-                    message.tabId || null,
+                    message.tabId,
                 ),
             };
         }
