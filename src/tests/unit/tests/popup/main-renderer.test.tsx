@@ -4,7 +4,6 @@ import { title } from 'content/strings/application';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { Theme } from '../../../../common/components/theme';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { DiagnosticViewToggleFactory } from '../../../../popup/components/diagnostic-view-toggle-factory';
@@ -34,7 +33,6 @@ describe('MainRenderer', () => {
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
 
         const popupWindowMock = Mock.ofInstance(window);
-        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         const hasAccess = true;
         const targetTabUrl = 'url';
 
@@ -56,7 +54,6 @@ describe('MainRenderer', () => {
                                         gettingStartedDialogHandlerMock.object,
                                     launchPanelHeaderClickHandler:
                                         feedbackMenuClickhandlerMock.object,
-                                    browserAdapter: browserAdapterMock.object,
                                 }}
                                 popupWindow={popupWindowMock.object}
                                 targetTabUrl={targetTabUrl}
@@ -80,7 +77,6 @@ describe('MainRenderer', () => {
                 diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
                 popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                 launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
-                browserAdapter: browserAdapterMock.object,
             },
             renderMock.object,
             fakeDocument,

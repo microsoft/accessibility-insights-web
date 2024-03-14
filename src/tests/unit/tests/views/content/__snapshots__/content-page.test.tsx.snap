@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ContentPage .create passes options through to Markup 1`] = `
-<DocumentFragment>
-  TEST STRING
-</DocumentFragment>
-`;
+exports[`ContentPage .create passes options through to Markup 1`] = `<DocumentFragment />`;
 
 exports[`ContentPage .create renders 1`] = `
 <DocumentFragment>

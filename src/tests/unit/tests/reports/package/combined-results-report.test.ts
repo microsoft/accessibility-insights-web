@@ -83,7 +83,6 @@ describe('CombinedResultsReport', () => {
             browserResolution: '1920x1080',
             scanDetails: scanDetails,
             results,
-            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object
         };
     
 

@@ -10,9 +10,7 @@ exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] =
       featureflags="[object Object]"
       title="test title"
     />
-    <mock-adhoctoolspanel
-      featureflagstoredata="[object Object]"
-    />
+    <mock-adhoctoolspanel />
   </div>
   <mock-telemetrypermissiondialog
     deps="[object Object]"
@@ -67,9 +65,7 @@ exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
       featureflags="[object Object]"
       title="test title"
     />
-    <mock-adhoctoolspanel
-      featureflagstoredata="[object Object]"
-    />
+    <mock-adhoctoolspanel />
   </div>
   <mock-telemetrypermissiondialog
     deps="[object Object]"

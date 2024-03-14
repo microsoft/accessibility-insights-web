@@ -28,7 +28,7 @@ describe('ContentPage', () => {
             });
 
             const renderResult = render(
-                <MyPage deps={deps} options={{ setPageTitle: true, testString: 'TEST STRING' }} />,
+                <MyPage deps={deps} options={{ setPageTitle: true}} />,
             );
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
