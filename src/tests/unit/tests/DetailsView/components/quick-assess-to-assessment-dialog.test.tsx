@@ -24,15 +24,19 @@ describe('QuickAssessToAssessmentDialog', () => {
     let dataTransferViewControllerMock: IMock<DataTransferViewController>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let props: QuickAssessToAssessmentDialogProps;
+    let afterDialogDismissedMock: IMock<() => void>;
 
     beforeEach(() => {
         dataTransferViewControllerMock = Mock.ofType(DataTransferViewController);
         detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+        afterDialogDismissedMock = Mock.ofInstance(() => null);
+
         props = {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
                 dataTransferViewController: dataTransferViewControllerMock.object,
             },
+            afterDialogDismissed: afterDialogDismissedMock.object,
         } as QuickAssessToAssessmentDialogProps;
     });
 
@@ -83,5 +87,11 @@ describe('QuickAssessToAssessmentDialog', () => {
             m => m.hideQuickAssessToAssessmentConfirmDialog(),
             Times.once(),
         );
+    });
+
+    test('on dialog dismissed: call afterDialogDismissed', () => {
+        render(<QuickAssessToAssessmentDialog {...props} />);
+        getMockComponentClassPropsForCall(Dialog).modalProps.onDismissed();
+        afterDialogDismissedMock.verify(m => m(), Times.once());
     });
 });

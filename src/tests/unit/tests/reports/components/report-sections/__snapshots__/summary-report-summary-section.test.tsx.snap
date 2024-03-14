@@ -1,10 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SummaryReportSummarySection renders 1`] = `
-<UrlsSummarySection
-  failedUrlsCount={2}
-  failureInstancesCount={5}
-  notScannedUrlsCount={3}
-  passedUrlsCount={1}
-/>
+<DocumentFragment>
+  <mock-urlssummarysection
+    failedurlscount="2"
+    failureinstancescount="5"
+    notscannedurlscount="3"
+    passedurlscount="1"
+  />
+</DocumentFragment>
 `;

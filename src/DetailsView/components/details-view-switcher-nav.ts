@@ -185,7 +185,6 @@ const detailsViewSwitcherNavs: {
         getSharedAssessmentFunctionalityObjects: switcher => switcher.getQuickAssessObjects(),
         getSelectedAssessmentStoreData: getQuickAssessStoreData,
         getSelectedAssessmentCardSelectionStoreData: getQuickAssessCardSelectionStoreData,
-        shouldShowQuickAssessRequirementView: true,
         getRequirementViewComponentConfiguration:
             getRequirementViewComponentConfigurationForQuickAssess,
         getOverviewHeadingIntro: getNullComponent,

@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 import * as util from 'util';
 import { setIconOptions } from '@fluentui/react';
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 
-configure({ adapter: new Adapter() });
 setIconOptions({
     disableWarnings: true,
 });
