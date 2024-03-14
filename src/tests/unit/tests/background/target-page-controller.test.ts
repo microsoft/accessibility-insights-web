@@ -4,7 +4,7 @@ import { TabContextFactory } from 'background/tab-context-factory';
 import { TabContextManager } from 'background/tab-context-manager';
 import { TargetPageController } from 'background/target-page-controller';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { Message } from 'common/message';
+import { InterpreterMessage } from 'common/message';
 import { Messages } from 'common/messages';
 import { flushSettledPromises } from 'tests/common/flush-settled-promises';
 import {
@@ -436,7 +436,7 @@ describe('TargetPageController', () => {
         messageType?: string,
         payload: any = null,
     ): void {
-        let expectedMessage: Message;
+        let expectedMessage: InterpreterMessage;
         if (messageType === undefined) {
             expectedMessage = It.isAny();
         } else {

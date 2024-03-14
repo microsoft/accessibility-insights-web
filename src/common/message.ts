@@ -6,7 +6,7 @@ export interface Message {
     payload?: any;
 }
 
-export type InterpreterMessage = Message & { tabId?: number };
+export type InterpreterMessage = Message & { tabId?: number | null };
 
 // InterpreterResponse is intentionally the same shape as BrowserMessageResponse; the only
 // difference is that intepreters don't accept response values, so result can only be a
@@ -24,5 +24,5 @@ export type HandledInterpreterResponse = {
 };
 
 export interface PayloadCallback<Payload> {
-    (payload: Payload, tabId?: number): void | Promise<void>;
+    (payload: Payload, tabId?: number | null): void | Promise<void>;
 }

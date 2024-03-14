@@ -3,7 +3,7 @@
 
 import { Interpreter } from 'background/interpreter';
 import { UserConfigurationController } from 'background/user-configuration-controller';
-import { Message } from 'common/message';
+import { InterpreterMessage } from 'common/message';
 import { Messages } from 'common/messages';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -16,14 +16,13 @@ describe('UserConfigurationController', () => {
         interpreterMock
             .setup(i => i.interpret(It.isAny()))
             .returns(() => ({ messageHandled: true, result: undefined }));
-
         testSubject = new UserConfigurationController(interpreterMock.object);
     });
 
     it.each([true, false])(
         'setHighContrastMode(%s) sends the expected interpreter message',
         async (enabled: boolean) => {
-            const expectedMessage: Message = {
+            const expectedMessage: InterpreterMessage = {
                 messageType: Messages.UserConfig.SetHighContrastConfig,
                 payload: { enableHighContrast: enabled },
                 tabId: null,
@@ -36,7 +35,7 @@ describe('UserConfigurationController', () => {
     it.each([true, false])(
         'setTelemetryState(%s) sends the expected interpreter message',
         async (enabled: boolean) => {
-            const expectedMessage: Message = {
+            const expectedMessage: InterpreterMessage = {
                 messageType: Messages.UserConfig.SetTelemetryConfig,
                 payload: { enableTelemetry: enabled },
                 tabId: null,

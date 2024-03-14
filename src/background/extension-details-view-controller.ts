@@ -4,7 +4,7 @@ import { DetailsViewController } from 'background/details-view-controller';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { InterpreterResponse, Message } from 'common/message';
+import { InterpreterMessage, InterpreterResponse } from 'common/message';
 import { Messages } from 'common/messages';
 import { DictionaryStringTo } from 'types/common-types';
 import type { Tabs } from 'webextension-polyfill';
@@ -16,7 +16,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
         private readonly idbInstance: IndexedDBAPI,
         private readonly interpretMessageForTab: (
             tabId: number,
-            message: Message,
+            message: InterpreterMessage,
         ) => InterpreterResponse,
     ) {}
 
