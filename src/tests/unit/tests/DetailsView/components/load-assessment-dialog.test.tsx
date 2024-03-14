@@ -3,7 +3,6 @@
 import { Dialog } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
-import { Tab } from 'common/types/store-data/itab';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { UrlParser } from 'common/url-parser';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -28,7 +27,6 @@ describe('LoadAssessmentDialog', () => {
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let loadAssessmentDialogProps: LoadAssessmentDialogProps;
     let prevTab: PersistedTabInfo;
-    let newTab: Tab;
 
     beforeEach(() => {
         urlParserMock = Mock.ofType(UrlParser, MockBehavior.Strict);
@@ -38,12 +36,6 @@ describe('LoadAssessmentDialog', () => {
             url: 'https://www.test.com',
             title: 'test title',
         } as PersistedTabInfo;
-
-        newTab = {
-            id: 112,
-            url: 'https://www.test2.com',
-            title: 'test title 2',
-        } as Tab;
 
         loadAssessmentDialogProps = {
             deps: {
