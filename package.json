@@ -101,7 +101,7 @@
         "commander": "^11.1.0",
         "core-js-bundle": "^3.35.0",
         "cross-env": "^7.0.3",
-        "css-loader": "^6.9.0",
+        "css-loader": "^6.10.0",
         "esbuild": "^0.19.11",
         "eslint": "^8.56.0",
         "eslint-plugin-import": "^2.29.1",
