@@ -12,7 +12,6 @@ declare module 'axe-core/axe' {
         };
         dom: {
             isVisible: Function;
-            idrefs: (node: HTMLElement, attr: string) => HTMLElement[];
         };
         text: {
             accessibleText: Function;
