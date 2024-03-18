@@ -11,7 +11,7 @@ import {
     TelemetryEventSource,
     TriggeredByNotApplicable,
 } from '../../../../common/extension-telemetry-events';
-import { Message } from '../../../../common/message';
+import { InterpreterMessage } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import {
@@ -41,7 +41,7 @@ function testBeforeAfterAssessmentData(
         telemetryEventStub,
     );
 
-    const expectedMessage: Message = {
+    const expectedMessage: InterpreterMessage = {
         messageType: Messages.Telemetry.Send,
         tabId: 1,
         payload: {
@@ -232,7 +232,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             })
             .verifiable(Times.atLeastOnce());
 
-        const expectedMessage: Message = {
+        const expectedMessage: InterpreterMessage = {
             messageType: Messages.Telemetry.Send,
         };
         interpreterMock
@@ -255,7 +255,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
         const interpreterMock = Mock.ofType(Interpreter, MockBehavior.Strict);
         const data = getMockAssessmentStoreDataUnknowns();
         const expectedTelemetry = getMockTelemetryData(-1, 'assessment-1-step-1', true, 1);
-        const expectedMessage: Message = {
+        const expectedMessage: InterpreterMessage = {
             messageType: Messages.Telemetry.Send,
             tabId: 1,
             payload: {

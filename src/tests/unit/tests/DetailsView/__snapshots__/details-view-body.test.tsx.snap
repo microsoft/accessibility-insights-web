@@ -61,12 +61,7 @@ exports[`DetailsViewBody render render 1`] = `
           <div
             class="view"
             role="main"
-          >
-            <mock-quickassesstoassessmentconfirmdialog
-              deps="[object Object]"
-              isshown="true"
-            />
-          </div>
+          />
         </div>
       </div>
     </div>
@@ -1905,15 +1900,6 @@ exports[`DetailsViewBody render render: QuickAssessCommandBar props 1`] = `
       },
     },
   },
-}
-`;
-
-exports[`DetailsViewBody render render: QuickAssessToAssessmentConfirmDialog props 1`] = `
-{
-  "deps": {
-    "detailsViewActionMessageCreator": {},
-  },
-  "isShown": true,
 }
 `;
 

@@ -61,8 +61,15 @@ describe(BackgroundMessageDistributor, () => {
     });
 
     describe('with interpreter-bound messages', () => {
-        const tabBoundMessage: Message = { tabId: tabId, messageType: 'type', payload: {} };
-        const globalOnlyMessage: Message = { messageType: 'type', payload: {} };
+        const tabBoundMessage: InterpreterMessage = {
+            tabId: tabId,
+            messageType: 'type',
+            payload: {},
+        };
+        const globalOnlyMessage: Message = {
+            messageType: 'type',
+            payload: {},
+        };
 
         let globalInterpreterResponse: InterpreterResponse;
         let tabInterpreterResponse: InterpreterResponse;
