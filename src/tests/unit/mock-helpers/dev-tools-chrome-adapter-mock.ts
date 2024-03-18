@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { Message } from 'common/message';
+import { InterpreterMessage } from 'common/message';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 export class DevToolsBrowserAdapterMock {
@@ -17,7 +17,7 @@ export class DevToolsBrowserAdapterMock {
             .verifiable(Times.once());
     }
 
-    public setupSendMessageToFrames(message: Message): void {
+    public setupSendMessageToFrames(message: InterpreterMessage): void {
         this.underlyingMock.setup(x => x.sendMessageToFrames(message)).verifiable(Times.once());
     }
 
