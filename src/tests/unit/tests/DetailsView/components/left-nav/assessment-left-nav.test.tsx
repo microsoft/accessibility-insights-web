@@ -65,15 +65,15 @@ describe(AssessmentLeftNav.displayName, () => {
         props = {
             deps,
             selectedKey: 'some key',
-            leftNavLinkBuilder: leftNavLinkBuilderMock.object,
+            //leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             assessmentsProvider: assessmentsProviderStub,
             assessmentsData: assessmentsDataStub,
             featureFlagStoreData: {},
             expandedTest,
             onRightPanelContentSwitch,
             setNavComponentRef,
-            getAssessmentSummaryModelFromProviderAndStatusData:
-                getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
+            //getAssessmentSummaryModelFromProviderAndStatusData:
+            //    getAssessmentSummaryModelFromProviderAndStatusDataMock.object,
         };
 
         leftNavLinkBuilderMock

@@ -56,7 +56,7 @@ describe('VisualizationBasedLeftNav', () => {
         props = {
             deps,
             selectedKey: 'some key',
-            leftNavLinkBuilder: leftNavLinkBuilderMock.object,
+            //leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             onLinkClick: onLinkClickStub,
             visualizations: visualizationsStub,
             onRightPanelContentSwitch,

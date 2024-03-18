@@ -71,7 +71,7 @@ describe(QuickAssessLeftNav.displayName, () => {
         props = {
             deps,
             selectedKey: 'some key',
-            leftNavLinkBuilder: leftNavLinkBuilderMock.object,
+            //leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             assessmentsProvider: assessmentsProviderStub,
             assessmentsData: assessmentsDataStub,
             featureFlagStoreData: {},
