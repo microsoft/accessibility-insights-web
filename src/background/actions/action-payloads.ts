@@ -48,7 +48,7 @@ export interface ExpandTestNavPayload extends BaseActionPayload {
 }
 
 export interface AssessmentToggleActionPayload extends ToggleActionPayload {
-    requirement: string;
+    requirement: string | undefined;
 }
 
 export interface AssessmentActionInstancePayload extends AssessmentToggleActionPayload {

@@ -48,7 +48,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
                 rules: [ruleStub],
             } as UnifiedScanResultStoreData;
 
-            const expectedResult = [{ ...unifiedResult, rule: ruleStub, isSelected: false }];
+            const expectedResult = [{ ...unifiedResult, rule: ruleStub }];
             expect(convertUnifiedStoreDataToScanNodeResults(storeData)).toEqual(expectedResult);
         });
 
@@ -57,9 +57,7 @@ describe('StoreDataToScanNodeResultConverter', () => {
             const storeData = {
                 results: [unifiedResult],
             } as UnifiedScanResultStoreData;
-            const expectedResult = [
-                { ...unifiedResult, rule: { id: unifiedResult.ruleId }, isSelected: false },
-            ];
+            const expectedResult = [{ ...unifiedResult, rule: { id: unifiedResult.ruleId } }];
             expect(convertUnifiedStoreDataToScanNodeResults(storeData)).toEqual(expectedResult);
         });
 
@@ -80,8 +78,8 @@ describe('StoreDataToScanNodeResultConverter', () => {
             } as UnifiedScanResultStoreData;
 
             const expectedResult = [
-                { ...unifiedResultOne, rule: ruleStubOne, isSelected: false },
-                { ...unifiedResultTwo, rule: ruleStubTwo, isSelected: false },
+                { ...unifiedResultOne, rule: ruleStubOne },
+                { ...unifiedResultTwo, rule: ruleStubTwo },
             ];
             expect(convertUnifiedStoreDataToScanNodeResults(storeData)).toEqual(expectedResult);
         });

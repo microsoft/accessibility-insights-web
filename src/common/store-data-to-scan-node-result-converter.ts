@@ -74,7 +74,6 @@ export function convertUnifiedStoreDataToScanNodeResults(
         const result: ScanNodeResult = {
             ...unifiedResult,
             rule,
-            isSelected: false,
         };
 
         return result;

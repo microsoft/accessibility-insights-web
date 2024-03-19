@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AssessmentToggleActionPayload,
     BaseActionPayload,
     OnDetailsViewInitializedPayload,
     OnDetailsViewOpenPayload,
@@ -199,9 +200,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public enableFastPassVisualHelperWithoutScan(test: VisualizationType): void {
-        const payload: ToggleActionPayload = {
+    public enableFastPassVisualHelperWithoutScan(
+        test: VisualizationType,
+        requirement?: string,
+    ): void {
+        const payload: AssessmentToggleActionPayload = {
             test,
+            requirement,
         };
 
         this.dispatcher.dispatchMessage({
@@ -256,9 +261,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.dispatchMessage(message);
     };
 
-    public rescanVisualizationWithoutTelemetry = (test: VisualizationType) => {
-        const payload: ToggleActionPayload = {
+    public rescanVisualizationWithoutTelemetry = (
+        test: VisualizationType,
+        requirement?: string,
+    ) => {
+        const payload: AssessmentToggleActionPayload = {
             test: test,
+            requirement,
         };
         const message: Message = {
             messageType: Messages.Visualizations.Common.RescanVisualization,
