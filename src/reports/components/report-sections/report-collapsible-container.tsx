@@ -4,6 +4,7 @@ import { css } from '@fluentui/utilities';
 import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { CollapsibleResultSectionDeps } from './collapsible-result-section';
 
 export interface ReportCollapsibleContainerProps {
     id: string;
@@ -14,6 +15,8 @@ export interface ReportCollapsibleContainerProps {
     containerClassName?: string;
     buttonAriaLabel?: string;
     testKey?: string;
+    deps: CollapsibleResultSectionDeps;
+    onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const ReportCollapsibleContainer = NamedFC<ReportCollapsibleContainerProps>(
