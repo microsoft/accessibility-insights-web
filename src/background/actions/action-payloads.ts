@@ -48,7 +48,7 @@ export interface ExpandTestNavPayload extends BaseActionPayload {
 }
 
 export interface AssessmentToggleActionPayload extends ToggleActionPayload {
-    requirement: string | undefined;
+    requirement: string;
 }
 
 export interface AssessmentActionInstancePayload extends AssessmentToggleActionPayload {
@@ -288,4 +288,7 @@ export interface AssessmentResetFocusedIdentifierPayload extends BaseActionPaylo
 
 export interface AssessmentNavigateToNewCardsViewPayload extends BaseActionPayload {
     testKey: string;
+}
+export interface RequirementToggleActionPayload extends ToggleActionPayload {
+    requirement: string | undefined;
 }

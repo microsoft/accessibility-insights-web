@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    AssessmentToggleActionPayload,
     BaseActionPayload,
     OnDetailsViewInitializedPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
+    RequirementToggleActionPayload,
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
@@ -204,11 +204,11 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         test: VisualizationType,
         requirement?: string,
     ): void {
-        const payload: AssessmentToggleActionPayload = {
+        const payload: RequirementToggleActionPayload = {
             test,
             requirement,
         };
-
+  
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.EnableVisualHelperWithoutScan,
             payload,
@@ -265,7 +265,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         test: VisualizationType,
         requirement?: string,
     ) => {
-        const payload: AssessmentToggleActionPayload = {
+        const payload: RequirementToggleActionPayload = {
             test: test,
             requirement,
         };
