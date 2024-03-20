@@ -15,8 +15,8 @@ export interface ReportCollapsibleContainerProps {
     containerClassName?: string;
     buttonAriaLabel?: string;
     testKey?: string;
-    deps: CollapsibleResultSectionDeps;
-    onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => void;
+    deps?: CollapsibleResultSectionDeps | null;
+    onExpandToggle?: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const ReportCollapsibleContainer = NamedFC<ReportCollapsibleContainerProps>(
