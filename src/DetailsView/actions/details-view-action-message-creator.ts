@@ -208,7 +208,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             test,
             requirement,
         };
-  
+
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.EnableVisualHelperWithoutScan,
             payload,
