@@ -20,7 +20,6 @@ exports[`ResultSectionContent renders without modifier buttons without cardSelec
   "deps": {
     "cardsVisualizationModifierButtons": [Function],
   },
-  "fixInstructionProcessor": undefined,
   "headingLevel": undefined,
   "narrowModeStatus": undefined,
   "outcomeCounter": undefined,
@@ -87,7 +86,6 @@ exports[`ResultSectionContent renders, with some rules: RulesWithInstances props
   "deps": {
     "cardsVisualizationModifierButtons": [Function],
   },
-  "fixInstructionProcessor": undefined,
   "headingLevel": undefined,
   "narrowModeStatus": undefined,
   "outcomeCounter": undefined,

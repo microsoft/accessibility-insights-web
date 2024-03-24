@@ -5,6 +5,7 @@ import {
     OnDetailsViewInitializedPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
+    RequirementToggleActionPayload,
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
@@ -203,7 +204,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         test: VisualizationType,
         requirement?: string,
     ): void {
-        const payload: ToggleActionPayload = {
+        const payload: RequirementToggleActionPayload = {
             test,
             requirement,
         };
@@ -252,7 +253,6 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
                 TelemetryEvents.TelemetryEventSource.DetailsView,
             ),
         };
-
         const message: Message = {
             messageType: Messages.Visualizations.Common.RescanVisualization,
             payload,
@@ -265,7 +265,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         test: VisualizationType,
         requirement?: string,
     ) => {
-        const payload: ToggleActionPayload = {
+        const payload: RequirementToggleActionPayload = {
             test: test,
             requirement,
         };

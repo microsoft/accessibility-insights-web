@@ -57,7 +57,6 @@ describe('StoreDataToScanNodeResultConverter', () => {
             const storeData = {
                 results: [unifiedResult],
             } as UnifiedScanResultStoreData;
-
             const expectedResult = [{ ...unifiedResult, rule: { id: unifiedResult.ruleId } }];
             expect(convertUnifiedStoreDataToScanNodeResults(storeData)).toEqual(expectedResult);
         });

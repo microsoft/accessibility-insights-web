@@ -289,3 +289,6 @@ export interface AssessmentResetFocusedIdentifierPayload extends BaseActionPaylo
 export interface AssessmentNavigateToNewCardsViewPayload extends BaseActionPayload {
     testKey: string;
 }
+export interface RequirementToggleActionPayload extends ToggleActionPayload {
+    requirement: string | undefined;
+}
