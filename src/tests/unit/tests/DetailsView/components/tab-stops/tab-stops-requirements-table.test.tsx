@@ -57,7 +57,6 @@ describe('TabStopsRequirementsTable', () => {
                 tabStopsTestViewController: tabStopsTestViewControllerMock.object,
             },
             requirementState: requirementState,
-            status: 'fail',
         };
         requirementContentStub = {
             id: 'test id',

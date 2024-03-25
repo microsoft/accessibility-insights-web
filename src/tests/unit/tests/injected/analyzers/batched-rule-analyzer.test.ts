@@ -235,7 +235,6 @@ describe('BatchedRuleAnalyzer', () => {
             include: [],
             exclude: [],
             testName,
-            requirementName,
         };
         return telemetryStub;
     }

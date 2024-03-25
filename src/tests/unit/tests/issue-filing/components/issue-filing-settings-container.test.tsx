@@ -5,10 +5,7 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import {
-    IssueFilingServiceProperties,
-    UserConfigurationStoreData,
-} from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingServiceProperties } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssueFilingChoiceGroup } from '../../../../../issue-filing/components/issue-filing-choice-group';
 import {
     IssueFilingSettingsContainer,
@@ -34,9 +31,6 @@ describe('IssueFilingSettingsContainerTest', () => {
         settingsForm: AzureBoardsSettingsForm,
     } as IssueFilingService;
     const issueFilingServices = [selectedIssueFilingService];
-    const userConfigurationStoreData: UserConfigurationStoreData = {
-        bugService: 'test',
-    } as UserConfigurationStoreData;
     const selectedIssueFilingServiceData: IssueFilingServiceProperties = {
         repository: 'none',
     };
@@ -47,7 +41,6 @@ describe('IssueFilingSettingsContainerTest', () => {
             issueFilingServiceProvider: issueFilingServicesProviderMock.object,
         } as IssueFilingSettingsContainerDeps,
         selectedIssueFilingService,
-        userConfigurationStoreData,
         selectedIssueFilingServiceData,
         onPropertyUpdateCallback: () => null,
         onSelectedServiceChange: () => null,

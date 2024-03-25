@@ -98,7 +98,6 @@ describe('PopupView', () => {
         let storeState: PopupViewControllerState;
         let deps: PopupViewControllerDeps;
         const rowConfigStub = {};
-        const shortcutModifyHandlerStub = {};
         const launchPadRowConfigurationFactoryMock = Mock.ofType(LaunchPadRowConfigurationFactory);
         const userConfigStoreData: UserConfigurationStoreData = {
             isFirstTime: true,
@@ -155,7 +154,6 @@ describe('PopupView', () => {
                     diagnosticViewClickHandler: clickHandlerMock.object,
                     popupViewControllerHandler: handlerMock.object,
                     launchPanelHeaderClickHandler: null,
-                    shortcutModifyHandler: shortcutModifyHandlerStub as any,
                 })
                 .with('hasAccess', true)
                 .with(
@@ -196,7 +194,6 @@ describe('PopupView', () => {
                     diagnosticViewClickHandler: clickHandlerMock.object,
                     popupViewControllerHandler: handlerMock.object,
                     launchPanelHeaderClickHandler: null,
-                    shortcutModifyHandler: shortcutModifyHandlerStub as any,
                 })
                 .with('hasAccess', true)
                 .with(
@@ -232,7 +229,6 @@ describe('PopupView', () => {
                     diagnosticViewClickHandler: null,
                     popupViewControllerHandler: handlerMock.object,
                     launchPanelHeaderClickHandler: null,
-                    shortcutModifyHandler: null,
                 })
                 .with('hasAccess', true)
                 .with('diagnosticViewToggleFactory', null)

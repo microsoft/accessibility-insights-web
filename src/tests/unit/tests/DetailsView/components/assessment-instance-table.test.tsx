@@ -247,7 +247,6 @@ describe('AssessmentInstanceTable', () => {
     ): AssessmentInstanceTableProps {
         return {
             instancesMap: instancesMap,
-            columnConfiguration: [],
             assessmentNavState: {
                 selectedTestSubview: selectedTestStep,
                 selectedTestType: 1,
