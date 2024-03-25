@@ -19,7 +19,7 @@ describe('axe.commons.text.accessibleText examples', () => {
 
         const element1 = fixture.querySelector('#el1');
 
-        const accessibleText = withAxeSetup(() => Axe.commons.text.accessibleText(element1, false));
+        const accessibleText = withAxeSetup(() => Axe.commons.text.accessibleText(element1));
         expect(accessibleText).toBe('hello');
     });
 
@@ -32,7 +32,7 @@ describe('axe.commons.text.accessibleText examples', () => {
 
         const element2 = fixture.querySelector('#el2');
 
-        const accessibleText = withAxeSetup(() => Axe.commons.text.accessibleText(element2, false));
+        const accessibleText = withAxeSetup(() => Axe.commons.text.accessibleText(element2));
         expect(accessibleText).toBe('hello');
     });
 
@@ -44,7 +44,7 @@ describe('axe.commons.text.accessibleText examples', () => {
 
         const span = fixture.querySelector('#del_row2');
 
-        const accessibleText = withAxeSetup(() => Axe.commons.text.accessibleText(span, false));
+        const accessibleText = withAxeSetup(() => Axe.commons.text.accessibleText(span));
         expect(accessibleText).toBe('Delete HolidayLetter.pdf');
     });
 

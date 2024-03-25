@@ -12,7 +12,6 @@ declare module 'axe-core/axe' {
         };
         dom: {
             isVisible: Function;
-            idrefs: (node: HTMLElement, attr: string) => HTMLElement[];
         };
         text: {
             accessibleText: Function;
@@ -30,6 +29,23 @@ declare module 'axe-core/axe' {
         getNodeFromTree: Function;
         // this must be surrounded by axe.setup and axe.teardown calls
         getSelector: (element: HTMLElement) => string;
+    }
+    interface Dom {
+        isVisible: Function;
+        idrefs: (node: HTMLElement, attr: string) => HTMLElement[];
+    }
+    interface Aria {
+        label: Function;
+        implicitRole: Function;
+        getRolesByType: Function;
+        lookupTable: any;
+    }
+
+    interface Text {
+        accessibleText: Function;
+        isHumanInterpretable: Function;
+        sanitize: Function;
+        subtreeText: Function;
     }
 
     const _audit: {

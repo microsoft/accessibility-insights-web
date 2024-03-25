@@ -16,7 +16,16 @@ exports[`getRuleInclusions getRuleInclusions matches snapshotted list of product
     "reason": "best practice rule that was investigated with no known false positives, implemented as an automated check.",
     "status": "included",
   },
+  "aria-braille-equivalent": {
+    "status": "included",
+  },
   "aria-command-name": {
+    "status": "included",
+  },
+  "aria-conditional-attr": {
+    "status": "included",
+  },
+  "aria-deprecated-role": {
     "status": "included",
   },
   "aria-dialog-name": {
@@ -36,6 +45,9 @@ exports[`getRuleInclusions getRuleInclusions matches snapshotted list of product
     "status": "included",
   },
   "aria-progressbar-name": {
+    "status": "included",
+  },
+  "aria-prohibited-attr": {
     "status": "included",
   },
   "aria-required-attr": {
@@ -118,7 +130,8 @@ exports[`getRuleInclusions getRuleInclusions matches snapshotted list of product
     "status": "excluded",
   },
   "duplicate-id-active": {
-    "status": "included",
+    "reason": "disabled in axe config",
+    "status": "excluded",
   },
   "duplicate-id-aria": {
     "status": "included",
