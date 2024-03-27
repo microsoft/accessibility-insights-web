@@ -52,7 +52,6 @@ export class PopupActionMessageCreator {
         this.dispatcher.sendTelemetry(TelemetryEvents.LAUNCH_PANEL_OPEN, {
             source: TelemetryEventSource.LaunchPad,
             triggeredBy: 'N/A',
-            launchPanelType: panelType,
         });
     }
 
