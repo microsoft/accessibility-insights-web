@@ -72,17 +72,7 @@ describe('ElementBasedViewModelCreator', () => {
 
         getHighlightedResultInstanceIdsMock
             .setup(mock =>
-                mock(
-                    cardSelectionData,
-                    [
-                        {
-                            ...unifiedResult,
-                            rule: ruleStub,
-                        },
-                    ],
-                    null,
-                    isResultHighlightUnavailableStub,
-                ),
+                mock(cardSelectionData, scanNodeResults, null, isResultHighlightUnavailableStub),
             )
             .returns(() => cardSelectionViewData);
 
@@ -105,7 +95,7 @@ describe('ElementBasedViewModelCreator', () => {
             const ruleStub = { id: unifiedResult.ruleId } as UnifiedRule;
             const identifierStub = unifiedResult.identifiers['css-selector'];
             const decoratedResultStub = {} as DecoratedAxeNodeResult;
-            const scanNodeResults = [{ ...unifiedResult, rule: ruleStub }];
+            const scanNodeResults: ScanNodeResult[] = [{ ...unifiedResult, rule: ruleStub }];
             const cardSelectionViewData = {
                 resultsHighlightStatus: { [unifiedResult.uid]: 'visible' },
             } as CardSelectionViewData;
@@ -114,12 +104,7 @@ describe('ElementBasedViewModelCreator', () => {
                 .setup(mock =>
                     mock(
                         cardSelectionData,
-                        [
-                            {
-                                ...unifiedResult,
-                                rule: ruleStub,
-                            },
-                        ],
+                        scanNodeResults,
                         null,
                         isResultHighlightUnavailableStub,
                     ),
@@ -127,7 +112,7 @@ describe('ElementBasedViewModelCreator', () => {
                 .returns(() => cardSelectionViewData);
 
             getDecoratedAxeNodeCallbackMock
-                .setup(mock => mock({ ...unifiedResult, rule: ruleStub }, ruleStub, identifierStub))
+                .setup(mock => mock(scanNodeResults[0], ruleStub, identifierStub))
                 .returns(() => decoratedResultStub);
 
             const expectedResult = {
@@ -140,7 +125,6 @@ describe('ElementBasedViewModelCreator', () => {
                     },
                 },
             };
-
             expect(
                 testSubject.getElementBasedViewModel(scanNodeResults, cardSelectionData),
             ).toEqual(expectedResult);
@@ -164,7 +148,7 @@ describe('ElementBasedViewModelCreator', () => {
             id: 'some other id',
         } as DecoratedAxeNodeResult;
 
-        const scanNodeResults = [
+        const scanNodeResults: ScanNodeResult[] = [
             { ...unifiedResultOne, rule: ruleStubOne },
             { ...unifiedResultTwo, rule: ruleStubTwo },
         ];
@@ -177,34 +161,16 @@ describe('ElementBasedViewModelCreator', () => {
 
         getHighlightedResultInstanceIdsMock
             .setup(mock =>
-                mock(
-                    cardSelectionData,
-                    [
-                        {
-                            ...unifiedResultOne,
-                            rule: ruleStubOne,
-                        },
-                        {
-                            ...unifiedResultTwo,
-                            rule: ruleStubTwo,
-                        },
-                    ],
-                    null,
-                    isResultHighlightUnavailableStub,
-                ),
+                mock(cardSelectionData, scanNodeResults, null, isResultHighlightUnavailableStub),
             )
             .returns(() => cardSelectionViewData);
 
         getDecoratedAxeNodeCallbackMock
-            .setup(mock =>
-                mock({ ...unifiedResultOne, rule: ruleStubOne }, ruleStubOne, identifierStub),
-            )
+            .setup(mock => mock(scanNodeResults[0], ruleStubOne, identifierStub))
             .returns(() => decoratedResultStubOne);
 
         getDecoratedAxeNodeCallbackMock
-            .setup(mock =>
-                mock({ ...unifiedResultTwo, rule: ruleStubTwo }, ruleStubTwo, identifierStub),
-            )
+            .setup(mock => mock(scanNodeResults[1], ruleStubTwo, identifierStub))
             .returns(() => decoratedResultStubTwo);
 
         const expectedResult = {
@@ -231,29 +197,19 @@ describe('ElementBasedViewModelCreator', () => {
         const ruleStub = { id: unifiedResult.ruleId } as UnifiedRule;
         const identifierStub = unifiedResult.identifiers['css-selector'];
         const decoratedResultStub = {} as DecoratedAxeNodeResult;
-        const scanNodeResults = [{ ...unifiedResult, rule: ruleStub }];
+        const scanNodeResults: ScanNodeResult[] = [{ ...unifiedResult, rule: ruleStub }];
         const cardSelectionViewData = {
             resultsHighlightStatus: { [unifiedResult.uid]: 'visible' },
         } as CardSelectionViewData;
 
         getHighlightedResultInstanceIdsMock
             .setup(mock =>
-                mock(
-                    cardSelectionData,
-                    [
-                        {
-                            ...unifiedResult,
-                            rule: ruleStub,
-                        },
-                    ],
-                    null,
-                    isResultHighlightUnavailableStub,
-                ),
+                mock(cardSelectionData, scanNodeResults, null, isResultHighlightUnavailableStub),
             )
             .returns(() => cardSelectionViewData);
 
         getDecoratedAxeNodeCallbackMock
-            .setup(mock => mock({ ...unifiedResult, rule: ruleStub }, ruleStub, identifierStub))
+            .setup(mock => mock(scanNodeResults[0], ruleStub, identifierStub))
             .returns(() => decoratedResultStub);
 
         const expectedResult = {
