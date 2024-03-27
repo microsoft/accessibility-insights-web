@@ -138,8 +138,6 @@ export class DrawerUtils {
 
         return {
             left,
-            x: left,
-            y: top,
             top,
             bottom,
             right,

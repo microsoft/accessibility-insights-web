@@ -12,7 +12,6 @@ exports[`CombinedReportRulesOnlySections CombinedReportNotApplicableSection rend
         outcomecount="0"
         outcometype="inapplicable"
         title="Not applicable rules"
-        titlesize="title"
       />
     </div>
     <div
@@ -40,7 +39,6 @@ exports[`CombinedReportRulesOnlySections CombinedReportPassedSection renders 1`]
         outcomecount="0"
         outcometype="pass"
         title="Passed rules"
-        titlesize="title"
       />
     </div>
     <div
