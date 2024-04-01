@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
     BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
@@ -465,7 +466,7 @@ describe('TelemetryDataFactoryTest', () => {
             testVisualizationType,
             requirementName,
         );
-        const expected: RuleAnalyzerScanTelemetryData = {
+        const expected: AssessmentRequirementScanTelemetryData = {
             scanDuration: elapsedTime,
             NumberOfElementsScanned: elementsScanned,
             include: analyzerResultStub.include,
