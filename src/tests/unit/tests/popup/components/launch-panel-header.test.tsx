@@ -45,12 +45,9 @@ describe('LaunchPanelHeaderTest', () => {
             deps,
             title: 'test title',
             subtitle: 'test subtitle',
-            openGettingStartedDialog: {} as any,
-            openFeedbackDialog: {} as any,
             popupWindow: {} as Window,
             featureFlags: {} as FeatureFlagStoreData,
             openAdhocToolsPanel: () => {},
-            dropdownClickHandler: {} as DropdownClickHandler,
         };
     });
 

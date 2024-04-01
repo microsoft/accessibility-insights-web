@@ -196,7 +196,6 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     <TabStopsFailedInstancePanel
                         deps={props.deps}
                         failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
-                        requirementState={requirementState}
                     />
 
                     <FocusComponent deps={props.deps} tabbingEnabled={scanData.enabled} />

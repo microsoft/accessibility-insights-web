@@ -57,7 +57,6 @@ describe('FeedbackMenuClickHandlerTest', () => {
         const setStateMock = Mock.ofInstance((state: any) => {});
         const stateStub = {
             target: 'currentTarget',
-            isContextMenuVisible: true,
         };
         const eventStub = {
             currentTarget: 'currentTarget',
