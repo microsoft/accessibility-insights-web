@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
 import { TabContextFactory } from 'background/tab-context-factory';
-import { InterpreterResponse, Message } from '../common/message';
+import { InterpreterMessage, InterpreterResponse } from '../common/message';
 import { TabToContextMap } from './tab-context';
 
 export class TabContextManager {
@@ -25,12 +25,11 @@ export class TabContextManager {
 
     public readonly interpretMessageForTab = (
         tabId: number,
-        message: Message,
+        message: InterpreterMessage,
     ): InterpreterResponse => {
         const tabContext = this.targetPageTabIdToContextMap[tabId];
         if (tabContext) {
             const interpreter = tabContext.interpreter;
-
             return interpreter.interpret(message);
         }
 

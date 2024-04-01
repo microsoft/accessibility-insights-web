@@ -36,7 +36,7 @@ describe('ChoiceGroupPassFail', () => {
             selectedKey: TabStopRequirementStatuses.unknown,
             onChange: () => {},
             secondaryControls: (
-                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" noClick={() => {}} />
+                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" onClick={() => {}} />
             ),
             onUndoClickedPassThrough: onUndoClickedMock.object,
         };
