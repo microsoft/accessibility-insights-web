@@ -75,12 +75,7 @@ describe('getQuickAssessSummaryModel', () => {
             title: 'Automated Checks',
             key: AutomatedChecks.key,
             visualizationType: 0,
-            requirements: [
-                { name: 'Any' },
-                { name: 'Name' },
-                { name: 'Will' },
-                { name: 'Do' },
-            ],
+            requirements: [{ name: 'Any' }, { name: 'Name' }, { name: 'Will' }, { name: 'Do' }],
         },
         test1: {
             title: 'Test 1',

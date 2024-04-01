@@ -27,9 +27,7 @@ describe('ContentPage', () => {
                 return <>{(Markup as any).options.testString}</>;
             });
 
-            const renderResult = render(
-                <MyPage deps={deps} options={{ setPageTitle: true}} />,
-            );
+            const renderResult = render(<MyPage deps={deps} options={{ setPageTitle: true }} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
