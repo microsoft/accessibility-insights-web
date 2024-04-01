@@ -31,8 +31,8 @@ describe('StartOverDropdownTest', () => {
         defaultProps = {
             singleTestSuffix: 'single test suffix stub',
             allTestSuffix: 'all test suffix stub',
-            rightPanelOptions: { showAssessment: true, showTest: true },
-            switcherStartOverPreferences: { showAssessment: true, showTest: true },
+            rightPanelOptions: { showTest: true },
+            switcherStartOverPreferences: { showTest: true },
             dropdownDirection: 'down',
             openDialog: openDialogMock.object,
             buttonRef: {} as IRefObject<IButton>,
