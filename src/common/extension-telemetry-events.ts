@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
-import { SingleElementSelector } from './types/store-data/scoping-store-data';
 import { LaunchPanelType } from './types/store-data/launch-panel-store-data';
+import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
 export const LAUNCH_PANEL_OPEN: string = 'LaunchPanelOpen';
