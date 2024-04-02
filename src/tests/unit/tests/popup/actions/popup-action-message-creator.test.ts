@@ -73,6 +73,7 @@ describe('PopupActionMessageCreatorTest', () => {
         const telemetry: TelemetryData = {
             source: TelemetryEventSource.LaunchPad,
             triggeredBy: 'N/A',
+            launchPanelType: panelType,
         };
 
         testSubject.openLaunchPad(panelType);
