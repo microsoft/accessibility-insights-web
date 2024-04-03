@@ -38,7 +38,7 @@ describe('TelemetryDataFactoryTest', () => {
     const testSource: TelemetryEventSource = 1 as TelemetryEventSource;
     const mouseClickEvent = eventStubFactory.createMouseClickEvent() as any;
     const keypressEvent = eventStubFactory.createKeypressEvent() as any;
-    const sourceStub: TelemetryEventSource = -1;
+    const sourceStub: TelemetryEventSource = -1 as TelemetryEventSource;
 
     test('forAddSelector', () => {
         const event = mouseClickEvent;
@@ -137,7 +137,7 @@ describe('TelemetryDataFactoryTest', () => {
     });
 
     test('forDetailsViewOpened', () => {
-        const detailsViewPivotStub = -1;
+        const detailsViewPivotStub = -1 as DetailsViewPivotType;
         const result = testObject.forDetailsViewOpened(detailsViewPivotStub);
         const expected: DetailsViewOpenedTelemetryData = {
             triggeredBy: TriggeredByNotApplicable,
@@ -397,7 +397,7 @@ describe('TelemetryDataFactoryTest', () => {
         };
 
         const actual: RequirementActionTelemetryData = testObject.forRequirementFromDetailsView(
-            -1,
+            -1 as VisualizationType,
             'requirement',
         );
 
