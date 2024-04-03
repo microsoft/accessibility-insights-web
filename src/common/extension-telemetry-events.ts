@@ -289,7 +289,7 @@ export type UnhandledErrorTelemetryData = {
     errorType: ErrorType;
 };
 
-export type HandleLaunchPanelType = {
+export type LaunchPanelTelemetryData = {
     launchPanelType: LaunchPanelType;
 } & BaseTelemetryData;
 
@@ -319,4 +319,4 @@ export type TelemetryData =
     | AutoDetectedFailuresDialogStateTelemetryData
     | ShowAssessmentDialogStateTelemetryData
     | UnhandledErrorTelemetryData
-    | HandleLaunchPanelType;
+    | LaunchPanelTelemetryData;
