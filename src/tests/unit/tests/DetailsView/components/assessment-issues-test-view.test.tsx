@@ -59,7 +59,7 @@ describe('AssessmentIssuesTestView', () => {
     let depsStub;
     let assessmentStoreDataStub;
 
-    const selectedTest: VisualizationType = -1;
+    const selectedTest: VisualizationType | number = -1;
     const warningConfigurationStub: WarningConfiguration = {} as WarningConfiguration;
     const switcherNavConfigurationStub: DetailsViewSwitcherNavConfiguration = {
         warningConfiguration: warningConfigurationStub,
@@ -74,7 +74,7 @@ describe('AssessmentIssuesTestView', () => {
         title: 'test title',
     } as DisplayableVisualizationTypeData;
     const selectedTestViewStub = 'test-subview';
-    const selectedTestTypeStub = -1;
+    const selectedTestTypeStub: number = -1;
     const persistedTabInfoStub = {} as PersistedTabInfo;
     const selectedRequirementIsEnabledStub = true;
     const assessmentDataStub = {} as AssessmentData;

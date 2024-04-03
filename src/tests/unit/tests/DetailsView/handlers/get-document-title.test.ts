@@ -20,7 +20,7 @@ describe('getTestViewTitle', () => {
         const displayableDataStub = {
             title: 'fake title',
         } as DisplayableVisualizationTypeData;
-        const visualizationType = -1;
+        const visualizationType: number = -1;
         const configStub = { displayableData: displayableDataStub } as VisualizationConfiguration;
 
         configFactory.setup(cf => cf.getConfiguration(visualizationType)).returns(() => configStub);

@@ -14,7 +14,7 @@ export type NextRequirementButtonDeps = {
 export type NextRequirementButtonProps = {
     deps: NextRequirementButtonDeps;
     nextRequirement: Requirement;
-    nextRequirementVisualizationType: VisualizationType;
+    nextRequirementVisualizationType: VisualizationType | number;
     className?: string;
 };
 

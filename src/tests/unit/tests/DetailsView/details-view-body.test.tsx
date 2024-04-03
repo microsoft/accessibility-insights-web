@@ -53,7 +53,7 @@ describe('DetailsViewBody', () => {
         QuickAssessCommandBar,
         TargetPageHiddenBar,
     ]);
-    let selectedTest: VisualizationType;
+    let selectedTest: VisualizationType | number;
     let configFactoryStub: VisualizationConfigurationFactory;
     let clickHandlerFactoryStub: DetailsViewToggleClickHandlerFactory;
     let props: DetailsViewBodyProps;

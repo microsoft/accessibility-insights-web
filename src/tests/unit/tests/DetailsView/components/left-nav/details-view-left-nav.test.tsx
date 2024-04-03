@@ -33,7 +33,7 @@ jest.mock('../../../../../../DetailsView/components/left-nav/assessment-left-nav
 describe(DetailsViewLeftNav.displayName, () => {
     mockReactComponents([Switcher, AssessmentLeftNav]);
     it('should render from switcher nav', () => {
-        const selectedTestStub: VisualizationType = -1;
+        const selectedTestStub: VisualizationType | number = -1;
         const selectedKeyStub: string = 'some key';
         const featureFlagDataStub: FeatureFlagStoreData = {};
         const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance(

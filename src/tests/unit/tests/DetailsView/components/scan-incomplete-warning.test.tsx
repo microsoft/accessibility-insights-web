@@ -22,7 +22,7 @@ jest.mock('@fluentui/react');
 describe('ScanIncompleteWarning', () => {
     mockReactComponents([MessageBar]);
     let warningConfiguration: WarningConfiguration;
-    let testStub: VisualizationType;
+    let testStub: VisualizationType | number;
 
     beforeEach(() => {
         testStub = -1;

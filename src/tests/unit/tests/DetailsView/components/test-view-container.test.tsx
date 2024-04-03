@@ -20,7 +20,7 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('TestViewContainer', () => {
-    const selectedTest: VisualizationType = -1;
+    const selectedTest: VisualizationType | number = -1;
     const elementStub = <div />;
     const automatedChecksCardSelectionMessageCreatorStub =
         {} as AutomatedChecksCardSelectionMessageCreator;
