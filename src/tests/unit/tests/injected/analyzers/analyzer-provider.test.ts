@@ -32,7 +32,7 @@ describe('AnalyzerProviderTests', () => {
     let testObject: AnalyzerProvider;
     let scannerMock: IMock<ScannerUtils>;
     let dateGetterMock: IMock<() => Date>;
-    let typeStub: VisualizationType;
+    let typeStub: VisualizationType | number;
     let keyStub: string;
     let analyzerMessageTypeStub: string;
     let filterResultsByRulesMock: IMock<IResultRuleFilter>;

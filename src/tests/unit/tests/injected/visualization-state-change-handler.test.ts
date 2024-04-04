@@ -69,8 +69,9 @@ describe('VisualizationStateChangeHandler', () => {
             assessmentStoreData: assessmentStoreDataStub,
         } as TargetPageStoreData;
 
+        const type1: number = -1;
         visualizationUpdaterMock.verify(
-            m => m(-1, requirementConfigStub.key, It.isValue(expectedStoreData)),
+            m => m(type1, requirementConfigStub.key, It.isValue(expectedStoreData)),
             Times.once(),
         );
     });
@@ -94,8 +95,9 @@ describe('VisualizationStateChangeHandler', () => {
             assessmentStoreData: assessmentStoreDataStub,
         } as TargetPageStoreData;
 
+        const type2: number = -1;
         visualizationUpdaterMock.verify(
-            m => m(-1, undefined, It.isValue(expectedStoreData)),
+            m => m(type2, undefined, It.isValue(expectedStoreData)),
             Times.once(),
         );
     });

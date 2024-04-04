@@ -38,7 +38,7 @@ export interface ScanBasePayload extends BaseActionPayload {
 
 export interface AnalyzerConfiguration {
     key: string;
-    testType: VisualizationType;
+    testType: VisualizationType | number;
     analyzerMessageType: string;
 }
 

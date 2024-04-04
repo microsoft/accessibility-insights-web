@@ -93,7 +93,7 @@ describe('VisualizationScanResultStoreTest', () => {
     test('onRescanVisualization: for test that has state', async () => {
         const tabEvents: TabbedElementData[] = getTabbedElementDataStub();
         const testKey = AdHocTestkeys.TabStops;
-        const visualizationTypeStub = -2;
+        const visualizationTypeStub: number = -2;
         const configStub: VisualizationConfiguration = {
             key: testKey,
         } as VisualizationConfiguration;
@@ -117,7 +117,7 @@ describe('VisualizationScanResultStoreTest', () => {
     test('onRescanVisualizationv: for test that does not have state', async () => {
         const tabEvents: TabbedElementData[] = getTabbedElementDataStub();
         const testKey = 'some test key';
-        const visualizationTypeStub = -2;
+        const visualizationTypeStub: number = -2;
         const configStub: VisualizationConfiguration = {
             key: testKey,
         } as VisualizationConfiguration;

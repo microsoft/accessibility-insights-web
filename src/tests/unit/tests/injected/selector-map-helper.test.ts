@@ -197,7 +197,7 @@ describe('SelectorMapHelperTest', () => {
     });
 
     test('getState for assessment, selector map is not null', () => {
-        const visualizationType = -1;
+        const visualizationType: number = -1;
         const assessmentKeyStub = 'some assessment key';
         const stepKey = 'some step';
         const selectorMap: InstanceIdToInstanceDataMap = {
@@ -257,7 +257,7 @@ describe('SelectorMapHelperTest', () => {
     });
 
     test('getState for assessment: selectorMap null', () => {
-        const visualizationType = -1;
+        const visualizationType: number = -1;
         const assessmentKeyStub = 'some assessment key';
         const stepKey = 'some step';
         const selectorMap = null;

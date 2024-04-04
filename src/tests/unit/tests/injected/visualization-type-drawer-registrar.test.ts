@@ -17,7 +17,7 @@ describe('VisualizationTypeDrawerRegistrar', () => {
     let visualizationConfigFactoryMock: IMock<VisualizationConfigurationFactory>;
     let drawerProviderMock: IMock<DrawerProvider>;
     let testSubject: VisualizationTypeDrawerRegistrar;
-    let typeStub: VisualizationType;
+    let typeStub: VisualizationType | number;
     let configMock: IMock<VisualizationConfiguration>;
     let identifierStub: string;
     let drawerStub: Drawer;

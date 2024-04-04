@@ -31,7 +31,7 @@ describe('TargetPageVisualizationUpdater', () => {
     let selectorMapStub: SelectorToVisualizationMap;
     let stepKeyStub: string;
     let storeDataStub: TargetPageStoreData;
-    let visualizationTypeStub: VisualizationType;
+    let visualizationTypeStub: VisualizationType | number;
     let configIdStub: string;
 
     let expectedNewState: TestStepVisualizationState;
