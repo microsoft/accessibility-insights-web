@@ -13,6 +13,10 @@ import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetails, InstanceDetailsDeps } from './instance-details';
 import styles from './instance-details-group.scss';
+import {
+    PropertyConfiguration,
+    getPropertyConfiguration,
+} from '../../configs/unified-result-property-configurations';
 
 export const ruleContentAutomationId = 'cards-rule-content';
 
@@ -27,6 +31,7 @@ export type InstanceDetailsGroupProps = {
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
+    getPropertyConfigById: (id: string) => PropertyConfiguration;
 };
 
 export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
@@ -60,6 +65,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
                             {...{ index }}
                             deps={deps}
                             result={node}
+                            getPropertyConfigById={getPropertyConfiguration}
                             userConfigurationStoreData={userConfigurationStoreData}
                             rule={unifiedRule}
                             targetAppInfo={targetAppInfo}
