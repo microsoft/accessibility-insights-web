@@ -17,7 +17,8 @@ exports[`getRuleInclusions getRuleInclusions matches snapshotted list of product
     "status": "included",
   },
   "aria-braille-equivalent": {
-    "status": "included",
+    "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+    "status": "excluded",
   },
   "aria-command-name": {
     "status": "included",
