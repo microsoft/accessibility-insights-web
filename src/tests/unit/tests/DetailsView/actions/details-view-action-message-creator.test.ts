@@ -307,7 +307,9 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             selectedDetailsViewPivot: DetailsViewPivotType[1],
         };
 
-        telemetryFactoryMock.setup(tfm => tfm.forDetailsViewOpened(1 as DetailsViewPivotType)).returns(() => telemetry);
+        telemetryFactoryMock
+            .setup(tfm => tfm.forDetailsViewOpened(1 as DetailsViewPivotType))
+            .returns(() => telemetry);
 
         testSubject.detailsViewOpened(1 as DetailsViewPivotType);
 
