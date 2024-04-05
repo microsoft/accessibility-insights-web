@@ -43,7 +43,6 @@ export type AdhocIssuesTestViewProps = {
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     narrowModeStatus: NarrowModeStatus;
     selectedVisualizationType: VisualizationType;
-    includeStepsText?: boolean;
 };
 
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(
