@@ -44,6 +44,7 @@ const webRulesWithResources = [
     'document-title',
     'duplicate-id',
     'duplicate-id-active',
+    'duplicate-id-aria',
     'frame-title',
     'html-has-lang',
     'html-lang-valid',
