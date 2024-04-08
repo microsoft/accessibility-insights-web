@@ -8,6 +8,7 @@ import {
     CollapsibleUrlResultSectionProps,
 } from 'reports/components/report-sections/collapsible-url-result-section';
 import { It, Mock } from 'typemoq';
+import { Times } from 'typemoq/Api/_all';
 
 describe('CollapsibleUrlResultSection', () => {
     it('renders', () => {
@@ -29,7 +30,7 @@ describe('CollapsibleUrlResultSection', () => {
 
         collapsibleControlMock
             .setup(cc => cc(It.isObjectWith(expectedCollapsibleControlProps)))
-            .returns(() => <div>Collapsible component</div>);
+            .returns(() => <div>Collapsible component</div>).verifiable(Times.once());
 
         const wrapper = render(<CollapsibleUrlResultSection {...props} />);
         expect(wrapper.asFragment()).toMatchSnapshot();
