@@ -14,7 +14,6 @@ export type NullIssueFilingServiceSettings = null;
 export const NullIssueFilingService: IssueFilingService = {
     key: nullServiceKey,
     isHidden: true,
-    order: 0,
     displayName: 'None',
     settingsForm,
     buildStoreData: () => null,

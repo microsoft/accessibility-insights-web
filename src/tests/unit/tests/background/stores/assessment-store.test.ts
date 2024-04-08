@@ -6,6 +6,8 @@ import { Requirement } from 'assessments/types/requirement';
 import {
     AddFailureInstancePayload,
     AddResultDescriptionPayload,
+    AssessmentActionInstancePayload,
+    AssessmentToggleActionPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
@@ -1548,7 +1550,7 @@ describe('AssessmentStore', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: ToggleActionPayload = {
+        const payload: AssessmentActionInstancePayload = {
             test: assessmentType,
             requirement: requirementKey,
             selector: 'selector',
@@ -1926,7 +1928,7 @@ describe('AssessmentStore', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: ToggleActionPayload = {
+        const payload: AssessmentToggleActionPayload = {
             test: assessmentType,
             requirement: requirementKey,
         };
