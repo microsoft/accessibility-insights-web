@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AssessmentToggleActionPayload,
     BaseActionPayload,
     OnDetailsViewInitializedPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
-    RequirementToggleActionPayload,
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
@@ -204,7 +204,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         test: VisualizationType,
         requirement?: string,
     ): void {
-        const payload: RequirementToggleActionPayload = {
+        const payload: ToggleActionPayload | AssessmentToggleActionPayload = {
             test,
             requirement,
         };
@@ -265,7 +265,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         test: VisualizationType,
         requirement?: string,
     ) => {
-        const payload: RequirementToggleActionPayload = {
+        const payload: ToggleActionPayload | AssessmentToggleActionPayload = {
             test: test,
             requirement,
         };
