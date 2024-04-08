@@ -207,7 +207,6 @@ describe(NarrowModeDetector, () => {
             expect(
                 renderFunc({
                     width: narrowModeThresholds.collapseHeaderAndNavThreshold - 1,
-                    height: 0,
                 }),
             ).toMatchSnapshot('All narrow mode status values should be false');
         });

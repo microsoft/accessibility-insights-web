@@ -11,7 +11,6 @@ export const reportExportAsJsonAutomationId = 'report-export-as-json';
 
 export const JsonReportExportService: ReportExportService = {
     key: jsonReportExportServiceKey,
-    displayName: 'JSON',
     generateMenuItem: (onMenuItemClick, href, download) => {
         return {
             key: jsonReportExportServiceKey,

@@ -31,7 +31,6 @@ describe('AdHocToolsPanelTest', () => {
         const props: AdHocToolsPanelProps = {
             backLinkHandler: null,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
-            featureFlagStoreData: {},
         };
 
         const renderResult = render(<AdHocToolsPanel {...props} />);
@@ -52,7 +51,6 @@ describe('AdHocToolsPanelTest', () => {
         const props: AdHocToolsPanelProps = {
             backLinkHandler: null,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
-            featureFlagStoreData: {},
         };
 
         const renderResult = render(<AdHocToolsPanel {...props} />);
@@ -76,7 +74,6 @@ describe('AdHocToolsPanelTest', () => {
         const props: AdHocToolsPanelProps = {
             backLinkHandler: null,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
-            featureFlagStoreData: featureFlagStoreData,
         };
 
         const renderResult = render(<AdHocToolsPanel {...props} />);
@@ -94,7 +91,6 @@ describe('AdHocToolsPanelTest', () => {
         const props: AdHocToolsPanelProps = {
             backLinkHandler: backLinkHandlerMock.object,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
-            featureFlagStoreData: {},
         };
 
         render(<AdHocToolsPanel {...props} />);

@@ -23,6 +23,7 @@ interface BaseAssessment {
     extensions?: AnyExtension[];
     initialDataCreator?: InitialDataCreator;
     isNonCollapsible?: boolean;
+    isEnabled?: boolean;
 }
 
 export interface ManualAssessment extends BaseAssessment {}
