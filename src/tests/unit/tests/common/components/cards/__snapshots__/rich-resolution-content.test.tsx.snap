@@ -60,6 +60,14 @@ exports[`RichResolutionContent renders static content with id=web/color-contrast
 </DocumentFragment>
 `;
 
+exports[`RichResolutionContent renders static content with id=web/duplicate-id-aria 1`] = `
+<DocumentFragment>
+  <div>
+    Document has multiple elements referenced with ARIA with the same id attribute. Examine any duplicate ID values and rename them. Duplicate IDs are common validation errors that may break the accessibility of labels, e.g., form fields, table header cells.
+  </div>
+</DocumentFragment>
+`;
+
 exports[`RichResolutionContent renders static content with id=web/label-content-name-mismatch 1`] = `
 <DocumentFragment>
   <span>
