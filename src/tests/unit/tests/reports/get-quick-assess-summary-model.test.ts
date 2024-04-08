@@ -17,7 +17,7 @@ import {
 } from 'reports/get-quick-assess-summary-model';
 import { IMock, It, Mock } from 'typemoq';
 
-type IRequirementSubsetForSummary = Pick<Requirement, 'name'>;
+type IRequirementSubsetForSummary = Pick<Requirement, 'name' | 'key'>;
 type IAssessmentSubsetForSummary = Pick<Assessment, 'title' | 'key' | 'visualizationType'> & {
     requirements: IRequirementSubsetForSummary[];
 };
@@ -75,7 +75,12 @@ describe('getQuickAssessSummaryModel', () => {
             title: 'Automated Checks',
             key: AutomatedChecks.key,
             visualizationType: 0,
-            requirements: [{ name: 'Any' }, { name: 'Name' }, { name: 'Will' }, { name: 'Do' }],
+            requirements: [
+                { name: 'Any', key: 'any' },
+                { name: 'Name', key: 'Name' },
+                { name: 'Will', key: 'Will' },
+                { name: 'Do', key: 'Do' },
+            ],
         },
         test1: {
             title: 'Test 1',

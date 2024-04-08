@@ -6,6 +6,7 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { ContentCreator, ContentPage, ContentPageDeps } from 'views/content/content-page';
+import { ExtendedMarkupOptions } from '../../../../../views/content/markup';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('common/components/new-tab-link');
 describe('ContentPage', () => {
@@ -27,7 +28,12 @@ describe('ContentPage', () => {
                 return <>{(Markup as any).options.testString}</>;
             });
 
-            const renderResult = render(<MyPage deps={deps} options={{ setPageTitle: true }} />);
+            const options: ExtendedMarkupOptions = {
+                setPageTitle: true,
+                testString: 'TEST STRING',
+            };
+
+            const renderResult = render(<MyPage deps={deps} options={options} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
     });
