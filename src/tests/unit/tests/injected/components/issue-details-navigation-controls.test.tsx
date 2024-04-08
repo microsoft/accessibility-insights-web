@@ -29,7 +29,6 @@ describe('IssueDetailsNavigationControls', () => {
         controlProps = {
             container: Mock.ofType<DetailsDialog>().object,
             dialogHandler: navigationHandlerMock.object,
-            featureFlagStoreData: {},
             failuresCount: 5,
         };
     });

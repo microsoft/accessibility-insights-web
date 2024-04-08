@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Message } from '../common/message';
+import { InterpreterMessage } from '../common/message';
 import { Messages } from '../common/messages';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { FeatureFlagPayload } from './actions/feature-flag-actions';
@@ -40,7 +40,7 @@ export class FeatureFlagsController {
             feature,
             enabled,
         };
-        const message: Message = {
+        const message: InterpreterMessage = {
             messageType: Messages.FeatureFlags.SetFeatureFlag,
             payload: payload,
             tabId: null,
@@ -53,7 +53,7 @@ export class FeatureFlagsController {
     }
 
     public async resetFeatureFlags(): Promise<void> {
-        const message: Message = {
+        const message: InterpreterMessage = {
             messageType: Messages.FeatureFlags.ResetFeatureFlag,
             tabId: null,
         };

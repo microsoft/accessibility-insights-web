@@ -51,7 +51,6 @@ describe('HeadingWithContentLink', () => {
                 deps={deps}
                 guidance={contentPath}
                 headingTitle={headingTitle}
-                iconName="test icon"
             />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
@@ -64,7 +63,6 @@ describe('HeadingWithContentLink', () => {
                 guidance={contentPath}
                 headingTitle={headingTitle}
                 secondaryText={secondaryText}
-                iconName="test icon"
             />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();

@@ -78,7 +78,6 @@ describe('ResultSectionContent', () => {
             deps: depsStub,
             results: emptyRules,
             outcomeType: 'pass',
-            showCongratsIfNotInstances: true,
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
             visualHelperEnabled: true,
