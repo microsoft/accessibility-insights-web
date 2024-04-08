@@ -25,7 +25,6 @@ describe('CollapsibleUrlResultSection', () => {
         const expectedCollapsibleControlProps: Partial<CollapsibleComponentCardsProps> = {
             id: containerId,
             headingLevel: 3,
-            deps: null,
         };
 
         collapsibleControlMock
@@ -34,5 +33,6 @@ describe('CollapsibleUrlResultSection', () => {
 
         const wrapper = render(<CollapsibleUrlResultSection {...props} />);
         expect(wrapper.asFragment()).toMatchSnapshot();
+        collapsibleControlMock.verifyAll();
     });
 });

@@ -4,6 +4,10 @@ exports[`CollapsibleUrlResultSection renders 1`] = `
 <DocumentFragment>
   <div
     class="urlResultSection"
-  />
+  >
+    <div>
+      Collapsible component
+    </div>
+  </div>
 </DocumentFragment>
 `;
