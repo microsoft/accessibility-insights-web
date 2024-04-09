@@ -138,9 +138,6 @@ function convertAssessmentResultToScanNodeResult(
     const instanceId = testStepResult.id;
     const status = convertTestStepResultStatusToCardResultStatus(testStepResult.status);
     const node: ScanNodeResult = {
-        isSelected: cardSelectionViewDataForTest?.rules
-            ? cardSelectionViewDataForTest.rules[requirementIdentifier]?.cards[instanceId]
-            : false,
         status: status,
         ruleId: requirementIdentifier,
         uid: instanceId,

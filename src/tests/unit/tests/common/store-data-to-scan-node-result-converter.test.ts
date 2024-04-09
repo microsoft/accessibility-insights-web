@@ -117,7 +117,6 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         'css-selector': selector,
                         target: [selector],
                     },
-                    isSelected: false,
                     resolution: {},
                     rule: {
                         id: ruleId,
@@ -167,7 +166,6 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         'css-selector': selector,
                         target: [selector],
                     },
-                    isSelected: false,
                     resolution: {},
                     rule: {
                         id: ruleId,
@@ -209,7 +207,6 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         'css-selector': selector,
                         target: [selector],
                     },
-                    isSelected: true,
                     resolution: {},
                     rule: {
                         id: ruleId,
@@ -262,7 +259,6 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         'css-selector': selector,
                         target: [selector],
                     },
-                    isSelected: false,
                     resolution: {},
                     rule: {
                         id: ruleId1,
@@ -282,7 +278,6 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         'css-selector': selector,
                         target: [selector],
                     },
-                    isSelected: false,
                     resolution: {},
                     rule: {
                         id: ruleId2,
@@ -337,7 +332,6 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         'css-selector': selector1,
                         target: [selector1],
                     },
-                    isSelected: false,
                     resolution: {},
                     rule: {
                         id: ruleId1,
@@ -357,7 +351,6 @@ describe('StoreDataToScanNodeResultConverter', () => {
                         'css-selector': selector2,
                         target: [selector2],
                     },
-                    isSelected: false,
                     resolution: {},
                     rule: {
                         id: ruleId2,
