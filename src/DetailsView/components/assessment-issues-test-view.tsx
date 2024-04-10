@@ -35,7 +35,6 @@ export type AssessmentIssuesTestViewDeps = {
 export type AssessmentIssuesTestViewProps = {
     deps: AssessmentIssuesTestViewDeps;
     assessmentStoreData: AssessmentStoreData;
-    includeStepsText?: boolean;
 } & Omit<AdhocIssuesTestViewProps, 'deps'>;
 
 export class AssessmentIssuesTestView extends React.Component<AssessmentIssuesTestViewProps> {
