@@ -6,9 +6,13 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { ContentCreator, ContentPage, ContentPageDeps } from 'views/content/content-page';
-import { ExtendedMarkupOptions } from '../../../../../views/content/markup';
+import { MarkupOptions } from '../../../../../views/content/markup';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('common/components/new-tab-link');
+
+export interface ExtendedMarkupOptions extends MarkupOptions {
+    testString: string;
+}
 describe('ContentPage', () => {
     const deps = Mock.ofType<ContentPageDeps>().object;
 
