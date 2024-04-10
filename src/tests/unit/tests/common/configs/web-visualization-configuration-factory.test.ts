@@ -177,9 +177,7 @@ describe('WebVisualizationConfigurationFactory', () => {
         );
 
         const test1: number = -1;
-        console.log(test1, '1');
         const test2: number = -2;
-        console.log(test2, '2');
         const test3: number = -3;
         const test4: number = -4;
         const assessmentStubs = [getAssessmentStub('a-1', test1), getAssessmentStub('a-2', test2)];
@@ -187,8 +185,7 @@ describe('WebVisualizationConfigurationFactory', () => {
             getAssessmentStub('mp-1', test3),
             getAssessmentStub('mp-2', test4),
         ];
-        console.log(assessmentStubs);
-        console.log(quickAssessStubs);
+
         quickAssessProviderMock.setup(mock => mock.all()).returns(() => quickAssessStubs);
         assessmentProviderMock.setup(mock => mock.all()).returns(() => assessmentStubs);
 
