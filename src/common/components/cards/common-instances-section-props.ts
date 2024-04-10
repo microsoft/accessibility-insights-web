@@ -6,6 +6,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { CardsViewModel } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
+import { CardsViewStoreData } from './cards-view-store-data';
 import { ResultSectionDeps } from './result-section';
 
 export type CommonInstancesSectionDeps = ResultSectionDeps;
@@ -18,4 +19,5 @@ export type CommonInstancesSectionProps = {
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     sectionHeadingLevel: HeadingLevel;
     narrowModeStatus?: NarrowModeStatus;
+    cardsViewStoreData?: CardsViewStoreData;
 };
