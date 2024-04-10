@@ -8,7 +8,6 @@ exports[`DefaultTestViewContainerProvider can create assessment automated checks
   automatedChecksCardsViewData={{}}
   cardSelectionMessageCreator={{}}
   cardsViewData={{}}
-  includeStepsText={false}
   instancesSection={[Function]}
   needsReviewCardSelectionMessageCreator={{}}
   needsReviewCardsViewData={{}}
