@@ -28,7 +28,6 @@ export const CollapsibleUrlResultSection = NamedFC<CollapsibleUrlResultSectionPr
             header: <ResultSectionTitle {...props} titleSize="heading" />,
             content,
             headingLevel: 3,
-            deps: null,
             onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {},
         });
 
