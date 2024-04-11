@@ -10,7 +10,7 @@ import { MarkupOptions } from '../../../../../views/content/markup';
 import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('common/components/new-tab-link');
 
-export interface ExtendedMarkupOptions extends MarkupOptions {
+interface ExtendedMarkupOptions extends MarkupOptions {
     testString: string;
 }
 describe('ContentPage', () => {
