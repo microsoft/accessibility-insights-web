@@ -29,6 +29,7 @@ export const CollapsibleUrlResultSection = NamedFC<CollapsibleUrlResultSectionPr
             content,
             headingLevel: 3,
             deps: null,
+            onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {},
         });
 
         return <div className={styles.urlResultSection}>{CollapsibleContent}</div>;
