@@ -54,6 +54,7 @@ export class DefaultTestViewContainerProvider implements TestViewContainerProvid
                 instancesSection={FailedInstancesSection}
                 cardSelectionMessageCreator={props.assessmentCardSelectionMessageCreator}
                 cardsViewData={props.assessmentCardsViewData}
+                includeStepsText={false}
                 selectedVisualizationType={
                     props.assessmentStoreData?.assessmentNavState?.selectedTestType
                 }
