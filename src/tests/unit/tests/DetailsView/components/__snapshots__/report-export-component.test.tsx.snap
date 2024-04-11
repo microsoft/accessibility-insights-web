@@ -3,7 +3,6 @@
 exports[`ReportExportComponent clicking export on the dialog triggers generateExports, generates json and html with the current exportDescription 1`] = `
 <DocumentFragment>
   <mock-exportdialog
-    deps="[object Object]"
     description="test content with special characters: <> $ " \` '"
     featureflagstoredata="[object Object]"
     htmlexportdata="test html"
@@ -22,7 +21,6 @@ exports[`ReportExportComponent clicking export on the dialog triggers generateEx
 exports[`ReportExportComponent edit text field: test content with special characters: <> $ " \` ' 1`] = `
 <DocumentFragment>
   <mock-exportdialog
-    deps="[object Object]"
     description="test content with special characters: <> $ " \` '"
     featureflagstoredata="[object Object]"
     htmlexportdata=""
@@ -41,7 +39,6 @@ exports[`ReportExportComponent edit text field: test content with special charac
 exports[`ReportExportComponent on dialog opened 1`] = `
 <DocumentFragment>
   <mock-exportdialog
-    deps="[object Object]"
     description="export description"
     featureflagstoredata="[object Object]"
     htmlexportdata=""
@@ -59,7 +56,6 @@ exports[`ReportExportComponent on dialog opened 1`] = `
 exports[`ReportExportComponent render with dialog closed 1`] = `
 <DocumentFragment>
   <mock-exportdialog
-    deps="[object Object]"
     description=""
     featureflagstoredata="[object Object]"
     htmlexportdata=""
@@ -78,7 +74,6 @@ exports[`ReportExportComponent render with dialog closed 1`] = `
 exports[`ReportExportComponent render with dialog open 1`] = `
 <DocumentFragment>
   <mock-exportdialog
-    deps="[object Object]"
     description=""
     featureflagstoredata="[object Object]"
     htmlexportdata=""

@@ -50,10 +50,7 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
             <ContentContainer>
                 <FastPassTitleSection />
                 <DetailsSection {...props} />
-                <FastPassReportSummary
-                    {...props}
-                    featureFlagStoreData={props.deps.featureFlagStoreData}
-                />
+                <FastPassReportSummary {...props} />
                 <ResultsContainer {...props}>
                     <FastPassResultsTitleSection title="Automated checks" />
                     <FastPassReportAutomatedChecksResults {...props} />
@@ -66,7 +63,6 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                             tabStopsTestViewController: undefined,
                             ...props.deps,
                         }}
-                        featureFlagStoreData={props.deps.featureFlagStoreData}
                         tabStopRequirementState={props.results.tabStops}
                         alwaysRenderSection={true}
                     />
