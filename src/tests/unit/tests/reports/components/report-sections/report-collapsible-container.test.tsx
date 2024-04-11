@@ -3,7 +3,7 @@
 import { render } from '@testing-library/react';
 import { forOwn } from 'lodash';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { Mock } from 'typemoq';
 
 import { HeadingElementForLevel } from '../../../../../../common/components/heading-element-for-level';
 import {
@@ -15,14 +15,13 @@ import { mockReactComponents } from '../../../../mock-helpers/mock-module-helper
 jest.mock('../../../../../../common/components/heading-element-for-level');
 describe('ReportCollapsibleContainerControl', () => {
     mockReactComponents([HeadingElementForLevel]);
-    let onExpandToggleMock: IMock<(event: React.MouseEvent<HTMLDivElement>) => void>;
     const optionalPropertiesObject = {
         contentClassName: [undefined, 'content-class-name-a'],
         containerClassName: [undefined, 'a-container'],
         buttonAriaLabel: [undefined, 'some button label'],
         id: [undefined, 'some id'],
     };
-    onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
+    const onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {
@@ -34,11 +33,8 @@ describe('ReportCollapsibleContainerControl', () => {
                     [propertyName]: value,
                     onExpandToggle: onExpandToggleMock.object,
                 };
-                //console.log(props, "props");
                 const control = ReportCollapsibleContainerControl(props);
-                //console.log(control, "control");
                 const renderResult = render(control);
-                //console.log(renderResult, "renderResult");
 
                 expect(renderResult.asFragment()).toMatchSnapshot();
             });
