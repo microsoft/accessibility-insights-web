@@ -30,8 +30,6 @@ describe('ReportCollapsibleContainerControl', () => {
                     content: <div>Some content</div>,
                     headingLevel: 5,
                     [propertyName]: value,
-                    deps: null,
-                    isExpanded: false,
                 };
                 const control = ReportCollapsibleContainerControl(props);
                 const renderResult = render(control);

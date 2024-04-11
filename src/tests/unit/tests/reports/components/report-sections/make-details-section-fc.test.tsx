@@ -58,13 +58,7 @@ describe('makeDetailsSection', () => {
 
     test.each(descriptionValues)('renders with description: %s', description => {
         const props: DetailsSectionProps = {
-            targetAppInfo,
             description,
-            environmentInfo: {
-                browserSpec: 'environment-version',
-                extensionVersion: 'extension-version',
-                axeCoreVersion: 'axe-version',
-            },
             toUtcString: toUtcStringMock.object,
             scanMetadata,
         };

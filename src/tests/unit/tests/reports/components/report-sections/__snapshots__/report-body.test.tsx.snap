@@ -8,16 +8,11 @@ exports[`ReportBody renders 1`] = `
       deps="[object Object]"
       description="test description"
       fixinstructionprocessor="undefined"
-      pagetitle="page-title"
-      pageurl="url:target-page"
       recommendcolor="undefined"
       scanmetadata="[object Object]"
-      scanresult="[object Object]"
       sectionfactory="[object Object]"
       sectionheadinglevel="3"
       shouldalertfailurescount="false"
-      targetappinfo="[object Object]"
-      tooldata="[object Object]"
     />
     <mock-contentsection>
       <mock-automatedcheckstitlesection />
@@ -26,96 +21,66 @@ exports[`ReportBody renders 1`] = `
         deps="[object Object]"
         description="test description"
         fixinstructionprocessor="undefined"
-        pagetitle="page-title"
-        pageurl="url:target-page"
         recommendcolor="undefined"
         scanmetadata="[object Object]"
-        scanresult="[object Object]"
         sectionfactory="[object Object]"
         sectionheadinglevel="3"
         shouldalertfailurescount="false"
-        targetappinfo="[object Object]"
-        tooldata="[object Object]"
       />
       <mock-alloutcomessummarysection
         cardsviewdata="[object Object]"
         deps="[object Object]"
         description="test description"
         fixinstructionprocessor="undefined"
-        pagetitle="page-title"
-        pageurl="url:target-page"
         recommendcolor="undefined"
         scanmetadata="[object Object]"
-        scanresult="[object Object]"
         sectionfactory="[object Object]"
         sectionheadinglevel="3"
         shouldalertfailurescount="false"
-        targetappinfo="[object Object]"
-        tooldata="[object Object]"
       />
       <mock-resultscontainer
         cardsviewdata="[object Object]"
         deps="[object Object]"
         description="test description"
         fixinstructionprocessor="undefined"
-        pagetitle="page-title"
-        pageurl="url:target-page"
         recommendcolor="undefined"
         scanmetadata="[object Object]"
-        scanresult="[object Object]"
         sectionfactory="[object Object]"
         sectionheadinglevel="3"
         shouldalertfailurescount="false"
-        targetappinfo="[object Object]"
-        tooldata="[object Object]"
       >
         <mock-failedinstancessection
           cardsviewdata="[object Object]"
           deps="[object Object]"
           description="test description"
           fixinstructionprocessor="undefined"
-          pagetitle="page-title"
-          pageurl="url:target-page"
           recommendcolor="undefined"
           scanmetadata="[object Object]"
-          scanresult="[object Object]"
           sectionfactory="[object Object]"
           sectionheadinglevel="3"
           shouldalertfailurescount="false"
-          targetappinfo="[object Object]"
-          tooldata="[object Object]"
         />
         <mock-passedcheckssection
           cardsviewdata="[object Object]"
           deps="[object Object]"
           description="test description"
           fixinstructionprocessor="undefined"
-          pagetitle="page-title"
-          pageurl="url:target-page"
           recommendcolor="undefined"
           scanmetadata="[object Object]"
-          scanresult="[object Object]"
           sectionfactory="[object Object]"
           sectionheadinglevel="3"
           shouldalertfailurescount="false"
-          targetappinfo="[object Object]"
-          tooldata="[object Object]"
         />
         <mock-notapplicablecheckssection
           cardsviewdata="[object Object]"
           deps="[object Object]"
           description="test description"
           fixinstructionprocessor="undefined"
-          pagetitle="page-title"
-          pageurl="url:target-page"
           recommendcolor="undefined"
           scanmetadata="[object Object]"
-          scanresult="[object Object]"
           sectionfactory="[object Object]"
           sectionheadinglevel="3"
           shouldalertfailurescount="false"
-          targetappinfo="[object Object]"
-          tooldata="[object Object]"
         />
       </mock-resultscontainer>
     </mock-contentsection>
@@ -125,16 +90,11 @@ exports[`ReportBody renders 1`] = `
         deps="[object Object]"
         description="test description"
         fixinstructionprocessor="undefined"
-        pagetitle="page-title"
-        pageurl="url:target-page"
         recommendcolor="undefined"
         scanmetadata="[object Object]"
-        scanresult="[object Object]"
         sectionfactory="[object Object]"
         sectionheadinglevel="3"
         shouldalertfailurescount="false"
-        targetappinfo="[object Object]"
-        tooldata="[object Object]"
       />
     </mock-footersection>
   </mock-bodysection>
@@ -197,8 +157,6 @@ exports[`ReportBody renders: allOutcomesSummarySectionProps 1`] = `
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
-  "pageTitle": "page-title",
-  "pageUrl": "url:target-page",
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
     "targetAppInfo": {
@@ -219,33 +177,10 @@ exports[`ReportBody renders: allOutcomesSummarySectionProps 1`] = `
       },
     },
   },
-  "scanResult": {
-    "inapplicable": [],
-    "incomplete": [],
-    "passes": [],
-    "targetPageTitle": "page-title",
-    "targetPageUrl": "url:target-page",
-    "timestamp": "today",
-    "violations": [],
-  },
   "sectionFactory": "Removed for Snapshot",
   "sectionHeadingLevel": 3,
   "shouldAlertFailuresCount": false,
-  "targetAppInfo": {
-    "name": "app",
-  },
   "toUtcString": [Function],
-  "toolData": {
-    "applicationProperties": {
-      "environmentName": "environmentName",
-      "name": "app-name",
-      "version": "app-version",
-    },
-    "scanEngineProperties": {
-      "name": "engine-name",
-      "version": "engine-version",
-    },
-  },
   "userConfigurationStoreData": null,
 }
 `;
@@ -306,8 +241,6 @@ exports[`ReportBody renders: detailsSectionProps 1`] = `
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
-  "pageTitle": "page-title",
-  "pageUrl": "url:target-page",
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
     "targetAppInfo": {
@@ -328,33 +261,10 @@ exports[`ReportBody renders: detailsSectionProps 1`] = `
       },
     },
   },
-  "scanResult": {
-    "inapplicable": [],
-    "incomplete": [],
-    "passes": [],
-    "targetPageTitle": "page-title",
-    "targetPageUrl": "url:target-page",
-    "timestamp": "today",
-    "violations": [],
-  },
   "sectionFactory": "Removed for Snapshot",
   "sectionHeadingLevel": 3,
   "shouldAlertFailuresCount": false,
-  "targetAppInfo": {
-    "name": "app",
-  },
   "toUtcString": [Function],
-  "toolData": {
-    "applicationProperties": {
-      "environmentName": "environmentName",
-      "name": "app-name",
-      "version": "app-version",
-    },
-    "scanEngineProperties": {
-      "name": "engine-name",
-      "version": "engine-version",
-    },
-  },
   "userConfigurationStoreData": null,
 }
 `;
@@ -415,8 +325,6 @@ exports[`ReportBody renders: failedInstancesSectionProps 1`] = `
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
-  "pageTitle": "page-title",
-  "pageUrl": "url:target-page",
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
     "targetAppInfo": {
@@ -437,33 +345,10 @@ exports[`ReportBody renders: failedInstancesSectionProps 1`] = `
       },
     },
   },
-  "scanResult": {
-    "inapplicable": [],
-    "incomplete": [],
-    "passes": [],
-    "targetPageTitle": "page-title",
-    "targetPageUrl": "url:target-page",
-    "timestamp": "today",
-    "violations": [],
-  },
   "sectionFactory": "Removed for Snapshot",
   "sectionHeadingLevel": 3,
   "shouldAlertFailuresCount": false,
-  "targetAppInfo": {
-    "name": "app",
-  },
   "toUtcString": [Function],
-  "toolData": {
-    "applicationProperties": {
-      "environmentName": "environmentName",
-      "name": "app-name",
-      "version": "app-version",
-    },
-    "scanEngineProperties": {
-      "name": "engine-name",
-      "version": "engine-version",
-    },
-  },
   "userConfigurationStoreData": null,
 }
 `;
@@ -524,8 +409,6 @@ exports[`ReportBody renders: footerTextPropsProps 1`] = `
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
-  "pageTitle": "page-title",
-  "pageUrl": "url:target-page",
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
     "targetAppInfo": {
@@ -546,33 +429,10 @@ exports[`ReportBody renders: footerTextPropsProps 1`] = `
       },
     },
   },
-  "scanResult": {
-    "inapplicable": [],
-    "incomplete": [],
-    "passes": [],
-    "targetPageTitle": "page-title",
-    "targetPageUrl": "url:target-page",
-    "timestamp": "today",
-    "violations": [],
-  },
   "sectionFactory": "Removed for Snapshot",
   "sectionHeadingLevel": 3,
   "shouldAlertFailuresCount": false,
-  "targetAppInfo": {
-    "name": "app",
-  },
   "toUtcString": [Function],
-  "toolData": {
-    "applicationProperties": {
-      "environmentName": "environmentName",
-      "name": "app-name",
-      "version": "app-version",
-    },
-    "scanEngineProperties": {
-      "name": "engine-name",
-      "version": "engine-version",
-    },
-  },
   "userConfigurationStoreData": null,
 }
 `;
@@ -633,8 +493,6 @@ exports[`ReportBody renders: notApplicableChecksSectionProps 1`] = `
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
-  "pageTitle": "page-title",
-  "pageUrl": "url:target-page",
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
     "targetAppInfo": {
@@ -655,33 +513,10 @@ exports[`ReportBody renders: notApplicableChecksSectionProps 1`] = `
       },
     },
   },
-  "scanResult": {
-    "inapplicable": [],
-    "incomplete": [],
-    "passes": [],
-    "targetPageTitle": "page-title",
-    "targetPageUrl": "url:target-page",
-    "timestamp": "today",
-    "violations": [],
-  },
   "sectionFactory": "Removed for Snapshot",
   "sectionHeadingLevel": 3,
   "shouldAlertFailuresCount": false,
-  "targetAppInfo": {
-    "name": "app",
-  },
   "toUtcString": [Function],
-  "toolData": {
-    "applicationProperties": {
-      "environmentName": "environmentName",
-      "name": "app-name",
-      "version": "app-version",
-    },
-    "scanEngineProperties": {
-      "name": "engine-name",
-      "version": "engine-version",
-    },
-  },
   "userConfigurationStoreData": null,
 }
 `;
@@ -742,8 +577,6 @@ exports[`ReportBody renders: passedChecksSectionProps 1`] = `
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
-  "pageTitle": "page-title",
-  "pageUrl": "url:target-page",
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
     "targetAppInfo": {
@@ -764,33 +597,10 @@ exports[`ReportBody renders: passedChecksSectionProps 1`] = `
       },
     },
   },
-  "scanResult": {
-    "inapplicable": [],
-    "incomplete": [],
-    "passes": [],
-    "targetPageTitle": "page-title",
-    "targetPageUrl": "url:target-page",
-    "timestamp": "today",
-    "violations": [],
-  },
   "sectionFactory": "Removed for Snapshot",
   "sectionHeadingLevel": 3,
   "shouldAlertFailuresCount": false,
-  "targetAppInfo": {
-    "name": "app",
-  },
   "toUtcString": [Function],
-  "toolData": {
-    "applicationProperties": {
-      "environmentName": "environmentName",
-      "name": "app-name",
-      "version": "app-version",
-    },
-    "scanEngineProperties": {
-      "name": "engine-name",
-      "version": "engine-version",
-    },
-  },
   "userConfigurationStoreData": null,
 }
 `;
@@ -852,8 +662,6 @@ exports[`ReportBody renders: resultsContainerProps 1`] = `
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
-  "pageTitle": "page-title",
-  "pageUrl": "url:target-page",
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
     "targetAppInfo": {
@@ -874,33 +682,10 @@ exports[`ReportBody renders: resultsContainerProps 1`] = `
       },
     },
   },
-  "scanResult": {
-    "inapplicable": [],
-    "incomplete": [],
-    "passes": [],
-    "targetPageTitle": "page-title",
-    "targetPageUrl": "url:target-page",
-    "timestamp": "today",
-    "violations": [],
-  },
   "sectionFactory": "Removed for Snapshot",
   "sectionHeadingLevel": 3,
   "shouldAlertFailuresCount": false,
-  "targetAppInfo": {
-    "name": "app",
-  },
   "toUtcString": [Function],
-  "toolData": {
-    "applicationProperties": {
-      "environmentName": "environmentName",
-      "name": "app-name",
-      "version": "app-version",
-    },
-    "scanEngineProperties": {
-      "name": "engine-name",
-      "version": "engine-version",
-    },
-  },
   "userConfigurationStoreData": null,
 }
 `;
@@ -961,8 +746,6 @@ exports[`ReportBody renders: sectionProps 1`] = `
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
-  "pageTitle": "page-title",
-  "pageUrl": "url:target-page",
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
     "targetAppInfo": {
@@ -983,33 +766,10 @@ exports[`ReportBody renders: sectionProps 1`] = `
       },
     },
   },
-  "scanResult": {
-    "inapplicable": [],
-    "incomplete": [],
-    "passes": [],
-    "targetPageTitle": "page-title",
-    "targetPageUrl": "url:target-page",
-    "timestamp": "today",
-    "violations": [],
-  },
   "sectionFactory": "Removed for Snapshot",
   "sectionHeadingLevel": 3,
   "shouldAlertFailuresCount": false,
-  "targetAppInfo": {
-    "name": "app",
-  },
   "toUtcString": [Function],
-  "toolData": {
-    "applicationProperties": {
-      "environmentName": "environmentName",
-      "name": "app-name",
-      "version": "app-version",
-    },
-    "scanEngineProperties": {
-      "name": "engine-name",
-      "version": "engine-version",
-    },
-  },
   "userConfigurationStoreData": null,
 }
 `;

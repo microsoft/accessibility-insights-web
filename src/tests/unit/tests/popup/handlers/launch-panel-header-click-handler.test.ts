@@ -73,11 +73,9 @@ describe('FeedbackMenuClickHandlerTest', () => {
             deps: deps,
             title: 'title',
             subtitle: 'subtitle',
-            supportLinkHandler: null,
             popupWindow: null,
             featureFlags: null,
             openAdhocToolsPanel: null,
-            dropdownClickHandler: null,
         };
         const header = new LaunchPanelHeader(props);
         header.setState = setStateMock.object;
@@ -102,10 +100,8 @@ describe('FeedbackMenuClickHandlerTest', () => {
             title: 'title',
             subtitle: 'subtitle',
             openAdhocToolsPanel: openAdhocToolsPanelMock.object,
-            supportLinkHandler: null,
             popupWindow: null,
             featureFlags: null,
-            dropdownClickHandler: null,
         };
 
         const header = new LaunchPanelHeader(props);
