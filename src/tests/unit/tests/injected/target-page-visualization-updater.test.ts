@@ -31,7 +31,7 @@ describe('TargetPageVisualizationUpdater', () => {
     let selectorMapStub: SelectorToVisualizationMap;
     let stepKeyStub: string;
     let storeDataStub: TargetPageStoreData;
-    let visualizationTypeStub: VisualizationType | number;
+    let visualizationTypeStub: VisualizationType;
     let configIdStub: string;
 
     let expectedNewState: TestStepVisualizationState;
@@ -57,7 +57,7 @@ describe('TargetPageVisualizationUpdater', () => {
             featureFlagStoreData: {},
             unifiedScanResultStoreData: {},
         } as TargetPageStoreData;
-        visualizationTypeStub = -1;
+        visualizationTypeStub = 0;
 
         expectedPreviousState = undefined;
         isVisualizationEnabledResult = true;

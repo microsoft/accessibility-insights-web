@@ -54,7 +54,7 @@ describe('VisualizationStateChangeHandler', () => {
         configFactoryMock
             .setup(m => m.forEachConfig(It.isAny()))
             .callback(async givenCallback => {
-                givenCallback(null, -1, requirementConfigStub);
+                givenCallback(null, 0, requirementConfigStub);
             });
 
         setupSwitcherNavConfiguration(
@@ -69,9 +69,8 @@ describe('VisualizationStateChangeHandler', () => {
             assessmentStoreData: assessmentStoreDataStub,
         } as TargetPageStoreData;
 
-        const type1: number = -1;
         visualizationUpdaterMock.verify(
-            m => m(type1, requirementConfigStub.key, It.isValue(expectedStoreData)),
+            m => m(0, requirementConfigStub.key, It.isValue(expectedStoreData)),
             Times.once(),
         );
     });
@@ -80,7 +79,7 @@ describe('VisualizationStateChangeHandler', () => {
         configFactoryMock
             .setup(m => m.forEachConfig(It.isAny()))
             .callback(async givenCallback => {
-                givenCallback(null, -1);
+                givenCallback(null, 0);
             });
 
         setupSwitcherNavConfiguration(
@@ -95,9 +94,8 @@ describe('VisualizationStateChangeHandler', () => {
             assessmentStoreData: assessmentStoreDataStub,
         } as TargetPageStoreData;
 
-        const type2: number = -1;
         visualizationUpdaterMock.verify(
-            m => m(type2, undefined, It.isValue(expectedStoreData)),
+            m => m(0, undefined, It.isValue(expectedStoreData)),
             Times.once(),
         );
     });

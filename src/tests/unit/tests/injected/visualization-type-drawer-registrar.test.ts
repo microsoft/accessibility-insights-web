@@ -17,7 +17,7 @@ describe('VisualizationTypeDrawerRegistrar', () => {
     let visualizationConfigFactoryMock: IMock<VisualizationConfigurationFactory>;
     let drawerProviderMock: IMock<DrawerProvider>;
     let testSubject: VisualizationTypeDrawerRegistrar;
-    let typeStub: VisualizationType | number;
+    let typeStub: VisualizationType;
     let configMock: IMock<VisualizationConfiguration>;
     let identifierStub: string;
     let drawerStub: Drawer;
@@ -27,7 +27,7 @@ describe('VisualizationTypeDrawerRegistrar', () => {
         registerDrawerMock = Mock.ofType<RegisterDrawer>();
         visualizationConfigFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         drawerProviderMock = Mock.ofType<DrawerProvider>();
-        typeStub = -1;
+        typeStub = 0;
         configMock = Mock.ofType<VisualizationConfiguration>();
         identifierStub = 'some id';
         drawerStub = {} as Drawer;

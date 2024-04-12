@@ -32,7 +32,7 @@ describe('AnalyzerProviderTests', () => {
     let testObject: AnalyzerProvider;
     let scannerMock: IMock<ScannerUtils>;
     let dateGetterMock: IMock<() => Date>;
-    let typeStub: VisualizationType | number;
+    let typeStub: VisualizationType;
     let keyStub: string;
     let analyzerMessageTypeStub: string;
     let filterResultsByRulesMock: IMock<IResultRuleFilter>;
@@ -43,7 +43,7 @@ describe('AnalyzerProviderTests', () => {
     let tabStopsRequirementResultProcessorMock: IMock<TabStopsRequirementResultProcessor>;
 
     beforeEach(() => {
-        typeStub = -1;
+        typeStub = 0;
         keyStub = 'test key';
         analyzerMessageTypeStub = 'analyzer message stub';
 
