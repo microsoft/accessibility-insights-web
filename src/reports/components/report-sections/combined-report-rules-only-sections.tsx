@@ -34,7 +34,6 @@ const makeCombinedReportRulesOnlySection = (options: {
                         outcomeCount={cardRuleResults.length}
                         outcomeType={outcomeType}
                         title={title}
-                        titleSize="title"
                     />
                 ),
                 content: (

@@ -61,8 +61,6 @@ describe(FastPassReport.displayName, () => {
         FooterText,
     ]);
     it('renders', () => {
-        const pageTitle = 'page-title';
-        const pageUrl = 'url:target-page';
         const scanDate = new Date(Date.UTC(0, 1, 2, 3));
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
@@ -85,19 +83,7 @@ describe(FastPassReport.displayName, () => {
             deps: {} as FastPassReportDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
-            pageTitle,
-            pageUrl,
             description: 'test description',
-            toolData,
-            scanResult: {
-                passes: [],
-                violations: [],
-                inapplicable: [],
-                incomplete: [],
-                timestamp: 'today',
-                targetPageTitle: pageTitle,
-                targetPageUrl: pageUrl,
-            },
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
@@ -120,8 +106,6 @@ describe(FastPassReport.displayName, () => {
                     },
                 },
             },
-            userConfigurationStoreData: null,
-            targetAppInfo,
             shouldAlertFailuresCount: false,
             scanMetadata: {
                 toolData,

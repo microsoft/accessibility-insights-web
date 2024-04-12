@@ -340,7 +340,7 @@ export class AssessmentActionMessageCreator extends DevToolActionMessageCreator 
 
     public passUnmarkedInstances(test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: ToggleActionPayload = {
+        const payload: AssessmentToggleActionPayload = {
             test,
             requirement,
             telemetry,

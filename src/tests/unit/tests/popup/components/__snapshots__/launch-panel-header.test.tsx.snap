@@ -17,7 +17,6 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
     />
     <mock-hamburgermenubutton
       deps="[object Object]"
-      featureflagdata="[object Object]"
       header="[object Object]"
       popupwindow="[object Object]"
     />
@@ -58,7 +57,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
     "launchPanelHeaderClickHandler": {},
     "popupActionMessageCreator": {},
   },
-  "featureFlagData": {},
   "header": LaunchPanelHeader {
     "_reactInternalFiber": FiberNode {
       "_debugHookTypes": null,
@@ -412,7 +410,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                       "launchPanelHeaderClickHandler": {},
                       "popupActionMessageCreator": {},
                     },
-                    "featureFlagData": {},
                     "header": [Circular],
                     "popupWindow": {},
                   },
@@ -426,7 +423,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                       "launchPanelHeaderClickHandler": {},
                       "popupActionMessageCreator": {},
                     },
-                    "featureFlagData": {},
                     "header": [Circular],
                     "popupWindow": {},
                   },
@@ -436,7 +432,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                   "sibling": null,
                   "stateNode": <mock-hamburgermenubutton
                     deps="[object Object]"
-                    featureflagdata="[object Object]"
                     header="[object Object]"
                     popupwindow="[object Object]"
                   />,
@@ -466,7 +461,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                             "popupActionMessageCreator": {},
                           }
                         }
-                        featureFlagData={{}}
                         header={[Circular]}
                         popupWindow={{}}
                       />,
@@ -508,7 +502,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                             "popupActionMessageCreator": {},
                           }
                         }
-                        featureFlagData={{}}
                         header={[Circular]}
                         popupWindow={{}}
                       />,
@@ -682,7 +675,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                     "popupActionMessageCreator": {},
                   }
                 }
-                featureFlagData={{}}
                 header={[Circular]}
                 popupWindow={{}}
               />
@@ -727,7 +719,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                     "popupActionMessageCreator": {},
                   }
                 }
-                featureFlagData={{}}
                 header={[Circular]}
                 popupWindow={{}}
               />
@@ -754,7 +745,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
             />
             <mock-hamburgermenubutton
               deps="[object Object]"
-              featureflagdata="[object Object]"
               header="[object Object]"
               popupwindow="[object Object]"
             />
@@ -804,7 +794,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                         "popupActionMessageCreator": {},
                       }
                     }
-                    featureFlagData={{}}
                     header={[Circular]}
                     popupWindow={{}}
                   />
@@ -855,7 +844,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                         "popupActionMessageCreator": {},
                       }
                     }
-                    featureFlagData={{}}
                     header={[Circular]}
                     popupWindow={{}}
                   />
@@ -903,7 +891,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                   "popupActionMessageCreator": {},
                 }
               }
-              featureFlagData={{}}
               header={[Circular]}
               popupWindow={{}}
             />
@@ -948,7 +935,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                   "popupActionMessageCreator": {},
                 }
               }
-              featureFlagData={{}}
               header={[Circular]}
               popupWindow={{}}
             />
@@ -1000,7 +986,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                         "popupActionMessageCreator": {},
                       }
                     }
-                    featureFlagData={{}}
                     header={[Circular]}
                     popupWindow={{}}
                   />
@@ -1051,7 +1036,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                         "popupActionMessageCreator": {},
                       }
                     }
-                    featureFlagData={{}}
                     header={[Circular]}
                     popupWindow={{}}
                   />
@@ -1077,11 +1061,8 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
           "launchPanelHeaderClickHandler": {},
           "popupActionMessageCreator": {},
         },
-        "dropdownClickHandler": {},
         "featureFlags": {},
         "openAdhocToolsPanel": [Function],
-        "openFeedbackDialog": {},
-        "openGettingStartedDialog": {},
         "popupWindow": {},
         "subtitle": "test subtitle",
         "title": "test title",
@@ -1095,11 +1076,8 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
           "launchPanelHeaderClickHandler": {},
           "popupActionMessageCreator": {},
         },
-        "dropdownClickHandler": {},
         "featureFlags": {},
         "openAdhocToolsPanel": [Function],
-        "openFeedbackDialog": {},
-        "openGettingStartedDialog": {},
         "popupWindow": {},
         "subtitle": "test subtitle",
         "title": "test title",
@@ -1163,7 +1141,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                 />
                 <mock-hamburgermenubutton
                   deps="[object Object]"
-                  featureflagdata="[object Object]"
                   header="[object Object]"
                   popupwindow="[object Object]"
                 />
@@ -1206,11 +1183,8 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                       "popupActionMessageCreator": {},
                     }
                   }
-                  dropdownClickHandler={{}}
                   featureFlags={{}}
                   openAdhocToolsPanel={[Function]}
-                  openFeedbackDialog={{}}
-                  openGettingStartedDialog={{}}
                   popupWindow={{}}
                   subtitle="test subtitle"
                   title="test title"
@@ -1247,11 +1221,8 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                 "popupActionMessageCreator": {},
               }
             }
-            dropdownClickHandler={{}}
             featureFlags={{}}
             openAdhocToolsPanel={[Function]}
-            openFeedbackDialog={{}}
-            openGettingStartedDialog={{}}
             popupWindow={{}}
             subtitle="test subtitle"
             title="test title"
@@ -1284,7 +1255,6 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
               />
               <mock-hamburgermenubutton
                 deps="[object Object]"
-                featureflagdata="[object Object]"
                 header="[object Object]"
                 popupwindow="[object Object]"
               />
@@ -1324,11 +1294,8 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
                   "popupActionMessageCreator": {},
                 }
               }
-              dropdownClickHandler={{}}
               featureFlags={{}}
               openAdhocToolsPanel={[Function]}
-              openFeedbackDialog={{}}
-              openGettingStartedDialog={{}}
               popupWindow={{}}
               subtitle="test subtitle"
               title="test title"
@@ -1363,11 +1330,8 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
         "launchPanelHeaderClickHandler": {},
         "popupActionMessageCreator": {},
       },
-      "dropdownClickHandler": {},
       "featureFlags": {},
       "openAdhocToolsPanel": [Function],
-      "openFeedbackDialog": {},
-      "openGettingStartedDialog": {},
       "popupWindow": {},
       "subtitle": "test subtitle",
       "title": "test title",

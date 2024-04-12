@@ -88,7 +88,6 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       </button>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -244,7 +243,6 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       </button>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -400,7 +398,6 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       </button>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -556,7 +553,6 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       </button>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -685,7 +681,6 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       </button>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -814,7 +809,6 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       </button>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       featureflagstoredata="[object Object]"
       htmlexportdata=""
       htmlfilename="Assessment_20240307_commandbartesttabtit.html"
@@ -979,7 +973,6 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       </div>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -1142,7 +1135,6 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       </div>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -1308,7 +1300,6 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       </div>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -1471,7 +1462,6 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       </div>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -1603,7 +1593,6 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       </div>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -1735,7 +1724,6 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       </div>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -1834,7 +1822,6 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
     </div>
     <mock-commandbarbuttonsmenu />
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -1975,7 +1962,6 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       </button>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -2084,7 +2070,6 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       </div>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -2192,7 +2177,6 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       </div>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""
@@ -2321,7 +2305,6 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       </button>
     </div>
     <mock-exportdialog
-      deps="[object Object]"
       description=""
       featureflagstoredata="[object Object]"
       htmlexportdata=""

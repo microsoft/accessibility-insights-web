@@ -131,7 +131,6 @@ async function launchNewBrowserContext(
         // Headless doesn't support extensions
         // see https://playwright.dev/#version=v1.2.0&path=docs%2Fapi.md&q=working-with-chrome-extensions
         headless: false,
-        defaultViewport: null,
         args: [
             // We use the smallest size we support both because we want to ensure functionality works there
             // and also because it improves test runtime to render fewer pixels, especially in environments
