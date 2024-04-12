@@ -103,11 +103,10 @@ export class ReportExportComponent extends React.Component<
     };
 
     public render(): JSX.Element {
-        const { deps, reportExportFormat, isOpen, featureFlagStoreData } = this.props;
+        const { reportExportFormat, isOpen, featureFlagStoreData } = this.props;
 
         return (
             <ExportDialog
-                deps={deps}
                 isOpen={isOpen}
                 htmlFileName={this.state.htmlExportName}
                 jsonFileName={this.state.jsonExportName}

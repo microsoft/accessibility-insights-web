@@ -67,11 +67,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
 
     const leftNav: JSX.Element = (
         <div className={`${styles.leftNav} main-nav`}>
-            <Switcher
-                deps={props.deps}
-                featureFlagStoreData={featureFlagStoreData}
-                pivotKey={props.selectedPivot}
-            />
+            <Switcher deps={props.deps} pivotKey={props.selectedPivot} />
             <switcherNavConfiguration.LeftNav
                 deps={deps}
                 assessmentsProvider={filteredProvider}

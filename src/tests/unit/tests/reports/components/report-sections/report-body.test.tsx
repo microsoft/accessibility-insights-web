@@ -59,8 +59,6 @@ describe('ReportBody', () => {
         NotApplicableChecksSection,
     ]);
     it('renders', () => {
-        const pageTitle = 'page-title';
-        const pageUrl = 'url:target-page';
         const scanDate = new Date(Date.UTC(0, 1, 2, 3));
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
@@ -83,19 +81,7 @@ describe('ReportBody', () => {
             deps: {} as CommonInstancesSectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
-            pageTitle,
-            pageUrl,
             description: 'test description',
-            toolData,
-            scanResult: {
-                passes: [],
-                violations: [],
-                inapplicable: [],
-                incomplete: [],
-                timestamp: 'today',
-                targetPageTitle: pageTitle,
-                targetPageUrl: pageUrl,
-            },
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
@@ -105,7 +91,6 @@ describe('ReportBody', () => {
                 allCardsCollapsed: true,
             },
             userConfigurationStoreData: null,
-            targetAppInfo,
             shouldAlertFailuresCount: false,
             scanMetadata: {
                 toolData,
