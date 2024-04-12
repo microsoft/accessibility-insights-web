@@ -90,7 +90,6 @@ import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-m
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
-    outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
 } from 'reports/components/requirement-outcome-type';
 import { FastPassReportHtmlGenerator } from 'reports/fast-pass-report-html-generator';
@@ -125,7 +124,6 @@ import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { FileURLProvider } from '../common/file-url-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
-import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
@@ -408,7 +406,6 @@ if (tabId != null) {
             const previewFeatureFlagsHandler = new PreviewFeatureFlagsHandler(
                 getAllFeatureFlagDetails(),
             );
-            const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
             const dropdownClickHandler = new DropdownClickHandler(
                 dropdownActionMessageCreator,
                 TelemetryEventSource.DetailsView,
@@ -671,11 +668,9 @@ if (tabId != null) {
                 userConfigMessageCreator,
                 leftNavLinkBuilder: new LeftNavLinkBuilder(),
                 getStatusForTest,
-                outcomeTypeFromTestStatus,
                 outcomeStatsFromManualTestStatus,
                 assessmentsProviderWithFeaturesEnabled,
                 outcomeTypeSemanticsFromTestStatus,
-                getInnerTextFromJsxElement,
                 storesHub,
                 loadTheme,
                 urlParser,
@@ -711,8 +706,6 @@ if (tabId != null) {
                 clickHandlerFactory,
                 issuesTableHandler,
                 previewFeatureFlagsHandler,
-                scopingFlagsHandler,
-                Assessments,
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
