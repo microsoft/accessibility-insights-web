@@ -82,7 +82,7 @@ import {
     TabStopsFailedCounterInstancesOnly,
 } from 'DetailsView/tab-stops-failed-counter';
 import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
-import * as ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -750,7 +750,7 @@ if (tabId != null) {
             const renderer = new DetailsViewRenderer(
                 deps,
                 dom,
-                ReactDOM.render,
+                createRoot,
                 documentElementSetter,
             );
 
@@ -766,7 +766,7 @@ if (tabId != null) {
         .catch(() => {
             const renderer = createNullifiedRenderer(
                 document,
-                ReactDOM.render,
+                createRoot,
                 createDefaultLogger(),
             );
             renderer.render();
@@ -775,7 +775,7 @@ if (tabId != null) {
 
 function createNullifiedRenderer(
     doc: Document,
-    render: typeof ReactDOM.render,
+    render: typeof createRoot,
     logger: Logger,
 ): NoContentAvailableViewRenderer {
     // using an instance of an actual store (instead of a StoreProxy) so we can get the default state.

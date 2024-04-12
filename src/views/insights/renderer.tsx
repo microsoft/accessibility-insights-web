@@ -4,12 +4,12 @@ import { Theme, ThemeDeps } from 'common/components/theme';
 import { config } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { InsightsRouter, ContentRouteDeps } from './insights-router';
 
 export type RendererDeps = {
     dom: Document;
-    render: ReactDOM.Renderer;
+    render: createRoot;
     initializeFabricIcons: () => void;
 } & ContentRouteDeps &
     ThemeDeps;
@@ -23,11 +23,11 @@ export function renderer(deps: RendererDeps): void {
     initializeFabricIcons();
 
     const insightsRoot = dom.querySelector('#insights-root');
-    render(
+    const root = render(insightsRoot);
+    root.render(
         <>
             <Theme deps={deps} />
             <InsightsRouter deps={deps} />
-        </>,
-        insightsRoot,
+        </>
     );
 }

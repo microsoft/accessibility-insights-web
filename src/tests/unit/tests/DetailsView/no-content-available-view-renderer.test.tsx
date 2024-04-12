@@ -8,7 +8,7 @@ import {
 } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom/client';
 import { TestDocumentCreator } from 'tests/unit/common/test-document-creator';
 import { It, Mock } from 'typemoq';
 

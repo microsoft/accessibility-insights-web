@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { title } from 'content/strings/application';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import { Theme, ThemeDeps, ThemeInnerState } from '../common/components/theme';
 import { WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
@@ -20,7 +20,7 @@ export class MainRenderer {
     constructor(
         private readonly deps: MainRendererDeps,
         private readonly popupHandlers: PopupHandlers,
-        private readonly renderer: typeof ReactDOM.render,
+        private readonly renderer: typeof createRoot,
         private readonly dom: Document,
         private readonly popupWindow: Window,
         private readonly targetTabUrl: string,
@@ -28,12 +28,12 @@ export class MainRenderer {
         private readonly launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory,
         private readonly diagnosticViewToggleFactory: DiagnosticViewToggleFactory,
         private readonly dropdownClickHandler: DropdownClickHandler,
-    ) {}
+    ) { }
 
     public render(): void {
         const container = this.dom.querySelector('#popup-container');
-
-        this.renderer(
+        const root = this.renderer(container);
+        root.render(
             <>
                 <Theme deps={this.deps} />
                 <PopupViewWithStoreSubscription
@@ -48,7 +48,6 @@ export class MainRenderer {
                     dropdownClickHandler={this.dropdownClickHandler}
                 />
             </>,
-            container,
         );
     }
 }

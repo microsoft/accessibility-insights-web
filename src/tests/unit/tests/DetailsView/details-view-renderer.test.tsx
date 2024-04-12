@@ -6,7 +6,7 @@ import { DocumentManipulator } from 'common/document-manipulator';
 import { DetailsView } from 'DetailsView/details-view-container';
 import { DetailsViewRenderer, DetailsViewRendererDeps } from 'DetailsView/details-view-renderer';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom/client';
 import { IMock, It, Mock } from 'typemoq';
 import { TestDocumentCreator } from '../../common/test-document-creator';
 
@@ -18,7 +18,7 @@ describe('DetailsViewRendererTest', () => {
             '<div id="details-container"></div>',
         );
 
-        const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
+        const renderMock: IMock<typeof ReactDOM.createRoot> = Mock.ofInstance(() => null);
 
         const expectedIcon16 = 'icon128.png';
         configMutator.setOption('icon128', expectedIcon16);

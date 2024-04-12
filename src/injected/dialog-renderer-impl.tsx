@@ -26,7 +26,7 @@ import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-
 import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-formatter';
 import { AxeResultToIssueFilingDataConverter } from 'issue-filing/rule-result-to-issue-filing-data';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Target } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 import { rootContainerId } from './constants';
@@ -43,7 +43,7 @@ export class DialogRendererImpl implements DialogRenderer {
 
     constructor(
         private readonly dom: Document,
-        private readonly renderer: typeof ReactDOM.render,
+        private readonly renderer: typeof createRoot,
         private readonly frameMessenger: SingleFrameMessenger,
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
@@ -101,8 +101,8 @@ export class DialogRendererImpl implements DialogRenderer {
                 userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
                 LinkComponent: NewTabLink,
             };
-
-            this.renderer(
+            const root = this.renderer(dialogContainer)
+            root.render(
                 <LayeredDetailsDialogComponent
                     deps={deps}
                     failedRules={failedRules}
@@ -114,7 +114,6 @@ export class DialogRendererImpl implements DialogRenderer {
                     devToolsShortcut={getPlatform(this.windowUtils).devToolsShortcut}
                     devToolActionMessageCreator={mainWindowContext.getDevToolActionMessageCreator()}
                 />,
-                dialogContainer,
             );
             return null;
         } else {

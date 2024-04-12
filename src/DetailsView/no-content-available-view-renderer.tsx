@@ -6,22 +6,22 @@ import {
     NoContentAvailableViewDeps,
 } from 'DetailsView/components/no-content-available/no-content-available-view';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { config } from '../common/configuration';
 
 export class NoContentAvailableViewRenderer {
     constructor(
         private readonly deps: NoContentAvailableViewDeps,
         private readonly dom: Document,
-        private readonly renderer: typeof ReactDOM.render,
+        private readonly renderer: typeof createRoot,
         private readonly documentManipulator: DocumentManipulator,
-    ) {}
+    ) { }
 
     public render(): void {
         const detailsViewContainer = this.dom.querySelector('#details-container');
         const iconPath = '../' + config.getOption('icon128');
         this.documentManipulator.setShortcutIcon(iconPath);
-
-        this.renderer(<NoContentAvailableView deps={this.deps} />, detailsViewContainer);
+        const root = this.renderer(detailsViewContainer)
+        root.render(<NoContentAvailableView deps={this.deps} />);
     }
 }
