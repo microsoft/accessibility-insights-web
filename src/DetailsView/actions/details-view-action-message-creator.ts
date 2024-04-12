@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    AssessmentToggleActionPayload,
     BaseActionPayload,
     OnDetailsViewInitializedPayload,
     OnDetailsViewOpenPayload,
@@ -203,7 +204,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         test: VisualizationType,
         requirement?: string,
     ): void {
-        const payload: ToggleActionPayload = {
+        const payload: ToggleActionPayload | AssessmentToggleActionPayload = {
             test,
             requirement,
         };
@@ -252,7 +253,6 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
                 TelemetryEvents.TelemetryEventSource.DetailsView,
             ),
         };
-
         const message: Message = {
             messageType: Messages.Visualizations.Common.RescanVisualization,
             payload,
@@ -265,7 +265,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         test: VisualizationType,
         requirement?: string,
     ) => {
-        const payload: ToggleActionPayload = {
+        const payload: ToggleActionPayload | AssessmentToggleActionPayload = {
             test: test,
             requirement,
         };

@@ -33,7 +33,6 @@ describe('InteractiveHeader', () => {
             featureFlagStoreData: {
                 'test-flag': true,
             },
-            avatarUrl: 'avatarUrl',
             tabClosed,
             deps: {
                 dropdownClickHandler: dropdownClickHandlerStub,
@@ -54,10 +53,7 @@ describe('InteractiveHeader', () => {
 
     it.each([false, true])('render: isNavCollapsed equals %s', isNavCollapsed => {
         const props: InteractiveHeaderProps = {
-            dropdownClickHandler: null,
             featureFlagStoreData: null,
-            connected: null,
-            avatarUrl: null,
             tabClosed: false,
             deps: null,
             selectedPivot: DetailsViewPivotType.assessment,

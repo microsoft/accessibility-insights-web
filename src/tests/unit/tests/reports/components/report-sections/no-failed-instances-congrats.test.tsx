@@ -19,7 +19,6 @@ describe.each(allInstanceOutcomeTypes)(
         it('renders per snapshot with default message', () => {
             const deps: NoFailedInstancesCongratsDeps = {
                 customCongratsContinueInvestigatingMessage: null,
-                outcomeType: outcomeType,
             };
             const renderResult = render(
                 <NoFailedInstancesCongrats outcomeType={outcomeType} deps={deps} />,
@@ -31,7 +30,6 @@ describe.each(allInstanceOutcomeTypes)(
         it('renders per snapshot with custom message', () => {
             const deps: NoFailedInstancesCongratsDeps = {
                 customCongratsContinueInvestigatingMessage: 'Continue investigating!',
-                outcomeType: outcomeType,
             };
             const renderResult = render(
                 <NoFailedInstancesCongrats outcomeType={outcomeType} deps={deps} />,
