@@ -15,6 +15,7 @@ import { TargetPageStoreData } from 'injected/client-store-listener';
 import { UpdateVisualization } from 'injected/target-page-visualization-updater';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 import { IMock, It, Mock, Times } from 'typemoq';
+import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('VisualizationStateChangeHandler', () => {
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
@@ -54,7 +55,7 @@ describe('VisualizationStateChangeHandler', () => {
         configFactoryMock
             .setup(m => m.forEachConfig(It.isAny()))
             .callback(async givenCallback => {
-                givenCallback(null, 0, requirementConfigStub);
+                givenCallback(null, -1 as VisualizationType, requirementConfigStub);
             });
 
         setupSwitcherNavConfiguration(
@@ -70,7 +71,12 @@ describe('VisualizationStateChangeHandler', () => {
         } as TargetPageStoreData;
 
         visualizationUpdaterMock.verify(
-            m => m(0, requirementConfigStub.key, It.isValue(expectedStoreData)),
+            m =>
+                m(
+                    -1 as VisualizationType,
+                    requirementConfigStub.key,
+                    It.isValue(expectedStoreData),
+                ),
             Times.once(),
         );
     });
@@ -79,7 +85,7 @@ describe('VisualizationStateChangeHandler', () => {
         configFactoryMock
             .setup(m => m.forEachConfig(It.isAny()))
             .callback(async givenCallback => {
-                givenCallback(null, 0);
+                givenCallback(null, -1 as VisualizationType);
             });
 
         setupSwitcherNavConfiguration(
@@ -95,7 +101,7 @@ describe('VisualizationStateChangeHandler', () => {
         } as TargetPageStoreData;
 
         visualizationUpdaterMock.verify(
-            m => m(0, undefined, It.isValue(expectedStoreData)),
+            m => m(-1 as VisualizationType, undefined, It.isValue(expectedStoreData)),
             Times.once(),
         );
     });

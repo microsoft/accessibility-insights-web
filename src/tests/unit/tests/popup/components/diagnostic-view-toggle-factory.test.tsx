@@ -19,9 +19,9 @@ import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('DiagnosticViewToggleFactoryTest', () => {
-    const firstVisualizationTypeStub = 0;
-    const secondVisualizationTypeStub = 1;
-    const thirdAlwaysDisabledVisualizationTypeStub = 2;
+    const firstVisualizationTypeStub = -1 as VisualizationType;
+    const secondVisualizationTypeStub = -2 as VisualizationType;
+    const thirdAlwaysDisabledVisualizationTypeStub = -3 as VisualizationType;
     const testVisualizationTypes: VisualizationType[] = [
         firstVisualizationTypeStub,
         secondVisualizationTypeStub,
@@ -121,7 +121,7 @@ describe('DiagnosticViewToggleFactoryTest', () => {
                 featureFlags={featureFlags}
                 dom={domMock}
                 visualizationType={firstVisualizationTypeStub}
-                key="diagnostic_view_toggle_0"
+                key="diagnostic_view_toggle_-1"
                 shortcutCommands={ShortcutCommandsTestData}
                 visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
                 actionMessageCreator={actionMessageCreator.object}
@@ -134,7 +134,7 @@ describe('DiagnosticViewToggleFactoryTest', () => {
                 featureFlags={featureFlags}
                 dom={domMock}
                 visualizationType={secondVisualizationTypeStub}
-                key="diagnostic_view_toggle_1"
+                key="diagnostic_view_toggle_-2"
                 shortcutCommands={ShortcutCommandsTestData}
                 visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
                 actionMessageCreator={actionMessageCreator.object}

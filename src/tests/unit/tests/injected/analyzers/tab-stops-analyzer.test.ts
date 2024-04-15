@@ -47,7 +47,7 @@ describe('TabStopsAnalyzer', () => {
             analyzerTerminatedMessageType: 'ScanTerminated message type',
             analyzerMessageType: 'ScanCompleted message type',
             key: 'sample key',
-            testType: 0,
+            testType: -1 as VisualizationType,
         };
         simulateTabEvent = null;
         debounceFaker = new DebounceFaker();
@@ -77,7 +77,7 @@ describe('TabStopsAnalyzer', () => {
             tabStopsRequirementResultProcessorMock.object,
             debounceFaker.debounce,
         );
-        visualizationTypeStub = 0 as VisualizationType;
+        visualizationTypeStub = -1 as VisualizationType;
 
         emptyScanCompleteMessage = {
             messageType: configStub.analyzerMessageType,

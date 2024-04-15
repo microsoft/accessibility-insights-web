@@ -43,7 +43,7 @@ describe('AnalyzerProviderTests', () => {
     let tabStopsRequirementResultProcessorMock: IMock<TabStopsRequirementResultProcessor>;
 
     beforeEach(() => {
-        typeStub = 0;
+        typeStub = -1 as VisualizationType;
         keyStub = 'test key';
         analyzerMessageTypeStub = 'analyzer message stub';
 
