@@ -57,7 +57,7 @@ describe('TargetPageVisualizationUpdater', () => {
             featureFlagStoreData: {},
             unifiedScanResultStoreData: {},
         } as TargetPageStoreData;
-        visualizationTypeStub = -1;
+        visualizationTypeStub = -1 as VisualizationType;
 
         expectedPreviousState = undefined;
         isVisualizationEnabledResult = true;
