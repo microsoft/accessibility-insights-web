@@ -53,7 +53,7 @@ describe('DetailsViewBody', () => {
         QuickAssessCommandBar,
         TargetPageHiddenBar,
     ]);
-    let selectedTest: VisualizationType | number;
+    let selectedTest: VisualizationType;
     let configFactoryStub: VisualizationConfigurationFactory;
     let clickHandlerFactoryStub: DetailsViewToggleClickHandlerFactory;
     let props: DetailsViewBodyProps;
@@ -65,7 +65,7 @@ describe('DetailsViewBody', () => {
     describe('render', () => {
         beforeEach(() => {
             setSideNavOpenMock = Mock.ofInstance(() => {});
-            selectedTest = -1;
+            selectedTest = -1 as VisualizationType;
             const RightPanelStub: Readonly<ReactFCWithDisplayName<RightPanelProps>> =
                 NamedFC<RightPanelProps>('test', _ => null);
             const CommandBarStub = QuickAssessCommandBar;

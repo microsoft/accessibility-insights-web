@@ -5,6 +5,7 @@ import { Mock, MockBehavior } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { DisplayableVisualizationTypeData } from '../../../../../common/types/displayable-visualization-type-data';
+import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
     getOverviewTitle,
     getTestViewTitle,
@@ -20,7 +21,7 @@ describe('getTestViewTitle', () => {
         const displayableDataStub = {
             title: 'fake title',
         } as DisplayableVisualizationTypeData;
-        const visualizationType: number = -1;
+        const visualizationType = -1 as VisualizationType;
         const configStub = { displayableData: displayableDataStub } as VisualizationConfiguration;
 
         configFactory.setup(cf => cf.getConfiguration(visualizationType)).returns(() => configStub);

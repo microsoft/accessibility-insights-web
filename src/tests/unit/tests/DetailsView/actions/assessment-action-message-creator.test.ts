@@ -353,7 +353,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
     });
 
     test('disableVisualHelper', () => {
-        const test: number = -1;
+        const test = -1 as VisualizationType;
         const requirement = 'requirement';
         const telemetry = {};
 
@@ -817,7 +817,7 @@ describe('AssessmentActionMessageCreatorTest', () => {
 
     test('cancelStartOver', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
-        const test: number = -1;
+        const test = -1 as VisualizationType;
         const requirement = 'selected requirement';
         const telemetry: RequirementSelectTelemetryData = {
             triggeredBy: 'mouseclick',

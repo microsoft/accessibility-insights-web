@@ -176,10 +176,10 @@ describe('WebVisualizationConfigurationFactory', () => {
             quickAssessProviderMock.object,
         );
 
-        const test1: number = -1;
-        const test2: number = -2;
-        const test3: number = -3;
-        const test4: number = -4;
+        const test1 = -1 as VisualizationType;
+        const test2 = -2 as VisualizationType;
+        const test3 = -3 as VisualizationType;
+        const test4 = -4 as VisualizationType;
         const assessmentStubs = [getAssessmentStub('a-1', test1), getAssessmentStub('a-2', test2)];
         const quickAssessStubs = [
             getAssessmentStub('mp-1', test3),
