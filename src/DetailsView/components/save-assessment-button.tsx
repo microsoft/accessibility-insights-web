@@ -74,9 +74,6 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                         >
                             <Stack.Item grow disableShrink>
                                 <Checkbox
-                                    value={
-                                        !props.userConfigurationStoreData.showSaveAssessmentDialog
-                                    }
                                     label="Don't show again"
                                     onChange={handleDontShowAgainClick}
                                 />
