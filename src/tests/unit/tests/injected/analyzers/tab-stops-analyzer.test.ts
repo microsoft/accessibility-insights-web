@@ -100,7 +100,6 @@ describe('TabStopsAnalyzer', () => {
                 payload: {
                     key: configStub.key,
                     testType: configStub.testType,
-                    tabbedElements: [tabEventStub1],
                     results: [tabEventStub1],
                 },
             };
@@ -205,7 +204,6 @@ describe('TabStopsAnalyzer', () => {
                 payload: {
                     key: configStub.key,
                     testType: configStub.testType,
-                    tabbedElements: [tabEventStub1, tabEventStub2],
                     results: [tabEventStub1, tabEventStub2],
                 },
             };
