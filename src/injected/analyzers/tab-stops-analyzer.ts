@@ -58,6 +58,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         const payload: ScanUpdatePayload = {
             key: this.config.key,
             testType: this.config.testType,
+            tabbedElements: results,
             results: results,
         };
 
