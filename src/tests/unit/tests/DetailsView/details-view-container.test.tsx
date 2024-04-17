@@ -119,7 +119,7 @@ describe('DetailsViewContainer', () => {
 
         it('render once; should call details view opened', () => {
             const storesHubMock = Mock.ofType(ClientStoresHub);
-            const selectedDetailsViewPivotStub: DetailsViewPivotType = -1;
+            const selectedDetailsViewPivotStub: DetailsViewPivotType = -1 as DetailsViewPivotType;
             const props: DetailsViewContainerProps = {
                 storeState: {
                     tabStoreData: {
@@ -151,7 +151,7 @@ describe('DetailsViewContainer', () => {
 
         it('render twice; should not call details view opened on second render', () => {
             const storesHubMock = Mock.ofType(ClientStoresHub);
-            const selectedDetailsViewPivotStub: DetailsViewPivotType = -1;
+            const selectedDetailsViewPivotStub: DetailsViewPivotType = -1 as DetailsViewPivotType;
             const props: DetailsViewContainerProps = {
                 storeState: {
                     tabStoreData: {

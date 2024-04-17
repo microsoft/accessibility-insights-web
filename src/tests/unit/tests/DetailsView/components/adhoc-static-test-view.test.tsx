@@ -57,7 +57,7 @@ describe('AdhocStaticTestView', () => {
             tests: {},
         } as VisualizationStoreData;
         clickHandlerStub = () => {};
-        selectedTest = -1;
+        selectedTest = -1 as VisualizationType;
         featureFlagStoreDataStub = {};
 
         props = {

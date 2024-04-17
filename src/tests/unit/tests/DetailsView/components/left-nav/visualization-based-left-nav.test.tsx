@@ -39,7 +39,7 @@ describe('VisualizationBasedLeftNav', () => {
     let setNavComponentRef: (nav) => void;
 
     beforeEach(() => {
-        visualizationsStub = [-1, -2];
+        visualizationsStub = [-1 as VisualizationType, -2 as VisualizationType];
         leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
         configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         onLinkClickStub = (event, item) => null;

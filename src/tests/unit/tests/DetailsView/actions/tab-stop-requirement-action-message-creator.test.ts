@@ -33,7 +33,7 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
     let sourceStub: TelemetryEventSource;
 
     beforeEach(() => {
-        sourceStub = -1;
+        sourceStub = -1 as TelemetryEventSource;
         dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
         testSubject = new TabStopRequirementActionMessageCreator(
