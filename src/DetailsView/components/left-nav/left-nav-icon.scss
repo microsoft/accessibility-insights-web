@@ -21,4 +21,15 @@
         background: $index-circle-background;
         border-color: $neutral-0;
     }
+
+    @media (forced-colors: active) {
+        li :global(.is-expanded) &,
+        :global(.ms-Nav-compositeLink):hover &,
+        :global(.ms-Nav-compositeLink.is-selected) & {
+            forced-color-adjust: none;
+            background-color: ButtonFace !important;
+              color: ButtonText !important;
+            border-color: ButtonText !important;
+        }
+    }
 }

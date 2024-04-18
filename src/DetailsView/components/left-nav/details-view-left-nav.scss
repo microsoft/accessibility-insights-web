@@ -80,17 +80,46 @@
                     .ms-Button-label,
                     .overview-percent {
                         color: $highlighted-text;
+
+                        @media (forced-colors: active) {
+                            forced-color-adjust: none;
+                            color: HighlightText !important;
+                        }
                     }
 
                     .left-nav-icon {
                         color: $left-nav-icon;
+
+                        @media (forced-colors: active) {
+                            forced-color-adjust: none;
+                            color: HighlightText !important;
+                        }
                     }
                 }
 
                 a::after,
                 button::after {
-                    border-left: $pivot-item-left-border-width $pivot-item-border-style
-                        $communication-primary;
+                    border-left: $pivot-item-left-border-width $pivot-item-border-style $communication-primary;
+                }
+            }
+        }
+
+        .ms-Nav-compositeLink:hover {
+            a,
+            button {
+                .ms-Button-label,
+                .overview-percent {
+                    @media (forced-colors: active) {
+                        forced-color-adjust: none;
+                         color: HighlightText !important;
+                    }
+                }
+
+                .left-nav-icon {
+                    @media (forced-colors: active) {
+                        forced-color-adjust: none;
+                         color: HighlightText !important;
+                    }
                 }
             }
         }
