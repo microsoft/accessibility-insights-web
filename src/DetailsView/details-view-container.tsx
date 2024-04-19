@@ -32,13 +32,11 @@ import { UserConfigurationStoreData } from '../common/types/store-data/user-conf
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
-import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result-to-issue-filing-data';
 import { DetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { NoContentAvailable } from './components/no-content-available/no-content-available';
 
 export type DetailsViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    axeResultToIssueFilingDataConverter: AxeResultToIssueFilingDataConverter;
 } & NarrowModeDetectorDeps &
     DetailsViewContentWithLocalStateDeps;
 
