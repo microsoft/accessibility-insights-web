@@ -105,26 +105,7 @@
             }
         }
 
-        .ms-Nav-compositeLink:hover {
-            a,
-            button {
-                .ms-Button-label,
-                .overview-percent {
-                    @media (forced-colors: active) {
-                        forced-color-adjust: none;
-                        color: HighlightText !important;
-                    }
-                }
-
-                .left-nav-icon {
-                    @media (forced-colors: active) {
-                        forced-color-adjust: none;
-                        color: HighlightText !important;
-                    }
-                }
-            }
-        }
-
+                     
         .ms-Pivot-text {
             font-size: $font-size-s;
         }
