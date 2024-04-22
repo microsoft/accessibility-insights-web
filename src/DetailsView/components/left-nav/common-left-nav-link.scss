@@ -24,9 +24,9 @@
         }
 
         :global(.ms-Nav-compositeLink):hover & {
-            forced-color-adjust: none;
-          color: HighlightText !important;
-          
+            //forced-color-adjust: none;
+
+            //color: inherit !important;
         }
     }
 

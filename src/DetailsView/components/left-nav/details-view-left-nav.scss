@@ -99,7 +99,8 @@
 
                 a::after,
                 button::after {
-                    border-left: $pivot-item-left-border-width $pivot-item-border-style $communication-primary;
+                    border-left: $pivot-item-left-border-width $pivot-item-border-style
+                        $communication-primary;
                 }
             }
         }
@@ -111,14 +112,14 @@
                 .overview-percent {
                     @media (forced-colors: active) {
                         forced-color-adjust: none;
-                         color: HighlightText !important;
+                        color: HighlightText !important;
                     }
                 }
 
                 .left-nav-icon {
                     @media (forced-colors: active) {
                         forced-color-adjust: none;
-                         color: HighlightText !important;
+                        color: HighlightText !important;
                     }
                 }
             }

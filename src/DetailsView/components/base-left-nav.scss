@@ -26,7 +26,6 @@
 
                     @media (forced-colors: active) {
                         forced-color-adjust: none;
-             
                         background-color: Highlight !important;
                     }
                 }
@@ -44,10 +43,12 @@
                 background-color: $nav-link-hover;
 
                 @media (forced-colors: active) {
-                    forced-color-adjust: none;
                     border: 2px solid Highlight !important;
                 }
             }
         }
+    }
+    :global(ms-Nav-compositeLink):focus:hover {
+        color: inherit;
     }
 }
