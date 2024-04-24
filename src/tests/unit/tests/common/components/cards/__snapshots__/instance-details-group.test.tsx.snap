@@ -25,7 +25,6 @@ exports[`InstanceDetailsGroup renders: InstanceDetails props 1`] = `
 {
   "cardSelectionMessageCreator": {},
   "deps": {},
-  "getPropertyConfigById": [Function],
   "index": 0,
   "narrowModeStatus": undefined,
   "result": {
