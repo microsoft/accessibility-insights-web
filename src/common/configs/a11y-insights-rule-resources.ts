@@ -18,9 +18,12 @@ export const getA11yInsightsWebRuleUrl = (ruleId: string) => {
 const webRulesWithResources = [
     'aria-alt',
     'aria-allowed-attr',
+    'aria-conditional-attr',
+    'aria-deprecated-role',
     'aria-hidden-body',
     'aria-hidden-focus',
     'aria-input-field-name',
+    'aria-prohibited-attr',
     'aria-required-attr',
     'aria-required-attr',
     'aria-required-children',

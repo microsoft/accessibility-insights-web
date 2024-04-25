@@ -15,6 +15,10 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
         status: 'included',
         reason: 'best practice rule that was investigated with no known false positives, implemented as an automated check.',
     },
+    'aria-braille-equivalent': {
+        status: 'excluded',
+        reason: "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+    },
     'audio-caption': {
         status: 'included',
         reason: 'for parity with video-caption, which axe-core includes by default',
@@ -53,6 +57,7 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
 export const needsReviewRules = [
     'aria-input-field-name',
     'color-contrast',
+    'duplicate-id-aria',
     'th-has-data-cells',
     'label-content-name-mismatch',
     'p-as-heading',
