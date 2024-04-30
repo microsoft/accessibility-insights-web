@@ -23,6 +23,7 @@ import { ContentPageComponent } from 'views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';
 import { InstanceTableColumn, InstanceTableHeaderType } from './instance-table-data';
 import { ReportInstanceFields } from './report-instance-field';
+import { ChecksType } from 'background/assessment-data-converter';
 
 export interface Requirement {
     key: string;
@@ -60,6 +61,7 @@ export interface Requirement {
     getDefaultMessage?: IGetMessageGenerator;
     instanceTableHeaderType?: InstanceTableHeaderType;
     getCompletedRequirementDetailsForTelemetry?: (assessmentData: AssessmentData) => any;
+    generatePropertyBagFrom?: (ruleResult: DecoratedAxeNodeResult, checkName: ChecksType) => any;
 }
 
 export type VisualHelperToggleConfigDeps = {
