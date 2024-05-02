@@ -11,7 +11,7 @@ exports[`NextRequirementButton renders 1`] = `
 exports[`NextRequirementButton renders: CustomizedDefaultButton props 1`] = `
 {
   "children": <span>
-    <Memo(Icon)
+    <Memo
       ariaLabel="next"
       iconName="ChevronRight"
     />

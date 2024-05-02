@@ -1,28 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import ReactDOM from 'react-dom';
-import { It, Mock } from 'typemoq';
+import { createRoot } from 'react-dom/client';
+import { Mock } from 'typemoq';
 
 import { IncompatibleBrowserRenderer } from '../../../../popup/incompatible-browser-renderer';
+import { TestDocumentCreator } from '../../common/test-document-creator';
 
 describe('IncompatibleBrowserRenderer', () => {
     it('renders', () => {
-        const renderMock = Mock.ofType<typeof ReactDOM.render>();
-        const containerMock = Mock.ofType<HTMLElement>();
-        const documentMock = Mock.ofType<Document>();
+        const renderMock = Mock.ofType<createRoot>();
 
-        documentMock
-            .setup(mock => mock.querySelector('#popup-container'))
-            .returns(() => containerMock.object);
-
+        const fakeDocument = TestDocumentCreator.createTestDocument(
+            '<div id="popup-container"></div>',
+        );
         renderMock
-            .setup(mock => mock(It.isAny(), containerMock.object))
+            .setup(mock => mock(fakeDocument.getElementById('popup-container')))
             .callback(element => {
                 expect(element).toMatchSnapshot();
-            })
+            }).returns(jest.fn(createRoot))
             .verifiable();
 
-        const testSubject = new IncompatibleBrowserRenderer(renderMock.object, documentMock.object);
+        const testSubject = new IncompatibleBrowserRenderer(renderMock.object, fakeDocument);
         testSubject.render();
 
         renderMock.verifyAll();

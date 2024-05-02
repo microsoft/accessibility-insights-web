@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StoresTree renders each row properly 1`] = `
-<StyledDetailsRowBase
+<ForwardRef(StyledDetailsRowBase)
   columns={
     [
       {
@@ -141,7 +141,7 @@ exports[`StoresTree renders with proper data from the stores: FocusZone props 1`
     selectionMode={0}
     toggleWithoutModifierPressed={false}
   >
-    <StyledGroupedListBase
+    <ForwardRef(StyledGroupedListBase)
       compact={true}
       groups={
         [

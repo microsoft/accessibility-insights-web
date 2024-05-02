@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import * as React from 'react';
 import {
     withStoreSubscription,
@@ -181,7 +181,7 @@ describe('withStoreSubscription', () => {
         expect(listenerAdded).toEqual(listenerRemoved);
     });
 
-    test('render', () => {
+    test('render', async () => {
         let onStoreChange;
         const hasStoresMock = jest.fn();
         const getStoreDataMock = jest.fn();
@@ -214,7 +214,7 @@ describe('withStoreSubscription', () => {
 
         expect(renderResult.container).toMatchSnapshot('before store change');
 
-        onStoreChange();
+        await act(()=> onStoreChange());
 
         expect(renderResult.container).toMatchSnapshot('after store change');
     });

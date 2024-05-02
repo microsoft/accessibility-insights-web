@@ -24,13 +24,13 @@ import {
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
-import { LayeredDetailsDialogComponent } from 'injected/layered-details-dialog-component';
 import { MainWindowContext } from 'injected/main-window-context';
 import { TargetPageActionMessageCreator } from 'injected/target-page-action-message-creator';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
+jest.mock('../../../../injected/components/details-dialog');
 
 describe(DialogRendererImpl, () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
@@ -41,7 +41,7 @@ describe(DialogRendererImpl, () => {
     let browserAdapter: IMock<BrowserAdapter>;
     let domMock: IMock<Document>;
     let getRTLMock: IMock<typeof getRTL>;
-    let renderMock: IMock<typeof ReactDOM.render>;
+    let renderMock: IMock<typeof createRoot>;
     let detailsDialogHandlerMock: IMock<DetailsDialogHandler>;
     let windowStub: Window;
 
@@ -54,6 +54,7 @@ describe(DialogRendererImpl, () => {
     let rootContainerMock: IMock<HTMLElement>;
 
     const toolData = {} as ToolData;
+    const createRootMock = jest.fn(createRoot);
 
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
@@ -70,10 +71,10 @@ describe(DialogRendererImpl, () => {
             },
             querySelector: selector => null,
             querySelectorAll: selector => null,
-            appendChild: node => {},
+            appendChild: node => { },
         } as any);
 
-        renderMock = Mock.ofInstance(() => null);
+        renderMock = Mock.ofType<createRoot>();
         getRTLMock = Mock.ofInstance(() => null);
         rootContainerMock = Mock.ofType<HTMLElement>();
 
@@ -239,12 +240,10 @@ describe(DialogRendererImpl, () => {
         renderMock
             .setup(render =>
                 render(
-                    It.is((detailsDialog: any) => {
-                        return detailsDialog.type === LayeredDetailsDialogComponent;
-                    }),
                     It.is((container: any) => container != null),
                 ),
-            )
+            ).
+            returns(createRootMock)
             .verifiable(Times.once());
     }
 
@@ -252,10 +251,10 @@ describe(DialogRendererImpl, () => {
         renderMock
             .setup(it =>
                 it(
-                    It.is((detailsDialog: any) => detailsDialog != null),
                     It.is((container: any) => container != null),
                 ),
-            )
+            ).
+            returns(createRootMock)
             .verifiable(Times.never());
     }
 

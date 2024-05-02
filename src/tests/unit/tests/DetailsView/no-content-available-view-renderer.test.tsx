@@ -3,14 +3,14 @@
 import { configMutator } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
 import {
-    NoContentAvailableView,
     NoContentAvailableViewDeps,
 } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { TestDocumentCreator } from 'tests/unit/common/test-document-creator';
-import { It, Mock } from 'typemoq';
+import { Mock } from 'typemoq';
+
+jest.mock('react-resize-detector');
 
 describe('NoContentAvailableViewRenderer', () => {
     it('renders', () => {
@@ -27,17 +27,13 @@ describe('NoContentAvailableViewRenderer', () => {
             .setup(des => des.setShortcutIcon('../' + expectedIcon16))
             .verifiable();
 
-        const renderMock = Mock.ofType<typeof ReactDOM.render>();
+        const renderMock = Mock.ofType<createRoot>();
+        const createRootMock = jest.fn(createRoot);
         renderMock.setup(r =>
             r(
-                It.isValue(
-                    <>
-                        <NoContentAvailableView deps={deps} />
-                    </>,
-                ),
-                fakeDocument.getElementById('details-container'),
+                fakeDocument.getElementById('details-container')
             ),
-        );
+        ).returns(createRootMock);
 
         const testSubject = new NoContentAvailableViewRenderer(
             deps,

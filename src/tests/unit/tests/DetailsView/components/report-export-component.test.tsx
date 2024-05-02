@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { FileURLProvider } from 'common/file-url-provider';
 import {
     ReportExportComponent,
@@ -135,7 +135,7 @@ describe('ReportExportComponent', () => {
         const renderResult = render(<ReportExportComponent {...props} />);
 
         const dialog = getMockComponentClassPropsForCall(ExportDialog);
-        dialog.onDescriptionChange(testContentWithSpecials);
+        act(()=>dialog.onDescriptionChange(testContentWithSpecials));
 
         expect(renderResult.asFragment()).toMatchSnapshot(testContentWithSpecials);
 
@@ -146,7 +146,7 @@ describe('ReportExportComponent', () => {
         const renderResult = render(<ReportExportComponent {...props} />);
 
         const dialog = getMockComponentClassPropsForCall(ExportDialog);
-        dialog.onDescriptionChange(testContentWithSpecials);
+        act(()=>dialog.onDescriptionChange(testContentWithSpecials));
 
         const htmlData = 'test html';
         const jsonData = 'test json';
@@ -169,7 +169,7 @@ describe('ReportExportComponent', () => {
             .returns(() => 'json url')
             .verifiable(Times.once());
 
-        dialog.generateExports();
+        act(()=>dialog.generateExports());
 
         expect(renderResult.asFragment()).toMatchSnapshot();
 

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DetailsList, IColumn, Spinner } from '@fluentui/react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import {
     AssessmentDefaultMessageGenerator,
     DefaultMessageInterface,
@@ -178,9 +178,13 @@ describe('AssessmentInstanceTable', () => {
 
             render(<AssessmentInstanceTable {...props} />);
             const rowClick = screen.getAllByRole('row');
+            act(() => {
+                fireEvent.click(rowClick[1], fakeItem);
+            })
+            act(() => {
+                getMockComponentClassPropsForCall(DetailsList).onItemInvoked(fakeItem);
+            })
 
-            fireEvent.click(rowClick[1], fakeItem);
-            getMockComponentClassPropsForCall(DetailsList).onItemInvoked(fakeItem);
             assessmentInstanceTableHandlerMock.verifyAll();
         });
 
@@ -230,10 +234,10 @@ describe('AssessmentInstanceTable', () => {
                     'DetailsList',
                     'ActionButton',
                 ]);
-                render(<AssessmentInstanceTable {...props} />);
-
+                act(() => {
+                    render(<AssessmentInstanceTable {...props} />);
+                })
                 getMockComponentClassPropsForCall(InsightsCommandButton).onClick();
-
                 assessmentInstanceTableHandlerMock.verifyAll();
             });
         });

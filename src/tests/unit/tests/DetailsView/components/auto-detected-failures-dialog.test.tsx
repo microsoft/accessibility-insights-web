@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
-import { render, RenderResult } from '@testing-library/react';
+import { act, fireEvent, render, RenderResult } from '@testing-library/react';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
@@ -86,13 +86,19 @@ describe('AutoDetectedFailuresDialog', () => {
 
         it('is dismissed when "got it" button is clicked', () => {
             useOriginalReactElements('@fluentui/react', ['PrimaryButton']);
-            getMockComponentClassPropsForCall(PrimaryButton).onClick();
+            act(() => {
+                getMockComponentClassPropsForCall(PrimaryButton).onClick();
+            })
+
 
             expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('is dismissed when onDismiss is called', () => {
-            getMockComponentClassPropsForCall(Dialog).onDismiss();
+            act(() => {
+                getMockComponentClassPropsForCall(Dialog).onDismiss();
+            })
+
             expect(wrapper.baseElement).toMatchSnapshot();
         });
 
@@ -102,7 +108,8 @@ describe('AutoDetectedFailuresDialog', () => {
                 .verifiable(Times.once());
 
             useOriginalReactElements('@fluentui/react', ['Checkbox']);
-            getMockComponentClassPropsForCall(Checkbox).onChange(undefined, true);
+
+            getMockComponentClassPropsForCall(Checkbox).onChange(true);
 
             expect(wrapper.baseElement).toMatchSnapshot();
         });

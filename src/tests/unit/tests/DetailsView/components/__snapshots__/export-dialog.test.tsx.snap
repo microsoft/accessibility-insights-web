@@ -14,7 +14,7 @@ exports[`ExportDialog renders with CodePen export form 1`] = `
 
 exports[`ExportDialog renders with export dropdown 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -36,13 +36,13 @@ exports[`ExportDialog renders with export dropdown 1`] = `
         reportexportservices="[object Object],[object Object]"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
 exports[`ExportDialog renders with open false 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="true"
     modalprops="[object Object]"
@@ -63,14 +63,14 @@ exports[`ExportDialog renders with open false 1`] = `
         Export
       </mock-customizedprimarybutton>
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`ExportDialog renders with open false: Dialog props 1`] = `
+exports[`ExportDialog renders with open false: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
-    <StyledTextFieldBase
+    <ForwardRef(StyledTextFieldBase)
       ariaLabel="Provide result description"
       autoFocus={true}
       multiline={true}
@@ -79,7 +79,7 @@ exports[`ExportDialog renders with open false: Dialog props 1`] = `
       rows={8}
       value="description"
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <CustomizedPrimaryButton
         data-automation-id="single-export-to-html-button"
         download="THE REPORT FILE NAME"
@@ -88,7 +88,7 @@ exports[`ExportDialog renders with open false: Dialog props 1`] = `
       >
         Export
       </CustomizedPrimaryButton>
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "subText": "Optional: please describe the result (it will be saved in the report).",
@@ -107,7 +107,7 @@ exports[`ExportDialog renders with open false: Dialog props 1`] = `
 
 exports[`ExportDialog renders with open true 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -128,14 +128,14 @@ exports[`ExportDialog renders with open true 1`] = `
         Export
       </mock-customizedprimarybutton>
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`ExportDialog renders with open true: Dialog props 1`] = `
+exports[`ExportDialog renders with open true: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
-    <StyledTextFieldBase
+    <ForwardRef(StyledTextFieldBase)
       ariaLabel="Provide result description"
       autoFocus={true}
       multiline={true}
@@ -144,7 +144,7 @@ exports[`ExportDialog renders with open true: Dialog props 1`] = `
       rows={8}
       value="description"
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <CustomizedPrimaryButton
         data-automation-id="single-export-to-html-button"
         download="THE REPORT FILE NAME"
@@ -153,7 +153,7 @@ exports[`ExportDialog renders with open true: Dialog props 1`] = `
       >
         Export
       </CustomizedPrimaryButton>
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "subText": "Optional: please describe the result (it will be saved in the report).",
@@ -172,7 +172,7 @@ exports[`ExportDialog renders with open true: Dialog props 1`] = `
 
 exports[`ExportDialog renders without export dropdown due to lack of service 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -193,6 +193,6 @@ exports[`ExportDialog renders without export dropdown due to lack of service 1`]
         Export
       </mock-customizedprimarybutton>
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;

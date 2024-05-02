@@ -2,7 +2,7 @@
 
 exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false} 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -77,7 +77,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
         failurescount="1"
       />
     </div>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
@@ -161,7 +161,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -236,7 +236,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
         failurescount="1"
       />
     </div>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
@@ -320,7 +320,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: verify close but
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -395,7 +395,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
         failurescount="1"
       />
     </div>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 

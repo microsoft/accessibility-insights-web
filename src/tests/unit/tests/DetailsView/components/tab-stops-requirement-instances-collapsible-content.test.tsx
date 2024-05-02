@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DetailsList } from '@fluentui/react';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import {
     TabStopsRequirementInstancesCollapsibleContent,
     TabStopsRequirementInstancesCollapsibleContentProps,
 } from 'DetailsView/tab-stops-requirement-instances-collapsible-content';
 import { TabStopsRequirementResultInstance } from 'DetailsView/tab-stops-requirement-result';
 import * as React from 'react';
+
 import { IMock, Mock, Times } from 'typemoq';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import {
@@ -91,7 +92,10 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
         );
 
         const buttons = renderResult.getAllByRole('button');
-        buttons.forEach(button => fireEvent.click(button));
+        act(() => {
+            buttons.forEach(button => fireEvent.click(button));
+        })
+
         onEditButtonClickedMock.verifyAll();
         onRemoveButtonClickedMock.verifyAll();
     });

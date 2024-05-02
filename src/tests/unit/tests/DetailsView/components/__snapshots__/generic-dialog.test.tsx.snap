@@ -2,7 +2,7 @@
 
 exports[`GenericDialogTest should render 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -12,14 +12,6 @@ exports[`GenericDialogTest should render 1`] = `
     >
       test message
     </div>
-    <mock-styleddialogfooterbase>
-      <mock-customizedprimarybutton
-        text="test primary text"
-      />
-      <mock-customizeddefaultbutton
-        text="Cancel"
-      />
-    </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;

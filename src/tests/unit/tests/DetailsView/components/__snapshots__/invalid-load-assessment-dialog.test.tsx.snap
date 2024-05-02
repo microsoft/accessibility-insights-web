@@ -4,7 +4,7 @@ exports[`InvalidLoadAssessmentDialog should not show when isOpen is set to false
 
 exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -16,20 +16,20 @@ exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] 
         OK
       </mock-customizedprimarybutton>
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true: Dialog props 1`] = `
+exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true: StyledWithResponsiveMode props 1`] = `
 {
-  "children": <StyledDialogFooterBase>
+  "children": <ForwardRef(StyledDialogFooterBase)>
     <CustomizedPrimaryButton
       data-automation-id="invalid-load-assessment-dialog-ok-button"
       onClick={[Function]}
     >
       OK
     </CustomizedPrimaryButton>
-  </StyledDialogFooterBase>,
+  </ForwardRef(StyledDialogFooterBase)>,
   "dialogContentProps": {
     "subText": "Please select a valid *.a11ywebassessment file",
     "title": "Oops! Accessibility Insights can’t open this file.",

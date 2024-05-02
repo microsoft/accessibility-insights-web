@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ChoiceGroup, IconButton } from '@fluentui/react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
 import {
     ChoiceGroupPassFail,
@@ -34,9 +34,9 @@ describe('ChoiceGroupPassFail', () => {
                 { key: TabStopRequirementStatuses.unknown, text: 'unknown' as any },
             ],
             selectedKey: TabStopRequirementStatuses.unknown,
-            onChange: () => {},
+            onChange: () => { },
             secondaryControls: (
-                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" onClick={() => {}} />
+                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" onClick={() => { }} />
             ),
             onUndoClickedPassThrough: onUndoClickedMock.object,
         };
@@ -105,7 +105,10 @@ describe('ChoiceGroupPassFail', () => {
         const eventStub = {} as React.MouseEvent<HTMLElement>;
 
         const options = renderResult.getAllByRole('radio');
-        getMockComponentClassPropsForCall(IconButton).onClick(eventStub);
+        act(() => {
+            getMockComponentClassPropsForCall(IconButton).onClick(eventStub);
+        })
+
 
         expect(options[0]).toHaveFocus();
 

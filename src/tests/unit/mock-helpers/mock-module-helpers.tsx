@@ -9,7 +9,7 @@ export const expectMockedComponentPropsToMatchSnapshots = (
     components.forEach(component => {
         const componentSnapshotName =
             snapshotName ||
-            `${component.displayName || component.name || 'mocked component'} props`;
+            `${component.displayName || component.name || component?.render?.displayName || 'mocked component'} props`;
         expectMockedComponentPropsToMatchSnapshot(component, componentSnapshotName);
     });
 };
@@ -55,10 +55,21 @@ export function useOriginalReactElements(library: string, components: any[]) {
 
 function mockReactComponent<T extends React.ComponentClass<P>, P = any>(component, elementName?) {
     if (component !== undefined) {
-        const name =
-            elementName || component.displayName
-                ? `mock-${component.displayName}`
-                : `mock-${component.name}`;
+        let name;
+        if (component?.displayName === undefined) {
+            name =
+                elementName || component?.render?.displayName
+                    ? `mock-${component?.render?.displayName}`
+                    : `mock-${component.name}`;
+        }
+
+        if (component?.render?.displayName === undefined) {
+            name =
+                elementName || component?.displayName
+                    ? `mock-${component?.displayName}`
+                    : `mock-${component.name}`;
+        }
+
         if (
             !(component as any).mockImplementation &&
             !(component as any).render?.mockImplementation

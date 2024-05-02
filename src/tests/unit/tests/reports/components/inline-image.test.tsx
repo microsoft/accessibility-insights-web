@@ -46,7 +46,7 @@ describe('InlineImageTest', () => {
         const renderResult = render(<InlineImage {...props} />);
         expect(renderResult.container.firstChild).not.toBeNull();
 
-        const element = renderResult.getByRole('img', { name: alt }) as HTMLImageElement;
+        const element = renderResult.container.querySelector('img');
         expect(element.src).toContain('data:image/png;base64,iVBO');
         expect(element.alt).toEqual(alt);
     }

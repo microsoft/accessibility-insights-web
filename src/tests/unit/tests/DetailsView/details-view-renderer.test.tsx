@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Theme } from 'common/components/theme';
 import { configMutator } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
-import { DetailsView } from 'DetailsView/details-view-container';
 import { DetailsViewRenderer, DetailsViewRendererDeps } from 'DetailsView/details-view-renderer';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom/client';
-import { IMock, It, Mock } from 'typemoq';
+import { createRoot } from 'react-dom/client';
+import { IMock, Mock } from 'typemoq';
 import { TestDocumentCreator } from '../../common/test-document-creator';
 
+jest.mock('DetailsView/details-view-container');
+jest.mock('common/components/theme');
 describe('DetailsViewRendererTest', () => {
     test('render', () => {
         const deps = Mock.ofType<DetailsViewRendererDeps>().object;
@@ -18,7 +17,8 @@ describe('DetailsViewRendererTest', () => {
             '<div id="details-container"></div>',
         );
 
-        const renderMock: IMock<typeof ReactDOM.createRoot> = Mock.ofInstance(() => null);
+        const renderMock: IMock<typeof createRoot> = Mock.ofInstance(() => null);
+        const createRootMock = jest.fn(createRoot);
 
         const expectedIcon16 = 'icon128.png';
         configMutator.setOption('icon128', expectedIcon16);
@@ -30,15 +30,10 @@ describe('DetailsViewRendererTest', () => {
         renderMock
             .setup(r =>
                 r(
-                    It.isValue(
-                        <>
-                            <Theme deps={deps} />
-                            <DetailsView deps={deps} />
-                        </>,
-                    ),
                     fakeDocument.getElementById('details-container'),
                 ),
             )
+            .returns(createRootMock)
             .verifiable();
 
         const renderer = new DetailsViewRenderer(

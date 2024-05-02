@@ -20,7 +20,6 @@ import {
 } from 'popup/components/diagnostic-view-toggle';
 import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggle-click-handler';
 import * as React from 'react';
-import * as TestUtils from 'react-dom/test-utils';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
@@ -211,7 +210,7 @@ describe('DiagnosticViewToggleTest', () => {
     });
 
     describe('life cycle events', () => {
-        it('sets focus when componentDidMount', () => {
+        it('sets focus when componentDidMount', async () => {
             const visualizationType = VisualizationType.TabStops;
             const event = eventStubFactory.createKeypressEvent();
 
@@ -224,14 +223,20 @@ describe('DiagnosticViewToggleTest', () => {
                 .setupOpenDetailsViewCall(event)
                 .setupDeps(depsMock.object);
 
+
+
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
             const component = React.createElement(DiagnosticViewToggle, props);
+            // console.log('here--->', component[]);
+            //  const testObject: any = render(<DiagnosticViewToggle {...props} />);
+            //const result = testObject.rerender(<DiagnosticViewToggle {...props} />);
+            const testObject: any = render(component);
+            console.log('testObject', testObject);
 
-            const testObject = TestUtils.renderIntoDocument(component);
-            (testObject as any)._isMounted = false;
-            (testObject as any).state.isFocused = true;
-            (testObject as any).componentDidMount();
+            testObject._isMounted = false;
+            testObject.state.isFocused = true;
+            testObject.componentDidMount();
             expect((testObject as any).toggle.current.focus).toHaveBeenCalledTimes(1);
         });
 
@@ -252,7 +257,7 @@ describe('DiagnosticViewToggleTest', () => {
 
             const component = React.createElement(DiagnosticViewToggle, props);
 
-            const testObject = TestUtils.renderIntoDocument(component);
+            const testObject = render(component);
             (testObject as any)._isMounted = true;
             (testObject as any).state.isFocused = true;
             (testObject as any).componentDidUpdate();
@@ -278,7 +283,7 @@ describe('DiagnosticViewToggleTest', () => {
 
             const component = React.createElement(DiagnosticViewToggle, props);
 
-            const testObject = TestUtils.renderIntoDocument(component);
+            const testObject = render(component);
 
             (testObject as any)._isMounted = true;
 
@@ -305,7 +310,7 @@ describe('DiagnosticViewToggleTest', () => {
 
             const component = React.createElement(DiagnosticViewToggle, props);
 
-            const testObject = TestUtils.renderIntoDocument(component);
+            const testObject = render(component);
 
             (testObject as any)._isMounted = true;
 
@@ -332,9 +337,9 @@ describe('DiagnosticViewToggleTest', () => {
 
         const component = React.createElement(DiagnosticViewToggle, props);
 
-        const testObject = TestUtils.renderIntoDocument(component);
-
-        (testObject as any)._userEventListenerAdded = false;
+        const testObject = render(component);
+        const result = testObject.rerender(component);
+        (result as any)._userEventListenerAdded = false;
 
         const addUserEventListenerFunction = (testObject as any).addUserEventListener;
 
@@ -366,8 +371,8 @@ class DiagnosticViewTogglePropsBuilder {
     private clickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
     private telemetrySource: TelemetryEventSource;
     private shortcutCommands: chrome.commands.Command[] = ShortcutCommandsTestData;
-    private querySelectorMock = Mock.ofInstance(selector => {});
-    private addEventListenerMock = Mock.ofInstance((e, ev) => {});
+    private querySelectorMock = Mock.ofInstance(selector => { });
+    private addEventListenerMock = Mock.ofInstance((e, ev) => { });
     private featureFlags: DictionaryStringTo<boolean> = {};
     private deps: ContentLinkDeps = {} as ContentLinkDeps;
     private configurationStub: VisualizationConfiguration;

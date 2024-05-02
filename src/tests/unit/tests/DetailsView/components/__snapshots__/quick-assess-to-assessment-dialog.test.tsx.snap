@@ -2,7 +2,7 @@
 
 exports[`QuickAssessToAssessmentDialog dialog is hidden when isShown is false 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     hidden="true"
     modalprops="[object Object]"
     title="Continue to Assessment"
@@ -25,13 +25,13 @@ exports[`QuickAssessToAssessmentDialog dialog is hidden when isShown is false 1`
         text="Continue to Assessment"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
 exports[`QuickAssessToAssessmentDialog dialog is not hidden when isShown is true 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     hidden="false"
     modalprops="[object Object]"
     title="Continue to Assessment"
@@ -54,6 +54,6 @@ exports[`QuickAssessToAssessmentDialog dialog is not hidden when isShown is true
         text="Continue to Assessment"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;

@@ -2,7 +2,7 @@
 
 exports[`TelemetryPermissionDialogTest render dialog 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -32,11 +32,19 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
         text="OK"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`TelemetryPermissionDialogTest render dialog: Dialog props 1`] = `
+exports[`TelemetryPermissionDialogTest render dialog: PrivacyStatementPopupText props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
+  },
+}
+`;
+
+exports[`TelemetryPermissionDialogTest render dialog: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <div
@@ -53,7 +61,7 @@ exports[`TelemetryPermissionDialogTest render dialog: Dialog props 1`] = `
     <div
       className="telemetry-checkbox-section"
     >
-      <StyledCheckboxBase
+      <ForwardRef(StyledCheckboxBase)
         checked={true}
         className="telemetry-agree-checkbox"
         label="I agree to enable telemetry"
@@ -67,13 +75,13 @@ exports[`TelemetryPermissionDialogTest render dialog: Dialog props 1`] = `
         }
       />
     </div>,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <CustomizedPrimaryButton
         className="start-using-product-button"
         onClick={[Function]}
         text="OK"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -85,14 +93,6 @@ exports[`TelemetryPermissionDialogTest render dialog: Dialog props 1`] = `
     "className": "telemetry-permission-dialog-modal",
     "containerClassName": "insights-dialog-main-override telemetry-permission-dialog",
     "isBlocking": true,
-  },
-}
-`;
-
-exports[`TelemetryPermissionDialogTest render dialog: PrivacyStatementPopupText props 1`] = `
-{
-  "deps": {
-    "LinkComponent": [Function],
   },
 }
 `;

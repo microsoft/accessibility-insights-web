@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewContentProps } from 'DetailsView/components/details-view-content';
 import {
@@ -65,7 +65,7 @@ describe(DetailsViewContentWithLocalState, () => {
             const detector = getMockComponentClassPropsForCall(NarrowModeDetector);
             expect(detector.childrenProps.isSideNavOpen).toBe(false);
 
-            callSetNavOpen(detector, true, eventStub);
+            act(() => callSetNavOpen(detector, true, eventStub));
             const detectorCall2 = getMockComponentClassPropsForCall(NarrowModeDetector, 2);
             expect(detectorCall2.childrenProps.isSideNavOpen).toBe(true);
 
@@ -79,12 +79,12 @@ describe(DetailsViewContentWithLocalState, () => {
 
             render(<DetailsViewContentWithLocalState {...props} />);
             const narrowProps = getMockComponentClassPropsForCall(NarrowModeDetector);
-            callSetNavOpen(narrowProps, true);
+            act(() => callSetNavOpen(narrowProps, true));
 
             const narrowProps2 = getMockComponentClassPropsForCall(NarrowModeDetector, 2);
             expect(narrowProps2.childrenProps.isSideNavOpen).toBe(true);
 
-            callSetNavOpen(narrowProps2, false);
+            act(() => callSetNavOpen(narrowProps2, false));
 
             const narrowProps3 = getMockComponentClassPropsForCall(NarrowModeDetector, 3);
             expect(narrowProps3.childrenProps.isSideNavOpen).toBe(false);

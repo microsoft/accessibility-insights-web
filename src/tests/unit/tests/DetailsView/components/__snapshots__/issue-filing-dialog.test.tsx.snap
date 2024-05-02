@@ -2,7 +2,7 @@
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="true"
     modalprops="[object Object]"
@@ -19,11 +19,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed: Dialog props 1`] = `
+exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -60,7 +60,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -68,7 +68,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -89,7 +89,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="true"
     modalprops="[object Object]"
@@ -106,11 +106,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed: Dialog props 1`] = `
+exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -147,7 +147,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -155,7 +155,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -176,7 +176,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -193,11 +193,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed: Dialog props 1`] = `
+exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -234,7 +234,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -242,7 +242,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -263,7 +263,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -280,11 +280,11 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed: Dialog props 1`] = `
+exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -321,7 +321,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -329,7 +329,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -350,7 +350,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
 
 exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -367,11 +367,11 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render with isSettingsValid: false: Dialog props 1`] = `
+exports[`IssueFilingDialog render with isSettingsValid: false: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -408,7 +408,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false: Dialog props 1`] 
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -416,7 +416,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false: Dialog props 1`] 
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -437,7 +437,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false: Dialog props 1`] 
 
 exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -454,11 +454,11 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render with isSettingsValid: true: Dialog props 1`] = `
+exports[`IssueFilingDialog render with isSettingsValid: true: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -495,7 +495,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true: Dialog props 1`] =
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -503,7 +503,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true: Dialog props 1`] =
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -524,7 +524,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true: Dialog props 1`] =
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -541,11 +541,11 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null: Dialog props 1`] = `
+exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -583,7 +583,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -591,7 +591,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -612,7 +612,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -629,11 +629,11 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null: Dialog props 1`] = `
+exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -670,7 +670,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -678,7 +678,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -699,7 +699,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 
 exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -716,11 +716,11 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container: Dialog props 1`] = `
+exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container: StyledWithResponsiveMode props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -757,7 +757,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -765,7 +765,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,

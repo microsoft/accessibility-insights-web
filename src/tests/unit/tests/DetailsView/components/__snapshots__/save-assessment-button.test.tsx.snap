@@ -9,7 +9,7 @@ exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = 
   >
     Save assessment
   </mock-customizedactionbutton>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -49,6 +49,6 @@ exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = 
         </mock-stackitem>
       </mock-stack>
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;

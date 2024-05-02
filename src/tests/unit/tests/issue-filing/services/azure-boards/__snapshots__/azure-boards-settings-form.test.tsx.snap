@@ -14,7 +14,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
   >
     example: https://dev.azure.com/org/project
   </span>
-  <mock-dropdown
+  <mock-styleddropdownbase
     label="Select a field for issue details"
     options="[object Object],[object Object]"
     placeholder="Select an option"
@@ -22,7 +22,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
 </DocumentFragment>
 `;
 
-exports[`AzureBoardsSettingsForm renders settings is null: Dropdown props 1`] = `
+exports[`AzureBoardsSettingsForm renders settings is null: StyledDropdownBase props 1`] = `
 {
   "label": "Select a field for issue details",
   "onChange": [Function],
@@ -55,7 +55,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
   >
     example: https://dev.azure.com/org/project
   </span>
-  <mock-dropdown
+  <mock-styleddropdownbase
     label="Select a field for issue details"
     options="[object Object],[object Object]"
     placeholder="Select an option"
@@ -64,7 +64,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
 </DocumentFragment>
 `;
 
-exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField: Dropdown props 1`] = `
+exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField: StyledDropdownBase props 1`] = `
 {
   "label": "Select a field for issue details",
   "onChange": [Function],

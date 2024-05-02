@@ -68,7 +68,7 @@ describe('SelectorInputListTest', () => {
                 event: React.MouseEvent<HTMLButtonElement>,
                 inputType: string,
                 selector: string[],
-            ) => {},
+            ) => { },
         );
         const givenInput = 'include';
         const givenSelector = 'iframe;selector';
@@ -96,7 +96,7 @@ describe('SelectorInputListTest', () => {
                 event: React.MouseEvent<HTMLButtonElement>,
                 inputType: string,
                 selector: string[],
-            ) => {},
+            ) => { },
         );
         const givenSelector = 'iframe;selector;selectorAgain  ;    lastSelector';
         const parsedSelector = ['iframe', 'selector', 'selectorAgain', 'lastSelector'];
@@ -120,7 +120,7 @@ describe('SelectorInputListTest', () => {
 
     test('change inspection mode', () => {
         const changeInspectionMock = Mock.ofInstance(
-            (event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => {},
+            (event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => { },
         );
         const givenMode = 'scopingAddInclude';
         const givenInput = 'include';
@@ -147,7 +147,7 @@ describe('SelectorInputListTest', () => {
                 event: React.MouseEvent<HTMLButtonElement>,
                 inputType: string,
                 selector: string[],
-            ) => {},
+            ) => { },
         );
         const givenInput = 'include';
         const parsedSelector = ['iframe', 'selector'];
@@ -304,7 +304,7 @@ describe('SelectorInputListTest', () => {
                 event: React.MouseEvent<HTMLButtonElement>,
                 inputType: string,
                 selector: string[],
-            ) => {},
+            ) => { },
         );
         const givenSelector = 'selector';
         const parsedSelector = ['selector'];
@@ -326,7 +326,10 @@ describe('SelectorInputListTest', () => {
         const inputText = renderResult.getByPlaceholderText(
             'Enter element selector here',
         ) as HTMLInputElement;
-        fireEvent.change(inputText, { target: { value: givenSelector } });
+        act(() => {
+            fireEvent.change(inputText, { target: { value: givenSelector } });
+        })
+
         expect(inputText.value).toBe(givenSelector);
         const button = renderResult.getByRole('button', { name: 'Add Selector' });
         await userEvent.click(button);
@@ -420,6 +423,6 @@ describe('SelectorInputListTest', () => {
 
 class TestableSelectorInputList extends SelectorInputList {
     public setTextFieldValue(value: string): void {
-        this.setTextField({ value, focus: () => {} } as ITextField);
+        this.setTextField({ value, focus: () => { } } as ITextField);
     }
 }

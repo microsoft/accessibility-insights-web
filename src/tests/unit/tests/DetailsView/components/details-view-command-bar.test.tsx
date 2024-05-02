@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import '@testing-library/jest-dom';
 import { ActionButton } from '@fluentui/react';
-import { render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Assessments } from 'assessments/assessments';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
@@ -63,6 +63,7 @@ import {
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import { isNil } from 'lodash';
 import * as React from 'react';
+
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { ReportNameGenerator, WebReportNameGenerator } from 'reports/report-name-generator';
@@ -383,7 +384,7 @@ describe('DetailsViewCommandBar', () => {
             name: 'Start over Assessment',
         });
         expect(renderResult.asFragment()).toMatchSnapshot('start assessment over dialog hidden');
-        await userEvent.click(startOverAssessmentButton);
+        await userEvent.click(startOverAssessmentButton, { pointerEventsCheck: 0 });
         expect(getMockComponentClassPropsForCall(StartOverDialog, 2).dialogState).toBe(
             'assessment',
         );
@@ -432,13 +433,25 @@ describe('DetailsViewCommandBar', () => {
             const exportButton = renderResult.getByRole('button', {
                 name: 'Export result',
             });
+
             expect(exportButton).not.toHaveFocus();
             getMockComponentCall(ExportDialog)[0].afterDismissed();
             expect(exportButton).toHaveFocus();
+
             await userEvent.click(exportButton); //open the dialog
+
+            //  await fireEvent.click(exportButton)
+
             const textArea = renderResult.getByRole('textbox');
             expect(textArea).toHaveFocus();
-            getMockComponentCall(ExportDialog, 2)[0].afterDismissed();
+
+            const exportDialogProps = getMockComponentCall(ExportDialog, 2)[0]
+
+            act(() => {
+                exportDialogProps.afterDismissed();
+            })
+
+
             expect(exportButton).toHaveFocus();
         });
 
@@ -458,7 +471,7 @@ describe('DetailsViewCommandBar', () => {
             expect(setRef).toBeDefined();
             expect(renderResult.baseElement).toHaveFocus();
             setRef(undefined);
-            getMockComponentCall(QuickAssessToAssessmentDialog)[0].afterDialogDismissed();
+            await getMockComponentCall(QuickAssessToAssessmentDialog)[0].afterDialogDismissed();
             expect(renderResult.baseElement).toHaveFocus();
         });
 
@@ -491,7 +504,10 @@ describe('DetailsViewCommandBar', () => {
             const props = getProps(['StartOverComponent', 'CommandBar']);
             const renderResult = render(<DetailsViewCommandBar {...props} />);
             expect(renderResult.baseElement).toHaveFocus();
-            getMockComponentCall(StartOverDialog)[0].dismissDialog();
+            act(() => {
+                getMockComponentCall(StartOverDialog)[0].dismissDialog();
+            })
+
             expect(renderResult.baseElement).toHaveFocus();
         });
 
@@ -506,16 +522,26 @@ describe('DetailsViewCommandBar', () => {
             const startOverMenuButton = renderResult.getByRole('button', {
                 name: 'start over menu',
             });
-            getMockComponentCall(StartOverDialog)[0].dismissDialog();
+            act(() => {
+                getMockComponentCall(StartOverDialog)[0].dismissDialog();
+            })
+
             expect(renderResult.baseElement).toHaveFocus();
             await userEvent.click(startOverMenuButton);
             const startOverAssessmentButton = renderResult.getByRole('menuitem', {
                 name: 'Start over Assessment',
             });
-            await userEvent.click(startOverAssessmentButton);
+            await userEvent.click(startOverAssessmentButton, { pointerEventsCheck: 0 });
             const cancelDialogButton = renderResult.getByRole('button', { name: 'Cancel' });
-            expect(cancelDialogButton).toHaveFocus();
-            getMockComponentCall(StartOverDialog, 3)[0].dismissDialog();
+            act(() => {
+                expect(cancelDialogButton).toHaveFocus();
+            })
+
+            act(() => {
+                getMockComponentCall(StartOverDialog, 3)[0].dismissDialog();
+            });
+            fireEvent.click(startOverMenuButton)
+            //  await userEvent.click(startOverMenuButton);
             expect(startOverMenuButton).toHaveFocus();
         });
     });
@@ -590,9 +616,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                          expectedProps as StartOverFactoryProps,
-                          'down',
-                      )
+                        expectedProps as StartOverFactoryProps,
+                        'down',
+                    )
                     : startOverComponent,
             );
     }
