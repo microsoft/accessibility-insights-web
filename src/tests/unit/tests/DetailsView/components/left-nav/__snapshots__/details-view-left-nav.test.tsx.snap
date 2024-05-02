@@ -7,7 +7,6 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
   >
     <mock-switcher
       deps="[object Object]"
-      featureflagstoredata="[object Object]"
     />
     <mock-assessmentleftnav
       assessmentsdata="[object Object]"
@@ -44,7 +43,6 @@ exports[`DetailsViewLeftNav should render from switcher nav: Switcher props 1`] 
     "assessmentsProviderWithFeaturesEnabled": [Function],
     "getProvider": [Function],
   },
-  "featureFlagStoreData": {},
   "pivotKey": undefined,
 }
 `;

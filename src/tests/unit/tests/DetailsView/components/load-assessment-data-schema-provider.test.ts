@@ -68,6 +68,8 @@ describe(LoadAssessmentDataSchemaProvider, () => {
                                     ? {
                                           'aria-roledescription': stepProperties,
                                           'duplicate-id': stepProperties,
+                                          'duplicate-id-active': stepProperties,
+                                          'duplicate-id-aria': stepProperties,
                                       }
                                     : {},
                             type: ['object', 'null'],
@@ -80,6 +82,8 @@ describe(LoadAssessmentDataSchemaProvider, () => {
                                     ? {
                                           'aria-roledescription': statusProperties,
                                           'duplicate-id': statusProperties,
+                                          'duplicate-id-active': statusProperties,
+                                          'duplicate-id-aria': statusProperties,
                                       }
                                     : {},
                             type: ['object', 'null'],

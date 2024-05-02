@@ -18,6 +18,7 @@ describe('RichResolutionContent', () => {
     it.each([
         'web/aria-input-field-name',
         'web/color-contrast',
+        'web/duplicate-id-aria',
         'web/th-has-data-cells',
         'web/label-content-name-mismatch',
         'web/p-as-heading',

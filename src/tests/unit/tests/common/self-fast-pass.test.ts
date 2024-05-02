@@ -70,6 +70,7 @@ describe('SelfFastPass', () => {
                         testsToRun: [
                             'aria-input-field-name',
                             'color-contrast',
+                            'duplicate-id-aria',
                             'th-has-data-cells',
                             'label-content-name-mismatch',
                             'p-as-heading',

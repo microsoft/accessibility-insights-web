@@ -26,7 +26,6 @@ export class LaunchPanelHeaderClickHandler {
     public onOpenContextualMenu(header: LaunchPanelHeader, event: React.MouseEvent<any>): void {
         header.setState({
             target: event.currentTarget,
-            isContextMenuVisible: true,
         });
     }
 
