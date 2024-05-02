@@ -36,6 +36,7 @@ exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = 
           grow="true"
         >
           <mock-styledcheckboxbase
+            checked="false"
             label="Don't show again"
           />
         </mock-stackitem>
