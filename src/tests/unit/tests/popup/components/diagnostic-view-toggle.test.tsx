@@ -228,11 +228,8 @@ describe('DiagnosticViewToggleTest', () => {
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
             const component = React.createElement(DiagnosticViewToggle, props);
-            // console.log('here--->', component[]);
-            //  const testObject: any = render(<DiagnosticViewToggle {...props} />);
-            //const result = testObject.rerender(<DiagnosticViewToggle {...props} />);
+
             const testObject: any = render(component);
-            console.log('testObject', testObject);
 
             testObject._isMounted = false;
             testObject.state.isFocused = true;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dialog, DefaultButton, DialogFooter, PrimaryButton } from '@fluentui/react';
-import { act, render } from '@testing-library/react';
+import { Dialog, DialogFooter, PrimaryButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 
@@ -18,7 +18,7 @@ import {
 jest.mock('@fluentui/react');
 
 describe('GenericDialogTest', () => {
-    act(() => mockReactComponents([Dialog]))
+    mockReactComponents([Dialog, DialogFooter])
     it('should render', () => {
         const props: GenericDialogProps = {
             title: 'test title',
@@ -33,54 +33,55 @@ describe('GenericDialogTest', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    // it('should handle onDismiss properly', async () => {
-    //     const onDismissMock = jest.fn();
+    it('should handle onDismiss properly', async () => {
+        const onDismissMock = jest.fn();
 
-    //     const props: GenericDialogProps = {
-    //         title: 'test title',
-    //         onPrimaryButtonClick: null,
-    //         onCancelButtonClick: onDismissMock,
-    //         messageText: 'test message',
-    //         primaryButtonText: 'test primary text',
-    //     };
+        const props: GenericDialogProps = {
+            title: 'test title',
+            onPrimaryButtonClick: null,
+            onCancelButtonClick: onDismissMock,
+            messageText: 'test message',
+            primaryButtonText: 'test primary text',
+        };
 
-    //     render(<GenericDialog {...props} />);
-    //     getMockComponentClassPropsForCall(Dialog).onDismiss();
+        render(<GenericDialog {...props} />);
+        getMockComponentClassPropsForCall(Dialog).onDismiss();
 
-    //     expect(onDismissMock).toHaveBeenCalledTimes(1);
-    // });
+        expect(onDismissMock).toHaveBeenCalledTimes(1);
+    });
 
-    // it('should handle onStartOver properly', async () => {
-    //     const onPrimaryButtonClickMock = jest.fn();
+    it('should handle onStartOver properly', async () => {
+        const onPrimaryButtonClickMock = jest.fn();
 
-    //     const props: GenericDialogProps = {
-    //         title: 'test title',
-    //         onCancelButtonClick: null,
-    //         onPrimaryButtonClick: onPrimaryButtonClickMock,
-    //         messageText: 'test message',
-    //         primaryButtonText: 'test primary text',
-    //     };
+        const props: GenericDialogProps = {
+            title: 'test title',
+            onCancelButtonClick: null,
+            onPrimaryButtonClick: onPrimaryButtonClickMock,
+            messageText: 'test message',
+            primaryButtonText: 'test primary text',
+        };
 
-    //     render(<GenericDialog {...props} />);
-    //     getMockComponentClassPropsForCall(PrimaryButton).onClick(event);
+        render(<GenericDialog {...props} />);
 
-    //     expect(onPrimaryButtonClickMock).toHaveBeenCalledTimes(1);
-    // });
+        getMockComponentClassPropsForCall(PrimaryButton).onClick();
 
-    // it('should properly handle dialog dismiss', () => {
-    //     const onCancelButtonClickMock = jest.fn();
+        expect(onPrimaryButtonClickMock).toHaveBeenCalledTimes(1);
+    });
 
-    //     const props: GenericDialogProps = {
-    //         title: 'test title',
-    //         onPrimaryButtonClick: null,
-    //         onCancelButtonClick: onCancelButtonClickMock,
-    //         messageText: 'test message',
-    //         primaryButtonText: 'test primary text',
-    //     };
+    it('should properly handle dialog dismiss', () => {
+        const onCancelButtonClickMock = jest.fn();
 
-    //     render(<GenericDialog {...props} />);
-    //     getMockComponentClassPropsForCall(Dialog).onDismiss();
+        const props: GenericDialogProps = {
+            title: 'test title',
+            onPrimaryButtonClick: null,
+            onCancelButtonClick: onCancelButtonClickMock,
+            messageText: 'test message',
+            primaryButtonText: 'test primary text',
+        };
 
-    //     expect(onCancelButtonClickMock).toHaveBeenCalledTimes(1);
-    // });
+        render(<GenericDialog {...props} />);
+        getMockComponentClassPropsForCall(Dialog).onDismiss();
+
+        expect(onCancelButtonClickMock).toHaveBeenCalledTimes(1);
+    });
 });

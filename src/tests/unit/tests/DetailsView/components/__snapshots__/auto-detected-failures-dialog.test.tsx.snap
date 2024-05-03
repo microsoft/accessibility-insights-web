@@ -39,10 +39,37 @@ exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "
             disableshrink="true"
             grow="true"
           >
-            <mock-styledcheckboxbase
-              checked="false"
-              label="Don't show again"
-            />
+            <div
+              class="ms-Checkbox is-checked is-enabled root-117"
+            >
+              <input
+                checked=""
+                class="input-118"
+                data-ktp-execute-target="true"
+                id="checkbox-6"
+                type="checkbox"
+              />
+              <label
+                class="ms-Checkbox-label label-119"
+                for="checkbox-6"
+              >
+                <div
+                  class="ms-Checkbox-checkbox checkbox-120"
+                  data-ktp-target="true"
+                >
+                  <i
+                    aria-hidden="true"
+                    class="ms-Checkbox-checkmark checkmark-123"
+                    data-icon-name="CheckMark"
+                  />
+                </div>
+                <span
+                  class="ms-Checkbox-text text-122"
+                >
+                  Don't show again
+                </span>
+              </label>
+            </div>
           </mock-stackitem>
           <mock-stackitem
             grow="true"
@@ -121,25 +148,25 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
             grow="true"
           >
             <div
-              class="ms-Checkbox is-enabled root-117"
+              class="ms-Checkbox is-enabled root-124"
             >
               <input
                 class="input-118"
                 data-ktp-execute-target="true"
-                id="checkbox-6"
+                id="checkbox-7"
                 type="checkbox"
               />
               <label
                 class="ms-Checkbox-label label-119"
-                for="checkbox-6"
+                for="checkbox-7"
               >
                 <div
-                  class="ms-Checkbox-checkbox checkbox-120"
+                  class="ms-Checkbox-checkbox checkbox-125"
                   data-ktp-target="true"
                 >
                   <i
                     aria-hidden="true"
-                    class="ms-Checkbox-checkmark checkmark-123"
+                    class="ms-Checkbox-checkmark checkmark-127"
                     data-icon-name="CheckMark"
                   />
                 </div>
@@ -168,7 +195,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
                 >
                   <span
                     class="ms-Button-label label-113"
-                    id="id__7"
+                    id="id__8"
                   >
                     Got it
                   </span>

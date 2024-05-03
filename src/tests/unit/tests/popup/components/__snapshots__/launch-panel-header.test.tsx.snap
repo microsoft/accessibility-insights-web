@@ -1291,7 +1291,7 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
             "effects": null,
             "firstBaseUpdate": {
               "callback": null,
-              "eventTime": 2990.1342,
+              "eventTime": 2978.7744000000002,
               "lane": 16,
               "next": null,
               "payload": {
@@ -1314,7 +1314,7 @@ exports[`LaunchPanelHeaderTest renders: HamburgerMenuButton props 1`] = `
             },
             "lastBaseUpdate": {
               "callback": null,
-              "eventTime": 2990.1342,
+              "eventTime": 2978.7744000000002,
               "lane": 16,
               "next": null,
               "payload": {
