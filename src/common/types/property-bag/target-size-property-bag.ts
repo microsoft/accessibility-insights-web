@@ -8,9 +8,10 @@ export interface TargetSizePropertyBag extends ColumnValueBag {
     width?: number;
     height?: number;
     closestOffset?: number;
-    messageKey?: string;
-    sizeMessage?: string;
-    offsetMessage?: string;
+    sizeMessageKey?: string;
+    offsetMessageKey?: string;
+    sizeStatus?: string;
+    offsetStatus?: string;
     minSize?: number;
     minOffset?: number;
 }

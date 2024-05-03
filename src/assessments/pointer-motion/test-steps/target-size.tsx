@@ -9,7 +9,7 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { PointerMotionTestStep } from './test-steps';
 import { TargetSizePropertyBag } from 'common/types/property-bag/target-size-property-bag';
-import { PropertyBagColumnRendererFactory } from 'assessments/common/property-bag-column-renderer-factory';
+import { PropertyBagColumnRendererWithComputationFactory } from 'assessments/common/property-bag-column-renderer-factory';
 import { ReportInstanceField } from 'assessments/types/report-instance-field';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { AnalyzerConfigurationFactory } from 'assessments/common/analyzer-configuration-factory';
@@ -19,7 +19,7 @@ import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/ass
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { isEmpty } from 'lodash';
 import { ChecksType } from 'background/assessment-data-converter';
-import { getTargetSizeMessage } from 'scanner/target-size-utils';
+import { getTargetSizeColumnComponents } from 'scanner/target-size-utils';
 
 const description: JSX.Element = (
     <span>
@@ -85,17 +85,30 @@ const howToTest: JSX.Element = (
         </ol>
     </div>
 );
+const computePropertyBagValue: (
+    ruleType: 'size' | 'offset',
+) => (propertyBag: TargetSizePropertyBag) => typeof React.Component =
+    (ruleType: 'size' | 'offset') => (propertyBag: TargetSizePropertyBag) => {
+        const targetSizeColumnComponentGetter =
+            getTargetSizeColumnComponents(ruleType)(propertyBag);
+        console.log('get using property bag values', targetSizeColumnComponentGetter);
+        return targetSizeColumnComponentGetter;
+    };
 
 const displayPropertyBagConfig: PropertyBagColumnRendererConfig<TargetSizePropertyBag>[] = [
     {
         propertyName: 'sizeMessage',
         displayName: 'Size',
         defaultValue: null,
+        neededPropertyBagValues: ['height', 'width', 'minSize'],
+        compute: computePropertyBagValue('size'),
     },
     {
         propertyName: 'offsetMessage',
         displayName: 'Offset',
         defaultValue: null,
+        neededPropertyBagValues: ['closestOffset', 'minOffset'],
+        compute: computePropertyBagValue('offset'),
     },
 ];
 
@@ -117,18 +130,18 @@ const generateTargetSizePropertyBagFrom = (
         const data = Object.assign(
             {},
             ...ruleResult[checkName].map(r => {
-                console.log(r);
                 return {
                     ...r.data,
-                    [`${r.id.split('-')[1]}Message`]: getTargetSizeMessage(r.id, status, r.data),
+                    [`${r.id.split('-')[1]}Status`]: status,
+                    [`${r.id.split('-')[1]}MessageKey`]: r.data.messageKey,
                 };
             }),
         );
+        console.log(data);
         return data;
     }
     return null;
 };
-
 export const TargetSize: Requirement = {
     key: PointerMotionTestStep.targetSize,
     name: 'Target size',
@@ -141,7 +154,7 @@ export const TargetSize: Requirement = {
             key: 'touch-target-info',
             name: 'Touch target info',
             onRender:
-                PropertyBagColumnRendererFactory.getRenderer<TargetSizePropertyBag>(
+                PropertyBagColumnRendererWithComputationFactory.getRenderer<TargetSizePropertyBag>(
                     displayPropertyBagConfig,
                 ),
         },
