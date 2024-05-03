@@ -153,7 +153,6 @@ export const ReportTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectionP
                 content: (
                     <TabStopsReportInstanceList
                         key={`${result.id}-requirement-group`}
-                        requirementId={result.id}
                         instances={instances}
                     />
                 ),

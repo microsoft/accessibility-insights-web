@@ -31,6 +31,10 @@ export interface ScanUpdatePayload extends ScanBasePayload {
     results: TabStopEvent[];
 }
 
+export interface TabStopScanUpdatePayload extends ScanUpdatePayload {
+    tabbedElements: TabStopEvent[];
+}
+
 export interface ScanBasePayload extends BaseActionPayload {
     testType: VisualizationType;
     key: string;
