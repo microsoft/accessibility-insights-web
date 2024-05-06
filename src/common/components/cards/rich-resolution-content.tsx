@@ -72,6 +72,16 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                     </div>
                 );
             }
+            case 'web/duplicate-id-aria': {
+                return (
+                    <div>
+                        Document has multiple elements referenced with ARIA with the same id
+                        attribute. Examine any duplicate ID values and rename them. Duplicate IDs
+                        are common validation errors that may break the accessibility of labels,
+                        e.g., form fields, table header cells.
+                    </div>
+                );
+            }
             case 'web/th-has-data-cells': {
                 return (
                     <div>

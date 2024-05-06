@@ -31,7 +31,7 @@ export class VisualizationToggle extends React.Component<VisualizationToggleProp
             onBlur: this.props.onBlur,
             onFocus: this.props.onFocus,
             'data-automation-id': this.props['data-automation-id'],
-        };
+        } as IToggleProps;
 
         return <Toggle {...props} />;
     }

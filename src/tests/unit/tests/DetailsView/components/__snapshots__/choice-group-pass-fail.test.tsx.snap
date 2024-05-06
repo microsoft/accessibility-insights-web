@@ -6,7 +6,6 @@ exports[`ChoiceGroupPassFail render 1`] = `
     class="choiceGroupContainer"
   >
     <mock-styledchoicegroup
-      islabelvisible="false"
       options="[object Object],[object Object],[object Object]"
       selectedkey="unknown"
       styles="[object Object]"
@@ -29,7 +28,6 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
     class="choiceGroupContainer"
   >
     <mock-styledchoicegroup
-      islabelvisible="false"
       options="[object Object],[object Object],[object Object]"
       selectedkey="fail"
       styles="[object Object]"
@@ -64,7 +62,6 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL: StyledChoiceGro
 {
   "componentRef": [Function],
   "data-automation-id": undefined,
-  "isLabelVisible": false,
   "onChange": [Function],
   "options": [
     {
@@ -111,7 +108,6 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
     class="choiceGroupContainer"
   >
     <mock-styledchoicegroup
-      islabelvisible="false"
       options="[object Object],[object Object],[object Object]"
       selectedkey="pass"
       styles="[object Object]"
@@ -146,7 +142,6 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to PASS: StyledChoiceGro
 {
   "componentRef": [Function],
   "data-automation-id": undefined,
-  "isLabelVisible": false,
   "onChange": [Function],
   "options": [
     {

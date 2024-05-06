@@ -15,9 +15,6 @@ exports[`UIFactory exports ContentView: Content props 1`] = `
   "children": "CONTENTS",
   "deps": {
     "getNarrowModeThresholds": [Function],
-    "storeActionMessageCreator": {
-      "getAllStates": [Function],
-    },
     "storesHub": {
       "addChangedListenerToAllStores": [Function],
       "getAllStoreData": [Function],
