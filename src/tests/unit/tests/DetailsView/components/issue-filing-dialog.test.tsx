@@ -8,7 +8,10 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
-import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import {
+    IssueFilingServiceProperties,
+    IssueFilingServicePropertiesMap,
+} from '../../../../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
     IssueFilingDialog,
@@ -93,12 +96,16 @@ describe('IssueFilingDialog', () => {
             getSettingsFromStoreData: getSettingsFromStoreDataMock.object,
             key: serviceKey,
         } as IssueFilingService;
+        const selectedIssueFilingServiceData: IssueFilingServiceProperties = {
+            repository: 'none',
+        };
         props = {
             deps,
             isOpen: true,
             onClose: onCloseMock.object,
             selectedIssueFilingService: issueFilingServiceStub,
             selectedIssueData: selectedIssueDataStub,
+            selectedIssueFilingServiceData,
             issueFilingServicePropertiesMap: issueFilingServicePropertiesMapStub,
             afterClosed: () => null,
         };

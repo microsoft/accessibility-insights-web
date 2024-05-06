@@ -9,7 +9,7 @@ import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-
 import { TabStopsRequirementResultProcessor } from 'injected/analyzers/tab-stops-requirement-result-processor';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { debounce, DebouncedFunc } from 'lodash';
-import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
+import { FocusAnalyzerConfiguration, ScanBasePayload, TabStopScanUpdatePayload } from './analyzer';
 
 export interface ProgressResult<T> {
     result: T;
@@ -55,7 +55,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         const results = this.pendingTabbedElements;
         this.pendingTabbedElements = [];
 
-        const payload: ScanUpdatePayload = {
+        const payload: TabStopScanUpdatePayload = {
             key: this.config.key,
             testType: this.config.testType,
             tabbedElements: results,

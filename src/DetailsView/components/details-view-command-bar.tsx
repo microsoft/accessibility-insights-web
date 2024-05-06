@@ -123,7 +123,6 @@ export class DetailsViewCommandBar extends React.Component<
             isInvalidLoadAssessmentDialogOpen: false,
             isLoadAssessmentDialogOpen: false,
             isReportExportDialogOpen: false,
-            isMoveToAssessmentDialogOpen: false,
             loadedAssessmentData: {} as VersionedAssessmentData,
             startOverDialogState: 'none',
         };

@@ -7,7 +7,6 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
   >
     <mock-styledchoicegroup
       data-automation-id="tabStopsPassFailChoiceGroup"
-      islabelvisible="false"
       options="[object Object],[object Object]"
       selectedkey="fail"
       styles="[object Object]"
@@ -43,7 +42,6 @@ exports[`TabStopsChoiceGroup render with fail status: StyledChoiceGroup props 1`
 {
   "componentRef": [Function],
   "data-automation-id": "tabStopsPassFailChoiceGroup",
-  "isLabelVisible": false,
   "onChange": [Function],
   "options": [
     {
@@ -81,7 +79,6 @@ exports[`TabStopsChoiceGroup render with pass status 1`] = `
   >
     <mock-styledchoicegroup
       data-automation-id="tabStopsPassFailChoiceGroup"
-      islabelvisible="false"
       options="[object Object],[object Object]"
       selectedkey="pass"
       styles="[object Object]"
@@ -102,7 +99,6 @@ exports[`TabStopsChoiceGroup render with pass status: StyledChoiceGroup props 1`
 {
   "componentRef": [Function],
   "data-automation-id": "tabStopsPassFailChoiceGroup",
-  "isLabelVisible": false,
   "onChange": [Function],
   "options": [
     {
@@ -140,7 +136,6 @@ exports[`TabStopsChoiceGroup render with unknown status 1`] = `
   >
     <mock-styledchoicegroup
       data-automation-id="tabStopsPassFailChoiceGroup"
-      islabelvisible="false"
       options="[object Object],[object Object]"
       selectedkey="unknown"
       styles="[object Object]"
@@ -156,7 +151,6 @@ exports[`TabStopsChoiceGroup render with unknown status: StyledChoiceGroup props
 {
   "componentRef": [Function],
   "data-automation-id": "tabStopsPassFailChoiceGroup",
-  "isLabelVisible": false,
   "onChange": [Function],
   "options": [
     {

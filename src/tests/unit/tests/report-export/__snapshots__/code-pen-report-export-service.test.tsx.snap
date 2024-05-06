@@ -5,7 +5,6 @@ exports[`CodePenReportExportService exportForm renders 1`] = `
   <form
     action="https://codepen.io/pen/define"
     method="POST"
-    rel="noopener"
     style="visibility: hidden;"
     target="_blank"
   >
