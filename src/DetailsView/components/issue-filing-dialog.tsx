@@ -9,7 +9,10 @@ import * as React from 'react';
 import { IssueFilingActionMessageCreator } from '../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { IssueFilingServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
+import {
+    IssueFilingServiceProperties,
+    IssueFilingServicePropertiesMap,
+} from '../../common/types/store-data/user-configuration-store';
 import {
     IssueFilingSettingsContainer,
     IssueFilingSettingsContainerDeps,
@@ -25,6 +28,7 @@ export interface IssueFilingDialogProps {
     isOpen: boolean;
     selectedIssueFilingService: IssueFilingService;
     selectedIssueData?: CreateIssueDetailsTextData;
+    selectedIssueFilingServiceData: IssueFilingServiceProperties;
     issueFilingServicePropertiesMap: IssueFilingServicePropertiesMap;
     onClose: (ev?: React.SyntheticEvent) => void;
     afterClosed?: () => void;

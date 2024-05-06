@@ -209,7 +209,6 @@ exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expecte
         },
       ]
     }
-    requirementId="keyboard-navigation"
   />,
   "deps": {
     "tabStopRequirementActionMessageCreator": [typemoq mock object],

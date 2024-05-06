@@ -55,7 +55,6 @@ export class ChoiceGroupPassFail extends React.Component<ChoiceGroupPassFailProp
                     onChange={this.props.onChange}
                     selectedKey={this.props.selectedKey}
                     options={this.props.options.map(this.makeOptions)}
-                    isLabelVisible={this.props.isLabelVisible}
                     data-automation-id={this.props['data-automation-id']}
                 />
                 <div className={styles.secondaryControlsWrapper}>

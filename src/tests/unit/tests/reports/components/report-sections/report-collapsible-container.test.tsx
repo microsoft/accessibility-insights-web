@@ -3,6 +3,7 @@
 import { render } from '@testing-library/react';
 import { forOwn } from 'lodash';
 import * as React from 'react';
+import { Mock } from 'typemoq';
 
 import { HeadingElementForLevel } from '../../../../../../common/components/heading-element-for-level';
 import {
@@ -20,7 +21,7 @@ describe('ReportCollapsibleContainerControl', () => {
         buttonAriaLabel: [undefined, 'some button label'],
         id: [undefined, 'some id'],
     };
-
+    const onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {
@@ -30,6 +31,7 @@ describe('ReportCollapsibleContainerControl', () => {
                     content: <div>Some content</div>,
                     headingLevel: 5,
                     [propertyName]: value,
+                    onExpandToggle: onExpandToggleMock.object,
                 };
                 const control = ReportCollapsibleContainerControl(props);
                 const renderResult = render(control);

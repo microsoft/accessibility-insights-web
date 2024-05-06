@@ -32,9 +32,6 @@ export const contentViewFactory = ({ applicationTitle, getNarrowModeThresholds }
         textContent: {
             applicationTitle,
         },
-        storeActionMessageCreator: {
-            getAllStates: nullCreator,
-        },
         storesHub: nullStoresHub,
         getNarrowModeThresholds,
     };
