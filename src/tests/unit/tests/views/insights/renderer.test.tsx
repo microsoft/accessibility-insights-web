@@ -34,6 +34,7 @@ describe('insights renderer', () => {
     it('renders InsightsRouter', () => {
         renderer(deps);
         const root = document.body.querySelector('#insights-root');
+        //NEEDS TO REVISIT AS PART OF REACT18 changes
         expect(deps.render).toHaveBeenCalledWith(root);
     });
 });

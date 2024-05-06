@@ -26,7 +26,7 @@ export class AssessmentReportHtmlGenerator {
         private axeVersion: string,
         private chromeVersion: string,
         private assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator,
-    ) {}
+    ) { }
 
     public generateHtml(
         assessmentStoreData: AssessmentStoreData,

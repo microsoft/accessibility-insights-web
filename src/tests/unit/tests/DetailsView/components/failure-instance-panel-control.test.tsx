@@ -93,9 +93,7 @@ describe('FailureInstancePanelControlTest', () => {
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         const genericPanelProp = getMockComponentClassPropsForCall(GenericPanel);
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
-        act(() => {
-            fireEvent.change(textField, { target: { value: description } });
-        })
+        fireEvent.change(textField, { target: { value: description } });
         act(() => {
             genericPanelProp.onDismiss();
         })

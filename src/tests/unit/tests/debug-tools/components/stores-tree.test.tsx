@@ -3,9 +3,7 @@
 import { DetailsRow, FocusZone, GroupedList, SelectionZone, Spinner } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
-import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
     columns,

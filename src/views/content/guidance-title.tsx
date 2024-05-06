@@ -9,13 +9,16 @@ export type GuidanceTitleProps = {
     name: string;
 };
 
-export const GuidanceTitle = NamedFC<GuidanceTitleProps>('GuidanceTitle', ({ name }) => (
-    <>
-        <Helmet>
-            <title>
-                Guidance for {name} - {productName}
-            </title>
-        </Helmet>
-        <h1>{name}</h1>
-    </>
-));
+export const GuidanceTitle = NamedFC<GuidanceTitleProps>('GuidanceTitle', ({ name }) => {
+    const titleValue = `Guidance for ${name}-${productName}`
+    return (
+        <>
+            <Helmet>
+                <title>
+                    {titleValue}
+                </title>
+            </Helmet>
+            <h1>{name}</h1>
+        </>
+    )
+});
