@@ -97,12 +97,12 @@ export abstract class BaseDrawer implements Drawer {
 
     protected abstract addHighlightsToContainer(): Promise<void>;
 
-    protected handlePositionChange = async () => {
+    protected async handlePositionChange(): Promise<void> {
         if (this.isEnabled) {
             this.removeContainerElement();
             await this.draw();
         }
-    };
+    }
 
     protected applyContainerClass(): void {
         if (this.containerElement == null) {
