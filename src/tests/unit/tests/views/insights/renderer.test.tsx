@@ -1,15 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Theme } from 'common/components/theme';
 import { configMutator } from 'common/configuration';
-import { createRoot } from 'react-dom/client';
+import * as React from 'react';
+import { InsightsRouter } from 'views/insights/insights-router';
 import { renderer, RendererDeps } from 'views/insights/renderer';
 
 jest.mock('../../../../../common/components/body-class-modifier');
 jest.mock('common/components/theme');
+
 describe('insights renderer', () => {
     const deps = {
         dom: document,
-        render: jest.fn(createRoot),
+        render: jest.fn().mockReturnValue({ render: jest.fn() }),
         initializeFabricIcons: jest.fn(),
     } as Partial<RendererDeps> as RendererDeps;
 
@@ -34,7 +37,12 @@ describe('insights renderer', () => {
     it('renders InsightsRouter', () => {
         renderer(deps);
         const root = document.body.querySelector('#insights-root');
-        //NEEDS TO REVISIT AS PART OF REACT18 changes
         expect(deps.render).toHaveBeenCalledWith(root);
+        expect(deps.render().render).toHaveBeenCalledWith(
+            <>
+                <Theme deps={deps} />
+                <InsightsRouter deps={deps} />
+            </>,
+        )
     });
 });

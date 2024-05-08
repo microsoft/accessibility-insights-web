@@ -66,7 +66,7 @@ export const createMarkup = (deps: MarkupDeps, options?: MarkupOptions) => {
 
     function Title(props: { children: string }): JSX.Element {
         const { applicationTitle } = deps.textContent;
-        const titleValue = `${props.children}-${applicationTitle}`
+        const titleValue = `${props.children} - ${applicationTitle}`
         const helmet = (
             <Helmet>
                 <title>

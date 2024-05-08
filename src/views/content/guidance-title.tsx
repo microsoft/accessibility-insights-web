@@ -10,7 +10,7 @@ export type GuidanceTitleProps = {
 };
 
 export const GuidanceTitle = NamedFC<GuidanceTitleProps>('GuidanceTitle', ({ name }) => {
-    const titleValue = `Guidance for ${name}-${productName}`
+    const titleValue = `Guidance for ${name} - ${productName}`
     return (
         <>
             <Helmet>

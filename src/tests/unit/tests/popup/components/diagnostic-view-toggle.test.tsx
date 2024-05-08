@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Link, Spinner } from '@fluentui/react';
-import { render } from '@testing-library/react';
+import { render, renderHook } from '@testing-library/react';
+//import { render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
@@ -20,6 +21,9 @@ import {
 } from 'popup/components/diagnostic-view-toggle';
 import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggle-click-handler';
 import * as React from 'react';
+import { createRoot } from 'react-dom/client'
+//import { renderIntoDocument } from 'react-dom/test-utils';
+import { renderIntoDocument } from 'react-dom/test-utils';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
@@ -229,7 +233,7 @@ describe('DiagnosticViewToggleTest', () => {
 
             const component = React.createElement(DiagnosticViewToggle, props);
 
-            const testObject: any = render(component);
+            const testObject: any = renderIntoDocument(component);
 
             testObject._isMounted = false;
             testObject.state.isFocused = true;
@@ -254,7 +258,7 @@ describe('DiagnosticViewToggleTest', () => {
 
             const component = React.createElement(DiagnosticViewToggle, props);
 
-            const testObject = render(component);
+            const testObject = renderIntoDocument(component);
             (testObject as any)._isMounted = true;
             (testObject as any).state.isFocused = true;
             (testObject as any).componentDidUpdate();
@@ -280,7 +284,7 @@ describe('DiagnosticViewToggleTest', () => {
 
             const component = React.createElement(DiagnosticViewToggle, props);
 
-            const testObject = render(component);
+            const testObject = renderIntoDocument(component);
 
             (testObject as any)._isMounted = true;
 
@@ -307,7 +311,7 @@ describe('DiagnosticViewToggleTest', () => {
 
             const component = React.createElement(DiagnosticViewToggle, props);
 
-            const testObject = render(component);
+            const testObject = renderIntoDocument(component);
 
             (testObject as any)._isMounted = true;
 
@@ -334,9 +338,9 @@ describe('DiagnosticViewToggleTest', () => {
 
         const component = React.createElement(DiagnosticViewToggle, props);
 
-        const testObject = render(component);
-        const result = testObject.rerender(component);
-        (result as any)._userEventListenerAdded = false;
+        const testObject = renderIntoDocument(component);
+
+        (testObject as any)._userEventListenerAdded = false;
 
         const addUserEventListenerFunction = (testObject as any).addUserEventListener;
 
