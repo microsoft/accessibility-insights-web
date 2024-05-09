@@ -27,7 +27,7 @@ describe('NoContentAvailableViewRenderer', () => {
             .setup(des => des.setShortcutIcon('../' + expectedIcon16))
             .verifiable();
 
-        const renderMock = Mock.ofType<createRoot>();
+        const renderMock = Mock.ofType<typeof createRoot>();
         const createRootMock = jest.fn(createRoot);
         renderMock.setup(r =>
             r(

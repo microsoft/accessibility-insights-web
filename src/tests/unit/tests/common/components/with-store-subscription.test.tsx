@@ -10,7 +10,7 @@ import { ClientStoresHub } from '../../../../../common/stores/client-stores-hub'
 
 describe('withStoreSubscription', () => {
     type testProps = WithStoreSubscriptionProps<{ message: string }>;
-    const testComp: React.FC<testProps> = props => <h1>{props.storeState.message}</h1>;
+    const testComp: React.FC<React.PropsWithChildren<testProps>> = props => <h1>{props.storeState.message}</h1>;
 
     test('constructor: storesHub is null', () => {
         const props: testProps = {

@@ -7,13 +7,13 @@ import { IncompatibleBrowserRenderer } from '../../../../popup/incompatible-brow
 
 describe('IncompatibleBrowserRenderer', () => {
     it('renders', () => {
-        const createRootMock = Mock.ofType<typeof createRoot>();
+        const createRootMock: any = Mock.ofType<typeof createRoot>();
         const containerMock = Mock.ofType<HTMLElement>();
         const documentMock = Mock.ofType<Document>();
         documentMock
             .setup(mock => mock.querySelector('#popup-container'))
             .returns(() => containerMock.object);
-        const renderMock = Mock.ofType<typeof createRoot.render>();
+        const renderMock: any = Mock.ofType<typeof createRoot>();
         createRootMock
             .setup(r => r(It.isAny()))
             .returns(() => {

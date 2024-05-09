@@ -74,7 +74,7 @@ describe(DialogRendererImpl, () => {
             appendChild: node => { },
         } as any);
 
-        renderMock = Mock.ofType<createRoot>();
+        renderMock = Mock.ofType<typeof createRoot>();
         getRTLMock = Mock.ofInstance(() => null);
         rootContainerMock = Mock.ofType<HTMLElement>();
 

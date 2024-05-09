@@ -5,11 +5,12 @@ import { config } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import { InsightsRouter, ContentRouteDeps } from './insights-router';
 
 export type RendererDeps = {
     dom: Document;
-    render: createRoot;
+    render: typeof createRoot;
     initializeFabricIcons: () => void;
 } & ContentRouteDeps &
     ThemeDeps;
@@ -26,8 +27,10 @@ export function renderer(deps: RendererDeps): void {
     const root = render(insightsRoot);
     root.render(
         <>
-            <Theme deps={deps} />
-            <InsightsRouter deps={deps} />
+            <HelmetProvider>
+                <Theme deps={deps} />
+                <InsightsRouter deps={deps} />
+            </HelmetProvider>
         </>
     );
 }

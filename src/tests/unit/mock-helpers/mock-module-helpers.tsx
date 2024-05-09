@@ -106,7 +106,7 @@ function expectMockedComponentPropsToMatchSnapshot(component: any, snapshotName?
 }
 
 function mockReactElement<P = any>(elementName: string) {
-    const element: React.FC<React.PropsWithChildren<P>> = elementProps => {
+    const element: React.FC<React.PropsWithChildren<React.PropsWithChildren<P>>> = elementProps => {
         try {
             const { children, ...props } = elementProps;
             return React.createElement(elementName, props, children);

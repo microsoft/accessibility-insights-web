@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { productName } from 'content/strings/application';
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { NamedFC } from '../../common/react/named-fc';
 
 export type GuidanceTitleProps = {

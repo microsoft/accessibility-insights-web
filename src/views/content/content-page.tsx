@@ -8,12 +8,12 @@ import * as React from 'react';
 import { MarkupBasedComponentProps, createMarkup, Markup, MarkupDeps } from './markup';
 
 type HyperlinkDefinitionMap = { [KEY in string]: { href: string; text: string } };
-type HyperlinkComponentMap<M extends HyperlinkDefinitionMap> = { [KEY in keyof M]: React.FC };
+type HyperlinkComponentMap<M extends HyperlinkDefinitionMap> = { [KEY in keyof M]: React.FC<React.PropsWithChildren<unknown>> };
 
 export type ContentPageDeps = MarkupDeps;
 export type ContentPageProps = MarkupBasedComponentProps;
 
-export type ContentPageComponent = React.FC<ContentPageProps> & {
+export type ContentPageComponent = React.FC<React.PropsWithChildren<ContentPageProps>> & {
     displayName: 'ContentPageComponent';
     pageTitle?: string;
 };
@@ -79,7 +79,10 @@ export function ContentProvider(root: ContentTree): ContentProvider {
         const prefixEntry =
             (prefix: string) =>
             ({ path, leaf }: TreeEntry) =>
-                ({ path: prefix + '/' + path, leaf }) as TreeEntry;
+                (({
+                    path: prefix + '/' + path,
+                    leaf
+                }) as TreeEntry);
 
         const entries = toPairs(tree).map(([key, leaf]) =>
             isContentPageComponent(leaf)

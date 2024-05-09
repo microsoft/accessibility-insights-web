@@ -32,7 +32,7 @@ export const ReportInstanceList = NamedFC<ReportInstanceListProps>('ReportInstan
         return props.instances.map((instance, index) => {
             return (
                 <table className="instance-details" key={`instance-row-${index}`}>
-                    <tbody>{renderInstanceRows(instance)}</tbody>
+                    <tbody>{renderInstanceRows(instance).toString()}</tbody>
                 </table>
             );
         });
@@ -97,7 +97,7 @@ export const ReportInstanceList = NamedFC<ReportInstanceListProps>('ReportInstan
     function renderRow(cells: Cell[], index: Index): Row {
         return (
             <tr className="instance-pair-details" key={`instance-pair-row-${index}`}>
-                {cells}
+                {cells.toString()}
             </tr>
         );
     }
