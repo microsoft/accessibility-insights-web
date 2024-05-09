@@ -7,26 +7,29 @@ import { IncompatibleBrowserRenderer } from '../../../../popup/incompatible-brow
 
 describe('IncompatibleBrowserRenderer', () => {
     it('renders', () => {
-        const renderMock = Mock.ofType<typeof createRoot>();
+        const createRootMock = Mock.ofType<typeof createRoot>();
         const containerMock = Mock.ofType<HTMLElement>();
         const documentMock = Mock.ofType<Document>();
-
         documentMock
             .setup(mock => mock.querySelector('#popup-container'))
             .returns(() => containerMock.object);
-
+        const renderMock = Mock.ofType<typeof createRoot.render>();
+        createRootMock
+            .setup(r => r(It.isAny()))
+            .returns(() => {
+                return renderMock.object;
+            });
         renderMock
-            .setup(mock => mock(containerMock.object))
+            .setup(mock => mock.render(It.isAny()))
             .callback(element => {
-                expect(element.render(It.isAny())).toMatchSnapshot();
+                expect(element).toMatchSnapshot();
             })
             .verifiable();
 
-
-
-
-
-        const testSubject = new IncompatibleBrowserRenderer(renderMock.object, documentMock.object);
+        const testSubject = new IncompatibleBrowserRenderer(
+            createRootMock.object,
+            documentMock.object,
+        );
         testSubject.render();
 
         renderMock.verifyAll();

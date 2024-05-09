@@ -66,7 +66,7 @@ export const createMarkup = (deps: MarkupDeps, options?: MarkupOptions) => {
 
     function Title(props: { children: string }): JSX.Element {
         const { applicationTitle } = deps.textContent;
-        const titleValue = `${props.children} - ${applicationTitle}`
+        const titleValue = `${props.children} - ${applicationTitle}`;
         const helmet = (
             <Helmet>
                 <title>
@@ -78,7 +78,7 @@ export const createMarkup = (deps: MarkupDeps, options?: MarkupOptions) => {
         return (
             <>
                 {options && options.setPageTitle && helmet}
-                <h1>`${props.children}`</h1>
+                <h1>{props.children}</h1>
             </>
         );
     }
@@ -89,7 +89,7 @@ export const createMarkup = (deps: MarkupDeps, options?: MarkupOptions) => {
 
         return (
             <NewTabLink href={href} onClick={e => openContentHyperLink(e, href)}>
-                `${props.children}`
+                {props.children}
             </NewTabLink>
         );
     }

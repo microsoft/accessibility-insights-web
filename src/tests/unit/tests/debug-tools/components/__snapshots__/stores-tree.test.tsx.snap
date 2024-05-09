@@ -77,6 +77,7 @@ exports[`StoresTree renders with no data from the state 1`] = `
 exports[`StoresTree renders with proper data from the stores 1`] = `
 <DocumentFragment>
   <mock-focuszone
+    data-tabster="{"uncontrolled": {}}"
     direction="2"
     iscircularnavigation="false"
     shouldraiseclicks="true"
@@ -212,6 +213,7 @@ exports[`StoresTree renders with proper data from the stores: FocusZone props 1`
       selectionMode={0}
     />
   </SelectionZone>,
+  "data-tabster": "{"uncontrolled": {}}",
   "direction": 2,
   "isCircularNavigation": false,
   "shouldRaiseClicks": true,

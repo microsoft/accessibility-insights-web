@@ -47,7 +47,7 @@ describe('LaunchPanelHeaderTest', () => {
             subtitle: 'test subtitle',
             popupWindow: {} as Window,
             featureFlags: {} as FeatureFlagStoreData,
-            openAdhocToolsPanel: () => {},
+            openAdhocToolsPanel: () => { },
         };
     });
 
@@ -58,6 +58,7 @@ describe('LaunchPanelHeaderTest', () => {
             GearMenuButton,
             HamburgerMenuButton,
         ]);
+        console.log('wrapped.asFragment()', wrapped.asFragment())
         expect(wrapped.asFragment()).toMatchSnapshot();
     });
 

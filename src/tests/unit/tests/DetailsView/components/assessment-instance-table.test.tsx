@@ -170,20 +170,23 @@ describe('AssessmentInstanceTable', () => {
         });
 
         it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", async () => {
-            const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
             useOriginalReactElements('@fluentui/react', ['DetailsList']);
+            const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
+
+
             assessmentInstanceTableHandlerMock
-                .setup(a => a.updateFocusedTarget(fakeItem.instance.target))
+                .setup(a => act(() => a.updateFocusedTarget(fakeItem.instance.target)))
                 .verifiable(Times.once());
 
             render(<AssessmentInstanceTable {...props} />);
+
             const rowClick = screen.getAllByRole('row');
-            act(() => {
-                fireEvent.click(rowClick[1], fakeItem);
-            })
-            act(() => {
-                getMockComponentClassPropsForCall(DetailsList).onItemInvoked(fakeItem);
-            })
+
+            fireEvent.click(rowClick[1], fakeItem);
+
+            const { onItemInvoked } = getMockComponentClassPropsForCall(DetailsList);
+
+            onItemInvoked(fakeItem);
 
             assessmentInstanceTableHandlerMock.verifyAll();
         });
@@ -236,8 +239,11 @@ describe('AssessmentInstanceTable', () => {
                 ]);
                 act(() => {
                     render(<AssessmentInstanceTable {...props} />);
+                });
+                act(() => {
+                    getMockComponentClassPropsForCall(InsightsCommandButton).onClick();
                 })
-                getMockComponentClassPropsForCall(InsightsCommandButton).onClick();
+
                 assessmentInstanceTableHandlerMock.verifyAll();
             });
         });

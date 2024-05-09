@@ -100,7 +100,8 @@ describe('SaveAssessmentButton', () => {
 
             it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
                 await userEvent.click(wrapper.getByRole('button'));
-                expect(getMockComponentClassPropsForCall(Dialog, 3).hidden).toEqual(true);
+                const getProps = getMockComponentClassPropsForCall(Dialog);
+                expect(getProps.hidden).toEqual(true);
             });
 
             it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {

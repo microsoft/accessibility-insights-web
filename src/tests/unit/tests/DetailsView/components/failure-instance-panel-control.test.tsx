@@ -124,11 +124,16 @@ describe('FailureInstancePanelControlTest', () => {
         const description = 'abc';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
-        const renderResult = render(<FailureInstancePanelControl {...props} />);
+        const renderResult: any = render(<FailureInstancePanelControl {...props} />);
+        act(() => {
+            renderResult.rerender(<FailureInstancePanelControl {...props} />);
+        })
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
+
         fireEvent.click(renderResult.getByRole('button'));
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(textField, { target: { value: description } });
+
         expect(textField.value).toBe(description);
     });
 

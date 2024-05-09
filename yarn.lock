@@ -3500,7 +3500,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "accessibility-insights-report@workspace:packages/report"
   dependencies:
-    "@fluentui/react": ^8.96.1
+    "@fluentui/react": ^8.118.1
     axe-core: 4.8.4
     classnames: ^2.5.1
     lodash: ^4.17.21
