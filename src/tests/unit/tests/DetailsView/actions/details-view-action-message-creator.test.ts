@@ -307,9 +307,11 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             selectedDetailsViewPivot: DetailsViewPivotType[1],
         };
 
-        telemetryFactoryMock.setup(tfm => tfm.forDetailsViewOpened(1)).returns(() => telemetry);
+        telemetryFactoryMock
+            .setup(tfm => tfm.forDetailsViewOpened(1 as DetailsViewPivotType))
+            .returns(() => telemetry);
 
-        testSubject.detailsViewOpened(1);
+        testSubject.detailsViewOpened(1 as DetailsViewPivotType);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.sendTelemetry(DETAILS_VIEW_OPEN, telemetry),
@@ -501,7 +503,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .setup(tf => tf.withTriggeredByAndSource(eventStub, TelemetryEventSource.DetailsView))
             .returns(() => telemetryStub);
 
-        testSubject.rescanVisualization(testStub, eventStub);
+        testSubject.rescanVisualization(testStub as VisualizationType, eventStub);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

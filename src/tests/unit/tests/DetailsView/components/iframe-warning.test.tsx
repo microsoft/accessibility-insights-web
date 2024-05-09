@@ -54,7 +54,7 @@ describe('AssessmentIframeWarning', () => {
     beforeEach(() => {
         allUrlsPermissionHandlerMock = Mock.ofType<AllUrlsPermissionHandler>();
         assessmentActionCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
-        testStub = -1;
+        testStub = -1 as VisualizationType;
         props = {
             deps: {
                 allUrlsPermissionHandler: allUrlsPermissionHandlerMock.object,
@@ -92,7 +92,7 @@ describe('FastPassIframeWarning', () => {
     beforeEach(() => {
         allUrlsPermissionHandlerMock = Mock.ofType<AllUrlsPermissionHandler>();
         detailsViewActionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
-        testStub = -1;
+        testStub = -1 as VisualizationType;
         props = {
             deps: {
                 allUrlsPermissionHandler: allUrlsPermissionHandlerMock.object,

@@ -25,7 +25,7 @@ describe('ScanIncompleteWarning', () => {
     let testStub: VisualizationType;
 
     beforeEach(() => {
-        testStub = -1;
+        testStub = -1 as VisualizationType;
 
         const scanIncompleteWarningStub: ReactFCWithDisplayName<ScanIncompleteWarningMessageBarProps> =
             NamedFC<ScanIncompleteWarningMessageBarProps>('test', _ => null);
