@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
+import { TargetSizeColumnRendererFactory } from 'assessments/pointer-motion/target-size-column-renderer-factory';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import * as React from 'react';
 
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { RendererWrapper } from '../common/renderer-wrapper';
-import { TargetSizeColumnRendererFactory } from 'assessments/pointer-motion/target-size-column-renderer-factory';
 
 describe('TargetSizeColumnRendererFactory', () => {
     let configs: PropertyBagColumnRendererConfig<TestPropertyBag>[];

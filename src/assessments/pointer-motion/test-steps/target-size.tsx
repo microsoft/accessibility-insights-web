@@ -1,28 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AnalyzerConfigurationFactory } from 'assessments/common/analyzer-configuration-factory';
+import {
+    getTargetOffsetMessageComponentFromPropertyBag,
+    getTargetSizeMessageComponentFromPropertyBag,
+} from 'assessments/pointer-motion/target-size-column-renderer';
+import { TargetSizeColumnRendererFactory } from 'assessments/pointer-motion/target-size-column-renderer-factory';
+import { ReportInstanceField } from 'assessments/types/report-instance-field';
+import { ChecksType } from 'background/assessment-data-converter';
+import { TargetSizePropertyBag } from 'common/types/property-bag/target-size-property-bag';
+import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { link } from 'content/link';
 import * as content from 'content/test/pointer-motion/target-size';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import * as React from 'react';
 import { PropertyBagColumnRendererConfig } from '../../../common/types/property-bag/property-bag-column-renderer-config';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { PointerMotionTestStep } from './test-steps';
-import { TargetSizePropertyBag } from 'common/types/property-bag/target-size-property-bag';
-import { ReportInstanceField } from 'assessments/types/report-instance-field';
-import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
-import { AnalyzerConfigurationFactory } from 'assessments/common/analyzer-configuration-factory';
-import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
-import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
-import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { isEmpty } from 'lodash';
-import { ChecksType } from 'background/assessment-data-converter';
-import { TargetSizeColumnRendererFactory } from 'assessments/pointer-motion/target-size-column-renderer-factory';
-import {
-    getTargetOffsetMessageComponentFromPropertyBag,
-    getTargetSizeMessageComponentFromPropertyBag,
-} from 'assessments/pointer-motion/target-size-column-renderer';
 
 const description: JSX.Element = (
     <span>
@@ -123,7 +123,6 @@ const generateTargetSizePropertyBagFrom = (
                 };
             }),
         );
-        console.log(data);
         return data;
     }
     return null;
