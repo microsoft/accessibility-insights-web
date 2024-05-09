@@ -15,14 +15,14 @@ import * as content from 'content/test/pointer-motion/target-size';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
+import { ScannerUtils } from 'injected/scanner-utils';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { PropertyBagColumnRendererConfig } from '../../../common/types/property-bag/property-bag-column-renderer-config';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { PointerMotionTestStep } from './test-steps';
-import { ScannerUtils } from 'injected/scanner-utils';
-import { isEmpty } from 'lodash';
 
 const description: JSX.Element = (
     <span>
