@@ -9,7 +9,6 @@ import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { PointerMotionTestStep } from './test-steps';
 import { TargetSizePropertyBag } from 'common/types/property-bag/target-size-property-bag';
-import { PropertyBagColumnRendererWithComputationFactory } from 'assessments/common/property-bag-column-renderer-factory';
 import { ReportInstanceField } from 'assessments/types/report-instance-field';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { AnalyzerConfigurationFactory } from 'assessments/common/analyzer-configuration-factory';
@@ -19,7 +18,11 @@ import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/ass
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import { isEmpty } from 'lodash';
 import { ChecksType } from 'background/assessment-data-converter';
-import { getTargetSizeColumnComponents } from 'scanner/target-size-utils';
+import { TargetSizeColumnRendererFactory } from 'assessments/pointer-motion/target-size-column-renderer-factory';
+import {
+    getTargetOffsetMessageComponentFromPropertyBag,
+    getTargetSizeMessageComponentFromPropertyBag,
+} from 'assessments/pointer-motion/target-size-column-renderer';
 
 const description: JSX.Element = (
     <span>
@@ -30,39 +33,35 @@ const description: JSX.Element = (
 
 const howToTest: JSX.Element = (
     <div>
+        <p>
+            For this requirement, Accessibility Insights for Web highlights non-inline focusable
+            elements on the target page and checks the touch target size.
+        </p>
+        <p>
+            <Markup.Emphasis>
+                Note: If no matching/failing instances are found, this requirement will
+                automatically be marked as pass.
+            </Markup.Emphasis>
+        </p>
         <ol>
             <li>
                 <p>
-                    Examine the target page to identify interactive elements which have been created
-                    by authors (non-native browser controls).
+                    In the <Markup.Term>Instances</Markup.Term> list below, examine each element,
+                    and verify the element is a <Markup.Term>sufficient size</Markup.Term> and{' '}
+                    <Markup.Term>sufficient offset</Markup.Term> from its neighbor.
                 </p>
             </li>
             <li>
                 <p>
-                    Verify these elements are a minimum size of 24x24 css pixels. The following
-                    exceptions apply:
+                    If an element does not have sufficient size and/or sufficient offset from its
+                    neighbor, verify the following exceptions do not apply:
                 </p>
                 <ul>
-                    <li>
-                        <p>
-                            <Markup.Emphasis>Spacing</Markup.Emphasis>: These elements may be
-                            smaller than 24x24 css pixels so long as it is within a 24x24 css pixel
-                            target spacing circle that doesn’t overlap with other targets or their
-                            24x24 target spacing circle.
-                        </p>
-                    </li>
                     <li>
                         <p>
                             <Markup.Emphasis>Equivalent</Markup.Emphasis>: If an alternative control
                             is provided on the same page that successfully meets the target
                             criteria.
-                        </p>
-                    </li>
-                    <li>
-                        <p>
-                            <Markup.Emphasis>Inline</Markup.Emphasis>: The target is in a sentence,
-                            or its size is otherwise constrained by the line-height of non-target
-                            text.
                         </p>
                     </li>
                     <li>
@@ -85,30 +84,17 @@ const howToTest: JSX.Element = (
         </ol>
     </div>
 );
-const computePropertyBagValue: (
-    ruleType: 'size' | 'offset',
-) => (propertyBag: TargetSizePropertyBag) => typeof React.Component =
-    (ruleType: 'size' | 'offset') => (propertyBag: TargetSizePropertyBag) => {
-        const targetSizeColumnComponentGetter =
-            getTargetSizeColumnComponents(ruleType)(propertyBag);
-        console.log('get using property bag values', targetSizeColumnComponentGetter);
-        return targetSizeColumnComponentGetter;
-    };
 
 const displayPropertyBagConfig: PropertyBagColumnRendererConfig<TargetSizePropertyBag>[] = [
     {
-        propertyName: 'sizeMessage',
+        propertyName: 'sizeComponent',
         displayName: 'Size',
         defaultValue: null,
-        neededPropertyBagValues: ['height', 'width', 'minSize'],
-        compute: computePropertyBagValue('size'),
     },
     {
-        propertyName: 'offsetMessage',
+        propertyName: 'offsetComponent',
         displayName: 'Offset',
         defaultValue: null,
-        neededPropertyBagValues: ['closestOffset', 'minOffset'],
-        compute: computePropertyBagValue('offset'),
     },
 ];
 
@@ -154,12 +140,23 @@ export const TargetSize: Requirement = {
             key: 'touch-target-info',
             name: 'Touch target info',
             onRender:
-                PropertyBagColumnRendererWithComputationFactory.getRenderer<TargetSizePropertyBag>(
+                TargetSizeColumnRendererFactory.getColumnComponent<TargetSizePropertyBag>(
                     displayPropertyBagConfig,
                 ),
         },
     ],
-    reportInstanceFields: ReportInstanceField.fromColumns(displayPropertyBagConfig),
+    reportInstanceFields: [
+        ReportInstanceField.fromPropertyBagFunction<TargetSizePropertyBag>(
+            'Size',
+            'sizeComponent',
+            pb => getTargetSizeMessageComponentFromPropertyBag(pb).toString(),
+        ),
+        ReportInstanceField.fromPropertyBagFunction<TargetSizePropertyBag>(
+            'Offset',
+            'offsetComponent',
+            pb => getTargetOffsetMessageComponentFromPropertyBag(pb).toString(),
+        ),
+    ],
     getAnalyzer: (provider: AnalyzerProvider, analyzerConfig: AnalyzerConfiguration) =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
