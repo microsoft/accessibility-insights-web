@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TargetSizeColumnRenderer when offsetStatus is set should render offsetComponent when the necessary properties are available 1`] = `
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display a: 
+      </span>
+      value for a
+    </div>
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        offset: 
+      </span>
+      <span
+        class="expanded-property-div"
+        id="target-offset"
+      >
+        Element has sufficient offset from its closest neighbor (25px)
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TargetSizeColumnRenderer when offsetStatus is set should return null when the necessary properties are not available 1`] = `
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display a: 
+      </span>
+      value for a
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TargetSizeColumnRenderer when sizeStatus is set should render expected message with bolded words when sizeStatus is fail 1`] = `
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display a: 
+      </span>
+      value for a
+    </div>
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        size: 
+      </span>
+      <span
+        class="expanded-property-div"
+        id="target-size"
+      >
+        Element has 
+        <strong>
+          insufficient
+        </strong>
+         touch target size (5px by 5px, should be at least 28px by 28px) 
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TargetSizeColumnRenderer when sizeStatus is set should render sizeComponent when the necessary properties are available 1`] = `
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display a: 
+      </span>
+      value for a
+    </div>
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        size: 
+      </span>
+      <span
+        class="expanded-property-div"
+        id="target-size"
+      >
+        Element has sufficient touch target size (40px by 40px).
+      </span>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`TargetSizeColumnRenderer when sizeStatus is set should return null when the necessary properties are not available 1`] = `
+<DocumentFragment>
+  <div
+    class="property-bag-container"
+  >
+    <div
+      class="property-bag-div"
+    >
+      <span
+        class="display-name"
+      >
+        display a: 
+      </span>
+      value for a
+    </div>
+  </div>
+</DocumentFragment>
+`;
