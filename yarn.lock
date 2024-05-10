@@ -4730,7 +4730,6 @@ __metadata:
     luxon: ^3.4.4
     react: ^18.3.1
     react-dom: ^18.3.1
-    react-helmet: ^6.1.0
     uuid: ^9.0.1
   languageName: unknown
   linkType: soft
@@ -4746,7 +4745,6 @@ __metadata:
     luxon: ^3.4.4
     react: ^18.3.1
     react-dom: ^18.3.1
-    react-helmet: ^6.1.0
     react-resize-detector: ^9.1.1
     uuid: ^9.0.1
   languageName: unknown
@@ -4825,7 +4823,6 @@ __metadata:
     prettier: ^3.2.5
     react: ^18.3.1
     react-dom: ^18.3.1
-    react-helmet: ^6.1.0
     react-helmet-async: ^2.0.5
     react-resize-detector: ^9.1.1
     react-router-dom: ^6.21.3
@@ -12689,7 +12686,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -12842,13 +12839,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fast-compare@npm:^3.1.1":
-  version: 3.2.0
-  resolution: "react-fast-compare@npm:3.2.0"
-  checksum: 8ef272c825ae329f61633ce4ce7f15aa5b84e5214d88bc0823880236e03e985a13195befa2c7a4eda7db3b017dc7985729152d88445823f652403cf36c2b86aa
-  languageName: node
-  linkType: hard
-
 "react-fast-compare@npm:^3.2.2":
   version: 3.2.2
   resolution: "react-fast-compare@npm:3.2.2"
@@ -12866,20 +12856,6 @@ __metadata:
   peerDependencies:
     react: ^16.6.0 || ^17.0.0 || ^18.0.0
   checksum: cc2d13496f6fdee6b5f9472d3f7369db3e70e4fc1a55793708c2bbd90d48b0dedc725fd066f987c7a3d74b03a29bd5e65b9f40fa29bd8239e7cfb526aff4d4b6
-  languageName: node
-  linkType: hard
-
-"react-helmet@npm:^6.1.0":
-  version: 6.1.0
-  resolution: "react-helmet@npm:6.1.0"
-  dependencies:
-    object-assign: ^4.1.1
-    prop-types: ^15.7.2
-    react-fast-compare: ^3.1.1
-    react-side-effect: ^2.1.0
-  peerDependencies:
-    react: ">=16.3.0"
-  checksum: a4998479dab7fc1c2799eddefb1870a9d881b5f71cfdf97979a9882e42f4bb50402d55335f308f461e735e01a06f46b16cc7b4e6bcb22c7a4a6f85a753c5c106
   languageName: node
   linkType: hard
 
@@ -12937,15 +12913,6 @@ __metadata:
   peerDependencies:
     react: ">=16.8"
   checksum: 7e6297d5b67ae07d2e8564e036dbb15ebd706b41c22238940f47eee9b21ffb76d41336803c3b33435f1ebe210226577e32df3838bcbf2cd7c813fa357c0a4fac
-  languageName: node
-  linkType: hard
-
-"react-side-effect@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "react-side-effect@npm:2.1.0"
-  peerDependencies:
-    react: ^16.3.0
-  checksum: 9bd58e63d6b38246f5a7f2e11aeaa57e52edf117eb3fc1304acee1b4de96d4b0a73cebf4cc874445edddb8196b72d015c60714e4b03152323fac8a70cdcecde6
   languageName: node
   linkType: hard
 

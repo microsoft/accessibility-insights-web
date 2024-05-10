@@ -465,14 +465,6 @@ exports[`ContentPage .Markup <Title> renders where setPageTitle === null 1`] = `
 
 exports[`ContentPage .Markup <Title> renders where setPageTitle === true 1`] = `
 <DocumentFragment>
-  <mock-helmetwrapper
-    defer="true"
-    encodespecialcharacters="true"
-  >
-    <title>
-      TEST - THE_APPLICATION_TITLE
-    </title>
-  </mock-helmetwrapper>
   <h1>
     TEST
   </h1>
