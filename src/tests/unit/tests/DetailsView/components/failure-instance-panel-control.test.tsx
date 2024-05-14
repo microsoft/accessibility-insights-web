@@ -124,10 +124,10 @@ describe('FailureInstancePanelControlTest', () => {
         const description = 'abc';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
-        const renderResult: any = render(<FailureInstancePanelControl {...props} />);
+        const renderResult = render(<FailureInstancePanelControl {...props} />);
         act(() => {
             renderResult.rerender(<FailureInstancePanelControl {...props} />);
-        })
+        });
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
 
         fireEvent.click(renderResult.getByRole('button'));

@@ -3,6 +3,7 @@
 import { Theme } from 'common/components/theme';
 import { configMutator } from 'common/configuration';
 import * as React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { InsightsRouter } from 'views/insights/insights-router';
 import { renderer, RendererDeps } from 'views/insights/renderer';
 
@@ -40,8 +41,10 @@ describe('insights renderer', () => {
         expect(deps.render).toHaveBeenCalledWith(root);
         expect(deps.render(root).render).toHaveBeenCalledWith(
             <>
-                <Theme deps={deps} />
-                <InsightsRouter deps={deps} />
+                <HelmetProvider>
+                    <Theme deps={deps} />
+                    <InsightsRouter deps={deps} />
+                </HelmetProvider>
             </>,
         )
     });
