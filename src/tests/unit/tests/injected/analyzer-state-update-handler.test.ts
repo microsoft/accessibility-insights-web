@@ -13,6 +13,7 @@ import {
     ScanData,
     VisualizationStoreData,
 } from '../../../../common/types/store-data/visualization-store-data';
+import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
@@ -94,7 +95,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         setupIsTestTerminated(configMock, requirementConfig, prevState, newState, false, true);
 
         testObject.handleUpdate(newState);
-        tearDownCallback(configMock.object, -1, requirementConfig);
+        tearDownCallback(configMock.object, -1 as VisualizationType, requirementConfig);
 
         teardownMock.verify(m => m(It.isAny()), Times.never());
         startScanMock.verify(m => m(It.isAny()), Times.never());
@@ -126,7 +127,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         setupIsTestTerminated(configMock, requirementConfig, prevState, currState, true, true);
 
         testObject.handleUpdate(currState);
-        tearDownCallback(configMock.object, -1, requirementConfig);
+        tearDownCallback(configMock.object, -1 as VisualizationType, requirementConfig);
 
         startScanMock.verify(m => m(scanningTestStub), Times.once());
         teardownMock.verify(m => m(It.isAny()), Times.never());
@@ -150,7 +151,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         setupIsTestTerminated(configMock, requirementConfig, prevState, currState, true, true);
 
         testObject.handleUpdate(currState);
-        tearDownCallback(configMock.object, -1, requirementConfig);
+        tearDownCallback(configMock.object, -1 as VisualizationType, requirementConfig);
 
         startScanMock.verify(m => m(scanningTestStub), Times.once());
         teardownMock.verify(m => m(It.isAny()), Times.never());
@@ -174,7 +175,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         configMock.setup(m => m.getIdentifier(requirementConfig.key)).returns(() => enabledTest);
 
         testObject.handleUpdate(currState);
-        tearDownCallback(configMock.object, -1, requirementConfig);
+        tearDownCallback(configMock.object, -1 as VisualizationType, requirementConfig);
 
         teardownMock.verify(m => m(enabledTest), Times.once());
     });
@@ -197,7 +198,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
         configMock.setup(m => m.getIdentifier(undefined)).returns(() => enabledTest);
 
         testObject.handleUpdate(currState);
-        tearDownCallback(configMock.object, -1);
+        tearDownCallback(configMock.object, -1 as VisualizationType);
 
         teardownMock.verify(m => m(enabledTest), Times.once());
     });

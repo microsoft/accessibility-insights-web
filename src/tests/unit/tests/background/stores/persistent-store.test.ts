@@ -7,7 +7,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('PersistentStoreTest', () => {
-    const storeName: StoreNames = -1;
+    const storeName: StoreNames = -1 as StoreNames;
     const persistedState: TestData = { value: 'persistedState' };
     const defaultState: TestData = { value: null };
     const generatedState: TestData = { value: 'generatedState' };

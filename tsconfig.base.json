@@ -9,9 +9,7 @@
         "stripInternal": true,
         "noEmitOnError": true,
         "skipLibCheck": true,
-        "suppressExcessPropertyErrors": true,
         "alwaysStrict": true,
-        "noImplicitUseStrict": false,
         "moduleResolution": "node",
         "inlineSources": true,
         "experimentalDecorators": true,
@@ -19,7 +17,6 @@
         "strictNullChecks": true,
         "strictPropertyInitialization": false,
         "noErrorTruncation": false,
-        "noStrictGenericChecks": false,
         "allowJs": false,
         "plugins": [],
         "forceConsistentCasingInFileNames": true
