@@ -12,6 +12,7 @@ import {
 } from 'DetailsView/components/next-requirement-button';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
+import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
     mockReactComponents,
     getMockComponentClassPropsForCall,
@@ -36,7 +37,7 @@ describe('NextRequirementButton', () => {
             nextRequirement: {
                 key: 'some requirement key',
             } as Requirement,
-            nextRequirementVisualizationType: -1,
+            nextRequirementVisualizationType: -1 as VisualizationType,
         };
     });
 

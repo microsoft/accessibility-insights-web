@@ -16,7 +16,7 @@ describe('InlineImageTest', () => {
     });
 
     test('Invalid type returns null', () => {
-        testInvalidImage(1234);
+        testInvalidImage(1234 as InlineImageType);
     });
 
     test('optional class name', () => {

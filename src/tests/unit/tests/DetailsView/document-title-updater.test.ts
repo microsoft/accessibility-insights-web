@@ -136,7 +136,7 @@ describe('DocumentTitleUpdater', () => {
 
     test('get title from configuration', () => {
         const getTitleMock = Mock.ofInstance((props: GetTestViewTitleProps) => {});
-        const selectedDetailsView = -1;
+        const selectedDetailsView = -1 as VisualizationType;
         const expectedParam = {
             visualizationConfigurationFactory: visualizationConfigFactoryMock.object,
             selectedDetailsView,

@@ -96,7 +96,7 @@ describe('AdhocTabStopsTestView', () => {
             tests: {},
         } as VisualizationStoreData;
         clickHandlerStub = () => {};
-        selectedTest = -1;
+        selectedTest = -1 as VisualizationType;
         featureFlagStoreDataStub = {};
         userConfigurationStoreDataStub = 'stub-user-configuration-store-data' as any;
         visualizationScanResultData = { tabStops: {} } as VisualizationScanResultData;
