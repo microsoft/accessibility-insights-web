@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DetailsList, IColumn, Spinner } from '@fluentui/react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import {
     AssessmentDefaultMessageGenerator,
     DefaultMessageInterface,
@@ -28,7 +28,6 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
-    useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
@@ -170,19 +169,13 @@ describe('AssessmentInstanceTable', () => {
         });
 
         it("delegates the underlying list's onItemInvoked to the handler's updateFocusedTarget", async () => {
-            useOriginalReactElements('@fluentui/react', ['DetailsList']);
             const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
-
 
             assessmentInstanceTableHandlerMock
                 .setup(a => act(() => a.updateFocusedTarget(fakeItem.instance.target)))
                 .verifiable(Times.once());
 
             render(<AssessmentInstanceTable {...props} />);
-
-            const rowClick = screen.getAllByRole('row');
-
-            fireEvent.click(rowClick[1], fakeItem);
 
             const { onItemInvoked } = getMockComponentClassPropsForCall(DetailsList);
 
@@ -209,17 +202,11 @@ describe('AssessmentInstanceTable', () => {
                 testStatus => {
                     testStepResults[selectedTestStep] = { status: testStatus };
 
-                    useOriginalReactElements('common/components/controls/insights-command-button', [
-                        'InsightsCommandButton',
-                    ]);
-                    useOriginalReactElements('@fluentui/react', [
-                        'Spinner',
-                        'DetailsList',
-                        'ActionButton',
-                    ]);
                     render(<AssessmentInstanceTable {...props} />);
-                    const getUnmarkedSelector = screen.getAllByRole('button');
-                    expect(getUnmarkedSelector[0]).toHaveProperty('disabled', true);
+                    const hasDisabledProps =
+                        getMockComponentClassPropsForCall(InsightsCommandButton).disabled;
+
+                    expect(hasDisabledProps).toEqual(true);
                 },
             );
 
@@ -232,17 +219,12 @@ describe('AssessmentInstanceTable', () => {
                         ),
                     )
                     .verifiable(Times.once());
-                useOriginalReactElements('@fluentui/react', [
-                    'Spinner',
-                    'DetailsList',
-                    'ActionButton',
-                ]);
                 act(() => {
                     render(<AssessmentInstanceTable {...props} />);
                 });
                 act(() => {
                     getMockComponentClassPropsForCall(InsightsCommandButton).onClick();
-                })
+                });
 
                 assessmentInstanceTableHandlerMock.verifyAll();
             });

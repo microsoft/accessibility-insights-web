@@ -17,7 +17,6 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
-    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 import '@testing-library/jest-dom';
@@ -85,10 +84,9 @@ describe('AutoDetectedFailuresDialog', () => {
         });
 
         it('is dismissed when "got it" button is clicked', () => {
-            useOriginalReactElements('@fluentui/react', ['PrimaryButton']);
             act(() => {
                 getMockComponentClassPropsForCall(PrimaryButton).onClick();
-            })
+            });
 
             expect(wrapper.baseElement).toMatchSnapshot();
         });
@@ -96,7 +94,7 @@ describe('AutoDetectedFailuresDialog', () => {
         it('is dismissed when onDismiss is called', () => {
             act(() => {
                 getMockComponentClassPropsForCall(Dialog).onDismiss();
-            })
+            });
 
             expect(wrapper.baseElement).toMatchSnapshot();
         });
@@ -106,11 +104,9 @@ describe('AutoDetectedFailuresDialog', () => {
                 .setup(ucmcm => ucmcm.setAutoDetectedFailuresDialogState(true))
                 .verifiable(Times.once());
 
-            useOriginalReactElements('@fluentui/react', ['Checkbox']);
             act(() => {
                 getMockComponentClassPropsForCall(Checkbox).onChange(undefined, true);
-            })
-
+            });
 
             expect(wrapper.baseElement).toMatchSnapshot();
         });
@@ -121,7 +117,7 @@ describe('AutoDetectedFailuresDialog', () => {
                 .verifiable(Times.once());
             act(() => {
                 getMockComponentClassPropsForCall(Checkbox).onChange(undefined);
-            })
+            });
 
             expect(wrapper.baseElement).toMatchSnapshot();
         });

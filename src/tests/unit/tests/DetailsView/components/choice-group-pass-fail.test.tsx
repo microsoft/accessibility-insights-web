@@ -34,9 +34,9 @@ describe('ChoiceGroupPassFail', () => {
                 { key: TabStopRequirementStatuses.unknown, text: 'unknown' as any },
             ],
             selectedKey: TabStopRequirementStatuses.unknown,
-            onChange: () => { },
+            onChange: () => {},
             secondaryControls: (
-                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" onClick={() => { }} />
+                <IconButton iconProps={{ iconName: 'add' }} aria-label="add" onClick={() => {}} />
             ),
             onUndoClickedPassThrough: onUndoClickedMock.object,
         };
@@ -96,7 +96,6 @@ describe('ChoiceGroupPassFail', () => {
     });
 
     test('verify component is correctly used with undo', () => {
-        useOriginalReactElements('@fluentui/react', ['IconButton']);
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
 
@@ -107,8 +106,7 @@ describe('ChoiceGroupPassFail', () => {
         const options = renderResult.getAllByRole('radio');
         act(() => {
             getMockComponentClassPropsForCall(IconButton).onClick(eventStub);
-        })
-
+        });
 
         expect(options[0]).toHaveFocus();
 

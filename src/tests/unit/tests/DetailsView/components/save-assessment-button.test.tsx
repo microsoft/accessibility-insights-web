@@ -10,7 +10,6 @@ import {
     Stack,
 } from '@fluentui/react';
 import { fireEvent, render, RenderResult, act } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
 
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -81,6 +80,12 @@ describe('SaveAssessmentButton', () => {
                 });
                 expect(getMockComponentClassPropsForCall(Dialog, 3).hidden).toEqual(true);
             });
+            it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
+                const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
+                gotItButtonProps.onClick();
+                const getProps = getMockComponentClassPropsForCall(Dialog);
+                expect(getProps.hidden).toEqual(true);
+            });
         });
         let wrapper: RenderResult;
         describe('interaction', () => {
@@ -96,12 +101,6 @@ describe('SaveAssessmentButton', () => {
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
                 fireEvent.click(wrapper.getByRole('link'));
-            });
-
-            it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
-                await userEvent.click(wrapper.getByRole('button'));
-                const getProps = getMockComponentClassPropsForCall(Dialog);
-                expect(getProps.hidden).toEqual(true);
             });
 
             it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
