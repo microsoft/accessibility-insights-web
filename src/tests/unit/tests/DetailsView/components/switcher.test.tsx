@@ -62,9 +62,11 @@ describe('Switcher', () => {
             render(<Switcher {...defaultProps} />);
             const dropdown = getMockComponentClassPropsForCall(Dropdown);
             expect(dropdown.selectedKey).toBe(DetailsViewPivotType.fastPass);
-            act(()=>dropdown.onChange(null, {
-                key: DetailsViewPivotType.assessment,
-            } as IDropdownOption));
+            act(() =>
+                dropdown.onChange(null, {
+                    key: DetailsViewPivotType.assessment,
+                } as IDropdownOption),
+            );
             const dropdown2 = getMockComponentClassPropsForCall(Dropdown, 2);
             expect(dropdown2.selectedKey).toBe(DetailsViewPivotType.assessment);
             detailsViewActionMessageCreatorMock.verifyAll();

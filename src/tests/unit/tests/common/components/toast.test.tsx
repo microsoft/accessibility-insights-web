@@ -29,8 +29,7 @@ describe('ToastTest', () => {
         expect(renderResult.asFragment()).toMatchSnapshot('render nothing before show() is called');
         act(() => {
             toastRef.current.show('hello world');
-        })
-
+        });
 
         expect(renderResult.asFragment()).toMatchSnapshot('render content');
     });

@@ -135,7 +135,7 @@ describe('ReportExportComponent', () => {
         const renderResult = render(<ReportExportComponent {...props} />);
 
         const dialog = getMockComponentClassPropsForCall(ExportDialog);
-        act(()=>dialog.onDescriptionChange(testContentWithSpecials));
+        act(() => dialog.onDescriptionChange(testContentWithSpecials));
 
         expect(renderResult.asFragment()).toMatchSnapshot(testContentWithSpecials);
 
@@ -146,7 +146,7 @@ describe('ReportExportComponent', () => {
         const renderResult = render(<ReportExportComponent {...props} />);
 
         const dialog = getMockComponentClassPropsForCall(ExportDialog);
-        act(()=>dialog.onDescriptionChange(testContentWithSpecials));
+        act(() => dialog.onDescriptionChange(testContentWithSpecials));
 
         const htmlData = 'test html';
         const jsonData = 'test json';
@@ -169,7 +169,7 @@ describe('ReportExportComponent', () => {
             .returns(() => 'json url')
             .verifiable(Times.once());
 
-        act(()=>dialog.generateExports());
+        act(() => dialog.generateExports());
 
         expect(renderResult.asFragment()).toMatchSnapshot();
 

@@ -10,7 +10,9 @@ import { ClientStoresHub } from '../../../../../common/stores/client-stores-hub'
 
 describe('withStoreSubscription', () => {
     type testProps = WithStoreSubscriptionProps<{ message: string }>;
-    const testComp: React.FC<React.PropsWithChildren<testProps>> = props => <h1>{props.storeState.message}</h1>;
+    const testComp: React.FC<React.PropsWithChildren<testProps>> = props => (
+        <h1>{props.storeState.message}</h1>
+    );
 
     test('constructor: storesHub is null', () => {
         const props: testProps = {
@@ -214,7 +216,7 @@ describe('withStoreSubscription', () => {
 
         expect(renderResult.container).toMatchSnapshot('before store change');
 
-        await act(()=> onStoreChange());
+        await act(() => onStoreChange());
 
         expect(renderResult.container).toMatchSnapshot('after store change');
     });

@@ -94,7 +94,7 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
         const buttons = renderResult.getAllByRole('button');
         act(() => {
             buttons.forEach(button => fireEvent.click(button));
-        })
+        });
 
         onEditButtonClickedMock.verifyAll();
         onRemoveButtonClickedMock.verifyAll();

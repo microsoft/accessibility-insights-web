@@ -45,10 +45,10 @@ describe('FailureInstancePanelControlTest', () => {
     let clearPathSnippetDataMock: IMock<() => void>;
 
     beforeEach(() => {
-        addInstanceMock = Mock.ofInstance(() => { });
-        editInstanceMock = Mock.ofInstance(() => { });
-        addPathForValidationMock = Mock.ofInstance(() => { });
-        clearPathSnippetDataMock = Mock.ofInstance(() => { });
+        addInstanceMock = Mock.ofInstance(() => {});
+        editInstanceMock = Mock.ofInstance(() => {});
+        addPathForValidationMock = Mock.ofInstance(() => {});
+        clearPathSnippetDataMock = Mock.ofInstance(() => {});
     });
 
     test('render FailureInstancePanelControl: create without instance', () => {
@@ -85,8 +85,7 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     test('closeFailureInstancePanel', () => {
-        useOriginalReactElements('@fluentui/react', [
-            'TextField']);
+        useOriginalReactElements('@fluentui/react', ['TextField']);
         const description = 'description';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const renderResult = render(<FailureInstancePanelControl {...props} />);
@@ -96,7 +95,7 @@ describe('FailureInstancePanelControlTest', () => {
         fireEvent.change(textField, { target: { value: description } });
         act(() => {
             genericPanelProp.onDismiss();
-        })
+        });
 
         expect(genericPanelProp.isOpen).toBe(false);
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens

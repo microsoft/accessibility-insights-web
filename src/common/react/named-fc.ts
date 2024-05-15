@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-export type ReactFCWithDisplayName<P = {}> = React.FC<React.PropsWithChildren<P>> & { displayName: string };
+export type ReactFCWithDisplayName<P = {}> = React.FC<React.PropsWithChildren<P>> & {
+    displayName: string;
+};
 
 export function NamedFC<P = {}>(
     displayName: string,

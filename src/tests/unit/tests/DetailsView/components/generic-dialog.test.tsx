@@ -4,8 +4,6 @@ import { Dialog, DialogFooter, PrimaryButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import * as React from 'react';
 
-
-
 import {
     GenericDialog,
     GenericDialogProps,
@@ -18,12 +16,12 @@ import {
 jest.mock('@fluentui/react');
 
 describe('GenericDialogTest', () => {
-    mockReactComponents([Dialog, DialogFooter])
+    mockReactComponents([Dialog, DialogFooter]);
     it('should render', () => {
         const props: GenericDialogProps = {
             title: 'test title',
-            onCancelButtonClick: () => { },
-            onPrimaryButtonClick: () => { },
+            onCancelButtonClick: () => {},
+            onPrimaryButtonClick: () => {},
             messageText: 'test message',
             primaryButtonText: 'test primary text',
         };

@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 import { configMutator } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
-import {
-    NoContentAvailableViewDeps,
-} from 'DetailsView/components/no-content-available/no-content-available-view';
+import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
 import { createRoot } from 'react-dom/client';
 import { TestDocumentCreator } from 'tests/unit/common/test-document-creator';
@@ -29,11 +27,9 @@ describe('NoContentAvailableViewRenderer', () => {
 
         const renderMock = Mock.ofType<typeof createRoot>();
         const createRootMock = jest.fn(createRoot);
-        renderMock.setup(r =>
-            r(
-                fakeDocument.getElementById('details-container')
-            ),
-        ).returns(createRootMock);
+        renderMock
+            .setup(r => r(fakeDocument.getElementById('details-container')))
+            .returns(createRootMock);
 
         const testSubject = new NoContentAvailableViewRenderer(
             deps,

@@ -17,9 +17,7 @@ export const Head = NamedFC<HeadProps>('Head', props => {
     return (
         <head>
             <meta charSet="UTF-8" />
-            <title>
-                {titleValue}
-            </title>
+            <title>{titleValue}</title>
             <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
             <style dangerouslySetInnerHTML={{ __html: props.bundledStyles.styleSheet }} />
         </head>

@@ -71,7 +71,7 @@ describe(DialogRendererImpl, () => {
             },
             querySelector: selector => null,
             querySelectorAll: selector => null,
-            appendChild: node => { },
+            appendChild: node => {},
         } as any);
 
         renderMock = Mock.ofType<typeof createRoot>();
@@ -238,23 +238,15 @@ describe(DialogRendererImpl, () => {
 
     function setupRenderMockForVerifiable(): void {
         renderMock
-            .setup(render =>
-                render(
-                    It.is((container: any) => container != null),
-                ),
-            ).
-            returns(createRootMock)
+            .setup(render => render(It.is((container: any) => container != null)))
+            .returns(createRootMock)
             .verifiable(Times.once());
     }
 
     function setupRenderMockForNeverVisited(): void {
         renderMock
-            .setup(it =>
-                it(
-                    It.is((container: any) => container != null),
-                ),
-            ).
-            returns(createRootMock)
+            .setup(it => it(It.is((container: any) => container != null)))
+            .returns(createRootMock)
             .verifiable(Times.never());
     }
 

@@ -69,9 +69,7 @@ export const createMarkup = (deps: MarkupDeps, options?: MarkupOptions) => {
         const titleValue = `${props.children} - ${applicationTitle}`;
         const helmet = (
             <Helmet>
-                <title>
-                    {titleValue}
-                </title>
+                <title>{titleValue}</title>
             </Helmet>
         );
 

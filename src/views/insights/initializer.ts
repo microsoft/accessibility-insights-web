@@ -22,7 +22,7 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { contentPages } from 'content';
 import { textContent } from 'content/strings/text-content';
 import { ScannerUtils } from 'injected/scanner-utils';
-import {createRoot} from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { scan } from 'scanner/exposed-apis';
 import UAParser from 'ua-parser-js';
 import { Content } from 'views/content/content';

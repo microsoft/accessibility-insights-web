@@ -108,7 +108,7 @@ const createStoreProxies = (storeUpdateMessageHub: StoreUpdateMessageHub) => {
 
 const render = (deps: DebugToolsViewDeps) => {
     const container = document.querySelector('#debug-tools-container');
-    const root = createRoot(container)
+    const root = createRoot(container);
     root.render(<DebugToolsView deps={deps} />);
 };
 

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { createRoot }from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { IMock, Mock } from 'typemoq';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { DiagnosticViewToggleFactory } from '../../../../popup/components/diagnostic-view-toggle-factory';
@@ -35,12 +35,8 @@ describe('MainRenderer', () => {
         const deps: MainRendererDeps = Mock.ofType<MainRendererDeps>().object;
         const createRootMock = jest.fn(createRoot);
         renderMock
-            .setup(r =>
-                r(
-                    fakeDocument.getElementById('popup-container'),
-                ),
-        ).
-            returns(createRootMock)
+            .setup(r => r(fakeDocument.getElementById('popup-container')))
+            .returns(createRootMock)
             .verifiable();
 
         const renderer = new MainRenderer(

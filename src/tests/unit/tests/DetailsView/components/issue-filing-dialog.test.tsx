@@ -142,7 +142,7 @@ describe('IssueFilingDialog', () => {
 
         act(() => {
             actionCancelButtons.cancelButtonOnClick(null);
-        })
+        });
 
         isSettingsValidMock.verifyAll();
         onCloseMock.verifyAll();
@@ -174,8 +174,7 @@ describe('IssueFilingDialog', () => {
         );
         act(() => {
             actionCancelButtons.primaryButtonOnClick(eventStub);
-        })
-
+        });
 
         isSettingsValidMock.verifyAll();
         userConfigMessageCreatorMock.verifyAll();
@@ -215,8 +214,7 @@ describe('IssueFilingDialog', () => {
         };
         act(() => {
             issueFilingSettingsContainer.onPropertyUpdateCallback(payload);
-        })
-
+        });
 
         expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([Dialog]);
@@ -246,8 +244,7 @@ describe('IssueFilingDialog', () => {
         };
         act(() => {
             issueFilingSettingsContainer.onPropertyUpdateCallback(payload);
-        })
-
+        });
 
         expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([Dialog]);
@@ -285,8 +282,7 @@ describe('IssueFilingDialog', () => {
         };
         act(() => {
             issueFilingSettingsContainer.onSelectedServiceChange(payload);
-        })
-
+        });
 
         expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([Dialog]);

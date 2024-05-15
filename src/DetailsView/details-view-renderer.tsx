@@ -14,13 +14,13 @@ export class DetailsViewRenderer {
         private readonly dom: Document,
         private readonly renderer: typeof createRoot,
         private readonly documentManipulator: DocumentManipulator,
-    ) { }
+    ) {}
 
     public render(): void {
         const detailsViewContainer = this.dom.querySelector('#details-container');
         const iconPath = '../' + config.getOption('icon128');
         this.documentManipulator.setShortcutIcon(iconPath);
-        const root = this.renderer(detailsViewContainer)
+        const root = this.renderer(detailsViewContainer);
         root.render(
             <>
                 <Theme deps={this.deps} />

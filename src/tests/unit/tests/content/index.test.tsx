@@ -12,7 +12,7 @@ import { contentPages } from '../../../../content';
 jest.mock('react-helmet-async');
 
 describe('content', () => {
-    mockReactComponents([Helmet])
+    mockReactComponents([Helmet]);
     const contentActionMessageCreator = Mock.ofType<ContentActionMessageCreator>().object;
     const applicationTitle = 'THE_APPLICATION_TITLE';
     const deps = {

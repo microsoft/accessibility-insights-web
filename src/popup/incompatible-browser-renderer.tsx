@@ -11,12 +11,12 @@ export class IncompatibleBrowserRenderer {
     constructor(
         private readonly renderer: typeof createRoot,
         private readonly dom: Document,
-    ) { }
+    ) {}
 
     public render(): void {
         const container = this.dom.querySelector('#popup-container');
-        const root = this.renderer(container)
-        console.log('root--->', root)
+        const root = this.renderer(container);
+        console.log('root--->', root);
         root.render(
             <>
                 <div className="ms-Fabric unsupported-browser-info-panel">

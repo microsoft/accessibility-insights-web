@@ -81,7 +81,7 @@ import {
     TabStopsFailedCounterIncludingNoInstance,
     TabStopsFailedCounterInstancesOnly,
 } from 'DetailsView/tab-stops-failed-counter';
-import {createRoot} from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -732,12 +732,7 @@ if (tabId != null) {
                 IsOutcomeNeedsReview: isOutcomeNeedsReview,
             };
 
-            const renderer = new DetailsViewRenderer(
-                deps,
-                dom,
-                createRoot,
-                documentElementSetter,
-            );
+            const renderer = new DetailsViewRenderer(deps, dom, createRoot, documentElementSetter);
 
             renderer.render();
 
@@ -749,11 +744,7 @@ if (tabId != null) {
             window.selfFastPass = selfFastPass;
         })
         .catch(() => {
-            const renderer = createNullifiedRenderer(
-                document,
-                createRoot,
-                createDefaultLogger(),
-            );
+            const renderer = createNullifiedRenderer(document, createRoot, createDefaultLogger());
             renderer.render();
         });
 }

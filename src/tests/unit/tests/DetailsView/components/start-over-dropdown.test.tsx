@@ -49,9 +49,11 @@ describe('StartOverDropdownTest', () => {
     it('render ContextualMenu', async () => {
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
 
-        act(()=>getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test event',
-        }));
+        act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test event',
+            }),
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
 
         const mockProps = getMockComponentClassPropsForCall(ContextualMenu);
@@ -81,9 +83,11 @@ describe('StartOverDropdownTest', () => {
                 defaultProps.switcherStartOverPreferences = switcherPreferences;
 
                 render(<StartOverDropdown {...defaultProps} />);
-                act(() => getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-                    currentTarget: 'test target',
-                }));
+                act(() =>
+                    getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                        currentTarget: 'test target',
+                    }),
+                );
 
                 const isStartOverOptionRendered = getMockComponentClassPropsForCall(
                     ContextualMenu,
@@ -101,9 +105,11 @@ describe('StartOverDropdownTest', () => {
         };
 
         const renderResult = render(<StartOverDropdown {...props} />);
-        act(() => getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test target',
-        }));
+        act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test target',
+            }),
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -111,9 +117,11 @@ describe('StartOverDropdownTest', () => {
         openDialogMock.setup(sds => sds('test')).verifiable(Times.once());
 
         render(<StartOverDropdown {...defaultProps} />);
-        act(() => getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test target',
-        }));
+        act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test target',
+            }),
+        );
         getMockComponentClassPropsForCall(ContextualMenu)
             .items.find(elem => elem.key === 'test')
             .onClick();
@@ -125,9 +133,11 @@ describe('StartOverDropdownTest', () => {
         openDialogMock.setup(sds => sds('assessment')).verifiable(Times.once());
 
         render(<StartOverDropdown {...defaultProps} />);
-        act(() => getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test target',
-        }));
+        act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test target',
+            }),
+        );
         getMockComponentClassPropsForCall(ContextualMenu)
             .items.find(elem => elem.key === 'assessment')
             .onClick();
@@ -137,9 +147,11 @@ describe('StartOverDropdownTest', () => {
 
     it('should dismiss the contextMenu', () => {
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
-        act(() => getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test target',
-        }));
+        act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test target',
+            }),
+        );
         act(() => getMockComponentClassPropsForCall(ContextualMenu).onDismiss());
         const mockContextualmenu = renderResult.container.querySelector('mock-contextualmenu');
         expect(mockContextualmenu).toBeNull();

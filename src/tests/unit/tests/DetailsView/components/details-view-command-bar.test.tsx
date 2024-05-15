@@ -445,12 +445,11 @@ describe('DetailsViewCommandBar', () => {
             const textArea = renderResult.getByRole('textbox');
             expect(textArea).toHaveFocus();
 
-            const exportDialogProps = getMockComponentCall(ExportDialog, 2)[0]
+            const exportDialogProps = getMockComponentCall(ExportDialog, 2)[0];
 
             act(() => {
                 exportDialogProps.afterDismissed();
-            })
-
+            });
 
             expect(exportButton).toHaveFocus();
         });
@@ -506,7 +505,7 @@ describe('DetailsViewCommandBar', () => {
             expect(renderResult.baseElement).toHaveFocus();
             act(() => {
                 getMockComponentCall(StartOverDialog)[0].dismissDialog();
-            })
+            });
 
             expect(renderResult.baseElement).toHaveFocus();
         });
@@ -524,7 +523,7 @@ describe('DetailsViewCommandBar', () => {
             });
             act(() => {
                 getMockComponentCall(StartOverDialog)[0].dismissDialog();
-            })
+            });
 
             expect(renderResult.baseElement).toHaveFocus();
             await userEvent.click(startOverMenuButton);
@@ -535,12 +534,12 @@ describe('DetailsViewCommandBar', () => {
             const cancelDialogButton = renderResult.getByRole('button', { name: 'Cancel' });
             act(() => {
                 expect(cancelDialogButton).toHaveFocus();
-            })
+            });
 
             act(() => {
                 getMockComponentCall(StartOverDialog, 3)[0].dismissDialog();
             });
-            fireEvent.click(startOverMenuButton)
+            fireEvent.click(startOverMenuButton);
             //  await userEvent.click(startOverMenuButton);
             expect(startOverMenuButton).toHaveFocus();
         });
@@ -616,9 +615,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                        expectedProps as StartOverFactoryProps,
-                        'down',
-                    )
+                          expectedProps as StartOverFactoryProps,
+                          'down',
+                      )
                     : startOverComponent,
             );
     }

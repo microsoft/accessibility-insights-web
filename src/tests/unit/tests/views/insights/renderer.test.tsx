@@ -46,6 +46,6 @@ describe('insights renderer', () => {
                     <InsightsRouter deps={deps} />
                 </HelmetProvider>
             </>,
-        )
+        );
     });
 });

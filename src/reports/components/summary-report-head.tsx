@@ -7,7 +7,7 @@ import * as reportStyles from '../automated-checks-report.styles';
 import * as bundledStyles from '../bundled-reporter-styles';
 
 export const SummaryReportHead = NamedFC('SummaryReportHead', () => {
-    const titleValue = `${brand} automated checks result`
+    const titleValue = `${brand} automated checks result`;
     // tslint:disable: react-no-dangerous-html
     return (
         <head>

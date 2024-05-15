@@ -80,8 +80,7 @@ describe('TelemetryViewer', () => {
                     applicationVersion: 'test-application-version',
                     installationId: 'test-installation-id',
                 });
-            })
-
+            });
 
             expect(renderResult.asFragment()).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([TelemetryMessagesList]);

@@ -101,7 +101,7 @@ export class DialogRendererImpl implements DialogRenderer {
                 userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
                 LinkComponent: NewTabLink,
             };
-            const root = this.renderer(dialogContainer)
+            const root = this.renderer(dialogContainer);
             root.render(
                 <LayeredDetailsDialogComponent
                     deps={deps}

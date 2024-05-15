@@ -47,7 +47,7 @@ describe('LaunchPanelHeaderTest', () => {
             subtitle: 'test subtitle',
             popupWindow: {} as Window,
             featureFlags: {} as FeatureFlagStoreData,
-            openAdhocToolsPanel: () => { },
+            openAdhocToolsPanel: () => {},
         };
     });
 
@@ -59,7 +59,7 @@ describe('LaunchPanelHeaderTest', () => {
             // HamburgerMenuButton,
         ]);
         const HamburgerMenuButtonProps = getMockComponentClassPropsForCall(HamburgerMenuButton);
-        //removed below node here, as the next levels node has timers, 
+        //removed below node here, as the next levels node has timers,
         //which is getting updated everytime when we run test command
         HamburgerMenuButtonProps.header._reactInternals.return = { node: 'removed return node' };
         expect(HamburgerMenuButtonProps).toMatchSnapshot('HamburgerMenuButton props');

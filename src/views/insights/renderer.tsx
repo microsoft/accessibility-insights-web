@@ -31,6 +31,6 @@ export function renderer(deps: RendererDeps): void {
                 <Theme deps={deps} />
                 <InsightsRouter deps={deps} />
             </HelmetProvider>
-        </>
+        </>,
     );
 }

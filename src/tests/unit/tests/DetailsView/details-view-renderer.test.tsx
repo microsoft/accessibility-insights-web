@@ -28,11 +28,7 @@ describe('DetailsViewRendererTest', () => {
             .verifiable();
 
         renderMock
-            .setup(r =>
-                r(
-                    fakeDocument.getElementById('details-container'),
-                ),
-            )
+            .setup(r => r(fakeDocument.getElementById('details-container')))
             .returns(createRootMock)
             .verifiable();
 
