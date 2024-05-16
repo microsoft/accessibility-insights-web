@@ -108,6 +108,16 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                     </span>
                 );
             }
+            case 'web/target-size': {
+                return (
+                    <div>
+                        Targets must be at least 24 by 24 CSS pixels in size or a target must have a 
+                        24 by 24 CSS pixel spacing circle that does not intersect with another 
+                        target of any size. Check all targets and be sure they have sufficient size 
+                        or spacing from another target.
+                    </div>
+                );
+            }
             default: {
                 throw new Error(
                     `Cannot render RichResolutionContent with unrecognized contentId ${contentId}`,
