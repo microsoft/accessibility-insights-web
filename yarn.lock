@@ -3320,7 +3320,7 @@ __metadata:
     case-sensitive-paths-webpack-plugin: ^2.4.0
     classnames: ^2.5.1
     codecov: ^3.8.3
-    commander: ^11.1.0
+    commander: ^12.1.0
     core-js-bundle: ^3.35.0
     cross-env: ^7.0.3
     css-loader: ^6.10.0
@@ -4598,10 +4598,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "commander@npm:11.1.0"
-  checksum: fd1a8557c6b5b622c89ecdfde703242ab7db3b628ea5d1755784c79b8e7cb0d74d65b4a262289b533359cd58e1bfc0bf50245dfbcd2954682a6f367c828b79ef
+"commander@npm:^12.1.0":
+  version: 12.1.0
+  resolution: "commander@npm:12.1.0"
+  checksum: 68e9818b00fc1ed9cdab9eb16905551c2b768a317ae69a5e3c43924c2b20ac9bb65b27e1cab36aeda7b6496376d4da908996ba2c0b5d79463e0fb1e77935d514
   languageName: node
   linkType: hard
 
