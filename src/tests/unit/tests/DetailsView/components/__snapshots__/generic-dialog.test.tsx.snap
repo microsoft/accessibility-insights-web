@@ -12,7 +12,14 @@ exports[`GenericDialogTest should render 1`] = `
     >
       test message
     </div>
-    <mock-styleddialogfooterbase />
+    <mock-styleddialogfooterbase>
+      <mock-customizedprimarybutton
+        text="test primary text"
+      />
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
+    </mock-styleddialogfooterbase>
   </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;

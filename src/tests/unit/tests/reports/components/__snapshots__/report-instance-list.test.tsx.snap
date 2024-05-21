@@ -6,11 +6,23 @@ exports[`ReportInstanceListTest render comment 1`] = `
     <table
       class="instance-details"
     >
-      <tbody />
+      <tbody>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key"
+          >
+            Comment
+          </th>
+          <td
+            class="instance-value"
+          >
+            comment
+          </td>
+        </tr>
+      </tbody>
     </table>
-    [object
-     
-    Object]
   </div>
 </DocumentFragment>
 `;
@@ -21,13 +33,33 @@ exports[`ReportInstanceListTest render object prop value instance 1`] = `
     <table
       class="instance-details"
     >
-      <tbody />
+      <tbody>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-subsection-header"
+            colspan="2"
+          >
+            key1:
+          </th>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key-indented"
+          >
+            key1&gt;1
+          </th>
+          <td
+            class="instance-value"
+          >
+            value1&gt;1
+          </td>
+        </tr>
+      </tbody>
     </table>
-    [object
-     
-    Object],[object
-     
-    Object]
   </div>
 </DocumentFragment>
 `;
@@ -38,29 +70,137 @@ exports[`ReportInstanceListTest render simple rows first - property bag rows sec
     <table
       class="instance-details"
     >
-      <tbody />
+      <tbody>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-subsection-header"
+            colspan="2"
+          >
+            Complex Key One:
+          </th>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key-indented"
+          >
+            key1-1
+          </th>
+          <td
+            class="instance-value"
+          >
+            value1-1
+          </td>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key-indented"
+          >
+            key1-2
+          </th>
+          <td
+            class="instance-value"
+          >
+            value1-2
+          </td>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key"
+          >
+            Simple Key One
+          </th>
+          <td
+            class="instance-value"
+          >
+            value1
+          </td>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-subsection-header"
+            colspan="2"
+          >
+            Complex Key Two:
+          </th>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key-indented"
+          >
+            key2-1
+          </th>
+          <td
+            class="instance-value"
+          >
+            value2-1
+          </td>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key-indented"
+          >
+            key2-2
+          </th>
+          <td
+            class="instance-value"
+          >
+            value2-2
+          </td>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key"
+          >
+            Simple Key Two
+          </th>
+          <td
+            class="instance-value"
+          >
+            value2
+          </td>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-subsection-header"
+            colspan="2"
+          >
+            Sub Instance Value is null:
+          </th>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key-indented"
+          >
+            key2-1
+          </th>
+          <td
+            class="instance-value"
+          >
+            -
+          </td>
+        </tr>
+      </tbody>
     </table>
-    [object
-     
-    Object],[object
-     
-    Object],[object
-     
-    Object],[object
-     
-    Object],[object
-     
-    Object],[object
-     
-    Object],[object
-     
-    Object],[object
-     
-    Object],[object
-     
-    Object],[object
-     
-    Object]
   </div>
 </DocumentFragment>
 `;
@@ -71,13 +211,37 @@ exports[`ReportInstanceListTest render snippet and path 1`] = `
     <table
       class="instance-details"
     >
-      <tbody />
+      <tbody>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key"
+          >
+            Path
+          </th>
+          <td
+            class="instance-value"
+          >
+            target1
+          </td>
+        </tr>
+        <tr
+          class="instance-pair-details"
+        >
+          <th
+            class="instance-key"
+          >
+            Snippet
+          </th>
+          <td
+            class="instance-value"
+          >
+            someHtml
+          </td>
+        </tr>
+      </tbody>
     </table>
-    [object
-     
-    Object],[object
-     
-    Object]
   </div>
 </DocumentFragment>
 `;

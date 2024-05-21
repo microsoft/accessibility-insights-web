@@ -51,7 +51,7 @@ describe('Switcher', () => {
     });
 
     describe('user interaction', () => {
-        it('triggers action message and state change when the user changes selection', () => {
+        it('triggers action message and state change when the user changes selection', async () => {
             detailsViewActionMessageCreatorMock
                 .setup(creator =>
                     creator.sendPivotItemClicked(
@@ -62,7 +62,7 @@ describe('Switcher', () => {
             render(<Switcher {...defaultProps} />);
             const dropdown = getMockComponentClassPropsForCall(Dropdown);
             expect(dropdown.selectedKey).toBe(DetailsViewPivotType.fastPass);
-            act(() =>
+            await act(() =>
                 dropdown.onChange(null, {
                     key: DetailsViewPivotType.assessment,
                 } as IDropdownOption),

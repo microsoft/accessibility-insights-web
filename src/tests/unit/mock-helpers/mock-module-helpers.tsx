@@ -69,7 +69,9 @@ function mockReactComponent<T extends React.ComponentClass<P>, P = any>(componen
                     ? `mock-${component?.displayName}`
                     : `mock-${component.name}`;
         }
-
+        if (name === undefined) {
+            name = elementName || component?.render?.displayName;
+        }
         if (
             !(component as any).mockImplementation &&
             !(component as any).render?.mockImplementation

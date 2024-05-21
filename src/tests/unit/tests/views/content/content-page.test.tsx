@@ -3,7 +3,6 @@
 import { render } from '@testing-library/react';
 import { NewTabLink } from 'common/components/new-tab-link';
 import * as React from 'react';
-import { HelmetProvider } from 'react-helmet-async';
 import { Mock } from 'typemoq';
 
 import { ContentCreator, ContentPage, ContentPageDeps } from 'views/content/content-page';
@@ -16,7 +15,6 @@ interface ExtendedMarkupOptions extends MarkupOptions {
 }
 describe('ContentPage', () => {
     const deps = Mock.ofType<ContentPageDeps>().object;
-    HelmetProvider.canUseDOM = false;
 
     describe('.create', () => {
         mockReactComponents([NewTabLink]);

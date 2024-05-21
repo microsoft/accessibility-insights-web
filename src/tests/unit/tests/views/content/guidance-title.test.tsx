@@ -4,11 +4,9 @@ import { render } from '@testing-library/react';
 import { productName } from 'content/strings/application';
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { HelmetProvider } from 'react-helmet-async';
 import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { GuidanceTitle } from 'views/content/guidance-title';
 
-HelmetProvider.canUseDOM = false;
 jest.mock('react-helmet-async');
 
 describe('guidance title', () => {
