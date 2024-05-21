@@ -7,9 +7,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import { InsightsRouter } from 'views/insights/insights-router';
 import { renderer, RendererDeps } from 'views/insights/renderer';
 
-jest.mock('../../../../../common/components/body-class-modifier');
-jest.mock('common/components/theme');
-
 describe('insights renderer', () => {
     const deps = {
         dom: document,
