@@ -2888,7 +2888,7 @@ __metadata:
     luxon: ^3.4.4
     mini-css-extract-plugin: 2.7.7
     npm-run-all: ^4.1.5
-    playwright: ^1.43.1
+    playwright: ^1.44.0
     postcss: ^8.4.35
     postcss-modules: ^6.0.0
     prettier: ^3.2.5
@@ -9423,7 +9423,7 @@ __metadata:
   checksum: 7bee257c830153578753a6dfb34b8216f8c552d750e24a0be6d3ba10baff013fb1320a1c3d487fbb0df9d1ce5d1f027ccf6e990d4514989da63691f177141ba4
   languageName: node
   linkType: hard
-
+  
 "playwright@npm:^1.43.1":
   version: 1.44.0
   resolution: "playwright@npm:1.44.0"
