@@ -14,7 +14,7 @@ export class IncompatibleBrowserRenderer {
     ) {}
 
     public render(): void {
-        const container = this.dom.querySelector('#popup-container');
+        const container = this.dom.querySelector('#popup-container') as Element;
         const root = this.renderer(container);
         console.log('root--->', root);
         root.render(

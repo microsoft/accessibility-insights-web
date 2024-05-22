@@ -23,7 +23,7 @@ export function renderer(deps: RendererDeps): void {
 
     initializeFabricIcons();
 
-    const insightsRoot = dom.querySelector('#insights-root');
+    const insightsRoot = dom.querySelector('#insights-root') as Element;
     const root = render(insightsRoot);
     root.render(
         <>

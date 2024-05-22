@@ -17,7 +17,7 @@ export class DetailsViewRenderer {
     ) {}
 
     public render(): void {
-        const detailsViewContainer = this.dom.querySelector('#details-container');
+        const detailsViewContainer = this.dom.querySelector('#details-container') as Element;
         const iconPath = '../' + config.getOption('icon128');
         this.documentManipulator.setShortcutIcon(iconPath);
         const root = this.renderer(detailsViewContainer);
