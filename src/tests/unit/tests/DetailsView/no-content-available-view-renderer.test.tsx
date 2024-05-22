@@ -2,11 +2,15 @@
 // Licensed under the MIT License.
 import { configMutator } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
-import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
+import {
+    NoContentAvailableView,
+    NoContentAvailableViewDeps,
+} from 'DetailsView/components/no-content-available/no-content-available-view';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { TestDocumentCreator } from 'tests/unit/common/test-document-creator';
-import { Mock } from 'typemoq';
+import { It, Mock } from 'typemoq';
 
 jest.mock('react-resize-detector');
 
@@ -25,16 +29,29 @@ describe('NoContentAvailableViewRenderer', () => {
             .setup(des => des.setShortcutIcon('../' + expectedIcon16))
             .verifiable();
 
-        const renderMock = Mock.ofType<typeof createRoot>();
-        const createRootMock = jest.fn(createRoot);
-        renderMock
-            .setup(r => r(fakeDocument.getElementById('details-container')))
-            .returns(createRootMock);
+        const renderMock: any = Mock.ofType<typeof createRoot>();
+        const createRootMock: any = Mock.ofType<typeof createRoot>();
+        createRootMock
+            .setup(r => r(It.isAny()))
+            .returns(() => {
+                return renderMock.object;
+            })
+            .verifiable();
+
+        renderMock.setup(r =>
+            r.render(
+                It.isValue(
+                    <>
+                        <NoContentAvailableView deps={deps} />
+                    </>,
+                ),
+            ),
+        );
 
         const testSubject = new NoContentAvailableViewRenderer(
             deps,
             fakeDocument,
-            renderMock.object,
+            createRootMock.object,
             documentManipulatorMock.object,
         );
 

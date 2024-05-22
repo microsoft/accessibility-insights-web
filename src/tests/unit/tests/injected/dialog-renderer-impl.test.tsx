@@ -30,6 +30,7 @@ import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-pr
 import { createRoot } from 'react-dom/client';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
+import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
 jest.mock('../../../../injected/components/details-dialog');
 
 describe(DialogRendererImpl, () => {
@@ -41,9 +42,10 @@ describe(DialogRendererImpl, () => {
     let browserAdapter: IMock<BrowserAdapter>;
     let domMock: IMock<Document>;
     let getRTLMock: IMock<typeof getRTL>;
-    let renderMock: IMock<typeof createRoot>;
     let detailsDialogHandlerMock: IMock<DetailsDialogHandler>;
     let windowStub: Window;
+    let renderMock: any;
+    let createRootMock: any;
 
     let addMessageListenerCallback = async (
         commandMessage: CommandMessage,
@@ -54,7 +56,6 @@ describe(DialogRendererImpl, () => {
     let rootContainerMock: IMock<HTMLElement>;
 
     const toolData = {} as ToolData;
-    const createRootMock = jest.fn(createRoot);
 
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
@@ -62,6 +63,8 @@ describe(DialogRendererImpl, () => {
         navigatorUtilsMock = Mock.ofType(NavigatorUtils);
         browserAdapter = Mock.ofType<BrowserAdapter>();
         detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
+        renderMock = Mock.ofType<typeof createRoot>();
+        createRootMock = Mock.ofType<typeof createRoot>();
 
         frameMessenger = Mock.ofType(SingleFrameMessenger);
         domMock = Mock.ofInstance({
@@ -74,7 +77,6 @@ describe(DialogRendererImpl, () => {
             appendChild: node => {},
         } as any);
 
-        renderMock = Mock.ofType<typeof createRoot>();
         getRTLMock = Mock.ofInstance(() => null);
         rootContainerMock = Mock.ofType<HTMLElement>();
 
@@ -237,20 +239,39 @@ describe(DialogRendererImpl, () => {
     });
 
     function setupRenderMockForVerifiable(): void {
+        createRootMock
+            .setup(r => r(It.isAny()))
+            .returns(() => {
+                return renderMock.object;
+            })
+            .verifiable(Times.once());
+
         renderMock
-            .setup(render => render(It.is((container: any) => container != null)))
-            .returns(createRootMock)
+            .setup(mock =>
+                mock.render(
+                    It.is((detailsDialog: any) => {
+                        return detailsDialog.type === LayeredDetailsDialogComponent;
+                    }),
+                ),
+            )
             .verifiable(Times.once());
     }
 
     function setupRenderMockForNeverVisited(): void {
+        createRootMock
+            .setup(r => r(It.isAny()))
+            .returns(() => {
+                return renderMock.object;
+            })
+            .verifiable(Times.never());
+
         renderMock
-            .setup(it => it(It.is((container: any) => container != null)))
-            .returns(createRootMock)
+            .setup(mock => mock.render(It.is((detailsDialog: any) => detailsDialog != null)))
             .verifiable(Times.never());
     }
 
     function setupRenderMockVerify(): void {
+        createRootMock.verifyAll();
         renderMock.verifyAll();
     }
 
@@ -323,7 +344,7 @@ describe(DialogRendererImpl, () => {
     function createDialogRenderer(): DialogRenderer {
         return new DialogRendererImpl(
             domMock.object,
-            renderMock.object,
+            createRootMock.object,
             frameMessenger.object,
             htmlElementUtilsMock.object,
             windowUtilsMock.object,

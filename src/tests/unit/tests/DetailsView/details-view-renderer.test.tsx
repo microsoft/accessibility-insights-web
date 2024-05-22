@@ -3,8 +3,11 @@
 import { configMutator } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { DetailsViewRenderer, DetailsViewRendererDeps } from 'DetailsView/details-view-renderer';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { IMock, Mock } from 'typemoq';
+import { It, Mock } from 'typemoq';
+import { Theme } from '../../../../common/components/theme';
+import { DetailsView } from '../../../../DetailsView/details-view-container';
 import { TestDocumentCreator } from '../../common/test-document-creator';
 
 jest.mock('DetailsView/details-view-container');
@@ -17,8 +20,8 @@ describe('DetailsViewRendererTest', () => {
             '<div id="details-container"></div>',
         );
 
-        const renderMock: IMock<typeof createRoot> = Mock.ofInstance(() => null);
-        const createRootMock = jest.fn(createRoot);
+        const renderMock: any = Mock.ofType<typeof createRoot>();
+        const createRootMock: any = Mock.ofType<typeof createRoot>();
 
         const expectedIcon16 = 'icon128.png';
         configMutator.setOption('icon128', expectedIcon16);
@@ -27,20 +30,34 @@ describe('DetailsViewRendererTest', () => {
             .setup(des => des.setShortcutIcon('../' + expectedIcon16))
             .verifiable();
 
-        renderMock
-            .setup(r => r(fakeDocument.getElementById('details-container')))
-            .returns(createRootMock)
+        createRootMock
+            .setup(r => r(It.isAny()))
+            .returns(() => {
+                return renderMock.object;
+            })
             .verifiable();
+
+        renderMock.setup(r =>
+            r.render(
+                It.isValue(
+                    <>
+                        <Theme deps={deps} />
+                        <DetailsView deps={deps} />
+                    </>,
+                ),
+            ),
+        );
 
         const renderer = new DetailsViewRenderer(
             deps,
             fakeDocument,
-            renderMock.object,
+            createRootMock.object,
             documentManipulatorMock.object,
         );
 
         renderer.render();
 
+        createRootMock.verifyAll();
         renderMock.verifyAll();
         documentManipulatorMock.verifyAll();
     });
