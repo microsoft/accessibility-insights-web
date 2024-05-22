@@ -9423,8 +9423,8 @@ __metadata:
   checksum: 7bee257c830153578753a6dfb34b8216f8c552d750e24a0be6d3ba10baff013fb1320a1c3d487fbb0df9d1ce5d1f027ccf6e990d4514989da63691f177141ba4
   languageName: node
   linkType: hard
-  
-"playwright@npm:^1.43.1":
+
+"playwright@npm:^1.44.0":
   version: 1.44.0
   resolution: "playwright@npm:1.44.0"
   dependencies:
