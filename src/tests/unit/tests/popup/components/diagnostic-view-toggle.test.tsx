@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { Link, Spinner } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
-//import { render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
