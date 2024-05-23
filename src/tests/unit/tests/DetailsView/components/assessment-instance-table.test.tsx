@@ -177,9 +177,7 @@ describe('AssessmentInstanceTable', () => {
 
             render(<AssessmentInstanceTable {...props} />);
 
-            const { onItemInvoked } = getMockComponentClassPropsForCall(DetailsList);
-
-            onItemInvoked(fakeItem);
+            getMockComponentClassPropsForCall(DetailsList).onItemInvoked(fakeItem);
 
             assessmentInstanceTableHandlerMock.verifyAll();
         });

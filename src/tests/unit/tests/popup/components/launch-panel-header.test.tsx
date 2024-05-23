@@ -53,11 +53,7 @@ describe('LaunchPanelHeaderTest', () => {
 
     it('renders', () => {
         const wrapped = render(<LaunchPanelHeader {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([
-            FlaggedComponent,
-            GearMenuButton,
-            // HamburgerMenuButton,
-        ]);
+        expectMockedComponentPropsToMatchSnapshots([FlaggedComponent, GearMenuButton]);
         const HamburgerMenuButtonProps = getMockComponentClassPropsForCall(HamburgerMenuButton);
         //removed below node here, as the next levels node has timers,
         //which is getting updated everytime when we run test command

@@ -12,8 +12,6 @@ import { createRoot } from 'react-dom/client';
 import { TestDocumentCreator } from 'tests/unit/common/test-document-creator';
 import { It, Mock } from 'typemoq';
 
-jest.mock('react-resize-detector');
-
 describe('NoContentAvailableViewRenderer', () => {
     it('renders', () => {
         const deps = Mock.ofType<NoContentAvailableViewDeps>().object;
@@ -38,15 +36,9 @@ describe('NoContentAvailableViewRenderer', () => {
             })
             .verifiable();
 
-        renderMock.setup(r =>
-            r.render(
-                It.isValue(
-                    <>
-                        <NoContentAvailableView deps={deps} />
-                    </>,
-                ),
-            ),
-        );
+        renderMock
+            .setup(r => r.render(It.isValue(<NoContentAvailableView deps={deps} />)))
+            .verifiable();
 
         const testSubject = new NoContentAvailableViewRenderer(
             deps,
@@ -57,6 +49,7 @@ describe('NoContentAvailableViewRenderer', () => {
 
         testSubject.render();
 
+        createRootMock.verifyAll();
         renderMock.verifyAll();
         documentManipulatorMock.verifyAll();
     });

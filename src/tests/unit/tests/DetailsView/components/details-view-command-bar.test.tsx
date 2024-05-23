@@ -63,7 +63,6 @@ import {
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import { isNil } from 'lodash';
 import * as React from 'react';
-
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { ReportNameGenerator, WebReportNameGenerator } from 'reports/report-name-generator';
@@ -433,15 +432,10 @@ describe('DetailsViewCommandBar', () => {
             const exportButton = renderResult.getByRole('button', {
                 name: 'Export result',
             });
-
             expect(exportButton).not.toHaveFocus();
             getMockComponentCall(ExportDialog)[0].afterDismissed();
             expect(exportButton).toHaveFocus();
-
             await userEvent.click(exportButton); //open the dialog
-
-            //  await fireEvent.click(exportButton)
-
             const textArea = renderResult.getByRole('textbox');
             expect(textArea).toHaveFocus();
 
@@ -470,7 +464,7 @@ describe('DetailsViewCommandBar', () => {
             expect(setRef).toBeDefined();
             expect(renderResult.baseElement).toHaveFocus();
             setRef(undefined);
-            await getMockComponentCall(QuickAssessToAssessmentDialog)[0].afterDialogDismissed();
+            getMockComponentCall(QuickAssessToAssessmentDialog)[0].afterDialogDismissed();
             expect(renderResult.baseElement).toHaveFocus();
         });
 
@@ -540,7 +534,6 @@ describe('DetailsViewCommandBar', () => {
                 getMockComponentCall(StartOverDialog, 3)[0].dismissDialog();
             });
             fireEvent.click(startOverMenuButton);
-            //  await userEvent.click(startOverMenuButton);
             expect(startOverMenuButton).toHaveFocus();
         });
     });

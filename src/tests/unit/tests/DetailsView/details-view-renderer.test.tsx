@@ -10,8 +10,6 @@ import { Theme } from '../../../../common/components/theme';
 import { DetailsView } from '../../../../DetailsView/details-view-container';
 import { TestDocumentCreator } from '../../common/test-document-creator';
 
-jest.mock('DetailsView/details-view-container');
-jest.mock('common/components/theme');
 describe('DetailsViewRendererTest', () => {
     test('render', () => {
         const deps = Mock.ofType<DetailsViewRendererDeps>().object;
@@ -37,16 +35,18 @@ describe('DetailsViewRendererTest', () => {
             })
             .verifiable();
 
-        renderMock.setup(r =>
-            r.render(
-                It.isValue(
-                    <>
-                        <Theme deps={deps} />
-                        <DetailsView deps={deps} />
-                    </>,
+        renderMock
+            .setup(r =>
+                r.render(
+                    It.isValue(
+                        <>
+                            <Theme deps={deps} />
+                            <DetailsView deps={deps} />
+                        </>,
+                    ),
                 ),
-            ),
-        );
+            )
+            .verifiable();
 
         const renderer = new DetailsViewRenderer(
             deps,

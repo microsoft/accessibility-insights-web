@@ -23,7 +23,6 @@ import {
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
-
 jest.mock('@fluentui/react');
 jest.mock('common/components/flagged-component');
 jest.mock('DetailsView/components/generic-panel');

@@ -21,8 +21,6 @@ import {
 } from 'popup/components/diagnostic-view-toggle';
 import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggle-click-handler';
 import * as React from 'react';
-//import { createRoot } from 'react-dom/client';
-//import { renderIntoDocument } from 'react-dom/test-utils';
 import { renderIntoDocument } from 'react-dom/test-utils';
 import '@testing-library/jest-dom';
 import {
@@ -237,7 +235,6 @@ describe('DiagnosticViewToggleTest', () => {
 
             const component = React.createElement(DiagnosticViewToggle, props);
 
-            // const testObject: any = renderIntoDocument(component);
             const wrapper = render(component);
             console.log('gap between 2 calls');
             const toggle = wrapper.getByRole('switch');
@@ -249,11 +246,6 @@ describe('DiagnosticViewToggleTest', () => {
             console.log('after second 1');
 
             expect(toggle).toHaveFocus();
-
-            // testObject._isMounted = false;
-            // testObject.state.isFocused = true;
-            // testObject.componentDidMount();
-            // expect((testObject as any).toggle.current.focus).toHaveBeenCalledTimes(1);
         });
 
         it('sets focus when componentDidUpdate', () => {
