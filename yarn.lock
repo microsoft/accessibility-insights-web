@@ -3379,7 +3379,7 @@ __metadata:
     typescript: ^5.4.5
     ua-parser-js: ^1.0.37
     uuid: ^9.0.1
-    webextension-polyfill: ^0.10.0
+    webextension-polyfill: ^0.12.0
     webpack: ^5.91.0
     webpack-cli: ^5.1.4
     webpack-node-externals: ^3.0.0
@@ -13452,10 +13452,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webextension-polyfill@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "webextension-polyfill@npm:0.10.0"
-  checksum: 4a59036bda571360c2c0b2fb03fe1dc244f233946bcf9a6766f677956c40fd14d270aaa69cdba95e4ac521014afbe4008bfa5959d0ac39f91c990eb206587f91
+"webextension-polyfill@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "webextension-polyfill@npm:0.12.0"
+  checksum: fc2166c8c9d3f32d7742727394092ff1a1eb19cbc4e5a73066d57f9bff1684e38342b90fabd23981e7295e904c536e8509552a64e989d217dae5de6ddca73532
   languageName: node
   linkType: hard
 
