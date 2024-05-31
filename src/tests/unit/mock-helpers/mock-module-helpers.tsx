@@ -53,14 +53,16 @@ export function useOriginalReactElements(library: string, components: any[]) {
     });
 }
 
-function mockReactComponent<T extends React.ComponentClass<P>, P = any>(component, elementName?) {
+export function mockReactComponent<T extends React.ComponentClass<P>, P = any>(
+    component,
+    elementName?,
+) {
     if (component !== undefined) {
         let name;
-        name =
-            elementName || component?.displayName
-                ? `mock-${component?.displayName}`
-                : `mock-${component.name}`;
-
+        name = component?.displayName ? `mock-${component?.displayName}` : `mock-${component.name}`;
+        if (elementName) {
+            name = elementName ? `mock-${elementName}` : name;
+        }
         if (name === 'mock-undefined') {
             name = component?.render?.displayName && `mock-${component?.render?.displayName}`;
         }

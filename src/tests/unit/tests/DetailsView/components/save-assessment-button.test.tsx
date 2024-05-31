@@ -22,22 +22,15 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    mockReactComponent,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 jest.mock('@fluentui/react');
 describe('SaveAssessmentButton', () => {
-    mockReactComponents([
-        Dialog,
-        DialogFooter,
-        Stack,
-        Checkbox,
-        Stack.Item,
-        PrimaryButton,
-        ActionButton,
-    ]);
-
+    mockReactComponents([DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton, ActionButton]);
+    mockReactComponent(Dialog, 'Dialog');
     let propsStub: SaveAssessmentButtonProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;

@@ -14,7 +14,7 @@ exports[`ExportDialog renders with CodePen export form 1`] = `
 
 exports[`ExportDialog renders with export dropdown 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -36,13 +36,13 @@ exports[`ExportDialog renders with export dropdown 1`] = `
         reportexportservices="[object Object],[object Object]"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
 exports[`ExportDialog renders with open false 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="true"
     modalprops="[object Object]"
@@ -63,7 +63,7 @@ exports[`ExportDialog renders with open false 1`] = `
         Export
       </mock-customizedprimarybutton>
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -107,7 +107,7 @@ exports[`ExportDialog renders with open false: StyledWithResponsiveMode props 1`
 
 exports[`ExportDialog renders with open true 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -128,7 +128,7 @@ exports[`ExportDialog renders with open true 1`] = `
         Export
       </mock-customizedprimarybutton>
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -172,7 +172,7 @@ exports[`ExportDialog renders with open true: StyledWithResponsiveMode props 1`]
 
 exports[`ExportDialog renders without export dropdown due to lack of service 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -193,6 +193,6 @@ exports[`ExportDialog renders without export dropdown due to lack of service 1`]
         Export
       </mock-customizedprimarybutton>
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;

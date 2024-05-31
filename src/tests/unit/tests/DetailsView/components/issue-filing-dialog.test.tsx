@@ -26,6 +26,7 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    mockReactComponent,
 } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('@fluentui/react');
 jest.mock('../../../../../DetailsView/components/action-and-cancel-buttons-component');
@@ -34,9 +35,9 @@ describe('IssueFilingDialog', () => {
     mockReactComponents([
         ActionAndCancelButtonsComponent,
         IssueFilingSettingsContainer,
-        Dialog,
         DialogFooter,
     ]);
+    mockReactComponent(Dialog, 'Dialog');
     let eventStub: EventStub;
     let isSettingsValidMock: IMock<Function>;
     let getSettingsFromStoreDataMock: IMock<Function>;

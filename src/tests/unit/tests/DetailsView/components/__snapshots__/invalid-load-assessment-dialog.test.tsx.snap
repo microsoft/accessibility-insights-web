@@ -4,7 +4,7 @@ exports[`InvalidLoadAssessmentDialog should not show when isOpen is set to false
 
 exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -16,7 +16,7 @@ exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] 
         OK
       </mock-customizedprimarybutton>
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
