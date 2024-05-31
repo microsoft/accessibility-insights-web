@@ -14,7 +14,7 @@ export class DetailsViewRenderer {
         private readonly dom: Document,
         private readonly renderer: typeof ReactDOM.render,
         private readonly documentManipulator: DocumentManipulator,
-    ) {}
+    ) { }
 
     public render(): void {
         const detailsViewContainer = this.dom.querySelector('#details-container');
@@ -23,8 +23,7 @@ export class DetailsViewRenderer {
 
         this.renderer(
             <>
-                <Theme deps={this.deps} />
-                <DetailsView deps={this.deps} />
+                <Theme deps={this.deps} children={<DetailsView deps={this.deps} />} />
             </>,
             detailsViewContainer,
         );

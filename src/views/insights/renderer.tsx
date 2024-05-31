@@ -25,8 +25,7 @@ export function renderer(deps: RendererDeps): void {
     const insightsRoot = dom.querySelector('#insights-root');
     render(
         <>
-            <Theme deps={deps} />
-            <InsightsRouter deps={deps} />
+            <Theme deps={deps} children={<InsightsRouter deps={deps} />} />
         </>,
         insightsRoot,
     );

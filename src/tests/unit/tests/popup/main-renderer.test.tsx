@@ -43,8 +43,7 @@ describe('MainRenderer', () => {
                 r(
                     It.isValue(
                         <>
-                            <Theme deps={deps} />
-                            <PopupViewWithStoreSubscription
+                            <Theme deps={deps} children={<PopupViewWithStoreSubscription
                                 deps={deps}
                                 title={expectedTitle}
                                 popupHandlers={{
@@ -63,7 +62,8 @@ describe('MainRenderer', () => {
                                 }
                                 diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
                                 dropdownClickHandler={dropdownClickHandlerMock.object}
-                            />
+                            />} />
+
                         </>,
                     ),
                     fakeDocument.getElementById('popup-container'),

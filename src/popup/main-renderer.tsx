@@ -28,15 +28,14 @@ export class MainRenderer {
         private readonly launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory,
         private readonly diagnosticViewToggleFactory: DiagnosticViewToggleFactory,
         private readonly dropdownClickHandler: DropdownClickHandler,
-    ) {}
+    ) { }
 
     public render(): void {
         const container = this.dom.querySelector('#popup-container');
 
         this.renderer(
             <>
-                <Theme deps={this.deps} />
-                <PopupViewWithStoreSubscription
+                <Theme deps={this.deps} children={<PopupViewWithStoreSubscription
                     deps={this.deps}
                     title={title}
                     popupHandlers={this.popupHandlers}
@@ -46,7 +45,7 @@ export class MainRenderer {
                     launchPadRowConfigurationFactory={this.launchPadRowConfigurationFactory}
                     diagnosticViewToggleFactory={this.diagnosticViewToggleFactory}
                     dropdownClickHandler={this.dropdownClickHandler}
-                />
+                />} />
             </>,
             container,
         );
