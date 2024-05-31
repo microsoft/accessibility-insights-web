@@ -73,12 +73,6 @@ describe('SaveAssessmentButton', () => {
                 });
                 expect(getMockComponentClassPropsForCall(Dialog, 3).hidden).toEqual(true);
             });
-            it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
-                const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
-                gotItButtonProps.onClick();
-                const getProps = getMockComponentClassPropsForCall(Dialog);
-                expect(getProps.hidden).toEqual(true);
-            });
         });
         let wrapper: RenderResult;
         describe('interaction', () => {
@@ -114,6 +108,12 @@ describe('SaveAssessmentButton', () => {
                     x => x.saveAssessment(It.isAny()),
                     Times.atLeastOnce(),
                 );
+            });
+            it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
+                const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
+                gotItButtonProps.onClick();
+                const getProps = getMockComponentClassPropsForCall(Dialog);
+                expect(getProps.hidden).toEqual(true);
             });
         });
     });
