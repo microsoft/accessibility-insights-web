@@ -61,11 +61,12 @@ describe('MainRenderer', () => {
                                     launchPadRowConfigurationFactory={
                                         launchPadRowConfigurationFactoryMock.object
                                     }
-                                    diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
+                                    diagnosticViewToggleFactory={
+                                        diagnosticViewToggleFactoryMock.object
+                                    }
                                     dropdownClickHandler={dropdownClickHandlerMock.object}
                                 />
                             </Theme>
-
                         </>,
                     ),
                     fakeDocument.getElementById('popup-container'),

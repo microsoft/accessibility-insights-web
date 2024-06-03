@@ -35,7 +35,6 @@ describe('DetailsViewRendererTest', () => {
                             <Theme deps={deps}>
                                 <DetailsView deps={deps} />
                             </Theme>
-
                         </>,
                     ),
                     fakeDocument.getElementById('details-container'),

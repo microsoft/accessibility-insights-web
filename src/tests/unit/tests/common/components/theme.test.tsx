@@ -56,7 +56,6 @@ describe('ThemeInner', () => {
             render(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
             const hasThemeProp = getMockComponentClassPropsForCall(ThemeProvider).theme;
             expect(hasThemeProp).not.toBeNull();
-
         },
     );
 

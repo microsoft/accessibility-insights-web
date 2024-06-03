@@ -14,7 +14,7 @@ export class DetailsViewRenderer {
         private readonly dom: Document,
         private readonly renderer: typeof ReactDOM.render,
         private readonly documentManipulator: DocumentManipulator,
-    ) { }
+    ) {}
 
     public render(): void {
         const detailsViewContainer = this.dom.querySelector('#details-container');

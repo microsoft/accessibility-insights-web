@@ -38,9 +38,13 @@ export const ThemeFamilyCustomizer = NamedFC<ThemeFamilyCustomizerProps>(
     props => {
         const isHighContrastEnabled = props.userConfigurationStoreData?.enableHighContrast === true;
         const defaultTheme = themeFamilyDefaultThemes[props.themeFamily];
-        const defaultV9Theme = themeFamilyDefaultV9Themes[props.themeFamily]
+        const defaultV9Theme = themeFamilyDefaultV9Themes[props.themeFamily];
         const activeTheme = isHighContrastEnabled ? HighContrastTheme : defaultTheme;
         const activeV9Theme = isHighContrastEnabled ? ThemeV9DarkTheme : defaultV9Theme;
-        return <ThemeProvider theme={activeTheme}><FluentProvider theme={activeV9Theme}>{props.children}</FluentProvider></ThemeProvider>;
+        return (
+            <ThemeProvider theme={activeTheme}>
+                <FluentProvider theme={activeV9Theme}>{props.children}</FluentProvider>
+            </ThemeProvider>
+        );
     },
 );
