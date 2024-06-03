@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ThemeProvider, PartialTheme } from '@fluentui/react';
-import { FluentProvider, webDarkTheme, webLightTheme } from '@fluentui/react-components';
+import { FluentProvider, webLightTheme } from '@fluentui/react-components';
 import { NamedFC } from 'common/react/named-fc';
 import { DefaultTheme } from 'common/styles/default-theme';
 import { FastPassTheme } from 'common/styles/fast-pass-theme';
 import { FastPassV9Theme } from 'common/styles/fast-pass-v9-theme';
 import { HighContrastTheme } from 'common/styles/high-contrast-theme';
+import { ThemeV9DarkTheme } from 'common/styles/theme-v9-dark-theme';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as React from 'react';
 
@@ -39,7 +40,7 @@ export const ThemeFamilyCustomizer = NamedFC<ThemeFamilyCustomizerProps>(
         const defaultTheme = themeFamilyDefaultThemes[props.themeFamily];
         const defaultV9Theme = themeFamilyDefaultV9Themes[props.themeFamily]
         const activeTheme = isHighContrastEnabled ? HighContrastTheme : defaultTheme;
-        const activeV9Theme = isHighContrastEnabled ? { ...webDarkTheme, colorNeutralBackground1: '#161616 ' } : defaultV9Theme;
-        return <ThemeProvider applyTo="body" theme={activeTheme}><FluentProvider theme={activeV9Theme}>{props.children}</FluentProvider></ThemeProvider>;
+        const activeV9Theme = isHighContrastEnabled ? ThemeV9DarkTheme : defaultV9Theme;
+        return <ThemeProvider theme={activeTheme}><FluentProvider theme={activeV9Theme}>{props.children}</FluentProvider></ThemeProvider>;
     },
 );

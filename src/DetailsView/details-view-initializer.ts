@@ -664,7 +664,6 @@ if (tabId != null) {
                 assessmentsProviderWithFeaturesEnabled,
                 outcomeTypeSemanticsFromTestStatus,
                 storesHub,
-                //loadTheme,
                 urlParser,
                 getDateFromTimestamp: DateProvider.getDateFromTimestamp,
                 getCurrentDate: DateProvider.getCurrentDate,

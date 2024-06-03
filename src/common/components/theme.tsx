@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DocumentManipulator } from 'common/document-manipulator';
-import * as React from 'react';
+import { PartialTheme, ThemeProvider } from '@fluentui/react';
 import {
     FluentProvider,
     Theme as ThemeV9,
     webDarkTheme,
     webLightTheme,
 } from '@fluentui/react-components';
+import { DocumentManipulator } from 'common/document-manipulator';
+import * as React from 'react';
 import { DefaultTheme } from '../styles/default-theme';
 import { HighContrastTheme } from '../styles/high-contrast-theme';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { BodyClassModifier } from './body-class-modifier';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
-import { PartialTheme, ThemeProvider } from '@fluentui/react';
 
 export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
@@ -27,11 +27,9 @@ export interface ThemeState {
 export type ThemeInnerProps = {
     deps: ThemeDeps;
     storeState: ThemeInnerState;
-    children: React.ReactNode;
 };
 export type ThemeDeps = WithStoreSubscriptionDeps<ThemeInnerState> & {
     documentManipulator: DocumentManipulator;
-    //loadTheme: (theme) => void;
 };
 
 export class ThemeInner extends React.Component<ThemeInnerProps, ThemeState> {
@@ -76,7 +74,6 @@ export class ThemeInner extends React.Component<ThemeInnerProps, ThemeState> {
         const appropriateThemeV8 = isHighContrast ? HighContrastTheme : DefaultTheme;
         const appropriateThemeV9 = isHighContrast ? webDarkTheme : webLightTheme;
         this.setState({ themeValueV8: appropriateThemeV8, themeValueV9: appropriateThemeV9 });
-        //this.props.deps.loadTheme(appropriateTheme);
     }
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {

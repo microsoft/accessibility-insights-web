@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-//import { loadTheme } from '@fluentui/react';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
@@ -71,7 +70,6 @@ const rendererDependencies: RendererDeps = {
     dom: document,
     render: ReactDOM.render,
     initializeFabricIcons,
-    //loadTheme,
     contentProvider: contentPages,
     contentActionMessageCreator,
     storesHub,

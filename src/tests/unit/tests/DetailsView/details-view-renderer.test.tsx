@@ -32,7 +32,9 @@ describe('DetailsViewRendererTest', () => {
                 r(
                     It.isValue(
                         <>
-                            <Theme deps={deps} children={<DetailsView deps={deps} />} />
+                            <Theme deps={deps}>
+                                <DetailsView deps={deps} />
+                            </Theme>
 
                         </>,
                     ),

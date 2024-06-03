@@ -2,10 +2,19 @@
 
 exports[`ThemeInner is high contrast mode enabled: false 1`] = `
 <DocumentFragment>
-  <mock-bodyclassmodifier
-    classnames="theme-switcher"
-    deps="[object Object]"
-  />
+  <mock-themeprovider
+    applyto="body"
+    theme="[object Object]"
+  >
+    <mock-fluentprovider
+      theme="[object Object]"
+    >
+      <mock-bodyclassmodifier
+        classnames="theme-switcher"
+        deps="[object Object]"
+      />
+    </mock-fluentprovider>
+  </mock-themeprovider>
 </DocumentFragment>
 `;
 
@@ -16,7 +25,6 @@ exports[`ThemeInner is high contrast mode enabled: false: BodyClassModifier prop
   ],
   "deps": {
     "documentManipulator": [typemoq mock object],
-    "loadTheme": [MockFunction],
     "storeActionMessageCreator": null,
     "storesHub": null,
   },
@@ -25,10 +33,19 @@ exports[`ThemeInner is high contrast mode enabled: false: BodyClassModifier prop
 
 exports[`ThemeInner is high contrast mode enabled: true 1`] = `
 <DocumentFragment>
-  <mock-bodyclassmodifier
-    classnames="theme-switcher,high-contrast-theme"
-    deps="[object Object]"
-  />
+  <mock-themeprovider
+    applyto="body"
+    theme="[object Object]"
+  >
+    <mock-fluentprovider
+      theme="[object Object]"
+    >
+      <mock-bodyclassmodifier
+        classnames="theme-switcher,high-contrast-theme"
+        deps="[object Object]"
+      />
+    </mock-fluentprovider>
+  </mock-themeprovider>
 </DocumentFragment>
 `;
 
@@ -40,7 +57,6 @@ exports[`ThemeInner is high contrast mode enabled: true: BodyClassModifier props
   ],
   "deps": {
     "documentManipulator": [typemoq mock object],
-    "loadTheme": [MockFunction],
     "storeActionMessageCreator": null,
     "storesHub": null,
   },
