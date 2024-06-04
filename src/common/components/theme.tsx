@@ -8,13 +8,13 @@ import {
     webLightTheme,
 } from '@fluentui/react-components';
 import { DocumentManipulator } from 'common/document-manipulator';
+import { ThemeV9DarkTheme } from 'common/styles/theme-v9-dark-theme';
 import * as React from 'react';
 import { DefaultTheme } from '../styles/default-theme';
 import { HighContrastTheme } from '../styles/high-contrast-theme';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { BodyClassModifier } from './body-class-modifier';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
-import { ThemeV9DarkTheme } from 'common/styles/theme-v9-dark-theme';
 
 export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
