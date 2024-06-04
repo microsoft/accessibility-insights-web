@@ -14,6 +14,7 @@ import { HighContrastTheme } from '../styles/high-contrast-theme';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { BodyClassModifier } from './body-class-modifier';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
+import { ThemeV9DarkTheme } from 'common/styles/theme-v9-dark-theme';
 
 export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
@@ -72,7 +73,7 @@ export class ThemeInner extends React.Component<ThemeInnerProps, ThemeState> {
 
     private loadAppropriateTheme(isHighContrast: boolean): void {
         const appropriateThemeV8 = isHighContrast ? HighContrastTheme : DefaultTheme;
-        const appropriateThemeV9 = isHighContrast ? webDarkTheme : webLightTheme;
+        const appropriateThemeV9 = isHighContrast ? ThemeV9DarkTheme : webLightTheme;
         this.setState({ themeValueV8: appropriateThemeV8, themeValueV9: appropriateThemeV9 });
     }
 
