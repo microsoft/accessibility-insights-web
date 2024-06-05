@@ -69,7 +69,7 @@ const documentManipulator = new DocumentManipulator(document);
 const rendererDependencies: RendererDeps = {
     textContent,
     dom: document,
-    render: createRoot,
+    createRoot,
     initializeFabricIcons,
     loadTheme,
     contentProvider: contentPages,

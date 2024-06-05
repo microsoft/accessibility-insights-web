@@ -4,7 +4,7 @@ import { configMutator } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { DetailsViewRenderer, DetailsViewRendererDeps } from 'DetailsView/details-view-renderer';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, Root } from 'react-dom/client';
 import { It, Mock } from 'typemoq';
 import { Theme } from '../../../../common/components/theme';
 import { DetailsView } from '../../../../DetailsView/details-view-container';
@@ -18,8 +18,8 @@ describe('DetailsViewRendererTest', () => {
             '<div id="details-container"></div>',
         );
 
-        const renderMock: any = Mock.ofType<typeof createRoot>();
-        const createRootMock: any = Mock.ofType<typeof createRoot>();
+        const rootMock = Mock.ofType<Root>();
+        const createRootMock = Mock.ofType<typeof createRoot>();
 
         const expectedIcon16 = 'icon128.png';
         configMutator.setOption('icon128', expectedIcon16);
@@ -29,13 +29,13 @@ describe('DetailsViewRendererTest', () => {
             .verifiable();
 
         createRootMock
-            .setup(r => r(It.isAny()))
+            .setup(r => r(fakeDocument.getElementById('details-container')))
             .returns(() => {
-                return renderMock.object;
+                return rootMock.object;
             })
             .verifiable();
 
-        renderMock
+        rootMock
             .setup(r =>
                 r.render(
                     It.isValue(
@@ -58,7 +58,7 @@ describe('DetailsViewRendererTest', () => {
         renderer.render();
 
         createRootMock.verifyAll();
-        renderMock.verifyAll();
+        rootMock.verifyAll();
         documentManipulatorMock.verifyAll();
     });
 });

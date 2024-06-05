@@ -35,7 +35,6 @@ describe('StoresTree', () => {
 
             const props = {
                 deps,
-                state: undefined,
             } as StoresTreeProps;
 
             const renderResult = render(<StoresTree {...props} />);

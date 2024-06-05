@@ -259,7 +259,7 @@ describe(DialogRendererImpl, () => {
 
     function setupRenderMockForNeverVisited(): void {
         createRootMock
-            .setup(r => r(It.isAny()))
+            .setup(r => r(It.is((container: any) => container != null)))
             .returns(() => {
                 return renderMock.object;
             })

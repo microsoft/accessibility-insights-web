@@ -31,6 +31,7 @@ describe('IncompatibleBrowserRenderer', () => {
             documentMock.object,
         );
         testSubject.render();
+        createRootMock.verifyAll();
 
         renderMock.verifyAll();
     });

@@ -10,7 +10,7 @@ import { renderer, RendererDeps } from 'views/insights/renderer';
 describe('insights renderer', () => {
     const deps = {
         dom: document,
-        render: jest.fn().mockReturnValue({ render: jest.fn() }),
+        createRoot: jest.fn().mockReturnValue({ render: jest.fn() }),
         initializeFabricIcons: jest.fn(),
     } as Partial<RendererDeps> as RendererDeps;
 
@@ -35,8 +35,8 @@ describe('insights renderer', () => {
     it('renders InsightsRouter', () => {
         renderer(deps);
         const root = document.body.querySelector('#insights-root');
-        expect(deps.render).toHaveBeenCalledWith(root);
-        expect(deps.render(root).render).toHaveBeenCalledWith(
+        expect(deps.createRoot).toHaveBeenCalledWith(root);
+        expect(deps.createRoot(root).render).toHaveBeenCalledWith(
             <>
                 <HelmetProvider>
                     <Theme deps={deps} />

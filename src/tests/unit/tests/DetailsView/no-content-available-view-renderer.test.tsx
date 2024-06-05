@@ -30,7 +30,7 @@ describe('NoContentAvailableViewRenderer', () => {
         const renderMock: any = Mock.ofType<typeof createRoot>();
         const createRootMock: any = Mock.ofType<typeof createRoot>();
         createRootMock
-            .setup(r => r(It.isAny()))
+            .setup(r => r(fakeDocument.getElementById('details-container')))
             .returns(() => {
                 return renderMock.object;
             })

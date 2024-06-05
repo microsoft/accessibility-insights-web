@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { InlineImage, InlineImageProps, InlineImageType } from 'reports/components/inline-image';
 import '@testing-library/jest-dom';
@@ -46,7 +47,9 @@ describe('InlineImageTest', () => {
         const renderResult = render(<InlineImage {...props} />);
         expect(renderResult.container.firstChild).not.toBeNull();
 
-        const element = renderResult.container.querySelector('img');
+        const element = !isEmpty(alt)
+            ? (renderResult.getByRole('img', { name: alt }) as HTMLImageElement)
+            : (renderResult.getByRole('presentation') as HTMLImageElement);
         expect(element.src).toContain('data:image/png;base64,iVBO');
         expect(element.alt).toEqual(alt);
     }

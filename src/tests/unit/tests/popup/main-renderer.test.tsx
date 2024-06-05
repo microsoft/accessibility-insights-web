@@ -30,7 +30,6 @@ describe('MainRenderer', () => {
         const diagnosticViewToggleFactoryMock = Mock.ofType(DiagnosticViewToggleFactory);
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
 
-        //const renderMock: IMock<typeof createRoot> = Mock.ofInstance(() => null);
         const renderMock: any = Mock.ofType<typeof createRoot>();
 
         const popupWindowMock = Mock.ofInstance(window);
@@ -40,7 +39,7 @@ describe('MainRenderer', () => {
         const deps: MainRendererDeps = Mock.ofType<MainRendererDeps>().object;
         const createRootMock: any = Mock.ofType<typeof createRoot>();
         createRootMock
-            .setup(r => r(It.isAny()))
+            .setup(r => r(fakeDocument.getElementById('popup-container')))
             .returns(() => {
                 return renderMock.object;
             })

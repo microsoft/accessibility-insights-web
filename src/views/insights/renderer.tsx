@@ -10,13 +10,13 @@ import { InsightsRouter, ContentRouteDeps } from './insights-router';
 
 export type RendererDeps = {
     dom: Document;
-    render: typeof createRoot;
+    createRoot: typeof createRoot;
     initializeFabricIcons: () => void;
 } & ContentRouteDeps &
     ThemeDeps;
 
 export function renderer(deps: RendererDeps): void {
-    const { dom, render, initializeFabricIcons } = deps;
+    const { dom, createRoot, initializeFabricIcons } = deps;
     const iconPath = '../' + config.getOption('icon128');
     const documentElementSetter = new DocumentManipulator(dom);
     documentElementSetter.setShortcutIcon(iconPath);
@@ -24,7 +24,7 @@ export function renderer(deps: RendererDeps): void {
     initializeFabricIcons();
 
     const insightsRoot = dom.querySelector('#insights-root') as Element;
-    const root = render(insightsRoot);
+    const root = createRoot(insightsRoot);
     root.render(
         <>
             <HelmetProvider>

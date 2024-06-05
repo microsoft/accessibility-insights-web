@@ -46,7 +46,7 @@ export class DiagnosticViewToggle extends React.Component<
 
     // Must be consistent with internal react naming for same property to work
     // tslint:disable-next-line: variable-name
-    private _isMounted: boolean;
+    protected _isMounted: boolean;
 
     constructor(props: DiagnosticViewToggleProps) {
         super(props);
