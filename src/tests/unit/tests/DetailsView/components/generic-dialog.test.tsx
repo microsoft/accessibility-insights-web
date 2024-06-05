@@ -12,13 +12,14 @@ import {
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    mockReactComponent,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 
 describe('GenericDialogTest', () => {
-    mockReactComponents([Dialog, DialogFooter, PrimaryButton, DefaultButton]);
-
+    mockReactComponents([DialogFooter, PrimaryButton, DefaultButton]);
+    mockReactComponent(Dialog, 'Dialog');
     it('should render', () => {
         const props: GenericDialogProps = {
             title: 'test title',

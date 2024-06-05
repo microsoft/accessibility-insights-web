@@ -2,7 +2,7 @@
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="true"
     modalprops="[object Object]"
@@ -19,7 +19,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -89,7 +89,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="true"
     modalprops="[object Object]"
@@ -106,7 +106,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -176,7 +176,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -193,7 +193,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -263,7 +263,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -280,7 +280,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -350,7 +350,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
 
 exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -367,7 +367,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -437,7 +437,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false: StyledWithRespons
 
 exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -454,7 +454,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -524,7 +524,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true: StyledWithResponsi
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -541,7 +541,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -612,7 +612,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -629,7 +629,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
@@ -699,7 +699,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 
 exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -716,7 +716,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
         primarybuttontext="File issue"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 

@@ -10,7 +10,7 @@ exports[`AutoDetectedFailuresDialog on componentDidUpdate does not display dialo
 exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "dont show again" box is clicked 1`] = `
 <body>
   <div>
-    <mock-styledwithresponsivemode
+    <mock-dialog
       dialogcontentprops="[object Object]"
       hidden="false"
       modalprops="[object Object]"
@@ -53,7 +53,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled box appears checked when "
           </mock-stackitem>
         </mock-stack>
       </mock-styleddialogfooterbase>
-    </mock-styledwithresponsivemode>
+    </mock-dialog>
   </div>
 </body>
 `;
@@ -73,7 +73,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled is dismissed when onDismis
 exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when checkbox change is undefined 1`] = `
 <body>
   <div>
-    <mock-styledwithresponsivemode
+    <mock-dialog
       dialogcontentprops="[object Object]"
       hidden="false"
       modalprops="[object Object]"
@@ -116,7 +116,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
           </mock-stackitem>
         </mock-stack>
       </mock-styleddialogfooterbase>
-    </mock-styledwithresponsivemode>
+    </mock-dialog>
   </div>
 </body>
 `;
@@ -124,7 +124,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled nothing happens when check
 exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is enabled 1`] = `
 <body>
   <div>
-    <mock-styledwithresponsivemode
+    <mock-dialog
       dialogcontentprops="[object Object]"
       hidden="false"
       modalprops="[object Object]"
@@ -167,7 +167,7 @@ exports[`AutoDetectedFailuresDialog on dialog enabled renders when dialog is ena
           </mock-stackitem>
         </mock-stack>
       </mock-styleddialogfooterbase>
-    </mock-styledwithresponsivemode>
+    </mock-dialog>
   </div>
 </body>
 `;

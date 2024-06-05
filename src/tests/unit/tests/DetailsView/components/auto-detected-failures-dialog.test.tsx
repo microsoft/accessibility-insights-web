@@ -17,6 +17,7 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    mockReactComponent,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 import '@testing-library/jest-dom';
@@ -24,7 +25,8 @@ import '@testing-library/jest-dom';
 jest.mock('@fluentui/react');
 
 describe('AutoDetectedFailuresDialog', () => {
-    mockReactComponents([Dialog, DialogFooter, Stack, Stack.Item, Checkbox, PrimaryButton]);
+    mockReactComponents([DialogFooter, Stack, Stack.Item, Checkbox, PrimaryButton]);
+    mockReactComponent(Dialog, 'Dialog');
     let props: AutoDetectedFailuresDialogProps;
     let visualizationScanResultData: VisualizationScanResultData;
     let userConfigurationStoreData: UserConfigurationStoreData;
