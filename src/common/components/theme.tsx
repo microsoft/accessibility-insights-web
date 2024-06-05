@@ -1,12 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PartialTheme, ThemeProvider } from '@fluentui/react';
-import {
-    FluentProvider,
-    Theme as ThemeV9,
-    webDarkTheme,
-    webLightTheme,
-} from '@fluentui/react-components';
+import { FluentProvider, Theme as ThemeV9, webLightTheme } from '@fluentui/react-components';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { ThemeV9DarkTheme } from 'common/styles/theme-v9-dark-theme';
 import * as React from 'react';
