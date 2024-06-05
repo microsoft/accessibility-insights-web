@@ -231,7 +231,6 @@ describe('Details View ->', () => {
     async function scanForA11yIssuesWithHighContrast(highContrastMode: boolean): Promise<void> {
         await browser.setHighContrastMode(highContrastMode);
         await detailsViewPage.waitForHighContrastMode(highContrastMode);
-
         const results = await scanForAccessibilityIssues(detailsViewPage, '*');
         return results?.length ? expect(results).toHaveLength(1) : expect(results).toHaveLength(0)
     }
