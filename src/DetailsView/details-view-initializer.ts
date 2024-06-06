@@ -81,7 +81,7 @@ import {
     TabStopsFailedCounterIncludingNoInstance,
     TabStopsFailedCounterInstancesOnly,
 } from 'DetailsView/tab-stops-failed-counter';
-import { createRoot } from 'react-dom/client';
+import * as ReactDOMClient from 'react-dom/client';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -732,7 +732,12 @@ if (tabId != null) {
                 IsOutcomeNeedsReview: isOutcomeNeedsReview,
             };
 
-            const renderer = new DetailsViewRenderer(deps, dom, createRoot, documentElementSetter);
+            const renderer = new DetailsViewRenderer(
+                deps,
+                dom,
+                ReactDOMClient.createRoot,
+                documentElementSetter,
+            );
 
             renderer.render();
 
@@ -744,14 +749,18 @@ if (tabId != null) {
             window.selfFastPass = selfFastPass;
         })
         .catch(() => {
-            const renderer = createNullifiedRenderer(document, createRoot, createDefaultLogger());
+            const renderer = createNullifiedRenderer(
+                document,
+                ReactDOMClient.createRoot,
+                createDefaultLogger(),
+            );
             renderer.render();
         });
 }
 
 function createNullifiedRenderer(
     doc: Document,
-    render: typeof createRoot,
+    createRoot: typeof ReactDOMClient.createRoot,
     logger: Logger,
 ): NoContentAvailableViewRenderer {
     // using an instance of an actual store (instead of a StoreProxy) so we can get the default state.
@@ -764,5 +773,5 @@ function createNullifiedRenderer(
         getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
     };
 
-    return new NoContentAvailableViewRenderer(deps, doc, render, documentElementSetter);
+    return new NoContentAvailableViewRenderer(deps, doc, createRoot, documentElementSetter);
 }

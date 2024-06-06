@@ -8,7 +8,7 @@ import {
 } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, Root } from 'react-dom/client';
 import { TestDocumentCreator } from 'tests/unit/common/test-document-creator';
 import { It, Mock } from 'typemoq';
 
@@ -27,16 +27,16 @@ describe('NoContentAvailableViewRenderer', () => {
             .setup(des => des.setShortcutIcon('../' + expectedIcon16))
             .verifiable();
 
-        const renderMock: any = Mock.ofType<typeof createRoot>();
-        const createRootMock: any = Mock.ofType<typeof createRoot>();
+        const rootMock = Mock.ofType<Root>();
+        const createRootMock = Mock.ofType<typeof createRoot>();
         createRootMock
             .setup(r => r(fakeDocument.getElementById('details-container')))
             .returns(() => {
-                return renderMock.object;
+                return rootMock.object;
             })
             .verifiable();
 
-        renderMock
+        rootMock
             .setup(r => r.render(It.isValue(<NoContentAvailableView deps={deps} />)))
             .verifiable();
 
@@ -50,7 +50,7 @@ describe('NoContentAvailableViewRenderer', () => {
         testSubject.render();
 
         createRootMock.verifyAll();
-        renderMock.verifyAll();
+        rootMock.verifyAll();
         documentManipulatorMock.verifyAll();
     });
 });

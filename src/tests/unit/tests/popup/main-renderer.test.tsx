@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { title } from 'content/strings/application';
 import * as React from 'react';
-import { createRoot } from 'react-dom/client';
+import { Root, createRoot } from 'react-dom/client';
 import { It, Mock } from 'typemoq';
 import { Theme } from '../../../../common/components/theme';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
@@ -29,23 +29,22 @@ describe('MainRenderer', () => {
         const launchPadRowConfigurationFactoryMock = Mock.ofType(LaunchPadRowConfigurationFactory);
         const diagnosticViewToggleFactoryMock = Mock.ofType(DiagnosticViewToggleFactory);
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
-
-        const renderMock: any = Mock.ofType<typeof createRoot>();
+        const rootMock = Mock.ofType<Root>();
+        const createRootMock = Mock.ofType<typeof createRoot>();
 
         const popupWindowMock = Mock.ofInstance(window);
         const hasAccess = true;
         const targetTabUrl = 'url';
 
         const deps: MainRendererDeps = Mock.ofType<MainRendererDeps>().object;
-        const createRootMock: any = Mock.ofType<typeof createRoot>();
         createRootMock
             .setup(r => r(fakeDocument.getElementById('popup-container')))
             .returns(() => {
-                return renderMock.object;
+                return rootMock.object;
             })
             .verifiable();
 
-        renderMock
+        rootMock
             .setup(mock =>
                 mock.render(
                     It.isValue(
@@ -97,6 +96,6 @@ describe('MainRenderer', () => {
         renderer.render();
 
         createRootMock.verifyAll();
-        renderMock.verifyAll();
+        rootMock.verifyAll();
     });
 });

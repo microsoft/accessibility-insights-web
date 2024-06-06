@@ -5,7 +5,7 @@ import { NavigatorUtils } from 'common/navigator-utils';
 import { HtmlElementAxeResults } from 'common/types/store-data/visualization-scan-result-data';
 import { DialogRendererImpl } from 'injected/dialog-renderer-impl';
 import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
-import { createRoot } from 'react-dom/client';
+import * as ReactDOMClient from 'react-dom/client';
 
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
@@ -31,7 +31,7 @@ export class IssuesFormatter implements Formatter {
     ) {
         this.dialogRenderer = new DialogRendererImpl(
             document,
-            createRoot,
+            ReactDOMClient.createRoot,
             frameMessenger,
             htmlElementUtils,
             windowUtils,
