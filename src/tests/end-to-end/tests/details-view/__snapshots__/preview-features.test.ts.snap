@@ -11,7 +11,6 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
     />
     <div
       class="ms-Panel-main main-000"
-      data-tabster="{"uncontrolled": {"completely": true}}"
     >
       <div
         aria-hidden="true"
