@@ -87,7 +87,7 @@ describe('SaveAssessmentButton', () => {
                 ]);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                fireEvent.click(wrapper.getByRole('link'))
+                fireEvent.click(wrapper.getByRole('link'));
             });
 
             it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
