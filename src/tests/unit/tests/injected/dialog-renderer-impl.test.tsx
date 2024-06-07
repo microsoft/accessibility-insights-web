@@ -240,7 +240,7 @@ describe(DialogRendererImpl, () => {
 
     function setupRenderMockForVerifiable(): void {
         createRootMock
-            .setup(r => r(It.isAny()))
+            .setup(r => r(It.is((container: any) => container != null)))
             .returns(() => {
                 return rootMock.object;
             })

@@ -234,9 +234,7 @@ describe('DiagnosticViewToggleTest', () => {
 
             const wrapper = render(component);
             const toggle = wrapper.getByRole('switch');
-            fireEvent.focus(toggle);
 
-            wrapper.rerender(component);
             expect(toggle).toHaveFocus();
         });
 

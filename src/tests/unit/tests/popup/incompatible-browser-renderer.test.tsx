@@ -15,7 +15,7 @@ describe('IncompatibleBrowserRenderer', () => {
         const rootMock = Mock.ofType<Root>();
         const createRootMock = Mock.ofType<typeof createRoot>();
         createRootMock
-            .setup(r => r(It.isAny()))
+            .setup(r => r(containerMock.object))
             .returns(() => {
                 return rootMock.object;
             });

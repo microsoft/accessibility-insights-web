@@ -7,9 +7,22 @@ export const expectMockedComponentPropsToMatchSnapshots = (
     snapshotName?: string,
 ) => {
     components.forEach(component => {
-        const componentSnapshotName =
-            snapshotName ||
-            `${component.displayName || component.name || component?.render?.displayName || 'mocked component'} props`;
+        let componentSnapshotName;
+
+        componentSnapshotName = component.displayName
+            ? `${component.displayName} props`
+            : `${component.name} props`;
+
+        if (snapshotName) {
+            componentSnapshotName = snapshotName;
+        }
+
+        if (componentSnapshotName === 'undefined props') {
+            componentSnapshotName = component?.render?.displayName
+                ? `${component?.render?.displayName} props`
+                : `mocked component props`;
+        }
+
         expectMockedComponentPropsToMatchSnapshot(component, componentSnapshotName);
     });
 };
