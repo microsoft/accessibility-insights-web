@@ -54,8 +54,10 @@ describe('ThemeInner', () => {
         (enableHighContrast: boolean) => {
             const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
             render(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
-            const hasThemeProp = getMockComponentClassPropsForCall(ThemeProvider).theme;
-            expect(hasThemeProp).not.toBeNull();
+            const hasV8ThemeProp = getMockComponentClassPropsForCall(ThemeProvider).theme;
+            const hasV9ThemeProp = getMockComponentClassPropsForCall(FluentProvider).theme;
+            expect(hasV9ThemeProp).not.toBeNull();
+            expect(hasV8ThemeProp).not.toBeNull();
         },
     );
 
@@ -66,8 +68,10 @@ describe('ThemeInner', () => {
 
             const userConfigurationStoreData = { enableHighContrast } as UserConfigurationStoreData;
             rerender(<ThemeInner {...props} storeState={{ userConfigurationStoreData }} />);
-            const hasThemeProp = getMockComponentClassPropsForCall(ThemeProvider).theme;
-            expect(hasThemeProp).not.toBeNull();
+            const hasV8ThemeProp = getMockComponentClassPropsForCall(ThemeProvider).theme;
+            const hasV9ThemeProp = getMockComponentClassPropsForCall(FluentProvider).theme;
+            expect(hasV9ThemeProp).not.toBeNull();
+            expect(hasV8ThemeProp).not.toBeNull();
         },
     );
 });
