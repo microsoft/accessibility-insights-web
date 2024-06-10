@@ -67,7 +67,7 @@ exports[`ExportDialog renders with open false 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ExportDialog renders with open false: StyledWithResponsiveMode props 1`] = `
+exports[`ExportDialog renders with open false: Dialog props 1`] = `
 {
   "children": [
     <ForwardRef(StyledTextFieldBase)
@@ -132,7 +132,7 @@ exports[`ExportDialog renders with open true 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ExportDialog renders with open true: StyledWithResponsiveMode props 1`] = `
+exports[`ExportDialog renders with open true: Dialog props 1`] = `
 {
   "children": [
     <ForwardRef(StyledTextFieldBase)

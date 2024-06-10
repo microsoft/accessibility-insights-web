@@ -76,9 +76,7 @@ describe('LaunchPanelHeaderTest', () => {
 
         render(flaggedComponentProps.enableJSXElement);
 
-        act(() => {
-            getMockComponentClassPropsForCall(IconButton).onClick();
-        });
+        getMockComponentClassPropsForCall(IconButton).onClick();
 
         dropdownClickHandlerMock.verifyAll();
     });

@@ -526,9 +526,7 @@ describe('DetailsViewCommandBar', () => {
             });
             await userEvent.click(startOverAssessmentButton, { pointerEventsCheck: 0 });
             const cancelDialogButton = renderResult.getByRole('button', { name: 'Cancel' });
-            act(() => {
-                expect(cancelDialogButton).toHaveFocus();
-            });
+            expect(cancelDialogButton).toHaveFocus();
 
             act(() => {
                 getMockComponentCall(StartOverDialog, 3)[0].dismissDialog();

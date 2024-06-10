@@ -20,7 +20,7 @@ exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] 
 </DocumentFragment>
 `;
 
-exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true: StyledWithResponsiveMode props 1`] = `
+exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true: Dialog props 1`] = `
 {
   "children": <ForwardRef(StyledDialogFooterBase)>
     <CustomizedPrimaryButton

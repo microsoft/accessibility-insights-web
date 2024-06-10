@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ITextField } from '@fluentui/react';
-import { act, createEvent, fireEvent, render, RenderResult, within } from '@testing-library/react';
+import { createEvent, fireEvent, render, RenderResult, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -259,9 +259,7 @@ describe('SelectorInputListTest', () => {
 
         const inputText = getByPlaceholderText('Enter element selector here');
         fireEvent.change(inputText, { target: { value: givenSelector } });
-        act(() => {
-            rerender(<TestableSelectorInputList {...previousProps} />);
-        });
+        rerender(<TestableSelectorInputList {...previousProps} />);
         expect(button).toHaveProperty('disabled', false);
     });
 
@@ -291,9 +289,7 @@ describe('SelectorInputListTest', () => {
         const { rerender, getByRole } = render(<TestableSelectorInputList {...props} />);
         const button = getByRole('button', { name: 'Add Selector' });
         expect(button).toHaveProperty('disabled', true);
-        act(() => {
-            rerender(<TestableSelectorInputList {...previousProps} />);
-        });
+        rerender(<TestableSelectorInputList {...previousProps} />);
         expect(button).toHaveProperty('disabled', true);
     });
 
@@ -326,9 +322,7 @@ describe('SelectorInputListTest', () => {
         const inputText = renderResult.getByPlaceholderText(
             'Enter element selector here',
         ) as HTMLInputElement;
-        act(() => {
-            fireEvent.change(inputText, { target: { value: givenSelector } });
-        });
+        fireEvent.change(inputText, { target: { value: givenSelector } });
 
         expect(inputText.value).toBe(givenSelector);
         const button = renderResult.getByRole('button', { name: 'Add Selector' });

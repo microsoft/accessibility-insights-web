@@ -2,7 +2,7 @@
 
 exports[`TelemetryPermissionDialogTest render dialog 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -32,19 +32,11 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
         text="OK"
       />
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;
 
-exports[`TelemetryPermissionDialogTest render dialog: PrivacyStatementPopupText props 1`] = `
-{
-  "deps": {
-    "LinkComponent": [Function],
-  },
-}
-`;
-
-exports[`TelemetryPermissionDialogTest render dialog: StyledWithResponsiveMode props 1`] = `
+exports[`TelemetryPermissionDialogTest render dialog: Dialog props 1`] = `
 {
   "children": [
     <div
@@ -93,6 +85,14 @@ exports[`TelemetryPermissionDialogTest render dialog: StyledWithResponsiveMode p
     "className": "telemetry-permission-dialog-modal",
     "containerClassName": "insights-dialog-main-override telemetry-permission-dialog",
     "isBlocking": true,
+  },
+}
+`;
+
+exports[`TelemetryPermissionDialogTest render dialog: PrivacyStatementPopupText props 1`] = `
+{
+  "deps": {
+    "LinkComponent": [Function],
   },
 }
 `;

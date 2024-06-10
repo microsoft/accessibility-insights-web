@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsList } from '@fluentui/react';
-import { act, fireEvent, render } from '@testing-library/react';
+import { DetailsList, Icon } from '@fluentui/react';
+import { fireEvent, render } from '@testing-library/react';
 import {
     TabStopsRequirementInstancesCollapsibleContent,
     TabStopsRequirementInstancesCollapsibleContentProps,
@@ -19,7 +19,7 @@ import {
 jest.mock('@fluentui/react');
 
 describe('TabStopsRequirementInstancesCollapsibleContent', () => {
-    mockReactComponents([DetailsList]);
+    mockReactComponents([DetailsList, (Icon as any).type]);
     let onEditButtonClickedMock: IMock<
         (requirementId: TabStopRequirementId, instanceId: string, description: string) => void
     >;
@@ -91,9 +91,7 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
         );
 
         const buttons = renderResult.getAllByRole('button');
-        act(() => {
-            buttons.forEach(button => fireEvent.click(button));
-        });
+        buttons.forEach(button => fireEvent.click(button));
 
         onEditButtonClickedMock.verifyAll();
         onRemoveButtonClickedMock.verifyAll();

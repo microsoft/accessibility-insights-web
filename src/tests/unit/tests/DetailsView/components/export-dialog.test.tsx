@@ -106,7 +106,7 @@ describe('ExportDialog', () => {
             props.isOpen = isOpen;
             onlyIncludeHtmlService();
             const renderResult = render(<ExportDialog {...props} />);
-            expectMockedComponentPropsToMatchSnapshots([Dialog]);
+            expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
 

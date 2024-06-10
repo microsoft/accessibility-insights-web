@@ -56,10 +56,9 @@ describe('SaveAssessmentButton', () => {
     describe('on dialog enabled', () => {
         describe('render', () => {
             beforeEach(() => {
+                mockReactComponent(Dialog, 'Dialog');
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                act(() => {
-                    fireEvent.click(wrapper.container.querySelector('mock-customizedactionbutton'));
-                });
+                fireEvent.click(wrapper.container.querySelector('mock-customizedactionbutton'));
             });
             it('snapshot of dialog', () => {
                 expect(wrapper.asFragment()).toMatchSnapshot();
@@ -89,9 +88,7 @@ describe('SaveAssessmentButton', () => {
                 ]);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                act(() => {
-                    fireEvent.click(wrapper.getByRole('link'));
-                });
+                fireEvent.click(wrapper.getByRole('link'));
             });
 
             it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
@@ -99,9 +96,7 @@ describe('SaveAssessmentButton', () => {
                 const checkbox = wrapper.getByRole('checkbox');
                 // Check "Don't show again" = true
 
-                act(() => {
-                    fireEvent.click(checkbox);
-                });
+                fireEvent.click(checkbox);
                 // showSaveAssessmentDialog = false ("Enable the dialog" = false)
                 userConfigMessageCreatorMock.verify(
                     x => x.setSaveAssessmentDialogState(false),
@@ -133,9 +128,7 @@ describe('SaveAssessmentButton', () => {
         beforeEach(() => {
             propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
             wrapper = render(<SaveAssessmentButton {...propsStub} />);
-            act(() => {
-                fireEvent.click(wrapper.getByRole('link'));
-            });
+            fireEvent.click(wrapper.getByRole('link'));
         });
 
         it('saves assessment without dialog (dialog is hidden)', () => {

@@ -371,7 +371,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render with isSettingsValid: false: StyledWithResponsiveMode props 1`] = `
+exports[`IssueFilingDialog render with isSettingsValid: false: Dialog props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -458,7 +458,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render with isSettingsValid: true: StyledWithResponsiveMode props 1`] = `
+exports[`IssueFilingDialog render with isSettingsValid: true: Dialog props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer

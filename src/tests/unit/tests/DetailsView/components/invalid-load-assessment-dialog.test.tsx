@@ -31,7 +31,7 @@ describe('InvalidLoadAssessmentDialog', () => {
             <InvalidLoadAssessmentDialog {...invalidLoadAssessmentDialogProps} />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Dialog]);
+        expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
     });
 
     it('should not show when isOpen is set to false', () => {

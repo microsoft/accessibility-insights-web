@@ -172,7 +172,7 @@ describe('AssessmentInstanceTable', () => {
             const fakeItem = { instance: { target: ['fake-instance-target-0'] } };
 
             assessmentInstanceTableHandlerMock
-                .setup(a => act(() => a.updateFocusedTarget(fakeItem.instance.target)))
+                .setup(a => a.updateFocusedTarget(fakeItem.instance.target))
                 .verifiable(Times.once());
 
             render(<AssessmentInstanceTable {...props} />);
@@ -217,12 +217,8 @@ describe('AssessmentInstanceTable', () => {
                         ),
                     )
                     .verifiable(Times.once());
-                act(() => {
-                    render(<AssessmentInstanceTable {...props} />);
-                });
-                act(() => {
-                    getMockComponentClassPropsForCall(InsightsCommandButton).onClick();
-                });
+                render(<AssessmentInstanceTable {...props} />);
+                getMockComponentClassPropsForCall(InsightsCommandButton).onClick();
 
                 assessmentInstanceTableHandlerMock.verifyAll();
             });

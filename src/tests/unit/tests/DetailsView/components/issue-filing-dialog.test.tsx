@@ -130,7 +130,7 @@ describe('IssueFilingDialog', () => {
         const renderResult = render(<IssueFilingDialog {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Dialog]);
+        expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
     });
 
     it('render: validate correct callbacks to ActionAndCancelButtonsComponent (file issue on click and cancel)', () => {
@@ -141,9 +141,7 @@ describe('IssueFilingDialog', () => {
             ActionAndCancelButtonsComponent,
         );
 
-        act(() => {
-            actionCancelButtons.cancelButtonOnClick(null);
-        });
+        actionCancelButtons.cancelButtonOnClick(null);
 
         isSettingsValidMock.verifyAll();
         onCloseMock.verifyAll();
@@ -173,9 +171,7 @@ describe('IssueFilingDialog', () => {
         const actionCancelButtons = getMockComponentClassPropsForCall(
             ActionAndCancelButtonsComponent,
         );
-        act(() => {
-            actionCancelButtons.primaryButtonOnClick(eventStub);
-        });
+        actionCancelButtons.primaryButtonOnClick(eventStub);
 
         isSettingsValidMock.verifyAll();
         userConfigMessageCreatorMock.verifyAll();
