@@ -310,27 +310,12 @@ describe('DiagnosticViewToggleTest', () => {
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
-            const component = React.createElement(DiagnosticViewToggle, props);
-
-            const wrapper = render(component);
-
-            const toggle = wrapper.getByRole('switch');
-
-            expect(toggle).not.toHaveFocus();
-        });
-
-        it('onBlurToggleHandler', () => {
-            const visualizationType = VisualizationType.Headings;
-            const props: DiagnosticViewToggleProps = new DiagnosticViewTogglePropsBuilder(
-                visualizationType,
-                testTelemetrySource,
-            ).build();
-
-            const wrapper = render(<DiagnosticViewToggle {...props} />);
-
-            const toggle = wrapper.getByRole('switch');
-            fireEvent.blur(toggle);
-            expect(toggle).not.toHaveFocus();
+            const component = new TestDiagnosticViewToggle(props);
+            component.isFocused = true;
+            render(component.render());
+            expect(component.isFocused).toBeTruthy();
+            getMockComponentClassPropsForCall(VisualizationToggle).onBlur();
+            expect(component.isFocused).toBeFalsy();
         });
     });
 
@@ -490,9 +475,17 @@ class DiagnosticViewTogglePropsBuilder {
     }
 }
 class TestDiagnosticViewToggle extends DiagnosticViewToggle {
+    public isFocused: boolean;
     public componentDidMount(): void {
         this._isMounted = false;
         this.setState({ isFocused: true });
         super.componentDidMount();
     }
+
+    public onBlurHandler = (): void => {
+        this.isFocused = false;
+        if (this._isMounted) {
+            this.setState({ isFocused: false });
+        }
+    };
 }

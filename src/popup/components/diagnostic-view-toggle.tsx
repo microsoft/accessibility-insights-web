@@ -142,7 +142,7 @@ export class DiagnosticViewToggle extends React.Component<
         }
     };
 
-    private onBlurHandler = (): void => {
+    protected onBlurHandler = (): void => {
         if (this._isMounted) {
             this.setState({
                 isFocused: false,
