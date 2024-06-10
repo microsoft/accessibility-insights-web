@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IconButton } from '@fluentui/react';
-import { act, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { GearMenuButton } from 'common/components/gear-menu-button';
 import { HamburgerMenuButton } from 'common/components/hamburger-menu-button';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DetailsList, IColumn, Spinner } from '@fluentui/react';
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import {
     AssessmentDefaultMessageGenerator,
     DefaultMessageInterface,
