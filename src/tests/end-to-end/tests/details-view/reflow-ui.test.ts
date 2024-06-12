@@ -238,7 +238,7 @@ describe('Details View ->', () => {
         // with surrounding text, even though background is black.
         // this is a false positive because background is black and link is having yellow as per high contrast theme
         // standards so this criteria does not apply
-        // Please refer for more information on the error :https://github.com/dequelabs/axe-core/issues/3464
+        // Please refer for more information on the error:https://github.com/dequelabs/axe-core/issues/3464
         expect(results).toMatchSnapshot();
     }
 
