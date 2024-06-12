@@ -23,7 +23,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed: StyledWithResponsiveMode props 1`] = `
+exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed: Dialog props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -110,7 +110,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed: StyledWithResponsiveMode props 1`] = `
+exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed: Dialog props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -197,7 +197,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed: StyledWithResponsiveMode props 1`] = `
+exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed: Dialog props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -284,7 +284,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed: StyledWithResponsiveMode props 1`] = `
+exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed: Dialog props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -545,7 +545,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null: StyledWithResponsiveMode props 1`] = `
+exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null: Dialog props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -633,7 +633,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null: StyledWithResponsiveMode props 1`] = `
+exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null: Dialog props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer
@@ -720,7 +720,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
 </DocumentFragment>
 `;
 
-exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container: StyledWithResponsiveMode props 1`] = `
+exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container: Dialog props 1`] = `
 {
   "children": [
     <IssueFilingSettingsContainer

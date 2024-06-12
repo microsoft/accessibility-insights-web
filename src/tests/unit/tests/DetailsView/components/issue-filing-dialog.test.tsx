@@ -214,7 +214,7 @@ describe('IssueFilingDialog', () => {
         });
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Dialog]);
+        expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
     });
 
     it('render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null', () => {
@@ -244,7 +244,7 @@ describe('IssueFilingDialog', () => {
         });
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Dialog]);
+        expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
     });
 
     it('render: validate callback (onSelectedServiceChange) sent to settings container', () => {
@@ -282,7 +282,7 @@ describe('IssueFilingDialog', () => {
         });
 
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Dialog]);
+        expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
     });
 
     const scenarios = [
@@ -314,7 +314,7 @@ describe('IssueFilingDialog', () => {
 
             renderResult.rerender(<IssueFilingDialog {...newProps} />);
             expect(renderResult.asFragment()).toMatchSnapshot();
-            expectMockedComponentPropsToMatchSnapshots([Dialog]);
+            expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
         },
     );
 });

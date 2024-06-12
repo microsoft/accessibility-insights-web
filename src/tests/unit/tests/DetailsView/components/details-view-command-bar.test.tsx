@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import '@testing-library/jest-dom';
 import { ActionButton } from '@fluentui/react';
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Assessments } from 'assessments/assessments';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
@@ -531,7 +531,6 @@ describe('DetailsViewCommandBar', () => {
             act(() => {
                 getMockComponentCall(StartOverDialog, 3)[0].dismissDialog();
             });
-            fireEvent.click(startOverMenuButton);
             expect(startOverMenuButton).toHaveFocus();
         });
     });

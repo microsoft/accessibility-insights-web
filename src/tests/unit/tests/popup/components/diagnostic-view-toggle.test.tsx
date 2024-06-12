@@ -310,12 +310,12 @@ describe('DiagnosticViewToggleTest', () => {
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
-            const component = new TestDiagnosticViewToggle(props);
-            component.isFocused = true;
+            const component = new DiagnosticViewToggle(props);
             render(component.render());
-            expect(component.isFocused).toBeTruthy();
+            component.componentDidMount();
+            const setState = jest.spyOn(component, 'setState');
             getMockComponentClassPropsForCall(VisualizationToggle).onBlur();
-            expect(component.isFocused).toBeFalsy();
+            expect(setState).toHaveBeenCalledWith({ isFocused: false });
         });
     });
 
@@ -475,17 +475,9 @@ class DiagnosticViewTogglePropsBuilder {
     }
 }
 class TestDiagnosticViewToggle extends DiagnosticViewToggle {
-    public isFocused: boolean;
     public componentDidMount(): void {
         this._isMounted = false;
         this.setState({ isFocused: true });
         super.componentDidMount();
     }
-
-    public onBlurHandler = (): void => {
-        this.isFocused = false;
-        if (this._isMounted) {
-            this.setState({ isFocused: false });
-        }
-    };
 }
