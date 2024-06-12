@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details View -> Assessment -> Reflow With command bar button visible should pass accessibility validation with high contrast mode=false 1`] = `[]`;
+
+exports[`Details View -> Assessment -> Reflow With command bar button visible should pass accessibility validation with high contrast mode=true 1`] = `[]`;
+
+exports[`Details View -> Assessment -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=false 1`] = `[]`;
+
+exports[`Details View -> Assessment -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=true 1`] = `[]`;
+
+exports[`Details View -> Assessment -> Reflow With hamburger button visible should pass accessibility validation with high contrast mode=false 1`] = `[]`;
+
+exports[`Details View -> Assessment -> Reflow With hamburger button visible should pass accessibility validation with high contrast mode=true 1`] = `[]`;
+
+exports[`Details View -> Assessment -> Reflow With hamburger button visible with hamburger button expanded should pass accessibility validation with command bar menu open and high contrast mode=false 1`] = `[]`;
+
+exports[`Details View -> Assessment -> Reflow With hamburger button visible with hamburger button expanded should pass accessibility validation with command bar menu open and high contrast mode=true 1`] = `[]`;
+
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=false With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=%s 1`] = `[]`;
+
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=false and card kebab menu collapsed 1`] = `[]`;
+
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=false and card kebab menu expanded 1`] = `[]`;
+
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=true With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=%s 1`] = `[]`;
+
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and card kebab menu collapsed 1`] = `
+[
+  {
+    "id": "link-in-text-block",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
+  The link has no styling (such as underline) to distinguish it from the surrounding text",
+        "selector": [
+          ".issues-table-subtitle--SwQ6H > .root-233.insights-link[target="_blank"]",
+        ],
+      },
+    ],
+  },
+]
+`;
+
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and card kebab menu expanded 1`] = `[]`;
+
+exports[`Details View -> Quick Assess -> Reflow With command bar button visible should pass accessibility validation with high contrast mode=false 1`] = `[]`;
+
+exports[`Details View -> Quick Assess -> Reflow With command bar button visible should pass accessibility validation with high contrast mode=true 1`] = `[]`;
+
+exports[`Details View -> Quick Assess -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=false 1`] = `[]`;
+
+exports[`Details View -> Quick Assess -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=true 1`] = `[]`;
+
+exports[`Details View -> Quick Assess -> Reflow With hamburger button visible should pass accessibility validation with high contrast mode=false 1`] = `[]`;
+
+exports[`Details View -> Quick Assess -> Reflow With hamburger button visible should pass accessibility validation with high contrast mode=true 1`] = `[]`;
+
+exports[`Details View -> Quick Assess -> Reflow With hamburger button visible with hamburger button expanded should pass accessibility validation with command bar menu open and high contrast mode=false 1`] = `[]`;
+
+exports[`Details View -> Quick Assess -> Reflow With hamburger button visible with hamburger button expanded should pass accessibility validation with command bar menu open and high contrast mode=true 1`] = `[]`;

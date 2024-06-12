@@ -43,27 +43,30 @@ describe('MainRenderer', () => {
                 r(
                     It.isValue(
                         <>
-                            <Theme deps={deps} />
-                            <PopupViewWithStoreSubscription
-                                deps={deps}
-                                title={expectedTitle}
-                                popupHandlers={{
-                                    diagnosticViewClickHandler:
-                                        diagnosticViewClickHandlerMock.object,
-                                    popupViewControllerHandler:
-                                        gettingStartedDialogHandlerMock.object,
-                                    launchPanelHeaderClickHandler:
-                                        feedbackMenuClickhandlerMock.object,
-                                }}
-                                popupWindow={popupWindowMock.object}
-                                targetTabUrl={targetTabUrl}
-                                hasAccess={hasAccess}
-                                launchPadRowConfigurationFactory={
-                                    launchPadRowConfigurationFactoryMock.object
-                                }
-                                diagnosticViewToggleFactory={diagnosticViewToggleFactoryMock.object}
-                                dropdownClickHandler={dropdownClickHandlerMock.object}
-                            />
+                            <Theme deps={deps}>
+                                <PopupViewWithStoreSubscription
+                                    deps={deps}
+                                    title={expectedTitle}
+                                    popupHandlers={{
+                                        diagnosticViewClickHandler:
+                                            diagnosticViewClickHandlerMock.object,
+                                        popupViewControllerHandler:
+                                            gettingStartedDialogHandlerMock.object,
+                                        launchPanelHeaderClickHandler:
+                                            feedbackMenuClickhandlerMock.object,
+                                    }}
+                                    popupWindow={popupWindowMock.object}
+                                    targetTabUrl={targetTabUrl}
+                                    hasAccess={hasAccess}
+                                    launchPadRowConfigurationFactory={
+                                        launchPadRowConfigurationFactoryMock.object
+                                    }
+                                    diagnosticViewToggleFactory={
+                                        diagnosticViewToggleFactoryMock.object
+                                    }
+                                    dropdownClickHandler={dropdownClickHandlerMock.object}
+                                />
+                            </Theme>
                         </>,
                     ),
                     fakeDocument.getElementById('popup-container'),

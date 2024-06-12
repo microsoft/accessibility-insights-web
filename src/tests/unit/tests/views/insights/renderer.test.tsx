@@ -36,8 +36,9 @@ describe('insights renderer', () => {
         const root = document.body.querySelector('#insights-root');
         expect(deps.render).toHaveBeenCalledWith(
             <>
-                <Theme deps={deps} />
-                <InsightsRouter deps={deps} />
+                <Theme deps={deps}>
+                    <InsightsRouter deps={deps} />
+                </Theme>
             </>,
             root,
         );

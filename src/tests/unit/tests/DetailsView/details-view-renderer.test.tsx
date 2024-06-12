@@ -32,8 +32,9 @@ describe('DetailsViewRendererTest', () => {
                 r(
                     It.isValue(
                         <>
-                            <Theme deps={deps} />
-                            <DetailsView deps={deps} />
+                            <Theme deps={deps}>
+                                <DetailsView deps={deps} />
+                            </Theme>
                         </>,
                     ),
                     fakeDocument.getElementById('details-container'),
