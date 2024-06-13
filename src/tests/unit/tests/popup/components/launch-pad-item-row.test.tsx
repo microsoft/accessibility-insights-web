@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Icon } from '@fluentui/react';
-import { Link } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
@@ -17,7 +17,7 @@ import {
 } from '../../../../../popup/components/launch-pad-item-row';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 
 describe('LaunchPadItemRow', () => {
     mockReactComponents([Link]);

@@ -7,8 +7,8 @@ import {
     DetailsList,
     IColumn,
     Icon,
-    Link,
 } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { NamedFC } from 'common/react/named-fc';
 import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
 import { tabStopsRequirementsTableActionColumnWidthPx } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
@@ -58,7 +58,7 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                                 )
                             }
                         >
-                            <Icon iconName="edit" ariaLabel={'edit instance'} />
+                            <Icon iconName="edit" aria-label={'edit instance'} />
                         </Link>
                         <Link
                             className={styles.removeButton}
@@ -66,7 +66,7 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                                 props.onRemoveButtonClicked(props.requirementId, instance.id)
                             }
                         >
-                            <Icon iconName="delete" ariaLabel={'delete instance'} />
+                            <Icon iconName="delete" aria-label={'delete instance'} />
                         </Link>
                     </>
                 );

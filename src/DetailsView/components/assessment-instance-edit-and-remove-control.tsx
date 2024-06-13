@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Icon, Link } from '@fluentui/react';
+import { Icon } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
@@ -40,7 +41,7 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />
                 <Link className={styles.removeButton} onClick={this.onRemoveButtonClicked}>
-                    <Icon iconName="delete" ariaLabel={'delete instance'} />
+                    <Icon iconName="delete" aria-label={'delete instance'} />
                 </Link>
             </div>
         );

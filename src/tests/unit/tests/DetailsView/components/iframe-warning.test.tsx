@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Link } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
@@ -23,7 +23,7 @@ import {
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 jest.mock('common/components/new-tab-link');
 describe('IframeWarning', () => {
     mockReactComponents([Link, NewTabLink]);

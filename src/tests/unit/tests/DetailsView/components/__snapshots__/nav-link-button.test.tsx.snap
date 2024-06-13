@@ -2,9 +2,10 @@
 
 exports[`NavLinkButton renders as button element 1`] = `
 <DocumentFragment>
-  <mock-styledlinkbase
+  <mock-link
     aria-expanded="true"
     aria-label="some title"
+    classname="navLinkButton some class name"
     title="some title"
   />
 </DocumentFragment>
@@ -12,9 +13,10 @@ exports[`NavLinkButton renders as button element 1`] = `
 
 exports[`NavLinkButton renders with href set 1`] = `
 <DocumentFragment>
-  <mock-styledlinkbase
+  <mock-link
     aria-expanded="true"
     aria-label="some title"
+    classname="navLinkButton some class name"
     href="#"
     title="some title"
   />
@@ -23,9 +25,10 @@ exports[`NavLinkButton renders with href set 1`] = `
 
 exports[`NavLinkButton renders with the proper aria-label 1`] = `
 <DocumentFragment>
-  <mock-styledlinkbase
+  <mock-link
     aria-expanded="true"
     aria-label="some title (current page)"
+    classname="navLinkButton some class name"
     title="some title"
   />
 </DocumentFragment>
@@ -33,9 +36,10 @@ exports[`NavLinkButton renders with the proper aria-label 1`] = `
 
 exports[`NavLinkButton renders with using name instead of title 1`] = `
 <DocumentFragment>
-  <mock-styledlinkbase
+  <mock-link
     aria-expanded="true"
     aria-label="some title"
+    classname="navLinkButton some class name"
     title="some title"
   />
 </DocumentFragment>

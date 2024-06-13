@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Link, Spinner } from '@fluentui/react';
+import { Spinner } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
@@ -37,6 +38,7 @@ import { VisualizationStoreDataBuilder } from '../../../common/visualization-sto
 jest.mock('views/content/content-link');
 jest.mock('common/components/visualization-toggle');
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 jest.mock('react', () => {
     const original = jest.requireActual('react');
     return {

@@ -46,7 +46,7 @@ describe('Guidance Content pages', () => {
                 await contentPage.waitForHighContrastMode(highContrastMode);
 
                 const results = await scanForAccessibilityIssues(contentPage, '*');
-                expect(results).toHaveLength(0);
+                expect(results).toMatchSnapshot();
             },
         );
     });

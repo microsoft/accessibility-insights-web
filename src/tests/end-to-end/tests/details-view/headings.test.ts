@@ -1,13 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Link } from '@fluentui/react-components';
+import { mockReactComponents } from '../../../unit/mock-helpers/mock-module-helpers';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
+jest.mock('@fluentui/react-components');
 
 describe('Details View -> Assessment -> Headings', () => {
+    mockReactComponents([Link]);
     let browser: Browser;
     let headingsPage: DetailsViewPage;
 
@@ -79,12 +83,6 @@ describe('Details View -> Assessment -> Headings', () => {
                     headingsPage,
                     detailsViewSelectors.mainContent,
                 );
-                // this results object has a failure for high contrast theme
-                // so links with style background having transparent was throwing insufficient color contrast
-                // with surrounding text, even though background is black.
-                // this is a false positive because background is black and link is having yellow as per high contrast theme
-                // standards so this criteria does not apply.
-                // Please refer for more information on the error:https://github.com/dequelabs/axe-core/issues/3464
                 expect(results).toMatchSnapshot();
             },
         );

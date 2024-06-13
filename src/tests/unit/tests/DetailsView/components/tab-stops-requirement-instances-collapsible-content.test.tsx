@@ -79,7 +79,8 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
         onRemoveButtonClickedMock
             .setup(rbc => rbc(props.requirementId, 'test-instance-id'))
             .verifiable(Times.once());
-        useOriginalReactElements('@fluentui/react', ['DetailsList', 'Link']);
+        useOriginalReactElements('@fluentui/react', ['DetailsList']);
+        useOriginalReactElements('@fluentui/react-components', ['Link']);
 
         const renderResult = render(
             <TabStopsRequirementInstancesCollapsibleContent
