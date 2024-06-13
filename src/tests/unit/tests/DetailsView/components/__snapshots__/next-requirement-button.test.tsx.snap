@@ -2,22 +2,31 @@
 
 exports[`NextRequirementButton renders 1`] = `
 <DocumentFragment>
-  <mock-customizeddefaultbutton>
-    <span />
-  </mock-customizeddefaultbutton>
+  <mock-button>
+    <span>
+      <i
+        aria-label="next"
+        class="root-105"
+        data-icon-name="ChevronRight"
+        role="img"
+      />
+    </span>
+  </mock-button>
 </DocumentFragment>
 `;
 
-exports[`NextRequirementButton renders: CustomizedDefaultButton props 1`] = `
+exports[`NextRequirementButton renders: Button props 1`] = `
 {
-  "children": <span>
-    <Memo(Icon)
-      ariaLabel="next"
-      iconName="ChevronRight"
-    />
-  </span>,
+  "children": [
+    undefined,
+    <span>
+      <Memo(Icon)
+        ariaLabel="next"
+        iconName="ChevronRight"
+      />
+    </span>,
+  ],
   "className": undefined,
   "onClick": [Function],
-  "text": undefined,
 }
 `;

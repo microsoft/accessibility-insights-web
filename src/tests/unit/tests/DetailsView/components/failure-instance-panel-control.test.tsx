@@ -100,14 +100,9 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     test('onFailureDescriptionChange', () => {
-        useOriginalReactElements('@fluentui/react', [
-            'TextField',
-            'Panel',
-            'ActionButton',
-            'Link',
-            'DefaultButton',
-        ]);
+        useOriginalReactElements('@fluentui/react', ['TextField', 'Panel', 'ActionButton', 'Link']);
         useOriginalReactElements('DetailsView/components/generic-panel', ['GenericPanel']);
+        useOriginalReactElements('@fluentui/react-components', ['Button']);
         useOriginalReactElements('common/components/flagged-component', ['FlaggedComponent']);
         useOriginalReactElements('DetailsView/components/action-and-cancel-buttons-component', [
             'ActionAndCancelButtonsComponent',

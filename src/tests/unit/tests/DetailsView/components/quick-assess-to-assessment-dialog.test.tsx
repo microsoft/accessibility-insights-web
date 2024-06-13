@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, PrimaryButton, Dialog, DialogFooter } from '@fluentui/react';
+import { Dialog, DialogFooter } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
@@ -18,8 +19,9 @@ import {
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 describe('QuickAssessToAssessmentDialog', () => {
-    mockReactComponents([DefaultButton, PrimaryButton, DialogFooter, Dialog]);
+    mockReactComponents([Button, DialogFooter, Dialog]);
 
     let dataTransferViewControllerMock: IMock<DataTransferViewController>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
@@ -57,7 +59,7 @@ describe('QuickAssessToAssessmentDialog', () => {
 
         render(<QuickAssessToAssessmentDialog {...props} />);
 
-        await getMockComponentClassPropsForCall(DefaultButton).onClick();
+        await getMockComponentClassPropsForCall(Button).onClick();
         dataTransferViewControllerMock.verify(
             m => m.hideQuickAssessToAssessmentConfirmDialog(),
             Times.once(),
@@ -69,7 +71,7 @@ describe('QuickAssessToAssessmentDialog', () => {
         const eventStub = {} as SupportedMouseEvent;
 
         render(<QuickAssessToAssessmentDialog {...props} />);
-        getMockComponentClassPropsForCall(PrimaryButton).onClick(eventStub);
+        getMockComponentClassPropsForCall(Button, 2).onClick(eventStub);
 
         detailsViewActionMessageCreatorMock.verify(
             m => m.confirmDataTransferToAssessment(eventStub),

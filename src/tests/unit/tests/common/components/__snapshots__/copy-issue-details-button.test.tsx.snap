@@ -6,8 +6,8 @@ exports[`CopyIssueDetailsButtonTest render 1`] = `
     aria-live="polite"
     class="toastContainer"
   />
-  <mock-customizeddefaultbutton
-    classname="copy-issue-details-button"
+  <mock-button
+    classname="copy-issue-details-button commandBarButton"
   >
     <mock-copyicon />
     <div
@@ -15,6 +15,6 @@ exports[`CopyIssueDetailsButtonTest render 1`] = `
     >
       Copy failure details
     </div>
-  </mock-customizeddefaultbutton>
+  </mock-button>
 </DocumentFragment>
 `;

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseButton, Button, DefaultButton } from '@fluentui/react';
+import { BaseButton, css } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
 
@@ -15,6 +16,7 @@ import {
 import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
 import { FileHTMLIcon } from '../../common/icons/file-html-icon';
 import { NamedFC } from '../../common/react/named-fc';
+import styles from '../../common/styles/button.scss';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { AxeResultToIssueFilingDataConverter } from '../../issue-filing/rule-result-to-issue-filing-data';
@@ -29,7 +31,7 @@ export type CommandBarProps = {
     deps: CommandBarDeps;
     onClickInspectButton: (
         event: React.MouseEvent<
-            Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement,
+            typeof Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement,
             MouseEvent
         >,
     ) => void;
@@ -46,13 +48,13 @@ export type CommandBarProps = {
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const renderInspectButton = (): JSX.Element => {
         return (
-            <DefaultButton
-                className="insights-dialog-button-inspect"
+            <Button
+                className={css('insights-dialog-button-inspect', styles.commandBarButton)}
                 onClick={props.onClickInspectButton}
             >
                 <FileHTMLIcon />
                 <div className="ms-Button-label">Inspect HTML</div>
-            </DefaultButton>
+            </Button>
         );
     };
 

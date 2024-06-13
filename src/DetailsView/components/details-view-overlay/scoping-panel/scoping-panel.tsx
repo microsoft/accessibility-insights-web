@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -41,12 +41,13 @@ export class ScopingPanel extends React.Component<ScopingPanelProps> {
                     scopingActionMessageCreator={this.props.scopingActionMessageCreator}
                     inspectActionMessageCreator={this.props.inspectActionMessageCreator}
                 />
-                <DefaultButton
+                <Button
+                    appearance="primary"
                     className="closing-scoping-panel"
-                    primary={true}
-                    text="OK"
                     onClick={this.props.deps.detailsViewActionMessageCreator.closeScopingPanel}
-                />
+                >
+                    OK
+                </Button>
             </GenericPanel>
         );
     }

@@ -28,13 +28,27 @@
             margin-top: 4px;
         }
 
-        .action-cancel-button-col + .action-cancel-button-col {
+        .action-cancel-button-col {
             margin-left: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            height: 32px;
+            border: 1px solid rgb(74, 74, 74);
+            border-radius: 2px;
+
+            &:hover {
+                border: 1px solid rgb(74, 74, 74);
+                font-weight: 600;
+                color: rgb(55, 55, 55);
+                background-color: rgb(240, 240, 240);
+                border-radius: 2px;
+            }
         }
 
         button {
             padding: 0;
             height: 32px;
+            color: rgb(74, 74, 74);
         }
 
         .continue-button {

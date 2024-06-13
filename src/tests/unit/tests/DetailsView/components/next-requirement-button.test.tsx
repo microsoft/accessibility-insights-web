@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DefaultButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { Requirement } from 'assessments/types/requirement';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -19,10 +19,10 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
 } from '../../../mock-helpers/mock-module-helpers';
 
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 
 describe('NextRequirementButton', () => {
-    mockReactComponents([DefaultButton]);
+    mockReactComponents([Button]);
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: React.MouseEvent<HTMLElement>;
     let props: NextRequirementButtonProps;
@@ -44,7 +44,7 @@ describe('NextRequirementButton', () => {
     it('renders', () => {
         const renderResult = render(<NextRequirementButton {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([DefaultButton]);
+        expectMockedComponentPropsToMatchSnapshots([Button]);
     });
 
     it('validate next requirement button', () => {
@@ -59,7 +59,7 @@ describe('NextRequirementButton', () => {
             .verifiable();
 
         render(<NextRequirementButton {...props} />);
-        getMockComponentClassPropsForCall(DefaultButton).onClick(eventStub);
+        getMockComponentClassPropsForCall(Button).onClick(eventStub);
         messageCreatorMock.verifyAll();
     });
 });

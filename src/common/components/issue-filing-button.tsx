@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
+import { css } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
@@ -9,6 +10,7 @@ import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-serv
 import { IssueFilingService } from '../../issue-filing/types/issue-filing-service';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { IssueFilingActionMessageCreator } from '../message-creators/issue-filing-action-message-creator';
+import styles from '../styles/button.scss';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import {
     IssueFilingNeedsSettingsContentProps,
@@ -71,13 +73,13 @@ export class IssueFilingButton extends React.Component<
 
         return (
             <>
-                <DefaultButton
-                    className={'file-issue-button'}
+                <Button
+                    className={css('file-issue-button', styles.commandBarButton)}
                     onClick={event => this.onClickFileIssueButton(event)}
                 >
                     <LadyBugSolidIcon />
                     <div className="ms-Button-label">File issue</div>
-                </DefaultButton>
+                </Button>
                 <NeedsSettingsContent {...needsSettingsContentProps} />
             </>
         );

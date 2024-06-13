@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DefaultButton, Dialog, DialogFooter, IDialogProps, PrimaryButton } from '@fluentui/react';
+import { Dialog, DialogFooter, IDialogProps } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import * as Markup from 'assessments/markup';
 import { NamedFC } from 'common/react/named-fc';
+import styles from 'common/styles/button.scss';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
@@ -48,25 +50,41 @@ export const QuickAssessToAssessmentDialog = NamedFC<QuickAssessToAssessmentDial
                     <Markup.Term>Note</Markup.Term>: {noteText}
                 </p>
                 <DialogFooter>
-                    <DefaultButton
-                        onClick={async () =>
-                            await dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog()
-                        }
-                        text={'Cancel'}
-                    />
-                    <PrimaryButton
-                        onClick={async ev => {
-                            detailsViewActionMessageCreator.confirmDataTransferToAssessment(ev);
-                            detailsViewActionMessageCreator.sendPivotItemClicked(
-                                DetailsViewPivotType[DetailsViewPivotType.assessment],
-                            );
-                            detailsViewActionMessageCreator.changeRightContentPanel('Overview');
-                            await dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog();
-                        }}
-                        data-automation-id={continueToAssessmentButtonAutomationId}
-                        text={'Continue to Assessment'}
-                        autoFocus={true}
-                    />
+                    <div className={styles.buttonsComponent}>
+                        <div className={styles.buttonCol}>
+                            <Button
+                                className={styles.defaultButton}
+                                onClick={async () =>
+                                    await dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog()
+                                }
+                            >
+                                {' '}
+                                Cancel{' '}
+                            </Button>
+                        </div>
+                        <div className={styles.buttonCol}>
+                            <Button
+                                className={styles.primaryButtonEnabled}
+                                onClick={async ev => {
+                                    detailsViewActionMessageCreator.confirmDataTransferToAssessment(
+                                        ev,
+                                    );
+                                    detailsViewActionMessageCreator.sendPivotItemClicked(
+                                        DetailsViewPivotType[DetailsViewPivotType.assessment],
+                                    );
+                                    detailsViewActionMessageCreator.changeRightContentPanel(
+                                        'Overview',
+                                    );
+                                    await dataTransferViewController.hideQuickAssessToAssessmentConfirmDialog();
+                                }}
+                                data-automation-id={continueToAssessmentButtonAutomationId}
+                                autoFocus={true}
+                            >
+                                {' '}
+                                Continue to Assessment{' '}
+                            </Button>
+                        </div>
+                    </div>
                 </DialogFooter>
             </Dialog>
         );

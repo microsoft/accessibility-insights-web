@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, DialogFooter, DialogType, TooltipHost } from '@fluentui/react';
+import { DialogFooter, DialogType, TooltipHost } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { css } from '@fluentui/utilities';
 import * as Markup from 'assessments/markup';
 import { BlockingDialog } from 'common/components/blocking-dialog';
@@ -66,18 +67,17 @@ export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
                 <DialogFooter>
                     <div className={styles.changeAssessmentDialogButtonContainer}>
                         <div className={css(styles.actionCancelButtonCol, styles.continueButton)}>
-                            <DefaultButton
-                                autoFocus={true}
-                                text={props.leftButtonText}
-                                onClick={props.leftButtonOnClick}
-                            />
+                            <Button autoFocus={true} onClick={props.leftButtonOnClick}>
+                                {props.leftButtonText}
+                            </Button>
                         </div>
                         <div className={css(styles.actionCancelButtonCol, props.rightButtonStyle)}>
-                            <DefaultButton
-                                text={props.rightButtonText}
+                            <Button
                                 onClick={props.rightButtonOnClick}
                                 data-automation-id={props.rightButtonDataAutomationId}
-                            />
+                            >
+                                {props.rightButtonText}
+                            </Button>
                         </div>
                     </div>
                 </DialogFooter>

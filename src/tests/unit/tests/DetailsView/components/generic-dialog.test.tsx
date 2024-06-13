@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dialog, DefaultButton, DialogFooter, PrimaryButton } from '@fluentui/react';
+import { Dialog, DialogFooter } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 
 import * as React from 'react';
@@ -15,8 +16,9 @@ import {
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 describe('GenericDialogTest', () => {
-    mockReactComponents([Dialog, DialogFooter, PrimaryButton, DefaultButton]);
+    mockReactComponents([Dialog, DialogFooter, Button]);
 
     it('should render', () => {
         const props: GenericDialogProps = {
@@ -61,7 +63,7 @@ describe('GenericDialogTest', () => {
         };
 
         render(<GenericDialog {...props} />);
-        getMockComponentClassPropsForCall(PrimaryButton).onClick(event);
+        getMockComponentClassPropsForCall(Button).onClick(event);
 
         expect(onPrimaryButtonClickMock).toHaveBeenCalledTimes(1);
     });
