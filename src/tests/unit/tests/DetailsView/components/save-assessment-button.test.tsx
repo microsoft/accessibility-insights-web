@@ -115,17 +115,12 @@ describe('SaveAssessmentButton', () => {
                 act(() => {
                     gotItButtonProps.onClick();
                 });
-                // technically, this should be looking at call #3 for the Dialog component
-                // but the new version of either React or Fluent has introduced behavior
-                // where there is an additional render triggered with empty props after the link
-                // click in the beforeEach. We have verified that this additional call does not
-                // affect the expected behavior of the component and can be disregarded in this test.
-                // Should this change in the future, the call number for this test will also
-                // also need to be changed.
-                const getProps = getMockComponentClassPropsForCall(Dialog, 4);
-                // checking toBeUndefined because the call #4 will render Dialog component
-                // with empty props array.
-                expect(getProps).toBeUndefined();
+                // since upgrading to React 18, this test is nondeterministic between being run in
+                // isolation and being run with the entire test suite. If you are working on this test
+                // and running it all by itself locally, it will include an additional empty render after
+                // the link click in the beforeEach, making this test fail.
+                const getProps = getMockComponentClassPropsForCall(Dialog, 3);
+                expect(getProps.hidden).toEqual(true);
             });
         });
     });
