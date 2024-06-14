@@ -6,10 +6,10 @@ import * as React from 'react';
 
 import { NamedFC } from '../react/named-fc';
 
-export type NewTabLinkProps = LinkProps & { href?: any; target?: any; };
+export type NewTabLinkProps = LinkProps & { href?: any; target?: any };
 
 export const NewTabLink = NamedFC<NewTabLinkProps>('NewTabLink', ({ className, ...props }) => {
     const classNames = ['insights-link', className];
 
-    return <Link className={css(...classNames)} target="_blank" {...props} />
+    return <Link className={css(...classNames)} target="_blank" {...props} />;
 });
