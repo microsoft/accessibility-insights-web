@@ -37,6 +37,7 @@
         color: $neutral-10;
         pointer-events: none;
         border-radius: 2px;
+        border-width: 10px;
     }
 
     .primary-button-enabled {
@@ -47,12 +48,14 @@
         background-color: $communication-primary;
         color: $always-white;
         border-radius: 2px;
+        border-width: 10px;
 
         &:hover {
             border: 1px solid $communication-primary;
             background-color: $communication-primary;
             color: $always-white;
             border-radius: 2px;
+            border-width: 10px;
         }
     }
 }

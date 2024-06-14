@@ -37,6 +37,7 @@
         color: $neutral-10;
         pointer-events: none;
         border-radius: 2px;
+        border-width: 10px;
     }
 
     .action-button-enabled {
@@ -47,11 +48,13 @@
         background-color: $communication-primary;
         color: $always-white;
         border-radius: 2px;
+        border-width: 10px;
 
         &:hover {
             background-color: $communication-primary;
             color: $always-white;
             border-radius: 2px;
+            border-width: 10px;
         }
     }
 }
