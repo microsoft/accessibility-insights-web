@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+@import '../../common/styles/common.scss';
+
 .action-and-cancel-buttons-component {
     display: flex;
     justify-content: flex-end;
@@ -12,15 +15,15 @@
         font-size: 14px;
         font-weight: 600;
         height: 32px;
-        border: 1px solid rgb(138, 136, 134);
-        color: rgb(51, 51, 51);
+        border: 1px solid $neutral-60;
+        color: $neutral-60;
         border-radius: 2px;
 
         &:hover {
-            border: 1px solid rgb(138, 136, 134);
+            border: 1px solid $neutral-60;
             font-weight: 600;
-            color: rgb(55, 55, 55);
-            background-color: rgb(240, 240, 240);
+            color: $neutral-70;
+            background-color: $neutral-6-5;
             border-radius: 2px;
         }
     }
@@ -29,9 +32,9 @@
         font-size: 14px;
         font-weight: 600;
         height: 32px;
-        border: 1px solid rgb(244, 244, 244);
-        background-color: rgb(244, 244, 244);
-        color: rgb(208, 208, 208);
+        border: 1px solid $neutral-4;
+        background-color: $neutral-4;
+        color: $neutral-10;
         pointer-events: none;
         border-radius: 2px;
     }
@@ -40,14 +43,14 @@
         font-size: 14px;
         font-weight: 600;
         height: 32px;
-        border: 1px solid rgb(16, 110, 190);
-        background-color: rgb(16, 110, 190);
-        color: rgb(255, 255, 255);
+        border: 1px solid $communication-primary;
+        background-color: $communication-primary;
+        color: $always-white;
         border-radius: 2px;
 
         &:hover {
-            background-color: rgb(16, 110, 190);
-            color: rgb(255, 255, 255);
+            background-color: $communication-primary;
+            color: $always-white;
             border-radius: 2px;
         }
     }

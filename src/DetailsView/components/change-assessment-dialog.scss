@@ -26,21 +26,18 @@
             text-align: right;
             padding-left: 0;
             margin-top: 4px;
-        }
-
-        .action-cancel-button-col {
             margin-left: 8px;
             font-size: 14px;
             font-weight: 600;
             height: 32px;
-            border: 1px solid rgb(74, 74, 74);
+            border: 1px solid $neutral-60;
             border-radius: 2px;
 
             &:hover {
-                border: 1px solid rgb(74, 74, 74);
+                border: 1px solid $neutral-60;
                 font-weight: 600;
-                color: rgb(55, 55, 55);
-                background-color: rgb(240, 240, 240);
+                color: $neutral-70;
+                background-color: $neutral-6-5;
                 border-radius: 2px;
             }
         }
@@ -48,7 +45,7 @@
         button {
             padding: 0;
             height: 32px;
-            color: rgb(74, 74, 74);
+            color: $neutral-60;
         }
 
         .continue-button {
