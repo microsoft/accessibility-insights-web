@@ -12,6 +12,7 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    mockReactComponent,
     expectMockedComponentPropsToMatchSnapshots,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, Times } from 'typemoq';
@@ -44,11 +45,11 @@ describe('DetailsDialog', () => {
         FixInstructionPanel,
         GuidanceLinks,
         NewTabLink,
-        Dialog,
         CommandBar,
         CancelIcon,
         IssueDetailsNavigationControls,
     ]);
+    mockReactComponent(Dialog, 'Dialog');
     const ruleId: string = 'ruleId';
     const help: string = 'help';
 

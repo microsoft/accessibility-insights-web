@@ -32,7 +32,7 @@ export const ReportInstanceList = NamedFC<ReportInstanceListProps>('ReportInstan
         return props.instances.map((instance, index) => {
             return (
                 <table className="instance-details" key={`instance-row-${index}`}>
-                    <tbody>{renderInstanceRows(instance)}</tbody>
+                    <tbody>{renderInstanceRows(instance) as JSX.Element[]}</tbody>
                 </table>
             );
         });
@@ -59,7 +59,7 @@ export const ReportInstanceList = NamedFC<ReportInstanceListProps>('ReportInstan
     }
 
     function renderPropertyBagHeaderRow(key: string): Row {
-        return renderRow(
+        const rowValue = renderRow(
             [
                 <th className={`instance-subsection-header`} colSpan={2} key={key}>
                     {key + ':'}
@@ -67,6 +67,8 @@ export const ReportInstanceList = NamedFC<ReportInstanceListProps>('ReportInstan
             ],
             key,
         );
+
+        return rowValue;
     }
 
     function renderProperyBagEntryRows(bag: BagOf<ScalarColumnValue>, outerIndex: Index): Row[] {
@@ -97,7 +99,7 @@ export const ReportInstanceList = NamedFC<ReportInstanceListProps>('ReportInstan
     function renderRow(cells: Cell[], index: Index): Row {
         return (
             <tr className="instance-pair-details" key={`instance-pair-row-${index}`}>
-                {cells}
+                {cells as JSX.Element[]}
             </tr>
         );
     }

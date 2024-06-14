@@ -14,6 +14,7 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    mockReactComponent,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { It, Mock, Times } from 'typemoq';
@@ -26,13 +27,13 @@ jest.mock('DetailsView/components/export-dropdown');
 jest.mock('report-export/services/code-pen-report-export-service');
 describe('ExportDialog', () => {
     mockReactComponents([
-        Dialog,
         PrimaryButton,
         TextField,
         DialogFooter,
         CodePenReportExportService.exportForm,
         ExportDropdown,
     ]);
+    mockReactComponent(Dialog, 'Dialog');
     const onCloseMock = Mock.ofInstance(() => {});
     const onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
     const exportResultsClickedTelemetryMock =
@@ -105,7 +106,7 @@ describe('ExportDialog', () => {
             props.isOpen = isOpen;
             onlyIncludeHtmlService();
             const renderResult = render(<ExportDialog {...props} />);
-            expectMockedComponentPropsToMatchSnapshots([Dialog]);
+            expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
             expect(renderResult.asFragment()).toMatchSnapshot();
         });
 

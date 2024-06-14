@@ -96,7 +96,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
         renderResult: RenderResult,
     ): void {
         const visualizationToggle = renderResult.container.querySelector(
-            'mock-VisualizationToggle',
+            'mock-visualizationtoggle',
         );
         expect(visualizationToggle).not.toBeNull();
 

@@ -81,7 +81,7 @@ import {
     TabStopsFailedCounterIncludingNoInstance,
     TabStopsFailedCounterInstancesOnly,
 } from 'DetailsView/tab-stops-failed-counter';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -735,7 +735,7 @@ if (tabId != null) {
             const renderer = new DetailsViewRenderer(
                 deps,
                 dom,
-                ReactDOM.render,
+                ReactDOMClient.createRoot,
                 documentElementSetter,
             );
 
@@ -751,7 +751,7 @@ if (tabId != null) {
         .catch(() => {
             const renderer = createNullifiedRenderer(
                 document,
-                ReactDOM.render,
+                ReactDOMClient.createRoot,
                 createDefaultLogger(),
             );
             renderer.render();
@@ -760,7 +760,7 @@ if (tabId != null) {
 
 function createNullifiedRenderer(
     doc: Document,
-    render: typeof ReactDOM.render,
+    createRoot: typeof ReactDOMClient.createRoot,
     logger: Logger,
 ): NoContentAvailableViewRenderer {
     // using an instance of an actual store (instead of a StoreProxy) so we can get the default state.
@@ -773,5 +773,5 @@ function createNullifiedRenderer(
         getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
     };
 
-    return new NoContentAvailableViewRenderer(deps, doc, render, documentElementSetter);
+    return new NoContentAvailableViewRenderer(deps, doc, createRoot, documentElementSetter);
 }

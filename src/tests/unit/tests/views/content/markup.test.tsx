@@ -8,7 +8,7 @@ import { CrossIcon } from 'common/icons/cross-icon';
 import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
 import { create } from 'content/common';
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
@@ -20,7 +20,7 @@ import { createMarkup } from 'views/content/markup';
 jest.mock('common/icons/check-icon');
 jest.mock('common/icons/cross-icon');
 jest.mock('common/components/new-tab-link');
-jest.mock('react-helmet');
+jest.mock('react-helmet-async');
 
 describe('ContentPage', () => {
     mockReactComponents([CheckIcon, CrossIcon, NewTabLink, Helmet]);
