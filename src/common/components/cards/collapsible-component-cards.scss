@@ -38,6 +38,7 @@
         align-items: baseline;
         width: 100%;
         height: fit-content;
+        justify-content: left;
 
         &:hover {
             background-color: $neutral-alpha-4;
@@ -47,13 +48,11 @@
 
     .collapsible-control[aria-expanded='false']::before {
         @extend %common-control-chevron;
-
         transform: rotate(-45deg);
     }
 
     .collapsible-control[aria-expanded='true']::before {
         @extend %common-control-chevron;
-
         transform: rotate(45deg);
     }
 

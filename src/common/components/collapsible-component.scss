@@ -8,18 +8,15 @@ span.collapsible-title {
 }
 
 .collapsible {
-    padding: 0;
-    cursor: pointer;
-    width: 100%;
-    border: none;
-    outline: none;
-    line-height: 0.25px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    display: inline-flex;
+    font-size: 26px;
+    height: auto;
+    width: auto;
+    text-align: left;
+    color: rgb(16, 110, 190);
 
     h2 {
-        font-weight: $normal-title-font-weight;
+        font-weight: normal;
         font-size: 17px;
     }
 }

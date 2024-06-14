@@ -5,5 +5,16 @@
     padding: unset;
     padding-right: 27px;
     margin-left: -2px;
-    margin-top: 2px;
+    margin-top: 100px;
+    font-weight: normal !important;
+}
+
+.expand-collapse-all-button .ChevronRightRegular,
+.expand-collapse-all-button .ChevronDownRegular {
+    display: inline-flex;
+    font-size: 26px;
+    height: auto;
+    width: auto;
+    margin-left: -10px;
+    color: rgb(16, 110, 190);
 }
