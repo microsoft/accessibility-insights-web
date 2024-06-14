@@ -2,23 +2,7 @@
 
 exports[`Guidance Content pages adhoc/accessibleNames/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages adhoc/accessibleNames/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(4) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages adhoc/accessibleNames/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages adhoc/accessibleNames/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -333,23 +317,7 @@ exports[`Guidance Content pages adhoc/color/guidance matches the snapshot 1`] = 
 
 exports[`Guidance Content pages adhoc/headings/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages adhoc/headings/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages adhoc/headings/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages adhoc/headings/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -655,23 +623,7 @@ exports[`Guidance Content pages adhoc/headings/guidance matches the snapshot 1`]
 
 exports[`Guidance Content pages adhoc/landmarks/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages adhoc/landmarks/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages adhoc/landmarks/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages adhoc/landmarks/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -979,23 +931,7 @@ exports[`Guidance Content pages adhoc/landmarks/guidance matches the snapshot 1`
 
 exports[`Guidance Content pages adhoc/tabstops/extraGuidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages adhoc/tabstops/extraGuidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages adhoc/tabstops/extraGuidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages adhoc/tabstops/extraGuidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -1257,23 +1193,7 @@ exports[`Guidance Content pages adhoc/tabstops/extraGuidance matches the snapsho
 
 exports[`Guidance Content pages adhoc/tabstops/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages adhoc/tabstops/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages adhoc/tabstops/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages adhoc/tabstops/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -1638,31 +1558,7 @@ exports[`Guidance Content pages rules/uniqueLandmark matches the snapshot 1`] = 
 
 exports[`Guidance Content pages test/adaptableContent/contrast/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/adaptableContent/contrast/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(4) > a:nth-child(1)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(4) > a:nth-child(2)",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/adaptableContent/contrast/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/adaptableContent/contrast/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -2006,39 +1902,7 @@ exports[`Guidance Content pages test/adaptableContent/contrast/infoAndExamples m
 
 exports[`Guidance Content pages test/adaptableContent/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/adaptableContent/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(5) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a:nth-child(1)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a:nth-child(2)",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/adaptableContent/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/adaptableContent/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -3055,23 +2919,7 @@ exports[`Guidance Content pages test/adaptableContent/hoverFocusContent/infoAndE
 
 exports[`Guidance Content pages test/adaptableContent/orientation/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/adaptableContent/orientation/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/adaptableContent/orientation/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/adaptableContent/orientation/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -3476,31 +3324,7 @@ exports[`Guidance Content pages test/adaptableContent/reflow matches the snapsho
 
 exports[`Guidance Content pages test/adaptableContent/resizeText/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/adaptableContent/resizeText/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(4) > a:nth-child(1)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(4) > a:nth-child(2)",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/adaptableContent/resizeText/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/adaptableContent/resizeText/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -4004,23 +3828,7 @@ exports[`Guidance Content pages test/adaptableContent/resizeTextInstructions mat
 
 exports[`Guidance Content pages test/adaptableContent/textSpacing/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/adaptableContent/textSpacing/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/adaptableContent/textSpacing/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/adaptableContent/textSpacing/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -4838,23 +4646,7 @@ exports[`Guidance Content pages test/audioVideoOnly/videoOnlyEquivalent/infoAndE
 
 exports[`Guidance Content pages test/automatedChecks/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/automatedChecks/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/automatedChecks/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/automatedChecks/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -5129,95 +4921,7 @@ exports[`Guidance Content pages test/cognitive/authentication/infoAndExamples ma
 
 exports[`Guidance Content pages test/cognitive/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/cognitive/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(10)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(12)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(14)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(15)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(18)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(20)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(21)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(23)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(24)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(25)",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/cognitive/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/cognitive/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -5692,23 +5396,7 @@ exports[`Guidance Content pages test/cognitive/redundantEntry/infoAndExamples ma
 
 exports[`Guidance Content pages test/contrast/graphics/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/contrast/graphics/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(3) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/contrast/graphics/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/contrast/graphics/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -5915,23 +5603,7 @@ exports[`Guidance Content pages test/contrast/graphics/infoAndExamples matches t
 
 exports[`Guidance Content pages test/contrast/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/contrast/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/contrast/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/contrast/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -6451,23 +6123,7 @@ exports[`Guidance Content pages test/contrast/stateChanges/infoAndExamples match
 
 exports[`Guidance Content pages test/contrast/uiComponents has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/contrast/uiComponents has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(3) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/contrast/uiComponents has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/contrast/uiComponents matches the snapshot 1`] = `
 <DocumentFragment>
@@ -6983,39 +6639,7 @@ exports[`Guidance Content pages test/customWidgets/cues/infoAndExamples matches 
 
 exports[`Guidance Content pages test/customWidgets/designPattern/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/customWidgets/designPattern/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(2)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(4)",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/customWidgets/designPattern/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/customWidgets/designPattern/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -7316,23 +6940,7 @@ exports[`Guidance Content pages test/customWidgets/designPattern/infoAndExamples
 
 exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(6) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -7649,31 +7257,7 @@ exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples
 
 exports[`Guidance Content pages test/customWidgets/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/customWidgets/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(4) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/customWidgets/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/customWidgets/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -8493,31 +8077,7 @@ exports[`Guidance Content pages test/customWidgets/guidance matches the snapshot
 
 exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(6) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -8841,39 +8401,7 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
 
 exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          ".fail-section > p > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          ".pass-section > p > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -9136,31 +8664,7 @@ exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndEx
 
 exports[`Guidance Content pages test/customWidgets/roleStateProperty/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/customWidgets/roleStateProperty/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/customWidgets/roleStateProperty/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/customWidgets/roleStateProperty/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -9521,23 +9025,7 @@ exports[`Guidance Content pages test/customWidgets/roleStateProperty/infoAndExam
 
 exports[`Guidance Content pages test/errors/errorIdentification/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/errors/errorIdentification/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/errors/errorIdentification/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/errors/errorIdentification/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -10462,55 +9950,7 @@ exports[`Guidance Content pages test/errors/errorSuggestion/infoAndExamples matc
 
 exports[`Guidance Content pages test/errors/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/errors/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "ul:nth-child(8) > li:nth-child(1) > a:nth-child(1)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a:nth-child(2)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(2) > ul > li:nth-child(1) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(2) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(3) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/errors/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/errors/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -11247,55 +10687,7 @@ exports[`Guidance Content pages test/errors/guidance matches the snapshot 1`] = 
 
 exports[`Guidance Content pages test/errors/statusMessages/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/errors/statusMessages/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          ".content > ul > li:nth-child(1) > a:nth-child(1)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a:nth-child(2)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(2) > ul > li:nth-child(1) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(2) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(3) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/errors/statusMessages/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/errors/statusMessages/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -13578,23 +12970,7 @@ exports[`Guidance Content pages test/focus/visibleFocus/infoAndExamples matches 
 
 exports[`Guidance Content pages test/headings/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/headings/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/headings/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/headings/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -14583,31 +13959,7 @@ exports[`Guidance Content pages test/headings/headingLevel matches the snapshot 
 
 exports[`Guidance Content pages test/headings/noMissingHeadings has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/headings/noMissingHeadings has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(7) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/headings/noMissingHeadings has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/headings/noMissingHeadings matches the snapshot 1`] = `
 <DocumentFragment>
@@ -17359,23 +16711,7 @@ exports[`Guidance Content pages test/keyboard/characterKeyShortcuts/infoAndExamp
 
 exports[`Guidance Content pages test/keyboard/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/keyboard/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/keyboard/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/keyboard/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -18052,31 +17388,7 @@ exports[`Guidance Content pages test/keyboard/guidance matches the snapshot 1`] 
 
 exports[`Guidance Content pages test/keyboard/keyboardNavigation has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/keyboard/keyboardNavigation has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(2) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(3) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/keyboard/keyboardNavigation has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/keyboard/keyboardNavigation matches the snapshot 1`] = `
 <DocumentFragment>
@@ -19403,31 +18715,7 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
 
 exports[`Guidance Content pages test/landmarks/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/landmarks/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(6) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/landmarks/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -20028,23 +19316,7 @@ exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`]
 
 exports[`Guidance Content pages test/landmarks/landmarkRoles/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/landmarks/landmarkRoles/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/landmarks/landmarkRoles/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/landmarks/landmarkRoles/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -20845,31 +20117,7 @@ exports[`Guidance Content pages test/landmarks/primaryContent/infoAndExamples ma
 
 exports[`Guidance Content pages test/language/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/language/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "ul:nth-child(2) > li:nth-child(1) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "ul:nth-child(4) > li:nth-child(1) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/language/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/language/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -21187,23 +20435,7 @@ exports[`Guidance Content pages test/language/guidance matches the snapshot 1`] 
 
 exports[`Guidance Content pages test/language/languageOfPage/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/language/languageOfPage/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/language/languageOfPage/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/language/languageOfPage/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -21442,23 +20674,7 @@ exports[`Guidance Content pages test/language/languageOfPage/infoAndExamples mat
 
 exports[`Guidance Content pages test/language/languageOfParts/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/language/languageOfParts/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(7) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/language/languageOfParts/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/language/languageOfParts/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -22631,31 +21847,7 @@ exports[`Guidance Content pages test/links/labelInName/infoAndExamples matches t
 
 exports[`Guidance Content pages test/links/linkFunction/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/links/linkFunction/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a:nth-child(1)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a:nth-child(2)",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/links/linkFunction/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/links/linkFunction/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -25117,23 +24309,7 @@ exports[`Guidance Content pages test/multimedia/synchronization/infoAndExamples 
 
 exports[`Guidance Content pages test/nativeWidgets/autocomplete/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/nativeWidgets/autocomplete/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/nativeWidgets/autocomplete/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/nativeWidgets/autocomplete/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -25704,23 +24880,7 @@ exports[`Guidance Content pages test/nativeWidgets/cues/infoAndExamples matches 
 
 exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(6) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -26037,31 +25197,7 @@ exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples
 
 exports[`Guidance Content pages test/nativeWidgets/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/nativeWidgets/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(4) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/nativeWidgets/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/nativeWidgets/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -26695,31 +25831,7 @@ exports[`Guidance Content pages test/nativeWidgets/guidance matches the snapshot
 
 exports[`Guidance Content pages test/nativeWidgets/instructions has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/nativeWidgets/instructions has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(6) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/nativeWidgets/instructions has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/nativeWidgets/instructions matches the snapshot 1`] = `
 <DocumentFragment>
@@ -27065,31 +26177,7 @@ exports[`Guidance Content pages test/nativeWidgets/instructions matches the snap
 
 exports[`Guidance Content pages test/nativeWidgets/widgetFunction/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/nativeWidgets/widgetFunction/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/nativeWidgets/widgetFunction/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/nativeWidgets/widgetFunction/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -28899,23 +27987,7 @@ exports[`Guidance Content pages test/parsing/keyboardBookmarkletInstructions mat
 
 exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "a[href$="nu/"]",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -29215,23 +28287,7 @@ exports[`Guidance Content pages test/parsing/parsingContent/infoAndExamples matc
 
 exports[`Guidance Content pages test/pointerMotion/draggingMovements/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/pointerMotion/draggingMovements/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(6) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/pointerMotion/draggingMovements/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/pointerMotion/draggingMovements/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -30353,23 +29409,7 @@ exports[`Guidance Content pages test/pointerMotion/targetSize/infoAndExamples ma
 
 exports[`Guidance Content pages test/repetitiveContent/bypassBlocks has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/repetitiveContent/bypassBlocks has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/repetitiveContent/bypassBlocks has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/repetitiveContent/bypassBlocks matches the snapshot 1`] = `
 <DocumentFragment>
@@ -30784,23 +29824,7 @@ exports[`Guidance Content pages test/repetitiveContent/bypassBlocks matches the 
 
 exports[`Guidance Content pages test/repetitiveContent/consistentHelp/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/repetitiveContent/consistentHelp/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(1) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/repetitiveContent/consistentHelp/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/repetitiveContent/consistentHelp/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>
@@ -31518,39 +30542,7 @@ exports[`Guidance Content pages test/repetitiveContent/consistentNavigation/info
 
 exports[`Guidance Content pages test/repetitiveContent/guidance has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/repetitiveContent/guidance has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a:nth-child(1)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a:nth-child(2)",
-        ],
-      },
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "li:nth-child(1) > a:nth-child(3)",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/repetitiveContent/guidance has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/repetitiveContent/guidance matches the snapshot 1`] = `
 <DocumentFragment>
@@ -33115,23 +32107,7 @@ exports[`Guidance Content pages test/semantics/guidance matches the snapshot 1`]
 
 exports[`Guidance Content pages test/semantics/headers/infoAndExamples has no accessibility issues with highContrastMode=false 1`] = `[]`;
 
-exports[`Guidance Content pages test/semantics/headers/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(5) > a",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Guidance Content pages test/semantics/headers/infoAndExamples has no accessibility issues with highContrastMode=true 1`] = `[]`;
 
 exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches the snapshot 1`] = `
 <DocumentFragment>

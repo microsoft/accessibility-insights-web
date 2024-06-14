@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ICalloutProps, ILinkProps, ITooltipHostStyles, TooltipHost } from '@fluentui/react';
+import { ICalloutProps, ITooltipHostStyles, TooltipHost } from '@fluentui/react';
 import { NewTabLink } from 'common/components/new-tab-link';
 import * as React from 'react';
 import { NamedFC } from '../react/named-fc';
 import styles from './new-tab-link-with-tooltip.scss';
+import { LinkProps } from '@fluentui/react-components';
 
-export type NewTabLinkWithTooltipProps = ILinkProps & { tooltipContent: string | undefined };
+export type NewTabLinkWithTooltipProps = LinkProps & { tooltipContent: string | undefined };
 
 export const NewTabLinkWithTooltip = NamedFC<NewTabLinkWithTooltipProps>(
     'NewTabLinkWithTooltip',

@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { getId, ILinkProps } from '@fluentui/react';
+import { getId } from '@fluentui/react';
+import { LinkProps } from '@fluentui/react-components';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-export const NewTabLinkWithConfirmationDialog = NamedFC<ILinkProps>(
+export const NewTabLinkWithConfirmationDialog = NamedFC<LinkProps>(
     'NewTabLinkWithConfirmationDialog',
     props => {
         const id = getId('new-tab-link-with-confirmation-dialog__'); // generates something like new-tab-link-with-confirmation-dialog__123
@@ -44,8 +45,8 @@ const addConfirmOnClickHandler = function (
     targetPageLink.addEventListener('click', function (event): void {
         const result = confirmCallback(
             'Are you sure you want to navigate away from the Accessibility Insights report?\n' +
-                'This link will open the target page in a new tab.\n\nPress OK to continue or ' +
-                'Cancel to stay on the current page.',
+            'This link will open the target page in a new tab.\n\nPress OK to continue or ' +
+            'Cancel to stay on the current page.',
         );
 
         if (result === false) {
