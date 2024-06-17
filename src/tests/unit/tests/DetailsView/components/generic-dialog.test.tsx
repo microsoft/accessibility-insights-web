@@ -21,8 +21,8 @@ describe('GenericDialogTest', () => {
     it('should render', () => {
         const props: GenericDialogProps = {
             title: 'test title',
-            onCancelButtonClick: () => { },
-            onPrimaryButtonClick: () => { },
+            onCancelButtonClick: () => {},
+            onPrimaryButtonClick: () => {},
             messageText: 'test message',
             primaryButtonText: 'test primary text',
         };
