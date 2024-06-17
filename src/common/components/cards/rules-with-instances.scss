@@ -4,7 +4,7 @@
 @import '../../../common/styles/fonts.scss';
 
 .rule-details-group {
-    :global(.rule-detail) {
+    .rule-detail {
         font-size: 14px;
         padding-top: 16px;
         padding-right: 8px;
@@ -13,6 +13,7 @@
         display: flex;
         align-items: baseline;
         text-align: left;
+        font-weight: normal;
 
         :global(.outcome-chip) {
             vertical-align: middle;
