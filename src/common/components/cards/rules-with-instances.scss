@@ -4,7 +4,7 @@
 @import '../../../common/styles/fonts.scss';
 
 .rule-details-group {
-    .rule-detail {
+    :global(.rule-detail) {
         font-size: 14px;
         padding-top: 16px;
         padding-right: 8px;
@@ -15,12 +15,12 @@
         text-align: left;
         font-weight: normal;
 
-        .outcome-chip {
+        :global(.outcome-chip) {
             vertical-align: middle;
             margin-bottom: 2px;
         }
 
-        .rule-details-id {
+        :global(.rule-details-id) {
             font-weight: $font-weight-semi-bold;
             color: $primary-text;
             word-break: break-all;
@@ -35,7 +35,7 @@
             }
         }
 
-        .rule-detail-description {
+        :global(.rule-detail-description) {
             color: $secondary-text !important;
             word-break: break-all;
         }
@@ -45,11 +45,11 @@
 .collapsible-rule-details-group {
     box-shadow: 0 1px 0 rgb(0 0 0 / 8%);
 
-    .rule-detail {
+    :global(.rule-detail) {
         box-shadow: unset;
     }
 
-    &:not(.collapsed) {
+    &:global(:not(.collapsed)) {
         box-shadow: unset;
     }
 }
