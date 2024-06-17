@@ -13,29 +13,12 @@ exports[`GenericDialogTest should render 1`] = `
       test message
     </div>
     <mock-styleddialogfooterbase>
-      <div
-        class="buttonsComponent"
-      >
-        <div
-          class="buttonCol"
-        >
-          <mock-button
-            appearance="primary"
-            classname="primaryButtonEnabled"
-          >
-             test primary text 
-          </mock-button>
-        </div>
-        <div
-          class="buttonCol"
-        >
-          <mock-button
-            classname="defaultButton"
-          >
-             Cancel 
-          </mock-button>
-        </div>
-      </div>
+      <mock-customizedprimarybutton
+        text="test primary text"
+      />
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
     </mock-styleddialogfooterbase>
   </mock-dialog>
 </DocumentFragment>

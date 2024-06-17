@@ -17,29 +17,13 @@ exports[`QuickAssessToAssessmentDialog dialog is hidden when isShown is false 1`
       : If you have an Assessment in progress, the current Quick Assess evaluation data will replace the Assessment evaluation and previous progress will be lost.
     </p>
     <mock-styleddialogfooterbase>
-      <div
-        class="buttonsComponent"
-      >
-        <div
-          class="buttonCol"
-        >
-          <mock-button
-            classname="defaultButton"
-          >
-             Cancel 
-          </mock-button>
-        </div>
-        <div
-          class="buttonCol"
-        >
-          <mock-button
-            classname="primaryButtonEnabled"
-            data-automation-id="continue-to-assessment-button"
-          >
-             Continue to Assessment 
-          </mock-button>
-        </div>
-      </div>
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
+      <mock-customizedprimarybutton
+        data-automation-id="continue-to-assessment-button"
+        text="Continue to Assessment"
+      />
     </mock-styleddialogfooterbase>
   </mock-dialog>
 </DocumentFragment>
@@ -62,29 +46,13 @@ exports[`QuickAssessToAssessmentDialog dialog is not hidden when isShown is true
       : If you have an Assessment in progress, the current Quick Assess evaluation data will replace the Assessment evaluation and previous progress will be lost.
     </p>
     <mock-styleddialogfooterbase>
-      <div
-        class="buttonsComponent"
-      >
-        <div
-          class="buttonCol"
-        >
-          <mock-button
-            classname="defaultButton"
-          >
-             Cancel 
-          </mock-button>
-        </div>
-        <div
-          class="buttonCol"
-        >
-          <mock-button
-            classname="primaryButtonEnabled"
-            data-automation-id="continue-to-assessment-button"
-          >
-             Continue to Assessment 
-          </mock-button>
-        </div>
-      </div>
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
+      <mock-customizedprimarybutton
+        data-automation-id="continue-to-assessment-button"
+        text="Continue to Assessment"
+      />
     </mock-styleddialogfooterbase>
   </mock-dialog>
 </DocumentFragment>
