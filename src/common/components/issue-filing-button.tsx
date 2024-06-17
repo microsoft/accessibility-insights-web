@@ -74,6 +74,7 @@ export class IssueFilingButton extends React.Component<
         return (
             <>
                 <Button
+                    appearance="primary"
                     className={css('file-issue-button', styles.commandBarButton)}
                     onClick={event => this.onClickFileIssueButton(event)}
                 >

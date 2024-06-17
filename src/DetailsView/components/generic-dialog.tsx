@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dialog, DialogFooter, DialogType } from '@fluentui/react';
-import { Button } from '@fluentui/react-components';
-import buttonStyles from 'common/styles/button.scss';
+import { DefaultButton, Dialog, DialogFooter, DialogType, PrimaryButton } from '@fluentui/react';
 import styles from 'DetailsView/components/common-dialog-styles.scss';
 import * as React from 'react';
 import { NamedFC } from '../../common/react/named-fc';
@@ -35,28 +33,8 @@ export const GenericDialog = NamedFC<GenericDialogProps>('GenericDialog', props 
         >
             <div className={styles.dialogBody}>{messageText}</div>
             <DialogFooter>
-                <div className={buttonStyles.buttonsComponent}>
-                    <div className={buttonStyles.buttonCol}>
-                        <Button
-                            className={buttonStyles.primaryButtonEnabled}
-                            appearance="primary"
-                            onClick={onPrimaryButtonClick}
-                        >
-                            {' '}
-                            {primaryButtonText}{' '}
-                        </Button>
-                    </div>
-                    <div className={buttonStyles.buttonCol}>
-                        <Button
-                            className={buttonStyles.defaultButton}
-                            onClick={onCancelButtonClick}
-                            autoFocus={true}
-                        >
-                            {' '}
-                            Cancel{' '}
-                        </Button>
-                    </div>
-                </div>
+                <PrimaryButton onClick={onPrimaryButtonClick} text={primaryButtonText} />
+                <DefaultButton onClick={onCancelButtonClick} text={'Cancel'} autoFocus={true} />
             </DialogFooter>
         </Dialog>
     );

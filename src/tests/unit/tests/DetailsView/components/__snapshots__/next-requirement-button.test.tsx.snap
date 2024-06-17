@@ -21,7 +21,7 @@ exports[`NextRequirementButton renders: Button props 1`] = `
     undefined,
     <span>
       <Memo(Icon)
-        ariaLabel="next"
+        aria-label="next"
         iconName="ChevronRight"
       />
     </span>,

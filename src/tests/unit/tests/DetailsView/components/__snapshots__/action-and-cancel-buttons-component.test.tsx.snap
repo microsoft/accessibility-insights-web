@@ -23,7 +23,7 @@ exports[`ActionAndCancelButtonsComponent render with primary button href == null
         disabled="false"
         target="_self"
       >
-         Test 
+        Test
       </mock-button>
     </div>
   </div>
@@ -54,7 +54,7 @@ exports[`ActionAndCancelButtonsComponent render with primary button href == samp
         href="sample href"
         target="_blank"
       >
-         Test 
+        Test
       </mock-button>
     </div>
   </div>

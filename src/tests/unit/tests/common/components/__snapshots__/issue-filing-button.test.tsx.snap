@@ -2,8 +2,9 @@
 
 exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
 <DocumentFragment>
+  11 
   <button
-    class="fui-Button r1alrhcs file-issue-button commandBarButton"
+    class="fui-Button r1alrhcs file-issue-button commandBarButton ___1akj6hk_ih97uj0 ffp7eso f1p3nwhy f11589ue f1q5o8ev f1pdflbu f1phragk f15wkkf3 f1s2uweq fr80ssc f1ukrpxl fecsdlb f1rq72xc fnp9lpt f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1d6v5y2 f1rirnrt f1uu00uk fkvaka8 f1ux7til f9a0qzu f1lkg8j3 fkc42ay fq7113v ff1wgvm fiob0tu f1j6scgf f1x4h75k f4xjyn1 fbgcvur f1ks1yx8 f1o6qegi fcnxywj fmxjhhp f9ddjv3 f17t0x8g f194v5ow f1qgg65p fk7jm04 fhgccpy f32wu9k fu5nqqq f13prjl2 f1czftr5 f1nl83rv f12k37oa fr96u23"
     type="button"
   >
     <mock-ladybugsolidicon />
@@ -26,8 +27,9 @@ exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
 
 exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to false 1`] = `
 <DocumentFragment>
+  11 
   <button
-    class="fui-Button r1alrhcs file-issue-button commandBarButton"
+    class="fui-Button r1alrhcs file-issue-button commandBarButton ___1akj6hk_ih97uj0 ffp7eso f1p3nwhy f11589ue f1q5o8ev f1pdflbu f1phragk f15wkkf3 f1s2uweq fr80ssc f1ukrpxl fecsdlb f1rq72xc fnp9lpt f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1d6v5y2 f1rirnrt f1uu00uk fkvaka8 f1ux7til f9a0qzu f1lkg8j3 fkc42ay fq7113v ff1wgvm fiob0tu f1j6scgf f1x4h75k f4xjyn1 fbgcvur f1ks1yx8 f1o6qegi fcnxywj fmxjhhp f9ddjv3 f17t0x8g f194v5ow f1qgg65p fk7jm04 fhgccpy f32wu9k fu5nqqq f13prjl2 f1czftr5 f1nl83rv f12k37oa fr96u23"
     type="button"
   >
     <mock-ladybugsolidicon />
@@ -50,7 +52,9 @@ exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to f
 
 exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 <DocumentFragment>
+  11 
   <mock-button
+    appearance="primary"
     classname="file-issue-button commandBarButton"
   >
     <mock-ladybugsolidicon />
@@ -73,7 +77,9 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 
 exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
 <DocumentFragment>
+  11 
   <mock-button
+    appearance="primary"
     classname="file-issue-button commandBarButton"
   >
     <mock-ladybugsolidicon />

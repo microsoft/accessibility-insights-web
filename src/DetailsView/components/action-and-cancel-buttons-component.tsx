@@ -41,8 +41,7 @@ export class ActionAndCancelButtonsComponent extends React.Component<ActionAndCa
                         href={this.props.primaryButtonHref}
                         target={isEmpty(this.props.primaryButtonHref) ? '_self' : '_blank'}
                     >
-                        {' '}
-                        {this.props.primaryButtonText}{' '}
+                        {this.props.primaryButtonText}
                     </Button>
                 </div>
             </div>
