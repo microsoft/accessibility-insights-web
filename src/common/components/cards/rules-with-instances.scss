@@ -4,7 +4,7 @@
 @import '../../../common/styles/fonts.scss';
 
 .rule-details-group {
-    :global(.rule-detail) {
+    .rule-detail {
         font-size: 14px;
         padding-top: 16px;
         padding-right: 8px;
