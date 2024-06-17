@@ -15,12 +15,12 @@
         text-align: left;
         font-weight: normal;
 
-        :global(.outcome-chip) {
+        .outcome-chip {
             vertical-align: middle;
             margin-bottom: 2px;
         }
 
-        :global(.rule-details-id) {
+        .rule-details-id {
             font-weight: $font-weight-semi-bold;
             color: $primary-text;
             word-break: break-all;
@@ -35,7 +35,7 @@
             }
         }
 
-        :global(.rule-detail-description) {
+        .rule-detail-description {
             color: $secondary-text !important;
             word-break: break-all;
         }
@@ -45,11 +45,11 @@
 .collapsible-rule-details-group {
     box-shadow: 0 1px 0 rgb(0 0 0 / 8%);
 
-    :global(.rule-detail) {
+    .rule-detail {
         box-shadow: unset;
     }
 
-    &:global(:not(.collapsed)) {
+    &:not(.collapsed) {
         box-shadow: unset;
     }
 }
