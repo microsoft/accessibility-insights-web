@@ -13,6 +13,7 @@
         display: flex;
         align-items: baseline;
         text-align: left;
+        font-weight: normal;
 
         :global(.outcome-chip) {
             vertical-align: middle;

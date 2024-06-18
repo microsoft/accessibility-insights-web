@@ -24,14 +24,13 @@ export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProp
         return (
             <InsightsCommandButton
                 data-automation-id={transferToAssessmentButtonAutomationId}
-                iconProps={{ iconName: 'fabricMoveToFolder' }}
+                iconName={'FolderArrowRightRegular'}
                 onClick={
                     props.deps.dataTransferViewController.showQuickAssessToAssessmentConfirmDialog
                 }
                 componentRef={props.buttonRef}
-            >
-                Move to assessment
-            </InsightsCommandButton>
+                text="Move to assessment"
+            />
         );
     },
 );

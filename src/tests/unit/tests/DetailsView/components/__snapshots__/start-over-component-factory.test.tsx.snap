@@ -60,7 +60,7 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
   iconProps={
     {
       "className": "startOverMenuItemIcon",
-      "iconName": "Refresh",
+      "iconName": "ArrowClockwiseRegular",
     }
   }
   onClick={[Function]}
@@ -78,7 +78,7 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
   iconProps={
     {
       "className": "startOverMenuItemIcon",
-      "iconName": "Refresh",
+      "iconName": "ArrowClockwiseRegular",
     }
   }
   onClick={[Function]}
@@ -95,7 +95,7 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
   "disabled": false,
   "iconProps": {
     "className": "startOverMenuItemIcon",
-    "iconName": "Refresh",
+    "iconName": "ArrowClockwiseRegular",
   },
   "onClick": [Function],
   "text": "Start over",
@@ -111,7 +111,7 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
   "disabled": true,
   "iconProps": {
     "className": "startOverMenuItemIcon",
-    "iconName": "Refresh",
+    "iconName": "ArrowClockwiseRegular",
   },
   "onClick": [Function],
   "text": "Start over",

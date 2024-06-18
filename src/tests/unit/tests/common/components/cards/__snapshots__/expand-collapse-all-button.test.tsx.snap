@@ -2,25 +2,27 @@
 
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed false 1`] = `
 <DocumentFragment>
-  <mock-customizedactionbutton
+  <mock-button
+    appearance="transparent"
     aria-expanded="true"
     classname="expandCollapseAllButton"
-    iconprops="[object Object]"
+    icon="[object Object]"
   >
     Collapse all
-  </mock-customizedactionbutton>
+  </mock-button>
 </DocumentFragment>
 `;
 
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed true 1`] = `
 <DocumentFragment>
-  <mock-customizedactionbutton
+  <mock-button
+    appearance="transparent"
     aria-expanded="false"
     aria-label="Expand all rules to show failed instances."
     classname="expandCollapseAllButton"
-    iconprops="[object Object]"
+    icon="[object Object]"
   >
     Expand all
-  </mock-customizedactionbutton>
+  </mock-button>
 </DocumentFragment>
 `;

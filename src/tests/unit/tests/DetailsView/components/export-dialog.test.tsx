@@ -185,7 +185,7 @@ describe('ExportDialog', () => {
                 .verifiable(Times.once());
             props.isOpen = true;
             const renderResult = render(<ExportDialog {...props} />);
-            await userEvent.click(renderResult.getByRole('link'));
+            await userEvent.click(renderResult.container.querySelector('link'));
 
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();

@@ -8,6 +8,7 @@ import * as React from 'react';
 export interface ReportExportButtonProps {
     showReportExportDialog: () => void;
     buttonRef?: IRefObject<IButton>;
+    iconComponent: any;
 }
 
 export const reportExportButtonAutomationId = 'report-export-button';
@@ -15,12 +16,11 @@ export const reportExportButtonAutomationId = 'report-export-button';
 export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExportButton', props => {
     return (
         <InsightsCommandButton
-            iconProps={{ iconName: 'Export' }}
+            iconName="ArrowExportRegular"
             onClick={props.showReportExportDialog}
+            text="Export Result"
             componentRef={props.buttonRef}
             data-automation-id={reportExportButtonAutomationId}
-        >
-            Export result
-        </InsightsCommandButton>
+        />
     );
 });
