@@ -7,31 +7,29 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
   <div>
     <button
       aria-label="export options menu"
-      class="ms-Button ms-Button--primary root-109"
+      class="fui-Button r1alrhcs ___1akj6hk_ih97uj0 ffp7eso f1p3nwhy f11589ue f1q5o8ev f1pdflbu f1phragk f15wkkf3 f1s2uweq fr80ssc f1ukrpxl fecsdlb f1rq72xc fnp9lpt f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1d6v5y2 f1rirnrt f1uu00uk fkvaka8 f1ux7til f9a0qzu f1lkg8j3 fkc42ay fq7113v ff1wgvm fiob0tu f1j6scgf f1x4h75k f4xjyn1 fbgcvur f1ks1yx8 f1o6qegi fcnxywj fmxjhhp f9ddjv3 f17t0x8g f194v5ow f1qgg65p fk7jm04 fhgccpy f32wu9k fu5nqqq f13prjl2 f1czftr5 f1nl83rv f12k37oa fr96u23"
       data-automation-id="report-export-dropdown"
-      data-is-focusable="true"
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
+        class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
       >
-        <span
-          class="ms-Button-textContainer textContainer-111"
-        >
-          <span
-            class="ms-Button-label label-113"
-            id="id__3"
-          >
-            Export
-          </span>
-        </span>
-        <i
+        <svg
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-          data-icon-name="ChevronDown"
-        />
+          class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+          fill="currentColor"
+          height="1em"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+            fill="currentColor"
+          />
+        </svg>
       </span>
+      Export
     </button>
     <mock-contextualmenu
       id="report-export-dropdown-menu"
@@ -47,31 +45,29 @@ exports[`ExportDropdown handles click to show menu with feature flags but missin
   <div>
     <button
       aria-label="export options menu"
-      class="ms-Button ms-Button--primary root-109"
+      class="fui-Button r1alrhcs ___1akj6hk_ih97uj0 ffp7eso f1p3nwhy f11589ue f1q5o8ev f1pdflbu f1phragk f15wkkf3 f1s2uweq fr80ssc f1ukrpxl fecsdlb f1rq72xc fnp9lpt f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1d6v5y2 f1rirnrt f1uu00uk fkvaka8 f1ux7til f9a0qzu f1lkg8j3 fkc42ay fq7113v ff1wgvm fiob0tu f1j6scgf f1x4h75k f4xjyn1 fbgcvur f1ks1yx8 f1o6qegi fcnxywj fmxjhhp f9ddjv3 f17t0x8g f194v5ow f1qgg65p fk7jm04 fhgccpy f32wu9k fu5nqqq f13prjl2 f1czftr5 f1nl83rv f12k37oa fr96u23"
       data-automation-id="report-export-dropdown"
-      data-is-focusable="true"
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
+        class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
       >
-        <span
-          class="ms-Button-textContainer textContainer-111"
-        >
-          <span
-            class="ms-Button-label label-113"
-            id="id__6"
-          >
-            Export
-          </span>
-        </span>
-        <i
+        <svg
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-          data-icon-name="ChevronDown"
-        />
+          class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+          fill="currentColor"
+          height="1em"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+            fill="currentColor"
+          />
+        </svg>
       </span>
+      Export
     </button>
     <mock-contextualmenu
       id="report-export-dropdown-menu"
@@ -91,31 +87,29 @@ exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
   <div>
     <button
       aria-label="export options menu"
-      class="ms-Button ms-Button--primary root-109"
+      class="fui-Button r1alrhcs ___1akj6hk_ih97uj0 ffp7eso f1p3nwhy f11589ue f1q5o8ev f1pdflbu f1phragk f15wkkf3 f1s2uweq fr80ssc f1ukrpxl fecsdlb f1rq72xc fnp9lpt f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1d6v5y2 f1rirnrt f1uu00uk fkvaka8 f1ux7til f9a0qzu f1lkg8j3 fkc42ay fq7113v ff1wgvm fiob0tu f1j6scgf f1x4h75k f4xjyn1 fbgcvur f1ks1yx8 f1o6qegi fcnxywj fmxjhhp f9ddjv3 f17t0x8g f194v5ow f1qgg65p fk7jm04 fhgccpy f32wu9k fu5nqqq f13prjl2 f1czftr5 f1nl83rv f12k37oa fr96u23"
       data-automation-id="report-export-dropdown"
-      data-is-focusable="true"
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
+        class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
       >
-        <span
-          class="ms-Button-textContainer textContainer-111"
-        >
-          <span
-            class="ms-Button-label label-113"
-            id="id__0"
-          >
-            Export
-          </span>
-        </span>
-        <i
+        <svg
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-          data-icon-name="ChevronDown"
-        />
+          class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+          fill="currentColor"
+          height="1em"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+            fill="currentColor"
+          />
+        </svg>
       </span>
+      Export
     </button>
     <mock-contextualmenu
       id="report-export-dropdown-menu"
@@ -131,12 +125,32 @@ exports[`ExportDropdown handles click to show menu without feature flags: Contex
 exports[`ExportDropdown renders without menu items 1`] = `
 <DocumentFragment>
   <div>
-    <mock-customizedprimarybutton
-      arialabel="export options menu"
+    <button
+      aria-label="export options menu"
+      class="fui-Button r1alrhcs ___1akj6hk_ih97uj0 ffp7eso f1p3nwhy f11589ue f1q5o8ev f1pdflbu f1phragk f15wkkf3 f1s2uweq fr80ssc f1ukrpxl fecsdlb f1rq72xc fnp9lpt f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1d6v5y2 f1rirnrt f1uu00uk fkvaka8 f1ux7til f9a0qzu f1lkg8j3 fkc42ay fq7113v ff1wgvm fiob0tu f1j6scgf f1x4h75k f4xjyn1 fbgcvur f1ks1yx8 f1o6qegi fcnxywj fmxjhhp f9ddjv3 f17t0x8g f194v5ow f1qgg65p fk7jm04 fhgccpy f32wu9k fu5nqqq f13prjl2 f1czftr5 f1nl83rv f12k37oa fr96u23"
       data-automation-id="report-export-dropdown"
-      menuiconprops="[object Object]"
-      text="Export"
-    />
+      type="button"
+    >
+      <span
+        class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+      >
+        <svg
+          aria-hidden="true"
+          class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+          fill="currentColor"
+          height="1em"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+      Export
+    </button>
   </div>
 </DocumentFragment>
 `;
@@ -148,31 +162,29 @@ exports[`ExportDropdown should dismiss the contextMenu 1`] = `
   <div>
     <button
       aria-label="export options menu"
-      class="ms-Button ms-Button--primary root-109"
+      class="fui-Button r1alrhcs ___1akj6hk_ih97uj0 ffp7eso f1p3nwhy f11589ue f1q5o8ev f1pdflbu f1phragk f15wkkf3 f1s2uweq fr80ssc f1ukrpxl fecsdlb f1rq72xc fnp9lpt f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1d6v5y2 f1rirnrt f1uu00uk fkvaka8 f1ux7til f9a0qzu f1lkg8j3 fkc42ay fq7113v ff1wgvm fiob0tu f1j6scgf f1x4h75k f4xjyn1 fbgcvur f1ks1yx8 f1o6qegi fcnxywj fmxjhhp f9ddjv3 f17t0x8g f194v5ow f1qgg65p fk7jm04 fhgccpy f32wu9k fu5nqqq f13prjl2 f1czftr5 f1nl83rv f12k37oa fr96u23"
       data-automation-id="report-export-dropdown"
-      data-is-focusable="true"
       type="button"
     >
       <span
-        class="ms-Button-flexContainer flexContainer-110"
-        data-automationid="splitbuttonprimary"
+        class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
       >
-        <span
-          class="ms-Button-textContainer textContainer-111"
-        >
-          <span
-            class="ms-Button-label label-113"
-            id="id__12"
-          >
-            Export
-          </span>
-        </span>
-        <i
+        <svg
           aria-hidden="true"
-          class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-          data-icon-name="ChevronDown"
-        />
+          class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+          fill="currentColor"
+          height="1em"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+            fill="currentColor"
+          />
+        </svg>
       </span>
+      Export
     </button>
     <mock-contextualmenu
       id="report-export-dropdown-menu"

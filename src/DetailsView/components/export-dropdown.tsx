@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ContextualMenu, IContextualMenuItem, IPoint, PrimaryButton } from '@fluentui/react';
+import { ContextualMenu, IContextualMenuItem, IPoint } from '@fluentui/react';
 import { Button } from '@fluentui/react-components';
 import { ChevronDownRegular } from '@fluentui/react-icons';
 import { FeatureFlags } from 'common/feature-flags';

@@ -7,7 +7,7 @@ exports[`AssessmentInstanceTable with instances renders per snapshot 1`] = `
       as="button"
       data-automation-id="assessment-instance-table-pass-unmarked-instances-button"
       disabled="false"
-      iconprops="[object Object]"
+      iconname="Checkmark16Filled"
       text=" Pass unmarked instances"
     />
     <mock-styledwithviewportcomponent
@@ -72,9 +72,7 @@ exports[`AssessmentInstanceTable with instances renders per snapshot: InsightsCo
   "as": "button",
   "data-automation-id": "assessment-instance-table-pass-unmarked-instances-button",
   "disabled": false,
-  "iconProps": {
-    "iconName": "Checkmark16Filled",
-  },
+  "iconName": "Checkmark16Filled",
   "onClick": [Function],
   "text": " Pass unmarked instances",
 }

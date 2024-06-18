@@ -14,7 +14,7 @@ exports[`TransferToAssessmentButton render 1`] = `
 <DocumentFragment>
   <mock-insightscommandbutton
     data-automation-id="transfer-to-assessment-button"
-    iconprops="[object Object]"
+    iconname="FolderArrowRightRegular"
     text="Move to assessment"
   />
 </DocumentFragment>
@@ -24,9 +24,7 @@ exports[`TransferToAssessmentButton render: InsightsCommandButton props 1`] = `
 {
   "componentRef": undefined,
   "data-automation-id": "transfer-to-assessment-button",
-  "iconProps": {
-    "iconName": "FolderArrowRightRegular",
-  },
+  "iconName": "FolderArrowRightRegular",
   "onClick": [Function],
   "text": "Move to assessment",
 }

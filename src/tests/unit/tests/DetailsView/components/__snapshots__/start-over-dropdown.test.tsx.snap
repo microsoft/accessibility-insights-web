@@ -6,7 +6,7 @@ exports[`StartOverDropdownTest render 1`] = `
     <mock-insightscommandbutton
       aria-label="start over menu"
       componentref="[object Object]"
-      iconprops="[object Object]"
+      iconname="ArrowClockwiseRegular"
       menuiconprops="[object Object]"
       text="Start over"
     />
@@ -20,11 +20,11 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
     <mock-insightscommandbutton
       aria-label="start over menu"
       componentref="[object Object]"
-      iconprops="[object Object]"
+      iconname="ArrowClockwiseRegular"
       menuiconprops="[object Object]"
       text="Start over"
     />
-    <mock-styledcontextualmenubase
+    <mock-contextualmenu
       directionalhint="7"
       items="[object Object],[object Object]"
       target="test event"
@@ -39,11 +39,11 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
     <mock-insightscommandbutton
       aria-label="start over menu"
       componentref="[object Object]"
-      iconprops="[object Object]"
+      iconname="ArrowClockwiseRegular"
       menuiconprops="[object Object]"
       text="Start over"
     />
-    <mock-styledcontextualmenubase
+    <mock-contextualmenu
       directionalhint="8"
       items="[object Object],[object Object]"
       target="test target"
@@ -52,13 +52,13 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
 </DocumentFragment>
 `;
 
+exports[`StartOverDropdownTest render: ContextualMenu props 1`] = `undefined`;
+
 exports[`StartOverDropdownTest render: InsightsCommandButton props 1`] = `
 {
   "aria-label": "start over menu",
   "componentRef": {},
-  "iconProps": {
-    "iconName": "ArrowClockwiseRegular",
-  },
+  "iconName": "ArrowClockwiseRegular",
   "menuIconProps": {
     "iconName": "ChevronDownRegular",
   },
@@ -66,5 +66,3 @@ exports[`StartOverDropdownTest render: InsightsCommandButton props 1`] = `
   "text": "Start over",
 }
 `;
-
-exports[`StartOverDropdownTest render: StyledContextualMenuBase props 1`] = `undefined`;
