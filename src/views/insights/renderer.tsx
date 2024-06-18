@@ -28,8 +28,9 @@ export function renderer(deps: RendererDeps): void {
     root.render(
         <>
             <HelmetProvider>
-                <Theme deps={deps} />
-                <InsightsRouter deps={deps} />
+                <Theme deps={deps}>
+                    <InsightsRouter deps={deps} />
+                </Theme>
             </HelmetProvider>
         </>,
     );

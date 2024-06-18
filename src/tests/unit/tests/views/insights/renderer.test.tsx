@@ -39,8 +39,9 @@ describe('insights renderer', () => {
         expect(deps.createRoot(root).render).toHaveBeenCalledWith(
             <>
                 <HelmetProvider>
-                    <Theme deps={deps} />
-                    <InsightsRouter deps={deps} />
+                    <Theme deps={deps}>
+                        <InsightsRouter deps={deps} />
+                    </Theme>
                 </HelmetProvider>
             </>,
         );
