@@ -55,8 +55,9 @@ exports[`First time Dialog content should match snapshot 1`] = `
                 <p>
                   By opting into telemetry, you 
                   <a
-                    class="ms-Link insights-link root-000"
+                    class="fui-Link insights-link ___000fq7916_1xye54t f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
                     href="https://accessibilityinsights.io/docs/en/telemetry"
+                    tabindex="0"
                     target="_blank"
                   >
                     help the community
@@ -105,8 +106,9 @@ exports[`First time Dialog content should match snapshot 1`] = `
                 </div>
                 You can change this choice anytime in settings. Read our 
                 <a
-                  class="ms-Link insights-link root-000"
+                  class="fui-Link insights-link ___000fq7916_1xye54t f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
                   href="http://go.microsoft.com/fwlink/?LinkId=521839"
+                  tabindex="0"
                   target="_blank"
                 >
                   privacy statement
