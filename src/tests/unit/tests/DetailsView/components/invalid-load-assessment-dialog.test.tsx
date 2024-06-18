@@ -10,11 +10,13 @@ import * as React from 'react';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
+    mockReactComponent,
 } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('@fluentui/react');
 
 describe('InvalidLoadAssessmentDialog', () => {
-    mockReactComponents([Dialog, DialogFooter, PrimaryButton]);
+    mockReactComponents([DialogFooter, PrimaryButton]);
+    mockReactComponent(Dialog, 'Dialog');
     let invalidLoadAssessmentDialogProps: InvalidLoadAssessmentDialogProps;
 
     beforeEach(() => {
@@ -29,7 +31,7 @@ describe('InvalidLoadAssessmentDialog', () => {
             <InvalidLoadAssessmentDialog {...invalidLoadAssessmentDialogProps} />,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Dialog]);
+        expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
     });
 
     it('should not show when isOpen is set to false', () => {

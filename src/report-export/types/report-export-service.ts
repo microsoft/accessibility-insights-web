@@ -25,5 +25,5 @@ export type ReportExportService = {
         href?: string,
         download?: string,
     ) => IContextualMenuItem;
-    exportForm?: React.ComponentType<ReportExportFormProps>;
+    exportForm?: React.ComponentType<React.PropsWithChildren<ReportExportFormProps>>;
 };
