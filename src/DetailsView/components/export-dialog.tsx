@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dialog, DialogFooter, DialogType, PrimaryButton, TextField } from '@fluentui/react';
+import { Dialog, DialogFooter, DialogType, TextField } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ExportDropdown } from 'DetailsView/components/export-dropdown';
@@ -12,6 +13,7 @@ import {
 import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { NamedFC } from '../../common/react/named-fc';
 import styles from './export-dialog.scss';
+
 
 export const singleExportToHtmlButtonDataAutomationId = 'single-export-to-html-button';
 
@@ -68,7 +70,19 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
 
     const getSingleExportToHtmlButton = () => {
         return (
-            <PrimaryButton
+            // <PrimaryButton
+            //     onClick={event => {
+            //         props.generateExports();
+            //         onExportLinkClick(event as React.MouseEvent<HTMLAnchorElement>, 'html');
+            //     }}
+            //     download={props.htmlFileName}
+            //     href={props.htmlFileUrl}
+            //     data-automation-id={singleExportToHtmlButtonDataAutomationId}
+            // >
+            //     Export
+            // </PrimaryButton>
+            <Button
+                appearance="primary"
                 onClick={event => {
                     props.generateExports();
                     onExportLinkClick(event as React.MouseEvent<HTMLAnchorElement>, 'html');
@@ -78,7 +92,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                 data-automation-id={singleExportToHtmlButtonDataAutomationId}
             >
                 Export
-            </PrimaryButton>
+            </Button>
         );
     };
 

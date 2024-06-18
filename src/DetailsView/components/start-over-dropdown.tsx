@@ -32,11 +32,11 @@ export interface StartOverProps {
 const dropdownDirections = {
     down: {
         directionalHint: DirectionalHint.bottomAutoEdge,
-        iconName: 'ChevronDown',
+        iconName: 'ChevronDownRegular',
     },
     left: {
         directionalHint: DirectionalHint.leftTopEdge,
-        iconName: 'ChevronRight',
+        iconName: 'ChevronRightRegular',
     },
 };
 
@@ -56,11 +56,9 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         return (
             <div>
                 <InsightsCommandButton
-                    iconProps={{
-                        iconName: 'Refresh',
-                    }}
+                    iconName={'ArrowClockwiseRegular'}
                     text="Start over"
-                    ariaLabel="start over menu"
+                    aria-label="start over menu"
                     onClick={this.openDropdown}
                     menuIconProps={{
                         iconName: dropdownDirections[direction].iconName,

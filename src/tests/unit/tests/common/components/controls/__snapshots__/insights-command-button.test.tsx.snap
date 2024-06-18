@@ -3,35 +3,67 @@
 exports[`InsightsCommandButton renders per snapshot with extra className combined with its own 1`] = `
 <DocumentFragment>
   <mock-mockconstructor
+    appearance="transparent"
     classname="insightsCommandButton test-extra-class-name"
-    iconprops="[object Object]"
-  />
+  >
+    <span
+      class="text"
+    />
+    <span
+      class="menuIcon"
+    />
+  </mock-mockconstructor>
 </DocumentFragment>
 `;
 
 exports[`InsightsCommandButton renders per snapshot with extra className combined with its own: mockConstructor props 1`] = `
 {
+  "appearance": "transparent",
+  "children": [
+    <span
+      className="text"
+    />,
+    <span
+      className="menuIcon"
+    />,
+  ],
   "className": "insightsCommandButton test-extra-class-name",
-  "iconProps": {
-    "className": "commandBarButtonIcon",
-  },
+  "icon": undefined,
 }
 `;
 
 exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own 1`] = `
 <DocumentFragment>
   <mock-mockconstructor
+    appearance="transparent"
     classname="insightsCommandButton"
     iconprops="[object Object]"
-  />
+  >
+    <span
+      class="text"
+    />
+    <span
+      class="menuIcon"
+    />
+  </mock-mockconstructor>
 </DocumentFragment>
 `;
 
 exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own: mockConstructor props 1`] = `
 {
+  "appearance": "transparent",
+  "children": [
+    <span
+      className="text"
+    />,
+    <span
+      className="menuIcon"
+    />,
+  ],
   "className": "insightsCommandButton",
+  "icon": undefined,
   "iconProps": {
-    "className": "commandBarButtonIcon icon-class-name",
+    "className": "icon-class-name",
   },
 }
 `;
@@ -39,17 +71,34 @@ exports[`InsightsCommandButton renders per snapshot with extra icon className co
 exports[`InsightsCommandButton renders per snapshot with iconProps passed through 1`] = `
 <DocumentFragment>
   <mock-mockconstructor
+    appearance="transparent"
     classname="insightsCommandButton"
     iconprops="[object Object]"
-  />
+  >
+    <span
+      class="text"
+    />
+    <span
+      class="menuIcon"
+    />
+  </mock-mockconstructor>
 </DocumentFragment>
 `;
 
 exports[`InsightsCommandButton renders per snapshot with iconProps passed through: mockConstructor props 1`] = `
 {
+  "appearance": "transparent",
+  "children": [
+    <span
+      className="text"
+    />,
+    <span
+      className="menuIcon"
+    />,
+  ],
   "className": "insightsCommandButton",
+  "icon": undefined,
   "iconProps": {
-    "className": "commandBarButtonIcon",
     "testProperty": "test-value",
   },
 }
@@ -58,19 +107,37 @@ exports[`InsightsCommandButton renders per snapshot with iconProps passed throug
 exports[`InsightsCommandButton renders per snapshot with props passed through 1`] = `
 <DocumentFragment>
   <mock-mockconstructor
+    appearance="transparent"
     classname="insightsCommandButton"
-    iconprops="[object Object]"
     text="test-text"
-  />
+  >
+    <span
+      class="text"
+    >
+      test-text
+    </span>
+    <span
+      class="menuIcon"
+    />
+  </mock-mockconstructor>
 </DocumentFragment>
 `;
 
 exports[`InsightsCommandButton renders per snapshot with props passed through: mockConstructor props 1`] = `
 {
+  "appearance": "transparent",
+  "children": [
+    <span
+      className="text"
+    >
+      test-text
+    </span>,
+    <span
+      className="menuIcon"
+    />,
+  ],
   "className": "insightsCommandButton",
-  "iconProps": {
-    "className": "commandBarButtonIcon",
-  },
+  "icon": undefined,
   "text": "test-text",
 }
 `;

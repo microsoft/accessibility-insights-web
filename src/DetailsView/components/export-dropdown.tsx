@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 
 import { ContextualMenu, IContextualMenuItem, IPoint, PrimaryButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
+import { ChevronDownRegular } from '@fluentui/react-icons';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
@@ -44,7 +46,7 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
     public render(): JSX.Element {
         return (
             <div>
-                <PrimaryButton
+                {/* <PrimaryButton
                     text="Export"
                     ariaLabel="export options menu"
                     onClick={this.openDropdown}
@@ -52,7 +54,16 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
                         iconName: 'ChevronDown',
                     }}
                     data-automation-id={reportExportDropdownAutomationId}
-                />
+                /> */}
+                <Button
+                    appearance="primary"
+                    aria-label="export options menu"
+                    onClick={this.openDropdown}
+                    icon={<ChevronDownRegular />}
+                    data-automation-id={reportExportDropdownAutomationId}
+                >
+                    Export
+                </Button>
                 {this.renderContextMenu()}
             </div>
         );

@@ -5,19 +5,18 @@ exports[`LoadAssessmentButton should render per the snapshot 1`] = `
   <mock-insightscommandbutton
     data-automation-id="load-assessment-button"
     iconprops="[object Object]"
-  >
-    Load assessment
-  </mock-insightscommandbutton>
+    text="Load assessment"
+  />
 </DocumentFragment>
 `;
 
 exports[`LoadAssessmentButton should render per the snapshot: InsightsCommandButton props 1`] = `
 {
-  "children": "Load assessment",
   "data-automation-id": "load-assessment-button",
   "iconProps": {
-    "iconName": "FabricOpenFolderHorizontal",
+    "iconName": "FolderOpenRegular",
   },
   "onClick": [Function],
+  "text": "Load assessment",
 }
 `;

@@ -3,8 +3,26 @@
 @import '../../../common/styles/colors.scss';
 
 .insights-command-button {
+    color: #106ebe !important;
+
     .command-bar-button-icon {
         line-height: 16px;
+    }
+
+    .text {
+        font-weight: normal !important;
+        color: #333 !important;
+        margin-left: 4px;
+    }
+
+    .text:hover {
+        color: #106ebe !important;
+    }
+
+    .menuIcon {
+        color: #605e5c;
+        font-size: large;
+        margin-left: 4px;
     }
 
     &:disabled {
@@ -20,7 +38,6 @@
             color: $primary-text;
         }
     }
-
     // high contrast overrides to make a.insights-command-button
     // match button.insights-command-button
     @media screen and (forced-colors: active) {

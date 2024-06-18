@@ -6,20 +6,19 @@ exports[`ReportExportButton renders ReportExportButton 1`] = `
     componentref="[object Object]"
     data-automation-id="report-export-button"
     iconprops="[object Object]"
-  >
-    Export result
-  </mock-insightscommandbutton>
+    text="Export Result"
+  />
 </DocumentFragment>
 `;
 
 exports[`ReportExportButton renders ReportExportButton: InsightsCommandButton props 1`] = `
 {
-  "children": "Export result",
   "componentRef": {},
   "data-automation-id": "report-export-button",
   "iconProps": {
-    "iconName": "Export",
+    "iconName": "ArrowExportRegular",
   },
   "onClick": [MockFunction],
+  "text": "Export Result",
 }
 `;

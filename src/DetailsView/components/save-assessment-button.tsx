@@ -1,6 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Checkbox, Dialog, DialogFooter, DialogType, PrimaryButton, Stack } from '@fluentui/react';
+import { Checkbox, DialogFooter, Stack } from '@fluentui/react';
+import {
+    Button,
+    DialogActions,
+    DialogBody,
+    DialogContent,
+    DialogSurface,
+    DialogTitle,
+    DialogTrigger,
+    Dialog as DialogV9,
+} from '@fluentui/react-components';
 import { useBoolean } from '@fluentui/react-hooks';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
@@ -40,7 +50,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
 
         return (
             <>
-                <InsightsCommandButton
+                {/* <InsightsCommandButton
                     iconProps={{ iconName: 'Save' }}
                     download={props.download}
                     href={props.href}
@@ -86,7 +96,59 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                             </Stack.Item>
                         </Stack>
                     </DialogFooter>
-                </Dialog>
+                </Dialog> */}
+                <DialogV9>
+                    <DialogTrigger>
+                        <InsightsCommandButton
+                            iconName={'SaveRegular'}
+                            download={props.download}
+                            href={props.href}
+                            onClick={handleSaveAssessmentClick}
+                            text="Save assessment"
+                        />
+                    </DialogTrigger>
+                    <DialogSurface>
+                        <DialogBody>
+                            <DialogTitle>Assessment saved</DialogTitle>
+                            <DialogContent>
+                                <div className={styles.dialogBody}>
+                                    To load this assessment, use the{' '}
+                                    <strong>Load assessment</strong> button in the Accessibility
+                                    Insights Assessment command bar.
+                                </div>
+                            </DialogContent>
+                        </DialogBody>
+                        <DialogActions>
+                            <DialogFooter>
+                                <Stack
+                                    horizontal
+                                    horizontalAlign="space-between"
+                                    wrap
+                                    verticalAlign="center"
+                                    tokens={{ childrenGap: 6 }}
+                                >
+                                    <Stack.Item grow disableShrink>
+                                        <Checkbox
+                                            checked={
+                                                !props.userConfigurationStoreData
+                                                    .showSaveAssessmentDialog
+                                            }
+                                            label="Don't show again"
+                                            onChange={handleDontShowAgainClick}
+                                        />
+                                    </Stack.Item>
+                                    <Stack.Item grow>
+                                        <DialogTrigger>
+                                            <Button onClick={hideDialog} appearance="primary">
+                                                Got it
+                                            </Button>
+                                        </DialogTrigger>
+                                    </Stack.Item>
+                                </Stack>
+                            </DialogFooter>
+                        </DialogActions>
+                    </DialogSurface>
+                </DialogV9>
             </>
         );
     },

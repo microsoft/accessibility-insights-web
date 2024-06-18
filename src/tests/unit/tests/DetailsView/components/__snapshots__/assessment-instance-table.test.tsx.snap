@@ -4,12 +4,12 @@ exports[`AssessmentInstanceTable with instances renders per snapshot 1`] = `
 <DocumentFragment>
   <div>
     <mock-insightscommandbutton
+      as="button"
       data-automation-id="assessment-instance-table-pass-unmarked-instances-button"
       disabled="false"
       iconprops="[object Object]"
-    >
-      Pass unmarked instances
-    </mock-insightscommandbutton>
+      text=" Pass unmarked instances"
+    />
     <mock-styledwithviewportcomponent
       arialabelforgrid="Use arrow keys to navigate inside the instances grid"
       checkboxvisibility="2"
@@ -69,13 +69,14 @@ exports[`AssessmentInstanceTable with instances renders per snapshot with "none"
 
 exports[`AssessmentInstanceTable with instances renders per snapshot: InsightsCommandButton props 1`] = `
 {
-  "children": "Pass unmarked instances",
+  "as": "button",
   "data-automation-id": "assessment-instance-table-pass-unmarked-instances-button",
   "disabled": false,
   "iconProps": {
-    "iconName": "skypeCheck",
+    "iconName": "Checkmark16Filled",
   },
   "onClick": [Function],
+  "text": " Pass unmarked instances",
 }
 `;
 
