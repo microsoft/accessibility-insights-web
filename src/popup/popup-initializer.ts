@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { loadTheme } from '@fluentui/react';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderForRequirements } from 'assessments/assessments-requirements-filter';
 import { QuickAssessRequirementMap } from 'assessments/quick-assess-requirements';
@@ -213,7 +212,6 @@ export class PopupInitializer {
             dropdownClickHandler,
             userConfigMessageCreator,
             storesHub,
-            loadTheme,
             axeInfo,
             launchPanelHeaderClickHandler,
             browserAdapter: this.browserAdapter,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { loadTheme, setFocusVisibility } from '@fluentui/react';
+import { setFocusVisibility } from '@fluentui/react';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
@@ -664,7 +664,6 @@ if (tabId != null) {
                 assessmentsProviderWithFeaturesEnabled,
                 outcomeTypeSemanticsFromTestStatus,
                 storesHub,
-                loadTheme,
                 urlParser,
                 getDateFromTimestamp: DateProvider.getDateFromTimestamp,
                 getCurrentDate: DateProvider.getCurrentDate,
