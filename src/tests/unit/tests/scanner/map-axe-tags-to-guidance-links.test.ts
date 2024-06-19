@@ -17,7 +17,15 @@ describe('mapAxeTagsToGuidanceLinks', () => {
         expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, tags)).toEqual([]);
     });
 
-    const wcagAAAtags = ['wcag146', 'wcag223', 'wcag224', 'wcag248', 'wcag249', 'wcag325'];
+    const wcagAAAtags = [
+        'wcag146',
+        'wcag213',
+        'wcag223',
+        'wcag224',
+        'wcag248',
+        'wcag249',
+        'wcag325',
+    ];
 
     const irrelevantAxeCoreTags = [
         // axe-core specific, not required for our purposes

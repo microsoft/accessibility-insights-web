@@ -11,7 +11,6 @@ exports[`Settings Dropdown content should match snapshot 1`] = `
     <div
       class="ms-FocusZone css-000 ms-ContextualMenu is-open ms-BaseButton-menuhost root-000"
       data-focuszone-id="FocusZone000"
-      data-tabster="{"uncontrolled": {}}"
     >
       <ul
         class="ms-ContextualMenu-list is-open list-000"
