@@ -23,8 +23,9 @@ export class DetailsViewRenderer {
         const root = this.createRoot(detailsViewContainer);
         root.render(
             <>
-                <Theme deps={this.deps} />
-                <DetailsView deps={this.deps} />
+                <Theme deps={this.deps}>
+                    <DetailsView deps={this.deps} />
+                </Theme>
             </>,
         );
     }

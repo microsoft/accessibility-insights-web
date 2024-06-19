@@ -40,8 +40,9 @@ describe('DetailsViewRendererTest', () => {
                 r.render(
                     It.isValue(
                         <>
-                            <Theme deps={deps} />
-                            <DetailsView deps={deps} />
+                            <Theme deps={deps}>
+                                <DetailsView deps={deps} />
+                            </Theme>
                         </>,
                     ),
                 ),

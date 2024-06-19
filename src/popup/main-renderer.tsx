@@ -35,18 +35,19 @@ export class MainRenderer {
         const root = this.createRoot(container);
         root.render(
             <>
-                <Theme deps={this.deps} />
-                <PopupViewWithStoreSubscription
-                    deps={this.deps}
-                    title={title}
-                    popupHandlers={this.popupHandlers}
-                    popupWindow={this.popupWindow}
-                    targetTabUrl={this.targetTabUrl}
-                    hasAccess={this.hasAccess}
-                    launchPadRowConfigurationFactory={this.launchPadRowConfigurationFactory}
-                    diagnosticViewToggleFactory={this.diagnosticViewToggleFactory}
-                    dropdownClickHandler={this.dropdownClickHandler}
-                />
+                <Theme deps={this.deps}>
+                    <PopupViewWithStoreSubscription
+                        deps={this.deps}
+                        title={title}
+                        popupHandlers={this.popupHandlers}
+                        popupWindow={this.popupWindow}
+                        targetTabUrl={this.targetTabUrl}
+                        hasAccess={this.hasAccess}
+                        launchPadRowConfigurationFactory={this.launchPadRowConfigurationFactory}
+                        diagnosticViewToggleFactory={this.diagnosticViewToggleFactory}
+                        dropdownClickHandler={this.dropdownClickHandler}
+                    />
+                </Theme>
             </>,
         );
     }
