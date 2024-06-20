@@ -4,31 +4,34 @@ import { Theme, ThemeDeps } from 'common/components/theme';
 import { config } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import { InsightsRouter, ContentRouteDeps } from './insights-router';
 
 export type RendererDeps = {
     dom: Document;
-    render: ReactDOM.Renderer;
+    createRoot: typeof createRoot;
     initializeFabricIcons: () => void;
 } & ContentRouteDeps &
     ThemeDeps;
 
 export function renderer(deps: RendererDeps): void {
-    const { dom, render, initializeFabricIcons } = deps;
+    const { dom, createRoot, initializeFabricIcons } = deps;
     const iconPath = '../' + config.getOption('icon128');
     const documentElementSetter = new DocumentManipulator(dom);
     documentElementSetter.setShortcutIcon(iconPath);
 
     initializeFabricIcons();
 
-    const insightsRoot = dom.querySelector('#insights-root');
-    render(
+    const insightsRoot = dom.querySelector('#insights-root') as Element;
+    const root = createRoot(insightsRoot);
+    root.render(
         <>
-            <Theme deps={deps}>
-                <InsightsRouter deps={deps} />
-            </Theme>
+            <HelmetProvider>
+                <Theme deps={deps}>
+                    <InsightsRouter deps={deps} />
+                </Theme>
+            </HelmetProvider>
         </>,
-        insightsRoot,
     );
 }

@@ -17,6 +17,21 @@ import {
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('@fluentui/react');
+jest.mock('react', () => {
+    const original = jest.requireActual('react');
+    return {
+        ...original,
+        memo: jest.fn().mockImplementation((component, compare) => {
+            const elementType = original.memo(component, compare);
+            if (elementType.type && elementType.type.render) {
+                if (elementType.type.render.displayName) {
+                    elementType.type.name = elementType.type.render.displayName;
+                }
+            }
+            return elementType;
+        }),
+    };
+});
 
 describe('TabStopsRequirementInstancesCollapsibleContent', () => {
     mockReactComponents([DetailsList]);
@@ -92,6 +107,7 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
 
         const buttons = renderResult.getAllByRole('button');
         buttons.forEach(button => fireEvent.click(button));
+
         onEditButtonClickedMock.verifyAll();
         onRemoveButtonClickedMock.verifyAll();
     });

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DefaultButton } from '@fluentui/react';
+import { DefaultButton, Icon } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { Requirement } from 'assessments/types/requirement';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -16,13 +16,12 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import {
     mockReactComponents,
     getMockComponentClassPropsForCall,
-    expectMockedComponentPropsToMatchSnapshots,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 
 describe('NextRequirementButton', () => {
-    mockReactComponents([DefaultButton]);
+    mockReactComponents([DefaultButton, (Icon as any).type]);
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: React.MouseEvent<HTMLElement>;
     let props: NextRequirementButtonProps;
@@ -44,7 +43,6 @@ describe('NextRequirementButton', () => {
     it('renders', () => {
         const renderResult = render(<NextRequirementButton {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([DefaultButton]);
     });
 
     it('validate next requirement button', () => {

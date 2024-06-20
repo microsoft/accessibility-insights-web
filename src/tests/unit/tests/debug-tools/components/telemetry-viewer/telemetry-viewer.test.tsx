@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import {
     TelemetryViewer,
     TelemetryViewerDeps,
@@ -72,13 +72,14 @@ describe('TelemetryViewer', () => {
                 .callback(l => (callback = l));
 
             const renderResult = render(<TelemetryViewer {...props} />);
-
-            callback({
-                key: 'value',
-                applicationBuild: 'test-application-build',
-                applicationName: 'test-application-name',
-                applicationVersion: 'test-application-version',
-                installationId: 'test-installation-id',
+            act(() => {
+                callback({
+                    key: 'value',
+                    applicationBuild: 'test-application-build',
+                    applicationName: 'test-application-name',
+                    applicationVersion: 'test-application-version',
+                    installationId: 'test-installation-id',
+                });
             });
 
             expect(renderResult.asFragment()).toMatchSnapshot();

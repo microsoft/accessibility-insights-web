@@ -60,7 +60,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -68,7 +68,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -147,7 +147,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -155,7 +155,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -234,7 +234,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -242,7 +242,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -321,7 +321,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -329,7 +329,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -408,7 +408,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false: Dialog props 1`] 
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -416,7 +416,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false: Dialog props 1`] 
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -495,7 +495,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true: Dialog props 1`] =
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -503,7 +503,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true: Dialog props 1`] =
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -583,7 +583,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -591,7 +591,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -670,7 +670,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -678,7 +678,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,
@@ -757,7 +757,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
         }
       }
     />,
-    <StyledDialogFooterBase>
+    <ForwardRef(StyledDialogFooterBase)>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -765,7 +765,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
         primaryButtonOnClick={[Function]}
         primaryButtonText="File issue"
       />
-    </StyledDialogFooterBase>,
+    </ForwardRef(StyledDialogFooterBase)>,
   ],
   "dialogContentProps": {
     "showCloseButton": false,

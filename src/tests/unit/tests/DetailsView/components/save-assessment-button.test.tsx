@@ -10,7 +10,6 @@ import {
     Stack,
 } from '@fluentui/react';
 import { fireEvent, render, RenderResult, act } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
 
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -23,22 +22,15 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    mockReactComponent,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 jest.mock('@fluentui/react');
 describe('SaveAssessmentButton', () => {
-    mockReactComponents([
-        Dialog,
-        DialogFooter,
-        Stack,
-        Checkbox,
-        Stack.Item,
-        PrimaryButton,
-        ActionButton,
-    ]);
-
+    mockReactComponents([DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton, ActionButton]);
+    mockReactComponent(Dialog, 'Dialog');
     let propsStub: SaveAssessmentButtonProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
@@ -64,6 +56,7 @@ describe('SaveAssessmentButton', () => {
     describe('on dialog enabled', () => {
         describe('render', () => {
             beforeEach(() => {
+                mockReactComponent(Dialog, 'Dialog');
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
                 fireEvent.click(wrapper.container.querySelector('mock-customizedactionbutton'));
             });
@@ -98,11 +91,6 @@ describe('SaveAssessmentButton', () => {
                 fireEvent.click(wrapper.getByRole('link'));
             });
 
-            it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
-                await userEvent.click(wrapper.getByRole('button'));
-                expect(getMockComponentClassPropsForCall(Dialog, 3).hidden).toEqual(true);
-            });
-
             it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
                 // The "Don't show again" checkbox logic is inverted
                 const checkbox = wrapper.getByRole('checkbox');
@@ -121,6 +109,18 @@ describe('SaveAssessmentButton', () => {
                     x => x.saveAssessment(It.isAny()),
                     Times.atLeastOnce(),
                 );
+            });
+            it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
+                const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
+                act(() => {
+                    gotItButtonProps.onClick();
+                });
+                // since upgrading to React 18, this test is nondeterministic between being run in
+                // isolation and being run with the entire test suite. If you are working on this test
+                // and running it all by itself locally, it will include an additional empty render after
+                // the link click in the beforeEach, making this test fail.
+                const getProps = getMockComponentClassPropsForCall(Dialog, 3);
+                expect(getProps.hidden).toEqual(true);
             });
         });
     });

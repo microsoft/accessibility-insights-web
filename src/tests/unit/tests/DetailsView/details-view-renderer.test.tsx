@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Theme } from 'common/components/theme';
 import { configMutator } from 'common/configuration';
 import { DocumentManipulator } from 'common/document-manipulator';
-import { DetailsView } from 'DetailsView/details-view-container';
 import { DetailsViewRenderer, DetailsViewRendererDeps } from 'DetailsView/details-view-renderer';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { IMock, It, Mock } from 'typemoq';
+import React from 'react';
+import { createRoot, Root } from 'react-dom/client';
+import { It, Mock } from 'typemoq';
+import { Theme } from '../../../../common/components/theme';
+import { DetailsView } from '../../../../DetailsView/details-view-container';
 import { TestDocumentCreator } from '../../common/test-document-creator';
 
 describe('DetailsViewRendererTest', () => {
@@ -18,7 +18,8 @@ describe('DetailsViewRendererTest', () => {
             '<div id="details-container"></div>',
         );
 
-        const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
+        const rootMock = Mock.ofType<Root>();
+        const createRootMock = Mock.ofType<typeof createRoot>();
 
         const expectedIcon16 = 'icon128.png';
         configMutator.setOption('icon128', expectedIcon16);
@@ -27,9 +28,16 @@ describe('DetailsViewRendererTest', () => {
             .setup(des => des.setShortcutIcon('../' + expectedIcon16))
             .verifiable();
 
-        renderMock
+        createRootMock
+            .setup(r => r(fakeDocument.getElementById('details-container')))
+            .returns(() => {
+                return rootMock.object;
+            })
+            .verifiable();
+
+        rootMock
             .setup(r =>
-                r(
+                r.render(
                     It.isValue(
                         <>
                             <Theme deps={deps}>
@@ -37,7 +45,6 @@ describe('DetailsViewRendererTest', () => {
                             </Theme>
                         </>,
                     ),
-                    fakeDocument.getElementById('details-container'),
                 ),
             )
             .verifiable();
@@ -45,13 +52,14 @@ describe('DetailsViewRendererTest', () => {
         const renderer = new DetailsViewRenderer(
             deps,
             fakeDocument,
-            renderMock.object,
+            createRootMock.object,
             documentManipulatorMock.object,
         );
 
         renderer.render();
 
-        renderMock.verifyAll();
+        createRootMock.verifyAll();
+        rootMock.verifyAll();
         documentManipulatorMock.verifyAll();
     });
 });
