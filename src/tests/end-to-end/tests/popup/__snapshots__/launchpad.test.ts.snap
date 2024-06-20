@@ -66,7 +66,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
         class="subtitle--{{CSS_MODULE_HASH}}"
       >
         <a
-          class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
+          class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
           href="https://go.microsoft.com/fwlink/?linkid=2082374"
           tabindex="0"
           target="_blank"
@@ -116,7 +116,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                   >
                     <button
                       aria-describedby="launch-pad-item-description-1"
-                      class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
+                      class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
                       id="fast-pass"
                       role="link"
                       type="button"
@@ -158,7 +158,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                   >
                     <button
                       aria-describedby="launch-pad-item-description-2"
-                      class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
+                      class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
                       id="quick-assess"
                       role="link"
                       type="button"
@@ -200,7 +200,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                   >
                     <button
                       aria-describedby="launch-pad-item-description-3"
-                      class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
+                      class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
                       id="assessment"
                       role="link"
                       type="button"
@@ -242,7 +242,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                   >
                     <button
                       aria-describedby="launch-pad-item-description-4"
-                      class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
+                      class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
                       id="ad-hoc-tools"
                       role="link"
                       type="button"
@@ -276,7 +276,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
             >
               <a
                 aria-label="Navigate to axe-core npm page"
-                class="fui-Link insights-link insights-link--{{CSS_MODULE_HASH}}  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
+                class="fui-Link insights-link insights-link--{{CSS_MODULE_HASH}} ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
                 href="https://www.npmjs.com/package/axe-core"
                 tabindex="0"
                 target="_blank"
@@ -366,7 +366,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
         class="subtitle--{{CSS_MODULE_HASH}}"
       >
         <a
-          class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
+          class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
           href="https://go.microsoft.com/fwlink/?linkid=2082374"
           tabindex="0"
           target="_blank"
@@ -416,7 +416,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                   >
                     <button
                       aria-describedby="launch-pad-item-description-1"
-                      class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
+                      class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
                       id="fast-pass"
                       role="link"
                       type="button"
@@ -458,7 +458,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                   >
                     <button
                       aria-describedby="launch-pad-item-description-2"
-                      class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
+                      class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
                       id="quick-assess"
                       role="link"
                       type="button"
@@ -500,7 +500,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                   >
                     <button
                       aria-describedby="launch-pad-item-description-3"
-                      class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
+                      class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
                       id="assessment"
                       role="link"
                       type="button"
@@ -542,7 +542,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
                   >
                     <button
                       aria-describedby="launch-pad-item-description-4"
-                      class="fui-Link insights-link  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
+                      class="fui-Link insights-link ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fkhj000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a f000ern45e f000n71otn f000h8hb77 f000deefiw"
                       id="ad-hoc-tools"
                       role="link"
                       type="button"
@@ -576,7 +576,7 @@ exports[`Popup -> Launch Pad content should match snapshot when quick assess fea
             >
               <a
                 aria-label="Navigate to axe-core npm page"
-                class="fui-Link insights-link insights-link--{{CSS_MODULE_HASH}}  f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
+                class="fui-Link insights-link insights-link--{{CSS_MODULE_HASH}} ___000fq7916 f000hkw1w f000rmtva f000ewtqcl fyind000e f000k6fduh f000w7gpdv fk000fouc fjoy000 figsok000 f000s184ao f000mk8lai fnbmjn000 f000o700av f000iuv45f f000cmlufx f000n3di6 f000ids18y f000tx3yz7 f000deo86v f000eh06m1 f000iescvh fhgqx000 f000olyrje f000p93eir f000nev41a"
                 href="https://www.npmjs.com/package/axe-core"
                 tabindex="0"
                 target="_blank"

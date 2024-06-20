@@ -68,7 +68,7 @@ export const CSS_MODULE_HASH_REPLACEMENT = '{{CSS_MODULE_HASH}}';
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
 export function normalizeV9ClassName(className: string): string {
     const v9ClassNameMatcher = /^___[0-9a-zA-Z]+_[0-9a-zA-Z]+$/;
-    return className.replace(v9ClassNameMatcher, '');
+    return className.replace(v9ClassNameMatcher, '___000fq7916');
 }
 
 // Our compiler config adds generated suffixes of form "--abc12" to the end of class names defined in
