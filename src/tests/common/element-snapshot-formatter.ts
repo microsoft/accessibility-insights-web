@@ -43,7 +43,7 @@ export function normalizeClassName(htmlString: string): string {
     const classAttributeMatcher = /class="([^".]+)"/g;
     return htmlString.replace(classAttributeMatcher, (_, classNamesMatch: string) => {
         let classNames = classNamesMatch.split(' ');
-        
+
         classNames = classNames.map(className => {
             let result = normalizeCssModuleClassName(className);
             result = normalizeOfficeFabricClassName(result);
