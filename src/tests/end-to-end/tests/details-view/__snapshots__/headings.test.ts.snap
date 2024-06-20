@@ -28,7 +28,7 @@ exports[`Details View -> Assessment -> Headings Getting started page Getting sta
   The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
   The link has no styling (such as underline) to distinguish it from the surrounding text",
         "selector": [
-          "p:nth-child(6) > .root-328.insights-link[target="_blank"]",
+          "p:nth-child(6) > .root-325.insights-link[target="_blank"]",
         ],
       },
     ],
