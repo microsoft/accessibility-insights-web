@@ -21,7 +21,7 @@ import {
 jest.mock('@fluentui/react-components');
 
 describe('NextRequirementButton', () => {
-    mockReactComponents([Button, (Icon as any).type]);
+    mockReactComponents([Button]);
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: React.MouseEvent<HTMLElement>;
     let props: NextRequirementButtonProps;
