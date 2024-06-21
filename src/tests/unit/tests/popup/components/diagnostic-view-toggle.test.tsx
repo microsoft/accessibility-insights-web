@@ -366,8 +366,8 @@ class DiagnosticViewTogglePropsBuilder {
     private clickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
     private telemetrySource: TelemetryEventSource;
     private shortcutCommands: chrome.commands.Command[] = ShortcutCommandsTestData;
-    private querySelectorMock = Mock.ofInstance(selector => { });
-    private addEventListenerMock = Mock.ofInstance((e, ev) => { });
+    private querySelectorMock = Mock.ofInstance(selector => {});
+    private addEventListenerMock = Mock.ofInstance((e, ev) => {});
     private featureFlags: DictionaryStringTo<boolean> = {};
     private deps: ContentLinkDeps = {} as ContentLinkDeps;
     private configurationStub: VisualizationConfiguration;

@@ -70,7 +70,6 @@ export const V9_CLASS_NAME_REPLACEMENT = '{{V9_CLASS_NAME}}';
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
 export function normalizeV9ClassName(className: string): string {
     const v9ClassNameMatcher = /^___[0-9a-zA-Z]+_[0-9a-zA-Z]+$/;
- 
     return className.replace(v9ClassNameMatcher, `${V9_CLASS_NAME_REPLACEMENT}`);
 }
 
