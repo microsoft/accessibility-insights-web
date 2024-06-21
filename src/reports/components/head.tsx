@@ -12,13 +12,12 @@ export type bundledStylesProp = {
 };
 
 export const Head = NamedFC<HeadProps>('Head', props => {
+    const titleValue = `${props.titlePreface} ${props.title}`;
     // tslint:disable: react-no-dangerous-html
     return (
         <head>
             <meta charSet="UTF-8" />
-            <title>
-                {props.titlePreface} {props.title}
-            </title>
+            <title>{titleValue}</title>
             <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
             <style dangerouslySetInnerHTML={{ __html: props.bundledStyles.styleSheet }} />
         </head>

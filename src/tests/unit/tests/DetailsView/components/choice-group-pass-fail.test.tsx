@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ChoiceGroup, IconButton } from '@fluentui/react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
 import {
     ChoiceGroupPassFail,
@@ -96,7 +96,6 @@ describe('ChoiceGroupPassFail', () => {
     });
 
     test('verify component is correctly used with undo', () => {
-        useOriginalReactElements('@fluentui/react', ['IconButton']);
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.secondaryControls = null;
 
@@ -105,7 +104,9 @@ describe('ChoiceGroupPassFail', () => {
         const eventStub = {} as React.MouseEvent<HTMLElement>;
 
         const options = renderResult.getAllByRole('radio');
-        getMockComponentClassPropsForCall(IconButton).onClick(eventStub);
+        act(() => {
+            getMockComponentClassPropsForCall(IconButton).onClick(eventStub);
+        });
 
         expect(options[0]).toHaveFocus();
 

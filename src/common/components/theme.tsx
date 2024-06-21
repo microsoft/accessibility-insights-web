@@ -23,6 +23,7 @@ export interface ThemeState {
 export type ThemeInnerProps = {
     deps: ThemeDeps;
     storeState: ThemeInnerState;
+    children: React.ReactNode;
 };
 export type ThemeDeps = WithStoreSubscriptionDeps<ThemeInnerState> & {
     documentManipulator: DocumentManipulator;

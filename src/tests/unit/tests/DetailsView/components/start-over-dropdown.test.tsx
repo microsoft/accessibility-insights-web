@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ContextualMenu, IButton, IRefObject } from '@fluentui/react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { StartOverContextMenuKeyOptions } from 'DetailsView/components/details-view-right-panel';
@@ -49,9 +49,11 @@ describe('StartOverDropdownTest', () => {
     it('render ContextualMenu', async () => {
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
 
-        getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test event',
-        });
+        await act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test event',
+            }),
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
 
         const mockProps = getMockComponentClassPropsForCall(ContextualMenu);
@@ -76,14 +78,16 @@ describe('StartOverDropdownTest', () => {
                 ? `${optionKey} item IS rendered`
                 : `${optionKey} item IS NOT rendered`;
 
-            test(`${casePrefix} - rightPanelOptions.${optionName} is ${rightPanelOptionEnabled} & switcherStartOverPreferences.${optionName} is ${switcherPreferencesOptionEnabled}`, () => {
+            test(`${casePrefix} - rightPanelOptions.${optionName} is ${rightPanelOptionEnabled} & switcherStartOverPreferences.${optionName} is ${switcherPreferencesOptionEnabled}`, async () => {
                 defaultProps.rightPanelOptions = rightPanelOptions;
                 defaultProps.switcherStartOverPreferences = switcherPreferences;
 
                 render(<StartOverDropdown {...defaultProps} />);
-                getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-                    currentTarget: 'test target',
-                });
+                await act(() =>
+                    getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                        currentTarget: 'test target',
+                    }),
+                );
 
                 const isStartOverOptionRendered = getMockComponentClassPropsForCall(
                     ContextualMenu,
@@ -93,7 +97,7 @@ describe('StartOverDropdownTest', () => {
         });
     });
 
-    it('render with dropdown on left', () => {
+    it('render with dropdown on left', async () => {
         mockReactComponents([InsightsCommandButton]);
         const props: StartOverProps = {
             ...defaultProps,
@@ -101,19 +105,23 @@ describe('StartOverDropdownTest', () => {
         };
 
         const renderResult = render(<StartOverDropdown {...props} />);
-        getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test target',
-        });
+        await act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test target',
+            }),
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
-    it('should open the start test over dialog', () => {
+    it('should open the start test over dialog', async () => {
         openDialogMock.setup(sds => sds('test')).verifiable(Times.once());
 
         render(<StartOverDropdown {...defaultProps} />);
-        getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test target',
-        });
+        await act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test target',
+            }),
+        );
         getMockComponentClassPropsForCall(ContextualMenu)
             .items.find(elem => elem.key === 'test')
             .onClick();
@@ -121,13 +129,15 @@ describe('StartOverDropdownTest', () => {
         openDialogMock.verifyAll();
     });
 
-    it('should open the start assessment over dialog', () => {
+    it('should open the start assessment over dialog', async () => {
         openDialogMock.setup(sds => sds('assessment')).verifiable(Times.once());
 
         render(<StartOverDropdown {...defaultProps} />);
-        getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test target',
-        });
+        await act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test target',
+            }),
+        );
         getMockComponentClassPropsForCall(ContextualMenu)
             .items.find(elem => elem.key === 'assessment')
             .onClick();
@@ -135,12 +145,14 @@ describe('StartOverDropdownTest', () => {
         openDialogMock.verifyAll();
     });
 
-    it('should dismiss the contextMenu', () => {
+    it('should dismiss the contextMenu', async () => {
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
-        getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
-            currentTarget: 'test target',
-        });
-        getMockComponentClassPropsForCall(ContextualMenu).onDismiss();
+        await act(() =>
+            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+                currentTarget: 'test target',
+            }),
+        );
+        await act(() => getMockComponentClassPropsForCall(ContextualMenu).onDismiss());
         const mockContextualmenu = renderResult.container.querySelector('mock-contextualmenu');
         expect(mockContextualmenu).toBeNull();
     });

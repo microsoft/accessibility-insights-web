@@ -16,13 +16,12 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import {
     mockReactComponents,
     getMockComponentClassPropsForCall,
-    expectMockedComponentPropsToMatchSnapshots,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react-components');
 
 describe('NextRequirementButton', () => {
-    mockReactComponents([Button]);
+    mockReactComponents([Button, (Icon as any).type]);
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: React.MouseEvent<HTMLElement>;
     let props: NextRequirementButtonProps;
@@ -44,7 +43,6 @@ describe('NextRequirementButton', () => {
     it('renders', () => {
         const renderResult = render(<NextRequirementButton {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([Button]);
     });
 
     it('validate next requirement button', () => {

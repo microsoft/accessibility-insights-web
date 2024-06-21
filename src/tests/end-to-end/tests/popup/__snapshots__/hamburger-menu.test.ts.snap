@@ -11,6 +11,7 @@ exports[`Popup -> Hamburger menu should have content matching snapshot when quic
     <div
       class="ms-FocusZone css-000 ms-ContextualMenu is-open ms-BaseButton-menuhost root-000"
       data-focuszone-id="FocusZone000"
+      data-tabster="{"uncontrolled": {}, "focusable": { "excludeFromMover": true }}"
     >
       <ul
         class="ms-ContextualMenu-list is-open list-000"
@@ -255,6 +256,7 @@ exports[`Popup -> Hamburger menu should have content matching snapshot when quic
     <div
       class="ms-FocusZone css-000 ms-ContextualMenu is-open ms-BaseButton-menuhost root-000"
       data-focuszone-id="FocusZone000"
+      data-tabster="{"uncontrolled": {}, "focusable": { "excludeFromMover": true }}"
     >
       <ul
         class="ms-ContextualMenu-list is-open list-000"

@@ -14,19 +14,3 @@ exports[`NextRequirementButton renders 1`] = `
   </mock-button>
 </DocumentFragment>
 `;
-
-exports[`NextRequirementButton renders: Button props 1`] = `
-{
-  "children": [
-    undefined,
-    <span>
-      <Memo(Icon)
-        aria-label="next"
-        iconName="ChevronRight"
-      />
-    </span>,
-  ],
-  "className": undefined,
-  "onClick": [Function],
-}
-`;
