@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    DefaultButton,
     FocusZone,
     FocusZoneDirection,
     IconButton,
@@ -9,6 +8,8 @@ import {
     List,
     TextField,
 } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
+import { AddRegular } from '@fluentui/react-icons';
 import styles from 'common/components/selector-input-list.scss';
 import * as _ from 'lodash/index';
 import * as React from 'react';
@@ -77,13 +78,14 @@ export class SelectorInputList extends React.Component<
                         placeholder="Enter element selector here"
                     />
                     <div className={styles.addSelectorButtons}>
-                        <DefaultButton
+                        <Button
                             className={styles.textboxAddSelectorButton}
-                            iconProps={{ iconName: 'add' }}
                             onClick={this.addSelector}
                             disabled={!this.state.isTextFieldValueValid}
-                            text="Add Selector"
-                        />
+                        >
+                            {' '}
+                            <AddRegular /> Add Selector{' '}
+                        </Button>
                         <IconButton
                             iconProps={{
                                 iconName: 'scopeTemplate',

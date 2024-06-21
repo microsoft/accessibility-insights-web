@@ -6,17 +6,37 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     class="insights-dialog-next-and-back-container"
   >
     <div>
-      <mock-customizeddefaultbutton
-        data-automation-id="back"
-        text="< Back"
-      />
+      <div
+        class="buttonsComponent"
+      >
+        <div
+          class="buttonCol"
+        >
+          <mock-button
+            classname="defaultButton"
+            data-automation-id="back"
+          >
+             &lt; Back 
+          </mock-button>
+        </div>
+      </div>
     </div>
     <div />
     <div>
-      <mock-customizeddefaultbutton
-        data-automation-id="next"
-        text="Next >"
-      />
+      <div
+        class="buttonsComponent"
+      >
+        <div
+          class="buttonCol"
+        >
+          <mock-button
+            classname="defaultButton"
+            data-automation-id="next"
+          >
+            Next &gt;
+          </mock-button>
+        </div>
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -28,10 +48,20 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     class="insights-dialog-next-and-back-container"
   >
     <div>
-      <mock-customizeddefaultbutton
-        data-automation-id="back"
-        text="< Back"
-      />
+      <div
+        class="buttonsComponent"
+      >
+        <div
+          class="buttonCol"
+        >
+          <mock-button
+            classname="defaultButton"
+            data-automation-id="back"
+          >
+             &lt; Back 
+          </mock-button>
+        </div>
+      </div>
     </div>
     <div />
     <div />
@@ -47,10 +77,20 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     <div />
     <div />
     <div>
-      <mock-customizeddefaultbutton
-        data-automation-id="next"
-        text="Next >"
-      />
+      <div
+        class="buttonsComponent"
+      >
+        <div
+          class="buttonCol"
+        >
+          <mock-button
+            classname="defaultButton"
+            data-automation-id="next"
+          >
+            Next &gt;
+          </mock-button>
+        </div>
+      </div>
     </div>
   </div>
 </DocumentFragment>
@@ -78,17 +118,37 @@ exports[`IssueDetailsNavigationControls render handles failures count multiple f
     class="insights-dialog-next-and-back-container"
   >
     <div>
-      <mock-customizeddefaultbutton
-        data-automation-id="back"
-        text="< Back"
-      />
+      <div
+        class="buttonsComponent"
+      >
+        <div
+          class="buttonCol"
+        >
+          <mock-button
+            classname="defaultButton"
+            data-automation-id="back"
+          >
+             &lt; Back 
+          </mock-button>
+        </div>
+      </div>
     </div>
     <div />
     <div>
-      <mock-customizeddefaultbutton
-        data-automation-id="next"
-        text="Next >"
-      />
+      <div
+        class="buttonsComponent"
+      >
+        <div
+          class="buttonCol"
+        >
+          <mock-button
+            classname="defaultButton"
+            data-automation-id="next"
+          >
+            Next &gt;
+          </mock-button>
+        </div>
+      </div>
     </div>
   </div>
 </DocumentFragment>

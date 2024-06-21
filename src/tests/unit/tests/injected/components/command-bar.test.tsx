@@ -5,7 +5,8 @@ import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-sc
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
-import { BaseButton, Button, DefaultButton } from '../../../../../../node_modules/@fluentui/react';
+import { BaseButton } from '../../../../../../node_modules/@fluentui/react';
+import { Button } from '../../../../../../node_modules/@fluentui/react-components';
 import { CopyIssueDetailsButton } from '../../../../../common/components/copy-issue-details-button';
 import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
 import { FileHTMLIcon } from '../../../../../common/icons/file-html-icon';
@@ -25,11 +26,12 @@ import {
 } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('../../../../../common/components/copy-issue-details-button');
 jest.mock('../../../../../../node_modules/@fluentui/react');
+jest.mock('../../../../../../node_modules/@fluentui/react-components');
 jest.mock('../../../../../common/components/issue-filing-button');
 jest.mock('../../../../../common/icons/file-html-icon');
 
 describe('CommandBar', () => {
-    mockReactComponents([CopyIssueDetailsButton, DefaultButton, IssueFilingButton, FileHTMLIcon]);
+    mockReactComponents([CopyIssueDetailsButton, Button, IssueFilingButton, FileHTMLIcon]);
     const ruleResult = {
         failureSummary: 'RR-failureSummary',
         guidanceLinks: [
@@ -120,7 +122,7 @@ describe('CommandBar', () => {
             const onClickMock = Mock.ofInstance(
                 (
                     event: React.MouseEvent<
-                        | Button
+                        | typeof Button
                         | BaseButton
                         | HTMLDivElement
                         | HTMLAnchorElement
@@ -137,7 +139,7 @@ describe('CommandBar', () => {
 
             render(<CommandBar {...props} />);
 
-            getMockComponentClassPropsForCall(DefaultButton).onClick(eventStub);
+            getMockComponentClassPropsForCall(Button).onClick(eventStub);
 
             onClickMock.verify(onClick => onClick(eventStub), Times.once());
             axeConverterMock.verifyAll();

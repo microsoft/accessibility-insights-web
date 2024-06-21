@@ -3,31 +3,32 @@
 
 @import '../../common/styles/common.scss';
 
-.action-and-cancel-buttons-component {
+.buttons-component {
     display: flex;
     justify-content: flex-end;
 
-    .action-cancel-button-col + .action-cancel-button-col {
+    .button-col + .button-col {
         margin-left: 8px;
     }
 
-    .cancel-button {
+    .default-button {
         font-size: 14px;
         font-weight: 600;
         height: 32px;
         border: 1px solid $neutral-60;
+        color: $neutral-100;
         border-radius: 2px;
 
         &:hover {
             border: 1px solid $neutral-60;
             font-weight: 600;
             color: $neutral-100;
+            background-color: $neutral-6-5;
             border-radius: 2px;
-            background-color: $neutral-4;
         }
     }
 
-    .action-button-disabled {
+    .primary-button-disabled {
         font-size: 14px;
         font-weight: 600;
         height: 32px;
@@ -39,7 +40,7 @@
         border-width: 10px;
     }
 
-    .action-button-enabled {
+    .primary-button-enabled {
         font-size: 14px;
         font-weight: 600;
         height: 32px;
@@ -50,9 +51,28 @@
         border-width: 10px;
 
         &:hover {
+            border: 1px solid $communication-primary;
             background-color: $communication-primary;
             color: $always-white;
-            border-color: $communication-primary;
+            border-radius: 2px;
+            border-width: 10px;
         }
+    }
+}
+
+.command-bar-button {
+    font-size: 14px;
+    font-weight: 600;
+    height: 32px;
+    border: 1px solid $neutral-60 !important;
+    color: $neutral-100 !important;
+    border-radius: 2px !important;
+
+    &:hover {
+        border: 1px solid $neutral-60 !important;
+        font-weight: 600;
+        color: $neutral-100 !important;
+        background-color: $neutral-6-5 !important;
+        border-radius: 2px !important;
     }
 }

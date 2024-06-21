@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import * as React from 'react';
 
@@ -10,10 +10,10 @@ import {
     ActionAndCancelButtonsComponentProps,
 } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 
 describe('ActionAndCancelButtonsComponent', () => {
-    mockReactComponents([DefaultButton]);
+    mockReactComponents([Button]);
     test('constructor', () => {
         expect(
             new ActionAndCancelButtonsComponent({} as ActionAndCancelButtonsComponentProps),

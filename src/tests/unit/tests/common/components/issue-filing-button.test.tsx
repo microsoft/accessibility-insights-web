@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import {
@@ -27,11 +27,11 @@ import { It, IMock, Mock, Times } from 'typemoq';
 import { LadyBugSolidIcon } from '../../../../../../src/common/icons/lady-bug-solid-icon';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 jest.mock('common/components/issue-filing-needs-settings-help-text');
 jest.mock('../../../../../../src/common/icons/lady-bug-solid-icon');
 describe('IssueFilingButtonTest', () => {
-    mockReactComponents([IssueFilingNeedsSettingsHelpText, LadyBugSolidIcon, DefaultButton]);
+    mockReactComponents([IssueFilingNeedsSettingsHelpText, LadyBugSolidIcon, Button]);
     const testKey: string = 'test';
     const eventStub = new EventStubFactory().createNativeMouseClickEvent() as any;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
@@ -111,7 +111,7 @@ describe('IssueFilingButtonTest', () => {
         issueFilingActionMessageCreatorMock
             .setup(creator => creator.fileIssue(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
             .verifiable(Times.once());
-        useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+        useOriginalReactElements('@fluentui/react-components', ['Button']);
         const renderResult = render(<IssueFilingButton {...props} />);
         await userEvent.click(renderResult.getByRole('button'));
 
@@ -140,7 +140,7 @@ describe('IssueFilingButtonTest', () => {
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
-        useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+        useOriginalReactElements('@fluentui/react-components', ['Button']);
         const renderResult = render(<IssueFilingButton {...props} />);
         const needSettingProps = getMockComponentClassPropsForCall(
             IssueFilingNeedsSettingsHelpText,

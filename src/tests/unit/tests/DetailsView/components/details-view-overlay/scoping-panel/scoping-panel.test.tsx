@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
 import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
@@ -59,12 +59,13 @@ describe('ScopingPanelTest', () => {
                     scopingActionMessageCreator={testProps.scopingActionMessageCreator}
                     inspectActionMessageCreator={testProps.inspectActionMessageCreator}
                 />
-                <DefaultButton
+                <Button
+                    appearance="primary"
                     className="closing-scoping-panel"
-                    primary={true}
-                    text="OK"
                     onClick={testProps.deps.detailsViewActionMessageCreator.closeScopingPanel}
-                />
+                >
+                    OK
+                </Button>
             </GenericPanel>
         );
 

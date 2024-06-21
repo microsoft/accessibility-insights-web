@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DefaultButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -23,9 +23,9 @@ import {
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 jest.mock('../../../../../../src/common/icons/copy-icon');
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 describe('CopyIssueDetailsButtonTest', () => {
-    mockReactComponents([CopyIcon, DefaultButton]);
+    mockReactComponents([CopyIcon, Button]);
     let props: CopyIssueDetailsButtonProps;
     let onClickMock: IMock<(event: React.MouseEvent<any>) => void>;
     let windowUtilsMock: IMock<WindowUtils>;
@@ -75,7 +75,7 @@ describe('CopyIssueDetailsButtonTest', () => {
                 })
                 .verifiable(Times.once());
 
-            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            useOriginalReactElements('@fluentui/react-components', ['Button']);
             const renderResult = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             await userEvent.click(renderResult.getByRole('button'));
@@ -94,7 +94,7 @@ describe('CopyIssueDetailsButtonTest', () => {
                 })
                 .verifiable(Times.once());
 
-            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            useOriginalReactElements('@fluentui/react-components', ['Button']);
             const renderResult = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             // tslint:disable-next-line: await-promise
@@ -115,7 +115,7 @@ describe('CopyIssueDetailsButtonTest', () => {
                 .verifiable(Times.once());
             props.hasSecureTargetPage = false;
 
-            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            useOriginalReactElements('@fluentui/react-components', ['Button']);
             const renderResult = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
             // tslint:disable-next-line: await-promise

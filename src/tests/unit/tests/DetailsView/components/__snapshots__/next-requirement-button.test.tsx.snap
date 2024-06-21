@@ -2,13 +2,15 @@
 
 exports[`NextRequirementButton renders 1`] = `
 <DocumentFragment>
-  <mock-customizeddefaultbutton>
+  <mock-button>
     <span>
-      <mock-stylediconbase
-        arialabel="next"
-        iconname="ChevronRight"
+      <i
+        aria-label="next"
+        class="root-105"
+        data-icon-name="ChevronRight"
+        role="img"
       />
     </span>
-  </mock-customizeddefaultbutton>
+  </mock-button>
 </DocumentFragment>
 `;
