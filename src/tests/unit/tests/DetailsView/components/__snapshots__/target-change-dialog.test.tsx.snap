@@ -34,7 +34,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       content="https://www.abc.com"
       id="current-target-page-link"
     >
-      <Link
+      <ForwardRef(Link)
         as="a"
         className="insights-link"
         onClick={[Function]}
@@ -42,8 +42,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         tabIndex={0}
       >
         test title 2
-      </Link>
-    </StyledTooltipHostBase>
+      </ForwardRef(Link)>
+    </ForwardRef(StyledTooltipHostBase)>
     ?
   </React.Fragment>,
   "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
@@ -98,7 +98,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       content="https://www.def.com"
       id="current-target-page-link"
     >
-      <Link
+      <ForwardRef(Link)
         as="a"
         className="insights-link"
         onClick={[Function]}
@@ -106,8 +106,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         tabIndex={0}
       >
         test title 2
-      </Link>
-    </StyledTooltipHostBase>
+      </ForwardRef(Link)>
+    </ForwardRef(StyledTooltipHostBase)>
     ?
   </React.Fragment>,
   "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
@@ -164,7 +164,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       content="https://www.abc.com"
       id="current-target-page-link"
     >
-      <Link
+      <ForwardRef(Link)
         as="a"
         className="insights-link"
         onClick={[Function]}
@@ -172,8 +172,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         tabIndex={0}
       >
         test title 2
-      </Link>
-    </StyledTooltipHostBase>
+      </ForwardRef(Link)>
+    </ForwardRef(StyledTooltipHostBase)>
     ?
   </React.Fragment>,
   "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
@@ -230,7 +230,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       content="https://www.def.com"
       id="current-target-page-link"
     >
-      <Link
+      <ForwardRef(Link)
         as="a"
         className="insights-link"
         onClick={[Function]}
@@ -238,8 +238,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         tabIndex={0}
       >
         test title 2
-      </Link>
-    </StyledTooltipHostBase>
+      </ForwardRef(Link)>
+    </ForwardRef(StyledTooltipHostBase)>
     ?
   </React.Fragment>,
   "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
@@ -296,7 +296,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       content="https://www.def.com"
       id="current-target-page-link"
     >
-      <Link
+      <ForwardRef(Link)
         as="a"
         className="insights-link"
         onClick={[Function]}
@@ -304,8 +304,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         tabIndex={0}
       >
         test title 2
-      </Link>
-    </StyledTooltipHostBase>
+      </ForwardRef(Link)>
+    </ForwardRef(StyledTooltipHostBase)>
     ?
   </React.Fragment>,
   "dialogNoteText": "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",

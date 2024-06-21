@@ -21,12 +21,11 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
 
 exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance icons column 1`] = `
 <React.Fragment>
-<<<<<<< HEAD
   <Link
     className="editButton"
     onClick={[Function]}
   >
-    <Memo(Icon)
+    <Memo(StyledIconBase)
       aria-label="edit instance"
       iconName="edit"
     />
@@ -35,31 +34,11 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
     className="removeButton"
     onClick={[Function]}
   >
-    <Memo(Icon)
+    <Memo(StyledIconBase)
       aria-label="delete instance"
       iconName="delete"
     />
   </Link>
-=======
-  <ForwardRef(StyledLinkBase)
-    className="editButton"
-    onClick={[Function]}
-  >
-    <Memo(StyledIconBase)
-      ariaLabel="edit instance"
-      iconName="edit"
-    />
-  </ForwardRef(StyledLinkBase)>
-  <ForwardRef(StyledLinkBase)
-    className="removeButton"
-    onClick={[Function]}
-  >
-    <Memo(StyledIconBase)
-      ariaLabel="delete instance"
-      iconName="delete"
-    />
-  </ForwardRef(StyledLinkBase)>
->>>>>>> fluent-ui-v9-migration-main
 </React.Fragment>
 `;
 
