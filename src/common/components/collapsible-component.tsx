@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ActionButton } from '@fluentui/react';
+import { Button, themeToTokensObject, webLightTheme } from '@fluentui/react-components';
 import { css } from '@fluentui/utilities';
 import styles from 'common/components/collapsible-component.scss';
 import * as React from 'react';
+import { ChevronDown24Regular, ChevronRight24Regular } from '@fluentui/react-icons';
 
 export interface CollapsibleComponentProps {
     header: JSX.Element;
@@ -48,14 +50,25 @@ export class CollapsibleComponent extends React.Component<
 
         return (
             <div className={css(this.props.containerClassName)}>
-                <ActionButton
+                {/* 111<ActionButton
                     className={styles.collapsible}
                     iconProps={{ iconName: iconName }}
                     onClick={this.onClick}
                     aria-expanded={showContent}
                 >
                     {this.props.header}
-                </ActionButton>
+                </ActionButton> */}
+                <Button className={styles.collapsible} appearance='transparent'
+                    onClick={this.onClick}
+                    aria-expanded={showContent}>
+                    {showContent ? (
+                        <ChevronDown24Regular color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} className={styles.collapsible} />
+                    ) : (
+                        <ChevronRight24Regular color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} className={styles.collapsible} />
+                    )}
+                    111
+                    {this.props.header}
+                </Button>
                 {content}
             </div>
         );

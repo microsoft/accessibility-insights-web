@@ -6,6 +6,8 @@ import * as React from 'react';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { NamedFC } from '../../common/react/named-fc';
 import { ContentProvider, ContentReference } from './content-page';
+import { Button } from '@fluentui/react-components';
+import { Icons } from 'common/icons/fluentui-v9-icons';
 
 export type ContentPanelButtonDeps = {
     contentProvider: ContentProvider;
@@ -37,13 +39,24 @@ export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
             contentActionMessageCreator.openContentPanel(ev, contentPath, contentTitle);
 
         return (
-            <ActionButton
-                iconProps={{ iconName }}
+            // <ActionButton
+            //     iconProps={{ iconName }}
+            //     onClick={onClick}
+            //     ariaLabel={'info and examples'}
+            // >
+            //     <h3>888</h3>
+            //     {children}
+            // </ActionButton>
+
+            <Button
+                className='info'
+                appearance='transparent'
+                icon={Icons[iconName]}
                 onClick={onClick}
-                ariaLabel={'info and examples'}
+                aria-label={'info and examples'}
             >
                 {children}
-            </ActionButton>
+            </Button>
         );
     },
 );

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PrimaryButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { AutomatedChecks } from 'assessments/automated-checks/assessment';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
@@ -71,14 +72,13 @@ export const getNextRequirementConfigurationForQuickAssess = (
     );
     if (requirementIndex === props.deps.quickAssessRequirementKeys.length - 1) {
         return (
-            <PrimaryButton
-                text={'Complete'}
+            <Button appearance="primary" shape="square"
                 className={props.className}
                 onClick={
                     props.deps.dataTransferViewController.showQuickAssessToAssessmentConfirmDialog
                 }
                 data-automation-id={completeButtonAutomationId}
-            ></PrimaryButton>
+            >Complete</Button>
         );
     }
 

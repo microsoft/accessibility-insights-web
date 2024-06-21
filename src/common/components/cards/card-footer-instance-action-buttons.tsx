@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton, DirectionalHint, IButton } from '@fluentui/react';
+import { ActionButton, DirectionalHint, IButton, Icon, TooltipHost } from '@fluentui/react';
 import { registerIcons } from '@fluentui/react/lib/Styling';
 import {
     CardFooterMenuItem,
@@ -16,6 +16,11 @@ import { UserConfigurationStoreData } from '../../types/store-data/user-configur
 import { Toast, ToastDeps } from '../toast';
 import styles from './card-footer-instance-action-buttons.scss';
 import { CardInteractionSupport } from './card-interaction-support';
+import { Button, Menu, MenuButton, MenuItem, MenuList, MenuPopover, MenuTrigger } from '@fluentui/react-components';
+import { Icons } from 'common/icons/fluentui-v9-icons';
+import { LadyBugSolidIcon } from 'common/icons/lady-bug-solid-icon';
+import { CopyRegular } from '@fluentui/react-icons';
+import { MoreVerticalRegular } from '@fluentui/react-icons';
 
 registerIcons({
     icons: {
@@ -74,19 +79,51 @@ export class CardFooterInstanceActionButtons extends React.Component<CardFooterI
 
     public renderKebabButton(): JSX.Element {
         return (
-            <ActionButton
-                componentRef={ref => (this.kebabButtonRef = ref)}
-                ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
-                menuIconProps={{
-                    iconName: 'MoreActionsMenuIcon',
-                    className: styles.kebabMenuIcon,
-                }}
-                menuProps={{
-                    directionalHint: DirectionalHint.bottomRightEdge,
-                    shouldFocusOnMount: true,
-                    items: this.getMenuItems(),
-                }}
-            />
+            <>
+                {/* <ActionButton
+                    componentRef={ref => (this.kebabButtonRef = ref)}
+                    ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
+                    menuIconProps={{
+                        iconName: 'MoreActionsMenuIcon',
+                        className: styles.kebabMenuIcon,
+                    }}
+                    menuProps={{
+                        directionalHint: DirectionalHint.bottomRightEdge,
+                        shouldFocusOnMount: true,
+                        items: this.getMenuItems(),
+                    }}
+                /> */}
+                <TooltipHost content="More actions">
+                    <Menu>
+                        <MenuTrigger>
+                            <MenuButton appearance="transparent" icon={<MoreVerticalRegular />} />
+                        </MenuTrigger>
+                        <MenuPopover>
+                            <MenuList>
+                                {/* {overflowItems.map((item: any) => (
+                                    <MenuItem icon={Icons[item?.iconProps?.iconName]} key={item.key} className={styles.commandBarButtonsSubmenu} {...item}>
+                                         {item.children ? item.children : item.text}
+                                        {item.children}
+                                    </MenuItem>
+                                ))} */}
+                                {this.getMenuItems().map((item: any) => (
+                                    <>
+
+                                        <MenuItem className={styles.kebabMenuIcon} key={item.key} icon={Icons[item?.iconName]}  {...item}>
+
+                                            {item?.text}
+                                        </MenuItem>
+                                        {/* <MenuItem icon={item?.iconProps?.iconName === 'Refresh' && <ArrowClockwiseRegular />} >
+                                        {item?.text}
+                                    </MenuItem> */}
+                                    </>
+                                ))}
+                            </MenuList>
+                        </MenuPopover>
+                    </Menu>
+                </TooltipHost>
+                <h3>2222</h3>
+            </>
         );
     }
 
@@ -97,13 +134,23 @@ export class CardFooterInstanceActionButtons extends React.Component<CardFooterI
             <>
                 {menuItems.map(props => (
                     <span key={props.key}>
-                        <ActionButton
+                        {/* <ActionButton
                             onClick={props.onClick}
                             text={props.text}
                             iconProps={props.iconProps}
                             className={props.key}
                             componentRef={props.componentRef}
-                        />
+                        /> */}
+                        <Button appearance='transparent' onClick={props.onClick}
+                            icon={Icons[props.iconName]}
+                            // icon={<CopyRegular />}
+                            className={props.key}
+                            size='medium'
+                        // ref={props.componentRef}
+                        >
+                            {props.text}
+                        </Button>
+                        <h3>333</h3>
                     </span>
                 ))}
             </>

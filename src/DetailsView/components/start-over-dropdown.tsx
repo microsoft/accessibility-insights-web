@@ -56,11 +56,12 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         return (
             <div>
                 <InsightsCommandButton
-                    iconProps={{
-                        iconName: 'Refresh',
-                    }}
+                    // iconProps={{
+                    //     iconName: 'Refresh',
+                    // }}
+                    iconName='ArrowClockwiseRegular'
                     text="Start over"
-                    ariaLabel="start over menu"
+                    aria-label="start over menu"
                     onClick={this.openDropdown}
                     menuIconProps={{
                         iconName: dropdownDirections[direction].iconName,

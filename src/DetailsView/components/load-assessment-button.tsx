@@ -30,11 +30,11 @@ export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonPr
         return (
             <InsightsCommandButton
                 data-automation-id={loadAssessmentButtonAutomationId}
-                iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
+                // iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
+                iconName="FolderOpenRegular"
                 onClick={this.props.handleLoadAssessmentButtonClick}
-            >
-                Load assessment
-            </InsightsCommandButton>
+                text=" Load assessment"
+            />
         );
     }
 }

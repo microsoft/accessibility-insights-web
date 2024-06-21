@@ -36,8 +36,9 @@
         border: none;
         display: flex;
         align-items: baseline;
-        width: 100%;
+        width: auto;
         height: fit-content;
+        margin-left: -5px;
 
         &:hover {
             background-color: $neutral-alpha-4;
@@ -58,7 +59,7 @@
     }
 
     .collapsible-container-content {
-        margin-left: 24px;
+       margin-left: 27px;
 
         &[aria-hidden='true'] {
             display: none;

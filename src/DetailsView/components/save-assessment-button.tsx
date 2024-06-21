@@ -41,13 +41,13 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
         return (
             <>
                 <InsightsCommandButton
-                    iconProps={{ iconName: 'Save' }}
+                    //iconProps={{ iconName: 'Save' }}
+                    iconName='SaveRegular'
                     download={props.download}
                     href={props.href}
                     onClick={handleSaveAssessmentClick}
-                >
-                    Save assessment
-                </InsightsCommandButton>
+                    text=" Save assessment"
+                />
                 <Dialog
                     hidden={dialogHidden}
                     onDismiss={hideDialog}

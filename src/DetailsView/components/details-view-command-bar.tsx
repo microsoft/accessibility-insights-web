@@ -381,6 +381,7 @@ export class DetailsViewCommandBar extends React.Component<
     private getStartOverProps = () => {
         return {
             ...this.props,
+            // withComponent: true,
             openDialog: this.showStartOverDialog,
             buttonRef: ref => (this.startOverDialogCloseFocus = ref),
         };

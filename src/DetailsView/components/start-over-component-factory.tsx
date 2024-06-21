@@ -28,6 +28,7 @@ export type StartOverFactoryProps = {
     visualizationStoreData: VisualizationStoreData;
     openDialog: (dialogType: StartOverDialogType) => void;
     buttonRef: IRefObject<IButton>;
+    withComponent: boolean
 };
 
 export type StartOverMenuItem = Omit<IContextualMenuItem, 'key'>;
@@ -41,9 +42,10 @@ export const AssessmentStartOverFactory: StartOverComponentFactory = {
     getStartOverComponent: props => getStartOverComponentForAssessment(props, 'down'),
     getStartOverMenuItem: props => {
         return {
-            onRender: () => (
-                <div role="menuitem">{getStartOverComponentForAssessment(props, 'left')}</div>
-            ),
+            // onRender: () => (
+            //     <div role="menuitem">{getStartOverComponentForAssessment(props, 'left')}</div>
+            // ),
+            children: <div role="menuitem">{getStartOverComponentForAssessment(props, 'left')}</div>
         };
     },
 };
@@ -52,18 +54,24 @@ export const QuickAssessStartOverFactory: StartOverComponentFactory = {
     getStartOverComponent: props => getStartOverComponentForQuickAssess(props, 'down'),
     getStartOverMenuItem: props => {
         return {
-            onRender: () => (
-                <div role="menuitem">{getStartOverComponentForQuickAssess(props, 'left')}</div>
-            ),
+            // onRender: () => (
+            //     <div role="menuitem">{getStartOverComponentForQuickAssess(props, 'left')}</div>
+            // ),
+            children: <div role="menuitem">{getStartOverComponentForQuickAssess(props, 'left')}</div>,
         };
     },
 };
 
 export const FastpassStartOverFactory: StartOverComponentFactory = {
     getStartOverComponent: props => {
-        return <InsightsCommandButton {...getStartOverPropsForFastPass(props)} />;
+        return (
+            <>
+                <h1>asdasdasd</h1>
+                <InsightsCommandButton {...getStartOverPropsForFastPass(props)} />
+            </>
+        );
     },
-    getStartOverMenuItem: getStartOverPropsForFastPass,
+    getStartOverMenuItem: props => getStartOverPropsForFastPassForMenu(props),
 };
 
 export function getStartOverComponentForAssessment(
@@ -111,13 +119,49 @@ export const startOverAutomationId = 'start-over';
 export function getStartOverPropsForFastPass(props: StartOverFactoryProps): StartOverMenuItem {
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
     const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
+    console.warn("inside getStartOverPropsForFastPass props-->", props);
+    const startProps = {
+        iconProps: { className: styles.startOverMenuItemIcon },
+        iconName: 'ArrowClockwiseRegular',
+        onClick: event => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event),
+        disabled: props.visualizationStoreData.scanning !== null,
+        'data-automation-id': startOverAutomationId,
+        text: 'Start over2222',
+        className: styles.startOverMenuItem,
+    }
 
-    return {
-        iconProps: { iconName: 'Refresh', className: styles.startOverMenuItemIcon },
+
+    return { ...startProps }
+}
+
+export function getStartOverPropsForFastPassForMenu(props: StartOverFactoryProps): StartOverMenuItem {
+    const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
+    const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
+    const startProps = {
+        iconProps: { className: styles.startOverMenuItemIcon },
+        iconName: 'ArrowClockwiseRegular',
         onClick: event => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event),
         disabled: props.visualizationStoreData.scanning !== null,
         'data-automation-id': startOverAutomationId,
         text: 'Start over',
         className: styles.startOverMenuItem,
-    };
+    }
+
+    // if (props.withComponent) {
+    //     return { children: <InsightsCommandButton {...startProps} /> }
+    // }
+    return { children: <InsightsCommandButton {...startProps} /> }
+    //return { ...startProps }
+    // return {
+    //     iconProps: { className: styles.startOverMenuItemIcon },
+    //     iconName: 'ArrowClockwiseRegular',
+    //     onClick: event => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event),
+    //     disabled: props.visualizationStoreData.scanning !== null,
+    //     'data-automation-id': startOverAutomationId,
+    //     text: 'Start over2222',
+    //     className: styles.startOverMenuItem,
+    // };
+    //     return {
+    //         withoutComponent === true ? ...startProps: children: <InsightsCommandButton {...startProps} />
+    // }
 }

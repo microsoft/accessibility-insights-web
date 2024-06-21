@@ -15,12 +15,12 @@ export const reportExportButtonAutomationId = 'report-export-button';
 export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExportButton', props => {
     return (
         <InsightsCommandButton
-            iconProps={{ iconName: 'Export' }}
+            // iconProps={{ iconName: 'Export' }}
+            text="Export Result"
+            iconName='ArrowExportRegular'
             onClick={props.showReportExportDialog}
             componentRef={props.buttonRef}
             data-automation-id={reportExportButtonAutomationId}
-        >
-            Export result
-        </InsightsCommandButton>
+        />
     );
 });

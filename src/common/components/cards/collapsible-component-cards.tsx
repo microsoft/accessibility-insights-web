@@ -7,6 +7,7 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
 import styles from './collapsible-component-cards.scss';
+import { Button } from '@fluentui/react-components';
 
 export const collapsibleButtonAutomationId = 'collapsible-component-cards-button';
 
@@ -58,7 +59,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
             collapsedCSSClassName = null;
         }
 
-        const onClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        const onClick = (event: React.MouseEvent<any>) => {
             if (event.nativeEvent.detail === 0 && deps.setFocusVisibility != null) {
                 // 0 => keyboard event
                 deps.setFocusVisibility(true);
@@ -77,15 +78,24 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
                 )}
             >
                 <HeadingElementForLevel headingLevel={headingLevel as HeadingLevel}>
-                    <ActionButton
+                    {/* <ActionButton
                         data-automation-id={collapsibleButtonAutomationId}
                         className={styles.collapsibleControl}
                         onClick={onClick}
                         aria-expanded={showContent}
                         ariaLabel={buttonAriaLabel}
                     >
+                        <h3>444</h3>
                         <span className={styles.collapsibleTitle}>{header}</span>
-                    </ActionButton>
+                    </ActionButton> */}
+                    <Button data-automation-id={collapsibleButtonAutomationId}
+                        className={styles.collapsibleControl}
+                        onClick={onClick}
+                        aria-expanded={showContent}
+                        aria-label={buttonAriaLabel}>
+                        <h3>444</h3>
+                        <span className={styles.collapsibleTitle}>{header}</span>
+                    </Button>
                 </HeadingElementForLevel>
                 {contentWrapper}
             </div>
