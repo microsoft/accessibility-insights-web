@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { FileURLProvider } from 'common/file-url-provider';
 import {
     ReportExportComponent,
@@ -126,7 +126,7 @@ describe('ReportExportComponent', () => {
     // the underlying dialog and the htmlGenerator as-is without escaping
     const testContentWithSpecials = 'test content with special characters: <> $ " ` \'';
 
-    test('edit text field', () => {
+    test('edit text field', async () => {
         updateDescriptionMock
             .setup(udm => udm(It.isValue(testContentWithSpecials)))
             .returns(() => null)
@@ -135,18 +135,18 @@ describe('ReportExportComponent', () => {
         const renderResult = render(<ReportExportComponent {...props} />);
 
         const dialog = getMockComponentClassPropsForCall(ExportDialog);
-        dialog.onDescriptionChange(testContentWithSpecials);
+        await act(() => dialog.onDescriptionChange(testContentWithSpecials));
 
         expect(renderResult.asFragment()).toMatchSnapshot(testContentWithSpecials);
 
         updateDescriptionMock.verifyAll();
     });
 
-    test('clicking export on the dialog triggers generateExports, generates json and html with the current exportDescription', () => {
+    test('clicking export on the dialog triggers generateExports, generates json and html with the current exportDescription', async () => {
         const renderResult = render(<ReportExportComponent {...props} />);
 
         const dialog = getMockComponentClassPropsForCall(ExportDialog);
-        dialog.onDescriptionChange(testContentWithSpecials);
+        await act(() => dialog.onDescriptionChange(testContentWithSpecials));
 
         const htmlData = 'test html';
         const jsonData = 'test json';
@@ -169,7 +169,7 @@ describe('ReportExportComponent', () => {
             .returns(() => 'json url')
             .verifiable(Times.once());
 
-        dialog.generateExports();
+        await act(() => dialog.generateExports());
 
         expect(renderResult.asFragment()).toMatchSnapshot();
 

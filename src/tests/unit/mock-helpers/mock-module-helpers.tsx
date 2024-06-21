@@ -9,7 +9,8 @@ export const expectMockedComponentPropsToMatchSnapshots = (
     components.forEach(component => {
         const componentSnapshotName =
             snapshotName ||
-            `${component.displayName || component.name || 'mocked component'} props`;
+            `${component.displayName || component.name || component?.render?.displayName || 'mocked component'} props`;
+
         expectMockedComponentPropsToMatchSnapshot(component, componentSnapshotName);
     });
 };
@@ -53,12 +54,19 @@ export function useOriginalReactElements(library: string, components: any[]) {
     });
 }
 
-function mockReactComponent<T extends React.ComponentClass<P>, P = any>(component, elementName?) {
+export function mockReactComponent<T extends React.ComponentClass<P>, P = any>(
+    component,
+    elementName?,
+) {
     if (component !== undefined) {
-        const name =
-            elementName || component.displayName
-                ? `mock-${component.displayName}`
-                : `mock-${component.name}`;
+        let name;
+        name = component?.displayName ? `mock-${component?.displayName}` : `mock-${component.name}`;
+        if (elementName) {
+            name = elementName ? `mock-${elementName}` : name;
+        }
+        if (name === 'mock-undefined') {
+            name = component?.render?.displayName && `mock-${component?.render?.displayName}`;
+        }
         if (
             !(component as any).mockImplementation &&
             !(component as any).render?.mockImplementation
@@ -95,7 +103,7 @@ function expectMockedComponentPropsToMatchSnapshot(component: any, snapshotName?
 }
 
 function mockReactElement<P = any>(elementName: string) {
-    const element: React.FC<React.PropsWithChildren<P>> = elementProps => {
+    const element: React.FC<React.PropsWithChildren<React.PropsWithChildren<P>>> = elementProps => {
         try {
             const { children, ...props } = elementProps;
             return React.createElement(elementName, props, children);

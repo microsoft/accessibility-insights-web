@@ -12,6 +12,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
     />
     <div
       class="ms-Dialog-main insights-dialog-main-override telemetry-permission-dialog main-000"
+      data-tabster="{"uncontrolled": {"completely": true}}"
       id="ModalFocusTrapZone000"
     >
       <div

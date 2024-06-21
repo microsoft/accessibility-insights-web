@@ -25,7 +25,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   "dialogFirstText": <React.Fragment>
     Would you like to continue your current assessment on the new target of
      
-    <StyledTooltipHostBase
+    <ForwardRef(StyledTooltipHostBase)
       calloutProps={
         {
           "gapSpace": 0,
@@ -89,7 +89,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   "dialogFirstText": <React.Fragment>
     Would you like to continue your current assessment on the new target of
      
-    <StyledTooltipHostBase
+    <ForwardRef(StyledTooltipHostBase)
       calloutProps={
         {
           "gapSpace": 0,
@@ -155,7 +155,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   "dialogFirstText": <React.Fragment>
     Would you like to continue your current assessment on the new target of
      
-    <StyledTooltipHostBase
+    <ForwardRef(StyledTooltipHostBase)
       calloutProps={
         {
           "gapSpace": 0,
@@ -221,7 +221,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   "dialogFirstText": <React.Fragment>
     Would you like to continue your current assessment on the new target of
      
-    <StyledTooltipHostBase
+    <ForwardRef(StyledTooltipHostBase)
       calloutProps={
         {
           "gapSpace": 0,
@@ -287,7 +287,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   "dialogFirstText": <React.Fragment>
     Would you like to continue your current assessment on the new target of
      
-    <StyledTooltipHostBase
+    <ForwardRef(StyledTooltipHostBase)
       calloutProps={
         {
           "gapSpace": 0,

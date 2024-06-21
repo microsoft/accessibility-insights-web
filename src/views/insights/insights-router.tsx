@@ -7,7 +7,7 @@ import { HashRouter, Route, Routes, useParams } from 'react-router-dom';
 import { ContentDeps, ContentProps } from '../content/content';
 
 export type ContentRouteDeps = ContentDeps & {
-    ContentRootComponent: React.FC<ContentProps>;
+    ContentRootComponent: React.FC<React.PropsWithChildren<ContentProps>>;
 };
 export type ContentRouteProps = { deps: ContentRouteDeps };
 
