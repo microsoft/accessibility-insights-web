@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    CommandBarButton,
     IButton,
-    IContextualMenuItem,
     IRefObject,
     TooltipHost,
 } from '@fluentui/react';
+import { Menu, MenuButton, MenuItem, MenuItemProps, MenuList, MenuPopover, MenuTrigger } from '@fluentui/react-components';
+import { MoreHorizontalRegular } from '@fluentui/react-icons';
 import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
@@ -25,23 +25,23 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
         const exportButton = props.renderExportReportButton();
-        const overflowItems: IContextualMenuItem[] = [];
+        const overflowItems: MenuItemProps[] = [];
 
         if (exportButton != null) {
             overflowItems.push({
                 key: 'export report',
-                onRender: () => <div role="menuitem">{exportButton}</div>,
+                children: <div role="menuitem">{exportButton}</div>,
             });
         }
         if (props.saveAssessmentButton && props.loadAssessmentButton) {
             overflowItems.push(
                 {
                     key: 'save assessment',
-                    onRender: () => <div role="menuitem">{props.saveAssessmentButton}</div>,
+                    children: <div role="menuitem">{props.saveAssessmentButton}</div>,
                 },
                 {
                     key: 'load assessment',
-                    onRender: () => <div role="menuitem">{props.loadAssessmentButton}</div>,
+                    children: <div role="menuitem">{props.loadAssessmentButton}</div>,
                 },
             );
         }
@@ -49,7 +49,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         if (props.transferToAssessmentButton) {
             overflowItems.push({
                 key: 'transfer to assessment',
-                onRender: () => <div role="menuitem">{props.transferToAssessmentButton}</div>,
+                children: <div role="menuitem">{props.transferToAssessmentButton}</div>,
             });
         }
 
@@ -57,20 +57,22 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'start over',
             ...props.getStartOverMenuItem(),
         });
-
         return (
-            <TooltipHost content="More actions" aria-label="More actions">
-                <CommandBarButton
-                    ariaLabel="More actions"
-                    className={styles.commandBarButtonsMenu}
-                    role="button"
-                    menuIconProps={{
-                        iconName: 'More',
-                        className: styles.commandBarButtonsMenuButton,
-                    }}
-                    menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
-                    componentRef={props.buttonRef}
-                />
+            <TooltipHost content="More actions" className={styles.commandBarButtonsMenu}>
+                <Menu>
+                    <MenuTrigger>
+                        <MenuButton appearance="transparent" icon={<MoreHorizontalRegular />} className={styles.commandBarButtonsMenuButton} />
+                    </MenuTrigger>
+                    <MenuPopover>
+                        <MenuList>
+                            {overflowItems.map(item => (
+                                <MenuItem key={item.key} className={styles.commandBarButtonsSubmenu} {...item}>
+                                    {item.children}
+                                </MenuItem>
+                            ))}
+                        </MenuList>
+                    </MenuPopover>
+                </Menu>
             </TooltipHost>
         );
     },
