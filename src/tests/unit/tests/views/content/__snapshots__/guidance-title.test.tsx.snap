@@ -2,14 +2,15 @@
 
 exports[`guidance title has correct structure 1`] = `
 <DocumentFragment>
-  <mock-helmetwrapper
+  <mock-helmet
     defer="true"
     encodespecialcharacters="true"
+    prioritizeseotags="false"
   >
     <title>
       Guidance for test - Accessibility Insights for Web
     </title>
-  </mock-helmetwrapper>
+  </mock-helmet>
   <h1>
     test
   </h1>

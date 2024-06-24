@@ -14,13 +14,14 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import {
     mockReactComponents,
+    mockReactComponent,
     getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 describe('QuickAssessToAssessmentDialog', () => {
-    mockReactComponents([DefaultButton, PrimaryButton, DialogFooter, Dialog]);
-
+    mockReactComponents([DefaultButton, PrimaryButton, DialogFooter]);
+    mockReactComponent(Dialog, 'Dialog');
     let dataTransferViewControllerMock: IMock<DataTransferViewController>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let props: QuickAssessToAssessmentDialogProps;

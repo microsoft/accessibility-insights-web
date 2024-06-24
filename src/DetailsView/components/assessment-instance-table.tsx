@@ -14,7 +14,7 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
-import { has } from 'lodash';
+import { hasIn } from 'lodash';
 import * as React from 'react';
 import {
     AssessmentNavState,
@@ -137,7 +137,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
     private isAnyInstanceStatusUnknown(items: InstanceTableRow[], step: string): boolean {
         return items.some(
             item =>
-                has(item.instance.testStepResults, step) &&
+                hasIn(item.instance.testStepResults, step) &&
                 item.instance.testStepResults[step].status === ManualTestStatus.UNKNOWN,
         );
     }

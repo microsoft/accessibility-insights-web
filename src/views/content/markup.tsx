@@ -8,7 +8,7 @@ import { CrossIcon } from 'common/icons/cross-icon';
 import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
 import { TextContent } from 'content/strings/text-content';
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { CodeExample, CodeExampleProps } from './markup/code-example';
 
 type PassFailProps = {
@@ -19,27 +19,27 @@ type PassFailProps = {
 };
 
 export type Markup = {
-    Tag: React.FC;
-    Code: React.FC;
-    Term: React.FC;
-    Emphasis: React.FC;
-    Do: React.FC;
-    Dont: React.FC;
-    Pass: React.FC;
-    Fail: React.FC;
-    PassFail: React.FC<PassFailProps>;
-    Columns: React.FC;
-    Column: React.FC;
-    Inline: React.FC;
-    HyperLink: React.FC<{ href: string }>;
-    Title: React.FC<{ children: string }>;
-    Highlight: React.FC;
-    CodeExample: React.FC<CodeExampleProps>;
-    Links: React.FC;
-    Table: React.FC;
-    LandmarkLegend: React.FC<{ role: string }>;
-    ProblemList: React.FC;
-    Include: React.FC<{ content: MarkupBasedComponent }>;
+    Tag: React.FC<React.PropsWithChildren<unknown>>;
+    Code: React.FC<React.PropsWithChildren<unknown>>;
+    Term: React.FC<React.PropsWithChildren<unknown>>;
+    Emphasis: React.FC<React.PropsWithChildren<unknown>>;
+    Do: React.FC<React.PropsWithChildren<unknown>>;
+    Dont: React.FC<React.PropsWithChildren<unknown>>;
+    Pass: React.FC<React.PropsWithChildren<unknown>>;
+    Fail: React.FC<React.PropsWithChildren<unknown>>;
+    PassFail: React.FC<React.PropsWithChildren<PassFailProps>>;
+    Columns: React.FC<React.PropsWithChildren<unknown>>;
+    Column: React.FC<React.PropsWithChildren<unknown>>;
+    Inline: React.FC<React.PropsWithChildren<unknown>>;
+    HyperLink: React.FC<React.PropsWithChildren<{ href: string }>>;
+    Title: React.FC<React.PropsWithChildren<{ children: string }>>;
+    Highlight: React.FC<React.PropsWithChildren<unknown>>;
+    CodeExample: React.FC<React.PropsWithChildren<CodeExampleProps>>;
+    Links: React.FC<React.PropsWithChildren<unknown>>;
+    Table: React.FC<React.PropsWithChildren<unknown>>;
+    LandmarkLegend: React.FC<React.PropsWithChildren<{ role: string }>>;
+    ProblemList: React.FC<React.PropsWithChildren<unknown>>;
+    Include: React.FC<React.PropsWithChildren<{ content: MarkupBasedComponent }>>;
 };
 
 export type MarkupDeps = {
@@ -56,7 +56,7 @@ export type MarkupBasedComponentProps = {
     options?: MarkupOptions;
 };
 
-export type MarkupBasedComponent = React.FC<MarkupBasedComponentProps>;
+export type MarkupBasedComponent = React.FC<React.PropsWithChildren<MarkupBasedComponentProps>>;
 
 export const createMarkup = (deps: MarkupDeps, options?: MarkupOptions) => {
     function Include(props: { content: MarkupBasedComponent }): JSX.Element {
@@ -66,11 +66,10 @@ export const createMarkup = (deps: MarkupDeps, options?: MarkupOptions) => {
 
     function Title(props: { children: string }): JSX.Element {
         const { applicationTitle } = deps.textContent;
+        const titleValue = `${props.children} - ${applicationTitle}`;
         const helmet = (
             <Helmet>
-                <title>
-                    {props.children} - {applicationTitle}
-                </title>
+                <title>{titleValue}</title>
             </Helmet>
         );
 
