@@ -28,7 +28,6 @@ export type StartOverFactoryProps = {
     visualizationStoreData: VisualizationStoreData;
     openDialog: (dialogType: StartOverDialogType) => void;
     buttonRef: IRefObject<IButton>;
-    withComponent: boolean
 };
 
 export type StartOverMenuItem = Omit<IContextualMenuItem, 'key'>;
@@ -57,7 +56,7 @@ export const QuickAssessStartOverFactory: StartOverComponentFactory = {
             // onRender: () => (
             //     <div role="menuitem">{getStartOverComponentForQuickAssess(props, 'left')}</div>
             // ),
-            children: <div role="menuitem">{getStartOverComponentForQuickAssess(props, 'left')}</div>,
+            children: getStartOverComponentForQuickAssess(props, 'left'),
         };
     },
 };
@@ -146,6 +145,7 @@ export function getStartOverPropsForFastPassForMenu(props: StartOverFactoryProps
         text: 'Start over',
         className: styles.startOverMenuItem,
     }
+
 
     // if (props.withComponent) {
     //     return { children: <InsightsCommandButton {...startProps} /> }

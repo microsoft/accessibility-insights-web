@@ -32,11 +32,11 @@ export interface StartOverProps {
 const dropdownDirections = {
     down: {
         directionalHint: DirectionalHint.bottomAutoEdge,
-        iconName: 'ChevronDown',
+        iconName: 'ChevronDownRegular',
     },
     left: {
         directionalHint: DirectionalHint.leftTopEdge,
-        iconName: 'ChevronRight',
+        iconName: 'ChevronRightRegular',
     },
 };
 
@@ -47,7 +47,8 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         super(props);
 
         this.state = {
-            isContextMenuVisible: false,
+            target: null,
+            isContextMenuVisible: true,
         };
     }
 
@@ -68,6 +69,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
                     }}
                     componentRef={this.props.buttonRef}
                 />
+                <h3>renderContextMenu...</h3>
                 {this.renderContextMenu()}
             </div>
         );
@@ -115,6 +117,8 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             items.push(testKey);
         }
 
+        console.log('menuItmes', items)
+
         return items;
     }
 
@@ -127,6 +131,13 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     };
 
     private openDropdown = (event): void => {
+        // //const currentTarget = { ...event.currentTarget, writingsuggestions: false }
+
+        // delete event.currentTarget.textprediction;
+        // //const updatedEvent = { ...event.currentTarget, writingSuggestions: false }
+        // Object.assign(event.currentTarget, { writingSuggestions: false })
+        // this.setState({ target: event.currentTarget, isContextMenuVisible: true });
+
         this.setState({ target: event.currentTarget, isContextMenuVisible: true });
     };
 

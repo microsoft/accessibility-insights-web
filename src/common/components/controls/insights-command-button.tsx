@@ -24,16 +24,19 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
         const menuIconComponent = props.menuIconProps ? props.menuIconProps.iconName : null;
 
         return (
-            <Button
-                appearance="transparent"
-                {...props}
-                icon={Icons[iconComponent]}
-                className={css(styles.insightsCommandButton, props.className)}
-                ref={props.componentRef}
-            >
-                {props.text}
-                {menuIconComponent !== null && Icons[menuIconComponent]}
-            </Button>
+            <>
+                <h3>InsightsCommandButton</h3>
+                <Button
+                    appearance="transparent"
+                    {...props}
+                    icon={Icons[iconComponent]}
+                    className={css(styles.insightsCommandButton, props.className)}
+                    ref={props.componentRef}
+                >
+                    {props.text}
+                    {menuIconComponent !== null && Icons[menuIconComponent]}
+                </Button>
+            </>
         );
     },
 );

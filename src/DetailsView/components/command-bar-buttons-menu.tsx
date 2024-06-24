@@ -20,7 +20,7 @@ export type CommandBarButtonsMenuProps = {
     loadAssessmentButton?: JSX.Element | null;
     transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
-    getStartOverComponent: () => StartOverMenuItem;
+    //getStartOverComponent: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
 };
 
@@ -56,21 +56,19 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             });
         }
 
-        // overflowItems.push({
-        //     key: 'start over',
-        //     children: {
-        //         ...props.getStartOverMenuItem(),
-        //     }
-        // });
+        overflowItems.push({
+            key: 'start over',
+            ...props.getStartOverMenuItem(),
+        });
 
-        if (props.getStartOverMenuItem() != null) {
-            const value = props.getStartOverMenuItem();
-            overflowItems.push({
-                key: 'start over',
-                ...props.getStartOverMenuItem(),
-                //children: <div role="menuitem">{value}</div>,
-            });
-        }
+        // if (props.getStartOverMenuItem() != null) {
+        //     const value = props.getStartOverMenuItem();
+        //     overflowItems.push({
+        //         key: 'start over',
+        //         ...props.getStartOverMenuItem(),
+        //         //children: <div role="menuitem">{value}</div>,
+        //     });
+        // }
         console.warn(overflowItems);
 
         return (
@@ -102,13 +100,13 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                                         {item.children}
                                     </MenuItem>
                                 ))} */}
-                                {overflowItems.map((item: any) => (
+                                {overflowItems.map((item: any, index: number) => (
                                     <>
 
-                                        <MenuItem key={item.key} icon={Icons[item?.iconName]} className={item?.iconProps?.iconName === 'ArrowClockwiseRegular' ? item?.className : styles.commandBarButtonsSubmenu} {...item}>
+                                        <MenuItem componentRef={props.buttonRef} key={`${item.key}-${index}`} icon={Icons[item?.iconName]} className={item?.iconProps?.iconName === 'ArrowClockwiseRegular' ? item?.className : styles.commandBarButtonsSubmenu} {...item}>
 
                                             {item?.children}
-                                        </MenuItem>
+                                        </MenuItem >
                                         {/* <MenuItem icon={item?.iconProps?.iconName === 'Refresh' && <ArrowClockwiseRegular />} >
                                         {item?.text}
                                     </MenuItem> */}
@@ -117,7 +115,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                             </MenuList>
                         </MenuPopover>
                     </Menu>
-                </TooltipHost>
+                </TooltipHost >
             </>
         );
     },
