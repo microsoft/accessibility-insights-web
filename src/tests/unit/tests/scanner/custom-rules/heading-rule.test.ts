@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import axe from 'axe-core';
 import { It, Mock, Times } from 'typemoq';
 
+import { withAxeSetup } from '../../../../../scanner/axe-utils';
 import { headingConfiguration } from '../../../../../scanner/custom-rules/heading-rule';
 
 describe('HeadingRule', () => {
@@ -68,6 +70,23 @@ describe('HeadingRule', () => {
             expect(h6.matches(selector)).toBeTruthy();
             expect(headingRoleDiv.matches(selector)).toBeTruthy();
             expect(nonHeadingElement.matches(selector)).toBeFalsy();
+        });
+    });
+
+    describe('verify evaluate', () => {
+        it('should return true for all elements with h tag', () => {
+            const headingOrderResult = true;
+            document.body.innerHTML = `
+                    <h1 id="element-under-test">hello</h1>
+                `;
+            const node = document.querySelector('#element-under-test');
+
+            const actualResult = withAxeSetup(() => {
+                axe._audit.checks['heading-order'].evaluate = () => headingOrderResult;
+
+                return headingConfiguration.checks[0].evaluate.call({ data: () => {} }, node);
+            });
+            expect(actualResult).toBe(headingOrderResult);
         });
     });
 });

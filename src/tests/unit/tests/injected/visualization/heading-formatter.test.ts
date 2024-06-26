@@ -172,6 +172,13 @@ describe('HeadingFormatterTests', () => {
         expect(config.showVisualization).toBe(false);
     });
 
+    test('verifyHideRoleNoneHeading', () => {
+        const headingElement = createHeadingWithInnerText(`<h1 role="none">HEADING</h1>`);
+        const config = testSubject.getDrawerConfiguration(headingElement, null);
+
+        expect(config.showVisualization).toBe(false);
+    });
+
     test('verifyHideDisplayNoneHeading', () => {
         const headingElement = createHeadingWithInnerText(`<h1 style="display:none">HEADING</h1>`);
         const config = testSubject.getDrawerConfiguration(headingElement, null);
