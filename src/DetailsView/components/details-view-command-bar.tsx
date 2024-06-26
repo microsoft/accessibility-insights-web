@@ -372,16 +372,17 @@ export class DetailsViewCommandBar extends React.Component<
     };
 
     private getStartOverMenuItem = () => {
-        const startOverProps = this.getStartOverProps();
+        const startOverProps = this.getStartOverProps('hasSubMenu');
         const startOverComponentFactory =
             this.props.switcherNavConfiguration.StartOverComponentFactory;
         return startOverComponentFactory.getStartOverMenuItem(startOverProps);
     };
 
-    private getStartOverProps = () => {
+    private getStartOverProps = (value?: string) => {
         return {
             ...this.props,
             // withComponent: true,
+            hasSubMenu: value ? true : false,
             openDialog: this.showStartOverDialog,
             buttonRef: ref => (this.startOverDialogCloseFocus = ref),
         };

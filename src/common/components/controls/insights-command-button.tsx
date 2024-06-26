@@ -13,6 +13,7 @@ export type InsightsCommandButtonProps = ButtonProps & {
     componentRef?: any;
     text?: any;
     menuIconProps?: any;
+    as?: any;
 };
 
 // See https://www.figma.com/file/Wj4Ggf6GGQBQkiDIaHfXRX2B/Accessibility-Insights%3A-Styles?node-id=1%3A27
@@ -25,8 +26,7 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
 
         return (
             <>
-                <h3>InsightsCommandButton</h3>
-                <Button
+                <Button as="a"
                     appearance="transparent"
                     {...props}
                     icon={Icons[iconComponent]}

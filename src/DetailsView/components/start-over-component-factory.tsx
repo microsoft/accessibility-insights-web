@@ -9,10 +9,9 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import { DetailsRightPanelConfiguration } from 'DetailsView/components/details-view-right-panel';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import {
-    DropdownDirection,
-    StartOverDropdown,
-    StartOverProps,
-} from 'DetailsView/components/start-over-dropdown';
+    StartOverDropdown2,
+} from 'DetailsView/components/start-over-dropdown2';
+import { StartOverProps, DropdownDirection, StartOverDropdown } from 'DetailsView/components/start-over-dropdown'
 import * as React from 'react';
 import styles from './start-over-menu-item.scss';
 
@@ -28,6 +27,7 @@ export type StartOverFactoryProps = {
     visualizationStoreData: VisualizationStoreData;
     openDialog: (dialogType: StartOverDialogType) => void;
     buttonRef: IRefObject<IButton>;
+    hasSubMenu?: boolean
 };
 
 export type StartOverMenuItem = Omit<IContextualMenuItem, 'key'>;
@@ -38,25 +38,26 @@ export interface StartOverComponentFactory {
 }
 
 export const AssessmentStartOverFactory: StartOverComponentFactory = {
-    getStartOverComponent: props => getStartOverComponentForAssessment(props, 'down'),
+    getStartOverComponent: props => getStartOverComponentForAssessmentButton(props, 'down'),
     getStartOverMenuItem: props => {
         return {
             // onRender: () => (
             //     <div role="menuitem">{getStartOverComponentForAssessment(props, 'left')}</div>
             // ),
-            children: <div role="menuitem">{getStartOverComponentForAssessment(props, 'left')}</div>
+            children: <div role="menuitem">{getStartOverComponentForAssessmentMenu(props, 'left')}</div>
         };
     },
 };
 
 export const QuickAssessStartOverFactory: StartOverComponentFactory = {
-    getStartOverComponent: props => getStartOverComponentForQuickAssess(props, 'down'),
+    getStartOverComponent: props => getStartOverComponentForQuickAssessButton(props, 'down'),
     getStartOverMenuItem: props => {
         return {
             // onRender: () => (
             //     <div role="menuitem">{getStartOverComponentForQuickAssess(props, 'left')}</div>
             // ),
-            children: getStartOverComponentForQuickAssess(props, 'left'),
+            children: <div role="menuitem">{getStartOverComponentForQuickAssessMenu(props, 'left')}</div>,
+
         };
     },
 };
@@ -73,7 +74,7 @@ export const FastpassStartOverFactory: StartOverComponentFactory = {
     getStartOverMenuItem: props => getStartOverPropsForFastPassForMenu(props),
 };
 
-export function getStartOverComponentForAssessment(
+export function getStartOverComponentForAssessmentButton(
     props: StartOverFactoryProps,
     dropdownDirection: DropdownDirection,
 ): JSX.Element {
@@ -87,12 +88,33 @@ export function getStartOverComponentForAssessment(
         buttonRef: props.buttonRef,
         rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
         switcherStartOverPreferences: { showTest: true },
+        hasSubMenu: props.hasSubMenu
     };
 
     return <StartOverDropdown {...startOverProps} />;
 }
 
-export function getStartOverComponentForQuickAssess(
+export function getStartOverComponentForAssessmentMenu(
+    props: StartOverFactoryProps,
+    dropdownDirection: DropdownDirection,
+): JSX.Element {
+    const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
+    const test = props.deps.getProvider().forType(selectedTest);
+    const startOverProps: StartOverProps = {
+        singleTestSuffix: test!.title,
+        allTestSuffix: 'Assessment',
+        dropdownDirection,
+        openDialog: props.openDialog,
+        buttonRef: props.buttonRef,
+        rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
+        switcherStartOverPreferences: { showTest: true },
+        hasSubMenu: props.hasSubMenu
+    };
+
+    return <StartOverDropdown2 {...startOverProps} />;
+}
+
+export function getStartOverComponentForQuickAssessMenu(
     props: StartOverFactoryProps,
     dropdownDirection: DropdownDirection,
 ): JSX.Element {
@@ -108,6 +130,30 @@ export function getStartOverComponentForQuickAssess(
         buttonRef: props.buttonRef,
         rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
         switcherStartOverPreferences: { showTest },
+        hasSubMenu: props.hasSubMenu
+    };
+
+    return <StartOverDropdown2 {...startOverProps} />;
+}
+
+
+export function getStartOverComponentForQuickAssessButton(
+    props: StartOverFactoryProps,
+    dropdownDirection: DropdownDirection,
+): JSX.Element {
+    // since we do not show start over per requirement in quick assess.
+    const showTest = false;
+    const singleTestSuffix = '';
+
+    const startOverProps: StartOverProps = {
+        singleTestSuffix,
+        allTestSuffix: 'Quick Assess',
+        dropdownDirection,
+        openDialog: props.openDialog,
+        buttonRef: props.buttonRef,
+        rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
+        switcherStartOverPreferences: { showTest },
+        hasSubMenu: props.hasSubMenu
     };
 
     return <StartOverDropdown {...startOverProps} />;

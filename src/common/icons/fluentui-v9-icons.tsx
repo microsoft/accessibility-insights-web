@@ -8,7 +8,7 @@ import {
     ArrowClockwiseRegular,
     Checkmark16Filled,
     ChevronDownRegular,
-    ChevronRightRegular,
+    ChevronRight20Regular,
     InfoRegular, CopyRegular, BugRegular
 } from '@fluentui/react-icons';
 import { CopyIcon } from 'common/icons/copy-icon';
@@ -24,7 +24,7 @@ export const Icons = {
     ArrowClockwiseRegular: <ArrowClockwiseRegular color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} />,
     Checkmark16Filled: <Checkmark16Filled />,
     ChevronDownRegular: <ChevronDownRegular />,
-    ChevronRightRegular: <ChevronRightRegular />,
+    ChevronRightRegular: <ChevronRight20Regular />,
     info: <InfoRegular color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} />,
     ladybugSolid: <BugRegular filled color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} />,
     copy: <CopyRegular filled color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} />

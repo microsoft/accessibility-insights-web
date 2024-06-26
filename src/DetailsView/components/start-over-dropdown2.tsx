@@ -13,6 +13,7 @@ import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import * as React from 'react';
 
 import { StartOverContextMenuKeyOptions } from './details-view-right-panel';
+import { MenuItem, MenuList, MenuPopover, MenuTrigger } from '@fluentui/react-components';
 
 export interface StartOverState {
     isContextMenuVisible: boolean;
@@ -43,35 +44,74 @@ const dropdownDirections = {
 
 export type DropdownDirection = keyof typeof dropdownDirections;
 
-export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
+export class StartOverDropdown2 extends React.Component<StartOverProps, StartOverState> {
     constructor(props: StartOverProps) {
         super(props);
 
         this.state = {
-            isContextMenuVisible: false,
+            isContextMenuVisible: true,
         };
     }
 
     public render(): JSX.Element {
         const direction = this.props.dropdownDirection;
+        console.log("props in start--->", this.props);
+
         return (
             <div>
-                <InsightsCommandButton
-                    // iconProps={{
-                    //     iconName: 'Refresh',
-                    // }}
-                    iconName='ArrowClockwiseRegular'
-                    text="Start over"
-                    aria-label="start over menu"
-                    onClick={this.openDropdown}
-                    menuIconProps={{
-                        iconName: dropdownDirections[direction].iconName,
-                    }}
-                    componentRef={this.props.buttonRef}
-                />
+                {/* <MenuPopover>
+                    <MenuList>
+                     
+                        <MenuItem> */}
                 {this.renderContextMenu()}
-            </div>
-        );
+                {/* </MenuItem>
+                    </MenuList >
+                </MenuPopover > */}
+            </div >
+        )
+        // return (
+        //     <div>
+        //         <h1>inside h1</h1>
+        //         {/* <InsightsCommandButton
+        //             // iconProps={{
+        //             //     iconName: 'Refresh',
+        //             // }}
+        //             iconName='ArrowClockwiseRegular'
+        //             text="Start over"
+        //             aria-label="start over menu"
+        //             onClick={this.openDropdown}
+        //             menuIconProps={{
+        //                 iconName: dropdownDirections[direction].iconName,
+        //             }}
+        //             componentRef={this.props.buttonRef}
+        //         />
+        //         {this.state.isContextMenuVisible && this.renderContextMenu()} */}
+        //         <MenuTrigger>
+        //             <MenuItem>
+        //                 {/* <InsightsCommandButton
+        //                     // iconProps={{
+        //                     //     iconName: 'Refresh',
+        //                     // }}
+        //                     iconName='ArrowClockwiseRegular'
+        //                     text="Start over"
+        //                     aria-label="start over menu"
+        //                     onClick={this.openDropdown}
+        //                     menuIconProps={{
+        //                         iconName: dropdownDirections[direction].iconName,
+        //                     }}
+        //                     componentRef={this.props.buttonRef}
+        //                 /> */}
+        //                 <h1>inside</h1>
+        //             </MenuItem>
+        //         </MenuTrigger>
+        //         <MenuPopover>
+        //             <MenuList>
+        //                 {/* 11<MenuItem>{item?.children}</MenuItem> */}
+        //                 {this.renderContextMenu()}
+        //             </MenuList>
+        //         </MenuPopover>
+        //     </div>
+        // );
     }
 
     private renderContextMenu(): JSX.Element | null {
@@ -116,6 +156,8 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             items.push(testKey);
         }
 
+        console.log('menuItmes', items)
+
         return items;
     }
 
@@ -127,7 +169,14 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         this.props.openDialog('assessment');
     };
 
-    private openDropdown = (event): void => {
+    private openDropdown = (event: any): void => {
+        // //const currentTarget = { ...event.currentTarget, writingsuggestions: false }
+
+        // delete event.currentTarget.textprediction;
+        // //const updatedEvent = { ...event.currentTarget, writingSuggestions: false }
+        // Object.assign(event.currentTarget, { writingSuggestions: false })
+        // this.setState({ target: event.currentTarget, isContextMenuVisible: true });
+
         this.setState({ target: event.currentTarget, isContextMenuVisible: true });
     };
 

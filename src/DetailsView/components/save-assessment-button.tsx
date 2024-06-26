@@ -19,6 +19,7 @@ export interface SaveAssessmentButtonProps {
     href: string;
     deps: SaveAssessmentButtonDeps;
     userConfigurationStoreData: UserConfigurationStoreData;
+    as?: any;
 }
 
 export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
@@ -26,14 +27,14 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
     props => {
         const [dialogHidden, { setTrue: hideDialog, setFalse: showDialog }] = useBoolean(true);
 
-        function handleSaveAssessmentClick(event: React.MouseEvent<any>) {
+        const handleSaveAssessmentClick = (event: any) => {
             props.deps.getAssessmentActionMessageCreator().saveAssessment(event);
             if (props.userConfigurationStoreData.showSaveAssessmentDialog) {
                 showDialog();
             }
         }
 
-        function handleDontShowAgainClick(event: React.MouseEvent<any>, checked?: boolean) {
+        const handleDontShowAgainClick = (event: React.MouseEvent<any>, checked?: boolean) => {
             if (checked === undefined) return;
             props.deps.userConfigMessageCreator.setSaveAssessmentDialogState(!checked);
         }
@@ -46,7 +47,8 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                     download={props.download}
                     href={props.href}
                     onClick={handleSaveAssessmentClick}
-                    text=" Save assessment"
+                    text="Save assessment"
+                    {...props}
                 />
                 <Dialog
                     hidden={dialogHidden}
