@@ -86,10 +86,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
             drawerConfig.showVisualization = false;
         }
 
-        if (
-            this.getAttribute(element, 'aria-hidden') === 'true' ||
-            this.getAttribute(element, 'role') === 'none'
-        ) {
+        if (this.getAttribute(element, 'aria-hidden') === 'true') {
             drawerConfig.showVisualization = false;
         }
 
