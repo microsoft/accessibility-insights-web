@@ -24,13 +24,14 @@ import {
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { SingleFrameMessenger } from 'injected/frameCommunicators/single-frame-messenger';
-import { LayeredDetailsDialogComponent } from 'injected/layered-details-dialog-component';
 import { MainWindowContext } from 'injected/main-window-context';
 import { TargetPageActionMessageCreator } from 'injected/target-page-action-message-creator';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
-import * as ReactDOM from 'react-dom';
+import { Root, createRoot } from 'react-dom/client';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
+import { LayeredDetailsDialogComponent } from '../../../../injected/layered-details-dialog-component';
+jest.mock('../../../../injected/components/details-dialog');
 
 describe(DialogRendererImpl, () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
@@ -41,9 +42,10 @@ describe(DialogRendererImpl, () => {
     let browserAdapter: IMock<BrowserAdapter>;
     let domMock: IMock<Document>;
     let getRTLMock: IMock<typeof getRTL>;
-    let renderMock: IMock<typeof ReactDOM.render>;
     let detailsDialogHandlerMock: IMock<DetailsDialogHandler>;
     let windowStub: Window;
+    let rootMock: any;
+    let createRootMock: any;
 
     let addMessageListenerCallback = async (
         commandMessage: CommandMessage,
@@ -61,6 +63,8 @@ describe(DialogRendererImpl, () => {
         navigatorUtilsMock = Mock.ofType(NavigatorUtils);
         browserAdapter = Mock.ofType<BrowserAdapter>();
         detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
+        rootMock = Mock.ofType<Root>();
+        createRootMock = Mock.ofType<typeof createRoot>();
 
         frameMessenger = Mock.ofType(SingleFrameMessenger);
         domMock = Mock.ofInstance({
@@ -73,7 +77,6 @@ describe(DialogRendererImpl, () => {
             appendChild: node => {},
         } as any);
 
-        renderMock = Mock.ofInstance(() => null);
         getRTLMock = Mock.ofInstance(() => null);
         rootContainerMock = Mock.ofType<HTMLElement>();
 
@@ -236,31 +239,40 @@ describe(DialogRendererImpl, () => {
     });
 
     function setupRenderMockForVerifiable(): void {
-        renderMock
-            .setup(render =>
-                render(
+        createRootMock
+            .setup(r => r(It.is((container: any) => container != null)))
+            .returns(() => {
+                return rootMock.object;
+            })
+            .verifiable(Times.once());
+
+        rootMock
+            .setup(mock =>
+                mock.render(
                     It.is((detailsDialog: any) => {
                         return detailsDialog.type === LayeredDetailsDialogComponent;
                     }),
-                    It.is((container: any) => container != null),
                 ),
             )
             .verifiable(Times.once());
     }
 
     function setupRenderMockForNeverVisited(): void {
-        renderMock
-            .setup(it =>
-                it(
-                    It.is((detailsDialog: any) => detailsDialog != null),
-                    It.is((container: any) => container != null),
-                ),
-            )
+        createRootMock
+            .setup(r => r(It.is((container: any) => container != null)))
+            .returns(() => {
+                return rootMock.object;
+            })
+            .verifiable(Times.never());
+
+        rootMock
+            .setup(mock => mock.render(It.is((detailsDialog: any) => detailsDialog != null)))
             .verifiable(Times.never());
     }
 
     function setupRenderMockVerify(): void {
-        renderMock.verifyAll();
+        createRootMock.verifyAll();
+        rootMock.verifyAll();
     }
 
     function setupWindowUtilsMockAndFrameCommunicatorInMainWindow(): void {
@@ -332,7 +344,7 @@ describe(DialogRendererImpl, () => {
     function createDialogRenderer(): DialogRenderer {
         return new DialogRendererImpl(
             domMock.object,
-            renderMock.object,
+            createRootMock.object,
             frameMessenger.object,
             htmlElementUtilsMock.object,
             windowUtilsMock.object,

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IconButton } from '@fluentui/react';
-import { act, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { GearMenuButton } from 'common/components/gear-menu-button';
 import { HamburgerMenuButton } from 'common/components/hamburger-menu-button';
@@ -53,11 +53,12 @@ describe('LaunchPanelHeaderTest', () => {
 
     it('renders', () => {
         const wrapped = render(<LaunchPanelHeader {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([
-            FlaggedComponent,
-            GearMenuButton,
-            HamburgerMenuButton,
-        ]);
+        expectMockedComponentPropsToMatchSnapshots([FlaggedComponent, GearMenuButton]);
+        const HamburgerMenuButtonProps = getMockComponentClassPropsForCall(HamburgerMenuButton);
+        //removed below node here, as the next levels node has timers,
+        //which is getting updated everytime when we run test command
+        HamburgerMenuButtonProps.header._reactInternals.return = { node: 'removed return node' };
+        expect(HamburgerMenuButtonProps).toMatchSnapshot('HamburgerMenuButton props');
         expect(wrapped.asFragment()).toMatchSnapshot();
     });
 
@@ -75,9 +76,7 @@ describe('LaunchPanelHeaderTest', () => {
 
         render(flaggedComponentProps.enableJSXElement);
 
-        act(() => {
-            getMockComponentClassPropsForCall(IconButton).onClick();
-        });
+        getMockComponentClassPropsForCall(IconButton).onClick();
 
         dropdownClickHandlerMock.verifyAll();
     });

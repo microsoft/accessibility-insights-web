@@ -1,17 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Link } from '@fluentui/react-components';
-import { mockReactComponents } from '../../../unit/mock-helpers/mock-module-helpers';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
-jest.mock('@fluentui/react-components');
 
 describe('Details View -> Assessment -> Headings', () => {
-    mockReactComponents([Link]);
     let browser: Browser;
     let headingsPage: DetailsViewPage;
 

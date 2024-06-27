@@ -3,13 +3,14 @@
 import { Theme } from 'common/components/theme';
 import { configMutator } from 'common/configuration';
 import * as React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { InsightsRouter } from 'views/insights/insights-router';
 import { renderer, RendererDeps } from 'views/insights/renderer';
 
 describe('insights renderer', () => {
     const deps = {
         dom: document,
-        render: jest.fn(),
+        createRoot: jest.fn().mockReturnValue({ render: jest.fn() }),
         initializeFabricIcons: jest.fn(),
     } as Partial<RendererDeps> as RendererDeps;
 
@@ -34,13 +35,15 @@ describe('insights renderer', () => {
     it('renders InsightsRouter', () => {
         renderer(deps);
         const root = document.body.querySelector('#insights-root');
-        expect(deps.render).toHaveBeenCalledWith(
+        expect(deps.createRoot).toHaveBeenCalledWith(root);
+        expect(deps.createRoot(root).render).toHaveBeenCalledWith(
             <>
-                <Theme deps={deps}>
-                    <InsightsRouter deps={deps} />
-                </Theme>
+                <HelmetProvider>
+                    <Theme deps={deps}>
+                        <InsightsRouter deps={deps} />
+                    </Theme>
+                </HelmetProvider>
             </>,
-            root,
         );
     });
 });
