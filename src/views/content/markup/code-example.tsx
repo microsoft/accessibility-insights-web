@@ -36,8 +36,9 @@ export function CodeExample(props: CodeExampleProps): JSX.Element {
     }
 
     function renderLineBreaks(str: string): React.ReactNode[] {
+        const newLineArray = str.includes('\r\n') ? str.split('\r\n') : str.split('\n');
         return flatten(
-            str.split('\n').map(s => [<br key={`line-breaker-${lineCount++}`} />, s]),
+            newLineArray.map(s => [<br key={`line-breaker-${lineCount++}`} />, s]),
         ).slice(1);
     }
 

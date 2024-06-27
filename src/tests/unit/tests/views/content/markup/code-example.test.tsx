@@ -80,4 +80,12 @@ describe('<CodeExample>', () => {
         const renderResult = render(<CodeExample>{`Line 1\nLine 2`}</CodeExample>);
         expect(renderResult.container.querySelector('br')).not.toBeNull();
     });
+
+    it('renders highlight and multiple line breaks using \\r\\n', () => {
+        const renderResult = render(
+            <CodeExample>{`Line 1\r\nLine 2 [HIGHLIGHT\r\nHERE]Line 3\r\nLine 4`}</CodeExample>,
+        );
+        expect(renderResult.container.querySelector('br')).not.toBeNull();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+    });
 });
