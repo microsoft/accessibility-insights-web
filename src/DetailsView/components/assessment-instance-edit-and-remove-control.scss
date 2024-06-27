@@ -6,7 +6,9 @@
     margin-left: 12px;
     font-size: 16px;
     line-height: 24px;
-    color: $negative-outcome;
+    color: $negative-outcome !important;
+    margin-left: 12px !important;
+    font-size: 16px !important;
 
     &:hover,
     &:focus {

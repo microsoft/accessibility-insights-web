@@ -233,12 +233,6 @@ describe('Details View ->', () => {
         await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(detailsViewPage, '*');
-        // this results object has a failure for high contrast theme
-        // so links with style background having transparent was throwing insufficient color contrast
-        // with surrounding text, even though background is black.
-        // this is a false positive because background is black and link is having yellow as per high contrast theme
-        // standards so this criteria does not apply
-        // Please refer for more information on the error:https://github.com/dequelabs/axe-core/issues/3464
         expect(results).toMatchSnapshot();
     }
 

@@ -21,12 +21,12 @@ exports[`DiagnosticViewToggleTest renders details view link when the test does n
       />
     </div>
     <div>
-      <mock-styledlinkbase
+      <mock-link
         classname="insights-link"
         href="#"
       >
         List view and filtering
-      </mock-styledlinkbase>
+      </mock-link>
     </div>
     <div
       class="shortcut"

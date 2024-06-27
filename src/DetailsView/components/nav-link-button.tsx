@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css, INavButtonProps, Link } from '@fluentui/react';
+import { css, INavButtonProps } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { NamedFC } from 'common/react/named-fc';
 import { BaseLeftNavLink } from 'DetailsView/components/base-left-nav';
 import styles from 'DetailsView/components/nav-link-button.scss';

@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Link, TooltipHost } from '@fluentui/react';
+import { TooltipHost } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { css } from '@fluentui/utilities';
 import { NamedFC } from 'common/react/named-fc';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
