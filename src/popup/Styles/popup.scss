@@ -195,10 +195,10 @@ html {
         margin-bottom: 5px;
         padding: 0;
         height: 20px;
-        font-weight: 600;
+        font-weight: 600 !important;
 
         .ms-Link {
-            font-weight: 600;
+            font-weight: 600 !important;
         }
     }
 }
