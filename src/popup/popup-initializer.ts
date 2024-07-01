@@ -10,7 +10,7 @@ import { DocumentManipulator } from 'common/document-manipulator';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { AxeInfo } from '../common/axe-info';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
@@ -81,10 +81,7 @@ export class PopupInitializer {
     }
 
     private useIncompatibleBrowserRenderer = () => {
-        const incompatibleBrowserRenderer = new IncompatibleBrowserRenderer(
-            ReactDOM.render,
-            document,
-        );
+        const incompatibleBrowserRenderer = new IncompatibleBrowserRenderer(createRoot, document);
         incompatibleBrowserRenderer.render();
     };
 
@@ -239,7 +236,7 @@ export class PopupInitializer {
         const renderer = new MainRenderer(
             deps,
             popupHandlers,
-            ReactDOM.render,
+            createRoot,
             document,
             window,
             tab.url,

@@ -28,7 +28,7 @@ describe('NotificationCreator', () => {
     const notificationMessage = 'the-message';
     const testNotificationId = 'the-notification-id';
     const key: string = 'the-key';
-    const visualizationType: VisualizationType = -1;
+    const visualizationType: VisualizationType = -1 as VisualizationType;
     const manifestStub: chrome.runtime.Manifest = {
         name: 'test-name',
         icons: { 128: 'iconUrl' },

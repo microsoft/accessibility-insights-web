@@ -31,7 +31,6 @@ class CodePenExportForm extends React.Component<ReportExportFormProps> {
                 action="https://codepen.io/pen/define"
                 method="POST"
                 target="_blank"
-                rel="noopener"
                 style={{ visibility: 'hidden' }}
             >
                 <input

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Dropdown, IDropdownOption } from '@fluentui/react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -51,7 +51,7 @@ describe('Switcher', () => {
     });
 
     describe('user interaction', () => {
-        it('triggers action message and state change when the user changes selection', () => {
+        it('triggers action message and state change when the user changes selection', async () => {
             detailsViewActionMessageCreatorMock
                 .setup(creator =>
                     creator.sendPivotItemClicked(
@@ -62,9 +62,11 @@ describe('Switcher', () => {
             render(<Switcher {...defaultProps} />);
             const dropdown = getMockComponentClassPropsForCall(Dropdown);
             expect(dropdown.selectedKey).toBe(DetailsViewPivotType.fastPass);
-            dropdown.onChange(null, {
-                key: DetailsViewPivotType.assessment,
-            } as IDropdownOption);
+            await act(() =>
+                dropdown.onChange(null, {
+                    key: DetailsViewPivotType.assessment,
+                } as IDropdownOption),
+            );
             const dropdown2 = getMockComponentClassPropsForCall(Dropdown, 2);
             expect(dropdown2.selectedKey).toBe(DetailsViewPivotType.assessment);
             detailsViewActionMessageCreatorMock.verifyAll();

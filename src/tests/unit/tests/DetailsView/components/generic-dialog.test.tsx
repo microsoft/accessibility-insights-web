@@ -12,12 +12,14 @@ import {
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
+    mockReactComponent,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
-describe('GenericDialogTest', () => {
-    mockReactComponents([Dialog, DialogFooter, PrimaryButton, DefaultButton]);
 
+describe('GenericDialogTest', () => {
+    mockReactComponents([DialogFooter, PrimaryButton, DefaultButton]);
+    mockReactComponent(Dialog, 'Dialog');
     it('should render', () => {
         const props: GenericDialogProps = {
             title: 'test title',
@@ -61,7 +63,7 @@ describe('GenericDialogTest', () => {
         };
 
         render(<GenericDialog {...props} />);
-        getMockComponentClassPropsForCall(PrimaryButton).onClick(event);
+        getMockComponentClassPropsForCall(PrimaryButton).onClick();
 
         expect(onPrimaryButtonClickMock).toHaveBeenCalledTimes(1);
     });

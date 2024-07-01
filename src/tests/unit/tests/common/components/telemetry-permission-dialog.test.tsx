@@ -7,6 +7,7 @@ import * as React from 'react';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
+    mockReactComponent,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -28,11 +29,11 @@ describe('TelemetryPermissionDialogTest', () => {
     mockReactComponents([
         TelemetryNotice,
         PrivacyStatementPopupText,
-        Dialog,
         Checkbox,
         DialogFooter,
         PrimaryButton,
     ]);
+    mockReactComponent(Dialog, 'Dialog');
     let userConfigMessageCreatorStub: SetTelemetryStateMessageCreator;
     let setTelemetryStateMock: () => null;
 
@@ -61,11 +62,8 @@ describe('TelemetryPermissionDialogTest', () => {
 
         const renderResult = render(<TelemetryPermissionDialog {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([
-            TelemetryNotice,
-            PrivacyStatementPopupText,
-            Dialog,
-        ]);
+        expectMockedComponentPropsToMatchSnapshots([TelemetryNotice, PrivacyStatementPopupText]);
+        expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
         const checkBox = getMockComponentClassPropsForCall(Checkbox);
         expect(checkBox.checked).toEqual(true);
 

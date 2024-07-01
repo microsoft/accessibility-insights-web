@@ -47,7 +47,7 @@ describe('TabStopsAnalyzer', () => {
             analyzerTerminatedMessageType: 'ScanTerminated message type',
             analyzerMessageType: 'ScanCompleted message type',
             key: 'sample key',
-            testType: -1,
+            testType: -1 as VisualizationType,
         };
         simulateTabEvent = null;
         debounceFaker = new DebounceFaker();

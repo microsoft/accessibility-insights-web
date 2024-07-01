@@ -22,6 +22,7 @@ export const AllPropertyTypes = [
     'className',
     'contentDescription',
     'text',
+    'urls',
     'relatedCssSelectors',
 ] as const;
 export type PropertyType = (typeof AllPropertyTypes)[number];

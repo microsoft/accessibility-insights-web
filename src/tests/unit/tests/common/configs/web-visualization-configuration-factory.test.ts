@@ -175,8 +175,15 @@ describe('WebVisualizationConfigurationFactory', () => {
             assessmentProviderMock.object,
             quickAssessProviderMock.object,
         );
-        const assessmentStubs = [getAssessmentStub('a-1', -1), getAssessmentStub('a-2', -2)];
-        const quickAssessStubs = [getAssessmentStub('mp-1', -3), getAssessmentStub('mp-2', -4)];
+
+        const assessmentStubs = [
+            getAssessmentStub('a-1', -1 as VisualizationType),
+            getAssessmentStub('a-2', -2 as VisualizationType),
+        ];
+        const quickAssessStubs = [
+            getAssessmentStub('mp-1', -3 as VisualizationType),
+            getAssessmentStub('mp-2', -4 as VisualizationType),
+        ];
 
         quickAssessProviderMock.setup(mock => mock.all()).returns(() => quickAssessStubs);
         assessmentProviderMock.setup(mock => mock.all()).returns(() => assessmentStubs);

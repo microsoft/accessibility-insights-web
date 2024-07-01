@@ -19,9 +19,9 @@ import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('DiagnosticViewToggleFactoryTest', () => {
-    const firstVisualizationTypeStub = -1;
-    const secondVisualizationTypeStub = -2;
-    const thirdAlwaysDisabledVisualizationTypeStub = -3;
+    const firstVisualizationTypeStub = -1 as VisualizationType;
+    const secondVisualizationTypeStub = -2 as VisualizationType;
+    const thirdAlwaysDisabledVisualizationTypeStub = -3 as VisualizationType;
     const testVisualizationTypes: VisualizationType[] = [
         firstVisualizationTypeStub,
         secondVisualizationTypeStub,

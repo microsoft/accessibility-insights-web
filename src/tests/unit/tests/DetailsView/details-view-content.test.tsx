@@ -161,7 +161,7 @@ describe(DetailsViewContent.displayName, () => {
 
     describe('render', () => {
         it('renders normally', () => {
-            const viewType = -1;
+            const viewType = -1 as VisualizationType;
             const isPreviewFeaturesOpen = false;
             const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
             const dropdownClickHandler = Mock.ofType(DropdownClickHandler);

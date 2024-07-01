@@ -16,7 +16,7 @@ describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
     let defaultState: VisualizationStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let generator: InitialVisualizationStoreDataGenerator;
-    const visualizationTypes = EnumHelper.getNumericValues(VisualizationType);
+    const visualizationTypes: VisualizationType[] = EnumHelper.getNumericValues(VisualizationType);
     const visualizationConfigurationStub = (test: number, testMode: string) => {
         return {
             key: `type-${test}`,

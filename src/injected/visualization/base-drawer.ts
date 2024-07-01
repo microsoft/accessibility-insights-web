@@ -35,6 +35,7 @@ export abstract class BaseDrawer implements Drawer {
         this.formatter = formatter;
         this.windowUtils = windowUtils;
         this.shadowUtils = shadowUtils;
+        this.handlePositionChange = this.handlePositionChange.bind(this);
         this.changeHandler = throttle(this.handlePositionChange, BaseDrawer.recalculationTimeout);
         this.drawerUtils = drawerUtils;
     }
@@ -97,12 +98,12 @@ export abstract class BaseDrawer implements Drawer {
 
     protected abstract addHighlightsToContainer(): Promise<void>;
 
-    protected handlePositionChange = async () => {
+    protected async handlePositionChange(): Promise<void> {
         if (this.isEnabled) {
             this.removeContainerElement();
             await this.draw();
         }
-    };
+    }
 
     protected applyContainerClass(): void {
         if (this.containerElement == null) {

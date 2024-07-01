@@ -177,7 +177,7 @@ class TestPropsBuilder {
     private scanning: boolean = false;
     private featureFlags = {};
     private deps: IssuesTableDeps;
-    private testType: VisualizationType = -1;
+    private testType: VisualizationType = -1 as VisualizationType;
     private getProviderMock: IMock<() => AssessmentsProvider>;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {

@@ -62,8 +62,6 @@ describe('ResolutionCreator', () => {
                 ],
                 all: [{ id: null, message: 'all 1 message', data: null }],
                 none: [{ id: null, message: 'none 1 message', data: null }],
-                html: 'test html',
-                target: ['test target'],
             },
         };
 

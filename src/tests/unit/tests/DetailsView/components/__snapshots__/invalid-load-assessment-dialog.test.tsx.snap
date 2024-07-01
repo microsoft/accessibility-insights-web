@@ -22,14 +22,14 @@ exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] 
 
 exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true: Dialog props 1`] = `
 {
-  "children": <StyledDialogFooterBase>
+  "children": <ForwardRef(StyledDialogFooterBase)>
     <CustomizedPrimaryButton
       data-automation-id="invalid-load-assessment-dialog-ok-button"
       onClick={[Function]}
     >
       OK
     </CustomizedPrimaryButton>
-  </StyledDialogFooterBase>,
+  </ForwardRef(StyledDialogFooterBase)>,
   "dialogContentProps": {
     "subText": "Please select a valid *.a11ywebassessment file",
     "title": "Oops! Accessibility Insights can’t open this file.",

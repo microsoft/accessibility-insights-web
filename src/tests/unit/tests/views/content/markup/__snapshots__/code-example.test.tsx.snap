@@ -247,3 +247,31 @@ exports[`<CodeExample> renders with unterminated highlighted region 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`<CodeExample> renders highlight and multiple line breaks using \\r\\n 1`] = `
+<DocumentFragment>
+  <div
+    class="code-example"
+  >
+    <div
+      class="code-example-code"
+    >
+      <mock-codeblock>
+        Line 1
+        <br />
+        Line 2 
+        <span
+          class="highlight"
+        >
+          HIGHLIGHT
+          <br />
+          HERE
+        </span>
+        Line 3
+        <br />
+        Line 4
+      </mock-codeblock>
+    </div>
+  </div>
+</DocumentFragment>
+`;
