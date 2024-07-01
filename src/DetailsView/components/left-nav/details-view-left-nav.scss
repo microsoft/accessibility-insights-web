@@ -80,10 +80,20 @@
                     .ms-Button-label,
                     .overview-percent {
                         color: $highlighted-text;
+
+                        @media (forced-colors: active) {
+                            forced-color-adjust: none;
+                            color: HighlightText !important;
+                        }
                     }
 
                     .left-nav-icon {
                         color: $left-nav-icon;
+
+                        @media (forced-colors: active) {
+                            forced-color-adjust: none;
+                            color: HighlightText !important;
+                        }
                     }
                 }
 
