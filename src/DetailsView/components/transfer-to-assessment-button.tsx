@@ -2,8 +2,11 @@
 // Licensed under the MIT License.
 
 import { IRefObject, IButton } from '@fluentui/react';
+import { Button, ButtonProps } from '@fluentui/react-components';
+import { FolderArrowRightRegular } from '@fluentui/react-icons';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { NamedFC } from 'common/react/named-fc';
+import { CommandButtonStyle } from 'DetailsView/components/command-button-styles';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import * as React from 'react';
 
@@ -21,17 +24,19 @@ export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-bu
 export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProps>(
     'TransferToAssessmentButton',
     props => {
+        const saveAssessmentStyles = CommandButtonStyle()
         return (
             <InsightsCommandButton
+                className={saveAssessmentStyles.assessmentButton}
                 data-automation-id={transferToAssessmentButtonAutomationId}
-                //iconProps={{ iconName: 'fabricMoveToFolder' }}
-                iconName='FolderArrowRightRegular'
+                insightsCommandButtonIconProps={{ icon: <FolderArrowRightRegular /> }}
                 onClick={
                     props.deps.dataTransferViewController.showQuickAssessToAssessmentConfirmDialog
                 }
-                componentRef={props.buttonRef}
-                text="Move to assessment"
-            />
+                ref={props.buttonRef}
+            >
+                Move to assessment
+            </InsightsCommandButton>
         );
     },
 );

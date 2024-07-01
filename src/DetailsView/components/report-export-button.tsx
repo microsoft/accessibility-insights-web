@@ -4,6 +4,8 @@ import { IButton, IRefObject } from '@fluentui/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { ArrowExportRegular } from '@fluentui/react-icons';
+import { CommandButtonStyle } from 'DetailsView/components/command-button-styles';
 
 export interface ReportExportButtonProps {
     showReportExportDialog: () => void;
@@ -13,14 +15,15 @@ export interface ReportExportButtonProps {
 export const reportExportButtonAutomationId = 'report-export-button';
 
 export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExportButton', props => {
+    const exportButtonStyles = CommandButtonStyle();
+
     return (
         <InsightsCommandButton
-            // iconProps={{ iconName: 'Export' }}
-            text="Export Result"
-            iconName='ArrowExportRegular'
+            insightsCommandButtonIconProps={{ icon: <ArrowExportRegular /> }}
             onClick={props.showReportExportDialog}
-            componentRef={props.buttonRef}
+            ref={props.buttonRef}
             data-automation-id={reportExportButtonAutomationId}
-        />
+            className={exportButtonStyles.assessmentButton}
+        >Export Result</InsightsCommandButton>
     );
 });

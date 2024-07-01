@@ -9,6 +9,9 @@ import { UrlParser } from 'common/url-parser';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import * as React from 'react';
+import { FolderOpenRegular } from '@fluentui/react-icons';
+import { NamedFC } from 'common/react/named-fc';
+import { CommandButtonStyle } from 'DetailsView/components/command-button-styles';
 
 export type LoadAssessmentButtonDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -25,16 +28,15 @@ export interface LoadAssessmentButtonProps {
 
 export const loadAssessmentButtonAutomationId = 'load-assessment-button';
 
-export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonProps> {
-    public render(): JSX.Element {
-        return (
-            <InsightsCommandButton
-                data-automation-id={loadAssessmentButtonAutomationId}
-                // iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
-                iconName="FolderOpenRegular"
-                onClick={this.props.handleLoadAssessmentButtonClick}
-                text=" Load assessment"
-            />
-        );
-    }
-}
+export const LoadAssessmentButton = NamedFC<LoadAssessmentButtonProps>('LoadAssessmentButton', props => {
+    const loadButtonStyles = CommandButtonStyle();
+    return (
+        <InsightsCommandButton
+            data-automation-id={loadAssessmentButtonAutomationId}
+            // iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
+            insightsCommandButtonIconProps={{ icon: <FolderOpenRegular /> }}
+            onClick={props.handleLoadAssessmentButtonClick}
+            className={loadButtonStyles.assessmentButton}
+        >Load assessment</InsightsCommandButton>
+    );
+});

@@ -16,6 +16,7 @@ import { InsightsCommandButton } from 'common/components/controls/insights-comma
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { hasIn } from 'lodash';
 import * as React from 'react';
+import { Checkmark16Filled } from '@fluentui/react-icons';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
@@ -126,11 +127,11 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
             <InsightsCommandButton
                 data-automation-id={passUnmarkedInstancesButtonAutomationId}
                 //iconProps={{ iconName: 'skypeCheck' }}
-                iconName='Checkmark16Filled'
+                insightsCommandButtonIconProps={{ icon: <Checkmark16Filled /> }}
                 onClick={this.onPassUnmarkedInstances}
                 disabled={disabled}
-                text=" Pass unmarked instances"
-            />
+            //text=" Pass unmarked instances"
+            >Pass unmarked instances</InsightsCommandButton>
         );
     }
 

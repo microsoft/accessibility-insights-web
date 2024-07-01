@@ -1,5 +1,5 @@
 // Licensed under the MIT License.
-import { themeToTokensObject, webLightTheme } from '@fluentui/react-components';
+import { makeStyles, themeToTokensObject, tokens, webLightTheme } from '@fluentui/react-components';
 import {
     ArrowExportRegular,
     FolderArrowRightRegular,
@@ -29,3 +29,11 @@ export const Icons = {
     ladybugSolid: <BugRegular filled color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} />,
     copy: <CopyRegular filled color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} />
 };
+
+
+export const IconsStyles = makeStyles({
+    refreshIcon: {
+        color: tokens.colorCompoundBrandStrokeHover,
+        paddingLeft: '14px'
+    }
+});

@@ -6,6 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
+import { ArrowClockwiseRegular } from '@fluentui/react-icons';
 import styles from './inline-start-over-button.scss';
 
 export const inlineStartOverButtonDataAutomationId = 'inline-start-over-button';
@@ -23,12 +24,12 @@ export const InlineStartOverButton = NamedFC<InlineStartOverButtonProps>(
         return (
             <InsightsCommandButton
                 onClick={rescan}
-                text="Start over"
+                //text="Start over"
                 //   iconProps={{ iconName: 'Refresh' }}
-                iconName='ArrowClockwiseRegular'
+                insightsCommandButtonIconProps={{ icon: <ArrowClockwiseRegular /> }}
                 className={styles.inlineStartOverButton}
                 data-automation-id={inlineStartOverButtonDataAutomationId}
-            />
+            >Start over</InsightsCommandButton>
         );
     },
 );

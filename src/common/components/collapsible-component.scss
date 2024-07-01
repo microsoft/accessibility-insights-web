@@ -8,7 +8,7 @@ span.collapsible-title {
 }
 
 .collapsible {
-    padding: 0;
+   // padding: 0;
     cursor: pointer;
     width: auto;
     border: none;
@@ -17,6 +17,10 @@ span.collapsible-title {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    padding-left: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 12px;
 
     h2 {
         font-weight: $normal-title-font-weight;

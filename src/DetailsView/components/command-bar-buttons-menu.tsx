@@ -13,19 +13,13 @@ import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
 import { Menu, MenuButton, MenuItem, MenuItemProps, MenuList, MenuPopover, MenuTrigger } from '@fluentui/react-components';
 import { MoreHorizontalRegular } from '@fluentui/react-icons';
-import { Icons } from 'common/icons/fluentui-v9-icons';
-import { useState } from 'react';
 
-import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { ChevronRightRegular } from '@fluentui/react-icons'
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element | null;
     saveAssessmentButton?: JSX.Element | null;
     loadAssessmentButton?: JSX.Element | null;
     transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
-    //getStartOverComponent: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
 };
 
@@ -33,8 +27,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
         const exportButton = props.renderExportReportButton();
-        const overflowItems: MenuItemProps[] = [];
-        const [showMenu, setShowMenu] = useState(false)
+        const overflowItems: any[] = [];
 
         if (exportButton != null) {
             overflowItems.push({
@@ -62,130 +55,41 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             });
         }
 
-        // overflowItems.push({
-        //     key: 'start over',
-        //     ...props.getStartOverMenuItem(),
-        // });
-
-        // if (props.getStartOverMenuItem() != null) {
-        //     overflowItems.push({
-        //         key: 'start over',
-        //         ...props.getStartOverMenuItem(),
-        //         //children: <div role="menuitem">{value}</div>,
-        //     });
-        // }
-        if (props.getStartOverMenuItem() != null) {
-            overflowItems.push({
-                key: 'start over',
-                // hasSubmenu: true,
-                ...props.getStartOverMenuItem(),
-            });
-        }
-
-        console.log('overflowItems', overflowItems);
-
-
+        overflowItems.push({
+            key: 'start over',
+            ...props.getStartOverMenuItem(),
+        });
+        //@ts-ignore
         return (
-            <Menu>
-                <MenuTrigger>
-                    <MenuButton appearance="transparent" icon={<MoreHorizontalRegular />} className={styles.commandBarButtonsMenuButton} />
-                </MenuTrigger>
-                <MenuList>
-                    {overflowItems.map((item: any, index: number) => (
+            <TooltipHost content="More actions" aria-label="More actions">
+                {/* <CommandBarButton
+                    ariaLabel="More actions"
+                    className={styles.commandBarButtonsMenu}
+                    role="button"
+                    menuIconProps={{
+                        iconName: 'More',
+                        className: styles.commandBarButtonsMenuButton,
+                    }}
+                    menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
+                    componentRef={props.buttonRef}
+                /> */}
+                <Menu>
+                    <MenuTrigger>
+                        <MenuButton appearance="transparent" icon={<MoreHorizontalRegular />} className={styles.commandBarButtonsMenuButton} />
+                    </MenuTrigger>
+                    <>
+                        <MenuPopover>
 
-                        item?.children?.props?.children?.props?.hasSubMenu ?
-                            <>
-                                <Menu>
-                                    <MenuTrigger>
-                                        <MenuItem onClick={() => setShowMenu(!showMenu)} icon={<ChevronRightRegular />} key={`${item.key}-${index}`}>
-                                            Start over
-                                        </MenuItem>
-                                    </MenuTrigger>
-                                    <MenuPopover>
-                                        <MenuList>
-                                            <MenuItem>{item.children}</MenuItem>
-                                        </MenuList>
-                                    </MenuPopover>
-                                </Menu>
-                                {/* {showMenu && item.children} */}
-                            </>
-                            :
+                            {/* {overflowItems.map((item, index) => item.children)} */}
 
-                            <MenuItem key={`${item.key}-${index}`} icon={Icons[item?.iconName]} className={item?.iconProps?.iconName === 'ArrowClockwiseRegular' ? item?.className : styles.commandBarButtonsSubmenu} {...item}>
+                            <MenuList>
+                                {overflowItems.map((item, index) => item?.children?.props?.children?.props?.hasSubMenu ? item.children : <MenuItem className={styles.menuItem} key={index} {...props}>{item?.children}</MenuItem>)}
+                            </MenuList>
 
-                                {item?.children}
-                            </MenuItem>
-
-
-                    ))}
-                </MenuList>
-            </Menu>
-        )
-
-        // return (
-        //     <>
-        //         top = {overflowItems.map((item: any, index: number) => <h1>{item.children}</h1>)}
-        //         {/* <TooltipHost content="More actions" aria-label="More actions">
-        //             <CommandBarButton
-        //                 ariaLabel="More actions"
-        //                 className={styles.commandBarButtonsMenu}
-        //                 role="button"
-        //                 menuIconProps={{
-        //                     iconName: 'More',
-        //                     className: styles.commandBarButtonsMenuButton,
-        //                 }}
-        //                 menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
-        //                 componentRef={props.buttonRef}
-        //             />
-        //         </TooltipHost> */}
-        //         <TooltipHost content="More actions" className={styles.commandBarButtonsMenu}>
-        //             <Menu>
-        //                 <MenuTrigger>
-        //                     <MenuButton appearance="transparent" icon={<MoreHorizontalRegular />} className={styles.commandBarButtonsMenuButton} />
-        //                 </MenuTrigger>
-        //                 {/* <MenuPopover> */}
-        //                 <MenuList>
-        //                     {overflowItems.map((item: any, index: number) => (
-        //                         <>
-        //                             {item?.children?.props?.children?.props?.hasSubMenu ?
-        //                                 <Menu key={`${item.key}-${index}`}>
-        //                                     {/* <MenuTrigger>
-        //                                             <MenuItem className={item?.iconProps?.iconName === 'ArrowClockwiseRegular' ? item?.className : styles.commandBarButtonsSubmenu}>
-        //                                                 22{item?.children?.props?.children}
-        //                                             </MenuItem>
-        //                                         </MenuTrigger> */}
-        //                                     {/* <MenuTrigger>
-        //                                             <MenuItem>Start over</MenuItem>
-        //                                         </MenuTrigger>
-        //                                         <MenuPopover>
-        //                                             <MenuList>
-
-        //                                                 {props.getStartOverMenuItem().children[1]}
-        //                                             </MenuList>
-        //                                         </MenuPopover> */}
-
-        //                                     {item.children}
-
-
-
-        //                                     {/* {props.getStartOverMenuItem().children} */}
-
-        //                                 </Menu>
-
-        //                                 : <MenuItem key={`${item.key}-${index}`} icon={Icons[item?.iconName]} className={item?.iconProps?.iconName === 'ArrowClockwiseRegular' ? item?.className : styles.commandBarButtonsSubmenu} {...item}>
-
-        //                                     {item?.children}
-        //                                 </MenuItem >}
-
-
-        //                         </>
-        //                     ))}
-
-        //                 </MenuList>
-        //                 {/* </MenuPopover> */}
-        //             </Menu>
-        //         </TooltipHost >
-        //     </>
-        // );
+                        </MenuPopover>
+                    </>
+                </Menu>
+            </TooltipHost>
+        );
     },
 );

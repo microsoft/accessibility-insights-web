@@ -5,6 +5,21 @@
 
 .command-bar-buttons-menu-button {
     font-size: 16px;
+    
+}
+
+.menu-item {
+    font-weight: 600;
+    padding:6px;
+
+    &:hover {
+        background: none !important;
+        color:#115ea3 !important;
+    }
+}
+
+.refresh-icon {
+    color:#115ea3 !important;
 }
 
 .command-bar-buttons-submenu {
@@ -16,5 +31,8 @@
 }
 
 .command-bar-buttons-menu {
-    height: $details-view-command-bar-height;
+    height: 17px;
+    margin-left: 17px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
