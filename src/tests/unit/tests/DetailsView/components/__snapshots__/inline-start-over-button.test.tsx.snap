@@ -5,20 +5,21 @@ exports[`InlineStartOverButton renders 1`] = `
   <mock-insightscommandbutton
     classname="inlineStartOverButton"
     data-automation-id="inline-start-over-button"
-    iconprops="[object Object]"
-    text="Start over"
-  />
+    insightscommandbuttoniconprops="[object Object]"
+  >
+    Start over
+  </mock-insightscommandbutton>
 </DocumentFragment>
 `;
 
 exports[`InlineStartOverButton renders: InsightsCommandButton props 1`] = `
 {
+  "children": "Start over",
   "className": "inlineStartOverButton",
   "data-automation-id": "inline-start-over-button",
-  "iconProps": {
-    "iconName": "Refresh",
+  "insightsCommandButtonIconProps": {
+    "icon": <ArrowClockwiseRegular />,
   },
   "onClick": [Function],
-  "text": "Start over",
 }
 `;
