@@ -59,7 +59,7 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
                     }}
                     {...props}
                 >
-                    {props.children} v9
+                    {props.children}
                 </Button>
             </>
         );

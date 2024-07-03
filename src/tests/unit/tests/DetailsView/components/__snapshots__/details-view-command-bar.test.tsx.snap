@@ -33,58 +33,54 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__15"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="load-assessment-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__18"
-            >
-              Load assessment
-            </span>
-          </span>
+            <path
+              d="M3 5.5v6.6l1.5-2.6A3 3 0 0 1 7.1 8H15v-.5c0-.83-.67-1.5-1.5-1.5h-4a.5.5 0 0 1-.35-.15l-1.71-1.7A.5.5 0 0 0 7.09 4H4.5C3.67 4 3 4.67 3 5.5Zm1.28 10.48.22.02h9.4a2 2 0 0 0 1.73-1l2.17-3.75A1.5 1.5 0 0 0 16.5 9H7.1a2 2 0 0 0-1.73 1L3.2 13.75a1.5 1.5 0 0 0 1.08 2.23ZM2 14.46V5.5A2.5 2.5 0 0 1 4.5 3h2.59c.4 0 .78.16 1.06.44L9.7 5h3.79A2.5 2.5 0 0 1 16 7.5V8h.5a2.5 2.5 0 0 1 2.16 3.75L16.5 15.5a3 3 0 0 1-2.6 1.5H4.5a2.54 2.54 0 0 1-1.62-.6A2.5 2.5 0 0 1 2 14.46Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Load assessment
       </button>
     </div>
     <mock-exportdialog
@@ -188,58 +184,54 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__15"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="load-assessment-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__18"
-            >
-              Load assessment
-            </span>
-          </span>
+            <path
+              d="M3 5.5v6.6l1.5-2.6A3 3 0 0 1 7.1 8H15v-.5c0-.83-.67-1.5-1.5-1.5h-4a.5.5 0 0 1-.35-.15l-1.71-1.7A.5.5 0 0 0 7.09 4H4.5C3.67 4 3 4.67 3 5.5Zm1.28 10.48.22.02h9.4a2 2 0 0 0 1.73-1l2.17-3.75A1.5 1.5 0 0 0 16.5 9H7.1a2 2 0 0 0-1.73 1L3.2 13.75a1.5 1.5 0 0 0 1.08 2.23ZM2 14.46V5.5A2.5 2.5 0 0 1 4.5 3h2.59c.4 0 .78.16 1.06.44L9.7 5h3.79A2.5 2.5 0 0 1 16 7.5V8h.5a2.5 2.5 0 0 1 2.16 3.75L16.5 15.5a3 3 0 0 1-2.6 1.5H4.5a2.54 2.54 0 0 1-1.62-.6A2.5 2.5 0 0 1 2 14.46Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Load assessment
       </button>
     </div>
     <mock-exportdialog
@@ -343,58 +335,54 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__9"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="load-assessment-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__12"
-            >
-              Load assessment
-            </span>
-          </span>
+            <path
+              d="M3 5.5v6.6l1.5-2.6A3 3 0 0 1 7.1 8H15v-.5c0-.83-.67-1.5-1.5-1.5h-4a.5.5 0 0 1-.35-.15l-1.71-1.7A.5.5 0 0 0 7.09 4H4.5C3.67 4 3 4.67 3 5.5Zm1.28 10.48.22.02h9.4a2 2 0 0 0 1.73-1l2.17-3.75A1.5 1.5 0 0 0 16.5 9H7.1a2 2 0 0 0-1.73 1L3.2 13.75a1.5 1.5 0 0 0 1.08 2.23ZM2 14.46V5.5A2.5 2.5 0 0 1 4.5 3h2.59c.4 0 .78.16 1.06.44L9.7 5h3.79A2.5 2.5 0 0 1 16 7.5V8h.5a2.5 2.5 0 0 1 2.16 3.75L16.5 15.5a3 3 0 0 1-2.6 1.5H4.5a2.54 2.54 0 0 1-1.62-.6A2.5 2.5 0 0 1 2 14.46Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Load assessment
       </button>
     </div>
     <mock-exportdialog
@@ -498,58 +486,54 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__9"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="load-assessment-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__12"
-            >
-              Load assessment
-            </span>
-          </span>
+            <path
+              d="M3 5.5v6.6l1.5-2.6A3 3 0 0 1 7.1 8H15v-.5c0-.83-.67-1.5-1.5-1.5h-4a.5.5 0 0 1-.35-.15l-1.71-1.7A.5.5 0 0 0 7.09 4H4.5C3.67 4 3 4.67 3 5.5Zm1.28 10.48.22.02h9.4a2 2 0 0 0 1.73-1l2.17-3.75A1.5 1.5 0 0 0 16.5 9H7.1a2 2 0 0 0-1.73 1L3.2 13.75a1.5 1.5 0 0 0 1.08 2.23ZM2 14.46V5.5A2.5 2.5 0 0 1 4.5 3h2.59c.4 0 .78.16 1.06.44L9.7 5h3.79A2.5 2.5 0 0 1 16 7.5V8h.5a2.5 2.5 0 0 1 2.16 3.75L16.5 15.5a3 3 0 0 1-2.6 1.5H4.5a2.54 2.54 0 0 1-1.62-.6A2.5 2.5 0 0 1 2 14.46Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Load assessment
       </button>
     </div>
     <mock-exportdialog
@@ -653,31 +637,29 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__6"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
     </div>
     <mock-exportdialog
@@ -781,31 +763,29 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__6"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
     </div>
     <mock-exportdialog
@@ -908,67 +888,85 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__30"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <div>
-        <button
+        <div
+          aria-expanded="true"
+          aria-haspopup="menu"
           aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
-          type="button"
+          class="fui-MenuItem r11normc commandBarButtonsMenu menuItem"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur1"
+          role="menuitem"
+          tabindex="0"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
+            class="fui-MenuItem__icon r9c34qo"
           >
-            <i
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
+              class="refreshIcon ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                class="ms-Button-label label-113"
-                id="id__33"
-              >
-                Start over
-              </span>
-            </span>
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
+              <path
+                d="M4 10a6 6 0 0 1 10.47-4H12.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.6a7 7 0 1 0 1.98 4.36.5.5 0 1 0-1 .08L16 10a6 6 0 0 1-12 0Z"
+                fill="currentColor"
+              />
+            </svg>
           </span>
-        </button>
+          <span
+            class="fui-MenuItem__content r1ls86vo"
+          >
+            Start over V9
+          </span>
+          <span
+            class="fui-MenuItem__submenuIndicator r9c34qo"
+          >
+            <svg
+              aria-hidden="true"
+              class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
         <span
-          class="ms-layer"
+          hidden=""
         />
       </div>
     </div>
@@ -1073,65 +1071,82 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__30"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <div>
-        <button
+        <div
+          aria-haspopup="menu"
           aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
-          type="button"
+          class="fui-MenuItem r11normc commandBarButtonsMenu menuItem"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur1"
+          role="menuitem"
+          tabindex="0"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
+            class="fui-MenuItem__icon r9c34qo"
           >
-            <i
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
+              class="refreshIcon ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                class="ms-Button-label label-113"
-                id="id__33"
-              >
-                Start over
-              </span>
-            </span>
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
+              <path
+                d="M4 10a6 6 0 0 1 10.47-4H12.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.6a7 7 0 1 0 1.98 4.36.5.5 0 1 0-1 .08L16 10a6 6 0 0 1-12 0Z"
+                fill="currentColor"
+              />
+            </svg>
           </span>
-        </button>
+          <span
+            class="fui-MenuItem__content r1ls86vo"
+          >
+            Start over V9
+          </span>
+          <span
+            class="fui-MenuItem__submenuIndicator r9c34qo"
+          >
+            <svg
+              aria-hidden="true"
+              class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
     <mock-exportdialog
@@ -1235,67 +1250,85 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__21"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <div>
-        <button
+        <div
+          aria-expanded="true"
+          aria-haspopup="menu"
           aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
-          type="button"
+          class="fui-MenuItem r11normc commandBarButtonsMenu menuItem"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur0"
+          role="menuitem"
+          tabindex="0"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
+            class="fui-MenuItem__icon r9c34qo"
           >
-            <i
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
+              class="refreshIcon ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                class="ms-Button-label label-113"
-                id="id__24"
-              >
-                Start over
-              </span>
-            </span>
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
+              <path
+                d="M4 10a6 6 0 0 1 10.47-4H12.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.6a7 7 0 1 0 1.98 4.36.5.5 0 1 0-1 .08L16 10a6 6 0 0 1-12 0Z"
+                fill="currentColor"
+              />
+            </svg>
           </span>
-        </button>
+          <span
+            class="fui-MenuItem__content r1ls86vo"
+          >
+            Start over V9
+          </span>
+          <span
+            class="fui-MenuItem__submenuIndicator r9c34qo"
+          >
+            <svg
+              aria-hidden="true"
+              class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
         <span
-          class="ms-layer"
+          hidden=""
         />
       </div>
     </div>
@@ -1400,65 +1433,82 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__21"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <div>
-        <button
+        <div
+          aria-haspopup="menu"
           aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
-          type="button"
+          class="fui-MenuItem r11normc commandBarButtonsMenu menuItem"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur0"
+          role="menuitem"
+          tabindex="0"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
+            class="fui-MenuItem__icon r9c34qo"
           >
-            <i
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
+              class="refreshIcon ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                class="ms-Button-label label-113"
-                id="id__24"
-              >
-                Start over
-              </span>
-            </span>
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
+              <path
+                d="M4 10a6 6 0 0 1 10.47-4H12.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.6a7 7 0 1 0 1.98 4.36.5.5 0 1 0-1 .08L16 10a6 6 0 0 1-12 0Z"
+                fill="currentColor"
+              />
+            </svg>
           </span>
-        </button>
+          <span
+            class="fui-MenuItem__content r1ls86vo"
+          >
+            Start over V9
+          </span>
+          <span
+            class="fui-MenuItem__submenuIndicator r9c34qo"
+          >
+            <svg
+              aria-hidden="true"
+              class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </div>
       </div>
     </div>
     <mock-exportdialog
@@ -1562,31 +1612,29 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__39"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <div>
         Transfer to assessment stub
@@ -1693,31 +1741,29 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__39"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export Result
       </button>
       <div>
         Transfer to assessment stub
@@ -1940,25 +1986,10 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
         Transfer to assessment stub
       </div>
       <button
-        class="ms-Button ms-Button--action ms-Button--command root-109"
-        data-is-focusable="true"
+        class="fui-Button r1alrhcs"
         type="button"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__0"
-            >
-              Start Over Component
-            </span>
-          </span>
-        </span>
+        Start Over Component
       </button>
     </div>
     <mock-exportdialog
@@ -2283,25 +2314,10 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
         Transfer to assessment stub
       </div>
       <button
-        class="ms-Button ms-Button--action ms-Button--command root-109"
-        data-is-focusable="true"
+        class="fui-Button r1alrhcs"
         type="button"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__3"
-            >
-              Start Over Component
-            </span>
-          </span>
-        </span>
+        Start Over Component
       </button>
     </div>
     <mock-exportdialog

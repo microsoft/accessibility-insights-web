@@ -41,6 +41,7 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuIt
   "allTestSuffix": "Assessment",
   "buttonRef": undefined,
   "dropdownDirection": "left",
+  "hasSubMenu": undefined,
   "openDialog": undefined,
   "rightPanelOptions": {
     "showTest": true,
@@ -63,9 +64,17 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
       "iconName": "Refresh",
     }
   }
+  insightsCommandButtonIconProps={
+    {
+      "className": "startOverMenuItemIcon",
+      "icon": <ArrowClockwiseRegular />,
+    }
+  }
   onClick={[Function]}
   text="Start over"
-/>
+>
+  Start over
+</InsightsCommandButton>
 `;
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is false => component matches snapshot: StartOverDropdown props 1`] = `undefined`;
@@ -81,24 +90,48 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
       "iconName": "Refresh",
     }
   }
+  insightsCommandButtonIconProps={
+    {
+      "className": "startOverMenuItemIcon",
+      "icon": <ArrowClockwiseRegular />,
+    }
+  }
   onClick={[Function]}
   text="Start over"
-/>
+>
+  Start over
+</InsightsCommandButton>
 `;
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is true => component matches snapshot: StartOverDropdown props 1`] = `undefined`;
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is false => component matches snapshot 1`] = `
 {
-  "className": "startOverMenuItem",
-  "data-automation-id": "start-over",
-  "disabled": false,
-  "iconProps": {
-    "className": "startOverMenuItemIcon",
-    "iconName": "Refresh",
-  },
-  "onClick": [Function],
-  "text": "Start over",
+  "children": <div
+    role="menuitem"
+  >
+    <InsightsCommandButton
+      className="startOverMenuItem"
+      data-automation-id="start-over"
+      disabled={false}
+      iconProps={
+        {
+          "className": "startOverMenuItemIcon",
+          "iconName": "Refresh",
+        }
+      }
+      insightsCommandButtonIconProps={
+        {
+          "className": "startOverMenuItemIcon",
+          "icon": <ArrowClockwiseRegular />,
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    >
+      Start over
+    </InsightsCommandButton>
+  </div>,
 }
 `;
 
@@ -106,15 +139,31 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is true => component matches snapshot 1`] = `
 {
-  "className": "startOverMenuItem",
-  "data-automation-id": "start-over",
-  "disabled": true,
-  "iconProps": {
-    "className": "startOverMenuItemIcon",
-    "iconName": "Refresh",
-  },
-  "onClick": [Function],
-  "text": "Start over",
+  "children": <div
+    role="menuitem"
+  >
+    <InsightsCommandButton
+      className="startOverMenuItem"
+      data-automation-id="start-over"
+      disabled={true}
+      iconProps={
+        {
+          "className": "startOverMenuItemIcon",
+          "iconName": "Refresh",
+        }
+      }
+      insightsCommandButtonIconProps={
+        {
+          "className": "startOverMenuItemIcon",
+          "icon": <ArrowClockwiseRegular />,
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    >
+      Start over
+    </InsightsCommandButton>
+  </div>,
 }
 `;
 
@@ -161,6 +210,7 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuI
   "allTestSuffix": "Quick Assess",
   "buttonRef": undefined,
   "dropdownDirection": "left",
+  "hasSubMenu": undefined,
   "openDialog": undefined,
   "rightPanelOptions": {
     "showTest": true,

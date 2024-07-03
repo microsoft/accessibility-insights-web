@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ContextualMenu, IButton, IRefObject } from '@fluentui/react';
+import { Menu } from '@fluentui/react-components';
 import { act, render } from '@testing-library/react';
 
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
@@ -19,10 +20,11 @@ import {
     StartOverProps,
 } from '../../../../../DetailsView/components/start-over-dropdown';
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 jest.mock('common/components/controls/insights-command-button');
 
 describe('StartOverDropdownTest', () => {
-    mockReactComponents([ContextualMenu, InsightsCommandButton]);
+    mockReactComponents([ContextualMenu, InsightsCommandButton, Menu]);
     let defaultProps: StartOverProps;
     let openDialogMock: IMock<(dialogType: StartOverDialogType) => void>;
 
@@ -118,7 +120,7 @@ describe('StartOverDropdownTest', () => {
 
         render(<StartOverDropdown {...defaultProps} />);
         await act(() =>
-            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+            getMockComponentClassPropsForCall(Menu).onClick({
                 currentTarget: 'test target',
             }),
         );
@@ -134,7 +136,7 @@ describe('StartOverDropdownTest', () => {
 
         render(<StartOverDropdown {...defaultProps} />);
         await act(() =>
-            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+            getMockComponentClassPropsForCall(Menu).onClick({
                 currentTarget: 'test target',
             }),
         );
@@ -148,7 +150,7 @@ describe('StartOverDropdownTest', () => {
     it('should dismiss the contextMenu', async () => {
         const renderResult = render(<StartOverDropdown {...defaultProps} />);
         await act(() =>
-            getMockComponentClassPropsForCall(InsightsCommandButton).onClick({
+            getMockComponentClassPropsForCall(Menu).onClick({
                 currentTarget: 'test target',
             }),
         );

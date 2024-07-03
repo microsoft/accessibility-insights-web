@@ -1,13 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FailureInstancePanelControlTest closeFailureInstancePanel: CustomizedActionButton props 1`] = `
+exports[`FailureInstancePanelControlTest closeFailureInstancePanel: Button props 1`] = `
 {
-  "ariaDescription": "Open add a failure instance panel",
-  "ariaLabel": "Add a failure instance",
-  "children": "Add a failure instance",
-  "iconProps": {
-    "iconName": "Add",
-  },
+  "appearance": "transparent",
+  "aria-description": "Open add a failure instance panel",
+  "aria-label": "Add a failure instance",
+  "children": [
+    "Add a failure instance",
+  ],
+  "icon": <AddRegular />,
   "onClick": [Function],
 }
 `;
@@ -25,88 +26,94 @@ exports[`FailureInstancePanelControlTest closeFailureInstancePanel: FlaggedCompo
 }
 `;
 
-exports[`FailureInstancePanelControlTest componentDidUpdate reassigns state: CustomizedActionButton props 1`] = `
+exports[`FailureInstancePanelControlTest componentDidUpdate reassigns state: Button props 1`] = `
 {
-  "ariaDescription": "Open add a failure instance panel",
-  "ariaLabel": "Add a failure instance",
-  "children": "Add a failure instance",
-  "iconProps": {
-    "iconName": "Add",
-  },
+  "appearance": "transparent",
+  "aria-description": "Open add a failure instance panel",
+  "aria-label": "Add a failure instance",
+  "children": [
+    "Add a failure instance",
+  ],
+  "icon": <AddRegular />,
   "onClick": [Function],
 }
 `;
 
 exports[`FailureInstancePanelControlTest componentDidUpdate reassigns state: FlaggedComponent props 1`] = `undefined`;
 
-exports[`FailureInstancePanelControlTest onAddFailureInstance: CustomizedActionButton props 1`] = `
+exports[`FailureInstancePanelControlTest onAddFailureInstance: Button props 1`] = `
 {
-  "ariaDescription": "Open add a failure instance panel",
-  "ariaLabel": "Add a failure instance",
-  "children": "Add a failure instance",
-  "iconProps": {
-    "iconName": "Add",
-  },
+  "appearance": "transparent",
+  "aria-description": "Open add a failure instance panel",
+  "aria-label": "Add a failure instance",
+  "children": [
+    "Add a failure instance",
+  ],
+  "icon": <AddRegular />,
   "onClick": [Function],
 }
 `;
 
 exports[`FailureInstancePanelControlTest onAddFailureInstance: FlaggedComponent props 1`] = `undefined`;
 
-exports[`FailureInstancePanelControlTest onFailureDescriptionChange: CustomizedActionButton props 1`] = `
+exports[`FailureInstancePanelControlTest onFailureDescriptionChange: Button props 1`] = `
 {
-  "ariaDescription": "Open add a failure instance panel",
-  "ariaLabel": "Add a failure instance",
-  "children": "Add a failure instance",
-  "iconProps": {
-    "iconName": "Add",
-  },
+  "appearance": "transparent",
+  "aria-description": "Open add a failure instance panel",
+  "aria-label": "Add a failure instance",
+  "children": [
+    "Add a failure instance",
+  ],
+  "icon": <AddRegular />,
   "onClick": [Function],
 }
 `;
 
 exports[`FailureInstancePanelControlTest onFailureDescriptionChange: FlaggedComponent props 1`] = `undefined`;
 
-exports[`FailureInstancePanelControlTest onSaveEditedFailureInstance: CustomizedActionButton props 1`] = `undefined`;
+exports[`FailureInstancePanelControlTest onSaveEditedFailureInstance: Button props 1`] = `undefined`;
 
 exports[`FailureInstancePanelControlTest onSaveEditedFailureInstance: FlaggedComponent props 1`] = `undefined`;
 
-exports[`FailureInstancePanelControlTest onSelectorChange : CustomizedActionButton props 1`] = `
+exports[`FailureInstancePanelControlTest onSelectorChange : Button props 1`] = `
 {
-  "ariaDescription": "Open add a failure instance panel",
-  "ariaLabel": "Add a failure instance",
-  "children": "Add a failure instance",
-  "iconProps": {
-    "iconName": "Add",
-  },
+  "appearance": "transparent",
+  "aria-description": "Open add a failure instance panel",
+  "aria-label": "Add a failure instance",
+  "children": [
+    "Add a failure instance",
+  ],
+  "icon": <AddRegular />,
   "onClick": [Function],
 }
 `;
 
 exports[`FailureInstancePanelControlTest onSelectorChange : FlaggedComponent props 1`] = `undefined`;
 
-exports[`FailureInstancePanelControlTest onValidateSelector : CustomizedActionButton props 1`] = `
+exports[`FailureInstancePanelControlTest onValidateSelector : Button props 1`] = `
 {
-  "ariaDescription": "Open add a failure instance panel",
-  "ariaLabel": "Add a failure instance",
-  "children": "Add a failure instance",
-  "iconProps": {
-    "iconName": "Add",
-  },
+  "appearance": "transparent",
+  "aria-description": "Open add a failure instance panel",
+  "aria-label": "Add a failure instance",
+  "children": [
+    "Add a failure instance",
+  ],
+  "icon": <AddRegular />,
   "onClick": [Function],
 }
 `;
 
 exports[`FailureInstancePanelControlTest onValidateSelector : FlaggedComponent props 1`] = `undefined`;
 
-exports[`FailureInstancePanelControlTest openFailureInstancePanel: CustomizedActionButton props 1`] = `
+exports[`FailureInstancePanelControlTest openFailureInstancePanel: Button props 1`] = `
 {
-  "ariaDescription": "Open add a failure instance panel",
-  "ariaLabel": "Add a failure instance",
-  "children": "Add a failure instance",
-  "iconProps": {
-    "iconName": "Add",
-  },
+  "appearance": "transparent",
+  "aria-description": "Open add a failure instance panel",
+  "aria-label": "Add a failure instance",
+  "children": [
+    "Add a failure instance",
+  ],
+  "icon": <AddRegular />,
   "onClick": [Function],
 }
 `;
@@ -115,13 +122,14 @@ exports[`FailureInstancePanelControlTest openFailureInstancePanel: FlaggedCompon
 
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: create without instance 1`] = `
 <DocumentFragment>
-  <mock-customizedactionbutton
-    ariadescription="Open add a failure instance panel"
-    arialabel="Add a failure instance"
-    iconprops="[object Object]"
+  <mock-button
+    appearance="transparent"
+    aria-description="Open add a failure instance panel"
+    aria-label="Add a failure instance"
+    icon="[object Object]"
   >
     Add a failure instance
-  </mock-customizedactionbutton>
+  </mock-button>
   <mock-genericpanel
     classname="failureInstancePanel"
     closebuttonarialabel="Close failure instance panel"
@@ -154,14 +162,15 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
 </DocumentFragment>
 `;
 
-exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: create without instance: CustomizedActionButton props 1`] = `
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: create without instance: Button props 1`] = `
 {
-  "ariaDescription": "Open add a failure instance panel",
-  "ariaLabel": "Add a failure instance",
-  "children": "Add a failure instance",
-  "iconProps": {
-    "iconName": "Add",
-  },
+  "appearance": "transparent",
+  "aria-description": "Open add a failure instance panel",
+  "aria-label": "Add a failure instance",
+  "children": [
+    "Add a failure instance",
+  ],
+  "icon": <AddRegular />,
   "onClick": [Function],
 }
 `;
@@ -216,7 +225,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
 </DocumentFragment>
 `;
 
-exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance: CustomizedActionButton props 1`] = `undefined`;
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance: Button props 1`] = `undefined`;
 
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance: FlaggedComponent props 1`] = `
 {
@@ -233,13 +242,14 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
 
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: partial original instance 1`] = `
 <DocumentFragment>
-  <mock-customizedactionbutton
-    ariadescription="Open add a failure instance panel"
-    arialabel="Add a failure instance"
-    iconprops="[object Object]"
+  <mock-button
+    appearance="transparent"
+    aria-description="Open add a failure instance panel"
+    aria-label="Add a failure instance"
+    icon="[object Object]"
   >
     Add a failure instance
-  </mock-customizedactionbutton>
+  </mock-button>
   <mock-genericpanel
     classname="failureInstancePanel"
     closebuttonarialabel="Close failure instance panel"
@@ -271,14 +281,15 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
 </DocumentFragment>
 `;
 
-exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: partial original instance: CustomizedActionButton props 1`] = `
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: partial original instance: Button props 1`] = `
 {
-  "ariaDescription": "Open add a failure instance panel",
-  "ariaLabel": "Add a failure instance",
-  "children": "Add a failure instance",
-  "iconProps": {
-    "iconName": "Add",
-  },
+  "appearance": "transparent",
+  "aria-description": "Open add a failure instance panel",
+  "aria-label": "Add a failure instance",
+  "children": [
+    "Add a failure instance",
+  ],
+  "icon": <AddRegular />,
   "onClick": [Function],
 }
 `;

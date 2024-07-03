@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 
 import {
-    ActionButton,
     Checkbox,
     Dialog,
     DialogFooter,
     PrimaryButton,
     Stack,
 } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { fireEvent, render, RenderResult, act } from '@testing-library/react';
 
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
@@ -28,8 +28,10 @@ import {
 import { IMock, It, Mock, Times } from 'typemoq';
 
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 describe('SaveAssessmentButton', () => {
-    mockReactComponents([DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton, ActionButton]);
+    console.log('here');
+    mockReactComponents([DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton, Button]);
     mockReactComponent(Dialog, 'Dialog');
     let propsStub: SaveAssessmentButtonProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
@@ -84,7 +86,9 @@ describe('SaveAssessmentButton', () => {
                     'Stack',
                     'Checkbox',
                     'PrimaryButton',
-                    'ActionButton',
+                ]);
+                useOriginalReactElements('@fluentui/react-components', [
+                    'Button',
                 ]);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);

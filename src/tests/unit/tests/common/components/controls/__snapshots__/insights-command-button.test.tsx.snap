@@ -9,52 +9,6 @@ exports[`InsightsCommandButton renders per snapshot with extra className combine
 </DocumentFragment>
 `;
 
-exports[`InsightsCommandButton renders per snapshot with extra className combined with its own: mockConstructor props 1`] = `
-{
-  "className": "insightsCommandButton test-extra-class-name",
-  "iconProps": {
-    "className": "commandBarButtonIcon",
-  },
-}
-`;
-
-exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own 1`] = `
-<DocumentFragment>
-  <mock-mockconstructor
-    classname="insightsCommandButton"
-    iconprops="[object Object]"
-  />
-</DocumentFragment>
-`;
-
-exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own: mockConstructor props 1`] = `
-{
-  "className": "insightsCommandButton",
-  "iconProps": {
-    "className": "commandBarButtonIcon icon-class-name",
-  },
-}
-`;
-
-exports[`InsightsCommandButton renders per snapshot with iconProps passed through 1`] = `
-<DocumentFragment>
-  <mock-mockconstructor
-    classname="insightsCommandButton"
-    iconprops="[object Object]"
-  />
-</DocumentFragment>
-`;
-
-exports[`InsightsCommandButton renders per snapshot with iconProps passed through: mockConstructor props 1`] = `
-{
-  "className": "insightsCommandButton",
-  "iconProps": {
-    "className": "commandBarButtonIcon",
-    "testProperty": "test-value",
-  },
-}
-`;
-
 exports[`InsightsCommandButton renders per snapshot with props passed through 1`] = `
 <DocumentFragment>
   <mock-mockconstructor
@@ -63,14 +17,4 @@ exports[`InsightsCommandButton renders per snapshot with props passed through 1`
     text="test-text"
   />
 </DocumentFragment>
-`;
-
-exports[`InsightsCommandButton renders per snapshot with props passed through: mockConstructor props 1`] = `
-{
-  "className": "insightsCommandButton",
-  "iconProps": {
-    "className": "commandBarButtonIcon",
-  },
-  "text": "test-text",
-}
 `;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import '@testing-library/jest-dom';
-import { ActionButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { act, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Assessments } from 'assessments/assessments';
@@ -323,7 +323,7 @@ describe('DetailsViewCommandBar', () => {
             'ReportExportButton',
         ]);
         const renderResult = render(<DetailsViewCommandBar {...props} />);
-        const exportButton = renderResult.getByRole('button', { name: 'Export result' });
+        const exportButton = renderResult.getByRole('button', { name: 'Export Result' });
         expect(getMockComponentClassPropsForCall(ExportDialog, 1).isOpen).toBe(false);
         expect(renderResult.asFragment()).toMatchSnapshot('export dialog hidden');
         await userEvent.click(exportButton);
@@ -362,7 +362,7 @@ describe('DetailsViewCommandBar', () => {
         const props = getProps(['StartOverComponent']);
         const renderResult = render(<DetailsViewCommandBar {...props} />);
         expect(getMockComponentClassPropsForCall(StartOverDialog, 1).dialogState).toBe('none');
-        const startOverMenuButton = renderResult.getByRole('button', { name: 'start over menu' });
+        const startOverMenuButton = renderResult.getByRole('menuitem', { name: 'start over menu' });
         await userEvent.click(startOverMenuButton);
         const startOverAssessmentButton = renderResult.getByRole('menuitem', {
             name: 'Start over SingleTest',
@@ -377,7 +377,7 @@ describe('DetailsViewCommandBar', () => {
         const props = getProps(['StartOverComponent']);
         const renderResult = render(<DetailsViewCommandBar {...props} />);
         expect(getMockComponentClassPropsForCall(StartOverDialog, 1).dialogState).toBe('none');
-        const startOverMenuButton = renderResult.getByRole('button', { name: 'start over menu' });
+        const startOverMenuButton = renderResult.getByRole('menuitem', { name: 'start over menu' });
         await userEvent.click(startOverMenuButton);
         const startOverAssessmentButton = renderResult.getByRole('menuitem', {
             name: 'Start over Assessment',
@@ -430,9 +430,10 @@ describe('DetailsViewCommandBar', () => {
             const props = getProps(['ReportExportDialogFactory', 'CommandBar']);
             const renderResult = render(<DetailsViewCommandBar {...props} />);
             const exportButton = renderResult.getByRole('button', {
-                name: 'Export result',
+                name: 'Export Result',
             });
             expect(exportButton).not.toHaveFocus();
+            console.log(getMockComponentCall(ExportDialog));
             getMockComponentCall(ExportDialog)[0].afterDismissed();
             expect(exportButton).toHaveFocus();
             await userEvent.click(exportButton); //open the dialog
@@ -512,7 +513,7 @@ describe('DetailsViewCommandBar', () => {
 
             const renderResult = render(<DetailsViewCommandBar {...props} />);
             expect(renderResult.baseElement).toHaveFocus();
-            const startOverMenuButton = renderResult.getByRole('button', {
+            const startOverMenuButton = renderResult.getByRole('menuitem', {
                 name: 'start over menu',
             });
             act(() => {
@@ -539,7 +540,7 @@ describe('DetailsViewCommandBar', () => {
         showReportExportButton = renderExportResults;
 
         if (renderStartOver) {
-            startOverComponent = <ActionButton>Start Over Component</ActionButton>;
+            startOverComponent = <Button>Start Over Component</Button>;
         }
 
         const props = getProps();

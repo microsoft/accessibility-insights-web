@@ -25,20 +25,6 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
 </DocumentFragment>
 `;
 
-exports[`CollapsibleComponentTest render expanded with content-class-name: CustomizedActionButton props 1`] = `
-{
-  "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
-  "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
-  "onClick": [Function],
-}
-`;
-
 exports[`CollapsibleComponentTest render expanded without content-class-name 1`] = `
 <DocumentFragment>
   <div
@@ -62,20 +48,6 @@ exports[`CollapsibleComponentTest render expanded without content-class-name 1`]
     </div>
   </div>
 </DocumentFragment>
-`;
-
-exports[`CollapsibleComponentTest render expanded without content-class-name: CustomizedActionButton props 1`] = `
-{
-  "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
-  "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
-  "onClick": [Function],
-}
 `;
 
 exports[`CollapsibleComponentTest render with container-class-name 1`] = `
@@ -103,106 +75,7 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
 </DocumentFragment>
 `;
 
-exports[`CollapsibleComponentTest render with container-class-name: CustomizedActionButton props 1`] = `
-{
-  "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
-  "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
-  "onClick": [Function],
-}
-`;
-
 exports[`CollapsibleComponentTest render without container-class-name 1`] = `
-<DocumentFragment>
-  <div
-    class=""
-  >
-    <mock-customizedactionbutton
-      aria-expanded="true"
-      classname="collapsible"
-      iconprops="[object Object]"
-    >
-      <div>
-        Some header
-      </div>
-    </mock-customizedactionbutton>
-    <div
-      class="collapsibleContent"
-    >
-      <div>
-        Some content
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`CollapsibleComponentTest render without container-class-name: CustomizedActionButton props 1`] = `
-{
-  "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
-  "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
-  "onClick": [Function],
-}
-`;
-
-exports[`CollapsibleComponentTest toggle from expanded to collapsed: CustomizedActionButton props 1`] = `
-{
-  "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
-  "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
-  "onClick": [Function],
-}
-`;
-
-exports[`CollapsibleComponentTest toggle from expanded to collapsed: CustomizedActionButton props 2`] = `
-{
-  "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
-  "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
-  "onClick": [Function],
-}
-`;
-
-exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1`] = `
-<DocumentFragment>
-  <div
-    class=""
-  >
-    <mock-customizedactionbutton
-      aria-expanded="true"
-      classname="collapsible"
-      iconprops="[object Object]"
-    >
-      <div>
-        Some header
-      </div>
-    </mock-customizedactionbutton>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`] = `
 <DocumentFragment>
   <div
     class=""

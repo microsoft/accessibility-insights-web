@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton, IButton } from '@fluentui/react';
+import { Button, IButton } from '@fluentui/react-components';
 import { render, RenderResult } from '@testing-library/react';
 import {
     CardFooterInstanceActionButtons,
@@ -26,10 +26,10 @@ import {
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
 
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 jest.mock('../../../../../../common/components/toast');
 describe(CardFooterInstanceActionButtons, () => {
-    mockReactComponents([Toast, ActionButton]);
+    mockReactComponents([Toast, Button]);
 
     let defaultProps: CardFooterInstanceActionButtonsProps;
     let defaultDeps: CardFooterInstanceActionButtonsDeps;
@@ -109,7 +109,7 @@ describe(CardFooterInstanceActionButtons, () => {
             expect(renderedElement.asFragment()).toMatchSnapshot('component snapshot');
             if (isCardFooterCollapsed) {
                 expectMockedComponentPropsToMatchSnapshots(
-                    [ActionButton],
+                    [Button],
                     'action button menu props',
                 );
             }
@@ -130,7 +130,7 @@ describe(CardFooterInstanceActionButtons, () => {
             const renderResult = render(<CardFooterInstanceActionButtons {...newProps} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot('component snapshot');
-            expectMockedComponentPropsToMatchSnapshots([ActionButton], 'action button menu props');
+            expectMockedComponentPropsToMatchSnapshots([Button], 'action button menu props');
         },
     );
 
@@ -153,7 +153,7 @@ describe(CardFooterInstanceActionButtons, () => {
         render(<CardFooterInstanceActionButtons {...defaultProps} />);
 
         // call ref callback to set rendered component's ref to our button mock
-        const kebabButtonRefCallback = getMockComponentClassPropsForCall(ActionButton)
+        const kebabButtonRefCallback = getMockComponentClassPropsForCall(Button)
             .componentRef as (ref: IButton) => void;
         kebabButtonRefCallback(kebabButtonMock.object);
 

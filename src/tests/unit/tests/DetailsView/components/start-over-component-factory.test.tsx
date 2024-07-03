@@ -3,6 +3,7 @@
 import { IContextualMenuItem } from '@fluentui/react';
 
 import { fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import {
@@ -100,7 +101,7 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverMenuItem', () => {
             const props = getProps(true);
             const menuItem = AssessmentStartOverFactory.getStartOverMenuItem(props);
-            const renderResult = render(menuItem.onRender());
+            const renderResult = render(menuItem.children);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
@@ -118,7 +119,7 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverMenuItem', () => {
             const props = getProps(true);
             const menuItem = QuickAssessStartOverFactory.getStartOverMenuItem(props);
-            const renderResult = render(menuItem.onRender());
+            const renderResult = render(menuItem.children);
             expect(renderResult.asFragment()).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
@@ -179,6 +180,7 @@ describe('StartOverComponentFactory', () => {
                     props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
 
                     const item = getComponentOrMenuItem(props);
+                    console.log(item)
                     clickComponentOrMenuItem(item, event);
 
                     actionMessageCreatorMock.verify(
@@ -197,6 +199,7 @@ describe('StartOverComponentFactory', () => {
 
         function clickStartOverMenuItem(startOverMenuItem: IContextualMenuItem, event: any): void {
             startOverMenuItem.onClick(event);
+            //userEvent.click(startOverMenuItem.getByRole('button'),event);
         }
     });
 });
