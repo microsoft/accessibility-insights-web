@@ -22,9 +22,16 @@
             forced-color-adjust: none;
             color: HighlightText;
         }
-    }
 
-    .link-icon {
-        font-size: 24px;
+        :global(.ms-Nav-compositeLink):hover & {
+            forced-color-adjust: none;
+            color: HighlightText !important;
+        }
+
+    
+
+        .link-icon {
+            font-size: 24px;
+        }
     }
 }

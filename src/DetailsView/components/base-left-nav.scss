@@ -43,7 +43,7 @@
                 background-color: $nav-link-hover;
 
                 @media (forced-colors: active) {
-                    border: 2px solid Highlight !important;
+                    background-color: Highlight !important;
                 }
             }
         }
