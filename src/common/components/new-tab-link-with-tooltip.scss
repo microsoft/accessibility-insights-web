@@ -23,3 +23,10 @@
         text-decoration: underline !important;
     }
 }
+
+@media screen and (forced-colors: active) {
+    .insights-link:hover {
+        forced-color-adjust: none;
+        color: ButtonText !important;
+    }
+}
