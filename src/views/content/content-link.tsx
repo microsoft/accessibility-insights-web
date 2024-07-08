@@ -3,8 +3,8 @@
 import { Icon } from '@fluentui/react';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
-import * as React from 'react';
 import styles from 'common/components/new-tab-link-with-tooltip.scss';
+import * as React from 'react';
 
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { NamedFC } from '../../common/react/named-fc';
