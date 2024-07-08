@@ -2,66 +2,70 @@
 
 exports[`ContentPanelButton renders from content 1`] = `
 <DocumentFragment>
-  <mock-customizedactionbutton
-    arialabel="info and examples"
-    iconprops="[object Object]"
+  <mock-button
+    appearance="transparent"
+    aria-label="info and examples"
+    classname="info"
+    icon="[object Object]"
   >
     TEXT
-  </mock-customizedactionbutton>
+  </mock-button>
 </DocumentFragment>
 `;
 
-exports[`ContentPanelButton renders from content: CustomizedActionButton props 1`] = `
+exports[`ContentPanelButton renders from content: Button props 1`] = `
 {
-  "ariaLabel": "info and examples",
+  "appearance": "transparent",
+  "aria-label": "info and examples",
   "children": "TEXT",
-  "iconProps": {
-    "iconName": "iconName",
-  },
+  "className": "info",
+  "icon": <InfoRegular />,
   "onClick": [Function],
 }
 `;
 
 exports[`ContentPanelButton renders from path 1`] = `
 <DocumentFragment>
-  <mock-customizedactionbutton
-    arialabel="info and examples"
-    iconprops="[object Object]"
+  <mock-button
+    appearance="transparent"
+    aria-label="info and examples"
+    classname="info"
   >
     TEXT
-  </mock-customizedactionbutton>
+  </mock-button>
 </DocumentFragment>
 `;
 
-exports[`ContentPanelButton renders from path: CustomizedActionButton props 1`] = `
+exports[`ContentPanelButton renders from path: Button props 1`] = `
 {
-  "ariaLabel": "info and examples",
+  "appearance": "transparent",
+  "aria-label": "info and examples",
   "children": "TEXT",
-  "iconProps": {
-    "iconName": "iconName",
-  },
+  "className": "info",
+  "icon": undefined,
   "onClick": [Function],
 }
 `;
 
 exports[`ContentPanelButton renders without iconName 1`] = `
 <DocumentFragment>
-  <mock-customizedactionbutton
-    arialabel="info and examples"
-    iconprops="[object Object]"
+  <mock-button
+    appearance="transparent"
+    aria-label="info and examples"
+    classname="info"
   >
     TEXT
-  </mock-customizedactionbutton>
+  </mock-button>
 </DocumentFragment>
 `;
 
-exports[`ContentPanelButton renders without iconName: CustomizedActionButton props 1`] = `
+exports[`ContentPanelButton renders without iconName: Button props 1`] = `
 {
-  "ariaLabel": "info and examples",
+  "appearance": "transparent",
+  "aria-label": "info and examples",
   "children": "TEXT",
-  "iconProps": {
-    "iconName": undefined,
-  },
+  "className": "info",
+  "icon": undefined,
   "onClick": [Function],
 }
 `;

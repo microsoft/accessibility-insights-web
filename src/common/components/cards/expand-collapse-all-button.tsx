@@ -22,13 +22,13 @@ export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
 
         let expandCollapseAllButtonHandler = cardSelectionMessageCreator.collapseAllRules;
         let buttonText = 'Collapse all';
-        let iconName = <ChevronDown32Regular color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} />;
+        let iconName = <ChevronDown32Regular color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover} />;
         let ariaLabel: string | undefined = undefined;
 
         if (allCardsCollapsed) {
             expandCollapseAllButtonHandler = cardSelectionMessageCreator.expandAllRules;
             buttonText = 'Expand all';
-            iconName = <ChevronRight32Regular color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover} />;
+            iconName = <ChevronRight32Regular color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover} />;
             ariaLabel = 'Expand all rules to show failed instances.';
         }
 
@@ -43,9 +43,14 @@ export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
             //     <h3>555</h3>
             //     {buttonText}
             // </ActionButton>
-            <Button size='medium' appearance="transparent" className={getStyles.expandCollapseAllButton} aria-label={ariaLabel} aria-expanded={!allCardsCollapsed} onClick={expandCollapseAllButtonHandler} icon={iconName}>
+            <Button size='medium'
+                appearance="transparent"
+                className={getStyles?.expandCollapseAllButton}
+                aria-label={ariaLabel}
+                aria-expanded={!allCardsCollapsed}
+                onClick={expandCollapseAllButtonHandler}
+                icon={iconName}>
                 {buttonText}
-                <h3>555</h3>
             </Button>
 
         );

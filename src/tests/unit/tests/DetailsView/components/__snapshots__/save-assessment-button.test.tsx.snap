@@ -2,13 +2,16 @@
 
 exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = `
 <DocumentFragment>
-  <mock-customizedactionbutton
+  <mock-button
+    appearance="transparent"
+    as="a"
     download="download"
     href="url"
-    iconprops="[object Object]"
+    icon="[object Object]"
+    insightscommandbuttoniconprops="[object Object]"
   >
     Save assessment
-  </mock-customizedactionbutton>
+  </mock-button>
   <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"

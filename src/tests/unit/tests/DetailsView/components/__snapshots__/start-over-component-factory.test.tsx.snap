@@ -1,21 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverComponent 1`] = `
-<StartOverDropdown
-  allTestSuffix="Assessment"
-  dropdownDirection="down"
-  rightPanelOptions={
-    {
-      "showTest": true,
-    }
-  }
-  singleTestSuffix="the title"
-  switcherStartOverPreferences={
-    {
-      "showTest": true,
-    }
-  }
-/>
+{
+  "allTestSuffix": "Assessment",
+  "buttonRef": undefined,
+  "dropdownDirection": "down",
+  "hasSubMenu": true,
+  "openDialog": undefined,
+  "rightPanelOptions": {
+    "showTest": true,
+  },
+  "singleTestSuffix": "the title",
+  "switcherStartOverPreferences": {
+    "showTest": true,
+  },
+}
 `;
 
 exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverComponent: StartOverDropdown props 1`] = `undefined`;
@@ -28,6 +27,7 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuIt
     <mock-startoverdropdown
       alltestsuffix="Assessment"
       dropdowndirection="left"
+      hassubmenu="true"
       rightpaneloptions="[object Object]"
       singletestsuffix="the title"
       switcherstartoverpreferences="[object Object]"
@@ -41,7 +41,7 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuIt
   "allTestSuffix": "Assessment",
   "buttonRef": undefined,
   "dropdownDirection": "left",
-  "hasSubMenu": undefined,
+  "hasSubMenu": true,
   "openDialog": undefined,
   "rightPanelOptions": {
     "showTest": true,
@@ -173,6 +173,7 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverCompo
 <StartOverDropdown
   allTestSuffix="Quick Assess"
   dropdownDirection="down"
+  hasSubMenu={true}
   rightPanelOptions={
     {
       "showTest": true,
@@ -197,6 +198,7 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuI
     <mock-startoverdropdown
       alltestsuffix="Quick Assess"
       dropdowndirection="left"
+      hassubmenu="true"
       rightpaneloptions="[object Object]"
       singletestsuffix=""
       switcherstartoverpreferences="[object Object]"
@@ -210,7 +212,7 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuI
   "allTestSuffix": "Quick Assess",
   "buttonRef": undefined,
   "dropdownDirection": "left",
-  "hasSubMenu": undefined,
+  "hasSubMenu": true,
   "openDialog": undefined,
   "rightPanelOptions": {
     "showTest": true,

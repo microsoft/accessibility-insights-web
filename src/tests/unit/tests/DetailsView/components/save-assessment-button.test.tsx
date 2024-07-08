@@ -29,10 +29,21 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 jest.mock('@fluentui/react');
 jest.mock('@fluentui/react-components');
+jest.mock('DetailsView/components/command-button-styles', () => {
+    return {
+        CommandButtonStyle: jest.fn()
+    }
+});
+
+jest.mock('common/components/controls/insights-command-button-style', () => {
+    return {
+        useInsightsCommandButtonStyle: jest.fn()
+    }
+});
 describe('SaveAssessmentButton', () => {
-    console.log('here');
     mockReactComponents([DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton, Button]);
     mockReactComponent(Dialog, 'Dialog');
+
     let propsStub: SaveAssessmentButtonProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
@@ -60,7 +71,7 @@ describe('SaveAssessmentButton', () => {
             beforeEach(() => {
                 mockReactComponent(Dialog, 'Dialog');
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                fireEvent.click(wrapper.container.querySelector('mock-customizedactionbutton'));
+                fireEvent.click(wrapper.container.querySelector('mock-button'));
             });
             it('snapshot of dialog', () => {
                 expect(wrapper.asFragment()).toMatchSnapshot();
@@ -92,7 +103,7 @@ describe('SaveAssessmentButton', () => {
                 ]);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                fireEvent.click(wrapper.getByRole('link'));
+                fireEvent.click(wrapper.getByRole('button'));
             });
 
             it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
@@ -136,7 +147,7 @@ describe('SaveAssessmentButton', () => {
         beforeEach(() => {
             propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
             wrapper = render(<SaveAssessmentButton {...propsStub} />);
-            fireEvent.click(wrapper.getByRole('link'));
+            fireEvent.click(wrapper.getByRole('button'));
         });
 
         it('saves assessment without dialog (dialog is hidden)', () => {

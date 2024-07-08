@@ -25,6 +25,7 @@ import { StartOverDropdown } from 'DetailsView/components/start-over-dropdown';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import {
     expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -87,6 +88,7 @@ describe('StartOverComponentFactory', () => {
                     showTest: true,
                 },
             },
+            hasSubMenu: true
         } as StartOverFactoryProps;
     }
 
@@ -94,7 +96,8 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverComponent', () => {
             const props = getProps(true);
             const rendered = AssessmentStartOverFactory.getStartOverComponent(props);
-            expect(rendered).toMatchSnapshot();
+            console.log('rendered-->', rendered)
+            expect(rendered.props).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
 
@@ -181,7 +184,8 @@ describe('StartOverComponentFactory', () => {
 
                     const item = getComponentOrMenuItem(props);
                     console.log(item)
-                    clickComponentOrMenuItem(item, event);
+                    //clickComponentOrMenuItem(item, event);
+                    getMockComponentClassPropsForCall(item).props.onClick(event);
 
                     actionMessageCreatorMock.verify(
                         creator => creator.rescanVisualization(It.isAny(), It.isAny()),
@@ -199,7 +203,7 @@ describe('StartOverComponentFactory', () => {
 
         function clickStartOverMenuItem(startOverMenuItem: IContextualMenuItem, event: any): void {
             startOverMenuItem.onClick(event);
-            //userEvent.click(startOverMenuItem.getByRole('button'),event);
+            userEvent.click(startOverMenuItem.getByRole('button'), event);
         }
     });
 });

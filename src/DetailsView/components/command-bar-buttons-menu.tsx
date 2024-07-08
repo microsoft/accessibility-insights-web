@@ -26,6 +26,7 @@ export type CommandBarButtonsMenuProps = {
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
+        console.log('props---->', props)
         const exportButton = props.renderExportReportButton();
         const overflowItems: any[] = [];
 
@@ -59,6 +60,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'start over',
             ...props.getStartOverMenuItem(),
         });
+        console.log('overflowItems', overflowItems)
         //@ts-ignore
         return (
             <TooltipHost content="More actions" aria-label="More actions">
@@ -83,7 +85,10 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                             {/* {overflowItems.map((item, index) => item.children)} */}
 
                             <MenuList>
-                                {overflowItems.map((item, index) => item?.children?.props?.children?.props?.hasSubMenu ? item.children : <MenuItem className={styles.menuItem} key={index} {...props}>{item?.children}</MenuItem>)}
+                                {overflowItems.map((item, index) => {
+                                    console.log('item--->', item)
+                                    return item?.children?.props?.children?.props?.hasSubMenu ? item.children : <MenuItem className={styles.menuItem} key={index} {...props}>{item?.children}</MenuItem>
+                                })}
                             </MenuList>
 
                         </MenuPopover>

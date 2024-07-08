@@ -22,6 +22,6 @@ export const useExpandCollapseAllButtonStyles = makeStyles({
         paddingLeft: '1px!important',
         marginLeft: '1px!important',
         marginTop: '2px!important',
-        fontWeight: tokens.fontSizeBase400
+        fontWeight: tokens?.fontSizeBase400
     }
 })

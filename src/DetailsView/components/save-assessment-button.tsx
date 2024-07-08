@@ -32,7 +32,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
     'SaveAssessmentButton',
     props => {
         const [dialogHidden, { setTrue: hideDialog, setFalse: showDialog }] = useBoolean(true);
-        const fluentv9StyleOverrides = InsightsCommandButtonStyle();
+        // const fluentv9StyleOverrides = InsightsCommandButtonStyle();
         const saveAssessmentStyles = CommandButtonStyle()
         function handleSaveAssessmentClick(event: React.MouseEvent<any>) {
             props.deps.getAssessmentActionMessageCreator().saveAssessment(event);
@@ -62,7 +62,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                 <InsightsCommandButton
                     as="a"
                     //iconProps={{ iconName: 'Save' }}
-                    className={saveAssessmentStyles.assessmentButton}
+                    className={saveAssessmentStyles?.assessmentButton}
                     download={props.download}
                     href={props.href}
                     onClick={handleSaveAssessmentClick}

@@ -2,19 +2,112 @@
 
 exports[`InsightsCommandButton renders per snapshot with extra className combined with its own 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
-    classname="insightsCommandButton test-extra-class-name"
-    iconprops="[object Object]"
+  <mock-button
+    appearance="transparent"
+    classname=""
+    icon="[object Object]"
+    insightscommandbuttoniconprops="[object Object]"
   />
 </DocumentFragment>
 `;
 
+exports[`InsightsCommandButton renders per snapshot with extra className combined with its own: Button props 1`] = `
+{
+  "appearance": "transparent",
+  "children": undefined,
+  "className": "",
+  "icon": {
+    "children": undefined,
+    "className": undefined,
+  },
+  "insightsCommandButtonIconProps": {
+    "className": "startOverMenuItemIcon",
+  },
+}
+`;
+
+exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own 1`] = `
+<DocumentFragment>
+  <mock-button
+    appearance="transparent"
+    icon="[object Object]"
+    insightscommandbuttoniconprops="[object Object]"
+  >
+     Load assessment
+  </mock-button>
+</DocumentFragment>
+`;
+
+exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own: Button props 1`] = `
+{
+  "appearance": "transparent",
+  "children": " Load assessment",
+  "className": undefined,
+  "icon": {
+    "children": <FolderOpenRegular
+      className="icon-class-name"
+    />,
+    "className": undefined,
+  },
+  "insightsCommandButtonIconProps": {
+    "icon": <FolderOpenRegular
+      className="icon-class-name"
+    />,
+  },
+}
+`;
+
+exports[`InsightsCommandButton renders per snapshot with iconProps passed through 1`] = `
+<DocumentFragment>
+  <mock-button
+    appearance="transparent"
+    icon="[object Object]"
+    insightscommandbuttoniconprops="[object Object]"
+  >
+    Load assessment
+  </mock-button>
+</DocumentFragment>
+`;
+
+exports[`InsightsCommandButton renders per snapshot with iconProps passed through: Button props 1`] = `
+{
+  "appearance": "transparent",
+  "children": "Load assessment",
+  "className": undefined,
+  "icon": {
+    "children": <FolderOpenRegular />,
+    "className": undefined,
+  },
+  "insightsCommandButtonIconProps": {
+    "icon": <FolderOpenRegular />,
+  },
+}
+`;
+
 exports[`InsightsCommandButton renders per snapshot with props passed through 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
-    classname="insightsCommandButton"
-    iconprops="[object Object]"
-    text="test-text"
-  />
+  <mock-button
+    appearance="transparent"
+    classname=""
+    icon="[object Object]"
+    insightscommandbuttoniconprops="[object Object]"
+  >
+    test-text
+  </mock-button>
 </DocumentFragment>
+`;
+
+exports[`InsightsCommandButton renders per snapshot with props passed through: Button props 1`] = `
+{
+  "appearance": "transparent",
+  "children": "test-text",
+  "className": "",
+  "icon": {
+    "children": undefined,
+    "className": undefined,
+  },
+  "insightsCommandButtonIconProps": {
+    "className": "startOverMenuItemIcon",
+  },
+}
 `;
