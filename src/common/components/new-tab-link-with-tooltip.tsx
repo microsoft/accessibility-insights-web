@@ -6,7 +6,9 @@ import * as React from 'react';
 import { NamedFC } from '../react/named-fc';
 import styles from './new-tab-link-with-tooltip.scss';
 
-export type NewTabLinkWithTooltipProps = ILinkProps & { tooltipContent: string | undefined };
+export type NewTabLinkWithTooltipProps = ILinkProps & {
+    tooltipContent: string | undefined;
+};
 
 export const NewTabLinkWithTooltip = NamedFC<NewTabLinkWithTooltipProps>(
     'NewTabLinkWithTooltip',
@@ -23,7 +25,10 @@ export const NewTabLinkWithTooltip = NamedFC<NewTabLinkWithTooltipProps>(
         };
         return (
             <TooltipHost content={tooltipContent} styles={hostStyles} calloutProps={calloutProps}>
-                <NewTabLink className={styles.insightsLink} {...linkProps} />
+                <NewTabLink
+                    className={typeof className === 'undefined' ? styles.insightsLink : className}
+                    {...linkProps}
+                />
             </TooltipHost>
         );
     },
