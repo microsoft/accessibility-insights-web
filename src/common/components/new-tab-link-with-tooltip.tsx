@@ -8,12 +8,13 @@ import styles from './new-tab-link-with-tooltip.scss';
 
 export type NewTabLinkWithTooltipProps = ILinkProps & {
     tooltipContent: string | undefined;
+    className?: string | undefined;
 };
 
 export const NewTabLinkWithTooltip = NamedFC<NewTabLinkWithTooltipProps>(
     'NewTabLinkWithTooltip',
     props => {
-        const { tooltipContent, ...linkProps } = props;
+        const { tooltipContent, className, ...linkProps } = props;
         const hostStyles: Partial<ITooltipHostStyles> = {
             root: styles.insightsTooltipHost,
         };
