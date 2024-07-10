@@ -944,7 +944,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
           <span
             class="fui-MenuItem__content r1ls86vo"
           >
-            Start over V9
+            Start over
           </span>
           <span
             class="fui-MenuItem__submenuIndicator r9c34qo"
@@ -1126,7 +1126,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
           <span
             class="fui-MenuItem__content r1ls86vo"
           >
-            Start over V9
+            Start over
           </span>
           <span
             class="fui-MenuItem__submenuIndicator r9c34qo"
@@ -1306,7 +1306,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
           <span
             class="fui-MenuItem__content r1ls86vo"
           >
-            Start over V9
+            Start over
           </span>
           <span
             class="fui-MenuItem__submenuIndicator r9c34qo"
@@ -1488,7 +1488,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
           <span
             class="fui-MenuItem__content r1ls86vo"
           >
-            Start over V9
+            Start over
           </span>
           <span
             class="fui-MenuItem__submenuIndicator r9c34qo"

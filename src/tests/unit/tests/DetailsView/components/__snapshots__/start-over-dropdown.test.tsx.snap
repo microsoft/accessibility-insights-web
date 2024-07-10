@@ -7,15 +7,18 @@ exports[`StartOverDropdownTest render 1`] = `
       <mock-menutrigger
         disablebuttonenhancement="true"
       >
-        <mock-menuitem
+        <mock-menubutton
+          appearance="transparent"
           aria-label="start over menu"
           icon="[object Object]"
-          submenuindicator="[object Object]"
+          menuicon="[object Object]"
         >
           Start over V9
-        </mock-menuitem>
+        </mock-menubutton>
       </mock-menutrigger>
-      <mock-menupopover>
+      <mock-menupopover
+        style="border-radius: unset !important;"
+      >
         <mock-menulist>
           <mock-menuitem
             name="Start over all test suffix stub"
@@ -37,112 +40,69 @@ exports[`StartOverDropdownTest render 1`] = `
 exports[`StartOverDropdownTest render with dropdown on left 1`] = `
 <DocumentFragment>
   <div>
-    <div
-      aria-expanded="true"
-      aria-haspopup="menu"
-      aria-label="start over menu"
-      class="fui-MenuItem r11normc"
-      data-tabster="{"restorer":{"type":1}}"
-      id="menur1"
-      role="menuitem"
-      tabindex="0"
-    >
-      <span
-        class="fui-MenuItem__icon r9c34qo"
+    <mock-menu>
+      <mock-menutrigger
+        disablebuttonenhancement="true"
       >
-        <svg
-          aria-hidden="true"
-          class="refreshIcon ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
-          fill="currentColor"
-          height="1em"
-          viewBox="0 0 20 20"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
+        <mock-menubutton
+          appearance="transparent"
+          aria-label="start over menu"
+          icon="[object Object]"
+          menuicon="[object Object]"
         >
-          <path
-            d="M4 10a6 6 0 0 1 10.47-4H12.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.6a7 7 0 1 0 1.98 4.36.5.5 0 1 0-1 .08L16 10a6 6 0 0 1-12 0Z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-      <span
-        class="fui-MenuItem__content r1ls86vo"
+          Start over V9
+        </mock-menubutton>
+      </mock-menutrigger>
+      <mock-menupopover
+        style="border-radius: unset !important;"
       >
-        Start over V9
-      </span>
-      <span
-        class="fui-MenuItem__submenuIndicator r9c34qo"
-      >
-        <svg
-          aria-hidden="true"
-          class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
-          fill="currentColor"
-          height="1em"
-          viewBox="0 0 20 20"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7.65 4.15c.2-.2.5-.2.7 0l5.49 5.46c.21.22.21.57 0 .78l-5.49 5.46a.5.5 0 0 1-.7-.7L12.8 10 7.65 4.85a.5.5 0 0 1 0-.7Z"
-            fill="currentColor"
-          />
-        </svg>
-      </span>
-    </div>
-    <span
-      hidden=""
-    />
+        <mock-menulist>
+          <mock-menuitem
+            name="Start over all test suffix stub"
+          >
+            Start over all test suffix stub
+          </mock-menuitem>
+          <mock-menuitem
+            name="Start over single test suffix stub"
+          >
+            Start over single test suffix stub
+          </mock-menuitem>
+        </mock-menulist>
+      </mock-menupopover>
+    </mock-menu>
   </div>
 </DocumentFragment>
 `;
 
-exports[`StartOverDropdownTest render: Menu props 1`] = `
+exports[`StartOverDropdownTest render with dropdown on left: MenuButton props 1`] = `
 {
-  "children": [
-    <MenuTrigger
-      disableButtonEnhancement={true}
-    >
-      <ForwardRef(MenuItem)
-        aria-label="start over menu"
-        icon={
-          <ArrowClockwiseRegular
-            className="refreshIcon"
-          />
-        }
-        submenuIndicator={<ChevronDownRegular />}
-      >
-        Start over V9
-      </ForwardRef(MenuItem)>
-    </MenuTrigger>,
-    <ForwardRef(MenuPopover)>
-      <ForwardRef(MenuList)>
-        <ForwardRef(MenuItem)
-          name="Start over all test suffix stub"
-          onClick={[Function]}
-        >
-          Start over all test suffix stub
-        </ForwardRef(MenuItem)>
-        <ForwardRef(MenuItem)
-          name="Start over single test suffix stub"
-          onClick={[Function]}
-        >
-          Start over single test suffix stub
-        </ForwardRef(MenuItem)>
-      </ForwardRef(MenuList)>
-    </ForwardRef(MenuPopover)>,
-  ],
+  "appearance": "transparent",
+  "aria-label": "start over menu",
+  "children": "Start over V9",
+  "icon": <ForwardRef(ArrowClockwiseRegular)
+    className="refreshIcon"
+  />,
+  "menuIcon": <span
+    className="chevron"
+  >
+    <ForwardRef(ChevronRight20Regular) />
+  </span>,
 }
 `;
 
-exports[`StartOverDropdownTest render: MenuItem props 1`] = `
+exports[`StartOverDropdownTest render: MenuButton props 1`] = `
 {
+  "appearance": "transparent",
   "aria-label": "start over menu",
   "children": "Start over V9",
-  "className": undefined,
-  "icon": <ArrowClockwiseRegular
+  "icon": <ForwardRef(ArrowClockwiseRegular)
     className="refreshIcon"
   />,
-  "submenuIndicator": <ChevronDownRegular />,
+  "menuIcon": <span
+    className="chevron"
+  >
+    <ForwardRef(ChevronDown20Regular) />
+  </span>,
 }
 `;
 
@@ -162,41 +122,5 @@ exports[`StartOverDropdownTest render: MenuList props 1`] = `
       Start over single test suffix stub
     </ForwardRef(MenuItem)>,
   ],
-}
-`;
-
-exports[`StartOverDropdownTest render: MenuPopover props 1`] = `
-{
-  "children": <ForwardRef(MenuList)>
-    <ForwardRef(MenuItem)
-      name="Start over all test suffix stub"
-      onClick={[Function]}
-    >
-      Start over all test suffix stub
-    </ForwardRef(MenuItem)>
-    <ForwardRef(MenuItem)
-      name="Start over single test suffix stub"
-      onClick={[Function]}
-    >
-      Start over single test suffix stub
-    </ForwardRef(MenuItem)>
-  </ForwardRef(MenuList)>,
-}
-`;
-
-exports[`StartOverDropdownTest render: MenuTrigger props 1`] = `
-{
-  "children": <ForwardRef(MenuItem)
-    aria-label="start over menu"
-    icon={
-      <ArrowClockwiseRegular
-        className="refreshIcon"
-      />
-    }
-    submenuIndicator={<ChevronDownRegular />}
-  >
-    Start over V9
-  </ForwardRef(MenuItem)>,
-  "disableButtonEnhancement": true,
 }
 `;

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Button, IButton } from '@fluentui/react-components';
+import { Button, IButton, MenuItem } from '@fluentui/react-components';
 import { render, RenderResult } from '@testing-library/react';
 import {
     CardFooterInstanceActionButtons,
@@ -29,7 +29,7 @@ import {
 jest.mock('@fluentui/react-components');
 jest.mock('../../../../../../common/components/toast');
 describe(CardFooterInstanceActionButtons, () => {
-    mockReactComponents([Toast, Button]);
+    mockReactComponents([Toast, Button, MenuItem]);
 
     let defaultProps: CardFooterInstanceActionButtonsProps;
     let defaultDeps: CardFooterInstanceActionButtonsDeps;
@@ -135,7 +135,7 @@ describe(CardFooterInstanceActionButtons, () => {
     );
 
     it('onIssueFilingSettingsDialogDismissed focuses kebab button', async () => {
-        defaultProps.narrowModeStatus = { isCardFooterCollapsed: true } as NarrowModeStatus;
+        defaultProps.narrowModeStatus = { isCardFooterCollapsed: false } as NarrowModeStatus;
         const kebabButtonMock = Mock.ofType<IButton>();
         let menuItemsProps: CardFooterMenuItemsProps;
 
@@ -151,10 +151,9 @@ describe(CardFooterInstanceActionButtons, () => {
             });
 
         render(<CardFooterInstanceActionButtons {...defaultProps} />);
-
+        console.log('getMockComponentClassPropsForCall(Button)', getMockComponentClassPropsForCall(MenuItem))
         // call ref callback to set rendered component's ref to our button mock
-        const kebabButtonRefCallback = getMockComponentClassPropsForCall(Button)
-            .componentRef as (ref: IButton) => void;
+        const kebabButtonRefCallback = getMockComponentClassPropsForCall(MenuItem).componentRef as (ref: IButton) => void;
         kebabButtonRefCallback(kebabButtonMock.object);
 
         menuItemsProps.onIssueFilingSettingsDialogDismissed();

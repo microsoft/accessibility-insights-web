@@ -1,40 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: action button menu props 1`] = `
-{
-  "ariaLabel": "test-kebabmenuarialabel",
-  "componentRef": [Function],
-  "menuIconProps": {
-    "className": "kebabMenuIcon",
-    "iconName": "MoreActionsMenuIcon",
-  },
-  "menuProps": {
-    "directionalHint": 6,
-    "items": [
-      {
-        "key": "item1",
-        "onClick": [Function],
-        "text": "item 1",
-      },
-      {
-        "key": "item2",
-        "onClick": [Function],
-        "text": "item 2",
-      },
-    ],
-    "shouldFocusOnMount": true,
-  },
-}
-`;
+exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: action button menu props 1`] = `undefined`;
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <mock-customizedactionbutton
-      arialabel="test-kebabmenuarialabel"
-      menuiconprops="[object Object]"
-      menuprops="[object Object]"
-    />
+    <div
+      class="ms-TooltipHost root-109"
+      role="none"
+    >
+      <div
+        hidden=""
+        id="tooltip1"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        More actions
+      </div>
+    </div>
+    <h3>
+      2222
+    </h3>
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"
@@ -43,41 +28,26 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmen
 </DocumentFragment>
 `;
 
-exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: action button menu props 1`] = `
-{
-  "ariaLabel": "More actions",
-  "componentRef": [Function],
-  "menuIconProps": {
-    "className": "kebabMenuIcon",
-    "iconName": "MoreActionsMenuIcon",
-  },
-  "menuProps": {
-    "directionalHint": 6,
-    "items": [
-      {
-        "key": "item1",
-        "onClick": [Function],
-        "text": "item 1",
-      },
-      {
-        "key": "item2",
-        "onClick": [Function],
-        "text": "item 2",
-      },
-    ],
-    "shouldFocusOnMount": true,
-  },
-}
-`;
+exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: action button menu props 1`] = `undefined`;
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <mock-customizedactionbutton
-      arialabel="More actions"
-      menuiconprops="[object Object]"
-      menuprops="[object Object]"
-    />
+    <div
+      class="ms-TooltipHost root-109"
+      role="none"
+    >
+      <div
+        hidden=""
+        id="tooltip2"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        More actions
+      </div>
+    </div>
+    <h3>
+      2222
+    </h3>
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"
@@ -90,16 +60,28 @@ exports[`CardFooterInstanceActionButtons renders without copyFailureDetails supp
 <DocumentFragment>
   <div>
     <span>
-      <mock-customizedactionbutton
+      <mock-button
+        appearance="transparent"
         classname="item1"
-        text="item 1"
-      />
+        size="medium"
+      >
+        item 1
+      </mock-button>
+      <h3>
+        333
+      </h3>
     </span>
     <span>
-      <mock-customizedactionbutton
+      <mock-button
+        appearance="transparent"
         classname="item2"
-        text="item 2"
-      />
+        size="medium"
+      >
+        item 2
+      </mock-button>
+      <h3>
+        333
+      </h3>
     </span>
   </div>
 </DocumentFragment>
@@ -109,16 +91,28 @@ exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=false render
 <DocumentFragment>
   <div>
     <span>
-      <mock-customizedactionbutton
+      <mock-button
+        appearance="transparent"
         classname="item1"
-        text="item 1"
-      />
+        size="medium"
+      >
+        item 1
+      </mock-button>
+      <h3>
+        333
+      </h3>
     </span>
     <span>
-      <mock-customizedactionbutton
+      <mock-button
+        appearance="transparent"
         classname="item2"
-        text="item 2"
-      />
+        size="medium"
+      >
+        item 2
+      </mock-button>
+      <h3>
+        333
+      </h3>
     </span>
     <mock-toast
       deps="[object Object]"
@@ -128,41 +122,26 @@ exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=false render
 </DocumentFragment>
 `;
 
-exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: action button menu props 1`] = `
-{
-  "ariaLabel": "More actions",
-  "componentRef": [Function],
-  "menuIconProps": {
-    "className": "kebabMenuIcon",
-    "iconName": "MoreActionsMenuIcon",
-  },
-  "menuProps": {
-    "directionalHint": 6,
-    "items": [
-      {
-        "key": "item1",
-        "onClick": [Function],
-        "text": "item 1",
-      },
-      {
-        "key": "item2",
-        "onClick": [Function],
-        "text": "item 2",
-      },
-    ],
-    "shouldFocusOnMount": true,
-  },
-}
-`;
+exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: action button menu props 1`] = `undefined`;
 
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <mock-customizedactionbutton
-      arialabel="More actions"
-      menuiconprops="[object Object]"
-      menuprops="[object Object]"
-    />
+    <div
+      class="ms-TooltipHost root-109"
+      role="none"
+    >
+      <div
+        hidden=""
+        id="tooltip0"
+        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      >
+        More actions
+      </div>
+    </div>
+    <h3>
+      2222
+    </h3>
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"

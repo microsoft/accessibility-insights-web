@@ -80,7 +80,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                         <MenuButton appearance="transparent" icon={<MoreHorizontalRegular />} className={styles.commandBarButtonsMenuButton} />
                     </MenuTrigger>
                     <>
-                        <MenuPopover>
+                        <MenuPopover style={{ padding: 'unset !important', border: 'unset !important', borderRadius: 'unset !important' }}>
 
                             {/* {overflowItems.map((item, index) => item.children)} */}
 

@@ -9,13 +9,20 @@
 }
 
 .menu-item {
-    font-weight: 600;
-    padding:6px;
+   margin-top: 4px !important;
+   margin-bottom: 8px !important;
+   padding-left: unset !important;
+   padding-top: unset !important;
+   padding-bottom: unset !important;
 
     &:hover {
         background: none !important;
         color:#115ea3 !important;
     }
+}
+
+.chevron {
+    margin-bottom: 8px;
 }
 
 .refresh-icon {
@@ -32,7 +39,7 @@
 
 .command-bar-buttons-menu {
     height: 17px;
-    margin-left: 17px;
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-left: 9px !important;
+    margin-top: 8px !important;
+    margin-bottom: 16px !important;
 }

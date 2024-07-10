@@ -146,7 +146,7 @@ describe('StartOverComponentFactory', () => {
                 testName: string,
                 getComponentOrMenuItem: (
                     props: StartOverFactoryProps,
-                ) => JSX.Element | StartOverMenuItem,
+                ) => any | StartOverMenuItem,
                 clickComponentOrMenuItem: (
                     item: JSX.Element | StartOverMenuItem,
                     event: any,
@@ -184,14 +184,18 @@ describe('StartOverComponentFactory', () => {
 
                     const item = getComponentOrMenuItem(props);
                     console.log(item)
-                    //clickComponentOrMenuItem(item, event);
-                    getMockComponentClassPropsForCall(item).props.onClick(event);
+                    //clickComponentOrMenuItem(item?.children?.props?.children?.props ? item?.children?.props?.children?.props : item, event);
+
+                    clickComponentOrMenuItem(item, event);
+                    // getMockComponentClassPropsForCall(item).props.onClick(event);
 
                     actionMessageCreatorMock.verify(
                         creator => creator.rescanVisualization(It.isAny(), It.isAny()),
                         Times.once(),
                     );
                 });
+
+
             },
         );
 
@@ -202,8 +206,9 @@ describe('StartOverComponentFactory', () => {
         }
 
         function clickStartOverMenuItem(startOverMenuItem: IContextualMenuItem, event: any): void {
-            startOverMenuItem.onClick(event);
-            userEvent.click(startOverMenuItem.getByRole('button'), event);
+            console.log('startOverMenuItem', startOverMenuItem)
+            startOverMenuItem.children.props.children?.props.onClick(event);
+            //userEvent.click(startOverMenuItem.getByRole('menuitem'), event);
         }
     });
 });
