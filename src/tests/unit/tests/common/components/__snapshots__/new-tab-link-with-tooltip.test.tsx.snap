@@ -19,6 +19,7 @@ exports[`NewTabLinkWithTooltip handles children: StyledTooltipHostBase props 1`]
     },
   },
   "children": <NewTabLink
+    className="insightsLink"
     href="test"
   >
     link text
@@ -48,6 +49,7 @@ exports[`NewTabLinkWithTooltip renders with null tooltip content: StyledTooltipH
     },
   },
   "children": <NewTabLink
+    className="insightsLink"
     href="test"
   />,
   "content": undefined,
@@ -76,6 +78,7 @@ exports[`NewTabLinkWithTooltip renders with tooltip content: StyledTooltipHostBa
     },
   },
   "children": <NewTabLink
+    className="insightsLink"
     href="test"
   />,
   "content": "tooltip text",
