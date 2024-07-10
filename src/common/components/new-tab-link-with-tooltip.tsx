@@ -26,10 +26,7 @@ export const NewTabLinkWithTooltip = NamedFC<NewTabLinkWithTooltipProps>(
         };
         return (
             <TooltipHost content={tooltipContent} styles={hostStyles} calloutProps={calloutProps}>
-                <NewTabLink
-                    className={typeof className === 'undefined' ? styles.insightsLink : className}
-                    {...linkProps}
-                />
+                <NewTabLink className={className ?? styles.insightsLink} {...linkProps} />
             </TooltipHost>
         );
     },
