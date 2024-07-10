@@ -34,7 +34,7 @@
             width: 100%;
 
             &:hover {
-                background-color: rgb(235, 235, 235) !important;
+                background-color: $nav-link-hover;
             }
         }
 
@@ -103,7 +103,7 @@
             }
 
             &:not(.is-selected):hover {
-                background-color: rgb(235, 235, 235);
+                background-color: $nav-link-hover;
             }
         }
 

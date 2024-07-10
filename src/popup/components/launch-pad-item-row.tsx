@@ -30,6 +30,7 @@ export class LaunchPadItemRow extends React.Component<LaunchPadItemRowProps> {
                             id={kebabCase(this.props.title)}
                             onClick={this.props.onClickTitle}
                             aria-describedby={this.descriptionId}
+                            style={{ fontWeight: 600 }}
                         >
                             {this.props.title}
                         </Link>
