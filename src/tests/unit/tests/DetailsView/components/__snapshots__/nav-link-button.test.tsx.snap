@@ -2,21 +2,22 @@
 
 exports[`NavLinkButton renders as button element 1`] = `
 <DocumentFragment>
-  <mock-link
+  <button
     aria-expanded="true"
     aria-label="some title"
-    classname="navLinkButton some class name"
+    class="ms-Link navLinkButton some class name root-109"
     title="some title"
+    type="button"
   />
 </DocumentFragment>
 `;
 
 exports[`NavLinkButton renders with href set 1`] = `
 <DocumentFragment>
-  <mock-link
+  <a
     aria-expanded="true"
     aria-label="some title"
-    classname="navLinkButton some class name"
+    class="ms-Link navLinkButton some class name root-110"
     href="#"
     title="some title"
   />
@@ -25,22 +26,24 @@ exports[`NavLinkButton renders with href set 1`] = `
 
 exports[`NavLinkButton renders with the proper aria-label 1`] = `
 <DocumentFragment>
-  <mock-link
+  <button
     aria-expanded="true"
     aria-label="some title (current page)"
-    classname="navLinkButton some class name"
+    class="ms-Link navLinkButton some class name root-109"
     title="some title"
+    type="button"
   />
 </DocumentFragment>
 `;
 
 exports[`NavLinkButton renders with using name instead of title 1`] = `
 <DocumentFragment>
-  <mock-link
+  <button
     aria-expanded="true"
     aria-label="some title"
-    classname="navLinkButton some class name"
+    class="ms-Link navLinkButton some class name root-109"
     title="some title"
+    type="button"
   />
 </DocumentFragment>
 `;

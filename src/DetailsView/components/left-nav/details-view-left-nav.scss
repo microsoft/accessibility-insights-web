@@ -78,7 +78,7 @@
                 }
 
                 a {
-                    font-weight: 600
+                    font-weight: 600;
                 }
 
                 a,
@@ -97,8 +97,8 @@
 
                 a::after,
                 button::after {
-                    border-left: $pivot-item-left-border-width $pivot-item-border-style 
-                    $communication-primary;
+                    border-left: $pivot-item-left-border-width $pivot-item-border-style
+                        $communication-primary;
                 }
             }
 

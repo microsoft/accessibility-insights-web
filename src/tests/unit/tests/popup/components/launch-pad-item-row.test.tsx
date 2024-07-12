@@ -68,6 +68,7 @@ describe('LaunchPadItemRow', () => {
                             id={testId}
                             onClick={props.onClickTitle}
                             aria-describedby={descriptionId}
+                            style={{ fontWeight: 600 }}
                         >
                             {props.title}
                         </Link>
