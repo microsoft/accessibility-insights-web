@@ -88,7 +88,7 @@ describe('StartOverComponentFactory', () => {
                     showTest: true,
                 },
             },
-            hasSubMenu: true
+            hasSubMenu: true,
         } as StartOverFactoryProps;
     }
 
@@ -96,7 +96,7 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverComponent', () => {
             const props = getProps(true);
             const rendered = AssessmentStartOverFactory.getStartOverComponent(props);
-            console.log('rendered-->', rendered)
+            console.log('rendered-->', rendered);
             expect(rendered.props).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
@@ -144,9 +144,7 @@ describe('StartOverComponentFactory', () => {
             '%s',
             (
                 testName: string,
-                getComponentOrMenuItem: (
-                    props: StartOverFactoryProps,
-                ) => any | StartOverMenuItem,
+                getComponentOrMenuItem: (props: StartOverFactoryProps) => any | StartOverMenuItem,
                 clickComponentOrMenuItem: (
                     item: JSX.Element | StartOverMenuItem,
                     event: any,
@@ -183,7 +181,7 @@ describe('StartOverComponentFactory', () => {
                     props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
 
                     const item = getComponentOrMenuItem(props);
-                    console.log(item)
+                    console.log(item);
                     //clickComponentOrMenuItem(item?.children?.props?.children?.props ? item?.children?.props?.children?.props : item, event);
 
                     clickComponentOrMenuItem(item, event);
@@ -194,8 +192,6 @@ describe('StartOverComponentFactory', () => {
                         Times.once(),
                     );
                 });
-
-
             },
         );
 
@@ -206,7 +202,7 @@ describe('StartOverComponentFactory', () => {
         }
 
         function clickStartOverMenuItem(startOverMenuItem: IContextualMenuItem, event: any): void {
-            console.log('startOverMenuItem', startOverMenuItem)
+            console.log('startOverMenuItem', startOverMenuItem);
             startOverMenuItem.children.props.children?.props.onClick(event);
             //userEvent.click(startOverMenuItem.getByRole('menuitem'), event);
         }

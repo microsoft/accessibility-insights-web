@@ -5,19 +5,18 @@
 
 .command-bar-buttons-menu-button {
     font-size: 16px;
-    
 }
 
 .menu-item {
-   margin-top: 4px !important;
-   margin-bottom: 8px !important;
-   padding-left: unset !important;
-   padding-top: unset !important;
-   padding-bottom: unset !important;
+    margin-top: 4px !important;
+    margin-bottom: 8px !important;
+    padding-left: unset !important;
+    padding-top: unset !important;
+    padding-bottom: unset !important;
 
     &:hover {
         background: none !important;
-        color:#115ea3 !important;
+        color: #115ea3 !important;
     }
 }
 
@@ -26,7 +25,7 @@
 }
 
 .refresh-icon {
-    color:#115ea3 !important;
+    color: #115ea3 !important;
 }
 
 .command-bar-buttons-submenu {

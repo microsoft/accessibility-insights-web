@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 import { Button, themeToTokensObject, webLightTheme } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
+import { Theme, ThemeDeps, ThemeInnerProps } from 'common/components/theme';
+import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
+import { Mock } from 'typemoq';
 import { ContentPage } from 'views/content/content-page';
 import { ContentPanelButton } from 'views/content/content-panel-button';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
-import { Theme, ThemeDeps, ThemeInnerProps } from 'common/components/theme';
-import { Mock } from 'typemoq';
-import { DocumentManipulator } from 'common/document-manipulator';
 
 jest.mock('@fluentui/react-components');
 
@@ -46,8 +46,6 @@ describe('ContentPanelButton', () => {
         contentProvider: ContentPage.provider(content),
         contentActionMessageCreator: {} as any as ContentActionMessageCreator,
     };
-
-
 
     it('renders from content', () => {
         const renderResult = render(

@@ -1,12 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    Button,
-    ButtonProps,
-    mergeClasses,
-    MenuButtonProps,
-
-} from '@fluentui/react-components';
+import { Button, ButtonProps, mergeClasses, MenuButtonProps } from '@fluentui/react-components';
 
 import { useInsightsCommandButtonStyle } from 'common/components/controls/insights-command-button-style';
 import { NamedFC } from 'common/react/named-fc';
@@ -16,7 +10,6 @@ import styles from './insights-command-button.scss';
 export type InsightsCommandButtonIconProps = {
     className?: string;
     icon?: JSX.Element;
-
 };
 
 export type InsightsCommandButtonProps = (ButtonProps | MenuButtonProps) & {
@@ -27,7 +20,7 @@ export type InsightsCommandButtonProps = (ButtonProps | MenuButtonProps) & {
 // See https://www.figma.com/file/Wj4Ggf6GGQBQkiDIaHfXRX2B/Accessibility-Insights%3A-Styles?node-id=1%3A27
 export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
     'InsightsCommandButton',
-    (props) => {
+    props => {
         const overrides = useInsightsCommandButtonStyle();
 
         return (

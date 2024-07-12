@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { css } from '@fluentui/utilities';
 import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
 import styles from './collapsible-component-cards.scss';
-import { Button } from '@fluentui/react-components';
 
 export const collapsibleButtonAutomationId = 'collapsible-component-cards-button';
 
@@ -78,22 +77,13 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
                 )}
             >
                 <HeadingElementForLevel headingLevel={headingLevel as HeadingLevel}>
-                    {/* <ActionButton
+                    <Button
                         data-automation-id={collapsibleButtonAutomationId}
                         className={styles.collapsibleControl}
                         onClick={onClick}
                         aria-expanded={showContent}
-                        ariaLabel={buttonAriaLabel}
+                        aria-label={buttonAriaLabel}
                     >
-                        <h3>444</h3>
-                        <span className={styles.collapsibleTitle}>{header}</span>
-                    </ActionButton> */}
-                    <Button data-automation-id={collapsibleButtonAutomationId}
-                        className={styles.collapsibleControl}
-                        onClick={onClick}
-                        aria-expanded={showContent}
-                        aria-label={buttonAriaLabel}>
-                        <h3>444</h3>
                         <span className={styles.collapsibleTitle}>{header}</span>
                     </Button>
                 </HeadingElementForLevel>

@@ -271,9 +271,7 @@ describe('FailureInstancePanelControlTest', () => {
         newProps.failureInstance = newFailureInstance;
         newProps.featureFlagStoreData = { manualInstanceDetails: true };
         prevProps.featureFlagStoreData = { manualInstanceDetails: true };
-        const renderResult = render(
-            <FailureInstancePanelControl {...prevProps} />,
-        );
+        const renderResult = render(<FailureInstancePanelControl {...prevProps} />);
         expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
         fireEvent.click(renderResult.container.querySelector('mock-button'));
         const pathField = renderResult.getByLabelText('CSS Selector') as HTMLInputElement;

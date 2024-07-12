@@ -7,7 +7,14 @@ import {
     RefObject,
     TooltipHost,
 } from '@fluentui/react';
-import { Menu, MenuButton, MenuItem, MenuList, MenuPopover, MenuTrigger } from '@fluentui/react-components';
+import {
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    MenuPopover,
+    MenuTrigger,
+} from '@fluentui/react-components';
 import { fireEvent, render, screen } from '@testing-library/react';
 import {
     CommandBarButtonsMenu,
@@ -27,7 +34,15 @@ jest.mock('@fluentui/react-components');
 jest.mock('@fluentui/react');
 
 describe('CommandBarButtonsMenu', () => {
-    mockReactComponents([TooltipHost, Menu, MenuTrigger, MenuButton, MenuPopover, MenuList, MenuItem]);
+    mockReactComponents([
+        TooltipHost,
+        Menu,
+        MenuTrigger,
+        MenuButton,
+        MenuPopover,
+        MenuList,
+        MenuItem,
+    ]);
 
     let renderExportReportComponentMock: IMock<() => JSX.Element>;
     let getStartOverMenuItemMock: IMock<() => StartOverMenuItem>;
@@ -55,12 +70,17 @@ describe('CommandBarButtonsMenu', () => {
     });
 
     it('renders all child buttons with hasSubMenu false,', () => {
-        useOriginalReactElements('@fluentui/react', ['TooltipHost'])
-        useOriginalReactElements('@fluentui/react-components', ['Menu', 'MenuButton', 'MenuTrigger', 'MenuPopover', 'MenuList', 'MenuItem'])
+        useOriginalReactElements('@fluentui/react', ['TooltipHost']);
+        useOriginalReactElements('@fluentui/react-components', [
+            'Menu',
+            'MenuButton',
+            'MenuTrigger',
+            'MenuPopover',
+            'MenuList',
+            'MenuItem',
+        ]);
         setupExportReportMenuItem();
         setupStartOverMenuItem();
-
-
 
         const test = render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
 
@@ -68,15 +88,13 @@ describe('CommandBarButtonsMenu', () => {
         fireEvent.click(getMoreActionsButton);
         //test.debug();
         const hasExportButton = screen.getByText('Report export button');
-        const hasSaveButton = screen.getByText('Save assessment button')
+        const hasSaveButton = screen.getByText('Save assessment button');
         const hasLoadButton = screen.getByText('Load assessment button');
-        const hasTransferButton = screen.getByText('Transfer to assessment button')
+        const hasTransferButton = screen.getByText('Transfer to assessment button');
         expect(hasExportButton).toMatchSnapshot('render export report menuitem');
         expect(hasSaveButton).toMatchSnapshot('render save assessment menuitem');
         expect(hasLoadButton).toMatchSnapshot('render load assessment menuitem');
-        expect(hasTransferButton).toMatchSnapshot(
-            'render transfer to assessment menuitem',
-        );
+        expect(hasTransferButton).toMatchSnapshot('render transfer to assessment menuitem');
         //expect(overflowItems[4].onRender()).toMatchSnapshot('render start over menuitem');
         // expect(menuListValues[0])
         //menuListValues.debug();
@@ -103,8 +121,15 @@ describe('CommandBarButtonsMenu', () => {
     });
 
     it('renders all child buttons with hasSubMenu true,', () => {
-        useOriginalReactElements('@fluentui/react', ['TooltipHost'])
-        useOriginalReactElements('@fluentui/react-components', ['Menu', 'MenuButton', 'MenuTrigger', 'MenuPopover', 'MenuList', 'MenuItem'])
+        useOriginalReactElements('@fluentui/react', ['TooltipHost']);
+        useOriginalReactElements('@fluentui/react-components', [
+            'Menu',
+            'MenuButton',
+            'MenuTrigger',
+            'MenuPopover',
+            'MenuList',
+            'MenuItem',
+        ]);
         setupExportReportMenuItem();
         setupStartOverMenuItem();
         commandBarButtonsMenuProps = {
@@ -120,27 +145,21 @@ describe('CommandBarButtonsMenu', () => {
             hasSubMenu: true,
         } as CommandBarButtonsMenuProps;
 
-
-
-
         const test = render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
 
         const getMoreActionsButton = test.queryByRole('button');
         fireEvent.click(getMoreActionsButton);
 
-
         const hasExportButton = screen.getByText('Report export button');
-        const hasSaveButton = screen.getByText('Save assessment button')
+        const hasSaveButton = screen.getByText('Save assessment button');
         const hasLoadButton = screen.getByText('Load assessment button');
         const hasTransferButton = screen.getByText('Transfer to assessment button');
         const hasStartOver = screen.getByText('Start over button');
-        console.log('hasStartOver', hasStartOver[0])
+        console.log('hasStartOver', hasStartOver[0]);
         expect(hasExportButton).toMatchSnapshot('render export report menuitem');
         expect(hasSaveButton).toMatchSnapshot('render save assessment menuitem');
         expect(hasLoadButton).toMatchSnapshot('render load assessment menuitem');
-        expect(hasTransferButton).toMatchSnapshot(
-            'render transfer to assessment menuitem',
-        );
+        expect(hasTransferButton).toMatchSnapshot('render transfer to assessment menuitem');
         expect(hasStartOver).toMatchSnapshot('render start over menuitem');
         // expect(menuListValues[0])
         //menuListValues.debug();

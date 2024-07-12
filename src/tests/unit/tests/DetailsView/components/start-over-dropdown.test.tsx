@@ -1,13 +1,29 @@
-import { Menu, MenuButton, MenuItem, MenuList, MenuPopover, MenuTrigger } from "@fluentui/react-components";
-import { expectMockedComponentPropsToMatchSnapshots, getMockComponentClassPropsForCall, mockReactComponents, useOriginalReactElements } from "tests/unit/mock-helpers/mock-module-helpers";
-import { ArrowClockwiseRegular, ChevronRightRegular, ChevronDownRegular } from '@fluentui/react-icons';
+import { IButton, IRefObject } from '@fluentui/react';
+import {
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    MenuPopover,
+    MenuTrigger,
+} from '@fluentui/react-components';
+import {
+    ArrowClockwiseRegular,
+    ChevronRightRegular,
+    ChevronDownRegular,
+} from '@fluentui/react-icons';
+import { fireEvent, render } from '@testing-library/react';
+import { StartOverContextMenuKeyOptions } from 'DetailsView/components/details-view-right-panel';
+import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
-import { IMock, Mock, Times } from "typemoq";
-import { StartOverDialogType } from "DetailsView/components/start-over-dialog";
-import { IButton, IRefObject } from "@fluentui/react";
-import { fireEvent, render } from "@testing-library/react";
-import { StartOverContextMenuKeyOptions } from "DetailsView/components/details-view-right-panel";
-import React from "react";
+import React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    useOriginalReactElements,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
+import { IMock, Mock, Times } from 'typemoq';
 
 jest.mock('@fluentui/react');
 jest.mock('@fluentui/react-components');
@@ -91,7 +107,7 @@ describe('StartOverDropdownTest user interaction', () => {
             'MenuButton',
             'MenuPopover',
             'MenuList',
-            'MenuItem'
+            'MenuItem',
         ]);
         openDialogMock.setup(sds => sds('assessment')).verifiable(Times.once());
 

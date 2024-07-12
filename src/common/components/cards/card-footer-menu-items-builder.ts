@@ -57,7 +57,7 @@ export class CardFooterMenuItemsBuilder {
                 iconProps: {
                     iconName: 'ladybugSolid',
                 },
-                iconName:'ladybugSolid',
+                iconName: 'ladybugSolid',
                 onClick: event => this.fileIssue(props, event),
                 componentRef: props.fileIssueButtonRef,
             });
@@ -70,7 +70,7 @@ export class CardFooterMenuItemsBuilder {
                 iconProps: {
                     iconName: 'copy',
                 },
-                iconName:'copy',
+                iconName: 'copy',
                 onClick: event => void this.copyFailureDetails(props, event),
             });
         }

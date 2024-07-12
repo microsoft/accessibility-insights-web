@@ -108,10 +108,7 @@ describe(CardFooterInstanceActionButtons, () => {
         function verifySnapshots(renderedElement: RenderResult): void {
             expect(renderedElement.asFragment()).toMatchSnapshot('component snapshot');
             if (isCardFooterCollapsed) {
-                expectMockedComponentPropsToMatchSnapshots(
-                    [Button],
-                    'action button menu props',
-                );
+                expectMockedComponentPropsToMatchSnapshots([Button], 'action button menu props');
             }
         }
     });
@@ -151,9 +148,10 @@ describe(CardFooterInstanceActionButtons, () => {
             });
 
         render(<CardFooterInstanceActionButtons {...defaultProps} />);
-        console.log('getMockComponentClassPropsForCall(Button)', getMockComponentClassPropsForCall(MenuItem))
         // call ref callback to set rendered component's ref to our button mock
-        const kebabButtonRefCallback = getMockComponentClassPropsForCall(MenuItem).componentRef as (ref: IButton) => void;
+        const kebabButtonRefCallback = getMockComponentClassPropsForCall(MenuItem).componentRef as (
+            ref: IButton,
+        ) => void;
         kebabButtonRefCallback(kebabButtonMock.object);
 
         menuItemsProps.onIssueFilingSettingsDialogDismissed();

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { IRefObject, IButton } from '@fluentui/react';
-import { Button, ButtonProps } from '@fluentui/react-components';
 import { FolderArrowRightRegular } from '@fluentui/react-icons';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { NamedFC } from 'common/react/named-fc';
@@ -24,7 +23,7 @@ export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-bu
 export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProps>(
     'TransferToAssessmentButton',
     props => {
-        const saveAssessmentStyles = CommandButtonStyle()
+        const saveAssessmentStyles = CommandButtonStyle();
         return (
             <InsightsCommandButton
                 className={saveAssessmentStyles.assessmentButton}

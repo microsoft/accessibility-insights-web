@@ -9,6 +9,7 @@ import {
     IObjectWithKey,
 } from '@fluentui/react';
 import { Spinner, SpinnerSize } from '@fluentui/react';
+import { Checkmark16Filled } from '@fluentui/react-icons';
 import { IRenderFunction } from '@fluentui/utilities';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
@@ -16,7 +17,6 @@ import { InsightsCommandButton } from 'common/components/controls/insights-comma
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { hasIn } from 'lodash';
 import * as React from 'react';
-import { Checkmark16Filled } from '@fluentui/react-icons';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
@@ -126,12 +126,12 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         return (
             <InsightsCommandButton
                 data-automation-id={passUnmarkedInstancesButtonAutomationId}
-                //iconProps={{ iconName: 'skypeCheck' }}
                 insightsCommandButtonIconProps={{ icon: <Checkmark16Filled /> }}
                 onClick={this.onPassUnmarkedInstances}
-                disabled={disabled}
-            //text=" Pass unmarked instances"
-            >Pass unmarked instances</InsightsCommandButton>
+                disabled={disabled}    
+            >
+                Pass unmarked instances
+            </InsightsCommandButton>
         );
     }
 

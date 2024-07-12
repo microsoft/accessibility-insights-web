@@ -7,8 +7,8 @@ export const useInsightsCommandButtonStyle = makeStyles({
     button: {
         fontWeight: tokens?.fontWeightRegular,
         '&:hover': {
-            color: 'red !imporant'
-        }
+            color: 'red !imporant',
+        },
     },
     buttonIcon: {
         color: tokens?.colorCompoundBrandStrokeHover,

@@ -9,6 +9,5 @@ import { webDarkTheme } from '@fluentui/react-components';
 export const ThemeV9DarkTheme = {
     ...webDarkTheme,
     colorNeutralBackground1: '#161616',
-    colorNeutralForeground2:'#fff',
-    
+    colorNeutralForeground2: '#fff',
 };

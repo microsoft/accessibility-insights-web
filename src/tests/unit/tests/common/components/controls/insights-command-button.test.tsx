@@ -3,16 +3,14 @@
 import { Button, tokens } from '@fluentui/react-components';
 import { FolderOpenRegular } from '@fluentui/react-icons';
 
-
+import { render } from '@testing-library/react';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import * as React from 'react';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { render } from '@testing-library/react';
 //import { InsightsCommandButtonStyle } from 'common/components/controls/insights-command-button-style';
-
 
 //jest.mock('common/components/controls/insights-command-button-style');
 // jest.mock('@fluentui/react-components', (...rest) => {
@@ -26,8 +24,8 @@ import { render } from '@testing-library/react';
 
 jest.mock('common/components/controls/insights-command-button-style', () => {
     return {
-        useInsightsCommandButtonStyle: jest.fn()
-    }
+        useInsightsCommandButtonStyle: jest.fn(),
+    };
 });
 
 jest.mock('@fluentui/react-components');
@@ -36,13 +34,14 @@ describe('InsightsCommandButton', () => {
     mockReactComponents([Button]);
     const props = {
         insightsCommandButtonIconProps: {
-            className: 'startOverMenuItemIcon'
+            className: 'startOverMenuItemIcon',
         },
         className: '',
-    }
+    };
     it('renders per snapshot with props passed through', () => {
-
-        const renderResult = render(<InsightsCommandButton {...props}>test-text</InsightsCommandButton>);
+        const renderResult = render(
+            <InsightsCommandButton {...props}>test-text</InsightsCommandButton>,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([Button]);
     });
@@ -55,9 +54,9 @@ describe('InsightsCommandButton', () => {
 
     it('renders per snapshot with iconProps passed through', () => {
         const renderResult = render(
-            <InsightsCommandButton
-                insightsCommandButtonIconProps={{ icon: <FolderOpenRegular /> }}
-            >Load assessment</InsightsCommandButton>
+            <InsightsCommandButton insightsCommandButtonIconProps={{ icon: <FolderOpenRegular /> }}>
+                Load assessment
+            </InsightsCommandButton>,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([Button]);
@@ -67,9 +66,12 @@ describe('InsightsCommandButton', () => {
         const renderResult = render(
             <InsightsCommandButton
                 insightsCommandButtonIconProps={{
-                    icon: <FolderOpenRegular className='icon-class-name' />
+                    icon: <FolderOpenRegular className="icon-class-name" />,
                 }}
-            > Load assessment</InsightsCommandButton >
+            >
+                {' '}
+                Load assessment
+            </InsightsCommandButton>,
         );
         expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([Button]);

@@ -16,7 +16,6 @@ import {
 } from 'DetailsView/components/start-over-dropdown';
 import * as React from 'react';
 import styles from './start-over-menu-item.scss';
-import { IconsStyles } from 'common/icons/fluentui-v9-icons';
 
 export type StartOverFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -30,7 +29,7 @@ export type StartOverFactoryProps = {
     visualizationStoreData: VisualizationStoreData;
     openDialog: (dialogType: StartOverDialogType) => void;
     buttonRef: IRefObject<IButton>;
-    hasSubMenu?: boolean
+    hasSubMenu?: boolean;
 };
 
 export type StartOverMenuItem = Omit<IContextualMenuItem, 'key'>;
@@ -44,7 +43,9 @@ export const AssessmentStartOverFactory: StartOverComponentFactory = {
     getStartOverComponent: props => getStartOverComponentForAssessment(props, 'down'),
     getStartOverMenuItem: props => {
         return {
-            children: <div role="menuitem">{getStartOverComponentForAssessment(props, 'left')}</div>
+            children: (
+                <div role="menuitem">{getStartOverComponentForAssessment(props, 'left')}</div>
+            ),
         };
     },
 };
@@ -53,9 +54,9 @@ export const QuickAssessStartOverFactory: StartOverComponentFactory = {
     getStartOverComponent: props => getStartOverComponentForQuickAssess(props, 'down'),
     getStartOverMenuItem: props => {
         return {
-
-            children: <div role="menuitem">{getStartOverComponentForQuickAssess(props, 'left')}</div>
-
+            children: (
+                <div role="menuitem">{getStartOverComponentForQuickAssess(props, 'left')}</div>
+            ),
         };
     },
 };
@@ -121,7 +122,7 @@ export function getStartOverComponentForQuickAssess(
         buttonRef: props.buttonRef,
         rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
         switcherStartOverPreferences: { showTest },
-        hasSubMenu: props.hasSubMenu
+        hasSubMenu: props.hasSubMenu,
     };
 
     return <StartOverDropdown {...startOverProps} />;

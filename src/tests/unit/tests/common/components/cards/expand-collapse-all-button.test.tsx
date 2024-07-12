@@ -16,8 +16,8 @@ import {
 jest.mock('@fluentui/react-components');
 jest.mock('common/components/cards/expand-collapse-all-button-styles', () => {
     return {
-        useExpandCollapseAllButtonStyles: jest.fn()
-    }
+        useExpandCollapseAllButtonStyles: jest.fn(),
+    };
 });
 
 describe('ExpandCollapseAllButton', () => {

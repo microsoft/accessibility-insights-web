@@ -1,18 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    CommandBarButton,
     IButton,
-    IContextualMenuItem,
     IRefObject,
     TooltipHost,
 } from '@fluentui/react';
+import {
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    MenuPopover,
+    MenuTrigger,
+} from '@fluentui/react-components';
+import { MoreHorizontalRegular } from '@fluentui/react-icons';
 import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
-import { Menu, MenuButton, MenuItem, MenuItemProps, MenuList, MenuPopover, MenuTrigger } from '@fluentui/react-components';
-import { MoreHorizontalRegular } from '@fluentui/react-icons';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element | null;
@@ -26,7 +31,6 @@ export type CommandBarButtonsMenuProps = {
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
-        console.log('props---->', props)
         const exportButton = props.renderExportReportButton();
         const overflowItems: any[] = [];
 
@@ -60,37 +64,40 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'start over',
             ...props.getStartOverMenuItem(),
         });
-        console.log('overflowItems', overflowItems)
-        //@ts-ignore
         return (
             <TooltipHost content="More actions" aria-label="More actions">
-                {/* <CommandBarButton
-                    ariaLabel="More actions"
-                    className={styles.commandBarButtonsMenu}
-                    role="button"
-                    menuIconProps={{
-                        iconName: 'More',
-                        className: styles.commandBarButtonsMenuButton,
-                    }}
-                    menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
-                    componentRef={props.buttonRef}
-                /> */}
                 <Menu>
                     <MenuTrigger>
-                        <MenuButton appearance="transparent" icon={<MoreHorizontalRegular />} className={styles.commandBarButtonsMenuButton} />
+                        <MenuButton
+                            appearance="transparent"
+                            icon={<MoreHorizontalRegular />}
+                            className={styles.commandBarButtonsMenuButton}
+                        />
                     </MenuTrigger>
                     <>
-                        <MenuPopover style={{ padding: 'unset !important', border: 'unset !important', borderRadius: 'unset !important' }}>
-
-                            {/* {overflowItems.map((item, index) => item.children)} */}
+                        <MenuPopover
+                            style={{
+                                padding: 'unset !important',
+                                border: 'unset !important',
+                                borderRadius: 'unset !important',
+                            }}
+                        >
 
                             <MenuList>
                                 {overflowItems.map((item, index) => {
-                                    console.log('item--->', item)
-                                    return item?.children?.props?.children?.props?.hasSubMenu ? item.children : <MenuItem className={styles.menuItem} key={index} {...props}>{item?.children}</MenuItem>
+                                    return item?.children?.props?.children?.props?.hasSubMenu ? (
+                                        item.children
+                                    ) : (
+                                        <MenuItem
+                                            className={styles.menuItem}
+                                            key={index}
+                                            {...props}
+                                        >
+                                            {item?.children}
+                                        </MenuItem>
+                                    );
                                 })}
                             </MenuList>
-
                         </MenuPopover>
                     </>
                 </Menu>

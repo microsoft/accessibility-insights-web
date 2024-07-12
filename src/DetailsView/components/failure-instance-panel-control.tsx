@@ -1,13 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    ActionButton,
-    Icon,
-    ILabelStyles,
-    ITextFieldStyles,
-    Link,
-    TextField,
-} from '@fluentui/react';
+import { Icon, ILabelStyles, ITextFieldStyles, Link, TextField } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
+import { AddRegular } from '@fluentui/react-icons';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
@@ -21,8 +16,6 @@ import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-com
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';
 import styles from './failure-instance-panel.scss';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
-import { Button } from '@fluentui/react-components';
-import { AddRegular } from '@fluentui/react-icons';
 export interface FailureInstancePanelControlProps {
     step: string;
     test: VisualizationType;
@@ -90,21 +83,13 @@ export class FailureInstancePanelControl extends React.Component<
     private renderButton(): JSX.Element {
         if (this.props.actionType === CapturedInstanceActionType.CREATE) {
             return (
-                // <ActionButton
-                //     ariaLabel={FailureInstancePanelControl.addFailureInstanceLabel}
-                //     ariaDescription="Open add a failure instance panel"
-                //     iconProps={{ iconName: 'Add' }}
-                //     onClick={this.openFailureInstancePanel}
-                // >
-                //     <h3>777</h3>
-
-                //     {FailureInstancePanelControl.addFailureInstanceLabel}
-                // </ActionButton>
-                <Button appearance='transparent' aria-label={FailureInstancePanelControl.addFailureInstanceLabel}
+                <Button
+                    appearance="transparent"
+                    aria-label={FailureInstancePanelControl.addFailureInstanceLabel}
                     aria-description="Open add a failure instance panel"
                     icon={<AddRegular />}
-                    onClick={this.openFailureInstancePanel}>
-                    <h3>777</h3>
+                    onClick={this.openFailureInstancePanel}
+                >
                     {FailureInstancePanelControl.addFailureInstanceLabel}
                 </Button>
             );

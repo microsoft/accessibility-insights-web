@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-    Checkbox,
-    Dialog,
-    DialogFooter,
-    PrimaryButton,
-    Stack,
-} from '@fluentui/react';
+import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
 import { Button } from '@fluentui/react-components';
 import { fireEvent, render, RenderResult, act } from '@testing-library/react';
 
@@ -31,14 +25,14 @@ jest.mock('@fluentui/react');
 jest.mock('@fluentui/react-components');
 jest.mock('DetailsView/components/command-button-styles', () => {
     return {
-        CommandButtonStyle: jest.fn()
-    }
+        CommandButtonStyle: jest.fn(),
+    };
 });
 
 jest.mock('common/components/controls/insights-command-button-style', () => {
     return {
-        useInsightsCommandButtonStyle: jest.fn()
-    }
+        useInsightsCommandButtonStyle: jest.fn(),
+    };
 });
 describe('SaveAssessmentButton', () => {
     mockReactComponents([DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton, Button]);
@@ -98,9 +92,7 @@ describe('SaveAssessmentButton', () => {
                     'Checkbox',
                     'PrimaryButton',
                 ]);
-                useOriginalReactElements('@fluentui/react-components', [
-                    'Button',
-                ]);
+                useOriginalReactElements('@fluentui/react-components', ['Button']);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
                 fireEvent.click(wrapper.getByRole('button'));
