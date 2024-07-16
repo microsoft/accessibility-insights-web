@@ -96,14 +96,15 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
                     <MenuTrigger disableButtonEnhancement>
                         <MenuButton
                             appearance="transparent"
+                            className={styles.menuButton}
                             icon={<ArrowClockwiseRegular className={styles.refreshIcon} />}
                             aria-label="start over menu"
                             //className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
                             menuIcon={
                                 direction === 'left' ? (
-                                    <span className={styles.chevron}><ChevronRight20Regular /></span>
+                                    <ChevronRight20Regular />
                                 ) : (
-                                    <span className={styles.chevron}><ChevronDown20Regular /></span>
+                                    <ChevronDown20Regular />
                                 )
                             }
                         >

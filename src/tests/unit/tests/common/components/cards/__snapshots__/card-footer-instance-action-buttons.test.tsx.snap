@@ -1,25 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: action button menu props 1`] = `undefined`;
-
 exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <div
-      class="ms-TooltipHost root-109"
-      role="none"
+    <button
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="fui-Button r1alrhcs fui-MenuButton menuButton ___cpe5h10_1yhfyj7 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f18ktai2 fwbmr0d f44c6la"
+      data-tabster="{"restorer":{"type":1}}"
+      id="menur1"
+      role="button"
+      tabindex="0"
+      type="button"
     >
-      <div
-        hidden=""
-        id="tooltip1"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      <span
+        class="fui-Button__icon rywnvv2 fui-MenuButton__icon"
       >
-        More actions
-      </div>
-    </div>
-    <h3>
-      2222
-    </h3>
+        <svg
+          aria-hidden="true"
+          class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+          fill="currentColor"
+          height="1em"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 6a1.25 1.25 0 1 1 0-2.5A1.25 1.25 0 0 1 10 6Zm0 5.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Zm-1.25 4a1.25 1.25 0 1 0 2.5 0 1.25 1.25 0 0 0-2.5 0Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+    <span
+      hidden=""
+    />
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"
@@ -28,26 +43,41 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmen
 </DocumentFragment>
 `;
 
-exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: action button menu props 1`] = `undefined`;
-
 exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <div
-      class="ms-TooltipHost root-109"
-      role="none"
+    <button
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="fui-Button r1alrhcs fui-MenuButton menuButton ___cpe5h10_1yhfyj7 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f18ktai2 fwbmr0d f44c6la"
+      data-tabster="{"restorer":{"type":1}}"
+      id="menur3"
+      role="button"
+      tabindex="0"
+      type="button"
     >
-      <div
-        hidden=""
-        id="tooltip2"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
+      <span
+        class="fui-Button__icon rywnvv2 fui-MenuButton__icon"
       >
-        More actions
-      </div>
-    </div>
-    <h3>
-      2222
-    </h3>
+        <svg
+          aria-hidden="true"
+          class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+          fill="currentColor"
+          height="1em"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 6a1.25 1.25 0 1 1 0-2.5A1.25 1.25 0 0 1 10 6Zm0 5.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Zm-1.25 4a1.25 1.25 0 1 0 2.5 0 1.25 1.25 0 0 0-2.5 0Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </button>
+    <span
+      hidden=""
+    />
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"
@@ -59,30 +89,22 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with undefined ari
 exports[`CardFooterInstanceActionButtons renders without copyFailureDetails supported: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <span>
-      <mock-button
-        appearance="transparent"
-        classname="item1"
-        size="medium"
-      >
-        item 1
-      </mock-button>
-      <h3>
-        333
-      </h3>
-    </span>
-    <span>
-      <mock-button
-        appearance="transparent"
-        classname="item2"
-        size="medium"
-      >
-        item 2
-      </mock-button>
-      <h3>
-        333
-      </h3>
-    </span>
+    <mock-button
+      appearance="transparent"
+      as="button"
+      classname="item1"
+      size="medium"
+    >
+      item 1
+    </mock-button>
+    <mock-button
+      appearance="transparent"
+      as="button"
+      classname="item2"
+      size="medium"
+    >
+      item 2
+    </mock-button>
   </div>
 </DocumentFragment>
 `;
@@ -90,30 +112,22 @@ exports[`CardFooterInstanceActionButtons renders without copyFailureDetails supp
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=false renders per snapshot: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <span>
-      <mock-button
-        appearance="transparent"
-        classname="item1"
-        size="medium"
-      >
-        item 1
-      </mock-button>
-      <h3>
-        333
-      </h3>
-    </span>
-    <span>
-      <mock-button
-        appearance="transparent"
-        classname="item2"
-        size="medium"
-      >
-        item 2
-      </mock-button>
-      <h3>
-        333
-      </h3>
-    </span>
+    <mock-button
+      appearance="transparent"
+      as="button"
+      classname="item1"
+      size="medium"
+    >
+      item 1
+    </mock-button>
+    <mock-button
+      appearance="transparent"
+      as="button"
+      classname="item2"
+      size="medium"
+    >
+      item 2
+    </mock-button>
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"
@@ -122,26 +136,72 @@ exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=false render
 </DocumentFragment>
 `;
 
-exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: action button menu props 1`] = `undefined`;
-
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <div
-      class="ms-TooltipHost root-109"
-      role="none"
+    <mock-tooltip
+      content="More actions"
+      relationship="description"
     >
-      <div
-        hidden=""
-        id="tooltip0"
-        style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0px; border: 0px; overflow: hidden; white-space: nowrap;"
-      >
-        More actions
-      </div>
-    </div>
-    <h3>
-      2222
-    </h3>
+      <mock-menu>
+        <mock-menutrigger />
+        <mock-menupopover
+          style="border-radius: unset !important;"
+        >
+          <mock-menulist>
+            <mock-menuitem
+              classname="kebabMenuIcon"
+              text="item 1"
+            >
+              item 1
+            </mock-menuitem>
+            <mock-menuitem
+              classname="kebabMenuIcon"
+              text="item 2"
+            >
+              item 2
+            </mock-menuitem>
+          </mock-menulist>
+        </mock-menupopover>
+      </mock-menu>
+    </mock-tooltip>
+    <mock-toast
+      deps="[object Object]"
+      timeoutlength="6000"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: kebab button menu 1`] = `
+<DocumentFragment>
+  <div>
+    <mock-tooltip
+      content="More actions"
+      relationship="description"
+    >
+      <mock-menu>
+        <mock-menutrigger />
+        <mock-menupopover
+          style="border-radius: unset !important;"
+        >
+          <mock-menulist>
+            <mock-menuitem
+              classname="kebabMenuIcon"
+              text="item 1"
+            >
+              item 1
+            </mock-menuitem>
+            <mock-menuitem
+              classname="kebabMenuIcon"
+              text="item 2"
+            >
+              item 2
+            </mock-menuitem>
+          </mock-menulist>
+        </mock-menupopover>
+      </mock-menu>
+    </mock-tooltip>
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"

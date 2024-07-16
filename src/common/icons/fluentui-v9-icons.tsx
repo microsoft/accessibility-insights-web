@@ -10,8 +10,8 @@ import {
     ChevronDownRegular,
     ChevronRight20Regular,
     InfoRegular,
-    CopyRegular,
-    BugRegular,
+    DocumentCopyRegular,
+    BugFilled,
 } from '@fluentui/react-icons';
 import { CopyIcon } from 'common/icons/copy-icon';
 import { LadyBugSolidIcon } from 'common/icons/lady-bug-solid-icon';
@@ -47,16 +47,18 @@ export const Icons = {
     ChevronRightRegular: <ChevronRight20Regular />,
     info: <InfoRegular color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover} />,
     ladybugSolid: (
-        <BugRegular
-            filled
-            color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover}
-        />
+        // <BugRegular
+        //     filled={true}
+        //     color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover}
+        // />
+        <BugFilled color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover} />
     ),
     copy: (
-        <CopyRegular
-            filled
-            color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover}
-        />
+        // <CopyRegular
+        //     filled
+        //     color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover}
+        // />
+        <DocumentCopyRegular color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover} />
     ),
 };
 

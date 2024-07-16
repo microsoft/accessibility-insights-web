@@ -20,7 +20,7 @@ export type InsightsCommandButtonProps = (ButtonProps | MenuButtonProps) & {
 // See https://www.figma.com/file/Wj4Ggf6GGQBQkiDIaHfXRX2B/Accessibility-Insights%3A-Styles?node-id=1%3A27
 export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
     'InsightsCommandButton',
-    props => {
+    React.forwardRef((props, ref) => {
         const overrides = useInsightsCommandButtonStyle();
 
         return (
@@ -39,10 +39,11 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
                     ),
                     children: props.insightsCommandButtonIconProps.icon,
                 }}
+                ref={ref}
                 {...props}
             >
                 {props.children}
             </Button>
         );
     },
-);
+    ));

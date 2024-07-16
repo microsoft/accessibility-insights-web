@@ -22,11 +22,17 @@
     }
 }
 
-.file-issue {
+.fileissue {
     font-weight: 400;
 
     &:focus {
-        border: 2px solid red !important;
+        border: 2px solid $primary-text !important;
+    }
+}
+
+.menu-Button {
+    &:focus {
+        border: 2px solid $primary-text !important;
     }
 }
 

@@ -8,11 +8,11 @@
 }
 
 .menu-item {
-    margin-top: 4px !important;
-    margin-bottom: 8px !important;
-    padding-left: unset !important;
-    padding-top: unset !important;
-    padding-bottom: unset !important;
+    // margin-top: 4px !important;
+    // margin-bottom: 8px !important;
+    // padding-left: unset !important;
+    // padding-top: unset !important;
+    // padding-bottom: unset !important;
 
     &:hover {
         background: none !important;
@@ -20,8 +20,9 @@
     }
 }
 
-.chevron {
-    margin-bottom: 8px;
+.menu-button {
+    align-items: flex-start !important;
+    font-weight: 400 !important;
 }
 
 .refresh-icon {

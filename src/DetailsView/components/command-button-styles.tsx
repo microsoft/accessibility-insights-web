@@ -5,6 +5,9 @@ import { makeStyles } from '@fluentui/react-components';
 
 export const CommandButtonStyle = makeStyles({
     assessmentButton: {
+        fontWeight: '400 !important',
+        paddingLeft: '5px !important',
+
         '&:hover': {
             background: 'none !important',
         },

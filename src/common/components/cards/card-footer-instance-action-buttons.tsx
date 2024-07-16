@@ -10,6 +10,7 @@ import {
     MenuList,
     MenuPopover,
     MenuTrigger,
+    Tooltip,
 } from '@fluentui/react-components';
 import { MoreVerticalRegular } from '@fluentui/react-icons';
 import {
@@ -48,16 +49,20 @@ export interface CardFooterInstanceActionButtonsProps {
     narrowModeStatus?: NarrowModeStatus;
 }
 
-export const CardFooterInstanceActionButtons = props => {
+export const CardFooterInstanceActionButtons = (props) => {
     const toastRef = React.useRef(null);
-    const fileIssueButtonRef = null;
+    const fileIssueButtonRef = React.useRef(null);
     const kebabButtonRef = React.useRef(null);
+    const test = React.useRef(null)
 
     const focusButtonAfterDialogClosed = (): void => {
         if (props?.narrowModeStatus?.isCardFooterCollapsed) {
             kebabButtonRef?.current?.focus();
         } else {
-            fileIssueButtonRef?.focus();
+            fileIssueButtonRef?.current?.removeAttribute('textprediction');
+            fileIssueButtonRef?.current?.setAttribute('writingsuggestions', 'false')
+            fileIssueButtonRef?.current?.focus();
+            test?.current?.focus()
         }
     };
 
@@ -80,13 +85,14 @@ export const CardFooterInstanceActionButtons = props => {
         return <Toast ref={toastRef} deps={props.deps} />;
     };
 
+
     const renderKebabButton = () => {
         return (
             <>
-                <TooltipHost content="More actions">
+                <Tooltip content="More actions" relationship="description">
                     <Menu>
                         <MenuTrigger>
-                            <MenuButton appearance="transparent" icon={<MoreVerticalRegular />} />
+                            <MenuButton className={styles.menuButton} ref={ref => kebabButtonRef.current = ref} appearance="transparent" icon={<MoreVerticalRegular />} />
                         </MenuTrigger>
                         <MenuPopover
                             style={{
@@ -95,48 +101,67 @@ export const CardFooterInstanceActionButtons = props => {
                                 borderRadius: 'unset !important',
                             }}
                         >
+                            {/* <MenuList children={
+                                getMenuItems().map((item, index) => {
+                                    console.log('here==>', `${item.key}-${index}-kebabButton`);
+                                    return (
+                                        <>
+                                            <MenuItem
+                                                children={<span key={`${item.key}-${index}-kebabButton`}>{item?.text}</span>}
+                                                componentRef={ref => (kebabButtonRef.current = ref)}
+                                                className={styles.kebabMenuIcon}
+                                                icon={Icons[item?.iconName]}
+                                                {...item}
+                                            />
+                                        </>
+                                    )
+                                })
+                            } /> */}
+                            {/* <MenuListComponent items={menuItems} /> */}
                             <MenuList>
-                                {getMenuItems().map((item: any) => (
-                                    <>
-                                        <MenuItem
-                                            componentRef={ref => (kebabButtonRef.current = ref)}
-                                            className={styles.kebabMenuIcon}
-                                            key={item.key}
-                                            icon={Icons[item?.iconName]}
-                                            {...item}
-                                        >
-                                            {item?.text}
-                                        </MenuItem>
-                                    </>
+                                {getMenuItems().map((item: any, index: number) => (
+
+                                    <MenuItem
+
+                                        className={styles.kebabMenuIcon}
+                                        //key={item.key}
+                                        key={`${item.key}-${index}-kebabMenuItem`}
+                                        icon={Icons[item?.iconName]}
+                                        {...item}
+                                    >
+                                        {item?.text}
+                                    </MenuItem>
                                 ))}
                             </MenuList>
                         </MenuPopover>
                     </Menu>
-                </TooltipHost>
-                <h3>2222</h3>
+                </Tooltip>
             </>
         );
     };
 
     const renderExpandedButtons = () => {
         const menuItems = getMenuItems();
-        console.log('here---->', menuItems);
+        console.log('inside expanded button')
         return (
             <>
                 {menuItems.map(props => (
-                    <span key={props.key}>
-                        <Button
-                            as="button"
-                            appearance="transparent"
-                            onClick={props.onClick}
-                            icon={Icons[props.iconName]}
-                            className={props.key}
-                            size="medium"
-                            ref={props.componentRef}
-                        >
-                            {props.text}
-                        </Button>
-                    </span>
+                    // <span key={`${props.key}-expandedButtons`}>
+                    <Button
+                        as="button"
+                        appearance="transparent"
+                        onClick={props.onClick}
+                        icon={Icons[props.iconName]}
+                        className={styles[props.key]}
+                        size="medium"
+                        //ref={() => test}
+                        //ref={ref => (props.componentRef = ref)}
+                        ref={ref => props.componentRef = ref}
+                        key={`${props.key}-expandedButtons`}
+                    >
+                        {props.text}
+                    </Button>
+                    // </span>
                 ))}
             </>
         );
@@ -150,10 +175,12 @@ export const CardFooterInstanceActionButtons = props => {
         }
     };
 
-    return (
-        <div onKeyDown={event => event.stopPropagation()}>
-            {renderButtons()}
-            {renderCopyFailureDetailsToast()}
-        </div>
-    );
+    const menuItems = getMenuItems();
+
+    const menuItemsJsx = menuItems?.length == 0 ? null : <div onKeyDown={event => event.stopPropagation()}>
+        {renderButtons()}
+        {renderCopyFailureDetailsToast()}
+    </div>
+
+    return menuItemsJsx;
 };
