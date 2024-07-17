@@ -280,14 +280,13 @@ exports[`RuleResources renders with {
     <span
       class="ruleDetailsId"
     >
-      <a
-        class="fui-Link insights-link ___1fq7916_1xye54t f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f1iuv45f f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a"
+      <mock-link
+        classname="insights-link"
         href="test-url"
-        tabindex="0"
         target="_blank"
       >
         More information about some-rule
-      </a>
+      </mock-link>
     </span>
     <span
       class="ruleGuidance"
@@ -359,14 +358,13 @@ exports[`RuleResources renders with {
     <span
       class="ruleDetailsId"
     >
-      <a
-        class="fui-Link insights-link ___1fq7916_1xye54t f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f1iuv45f f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a"
+      <mock-link
+        classname="insights-link"
         href="test-url"
-        tabindex="0"
         target="_blank"
       >
         More information about some-rule
-      </a>
+      </mock-link>
     </span>
     <span
       class="ruleGuidance"

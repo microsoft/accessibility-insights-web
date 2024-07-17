@@ -64,12 +64,12 @@ export function normalizeOfficeFabricClassName(className: string): string {
 
 export const CSS_MODULE_HASH_REPLACEMENT = '{{CSS_MODULE_HASH}}';
 
-export const V9_CLASS_NAME_REPLACEMENT = '{{V9_CLASS_NAME}}';
+export const V9_CLASS_NAME_REPLACEMENT = '{{FluentUI_V9_DYNAMIC_CLASS_NAME}}';
 
-// Our compiler config adds generated suffixes of form "_1xye54t" to the end of class names defined in
-// CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
+// Fluent UI v9 adds dynamically generated classnames like "___1fq7916_1xye54t"
+// This normalizes them to avoid causing E2Es to fail for unrelated style changes.
 export function normalizeV9ClassName(className: string): string {
-    const v9ClassNameMatcher = /^___[0-9a-zA-Z]+_[0-9a-zA-Z]+$/;
+    const v9ClassNameMatcher = /_{3}[0-9a-zA-Z_.]+/;
     return className.replace(v9ClassNameMatcher, `${V9_CLASS_NAME_REPLACEMENT}`);
 }
 

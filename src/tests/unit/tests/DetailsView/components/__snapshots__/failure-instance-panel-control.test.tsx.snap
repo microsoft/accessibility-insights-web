@@ -181,9 +181,8 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
 
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance 1`] = `
 <DocumentFragment>
-  <button
-    class="fui-Link editButton ___52mpgl0_k1g75g0 f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fkhj508 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f1iuv45f f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1ern45e f1n71otn f1h8hb77 f1deefiw"
-    type="button"
+  <mock-link
+    classname="editButton"
   />
   <mock-genericpanel
     classname="failureInstancePanel"
