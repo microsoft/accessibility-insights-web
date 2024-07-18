@@ -41,7 +41,7 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />
                 <Link className={styles.removeButton} onClick={this.onRemoveButtonClicked}>
-                    <Icon iconName="delete" aria-label={'delete instance'} />
+                    <Icon iconName="delete" ariaLabel={'delete instance'} />
                 </Link>
             </div>
         );

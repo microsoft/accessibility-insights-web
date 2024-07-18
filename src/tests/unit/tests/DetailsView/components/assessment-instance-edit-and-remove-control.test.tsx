@@ -64,7 +64,7 @@ describe('AssessmentInstanceRemoveButton', () => {
                     className={styles.removeButton}
                     onClick={testSubject.getOnRemoveButtonClicked()}
                 >
-                    <Icon iconName="delete" aria-label={'delete instance'} />
+                    <Icon iconName="delete" ariaLabel={'delete instance'} />
                 </Link>
             </div>
         );

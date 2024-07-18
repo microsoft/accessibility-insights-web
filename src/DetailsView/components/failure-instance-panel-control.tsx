@@ -95,7 +95,7 @@ export class FailureInstancePanelControl extends React.Component<
         } else {
             return (
                 <Link className={styles.editButton} onClick={this.openFailureInstancePanel}>
-                    <Icon iconName="edit" aria-label={'edit instance'} />
+                    <Icon iconName="edit" ariaLabel={'edit instance'} />
                 </Link>
             );
         }

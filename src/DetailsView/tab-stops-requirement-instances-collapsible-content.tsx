@@ -58,7 +58,7 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                                 )
                             }
                         >
-                            <Icon iconName="edit" aria-label={'edit instance'} />
+                            <Icon iconName="edit" ariaLabel={'edit instance'} />
                         </Link>
                         <Link
                             className={styles.removeButton}
@@ -66,7 +66,7 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                                 props.onRemoveButtonClicked(props.requirementId, instance.id)
                             }
                         >
-                            <Icon iconName="delete" aria-label={'delete instance'} />
+                            <Icon iconName="delete" ariaLabel={'delete instance'} />
                         </Link>
                     </>
                 );

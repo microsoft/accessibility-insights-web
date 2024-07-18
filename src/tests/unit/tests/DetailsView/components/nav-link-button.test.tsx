@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Link } from '@fluentui/react-components';
+import { Link } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import {
     onBaseLeftNavItemClick,
@@ -11,7 +11,7 @@ import * as React from 'react';
 import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock } from 'typemoq';
 
-jest.mock('@fluentui/react-components');
+jest.mock('@fluentui/react');
 describe('NavLinkButton', () => {
     mockReactComponents([Link]);
     let onClickNavLinkMock: IMock<onBaseLeftNavItemClick>;
