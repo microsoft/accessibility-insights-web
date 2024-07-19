@@ -5,28 +5,54 @@
 
 .command-bar-buttons-menu-button {
     font-size: 16px;
-}
-
-.menu-item {
-    // margin-top: 4px !important;
-    // margin-bottom: 8px !important;
-    // padding-left: unset !important;
-    // padding-top: unset !important;
-    // padding-bottom: unset !important;
+    padding: 9px !important;
+    color: $primary-text !important;
 
     &:hover {
-        background: none !important;
-        color: #115ea3 !important;
+        background-color: $neutral-2 !important;
     }
+}
+
+.menu-list {
+    top:19px !important;
+}
+
+
+
+.menu-item {
+    padding-bottom: unset !important;
+    
+    // &:hover {
+    //     background: none !important;
+    //     color: $insights-button-hover !important;
+        
+        // & > span {
+        //     & > svg {
+        //         color: $insights-button-hover;
+        //     }
+        // }
+ //   }
 }
 
 .menu-button {
     align-items: flex-start !important;
     font-weight: 400 !important;
+    margin-left: -8px !important;
+
+    &:hover {
+        background: 'none !important';
+        color: $insights-button-hover;
+
+        & > span {
+            & > svg {
+                color: $insights-button-hover;
+            }
+        }
+    }
 }
 
 .refresh-icon {
-    color: #115ea3 !important;
+    color:$insights-button-hover !important;
 }
 
 .command-bar-buttons-submenu {

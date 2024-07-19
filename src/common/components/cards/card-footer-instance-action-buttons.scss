@@ -23,16 +23,41 @@
 }
 
 .fileissue {
-    font-weight: 400;
+    font-weight: 400 !important;
 
     &:focus {
-        border: 2px solid $primary-text !important;
+        border: 1px solid $primary-text !important;
+    }
+
+    &:hover {
+        & > span {
+            & > svg {
+                color: $insights-button-hover;
+            }
+        }
+    }
+}
+
+.copyfailuredetails {
+    font-weight: 400 !important;
+
+    &:hover {
+        & > span {
+            & > svg {
+                color: $insights-button-hover;
+            }
+        }
     }
 }
 
 .menu-Button {
     &:focus {
-        border: 2px solid $primary-text !important;
+        border: 1px solid $primary-text !important;
+    }
+
+    &:hover {
+        border: 1px solid $primary-text !important;
+        color: $primary-text !important;
     }
 }
 

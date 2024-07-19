@@ -18,7 +18,7 @@ import {
     CardFooterMenuItemsDeps,
 } from 'common/components/cards/card-footer-menu-items-builder';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
-import { Icons } from 'common/icons/fluentui-v9-icons';
+import { FluentUIV9Icon, Icons } from 'common/icons/fluentui-v9-icons';
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
@@ -53,7 +53,6 @@ export const CardFooterInstanceActionButtons = (props) => {
     const toastRef = React.useRef(null);
     const fileIssueButtonRef = React.useRef(null);
     const kebabButtonRef = React.useRef(null);
-    const test = React.useRef(null)
 
     const focusButtonAfterDialogClosed = (): void => {
         if (props?.narrowModeStatus?.isCardFooterCollapsed) {
@@ -62,7 +61,6 @@ export const CardFooterInstanceActionButtons = (props) => {
             fileIssueButtonRef?.current?.removeAttribute('textprediction');
             fileIssueButtonRef?.current?.setAttribute('writingsuggestions', 'false')
             fileIssueButtonRef?.current?.focus();
-            test?.current?.focus()
         }
     };
 
@@ -88,20 +86,23 @@ export const CardFooterInstanceActionButtons = (props) => {
 
     const renderKebabButton = () => {
         return (
-            <>
-                <Tooltip content="More actions" relationship="description">
-                    <Menu>
-                        <MenuTrigger>
-                            <MenuButton className={styles.menuButton} ref={ref => kebabButtonRef.current = ref} appearance="transparent" icon={<MoreVerticalRegular />} />
-                        </MenuTrigger>
-                        <MenuPopover
-                            style={{
-                                padding: 'unset !important',
-                                border: 'unset !important',
-                                borderRadius: 'unset !important',
-                            }}
-                        >
-                            {/* <MenuList children={
+
+            <Menu>
+                <MenuTrigger>
+                    <Tooltip content="More actions" relationship='label'>
+                        <MenuButton className={styles.menuButton}
+                            ref={ref => kebabButtonRef.current = ref}
+                            appearance="transparent" icon={<FluentUIV9Icon iconName="MoreVerticalRegular" />} />
+                    </Tooltip>
+                </MenuTrigger>
+                <MenuPopover
+                    style={{
+                        padding: 'unset !important',
+                        border: 'unset !important',
+                        borderRadius: 'unset !important',
+                    }}
+                >
+                    {/* <MenuList children={
                                 getMenuItems().map((item, index) => {
                                     console.log('here==>', `${item.key}-${index}-kebabButton`);
                                     return (
@@ -117,26 +118,25 @@ export const CardFooterInstanceActionButtons = (props) => {
                                     )
                                 })
                             } /> */}
-                            {/* <MenuListComponent items={menuItems} /> */}
-                            <MenuList>
-                                {getMenuItems().map((item: any, index: number) => (
+                    {/* <MenuListComponent items={menuItems} /> */}
+                    <MenuList>
+                        {getMenuItems().map((item: any, index: number) => (
 
-                                    <MenuItem
+                            <MenuItem
 
-                                        className={styles.kebabMenuIcon}
-                                        //key={item.key}
-                                        key={`${item.key}-${index}-kebabMenuItem`}
-                                        icon={Icons[item?.iconName]}
-                                        {...item}
-                                    >
-                                        {item?.text}
-                                    </MenuItem>
-                                ))}
-                            </MenuList>
-                        </MenuPopover>
-                    </Menu>
-                </Tooltip>
-            </>
+                                className={styles.kebabMenuIcon}
+                                //key={item.key}
+                                key={`${item.key}-${index}-kebabMenuItem`}
+                                icon={<FluentUIV9Icon iconName={props.iconName} />}
+                                {...item}
+                            >
+                                {item?.text}
+                            </MenuItem>
+                        ))}
+                    </MenuList>
+                </MenuPopover>
+            </Menu>
+
         );
     };
 
@@ -151,7 +151,7 @@ export const CardFooterInstanceActionButtons = (props) => {
                         as="button"
                         appearance="transparent"
                         onClick={props.onClick}
-                        icon={Icons[props.iconName]}
+                        icon={<FluentUIV9Icon iconName={props?.iconName} />}
                         className={styles[props.key]}
                         size="medium"
                         //ref={() => test}

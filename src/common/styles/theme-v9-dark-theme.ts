@@ -10,4 +10,5 @@ export const ThemeV9DarkTheme = {
     ...webDarkTheme,
     colorNeutralBackground1: '#161616',
     colorNeutralForeground2: '#fff',
+    colorCompoundBrandStrokeHover:'#ffffff'
 };

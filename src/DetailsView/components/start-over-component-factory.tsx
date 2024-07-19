@@ -16,6 +16,7 @@ import {
 } from 'DetailsView/components/start-over-dropdown';
 import * as React from 'react';
 import styles from './start-over-menu-item.scss';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 
 export type StartOverFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -75,7 +76,7 @@ export function getStartOverComponentFastPass(props: StartOverFactoryProps): JSX
     return (
         <InsightsCommandButton
             insightsCommandButtonIconProps={{
-                icon: <ArrowClockwiseRegular />,
+                icon: <FluentUIV9Icon iconName='ArrowClockwiseRegular' />,
                 className: startOverProps.iconProps.className,
             }}
             {...startOverProps}

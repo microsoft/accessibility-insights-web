@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Button } from '@fluentui/react-components';
-import { Icons } from 'common/icons/fluentui-v9-icons';
+import { FluentUIV9Icon, Icons } from 'common/icons/fluentui-v9-icons';
 import * as React from 'react';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { NamedFC } from '../../common/react/named-fc';
@@ -40,7 +40,8 @@ export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
             <Button
                 className="info"
                 appearance="transparent"
-                icon={Icons[iconName]}
+                //icon={Icons[iconName]}
+                icon={<FluentUIV9Icon iconName={iconName} />}
                 onClick={onClick}
                 aria-label={'info and examples'}
             >

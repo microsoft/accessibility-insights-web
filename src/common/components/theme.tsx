@@ -10,6 +10,7 @@ import { HighContrastTheme } from '../styles/high-contrast-theme';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 import { BodyClassModifier } from './body-class-modifier';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from './with-store-subscription';
+import { createContext } from 'react';
 
 export interface ThemeInnerState {
     userConfigurationStoreData: UserConfigurationStoreData;
@@ -18,6 +19,7 @@ export interface ThemeInnerState {
 export interface ThemeState {
     themeValueV8: PartialTheme;
     themeValueV9: ThemeV9;
+    isHighContrastState: boolean
 }
 
 export type ThemeInnerProps = {
@@ -29,12 +31,15 @@ export type ThemeDeps = WithStoreSubscriptionDeps<ThemeInnerState> & {
     documentManipulator: DocumentManipulator;
 };
 
+export const ThemeContext = createContext({})
+
 export class ThemeInner extends React.Component<ThemeInnerProps, ThemeState> {
     constructor(props) {
         super(props);
         this.state = {
             themeValueV8: DefaultTheme,
             themeValueV9: webLightTheme,
+            isHighContrastState: false
         };
     }
     public componentDidMount(): void {
@@ -58,19 +63,24 @@ export class ThemeInner extends React.Component<ThemeInnerProps, ThemeState> {
         }
 
         return (
-            <ThemeProvider applyTo="body" theme={this.state.themeValueV8}>
-                <FluentProvider theme={this.state.themeValueV9}>
-                    <BodyClassModifier deps={this.props.deps} classNames={classNames} />
-                    {this.props.children}
-                </FluentProvider>
-            </ThemeProvider>
+            <ThemeContext.Provider value={this.state.isHighContrastState}>
+                <ThemeProvider applyTo="body" theme={this.state.themeValueV8}>
+                    <FluentProvider theme={this.state.themeValueV9}>
+
+                        <BodyClassModifier deps={this.props.deps} classNames={classNames} />
+                        {this.props.children}
+
+                    </FluentProvider>
+                </ThemeProvider>
+            </ThemeContext.Provider>
         );
     }
 
     private loadAppropriateTheme(isHighContrast: boolean): void {
         const appropriateThemeV8 = isHighContrast ? HighContrastTheme : DefaultTheme;
         const appropriateThemeV9 = isHighContrast ? ThemeV9DarkTheme : webLightTheme;
-        this.setState({ themeValueV8: appropriateThemeV8, themeValueV9: appropriateThemeV9 });
+
+        this.setState({ isHighContrastState: isHighContrast, themeValueV8: appropriateThemeV8, themeValueV9: appropriateThemeV9 });
     }
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {

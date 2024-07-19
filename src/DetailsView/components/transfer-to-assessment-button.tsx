@@ -4,6 +4,7 @@
 import { IRefObject, IButton } from '@fluentui/react';
 import { FolderArrowRightRegular } from '@fluentui/react-icons';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { NamedFC } from 'common/react/named-fc';
 import { CommandButtonStyle } from 'DetailsView/components/command-button-styles';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
@@ -28,7 +29,7 @@ export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProp
             <InsightsCommandButton
                 className={saveAssessmentStyles.assessmentButton}
                 data-automation-id={transferToAssessmentButtonAutomationId}
-                insightsCommandButtonIconProps={{ icon: <FolderArrowRightRegular /> }}
+                insightsCommandButtonIconProps={{ icon: <FluentUIV9Icon iconName='FolderArrowRightRegular' /> }}
                 onClick={
                     props.deps.dataTransferViewController.showQuickAssessToAssessmentConfirmDialog
                 }

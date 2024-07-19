@@ -3,6 +3,7 @@
 import { Button, themeToTokensObject, webLightTheme } from '@fluentui/react-components';
 import { ChevronDown32Regular, ChevronRight32Regular } from '@fluentui/react-icons';
 import { useExpandCollapseAllButtonStyles } from 'common/components/cards/expand-collapse-all-button-styles';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
@@ -20,21 +21,14 @@ export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
 
         let expandCollapseAllButtonHandler = cardSelectionMessageCreator.collapseAllRules;
         let buttonText = 'Collapse all';
-        let iconName = (
-            <ChevronDown32Regular
-                color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover}
-            />
-        );
+        let iconName = <FluentUIV9Icon iconName='ChevronDown32Regular' />
         let ariaLabel: string | undefined = undefined;
 
         if (allCardsCollapsed) {
             expandCollapseAllButtonHandler = cardSelectionMessageCreator.expandAllRules;
             buttonText = 'Expand all';
-            iconName = (
-                <ChevronRight32Regular
-                    color={themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover}
-                />
-            );
+            iconName = <FluentUIV9Icon iconName='ChevronRight32Regular' />
+
             ariaLabel = 'Expand all rules to show failed instances.';
         }
 

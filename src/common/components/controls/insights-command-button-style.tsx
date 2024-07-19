@@ -6,11 +6,8 @@ import { makeStyles, tokens } from '@fluentui/react-components';
 export const useInsightsCommandButtonStyle = makeStyles({
     button: {
         fontWeight: tokens?.fontWeightRegular,
-        '&:hover': {
-            color: 'red !imporant',
-        },
     },
     buttonIcon: {
-        color: tokens?.colorCompoundBrandStrokeHover,
+        //color: tokens?.colorCompoundBrandStrokeHover,
     },
 });

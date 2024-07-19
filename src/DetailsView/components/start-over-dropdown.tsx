@@ -8,7 +8,7 @@ import {
     IPoint,
     IRefObject,
 } from '@fluentui/react';
-import styles from './command-bar-buttons-menu.scss';
+
 import {
     Menu,
     MenuButton,
@@ -29,6 +29,9 @@ import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import * as React from 'react';
 
 import { StartOverContextMenuKeyOptions } from './details-view-right-panel';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
+import { StartOverDropdownStyles } from 'DetailsView/components/start-over-dropdown-styles';
+import { useState } from 'react';
 
 
 export type StartOverDropdownMenuItems = MenuItemProps & {
@@ -64,99 +67,143 @@ const dropdownDirections = {
 
 export type DropdownDirection = keyof typeof dropdownDirections;
 
-export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
-    constructor(props: StartOverProps) {
-        super(props);
+// export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
+//     constructor(props: StartOverProps) {
+//         super(props);
 
-        this.state = {
-            isContextMenuVisible: false,
-        };
-    }
+//         this.state = {
+//             isContextMenuVisible: false,
+//         };
+//     }
 
-    public render(): JSX.Element {
-        const direction = this.props.dropdownDirection;
-        return (
-            // <div>
-            //     <InsightsCommandButton
-            //         iconProps={{
-            //             iconName: 'Refresh',
-            //         }}
-            //         text="Start over"
-            //         ariaLabel="start over menu"
-            //         onClick={this.openDropdown}
-            //         menuIconProps={{
-            //             iconName: dropdownDirections[direction].iconName,
-            //         }}
-            //         componentRef={this.props.buttonRef}
-            //     />
-            //     {this.renderContextMenu()}
-            // </div>
-            <div>
-                <Menu>
-                    <MenuTrigger disableButtonEnhancement>
-                        <MenuButton
-                            appearance="transparent"
-                            className={styles.menuButton}
-                            icon={<ArrowClockwiseRegular className={styles.refreshIcon} />}
-                            aria-label="start over menu"
-                            //className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
-                            menuIcon={
-                                direction === 'left' ? (
-                                    <ChevronRight20Regular />
-                                ) : (
-                                    <ChevronDown20Regular />
-                                )
-                            }
-                        >
-                            Start over V9
-                        </MenuButton>
-                        {/* <MenuItem
-                            className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
-                            icon={<ArrowClockwiseRegular className={styles.refreshIcon} />}
-                            aria-label="start over menu"
-                            submenuIndicator={direction === 'left' ? (
-                                <ChevronRightRegular />
-                            ) : (
-                                <ChevronDownRegular />
-                            )}
-                        >
-                            Start over
-                        </MenuItem> */}
-                    </MenuTrigger>
-                    <MenuPopover
-                        style={{ padding: 'unset !important', border: 'unset !important', borderRadius: 'unset !important' }}
-                    >
-                        <MenuList>
-                            {this.getMenuItemsV9().map(item => (
-                                <MenuItem key={item.key} {...item}>
-                                    {item.name}
-                                </MenuItem>
-                            ))}
-                        </MenuList>
-                    </MenuPopover>
-                </Menu>
-            </div >
-        );
-    }
+//     public render(): JSX.Element {
+//         const direction = this.props.dropdownDirection;
+
+//         return (
+//             // <div>
+//             //     <InsightsCommandButton
+//             //         iconProps={{
+//             //             iconName: 'Refresh',
+//             //         }}
+//             //         text="Start over"
+//             //         ariaLabel="start over menu"
+//             //         onClick={this.openDropdown}
+//             //         menuIconProps={{
+//             //             iconName: dropdownDirections[direction].iconName,
+//             //         }}
+//             //         componentRef={this.props.buttonRef}
+//             //     />
+//             //     {this.renderContextMenu()}
+//             // </div>
+//             <div>
+//                 <Menu>
+//                     <MenuTrigger disableButtonEnhancement>
+//                         <MenuButton
+//                             appearance="transparent"
+//                             className={styles.menuButton}
+//                             icon={<FluentUIV9Icon iconName='ArrowClockwiseRegular' />}
+//                             aria-label="start over menu"
+//                             //className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
+//                             menuIcon={
+//                                 direction === 'left' ? (
+//                                     <FluentUIV9Icon iconName='ChevronRight20Regular' />
+//                                 ) : (
+//                                     <FluentUIV9Icon iconName='ChevronDown20Regular' />
+//                                 )
+//                             }
+//                         >
+//                             Start over V9
+//                         </MenuButton>
+//                         {/* <MenuItem
+//                             className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
+//                             icon={<ArrowClockwiseRegular className={styles.refreshIcon} />}
+//                             aria-label="start over menu"
+//                             submenuIndicator={direction === 'left' ? (
+//                                 <ChevronRightRegular />
+//                             ) : (
+//                                 <ChevronDownRegular />
+//                             )}
+//                         >
+//                             Start over
+//                         </MenuItem> */}
+//                     </MenuTrigger>
+//                     <MenuPopover className={styles.menuPopover}>
+//                         <MenuList>
+//                             {this.getMenuItemsV9().map(item => (
+//                                 <MenuItem className={stylesValue.menuItem} key={item.key} {...item}>
+//                                     {item.name}
+//                                 </MenuItem>
+//                             ))}
+//                         </MenuList>
+//                     </MenuPopover>
+//                 </Menu>
+//             </div >
+//         );
+//     }
 
 
-    private getMenuItemsV9(): StartOverDropdownMenuItems[] {
+//     private getMenuItemsV9(): StartOverDropdownMenuItems[] {
+//         const {
+//             singleTestSuffix,
+//             allTestSuffix,
+//             rightPanelOptions,
+//             switcherStartOverPreferences: startOverButtonOptionPreferences,
+//         } = this.props;
+//         const items: StartOverDropdownMenuItems[] = [];
+//         const assessmentKey = {
+//             key: 'assessment',
+//             name: `Start over ${allTestSuffix}`,
+//             onClick: this.onStartOverAllTestsMenu,
+//         };
+//         const testKey = {
+//             key: 'test',
+//             name: `Start over ${singleTestSuffix}`,
+//             onClick: this.onStartOverTestMenu,
+//         };
+
+//         items.push(assessmentKey);
+
+//         if (rightPanelOptions.showTest && startOverButtonOptionPreferences.showTest) {
+//             items.push(testKey);
+//         }
+
+//         return items;
+//     }
+
+//     private onStartOverTestMenu = (): void => {
+//         console.log('clicked2')
+//         this.props.openDialog('test');
+//     };
+
+//     private onStartOverAllTestsMenu = (): void => {
+//         console.log('clicked1')
+//         this.props.openDialog('assessment');
+//     };
+// }
+
+
+export const StartOverDropdown: React.FC<StartOverProps> = (props) => {
+    const [isContextMenuVisible, setIsContextMenuVisible] = useState(false);
+    const stylesValue = StartOverDropdownStyles();
+    const direction = props.dropdownDirection;
+
+    const getMenuItemsV9 = (): StartOverDropdownMenuItems[] => {
         const {
             singleTestSuffix,
             allTestSuffix,
             rightPanelOptions,
             switcherStartOverPreferences: startOverButtonOptionPreferences,
-        } = this.props;
+        } = props;
         const items: StartOverDropdownMenuItems[] = [];
         const assessmentKey = {
             key: 'assessment',
             name: `Start over ${allTestSuffix}`,
-            onClick: this.onStartOverAllTestsMenu,
+            onClick: onStartOverAllTestsMenu,
         };
         const testKey = {
             key: 'test',
             name: `Start over ${singleTestSuffix}`,
-            onClick: this.onStartOverTestMenu,
+            onClick: onStartOverTestMenu,
         };
 
         items.push(assessmentKey);
@@ -168,13 +215,59 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         return items;
     }
 
-    private onStartOverTestMenu = (): void => {
+    const onStartOverTestMenu = (): void => {
         console.log('clicked2')
-        this.props.openDialog('test');
+        props.openDialog('test');
     };
 
-    private onStartOverAllTestsMenu = (): void => {
+    const onStartOverAllTestsMenu = (): void => {
         console.log('clicked1')
-        this.props.openDialog('assessment');
+        props.openDialog('assessment');
     };
+
+    return (
+        <div>
+            <Menu>
+                <MenuTrigger disableButtonEnhancement>
+                    <MenuButton
+                        appearance="transparent"
+                        className={stylesValue.menuButton}
+                        icon={<FluentUIV9Icon iconName='ArrowClockwiseRegular' customClass={stylesValue.menuButton} />}
+                        aria-label="start over menu"
+                        //className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
+                        menuIcon={
+                            direction === 'left' ? (
+                                <FluentUIV9Icon iconName='ChevronRight20Regular' />
+                            ) : (
+                                <FluentUIV9Icon iconName='ChevronDown20Regular' />
+                            )
+                        }
+                    >
+                        Start over V9
+                    </MenuButton>
+                    {/* <MenuItem
+                            className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
+                            icon={<ArrowClockwiseRegular className={styles.refreshIcon} />}
+                            aria-label="start over menu"
+                            submenuIndicator={direction === 'left' ? (
+                                <ChevronRightRegular />
+                            ) : (
+                                <ChevronDownRegular />
+                            )}
+                        >
+                            Start over
+                        </MenuItem> */}
+                </MenuTrigger>
+                <MenuPopover className={stylesValue.menuPopover}>
+                    <MenuList>
+                        {getMenuItemsV9().map(item => (
+                            <MenuItem className={stylesValue.menuItem} key={item.key} {...item}>
+                                {item.name}
+                            </MenuItem>
+                        ))}
+                    </MenuList>
+                </MenuPopover>
+            </Menu>
+        </div >
+    )
 }

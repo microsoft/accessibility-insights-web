@@ -24,6 +24,7 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 
 export const passUnmarkedInstancesButtonAutomationId =
     'assessment-instance-table-pass-unmarked-instances-button';
@@ -126,9 +127,9 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         return (
             <InsightsCommandButton
                 data-automation-id={passUnmarkedInstancesButtonAutomationId}
-                insightsCommandButtonIconProps={{ icon: <Checkmark16Filled /> }}
+                insightsCommandButtonIconProps={{ icon: <FluentUIV9Icon iconName='Checkmark16Filled' /> }}
                 onClick={this.onPassUnmarkedInstances}
-                disabled={disabled}    
+                disabled={disabled}
             >
                 Pass unmarked instances
             </InsightsCommandButton>

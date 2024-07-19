@@ -12,12 +12,14 @@ import {
     MenuList,
     MenuPopover,
     MenuTrigger,
+    Tooltip,
 } from '@fluentui/react-components';
 import { MoreHorizontalRegular } from '@fluentui/react-icons';
 import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element | null;
@@ -65,12 +67,13 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             ...props.getStartOverMenuItem(),
         });
         return (
-            <TooltipHost content="More actions" aria-label="More actions">
+            <Tooltip content="More actions" relationship="label">
                 <Menu>
                     <MenuTrigger>
                         <MenuButton
                             appearance="transparent"
-                            icon={<MoreHorizontalRegular />}
+                            //icon={<MoreHorizontalRegular />}
+                            icon={<FluentUIV9Icon iconName='MoreHorizontalRegular' />}
                             className={styles.commandBarButtonsMenuButton}
                         />
                     </MenuTrigger>
@@ -83,10 +86,10 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                             }}
                         >
 
-                            <MenuList>
+                            <MenuList className={styles.menuList}>
                                 {overflowItems.map((item, index) => {
                                     return item?.children?.props?.children?.props?.hasSubMenu ? (
-                                        <span key={`${item - index}`}>{item.children}</span>
+                                        <MenuItem className={styles.menuItem} key={`${item - index}`}>{item.children}</MenuItem>
                                     ) : (
                                         <MenuItem
                                             className={styles.menuItem}
@@ -101,7 +104,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                         </MenuPopover>
                     </>
                 </Menu>
-            </TooltipHost>
+            </Tooltip>
         );
     },
 );

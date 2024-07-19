@@ -8,6 +8,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
 import styles from './inline-start-over-button.scss';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 
 export const inlineStartOverButtonDataAutomationId = 'inline-start-over-button';
 
@@ -24,7 +25,7 @@ export const InlineStartOverButton = NamedFC<InlineStartOverButtonProps>(
         return (
             <InsightsCommandButton
                 onClick={rescan}
-                insightsCommandButtonIconProps={{ icon: <ArrowClockwiseRegular /> }}
+                insightsCommandButtonIconProps={{ icon: <FluentUIV9Icon iconName='ArrowClockwiseRegular' /> }}
                 className={styles.inlineStartOverButton}
                 data-automation-id={inlineStartOverButtonDataAutomationId}
             >
