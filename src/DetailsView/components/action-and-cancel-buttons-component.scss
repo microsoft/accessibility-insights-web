@@ -1,58 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-@import '../../common/styles/common.scss';
-
 .action-and-cancel-buttons-component {
     display: flex;
     justify-content: flex-end;
 
     .action-cancel-button-col + .action-cancel-button-col {
         margin-left: 8px;
-    }
-
-    .cancel-button {
-        font-size: 14px;
-        font-weight: 600;
-        height: 32px;
-        border: 1px solid $neutral-60;
-        border-radius: 2px;
-
-        &:hover {
-            border: 1px solid $neutral-60;
-            font-weight: 600;
-            color: $neutral-100;
-            border-radius: 2px;
-            background-color: $neutral-4;
-        }
-    }
-
-    .action-button-disabled {
-        font-size: 14px;
-        font-weight: 600;
-        height: 32px;
-        border: 1px solid $neutral-4;
-        background-color: $neutral-4;
-        color: $neutral-10;
-        pointer-events: none;
-        border-radius: 2px;
-        border-width: 10px;
-    }
-
-    .action-button-enabled {
-        font-size: 14px;
-        font-weight: 600;
-        height: 32px;
-        border: 1px solid $communication-primary;
-        background-color: $communication-primary;
-        color: $always-white;
-        border-radius: 2px;
-        border-width: 10px;
-
-        &:hover {
-            background-color: $communication-primary;
-            color: $always-white;
-            border-color: $communication-primary;
-        }
     }
 }

@@ -8,23 +8,19 @@ exports[`ActionAndCancelButtonsComponent render with primary button href == null
     <div
       class="actionCancelButtonCol"
     >
-      <mock-button
-        classname="cancelButton"
-      >
-        Cancel
-      </mock-button>
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
     </div>
     <div
       class="actionCancelButtonCol"
     >
-      <mock-button
-        appearance="primary"
-        classname="actionButtonEnabled"
+      <mock-customizeddefaultbutton
         disabled="false"
+        primary="true"
         target="_self"
-      >
-        Test
-      </mock-button>
+        text="Test"
+      />
     </div>
   </div>
 </DocumentFragment>
@@ -38,24 +34,20 @@ exports[`ActionAndCancelButtonsComponent render with primary button href == samp
     <div
       class="actionCancelButtonCol"
     >
-      <mock-button
-        classname="cancelButton"
-      >
-        Cancel
-      </mock-button>
+      <mock-customizeddefaultbutton
+        text="Cancel"
+      />
     </div>
     <div
       class="actionCancelButtonCol"
     >
-      <mock-button
-        appearance="primary"
-        classname="actionButtonEnabled"
+      <mock-customizeddefaultbutton
         disabled="false"
         href="sample href"
+        primary="true"
         target="_blank"
-      >
-        Test
-      </mock-button>
+        text="Test"
+      />
     </div>
   </div>
 </DocumentFragment>

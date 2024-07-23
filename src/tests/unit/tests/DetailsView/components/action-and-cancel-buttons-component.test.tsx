@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Button } from '@fluentui/react-components';
+import { DefaultButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import * as React from 'react';
 
@@ -10,10 +10,10 @@ import {
     ActionAndCancelButtonsComponentProps,
 } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 
-jest.mock('@fluentui/react-components');
+jest.mock('@fluentui/react');
 
 describe('ActionAndCancelButtonsComponent', () => {
-    mockReactComponents([Button]);
+    mockReactComponents([DefaultButton]);
     test('constructor', () => {
         expect(
             new ActionAndCancelButtonsComponent({} as ActionAndCancelButtonsComponentProps),
@@ -21,8 +21,8 @@ describe('ActionAndCancelButtonsComponent', () => {
     });
 
     test.each(['sample href', null])('render with primary button href == %s', href => {
-        const primaryButtonOnClickStub = () => {};
-        const cancelButtonOnClickStub = () => {};
+        const primaryButtonOnClickStub = () => { };
+        const cancelButtonOnClickStub = () => { };
         const props: ActionAndCancelButtonsComponentProps = {
             isHidden: false,
             primaryButtonDisabled: false,

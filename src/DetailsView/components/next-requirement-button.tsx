@@ -37,10 +37,10 @@ export const NextRequirementButton = NamedFC<NextRequirementButtonProps>(
         };
 
         return (
-            <Button className={props.className} onClick={selectNextRequirement}>
+            <Button className={props.className} onClick={selectNextRequirement} shape="square">
                 {props.nextRequirement.name}
                 <span>
-                    <Icon iconName="ChevronRight" aria-label={'next'} />
+                    <Icon iconName="ChevronRight" ariaLabel={'next'} />
                 </span>
             </Button>
         );

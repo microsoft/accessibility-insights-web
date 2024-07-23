@@ -58,7 +58,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'Scoping experience',
             displayableDescription:
                 'Enable scoping to limit scanning to selected portions of the webpage.',
-            isPreviewFeature: false,
+            isPreviewFeature: true,
             forceDefault: false,
         },
         {
@@ -78,7 +78,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableDescription:
                 'Allow addition of path (CSS selector) which automatically ' +
                 'populates the corresponding code snippet when adding manual failure instance.',
-            isPreviewFeature: false,
+            isPreviewFeature: true,
             forceDefault: false,
         },
         {
