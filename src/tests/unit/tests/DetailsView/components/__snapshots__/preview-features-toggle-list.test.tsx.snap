@@ -1,8 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PreviewFeaturesToggleListTest render 1`] = `
-"<div className="previewFeatureToggleList">
-  <GenericToggle name="test name 1" description="test description 1" enabled={true} onClick={[Function: proxy]} id="test-id-1" />
-  <GenericToggle name="test name 2" description="test description 2" enabled={false} onClick={[Function: proxy]} id="test-id-2" />
-</div>"
+<DocumentFragment>
+  <div
+    class="previewFeatureToggleList"
+  >
+    <mock-generictoggle
+      description="test description 1"
+      enabled="true"
+      id="test-id-1"
+      name="test name 1"
+    />
+    <mock-generictoggle
+      description="test description 2"
+      enabled="false"
+      id="test-id-2"
+      name="test name 2"
+    />
+  </div>
+</DocumentFragment>
 `;

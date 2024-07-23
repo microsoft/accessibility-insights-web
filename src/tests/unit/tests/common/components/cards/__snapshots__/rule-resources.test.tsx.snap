@@ -3,185 +3,546 @@
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ [length]: 0 ],
-  linkComponent: 'ExternalLink'
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
 } 1`] = `
-<div
-  className="ruleMoreResources"
->
+<DocumentFragment>
   <div
-    className="moreResourcesTitle"
+    class="ruleMoreResources"
   >
-    Resources for this rule
-  </div>
-  <span
-    className="ruleDetailsId"
-  >
-    <ExternalLink
-      href="test-url"
+    <div
+      class="moreResourcesTitle"
     >
-      More information about 
-      some-rule
-    </ExternalLink>
-  </span>
-  <span
-    className="ruleGuidance"
-  >
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={[]}
-    />
-    <GuidanceTags
-      deps={
+      Resources for this rule
+    </div>
+    <span
+      class="ruleDetailsId"
+    >
+      <mock-externallink
+        href="test-url"
+      >
+        More information about some-rule
+      </mock-externallink>
+    </span>
+    <span
+      class="ruleGuidance"
+    >
+      <mock-guidancelinks
+        links=""
+      />
+      <mock-guidancetags
+        deps="[object Object]"
+        links=""
+      />
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
+}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [MockFunction] {
+    "calls": [
+      [
         {
-          "LinkComponent": [Function],
-        }
-      }
-      links={[]}
-    />
-  </span>
-</div>
+          "children": [
+            "More information about ",
+            "some-rule",
+          ],
+          "href": "test-url",
+        },
+        {},
+      ],
+    ],
+    "results": [
+      {
+        "type": "return",
+        "value": <mock-ExternalLink
+          href="test-url"
+        >
+          More information about 
+          some-rule
+        </mock-ExternalLink>,
+      },
+    ],
+  },
+  "links": [],
+}
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
+}: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction] {
+      "calls": [
+        [
+          "pass",
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    },
+    "LinkComponent": [MockFunction] {
+      "calls": [
+        [
+          {
+            "children": [
+              "More information about ",
+              "some-rule",
+            ],
+            "href": "test-url",
+          },
+          {},
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": <mock-ExternalLink
+            href="test-url"
+          >
+            More information about 
+            some-rule
+          </mock-ExternalLink>,
+        },
+      ],
+    },
+  },
+  "links": [],
+}
 `;
 
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
-  linkComponent: 'ExternalLink'
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
 } 1`] = `
-<div
-  className="ruleMoreResources"
->
+<DocumentFragment>
   <div
-    className="moreResourcesTitle"
+    class="ruleMoreResources"
   >
-    Resources for this rule
-  </div>
-  <span
-    className="ruleDetailsId"
-  >
-    <ExternalLink
-      href="test-url"
+    <div
+      class="moreResourcesTitle"
     >
-      More information about 
-      some-rule
-    </ExternalLink>
-  </span>
-  <span
-    className="ruleGuidance"
-  >
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-    <GuidanceTags
-      deps={
+      Resources for this rule
+    </div>
+    <span
+      class="ruleDetailsId"
+    >
+      <mock-externallink
+        href="test-url"
+      >
+        More information about some-rule
+      </mock-externallink>
+    </span>
+    <span
+      class="ruleGuidance"
+    >
+      <mock-guidancelinks
+        links="[object Object]"
+      />
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object]"
+      />
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
+}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [MockFunction] {
+    "calls": [
+      [
         {
-          "LinkComponent": [Function],
-        }
-      }
-      links={
+          "children": [
+            "More information about ",
+            "some-rule",
+          ],
+          "href": "test-url",
+        },
+        {},
+      ],
+    ],
+    "results": [
+      {
+        "type": "return",
+        "value": <mock-ExternalLink
+          href="test-url"
+        >
+          More information about 
+          some-rule
+        </mock-ExternalLink>,
+      },
+    ],
+  },
+  "links": [
+    {
+      "href": "test-href",
+    },
+  ],
+}
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
+}: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction] {
+      "calls": [
+        [
+          "pass",
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    },
+    "LinkComponent": [MockFunction] {
+      "calls": [
         [
           {
-            "href": "test-href",
+            "children": [
+              "More information about ",
+              "some-rule",
+            ],
+            "href": "test-url",
           },
-        ]
-      }
-    />
-  </span>
-</div>
+          {},
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": <mock-ExternalLink
+            href="test-url"
+          >
+            More information about 
+            some-rule
+          </mock-ExternalLink>,
+        },
+      ],
+    },
+  },
+  "links": [
+    {
+      "href": "test-href",
+    },
+  ],
+}
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+} 1`] = `
+<DocumentFragment>
+  <div
+    class="ruleMoreResources"
+  >
+    <div
+      class="moreResourcesTitle"
+    >
+      Resources for this rule
+    </div>
+    <span
+      class="ruleDetailsId"
+    >
+      <a
+        class="ms-Link insights-link root-109"
+        href="test-url"
+        target="_blank"
+      >
+        More information about some-rule
+      </a>
+    </span>
+    <span
+      class="ruleGuidance"
+    >
+      <mock-guidancelinks />
+      <mock-guidancetags
+        deps="[object Object]"
+      />
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [Function],
+  "links": null,
+}
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+}: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction] {
+      "calls": [
+        [
+          "pass",
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    },
+    "LinkComponent": [Function],
+  },
+  "links": null,
+}
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'review'
+} 1`] = `
+<DocumentFragment>
+  <div
+    class="ruleMoreResources"
+  >
+    <div
+      class="moreResourcesTitle"
+    >
+      Resources for this rule
+    </div>
+    <span
+      class="ruleDetailsId"
+    >
+      <a
+        class="ms-Link insights-link root-109"
+        href="test-url"
+        target="_blank"
+      >
+        More information about some-rule
+      </a>
+    </span>
+    <span
+      class="ruleGuidance"
+    >
+      <mock-guidancelinks />
+      <mock-guidancetags
+        deps="[object Object]"
+      />
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'review'
+}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [Function],
+  "links": null,
+}
+`;
+
+exports[`RuleResources renders with {
+  url: 'test-url',
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'review'
+}: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction] {
+      "calls": [
+        [
+          "review",
+        ],
+      ],
+      "results": [
+        {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    },
+    "LinkComponent": [Function],
+  },
+  "links": null,
+}
 `;
 
 exports[`RuleResources renders with {
   url: null,
   guidanceLinks: [ [length]: 0 ],
-  linkComponent: 'ExternalLink'
-} 1`] = `null`;
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
+} 1`] = `<DocumentFragment />`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
+}: GuidanceLinks props 1`] = `undefined`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'pass'
+}: GuidanceTags props 1`] = `undefined`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'review'
+} 1`] = `<DocumentFragment />`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'review'
+}: GuidanceLinks props 1`] = `undefined`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ExternalLink',
+  outcomeType: 'review'
+}: GuidanceTags props 1`] = `undefined`;
 
 exports[`RuleResources renders with {
   url: null,
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
-  linkComponent: 'NewTabLink'
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
 } 1`] = `
-<div
-  className="ruleMoreResources"
->
+<DocumentFragment>
   <div
-    className="moreResourcesTitle"
+    class="ruleMoreResources"
   >
-    Resources for this rule
-  </div>
-  <span
-    className="ruleGuidance"
-  >
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-    <GuidanceTags
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
-      }
-      links={
-        [
-          {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-  </span>
-</div>
-`;
-
-exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `
-<div
-  className="ruleMoreResources"
->
-  <div
-    className="moreResourcesTitle"
-  >
-    Resources for this rule
-  </div>
-  <span
-    className="ruleDetailsId"
-  >
-    <NewTabLink
-      href="test-url"
+    <div
+      class="moreResourcesTitle"
     >
-      More information about 
-      some-rule
-    </NewTabLink>
-  </span>
-  <span
-    className="ruleGuidance"
-  >
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={null}
-    />
-    <GuidanceTags
-      deps={
-        {
-          "LinkComponent": [Function],
-        }
-      }
-      links={null}
-    />
-  </span>
-</div>
+      Resources for this rule
+    </div>
+    <span
+      class="ruleGuidance"
+    >
+      <mock-guidancelinks
+        links="[object Object]"
+      />
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object]"
+      />
+    </span>
+  </div>
+</DocumentFragment>
 `;
 
-exports[`RuleResources renders with { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `null`;
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+}: GuidanceLinks props 1`] = `
+{
+  "LinkComponent": [Function],
+  "links": [
+    {
+      "href": "test-href",
+    },
+  ],
+}
+`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+}: GuidanceTags props 1`] = `
+{
+  "deps": {
+    "GetNeedsReviewRuleResourcesUrl": [MockFunction],
+    "IsOutcomeNeedsReview": [MockFunction],
+    "LinkComponent": [Function],
+  },
+  "links": [
+    {
+      "href": "test-href",
+    },
+  ],
+}
+`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+} 1`] = `<DocumentFragment />`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+}: GuidanceLinks props 1`] = `undefined`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: null,
+  linkComponent: 'NewTabLink',
+  outcomeType: 'pass'
+}: GuidanceTags props 1`] = `undefined`;

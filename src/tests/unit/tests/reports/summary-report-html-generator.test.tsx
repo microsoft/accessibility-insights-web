@@ -63,7 +63,6 @@ describe('ReportHtmlGenerator', () => {
         };
 
         const results: SummaryScanResults = {
-            deps,
             failed: [
                 {
                     url: `${baseUrl}/failed`,

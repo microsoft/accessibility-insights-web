@@ -1,11 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReportExportComponent clicking export on the dialog triggers generateExports, generates json and html with the current exportDescription 1`] = `"<ExportDialog deps={{...}} isOpen={true} htmlFileName="" jsonFileName="" description="test content with special characters: <> $ " \` \\'" htmlExportData="test html" jsonExportData="test json" htmlFileUrl="html url" jsonFileUrl="json url" onClose={[Function: proxy]} onDescriptionChange={[Function (anonymous)]} reportExportFormat="Assessment" generateExports={[Function (anonymous)]} featureFlagStoreData={{...}} afterDismissed={[Function: proxy]} reportExportServices={{...}} exportResultsClickedTelemetry={[Function: exportResultsClickedTelemetry]} />"`;
+exports[`ReportExportComponent clicking export on the dialog triggers generateExports, generates json and html with the current exportDescription 1`] = `
+<DocumentFragment>
+  <mock-exportdialog
+    description="test content with special characters: <> $ " \` '"
+    featureflagstoredata="[object Object]"
+    htmlexportdata="test html"
+    htmlfilename=""
+    htmlfileurl="html url"
+    isopen="true"
+    jsonexportdata="test json"
+    jsonfilename=""
+    jsonfileurl="json url"
+    reportexportformat="Assessment"
+    reportexportservices="[object Object]"
+  />
+</DocumentFragment>
+`;
 
-exports[`ReportExportComponent edit text field: test content with special characters: <> $ " \` ' 1`] = `"<ExportDialog deps={{...}} isOpen={true} htmlFileName="" jsonFileName="" description="test content with special characters: <> $ " \` \\'" htmlExportData="" jsonExportData="" htmlFileUrl="#" jsonFileUrl="#" onClose={[Function: proxy]} onDescriptionChange={[Function (anonymous)]} reportExportFormat="Assessment" generateExports={[Function (anonymous)]} featureFlagStoreData={{...}} afterDismissed={[Function: proxy]} reportExportServices={{...}} exportResultsClickedTelemetry={[Function: exportResultsClickedTelemetry]} />"`;
+exports[`ReportExportComponent edit text field: test content with special characters: <> $ " \` ' 1`] = `
+<DocumentFragment>
+  <mock-exportdialog
+    description="test content with special characters: <> $ " \` '"
+    featureflagstoredata="[object Object]"
+    htmlexportdata=""
+    htmlfilename=""
+    htmlfileurl="#"
+    isopen="true"
+    jsonexportdata=""
+    jsonfilename=""
+    jsonfileurl="#"
+    reportexportformat="Assessment"
+    reportexportservices="[object Object]"
+  />
+</DocumentFragment>
+`;
 
-exports[`ReportExportComponent on dialog opened 1`] = `"<ExportDialog deps={{...}} isOpen={true} htmlFileName="export name" jsonFileName={[undefined]} description="export description" htmlExportData="" jsonExportData="" htmlFileUrl="#" jsonFileUrl="#" onClose={[Function: proxy]} onDescriptionChange={[Function (anonymous)]} reportExportFormat="Assessment" generateExports={[Function (anonymous)]} featureFlagStoreData={{...}} afterDismissed={[Function: proxy]} reportExportServices={{...}} exportResultsClickedTelemetry={[Function: exportResultsClickedTelemetry]} />"`;
+exports[`ReportExportComponent on dialog opened 1`] = `
+<DocumentFragment>
+  <mock-exportdialog
+    description="export description"
+    featureflagstoredata="[object Object]"
+    htmlexportdata=""
+    htmlfilename="export name"
+    htmlfileurl="#"
+    isopen="true"
+    jsonexportdata=""
+    jsonfileurl="#"
+    reportexportformat="Assessment"
+    reportexportservices="[object Object]"
+  />
+</DocumentFragment>
+`;
 
-exports[`ReportExportComponent render with dialog closed 1`] = `"<ExportDialog deps={{...}} isOpen={false} htmlFileName="" jsonFileName="" description="" htmlExportData="" jsonExportData="" htmlFileUrl="#" jsonFileUrl="#" onClose={[Function: proxy]} onDescriptionChange={[Function (anonymous)]} reportExportFormat="Assessment" generateExports={[Function (anonymous)]} featureFlagStoreData={{...}} afterDismissed={[Function: proxy]} reportExportServices={{...}} exportResultsClickedTelemetry={[Function: exportResultsClickedTelemetry]} />"`;
+exports[`ReportExportComponent render with dialog closed 1`] = `
+<DocumentFragment>
+  <mock-exportdialog
+    description=""
+    featureflagstoredata="[object Object]"
+    htmlexportdata=""
+    htmlfilename=""
+    htmlfileurl="#"
+    isopen="false"
+    jsonexportdata=""
+    jsonfilename=""
+    jsonfileurl="#"
+    reportexportformat="Assessment"
+    reportexportservices="[object Object]"
+  />
+</DocumentFragment>
+`;
 
-exports[`ReportExportComponent render with dialog open 1`] = `"<ExportDialog deps={{...}} isOpen={true} htmlFileName="" jsonFileName="" description="" htmlExportData="" jsonExportData="" htmlFileUrl="#" jsonFileUrl="#" onClose={[Function: proxy]} onDescriptionChange={[Function (anonymous)]} reportExportFormat="Assessment" generateExports={[Function (anonymous)]} featureFlagStoreData={{...}} afterDismissed={[Function: proxy]} reportExportServices={{...}} exportResultsClickedTelemetry={[Function: exportResultsClickedTelemetry]} />"`;
+exports[`ReportExportComponent render with dialog open 1`] = `
+<DocumentFragment>
+  <mock-exportdialog
+    description=""
+    featureflagstoredata="[object Object]"
+    htmlexportdata=""
+    htmlfilename=""
+    htmlfileurl="#"
+    isopen="true"
+    jsonexportdata=""
+    jsonfilename=""
+    jsonfileurl="#"
+    reportexportformat="Assessment"
+    reportexportservices="[object Object]"
+  />
+</DocumentFragment>
+`;

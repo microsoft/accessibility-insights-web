@@ -1,11 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ToolLink renders 1`] = `
-<NewTabLink
-  className="tool-name-link"
-  href="http://aka.ms/AccessibilityInsights"
-  title="Get more information and download Accessibility Insights for Web"
->
-  http://aka.ms/AccessibilityInsights
-</NewTabLink>
+<DocumentFragment>
+  <mock-newtablink
+    classname="tool-name-link"
+    href="http://aka.ms/AccessibilityInsights"
+    title="Get more information and download Accessibility Insights for Web"
+  >
+    http://aka.ms/AccessibilityInsights
+  </mock-newtablink>
+</DocumentFragment>
 `;

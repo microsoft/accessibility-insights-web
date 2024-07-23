@@ -6,6 +6,8 @@ import { Requirement } from 'assessments/types/requirement';
 import {
     AddFailureInstancePayload,
     AddResultDescriptionPayload,
+    AssessmentActionInstancePayload,
+    AssessmentToggleActionPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
@@ -230,9 +232,8 @@ describe('AssessmentStore', () => {
             });
         });
 
-        expectedState.assessments['assessment-1'].manualTestStepResultMap[
-            expectedTestStep
-        ].status = 2;
+        expectedState.assessments['assessment-1'].manualTestStepResultMap[expectedTestStep].status =
+            2;
 
         setupDataGeneratorMock(persisted, expectedState);
 
@@ -1549,7 +1550,7 @@ describe('AssessmentStore', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: ToggleActionPayload = {
+        const payload: AssessmentActionInstancePayload = {
             test: assessmentType,
             requirement: requirementKey,
             selector: 'selector',
@@ -1927,7 +1928,7 @@ describe('AssessmentStore', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
-        const payload: ToggleActionPayload = {
+        const payload: AssessmentToggleActionPayload = {
             test: assessmentType,
             requirement: requirementKey,
         };

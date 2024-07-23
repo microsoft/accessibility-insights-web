@@ -1,1100 +1,775 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportBody renders 1`] = `
-<body-section>
-  <header-section
-    cardsViewData={
-      {
-        "allCardsCollapsed": true,
-        "cards": {
-          "fail": [
+<DocumentFragment>
+  <mock-bodysection>
+    <mock-automatedchecksheadersection
+      cardsviewdata="[object Object]"
+      deps="[object Object]"
+      description="test description"
+      fixinstructionprocessor="undefined"
+      recommendcolor="undefined"
+      scanmetadata="[object Object]"
+      sectionfactory="[object Object]"
+      sectionheadinglevel="3"
+      shouldalertfailurescount="false"
+    />
+    <mock-contentsection>
+      <mock-automatedcheckstitlesection />
+      <mock-detailssection
+        cardsviewdata="[object Object]"
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        recommendcolor="undefined"
+        scanmetadata="[object Object]"
+        sectionfactory="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+      />
+      <mock-alloutcomessummarysection
+        cardsviewdata="[object Object]"
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        recommendcolor="undefined"
+        scanmetadata="[object Object]"
+        sectionfactory="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+      />
+      <mock-resultscontainer
+        cardsviewdata="[object Object]"
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        recommendcolor="undefined"
+        scanmetadata="[object Object]"
+        sectionfactory="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+      >
+        <mock-failedinstancessection
+          cardsviewdata="[object Object]"
+          deps="[object Object]"
+          description="test description"
+          fixinstructionprocessor="undefined"
+          recommendcolor="undefined"
+          scanmetadata="[object Object]"
+          sectionfactory="[object Object]"
+          sectionheadinglevel="3"
+          shouldalertfailurescount="false"
+        />
+        <mock-passedcheckssection
+          cardsviewdata="[object Object]"
+          deps="[object Object]"
+          description="test description"
+          fixinstructionprocessor="undefined"
+          recommendcolor="undefined"
+          scanmetadata="[object Object]"
+          sectionfactory="[object Object]"
+          sectionheadinglevel="3"
+          shouldalertfailurescount="false"
+        />
+        <mock-notapplicablecheckssection
+          cardsviewdata="[object Object]"
+          deps="[object Object]"
+          description="test description"
+          fixinstructionprocessor="undefined"
+          recommendcolor="undefined"
+          scanmetadata="[object Object]"
+          sectionfactory="[object Object]"
+          sectionheadinglevel="3"
+          shouldalertfailurescount="false"
+        />
+      </mock-resultscontainer>
+    </mock-contentsection>
+    <mock-footersection>
+      <mock-footertext
+        cardsviewdata="[object Object]"
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        recommendcolor="undefined"
+        scanmetadata="[object Object]"
+        sectionfactory="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+      />
+    </mock-footersection>
+  </mock-bodysection>
+</DocumentFragment>
+`;
+
+exports[`ReportBody renders: allOutcomesSummarySectionProps 1`] = `
+{
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
+        {
+          "description": "sample-description",
+          "guidance": [
             {
-              "description": "sample-description",
-              "guidance": [
-                {
-                  "href": "sample-guidance-href",
-                  "text": "sample-guidance-text",
-                },
-              ],
-              "id": "some-rule",
-              "nodes": [
-                {
-                  "descriptors": {
-                    "snippet": "this is a sample snippet",
-                  },
-                  "identifiers": {
-                    "conciseName": "body img",
-                    "css-selector": "body img",
-                    "identifier": "body img",
-                  },
-                  "resolution": {
-                    "how-to-fix-web": {
-                      "all": [],
-                      "any": [
-                        "Element does not have an alt attribute",
-                        "aria-label attribute does not exist or is empty",
-                        "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                      ],
-                      "none": [],
-                    },
-                    "howToFixSummary": "sample how to fix summary",
-                  },
-                  "ruleId": "image-alt",
-                  "status": "fail",
-                  "uid": "some-guid-here",
-                },
-              ],
-              "url": "sample-url",
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
             },
           ],
-          "inapplicable": [],
-          "pass": [],
-          "unknown": [],
-        },
-        "visualHelperEnabled": true,
-      }
-    }
-    deps={{}}
-    description="test description"
-    fixInstructionProcessor={[typemoq mock object]}
-    getCollapsibleScript={[Function]}
-    getGuidanceTagsFromGuidanceLinks={[Function]}
-    pageTitle="page-title"
-    pageUrl="url:target-page"
-    recommendColor={[typemoq mock object]}
-    scanMetadata={
-      {
-        "targetAppInfo": {
-          "name": "app",
-        },
-        "timespan": {
-          "scanComplete": 1900-02-02T03:00:00.000Z,
-        },
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-      }
-    }
-    scanResult={
-      {
-        "inapplicable": [],
-        "incomplete": [],
-        "passes": [],
-        "targetPageTitle": "page-title",
-        "targetPageUrl": "url:target-page",
-        "timestamp": "today",
-        "violations": [],
-      }
-    }
-    sectionFactory={
-      {
-        "BodySection": [Function],
-        "ContentContainer": [Function],
-        "DetailsSection": [Function],
-        "FailedInstancesSection": [Function],
-        "FooterSection": [Function],
-        "FooterText": [Function],
-        "HeaderSection": [Function],
-        "NotApplicableChecksSection": [Function],
-        "PassedChecksSection": [Function],
-        "ResultsContainer": [Function],
-        "SummarySection": [Function],
-        "TitleSection": [Function],
-        "resultSectionsOrder": [
-          "failed",
-          "passed",
-          "notApplicable",
-        ],
-      }
-    }
-    sectionHeadingLevel={3}
-    shouldAlertFailuresCount={false}
-    targetAppInfo={
-      {
-        "name": "app",
-      }
-    }
-    toUtcString={[Function]}
-    toolData={
-      {
-        "applicationProperties": {
-          "environmentName": "environmentName",
-          "name": "app-name",
-          "version": "app-version",
-        },
-        "scanEngineProperties": {
-          "name": "engine-name",
-          "version": "engine-version",
-        },
-      }
-    }
-    userConfigurationStoreData={null}
-  />
-  <content-container>
-    <title-section />
-    <details-section
-      cardsViewData={
-        {
-          "allCardsCollapsed": true,
-          "cards": {
-            "fail": [
-              {
-                "description": "sample-description",
-                "guidance": [
-                  {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": [
-                  {
-                    "descriptors": {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": {
-                      "how-to-fix-web": {
-                        "all": [],
-                        "any": [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
               },
-            ],
-            "inapplicable": [],
-            "pass": [],
-            "unknown": [],
-          },
-          "visualHelperEnabled": true,
-        }
-      }
-      deps={{}}
-      description="test description"
-      fixInstructionProcessor={[typemoq mock object]}
-      getCollapsibleScript={[Function]}
-      getGuidanceTagsFromGuidanceLinks={[Function]}
-      pageTitle="page-title"
-      pageUrl="url:target-page"
-      recommendColor={[typemoq mock object]}
-      scanMetadata={
-        {
-          "targetAppInfo": {
-            "name": "app",
-          },
-          "timespan": {
-            "scanComplete": 1900-02-02T03:00:00.000Z,
-          },
-          "toolData": {
-            "applicationProperties": {
-              "environmentName": "environmentName",
-              "name": "app-name",
-              "version": "app-version",
-            },
-            "scanEngineProperties": {
-              "name": "engine-name",
-              "version": "engine-version",
-            },
-          },
-        }
-      }
-      scanResult={
-        {
-          "inapplicable": [],
-          "incomplete": [],
-          "passes": [],
-          "targetPageTitle": "page-title",
-          "targetPageUrl": "url:target-page",
-          "timestamp": "today",
-          "violations": [],
-        }
-      }
-      sectionFactory={
-        {
-          "BodySection": [Function],
-          "ContentContainer": [Function],
-          "DetailsSection": [Function],
-          "FailedInstancesSection": [Function],
-          "FooterSection": [Function],
-          "FooterText": [Function],
-          "HeaderSection": [Function],
-          "NotApplicableChecksSection": [Function],
-          "PassedChecksSection": [Function],
-          "ResultsContainer": [Function],
-          "SummarySection": [Function],
-          "TitleSection": [Function],
-          "resultSectionsOrder": [
-            "failed",
-            "passed",
-            "notApplicable",
-          ],
-        }
-      }
-      sectionHeadingLevel={3}
-      shouldAlertFailuresCount={false}
-      targetAppInfo={
-        {
-          "name": "app",
-        }
-      }
-      toUtcString={[Function]}
-      toolData={
-        {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        }
-      }
-      userConfigurationStoreData={null}
-    />
-    <summary-section
-      cardsViewData={
-        {
-          "allCardsCollapsed": true,
-          "cards": {
-            "fail": [
-              {
-                "description": "sample-description",
-                "guidance": [
-                  {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": [
-                  {
-                    "descriptors": {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": {
-                      "how-to-fix-web": {
-                        "all": [],
-                        "any": [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
               },
-            ],
-            "inapplicable": [],
-            "pass": [],
-            "unknown": [],
-          },
-          "visualHelperEnabled": true,
-        }
-      }
-      deps={{}}
-      description="test description"
-      fixInstructionProcessor={[typemoq mock object]}
-      getCollapsibleScript={[Function]}
-      getGuidanceTagsFromGuidanceLinks={[Function]}
-      pageTitle="page-title"
-      pageUrl="url:target-page"
-      recommendColor={[typemoq mock object]}
-      scanMetadata={
-        {
-          "targetAppInfo": {
-            "name": "app",
-          },
-          "timespan": {
-            "scanComplete": 1900-02-02T03:00:00.000Z,
-          },
-          "toolData": {
-            "applicationProperties": {
-              "environmentName": "environmentName",
-              "name": "app-name",
-              "version": "app-version",
-            },
-            "scanEngineProperties": {
-              "name": "engine-name",
-              "version": "engine-version",
-            },
-          },
-        }
-      }
-      scanResult={
-        {
-          "inapplicable": [],
-          "incomplete": [],
-          "passes": [],
-          "targetPageTitle": "page-title",
-          "targetPageUrl": "url:target-page",
-          "timestamp": "today",
-          "violations": [],
-        }
-      }
-      sectionFactory={
-        {
-          "BodySection": [Function],
-          "ContentContainer": [Function],
-          "DetailsSection": [Function],
-          "FailedInstancesSection": [Function],
-          "FooterSection": [Function],
-          "FooterText": [Function],
-          "HeaderSection": [Function],
-          "NotApplicableChecksSection": [Function],
-          "PassedChecksSection": [Function],
-          "ResultsContainer": [Function],
-          "SummarySection": [Function],
-          "TitleSection": [Function],
-          "resultSectionsOrder": [
-            "failed",
-            "passed",
-            "notApplicable",
-          ],
-        }
-      }
-      sectionHeadingLevel={3}
-      shouldAlertFailuresCount={false}
-      targetAppInfo={
-        {
-          "name": "app",
-        }
-      }
-      toUtcString={[Function]}
-      toolData={
-        {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        }
-      }
-      userConfigurationStoreData={null}
-    />
-    <result-section
-      cardsViewData={
-        {
-          "allCardsCollapsed": true,
-          "cards": {
-            "fail": [
-              {
-                "description": "sample-description",
-                "guidance": [
-                  {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": [
-                  {
-                    "descriptors": {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": {
-                      "how-to-fix-web": {
-                        "all": [],
-                        "any": [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": [],
-            "pass": [],
-            "unknown": [],
-          },
-          "visualHelperEnabled": true,
-        }
-      }
-      deps={{}}
-      description="test description"
-      fixInstructionProcessor={[typemoq mock object]}
-      getCollapsibleScript={[Function]}
-      getGuidanceTagsFromGuidanceLinks={[Function]}
-      pageTitle="page-title"
-      pageUrl="url:target-page"
-      recommendColor={[typemoq mock object]}
-      scanMetadata={
-        {
-          "targetAppInfo": {
-            "name": "app",
-          },
-          "timespan": {
-            "scanComplete": 1900-02-02T03:00:00.000Z,
-          },
-          "toolData": {
-            "applicationProperties": {
-              "environmentName": "environmentName",
-              "name": "app-name",
-              "version": "app-version",
-            },
-            "scanEngineProperties": {
-              "name": "engine-name",
-              "version": "engine-version",
-            },
-          },
-        }
-      }
-      scanResult={
-        {
-          "inapplicable": [],
-          "incomplete": [],
-          "passes": [],
-          "targetPageTitle": "page-title",
-          "targetPageUrl": "url:target-page",
-          "timestamp": "today",
-          "violations": [],
-        }
-      }
-      sectionFactory={
-        {
-          "BodySection": [Function],
-          "ContentContainer": [Function],
-          "DetailsSection": [Function],
-          "FailedInstancesSection": [Function],
-          "FooterSection": [Function],
-          "FooterText": [Function],
-          "HeaderSection": [Function],
-          "NotApplicableChecksSection": [Function],
-          "PassedChecksSection": [Function],
-          "ResultsContainer": [Function],
-          "SummarySection": [Function],
-          "TitleSection": [Function],
-          "resultSectionsOrder": [
-            "failed",
-            "passed",
-            "notApplicable",
-          ],
-        }
-      }
-      sectionHeadingLevel={3}
-      shouldAlertFailuresCount={false}
-      targetAppInfo={
-        {
-          "name": "app",
-        }
-      }
-      toUtcString={[Function]}
-      toolData={
-        {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        }
-      }
-      userConfigurationStoreData={null}
-    >
-      <failed-instances-section
-        cardsViewData={
-          {
-            "allCardsCollapsed": true,
-            "cards": {
-              "fail": [
-                {
-                  "description": "sample-description",
-                  "guidance": [
-                    {
-                      "href": "sample-guidance-href",
-                      "text": "sample-guidance-text",
-                    },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                   ],
-                  "id": "some-rule",
-                  "nodes": [
-                    {
-                      "descriptors": {
-                        "snippet": "this is a sample snippet",
-                      },
-                      "identifiers": {
-                        "conciseName": "body img",
-                        "css-selector": "body img",
-                        "identifier": "body img",
-                      },
-                      "resolution": {
-                        "how-to-fix-web": {
-                          "all": [],
-                          "any": [
-                            "Element does not have an alt attribute",
-                            "aria-label attribute does not exist or is empty",
-                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                          ],
-                          "none": [],
-                        },
-                        "howToFixSummary": "sample how to fix summary",
-                      },
-                      "ruleId": "image-alt",
-                      "status": "fail",
-                      "uid": "some-guid-here",
-                    },
-                  ],
-                  "url": "sample-url",
+                  "none": [],
                 },
-              ],
-              "inapplicable": [],
-              "pass": [],
-              "unknown": [],
-            },
-            "visualHelperEnabled": true,
-          }
-        }
-        deps={{}}
-        description="test description"
-        fixInstructionProcessor={[typemoq mock object]}
-        getCollapsibleScript={[Function]}
-        getGuidanceTagsFromGuidanceLinks={[Function]}
-        pageTitle="page-title"
-        pageUrl="url:target-page"
-        recommendColor={[typemoq mock object]}
-        scanMetadata={
-          {
-            "targetAppInfo": {
-              "name": "app",
-            },
-            "timespan": {
-              "scanComplete": 1900-02-02T03:00:00.000Z,
-            },
-            "toolData": {
-              "applicationProperties": {
-                "environmentName": "environmentName",
-                "name": "app-name",
-                "version": "app-version",
+                "howToFixSummary": "sample how to fix summary",
               },
-              "scanEngineProperties": {
-                "name": "engine-name",
-                "version": "engine-version",
-              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
             },
-          }
-        }
-        scanResult={
-          {
-            "inapplicable": [],
-            "incomplete": [],
-            "passes": [],
-            "targetPageTitle": "page-title",
-            "targetPageUrl": "url:target-page",
-            "timestamp": "today",
-            "violations": [],
-          }
-        }
-        sectionFactory={
-          {
-            "BodySection": [Function],
-            "ContentContainer": [Function],
-            "DetailsSection": [Function],
-            "FailedInstancesSection": [Function],
-            "FooterSection": [Function],
-            "FooterText": [Function],
-            "HeaderSection": [Function],
-            "NotApplicableChecksSection": [Function],
-            "PassedChecksSection": [Function],
-            "ResultsContainer": [Function],
-            "SummarySection": [Function],
-            "TitleSection": [Function],
-            "resultSectionsOrder": [
-              "failed",
-              "passed",
-              "notApplicable",
-            ],
-          }
-        }
-        sectionHeadingLevel={3}
-        shouldAlertFailuresCount={false}
-        targetAppInfo={
-          {
-            "name": "app",
-          }
-        }
-        toUtcString={[Function]}
-        toolData={
-          {
-            "applicationProperties": {
-              "environmentName": "environmentName",
-              "name": "app-name",
-              "version": "app-version",
-            },
-            "scanEngineProperties": {
-              "name": "engine-name",
-              "version": "engine-version",
-            },
-          }
-        }
-        userConfigurationStoreData={null}
-      />
-      <passed-checks-section
-        cardsViewData={
-          {
-            "allCardsCollapsed": true,
-            "cards": {
-              "fail": [
-                {
-                  "description": "sample-description",
-                  "guidance": [
-                    {
-                      "href": "sample-guidance-href",
-                      "text": "sample-guidance-text",
-                    },
-                  ],
-                  "id": "some-rule",
-                  "nodes": [
-                    {
-                      "descriptors": {
-                        "snippet": "this is a sample snippet",
-                      },
-                      "identifiers": {
-                        "conciseName": "body img",
-                        "css-selector": "body img",
-                        "identifier": "body img",
-                      },
-                      "resolution": {
-                        "how-to-fix-web": {
-                          "all": [],
-                          "any": [
-                            "Element does not have an alt attribute",
-                            "aria-label attribute does not exist or is empty",
-                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                          ],
-                          "none": [],
-                        },
-                        "howToFixSummary": "sample how to fix summary",
-                      },
-                      "ruleId": "image-alt",
-                      "status": "fail",
-                      "uid": "some-guid-here",
-                    },
-                  ],
-                  "url": "sample-url",
-                },
-              ],
-              "inapplicable": [],
-              "pass": [],
-              "unknown": [],
-            },
-            "visualHelperEnabled": true,
-          }
-        }
-        deps={{}}
-        description="test description"
-        fixInstructionProcessor={[typemoq mock object]}
-        getCollapsibleScript={[Function]}
-        getGuidanceTagsFromGuidanceLinks={[Function]}
-        pageTitle="page-title"
-        pageUrl="url:target-page"
-        recommendColor={[typemoq mock object]}
-        scanMetadata={
-          {
-            "targetAppInfo": {
-              "name": "app",
-            },
-            "timespan": {
-              "scanComplete": 1900-02-02T03:00:00.000Z,
-            },
-            "toolData": {
-              "applicationProperties": {
-                "environmentName": "environmentName",
-                "name": "app-name",
-                "version": "app-version",
-              },
-              "scanEngineProperties": {
-                "name": "engine-name",
-                "version": "engine-version",
-              },
-            },
-          }
-        }
-        scanResult={
-          {
-            "inapplicable": [],
-            "incomplete": [],
-            "passes": [],
-            "targetPageTitle": "page-title",
-            "targetPageUrl": "url:target-page",
-            "timestamp": "today",
-            "violations": [],
-          }
-        }
-        sectionFactory={
-          {
-            "BodySection": [Function],
-            "ContentContainer": [Function],
-            "DetailsSection": [Function],
-            "FailedInstancesSection": [Function],
-            "FooterSection": [Function],
-            "FooterText": [Function],
-            "HeaderSection": [Function],
-            "NotApplicableChecksSection": [Function],
-            "PassedChecksSection": [Function],
-            "ResultsContainer": [Function],
-            "SummarySection": [Function],
-            "TitleSection": [Function],
-            "resultSectionsOrder": [
-              "failed",
-              "passed",
-              "notApplicable",
-            ],
-          }
-        }
-        sectionHeadingLevel={3}
-        shouldAlertFailuresCount={false}
-        targetAppInfo={
-          {
-            "name": "app",
-          }
-        }
-        toUtcString={[Function]}
-        toolData={
-          {
-            "applicationProperties": {
-              "environmentName": "environmentName",
-              "name": "app-name",
-              "version": "app-version",
-            },
-            "scanEngineProperties": {
-              "name": "engine-name",
-              "version": "engine-version",
-            },
-          }
-        }
-        userConfigurationStoreData={null}
-      />
-      <not-applicable-checks-section
-        cardsViewData={
-          {
-            "allCardsCollapsed": true,
-            "cards": {
-              "fail": [
-                {
-                  "description": "sample-description",
-                  "guidance": [
-                    {
-                      "href": "sample-guidance-href",
-                      "text": "sample-guidance-text",
-                    },
-                  ],
-                  "id": "some-rule",
-                  "nodes": [
-                    {
-                      "descriptors": {
-                        "snippet": "this is a sample snippet",
-                      },
-                      "identifiers": {
-                        "conciseName": "body img",
-                        "css-selector": "body img",
-                        "identifier": "body img",
-                      },
-                      "resolution": {
-                        "how-to-fix-web": {
-                          "all": [],
-                          "any": [
-                            "Element does not have an alt attribute",
-                            "aria-label attribute does not exist or is empty",
-                            "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                          ],
-                          "none": [],
-                        },
-                        "howToFixSummary": "sample how to fix summary",
-                      },
-                      "ruleId": "image-alt",
-                      "status": "fail",
-                      "uid": "some-guid-here",
-                    },
-                  ],
-                  "url": "sample-url",
-                },
-              ],
-              "inapplicable": [],
-              "pass": [],
-              "unknown": [],
-            },
-            "visualHelperEnabled": true,
-          }
-        }
-        deps={{}}
-        description="test description"
-        fixInstructionProcessor={[typemoq mock object]}
-        getCollapsibleScript={[Function]}
-        getGuidanceTagsFromGuidanceLinks={[Function]}
-        pageTitle="page-title"
-        pageUrl="url:target-page"
-        recommendColor={[typemoq mock object]}
-        scanMetadata={
-          {
-            "targetAppInfo": {
-              "name": "app",
-            },
-            "timespan": {
-              "scanComplete": 1900-02-02T03:00:00.000Z,
-            },
-            "toolData": {
-              "applicationProperties": {
-                "environmentName": "environmentName",
-                "name": "app-name",
-                "version": "app-version",
-              },
-              "scanEngineProperties": {
-                "name": "engine-name",
-                "version": "engine-version",
-              },
-            },
-          }
-        }
-        scanResult={
-          {
-            "inapplicable": [],
-            "incomplete": [],
-            "passes": [],
-            "targetPageTitle": "page-title",
-            "targetPageUrl": "url:target-page",
-            "timestamp": "today",
-            "violations": [],
-          }
-        }
-        sectionFactory={
-          {
-            "BodySection": [Function],
-            "ContentContainer": [Function],
-            "DetailsSection": [Function],
-            "FailedInstancesSection": [Function],
-            "FooterSection": [Function],
-            "FooterText": [Function],
-            "HeaderSection": [Function],
-            "NotApplicableChecksSection": [Function],
-            "PassedChecksSection": [Function],
-            "ResultsContainer": [Function],
-            "SummarySection": [Function],
-            "TitleSection": [Function],
-            "resultSectionsOrder": [
-              "failed",
-              "passed",
-              "notApplicable",
-            ],
-          }
-        }
-        sectionHeadingLevel={3}
-        shouldAlertFailuresCount={false}
-        targetAppInfo={
-          {
-            "name": "app",
-          }
-        }
-        toUtcString={[Function]}
-        toolData={
-          {
-            "applicationProperties": {
-              "environmentName": "environmentName",
-              "name": "app-name",
-              "version": "app-version",
-            },
-            "scanEngineProperties": {
-              "name": "engine-name",
-              "version": "engine-version",
-            },
-          }
-        }
-        userConfigurationStoreData={null}
-      />
-    </result-section>
-  </content-container>
-  <footer-section>
-    <footer-text
-      cardsViewData={
-        {
-          "allCardsCollapsed": true,
-          "cards": {
-            "fail": [
-              {
-                "description": "sample-description",
-                "guidance": [
-                  {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": [
-                  {
-                    "descriptors": {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": {
-                      "how-to-fix-web": {
-                        "all": [],
-                        "any": [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": [],
-            "pass": [],
-            "unknown": [],
-          },
-          "visualHelperEnabled": true,
-        }
-      }
-      deps={{}}
-      description="test description"
-      fixInstructionProcessor={[typemoq mock object]}
-      getCollapsibleScript={[Function]}
-      getGuidanceTagsFromGuidanceLinks={[Function]}
-      pageTitle="page-title"
-      pageUrl="url:target-page"
-      recommendColor={[typemoq mock object]}
-      scanMetadata={
-        {
-          "targetAppInfo": {
-            "name": "app",
-          },
-          "timespan": {
-            "scanComplete": 1900-02-02T03:00:00.000Z,
-          },
-          "toolData": {
-            "applicationProperties": {
-              "environmentName": "environmentName",
-              "name": "app-name",
-              "version": "app-version",
-            },
-            "scanEngineProperties": {
-              "name": "engine-name",
-              "version": "engine-version",
-            },
-          },
-        }
-      }
-      scanResult={
-        {
-          "inapplicable": [],
-          "incomplete": [],
-          "passes": [],
-          "targetPageTitle": "page-title",
-          "targetPageUrl": "url:target-page",
-          "timestamp": "today",
-          "violations": [],
-        }
-      }
-      sectionFactory={
-        {
-          "BodySection": [Function],
-          "ContentContainer": [Function],
-          "DetailsSection": [Function],
-          "FailedInstancesSection": [Function],
-          "FooterSection": [Function],
-          "FooterText": [Function],
-          "HeaderSection": [Function],
-          "NotApplicableChecksSection": [Function],
-          "PassedChecksSection": [Function],
-          "ResultsContainer": [Function],
-          "SummarySection": [Function],
-          "TitleSection": [Function],
-          "resultSectionsOrder": [
-            "failed",
-            "passed",
-            "notApplicable",
           ],
-        }
-      }
-      sectionHeadingLevel={3}
-      shouldAlertFailuresCount={false}
-      targetAppInfo={
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [],
+      "unknown": [],
+    },
+    "visualHelperEnabled": true,
+  },
+  "deps": {},
+  "description": "test description",
+  "fixInstructionProcessor": [typemoq mock object],
+  "getCollapsibleScript": [Function],
+  "getGuidanceTagsFromGuidanceLinks": [Function],
+  "recommendColor": [typemoq mock object],
+  "scanMetadata": {
+    "targetAppInfo": {
+      "name": "app",
+    },
+    "timespan": {
+      "scanComplete": 1900-02-02T03:00:00.000Z,
+    },
+    "toolData": {
+      "applicationProperties": {
+        "environmentName": "environmentName",
+        "name": "app-name",
+        "version": "app-version",
+      },
+      "scanEngineProperties": {
+        "name": "engine-name",
+        "version": "engine-version",
+      },
+    },
+  },
+  "sectionFactory": "Removed for Snapshot",
+  "sectionHeadingLevel": 3,
+  "shouldAlertFailuresCount": false,
+  "toUtcString": [Function],
+  "userConfigurationStoreData": null,
+}
+`;
+
+exports[`ReportBody renders: detailsSectionProps 1`] = `
+{
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
         {
-          "name": "app",
-        }
-      }
-      toUtcString={[Function]}
-      toolData={
+          "description": "sample-description",
+          "guidance": [
+            {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [],
+      "unknown": [],
+    },
+    "visualHelperEnabled": true,
+  },
+  "deps": {},
+  "description": "test description",
+  "fixInstructionProcessor": [typemoq mock object],
+  "getCollapsibleScript": [Function],
+  "getGuidanceTagsFromGuidanceLinks": [Function],
+  "recommendColor": [typemoq mock object],
+  "scanMetadata": {
+    "targetAppInfo": {
+      "name": "app",
+    },
+    "timespan": {
+      "scanComplete": 1900-02-02T03:00:00.000Z,
+    },
+    "toolData": {
+      "applicationProperties": {
+        "environmentName": "environmentName",
+        "name": "app-name",
+        "version": "app-version",
+      },
+      "scanEngineProperties": {
+        "name": "engine-name",
+        "version": "engine-version",
+      },
+    },
+  },
+  "sectionFactory": "Removed for Snapshot",
+  "sectionHeadingLevel": 3,
+  "shouldAlertFailuresCount": false,
+  "toUtcString": [Function],
+  "userConfigurationStoreData": null,
+}
+`;
+
+exports[`ReportBody renders: failedInstancesSectionProps 1`] = `
+{
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
         {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        }
-      }
-      userConfigurationStoreData={null}
-    />
-  </footer-section>
-</body-section>
+          "description": "sample-description",
+          "guidance": [
+            {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [],
+      "unknown": [],
+    },
+    "visualHelperEnabled": true,
+  },
+  "deps": {},
+  "description": "test description",
+  "fixInstructionProcessor": [typemoq mock object],
+  "getCollapsibleScript": [Function],
+  "getGuidanceTagsFromGuidanceLinks": [Function],
+  "recommendColor": [typemoq mock object],
+  "scanMetadata": {
+    "targetAppInfo": {
+      "name": "app",
+    },
+    "timespan": {
+      "scanComplete": 1900-02-02T03:00:00.000Z,
+    },
+    "toolData": {
+      "applicationProperties": {
+        "environmentName": "environmentName",
+        "name": "app-name",
+        "version": "app-version",
+      },
+      "scanEngineProperties": {
+        "name": "engine-name",
+        "version": "engine-version",
+      },
+    },
+  },
+  "sectionFactory": "Removed for Snapshot",
+  "sectionHeadingLevel": 3,
+  "shouldAlertFailuresCount": false,
+  "toUtcString": [Function],
+  "userConfigurationStoreData": null,
+}
+`;
+
+exports[`ReportBody renders: footerTextPropsProps 1`] = `
+{
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
+        {
+          "description": "sample-description",
+          "guidance": [
+            {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [],
+      "unknown": [],
+    },
+    "visualHelperEnabled": true,
+  },
+  "deps": {},
+  "description": "test description",
+  "fixInstructionProcessor": [typemoq mock object],
+  "getCollapsibleScript": [Function],
+  "getGuidanceTagsFromGuidanceLinks": [Function],
+  "recommendColor": [typemoq mock object],
+  "scanMetadata": {
+    "targetAppInfo": {
+      "name": "app",
+    },
+    "timespan": {
+      "scanComplete": 1900-02-02T03:00:00.000Z,
+    },
+    "toolData": {
+      "applicationProperties": {
+        "environmentName": "environmentName",
+        "name": "app-name",
+        "version": "app-version",
+      },
+      "scanEngineProperties": {
+        "name": "engine-name",
+        "version": "engine-version",
+      },
+    },
+  },
+  "sectionFactory": "Removed for Snapshot",
+  "sectionHeadingLevel": 3,
+  "shouldAlertFailuresCount": false,
+  "toUtcString": [Function],
+  "userConfigurationStoreData": null,
+}
+`;
+
+exports[`ReportBody renders: notApplicableChecksSectionProps 1`] = `
+{
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
+        {
+          "description": "sample-description",
+          "guidance": [
+            {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [],
+      "unknown": [],
+    },
+    "visualHelperEnabled": true,
+  },
+  "deps": {},
+  "description": "test description",
+  "fixInstructionProcessor": [typemoq mock object],
+  "getCollapsibleScript": [Function],
+  "getGuidanceTagsFromGuidanceLinks": [Function],
+  "recommendColor": [typemoq mock object],
+  "scanMetadata": {
+    "targetAppInfo": {
+      "name": "app",
+    },
+    "timespan": {
+      "scanComplete": 1900-02-02T03:00:00.000Z,
+    },
+    "toolData": {
+      "applicationProperties": {
+        "environmentName": "environmentName",
+        "name": "app-name",
+        "version": "app-version",
+      },
+      "scanEngineProperties": {
+        "name": "engine-name",
+        "version": "engine-version",
+      },
+    },
+  },
+  "sectionFactory": "Removed for Snapshot",
+  "sectionHeadingLevel": 3,
+  "shouldAlertFailuresCount": false,
+  "toUtcString": [Function],
+  "userConfigurationStoreData": null,
+}
+`;
+
+exports[`ReportBody renders: passedChecksSectionProps 1`] = `
+{
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
+        {
+          "description": "sample-description",
+          "guidance": [
+            {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [],
+      "unknown": [],
+    },
+    "visualHelperEnabled": true,
+  },
+  "deps": {},
+  "description": "test description",
+  "fixInstructionProcessor": [typemoq mock object],
+  "getCollapsibleScript": [Function],
+  "getGuidanceTagsFromGuidanceLinks": [Function],
+  "recommendColor": [typemoq mock object],
+  "scanMetadata": {
+    "targetAppInfo": {
+      "name": "app",
+    },
+    "timespan": {
+      "scanComplete": 1900-02-02T03:00:00.000Z,
+    },
+    "toolData": {
+      "applicationProperties": {
+        "environmentName": "environmentName",
+        "name": "app-name",
+        "version": "app-version",
+      },
+      "scanEngineProperties": {
+        "name": "engine-name",
+        "version": "engine-version",
+      },
+    },
+  },
+  "sectionFactory": "Removed for Snapshot",
+  "sectionHeadingLevel": 3,
+  "shouldAlertFailuresCount": false,
+  "toUtcString": [Function],
+  "userConfigurationStoreData": null,
+}
+`;
+
+exports[`ReportBody renders: resultsContainerProps 1`] = `
+{
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
+        {
+          "description": "sample-description",
+          "guidance": [
+            {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [],
+      "unknown": [],
+    },
+    "visualHelperEnabled": true,
+  },
+  "children": "Removed for Snapshot",
+  "deps": {},
+  "description": "test description",
+  "fixInstructionProcessor": [typemoq mock object],
+  "getCollapsibleScript": [Function],
+  "getGuidanceTagsFromGuidanceLinks": [Function],
+  "recommendColor": [typemoq mock object],
+  "scanMetadata": {
+    "targetAppInfo": {
+      "name": "app",
+    },
+    "timespan": {
+      "scanComplete": 1900-02-02T03:00:00.000Z,
+    },
+    "toolData": {
+      "applicationProperties": {
+        "environmentName": "environmentName",
+        "name": "app-name",
+        "version": "app-version",
+      },
+      "scanEngineProperties": {
+        "name": "engine-name",
+        "version": "engine-version",
+      },
+    },
+  },
+  "sectionFactory": "Removed for Snapshot",
+  "sectionHeadingLevel": 3,
+  "shouldAlertFailuresCount": false,
+  "toUtcString": [Function],
+  "userConfigurationStoreData": null,
+}
+`;
+
+exports[`ReportBody renders: sectionProps 1`] = `
+{
+  "cardsViewData": {
+    "allCardsCollapsed": true,
+    "cards": {
+      "fail": [
+        {
+          "description": "sample-description",
+          "guidance": [
+            {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
+          "id": "some-rule",
+          "nodes": [
+            {
+              "descriptors": {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": {
+                "conciseName": "body img",
+                "css-selector": "body img",
+                "identifier": "body img",
+              },
+              "resolution": {
+                "how-to-fix-web": {
+                  "all": [],
+                  "any": [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": [],
+                },
+                "howToFixSummary": "sample how to fix summary",
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": [],
+      "pass": [],
+      "unknown": [],
+    },
+    "visualHelperEnabled": true,
+  },
+  "deps": {},
+  "description": "test description",
+  "fixInstructionProcessor": [typemoq mock object],
+  "getCollapsibleScript": [Function],
+  "getGuidanceTagsFromGuidanceLinks": [Function],
+  "recommendColor": [typemoq mock object],
+  "scanMetadata": {
+    "targetAppInfo": {
+      "name": "app",
+    },
+    "timespan": {
+      "scanComplete": 1900-02-02T03:00:00.000Z,
+    },
+    "toolData": {
+      "applicationProperties": {
+        "environmentName": "environmentName",
+        "name": "app-name",
+        "version": "app-version",
+      },
+      "scanEngineProperties": {
+        "name": "engine-name",
+        "version": "engine-version",
+      },
+    },
+  },
+  "sectionFactory": "Removed for Snapshot",
+  "sectionHeadingLevel": 3,
+  "shouldAlertFailuresCount": false,
+  "toUtcString": [Function],
+  "userConfigurationStoreData": null,
+}
 `;

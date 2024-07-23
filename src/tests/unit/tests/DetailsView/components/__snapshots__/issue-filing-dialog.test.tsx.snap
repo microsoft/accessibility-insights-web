@@ -1,605 +1,785 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "subText": "This configuration can be changed again in settings.",
-      "title": "Specify issue filing location",
-      "type": 0,
-    }
-  }
-  hidden={true}
-  modalProps={
-    {
-      "className": "issueFilingDialog",
-      "containerClassName": "insightsDialogMainOverride",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingActionMessageCreator": [typemoq mock object],
-        "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "gitHub",
-      }
-    }
-    selectedIssueFilingServiceData={
-      {
-        "someServiceData": null,
-      }
-    }
-  />
-  <StyledDialogFooterBase>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="File issue"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="true"
+    modalprops="[object Object]"
+  >
+    <mock-issuefilingsettingscontainer
+      deps="[object Object]"
+      selectedissuefilingservice="[object Object]"
+      selectedissuefilingservicedata="[object Object]"
     />
-  </StyledDialogFooterBase>
-</Dialog>
+    <mock-styleddialogfooterbase>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="false"
+        primarybuttontext="File issue"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have changed: Dialog props 1`] = `
+{
+  "children": [
+    <IssueFilingSettingsContainer
+      deps={
+        {
+          "issueFilingActionMessageCreator": [typemoq mock object],
+          "issueFilingServiceProvider": [typemoq mock object],
+          "toolData": {
+            "applicationProperties": {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+          "userConfigMessageCreator": [typemoq mock object],
+        }
+      }
+      onPropertyUpdateCallback={[Function]}
+      onSelectedServiceChange={[Function]}
+      selectedIssueFilingService={
+        {
+          "getSettingsFromStoreData": [Function],
+          "isSettingsValid": [Function],
+          "key": "gitHub",
+        }
+      }
+      selectedIssueFilingServiceData={
+        {
+          "someServiceData": null,
+        }
+      }
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="File issue"
+      />
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "subText": "This configuration can be changed again in settings.",
+    "title": "Specify issue filing location",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "issueFilingDialog",
+    "containerClassName": "insightsDialogMainOverride",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "subText": "This configuration can be changed again in settings.",
-      "title": "Specify issue filing location",
-      "type": 0,
-    }
-  }
-  hidden={true}
-  modalProps={
-    {
-      "className": "issueFilingDialog",
-      "containerClassName": "insightsDialogMainOverride",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingActionMessageCreator": [typemoq mock object],
-        "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "gitHub",
-      }
-    }
-    selectedIssueFilingServiceData={
-      {
-        "differentProperty": "different_property",
-      }
-    }
-  />
-  <StyledDialogFooterBase>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="File issue"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="true"
+    modalprops="[object Object]"
+  >
+    <mock-issuefilingsettingscontainer
+      deps="[object Object]"
+      selectedissuefilingservice="[object Object]"
+      selectedissuefilingservicedata="[object Object]"
     />
-  </StyledDialogFooterBase>
-</Dialog>
+    <mock-styleddialogfooterbase>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="false"
+        primarybuttontext="File issue"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have not changed: Dialog props 1`] = `
+{
+  "children": [
+    <IssueFilingSettingsContainer
+      deps={
+        {
+          "issueFilingActionMessageCreator": [typemoq mock object],
+          "issueFilingServiceProvider": [typemoq mock object],
+          "toolData": {
+            "applicationProperties": {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+          "userConfigMessageCreator": [typemoq mock object],
+        }
+      }
+      onPropertyUpdateCallback={[Function]}
+      onSelectedServiceChange={[Function]}
+      selectedIssueFilingService={
+        {
+          "getSettingsFromStoreData": [Function],
+          "isSettingsValid": [Function],
+          "key": "gitHub",
+        }
+      }
+      selectedIssueFilingServiceData={
+        {
+          "someServiceData": null,
+        }
+      }
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="File issue"
+      />
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "subText": "This configuration can be changed again in settings.",
+    "title": "Specify issue filing location",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "issueFilingDialog",
+    "containerClassName": "insightsDialogMainOverride",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "subText": "This configuration can be changed again in settings.",
-      "title": "Specify issue filing location",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "className": "issueFilingDialog",
-      "containerClassName": "insightsDialogMainOverride",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingActionMessageCreator": [typemoq mock object],
-        "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "gitHub",
-      }
-    }
-    selectedIssueFilingServiceData={
-      {
-        "differentProperty": "different_property",
-      }
-    }
-  />
-  <StyledDialogFooterBase>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="File issue"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-issuefilingsettingscontainer
+      deps="[object Object]"
+      selectedissuefilingservice="[object Object]"
+      selectedissuefilingservicedata="[object Object]"
     />
-  </StyledDialogFooterBase>
-</Dialog>
+    <mock-styleddialogfooterbase>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="false"
+        primarybuttontext="File issue"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingDialog componentDidUpdate dialog is open & props have changed: Dialog props 1`] = `
+{
+  "children": [
+    <IssueFilingSettingsContainer
+      deps={
+        {
+          "issueFilingActionMessageCreator": [typemoq mock object],
+          "issueFilingServiceProvider": [typemoq mock object],
+          "toolData": {
+            "applicationProperties": {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+          "userConfigMessageCreator": [typemoq mock object],
+        }
+      }
+      onPropertyUpdateCallback={[Function]}
+      onSelectedServiceChange={[Function]}
+      selectedIssueFilingService={
+        {
+          "getSettingsFromStoreData": [Function],
+          "isSettingsValid": [Function],
+          "key": "gitHub",
+        }
+      }
+      selectedIssueFilingServiceData={
+        {
+          "someServiceData": null,
+        }
+      }
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="File issue"
+      />
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "subText": "This configuration can be changed again in settings.",
+    "title": "Specify issue filing location",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "issueFilingDialog",
+    "containerClassName": "insightsDialogMainOverride",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "subText": "This configuration can be changed again in settings.",
-      "title": "Specify issue filing location",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "className": "issueFilingDialog",
-      "containerClassName": "insightsDialogMainOverride",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingActionMessageCreator": [typemoq mock object],
-        "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "gitHub",
-      }
-    }
-    selectedIssueFilingServiceData={
-      {
-        "differentProperty": "different_property",
-      }
-    }
-  />
-  <StyledDialogFooterBase>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="File issue"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-issuefilingsettingscontainer
+      deps="[object Object]"
+      selectedissuefilingservice="[object Object]"
+      selectedissuefilingservicedata="[object Object]"
     />
-  </StyledDialogFooterBase>
-</Dialog>
+    <mock-styleddialogfooterbase>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="false"
+        primarybuttontext="File issue"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not changed: Dialog props 1`] = `
+{
+  "children": [
+    <IssueFilingSettingsContainer
+      deps={
+        {
+          "issueFilingActionMessageCreator": [typemoq mock object],
+          "issueFilingServiceProvider": [typemoq mock object],
+          "toolData": {
+            "applicationProperties": {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+          "userConfigMessageCreator": [typemoq mock object],
+        }
+      }
+      onPropertyUpdateCallback={[Function]}
+      onSelectedServiceChange={[Function]}
+      selectedIssueFilingService={
+        {
+          "getSettingsFromStoreData": [Function],
+          "isSettingsValid": [Function],
+          "key": "gitHub",
+        }
+      }
+      selectedIssueFilingServiceData={
+        {
+          "someServiceData": null,
+        }
+      }
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="File issue"
+      />
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "subText": "This configuration can be changed again in settings.",
+    "title": "Specify issue filing location",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "issueFilingDialog",
+    "containerClassName": "insightsDialogMainOverride",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "subText": "This configuration can be changed again in settings.",
-      "title": "Specify issue filing location",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "className": "issueFilingDialog",
-      "containerClassName": "insightsDialogMainOverride",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingActionMessageCreator": [typemoq mock object],
-        "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "gitHub",
-      }
-    }
-    selectedIssueFilingServiceData={
-      {
-        "someServiceData": null,
-      }
-    }
-  />
-  <StyledDialogFooterBase>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={true}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="File issue"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-issuefilingsettingscontainer
+      deps="[object Object]"
+      selectedissuefilingservice="[object Object]"
+      selectedissuefilingservicedata="[object Object]"
     />
-  </StyledDialogFooterBase>
-</Dialog>
+    <mock-styleddialogfooterbase>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="true"
+        primarybuttontext="File issue"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingDialog render with isSettingsValid: false: Dialog props 1`] = `
+{
+  "children": [
+    <IssueFilingSettingsContainer
+      deps={
+        {
+          "issueFilingActionMessageCreator": [typemoq mock object],
+          "issueFilingServiceProvider": [typemoq mock object],
+          "toolData": {
+            "applicationProperties": {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+          "userConfigMessageCreator": [typemoq mock object],
+        }
+      }
+      onPropertyUpdateCallback={[Function]}
+      onSelectedServiceChange={[Function]}
+      selectedIssueFilingService={
+        {
+          "getSettingsFromStoreData": [Function],
+          "isSettingsValid": [Function],
+          "key": "gitHub",
+        }
+      }
+      selectedIssueFilingServiceData={
+        {
+          "someServiceData": null,
+        }
+      }
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={true}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="File issue"
+      />
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "subText": "This configuration can be changed again in settings.",
+    "title": "Specify issue filing location",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "issueFilingDialog",
+    "containerClassName": "insightsDialogMainOverride",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "subText": "This configuration can be changed again in settings.",
-      "title": "Specify issue filing location",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "className": "issueFilingDialog",
-      "containerClassName": "insightsDialogMainOverride",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingActionMessageCreator": [typemoq mock object],
-        "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "gitHub",
-      }
-    }
-    selectedIssueFilingServiceData={
-      {
-        "someServiceData": null,
-      }
-    }
-  />
-  <StyledDialogFooterBase>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="File issue"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-issuefilingsettingscontainer
+      deps="[object Object]"
+      selectedissuefilingservice="[object Object]"
+      selectedissuefilingservicedata="[object Object]"
     />
-  </StyledDialogFooterBase>
-</Dialog>
+    <mock-styleddialogfooterbase>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="false"
+        primarybuttontext="File issue"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingDialog render with isSettingsValid: true: Dialog props 1`] = `
+{
+  "children": [
+    <IssueFilingSettingsContainer
+      deps={
+        {
+          "issueFilingActionMessageCreator": [typemoq mock object],
+          "issueFilingServiceProvider": [typemoq mock object],
+          "toolData": {
+            "applicationProperties": {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+          "userConfigMessageCreator": [typemoq mock object],
+        }
+      }
+      onPropertyUpdateCallback={[Function]}
+      onSelectedServiceChange={[Function]}
+      selectedIssueFilingService={
+        {
+          "getSettingsFromStoreData": [Function],
+          "isSettingsValid": [Function],
+          "key": "gitHub",
+        }
+      }
+      selectedIssueFilingServiceData={
+        {
+          "someServiceData": null,
+        }
+      }
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="File issue"
+      />
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "subText": "This configuration can be changed again in settings.",
+    "title": "Specify issue filing location",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "issueFilingDialog",
+    "containerClassName": "insightsDialogMainOverride",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "subText": "This configuration can be changed again in settings.",
-      "title": "Specify issue filing location",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "className": "issueFilingDialog",
-      "containerClassName": "insightsDialogMainOverride",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingActionMessageCreator": [typemoq mock object],
-        "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "gitHub",
-      }
-    }
-    selectedIssueFilingServiceData={
-      {
-        "someServiceData": null,
-        "some_property": "some_value",
-      }
-    }
-  />
-  <StyledDialogFooterBase>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="File issue"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-issuefilingsettingscontainer
+      deps="[object Object]"
+      selectedissuefilingservice="[object Object]"
+      selectedissuefilingservicedata="[object Object]"
     />
-  </StyledDialogFooterBase>
-</Dialog>
+    <mock-styleddialogfooterbase>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="false"
+        primarybuttontext="File issue"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null: Dialog props 1`] = `
+{
+  "children": [
+    <IssueFilingSettingsContainer
+      deps={
+        {
+          "issueFilingActionMessageCreator": [typemoq mock object],
+          "issueFilingServiceProvider": [typemoq mock object],
+          "toolData": {
+            "applicationProperties": {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+          "userConfigMessageCreator": [typemoq mock object],
+        }
+      }
+      onPropertyUpdateCallback={[Function]}
+      onSelectedServiceChange={[Function]}
+      selectedIssueFilingService={
+        {
+          "getSettingsFromStoreData": [Function],
+          "isSettingsValid": [Function],
+          "key": "gitHub",
+        }
+      }
+      selectedIssueFilingServiceData={
+        {
+          "someServiceData": null,
+          "some_property": "some_value",
+        }
+      }
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="File issue"
+      />
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "subText": "This configuration can be changed again in settings.",
+    "title": "Specify issue filing location",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "issueFilingDialog",
+    "containerClassName": "insightsDialogMainOverride",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "subText": "This configuration can be changed again in settings.",
-      "title": "Specify issue filing location",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "className": "issueFilingDialog",
-      "containerClassName": "insightsDialogMainOverride",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingActionMessageCreator": [typemoq mock object],
-        "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "gitHub",
-      }
-    }
-    selectedIssueFilingServiceData={
-      {
-        "some_property": "some_value",
-      }
-    }
-  />
-  <StyledDialogFooterBase>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="File issue"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-issuefilingsettingscontainer
+      deps="[object Object]"
+      selectedissuefilingservice="[object Object]"
+      selectedissuefilingservicedata="[object Object]"
     />
-  </StyledDialogFooterBase>
-</Dialog>
+    <mock-styleddialogfooterbase>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="false"
+        primarybuttontext="File issue"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null: Dialog props 1`] = `
+{
+  "children": [
+    <IssueFilingSettingsContainer
+      deps={
+        {
+          "issueFilingActionMessageCreator": [typemoq mock object],
+          "issueFilingServiceProvider": [typemoq mock object],
+          "toolData": {
+            "applicationProperties": {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+          "userConfigMessageCreator": [typemoq mock object],
+        }
+      }
+      onPropertyUpdateCallback={[Function]}
+      onSelectedServiceChange={[Function]}
+      selectedIssueFilingService={
+        {
+          "getSettingsFromStoreData": [Function],
+          "isSettingsValid": [Function],
+          "key": "gitHub",
+        }
+      }
+      selectedIssueFilingServiceData={
+        {
+          "someServiceData": null,
+        }
+      }
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="File issue"
+      />
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "subText": "This configuration can be changed again in settings.",
+    "title": "Specify issue filing location",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "issueFilingDialog",
+    "containerClassName": "insightsDialogMainOverride",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "showCloseButton": false,
-      "subText": "This configuration can be changed again in settings.",
-      "title": "Specify issue filing location",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "className": "issueFilingDialog",
-      "containerClassName": "insightsDialogMainOverride",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <IssueFilingSettingsContainer
-    deps={
-      {
-        "issueFilingActionMessageCreator": [typemoq mock object],
-        "issueFilingServiceProvider": [typemoq mock object],
-        "toolData": {
-          "applicationProperties": {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        },
-        "userConfigMessageCreator": [typemoq mock object],
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "getSettingsFromStoreData": [Function],
-        "isSettingsValid": [Function],
-        "key": "different_service",
-      }
-    }
-    selectedIssueFilingServiceData={
-      {
-        "differentProperty": "different_property",
-      }
-    }
-  />
-  <StyledDialogFooterBase>
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="File issue"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-issuefilingsettingscontainer
+      deps="[object Object]"
+      selectedissuefilingservice="[object Object]"
+      selectedissuefilingservicedata="[object Object]"
     />
-  </StyledDialogFooterBase>
-</Dialog>
+    <mock-styleddialogfooterbase>
+      <mock-actionandcancelbuttonscomponent
+        ishidden="false"
+        primarybuttondisabled="false"
+        primarybuttontext="File issue"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) sent to settings container: Dialog props 1`] = `
+{
+  "children": [
+    <IssueFilingSettingsContainer
+      deps={
+        {
+          "issueFilingActionMessageCreator": [typemoq mock object],
+          "issueFilingServiceProvider": [typemoq mock object],
+          "toolData": {
+            "applicationProperties": {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+          "userConfigMessageCreator": [typemoq mock object],
+        }
+      }
+      onPropertyUpdateCallback={[Function]}
+      onSelectedServiceChange={[Function]}
+      selectedIssueFilingService={
+        {
+          "getSettingsFromStoreData": [Function],
+          "isSettingsValid": [Function],
+          "key": "gitHub",
+        }
+      }
+      selectedIssueFilingServiceData={
+        {
+          "someServiceData": null,
+        }
+      }
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="File issue"
+      />
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "showCloseButton": false,
+    "subText": "This configuration can be changed again in settings.",
+    "title": "Specify issue filing location",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "className": "issueFilingDialog",
+    "containerClassName": "insightsDialogMainOverride",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;

@@ -1,26 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FastPassReport renders 1`] = `
-"<Fragment>
-  <WebReportHead />
-  <BodySection>
-    <AutomatedChecksHeaderSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} />
-    <ContentSection>
-      <FastPassTitleSection />
-      <DetailsSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} />
-      <FastPassReportSummary deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} featureFlagStoreData={[undefined]} />
-      <ResultsContainer deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3}>
-        <FastPassResultsTitleSection title="Automated checks" />
-        <FastPassReportAutomatedChecksResults deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} />
-        <FastPassResultsTitleSection title="Tab stops" />
-        <TabStopsFailedInstanceSection sectionHeadingLevel={3} deps={{...}} featureFlagStoreData={[undefined]} tabStopRequirementState={{...}} alwaysRenderSection={true} />
-        <TabStopsChecksSectionWrapper checksSection={[Function (anonymous)] { displayName: 'IncompleteChecksSection' }} tabStops={{...}} featureFlagStoreData={[undefined]} deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} />
-        <TabStopsChecksSectionWrapper checksSection={[Function (anonymous)] { displayName: 'PassedChecksSection' }} tabStops={{...}} featureFlagStoreData={[undefined]} deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} />
-      </ResultsContainer>
-    </ContentSection>
-    <ReportFooter>
-      <FooterText deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle="page-title" pageUrl="url:target-page" description="test description" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} sectionHeadingLevel={3} />
-    </ReportFooter>
-  </BodySection>
-</Fragment>"
+<DocumentFragment>
+  <mock-webreporthead />
+  <mock-bodysection>
+    <mock-automatedchecksheadersection
+      deps="[object Object]"
+      description="test description"
+      fixinstructionprocessor="undefined"
+      recommendcolor="undefined"
+      results="[object Object]"
+      scanmetadata="[object Object]"
+      sectionheadinglevel="3"
+      shouldalertfailurescount="false"
+    />
+    <mock-contentsection>
+      <mock-fastpasstitlesection />
+      <mock-detailssection
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        recommendcolor="undefined"
+        results="[object Object]"
+        scanmetadata="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+      />
+      <mock-fastpassreportsummary
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        recommendcolor="undefined"
+        results="[object Object]"
+        scanmetadata="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+      />
+      <mock-resultscontainer
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        recommendcolor="undefined"
+        results="[object Object]"
+        scanmetadata="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+      >
+        <mock-fastpassresultstitlesection
+          title="Automated checks"
+        />
+        <mock-fastpassreportautomatedchecksresults
+          deps="[object Object]"
+          description="test description"
+          fixinstructionprocessor="undefined"
+          recommendcolor="undefined"
+          results="[object Object]"
+          scanmetadata="[object Object]"
+          sectionheadinglevel="3"
+          shouldalertfailurescount="false"
+        />
+        <mock-fastpassresultstitlesection
+          title="Tab stops"
+        />
+        <mock-tabstopsfailedinstancesection
+          alwaysrendersection="true"
+          deps="[object Object]"
+          sectionheadinglevel="3"
+          tabstoprequirementstate="[object Object]"
+        />
+        <mock-tabstopscheckssectionwrapper
+          deps="[object Object]"
+          description="test description"
+          fixinstructionprocessor="undefined"
+          recommendcolor="undefined"
+          results="[object Object]"
+          scanmetadata="[object Object]"
+          sectionheadinglevel="3"
+          shouldalertfailurescount="false"
+          tabstops="[object Object]"
+        />
+        <mock-tabstopscheckssectionwrapper
+          deps="[object Object]"
+          description="test description"
+          fixinstructionprocessor="undefined"
+          recommendcolor="undefined"
+          results="[object Object]"
+          scanmetadata="[object Object]"
+          sectionheadinglevel="3"
+          shouldalertfailurescount="false"
+          tabstops="[object Object]"
+        />
+      </mock-resultscontainer>
+    </mock-contentsection>
+    <mock-reportfooter>
+      <mock-footertext
+        deps="[object Object]"
+        description="test description"
+        fixinstructionprocessor="undefined"
+        recommendcolor="undefined"
+        results="[object Object]"
+        scanmetadata="[object Object]"
+        sectionheadinglevel="3"
+        shouldalertfailurescount="false"
+      />
+    </mock-reportfooter>
+  </mock-bodysection>
+</DocumentFragment>
 `;

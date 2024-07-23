@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
-import { startsWith } from 'lodash';
+import { render } from '@testing-library/react';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { InlineImage, InlineImageProps, InlineImageType } from 'reports/components/inline-image';
+import '@testing-library/jest-dom';
 
 describe('InlineImageTest', () => {
     test('Valid types return <img> elements', () => {
@@ -16,12 +17,12 @@ describe('InlineImageTest', () => {
     });
 
     test('Invalid type returns null', () => {
-        testInvalidImage(1234);
+        testInvalidImage(1234 as InlineImageType);
     });
 
     test('optional class name', () => {
         const testClassName = 'test-class-name';
-        const wrapped = shallow(
+        const renderResult = render(
             <InlineImage
                 imageType={InlineImageType.SleepingAda}
                 alt=""
@@ -29,28 +30,27 @@ describe('InlineImageTest', () => {
             />,
         );
 
-        const element = wrapped.getElement();
-
-        expect(element.props.className).toEqual(testClassName);
+        expect(renderResult.container.getElementsByClassName(testClassName)).toBeTruthy();
     });
 
     function testInvalidImage(imageType: InlineImageType): void {
         const props: InlineImageProps = { imageType, alt: '' };
 
-        const wrapped = shallow(<InlineImage {...props} />);
+        const renderResult = render(<InlineImage {...props} />);
 
-        expect(wrapped.getElement()).toBeNull();
+        expect(renderResult.container.firstChild).toBeNull();
     }
 
     function testInlineImage(imageType: InlineImageType, alt: string): void {
         const props: InlineImageProps = { imageType, alt };
 
-        const wrapped = shallow(<InlineImage {...props} />);
+        const renderResult = render(<InlineImage {...props} />);
+        expect(renderResult.container.firstChild).not.toBeNull();
 
-        const element = wrapped.getElement();
-
-        expect(element.type).toEqual('img');
-        expect(startsWith(element.props.src, 'data:image/png;base64,iVBO')).toBeTruthy();
-        expect(element.props.alt).toEqual(alt);
+        const element = !isEmpty(alt)
+            ? (renderResult.getByRole('img', { name: alt }) as HTMLImageElement)
+            : (renderResult.getByRole('presentation') as HTMLImageElement);
+        expect(element.src).toContain('data:image/png;base64,iVBO');
+        expect(element.alt).toEqual(alt);
     }
 });

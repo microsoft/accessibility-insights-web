@@ -1,11 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 
 import { ContentView, ContentViewDeps } from 'views/content/content-view';
+import { Page } from 'views/page/page';
 
+jest.mock('views/page/page');
 describe('content view', () => {
+    mockReactComponents([Page]);
+
     it('renders', () => {
         const applicationTitle = 'THE_APPLICATION_TITLE';
         const deps = {
@@ -19,8 +27,10 @@ describe('content view', () => {
                 <p>THE CONTENT</p>
             </ContentView>
         );
-        const result = shallow(component);
 
-        expect(result.getElement()).toMatchSnapshot();
+        const renderResult = render(component);
+
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Page]);
     });
 });

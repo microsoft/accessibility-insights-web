@@ -1,172 +1,157 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
-<div
-  className="main-section adHocToolsPanel"
->
-  <main
-    className="adHocToolsGrid"
-  >
-    <div>
-      first
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      second
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      third
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      fourth
-    </div>
-    <div>
-      fifth
-    </div>
-  </main>
-  <div
-    className="adHocToolsPanelFooter"
-    role="navigation"
-  >
-    <StyledLinkBase
-      className="link"
-      id="back-to-launchpad-link"
-      onClick={null}
+<DocumentFragment>
+  <div>
+    <main
+      class="adHocToolsGrid"
     >
-      <Memo(Icon)
-        className="backToLaunchPadIcon"
-        iconName="back"
+      <div>
+        first
+      </div>
+      <span
+        class="divider"
       />
-      Back to launch pad
-    </StyledLinkBase>
+      <div>
+        second
+      </div>
+      <span
+        class="divider"
+      />
+      <div>
+        third
+      </div>
+      <span
+        class="divider"
+      />
+      <div>
+        fourth
+      </div>
+      <div>
+        fifth
+      </div>
+    </main>
+    <div
+      class="adHocToolsPanelFooter"
+      role="navigation"
+    >
+      <mock-styledlinkbase
+        classname="link"
+        id="back-to-launchpad-link"
+      >
+        Back to launch pad
+      </mock-styledlinkbase>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`AdHocToolsPanelTest adhoc panel with needs review sixth toggle matches snapshot 1`] = `
-<div
-  className="main-section adHocToolsPanel"
->
-  <main
-    className="adHocToolsGrid"
-  >
-    <div>
-      first
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      second
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      third
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      fourth
-    </div>
-    <div>
-      fifth
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      sixth
-    </div>
-  </main>
-  <div
-    className="adHocToolsPanelFooter"
-    role="navigation"
-  >
-    <StyledLinkBase
-      className="link"
-      id="back-to-launchpad-link"
-      onClick={null}
+<DocumentFragment>
+  <div>
+    <main
+      class="adHocToolsGrid"
     >
-      <Memo(Icon)
-        className="backToLaunchPadIcon"
-        iconName="back"
+      <div>
+        first
+      </div>
+      <span
+        class="divider"
       />
-      Back to launch pad
-    </StyledLinkBase>
+      <div>
+        second
+      </div>
+      <span
+        class="divider"
+      />
+      <div>
+        third
+      </div>
+      <span
+        class="divider"
+      />
+      <div>
+        fourth
+      </div>
+      <div>
+        fifth
+      </div>
+      <span
+        class="divider"
+      />
+      <div>
+        sixth
+      </div>
+    </main>
+    <div
+      class="adHocToolsPanelFooter"
+      role="navigation"
+    >
+      <mock-styledlinkbase
+        classname="link"
+        id="back-to-launchpad-link"
+      >
+        Back to launch pad
+      </mock-styledlinkbase>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`AdHocToolsPanelTest adhoc tools panel with accessible names feature 1`] = `
-<div
-  className="main-section adHocToolsPanel"
->
-  <main
-    className="adHocToolsGrid"
-  >
-    <div>
-      first
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      second
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      third
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      fourth
-    </div>
-    <div>
-      fifth
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      sixth
-    </div>
-    <span
-      className="divider"
-    />
-    <div>
-      seventh
-    </div>
-  </main>
-  <div
-    className="adHocToolsPanelFooter"
-    role="navigation"
-  >
-    <StyledLinkBase
-      className="link"
-      id="back-to-launchpad-link"
-      onClick={null}
+<DocumentFragment>
+  <div>
+    <main
+      class="adHocToolsGrid"
     >
-      <Memo(Icon)
-        className="backToLaunchPadIcon"
-        iconName="back"
+      <div>
+        first
+      </div>
+      <span
+        class="divider"
       />
-      Back to launch pad
-    </StyledLinkBase>
+      <div>
+        second
+      </div>
+      <span
+        class="divider"
+      />
+      <div>
+        third
+      </div>
+      <span
+        class="divider"
+      />
+      <div>
+        fourth
+      </div>
+      <div>
+        fifth
+      </div>
+      <span
+        class="divider"
+      />
+      <div>
+        sixth
+      </div>
+      <span
+        class="divider"
+      />
+      <div>
+        seventh
+      </div>
+    </main>
+    <div
+      class="adHocToolsPanelFooter"
+      role="navigation"
+    >
+      <mock-styledlinkbase
+        classname="link"
+        id="back-to-launchpad-link"
+      >
+        Back to launch pad
+      </mock-styledlinkbase>
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;

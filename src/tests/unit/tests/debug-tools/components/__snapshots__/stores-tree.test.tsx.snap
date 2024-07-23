@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StoresTree renders each row properly 1`] = `
-<StyledDetailsRowBase
+<ForwardRef(StyledDetailsRowBase)
   columns={
     [
       {
@@ -29,22 +29,35 @@ exports[`StoresTree renders each row properly 1`] = `
   itemIndex={1}
   selection={
     Selection {
-      "_anchoredIndex": 0,
-      "_canSelectItem": [Function],
-      "_changeEventSuppressionCount": 0,
-      "_exemptedCount": 0,
-      "_exemptedIndices": {},
-      "_getKey": [Function],
-      "_isModal": false,
-      "_items": [],
-      "_keyToIndexMap": {},
-      "_onItemsChanged": undefined,
-      "_onSelectionChanged": undefined,
-      "_selectedItems": null,
-      "_unselectableCount": 0,
-      "_unselectableIndices": {},
-      "count": 0,
-      "mode": 2,
+      "_change": [MockFunction],
+      "_setAllSelected": [MockFunction],
+      "_updateCount": [MockFunction],
+      "canSelectItem": [MockFunction],
+      "getItemIndex": [MockFunction],
+      "getItems": [MockFunction],
+      "getKey": [MockFunction],
+      "getSelectedCount": [MockFunction],
+      "getSelectedIndices": [MockFunction],
+      "getSelection": [MockFunction],
+      "isAllSelected": [MockFunction],
+      "isIndexSelected": [MockFunction],
+      "isKeySelected": [MockFunction],
+      "isModal": [MockFunction],
+      "isRangeSelected": [MockFunction],
+      "selectToIndex": [MockFunction],
+      "selectToKey": [MockFunction],
+      "selectToRange": [MockFunction],
+      "setAllSelected": [MockFunction],
+      "setChangeEvents": [MockFunction],
+      "setIndexSelected": [MockFunction],
+      "setItems": [MockFunction],
+      "setKeySelected": [MockFunction],
+      "setModal": [MockFunction],
+      "setRangeSelected": [MockFunction],
+      "toggleAllSelected": [MockFunction],
+      "toggleIndexSelected": [MockFunction],
+      "toggleKeySelected": [MockFunction],
+      "toggleRangeSelected": [MockFunction],
     }
   }
   selectionMode={0}
@@ -54,44 +67,82 @@ exports[`StoresTree renders each row properly 1`] = `
 exports[`StoresTree renders the value column properly 1`] = `"{"first":1,"second":"2","third":true,"fourth":[4],"fifth":{"sixth":"6"}}"`;
 
 exports[`StoresTree renders with no data from the state 1`] = `
-<StyledSpinnerBase
-  label="loading..."
-/>
+<DocumentFragment>
+  <mock-styledspinnerbase
+    label="loading..."
+  />
+</DocumentFragment>
 `;
 
 exports[`StoresTree renders with proper data from the stores 1`] = `
-<FocusZone
-  direction={2}
-  isCircularNavigation={false}
-  shouldRaiseClicks={true}
->
-  <SelectionZone
+<DocumentFragment>
+  <mock-focuszone
+    data-tabster="{"uncontrolled": {}}"
+    direction="2"
+    iscircularnavigation="false"
+    shouldraiseclicks="true"
+  >
+    <mock-selectionzone
+      isselectedonfocus="true"
+      selection="[object Object]"
+      selectionclearedonescapepress="true"
+      selectionmode="0"
+      togglewithoutmodifierpressed="false"
+    >
+      <mock-styledgroupedlistbase
+        compact="true"
+        groups="[object Object],[object Object]"
+        items="[object Object],[object Object],[object Object]"
+        selection="[object Object]"
+        selectionmode="0"
+      />
+    </mock-selectionzone>
+  </mock-focuszone>
+</DocumentFragment>
+`;
+
+exports[`StoresTree renders with proper data from the stores: FocusZone props 1`] = `
+{
+  "children": <SelectionZone
     isSelectedOnFocus={true}
     selection={
       Selection {
-        "_anchoredIndex": 0,
-        "_canSelectItem": [Function],
-        "_changeEventSuppressionCount": 0,
-        "_exemptedCount": 0,
-        "_exemptedIndices": {},
-        "_getKey": [Function],
-        "_isModal": false,
-        "_items": [],
-        "_keyToIndexMap": {},
-        "_onItemsChanged": undefined,
-        "_onSelectionChanged": undefined,
-        "_selectedItems": null,
-        "_unselectableCount": 0,
-        "_unselectableIndices": {},
-        "count": 0,
-        "mode": 2,
+        "_change": [MockFunction],
+        "_setAllSelected": [MockFunction],
+        "_updateCount": [MockFunction],
+        "canSelectItem": [MockFunction],
+        "getItemIndex": [MockFunction],
+        "getItems": [MockFunction],
+        "getKey": [MockFunction],
+        "getSelectedCount": [MockFunction],
+        "getSelectedIndices": [MockFunction],
+        "getSelection": [MockFunction],
+        "isAllSelected": [MockFunction],
+        "isIndexSelected": [MockFunction],
+        "isKeySelected": [MockFunction],
+        "isModal": [MockFunction],
+        "isRangeSelected": [MockFunction],
+        "selectToIndex": [MockFunction],
+        "selectToKey": [MockFunction],
+        "selectToRange": [MockFunction],
+        "setAllSelected": [MockFunction],
+        "setChangeEvents": [MockFunction],
+        "setIndexSelected": [MockFunction],
+        "setItems": [MockFunction],
+        "setKeySelected": [MockFunction],
+        "setModal": [MockFunction],
+        "setRangeSelected": [MockFunction],
+        "toggleAllSelected": [MockFunction],
+        "toggleIndexSelected": [MockFunction],
+        "toggleKeySelected": [MockFunction],
+        "toggleRangeSelected": [MockFunction],
       }
     }
     selectionClearedOnEscapePress={true}
     selectionMode={0}
     toggleWithoutModifierPressed={false}
   >
-    <StyledGroupedListBase
+    <ForwardRef(StyledGroupedListBase)
       compact={true}
       groups={
         [
@@ -128,26 +179,43 @@ exports[`StoresTree renders with proper data from the stores 1`] = `
       onRenderCell={[Function]}
       selection={
         Selection {
-          "_anchoredIndex": 0,
-          "_canSelectItem": [Function],
-          "_changeEventSuppressionCount": 0,
-          "_exemptedCount": 0,
-          "_exemptedIndices": {},
-          "_getKey": [Function],
-          "_isModal": false,
-          "_items": [],
-          "_keyToIndexMap": {},
-          "_onItemsChanged": undefined,
-          "_onSelectionChanged": undefined,
-          "_selectedItems": null,
-          "_unselectableCount": 0,
-          "_unselectableIndices": {},
-          "count": 0,
-          "mode": 2,
+          "_change": [MockFunction],
+          "_setAllSelected": [MockFunction],
+          "_updateCount": [MockFunction],
+          "canSelectItem": [MockFunction],
+          "getItemIndex": [MockFunction],
+          "getItems": [MockFunction],
+          "getKey": [MockFunction],
+          "getSelectedCount": [MockFunction],
+          "getSelectedIndices": [MockFunction],
+          "getSelection": [MockFunction],
+          "isAllSelected": [MockFunction],
+          "isIndexSelected": [MockFunction],
+          "isKeySelected": [MockFunction],
+          "isModal": [MockFunction],
+          "isRangeSelected": [MockFunction],
+          "selectToIndex": [MockFunction],
+          "selectToKey": [MockFunction],
+          "selectToRange": [MockFunction],
+          "setAllSelected": [MockFunction],
+          "setChangeEvents": [MockFunction],
+          "setIndexSelected": [MockFunction],
+          "setItems": [MockFunction],
+          "setKeySelected": [MockFunction],
+          "setModal": [MockFunction],
+          "setRangeSelected": [MockFunction],
+          "toggleAllSelected": [MockFunction],
+          "toggleIndexSelected": [MockFunction],
+          "toggleKeySelected": [MockFunction],
+          "toggleRangeSelected": [MockFunction],
         }
       }
       selectionMode={0}
     />
-  </SelectionZone>
-</FocusZone>
+  </SelectionZone>,
+  "data-tabster": "{"uncontrolled": {}}",
+  "direction": 2,
+  "isCircularNavigation": false,
+  "shouldRaiseClicks": true,
+}
 `;

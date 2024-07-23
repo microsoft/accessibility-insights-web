@@ -25,6 +25,7 @@ import {
     LoadAssessmentDialogDeps,
 } from 'DetailsView/components/load-assessment-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { QuickAssessToAssessmentDialog } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import {
     ReportExportDialogFactoryDeps,
@@ -48,6 +49,7 @@ import {
     TransferToAssessmentButtonDeps,
     TransferToAssessmentButtonProps,
 } from 'DetailsView/components/transfer-to-assessment-button';
+import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -105,6 +107,7 @@ export interface DetailsViewCommandBarProps {
     tabStopRequirementData: TabStopRequirementState;
     userConfigurationStoreData: UserConfigurationStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    dataTransferViewStoreData: DataTransferViewStoreData;
 }
 export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
@@ -112,6 +115,7 @@ export class DetailsViewCommandBar extends React.Component<
 > {
     public exportDialogCloseFocus?: IButton;
     public startOverDialogCloseFocus?: IButton;
+    public transferToAssessmentDialogCloseFocus?: IButton;
 
     public constructor(props) {
         super(props);
@@ -137,6 +141,7 @@ export class DetailsViewCommandBar extends React.Component<
                 {this.renderInvalidLoadAssessmentDialog()}
                 {this.renderLoadAssessmentDialog()}
                 {this.renderStartOverDialog()}
+                {this.renderTransferToAssessmentDialog()}
             </div>
         );
     }
@@ -208,6 +213,7 @@ export class DetailsViewCommandBar extends React.Component<
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref ?? undefined;
                     this.startOverDialogCloseFocus = ref ?? undefined;
+                    this.transferToAssessmentDialogCloseFocus = ref ?? undefined;
                 }}
             />
         );
@@ -218,6 +224,9 @@ export class DetailsViewCommandBar extends React.Component<
     private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
 
     private focusReportExportButton = () => this.exportDialogCloseFocus?.focus();
+
+    private focusTransferToAssessmentButton = () =>
+        this.transferToAssessmentDialogCloseFocus?.focus();
 
     private renderExportButton = () => {
         const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
@@ -256,16 +265,29 @@ export class DetailsViewCommandBar extends React.Component<
         });
     };
 
+    private renderTransferToAssessmentButton = (): JSX.Element | null => {
+        return this.props.switcherNavConfiguration.TransferToAssessmentButton({
+            ...this.props,
+            buttonRef: ref => (this.transferToAssessmentDialogCloseFocus = ref ?? undefined),
+        });
+    };
+
+    private renderTransferToAssessmentDialog(): JSX.Element {
+        return (
+            <QuickAssessToAssessmentDialog
+                isShown={
+                    this.props.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog
+                }
+                afterDialogDismissed={this.focusTransferToAssessmentButton}
+                {...this.props}
+            />
+        );
+    }
+
     private renderLoadAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.LoadAssessmentButton({
             ...this.props,
             handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
-        });
-    };
-
-    private renderTransferToAssessmentButton = (): JSX.Element | null => {
-        return this.props.switcherNavConfiguration.TransferToAssessmentButton({
-            ...this.props,
         });
     };
 

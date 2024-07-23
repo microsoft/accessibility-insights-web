@@ -1,73 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
-<React.Fragment>
-  <StyledTextFieldBase
+<DocumentFragment>
+  <mock-styledtextfieldbase
     aria-describedby="azure-boards-description"
-    className="issue-setting"
+    classname="issue-setting"
     label="Enter your Azure Boards project URL"
-    onChange={[Function]}
     value=""
   />
   <span
-    className="textfield-description"
+    class="textfield-description"
     id="azure-boards-description"
   >
     example: https://dev.azure.com/org/project
   </span>
-  <Dropdown
+  <mock-styleddropdownbase
     label="Select a field for issue details"
-    onChange={[Function]}
-    options={
-      [
-        {
-          "key": "reproSteps",
-          "text": "Repro steps",
-        },
-        {
-          "key": "description",
-          "text": "Description",
-        },
-      ]
-    }
+    options="[object Object],[object Object]"
     placeholder="Select an option"
-    selectedKey={null}
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`AzureBoardsSettingsForm renders settings is null: StyledDropdownBase props 1`] = `
+{
+  "label": "Select a field for issue details",
+  "onChange": [Function],
+  "options": [
+    {
+      "key": "reproSteps",
+      "text": "Repro steps",
+    },
+    {
+      "key": "description",
+      "text": "Description",
+    },
+  ],
+  "placeholder": "Select an option",
+  "selectedKey": null,
+}
 `;
 
 exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1`] = `
-<React.Fragment>
-  <StyledTextFieldBase
+<DocumentFragment>
+  <mock-styledtextfieldbase
     aria-describedby="azure-boards-description"
-    className="issue-setting"
+    classname="issue-setting"
     label="Enter your Azure Boards project URL"
-    onChange={[Function]}
     value="some project URL"
   />
   <span
-    className="textfield-description"
+    class="textfield-description"
     id="azure-boards-description"
   >
     example: https://dev.azure.com/org/project
   </span>
-  <Dropdown
+  <mock-styleddropdownbase
     label="Select a field for issue details"
-    onChange={[Function]}
-    options={
-      [
-        {
-          "key": "reproSteps",
-          "text": "Repro steps",
-        },
-        {
-          "key": "description",
-          "text": "Description",
-        },
-      ]
-    }
+    options="[object Object],[object Object]"
     placeholder="Select an option"
-    selectedKey="description"
+    selectedkey="description"
   />
-</React.Fragment>
+</DocumentFragment>
+`;
+
+exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField: StyledDropdownBase props 1`] = `
+{
+  "label": "Select a field for issue details",
+  "onChange": [Function],
+  "options": [
+    {
+      "key": "reproSteps",
+      "text": "Repro steps",
+    },
+    {
+      "key": "description",
+      "text": "Description",
+    },
+  ],
+  "placeholder": "Select an option",
+  "selectedKey": "description",
+}
 `;

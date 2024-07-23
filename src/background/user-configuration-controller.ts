@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Message } from 'common/message';
+import { InterpreterMessage } from 'common/message';
 import { Messages } from 'common/messages';
 import { SetHighContrastModePayload, SetTelemetryStatePayload } from './actions/action-payloads';
 import { Interpreter } from './interpreter';
@@ -12,7 +12,7 @@ export class UserConfigurationController {
         const payload: SetHighContrastModePayload = {
             enableHighContrast,
         };
-        const message: Message = {
+        const message: InterpreterMessage = {
             messageType: Messages.UserConfig.SetHighContrastConfig,
             payload: payload,
             tabId: null,
@@ -25,7 +25,7 @@ export class UserConfigurationController {
         const payload: SetTelemetryStatePayload = {
             enableTelemetry,
         };
-        const message: Message = {
+        const message: InterpreterMessage = {
             messageType: Messages.UserConfig.SetTelemetryConfig,
             payload: payload,
             tabId: null,

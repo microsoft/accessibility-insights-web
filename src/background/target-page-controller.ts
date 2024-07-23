@@ -4,7 +4,7 @@ import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
-import { InterpreterMessage, Message } from 'common/message';
+import { InterpreterMessage } from 'common/message';
 import { Messages } from 'common/messages';
 import { DictionaryNumberTo } from 'types/common-types';
 import type { Tabs } from 'webextension-polyfill';
@@ -166,7 +166,7 @@ export class TargetPageController {
         const payload: PageVisibilityChangeTabPayload = {
             hidden: isHidden,
         };
-        const message: Message = {
+        const message: InterpreterMessage = {
             messageType: Messages.Tab.VisibilityChange,
             payload: payload,
             tabId: tabId,

@@ -45,7 +45,6 @@ describe('AxeResultReport', () => {
         description,
         serviceName: 'THE_SERVICE',
         scanContext: {
-            browserSpec: 'BROWSER_SPEC',
             pageTitle,
         },
     };

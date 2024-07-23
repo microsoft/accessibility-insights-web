@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { DefaultButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -10,17 +13,22 @@ import {
     IssueDetailsNavigationControls,
     IssueDetailsNavigationControlsProps,
 } from '../../../../../injected/components/issue-details-navigation-controls';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../mock-helpers/mock-module-helpers';
+
+jest.mock('@fluentui/react');
 
 describe('IssueDetailsNavigationControls', () => {
     let controlProps: IssueDetailsNavigationControlsProps;
     let navigationHandlerMock: IMock<IssueDetailsNavigationClickHandler>;
-
+    mockReactComponents([DefaultButton]);
     beforeEach(() => {
         navigationHandlerMock = Mock.ofType<IssueDetailsNavigationClickHandler>();
         controlProps = {
             container: Mock.ofType<DetailsDialog>().object,
             dialogHandler: navigationHandlerMock.object,
-            featureFlagStoreData: {},
             failuresCount: 5,
         };
     });
@@ -59,48 +67,49 @@ describe('IssueDetailsNavigationControls', () => {
                 .setup(handler => handler.isNextButtonDisabled(controlProps.container))
                 .returns(() => testCase.nextButtonDisabled);
 
-            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+            const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         describe('handles failures count', () => {
             it('0 failures', () => {
                 controlProps.failuresCount = 0;
 
-                const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+                const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
-                expect(wrapper.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
 
             it('1 failure', () => {
                 controlProps.failuresCount = 1;
 
-                const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+                const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
-                expect(wrapper.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
 
             it('multiple failures', () => {
                 controlProps.failuresCount = 5;
 
-                const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+                const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
-                expect(wrapper.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
         });
     });
 
     describe('user interaction', () => {
-        it('handles next button activation', () => {
-            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+        it('handles next button activation', async () => {
+            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
-            const nextButton = wrapper.find({ 'data-automation-id': 'next' });
+            const nextButton = renderResult.getByRole('button', {
+                name: /Next/i,
+            });
+            expect(nextButton.childNodes).toHaveLength(1);
 
-            expect(nextButton).not.toBeNull();
-            expect(nextButton).toHaveLength(1);
-
-            nextButton.simulate('click');
+            await userEvent.click(nextButton);
 
             navigationHandlerMock.verify(
                 handler => handler.nextButtonClickHandler(controlProps.container),
@@ -108,15 +117,17 @@ describe('IssueDetailsNavigationControls', () => {
             );
         });
 
-        it('handles back button activation', () => {
-            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+        it('handles back button activation', async () => {
+            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
-            const backButton = wrapper.find({ 'data-automation-id': 'back' });
+            const backButton = renderResult.getByRole('button', {
+                name: /Back/i,
+            });
 
-            expect(backButton).not.toBeNull();
-            expect(backButton).toHaveLength(1);
+            expect(backButton.childNodes).toHaveLength(1);
 
-            backButton.simulate('click');
+            await userEvent.click(backButton);
 
             navigationHandlerMock.verify(
                 handler => handler.backButtonClickHandler(controlProps.container),

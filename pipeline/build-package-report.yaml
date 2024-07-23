@@ -1,6 +1,31 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-jobs:
-    - template: build-package.template.yaml
-      parameters:
-          suffix: report
+
+resources:
+    repositories:
+        - repository: self
+          type: git
+          ref: refs/heads/main
+        - repository: 1esPipelines
+          type: git
+          name: 1ESPipelineTemplates/1ESPipelineTemplates
+          ref: refs/tags/release
+
+extends:
+    template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
+    parameters:
+        pool:
+            os: linux
+            image: ubuntu-22.04-secure
+            name: $(a11yInsightsPool)
+        sdl:
+            sourceAnalysisPool:
+                name: $(a11yInsightsPool)
+                image: windows-2022-secure
+                os: windows
+        stages:
+            - stage: Stage
+              jobs:
+                  - template: pipeline/build-package.template.yaml@self
+                    parameters:
+                        suffix: report

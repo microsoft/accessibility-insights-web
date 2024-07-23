@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { act, render } from '@testing-library/react';
 import * as React from 'react';
 import {
     withStoreSubscription,
@@ -10,7 +10,9 @@ import { ClientStoresHub } from '../../../../../common/stores/client-stores-hub'
 
 describe('withStoreSubscription', () => {
     type testProps = WithStoreSubscriptionProps<{ message: string }>;
-    const testComp: React.FC<testProps> = props => <h1>{props.storeState.message}</h1>;
+    const testComp: React.FC<React.PropsWithChildren<testProps>> = props => (
+        <h1>{props.storeState.message}</h1>
+    );
 
     test('constructor: storesHub is null', () => {
         const props: testProps = {
@@ -181,12 +183,16 @@ describe('withStoreSubscription', () => {
         expect(listenerAdded).toEqual(listenerRemoved);
     });
 
-    test('render', () => {
+    test('render', async () => {
         let onStoreChange;
         const hasStoresMock = jest.fn();
         const getStoreDataMock = jest.fn();
         const addChangedListenerToAllStoresMock = jest.fn();
         addChangedListenerToAllStoresMock.mockImplementation(cb => {
+            onStoreChange = cb;
+        });
+        const removeChangedListenerFromAllStoresMock = jest.fn();
+        removeChangedListenerFromAllStoresMock.mockImplementation(cb => {
             onStoreChange = cb;
         });
         getStoreDataMock
@@ -197,6 +203,7 @@ describe('withStoreSubscription', () => {
         const storesHubStub: ClientStoresHub<any> = {} as ClientStoresHub<any>;
         storesHubStub.getAllStoreData = getStoreDataMock;
         storesHubStub.addChangedListenerToAllStores = addChangedListenerToAllStoresMock;
+        storesHubStub.removeChangedListenerFromAllStores = removeChangedListenerFromAllStoresMock;
         storesHubStub.hasStores = hasStoresMock;
         const props: WithStoreSubscriptionProps<any> = {
             deps: {
@@ -205,12 +212,12 @@ describe('withStoreSubscription', () => {
             storeState: null,
         };
         const WrappedComp = withStoreSubscription<WithStoreSubscriptionProps<any>, any>(testComp);
-        const rendered = shallow(<WrappedComp {...props} />);
+        const renderResult = render(<WrappedComp {...props} />);
 
-        expect(rendered.dive().getElement()).toMatchSnapshot('before store change');
+        expect(renderResult.container).toMatchSnapshot('before store change');
 
-        onStoreChange();
+        await act(() => onStoreChange());
 
-        expect(rendered.dive().getElement()).toMatchSnapshot('after store change');
+        expect(renderResult.container).toMatchSnapshot('after store change');
     });
 });

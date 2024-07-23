@@ -1,15 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
-
+import { ExternalLink } from '../../../../../common/components/external-link';
 import {
     HelpLinks,
     HelpLinksDeps,
     HelpLinksProps,
 } from '../../../../../DetailsView/components/help-links';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('../../../../../common/components/external-link');
 
 describe('HelpLinks', () => {
+    mockReactComponents([ExternalLink]);
     const deps = {} as HelpLinksDeps;
 
     test('linkInformation is shown properly', () => {
@@ -31,7 +34,7 @@ describe('HelpLinks', () => {
             deps,
         };
 
-        const helpLinkSection = shallow(<HelpLinks {...props} />);
-        expect(helpLinkSection.getElement()).toMatchSnapshot();
+        const renderResult = render(<HelpLinks {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

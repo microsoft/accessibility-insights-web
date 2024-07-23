@@ -1,14 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+import { Dialog, DialogFooter, PrimaryButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import {
     InvalidLoadAssessmentDialog,
     InvalidLoadAssessmentDialogProps,
 } from 'DetailsView/components/invalid-load-assessment-dialog';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+    mockReactComponent,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('@fluentui/react');
 
 describe('InvalidLoadAssessmentDialog', () => {
+    mockReactComponents([DialogFooter, PrimaryButton]);
+    mockReactComponent(Dialog, 'Dialog');
     let invalidLoadAssessmentDialogProps: InvalidLoadAssessmentDialogProps;
 
     beforeEach(() => {
@@ -19,17 +27,18 @@ describe('InvalidLoadAssessmentDialog', () => {
     });
 
     it('should show when isOpen is set to true', () => {
-        const rendered = shallow(
+        const renderResult = render(
             <InvalidLoadAssessmentDialog {...invalidLoadAssessmentDialogProps} />,
         );
-        expect(rendered.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Dialog], 'Dialog props');
     });
 
     it('should not show when isOpen is set to false', () => {
         invalidLoadAssessmentDialogProps.isOpen = false;
-        const rendered = shallow(
+        const renderResult = render(
             <InvalidLoadAssessmentDialog {...invalidLoadAssessmentDialogProps} />,
         );
-        expect(rendered.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

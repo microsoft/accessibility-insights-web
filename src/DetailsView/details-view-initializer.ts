@@ -81,8 +81,7 @@ import {
     TabStopsFailedCounterIncludingNoInstance,
     TabStopsFailedCounterInstancesOnly,
 } from 'DetailsView/tab-stops-failed-counter';
-import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
-import * as ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -90,7 +89,6 @@ import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-m
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
-    outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
 } from 'reports/components/requirement-outcome-type';
 import { FastPassReportHtmlGenerator } from 'reports/fast-pass-report-html-generator';
@@ -112,6 +110,10 @@ import { allCardInteractionsSupported } from '../common/components/cards/card-in
 import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
+import {
+    getNeedsReviewRuleResourcesUrl,
+    isOutcomeNeedsReview,
+} from '../common/configs/needs-review-rule-resources';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -121,7 +123,6 @@ import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { FileURLProvider } from '../common/file-url-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
-import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
@@ -155,7 +156,6 @@ import { ScannerUtils } from '../injected/scanner-utils';
 import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
 import { PlainTextFormatter } from '../issue-filing/common/markup/plain-text-formatter';
-import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result-to-issue-filing-data';
 import { getDefaultRulesMap, getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
@@ -404,7 +404,6 @@ if (tabId != null) {
             const previewFeatureFlagsHandler = new PreviewFeatureFlagsHandler(
                 getAllFeatureFlagDetails(),
             );
-            const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
             const dropdownClickHandler = new DropdownClickHandler(
                 dropdownActionMessageCreator,
                 TelemetryEventSource.DetailsView,
@@ -545,11 +544,6 @@ if (tabId != null) {
 
             const fileNameBuilder = new FileNameBuilder();
 
-            const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
-                IssueFilingUrlStringUtils.getSelectorLastPart,
-                extractRelatedSelectors,
-            );
-
             const unifiedResultToIssueFilingDataConverter =
                 new UnifiedResultToIssueFilingDataConverter();
 
@@ -644,7 +638,6 @@ if (tabId != null) {
                 textContent,
                 fixInstructionProcessor,
                 recommendColor,
-                axeResultToIssueFilingDataConverter,
                 unifiedResultToIssueFilingDataConverter,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
@@ -667,11 +660,9 @@ if (tabId != null) {
                 userConfigMessageCreator,
                 leftNavLinkBuilder: new LeftNavLinkBuilder(),
                 getStatusForTest,
-                outcomeTypeFromTestStatus,
                 outcomeStatsFromManualTestStatus,
                 assessmentsProviderWithFeaturesEnabled,
                 outcomeTypeSemanticsFromTestStatus,
-                getInnerTextFromJsxElement,
                 storesHub,
                 loadTheme,
                 urlParser,
@@ -707,8 +698,6 @@ if (tabId != null) {
                 clickHandlerFactory,
                 issuesTableHandler,
                 previewFeatureFlagsHandler,
-                scopingFlagsHandler,
-                Assessments,
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
@@ -739,12 +728,14 @@ if (tabId != null) {
                 defaultRulesMap: getDefaultRulesMap(),
                 convertAssessmentStoreDataToScanNodeResults,
                 convertUnifiedStoreDataToScanNodeResults,
+                GetNeedsReviewRuleResourcesUrl: getNeedsReviewRuleResourcesUrl,
+                IsOutcomeNeedsReview: isOutcomeNeedsReview,
             };
 
             const renderer = new DetailsViewRenderer(
                 deps,
                 dom,
-                ReactDOM.render,
+                ReactDOMClient.createRoot,
                 documentElementSetter,
             );
 
@@ -760,7 +751,7 @@ if (tabId != null) {
         .catch(() => {
             const renderer = createNullifiedRenderer(
                 document,
-                ReactDOM.render,
+                ReactDOMClient.createRoot,
                 createDefaultLogger(),
             );
             renderer.render();
@@ -769,7 +760,7 @@ if (tabId != null) {
 
 function createNullifiedRenderer(
     doc: Document,
-    render: typeof ReactDOM.render,
+    createRoot: typeof ReactDOMClient.createRoot,
     logger: Logger,
 ): NoContentAvailableViewRenderer {
     // using an instance of an actual store (instead of a StoreProxy) so we can get the default state.
@@ -782,5 +773,5 @@ function createNullifiedRenderer(
         getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
     };
 
-    return new NoContentAvailableViewRenderer(deps, doc, render, documentElementSetter);
+    return new NoContentAvailableViewRenderer(deps, doc, createRoot, documentElementSetter);
 }

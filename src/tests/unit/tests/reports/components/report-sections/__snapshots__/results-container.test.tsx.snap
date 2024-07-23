@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ResultsContainer renders 1`] = `
-<React.Fragment>
+<DocumentFragment>
   <div
-    className="results-container"
+    class="results-container"
   >
     <div>
       1
@@ -14,12 +14,8 @@ exports[`ResultsContainer renders 1`] = `
       2
     </div>
   </div>
-  <script
-    dangerouslySetInnerHTML={
-      {
-        "__html": "test script",
-      }
-    }
-  />
-</React.Fragment>
+  <script>
+    test script
+  </script>
+</DocumentFragment>
 `;

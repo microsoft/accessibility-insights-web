@@ -1,27 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NewTabLink handles children 1`] = `
-<StyledLinkBase
-  className="insights-link"
-  href="test"
-  target="_blank"
->
-  link text
-</StyledLinkBase>
+<DocumentFragment>
+  <mock-styledlinkbase
+    classname="insights-link"
+    href="test"
+    target="_blank"
+  >
+    link text
+  </mock-styledlinkbase>
+</DocumentFragment>
 `;
 
 exports[`NewTabLink renders content with custom className 1`] = `
-<StyledLinkBase
-  className="insights-link custom-class"
-  href="test"
-  target="_blank"
-/>
+<DocumentFragment>
+  <mock-styledlinkbase
+    classname="insights-link custom-class"
+    href="test"
+    target="_blank"
+  />
+</DocumentFragment>
 `;
 
 exports[`NewTabLink renders content without custom className 1`] = `
-<StyledLinkBase
-  className="insights-link"
-  href="test"
-  target="_blank"
-/>
+<DocumentFragment>
+  <mock-styledlinkbase
+    classname="insights-link"
+    href="test"
+    target="_blank"
+  />
+</DocumentFragment>
 `;

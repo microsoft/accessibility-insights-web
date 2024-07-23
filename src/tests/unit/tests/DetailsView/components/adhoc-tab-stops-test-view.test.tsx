@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Toggle } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { CollapsibleComponent } from 'common/components/collapsible-component';
+import { FocusComponent } from 'common/components/focus-component';
+import { HeadingWithContentLink } from 'common/components/heading-with-content-link';
+import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
@@ -18,14 +24,47 @@ import {
     AdhocTabStopsTestViewDeps,
     AdhocTabStopsTestViewProps,
 } from 'DetailsView/components/adhoc-tab-stops-test-view';
+import { AutoDetectedFailuresDialog } from 'DetailsView/components/auto-detected-failures-dialog';
+import { TabStopsFailedInstancePanel } from 'DetailsView/components/tab-stops/tab-stops-failed-instance-panel';
+import { TabStopsRequirementsTable } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
 import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
+import { TabStopsFailedInstanceSection } from 'DetailsView/components/tab-stops-failed-instance-section';
+import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
+
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { shallow } from 'enzyme';
+
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ContentReference } from 'views/content/content-page';
 
+jest.mock('DetailsView/components/tab-stops/tab-stops-failed-instance-panel');
+jest.mock('@fluentui/react');
+jest.mock('common/components/heading-with-content-link');
+jest.mock('common/components/collapsible-component');
+jest.mock('common/components/theme-family-customizer');
+jest.mock('DetailsView/components/tab-stops/tab-stops-requirements-table');
+jest.mock('DetailsView/components/tab-stops-failed-instance-section');
+jest.mock('common/components/focus-component');
+jest.mock('DetailsView/components/auto-detected-failures-dialog');
+jest.mock('DetailsView/components/target-page-changed-view');
+
 describe('AdhocTabStopsTestView', () => {
+    mockReactComponents([
+        TabStopsFailedInstancePanel,
+        HeadingWithContentLink,
+        Toggle,
+        CollapsibleComponent,
+        ThemeFamilyCustomizer,
+        TabStopsRequirementsTable,
+        TabStopsFailedInstanceSection,
+        FocusComponent,
+        AutoDetectedFailuresDialog,
+        TargetPageChangedView,
+    ]);
     let props: AdhocTabStopsTestViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
@@ -57,7 +96,7 @@ describe('AdhocTabStopsTestView', () => {
             tests: {},
         } as VisualizationStoreData;
         clickHandlerStub = () => {};
-        selectedTest = -1;
+        selectedTest = -1 as VisualizationType;
         featureFlagStoreDataStub = {};
         userConfigurationStoreDataStub = 'stub-user-configuration-store-data' as any;
         visualizationScanResultData = { tabStops: {} } as VisualizationScanResultData;
@@ -105,8 +144,9 @@ describe('AdhocTabStopsTestView', () => {
                 isChanged: true,
             };
 
-            const wrapper = shallow(<AdhocTabStopsTestView {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const wrapper = render(<AdhocTabStopsTestView {...props} />);
+
+            expect(wrapper.asFragment()).toMatchSnapshot();
         });
 
         it.each(scenarios)('handles %s', (_, guidance) => {
@@ -120,8 +160,9 @@ describe('AdhocTabStopsTestView', () => {
                 props.guidance = guidance;
             }
 
-            const wrapper = shallow(<AdhocTabStopsTestView {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const wrapper = render(<AdhocTabStopsTestView {...props} />);
+            expectMockedComponentPropsToMatchSnapshots([CollapsibleComponent]);
+            expect(wrapper.asFragment()).toMatchSnapshot();
             verifyAll();
         });
     });

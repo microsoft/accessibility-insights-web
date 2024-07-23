@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningId } from 'common/types/store-data/scan-incomplete-warnings';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import { LaunchPanelType } from './types/store-data/launch-panel-store-data';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
@@ -192,6 +193,7 @@ export type AssessmentTelemetryData = {
 
 export type RequirementActionTelemetryData = {
     selectedRequirement: string;
+    selectedTest: string;
 } & BaseTelemetryData;
 
 export type ModifiedCommandsTelemetryData = {
@@ -287,6 +289,10 @@ export type UnhandledErrorTelemetryData = {
     errorType: ErrorType;
 };
 
+export type LaunchPanelTelemetryData = {
+    launchPanelType: LaunchPanelType;
+} & BaseTelemetryData;
+
 export type TelemetryData =
     | BaseTelemetryData
     | ToggleTelemetryData
@@ -312,4 +318,5 @@ export type TelemetryData =
     | TabStopsAutomatedResultsTelemetryData
     | AutoDetectedFailuresDialogStateTelemetryData
     | ShowAssessmentDialogStateTelemetryData
-    | UnhandledErrorTelemetryData;
+    | UnhandledErrorTelemetryData
+    | LaunchPanelTelemetryData;

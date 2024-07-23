@@ -1,242 +1,258 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: some button label 1`] = `
-<div
-  className="collapsible-container collapsed"
->
-  <HeadingElementForLevel
-    className="title-container"
-    headingLevel={5}
+<DocumentFragment>
+  <div
+    class="collapsible-container collapsed"
   >
-    <button
-      aria-controls="content-container-some-id"
-      aria-expanded="false"
-      aria-label="some button label"
-      className="collapsible-control"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
+    >
+      <button
+        aria-controls="content-container-some-id"
+        aria-expanded="false"
+        aria-label="some button label"
+        class="collapsible-control"
+      >
+        <div>
+          Some header
+        </div>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      aria-hidden="true"
+      class="collapsible-content"
+      id="content-container-some-id"
     >
       <div>
-        Some header
+        Some content
       </div>
-    </button>
-  </HeadingElementForLevel>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-some-id"
-  >
-    <div>
-      Some content
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: undefined 1`] = `
-<div
-  className="collapsible-container collapsed"
->
-  <HeadingElementForLevel
-    className="title-container"
-    headingLevel={5}
+<DocumentFragment>
+  <div
+    class="collapsible-container collapsed"
   >
-    <button
-      aria-controls="content-container-some-id"
-      aria-expanded="false"
-      className="collapsible-control"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
+    >
+      <button
+        aria-controls="content-container-some-id"
+        aria-expanded="false"
+        class="collapsible-control"
+      >
+        <div>
+          Some header
+        </div>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      aria-hidden="true"
+      class="collapsible-content"
+      id="content-container-some-id"
     >
       <div>
-        Some header
+        Some content
       </div>
-    </button>
-  </HeadingElementForLevel>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-some-id"
-  >
-    <div>
-      Some content
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ReportCollapsibleContainerControl render with containerClassName set to: a-container 1`] = `
-<div
-  className="collapsible-container a-container collapsed"
->
-  <HeadingElementForLevel
-    className="title-container"
-    headingLevel={5}
+<DocumentFragment>
+  <div
+    class="collapsible-container a-container collapsed"
   >
-    <button
-      aria-controls="content-container-some-id"
-      aria-expanded="false"
-      className="collapsible-control"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
+    >
+      <button
+        aria-controls="content-container-some-id"
+        aria-expanded="false"
+        class="collapsible-control"
+      >
+        <div>
+          Some header
+        </div>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      aria-hidden="true"
+      class="collapsible-content"
+      id="content-container-some-id"
     >
       <div>
-        Some header
+        Some content
       </div>
-    </button>
-  </HeadingElementForLevel>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-some-id"
-  >
-    <div>
-      Some content
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ReportCollapsibleContainerControl render with containerClassName set to: undefined 1`] = `
-<div
-  className="collapsible-container collapsed"
->
-  <HeadingElementForLevel
-    className="title-container"
-    headingLevel={5}
+<DocumentFragment>
+  <div
+    class="collapsible-container collapsed"
   >
-    <button
-      aria-controls="content-container-some-id"
-      aria-expanded="false"
-      className="collapsible-control"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
+    >
+      <button
+        aria-controls="content-container-some-id"
+        aria-expanded="false"
+        class="collapsible-control"
+      >
+        <div>
+          Some header
+        </div>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      aria-hidden="true"
+      class="collapsible-content"
+      id="content-container-some-id"
     >
       <div>
-        Some header
+        Some content
       </div>
-    </button>
-  </HeadingElementForLevel>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-some-id"
-  >
-    <div>
-      Some content
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ReportCollapsibleContainerControl render with contentClassName set to: content-class-name-a 1`] = `
-<div
-  className="collapsible-container collapsed"
->
-  <HeadingElementForLevel
-    className="title-container"
-    headingLevel={5}
+<DocumentFragment>
+  <div
+    class="collapsible-container collapsed"
   >
-    <button
-      aria-controls="content-container-some-id"
-      aria-expanded="false"
-      className="collapsible-control"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
+    >
+      <button
+        aria-controls="content-container-some-id"
+        aria-expanded="false"
+        class="collapsible-control"
+      >
+        <div>
+          Some header
+        </div>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      aria-hidden="true"
+      class="collapsible-content"
+      id="content-container-some-id"
     >
       <div>
-        Some header
+        Some content
       </div>
-    </button>
-  </HeadingElementForLevel>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-some-id"
-  >
-    <div>
-      Some content
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ReportCollapsibleContainerControl render with contentClassName set to: undefined 1`] = `
-<div
-  className="collapsible-container collapsed"
->
-  <HeadingElementForLevel
-    className="title-container"
-    headingLevel={5}
+<DocumentFragment>
+  <div
+    class="collapsible-container collapsed"
   >
-    <button
-      aria-controls="content-container-some-id"
-      aria-expanded="false"
-      className="collapsible-control"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
+    >
+      <button
+        aria-controls="content-container-some-id"
+        aria-expanded="false"
+        class="collapsible-control"
+      >
+        <div>
+          Some header
+        </div>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      aria-hidden="true"
+      class="collapsible-content"
+      id="content-container-some-id"
     >
       <div>
-        Some header
+        Some content
       </div>
-    </button>
-  </HeadingElementForLevel>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-some-id"
-  >
-    <div>
-      Some content
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ReportCollapsibleContainerControl render with id set to: some id 1`] = `
-<div
-  className="collapsible-container collapsed"
->
-  <HeadingElementForLevel
-    className="title-container"
-    headingLevel={5}
+<DocumentFragment>
+  <div
+    class="collapsible-container collapsed"
   >
-    <button
-      aria-controls="content-container-some id"
-      aria-expanded="false"
-      className="collapsible-control"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
+    >
+      <button
+        aria-controls="content-container-some id"
+        aria-expanded="false"
+        class="collapsible-control"
+      >
+        <div>
+          Some header
+        </div>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      aria-hidden="true"
+      class="collapsible-content"
+      id="content-container-some id"
     >
       <div>
-        Some header
+        Some content
       </div>
-    </button>
-  </HeadingElementForLevel>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-some id"
-  >
-    <div>
-      Some content
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ReportCollapsibleContainerControl render with id set to: undefined 1`] = `
-<div
-  className="collapsible-container collapsed"
->
-  <HeadingElementForLevel
-    className="title-container"
-    headingLevel={5}
+<DocumentFragment>
+  <div
+    class="collapsible-container collapsed"
   >
-    <button
-      aria-controls="content-container-undefined"
-      aria-expanded="false"
-      className="collapsible-control"
+    <mock-headingelementforlevel
+      classname="title-container"
+      headinglevel="5"
+    >
+      <button
+        aria-controls="content-container-undefined"
+        aria-expanded="false"
+        class="collapsible-control"
+      >
+        <div>
+          Some header
+        </div>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      aria-hidden="true"
+      class="collapsible-content"
+      id="content-container-undefined"
     >
       <div>
-        Some header
+        Some content
       </div>
-    </button>
-  </HeadingElementForLevel>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-undefined"
-  >
-    <div>
-      Some content
     </div>
   </div>
-</div>
+</DocumentFragment>
 `;

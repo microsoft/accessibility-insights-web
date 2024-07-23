@@ -71,6 +71,15 @@ if errorlevel 1 goto fail
 echo OK
 echo.
 
+@echo Passing case: local PR build of dependabot branch with @types namespace
+set BUILD_SOURCEBRANCH=
+set GITHUB_HEAD_REF=
+echo pwsh -f ./check-clearly-defined.ps1 -PipelineType local -BranchName dependabot/npm_and_yarn/types/jest-1.10000.1
+pwsh -f ./check-clearly-defined.ps1 -PipelineType local -BranchName dependabot/npm_and_yarn/types/jest-1.10000.1
+if errorlevel 1 goto fail
+echo OK
+echo.
+
 @echo Failing case: Package that does not exist in ClearlyDefined
 echo pwsh -f ./check-clearly-defined.ps1 -PipelineType local -BranchName dependabot/nuget/src/Axe.Windows-2.99.99
 pwsh -f ./check-clearly-defined.ps1 -PipelineType local -BranchName dependabot/nuget/src/Axe.Windows-2.99.99

@@ -1,0 +1,23 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+# Note that this Azure DevOps pipeline is largely redundant with /.github/workflows/ci.yml, which
+# is what we use instead for validation builds of pull requests. This CI build only runs against
+# pushes to main, not PRs; it exists in tandem with the GitHub Actions CI build because it
+# integrates better with our ADO-based release process.
+
+trigger:
+    branches:
+        include:
+            - main
+
+variables:
+    windowsImage: 'windows-2022-secure'
+    macImage: 'macOS-11'
+    linuxImage: 'ubuntu-20.04'
+    Codeql.Enabled: true
+
+extends:
+    template: pipeline/build-shared.yaml@self
+    parameters:
+        templateType: Official

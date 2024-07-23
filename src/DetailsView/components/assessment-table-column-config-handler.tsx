@@ -137,7 +137,6 @@ export class AssessmentTableColumnConfigHandler {
                 background={'#767676'}
                 textContent={textContent}
                 headerText={headerText}
-                tooltipId={item.instance.id!}
                 customClassName="not-applicable"
             />
         );

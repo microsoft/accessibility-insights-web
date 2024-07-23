@@ -1,11 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FastPassResultsTitleSection renders 1`] = `
-<div
-  className="title-section"
->
-  <h2>
-    Test title
-  </h2>
-</div>
+<DocumentFragment>
+  <div
+    class="title-section"
+  >
+    <h2>
+      Test title
+    </h2>
+  </div>
+</DocumentFragment>
 `;

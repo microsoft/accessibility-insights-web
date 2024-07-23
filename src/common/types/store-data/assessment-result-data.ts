@@ -55,6 +55,7 @@ export interface GeneratedAssessmentInstance<T = {}, K = {}> {
     html: string;
     testStepResults: AssessmentResultType<K>;
     propertyBag?: T;
+    selector?: string;
 }
 
 export interface TestStepResult {

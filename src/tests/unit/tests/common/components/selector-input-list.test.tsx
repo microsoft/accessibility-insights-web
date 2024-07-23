@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, FocusZone, IconButton, ITextField, List, TextField } from '@fluentui/react';
-import styles from 'common/components/selector-input-list.scss';
-import * as Enzyme from 'enzyme';
+import { ITextField } from '@fluentui/react';
+import { createEvent, fireEvent, render, RenderResult, within } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
@@ -23,9 +23,9 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.shallow(<SelectorInputList {...props} />);
-        result.setState({ isTextFieldValueValid: false });
-        genericRenderTests(result, props);
+
+        const renderResult = render(<SelectorInputList {...props} />);
+        genericRenderTests(renderResult, props);
     });
 
     test('render without list items', () => {
@@ -40,8 +40,8 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.shallow(<SelectorInputList {...props} />);
-        genericRenderTests(result, props);
+        const renderResult = render(<SelectorInputList {...props} />);
+        genericRenderTests(renderResult, props);
     });
 
     test('render with instructions paragraph', () => {
@@ -57,9 +57,9 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.shallow(<SelectorInputList {...props} />);
-        genericRenderTests(result, props);
-        expect(result.find('.test-paragraph').getElement).toBeDefined();
+        const renderResult = render(<SelectorInputList {...props} />);
+        genericRenderTests(renderResult, props);
+        expect(renderResult.getByText('Test')).not.toBeNull();
     });
 
     test('add selector with no space after semicolon', () => {
@@ -86,8 +86,8 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.mount(<TestableSelectorInputList {...props} />);
-        genericAddSelectorTests(result, addSelectorMock, givenSelector);
+        const renderResult = render(<TestableSelectorInputList {...props} />);
+        genericAddSelectorTests(renderResult, addSelectorMock, givenSelector);
     });
 
     test('add selector with multiple separators', () => {
@@ -114,8 +114,8 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.mount(<TestableSelectorInputList {...props} />);
-        genericAddSelectorTests(result, addSelectorMock, givenSelector);
+        const renderResult = render(<TestableSelectorInputList {...props} />);
+        genericAddSelectorTests(renderResult, addSelectorMock, givenSelector);
     });
 
     test('change inspection mode', () => {
@@ -137,8 +137,8 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: changeInspectionMock.object,
         };
-        const result = Enzyme.shallow(<SelectorInputList {...props} />);
-        genericChangeInspectionModeTests(result, changeInspectionMock);
+        const renderResult = render(<SelectorInputList {...props} />);
+        genericChangeInspectionModeTests(renderResult, changeInspectionMock);
     });
 
     test('delete selector with no space after semicolon', () => {
@@ -165,8 +165,8 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: deleteSelectorMock.object,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.shallow(<SelectorInputList {...props} />);
-        genericDeleteSelectorTests(result, deleteSelectorMock);
+        const renderResult = render(<SelectorInputList {...props} />);
+        genericDeleteSelectorTests(renderResult, deleteSelectorMock, props);
     });
 
     test('add selector button disabled after entering duplicate selector', () => {
@@ -184,8 +184,8 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.shallow(<TestableSelectorInputList {...props} />);
-        genericButtonStateTests(result, givenSelector, true);
+        const renderResult = render(<TestableSelectorInputList {...props} />);
+        genericButtonStateTests(renderResult, givenSelector, true);
     });
 
     test('add selector button disabled after entering blank selector', () => {
@@ -202,8 +202,8 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.shallow(<TestableSelectorInputList {...props} />);
-        genericButtonStateTests(result, givenSelector, true);
+        const renderResult = render(<TestableSelectorInputList {...props} />);
+        genericButtonStateTests(renderResult, givenSelector, true);
     });
 
     test('add selector button enabled after entering valid selector', () => {
@@ -221,8 +221,8 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.shallow(<TestableSelectorInputList {...props} />);
-        genericButtonStateTests(result, givenSelector, true);
+        const renderResult = render(<TestableSelectorInputList {...props} />);
+        genericButtonStateTests(renderResult, givenSelector, false);
     });
 
     test('componentDidUpdate updates state when props have changed', () => {
@@ -250,14 +250,17 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.shallow(<TestableSelectorInputList {...props} />);
-        const firstState = (result.instance() as TestableSelectorInputList).state
-            .isTextFieldValueValid;
-        (result.instance() as TestableSelectorInputList).setTextFieldValue(givenSelector);
-        (result.instance() as TestableSelectorInputList).componentDidUpdate(previousProps);
-        const secondState = (result.instance() as TestableSelectorInputList).state
-            .isTextFieldValueValid;
-        expect(secondState).toEqual(!firstState);
+        const { rerender, getByPlaceholderText, getByRole } = render(
+            <TestableSelectorInputList {...props} />,
+        );
+        const button = getByRole('button', { name: 'Add Selector' });
+
+        expect(button).toHaveProperty('disabled', true);
+
+        const inputText = getByPlaceholderText('Enter element selector here');
+        fireEvent.change(inputText, { target: { value: givenSelector } });
+        rerender(<TestableSelectorInputList {...previousProps} />);
+        expect(button).toHaveProperty('disabled', false);
     });
 
     test("componentDidUpdate doesn't update state when the props haven't changed ", () => {
@@ -283,16 +286,14 @@ describe('SelectorInputListTest', () => {
             onDeleteSelector: null,
             onChangeInspectMode: null,
         };
-        const result = Enzyme.shallow(<TestableSelectorInputList {...props} />);
-        const firstState = (result.instance() as TestableSelectorInputList).state
-            .isTextFieldValueValid;
-        (result.instance() as TestableSelectorInputList).componentDidUpdate(previousProps);
-        const secondState = (result.instance() as TestableSelectorInputList).state
-            .isTextFieldValueValid;
-        expect(secondState).toEqual(firstState);
+        const { rerender, getByRole } = render(<TestableSelectorInputList {...props} />);
+        const button = getByRole('button', { name: 'Add Selector' });
+        expect(button).toHaveProperty('disabled', true);
+        rerender(<TestableSelectorInputList {...previousProps} />);
+        expect(button).toHaveProperty('disabled', true);
     });
 
-    test('restore sets textfield value to initial value upon entering a valid selector', () => {
+    test('restore sets textfield value to initial value upon entering a valid selector', async () => {
         const givenInput = 'include';
         const addSelectorMock = Mock.ofInstance(
             (
@@ -317,42 +318,47 @@ describe('SelectorInputListTest', () => {
             onChangeInspectMode: null,
         };
 
-        const result = Enzyme.shallow(<TestableSelectorInputList {...props} />);
-        (result.instance() as TestableSelectorInputList).setTextFieldValue(givenSelector);
-        result.setState({ isTextFieldValueValid: true, value: givenSelector });
-        const textFieldBeforeAdd = result.find(TextField);
-        expect(textFieldBeforeAdd.getElement().props.value).toBe(givenSelector);
-        const button = result.find(DefaultButton);
-        button.simulate('click');
-        const textFieldAfterAdd = result.find(TextField);
-        expect(textFieldAfterAdd.getElement().props.value).toBe('');
+        const renderResult = render(<TestableSelectorInputList {...props} />);
+        const inputText = renderResult.getByPlaceholderText(
+            'Enter element selector here',
+        ) as HTMLInputElement;
+        fireEvent.change(inputText, { target: { value: givenSelector } });
+
+        expect(inputText.value).toBe(givenSelector);
+        const button = renderResult.getByRole('button', { name: 'Add Selector' });
+        await userEvent.click(button);
+        expect(inputText.value).toBe('');
     });
 
     function genericButtonStateTests(
-        result: Enzyme.ShallowWrapper<any, any>,
+        result: RenderResult,
         givenSelector: string,
-        expectedStateValue: boolean,
+        expectedButtonDisabledValue: boolean,
     ): void {
-        (result.instance() as TestableSelectorInputList).setTextFieldValue(givenSelector);
-        result.setState({ isTextFieldValueValid: expectedStateValue });
-        const button = result.find(DefaultButton);
-        expect(button.getElement().props.disabled).toBe(!expectedStateValue);
+        const inputText = result.getByPlaceholderText('Enter element selector here');
+        fireEvent.change(inputText, { target: { value: givenSelector } });
+        const button = result.container.querySelector('.textboxAddSelectorButton');
+        if (expectedButtonDisabledValue) {
+            expect(button).toHaveProperty('disabled', true);
+        } else {
+            expect(button).toHaveProperty('disabled', false);
+        }
     }
 
-    function genericRenderTests(
-        result: Enzyme.ShallowWrapper<any, any>,
-        props: SelectorInputListProps,
-    ): void {
-        const textbox = result.find('.' + styles.selectorInputField);
-        const selectors = result.find(List);
-        const title = result.find('.' + styles.selectorInputTitle);
-        expect(title.getElement().props.children).toBe(props.title);
-        expect(textbox.getElement().props.ariaLabel).toBe(props.subtitle);
-        expect(selectors.getElement().props.items).toBe(props.items);
+    function genericRenderTests(result: RenderResult, props: SelectorInputListProps): void {
+        const textbox = result.getByRole('textbox', { name: props.subtitle });
+        const title = result.getByText(props.title);
+        expect(title).toBeInstanceOf(HTMLElement);
+        expect(textbox).toBeInstanceOf(HTMLElement);
+        props.items.forEach(item => {
+            item.forEach(selector => {
+                expect(result.getByText(selector)).toBeInstanceOf(HTMLElement);
+            });
+        });
     }
 
     function genericAddSelectorTests(
-        result: Enzyme.ReactWrapper<any, any>,
+        result: RenderResult,
         selectorMock: IMock<
             (
                 event: React.MouseEvent<HTMLButtonElement>,
@@ -362,15 +368,16 @@ describe('SelectorInputListTest', () => {
         >,
         givenSelector: string,
     ): void {
-        (result.instance() as TestableSelectorInputList).setTextFieldValue(givenSelector);
-        result.setState({ isTextFieldValueValid: true });
-        const button = result.find(DefaultButton);
-        button.simulate('click');
+        const inputText = result.getByPlaceholderText('Enter element selector here');
+        fireEvent.change(inputText, { target: { value: givenSelector } });
+        const button = result.getByRole('button', { name: 'Add Selector' });
+        const event = createEvent.click(button);
+        fireEvent.click(button, event);
         selectorMock.verifyAll();
     }
 
     function genericDeleteSelectorTests(
-        result: Enzyme.ShallowWrapper<any, any>,
+        result: RenderResult,
         selectorMock: IMock<
             (
                 event: React.MouseEvent<HTMLButtonElement>,
@@ -378,25 +385,28 @@ describe('SelectorInputListTest', () => {
                 selector: string[],
             ) => void
         >,
+        props: SelectorInputListProps,
     ): void {
-        const itemList = result.find(List);
-        const createdRow = Enzyme.shallow(
-            itemList.getElement().props.onRenderCell(itemList.getElement().props.items[0]),
-        );
-        const button = createdRow.find(IconButton);
-        button.simulate('click');
+        const itemList = result.getByRole('list');
+        const createdRow = within(itemList)
+            .getByText(props.items[0].join('; '))
+            .closest('.selectorInputItemCell') as HTMLElement;
+        const button = within(createdRow).getByRole('button');
+        const event = createEvent.click(button);
+        fireEvent.click(button, event);
         selectorMock.verifyAll();
-        expect(result.find(FocusZone)).toBeDefined();
+        expect(result.container.querySelector('.ms-FocusZone')).toBeDefined();
     }
 
     function genericChangeInspectionModeTests(
-        result: Enzyme.ShallowWrapper<any, any>,
+        result: RenderResult,
         selectorMock: IMock<
             (event: React.MouseEvent<HTMLButtonElement>, inspectMode: string) => void
         >,
     ): void {
-        const button = result.find(IconButton);
-        button.simulate('click');
+        const button = result.getAllByRole('button')[1];
+        const event = createEvent.click(button);
+        fireEvent.click(button, event);
         selectorMock.verifyAll();
     }
 

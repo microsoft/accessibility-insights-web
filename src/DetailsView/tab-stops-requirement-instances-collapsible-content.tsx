@@ -39,7 +39,6 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                         background={'#767676'}
                         textContent={instance.description}
                         headerText={'Comment'}
-                        tooltipId={instance.id}
                     />
                 );
             };

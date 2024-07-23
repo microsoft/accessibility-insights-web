@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StartOverDialog renders when dialogState = assessment 1`] = `
-<GenericDialog
-  isHidden={false}
-  messageText="Starting over will clear all existing results and clear progress of all tests and requirements. Are you sure you want to start over?"
-  onCancelButtonClick={[Function]}
-  onPrimaryButtonClick={[Function]}
-  primaryButtonText="Start over"
-  title="Start over"
-/>
+<DocumentFragment>
+  <mock-genericdialog
+    ishidden="false"
+    messagetext="Starting over will clear all existing results and clear progress of all tests and requirements. Are you sure you want to start over?"
+    primarybuttontext="Start over"
+    title="Start over"
+  />
+</DocumentFragment>
 `;
 
-exports[`StartOverDialog renders when dialogState = none 1`] = `null`;
+exports[`StartOverDialog renders when dialogState = none 1`] = `<DocumentFragment />`;
 
 exports[`StartOverDialog renders when dialogState = test 1`] = `
-<GenericDialog
-  isHidden={false}
-  messageText="Starting over will clear all existing results from the test name test. Are you sure you want to start over?"
-  onCancelButtonClick={[Function]}
-  onPrimaryButtonClick={[Function]}
-  primaryButtonText="Start over"
-  title="Start over"
-/>
+<DocumentFragment>
+  <mock-genericdialog
+    ishidden="false"
+    messagetext="Starting over will clear all existing results from the test name test. Are you sure you want to start over?"
+    primarybuttontext="Start over"
+    title="Start over"
+  />
+</DocumentFragment>
 `;

@@ -1,184 +1,183 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ChoiceGroupPassFail render 1`] = `
-<div
-  className="choiceGroupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    isLabelVisible={false}
-    onChange={[Function]}
-    options={
-      [
-        {
-          "ariaLabel": "Pass",
-          "key": "pass",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionPass",
-            "root": "radioButtonOption",
-          },
-          "text": "Pass",
-        },
-        {
-          "ariaLabel": "Fail",
-          "key": "fail",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionFail",
-            "root": "radioButtonOption",
-          },
-          "text": "Fail",
-        },
-      ]
-    }
-    selectedKey="unknown"
-    styles={
-      {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
+<DocumentFragment>
   <div
-    className="secondaryControlsWrapper"
+    class="choiceGroupContainer"
   >
-    <CustomizedIconButton
-      aria-label="add"
-      iconProps={
-        {
-          "iconName": "add",
-        }
-      }
-      noClick={[Function]}
+    <mock-styledchoicegroup
+      options="[object Object],[object Object],[object Object]"
+      selectedkey="unknown"
+      styles="[object Object]"
     />
+    <div
+      class="secondaryControlsWrapper"
+    >
+      <mock-customizediconbutton
+        aria-label="add"
+        iconprops="[object Object]"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
-<div
-  className="choiceGroupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    isLabelVisible={false}
-    onChange={[Function]}
-    options={
-      [
-        {
-          "ariaLabel": "Pass",
-          "key": "pass",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionPass",
-            "root": "radioButtonOption",
-          },
-          "text": "Pass",
-        },
-        {
-          "ariaLabel": "Fail",
-          "key": "fail",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionFail",
-            "root": "radioButtonOption",
-          },
-          "text": "Fail",
-        },
-      ]
-    }
-    selectedKey="fail"
-    styles={
-      {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
+<DocumentFragment>
   <div
-    className="secondaryControlsWrapper"
+    class="choiceGroupContainer"
   >
-    <CustomizedIconButton
-      ariaLabel="undo"
-      iconProps={
-        {
-          "iconName": "undo",
-        }
-      }
-      onClick={[Function]}
+    <mock-styledchoicegroup
+      options="[object Object],[object Object],[object Object]"
+      selectedkey="fail"
+      styles="[object Object]"
     />
-    <CustomizedIconButton
-      aria-label="add"
-      iconProps={
-        {
-          "iconName": "add",
-        }
-      }
-      noClick={[Function]}
-    />
+    <div
+      class="secondaryControlsWrapper"
+    >
+      <mock-customizediconbutton
+        arialabel="undo"
+        iconprops="[object Object]"
+      />
+      <mock-customizediconbutton
+        aria-label="add"
+        iconprops="[object Object]"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL: CustomizedIconButton props 1`] = `
+{
+  "ariaLabel": "undo",
+  "iconProps": {
+    "iconName": "undo",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL: StyledChoiceGroup props 1`] = `
+{
+  "componentRef": [Function],
+  "data-automation-id": undefined,
+  "onChange": [Function],
+  "options": [
+    {
+      "ariaLabel": "Pass",
+      "key": "pass",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Pass",
+    },
+    {
+      "ariaLabel": "Fail",
+      "key": "fail",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Fail",
+    },
+    {
+      "ariaLabel": "unknown",
+      "key": "unknown",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "unknown",
+    },
+  ],
+  "selectedKey": "fail",
+  "styles": {
+    "flexContainer": "radioButtonGroup",
+  },
+}
 `;
 
 exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
-<div
-  className="choiceGroupContainer"
->
-  <StyledChoiceGroup
-    componentRef={[Function]}
-    isLabelVisible={false}
-    onChange={[Function]}
-    options={
-      [
-        {
-          "ariaLabel": "Pass",
-          "key": "pass",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionPass",
-            "root": "radioButtonOption",
-          },
-          "text": "Pass",
-        },
-        {
-          "ariaLabel": "Fail",
-          "key": "fail",
-          "onRenderLabel": [Function],
-          "styles": {
-            "field": "radioButtonOptionField radioButtonOptionFail",
-            "root": "radioButtonOption",
-          },
-          "text": "Fail",
-        },
-      ]
-    }
-    selectedKey="pass"
-    styles={
-      {
-        "flexContainer": "radioButtonGroup",
-      }
-    }
-  />
+<DocumentFragment>
   <div
-    className="secondaryControlsWrapper"
+    class="choiceGroupContainer"
   >
-    <CustomizedIconButton
-      ariaLabel="undo"
-      iconProps={
-        {
-          "iconName": "undo",
-        }
-      }
-      onClick={[Function]}
+    <mock-styledchoicegroup
+      options="[object Object],[object Object],[object Object]"
+      selectedkey="pass"
+      styles="[object Object]"
     />
-    <CustomizedIconButton
-      aria-label="add"
-      iconProps={
-        {
-          "iconName": "add",
-        }
-      }
-      noClick={[Function]}
-    />
+    <div
+      class="secondaryControlsWrapper"
+    >
+      <mock-customizediconbutton
+        arialabel="undo"
+        iconprops="[object Object]"
+      />
+      <mock-customizediconbutton
+        aria-label="add"
+        iconprops="[object Object]"
+      />
+    </div>
   </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`ChoiceGroupPassFail render: selectedKey is set to PASS: CustomizedIconButton props 1`] = `
+{
+  "ariaLabel": "undo",
+  "iconProps": {
+    "iconName": "undo",
+  },
+  "onClick": [Function],
+}
+`;
+
+exports[`ChoiceGroupPassFail render: selectedKey is set to PASS: StyledChoiceGroup props 1`] = `
+{
+  "componentRef": [Function],
+  "data-automation-id": undefined,
+  "onChange": [Function],
+  "options": [
+    {
+      "ariaLabel": "Pass",
+      "key": "pass",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Pass",
+    },
+    {
+      "ariaLabel": "Fail",
+      "key": "fail",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "Fail",
+    },
+    {
+      "ariaLabel": "unknown",
+      "key": "unknown",
+      "onRenderLabel": [Function],
+      "styles": {
+        "field": undefined,
+        "root": "radioButtonOption",
+      },
+      "text": "unknown",
+    },
+  ],
+  "selectedKey": "pass",
+  "styles": {
+    "flexContainer": "radioButtonGroup",
+  },
+}
 `;

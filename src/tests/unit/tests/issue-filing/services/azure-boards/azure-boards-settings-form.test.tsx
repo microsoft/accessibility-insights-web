@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Dropdown, TextField } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { SettingsDeps } from 'DetailsView/components/details-view-overlay/settings-panel/settings/settings-props';
-import { shallow } from 'enzyme';
 import { OnPropertyUpdateCallback } from 'issue-filing/components/issue-filing-settings-container';
 import { getAzureBoardsIssueFilingService } from 'issue-filing/services/azure-boards/azure-boards-issue-filing-service';
 import { AzureBoardsIssueFilingSettings } from 'issue-filing/services/azure-boards/azure-boards-issue-filing-settings';
@@ -11,8 +11,15 @@ import { SettingsFormProps } from 'issue-filing/types/settings-form-props';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, Times } from 'typemoq';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
 describe('AzureBoardsSettingsForm', () => {
+    mockReactComponents([TextField, Dropdown]);
     let props: SettingsFormProps<AzureBoardsIssueFilingSettings>;
     let deps: SettingsDeps;
     let settingsStub: AzureBoardsIssueFilingSettings;
@@ -36,14 +43,16 @@ describe('AzureBoardsSettingsForm', () => {
 
     describe('renders', () => {
         it('with projectUrl and issueDetailsField', () => {
-            const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
-            expect(testSubject.getElement()).toMatchSnapshot();
+            const renderResult = render(<AzureBoardsSettingsForm {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([Dropdown]);
         });
 
         it('settings is null', () => {
             props.settings = null;
-            const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
-            expect(testSubject.getElement()).toMatchSnapshot();
+            const renderResult = render(<AzureBoardsSettingsForm {...props} />);
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([Dropdown]);
         });
     });
 
@@ -62,9 +71,8 @@ describe('AzureBoardsSettingsForm', () => {
                 .setup(updateCallback => updateCallback(payload))
                 .verifiable(Times.once());
 
-            const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
-
-            testSubject.find(TextField).simulate('change', eventStub, newProjectUrl);
+            render(<AzureBoardsSettingsForm {...props} />);
+            getMockComponentClassPropsForCall(TextField).onChange(eventStub, newProjectUrl);
 
             onPropertyUpdateCallbackMock.verifyAll();
         });
@@ -83,9 +91,11 @@ describe('AzureBoardsSettingsForm', () => {
                 .setup(updateCallback => updateCallback(payload))
                 .verifiable(Times.once());
 
-            const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
+            render(<AzureBoardsSettingsForm {...props} />);
 
-            testSubject.find(Dropdown).simulate('change', null, { key: newIssueDetailsFieldKey });
+            getMockComponentClassPropsForCall(Dropdown).onChange(null, {
+                key: newIssueDetailsFieldKey,
+            });
 
             onPropertyUpdateCallbackMock.verifyAll();
         });

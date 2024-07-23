@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NoContentAvailable } from 'DetailsView/components/no-content-available/no-content-available';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('NoContentAvailable', () => {
     it('renders stale view for default', () => {
-        const testSubject = shallow(<NoContentAvailable />);
+        const renderResult = render(<NoContentAvailable />);
 
-        expect(testSubject.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

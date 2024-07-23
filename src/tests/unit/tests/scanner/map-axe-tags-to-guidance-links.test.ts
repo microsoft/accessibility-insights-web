@@ -17,8 +17,15 @@ describe('mapAxeTagsToGuidanceLinks', () => {
         expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, tags)).toEqual([]);
     });
 
-    const wcagAAAtags = ['wcag146', 'wcag223', 'wcag224', 'wcag248', 'wcag249', 'wcag325'];
-    const wcag22onlyTags = ['wcag258'];
+    const wcagAAAtags = [
+        'wcag146',
+        'wcag213',
+        'wcag223',
+        'wcag224',
+        'wcag248',
+        'wcag249',
+        'wcag325',
+    ];
 
     const irrelevantAxeCoreTags = [
         // axe-core specific, not required for our purposes
@@ -35,7 +42,6 @@ describe('mapAxeTagsToGuidanceLinks', () => {
         // we intentionally omit AAA and WCAG 2.2-only success criteria from guidance links; we
         // don't want users to get confused about whether our tool supports these assessments
         ...wcagAAAtags,
-        ...wcag22onlyTags,
     ];
     it.each(irrelevantAxeCoreTags)(
         'should omit entries for irrelevant axe-core tag %s',
@@ -88,9 +94,7 @@ describe('mapAxeTagsToGuidanceLinks', () => {
 
     const allAxeTags = new Set(flatMap(axe.getRules(), rule => rule.tags));
     const axeWcagTags = [...allAxeTags.values()].filter(tag => /^wcag\d+$/.test(tag)).sort();
-    const axeWcag21NonAAATags = axeWcagTags.filter(
-        tag => !wcagAAAtags.includes(tag) && !wcag22onlyTags.includes(tag),
-    );
+    const axeWcag21NonAAATags = axeWcagTags.filter(tag => !wcagAAAtags.includes(tag));
 
     it.each(axeWcag21NonAAATags)(
         `should have a mapping for wcag A/AA tag "%s" used by axe`,

@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { fireEvent, render } from '@testing-library/react';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { Header } from 'common/components/header';
 import { NewTabLink } from 'common/components/new-tab-link';
+import { TelemetryPermissionDialog } from 'common/components/telemetry-permission-dialog';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import {
@@ -9,8 +12,10 @@ import {
     LaunchPanelType,
 } from 'common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { shallow } from 'enzyme';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
+import { AdHocToolsPanel } from 'popup/components/ad-hoc-tools-panel';
+import { FileUrlUnsupportedMessagePanel } from 'popup/components/file-url-unsupported-message-panel';
+import { LaunchPad } from 'popup/components/launch-pad';
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import {
     PopupView,
@@ -22,11 +27,34 @@ import { DiagnosticViewClickHandler } from 'popup/handlers/diagnostic-view-toggl
 import { PopupViewControllerHandler } from 'popup/handlers/popup-view-controller-handler';
 import { LaunchPadRowConfigurationFactory } from 'popup/launch-pad-row-configuration-factory';
 import * as React from 'react';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 
+jest.mock('popup/components/launch-pad');
+jest.mock('common/components/telemetry-permission-dialog');
+jest.mock('common/components/header');
+jest.mock('popup/components/ad-hoc-tools-panel');
+jest.mock('popup/components/launch-pad');
+jest.mock('popup/components/launch-panel-header');
+jest.mock('popup/components/file-url-unsupported-message-panel');
+jest.mock('react-router-dom');
+jest.mock('common/components/new-tab-link');
+
 describe('PopupView', () => {
+    mockReactComponents([
+        LaunchPad,
+        TelemetryPermissionDialog,
+        LaunchPanelHeader,
+        AdHocToolsPanel,
+        Header,
+        FileUrlUnsupportedMessagePanel,
+        NewTabLink,
+    ]);
     const browserAdapterStub = {
         getManifest: getManifestStub,
     } as BrowserAdapter;
@@ -70,7 +98,6 @@ describe('PopupView', () => {
         let storeState: PopupViewControllerState;
         let deps: PopupViewControllerDeps;
         const rowConfigStub = {};
-        const shortcutModifyHandlerStub = {};
         const launchPadRowConfigurationFactoryMock = Mock.ofType(LaunchPadRowConfigurationFactory);
         const userConfigStoreData: UserConfigurationStoreData = {
             isFirstTime: true,
@@ -127,7 +154,6 @@ describe('PopupView', () => {
                     diagnosticViewClickHandler: clickHandlerMock.object,
                     popupViewControllerHandler: handlerMock.object,
                     launchPanelHeaderClickHandler: null,
-                    shortcutModifyHandler: shortcutModifyHandlerStub as any,
                 })
                 .with('hasAccess', true)
                 .with(
@@ -140,18 +166,16 @@ describe('PopupView', () => {
 
             actionMessageCreatorStrictMock.setup(amc => amc.openTutorial(It.isAny()));
 
-            const rendered = shallow(<PopupView {...props} />);
+            const rendered = render(<PopupView {...props} />);
 
-            expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.asFragment()).toMatchSnapshot();
 
-            const Subtitle = () => rendered.find(LaunchPanelHeader).prop('subtitle') as JSX.Element;
-            const renderedSubtitle = shallow(<Subtitle />);
-            expect(renderedSubtitle.debug()).toMatchSnapshot('subtitle');
-            const link = renderedSubtitle.find(NewTabLink);
-
-            link.simulate('click');
+            const Subtitle = () => getMockComponentClassPropsForCall(LaunchPanelHeader).subtitle;
+            const renderedSubtitle = render(<Subtitle />);
+            expect(renderedSubtitle.asFragment()).toMatchSnapshot('subtitle');
+            const link = renderedSubtitle.getByText('Watch 3-minute video introduction');
+            fireEvent.click(link);
             actionMessageCreatorStrictMock.verify(ac => ac.openTutorial(It.isAny()), Times.once());
-
             handlerMock.verifyAll();
         });
 
@@ -170,7 +194,6 @@ describe('PopupView', () => {
                     diagnosticViewClickHandler: clickHandlerMock.object,
                     popupViewControllerHandler: handlerMock.object,
                     launchPanelHeaderClickHandler: null,
-                    shortcutModifyHandler: shortcutModifyHandlerStub as any,
                 })
                 .with('hasAccess', true)
                 .with(
@@ -181,9 +204,9 @@ describe('PopupView', () => {
                 .build();
             props.deps.storesHub = storesHubMock.object;
 
-            const rendered = shallow(<PopupView {...props} />);
+            const rendered = render(<PopupView {...props} />);
 
-            expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.asFragment()).toMatchSnapshot();
 
             handlerMock.verifyAll();
         });
@@ -206,7 +229,6 @@ describe('PopupView', () => {
                     diagnosticViewClickHandler: null,
                     popupViewControllerHandler: handlerMock.object,
                     launchPanelHeaderClickHandler: null,
-                    shortcutModifyHandler: null,
                 })
                 .with('hasAccess', true)
                 .with('diagnosticViewToggleFactory', null)
@@ -217,9 +239,9 @@ describe('PopupView', () => {
                 .with('storeState', storeState)
                 .build();
             props.deps.storesHub = storesHubMock.object;
-            const rendered = shallow(<PopupView {...props} />);
+            const rendered = render(<PopupView {...props} />);
 
-            expect(rendered.debug()).toMatchSnapshot();
+            expect(rendered.asFragment()).toMatchSnapshot();
             handlerMock.verifyAll();
         });
     });
@@ -255,8 +277,8 @@ describe('PopupView', () => {
             .with('diagnosticViewToggleFactory', null)
             .build();
 
-        const wrapped = shallow(<PopupView {...props} />);
-        expect(wrapped.getElement()).toMatchSnapshot();
+        const wrapped = render(<PopupView {...props} />);
+        expect(wrapped.asFragment()).toMatchSnapshot();
     });
 
     function createDefaultPropsBuilder(storeHub: ClientStoresHub<any>): PopupViewPropsBuilder {

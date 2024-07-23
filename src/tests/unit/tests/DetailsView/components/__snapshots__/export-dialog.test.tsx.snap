@@ -1,126 +1,198 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ExportDialog renders with CodePen export form 1`] = `
-<form
-  action="https://codepen.io/pen/define"
-  method="POST"
-  rel="noopener"
-  style={
-    {
-      "visibility": "hidden",
-    }
-  }
-  target="_blank"
->
-  <input
-    name="data"
-    type="hidden"
-    value="{"title":"THE REPORT FILE NAME","description":"description","html":"fake html","editors":"100"}"
+<DocumentFragment>
+  <mock-codepenexportform
+    description="description"
+    htmlexportdata="fake html"
+    htmlfilename="THE REPORT FILE NAME"
+    jsonexportdata="fake json"
+    jsonfilename="JSON file name"
   />
-  <button
-    type="submit"
-  />
-</form>
+</DocumentFragment>
 `;
 
 exports[`ExportDialog renders with export dropdown 1`] = `
-"<Dialog hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
-  <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value="description" ariaLabel="Provide result description" />
-  <StyledDialogFooterBase>
-    <ExportDropdown htmlFileName="THE REPORT FILE NAME" jsonFileName="JSON file name" featureFlagStoreData={{...}} htmlFileURL="html file url" jsonFileURL="json file url" generateExports={[Function: proxy]} onExportLinkClick={[Function: onExportLinkClick]} reportExportServices={{...}} />
-  </StyledDialogFooterBase>
-</Dialog>"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-styledtextfieldbase
+      arialabel="Provide result description"
+      multiline="true"
+      resizable="false"
+      rows="8"
+      value="description"
+    />
+    <mock-styleddialogfooterbase>
+      <mock-exportdropdown
+        featureflagstoredata="[object Object]"
+        htmlfilename="THE REPORT FILE NAME"
+        htmlfileurl="html file url"
+        jsonfilename="JSON file name"
+        jsonfileurl="json file url"
+        reportexportservices="[object Object],[object Object]"
+      />
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
 `;
 
 exports[`ExportDialog renders with open false 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "subText": "Optional: please describe the result (it will be saved in the report).",
-      "title": "Provide result description",
-      "type": 0,
-    }
-  }
-  hidden={true}
-  modalProps={
-    {
-      "containerClassName": "exportDialog",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <StyledTextFieldBase
-    ariaLabel="Provide result description"
-    autoFocus={true}
-    multiline={true}
-    onChange={[Function]}
-    resizable={false}
-    rows={8}
-    value="description"
-  />
-  <StyledDialogFooterBase>
-    <CustomizedPrimaryButton
-      data-automation-id="single-export-to-html-button"
-      download="THE REPORT FILE NAME"
-      href="html file url"
-      onClick={[Function]}
-    >
-      Export
-    </CustomizedPrimaryButton>
-  </StyledDialogFooterBase>
-</Dialog>
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="true"
+    modalprops="[object Object]"
+  >
+    <mock-styledtextfieldbase
+      arialabel="Provide result description"
+      multiline="true"
+      resizable="false"
+      rows="8"
+      value="description"
+    />
+    <mock-styleddialogfooterbase>
+      <mock-customizedprimarybutton
+        data-automation-id="single-export-to-html-button"
+        download="THE REPORT FILE NAME"
+        href="html file url"
+      >
+        Export
+      </mock-customizedprimarybutton>
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`ExportDialog renders with open false: Dialog props 1`] = `
+{
+  "children": [
+    <ForwardRef(StyledTextFieldBase)
+      ariaLabel="Provide result description"
+      autoFocus={true}
+      multiline={true}
+      onChange={[Function]}
+      resizable={false}
+      rows={8}
+      value="description"
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <CustomizedPrimaryButton
+        data-automation-id="single-export-to-html-button"
+        download="THE REPORT FILE NAME"
+        href="html file url"
+        onClick={[Function]}
+      >
+        Export
+      </CustomizedPrimaryButton>
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "subText": "Optional: please describe the result (it will be saved in the report).",
+    "title": "Provide result description",
+    "type": 0,
+  },
+  "hidden": true,
+  "modalProps": {
+    "containerClassName": "exportDialog",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`ExportDialog renders with open true 1`] = `
-<Dialog
-  dialogContentProps={
-    {
-      "subText": "Optional: please describe the result (it will be saved in the report).",
-      "title": "Provide result description",
-      "type": 0,
-    }
-  }
-  hidden={false}
-  modalProps={
-    {
-      "containerClassName": "exportDialog",
-      "isBlocking": false,
-      "onDismissed": [Function],
-    }
-  }
-  onDismiss={[Function]}
->
-  <StyledTextFieldBase
-    ariaLabel="Provide result description"
-    autoFocus={true}
-    multiline={true}
-    onChange={[Function]}
-    resizable={false}
-    rows={8}
-    value="description"
-  />
-  <StyledDialogFooterBase>
-    <CustomizedPrimaryButton
-      data-automation-id="single-export-to-html-button"
-      download="THE REPORT FILE NAME"
-      href="html file url"
-      onClick={[Function]}
-    >
-      Export
-    </CustomizedPrimaryButton>
-  </StyledDialogFooterBase>
-</Dialog>
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-styledtextfieldbase
+      arialabel="Provide result description"
+      multiline="true"
+      resizable="false"
+      rows="8"
+      value="description"
+    />
+    <mock-styleddialogfooterbase>
+      <mock-customizedprimarybutton
+        data-automation-id="single-export-to-html-button"
+        download="THE REPORT FILE NAME"
+        href="html file url"
+      >
+        Export
+      </mock-customizedprimarybutton>
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;
+
+exports[`ExportDialog renders with open true: Dialog props 1`] = `
+{
+  "children": [
+    <ForwardRef(StyledTextFieldBase)
+      ariaLabel="Provide result description"
+      autoFocus={true}
+      multiline={true}
+      onChange={[Function]}
+      resizable={false}
+      rows={8}
+      value="description"
+    />,
+    <ForwardRef(StyledDialogFooterBase)>
+      <CustomizedPrimaryButton
+        data-automation-id="single-export-to-html-button"
+        download="THE REPORT FILE NAME"
+        href="html file url"
+        onClick={[Function]}
+      >
+        Export
+      </CustomizedPrimaryButton>
+    </ForwardRef(StyledDialogFooterBase)>,
+  ],
+  "dialogContentProps": {
+    "subText": "Optional: please describe the result (it will be saved in the report).",
+    "title": "Provide result description",
+    "type": 0,
+  },
+  "hidden": false,
+  "modalProps": {
+    "containerClassName": "exportDialog",
+    "isBlocking": false,
+    "onDismissed": [Function],
+  },
+  "onDismiss": [Function],
+}
 `;
 
 exports[`ExportDialog renders without export dropdown due to lack of service 1`] = `
-"<Dialog hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
-  <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value="description" ariaLabel="Provide result description" />
-  <StyledDialogFooterBase>
-    <CustomizedPrimaryButton onClick={[Function: onClick]} download="THE REPORT FILE NAME" href="html file url" data-automation-id="single-export-to-html-button">
-      Export
-    </CustomizedPrimaryButton>
-  </StyledDialogFooterBase>
-</Dialog>"
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <mock-styledtextfieldbase
+      arialabel="Provide result description"
+      multiline="true"
+      resizable="false"
+      rows="8"
+      value="description"
+    />
+    <mock-styleddialogfooterbase>
+      <mock-customizedprimarybutton
+        data-automation-id="single-export-to-html-button"
+        download="THE REPORT FILE NAME"
+        href="html file url"
+      >
+        Export
+      </mock-customizedprimarybutton>
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
 `;

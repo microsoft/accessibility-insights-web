@@ -1,20 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NotApplicableChecksSection renders 1`] = `
-<CollapsibleResultSection
-  badgeCount={3}
-  cardRuleResults={
-    [
-      {},
-      {},
-      {},
-    ]
-  }
-  containerClassName="result-section"
-  containerId="not-applicable-checks-section"
-  deps={{}}
-  headingLevel={3}
-  outcomeType="inapplicable"
-  title="Not applicable checks"
-/>
+<DocumentFragment>
+  <mock-collapsibleresultsection
+    badgecount="3"
+    cardruleresults="[object Object],[object Object],[object Object]"
+    containerclassname="result-section"
+    containerid="not-applicable-checks-section"
+    deps="[object Object]"
+    headinglevel="3"
+    outcometype="inapplicable"
+    title="Not applicable checks"
+  />
+</DocumentFragment>
 `;

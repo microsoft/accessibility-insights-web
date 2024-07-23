@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import {
+    BaseLeftNav,
     BaseLeftNavLink,
     onBaseLeftNavItemClick,
 } from '../../../../../../DetailsView/components/base-left-nav';
@@ -16,8 +17,16 @@ import {
     VisualizationBasedLeftNavDeps,
     VisualizationBasedLeftNavProps,
 } from '../../../../../../DetailsView/components/left-nav/visualization-based-left-nav';
+import { NavLinkButton } from '../../../../../../DetailsView/components/nav-link-button';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../DetailsView/components/base-left-nav');
+jest.mock('../../../../../../DetailsView/components/nav-link-button');
 describe('VisualizationBasedLeftNav', () => {
+    mockReactComponents([NavLinkButton, BaseLeftNav]);
     let linkStub: BaseLeftNavLink;
     let deps: VisualizationBasedLeftNavDeps;
     let props: VisualizationBasedLeftNavProps;
@@ -30,7 +39,7 @@ describe('VisualizationBasedLeftNav', () => {
     let setNavComponentRef: (nav) => void;
 
     beforeEach(() => {
-        visualizationsStub = [-1, -2];
+        visualizationsStub = [-1 as VisualizationType, -2 as VisualizationType];
         leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder);
         configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         onLinkClickStub = (event, item) => null;
@@ -47,7 +56,6 @@ describe('VisualizationBasedLeftNav', () => {
         props = {
             deps,
             selectedKey: 'some key',
-            leftNavLinkBuilder: leftNavLinkBuilderMock.object,
             onLinkClick: onLinkClickStub,
             visualizations: visualizationsStub,
             onRightPanelContentSwitch,
@@ -75,8 +83,9 @@ describe('VisualizationBasedLeftNav', () => {
     });
 
     it('renders with index icon', () => {
-        const actual = shallow(<VisualizationBasedLeftNav {...props} />);
+        const renderResult = render(<VisualizationBasedLeftNav {...props} />);
 
-        expect(actual.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([BaseLeftNav]);
     });
 });

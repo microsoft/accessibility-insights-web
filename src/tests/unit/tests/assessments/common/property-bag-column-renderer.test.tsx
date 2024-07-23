@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render, RenderResult } from '@testing-library/react';
 import { propertyBagColumnRenderer } from 'assessments/common/property-bag-column-renderer';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
-import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
@@ -34,7 +34,7 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const wrapper = createWrapper(item, configs);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
     test('render, several properties from the bag', () => {
@@ -48,7 +48,7 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const wrapper = createWrapper(item, configs);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
     test('render with expanded object', () => {
@@ -61,7 +61,7 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const wrapper = createWrapper(item, configs);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
     test('render with expanded object where some have null values', () => {
@@ -74,7 +74,7 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const wrapper = createWrapper(item, configs);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
     test('render, empty object', () => {
@@ -87,7 +87,7 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const wrapper = createWrapper(item, configs);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
     test('render, default value', () => {
@@ -102,7 +102,7 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const wrapper = createWrapper(item, configs);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
     test('render, property is null, no default value', () => {
@@ -119,7 +119,7 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const wrapper = createWrapper(item, configs);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
     test('render with a combination of expanded and not expanded objects', () => {
@@ -133,14 +133,14 @@ describe('PropertyBagColumnRendererTest', () => {
 
         const wrapper = createWrapper(item, configs);
 
-        expect(wrapper.debug()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 });
 
-function createWrapper(item, configs): ShallowWrapper {
+function createWrapper(item, configs): RenderResult {
     const renderer = () => propertyBagColumnRenderer(item, configs);
 
-    return shallow(<RendererWrapper render={renderer} />);
+    return render(<RendererWrapper render={renderer} />);
 }
 
 function getPropertyBag(): TestPropertyBag {

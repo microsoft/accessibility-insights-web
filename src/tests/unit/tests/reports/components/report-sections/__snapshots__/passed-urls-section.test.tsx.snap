@@ -1,22 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PassedUrlsSection renders 1`] = `
-<CollapsibleUrlResultSection
-  badgeCount={2}
-  containerId="passed-urls-section"
-  content={
-    <UrlScanResultsTable
-      id="passed-urls-table"
-      results={
-        [
-          {},
-          {},
-        ]
-      }
-    />
-  }
-  deps={{}}
-  outcomeType="pass"
-  title="Passed URLs"
-/>
+<DocumentFragment>
+  <mock-collapsibleurlresultsection
+    badgecount="2"
+    containerid="passed-urls-section"
+    content="[object Object]"
+    deps="[object Object]"
+    outcometype="pass"
+    title="Passed URLs"
+  />
+</DocumentFragment>
+`;
+
+exports[`PassedUrlsSection renders: CollapsibleUrlResultSection props 1`] = `
+{
+  "badgeCount": 2,
+  "containerId": "passed-urls-section",
+  "content": <UrlScanResultsTable
+    id="passed-urls-table"
+    results={
+      [
+        {},
+        {},
+      ]
+    }
+  />,
+  "deps": {},
+  "outcomeType": "pass",
+  "title": "Passed URLs",
+}
 `;

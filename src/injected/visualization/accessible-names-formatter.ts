@@ -40,11 +40,9 @@ export class AccessibleNamesFormatter implements Formatter {
                 text: formattedAccessibleName,
                 fontWeight: '400',
                 fontSize: '10px',
-                outline: '3px dashed',
             },
             outlineColor: AccessibleNamesFormatter.style.outlineColor,
             outlineStyle: 'dashed',
-            outlineWidth: '3px',
             showVisualization: true,
         };
         return config;

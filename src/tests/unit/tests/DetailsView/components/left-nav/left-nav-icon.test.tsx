@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import {
@@ -8,8 +8,12 @@ import {
     LeftNavIndexIcon,
     LeftNavStatusIcon,
 } from '../../../../../../DetailsView/components/left-nav/left-nav-icon';
+import { StatusIcon } from '../../../../../../DetailsView/components/status-icon';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('../../../../../../DetailsView/components/status-icon');
 describe('LeftNavStatusIcon', () => {
+    mockReactComponents([StatusIcon]);
     it('render', () => {
         const props: LeftNavIconProps = {
             item: {
@@ -21,8 +25,8 @@ describe('LeftNavStatusIcon', () => {
             className: 'some class',
         } as LeftNavIconProps;
 
-        const actual = shallow(<LeftNavStatusIcon {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const renderResult = render(<LeftNavStatusIcon {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });
 
@@ -37,7 +41,7 @@ describe('LeftNavIndexIcon', () => {
             },
         } as LeftNavIconProps;
 
-        const actual = shallow(<LeftNavIndexIcon {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const renderResult = render(<LeftNavIndexIcon {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

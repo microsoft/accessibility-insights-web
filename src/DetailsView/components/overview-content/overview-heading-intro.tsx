@@ -12,8 +12,8 @@ export const OverviewHeadingIntro = NamedFC('OverviewHeadingIntro', () => {
         <div className={styles.overviewHeadingContent}>
             This page contains a summary that indicates the progress of your assessment. An
             assessment is a manual experience in which you navigate through a set of tests that
-            cover all WCAG 2.1 AA success criteria. Each test has one or more requirements that can
-            be:
+            cover all WCAG 2.1 AA and 2.2 AA success criteria. Each test has one or more
+            requirements that can be:
             <ul>
                 <li>Automated</li>
                 <li>Assisted</li>

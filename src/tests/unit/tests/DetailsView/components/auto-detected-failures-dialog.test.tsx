@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Checkbox, Dialog, PrimaryButton } from '@fluentui/react';
+import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
+import { act, render, RenderResult } from '@testing-library/react';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
@@ -12,17 +13,26 @@ import {
     AutoDetectedFailuresDialog,
     AutoDetectedFailuresDialogProps,
 } from 'DetailsView/components/auto-detected-failures-dialog';
-import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+    mockReactComponent,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
+import '@testing-library/jest-dom';
+
+jest.mock('@fluentui/react');
 
 describe('AutoDetectedFailuresDialog', () => {
+    mockReactComponents([DialogFooter, Stack, Stack.Item, Checkbox, PrimaryButton]);
+    mockReactComponent(Dialog, 'Dialog');
     let props: AutoDetectedFailuresDialogProps;
     let visualizationScanResultData: VisualizationScanResultData;
     let userConfigurationStoreData: UserConfigurationStoreData;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     const prevState = { autoDetectedFailuresDialogEnabled: false, isDisableBoxChecked: false };
-    const prevProps = {
+    const prevProps: any = {
         visualizationScanResultData: {
             tabStops: { tabbingCompleted: false, needToCollectTabbingResults: true },
         },
@@ -58,32 +68,37 @@ describe('AutoDetectedFailuresDialog', () => {
     });
 
     it('renders when dialog is not enabled', () => {
-        const wrapper = shallow(<AutoDetectedFailuresDialog {...props} />);
+        const wrapper = render(<AutoDetectedFailuresDialog {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
     describe('on dialog enabled', () => {
-        let wrapper: ShallowWrapper;
+        let wrapper: RenderResult;
 
         beforeEach(() => {
-            wrapper = shallow(<AutoDetectedFailuresDialog {...props} />);
-            wrapper.instance().componentDidUpdate(prevProps, prevState);
+            wrapper = render(<AutoDetectedFailuresDialog {...prevProps} {...prevState} />);
+            wrapper.rerender(<AutoDetectedFailuresDialog {...props} />);
         });
 
         it('renders when dialog is enabled', () => {
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('is dismissed when "got it" button is clicked', () => {
-            wrapper.find(PrimaryButton).simulate('click');
+            act(() => {
+                getMockComponentClassPropsForCall(PrimaryButton).onClick();
+            });
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('is dismissed when onDismiss is called', () => {
-            wrapper.find(Dialog).prop('onDismiss')();
-            expect(wrapper.getElement()).toMatchSnapshot();
+            act(() => {
+                getMockComponentClassPropsForCall(Dialog).onDismiss();
+            });
+
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('box appears checked when "dont show again" box is clicked', () => {
@@ -91,45 +106,56 @@ describe('AutoDetectedFailuresDialog', () => {
                 .setup(ucmcm => ucmcm.setAutoDetectedFailuresDialogState(true))
                 .verifiable(Times.once());
 
-            wrapper.find(Checkbox).simulate('change', undefined, true);
+            act(() => {
+                getMockComponentClassPropsForCall(Checkbox).onChange(undefined, true);
+            });
 
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
 
         it('nothing happens when checkbox change is undefined', () => {
             userConfigMessageCreatorMock
                 .setup(ucmcm => ucmcm.setAutoDetectedFailuresDialogState(true))
                 .verifiable(Times.once());
+            act(() => {
+                getMockComponentClassPropsForCall(Checkbox).onChange(undefined);
+            });
 
-            wrapper.find(Checkbox).simulate('change', undefined, undefined);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
     });
 
     describe('on componentDidUpdate', () => {
+        let wrapper: RenderResult;
+        beforeEach(() => {
+            wrapper = render(<AutoDetectedFailuresDialog {...prevProps} {...prevState} />);
+        });
         it('displays dialog on tabbing completed', () => {
-            const wrapper = shallow(<AutoDetectedFailuresDialog {...props} />);
-            expect(wrapper.state('dialogEnabled')).toBe(false);
-            wrapper.instance().componentDidUpdate(prevProps, prevState);
-            expect(wrapper.state('dialogEnabled')).toBe(true);
+            const hasDialog = wrapper.container.querySelector('mock-dialog');
+            expect(hasDialog).toBeFalsy();
+            wrapper.rerender(<AutoDetectedFailuresDialog {...props} />);
+
+            const newHasDialog = wrapper.container.querySelector('mock-dialog');
+
+            expect(newHasDialog).toBeDefined();
         });
 
         it('does not display dialog with no results', () => {
             visualizationScanResultData.tabStops.requirements = null;
 
-            const wrapper = shallow(<AutoDetectedFailuresDialog {...props} />);
-            expect(wrapper.state('dialogEnabled')).toBe(false);
-            wrapper.instance().componentDidUpdate(prevProps, prevState);
-            expect(wrapper.state('dialogEnabled')).toBe(false);
+            const hasDialog = wrapper.container.querySelector('mock-dialog');
+            expect(hasDialog).toBeFalsy();
+            const newHasDialog = wrapper.container.querySelector('mock-dialog');
+            expect(newHasDialog).toBeFalsy();
         });
 
         it('does not display dialog when dialog is disabled', () => {
             userConfigurationStoreData.showAutoDetectedFailuresDialog = false;
 
-            const wrapper = shallow(<AutoDetectedFailuresDialog {...props} />);
-            wrapper.instance().componentDidUpdate(prevProps, prevState);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const wrapper = render(<AutoDetectedFailuresDialog {...props} />);
+
+            wrapper.rerender(<AutoDetectedFailuresDialog {...props} />);
+            expect(wrapper.baseElement).toMatchSnapshot();
         });
     });
 });

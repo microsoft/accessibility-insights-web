@@ -1,14 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InjectionFailedWarning render with injection failed 1`] = `
-<StyledMessageBar
-  className="messageBarHeightOverride"
-  messageBarType={5}
->
-  <div
-    data-automation-id="injection-failed-warning-container"
+<DocumentFragment>
+  <mock-styledmessagebar
+    classname="messageBarHeightOverride"
+    messagebartype="5"
   >
-    Unable to communicate with target page. If you are using Microsoft Edge, make sure that the target page is not in Internet Explorer mode.
-  </div>
-</StyledMessageBar>
+    <div
+      data-automation-id="injection-failed-warning-container"
+    >
+      Unable to communicate with target page. If you are using Microsoft Edge, make sure that the target page is not in Internet Explorer mode.
+    </div>
+  </mock-styledmessagebar>
+</DocumentFragment>
 `;

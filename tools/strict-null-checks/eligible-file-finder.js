@@ -69,8 +69,10 @@ async function getAllCheckedFiles() {
 }
 
 async function getUncheckedLeafFiles() {
-    const checkedFiles = await getAllCheckedFiles();
-    const eligibleFiles = await getAllEligibleFiles();
+    const [checkedFiles, eligibleFiles] = await Promise.all([
+        getAllCheckedFiles(),
+        getAllEligibleFiles(),
+    ]);
     const eligibleFileSet = new Set(eligibleFiles);
 
     const allUncheckedFiles = eligibleFiles.filter(file => !checkedFiles.has(file));

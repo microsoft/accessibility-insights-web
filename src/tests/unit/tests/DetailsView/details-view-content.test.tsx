@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
@@ -50,17 +51,27 @@ import {
 } from 'DetailsView/details-view-container';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ScannerRuleInfoMap } from 'scanner/scanner-rule-info';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { DetailsViewOverlay } from '../../../../DetailsView/components/details-view-overlay/details-view-overlay';
+import { InteractiveHeader } from '../../../../DetailsView/components/interactive-header';
+import { DetailsViewBody } from '../../../../DetailsView/details-view-body';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../mock-helpers/mock-module-helpers';
 import { DetailsViewContainerPropsBuilder } from './details-view-container-props-builder';
 import { StoreMocks } from './store-mocks';
 
+jest.mock('../../../../DetailsView/components/interactive-header');
+jest.mock('../../../../DetailsView/components/details-view-overlay/details-view-overlay');
+jest.mock('../../../../DetailsView/details-view-body');
 describe(DetailsViewContent.displayName, () => {
+    mockReactComponents([InteractiveHeader, DetailsViewOverlay, DetailsViewBody]);
     const pageTitle = 'DetailsViewContainerTest title';
     const pageUrl = 'http://detailsViewContainerTest/url/';
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;
@@ -107,10 +118,7 @@ describe(DetailsViewContent.displayName, () => {
             (storeData: CardSelectionStoreData) => null,
             MockBehavior.Strict,
         );
-        visualizationConfigurationFactoryMock = Mock.ofType(
-            WebVisualizationConfigurationFactory,
-            MockBehavior.Strict,
-        );
+        visualizationConfigurationFactoryMock = Mock.ofType(WebVisualizationConfigurationFactory);
         isResultHighlightUnavailableStub = () => null;
         timestamp = 'timestamp';
         scanDate = new Date(Date.UTC(0, 1, 2, 3));
@@ -153,7 +161,7 @@ describe(DetailsViewContent.displayName, () => {
 
     describe('render', () => {
         it('renders normally', () => {
-            const viewType = -1;
+            const viewType = -1 as VisualizationType;
             const isPreviewFeaturesOpen = false;
             const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
             const dropdownClickHandler = Mock.ofType(DropdownClickHandler);
@@ -368,7 +376,7 @@ describe(DetailsViewContent.displayName, () => {
                 .setup(m => m(needsReviewScanNodeResultsStub, cardSelectionViewData))
                 .returns(() => needsReviewCardsViewDataStub);
 
-            const rendered = shallow(
+            const renderResult = render(
                 <DetailsViewContent
                     {...props}
                     narrowModeStatus={{
@@ -381,7 +389,12 @@ describe(DetailsViewContent.displayName, () => {
                     setSideNavOpen={() => {}}
                 />,
             );
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
+            expectMockedComponentPropsToMatchSnapshots([
+                InteractiveHeader,
+                DetailsViewOverlay,
+                DetailsViewBody,
+            ]);
 
             clickHandlerFactoryMock.verifyAll();
             getCardSelectionViewDataMock.verifyAll();

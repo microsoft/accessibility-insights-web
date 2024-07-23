@@ -11,7 +11,6 @@ import { ScannerUtils } from '../../../../../injected/scanner-utils';
 
 const baseConfig: Readonly<Partial<RuleAnalyzerConfiguration>> = {
     key: 'test-key',
-    testName: 'test-name',
     rules: ['rule-1', 'rule-2'],
     testType: -1 as VisualizationType,
 };

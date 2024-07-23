@@ -2,9 +2,8 @@
 // Licensed under the MIT License.
 import { title } from 'content/strings/application';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { IMock, It, Mock } from 'typemoq';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { Root, createRoot } from 'react-dom/client';
+import { It, Mock } from 'typemoq';
 import { Theme } from '../../../../common/components/theme';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { DiagnosticViewToggleFactory } from '../../../../popup/components/diagnostic-view-toggle-factory';
@@ -30,19 +29,24 @@ describe('MainRenderer', () => {
         const launchPadRowConfigurationFactoryMock = Mock.ofType(LaunchPadRowConfigurationFactory);
         const diagnosticViewToggleFactoryMock = Mock.ofType(DiagnosticViewToggleFactory);
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
-
-        const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
+        const rootMock = Mock.ofType<Root>();
+        const createRootMock = Mock.ofType<typeof createRoot>();
 
         const popupWindowMock = Mock.ofInstance(window);
-        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         const hasAccess = true;
         const targetTabUrl = 'url';
 
         const deps: MainRendererDeps = Mock.ofType<MainRendererDeps>().object;
+        createRootMock
+            .setup(r => r(fakeDocument.getElementById('popup-container')))
+            .returns(() => {
+                return rootMock.object;
+            })
+            .verifiable();
 
-        renderMock
-            .setup(r =>
-                r(
+        rootMock
+            .setup(mock =>
+                mock.render(
                     It.isValue(
                         <>
                             <Theme deps={deps} />
@@ -56,7 +60,6 @@ describe('MainRenderer', () => {
                                         gettingStartedDialogHandlerMock.object,
                                     launchPanelHeaderClickHandler:
                                         feedbackMenuClickhandlerMock.object,
-                                    browserAdapter: browserAdapterMock.object,
                                 }}
                                 popupWindow={popupWindowMock.object}
                                 targetTabUrl={targetTabUrl}
@@ -69,7 +72,6 @@ describe('MainRenderer', () => {
                             />
                         </>,
                     ),
-                    fakeDocument.getElementById('popup-container'),
                 ),
             )
             .verifiable();
@@ -80,9 +82,8 @@ describe('MainRenderer', () => {
                 diagnosticViewClickHandler: diagnosticViewClickHandlerMock.object,
                 popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                 launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
-                browserAdapter: browserAdapterMock.object,
             },
-            renderMock.object,
+            createRootMock.object,
             fakeDocument,
             popupWindowMock.object,
             targetTabUrl,
@@ -94,6 +95,7 @@ describe('MainRenderer', () => {
 
         renderer.render();
 
-        renderMock.verifyAll();
+        createRootMock.verifyAll();
+        rootMock.verifyAll();
     });
 });

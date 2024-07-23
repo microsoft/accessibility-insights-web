@@ -1,18 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ActionButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
+
 import {
     CardsCollapsibleControl,
     CollapsibleComponentCardsProps,
 } from 'common/components/cards/collapsible-component-cards';
 import { HeadingElementForLevel } from 'common/components/heading-element-for-level';
-import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { SetFocusVisibility } from 'types/set-focus-visibility';
+import {
+    mockReactComponents,
+    useOriginalReactElements,
+} from '../../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react');
+jest.mock('common/components/heading-element-for-level');
 describe('CollapsibleComponentCardsTest', () => {
+    mockReactComponents([HeadingElementForLevel, ActionButton]);
     const eventStubFactory = new EventStubFactory();
 
     let setFocusVisibilityMock: IMock<SetFocusVisibility>;
@@ -54,15 +64,15 @@ describe('CollapsibleComponentCardsTest', () => {
                 } as CollapsibleComponentCardsProps;
 
                 const control = CardsCollapsibleControl(props);
-                const result = shallow(control);
-                expect(result.getElement()).toMatchSnapshot();
+                const renderResult = render(control);
+                expect(renderResult.asFragment()).toMatchSnapshot();
                 onExpandToggleMock.verifyAll();
             });
         });
     });
 
-    test('toggle from expanded to collapsed', () => {
-        onExpandToggleMock.setup(mock => mock(clickEventMock.object)).verifiable(Times.once());
+    test('toggle from expanded to collapsed', async () => {
+        onExpandToggleMock.setup(mock => mock(It.isAny())).verifiable(Times.once());
 
         const props: CollapsibleComponentCardsProps = {
             ...partialProps,
@@ -70,12 +80,13 @@ describe('CollapsibleComponentCardsTest', () => {
         } as CollapsibleComponentCardsProps;
 
         const control = CardsCollapsibleControl(props);
-        const result = shallow(control);
-        expect(result.getElement()).toMatchSnapshot('expanded');
+        useOriginalReactElements('@fluentui/react', ['ActionButton']);
+        const renderResult = render(control);
 
-        const button = result.find('CustomizedActionButton');
-        button.simulate('click', clickEventMock.object);
-        expect(result.getElement()).toMatchSnapshot('collapsed');
+        expect(renderResult.asFragment()).toMatchSnapshot('expanded');
+
+        await userEvent.click(renderResult.getByRole('button'));
+        expect(renderResult.asFragment()).toMatchSnapshot('collapsed');
 
         onExpandToggleMock.verifyAll();
     });
@@ -90,26 +101,27 @@ describe('CollapsibleComponentCardsTest', () => {
             } as CollapsibleComponentCardsProps;
         });
 
-        it('should set focus visibility to true for keyboard event', () => {
-            const eventStub = eventStubFactory.createKeypressEvent();
+        it('should set focus visibility to true for keyboard event', async () => {
+            eventStubFactory.createKeypressEvent();
 
             const control = CardsCollapsibleControl(props);
-            const result = shallow(control);
+            useOriginalReactElements('@fluentui/react', ['ActionButton']);
+            const renderResult = render(control);
 
-            const button = result.find('CustomizedActionButton');
-            button.simulate('click', eventStub);
+            const button = renderResult.getByRole('button');
+            await userEvent.type(button, '{enter}');
 
             setFocusVisibilityMock.verify(handler => handler(true, undefined), Times.once());
         });
 
-        it('should not even call set focus visibility for mouse event', () => {
-            const eventStub = eventStubFactory.createMouseClickEvent();
+        it('should not even call set focus visibility for mouse event', async () => {
+            eventStubFactory.createMouseClickEvent();
 
             const control = CardsCollapsibleControl(props);
-            const result = shallow(control);
+            useOriginalReactElements('@fluentui/react', ['ActionButton']);
+            const renderResult = render(control);
 
-            const button = result.find('CustomizedActionButton');
-            button.simulate('click', eventStub);
+            await userEvent.click(renderResult.getByRole('button'));
 
             setFocusVisibilityMock.verify(
                 handler => handler(It.isAny(), It.isAny()),

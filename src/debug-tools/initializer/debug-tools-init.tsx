@@ -30,7 +30,7 @@ import { defaultDateFormatter } from 'debug-tools/components/telemetry-viewer/te
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import { DebugToolsNavStore } from 'debug-tools/stores/debug-tools-nav-store';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import UAParser from 'ua-parser-js';
 
 export const initializeDebugTools = () => {
@@ -108,8 +108,8 @@ const createStoreProxies = (storeUpdateMessageHub: StoreUpdateMessageHub) => {
 
 const render = (deps: DebugToolsViewDeps) => {
     const container = document.querySelector('#debug-tools-container');
-
-    ReactDOM.render(<DebugToolsView deps={deps} />, container);
+    const root = createRoot(container);
+    root.render(<DebugToolsView deps={deps} />);
 };
 
 initializeDebugTools();

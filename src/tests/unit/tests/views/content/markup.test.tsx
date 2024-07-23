@@ -1,14 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+import { render } from '@testing-library/react';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { CheckIcon } from 'common/icons/check-icon';
+import { CrossIcon } from 'common/icons/cross-icon';
 import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
 import { create } from 'content/common';
-import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Helmet } from 'react-helmet-async';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { It, Mock, Times } from 'typemoq';
 
 import { createMarkup } from 'views/content/markup';
 
+jest.mock('common/icons/check-icon');
+jest.mock('common/icons/cross-icon');
+jest.mock('common/components/new-tab-link');
+jest.mock('react-helmet-async');
+
 describe('ContentPage', () => {
+    mockReactComponents([CheckIcon, CrossIcon, NewTabLink, Helmet]);
     const contentActionMessageCreatorMock = Mock.ofType<ContentActionMessageCreator>();
     const applicationTitle = 'THE_APPLICATION_TITLE';
     const deps = {
@@ -44,87 +59,87 @@ describe('ContentPage', () => {
 
     describe('.Markup', () => {
         it('<Title> renders where options not specified', () => {
-            const wrapper = shallow(<Title>TEST</Title>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Title>TEST</Title>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         [true, false, null].forEach(value =>
             it(`<Title> renders where setPageTitle === ${value}`, () => {
                 const Markup = createMarkup(deps, { setPageTitle: value });
-                const wrapper = shallow(<Markup.Title>TEST</Markup.Title>);
-                expect(wrapper.getElement()).toMatchSnapshot();
+                const renderResult = render(<Markup.Title>TEST</Markup.Title>);
+                expect(renderResult.asFragment()).toMatchSnapshot();
             }),
         );
 
         it('<LandmarkLegend> renders', () => {
-            const wrapper = shallow(<LandmarkLegend role="main">TEST</LandmarkLegend>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<LandmarkLegend role="main">TEST</LandmarkLegend>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<Table> renders', () => {
-            const wrapper = shallow(<Table>table content</Table>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Table>table content</Table>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<ProblemList> renders', () => {
-            const wrapper = shallow(<ProblemList>list content</ProblemList>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<ProblemList>list content</ProblemList>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<LandmarkLegend> renders', () => {
-            const wrapper = shallow(<Do>THINGS TO DO</Do>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Do>THINGS TO DO</Do>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<Do> renders', () => {
-            const wrapper = shallow(<Do>THINGS TO DO</Do>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Do>THINGS TO DO</Do>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<Dont> renders', () => {
-            const wrapper = shallow(<Dont>DON'T DO THIS</Dont>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Dont>DON'T DO THIS</Dont>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<Pass> renders', () => {
-            const wrapper = shallow(<Pass>I PASSED :)</Pass>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Pass>I PASSED :)</Pass>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<Fail> renders', () => {
-            const wrapper = shallow(<Fail>I FAILED :(</Fail>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Fail>I FAILED :(</Fail>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<Columns> renders', () => {
-            const wrapper = shallow(<Columns>INSIDE COLUMNS</Columns>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Columns>INSIDE COLUMNS</Columns>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<Column> renders', () => {
-            const wrapper = shallow(<Column>INSIDE COLUMN</Column>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Column>INSIDE COLUMN</Column>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<Inline> renders', () => {
-            const wrapper = shallow(<Inline>INLINED</Inline>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Inline>INLINED</Inline>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         it('<Include> renders', () => {
-            const wrapper = shallow(
+            const renderResult = render(
                 <Include
                     content={create(() => (
                         <div>INCLUDE</div>
                     ))}
                 />,
             );
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         describe('<PassFail>', () => {
             it('renders without example headers', () => {
-                const wrapper = shallow(
+                const renderResult = render(
                     <PassFail
                         failText={<p>I FAILED :(</p>}
                         failExample="This is the failure [example]."
@@ -132,11 +147,11 @@ describe('ContentPage', () => {
                         passExample="This is the passing [example]."
                     />,
                 );
-                expect(wrapper.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
 
             it('renders with example headers', () => {
-                const wrapper = shallow(
+                const renderResult = render(
                     <PassFail
                         failText={<p>I FAILED :(</p>}
                         failExample={
@@ -158,22 +173,20 @@ describe('ContentPage', () => {
                         }
                     />,
                 );
-                expect(wrapper.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
         });
 
         describe('<HyperLink>', () => {
             const href = 'http://my.link';
-
-            const wrapper = shallow(<HyperLink href={href}>LINK TEXT</HyperLink>);
-
             it('renders', () => {
-                expect(wrapper.getElement()).toMatchSnapshot();
+                const renderResult = render(<HyperLink href={href}>LINK TEXT</HyperLink>);
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
 
             it('registers click with event', () => {
-                wrapper.simulate('click');
-
+                render(<HyperLink href={href}>LINK TEXT</HyperLink>);
+                getMockComponentClassPropsForCall(NewTabLink).onClick();
                 contentActionMessageCreatorMock.verify(
                     m => m.openContentHyperLink(It.isAny(), href),
                     Times.once(),
@@ -182,8 +195,8 @@ describe('ContentPage', () => {
         });
 
         it('<Highlight> renders', () => {
-            const wrapper = shallow(<Highlight>HIGHLIGHTED</Highlight>);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const renderResult = render(<Highlight>HIGHLIGHTED</Highlight>);
+            expect(renderResult.asFragment()).toMatchSnapshot();
         });
 
         describe('<Links>', () => {
@@ -192,24 +205,24 @@ describe('ContentPage', () => {
             const link3 = <HyperLink href="about:blank">Three</HyperLink>;
 
             it('renders with text', () => {
-                const wrapper = shallow(<Links>Some text</Links>);
-                expect(wrapper.getElement()).toMatchSnapshot();
+                const renderResult = render(<Links>Some text</Links>);
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
 
             it('renders with one link', () => {
-                const wrapper = shallow(<Links>{link1}</Links>);
-                expect(wrapper.getElement()).toMatchSnapshot();
+                const renderResult = render(<Links>{link1}</Links>);
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
 
             it('renders with many links', () => {
-                const wrapper = shallow(
+                const renderResult = render(
                     <Links>
                         {link1}
                         {link2}
                         {link3}
                     </Links>,
                 );
-                expect(wrapper.getElement()).toMatchSnapshot();
+                expect(renderResult.asFragment()).toMatchSnapshot();
             });
         });
     });

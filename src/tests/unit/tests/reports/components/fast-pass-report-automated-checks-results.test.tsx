@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { render } from '@testing-library/react';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import { FastPassReportDeps } from 'reports/components/fast-pass-report';
 import {
@@ -11,13 +11,19 @@ import {
     FastPassReportAutomatedChecksResultsProps,
 } from 'reports/components/report-sections/fast-pass-report-automated-checks-results';
 import { Mock } from 'typemoq';
+import { FailedInstancesSection } from '../../../../../common/components/cards/failed-instances-section';
+import { IncompleteChecksSection } from '../../../../../reports/components/report-sections/incomplete-checks-section';
+import { PassedChecksSection } from '../../../../../reports/components/report-sections/passed-checks-section';
+import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
+jest.mock('../../../../../common/components/cards/failed-instances-section');
+jest.mock('../../../../../reports/components/report-sections/incomplete-checks-section');
+jest.mock('../../../../../reports/components/report-sections/passed-checks-section');
 
 describe('FastPassReportSummary', () => {
+    mockReactComponents([FailedInstancesSection, IncompleteChecksSection, PassedChecksSection]);
     let props: FastPassReportAutomatedChecksResultsProps;
     beforeEach(() => {
-        const pageTitle = 'page-title';
-        const pageUrl = 'url:target-page';
         const scanDate = new Date(Date.UTC(0, 1, 2, 3));
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
@@ -39,19 +45,7 @@ describe('FastPassReportSummary', () => {
             deps: {} as FastPassReportDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
-            pageTitle,
-            pageUrl,
             description: 'test description',
-            toolData,
-            scanResult: {
-                passes: [],
-                violations: [],
-                inapplicable: [],
-                incomplete: [],
-                timestamp: 'today',
-                targetPageTitle: pageTitle,
-                targetPageUrl: pageUrl,
-            },
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
@@ -63,8 +57,6 @@ describe('FastPassReportSummary', () => {
                 },
                 tabStops: null, // Should be filled in as part of #1897876
             },
-            userConfigurationStoreData: null,
-            targetAppInfo,
             shouldAlertFailuresCount: false,
             scanMetadata: {
                 toolData,
@@ -78,13 +70,13 @@ describe('FastPassReportSummary', () => {
     });
 
     it('renders with pass/fail/incomplete elements if automated checks exist', () => {
-        const rendered = shallow(<FastPassReportAutomatedChecksResults {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        const renderResult = render(<FastPassReportAutomatedChecksResults {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('renders automated checks not run message if automated checks are null', () => {
         props.results.automatedChecks = null;
-        const rendered = shallow(<FastPassReportAutomatedChecksResults {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        const renderResult = render(<FastPassReportAutomatedChecksResults {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

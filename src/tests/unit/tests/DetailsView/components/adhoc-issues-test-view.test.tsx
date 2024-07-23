@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
@@ -15,14 +16,26 @@ import {
     AdhocIssuesTestView,
     AdhocIssuesTestViewProps,
 } from 'DetailsView/components/adhoc-issues-test-view';
+import { BannerWarnings } from 'DetailsView/components/banner-warnings';
+import { DetailsListIssuesView } from 'DetailsView/components/details-list-issues-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { shallow } from 'enzyme';
+
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
+jest.mock('DetailsView/components/details-list-issues-view');
+jest.mock('DetailsView/components/banner-warnings');
+jest.mock('DetailsView/components/target-page-changed-view');
+
 describe('AdhocIssuesTestView', () => {
+    mockReactComponents([DetailsListIssuesView, BannerWarnings, TargetPageChangedView]);
     const visualizationStoreDataStub = {
         tests: {},
         scanning: 'test-scanning',
@@ -43,7 +56,7 @@ describe('AdhocIssuesTestView', () => {
     } as VisualizationConfiguration;
 
     const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
-    const selectedTest: VisualizationType = -1;
+    const selectedTest: VisualizationType = -1 as VisualizationType;
 
     let props = {
         configuration: configuration,
@@ -90,9 +103,9 @@ describe('AdhocIssuesTestView', () => {
             .returns(() => clickHandlerStub)
             .verifiable();
 
-        const actual = shallow(<AdhocIssuesTestView {...props} />);
-
-        expect(actual.getElement()).toMatchSnapshot();
+        const actual = render(<AdhocIssuesTestView {...props} />);
+        expectMockedComponentPropsToMatchSnapshots([TargetPageChangedView]);
+        expect(actual.asFragment()).toMatchSnapshot();
         verifyAll();
     });
 
@@ -101,8 +114,8 @@ describe('AdhocIssuesTestView', () => {
             isChanged: false,
         } as TabStoreData;
 
-        const actual = shallow(<AdhocIssuesTestView {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const actual = render(<AdhocIssuesTestView {...props} />);
+        expect(actual.asFragment()).toMatchSnapshot();
     });
 
     function verifyAll(): void {

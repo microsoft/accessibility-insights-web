@@ -1,85 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HamburgerMenuButton renders proper button and menu item props 1`] = `
-<CustomizedIconButton
-  ariaLabel="help menu"
-  className="hamburgerMenuButton"
-  iconProps={
-    {
-      "iconName": "GlobalNavButton",
-    }
-  }
-  menuProps={
-    {
-      "calloutProps": {
-        "className": "hamburgerMenuButtonCallout",
+<DocumentFragment>
+  <mock-customizediconbutton
+    arialabel="help menu"
+    classname="hamburgerMenuButton"
+    iconprops="[object Object]"
+    menuprops="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`HamburgerMenuButton renders proper button and menu item props: CustomizedIconButton props 1`] = `
+{
+  "ariaLabel": "help menu",
+  "className": "hamburgerMenuButton",
+  "iconProps": {
+    "iconName": "GlobalNavButton",
+  },
+  "menuProps": {
+    "calloutProps": {
+      "className": "hamburgerMenuButtonCallout",
+    },
+    "items": [
+      {
+        "iconProps": {
+          "iconName": "Rocket",
+        },
+        "key": "fast-pass",
+        "name": "FastPass",
+        "onClick": [Function],
       },
-      "items": [
-        {
-          "iconProps": {
-            "iconName": "Rocket",
-          },
-          "key": "fast-pass",
-          "name": "FastPass",
-          "onClick": [Function],
+      {
+        "iconProps": {
+          "iconName": "SiteScan",
         },
-        {
-          "iconProps": {
-            "iconName": "SiteScan",
-          },
-          "key": "quick-assess",
-          "name": "Quick Assess",
-          "onClick": [Function],
+        "key": "quick-assess",
+        "name": "Quick Assess",
+        "onClick": [Function],
+      },
+      {
+        "iconProps": {
+          "iconName": "testBeakerSolid",
         },
-        {
-          "iconProps": {
-            "iconName": "testBeakerSolid",
-          },
-          "key": "assessment",
-          "name": "Assessment",
-          "onClick": [Function],
+        "key": "assessment",
+        "name": "Assessment",
+        "onClick": [Function],
+      },
+      {
+        "iconProps": {
+          "iconName": "Medical",
         },
-        {
-          "iconProps": {
-            "iconName": "Medical",
-          },
-          "key": "ad-hoc-tools",
-          "name": "Ad hoc tools",
-          "onClick": [Function],
+        "key": "ad-hoc-tools",
+        "name": "Ad hoc tools",
+        "onClick": [Function],
+      },
+      {
+        "itemType": 1,
+        "key": "divider_1",
+      },
+      {
+        "iconProps": {
+          "iconName": "KeyboardClassic",
         },
-        {
-          "itemType": 1,
-          "key": "divider_1",
+        "key": "modify-shortcuts",
+        "name": "Keyboard shortcuts",
+        "onClick": [Function],
+      },
+      {
+        "data": "/NOTICE.html",
+        "iconProps": {
+          "iconName": "TextDocument",
         },
-        {
-          "iconProps": {
-            "iconName": "KeyboardClassic",
-          },
-          "key": "modify-shortcuts",
-          "name": "Keyboard shortcuts",
-          "onClick": [Function],
+        "key": "third-party-notices",
+        "name": "Third party notices",
+        "onClick": [Function],
+      },
+      {
+        "data": "https://go.microsoft.com/fwlink/?linkid=2077937",
+        "iconProps": {
+          "iconName": "Unknown",
         },
-        {
-          "data": "/NOTICE.html",
-          "iconProps": {
-            "iconName": "TextDocument",
-          },
-          "key": "third-party-notices",
-          "name": "Third party notices",
-          "onClick": [Function],
-        },
-        {
-          "data": "https://go.microsoft.com/fwlink/?linkid=2077937",
-          "iconProps": {
-            "iconName": "Unknown",
-          },
-          "key": "help",
-          "name": "Help",
-          "onClick": [Function],
-        },
-      ],
-    }
-  }
-  onRenderMenuIcon={[Function]}
-/>
+        "key": "help",
+        "name": "Help",
+        "onClick": [Function],
+      },
+    ],
+  },
+  "onRenderMenuIcon": [Function],
+}
 `;

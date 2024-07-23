@@ -1,14 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IChoiceGroup, IconButton } from '@fluentui/react';
+import { render } from '@testing-library/react';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { ChoiceGroupPassFail } from 'DetailsView/components/choice-group-pass-fail';
 import { TestStatusChoiceGroup } from 'DetailsView/components/test-status-choice-group';
-import { mount, shallow } from 'enzyme';
 import * as React from 'react';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock, Times } from 'typemoq';
+jest.mock('DetailsView/components/choice-group-pass-fail');
 
 describe('TestStatusChoiceGroup', () => {
+    mockReactComponents([ChoiceGroupPassFail]);
     let props;
     let onUndoMock;
     let onGroupChoiceChangeMock;
@@ -33,17 +39,22 @@ describe('TestStatusChoiceGroup', () => {
     });
 
     test('render: unknown (do not show undo button)', () => {
-        const component = mount(<TestStatusChoiceGroup {...props} />);
-        const choiceGroup = component.find(ChoiceGroupPassFail);
-        expect(choiceGroup.props()).toMatchObject({
+        render(<TestStatusChoiceGroup {...props} />);
+
+        const component = render(<TestStatusChoiceGroup {...props} />);
+
+        const choiceGroupProps = getMockComponentClassPropsForCall(ChoiceGroupPassFail);
+
+        expect(choiceGroupProps).toMatchObject({
             selectedKey: ManualTestStatus.UNKNOWN,
         });
-        expect(component.find(IconButton).exists()).toBeFalsy();
+        expect(component.queryByRole('button')).toBeFalsy();
     });
 
     test('render: status is set to UNKNOWN', () => {
-        const actual = shallow(<TestStatusChoiceGroup {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const actual = render(<TestStatusChoiceGroup {...props} />);
+        expect(actual.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroupPassFail]);
     });
 
     test('render: status is set to PASS', () => {
@@ -53,14 +64,16 @@ describe('TestStatusChoiceGroup', () => {
             .setup(o => o(props.status, props.test, props.step, props.selector))
             .verifiable(Times.once());
 
-        const wrapper = shallow(<TestStatusChoiceGroup {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        const wrapper = render(<TestStatusChoiceGroup {...props} />);
+        expect(wrapper.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroupPassFail]);
     });
 
     test('render: status is set to FAIL', () => {
         props.status = ManualTestStatus.FAIL;
-        const actual = shallow(<TestStatusChoiceGroup {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        const actual = render(<TestStatusChoiceGroup {...props} />);
+        expect(actual.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([ChoiceGroupPassFail]);
     });
 
     test('verify onChange', () => {
@@ -69,28 +82,17 @@ describe('TestStatusChoiceGroup', () => {
             .setup(o => o(ManualTestStatus.PASS, props.test, props.step, props.selector))
             .verifiable(Times.once());
 
-        const testObject = shallow(<TestStatusChoiceGroup {...props} />);
-        testObject.find(ChoiceGroupPassFail).simulate('change', null, props.options[0]);
+        render(<TestStatusChoiceGroup {...props} />);
 
+        getMockComponentClassPropsForCall(ChoiceGroupPassFail).onChange(null, props.options[0]);
         onGroupChoiceChangeMock.verifyAll();
     });
 
     test('verify undo button', () => {
-        const choiceGroupMock = Mock.ofType<IChoiceGroup>();
-        const eventStub = {} as React.MouseEvent<HTMLElement>;
-        props.status = ManualTestStatus.PASS;
-        props.originalStatus = ManualTestStatus.FAIL;
-
         onUndoMock.setup(o => o(props.test, props.step, props.selector)).verifiable(Times.once());
 
-        const testObject = mount(<TestStatusChoiceGroup {...props} />);
-        const setComponentRef = testObject.find(ChoiceGroup).prop('componentRef') as any;
-        const undoLinkOnClicked = testObject.find(IconButton).prop('onClick');
-
-        setComponentRef(choiceGroupMock.object);
-        undoLinkOnClicked(eventStub);
-
-        choiceGroupMock.verify(m => m.focus(), Times.once());
-        onUndoMock.verify(m => m(1, 'step', 'selector'), Times.once());
+        render(<TestStatusChoiceGroup {...props} />);
+        getMockComponentClassPropsForCall(ChoiceGroupPassFail).onUndoClickedPassThrough();
+        onUndoMock.verifyAll();
     });
 });

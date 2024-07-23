@@ -80,7 +80,6 @@ describe('ManualTestStepView', () => {
         const props: ManualTestStepViewProps = {
             step: 'step',
             test: VisualizationType.HeadingsAssessment,
-            status: ManualTestStatus.FAIL,
             assessmentInstanceTableHandler: assessmentInstanceTableHandlerMock.object,
             manualTestStepResultMap: {
                 step: {

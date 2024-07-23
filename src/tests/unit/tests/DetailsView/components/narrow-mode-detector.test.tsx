@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { NarrowModeThresholds } from 'common/narrow-mode-thresholds';
 import { NamedFC } from 'common/react/named-fc';
 import {
@@ -8,15 +9,20 @@ import {
     NarrowModeDetectorProps,
     NarrowModeStatus,
 } from 'DetailsView/components/narrow-mode-detector';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
+import {
+    getMockComponentClassPropsForCall,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
+jest.mock('react-resize-detector');
 
 const TestComponent = NamedFC<{ narrowModeStatus: NarrowModeStatus }>('TestComponent', props => {
     return <h1>Test component</h1>;
 });
 
 describe(NarrowModeDetector, () => {
+    mockReactComponents([ReactResizeDetector]);
     let narrowModeThresholds: NarrowModeThresholds;
 
     beforeEach(() => {
@@ -39,11 +45,10 @@ describe(NarrowModeDetector, () => {
                 Component: TestComponent,
                 childrenProps: null,
             };
-            const wrapper = shallow(<NarrowModeDetector {...props} />);
-            const reactResizeDetector = wrapper.find(ReactResizeDetector);
-
-            expect(reactResizeDetector.exists()).toBe(true);
-            expect(reactResizeDetector.props()).toMatchObject({
+            render(<NarrowModeDetector {...props} />);
+            const reactResizeDetector = getMockComponentClassPropsForCall(ReactResizeDetector);
+            expect(reactResizeDetector).not.toBeNull();
+            expect(reactResizeDetector).toMatchObject({
                 handleWidth: true,
                 handleHeight: false,
                 querySelector: 'body',
@@ -202,7 +207,6 @@ describe(NarrowModeDetector, () => {
             expect(
                 renderFunc({
                     width: narrowModeThresholds.collapseHeaderAndNavThreshold - 1,
-                    height: 0,
                 }),
             ).toMatchSnapshot('All narrow mode status values should be false');
         });

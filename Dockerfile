@@ -5,7 +5,7 @@
 # reference: https://stackoverflow.com/a/51683309/3711475
 # reference: https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
-FROM mcr.microsoft.com/playwright:v1.38.1-focal AS setup
+FROM mcr.microsoft.com/playwright:v1.45.1-focal AS setup
 
 USER root
 
@@ -13,7 +13,7 @@ USER root
 # This is a workaround for https://github.com/nodesource/distributions/issues/1266
 #
 # We pin nodejs 16.x instead of accepting Playwright's default for consistency with
-# our other build environments.
+# our other build environments. 
 RUN apt-get update && \
   apt-get install ca-certificates && \
   apt-get update && \

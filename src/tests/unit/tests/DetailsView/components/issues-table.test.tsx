@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
-import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { IssueFilingDialogPropsFactory } from 'common/components/get-issue-filing-dialog-props';
 import { DateProvider } from 'common/date-provider';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
-import { NamedFC } from 'common/react/named-fc';
 import { IssueFilingNeedsSettingsContentProps } from 'common/types/issue-filing-needs-setting-content';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -20,14 +19,24 @@ import {
     IssuesTableProps,
 } from 'DetailsView/components/issues-table';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock } from 'typemoq';
+import { FailedInstancesSection } from '../../../../../common/components/cards/failed-instances-section';
+import { ScanningSpinner } from '../../../../../common/components/scanning-spinner/scanning-spinner';
+import { IssueFilingDialog } from '../../../../../DetailsView/components/issue-filing-dialog';
+import {
+    expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponents,
+} from '../../../mock-helpers/mock-module-helpers';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
+jest.mock('../../../../../DetailsView/components/issue-filing-dialog');
+jest.mock('../../../../../common/components/scanning-spinner/scanning-spinner');
+jest.mock('../../../../../common/components/cards/failed-instances-section');
 
 describe('IssuesTableTest', () => {
+    mockReactComponents([IssueFilingDialog, ScanningSpinner, FailedInstancesSection]);
     let deps: IssuesTableDeps;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
@@ -69,9 +78,10 @@ describe('IssuesTableTest', () => {
             .setGetProviderMock(getProviderMock)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([FailedInstancesSection]);
     });
 
     it('includes subtitle if specified', () => {
@@ -80,9 +90,10 @@ describe('IssuesTableTest', () => {
             .setSubtitle(<>test subtitle text</>)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([FailedInstancesSection]);
     });
 
     it('automated checks disabled', () => {
@@ -94,9 +105,10 @@ describe('IssuesTableTest', () => {
             .setIssuesEnabled(issuesEnabled)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([FailedInstancesSection]);
     });
 
     it('spinner for scanning state', () => {
@@ -109,9 +121,10 @@ describe('IssuesTableTest', () => {
             .setScanning(true)
             .build();
 
-        const wrapped = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([FailedInstancesSection]);
     });
 
     it('not scanning, issuesEnabled is true', () => {
@@ -121,9 +134,9 @@ describe('IssuesTableTest', () => {
             .setIssuesEnabled(true)
             .build();
 
-        const wrapper = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('With issue filing support', () => {
@@ -149,9 +162,10 @@ describe('IssuesTableTest', () => {
                     }) as IssueFilingNeedsSettingsContentProps,
             );
 
-        const wrapper = shallow(<IssuesTable {...props} />);
+        const renderResult = render(<IssuesTable {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([FailedInstancesSection]);
     });
 });
 
@@ -163,7 +177,7 @@ class TestPropsBuilder {
     private scanning: boolean = false;
     private featureFlags = {};
     private deps: IssuesTableDeps;
-    private testType: VisualizationType = -1;
+    private testType: VisualizationType = -1 as VisualizationType;
     private getProviderMock: IMock<() => AssessmentsProvider>;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
@@ -209,10 +223,7 @@ class TestPropsBuilder {
                 allCardsCollapsed: true,
             },
             userConfigurationStoreData: {} as UserConfigurationStoreData,
-            instancesSection: NamedFC<CommonInstancesSectionProps>(
-                'SomeInstancesSection',
-                _ => null,
-            ),
+            instancesSection: FailedInstancesSection,
             visualizationStoreData: {
                 selectedFastPassDetailsView: this.testType,
             } as VisualizationStoreData,

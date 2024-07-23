@@ -1,42 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] = `
-"<Fragment>
-  <div className="ms-Fabric ad-hoc-tools-panel">
-    <LaunchPanelHeader deps={{...}} title="test title" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={[undefined]} featureFlagStoreData={{...}} />
+<DocumentFragment>
+  <div
+    class="ms-Fabric ad-hoc-tools-panel"
+  >
+    <mock-launchpanelheader
+      deps="[object Object]"
+      featureflags="[object Object]"
+      title="test title"
+    />
+    <mock-adhoctoolspanel />
   </div>
-  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
-</Fragment>"
+  <mock-telemetrypermissiondialog
+    deps="[object Object]"
+    isfirsttime="true"
+  />
+</DocumentFragment>
 `;
 
 exports[`PopupView render actual content render toggles view: launch pad 1`] = `
-"<Fragment>
-  <div className="ms-Fabric launch-panel" id="new-launch-pad">
-    <LaunchPanelHeader deps={{...}} title="test title" subtitle={{...}} popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <LaunchPad deps={{...}} productName="test title" rowConfigs={[undefined]} version="2" />
+<DocumentFragment>
+  <div
+    class="ms-Fabric launch-panel"
+    id="new-launch-pad"
+  >
+    <mock-launchpanelheader
+      deps="[object Object]"
+      featureflags="[object Object]"
+      subtitle="[object Object]"
+      title="test title"
+    />
+    <mock-launchpad
+      deps="[object Object]"
+      productname="test title"
+      version="2"
+    />
   </div>
-  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
-</Fragment>"
+  <mock-telemetrypermissiondialog
+    deps="[object Object]"
+    isfirsttime="true"
+  />
+</DocumentFragment>
 `;
 
 exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `
-"<Fragment>
-  <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2082374" onClick={[Function: onClickTutorialLink]}>
+<DocumentFragment>
+  <mock-newtablink
+    href="https://go.microsoft.com/fwlink/?linkid=2082374"
+  >
     Watch 3-minute video introduction
-  </NewTabLink>
+  </mock-newtablink>
    
-</Fragment>"
+</DocumentFragment>
 `;
 
 exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
-"<Fragment>
-  <div className="ms-Fabric ad-hoc-tools-panel">
-    <LaunchPanelHeader deps={{...}} title="test title" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={{...}} featureFlagStoreData={{...}} />
+<DocumentFragment>
+  <div
+    class="ms-Fabric ad-hoc-tools-panel"
+  >
+    <mock-launchpanelheader
+      deps="[object Object]"
+      featureflags="[object Object]"
+      title="test title"
+    />
+    <mock-adhoctoolspanel />
   </div>
-  <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
-</Fragment>"
+  <mock-telemetrypermissiondialog
+    deps="[object Object]"
+    isfirsttime="true"
+  />
+</DocumentFragment>
 `;
 
 exports[`PopupView render spinner 1`] = `
@@ -79,20 +114,11 @@ exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
 `;
 
 exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
-<FileUrlUnsupportedMessagePanel
-  deps={
-    {
-      "browserAdapter": {
-        "getManifest": [Function],
-      },
-      "storesHub": [typemoq mock object],
-    }
-  }
-  header={
-    <Header
-      title="test title"
-    />
-  }
-  title="test title"
-/>
+<DocumentFragment>
+  <mock-fileurlunsupportedmessagepanel
+    deps="[object Object]"
+    header="[object Object]"
+    title="test title"
+  />
+</DocumentFragment>
 `;

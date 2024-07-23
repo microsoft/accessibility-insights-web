@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import { DateProvider } from 'common/date-provider';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import {
@@ -11,8 +11,17 @@ import {
     ScanDetailInfo,
 } from 'reports/components/report-sections/make-details-section-fc';
 import { IMock, Mock, MockBehavior } from 'typemoq';
+import { CommentIcon } from '../../../../../../common/icons/comment-icon';
+import { DateIcon } from '../../../../../../common/icons/date-icon';
+import { UrlIcon } from '../../../../../../common/icons/url-icon';
+import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
+
+jest.mock('../../../../../../common/icons/date-icon');
+jest.mock('../../../../../../common/icons/url-icon');
+jest.mock('../../../../../../common/icons/comment-icon');
 
 describe('makeDetailsSection', () => {
+    mockReactComponents([CommentIcon, UrlIcon, DateIcon]);
     const scanDate = new Date(Date.UTC(2018, 2, 9, 9, 48));
     const appName = 'app-name';
     const url = 'https://page-url/';
@@ -49,21 +58,15 @@ describe('makeDetailsSection', () => {
 
     test.each(descriptionValues)('renders with description: %s', description => {
         const props: DetailsSectionProps = {
-            targetAppInfo,
             description,
-            environmentInfo: {
-                browserSpec: 'environment-version',
-                extensionVersion: 'extension-version',
-                axeCoreVersion: 'axe-version',
-            },
             toUtcString: toUtcStringMock.object,
             scanMetadata,
         };
 
         const TestDetailsSection = makeDetailsSectionFC(getDisplayedScanTargetInfoMock.object);
 
-        const wrapper = shallow(<TestDetailsSection {...props} />);
+        const renderResult = render(<TestDetailsSection {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 });

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as AxeUtils from '../axe-utils';
 import { IAxeCheckResultExtraData, RuleConfiguration } from '../iruleresults';
 
 const headingCheckId: string = 'collect-headings';
@@ -15,6 +16,7 @@ export const headingConfiguration: RuleConfiguration = {
         id: 'collect-headings',
         selector: 'h1,h2,h3,h4,h5,h6,[role=heading]',
         any: [headingCheckId],
+        matches: AxeUtils.getMatchesFromRule('heading-order'),
         enabled: false,
     },
 };

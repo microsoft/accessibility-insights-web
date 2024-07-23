@@ -3,6 +3,7 @@
 import { adaptableContent } from './adaptable-content';
 import { audioVideoOnly } from './audio-video-only';
 import { automatedChecks } from './automated-checks';
+import { cognitive } from './cognitive';
 import { contrast } from './contrast';
 import { customWidgets } from './custom-widgets';
 import { errors } from './errors';
@@ -50,4 +51,5 @@ export const test = {
     automatedChecks,
     pointerMotion,
     contrast,
+    cognitive,
 };

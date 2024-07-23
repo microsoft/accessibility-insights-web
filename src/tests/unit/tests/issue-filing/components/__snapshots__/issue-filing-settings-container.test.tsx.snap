@@ -1,39 +1,102 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssueFilingSettingsContainerTest render 1`] = `
-<React.Fragment>
-  <IssueFilingChoiceGroup
-    issueFilingServices={
-      [
+<DocumentFragment>
+  <mock-issuefilingchoicegroup
+    issuefilingservices="[object Object]"
+    selectedissuefilingservice="[object Object]"
+  />
+  <mock-azureboardssettingsform
+    deps="[object Object]"
+    settings="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`IssueFilingSettingsContainerTest render: IssueFilingChoiceGroup props 1`] = `
+{
+  "issueFilingServices": [
+    {
+      "displayName": "TEST",
+      "key": "test",
+      "settingsForm": [MockFunction] {
+        "calls": [
+          [
+            {
+              "deps": {
+                "issueFilingServiceProvider": [typemoq mock object],
+                "userConfigMessageCreator": {},
+              },
+              "onPropertyUpdateCallback": [Function],
+              "settings": {
+                "repository": "none",
+              },
+            },
+            {},
+          ],
+        ],
+        "results": [
+          {
+            "type": "return",
+            "value": <mock-AzureBoardsSettingsForm
+              deps={
+                {
+                  "issueFilingServiceProvider": [typemoq mock object],
+                  "userConfigMessageCreator": {},
+                }
+              }
+              onPropertyUpdateCallback={[Function]}
+              settings={
+                {
+                  "repository": "none",
+                }
+              }
+            />,
+          },
+        ],
+      },
+    },
+  ],
+  "onSelectedServiceChange": [Function],
+  "selectedIssueFilingService": {
+    "displayName": "TEST",
+    "key": "test",
+    "settingsForm": [MockFunction] {
+      "calls": [
+        [
+          {
+            "deps": {
+              "issueFilingServiceProvider": [typemoq mock object],
+              "userConfigMessageCreator": {},
+            },
+            "onPropertyUpdateCallback": [Function],
+            "settings": {
+              "repository": "none",
+            },
+          },
+          {},
+        ],
+      ],
+      "results": [
         {
-          "displayName": "TEST",
-          "key": "test",
-          "settingsForm": [Function],
+          "type": "return",
+          "value": <mock-AzureBoardsSettingsForm
+            deps={
+              {
+                "issueFilingServiceProvider": [typemoq mock object],
+                "userConfigMessageCreator": {},
+              }
+            }
+            onPropertyUpdateCallback={[Function]}
+            settings={
+              {
+                "repository": "none",
+              }
+            }
+          />,
         },
-      ]
-    }
-    onSelectedServiceChange={[Function]}
-    selectedIssueFilingService={
-      {
-        "displayName": "TEST",
-        "key": "test",
-        "settingsForm": [Function],
-      }
-    }
-  />
-  <settingsForm
-    deps={
-      {
-        "issueFilingServiceProvider": [typemoq mock object],
-        "userConfigMessageCreator": {},
-      }
-    }
-    onPropertyUpdateCallback={[Function]}
-    settings={
-      {
-        "repository": "none",
-      }
-    }
-  />
-</React.Fragment>
+      ],
+    },
+  },
+}
 `;

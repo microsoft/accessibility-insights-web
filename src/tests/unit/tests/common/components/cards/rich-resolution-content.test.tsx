@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { render } from '@testing-library/react';
 import {
     RichResolutionContent,
     RichResolutionContentDeps,
     RichResolutionContentProps,
 } from 'common/components/cards/rich-resolution-content';
 import { LinkComponentType } from 'common/types/link-component-type';
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('RichResolutionContent', () => {
@@ -18,6 +18,7 @@ describe('RichResolutionContent', () => {
     it.each([
         'web/aria-input-field-name',
         'web/color-contrast',
+        'web/duplicate-id-aria',
         'web/th-has-data-cells',
         'web/label-content-name-mismatch',
         'web/p-as-heading',
@@ -27,8 +28,8 @@ describe('RichResolutionContent', () => {
             contentId: testId,
         };
 
-        const testSubject = shallow(<RichResolutionContent {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
+        const renderResult = render(<RichResolutionContent {...props} />);
+        expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
     it('throws when given an unrecognized contentId', () => {
@@ -37,6 +38,6 @@ describe('RichResolutionContent', () => {
             contentId: 'bogus-id',
         };
 
-        expect(() => shallow(<RichResolutionContent {...props} />)).toThrowError(/bogus-id/);
+        expect(() => render(<RichResolutionContent {...props} />)).toThrowError(/bogus-id/);
     });
 });

@@ -1,12 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`getAutomatedChecksCommandBar  should return DetailsViewCommandBar with deps of reportExportComponentPropertyFactory and startOverComponentPropertyFactory 1`] = `
-<DetailsViewCommandBar
-  switcherNavConfiguration={
-    {
-      "ReportExportComponentFactory": [Function],
-      "StartOverComponentFactory": [Function],
-    }
-  }
-/>
+<DocumentFragment>
+  <mock-detailsviewcommandbar
+    switchernavconfiguration="[object Object]"
+  />
+</DocumentFragment>
+`;
+
+exports[`getAutomatedChecksCommandBar  should return DetailsViewCommandBar with deps of reportExportComponentPropertyFactory and startOverComponentPropertyFactory: DetailsViewCommandBar props 1`] = `
+{
+  "switcherNavConfiguration": {
+    "ReportExportComponentFactory": [Function],
+    "StartOverComponentFactory": [Function],
+  },
+}
 `;

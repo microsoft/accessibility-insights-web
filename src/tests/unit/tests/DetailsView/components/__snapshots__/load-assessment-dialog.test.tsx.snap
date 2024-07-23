@@ -1,73 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = `
-<ChangeAssessmentDialog
-  deps={
-    {
-      "detailsViewId": undefined,
-      "getAssessmentActionMessageCreator": [Function],
-      "urlParser": [typemoq mock object],
-    }
-  }
-  dialogContentTitle="Assessment in progress"
-  dialogFirstText={
-    <React.Fragment>
-      Would you like to continue your current assessment or load the new assessment?
-    </React.Fragment>
-  }
-  dialogNoteText="If 'Continue previous' is selected, the assessment selected will not be loaded."
-  dialogWarningText="If 'Load assessment’ is selected, all previous progress will be lost."
-  divId="load-assessment-dialog-description"
-  isOpen={false}
-  leftButtonOnClick={[Function]}
-  leftButtonText="Continue previous"
-  prevTab={
-    {
-      "id": 111,
-      "title": "test title",
-      "url": "https://www.test.com",
-    }
-  }
-  rightButtonDataAutomationId="load-assessment-dialog-load-button"
-  rightButtonOnClick={[Function]}
-  rightButtonStyle="loadButton"
-  rightButtonText="Load assessment"
-  subtitleAriaId="load-assessment-dialog-description"
-/>
+<DocumentFragment>
+  <mock-changeassessmentdialog
+    dialogcontenttitle="Assessment in progress"
+    dialogfirsttext="[object Object]"
+    dialognotetext="If 'Continue previous' is selected, the assessment selected will not be loaded."
+    dialogwarningtext="If 'Load assessment’ is selected, all previous progress will be lost."
+    divid="load-assessment-dialog-description"
+    isopen="false"
+    leftbuttontext="Continue previous"
+    prevtab="[object Object]"
+    rightbuttondataautomationid="load-assessment-dialog-load-button"
+    rightbuttonstyle="loadButton"
+    rightbuttontext="Load assessment"
+    subtitleariaid="load-assessment-dialog-description"
+  />
+</DocumentFragment>
+`;
+
+exports[`LoadAssessmentDialog should not show when isOpen is set to false: ChangeAssessmentDialog props 1`] = `
+{
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment or load the new assessment?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the assessment selected will not be loaded.",
+  "dialogWarningText": "If 'Load assessment’ is selected, all previous progress will be lost.",
+  "divId": "load-assessment-dialog-description",
+  "isOpen": false,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "id": 111,
+    "title": "test title",
+    "url": "https://www.test.com",
+  },
+  "rightButtonDataAutomationId": "load-assessment-dialog-load-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "loadButton",
+  "rightButtonText": "Load assessment",
+  "subtitleAriaId": "load-assessment-dialog-description",
+}
 `;
 
 exports[`LoadAssessmentDialog should show when isOpen is set to true 1`] = `
-<ChangeAssessmentDialog
-  deps={
-    {
-      "detailsViewId": undefined,
-      "getAssessmentActionMessageCreator": [Function],
-      "urlParser": [typemoq mock object],
-    }
-  }
-  dialogContentTitle="Assessment in progress"
-  dialogFirstText={
-    <React.Fragment>
-      Would you like to continue your current assessment or load the new assessment?
-    </React.Fragment>
-  }
-  dialogNoteText="If 'Continue previous' is selected, the assessment selected will not be loaded."
-  dialogWarningText="If 'Load assessment’ is selected, all previous progress will be lost."
-  divId="load-assessment-dialog-description"
-  isOpen={true}
-  leftButtonOnClick={[Function]}
-  leftButtonText="Continue previous"
-  prevTab={
-    {
-      "id": 111,
-      "title": "test title",
-      "url": "https://www.test.com",
-    }
-  }
-  rightButtonDataAutomationId="load-assessment-dialog-load-button"
-  rightButtonOnClick={[Function]}
-  rightButtonStyle="loadButton"
-  rightButtonText="Load assessment"
-  subtitleAriaId="load-assessment-dialog-description"
-/>
+<DocumentFragment>
+  <mock-changeassessmentdialog
+    dialogcontenttitle="Assessment in progress"
+    dialogfirsttext="[object Object]"
+    dialognotetext="If 'Continue previous' is selected, the assessment selected will not be loaded."
+    dialogwarningtext="If 'Load assessment’ is selected, all previous progress will be lost."
+    divid="load-assessment-dialog-description"
+    isopen="true"
+    leftbuttontext="Continue previous"
+    prevtab="[object Object]"
+    rightbuttondataautomationid="load-assessment-dialog-load-button"
+    rightbuttonstyle="loadButton"
+    rightbuttontext="Load assessment"
+    subtitleariaid="load-assessment-dialog-description"
+  />
+</DocumentFragment>
+`;
+
+exports[`LoadAssessmentDialog should show when isOpen is set to true: ChangeAssessmentDialog props 1`] = `
+{
+  "dialogContentTitle": "Assessment in progress",
+  "dialogFirstText": <React.Fragment>
+    Would you like to continue your current assessment or load the new assessment?
+  </React.Fragment>,
+  "dialogNoteText": "If 'Continue previous' is selected, the assessment selected will not be loaded.",
+  "dialogWarningText": "If 'Load assessment’ is selected, all previous progress will be lost.",
+  "divId": "load-assessment-dialog-description",
+  "isOpen": true,
+  "leftButtonOnClick": [Function],
+  "leftButtonText": "Continue previous",
+  "prevTab": {
+    "id": 111,
+    "title": "test title",
+    "url": "https://www.test.com",
+  },
+  "rightButtonDataAutomationId": "load-assessment-dialog-load-button",
+  "rightButtonOnClick": [Function],
+  "rightButtonStyle": "loadButton",
+  "rightButtonText": "Load assessment",
+  "subtitleAriaId": "load-assessment-dialog-description",
+}
 `;

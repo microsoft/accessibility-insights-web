@@ -42,4 +42,5 @@ export enum VisualizationType {
     AutomatedChecksQuickAssess,
     ContrastQuickAssess,
     NativeWidgetsQuickAssess,
+    CognitiveAssessment,
 }

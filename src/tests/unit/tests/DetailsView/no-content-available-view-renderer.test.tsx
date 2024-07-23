@@ -7,8 +7,8 @@ import {
     NoContentAvailableViewDeps,
 } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import { createRoot, Root } from 'react-dom/client';
 import { TestDocumentCreator } from 'tests/unit/common/test-document-creator';
 import { It, Mock } from 'typemoq';
 
@@ -27,28 +27,30 @@ describe('NoContentAvailableViewRenderer', () => {
             .setup(des => des.setShortcutIcon('../' + expectedIcon16))
             .verifiable();
 
-        const renderMock = Mock.ofType<typeof ReactDOM.render>();
-        renderMock.setup(r =>
-            r(
-                It.isValue(
-                    <>
-                        <NoContentAvailableView deps={deps} />
-                    </>,
-                ),
-                fakeDocument.getElementById('details-container'),
-            ),
-        );
+        const rootMock = Mock.ofType<Root>();
+        const createRootMock = Mock.ofType<typeof createRoot>();
+        createRootMock
+            .setup(r => r(fakeDocument.getElementById('details-container')))
+            .returns(() => {
+                return rootMock.object;
+            })
+            .verifiable();
+
+        rootMock
+            .setup(r => r.render(It.isValue(<NoContentAvailableView deps={deps} />)))
+            .verifiable();
 
         const testSubject = new NoContentAvailableViewRenderer(
             deps,
             fakeDocument,
-            renderMock.object,
+            createRootMock.object,
             documentManipulatorMock.object,
         );
 
         testSubject.render();
 
-        renderMock.verifyAll();
+        createRootMock.verifyAll();
+        rootMock.verifyAll();
         documentManipulatorMock.verifyAll();
     });
 });

@@ -14,7 +14,7 @@ export type WithStoreSubscriptionDeps<T> = {
 };
 
 export function withStoreSubscription<P extends WithStoreSubscriptionProps<S>, S>(
-    WrappedComponent: React.ComponentType<P>,
+    WrappedComponent: React.ComponentType<React.PropsWithChildren<P>>,
 ): React.ComponentClass<Pick<P, Exclude<keyof P, keyof { storeState: S }>>, Partial<S>> & {
     displayName: string;
 } {

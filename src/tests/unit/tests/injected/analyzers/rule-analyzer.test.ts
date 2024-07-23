@@ -93,7 +93,6 @@ describe('RuleAnalyzer', () => {
             include: [],
             exclude: [],
             testName,
-            requirementName,
         };
         return telemetryStub;
     }

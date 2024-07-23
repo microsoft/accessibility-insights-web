@@ -1,158 +1,156 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DiagnosticViewToggleTest renders details view link when the test does not have a guidance 1`] = `
-<div
-  className="diagnosticViewToggle"
->
+<DocumentFragment>
   <div
-    className="title"
+    class="diagnosticViewToggle"
   >
-    Automated checks
-  </div>
-  <div
-    className="toggle"
-  >
-    <VisualizationToggle
-      checked={false}
-      componentRef={
-        {
-          "current": null,
-        }
-      }
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      visualizationName="Automated checks"
-    />
-  </div>
-  <div>
-    <StyledLinkBase
-      className="insights-link"
-      href="#"
-      onClick={[Function]}
+    <div
+      class="title"
     >
-      List view and filtering
-    </StyledLinkBase>
+      Automated checks
+    </div>
+    <div
+      class="toggle"
+    >
+      <mock-visualizationtoggle
+        checked="false"
+        componentref="[object Object]"
+        disabled="false"
+        visualizationname="Automated checks"
+      />
+    </div>
+    <div>
+      <mock-styledlinkbase
+        classname="insights-link"
+        href="#"
+      >
+        List view and filtering
+      </mock-styledlinkbase>
+    </div>
+    <div
+      class="shortcut"
+    >
+      Ctrl+Shift+1
+    </div>
   </div>
-  <div
-    className="shortcut"
-  >
-    Ctrl+Shift+1
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DiagnosticViewToggleTest renders spinner while scanning 1`] = `
-<div
-  className="diagnosticViewToggle"
->
+<DocumentFragment>
   <div
-    className="title"
+    class="diagnosticViewToggle"
   >
-    Headings
+    <div
+      class="title"
+    >
+      Headings
+    </div>
+    <div
+      class="toggle"
+    >
+      <mock-styledspinnerbase
+        size="1"
+      />
+    </div>
+    <div>
+      <mock-contentlink
+        deps="[object Object]"
+        linktext="How to test headings"
+      />
+    </div>
+    <div
+      class="shortcut"
+    >
+      Ctrl+Shift+3
+    </div>
   </div>
-  <div
-    className="toggle"
-  >
-    <StyledSpinnerBase
-      componentRef={[Function]}
-      size={1}
-    />
-  </div>
-  <div>
-    <ContentLink
-      deps={{}}
-      linkText="How to test headings"
-      reference={[Function]}
-    />
-  </div>
-  <div
-    className="shortcut"
-  >
-    Ctrl+Shift+3
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DiagnosticViewToggleTest renders toggle when not scanning 1`] = `
-<div
-  className="diagnosticViewToggle"
->
+<DocumentFragment>
   <div
-    className="title"
+    class="diagnosticViewToggle"
   >
-    Headings
+    <div
+      class="title"
+    >
+      Headings
+    </div>
+    <div
+      class="toggle"
+    >
+      <mock-visualizationtoggle
+        checked="false"
+        componentref="[object Object]"
+        disabled="false"
+        visualizationname="Headings"
+      />
+    </div>
+    <div>
+      <mock-contentlink
+        deps="[object Object]"
+        linktext="How to test headings"
+      />
+    </div>
+    <div
+      class="shortcut"
+    >
+      Ctrl+Shift+3
+    </div>
   </div>
-  <div
-    className="toggle"
-  >
-    <VisualizationToggle
-      checked={false}
-      componentRef={
-        {
-          "current": null,
-        }
-      }
-      disabled={false}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      visualizationName="Headings"
-    />
-  </div>
-  <div>
-    <ContentLink
-      deps={{}}
-      linkText="How to test headings"
-      reference={[Function]}
-    />
-  </div>
-  <div
-    className="shortcut"
-  >
-    Ctrl+Shift+3
-  </div>
-</div>
+</DocumentFragment>
 `;
 
 exports[`DiagnosticViewToggleTest renders toggle when scanning for a different visualization 1`] = `
-<div
-  className="diagnosticViewToggle"
->
+<DocumentFragment>
   <div
-    className="title"
+    class="diagnosticViewToggle"
   >
-    Headings
+    <div
+      class="title"
+    >
+      Headings
+    </div>
+    <div
+      class="toggle"
+    >
+      <mock-visualizationtoggle
+        checked="false"
+        componentref="[object Object]"
+        disabled="true"
+        visualizationname="Headings"
+      />
+    </div>
+    <div>
+      <mock-contentlink
+        deps="[object Object]"
+        linktext="How to test headings"
+      />
+    </div>
+    <div
+      class="shortcut"
+    >
+      Ctrl+Shift+3
+    </div>
   </div>
-  <div
-    className="toggle"
-  >
-    <VisualizationToggle
-      checked={false}
-      componentRef={
-        {
-          "current": null,
-        }
-      }
-      disabled={true}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      visualizationName="Headings"
-    />
-  </div>
-  <div>
-    <ContentLink
-      deps={{}}
-      linkText="How to test headings"
-      reference={[Function]}
-    />
-  </div>
-  <div
-    className="shortcut"
-  >
-    Ctrl+Shift+3
-  </div>
-</div>
+</DocumentFragment>
+`;
+
+exports[`DiagnosticViewToggleTest renders toggle when scanning for a different visualization: VisualizationToggle props 1`] = `
+{
+  "checked": false,
+  "componentRef": {
+    "current": {
+      "focus": [MockFunction],
+    },
+  },
+  "disabled": true,
+  "onBlur": [Function],
+  "onClick": [Function],
+  "onFocus": [Function],
+  "visualizationName": "Headings",
+}
 `;
