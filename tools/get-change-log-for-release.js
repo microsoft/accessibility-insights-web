@@ -13,9 +13,8 @@ const main = async () => {
     const gitLogs = await getGitLogs(params.from, params.to);
     const outputContent =
         params.kind === 'csv'
-            ? generateOutputContent(gitLogs, params.to)
+            ? generateCSVContent(gitLogs, params.to)
             : generateTextContent(gitLogs);
-    console.log(outputContent);
     ensureOutputFileExist(params.output);
 
     fs.writeFileSync(params.output, outputContent);
@@ -102,7 +101,7 @@ const generateTextContent = gitLogs => {
     return outputText;
 };
 
-const generateOutputContent = (gitLogs, version) => {
+const generateCSVContent = (gitLogs, version) => {
     const csvLogs = gitLogs.all
         .map(log => {
             return {
