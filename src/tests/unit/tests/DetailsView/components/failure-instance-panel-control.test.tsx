@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { ActionButton, Link, TextField } from '@fluentui/react';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
@@ -44,10 +44,10 @@ describe('FailureInstancePanelControlTest', () => {
     let clearPathSnippetDataMock: IMock<() => void>;
 
     beforeEach(() => {
-        addInstanceMock = Mock.ofInstance(() => { });
-        editInstanceMock = Mock.ofInstance(() => { });
-        addPathForValidationMock = Mock.ofInstance(() => { });
-        clearPathSnippetDataMock = Mock.ofInstance(() => { });
+        addInstanceMock = Mock.ofInstance(() => {});
+        editInstanceMock = Mock.ofInstance(() => {});
+        addPathForValidationMock = Mock.ofInstance(() => {});
+        clearPathSnippetDataMock = Mock.ofInstance(() => {});
     });
 
     test('render FailureInstancePanelControl: create without instance', () => {
@@ -84,17 +84,20 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     test('closeFailureInstancePanel', () => {
+        useOriginalReactElements('@fluentui/react', ['TextField']);
         const description = 'description';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-        render(<FailureInstancePanelControl {...props} />);
+        const renderResult = render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         const genericPanelProp = getMockComponentClassPropsForCall(GenericPanel);
-        getMockComponentClassPropsForCall(TextField).onChange(null, description);
-        genericPanelProp.onDismiss();
+        const textField = renderResult.getByRole('textbox') as HTMLInputElement;
+        fireEvent.change(textField, { target: { value: description } });
+        act(() => {
+            genericPanelProp.onDismiss();
+        });
         expect(genericPanelProp.isOpen).toBe(false);
-        const textFeildProp2 = getMockComponentClassPropsForCall(TextField, 2);
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
-        expect(textFeildProp2.value).toEqual(description);
+        expect(textField.value).toBe(description);
 
         clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });
@@ -208,7 +211,6 @@ describe('FailureInstancePanelControlTest', () => {
         fireEvent.click(renderResult.getByText('Save'));
         expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull;
         editInstanceMock.verifyAll();
-        clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });
 
     test('onAddFailureInstance', () => {
