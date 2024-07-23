@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Button } from '@fluentui/react-components';
+import { Button, mergeClasses } from '@fluentui/react-components';
 import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
+import styles from 'common/styles/button.scss';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import * as React from 'react';
@@ -41,13 +42,19 @@ export class ScopingPanel extends React.Component<ScopingPanelProps> {
                     scopingActionMessageCreator={this.props.scopingActionMessageCreator}
                     inspectActionMessageCreator={this.props.inspectActionMessageCreator}
                 />
-                <Button
-                    appearance="primary"
-                    className="closing-scoping-panel"
-                    onClick={this.props.deps.detailsViewActionMessageCreator.closeScopingPanel}
-                >
-                    OK
-                </Button>
+                <div className={styles.buttonsComponent}>
+                    <div className={styles.buttonCol}>
+                        <Button
+                            appearance="primary"
+                            className={mergeClasses(styles.primaryButton, 'closing-scoping-panel')}
+                            onClick={
+                                this.props.deps.detailsViewActionMessageCreator.closeScopingPanel
+                            }
+                        >
+                            OK
+                        </Button>
+                    </div>
+                </div>
             </GenericPanel>
         );
     }

@@ -337,11 +337,16 @@ describe('SelectorInputListTest', () => {
     ): void {
         const inputText = result.getByPlaceholderText('Enter element selector here');
         fireEvent.change(inputText, { target: { value: givenSelector } });
-        const button = result.container.querySelector('.textboxAddSelectorButton');
         if (expectedButtonDisabledValue) {
-            expect(button).toHaveProperty('disabled', true);
+            expect(result.container.querySelector('.buttonDisabled')).toHaveProperty(
+                'disabled',
+                true,
+            );
         } else {
-            expect(button).toHaveProperty('disabled', false);
+            expect(result.container.querySelector('.defaultButton')).toHaveProperty(
+                'disabled',
+                false,
+            );
         }
     }
 

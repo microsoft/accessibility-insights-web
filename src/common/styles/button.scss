@@ -3,9 +3,51 @@
 
 @import '../../common/styles/common.scss';
 
-.buttons-component {
+.navigation-controls-buttons-component {
     display: flex;
     justify-content: flex-end;
+
+    .navigation-controls-button-col + .navigation-controls-button-col {
+        margin-left: 8px;
+    }
+
+    .navigation-controls-default-button {
+        font-size: 14px;
+        font-weight: 600;
+        height: 32px;
+        border: 1px solid $neutral-60;
+        color: $neutral-100;
+        border-radius: 2px;
+
+        &:hover {
+            border: 1px solid $neutral-60;
+            font-weight: 600;
+            color: $neutral-100;
+            background-color: $neutral-6-5;
+            border-radius: 2px;
+        }
+    }
+}
+
+.command-bar-button {
+    font-size: 14px;
+    font-weight: 600;
+    height: 32px;
+    border: 1px solid $neutral-55 !important;
+    color: $neutral-70 !important;
+    border-radius: 2px !important;
+
+    &:hover {
+        border: 1px solid $neutral-55 !important;
+        font-weight: 600;
+        color: $neutral-70 !important;
+        background-color: $neutral-6-5 !important;
+        border-radius: 2px !important;
+    }
+}
+
+.buttons-component {
+    display: flex;
 
     .button-col + .button-col {
         margin-left: 8px;
@@ -28,7 +70,7 @@
         }
     }
 
-    .primary-button-disabled {
+    .button-disabled {
         font-size: 14px;
         font-weight: 600;
         height: 32px;
@@ -37,10 +79,9 @@
         color: $neutral-10;
         pointer-events: none;
         border-radius: 2px;
-        border-width: 10px;
     }
 
-    .primary-button-enabled {
+    .primary-button {
         font-size: 14px;
         font-weight: 600;
         height: 32px;
@@ -60,19 +101,21 @@
     }
 }
 
-.command-bar-button {
-    font-size: 14px;
-    font-weight: 600;
-    height: 32px;
-    border: 1px solid $neutral-55 !important;
-    color: $neutral-70 !important;
-    border-radius: 2px !important;
+:global(.high-contrast-theme) {
+    .default-button {
+        &:hover {
+            background-color: $button-background-hover;
+        }
+    }
 
-    &:hover {
-        border: 1px solid $neutral-55 !important;
+    .button-disabled {
+        font-size: 14px;
         font-weight: 600;
-        color: $neutral-70 !important;
-        background-color: $neutral-6-5 !important;
-        border-radius: 2px !important;
+        height: 32px;
+        border: 1px solid $button-border;
+        background-color: $button-background-disable;
+        color: $neutral-20;
+        pointer-events: none;
+        border-radius: 2px;
     }
 }

@@ -6,9 +6,7 @@ exports[`CopyIssueDetailsButtonTest render 1`] = `
     aria-live="polite"
     class="toastContainer"
   />
-  <mock-button
-    classname="copy-issue-details-button commandBarButton"
-  >
+  <mock-button>
     <mock-copyicon />
     <div
       class="ms-Button-label"

@@ -11,6 +11,7 @@ import {
 import { Button } from '@fluentui/react-components';
 import { AddRegular } from '@fluentui/react-icons';
 import styles from 'common/components/selector-input-list.scss';
+import buttonStyles from 'common/styles/button.scss';
 import * as _ from 'lodash/index';
 import * as React from 'react';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';
@@ -78,14 +79,21 @@ export class SelectorInputList extends React.Component<
                         placeholder="Enter element selector here"
                     />
                     <div className={styles.addSelectorButtons}>
-                        <Button
-                            className={styles.textboxAddSelectorButton}
-                            onClick={this.addSelector}
-                            disabled={!this.state.isTextFieldValueValid}
-                        >
-                            {' '}
-                            <AddRegular /> Add Selector{' '}
-                        </Button>
+                        <div className={buttonStyles.buttonsComponent}>
+                            <div className={buttonStyles.buttonCol}>
+                                <Button
+                                    className={
+                                        !this.state.isTextFieldValueValid
+                                            ? buttonStyles.buttonDisabled
+                                            : buttonStyles.defaultButton
+                                    }
+                                    onClick={this.addSelector}
+                                    disabled={!this.state.isTextFieldValueValid}
+                                >
+                                    <AddRegular /> Add Selector
+                                </Button>
+                            </div>
+                        </div>
                         <IconButton
                             iconProps={{
                                 iconName: 'scopeTemplate',

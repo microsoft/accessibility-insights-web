@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseButton, css } from '@fluentui/react';
-import { Button } from '@fluentui/react-components';
+import { BaseButton } from '@fluentui/react';
+import { Button, mergeClasses } from '@fluentui/react-components';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
 
@@ -49,7 +49,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const renderInspectButton = (): JSX.Element => {
         return (
             <Button
-                className={css('insights-dialog-button-inspect', styles.commandBarButton)}
+                className={mergeClasses('insights-dialog-button-inspect', styles.commandBarButton)}
                 onClick={props.onClickInspectButton}
             >
                 <FileHTMLIcon />

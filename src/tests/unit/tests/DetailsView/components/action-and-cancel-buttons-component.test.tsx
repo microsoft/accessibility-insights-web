@@ -21,8 +21,8 @@ describe('ActionAndCancelButtonsComponent', () => {
     });
 
     test.each(['sample href', null])('render with primary button href == %s', href => {
-        const primaryButtonOnClickStub = () => { };
-        const cancelButtonOnClickStub = () => { };
+        const primaryButtonOnClickStub = () => {};
+        const cancelButtonOnClickStub = () => {};
         const props: ActionAndCancelButtonsComponentProps = {
             isHidden: false,
             primaryButtonDisabled: false,

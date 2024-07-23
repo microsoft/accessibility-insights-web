@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@fluentui/react';
-import { Button } from '@fluentui/react-components';
+import { Button, mergeClasses } from '@fluentui/react-components';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
@@ -75,7 +74,7 @@ export class IssueFilingButton extends React.Component<
             <>
                 <Button
                     appearance="primary"
-                    className={css('file-issue-button', styles.commandBarButton)}
+                    className={mergeClasses('file-issue-button', styles.commandBarButton)}
                     onClick={event => this.onClickFileIssueButton(event)}
                 >
                     <LadyBugSolidIcon />

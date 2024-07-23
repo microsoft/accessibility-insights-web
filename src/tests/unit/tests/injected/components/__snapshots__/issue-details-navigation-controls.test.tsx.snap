@@ -7,13 +7,13 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
   >
     <div>
       <div
-        class="buttonsComponent"
+        class="navigationControlsButtonsComponent"
       >
         <div
-          class="buttonCol"
+          class="navigationControlsButtonCol"
         >
           <mock-button
-            classname="defaultButton"
+            classname="navigationControlsDefaultButton"
             data-automation-id="back"
           >
              &lt; Back 
@@ -24,13 +24,13 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     <div />
     <div>
       <div
-        class="buttonsComponent"
+        class="navigationControlsButtonsComponent"
       >
         <div
-          class="buttonCol"
+          class="navigationControlsButtonCol"
         >
           <mock-button
-            classname="defaultButton"
+            classname="navigationControlsDefaultButton"
             data-automation-id="next"
           >
             Next &gt;
@@ -49,13 +49,13 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
   >
     <div>
       <div
-        class="buttonsComponent"
+        class="navigationControlsButtonsComponent"
       >
         <div
-          class="buttonCol"
+          class="navigationControlsButtonCol"
         >
           <mock-button
-            classname="defaultButton"
+            classname="navigationControlsDefaultButton"
             data-automation-id="back"
           >
              &lt; Back 
@@ -78,13 +78,13 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     <div />
     <div>
       <div
-        class="buttonsComponent"
+        class="navigationControlsButtonsComponent"
       >
         <div
-          class="buttonCol"
+          class="navigationControlsButtonCol"
         >
           <mock-button
-            classname="defaultButton"
+            classname="navigationControlsDefaultButton"
             data-automation-id="next"
           >
             Next &gt;
@@ -119,13 +119,13 @@ exports[`IssueDetailsNavigationControls render handles failures count multiple f
   >
     <div>
       <div
-        class="buttonsComponent"
+        class="navigationControlsButtonsComponent"
       >
         <div
-          class="buttonCol"
+          class="navigationControlsButtonCol"
         >
           <mock-button
-            classname="defaultButton"
+            classname="navigationControlsDefaultButton"
             data-automation-id="back"
           >
              &lt; Back 
@@ -136,13 +136,13 @@ exports[`IssueDetailsNavigationControls render handles failures count multiple f
     <div />
     <div>
       <div
-        class="buttonsComponent"
+        class="navigationControlsButtonsComponent"
       >
         <div
-          class="buttonCol"
+          class="navigationControlsButtonCol"
         >
           <mock-button
-            classname="defaultButton"
+            classname="navigationControlsDefaultButton"
             data-automation-id="next"
           >
             Next &gt;

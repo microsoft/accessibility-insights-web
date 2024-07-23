@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@fluentui/react';
-import { Button } from '@fluentui/react-components';
+import { Button, mergeClasses } from '@fluentui/react-components';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
@@ -67,7 +66,7 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
             <>
                 <Toast ref={this.toastRef} deps={this.props.deps} />
                 <Button
-                    className={css('copy-issue-details-button', styles.commandBarButton)}
+                    className={mergeClasses('copy-issue-details-button', styles.commandBarButton)}
                     onClick={this.copyButtonClicked}
                 >
                     <CopyIcon />
