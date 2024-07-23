@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
 import { ActionButton, Link, TextField } from '@fluentui/react';
-import { act, fireEvent, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
@@ -41,18 +42,21 @@ describe('FailureInstancePanelControlTest', () => {
     let addInstanceMock: IMock<(instanceData, test, step) => void>;
     let editInstanceMock: IMock<(instanceData, test, step, id) => void>;
     let clearPathSnippetDataMock: IMock<() => void>;
+
     beforeEach(() => {
-        addInstanceMock = Mock.ofInstance(() => {});
-        editInstanceMock = Mock.ofInstance(() => {});
-        addPathForValidationMock = Mock.ofInstance(() => {});
-        clearPathSnippetDataMock = Mock.ofInstance(() => {});
+        addInstanceMock = Mock.ofInstance(() => { });
+        editInstanceMock = Mock.ofInstance(() => { });
+        addPathForValidationMock = Mock.ofInstance(() => { });
+        clearPathSnippetDataMock = Mock.ofInstance(() => { });
     });
+
     test('render FailureInstancePanelControl: create without instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const renderResult = render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
+
     test('render FailureInstancePanelControl: partial original instance', () => {
         const props = {
             step: 'missingHeadings',
@@ -71,27 +75,27 @@ describe('FailureInstancePanelControlTest', () => {
         const flaggedProps = getMockComponentClassPropsForCall(FlaggedComponent);
         expect(flaggedProps.enableJSXElement.props.path).toBeUndefined();
     });
+
     test('render FailureInstancePanelControl: edit without instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
         const renderResult = render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
+
     test('closeFailureInstancePanel', () => {
-        useOriginalReactElements('@fluentui/react', ['TextField']);
         const description = 'description';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-        const renderResult = render(<FailureInstancePanelControl {...props} />);
+        render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         const genericPanelProp = getMockComponentClassPropsForCall(GenericPanel);
-        const textField = renderResult.getByRole('textbox') as HTMLInputElement;
-        fireEvent.change(textField, { target: { value: description } });
-        act(() => {
-            genericPanelProp.onDismiss();
-        });
+        getMockComponentClassPropsForCall(TextField).onChange(null, description);
+        genericPanelProp.onDismiss();
         expect(genericPanelProp.isOpen).toBe(false);
+        const textFeildProp2 = getMockComponentClassPropsForCall(TextField, 2);
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
-        expect(textField.value).toBe(description);
+        expect(textFeildProp2.value).toEqual(description);
+
         clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });
 
@@ -113,6 +117,7 @@ describe('FailureInstancePanelControlTest', () => {
         ]);
         const description = 'abc';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+
         const renderResult = render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         fireEvent.click(renderResult.getByRole('button'));
@@ -120,6 +125,7 @@ describe('FailureInstancePanelControlTest', () => {
         fireEvent.change(textField, { target: { value: description } });
         expect(textField.value).toBe(description);
     });
+
     test('onSelectorChange ', () => {
         const selector = 'some selector';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
@@ -132,24 +138,30 @@ describe('FailureInstancePanelControlTest', () => {
         fireEvent.change(cssSelector, { target: { value: selector } });
         expect(cssSelector.value).toBe(selector);
     });
+
     test('onValidateSelector ', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+
         const failureInstance = {
             failureDescription: 'new text',
             path: 'some selector',
             snippet: null,
         };
+
         props.failureInstance = failureInstance;
         props.featureFlagStoreData = { manualInstanceDetails: true };
         addPathForValidationMock
             .setup(handler => handler(failureInstance.path))
             .verifiable(Times.once());
+
         const renderResult = render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         fireEvent.click(renderResult.getByRole('button'));
         fireEvent.click(renderResult.getByText('Validate CSS selector'));
+
         addPathForValidationMock.verifyAll();
     });
+
     test('openFailureInstancePanel', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const failureInstance = {
@@ -162,6 +174,7 @@ describe('FailureInstancePanelControlTest', () => {
         const renderResult = render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         fireEvent.click(renderResult.getByRole('button'));
+
         expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull;
         const failureDescription = renderResult.getByLabelText('Comment') as HTMLInputElement;
         expect(failureDescription.value).toEqual(props.failureInstance.failureDescription);
@@ -170,19 +183,23 @@ describe('FailureInstancePanelControlTest', () => {
         const snippetText = renderResult.getByText(props.failureInstance.snippet);
         expect(snippetText).not.toBeNull();
     });
+
     test('onSaveEditedFailureInstance', () => {
         const description = 'text';
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
         props.instanceId = '1';
         props.editFailureInstance = editInstanceMock.object;
+
         const instanceData = {
             failureDescription: description,
             path: null,
             snippet: null,
         };
+
         editInstanceMock
             .setup(handler => handler(instanceData, props.test, props.step, props.instanceId))
             .verifiable(Times.once());
+
         const renderResult = render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         fireEvent.click(renderResult.getByRole('button'));
@@ -191,18 +208,23 @@ describe('FailureInstancePanelControlTest', () => {
         fireEvent.click(renderResult.getByText('Save'));
         expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull;
         editInstanceMock.verifyAll();
+        clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });
+
     test('onAddFailureInstance', () => {
         const description = 'text';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+
         const instanceData = {
             failureDescription: description,
             path: null,
             snippet: null,
         };
+
         addInstanceMock
             .setup(handler => handler(instanceData, props.test, props.step))
             .verifiable(Times.once());
+
         const renderResult = render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         fireEvent.click(renderResult.getByRole('button'));
@@ -213,6 +235,7 @@ describe('FailureInstancePanelControlTest', () => {
         addInstanceMock.verifyAll();
         clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });
+
     test('componentDidMount clears store', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const failureInstance = {
@@ -221,10 +244,13 @@ describe('FailureInstancePanelControlTest', () => {
             snippet: 'snippet for path',
         };
         props.failureInstance = failureInstance;
+
         const component = new FailureInstancePanelControl(props);
         component.componentDidMount();
+
         clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(1));
     });
+
     test('componentDidUpdate reassigns state', () => {
         const prevProps = createPropsWithType(CapturedInstanceActionType.CREATE);
         const newProps = createPropsWithType(CapturedInstanceActionType.CREATE);
@@ -253,6 +279,7 @@ describe('FailureInstancePanelControlTest', () => {
         const filledSnippetText = getByText(newProps.failureInstance.snippet);
         expect(filledSnippetText).not.toBeNull();
     });
+
     function createPropsWithType(
         actionType: CapturedInstanceActionType,
     ): FailureInstancePanelControlProps {
@@ -262,6 +289,7 @@ describe('FailureInstancePanelControlTest', () => {
             path: null,
             snippet: null,
         };
+
         return {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
