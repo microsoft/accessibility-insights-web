@@ -14,4 +14,8 @@ export const useExpandCollapseAllButtonStyles = makeStyles({
         marginTop: '2px!important',
         fontWeight: tokens?.fontSizeBase400,
     },
+
+    customStyleIcon: {
+        color: tokens.colorNeutralForeground2BrandHover,
+    }
 });

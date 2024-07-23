@@ -29,7 +29,7 @@ export type StartOverFactoryProps = {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
     openDialog: (dialogType: StartOverDialogType) => void;
-    buttonRef: IRefObject<IButton>;
+    buttonRef: React.RefObject<HTMLButtonElement>;
     hasSubMenu?: boolean;
 };
 
@@ -76,8 +76,10 @@ export function getStartOverComponentFastPass(props: StartOverFactoryProps): JSX
     return (
         <InsightsCommandButton
             insightsCommandButtonIconProps={{
-                icon: <FluentUIV9Icon iconName='ArrowClockwiseRegular' />,
-                className: startOverProps.iconProps.className,
+                icon: <FluentUIV9Icon iconName='ArrowClockwiseRegular'
+                //customClass={startOverProps.iconProps.className} 
+                />,
+
             }}
             {...startOverProps}
         >

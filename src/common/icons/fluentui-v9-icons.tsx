@@ -13,7 +13,7 @@ import {
     FolderOpenRegular,
     SaveRegular,
     ArrowClockwiseRegular,
-    Checkmark16Filled,
+    Checkmark20Filled,
     ChevronDown20Regular,
     ChevronRight20Regular,
     InfoRegular,
@@ -23,10 +23,14 @@ import {
     ChevronDown32Regular,
     ChevronRight32Regular,
     MoreHorizontalRegular,
+    AddRegular,
+    ChevronDown24Regular,
+    ChevronRight24Regular
 } from '@fluentui/react-icons';
 import { CopyIcon } from 'common/icons/copy-icon';
 import { LadyBugSolidIcon } from 'common/icons/lady-bug-solid-icon';
 import { NamedFC } from 'common/react/named-fc';
+import { isNull, isUndefined } from 'lodash';
 
 import React from 'react';
 
@@ -36,7 +40,7 @@ export const Icons = {
     FolderOpenRegular: FolderOpenRegular,
     SaveRegular: SaveRegular,
     ArrowClockwiseRegular: ArrowClockwiseRegular,
-    Checkmark16Filled: Checkmark16Filled,
+    Checkmark20Filled: Checkmark20Filled,
     ChevronDown20Regular: ChevronDown20Regular,
     ChevronRight20Regular: ChevronRight20Regular,
     info: InfoRegular,
@@ -46,6 +50,9 @@ export const Icons = {
     ChevronDown32Regular: ChevronDown32Regular,
     ChevronRight32Regular: ChevronRight32Regular,
     MoreHorizontalRegular: MoreHorizontalRegular,
+    AddRegular: AddRegular,
+    ChevronDown24Regular: ChevronDown24Regular,
+    ChevronRight24Regular: ChevronRight24Regular
 };
 
 export const IconsStyles = makeStyles({
@@ -63,11 +70,19 @@ export const IconsStyles = makeStyles({
 
 export type FluentUIV9IconProps = {
     iconName: string | any;
-    customClass?: string | any
+    customClass?: string | any;
 };
 
 export const FluentUIV9Icon = NamedFC<FluentUIV9IconProps>('FluentUIV9Icon', props => {
+    console.log('fluent ui 9-->', props?.iconName)
     const styleClasses = IconsStyles();
-    const Icon = Icons[props?.iconName];
-    return <Icon className={mergeClasses(props?.customClass)} />;
+    const isIconAvailable = !isUndefined(props?.iconName);
+
+    if (isIconAvailable) {
+        const Icon = Icons[props?.iconName];
+        return <Icon className={mergeClasses(styleClasses.IconTheme, props?.customClass)} />;
+    }
+
+    return null;
+
 });

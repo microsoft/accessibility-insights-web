@@ -21,15 +21,22 @@ export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
 
         let expandCollapseAllButtonHandler = cardSelectionMessageCreator.collapseAllRules;
         let buttonText = 'Collapse all';
-        let iconName = <FluentUIV9Icon iconName='ChevronDown32Regular' />
+        // let iconName = <FluentUIV9Icon iconName='ChevronDown32Regular' customClass={getStyles.customStyleIcon} />
         let ariaLabel: string | undefined = undefined;
 
         if (allCardsCollapsed) {
             expandCollapseAllButtonHandler = cardSelectionMessageCreator.expandAllRules;
             buttonText = 'Expand all';
-            iconName = <FluentUIV9Icon iconName='ChevronRight32Regular' />
+            // iconName = <FluentUIV9Icon iconName='ChevronRight32Regular' customClass={getStyles.customStyleIcon} />
 
             ariaLabel = 'Expand all rules to show failed instances.';
+        }
+
+        const IconName = () => {
+            if (allCardsCollapsed) {
+                return <FluentUIV9Icon iconName='ChevronRight32Regular' customClass={getStyles.customStyleIcon} />
+            }
+            return <FluentUIV9Icon iconName='ChevronDown32Regular' customClass={getStyles.customStyleIcon} />
         }
 
         return (
@@ -40,7 +47,7 @@ export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
                 aria-label={ariaLabel}
                 aria-expanded={!allCardsCollapsed}
                 onClick={expandCollapseAllButtonHandler}
-                icon={iconName}
+            //  icon={<IconName />}
             >
                 {buttonText}
             </Button>

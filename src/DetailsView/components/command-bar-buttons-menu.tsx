@@ -11,6 +11,7 @@ import {
     MenuItem,
     MenuList,
     MenuPopover,
+    MenuProps,
     MenuTrigger,
     Tooltip,
 } from '@fluentui/react-components';
@@ -27,7 +28,8 @@ export type CommandBarButtonsMenuProps = {
     loadAssessmentButton?: JSX.Element | null;
     transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
-    buttonRef: IRefObject<IButton>;
+    buttonRef?: () => React.RefObject<HTMLInputElement | HTMLButtonElement>;
+    //buttonRef: JSX.Element
 };
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
@@ -66,6 +68,8 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'start over',
             ...props.getStartOverMenuItem(),
         });
+
+
         return (
             <Tooltip content="More actions" relationship="label">
                 <Menu>
@@ -75,6 +79,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                             //icon={<MoreHorizontalRegular />}
                             icon={<FluentUIV9Icon iconName='MoreHorizontalRegular' />}
                             className={styles.commandBarButtonsMenuButton}
+                            ref={props.buttonRef}
                         />
                     </MenuTrigger>
                     <>
@@ -89,7 +94,23 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                             <MenuList className={styles.menuList}>
                                 {overflowItems.map((item, index) => {
                                     return item?.children?.props?.children?.props?.hasSubMenu ? (
-                                        <MenuItem className={styles.menuItem} key={`${item - index}`}>{item.children}</MenuItem>
+                                        // <MenuItem className={styles.menuItem} key={`${item - index}`}>{item.children}</MenuItem>
+                                        // <Menu open={open} onOpenChange={handleOpenChange}>
+                                        //     <MenuTrigger>
+                                        //         <MenuItem>{item?.key}</MenuItem>
+                                        //     </MenuTrigger>
+                                        //     <MenuPopover>
+                                        //         <MenuList>
+                                        //             <MenuItem>{item?.children}</MenuItem>
+                                        //         </MenuList>
+                                        //     </MenuPopover>
+
+                                        // </Menu>
+                                        <>
+                                            <span className={styles.menuItem} key={index}>
+                                                {item.children}
+                                            </span>
+                                        </>
                                     ) : (
                                         <MenuItem
                                             className={styles.menuItem}

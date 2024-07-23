@@ -8,18 +8,55 @@ export const StartOverDropdownStyles = makeStyles({
     menuButton: {
         alignItems: 'flex-start !important',
         fontWeight: '400 !important',
-        marginLeft: '-8px !important',
-        color: tokens.colorCompoundBrandStrokeHover,
+        color: tokens.colorNeutralForeground2,
+        paddingTop: '10px',
+        paddingBottom: '10px',
+
+        ':focus': {
+            border: `1px solid ${tokens.colorStrokeFocus2}`
+        },
+
+        // ':focus': {
+        //     color: `${tokens.colorNeutralForeground1} !important`
+        // },
+        // color: tokens.colorNeutralForeground2,
+
+        // '& > span': {
+        //     '& > svg': {
+        //         color: tokens.colorBrandForeground2,
+        //     }
+        // },
 
         ':hover': {
             background: 'none !important',
             color: tokens.colorNeutralForeground2BrandHover,
 
-            // '& > span': {
-            //     '& > svg': {
-            //         color: `${tokens.colorNeutralForeground2BrandHover}`,
-            //     }
-            // }
+            '& > span': {
+                '& > svg': {
+                    color: tokens.colorNeutralForeground2BrandHover,
+                }
+            }
+        }
+
+
+    },
+
+
+    chevronIcon: {
+        color: tokens.colorNeutralForeground2,
+        //    color: tokens.colorBrandForeground2,
+
+        ':hover': {
+            background: 'none !important',
+            color: tokens.colorNeutralForeground2BrandHover
+        }
+    },
+
+    defaultChevron: {
+        color: `${tokens.colorNeutralStrokeAccessible} !important`,
+
+        ':hover': {
+            color: `unset !important`
         }
     },
 

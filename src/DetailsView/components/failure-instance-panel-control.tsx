@@ -16,6 +16,7 @@ import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-com
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';
 import styles from './failure-instance-panel.scss';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 export interface FailureInstancePanelControlProps {
     step: string;
     test: VisualizationType;
@@ -87,7 +88,7 @@ export class FailureInstancePanelControl extends React.Component<
                     appearance="transparent"
                     aria-label={FailureInstancePanelControl.addFailureInstanceLabel}
                     aria-description="Open add a failure instance panel"
-                    icon={<AddRegular />}
+                    icon={<FluentUIV9Icon iconName='AddRegular' />}
                     onClick={this.openFailureInstancePanel}
                 >
                     {FailureInstancePanelControl.addFailureInstanceLabel}

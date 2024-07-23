@@ -8,6 +8,10 @@
     padding: 9px !important;
     color: $primary-text !important;
 
+    &:focus {
+        border: 1px solid $primary-text !important;
+    }
+
     &:hover {
         background-color: $neutral-2 !important;
     }
@@ -22,8 +26,10 @@
 .menu-item {
     padding-bottom: unset !important;
     
-    // &:hover {
-    //     background: none !important;
+     &:hover {
+         background: none !important;
+     }
+     
     //     color: $insights-button-hover !important;
         
         // & > span {

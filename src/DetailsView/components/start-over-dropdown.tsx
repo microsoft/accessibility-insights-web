@@ -47,7 +47,7 @@ export interface StartOverProps {
     singleTestSuffix: string;
     dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
-    buttonRef: IRefObject<IButton>;
+    buttonRef: React.RefObject<HTMLButtonElement>;
     allTestSuffix: string;
     rightPanelOptions: StartOverContextMenuKeyOptions;
     switcherStartOverPreferences: StartOverContextMenuKeyOptions;
@@ -225,21 +225,26 @@ export const StartOverDropdown: React.FC<StartOverProps> = (props) => {
         props.openDialog('assessment');
     };
 
+
     return (
         <div>
             <Menu>
                 <MenuTrigger disableButtonEnhancement>
                     <MenuButton
+                        ref={props.buttonRef}
                         appearance="transparent"
                         className={stylesValue.menuButton}
-                        icon={<FluentUIV9Icon iconName='ArrowClockwiseRegular' customClass={stylesValue.menuButton} />}
+                        icon={<FluentUIV9Icon iconName='ArrowClockwiseRegular'
+                        //    customClass={stylesValue.chevronIcon}
+                        />
+                        }
                         aria-label="start over menu"
                         //className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
                         menuIcon={
                             direction === 'left' ? (
-                                <FluentUIV9Icon iconName='ChevronRight20Regular' />
+                                <FluentUIV9Icon iconName='ChevronRight20Regular' customClass={stylesValue.chevronIcon} />
                             ) : (
-                                <FluentUIV9Icon iconName='ChevronDown20Regular' />
+                                <FluentUIV9Icon iconName='ChevronDown20Regular' customClass={stylesValue.chevronIcon} />
                             )
                         }
                     >

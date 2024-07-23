@@ -55,6 +55,7 @@ import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
+import { RefObject } from 'react';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
@@ -113,9 +114,9 @@ export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
     DetailsViewCommandBarState
 > {
-    public exportDialogCloseFocus?: IButton;
-    public startOverDialogCloseFocus?: IButton;
-    public transferToAssessmentDialogCloseFocus?: IButton;
+    public exportDialogCloseFocus?: RefObject<HTMLInputElement | HTMLButtonElement>;
+    public startOverDialogCloseFocus?: RefObject<HTMLInputElement | HTMLButtonElement>;
+    public transferToAssessmentDialogCloseFocus?: RefObject<HTMLInputElement | HTMLButtonElement>;
 
     public constructor(props) {
         super(props);
@@ -223,10 +224,10 @@ export class DetailsViewCommandBar extends React.Component<
 
     private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
 
-    private focusReportExportButton = () => this.exportDialogCloseFocus?.focus();
+    private focusReportExportButton = () => this.exportDialogCloseFocus?.current?.focus();
 
     private focusTransferToAssessmentButton = () =>
-        this.transferToAssessmentDialogCloseFocus?.focus();
+        this.transferToAssessmentDialogCloseFocus?.current?.focus();
 
     private renderExportButton = () => {
         const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
@@ -360,7 +361,7 @@ export class DetailsViewCommandBar extends React.Component<
         // Since the start over dialog does not play the closing animation (due
         // to flickering issues), we set focus here instead.
         if (this.startOverDialogClosed(this.state) && !this.startOverDialogClosed(prevState)) {
-            this.startOverDialogCloseFocus?.focus();
+            this.startOverDialogCloseFocus?.current?.focus();
         }
     }
 

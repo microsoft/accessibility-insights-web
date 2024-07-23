@@ -4,6 +4,7 @@ import { Button, themeToTokensObject, webLightTheme } from '@fluentui/react-comp
 import { ChevronDown24Regular, ChevronRight24Regular } from '@fluentui/react-icons';
 import { css } from '@fluentui/utilities';
 import styles from 'common/components/collapsible-component.scss';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import * as React from 'react';
 
 export interface CollapsibleComponentProps {
@@ -56,15 +57,17 @@ export class CollapsibleComponent extends React.Component<
                     aria-expanded={showContent}
                 >
                     {showContent ? (
-                        <ChevronDown24Regular
-                            color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover}
-                            className={styles.collapsible}
-                        />
+                        // <ChevronDown24Regular
+                        //     color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover}
+                        //     className={styles.collapsible}
+                        // />
+                        <FluentUIV9Icon iconName='ChevronDown24Regular' />
                     ) : (
-                        <ChevronRight24Regular
-                            color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover}
-                            className={styles.collapsible}
-                        />
+                        // <ChevronRight24Regular
+                        //     color={themeToTokensObject(webLightTheme).colorCompoundBrandStrokeHover}
+                        //     className={styles.collapsible}
+                        // />
+                        <FluentUIV9Icon iconName='ChevronRight24Regular' />
                     )}
                     {this.props.header}
                 </Button>

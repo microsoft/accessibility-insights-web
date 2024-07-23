@@ -92,7 +92,8 @@ export const CardFooterInstanceActionButtons = (props) => {
                     <Tooltip content="More actions" relationship='label'>
                         <MenuButton className={styles.menuButton}
                             ref={ref => kebabButtonRef.current = ref}
-                            appearance="transparent" icon={<FluentUIV9Icon iconName="MoreVerticalRegular" />} />
+                            appearance="transparent"
+                            icon={<FluentUIV9Icon iconName="MoreVerticalRegular" />} />
                     </Tooltip>
                 </MenuTrigger>
                 <MenuPopover
@@ -127,7 +128,7 @@ export const CardFooterInstanceActionButtons = (props) => {
                                 className={styles.kebabMenuIcon}
                                 //key={item.key}
                                 key={`${item.key}-${index}-kebabMenuItem`}
-                                icon={<FluentUIV9Icon iconName={props.iconName} />}
+                                icon={<FluentUIV9Icon iconName={item?.iconName} />}
                                 {...item}
                             >
                                 {item?.text}
