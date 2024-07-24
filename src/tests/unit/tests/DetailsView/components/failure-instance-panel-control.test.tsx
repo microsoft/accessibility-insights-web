@@ -95,6 +95,7 @@ describe('FailureInstancePanelControlTest', () => {
         act(() => {
             genericPanelProp.onDismiss();
         });
+
         expect(genericPanelProp.isOpen).toBe(false);
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
         expect(textField.value).toBe(description);
@@ -123,6 +124,7 @@ describe('FailureInstancePanelControlTest', () => {
 
         const renderResult = render(<FailureInstancePanelControl {...props} />);
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
+
         fireEvent.click(renderResult.getByRole('button'));
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(textField, { target: { value: description } });
@@ -211,6 +213,7 @@ describe('FailureInstancePanelControlTest', () => {
         fireEvent.click(renderResult.getByText('Save'));
         expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull;
         editInstanceMock.verifyAll();
+        clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });
 
     test('onAddFailureInstance', () => {
