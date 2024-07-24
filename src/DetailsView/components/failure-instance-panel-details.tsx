@@ -62,6 +62,7 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
                                 className={buttonStyles.defaultButton}
                                 onClick={props.onValidateSelector}
                                 disabled={props.path === null}
+                                style={{ width: 180 }}
                             >
                                 Validate CSS selector
                             </Button>

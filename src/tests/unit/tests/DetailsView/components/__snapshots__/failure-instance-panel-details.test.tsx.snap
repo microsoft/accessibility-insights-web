@@ -26,6 +26,7 @@ exports[`FailureInstancePanelDetailsTest renders 1`] = `
           <mock-button
             classname="defaultButton"
             disabled="false"
+            style="width: 180px;"
           >
             Validate CSS selector
           </mock-button>

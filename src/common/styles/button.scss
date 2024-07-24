@@ -55,19 +55,11 @@
 
     .default-button {
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 500;
         height: 32px;
         border: 1px solid $neutral-60;
         color: $neutral-100;
         border-radius: 2px;
-
-        &:hover {
-            border: 1px solid $neutral-60;
-            font-weight: 600;
-            color: $neutral-100;
-            background-color: $neutral-6-5;
-            border-radius: 2px;
-        }
     }
 
     .button-disabled {
@@ -83,21 +75,12 @@
 
     .primary-button {
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 500;
         height: 32px;
         border: 1px solid $communication-primary;
         background-color: $communication-primary;
         color: $always-white;
         border-radius: 2px;
-        border-width: 10px;
-
-        &:hover {
-            border: 1px solid $communication-primary;
-            background-color: $communication-primary;
-            color: $always-white;
-            border-radius: 2px;
-            border-width: 10px;
-        }
     }
 }
 
@@ -118,4 +101,31 @@
         pointer-events: none;
         border-radius: 2px;
     }
+
+    .primary-button {
+        border: 1px solid $communication-tint-40;
+        background-color: $communication-tint-40;
+        color: $always-black;
+
+        &:hover {
+            border: 1px solid $always-white;
+            background-color: $always-white;
+            color: $always-black;
+        }
+    }
+}
+
+.buttons-component .default-button:hover {
+    border: 1px solid $neutral-60;
+    font-weight: 600;
+    color: $neutral-100;
+    background-color: $neutral-6-5;
+    border-radius: 2px;
+}
+
+.buttons-component .primary-button:hover {
+    border: 1px solid $communication-primary;
+    background-color: $communication-primary;
+    color: $always-white;
+    border-radius: 2px;
 }

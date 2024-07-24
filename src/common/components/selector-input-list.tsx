@@ -87,10 +87,11 @@ export class SelectorInputList extends React.Component<
                                             ? buttonStyles.buttonDisabled
                                             : buttonStyles.defaultButton
                                     }
+                                    style={{ width: 'min-content', height: '35px' }}
                                     onClick={this.addSelector}
                                     disabled={!this.state.isTextFieldValueValid}
                                 >
-                                    <AddRegular /> Add Selector
+                                    <AddRegular style={{ fontSize: '30px' }} /> Add Selector
                                 </Button>
                             </div>
                         </div>

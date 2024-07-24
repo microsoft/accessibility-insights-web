@@ -46,6 +46,7 @@ export class ScopingPanel extends React.Component<ScopingPanelProps> {
                     <div className={styles.buttonCol}>
                         <Button
                             appearance="primary"
+                            style={{ width: 'min-width' }}
                             className={mergeClasses(styles.primaryButton, 'closing-scoping-panel')}
                             onClick={
                                 this.props.deps.detailsViewActionMessageCreator.closeScopingPanel
