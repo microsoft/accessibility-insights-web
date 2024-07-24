@@ -85,12 +85,6 @@
 }
 
 :global(.high-contrast-theme) {
-    .default-button {
-        &:hover {
-            background-color: $button-background-hover;
-        }
-    }
-
     .button-disabled {
         font-size: 14px;
         font-weight: 600;
@@ -106,12 +100,6 @@
         border: 1px solid $communication-tint-40;
         background-color: $communication-tint-40;
         color: $always-black;
-
-        &:hover {
-            border: 1px solid $always-white;
-            background-color: $always-white;
-            color: $always-black;
-        }
     }
 }
 
@@ -128,4 +116,14 @@
     background-color: $communication-primary;
     color: $always-white;
     border-radius: 2px;
+}
+
+:global(.high-contrast-theme) .default-button:hover {
+    background-color: $button-background-hover;
+}
+
+:global(.high-contrast-theme) .primary-button:hover {
+    border: 1px solid $always-white;
+    background-color: $always-white;
+    color: $always-black;
 }
