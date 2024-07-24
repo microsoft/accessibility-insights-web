@@ -22,7 +22,7 @@ exports[`DiagnosticViewToggleTest renders details view link when the test does n
     </div>
     <div>
       <mock-link
-        classname="insights-link"
+        classname="adhoc-insights-link"
         href="#"
       >
         List view and filtering

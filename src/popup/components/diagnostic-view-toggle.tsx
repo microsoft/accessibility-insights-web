@@ -183,7 +183,7 @@ export class DiagnosticViewToggle extends React.Component<
 
         return (
             <Link
-                className="insights-link"
+                className="adhoc-insights-link"
                 href="#"
                 onClick={ev =>
                     this.props.actionMessageCreator.openDetailsView(

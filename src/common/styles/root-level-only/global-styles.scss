@@ -66,6 +66,12 @@ button::after {
     }
 }
 
+.adhoc-insights-link {
+    color: $link !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+}
+
 // Add hover state that's not yet in FluentUI to menu items
 // GH Issue: https://github.com/microsoft/fluentui/issues/25330
 .ms-ContextualMenu button:hover {
