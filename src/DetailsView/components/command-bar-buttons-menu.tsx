@@ -28,7 +28,7 @@ export type CommandBarButtonsMenuProps = {
     loadAssessmentButton?: JSX.Element | null;
     transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
-    buttonRef?: () => React.RefObject<HTMLInputElement | HTMLButtonElement>;
+    buttonRef?: React.RefObject<HTMLButtonElement>;
     //buttonRef: JSX.Element
 };
 

@@ -16,7 +16,7 @@ export type TransferToAssessmentButtonDeps = {
 
 export interface TransferToAssessmentButtonProps {
     deps: TransferToAssessmentButtonDeps;
-    buttonRef?: IRefObject<IButton>;
+    buttonRef?: React.RefObject<HTMLInputElement>;
 }
 
 export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-button';

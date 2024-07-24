@@ -12,7 +12,8 @@ import * as React from 'react';
 
 export interface ReportExportButtonProps {
     showReportExportDialog: () => void;
-    buttonRef?: IRefObject<IButton>;
+    //buttonRef?: IRefObject<IButton>;
+    buttonRef?: React.RefObject<HTMLInputElement>
 }
 
 export const reportExportButtonAutomationId = 'report-export-button';
