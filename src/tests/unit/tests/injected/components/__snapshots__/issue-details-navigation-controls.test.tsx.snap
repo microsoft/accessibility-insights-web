@@ -16,7 +16,7 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
             classname="navigationControlsDefaultButton"
             data-automation-id="back"
           >
-             &lt; Back 
+            &lt; Back
           </mock-button>
         </div>
       </div>
@@ -58,7 +58,7 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
             classname="navigationControlsDefaultButton"
             data-automation-id="back"
           >
-             &lt; Back 
+            &lt; Back
           </mock-button>
         </div>
       </div>
@@ -128,7 +128,7 @@ exports[`IssueDetailsNavigationControls render handles failures count multiple f
             classname="navigationControlsDefaultButton"
             data-automation-id="back"
           >
-             &lt; Back 
+            &lt; Back
           </mock-button>
         </div>
       </div>

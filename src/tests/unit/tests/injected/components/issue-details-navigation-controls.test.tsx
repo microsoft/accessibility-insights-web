@@ -125,7 +125,7 @@ describe('IssueDetailsNavigationControls', () => {
                 name: /Back/i,
             });
 
-            expect(backButton.childNodes).toHaveLength(3);
+            expect(backButton.childNodes).toHaveLength(1);
 
             await userEvent.click(backButton);
 

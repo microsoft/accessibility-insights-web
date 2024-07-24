@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, Dialog, DialogFooter, PrimaryButton } from '@fluentui/react';
+import { DefaultButton, PrimaryButton, Dialog, DialogFooter } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
@@ -19,7 +19,6 @@ import {
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
-
 describe('QuickAssessToAssessmentDialog', () => {
     mockReactComponents([DefaultButton, PrimaryButton, DialogFooter]);
     mockReactComponent(Dialog, 'Dialog');

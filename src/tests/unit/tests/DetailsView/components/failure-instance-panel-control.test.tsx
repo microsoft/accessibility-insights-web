@@ -128,6 +128,7 @@ describe('FailureInstancePanelControlTest', () => {
         fireEvent.click(renderResult.getByRole('button'));
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(textField, { target: { value: description } });
+
         expect(textField.value).toBe(description);
     });
 

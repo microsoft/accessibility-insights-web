@@ -43,8 +43,7 @@ export const IssueDetailsNavigationControls = NamedFC<IssueDetailsNavigationCont
                             data-automation-id="back"
                             onClick={onClickBackButton}
                         >
-                            {' '}
-                            {backText}{' '}
+                            {backText}
                         </Button>
                     </div>
                 </div>
