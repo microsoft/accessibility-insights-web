@@ -159,7 +159,7 @@ describe(CardFooterInstanceActionButtons, () => {
         const getButton = result.getByRole('button');
         // console.log('here-->', document.activeElement)
         // //expect(buttonRef).toHaveBeenCalled()
-        expect(document.activeElement === getButton).toBeTruthy();
+        expect(document.activeElement).toBe(getButton);
     })
 
     // it('onIssueFilingSettingsDialogDismissed focuses kebab button', async () => {
@@ -236,7 +236,7 @@ describe(CardFooterInstanceActionButtons, () => {
         const getButton = screen.getByText(/item 1/)
 
         //fileIssueButtonMock.verify(f => f.focus(), Times.once());
-        expect(document.activeElement === getButton).toBeTruthy();
+        expect(document.activeElement).toBe(getButton);
     });
 
     function setupGetMenuItems(

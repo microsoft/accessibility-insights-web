@@ -110,45 +110,23 @@ export interface DetailsViewCommandBarProps {
     featureFlagStoreData: FeatureFlagStoreData;
     dataTransferViewStoreData: DataTransferViewStoreData;
 }
-export class DetailsViewCommandBar extends React.Component<
-    DetailsViewCommandBarProps,
-    DetailsViewCommandBarState
-> {
-    public exportDialogCloseFocus?: IButton;
-    public startOverDialogCloseFocus?: IButton;
-    public transferToAssessmentDialogCloseFocus?: IButton;
+export const DetailsViewCommandBar = (props) => {
+    console.warn('props---->', props)
+    const testRef = React.useRef(null)
+    let exportDialogCloseFocus = React.useRef(null);
+    let startOverDialogCloseFocus = React.useRef(null);
+    let transferToAssessmentDialogCloseFocus = React.useRef(null);
 
-    public constructor(props) {
-        super(props);
-        this.state = {
-            isInvalidLoadAssessmentDialogOpen: false,
-            isLoadAssessmentDialogOpen: false,
-            isReportExportDialogOpen: false,
-            loadedAssessmentData: {} as VersionedAssessmentData,
-            startOverDialogState: 'none',
-        };
-    }
+    const [localState, setLocalState]: any = React.useState({
+        isInvalidLoadAssessmentDialogOpen: false,
+        isLoadAssessmentDialogOpen: false,
+        isReportExportDialogOpen: false,
+        loadedAssessmentData: {} as VersionedAssessmentData,
+        startOverDialogState: 'none',
+    })
 
-    public render(): JSX.Element | null {
-        if (this.props.tabStoreData.isClosed) {
-            return null;
-        }
-
-        return (
-            <div className={styles.detailsViewCommandBar} role="region" aria-label="command bar">
-                {this.renderTargetPageInfo()}
-                {this.renderFarItems()}
-                {this.renderExportDialog()}
-                {this.renderInvalidLoadAssessmentDialog()}
-                {this.renderLoadAssessmentDialog()}
-                {this.renderStartOverDialog()}
-                {this.renderTransferToAssessmentDialog()}
-            </div>
-        );
-    }
-
-    private renderTargetPageInfo(): JSX.Element {
-        const targetPageTitle: string | undefined = this.props.scanMetadata.targetAppInfo.name;
+    const renderTargetPageInfo = (): JSX.Element => {
+        const targetPageTitle: string | undefined = props?.scanMetadata.targetAppInfo.name;
         const tooltipContent = `Switch to target page: ${targetPageTitle}`;
         return (
             <div className={styles.detailsViewTargetPage} aria-labelledby="switch-to-target">
@@ -157,7 +135,7 @@ export class DetailsViewCommandBar extends React.Component<
                     tooltipContent={tooltipContent}
                     role="link"
                     className={styles.targetPageLink}
-                    onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
+                    onClick={props?.deps.detailsViewActionMessageCreator.switchToTargetTab}
                     aria-label={tooltipContent}
                 >
                     <span className={styles.targetPageTitle}>{targetPageTitle}</span>
@@ -166,21 +144,22 @@ export class DetailsViewCommandBar extends React.Component<
         );
     }
 
-    private renderFarItems(): JSX.Element | null {
-        if (this.props.narrowModeStatus.isCommandBarCollapsed) {
-            return this.renderCommandButtonsMenu();
+    const renderFarItems = (): JSX.Element | null => {
+        if (props?.narrowModeStatus.isCommandBarCollapsed) {
+            return renderCommandButtonsMenu();
         } else {
-            return this.renderCommandButtons();
+            return renderCommandButtons();
         }
     }
 
-    private renderCommandButtons(): JSX.Element | null {
-        const reportExportElement: JSX.Element | null = this.renderExportButton();
-        const startOverElement: JSX.Element = this.renderStartOverButton();
-        const saveAssessmentButtonElement: JSX.Element | null = this.renderSaveAssessmentButton();
-        const loadAssessmentButtonElement: JSX.Element | null = this.renderLoadAssessmentButton();
+
+    const renderCommandButtons = (): JSX.Element | null => {
+        const reportExportElement: JSX.Element | null = renderExportButton();
+        const startOverElement: JSX.Element = renderStartOverButton();
+        const saveAssessmentButtonElement: JSX.Element | null = renderSaveAssessmentButton();
+        const loadAssessmentButtonElement: JSX.Element | null = renderLoadAssessmentButton();
         const transferToAssessmentButtonElement: JSX.Element | null =
-            this.renderTransferToAssessmentButton();
+            renderTransferToAssessmentButton();
 
         if (
             reportExportElement ||
@@ -203,40 +182,42 @@ export class DetailsViewCommandBar extends React.Component<
         return null;
     }
 
-    private renderCommandButtonsMenu(): JSX.Element {
+    const renderCommandButtonsMenu = (): JSX.Element => {
         return (
             <CommandBarButtonsMenu
-                renderExportReportButton={this.renderExportButton}
-                saveAssessmentButton={this.renderSaveAssessmentButton()}
-                loadAssessmentButton={this.renderLoadAssessmentButton()}
-                transferToAssessmentButton={this.renderTransferToAssessmentButton()}
-                getStartOverMenuItem={this.getStartOverMenuItem}
-                buttonRef={ref => {
-                    this.exportDialogCloseFocus = ref ?? undefined;
-                    this.startOverDialogCloseFocus = ref ?? undefined;
-                    this.transferToAssessmentDialogCloseFocus = ref ?? undefined;
-                }}
+                renderExportReportButton={renderExportButton}
+                saveAssessmentButton={renderSaveAssessmentButton()}
+                loadAssessmentButton={renderLoadAssessmentButton()}
+                transferToAssessmentButton={renderTransferToAssessmentButton()}
+                getStartOverMenuItem={getStartOverMenuItem}
+                buttonRef={startOverDialogCloseFocus}
+            //buttonRef={(ref: React.RefObject<HTMLButtonElement>) => startOverDialogCloseFocus = ref ?? undefined}
+            // buttonRef={ref => {
+            //     exportDialogCloseFocus = ref ?? undefined;
+            //     startOverDialogCloseFocus = ref ?? undefined;
+            //     transferToAssessmentDialogCloseFocus = ref ?? undefined;
+            // }}
             />
         );
     }
 
-    private showReportExportDialog = () => this.setState({ isReportExportDialogOpen: true });
 
-    private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
+    const showReportExportDialog = () => setLocalState({ isReportExportDialogOpen: true });
 
-    private focusReportExportButton = () => this.exportDialogCloseFocus?.focus();
+    const dismissReportExportDialog = () => setLocalState({ isReportExportDialogOpen: false });
 
-    private focusTransferToAssessmentButton = () =>
-        this.transferToAssessmentDialogCloseFocus?.focus();
+    const focusReportExportButton = () => exportDialogCloseFocus?.current?.focus();
 
-    private renderExportButton = () => {
+    const focusTransferToAssessmentButton = () => transferToAssessmentDialogCloseFocus?.current?.focus();
+
+    const renderExportButton = () => {
         const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
-            visualizationConfigurationFactory: this.props.visualizationConfigurationFactory,
-            selectedTest: this.props.selectedTest,
-            tabStoreData: this.props.tabStoreData,
+            visualizationConfigurationFactory: props?.visualizationConfigurationFactory,
+            selectedTest: props?.selectedTest,
+            tabStoreData: props?.tabStoreData,
         };
 
-        const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(
+        const showButton = props?.switcherNavConfiguration.shouldShowReportExportButton(
             shouldShowReportExportButtonProps,
         );
 
@@ -245,157 +226,212 @@ export class DetailsViewCommandBar extends React.Component<
         }
         return (
             <ReportExportButton
-                showReportExportDialog={this.showReportExportDialog}
-                buttonRef={ref => (this.exportDialogCloseFocus = ref ?? undefined)}
+                showReportExportDialog={showReportExportDialog}
+                //buttonRef={ref => (exportDialogCloseFocus = ref ?? undefined)}
+                buttonRef={exportDialogCloseFocus}
             />
         );
     };
 
-    private renderExportDialog(): JSX.Element | null {
-        return this.props.switcherNavConfiguration.ReportExportDialogFactory({
-            ...this.props,
-            isOpen: this.state.isReportExportDialogOpen,
-            dismissExportDialog: this.dismissReportExportDialog,
-            afterDialogDismissed: this.focusReportExportButton,
+    const renderExportDialog = (): JSX.Element | null => {
+        return props?.switcherNavConfiguration.ReportExportDialogFactory({
+            ...props,
+            isOpen: localState.isReportExportDialogOpen,
+            dismissExportDialog: dismissReportExportDialog,
+            afterDialogDismissed: focusReportExportButton,
         });
     }
 
-    private renderSaveAssessmentButton = (): JSX.Element | null => {
-        return this.props.switcherNavConfiguration.SaveAssessmentButton({
-            ...this.props,
+    const renderSaveAssessmentButton = (): JSX.Element | null => {
+        return props?.switcherNavConfiguration.SaveAssessmentButton({
+            ...props,
         });
     };
 
-    private renderTransferToAssessmentButton = (): JSX.Element | null => {
-        return this.props.switcherNavConfiguration.TransferToAssessmentButton({
-            ...this.props,
-            buttonRef: ref => (this.transferToAssessmentDialogCloseFocus = ref ?? undefined),
+    const renderTransferToAssessmentButton = (): JSX.Element | null => {
+        return props?.switcherNavConfiguration.TransferToAssessmentButton({
+            ...props,
+            buttonRef: ref => (transferToAssessmentDialogCloseFocus = ref ?? undefined),
         });
     };
 
-    private renderTransferToAssessmentDialog(): JSX.Element {
+    const renderTransferToAssessmentDialog = (): JSX.Element => {
         return (
             <QuickAssessToAssessmentDialog
                 isShown={
-                    this.props.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog
+                    props?.dataTransferViewStoreData.showQuickAssessToAssessmentConfirmDialog
                 }
-                afterDialogDismissed={this.focusTransferToAssessmentButton}
-                {...this.props}
+                afterDialogDismissed={focusTransferToAssessmentButton}
+                {...props}
             />
         );
     }
 
-    private renderLoadAssessmentButton = (): JSX.Element | null => {
-        return this.props.switcherNavConfiguration.LoadAssessmentButton({
-            ...this.props,
-            handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
+    const renderLoadAssessmentButton = (): JSX.Element | null => {
+        return props?.switcherNavConfiguration.LoadAssessmentButton({
+            ...props,
+            handleLoadAssessmentButtonClick: handleLoadAssessmentButtonClick,
         });
     };
 
-    private renderLoadAssessmentDialog = (): JSX.Element => {
+    const renderLoadAssessmentDialog = (): JSX.Element => {
         return (
             <LoadAssessmentDialog
-                {...this.props}
-                isOpen={this.state.isLoadAssessmentDialogOpen}
-                prevTab={this.props.assessmentStoreData.persistedTabInfo}
-                loadedAssessmentData={this.state.loadedAssessmentData}
-                tabId={this.props.tabStoreData.id!}
-                onClose={this.toggleLoadAssessmentDialog}
+                {...props}
+                isOpen={localState.isLoadAssessmentDialogOpen}
+                prevTab={props?.assessmentStoreData.persistedTabInfo}
+                loadedAssessmentData={localState.loadedAssessmentData}
+                tabId={props?.tabStoreData.id!}
+                onClose={toggleLoadAssessmentDialog}
             />
         );
     };
 
-    private renderInvalidLoadAssessmentDialog = (): JSX.Element => {
+    const renderInvalidLoadAssessmentDialog = (): JSX.Element => {
         return (
             <InvalidLoadAssessmentDialog
-                {...this.props}
-                isOpen={this.state.isInvalidLoadAssessmentDialogOpen}
-                onClose={this.toggleInvalidLoadAssessmentDialog}
+                {...props}
+                isOpen={localState.isInvalidLoadAssessmentDialogOpen}
+                onClose={toggleInvalidLoadAssessmentDialog}
             />
         );
     };
 
-    private toggleInvalidLoadAssessmentDialog = () => {
-        this.setState(prevState => ({
+    const toggleInvalidLoadAssessmentDialog = () => {
+        setLocalState(prevState => ({
             isInvalidLoadAssessmentDialogOpen: !prevState.isInvalidLoadAssessmentDialogOpen,
         }));
     };
 
-    private toggleLoadAssessmentDialog = () => {
-        this.setState(prevState => ({
+    const toggleLoadAssessmentDialog = () => {
+        setLocalState(prevState => ({
             isLoadAssessmentDialogOpen: !prevState.isLoadAssessmentDialogOpen,
         }));
     };
 
-    private setAssessmentState = (parsedAssessmentData: VersionedAssessmentData) => {
-        this.setState(_ => ({
+    const setAssessmentState = (parsedAssessmentData: VersionedAssessmentData) => {
+        setLocalState(_ => ({
             loadedAssessmentData: parsedAssessmentData,
         }));
     };
 
-    private handleLoadAssessmentButtonClick = () => {
-        this.props.deps.loadAssessmentHelper.getAssessmentForLoad(
-            this.setAssessmentState,
-            this.toggleInvalidLoadAssessmentDialog,
-            this.toggleLoadAssessmentDialog,
-            this.props.assessmentStoreData.persistedTabInfo,
-            this.props.tabStoreData.id!,
+    const handleLoadAssessmentButtonClick = () => {
+        props?.deps.loadAssessmentHelper.getAssessmentForLoad(
+            setAssessmentState,
+            toggleInvalidLoadAssessmentDialog,
+            toggleLoadAssessmentDialog,
+            props?.assessmentStoreData.persistedTabInfo,
+            props?.tabStoreData.id!,
         );
     };
 
-    private showStartOverDialog = (dialogState: StartOverDialogType) => {
-        this.setState({ startOverDialogState: dialogState });
+    const showStartOverDialog = (dialogState: StartOverDialogType) => {
+        setLocalState({ startOverDialogState: dialogState });
     };
 
-    private dismissStartOverDialog = () => {
-        this.setState({ startOverDialogState: dialogClosedState });
+    const dismissStartOverDialog = () => {
+        setLocalState({ startOverDialogState: dialogClosedState });
     };
 
-    private startOverDialogClosed(state: DetailsViewCommandBarState): boolean {
+    const startOverDialogClosed = (state: DetailsViewCommandBarState): boolean => {
+        startOverDialogCloseFocus?.current?.focus();
         return state.startOverDialogState === 'none';
     }
 
-    public componentDidUpdate(prevProps, prevState): void {
-        // Setting focus after closing the Report Export dialog is handled in the
-        // afterDialogDismissed prop, which is called after the closing animation.
-        // Since the start over dialog does not play the closing animation (due
-        // to flickering issues), we set focus here instead.
-        if (this.startOverDialogClosed(this.state) && !this.startOverDialogClosed(prevState)) {
-            this.startOverDialogCloseFocus?.focus();
-        }
-    }
+    // const componentDidUpdate(prevProps, prevState): void {
+    //     // Setting focus after closing the Report Export dialog is handled in the
+    //     // afterDialogDismissed prop, which is called after the closing animation.
+    //     // Since the start over dialog does not play the closing animation (due
+    //     // to flickering issues), we set focus here instead.
+    //     if (startOverDialogClosed(localState) && !startOverDialogClosed(prevState)) {
+    //         startOverDialogCloseFocus?.current?.focus();
+    //     }
+    // }
 
-    private renderStartOverButton = () => {
-        const startOverProps = this.getStartOverProps();
+    React.useEffect((): void => {
+        if (startOverDialogClosed(localState) && !startOverDialogClosed(localState)) {
+            startOverDialogCloseFocus?.current?.focus();
+        }
+    }, [startOverDialogClosed])
+
+    // React.useEffect(() => {
+    //     //startOverDialogClosed(localState)
+    //     startOverDialogCloseFocus?.current?.removeAttribute('textprediction');
+    //     startOverDialogCloseFocus?.current?.setAttribute('writingsuggestions', 'false')
+    //     startOverDialogCloseFocus?.current?.focus();
+    // }, [startOverDialogClosed])
+    // React.useEffect(() => {
+    //     if (startOverDialogClosed(localState)) {
+    //         startOverDialogCloseFocus?.current?.removeAttribute('textprediction');
+    //         startOverDialogCloseFocus?.current?.setAttribute('writingsuggestions', 'false')
+    //         startOverDialogCloseFocus?.current?.focus();
+    //     }
+
+    //     exportDialogCloseFocus?.current?.focus();
+
+    // }, [localState]);
+
+    const renderStartOverButton = () => {
+        const startOverProps = getStartOverProps();
         const startOverComponentFactory =
-            this.props.switcherNavConfiguration.StartOverComponentFactory;
+            props?.switcherNavConfiguration.StartOverComponentFactory;
         return startOverComponentFactory.getStartOverComponent(startOverProps);
     };
 
-    private getStartOverMenuItem = () => {
-        const startOverProps = this.getStartOverProps('hasSubMenu');
+    const getStartOverMenuItem = () => {
+        const startOverProps = getStartOverProps('hasSubMenu');
         const startOverComponentFactory =
-            this.props.switcherNavConfiguration.StartOverComponentFactory;
+            props?.switcherNavConfiguration.StartOverComponentFactory;
         return startOverComponentFactory.getStartOverMenuItem(startOverProps);
     };
 
-    private getStartOverProps = (value?: string) => {
+    const getStartOverProps = (value?: string) => {
         return {
-            ...this.props,
+            ...props,
             // withComponent: true,
             hasSubMenu: value ? true : false,
-            openDialog: this.showStartOverDialog,
-            buttonRef: ref => (this.startOverDialogCloseFocus = ref),
+            openDialog: showStartOverDialog,
+            //buttonRef: ref => (startOverDialogCloseFocus = ref),
+            buttonRef: startOverDialogCloseFocus,
         };
     };
 
-    private renderStartOverDialog(): JSX.Element {
+    const renderStartOverDialog = (): JSX.Element => {
         const dialogProps: StartOverDialogProps = {
-            ...this.props,
-            dialogState: this.state.startOverDialogState,
-            dismissDialog: this.dismissStartOverDialog,
+            ...props,
+            dialogState: localState.startOverDialogState,
+            dismissDialog: dismissStartOverDialog,
         };
 
         return <StartOverDialog {...dialogProps} />;
     }
+
+
+
+    return (
+        props?.tabStoreData.isClosed ? null : <div className={styles.detailsViewCommandBar} role="region" aria-label="command bar">
+            <button ref={testRef}>here</button>
+            <button onClick={() => {
+                testRef?.current?.removeAttribute('textprediction');
+                testRef?.current?.setAttribute('writingsuggestions', 'false');
+                testRef?.current?.focus();
+            }}>click</button>
+            {renderTargetPageInfo()}
+            {renderFarItems()}
+            {renderExportDialog()}
+            {renderInvalidLoadAssessmentDialog()}
+            {renderLoadAssessmentDialog()}
+            {renderStartOverDialog()}
+            {renderTransferToAssessmentDialog()}
+        </div>
+    );
+
+
 }
+
+
+
+
+
+
+
