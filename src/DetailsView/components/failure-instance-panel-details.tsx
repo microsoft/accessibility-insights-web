@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Icon, ILabelStyles, ITextFieldStyles, TextField } from '@fluentui/react';
-import { Button } from '@fluentui/react-components';
+import { Button, mergeClasses } from '@fluentui/react-components';
 import buttonStyles from 'common/styles/button.scss';
 import * as React from 'react';
 import { NamedFC } from '../../common/react/named-fc';
@@ -59,10 +59,9 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
                     <div className={buttonStyles.buttonsComponent}>
                         <div className={buttonStyles.buttonCol}>
                             <Button
-                                className={buttonStyles.defaultButton}
+                                className={mergeClasses(buttonStyles.defaultButton, styles.validateCssButton)}
                                 onClick={props.onValidateSelector}
                                 disabled={props.path === null}
-                                style={{ width: 180 }}
                             >
                                 Validate CSS selector
                             </Button>

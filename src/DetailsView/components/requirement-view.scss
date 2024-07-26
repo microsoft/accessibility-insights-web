@@ -23,6 +23,13 @@
         margin-bottom: 1vh;
         margin-top: 1vh;
         border: 1px solid $neutral-30 !important;
+        border-radius: 2px !important;
+
+        &:focus {
+            outline: 1px solid;
+            outline-offset: -4px;
+            box-shadow: none !important;
+        }
     }
 
     .requirement-content {

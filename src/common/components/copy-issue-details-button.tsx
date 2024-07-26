@@ -66,7 +66,7 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
             <>
                 <Toast ref={this.toastRef} deps={this.props.deps} />
                 <Button
-                    className={mergeClasses('copy-issue-details-button', styles.commandBarButton)}
+                    className={mergeClasses('copy-issue-details-button', styles.detailsDialogButton)}
                     onClick={this.copyButtonClicked}
                 >
                     <CopyIcon />

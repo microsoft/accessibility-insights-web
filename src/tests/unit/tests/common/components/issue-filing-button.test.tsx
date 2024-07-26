@@ -111,9 +111,8 @@ describe('IssueFilingButtonTest', () => {
         issueFilingActionMessageCreatorMock
             .setup(creator => creator.fileIssue(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
             .verifiable(Times.once());
-        useOriginalReactElements('@fluentui/react-components', ['Button']);
         const renderResult = render(<IssueFilingButton {...props} />);
-        await userEvent.click(renderResult.getByRole('button'));
+        await userEvent.click(renderResult.container.querySelector('mock-button'));
 
         expect(renderResult.asFragment()).toMatchSnapshot();
         const needSettingProps = getMockComponentClassPropsForCall(
@@ -140,14 +139,13 @@ describe('IssueFilingButtonTest', () => {
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
-        useOriginalReactElements('@fluentui/react-components', ['Button']);
         const renderResult = render(<IssueFilingButton {...props} />);
         const needSettingProps = getMockComponentClassPropsForCall(
             IssueFilingNeedsSettingsHelpText,
         );
         expect(needSettingProps.isOpen).toBe(false);
 
-        await userEvent.click(renderResult.getByRole('button'));
+        await userEvent.click(renderResult.container.querySelector('mock-button'));
         expect(renderResult.asFragment()).toMatchSnapshot();
         issueFilingActionMessageCreatorMock.verifyAll();
         const needSettingPropsAfterClick = getMockComponentClassPropsForCall(

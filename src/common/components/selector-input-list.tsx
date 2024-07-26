@@ -8,7 +8,7 @@ import {
     List,
     TextField,
 } from '@fluentui/react';
-import { Button } from '@fluentui/react-components';
+import { Button, mergeClasses } from '@fluentui/react-components';
 import { AddRegular } from '@fluentui/react-icons';
 import styles from 'common/components/selector-input-list.scss';
 import buttonStyles from 'common/styles/button.scss';
@@ -85,13 +85,12 @@ export class SelectorInputList extends React.Component<
                                     className={
                                         !this.state.isTextFieldValueValid
                                             ? buttonStyles.buttonDisabled
-                                            : buttonStyles.defaultButton
+                                            : mergeClasses(buttonStyles.defaultButton, styles.selectorInputButton)
                                     }
-                                    style={{ width: 'min-content', height: '35px' }}
                                     onClick={this.addSelector}
                                     disabled={!this.state.isTextFieldValueValid}
                                 >
-                                    <AddRegular style={{ fontSize: '30px' }} /> Add Selector
+                                    <AddRegular className={styles.addSelector} /> Add Selector
                                 </Button>
                             </div>
                         </div>

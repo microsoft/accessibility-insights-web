@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { Button } from '@fluentui/react-components';
+import { Icon } from '@fluentui/react';
 import { render } from '@testing-library/react';
 import { Requirement } from 'assessments/types/requirement';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -19,9 +20,10 @@ import {
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react-components');
+jest.mock('@fluentui/react');
 
 describe('NextRequirementButton', () => {
-    mockReactComponents([Button]);
+    mockReactComponents([Button, (Icon as any).type]);
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: React.MouseEvent<HTMLElement>;
     let props: NextRequirementButtonProps;

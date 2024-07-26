@@ -3,49 +3,6 @@
 
 @import '../../common/styles/common.scss';
 
-.navigation-controls-buttons-component {
-    display: flex;
-    justify-content: flex-end;
-
-    .navigation-controls-button-col + .navigation-controls-button-col {
-        margin-left: 8px;
-    }
-
-    .navigation-controls-default-button {
-        font-size: 14px;
-        font-weight: 600;
-        height: 32px;
-        border: 1px solid $neutral-60;
-        color: $neutral-100;
-        border-radius: 2px;
-
-        &:hover {
-            border: 1px solid $neutral-60;
-            font-weight: 600;
-            color: $neutral-100;
-            background-color: $neutral-6-5;
-            border-radius: 2px;
-        }
-    }
-}
-
-.command-bar-button {
-    font-size: 14px;
-    font-weight: 600;
-    height: 32px;
-    border: 1px solid $neutral-55 !important;
-    color: $neutral-70 !important;
-    border-radius: 2px !important;
-
-    &:hover {
-        border: 1px solid $neutral-55 !important;
-        font-weight: 600;
-        color: $neutral-70 !important;
-        background-color: $neutral-6-5 !important;
-        border-radius: 2px !important;
-    }
-}
-
 .buttons-component {
     display: flex;
 
@@ -60,11 +17,16 @@
         border: 1px solid $neutral-60;
         color: $neutral-100;
         border-radius: 2px;
+
+        &:focus {
+            outline: 1px solid;
+            outline-offset: -4px;
+        }
     }
 
     .button-disabled {
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 500;
         height: 32px;
         border: 1px solid $neutral-4;
         background-color: $neutral-4;
@@ -81,6 +43,11 @@
         background-color: $communication-primary;
         color: $always-white;
         border-radius: 2px;
+
+        &:focus {
+            outline: 1px solid;
+            outline-offset: -4px;
+        }
     }
 }
 
@@ -126,4 +93,26 @@
     border: 1px solid $always-white;
     background-color: $always-white;
     color: $always-black;
+}
+
+.details-dialog-button {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    height: 32px;
+    border: 1px solid $neutral-55 !important;
+    color: $neutral-70 !important;
+    border-radius: 2px !important;
+
+    &:hover {
+        border: 1px solid $neutral-55 !important;
+        font-weight: 600;
+        color: $neutral-70 !important;
+        background-color: $neutral-6-5 !important;
+        border-radius: 2px !important;
+    }
+
+    &:focus {
+        outline: 1px solid;
+        outline-offset: -4px;
+    }
 }

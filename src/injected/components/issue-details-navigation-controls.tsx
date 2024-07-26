@@ -36,32 +36,24 @@ export const IssueDetailsNavigationControls = NamedFC<IssueDetailsNavigationCont
 
         const renderBackButton = () =>
             !props.dialogHandler.isBackButtonDisabled(props.container) && (
-                <div className={styles.navigationControlsButtonsComponent}>
-                    <div className={styles.navigationControlsButtonCol}>
-                        <Button
-                            className={styles.navigationControlsDefaultButton}
-                            data-automation-id="back"
-                            onClick={onClickBackButton}
-                        >
-                            {backText}
-                        </Button>
-                    </div>
-                </div>
+                <Button
+                    className={styles.detailsDialogButton}
+                    data-automation-id="back"
+                    onClick={onClickBackButton}
+                >
+                    {backText}
+                </Button>
             );
 
         const renderNextButton = () =>
             !props.dialogHandler.isNextButtonDisabled(props.container) && (
-                <div className={styles.navigationControlsButtonsComponent}>
-                    <div className={styles.navigationControlsButtonCol}>
-                        <Button
-                            className={styles.navigationControlsDefaultButton}
-                            data-automation-id="next"
-                            onClick={onClickNextButton}
-                        >
-                            {nextText}
-                        </Button>
-                    </div>
-                </div>
+                <Button
+                    className={styles.detailsDialogButton}
+                    data-automation-id="next"
+                    onClick={onClickNextButton}
+                >
+                    {nextText}
+                </Button>
             );
 
         return (

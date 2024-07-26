@@ -64,7 +64,6 @@ describe('ScopingPanelTest', () => {
                     <div className={styles.buttonCol}>
                         <Button
                             appearance="primary"
-                            style={{ width: 'min-width' }}
                             className={mergeClasses(styles.primaryButton, 'closing-scoping-panel')}
                             onClick={
                                 testProps.deps.detailsViewActionMessageCreator.closeScopingPanel

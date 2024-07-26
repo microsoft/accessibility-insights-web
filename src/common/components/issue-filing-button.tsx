@@ -74,7 +74,7 @@ export class IssueFilingButton extends React.Component<
             <>
                 <Button
                     appearance="primary"
-                    className={mergeClasses('file-issue-button', styles.commandBarButton)}
+                    className={mergeClasses('file-issue-button', styles.detailsDialogButton)}
                     onClick={event => this.onClickFileIssueButton(event)}
                 >
                     <LadyBugSolidIcon />
