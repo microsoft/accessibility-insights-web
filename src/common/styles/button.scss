@@ -3,6 +3,25 @@
 
 @import '../../common/styles/common.scss';
 
+:global(.high-contrast-theme) {
+    .button-disabled {
+        font-size: 14px;
+        font-weight: 600;
+        height: 32px;
+        border: 1px solid $button-border;
+        background-color: $button-background-disable;
+        color: $neutral-20;
+        pointer-events: none;
+        border-radius: 2px;
+    }
+
+    .primary-button {
+        border: 1px solid $communication-tint-40;
+        background-color: $communication-tint-40;
+        color: $always-black;
+    }
+}
+
 .buttons-component {
     display: flex;
 
@@ -48,25 +67,6 @@
             outline: 1px solid;
             outline-offset: -4px;
         }
-    }
-}
-
-:global(.high-contrast-theme) {
-    .button-disabled {
-        font-size: 14px;
-        font-weight: 600;
-        height: 32px;
-        border: 1px solid $button-border;
-        background-color: $button-background-disable;
-        color: $neutral-20;
-        pointer-events: none;
-        border-radius: 2px;
-    }
-
-    .primary-button {
-        border: 1px solid $communication-tint-40;
-        background-color: $communication-tint-40;
-        color: $always-black;
     }
 }
 

@@ -85,7 +85,10 @@ export class SelectorInputList extends React.Component<
                                     className={
                                         !this.state.isTextFieldValueValid
                                             ? buttonStyles.buttonDisabled
-                                            : mergeClasses(buttonStyles.defaultButton, styles.selectorInputButton)
+                                            : mergeClasses(
+                                                  buttonStyles.defaultButton,
+                                                  styles.selectorInputButton,
+                                              )
                                     }
                                     onClick={this.addSelector}
                                     disabled={!this.state.isTextFieldValueValid}

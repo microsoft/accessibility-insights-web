@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Button } from '@fluentui/react-components';
 import { Icon } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { Requirement } from 'assessments/types/requirement';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';

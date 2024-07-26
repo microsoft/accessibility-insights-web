@@ -59,7 +59,10 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
                     <div className={buttonStyles.buttonsComponent}>
                         <div className={buttonStyles.buttonCol}>
                             <Button
-                                className={mergeClasses(buttonStyles.defaultButton, styles.validateCssButton)}
+                                className={mergeClasses(
+                                    buttonStyles.defaultButton,
+                                    styles.validateCssButton,
+                                )}
                                 onClick={props.onValidateSelector}
                                 disabled={props.path === null}
                             >

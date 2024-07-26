@@ -21,7 +21,6 @@ import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
-    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { It, IMock, Mock, Times } from 'typemoq';
 import { LadyBugSolidIcon } from '../../../../../../src/common/icons/lady-bug-solid-icon';

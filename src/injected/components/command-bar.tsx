@@ -49,7 +49,10 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const renderInspectButton = (): JSX.Element => {
         return (
             <Button
-                className={mergeClasses('insights-dialog-button-inspect', styles.detailsDialogButton)}
+                className={mergeClasses(
+                    'insights-dialog-button-inspect',
+                    styles.detailsDialogButton,
+                )}
                 onClick={props.onClickInspectButton}
             >
                 <FileHTMLIcon />
