@@ -6,7 +6,7 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
     class="insights-dialog-target-button-container"
   >
     <mock-button>
-      <mock-filehtmlicon />
+      <mock-documentsearch20regular />
       <div
         class="ms-Button-label"
       >
@@ -46,7 +46,7 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
     class="insights-dialog-target-button-container"
   >
     <mock-button>
-      <mock-filehtmlicon />
+      <mock-documentsearch20regular />
       <div
         class="ms-Button-label"
       >
@@ -92,7 +92,7 @@ exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
     class="insights-dialog-target-button-container"
   >
     <mock-button>
-      <mock-filehtmlicon />
+      <mock-documentsearch20regular />
       <div
         class="ms-Button-label"
       >
@@ -132,7 +132,7 @@ exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
     class="insights-dialog-target-button-container"
   >
     <mock-button>
-      <mock-filehtmlicon />
+      <mock-documentsearch20regular />
       <div
         class="ms-Button-label"
       >

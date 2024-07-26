@@ -7,7 +7,7 @@ exports[`CopyIssueDetailsButtonTest render 1`] = `
     class="toastContainer"
   />
   <mock-button>
-    <mock-copyicon />
+    <mock-documentcopy20regular />
     <div
       class="ms-Button-label"
     >

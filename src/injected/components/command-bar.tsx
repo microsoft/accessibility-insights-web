@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { BaseButton } from '@fluentui/react';
 import { Button, mergeClasses } from '@fluentui/react-components';
+import { DocumentSearch20Regular } from '@fluentui/react-icons';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
-
 import {
     CopyIssueDetailsButton,
     CopyIssueDetailsButtonDeps,
@@ -14,7 +14,6 @@ import {
     IssueFilingButtonDeps,
 } from '../../common/components/issue-filing-button';
 import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
-import { FileHTMLIcon } from '../../common/icons/file-html-icon';
 import { NamedFC } from '../../common/react/named-fc';
 import styles from '../../common/styles/button.scss';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
@@ -55,7 +54,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                 )}
                 onClick={props.onClickInspectButton}
             >
-                <FileHTMLIcon />
+                <DocumentSearch20Regular />
                 <div className="ms-Button-label">Inspect HTML</div>
             </Button>
         );

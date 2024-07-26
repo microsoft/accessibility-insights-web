@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DocumentSearch20Regular } from '@fluentui/react-icons';
 import { render } from '@testing-library/react';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
@@ -9,7 +10,6 @@ import { BaseButton } from '../../../../../../node_modules/@fluentui/react';
 import { Button } from '../../../../../../node_modules/@fluentui/react-components';
 import { CopyIssueDetailsButton } from '../../../../../common/components/copy-issue-details-button';
 import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
-import { FileHTMLIcon } from '../../../../../common/icons/file-html-icon';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import {
@@ -28,10 +28,15 @@ jest.mock('../../../../../common/components/copy-issue-details-button');
 jest.mock('../../../../../../node_modules/@fluentui/react');
 jest.mock('../../../../../../node_modules/@fluentui/react-components');
 jest.mock('../../../../../common/components/issue-filing-button');
-jest.mock('../../../../../common/icons/file-html-icon');
+jest.mock('@fluentui/react-icons');
 
 describe('CommandBar', () => {
-    mockReactComponents([CopyIssueDetailsButton, Button, IssueFilingButton, FileHTMLIcon]);
+    mockReactComponents([
+        CopyIssueDetailsButton,
+        Button,
+        IssueFilingButton,
+        DocumentSearch20Regular,
+    ]);
     const ruleResult = {
         failureSummary: 'RR-failureSummary',
         guidanceLinks: [

@@ -5,7 +5,7 @@ exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
   <mock-button
     appearance="primary"
   >
-    <mock-ladybugsolidicon />
+    <mock-bug20filled />
     <div
       class="ms-Button-label"
     >
@@ -28,7 +28,7 @@ exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to f
   <mock-button
     appearance="primary"
   >
-    <mock-ladybugsolidicon />
+    <mock-bug20filled />
     <div
       class="ms-Button-label"
     >
@@ -51,7 +51,7 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
   <mock-button
     appearance="primary"
   >
-    <mock-ladybugsolidicon />
+    <mock-bug20filled />
     <div
       class="ms-Button-label"
     >
@@ -74,7 +74,7 @@ exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
   <mock-button
     appearance="primary"
   >
-    <mock-ladybugsolidicon />
+    <mock-bug20filled />
     <div
       class="ms-Button-label"
     >

@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Button, mergeClasses } from '@fluentui/react-components';
+import { DocumentCopy20Regular } from '@fluentui/react-icons';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
-
-import { CopyIcon } from '../../common/icons/copy-icon';
 import styles from '../styles/button.scss';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { Toast, ToastDeps } from './toast';
@@ -72,7 +71,7 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
                     )}
                     onClick={this.copyButtonClicked}
                 >
-                    <CopyIcon />
+                    <DocumentCopy20Regular />
                     <div className="ms-Button-label">Copy failure details</div>
                 </Button>
             </>

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { Button } from '@fluentui/react-components';
+import { DocumentCopy20Regular } from '@fluentui/react-icons';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import '@testing-library/jest-dom';
@@ -15,17 +16,16 @@ import {
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { CopyIcon } from '../../../../../../src/common/icons/copy-icon';
 import {
     CopyIssueDetailsButton,
     CopyIssueDetailsButtonProps,
 } from '../../../../../common/components/copy-issue-details-button';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
-jest.mock('../../../../../../src/common/icons/copy-icon');
+jest.mock('@fluentui/react-icons');
 jest.mock('@fluentui/react-components');
 describe('CopyIssueDetailsButtonTest', () => {
-    mockReactComponents([CopyIcon, Button]);
+    mockReactComponents([DocumentCopy20Regular, Button]);
     let props: CopyIssueDetailsButtonProps;
     let onClickMock: IMock<(event: React.MouseEvent<any>) => void>;
     let windowUtilsMock: IMock<WindowUtils>;

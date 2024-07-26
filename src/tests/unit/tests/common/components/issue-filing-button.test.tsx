@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Button } from '@fluentui/react-components';
+import { Bug20Filled } from '@fluentui/react-icons';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import {
@@ -23,14 +24,13 @@ import {
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { It, IMock, Mock, Times } from 'typemoq';
-import { LadyBugSolidIcon } from '../../../../../../src/common/icons/lady-bug-solid-icon';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 jest.mock('@fluentui/react-components');
 jest.mock('common/components/issue-filing-needs-settings-help-text');
-jest.mock('../../../../../../src/common/icons/lady-bug-solid-icon');
+jest.mock('@fluentui/react-icons');
 describe('IssueFilingButtonTest', () => {
-    mockReactComponents([IssueFilingNeedsSettingsHelpText, LadyBugSolidIcon, Button]);
+    mockReactComponents([IssueFilingNeedsSettingsHelpText, Bug20Filled, Button]);
     const testKey: string = 'test';
     const eventStub = new EventStubFactory().createNativeMouseClickEvent() as any;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
