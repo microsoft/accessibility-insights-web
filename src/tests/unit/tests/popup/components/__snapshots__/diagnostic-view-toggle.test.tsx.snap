@@ -56,6 +56,7 @@ exports[`DiagnosticViewToggleTest renders spinner while scanning 1`] = `
     </div>
     <div>
       <mock-contentlink
+        classname="adhoc-insights-link"
         deps="[object Object]"
         linktext="How to test headings"
       />
@@ -91,6 +92,7 @@ exports[`DiagnosticViewToggleTest renders toggle when not scanning 1`] = `
     </div>
     <div>
       <mock-contentlink
+        classname="adhoc-insights-link"
         deps="[object Object]"
         linktext="How to test headings"
       />
@@ -126,6 +128,7 @@ exports[`DiagnosticViewToggleTest renders toggle when scanning for a different v
     </div>
     <div>
       <mock-contentlink
+        classname="adhoc-insights-link"
         deps="[object Object]"
         linktext="How to test headings"
       />

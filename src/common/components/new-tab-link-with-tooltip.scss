@@ -17,11 +17,15 @@
 
 .insights-link {
     display: flex;
-    font-weight: 600 !important;
-    font-size: 12px !important;
 
     &:hover,
     &:active {
+        text-decoration: none !important;
+    }
+
+    &:focus {
+        box-shadow: $neutral-60 0 0 0 1px inset !important;
+        outline: $neutral-60 auto 1px !important;
         text-decoration: none !important;
     }
 }

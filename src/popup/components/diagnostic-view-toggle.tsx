@@ -174,6 +174,7 @@ export class DiagnosticViewToggle extends React.Component<
         if (this.configuration.guidance) {
             return (
                 <ContentLink
+                    className="adhoc-insights-link"
                     deps={this.props.deps}
                     reference={this.configuration.guidance}
                     linkText={linkText}

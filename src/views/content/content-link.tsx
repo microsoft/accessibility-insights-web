@@ -20,11 +20,12 @@ export type ContentLinkProps = {
     linkText?: string;
     iconName?: string;
     hideTooltip?: boolean;
+    className?: string;
 };
 
 export const ContentLink = NamedFC<ContentLinkProps>(
     'ContentLink',
-    ({ deps, reference, iconName, linkText, hideTooltip }) => {
+    ({ deps, reference, iconName, linkText, hideTooltip, className }) => {
         const { contentProvider, contentActionMessageCreator } = deps;
         const { openContentPage } = contentActionMessageCreator;
 
@@ -52,6 +53,7 @@ export const ContentLink = NamedFC<ContentLinkProps>(
                 onClick={handleLinkClick}
                 tooltipContent={'Guidance'}
                 aria-label={ariaLabel}
+                className={className}
             >
                 {icon}
                 {linkText}

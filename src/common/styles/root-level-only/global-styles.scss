@@ -36,6 +36,12 @@ button::after {
         color: $link-hover !important;
         text-decoration: underline;
     }
+
+    &:focus {
+        box-shadow: $neutral-60 0 0 0 1px inset !important;
+        outline: $neutral-60 auto 1px !important;
+        text-decoration: none !important;
+    }
 }
 
 .high-contrast-theme {
@@ -70,6 +76,12 @@ button::after {
     color: $link !important;
     font-weight: 600 !important;
     font-size: 12px !important;
+
+    &:focus {
+        box-shadow: $neutral-60 0 0 0 1px inset !important;
+        outline: $neutral-60 auto 1px !important;
+        text-decoration: none !important;
+    }
 }
 
 // Add hover state that's not yet in FluentUI to menu items
