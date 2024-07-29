@@ -37,7 +37,7 @@ button::after {
         text-decoration: underline;
     }
 
-    &:focus {
+    &:focus-visible {
         box-shadow: $neutral-60 0 0 0 1px inset !important;
         outline: $neutral-60 auto 1px !important;
         text-decoration: none !important;
@@ -77,7 +77,7 @@ button::after {
     font-weight: 600 !important;
     font-size: 12px !important;
 
-    &:focus {
+    &:focus-visible {
         box-shadow: $neutral-60 0 0 0 1px inset !important;
         outline: $neutral-60 auto 1px !important;
         text-decoration: none !important;
