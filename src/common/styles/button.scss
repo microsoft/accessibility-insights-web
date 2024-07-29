@@ -37,7 +37,7 @@
         color: $neutral-100;
         border-radius: 2px;
 
-        &:focus {
+        &:focus-visible {
             outline: 1px solid;
             outline-offset: -4px;
         }
@@ -63,7 +63,7 @@
         color: $always-white;
         border-radius: 2px;
 
-        &:focus {
+        &:focus-visible {
             outline: 1px solid;
             outline-offset: -4px;
         }
@@ -111,7 +111,7 @@
         border-radius: 2px !important;
     }
 
-    &:focus {
+    &:focus-visible {
         outline: 1px solid;
         outline-offset: -4px;
     }

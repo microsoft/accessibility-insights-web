@@ -25,7 +25,7 @@
         border: 1px solid $neutral-30 !important;
         border-radius: 2px !important;
 
-        &:focus {
+        &:focus-visible {
             outline: 1px solid;
             outline-offset: -4px;
             box-shadow: none !important;
