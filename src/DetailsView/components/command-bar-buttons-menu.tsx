@@ -71,61 +71,61 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
 
 
         return (
-            <Tooltip content="More actions" relationship="label">
-                <Menu>
-                    <MenuTrigger>
-                        <MenuButton
-                            appearance="transparent"
-                            //icon={<MoreHorizontalRegular />}
-                            icon={<FluentUIV9Icon iconName='MoreHorizontalRegular' />}
-                            className={styles.commandBarButtonsMenuButton}
-                            ref={props.buttonRef}
-                        />
-                    </MenuTrigger>
-                    <>
-                        <MenuPopover
-                            style={{
-                                padding: 'unset !important',
-                                border: 'unset !important',
-                                borderRadius: 'unset !important',
-                            }}
-                        >
+            // <Tooltip content="More actions" relationship="label">
+            <Menu persistOnItemClick={true}>
+                <MenuTrigger>
+                    <MenuButton
+                        appearance="transparent"
+                        //icon={<MoreHorizontalRegular />}
+                        icon={<FluentUIV9Icon iconName='MoreHorizontalRegular' />}
+                        className={styles.commandBarButtonsMenuButton}
+                        ref={props.buttonRef}
+                    />
+                </MenuTrigger>
+                <>
+                    <MenuPopover
+                        style={{
+                            padding: 'unset !important',
+                            border: 'unset !important',
+                            borderRadius: 'unset !important',
+                        }}
+                    >
 
-                            <MenuList className={styles.menuList}>
-                                {overflowItems.map((item, index) => {
-                                    return item?.children?.props?.children?.props?.hasSubMenu ? (
-                                        // <MenuItem className={styles.menuItem} key={`${item - index}`}>{item.children}</MenuItem>
-                                        // <Menu open={open} onOpenChange={handleOpenChange}>
-                                        //     <MenuTrigger>
-                                        //         <MenuItem>{item?.key}</MenuItem>
-                                        //     </MenuTrigger>
-                                        //     <MenuPopover>
-                                        //         <MenuList>
-                                        //             <MenuItem>{item?.children}</MenuItem>
-                                        //         </MenuList>
-                                        //     </MenuPopover>
+                        <MenuList className={styles.menuList}>
+                            {overflowItems.map((item, index) => {
+                                return item?.children?.props?.children?.props?.hasSubMenu ? (
+                                    // <MenuItem className={styles.menuItem} key={`${item - index}`}>{item.children}</MenuItem>
+                                    // <Menu open={open} onOpenChange={handleOpenChange}>
+                                    //     <MenuTrigger>
+                                    //         <MenuItem>{item?.key}</MenuItem>
+                                    //     </MenuTrigger>
+                                    //     <MenuPopover>
+                                    //         <MenuList>
+                                    //             <MenuItem>{item?.children}</MenuItem>
+                                    //         </MenuList>
+                                    //     </MenuPopover>
 
-                                        // </Menu>
-                                        <>
-                                            <span className={styles.menuItem} key={index}>
-                                                {item.children}
-                                            </span>
-                                        </>
-                                    ) : (
-                                        <MenuItem
-                                            className={styles.menuItem}
-                                            key={index}
-                                            {...props}
-                                        >
-                                            {item?.children}
-                                        </MenuItem>
-                                    );
-                                })}
-                            </MenuList>
-                        </MenuPopover>
-                    </>
-                </Menu>
-            </Tooltip>
+                                    // </Menu>
+                                    <>
+                                        <span className={styles.menuItem} key={index}>
+                                            {item.children}
+                                        </span>
+                                    </>
+                                ) : (
+                                    <MenuItem
+                                        className={styles.menuItem}
+                                        key={index}
+                                        {...props}
+                                    >
+                                        {item?.children}
+                                    </MenuItem>
+                                );
+                            })}
+                        </MenuList>
+                    </MenuPopover>
+                </>
+            </Menu>
+            // </Tooltip>
         );
     },
 );

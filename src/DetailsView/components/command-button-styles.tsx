@@ -8,6 +8,10 @@ export const CommandButtonStyle = makeStyles({
         fontWeight: '400 !important',
         paddingLeft: '5px !important',
 
+        ':focus': {
+            border: `1px solid ${tokens.colorStrokeFocus2}`
+        },
+
         '&:hover': {
             background: 'none !important',
             color: tokens.colorNeutralForeground2BrandHover,

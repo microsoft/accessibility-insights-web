@@ -9,8 +9,7 @@ export const StartOverDropdownStyles = makeStyles({
         alignItems: 'flex-start !important',
         fontWeight: '400 !important',
         color: tokens.colorNeutralForeground2,
-        paddingTop: '10px',
-        paddingBottom: '10px',
+        paddingLeft: '4px',
 
         ':focus': {
             border: `1px solid ${tokens.colorStrokeFocus2}`

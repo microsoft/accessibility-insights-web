@@ -16,6 +16,7 @@ import {
     MenuItemProps,
     MenuList,
     MenuPopover,
+    MenuProps,
     MenuTrigger,
     mergeClasses,
 } from '@fluentui/react-components';
@@ -183,6 +184,10 @@ export type DropdownDirection = keyof typeof dropdownDirections;
 
 
 export const StartOverDropdown: React.FC<StartOverProps> = (props) => {
+    const [open, setOpen] = React.useState(false);
+    const onOpenChange: MenuProps["onOpenChange"] = (e, data) => {
+        setOpen(data.open);
+    };
     const [isContextMenuVisible, setIsContextMenuVisible] = useState(false);
     const stylesValue = StartOverDropdownStyles();
     const direction = props.dropdownDirection;
@@ -248,7 +253,7 @@ export const StartOverDropdown: React.FC<StartOverProps> = (props) => {
                             )
                         }
                     >
-                        Start over V9
+                        Start over
                     </MenuButton>
                     {/* <MenuItem
                             className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
@@ -266,13 +271,20 @@ export const StartOverDropdown: React.FC<StartOverProps> = (props) => {
                 <MenuPopover className={stylesValue.menuPopover}>
                     <MenuList>
                         {getMenuItemsV9().map(item => (
-                            <MenuItem className={stylesValue.menuItem} key={item.key} {...item}>
+                            <MenuItem persistOnClick={true} className={stylesValue.menuItem} key={item.key} {...item}>
                                 {item.name}
                             </MenuItem>
                         ))}
                     </MenuList>
+                    {/* <MenuList>
+                        <MenuItem>Cut</MenuItem>
+                        <MenuItem>Paste</MenuItem>
+                        <MenuItem>Edit</MenuItem>
+                    </MenuList> */}
                 </MenuPopover>
+
             </Menu>
         </div >
+
     )
 }
