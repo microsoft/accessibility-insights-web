@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DefaultButton, Icon } from '@fluentui/react';
+import { Icon } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { Requirement } from 'assessments/types/requirement';
 import { NamedFC } from 'common/react/named-fc';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -36,15 +37,12 @@ export const NextRequirementButton = NamedFC<NextRequirementButtonProps>(
         };
 
         return (
-            <DefaultButton
-                text={props.nextRequirement.name}
-                className={props.className}
-                onClick={selectNextRequirement}
-            >
+            <Button className={props.className} onClick={selectNextRequirement}>
+                {props.nextRequirement.name}
                 <span>
                     <Icon iconName="ChevronRight" ariaLabel={'next'} />
                 </span>
-            </DefaultButton>
+            </Button>
         );
     },
 );

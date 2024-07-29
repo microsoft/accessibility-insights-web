@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dialog, DefaultButton, DialogFooter, PrimaryButton } from '@fluentui/react';
+import { DefaultButton, Dialog, DialogFooter, PrimaryButton } from '@fluentui/react';
 import { render } from '@testing-library/react';
 
 import * as React from 'react';

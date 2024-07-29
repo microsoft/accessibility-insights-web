@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
@@ -18,12 +18,12 @@ import {
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
 
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 
 describe('IssueDetailsNavigationControls', () => {
     let controlProps: IssueDetailsNavigationControlsProps;
     let navigationHandlerMock: IMock<IssueDetailsNavigationClickHandler>;
-    mockReactComponents([DefaultButton]);
+    mockReactComponents([Button]);
     beforeEach(() => {
         navigationHandlerMock = Mock.ofType<IssueDetailsNavigationClickHandler>();
         controlProps = {
@@ -101,7 +101,7 @@ describe('IssueDetailsNavigationControls', () => {
 
     describe('user interaction', () => {
         it('handles next button activation', async () => {
-            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            useOriginalReactElements('@fluentui/react-components', ['Button']);
             const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
             const nextButton = renderResult.getByRole('button', {
@@ -118,7 +118,7 @@ describe('IssueDetailsNavigationControls', () => {
         });
 
         it('handles back button activation', async () => {
-            useOriginalReactElements('@fluentui/react', ['DefaultButton']);
+            useOriginalReactElements('@fluentui/react-components', ['Button']);
             const renderResult = render(<IssueDetailsNavigationControls {...controlProps} />);
 
             const backButton = renderResult.getByRole('button', {

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, TextField } from '@fluentui/react';
+import { TextField } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { fireEvent, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
@@ -13,8 +14,9 @@ import {
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 describe('FailureInstancePanelDetailsTest', () => {
-    mockReactComponents([TextField, DefaultButton]);
+    mockReactComponents([TextField, Button]);
     const path = 'Given Path';
     const snippet = 'Snippet for Given Path';
     const onSelectorChangeMock = Mock.ofInstance((event, value: string) => {});
@@ -40,7 +42,8 @@ describe('FailureInstancePanelDetailsTest', () => {
     });
 
     it('triggers selector change on typing', () => {
-        useOriginalReactElements('@fluentui/react', ['DefaultButton', 'TextField']);
+        useOriginalReactElements('@fluentui/react', ['TextField']);
+        useOriginalReactElements('@fluentui/react-components', ['Button']);
         const renderResult = render(
             <FailureInstancePanelDetails
                 path={path}

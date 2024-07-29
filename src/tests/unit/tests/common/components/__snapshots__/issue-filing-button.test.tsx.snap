@@ -2,23 +2,16 @@
 
 exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
 <DocumentFragment>
-  <button
-    class="ms-Button ms-Button--default file-issue-button root-109"
-    data-is-focusable="true"
-    type="button"
+  <mock-button
+    appearance="primary"
   >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
+    <mock-bug20filled />
+    <div
+      class="ms-Button-label"
     >
-      <mock-ladybugsolidicon />
-      <div
-        class="ms-Button-label"
-      >
-        File issue
-      </div>
-    </span>
-  </button>
+      File issue
+    </div>
+  </mock-button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
     isopen="true"
@@ -32,23 +25,16 @@ exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
 
 exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to false 1`] = `
 <DocumentFragment>
-  <button
-    class="ms-Button ms-Button--default file-issue-button root-109"
-    data-is-focusable="true"
-    type="button"
+  <mock-button
+    appearance="primary"
   >
-    <span
-      class="ms-Button-flexContainer flexContainer-110"
-      data-automationid="splitbuttonprimary"
+    <mock-bug20filled />
+    <div
+      class="ms-Button-label"
     >
-      <mock-ladybugsolidicon />
-      <div
-        class="ms-Button-label"
-      >
-        File issue
-      </div>
-    </span>
-  </button>
+      File issue
+    </div>
+  </mock-button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
     isopen="false"
@@ -62,16 +48,16 @@ exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to f
 
 exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 <DocumentFragment>
-  <mock-customizeddefaultbutton
-    classname="file-issue-button"
+  <mock-button
+    appearance="primary"
   >
-    <mock-ladybugsolidicon />
+    <mock-bug20filled />
     <div
       class="ms-Button-label"
     >
       File issue
     </div>
-  </mock-customizeddefaultbutton>
+  </mock-button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
     isopen="false"
@@ -85,16 +71,16 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 
 exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
 <DocumentFragment>
-  <mock-customizeddefaultbutton
-    classname="file-issue-button"
+  <mock-button
+    appearance="primary"
   >
-    <mock-ladybugsolidicon />
+    <mock-bug20filled />
     <div
       class="ms-Button-label"
     >
       File issue
     </div>
-  </mock-customizeddefaultbutton>
+  </mock-button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
     isopen="false"

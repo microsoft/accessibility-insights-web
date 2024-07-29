@@ -5,16 +5,14 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
   <div
     class="insights-dialog-target-button-container"
   >
-    <mock-customizeddefaultbutton
-      classname="insights-dialog-button-inspect"
-    >
-      <mock-filehtmlicon />
+    <mock-button>
+      <mock-documentsearch20regular />
       <div
         class="ms-Button-label"
       >
         Inspect HTML
       </div>
-    </mock-customizeddefaultbutton>
+    </mock-button>
     <mock-copyissuedetailsbutton
       deps="[object Object]"
       issuedetailsdata="[object Object]"
@@ -47,16 +45,14 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
   <div
     class="insights-dialog-target-button-container"
   >
-    <mock-customizeddefaultbutton
-      classname="insights-dialog-button-inspect"
-    >
-      <mock-filehtmlicon />
+    <mock-button>
+      <mock-documentsearch20regular />
       <div
         class="ms-Button-label"
       >
         Inspect HTML
       </div>
-    </mock-customizeddefaultbutton>
+    </mock-button>
     <mock-copyissuedetailsbutton
       deps="[object Object]"
       issuedetailsdata="[object Object]"
@@ -95,16 +91,14 @@ exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
   <div
     class="insights-dialog-target-button-container"
   >
-    <mock-customizeddefaultbutton
-      classname="insights-dialog-button-inspect"
-    >
-      <mock-filehtmlicon />
+    <mock-button>
+      <mock-documentsearch20regular />
       <div
         class="ms-Button-label"
       >
         Inspect HTML
       </div>
-    </mock-customizeddefaultbutton>
+    </mock-button>
     <mock-copyissuedetailsbutton
       deps="[object Object]"
       issuedetailsdata="[object Object]"
@@ -137,16 +131,14 @@ exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
   <div
     class="insights-dialog-target-button-container"
   >
-    <mock-customizeddefaultbutton
-      classname="insights-dialog-button-inspect"
-    >
-      <mock-filehtmlicon />
+    <mock-button>
+      <mock-documentsearch20regular />
       <div
         class="ms-Button-label"
       >
         Inspect HTML
       </div>
-    </mock-customizeddefaultbutton>
+    </mock-button>
     <mock-copyissuedetailsbutton
       deps="[object Object]"
       issuedetailsdata="[object Object]"

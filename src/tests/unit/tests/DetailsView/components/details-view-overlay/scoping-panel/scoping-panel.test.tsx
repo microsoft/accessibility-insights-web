@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
+import { Button, mergeClasses } from '@fluentui/react-components';
 import { InspectActionMessageCreator } from 'common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from 'common/message-creators/scoping-action-message-creator';
+import styles from 'common/styles/button.scss';
 import { ScopingInputTypes } from 'common/types/store-data/scoping-input-types';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { ScopingContainer } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container';
@@ -59,12 +60,19 @@ describe('ScopingPanelTest', () => {
                     scopingActionMessageCreator={testProps.scopingActionMessageCreator}
                     inspectActionMessageCreator={testProps.inspectActionMessageCreator}
                 />
-                <DefaultButton
-                    className="closing-scoping-panel"
-                    primary={true}
-                    text="OK"
-                    onClick={testProps.deps.detailsViewActionMessageCreator.closeScopingPanel}
-                />
+                <div className={styles.buttonsComponent}>
+                    <div className={styles.buttonCol}>
+                        <Button
+                            appearance="primary"
+                            className={mergeClasses(styles.primaryButton, 'closing-scoping-panel')}
+                            onClick={
+                                testProps.deps.detailsViewActionMessageCreator.closeScopingPanel
+                            }
+                        >
+                            OK
+                        </Button>
+                    </div>
+                </div>
             </GenericPanel>
         );
 

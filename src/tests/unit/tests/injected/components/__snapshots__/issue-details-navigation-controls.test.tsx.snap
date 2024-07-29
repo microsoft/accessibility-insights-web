@@ -6,17 +6,21 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     class="insights-dialog-next-and-back-container"
   >
     <div>
-      <mock-customizeddefaultbutton
+      <mock-button
+        classname="detailsDialogButton"
         data-automation-id="back"
-        text="< Back"
-      />
+      >
+        &lt; Back
+      </mock-button>
     </div>
     <div />
     <div>
-      <mock-customizeddefaultbutton
+      <mock-button
+        classname="detailsDialogButton"
         data-automation-id="next"
-        text="Next >"
-      />
+      >
+        Next &gt;
+      </mock-button>
     </div>
   </div>
 </DocumentFragment>
@@ -28,10 +32,12 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     class="insights-dialog-next-and-back-container"
   >
     <div>
-      <mock-customizeddefaultbutton
+      <mock-button
+        classname="detailsDialogButton"
         data-automation-id="back"
-        text="< Back"
-      />
+      >
+        &lt; Back
+      </mock-button>
     </div>
     <div />
     <div />
@@ -47,10 +53,12 @@ exports[`IssueDetailsNavigationControls render handles button states: {"backButt
     <div />
     <div />
     <div>
-      <mock-customizeddefaultbutton
+      <mock-button
+        classname="detailsDialogButton"
         data-automation-id="next"
-        text="Next >"
-      />
+      >
+        Next &gt;
+      </mock-button>
     </div>
   </div>
 </DocumentFragment>
@@ -78,17 +86,21 @@ exports[`IssueDetailsNavigationControls render handles failures count multiple f
     class="insights-dialog-next-and-back-container"
   >
     <div>
-      <mock-customizeddefaultbutton
+      <mock-button
+        classname="detailsDialogButton"
         data-automation-id="back"
-        text="< Back"
-      />
+      >
+        &lt; Back
+      </mock-button>
     </div>
     <div />
     <div>
-      <mock-customizeddefaultbutton
+      <mock-button
+        classname="detailsDialogButton"
         data-automation-id="next"
-        text="Next >"
-      />
+      >
+        Next &gt;
+      </mock-button>
     </div>
   </div>
 </DocumentFragment>
