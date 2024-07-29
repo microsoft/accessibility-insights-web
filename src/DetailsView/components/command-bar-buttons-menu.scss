@@ -18,26 +18,15 @@
 }
 
 .menu-list {
-    top:19px !important;
+    top: 19px !important;
 }
-
-
 
 .menu-item {
     padding-bottom: unset !important;
-    
-     &:hover {
-         background: none !important;
-     }
-     
-    //     color: $insights-button-hover !important;
-        
-        // & > span {
-        //     & > svg {
-        //         color: $insights-button-hover;
-        //     }
-        // }
- //   }
+
+    &:hover {
+        background: none !important;
+    }
 }
 
 .menu-button {
@@ -58,7 +47,7 @@
 }
 
 .refresh-icon {
-    color:$insights-button-hover !important;
+    color: $insights-button-hover !important;
 }
 
 .command-bar-buttons-submenu {

@@ -3,7 +3,7 @@
 import { Checkbox, Dialog, DialogFooter, DialogType, PrimaryButton, Stack } from '@fluentui/react';
 import { useBoolean } from '@fluentui/react-hooks';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { FluentUIV9Icon, Icons } from 'common/icons/fluentui-v9-icons';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -43,14 +43,15 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
 
         return (
             <>
-
                 <InsightsCommandButton
                     as="a"
                     className={saveAssessmentStyles?.assessmentButton}
                     download={props.download}
                     href={props.href}
                     onClick={handleSaveAssessmentClick}
-                    insightsCommandButtonIconProps={{ icon: <FluentUIV9Icon iconName='SaveRegular' /> }}
+                    insightsCommandButtonIconProps={{
+                        icon: <FluentUIV9Icon iconName="SaveRegular" />,
+                    }}
                 >
                     Save assessment
                 </InsightsCommandButton>

@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 import { makeStyles, tokens } from '@fluentui/react-components';
 
-// }
-
 export const useExpandCollapseAllButtonStyles = makeStyles({
     expandCollapseAllButton: {
         display: 'flex',
@@ -17,5 +15,5 @@ export const useExpandCollapseAllButtonStyles = makeStyles({
 
     customStyleIcon: {
         color: tokens.colorNeutralForeground2BrandHover,
-    }
+    },
 });

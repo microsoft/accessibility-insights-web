@@ -9,7 +9,6 @@ import {
     IObjectWithKey,
 } from '@fluentui/react';
 import { Spinner, SpinnerSize } from '@fluentui/react';
-import { Checkmark16Filled } from '@fluentui/react-icons';
 import { IRenderFunction } from '@fluentui/utilities';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
@@ -25,7 +24,6 @@ import {
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
-import { tokens } from '@fluentui/react-components';
 
 export const passUnmarkedInstancesButtonAutomationId =
     'assessment-instance-table-pass-unmarked-instances-button';
@@ -128,7 +126,9 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         return (
             <InsightsCommandButton
                 data-automation-id={passUnmarkedInstancesButtonAutomationId}
-                insightsCommandButtonIconProps={{ icon: <FluentUIV9Icon iconName='Checkmark20Filled' /> }}
+                insightsCommandButtonIconProps={{
+                    icon: <FluentUIV9Icon iconName="Checkmark20Filled" />,
+                }}
                 onClick={this.onPassUnmarkedInstances}
                 disabled={disabled}
             >

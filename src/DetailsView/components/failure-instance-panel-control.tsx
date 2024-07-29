@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { Icon, ILabelStyles, ITextFieldStyles, Link, TextField } from '@fluentui/react';
 import { Button } from '@fluentui/react-components';
-import { AddRegular } from '@fluentui/react-icons';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
@@ -88,7 +87,7 @@ export class FailureInstancePanelControl extends React.Component<
                     appearance="transparent"
                     aria-label={FailureInstancePanelControl.addFailureInstanceLabel}
                     aria-description="Open add a failure instance panel"
-                    icon={<FluentUIV9Icon iconName='AddRegular' />}
+                    icon={<FluentUIV9Icon iconName="AddRegular" />}
                     onClick={this.openFailureInstancePanel}
                 >
                     {FailureInstancePanelControl.addFailureInstanceLabel}
@@ -97,7 +96,7 @@ export class FailureInstancePanelControl extends React.Component<
         } else {
             return (
                 <Link className={styles.editButton} onClick={this.openFailureInstancePanel}>
-                    <Icon iconName="edit" ariaLabel={'edit instance'} />
+                    <Icon iconName="edit" aria-label={'edit instance'} />
                 </Link>
             );
         }
@@ -209,7 +208,7 @@ export class FailureInstancePanelControl extends React.Component<
         });
     };
 
-    private onValidateSelector = (event): void => {
+    private onValidateSelector = (): void => {
         this.props.addPathForValidation(this.state.currentInstance.path);
     };
 

@@ -1,21 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    IButton,
-    IRefObject,
-    TooltipHost,
-} from '@fluentui/react';
-import {
     Menu,
     MenuButton,
     MenuItem,
     MenuList,
     MenuPopover,
-    MenuProps,
     MenuTrigger,
     Tooltip,
 } from '@fluentui/react-components';
-import { MoreHorizontalRegular } from '@fluentui/react-icons';
 import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
@@ -69,20 +62,17 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             ...props.getStartOverMenuItem(),
         });
 
-
         return (
-            // <Tooltip content="More actions" relationship="label">
-            <Menu persistOnItemClick={true}>
-                <MenuTrigger>
-                    <MenuButton
-                        appearance="transparent"
-                        //icon={<MoreHorizontalRegular />}
-                        icon={<FluentUIV9Icon iconName='MoreHorizontalRegular' />}
-                        className={styles.commandBarButtonsMenuButton}
-                        ref={props.buttonRef}
-                    />
-                </MenuTrigger>
-                <>
+            <Tooltip content="More actions" relationship="label">
+                <Menu persistOnItemClick={true}>
+                    <MenuTrigger>
+                        <MenuButton
+                            appearance="transparent"
+                            icon={<FluentUIV9Icon iconName="MoreHorizontalRegular" />}
+                            className={styles.commandBarButtonsMenuButton}
+                            ref={props.buttonRef}
+                        />
+                    </MenuTrigger>
                     <MenuPopover
                         style={{
                             padding: 'unset !important',
@@ -90,42 +80,22 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                             borderRadius: 'unset !important',
                         }}
                     >
-
                         <MenuList className={styles.menuList}>
                             {overflowItems.map((item, index) => {
                                 return item?.children?.props?.children?.props?.hasSubMenu ? (
-                                    // <MenuItem className={styles.menuItem} key={`${item - index}`}>{item.children}</MenuItem>
-                                    // <Menu open={open} onOpenChange={handleOpenChange}>
-                                    //     <MenuTrigger>
-                                    //         <MenuItem>{item?.key}</MenuItem>
-                                    //     </MenuTrigger>
-                                    //     <MenuPopover>
-                                    //         <MenuList>
-                                    //             <MenuItem>{item?.children}</MenuItem>
-                                    //         </MenuList>
-                                    //     </MenuPopover>
-
-                                    // </Menu>
-                                    <>
-                                        <span className={styles.menuItem} key={index}>
-                                            {item.children}
-                                        </span>
-                                    </>
+                                    <span className={styles.menuItem} key={index}>
+                                        {item.children}
+                                    </span>
                                 ) : (
-                                    <MenuItem
-                                        className={styles.menuItem}
-                                        key={index}
-                                        {...props}
-                                    >
+                                    <MenuItem className={styles.menuItem} key={index} {...props}>
                                         {item?.children}
                                     </MenuItem>
                                 );
                             })}
                         </MenuList>
                     </MenuPopover>
-                </>
-            </Menu>
-            // </Tooltip>
+                </Menu>
+            </Tooltip>
         );
     },
 );

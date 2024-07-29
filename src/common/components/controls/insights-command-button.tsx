@@ -32,11 +32,6 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
                     overrides?.button,
                 )}
                 icon={{
-                    // className: mergeClasses(
-                    //     styles?.commandBarButtonIcon,
-                    //     props.insightsCommandButtonIconProps.className,
-                    //     overrides?.buttonIcon,
-                    // ),
                     children: props.insightsCommandButtonIconProps.icon,
                 }}
                 ref={ref}
@@ -45,5 +40,5 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
                 {props.children}
             </Button>
         );
-    },
-    ));
+    }),
+);

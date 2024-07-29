@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { makeStyles, themeToTokensObject, tokens, webLightTheme } from '@fluentui/react-components';
+import { makeStyles, tokens } from '@fluentui/react-components';
 
 export const CommandButtonStyle = makeStyles({
     assessmentButton: {
@@ -9,7 +9,7 @@ export const CommandButtonStyle = makeStyles({
         paddingLeft: '5px !important',
 
         ':focus': {
-            border: `1px solid ${tokens.colorStrokeFocus2}`
+            border: `1px solid ${tokens.colorStrokeFocus2}`,
         },
 
         '&:hover': {
@@ -17,22 +17,9 @@ export const CommandButtonStyle = makeStyles({
             color: tokens.colorNeutralForeground2BrandHover,
             '& > span': {
                 '& >svg': {
-                    color: tokens.colorNeutralForeground2BrandHover
-                }
-            }
-
+                    color: tokens.colorNeutralForeground2BrandHover,
+                },
+            },
         },
     },
-
-    // arrowIconLight: {
-    //     //color: themeToTokensObject(webLightTheme)?.colorCompoundBrandStrokeHover
-    //     color: tokens?.colorCompoundBrandStrokeHover
-    // },
-
-    // arrowIconDark: {
-    //     '&:hover': {
-    //         //color: themeToTokensObject(webLightTheme)?.colorNeutralForeground2BrandHover
-    //         color: tokens.colorNeutralForeground2BrandHover
-    //     }
-    // }
 });

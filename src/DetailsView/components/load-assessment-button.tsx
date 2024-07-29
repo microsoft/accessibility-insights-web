@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { FolderOpenRegular } from '@fluentui/react-icons';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
@@ -36,7 +34,9 @@ export const LoadAssessmentButton = NamedFC<LoadAssessmentButtonProps>(
         return (
             <InsightsCommandButton
                 data-automation-id={loadAssessmentButtonAutomationId}
-                insightsCommandButtonIconProps={{ icon: <FluentUIV9Icon iconName='FolderOpenRegular' /> }}
+                insightsCommandButtonIconProps={{
+                    icon: <FluentUIV9Icon iconName="FolderOpenRegular" />,
+                }}
                 onClick={props.handleLoadAssessmentButtonClick}
                 className={loadButtonStyles.assessmentButton}
             >

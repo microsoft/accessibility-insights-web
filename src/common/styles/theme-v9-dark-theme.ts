@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { webDarkTheme } from '@fluentui/react-components';
 
 // This is a copy of our ThemeDark from V9 slightly adjusted to account for the page background
@@ -10,5 +9,5 @@ export const ThemeV9DarkTheme = {
     ...webDarkTheme,
     colorNeutralBackground1: '#161616',
     colorNeutralForeground2: '#fff',
-    colorCompoundBrandStrokeHover:'#ffffff'
+    colorCompoundBrandStrokeHover: '#ffffff',
 };

@@ -1,12 +1,5 @@
 // Licensed under the MIT License.
-import {
-    makeStyles,
-    mergeClasses,
-    themeToTokensObject,
-    tokens,
-    webDarkTheme,
-    webLightTheme,
-} from '@fluentui/react-components';
+import { makeStyles, mergeClasses, tokens } from '@fluentui/react-components';
 import {
     ArrowExportRegular,
     FolderArrowRightRegular,
@@ -25,12 +18,10 @@ import {
     MoreHorizontalRegular,
     AddRegular,
     ChevronDown24Regular,
-    ChevronRight24Regular
+    ChevronRight24Regular,
 } from '@fluentui/react-icons';
-import { CopyIcon } from 'common/icons/copy-icon';
-import { LadyBugSolidIcon } from 'common/icons/lady-bug-solid-icon';
 import { NamedFC } from 'common/react/named-fc';
-import { isNull, isUndefined } from 'lodash';
+import { isUndefined } from 'lodash';
 
 import React from 'react';
 
@@ -52,19 +43,15 @@ export const Icons = {
     MoreHorizontalRegular: MoreHorizontalRegular,
     AddRegular: AddRegular,
     ChevronDown24Regular: ChevronDown24Regular,
-    ChevronRight24Regular: ChevronRight24Regular
+    ChevronRight24Regular: ChevronRight24Regular,
 };
 
-export const IconsStyles = makeStyles({
+export const useIconStyles = makeStyles({
     refreshIcon: {
-        //color: tokens.colorCompoundBrandStrokeHover,
         paddingLeft: '14px',
     },
     IconTheme: {
         color: tokens.colorCompoundBrandStrokeHover,
-        // ':hover': {
-        //     color: 'inherit',
-        // },
     },
 });
 
@@ -74,8 +61,7 @@ export type FluentUIV9IconProps = {
 };
 
 export const FluentUIV9Icon = NamedFC<FluentUIV9IconProps>('FluentUIV9Icon', props => {
-    console.log('fluent ui 9-->', props?.iconName)
-    const styleClasses = IconsStyles();
+    const styleClasses = useIconStyles();
     const isIconAvailable = !isUndefined(props?.iconName);
 
     if (isIconAvailable) {
@@ -84,5 +70,4 @@ export const FluentUIV9Icon = NamedFC<FluentUIV9IconProps>('FluentUIV9Icon', pro
     }
 
     return null;
-
 });

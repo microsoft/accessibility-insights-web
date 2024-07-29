@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IButton, IContextualMenuItem, IRefObject } from '@fluentui/react';
-import { ArrowClockwiseRegular } from '@fluentui/react-icons';
+import { IContextualMenuItem } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
@@ -76,10 +75,11 @@ export function getStartOverComponentFastPass(props: StartOverFactoryProps): JSX
     return (
         <InsightsCommandButton
             insightsCommandButtonIconProps={{
-                icon: <FluentUIV9Icon iconName='ArrowClockwiseRegular'
-                //customClass={startOverProps.iconProps.className} 
-                />,
-
+                icon: (
+                    <FluentUIV9Icon
+                        iconName="ArrowClockwiseRegular"
+                    />
+                ),
             }}
             {...startOverProps}
         >

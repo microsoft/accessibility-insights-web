@@ -24,7 +24,7 @@ import React from 'react';
 export type CardFooterMenuItem = IContextualMenuItem & IButtonProps;
 
 export type CardFooterMenuItemsProps = {
-    fileIssueButtonRef: IRefObject<IButton> & IRefObject<IContextualMenuRenderItem>;
+    fileIssueButtonRef: React.RefObject<HTMLButtonElement> & React.RefObject<IContextualMenuRenderItem>;
     toastRef: React.RefObject<Toast>;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData | null;
@@ -59,7 +59,7 @@ export class CardFooterMenuItemsBuilder {
                 },
                 iconName: 'ladybugSolid',
                 onClick: event => this.fileIssue(props, event),
-                componentRef: props.fileIssueButtonRef,
+                componentRef:()=> props.fileIssueButtonRef,
             });
         }
 
