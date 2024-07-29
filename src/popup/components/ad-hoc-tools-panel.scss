@@ -27,6 +27,12 @@
             color: $link !important;
             font-size: 11px;
             @include fluent-forced-color-adjust-override;
+
+            &:focus {
+                box-shadow: $neutral-60 0 0 0 1px inset !important;
+                outline: $neutral-60 auto 1px !important;
+                text-decoration: none !important;
+            }
         }
 
         .back-to-launch-pad-icon {
