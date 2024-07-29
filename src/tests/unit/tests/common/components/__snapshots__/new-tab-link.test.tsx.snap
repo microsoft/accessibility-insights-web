@@ -3,6 +3,7 @@
 exports[`NewTabLink handles children 1`] = `
 <DocumentFragment>
   <mock-link
+    classname="insights-link"
     href="test"
     target="_blank"
   >
@@ -14,6 +15,7 @@ exports[`NewTabLink handles children 1`] = `
 exports[`NewTabLink renders content with custom className 1`] = `
 <DocumentFragment>
   <mock-link
+    classname="insights-link custom-class"
     href="test"
     target="_blank"
   />
@@ -23,6 +25,7 @@ exports[`NewTabLink renders content with custom className 1`] = `
 exports[`NewTabLink renders content without custom className 1`] = `
 <DocumentFragment>
   <mock-link
+    classname="insights-link"
     href="test"
     target="_blank"
   />

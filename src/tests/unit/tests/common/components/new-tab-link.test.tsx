@@ -4,11 +4,14 @@ import { Link } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import * as React from 'react';
 import { NewTabLink, NewTabLinkProps } from '../../../../../common/components/new-tab-link';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
-jest.mock('@fluentui/react-components');
+import { mockReactComponent } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('@fluentui/react-components', () => ({
+    ...jest.requireActual('@fluentui/react-components'),
+    Link: jest.fn(),
+}));
 
 describe('NewTabLink', () => {
-    mockReactComponents([Link]);
+    mockReactComponent(Link, 'Link');
     it('renders content with custom className', () => {
         const props: NewTabLinkProps = {
             href: 'test',

@@ -7,12 +7,17 @@ import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-toolt
 import * as React from 'react';
 import {
     expectMockedComponentPropsToMatchSnapshots,
+    mockReactComponent,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
 jest.mock('@fluentui/react');
-jest.mock('@fluentui/react-components');
+jest.mock('@fluentui/react-components', () => ({
+    ...jest.requireActual('@fluentui/react-components'),
+    Link: jest.fn(),
+}));
 describe(NewTabLinkWithTooltip.displayName, () => {
-    mockReactComponents([TooltipHost, Link]);
+    mockReactComponents([TooltipHost]);
+    mockReactComponent(Link, 'Link');
     const props = {
         href: 'test',
         tooltipContent: 'tooltip text',
