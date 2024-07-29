@@ -160,6 +160,11 @@ button::after {
   color: var(--link-hover) !important;
   text-decoration: underline;
 }
+.insights-link:focus {
+  box-shadow: var(--neutral-60) 0 0 0 1px inset !important;
+  outline: var(--neutral-60) auto 1px !important;
+  text-decoration: none !important;
+}
 
 .high-contrast-theme .insights-link:hover {
   text-decoration: underline;
@@ -183,6 +188,11 @@ button::after {
   color: var(--link) !important;
   font-weight: 600 !important;
   font-size: 12px !important;
+}
+.adhoc-insights-link:focus {
+  box-shadow: var(--neutral-60) 0 0 0 1px inset !important;
+  outline: var(--neutral-60) auto 1px !important;
+  text-decoration: none !important;
 }
 
 @media screen and (forced-colors: active) {

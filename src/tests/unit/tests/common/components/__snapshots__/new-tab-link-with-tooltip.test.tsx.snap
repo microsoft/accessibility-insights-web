@@ -8,7 +8,6 @@ exports[`NewTabLinkWithTooltip handles children 1`] = `
     styles="[object Object]"
   >
     <mock-link
-      classname="insights-link insightsLink"
       href="test"
       target="_blank"
     >
@@ -46,7 +45,6 @@ exports[`NewTabLinkWithTooltip renders with null tooltip content 1`] = `
     styles="[object Object]"
   >
     <mock-link
-      classname="insights-link insightsLink"
       href="test"
       target="_blank"
     />
@@ -81,7 +79,6 @@ exports[`NewTabLinkWithTooltip renders with tooltip content 1`] = `
     styles="[object Object]"
   >
     <mock-link
-      classname="insights-link insightsLink"
       href="test"
       target="_blank"
     />

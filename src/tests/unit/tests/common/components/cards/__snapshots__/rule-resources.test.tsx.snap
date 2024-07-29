@@ -281,7 +281,6 @@ exports[`RuleResources renders with {
       class="ruleDetailsId"
     >
       <mock-link
-        classname="insights-link"
         href="test-url"
         target="_blank"
       >
@@ -359,7 +358,6 @@ exports[`RuleResources renders with {
       class="ruleDetailsId"
     >
       <mock-link
-        classname="insights-link"
         href="test-url"
         target="_blank"
       >
