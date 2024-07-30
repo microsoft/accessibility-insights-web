@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { NamedFC } from '../react/named-fc';
 
-export type NewTabLinkProps = LinkProps & { as?: 'a' };
+export type NewTabLinkProps = LinkProps & { href?: any; target?: any };
 
 export const NewTabLink = NamedFC<NewTabLinkProps>('NewTabLink', ({ className, ...props }) => {
     return <Link className={mergeClasses('insights-link', className)} target="_blank" {...props} />;
