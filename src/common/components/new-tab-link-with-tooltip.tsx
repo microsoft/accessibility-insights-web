@@ -8,6 +8,7 @@ import { NamedFC } from '../react/named-fc';
 import styles from './new-tab-link-with-tooltip.scss';
 
 export type NewTabLinkWithTooltipProps = LinkProps & {
+    as?: 'a';
     tooltipContent: string | undefined;
     className?: string;
 };
