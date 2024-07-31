@@ -22,4 +22,10 @@
     &:active {
         text-decoration: none !important;
     }
+
+    &:focus-visible {
+        box-shadow: $neutral-60 0 0 0 1px inset !important;
+        outline: $neutral-60 auto 1px !important;
+        text-decoration: none !important;
+    }
 }

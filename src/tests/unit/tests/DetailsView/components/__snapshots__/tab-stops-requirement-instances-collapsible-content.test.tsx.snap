@@ -21,7 +21,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
 
 exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance icons column 1`] = `
 <React.Fragment>
-  <ForwardRef(StyledLinkBase)
+  <Link
     className="editButton"
     onClick={[Function]}
   >
@@ -29,8 +29,8 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
       ariaLabel="edit instance"
       iconName="edit"
     />
-  </ForwardRef(StyledLinkBase)>
-  <ForwardRef(StyledLinkBase)
+  </Link>
+  <Link
     className="removeButton"
     onClick={[Function]}
   >
@@ -38,7 +38,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
       ariaLabel="delete instance"
       iconName="delete"
     />
-  </ForwardRef(StyledLinkBase)>
+  </Link>
 </React.Fragment>
 `;
 

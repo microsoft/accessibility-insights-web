@@ -6,11 +6,11 @@ exports[`AssessmentIframeWarning render 1`] = `
     data-automation-id="iframe-warning-container"
   >
     There are iframes in the target page. To have complete results, 
-    <mock-styledlinkbase
+    <mock-link
       classname="insights-link"
     >
       give Accessibility Insights additional permissions
-    </mock-styledlinkbase>
+    </mock-link>
     ; this will trigger a rescan of the test.
     <mock-newtablink
       href="https://accessibilityinsights.io/docs/en/web/reference/faq#why-does-accessibility-insights-for-web-ask-for-additional-permissions-when-it-detects-iframes"
@@ -27,11 +27,11 @@ exports[`FastPassIframeWarning render 1`] = `
     data-automation-id="iframe-warning-container"
   >
     There are iframes in the target page. To have complete results, 
-    <mock-styledlinkbase
+    <mock-link
       classname="insights-link"
     >
       give Accessibility Insights additional permissions
-    </mock-styledlinkbase>
+    </mock-link>
     ; this will trigger a rescan of the test.
     <mock-newtablink
       href="https://accessibilityinsights.io/docs/en/web/reference/faq#why-does-accessibility-insights-for-web-ask-for-additional-permissions-when-it-detects-iframes"
@@ -48,11 +48,11 @@ exports[`IframeWarning render 1`] = `
     data-automation-id="iframe-warning-container"
   >
     There are iframes in the target page. To have complete results, 
-    <mock-styledlinkbase
+    <mock-link
       classname="insights-link"
     >
       give Accessibility Insights additional permissions
-    </mock-styledlinkbase>
+    </mock-link>
     ; this will trigger a rescan of the test.
     <mock-newtablink
       href="https://accessibilityinsights.io/docs/en/web/reference/faq#why-does-accessibility-insights-for-web-ask-for-additional-permissions-when-it-detects-iframes"

@@ -36,6 +36,12 @@ button::after {
         color: $link-hover !important;
         text-decoration: underline;
     }
+
+    &:focus-visible {
+        box-shadow: $neutral-60 0 0 0 1px inset !important;
+        outline: $neutral-60 auto 1px !important;
+        text-decoration: none !important;
+    }
 }
 
 .high-contrast-theme {
@@ -63,6 +69,38 @@ button::after {
 
     .ms-Spinner-label {
         color: $spinner-text;
+    }
+}
+
+.adhoc-insights-link {
+    color: $link !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+
+    &:hover {
+        color: $link-hover !important;
+    }
+
+    &:focus-visible {
+        box-shadow: $neutral-60 0 0 0 1px inset !important;
+        outline: $neutral-60 auto 1px !important;
+        text-decoration: none !important;
+    }
+}
+
+.adhoc-insights-guidance-link {
+    color: $link !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+
+    &:hover {
+        text-decoration: none !important;
+    }
+
+    &:focus-visible {
+        box-shadow: $neutral-60 0 0 0 1px inset !important;
+        outline: $neutral-60 auto 1px !important;
+        text-decoration: none !important;
     }
 }
 

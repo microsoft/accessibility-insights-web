@@ -21,12 +21,12 @@ exports[`DiagnosticViewToggleTest renders details view link when the test does n
       />
     </div>
     <div>
-      <mock-styledlinkbase
-        classname="insights-link"
+      <mock-link
+        classname="adhoc-insights-link"
         href="#"
       >
         List view and filtering
-      </mock-styledlinkbase>
+      </mock-link>
     </div>
     <div
       class="shortcut"
@@ -56,6 +56,7 @@ exports[`DiagnosticViewToggleTest renders spinner while scanning 1`] = `
     </div>
     <div>
       <mock-contentlink
+        classname="adhoc-insights-guidance-link"
         deps="[object Object]"
         linktext="How to test headings"
       />
@@ -91,6 +92,7 @@ exports[`DiagnosticViewToggleTest renders toggle when not scanning 1`] = `
     </div>
     <div>
       <mock-contentlink
+        classname="adhoc-insights-guidance-link"
         deps="[object Object]"
         linktext="How to test headings"
       />
@@ -126,6 +128,7 @@ exports[`DiagnosticViewToggleTest renders toggle when scanning for a different v
     </div>
     <div>
       <mock-contentlink
+        classname="adhoc-insights-guidance-link"
         deps="[object Object]"
         linktext="How to test headings"
       />

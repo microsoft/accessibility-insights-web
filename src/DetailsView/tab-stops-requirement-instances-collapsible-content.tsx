@@ -7,8 +7,8 @@ import {
     DetailsList,
     IColumn,
     Icon,
-    Link,
 } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { NamedFC } from 'common/react/named-fc';
 import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
 import { tabStopsRequirementsTableActionColumnWidthPx } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';

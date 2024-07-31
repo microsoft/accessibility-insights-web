@@ -280,13 +280,13 @@ exports[`RuleResources renders with {
     <span
       class="ruleDetailsId"
     >
-      <a
-        class="ms-Link insights-link root-109"
+      <mock-link
+        classname="insights-link"
         href="test-url"
         target="_blank"
       >
         More information about some-rule
-      </a>
+      </mock-link>
     </span>
     <span
       class="ruleGuidance"
@@ -358,13 +358,13 @@ exports[`RuleResources renders with {
     <span
       class="ruleDetailsId"
     >
-      <a
-        class="ms-Link insights-link root-109"
+      <mock-link
+        classname="insights-link"
         href="test-url"
         target="_blank"
       >
         More information about some-rule
-      </a>
+      </mock-link>
     </span>
     <span
       class="ruleGuidance"

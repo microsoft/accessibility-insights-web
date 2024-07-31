@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Icon, Link } from '@fluentui/react';
+import { Icon } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { kebabCase, uniqueId } from 'lodash';
 import * as React from 'react';
 
@@ -29,6 +30,7 @@ export class LaunchPadItemRow extends React.Component<LaunchPadItemRowProps> {
                             id={kebabCase(this.props.title)}
                             onClick={this.props.onClickTitle}
                             aria-describedby={this.descriptionId}
+                            style={{ fontWeight: 600 }}
                         >
                             {this.props.title}
                         </Link>

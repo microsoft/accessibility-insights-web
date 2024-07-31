@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Icon, Link } from '@fluentui/react';
+import { Icon } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';

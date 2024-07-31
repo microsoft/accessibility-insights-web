@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxeResults } from 'axe-core';
-import { normalizeOfficeFabricClassName } from 'tests/common/element-snapshot-formatter';
+import {
+    normalizeOfficeFabricClassName,
+    normalizeV9ClassName,
+} from 'tests/common/element-snapshot-formatter';
 
 export interface PrintableAxeResultNode {
     selector: string[];
@@ -17,6 +20,10 @@ export interface PrintableAxeResult {
 // to ensure that snapshots are derived consistently between test runs/test machines
 export function normalizeSelector(selector: string): string {
     let output = selector;
+    if (/_{3}[0-9a-zA-Z_.]+/.test(output)) {
+        const fluentuiv9Classidentifier = output.slice(1);
+        output = `${output[0]}${normalizeV9ClassName(fluentuiv9Classidentifier)}`;
+    }
     if (/^[#.][a-zA-Z0-9-]+$/.test(output)) {
         const identifier = output.slice(1);
         output = `${output[0]}${normalizeOfficeFabricClassName(identifier)}`;

@@ -2,7 +2,9 @@
 
 exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="main-section adHocToolsPanel"
+  >
     <main
       class="adHocToolsGrid"
     >
@@ -35,12 +37,17 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
       class="adHocToolsPanelFooter"
       role="navigation"
     >
-      <mock-styledlinkbase
+      <mock-link
         classname="link"
         id="back-to-launchpad-link"
       >
+        <i
+          aria-hidden="true"
+          class="backToLaunchPadIcon root-105"
+          data-icon-name="back"
+        />
         Back to launch pad
-      </mock-styledlinkbase>
+      </mock-link>
     </div>
   </div>
 </DocumentFragment>
@@ -48,7 +55,9 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
 
 exports[`AdHocToolsPanelTest adhoc panel with needs review sixth toggle matches snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="main-section adHocToolsPanel"
+  >
     <main
       class="adHocToolsGrid"
     >
@@ -87,12 +96,17 @@ exports[`AdHocToolsPanelTest adhoc panel with needs review sixth toggle matches 
       class="adHocToolsPanelFooter"
       role="navigation"
     >
-      <mock-styledlinkbase
+      <mock-link
         classname="link"
         id="back-to-launchpad-link"
       >
+        <i
+          aria-hidden="true"
+          class="backToLaunchPadIcon root-105"
+          data-icon-name="back"
+        />
         Back to launch pad
-      </mock-styledlinkbase>
+      </mock-link>
     </div>
   </div>
 </DocumentFragment>
@@ -100,7 +114,9 @@ exports[`AdHocToolsPanelTest adhoc panel with needs review sixth toggle matches 
 
 exports[`AdHocToolsPanelTest adhoc tools panel with accessible names feature 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="main-section adHocToolsPanel"
+  >
     <main
       class="adHocToolsGrid"
     >
@@ -145,12 +161,17 @@ exports[`AdHocToolsPanelTest adhoc tools panel with accessible names feature 1`]
       class="adHocToolsPanelFooter"
       role="navigation"
     >
-      <mock-styledlinkbase
+      <mock-link
         classname="link"
         id="back-to-launchpad-link"
       >
+        <i
+          aria-hidden="true"
+          class="backToLaunchPadIcon root-105"
+          data-icon-name="back"
+        />
         Back to launch pad
-      </mock-styledlinkbase>
+      </mock-link>
     </div>
   </div>
 </DocumentFragment>
