@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Button } from '@fluentui/react-components';
-import { FluentUIV9Icon, Icons } from 'common/icons/fluentui-v9-icons';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import * as React from 'react';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { NamedFC } from '../../common/react/named-fc';

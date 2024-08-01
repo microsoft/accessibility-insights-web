@@ -1,3 +1,4 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { makeStyles, mergeClasses, tokens } from '@fluentui/react-components';
 import {
@@ -66,7 +67,7 @@ export const FluentUIV9Icon = NamedFC<FluentUIV9IconProps>('FluentUIV9Icon', pro
 
     if (isIconAvailable) {
         const Icon = Icons[props?.iconName];
-        return <Icon className={mergeClasses(styleClasses.IconTheme, props?.customClass)} />;
+        return <Icon className={mergeClasses(styleClasses?.IconTheme, props?.customClass)} />;
     }
 
     return null;

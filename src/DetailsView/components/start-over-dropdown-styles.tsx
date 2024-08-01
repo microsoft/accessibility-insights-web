@@ -3,7 +3,7 @@
 
 import { makeStyles, tokens } from '@fluentui/react-components';
 
-export const StartOverDropdownStyles = makeStyles({
+export const useStartOverDropdownStyles: any = makeStyles({
     menuButton: {
         alignItems: 'flex-start !important',
         fontWeight: '400 !important',

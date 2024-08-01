@@ -1,0 +1,268 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: some button label 1`] = `
+<DocumentFragment>
+  <div
+    class="collapsibleContainer"
+  >
+    <mock-headingelementforlevel>
+      <mock-button
+        aria-expanded="true"
+        aria-label="some button label"
+        classname="collapsibleControl"
+        data-automation-id="collapsible-component-cards-button"
+      >
+        <span
+          class="collapsibleTitle"
+        >
+          <mock-headingelementforlevel
+            headinglevel="5"
+          >
+            Some header
+          </mock-headingelementforlevel>
+        </span>
+      </mock-button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: undefined 1`] = `
+<DocumentFragment>
+  <div
+    class="collapsibleContainer"
+  >
+    <mock-headingelementforlevel>
+      <mock-button
+        aria-expanded="true"
+        classname="collapsibleControl"
+        data-automation-id="collapsible-component-cards-button"
+      >
+        <span
+          class="collapsibleTitle"
+        >
+          <mock-headingelementforlevel
+            headinglevel="5"
+          >
+            Some header
+          </mock-headingelementforlevel>
+        </span>
+      </mock-button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentCardsTest render with containerClassName set to: a-container 1`] = `
+<DocumentFragment>
+  <div
+    class="a-container collapsibleContainer"
+  >
+    <mock-headingelementforlevel>
+      <mock-button
+        aria-expanded="true"
+        classname="collapsibleControl"
+        data-automation-id="collapsible-component-cards-button"
+      >
+        <span
+          class="collapsibleTitle"
+        >
+          <mock-headingelementforlevel
+            headinglevel="5"
+          >
+            Some header
+          </mock-headingelementforlevel>
+        </span>
+      </mock-button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentCardsTest render with containerClassName set to: undefined 1`] = `
+<DocumentFragment>
+  <div
+    class="collapsibleContainer"
+  >
+    <mock-headingelementforlevel>
+      <mock-button
+        aria-expanded="true"
+        classname="collapsibleControl"
+        data-automation-id="collapsible-component-cards-button"
+      >
+        <span
+          class="collapsibleTitle"
+        >
+          <mock-headingelementforlevel
+            headinglevel="5"
+          >
+            Some header
+          </mock-headingelementforlevel>
+        </span>
+      </mock-button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentCardsTest render with contentClassName set to: content-class-name-a 1`] = `
+<DocumentFragment>
+  <div
+    class="collapsibleContainer"
+  >
+    <mock-headingelementforlevel>
+      <mock-button
+        aria-expanded="true"
+        classname="collapsibleControl"
+        data-automation-id="collapsible-component-cards-button"
+      >
+        <span
+          class="collapsibleTitle"
+        >
+          <mock-headingelementforlevel
+            headinglevel="5"
+          >
+            Some header
+          </mock-headingelementforlevel>
+        </span>
+      </mock-button>
+    </mock-headingelementforlevel>
+    <div
+      class="content-class-name-a collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentCardsTest render with contentClassName set to: undefined 1`] = `
+<DocumentFragment>
+  <div
+    class="collapsibleContainer"
+  >
+    <mock-headingelementforlevel>
+      <mock-button
+        aria-expanded="true"
+        classname="collapsibleControl"
+        data-automation-id="collapsible-component-cards-button"
+      >
+        <span
+          class="collapsibleTitle"
+        >
+          <mock-headingelementforlevel
+            headinglevel="5"
+          >
+            Some header
+          </mock-headingelementforlevel>
+        </span>
+      </mock-button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: collapsed 1`] = `
+<DocumentFragment>
+  <div
+    class="collapsibleContainer"
+  >
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        class="fui-Button r1alrhcs collapsibleControl"
+        data-automation-id="collapsible-component-cards-button"
+        type="button"
+      >
+        <span
+          class="collapsibleTitle"
+        >
+          <mock-headingelementforlevel
+            headinglevel="5"
+          >
+            Some header
+          </mock-headingelementforlevel>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: expanded 1`] = `
+<DocumentFragment>
+  <div
+    class="collapsibleContainer"
+  >
+    <mock-headingelementforlevel>
+      <button
+        aria-expanded="true"
+        class="fui-Button r1alrhcs collapsibleControl"
+        data-automation-id="collapsible-component-cards-button"
+        type="button"
+      >
+        <span
+          class="collapsibleTitle"
+        >
+          <mock-headingelementforlevel
+            headinglevel="5"
+          >
+            Some header
+          </mock-headingelementforlevel>
+        </span>
+      </button>
+    </mock-headingelementforlevel>
+    <div
+      class="collapsibleContainerContent"
+    >
+      <div>
+        Some content
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

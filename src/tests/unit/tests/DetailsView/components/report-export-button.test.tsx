@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { IButton } from '@fluentui/react';
-
 import { render } from '@testing-library/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import {
@@ -27,7 +24,7 @@ describe(ReportExportButton.displayName, () => {
         showDialogMock = jest.fn();
         props = {
             showReportExportDialog: showDialogMock,
-            buttonRef: {} as React.RefObject<IButton>,
+            buttonRef: {} as React.RefObject<HTMLButtonElement>,
         };
     });
 

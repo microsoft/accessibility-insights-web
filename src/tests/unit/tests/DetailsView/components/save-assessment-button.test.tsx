@@ -3,7 +3,7 @@
 
 import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
 import { Button } from '@fluentui/react-components';
-import { fireEvent, render, RenderResult, act } from '@testing-library/react';
+import { fireEvent, render, RenderResult } from '@testing-library/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
@@ -15,12 +15,10 @@ import {
 } from 'DetailsView/components/save-assessment-button';
 import * as React from 'react';
 import {
-    getMockComponentClassPropsForCall,
     mockReactComponents,
     mockReactComponent,
-    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 jest.mock('@fluentui/react');
 jest.mock('@fluentui/react-components');

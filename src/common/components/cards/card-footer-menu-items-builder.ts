@@ -2,11 +2,9 @@
 // Licensed under the MIT License.
 
 import {
-    IButton,
     IButtonProps,
     IContextualMenuItem,
     IContextualMenuRenderItem,
-    IRefObject,
 } from '@fluentui/react';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';

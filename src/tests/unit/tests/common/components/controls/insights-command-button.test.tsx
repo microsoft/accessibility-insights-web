@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Button, tokens } from '@fluentui/react-components';
+import { Button } from '@fluentui/react-components';
 import { FolderOpenRegular } from '@fluentui/react-icons';
 
 import { render } from '@testing-library/react';
@@ -10,17 +10,6 @@ import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
-//import { InsightsCommandButtonStyle } from 'common/components/controls/insights-command-button-style';
-
-//jest.mock('common/components/controls/insights-command-button-style');
-// jest.mock('@fluentui/react-components', (...rest) => {
-//     console.log('rest-->', rest)
-//     return {
-//         makeStyles: jest.fn(),
-//         mergeClasses: jest.fn(),
-//         ...rest
-//     }
-// });
 
 jest.mock('common/components/controls/insights-command-button-style', () => {
     return {

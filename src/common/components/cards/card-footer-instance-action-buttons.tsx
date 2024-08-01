@@ -9,7 +9,6 @@ import {
     MenuList,
     MenuPopover,
     MenuTrigger,
-    Tooltip,
 } from '@fluentui/react-components';
 import {
     CardFooterMenuItemsBuilder,

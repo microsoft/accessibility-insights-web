@@ -3,7 +3,6 @@
 import { IContextualMenuItem } from '@fluentui/react';
 
 import { fireEvent, render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import {
@@ -25,7 +24,6 @@ import { StartOverDropdown } from 'DetailsView/components/start-over-dropdown';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import {
     expectMockedComponentPropsToMatchSnapshots,
-    getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';

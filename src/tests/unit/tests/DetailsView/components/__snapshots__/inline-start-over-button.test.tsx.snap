@@ -18,7 +18,9 @@ exports[`InlineStartOverButton renders: InsightsCommandButton props 1`] = `
   "className": "inlineStartOverButton",
   "data-automation-id": "inline-start-over-button",
   "insightsCommandButtonIconProps": {
-    "icon": <ArrowClockwiseRegular />,
+    "icon": <FluentUIV9Icon
+      iconName="ArrowClockwiseRegular"
+    />,
   },
   "onClick": [Function],
 }
