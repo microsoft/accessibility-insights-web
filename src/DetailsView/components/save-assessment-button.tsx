@@ -8,7 +8,7 @@ import { UserConfigMessageCreator } from 'common/message-creators/user-config-me
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
-import { CommandButtonStyle } from 'DetailsView/components/command-button-styles';
+import { useCommandButtonStyle } from 'DetailsView/components/command-button-styles';
 import styles from 'DetailsView/components/common-dialog-styles.scss';
 
 import * as React from 'react';
@@ -28,7 +28,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
     'SaveAssessmentButton',
     props => {
         const [dialogHidden, { setTrue: hideDialog, setFalse: showDialog }] = useBoolean(true);
-        const saveAssessmentStyles = CommandButtonStyle();
+        const saveAssessmentStyles: any = useCommandButtonStyle();
         function handleSaveAssessmentClick(event: React.MouseEvent<any>) {
             props.deps.getAssessmentActionMessageCreator().saveAssessment(event);
             if (props.userConfigurationStoreData.showSaveAssessmentDialog) {

@@ -34,7 +34,7 @@ export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
         }
 
         const onClick = ev =>
-            contentActionMessageCreator.openContentPanel(ev, contentPath, contentTitle);
+            contentActionMessageCreator?.openContentPanel(ev, contentPath, contentTitle);
 
         return (
             <Button

@@ -69,7 +69,6 @@ describe('InsightsCommandButton', () => {
                     icon: <FolderOpenRegular className="icon-class-name" />,
                 }}
             >
-                {' '}
                 Load assessment
             </InsightsCommandButton>,
         );

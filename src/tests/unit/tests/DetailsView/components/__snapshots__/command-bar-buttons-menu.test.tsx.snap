@@ -2,11 +2,13 @@
 
 exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 <DocumentFragment>
-  <mock-styledtooltiphostbase
-    aria-label="More actions"
+  <mock-tooltip
     content="More actions"
+    relationship="label"
   >
-    <mock-menu>
+    <mock-menu
+      persistonitemclick="true"
+    >
       <mock-menutrigger>
         <mock-menubutton
           appearance="transparent"
@@ -14,8 +16,12 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
           icon="[object Object]"
         />
       </mock-menutrigger>
-      <mock-menupopover>
-        <mock-menulist>
+      <mock-menupopover
+        style="border-radius: unset !important;"
+      >
+        <mock-menulist
+          classname="menuList"
+        >
           <mock-menuitem
             buttonref="[object Object]"
             classname="menuItem"
@@ -69,141 +75,6 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
         </mock-menulist>
       </mock-menupopover>
     </mock-menu>
-  </mock-styledtooltiphostbase>
+  </mock-tooltip>
 </DocumentFragment>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render export report menuitem 1`] = `
-<div
-  role="menuitem"
->
-  Report export button
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render load assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
-  Load assessment button
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render save assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
-  Save assessment button
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render transfer to assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
-  Transfer to assessment button
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu true,: render export report menuitem 1`] = `
-<div
-  role="menuitem"
->
-  Report export button
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu true,: render load assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
-  Load assessment button
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu true,: render save assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
-  Save assessment button
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu true,: render start over menuitem 1`] = `
-<div
-  aria-labelledby="menur1"
-  class="fui-MenuList ___1cyqkw0_k0y38j0 f22iagw f1vx9l62 f1t6b6ee f1l02sjl"
-  data-tabster="{"mover":{"cyclic":true,"direction":1,"memorizeCurrent":true}}"
-  role="menu"
->
-  <div
-    class="fui-MenuItem r11normc menuItem"
-    role="menuitem"
-    tabindex="0"
-  >
-    <span
-      class="fui-MenuItem__content r1ls86vo"
-    >
-      <div
-        role="menuitem"
-      >
-        Report export button
-      </div>
-    </span>
-  </div>
-  <div
-    class="fui-MenuItem r11normc menuItem"
-    role="menuitem"
-    tabindex="0"
-  >
-    <span
-      class="fui-MenuItem__content r1ls86vo"
-    >
-      <div
-        role="menuitem"
-      >
-        Save assessment button
-      </div>
-    </span>
-  </div>
-  <div
-    class="fui-MenuItem r11normc menuItem"
-    role="menuitem"
-    tabindex="0"
-  >
-    <span
-      class="fui-MenuItem__content r1ls86vo"
-    >
-      <div
-        role="menuitem"
-      >
-        Load assessment button
-      </div>
-    </span>
-  </div>
-  <div
-    class="fui-MenuItem r11normc menuItem"
-    role="menuitem"
-    tabindex="0"
-  >
-    <span
-      class="fui-MenuItem__content r1ls86vo"
-    >
-      <div
-        role="menuitem"
-      >
-        Transfer to assessment button
-      </div>
-    </span>
-  </div>
-  Start over button
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu true,: render transfer to assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
-  Transfer to assessment button
-</div>
 `;

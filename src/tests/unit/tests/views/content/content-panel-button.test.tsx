@@ -7,6 +7,7 @@ import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
 import {
     expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { Mock } from 'typemoq';
@@ -15,6 +16,7 @@ import { ContentPanelButton } from 'views/content/content-panel-button';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
 jest.mock('@fluentui/react-components');
+jest.mock('../../../../../common/message-creators/content-action-message-creator')
 
 describe('ContentPanelButton', () => {
     mockReactComponents([Button]);
@@ -91,4 +93,33 @@ describe('ContentPanelButton', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([Button]);
     });
+
+    it('renders with reference is null', () => {
+        const renderResult = render(
+            <ContentPanelButton deps={deps} reference={''} contentTitle={contentTitle}>
+                TEXT
+            </ContentPanelButton>,
+        );
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([Button]);
+    });
+
+    it('button onClick', () => {
+        const deps: any = {
+            contentProvider: ContentPage.provider(content),
+            contentActionMessageCreator: {
+                openContentPanel: jest.fn()
+            }
+        };
+        render(
+            <ContentPanelButton deps={deps} reference={'for/testing'} contentTitle={contentTitle}>
+                TEXT
+            </ContentPanelButton>,
+        );
+
+        getMockComponentClassPropsForCall(Button).onClick()
+        expect(deps.contentActionMessageCreator.openContentPanel).toHaveBeenCalled();
+    });
+
+
 });

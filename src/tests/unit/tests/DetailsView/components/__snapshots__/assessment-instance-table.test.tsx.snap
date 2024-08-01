@@ -73,7 +73,9 @@ exports[`AssessmentInstanceTable with instances renders per snapshot: InsightsCo
   "data-automation-id": "assessment-instance-table-pass-unmarked-instances-button",
   "disabled": false,
   "insightsCommandButtonIconProps": {
-    "icon": <Checkmark16Filled />,
+    "icon": <FluentUIV9Icon
+      iconName="Checkmark20Filled"
+    />,
   },
   "onClick": [Function],
 }

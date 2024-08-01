@@ -12,15 +12,24 @@ import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
+import { ThemeV9DarkTheme } from 'common/styles/theme-v9-dark-theme';
+import { FluentProvider } from '@fluentui/react-components';
+
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components')
 
 describe('ThemeFamilyCustomizer', () => {
-    mockReactComponents([ThemeProvider]);
+    mockReactComponents([ThemeProvider, FluentProvider]);
     it.each`
         themeFamily    | enableHighContrast | expectedThemeName
         ${'default'}   | ${false}           | ${'DefaultTheme'}
         ${'default'}   | ${undefined}       | ${'DefaultTheme'}
         ${'default'}   | ${true}            | ${'HighContrastTheme'}
+        ${'default'}   | ${false}           | ${'webLightTheme'}
+        ${'default'}   | ${undefined}       | ${'DefaultTheme'}
+        ${'default'}   | ${true}            | ${'ThemeV9DarkTheme'}
+        ${'fast-pass'} | ${false}           | ${'FastPassTheme'}
+        ${'fast-pass'} | ${true}            | ${'ThemeV9DarkTheme'}
         ${'fast-pass'} | ${false}           | ${'FastPassTheme'}
         ${'fast-pass'} | ${true}            | ${'HighContrastTheme'}
     `(
@@ -33,19 +42,26 @@ describe('ThemeFamilyCustomizer', () => {
                         { enableHighContrast } as UserConfigurationStoreData
                     }
                 >
-                    stub children
+                    <FluentProvider theme={themeFamily}>
+                        stub children
+                    </FluentProvider>
                 </ThemeFamilyCustomizer>,
             );
 
             const themeFromTestSubject = getMockComponentClassPropsForCall(ThemeProvider).theme;
-
+            //const themeFromTestSubjectV9 = getMockComponentClassPropsForCall(FluentProvider).theme
             const expectedTheme = {
                 DefaultTheme,
                 FastPassTheme,
                 HighContrastTheme,
             }[expectedThemeName];
 
+            // const expectedV9Theme = {
+            //     ThemeV9DarkTheme
+            // }[expectedThemeName]
+
             expect(themeFromTestSubject).toMatchObject(expectedTheme);
+            //  expect(themeFromTestSubjectV9).toMatchObject(expectedV9Theme)
         },
     );
 });

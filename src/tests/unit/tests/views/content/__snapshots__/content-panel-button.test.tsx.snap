@@ -19,7 +19,9 @@ exports[`ContentPanelButton renders from content: Button props 1`] = `
   "aria-label": "info and examples",
   "children": "TEXT",
   "className": "info",
-  "icon": <InfoRegular />,
+  "icon": <FluentUIV9Icon
+    iconName="info"
+  />,
   "onClick": [Function],
 }
 `;
@@ -30,6 +32,7 @@ exports[`ContentPanelButton renders from path 1`] = `
     appearance="transparent"
     aria-label="info and examples"
     classname="info"
+    icon="[object Object]"
   >
     TEXT
   </mock-button>
@@ -42,10 +45,20 @@ exports[`ContentPanelButton renders from path: Button props 1`] = `
   "aria-label": "info and examples",
   "children": "TEXT",
   "className": "info",
-  "icon": undefined,
+  "icon": <FluentUIV9Icon
+    iconName="iconName"
+  />,
   "onClick": [Function],
 }
 `;
+
+exports[`ContentPanelButton renders with content path as null 1`] = `<DocumentFragment />`;
+
+exports[`ContentPanelButton renders with content path as null: Button props 1`] = `undefined`;
+
+exports[`ContentPanelButton renders with reference is null 1`] = `<DocumentFragment />`;
+
+exports[`ContentPanelButton renders with reference is null: Button props 1`] = `undefined`;
 
 exports[`ContentPanelButton renders without iconName 1`] = `
 <DocumentFragment>
@@ -53,6 +66,7 @@ exports[`ContentPanelButton renders without iconName 1`] = `
     appearance="transparent"
     aria-label="info and examples"
     classname="info"
+    icon="[object Object]"
   >
     TEXT
   </mock-button>
@@ -65,7 +79,7 @@ exports[`ContentPanelButton renders without iconName: Button props 1`] = `
   "aria-label": "info and examples",
   "children": "TEXT",
   "className": "info",
-  "icon": undefined,
+  "icon": <FluentUIV9Icon />,
   "onClick": [Function],
 }
 `;

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { makeStyles, tokens } from '@fluentui/react-components';
 
-export const useExpandCollapseAllButtonStyles = makeStyles({
+export const useExpandCollapseAllButtonStyles: any = makeStyles({
     expandCollapseAllButton: {
         display: 'flex',
         padding: 'unset',

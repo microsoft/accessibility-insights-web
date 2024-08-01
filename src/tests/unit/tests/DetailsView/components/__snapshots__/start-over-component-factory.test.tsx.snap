@@ -66,8 +66,9 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
   }
   insightsCommandButtonIconProps={
     {
-      "className": "startOverMenuItemIcon",
-      "icon": <ArrowClockwiseRegular />,
+      "icon": <FluentUIV9Icon
+        iconName="ArrowClockwiseRegular"
+      />,
     }
   }
   onClick={[Function]}
@@ -92,8 +93,9 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
   }
   insightsCommandButtonIconProps={
     {
-      "className": "startOverMenuItemIcon",
-      "icon": <ArrowClockwiseRegular />,
+      "icon": <FluentUIV9Icon
+        iconName="ArrowClockwiseRegular"
+      />,
     }
   }
   onClick={[Function]}
@@ -122,8 +124,9 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
       }
       insightsCommandButtonIconProps={
         {
-          "className": "startOverMenuItemIcon",
-          "icon": <ArrowClockwiseRegular />,
+          "icon": <FluentUIV9Icon
+            iconName="ArrowClockwiseRegular"
+          />,
         }
       }
       onClick={[Function]}
@@ -154,8 +157,9 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
       }
       insightsCommandButtonIconProps={
         {
-          "className": "startOverMenuItemIcon",
-          "icon": <ArrowClockwiseRegular />,
+          "icon": <FluentUIV9Icon
+            iconName="ArrowClockwiseRegular"
+          />,
         }
       }
       onClick={[Function]}

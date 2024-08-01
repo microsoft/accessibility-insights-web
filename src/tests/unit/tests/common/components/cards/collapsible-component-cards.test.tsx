@@ -21,6 +21,7 @@ import {
 
 jest.mock('@fluentui/react-components');
 jest.mock('common/components/heading-element-for-level');
+
 describe('CollapsibleComponentCardsTest', () => {
     mockReactComponents([HeadingElementForLevel, Button]);
     const eventStubFactory = new EventStubFactory();

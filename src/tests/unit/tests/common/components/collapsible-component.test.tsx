@@ -11,10 +11,13 @@ import {
 } from '../../../../../common/components/collapsible-component';
 import {
     expectMockedComponentPropsToMatchSnapshots,
+    getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react-components');
+
+jest.mock('common/icons/fluentui-v9-icons')
 describe('CollapsibleComponentTest', () => {
     mockReactComponents([Button]);
     test('render expanded with content-class-name', () => {
@@ -69,6 +72,8 @@ describe('CollapsibleComponentTest', () => {
 
         const renderResult = render(<CollapsibleComponent {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot('expanded');
+        console.log('here-->', getMockComponentClassPropsForCall(Button))
+        getMockComponentClassPropsForCall(Button).onClick();
         expectMockedComponentPropsToMatchSnapshots([Button]);
         await userEvent.click(renderResult.container.querySelector('mock-customizedactionbutton'));
         expect(renderResult.asFragment()).toMatchSnapshot('collapsed');

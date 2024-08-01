@@ -61,7 +61,7 @@ export type FluentUIV9IconProps = {
 };
 
 export const FluentUIV9Icon = NamedFC<FluentUIV9IconProps>('FluentUIV9Icon', props => {
-    const styleClasses = useIconStyles();
+    const styleClasses: any = useIconStyles();
     const isIconAvailable = !isUndefined(props?.iconName);
 
     if (isIconAvailable) {
