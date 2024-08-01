@@ -14,8 +14,12 @@ import {
 } from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react-components');
-//jest.mock('common/components/cards/expand-collapse-all-button-styles');
-jest.mock('common/icons/fluentui-v9-icons')
+jest.mock('common/components/cards/expand-collapse-all-button-styles', () => {
+    return {
+        useExpandCollapseAllButtonStyles: jest.fn(),
+    };
+});
+jest.mock('common/icons/fluentui-v9-icons');
 
 describe('ExpandCollapseAllButton', () => {
     mockReactComponents([Button]);

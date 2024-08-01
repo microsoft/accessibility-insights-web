@@ -1,22 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ThemeProvider } from '@fluentui/react';
+import { FluentProvider } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { ThemeFamilyCustomizer } from 'common/components/theme-family-customizer';
 import { DefaultTheme } from 'common/styles/default-theme';
 import { FastPassTheme } from 'common/styles/fast-pass-theme';
 import { HighContrastTheme } from 'common/styles/high-contrast-theme';
+import { ThemeV9DarkTheme } from 'common/styles/theme-v9-dark-theme';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as React from 'react';
 import {
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
-import { ThemeV9DarkTheme } from 'common/styles/theme-v9-dark-theme';
-import { FluentProvider } from '@fluentui/react-components';
 
 jest.mock('@fluentui/react');
-jest.mock('@fluentui/react-components')
+jest.mock('@fluentui/react-components');
 
 describe('ThemeFamilyCustomizer', () => {
     mockReactComponents([ThemeProvider, FluentProvider]);
@@ -42,9 +42,7 @@ describe('ThemeFamilyCustomizer', () => {
                         { enableHighContrast } as UserConfigurationStoreData
                     }
                 >
-                    <FluentProvider theme={themeFamily}>
-                        stub children
-                    </FluentProvider>
+                    <FluentProvider theme={themeFamily}>stub children</FluentProvider>
                 </ThemeFamilyCustomizer>,
             );
 

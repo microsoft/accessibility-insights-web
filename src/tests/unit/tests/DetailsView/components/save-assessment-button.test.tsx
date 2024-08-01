@@ -15,9 +15,9 @@ import {
 } from 'DetailsView/components/save-assessment-button';
 import * as React from 'react';
 import {
-    getMockComponentClassPropsForCall,
     mockReactComponents,
     mockReactComponent,
+    getMockComponentClassPropsForCall,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';

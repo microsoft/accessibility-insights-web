@@ -3,7 +3,6 @@
 import { IContextualMenuItem } from '@fluentui/react';
 
 import { fireEvent, render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import {
@@ -25,7 +24,6 @@ import { StartOverDropdown } from 'DetailsView/components/start-over-dropdown';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import {
     expectMockedComponentPropsToMatchSnapshots,
-    getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -96,7 +94,6 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverComponent', () => {
             const props = getProps(true);
             const rendered = AssessmentStartOverFactory.getStartOverComponent(props);
-            console.log('rendered-->', rendered);
             expect(rendered.props).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
@@ -181,11 +178,8 @@ describe('StartOverComponentFactory', () => {
                     props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
 
                     const item = getComponentOrMenuItem(props);
-                    console.log(item);
-                    //clickComponentOrMenuItem(item?.children?.props?.children?.props ? item?.children?.props?.children?.props : item, event);
 
                     clickComponentOrMenuItem(item, event);
-                    // getMockComponentClassPropsForCall(item).props.onClick(event);
 
                     actionMessageCreatorMock.verify(
                         creator => creator.rescanVisualization(It.isAny(), It.isAny()),
@@ -202,9 +196,7 @@ describe('StartOverComponentFactory', () => {
         }
 
         function clickStartOverMenuItem(startOverMenuItem: IContextualMenuItem, event: any): void {
-            console.log('startOverMenuItem', startOverMenuItem);
             startOverMenuItem.children.props.children?.props.onClick(event);
-            //userEvent.click(startOverMenuItem.getByRole('menuitem'), event);
         }
     });
 });

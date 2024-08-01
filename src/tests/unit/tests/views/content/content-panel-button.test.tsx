@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Button, themeToTokensObject, webLightTheme } from '@fluentui/react-components';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
-import { Theme, ThemeDeps, ThemeInnerProps } from 'common/components/theme';
+import { ThemeDeps, ThemeInnerProps } from 'common/components/theme';
 import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
 import {
@@ -16,7 +16,7 @@ import { ContentPanelButton } from 'views/content/content-panel-button';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
 jest.mock('@fluentui/react-components');
-jest.mock('../../../../../common/message-creators/content-action-message-creator')
+jest.mock('../../../../../common/message-creators/content-action-message-creator');
 
 describe('ContentPanelButton', () => {
     mockReactComponents([Button]);
@@ -51,7 +51,6 @@ describe('ContentPanelButton', () => {
 
     it('renders from content', () => {
         const renderResult = render(
-            // <Theme deps={props.deps}>
             <ContentPanelButton
                 deps={deps}
                 reference={content.for.testing}
@@ -60,7 +59,6 @@ describe('ContentPanelButton', () => {
             >
                 TEXT
             </ContentPanelButton>,
-            // </Theme>
         );
 
         expect(renderResult.asFragment()).toMatchSnapshot();
@@ -108,8 +106,8 @@ describe('ContentPanelButton', () => {
         const deps: any = {
             contentProvider: ContentPage.provider(content),
             contentActionMessageCreator: {
-                openContentPanel: jest.fn()
-            }
+                openContentPanel: jest.fn(),
+            },
         };
         render(
             <ContentPanelButton deps={deps} reference={'for/testing'} contentTitle={contentTitle}>
@@ -117,9 +115,7 @@ describe('ContentPanelButton', () => {
             </ContentPanelButton>,
         );
 
-        getMockComponentClassPropsForCall(Button).onClick()
+        getMockComponentClassPropsForCall(Button).onClick();
         expect(deps.contentActionMessageCreator.openContentPanel).toHaveBeenCalled();
     });
-
-
 });

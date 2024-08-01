@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StartOverDropdownTest render 1`] = `
+<DocumentFragment>
+  <div>
+    <mock-menu>
+      <mock-menutrigger
+        disablebuttonenhancement="true"
+      >
+        <mock-menubutton
+          appearance="transparent"
+          aria-label="start over menu"
+          icon="[object Object]"
+          menuicon="[object Object]"
+        >
+          Start over
+        </mock-menubutton>
+      </mock-menutrigger>
+      <mock-menupopover>
+        <mock-menulist>
+          <mock-menuitem
+            name="Start over all test suffix stub"
+            persistonclick="true"
+          >
+            Start over all test suffix stub
+          </mock-menuitem>
+          <mock-menuitem
+            name="Start over single test suffix stub"
+            persistonclick="true"
+          >
+            Start over single test suffix stub
+          </mock-menuitem>
+        </mock-menulist>
+      </mock-menupopover>
+    </mock-menu>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`StartOverDropdownTest render: MenuButton props 1`] = `
+{
+  "appearance": "transparent",
+  "aria-label": "start over menu",
+  "children": "Start over",
+  "className": undefined,
+  "icon": <FluentUIV9Icon
+    iconName="ArrowClockwiseRegular"
+  />,
+  "menuIcon": <FluentUIV9Icon
+    iconName="ChevronDown20Regular"
+  />,
+}
+`;
+
+exports[`StartOverDropdownTest render with dropdown on left 1`] = `
+<DocumentFragment>
+  <div>
+    <mock-menu>
+      <mock-menutrigger
+        disablebuttonenhancement="true"
+      >
+        <mock-menubutton
+          appearance="transparent"
+          aria-label="start over menu"
+          icon="[object Object]"
+          menuicon="[object Object]"
+        >
+          Start over
+        </mock-menubutton>
+      </mock-menutrigger>
+      <mock-menupopover>
+        <mock-menulist>
+          <mock-menuitem
+            name="Start over all test suffix stub"
+            persistonclick="true"
+          >
+            Start over all test suffix stub
+          </mock-menuitem>
+          <mock-menuitem
+            name="Start over single test suffix stub"
+            persistonclick="true"
+          >
+            Start over single test suffix stub
+          </mock-menuitem>
+        </mock-menulist>
+      </mock-menupopover>
+    </mock-menu>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`StartOverDropdownTest render with dropdown on left: MenuButton props 1`] = `
+{
+  "appearance": "transparent",
+  "aria-label": "start over menu",
+  "children": "Start over",
+  "className": undefined,
+  "icon": <FluentUIV9Icon
+    iconName="ArrowClockwiseRegular"
+  />,
+  "menuIcon": <FluentUIV9Icon
+    iconName="ChevronRight20Regular"
+  />,
+}
+`;

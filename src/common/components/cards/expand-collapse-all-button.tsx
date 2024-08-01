@@ -30,10 +30,20 @@ export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
 
         const IconName = () => {
             if (allCardsCollapsed) {
-                return <FluentUIV9Icon iconName='ChevronRight32Regular' customClass={getStyles?.customStyleIcon} />
+                return (
+                    <FluentUIV9Icon
+                        iconName="ChevronRight32Regular"
+                        customClass={getStyles?.customStyleIcon}
+                    />
+                );
             }
-            return <FluentUIV9Icon iconName='ChevronDown32Regular' customClass={getStyles?.customStyleIcon} />
-        }
+            return (
+                <FluentUIV9Icon
+                    iconName="ChevronDown32Regular"
+                    customClass={getStyles?.customStyleIcon}
+                />
+            );
+        };
 
         return (
             <Button
