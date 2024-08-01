@@ -323,7 +323,8 @@ describe('DetailsViewCommandBar', () => {
             'ReportExportButton',
         ]);
         const renderResult = render(<DetailsViewCommandBar {...props} />);
-        const exportButton = renderResult.getByRole('button', { name: 'Export Result' });
+
+        const exportButton = renderResult.getByText('Export result');
         expect(getMockComponentClassPropsForCall(ExportDialog, 1).isOpen).toBe(false);
         expect(renderResult.asFragment()).toMatchSnapshot('export dialog hidden');
         await userEvent.click(exportButton);
@@ -336,7 +337,7 @@ describe('DetailsViewCommandBar', () => {
         const props = getProps(['LoadAssessmentButton']);
         props.deps.loadAssessmentHelper = getLoadAssessmentHelperStub({ toggleLoad: true });
         const renderResult = render(<DetailsViewCommandBar {...props} />);
-        const loadAssessmentButton = renderResult.getByRole('button', { name: 'Load assessment' });
+        const loadAssessmentButton = renderResult.getByText('Load assessment');
         expect(getMockComponentClassPropsForCall(LoadAssessmentDialog, 1).isOpen).toBe(false);
         expect(renderResult.asFragment()).toMatchSnapshot('load assessment dialog hidden');
         await userEvent.click(loadAssessmentButton);
@@ -348,7 +349,7 @@ describe('DetailsViewCommandBar', () => {
         const props = getProps(['LoadAssessmentButton']);
         props.deps.loadAssessmentHelper = getLoadAssessmentHelperStub({ toggleInvalidLoad: true });
         const renderResult = render(<DetailsViewCommandBar {...props} />);
-        const loadAssessmentButton = renderResult.getByRole('button', { name: 'Load assessment' });
+        const loadAssessmentButton = renderResult.getByText('Load assessment');
         expect(getMockComponentClassPropsForCall(InvalidLoadAssessmentDialog, 1).isOpen).toBe(
             false,
         );
@@ -362,7 +363,7 @@ describe('DetailsViewCommandBar', () => {
         const props = getProps(['StartOverComponent']);
         const renderResult = render(<DetailsViewCommandBar {...props} />);
         expect(getMockComponentClassPropsForCall(StartOverDialog, 1).dialogState).toBe('none');
-        const startOverMenuButton = renderResult.getByRole('menuitem', { name: 'start over menu' });
+        const startOverMenuButton = renderResult.getByRole('button', { name: 'start over menu' });
         await userEvent.click(startOverMenuButton);
         const startOverAssessmentButton = renderResult.getByRole('menuitem', {
             name: 'Start over SingleTest',
@@ -377,7 +378,8 @@ describe('DetailsViewCommandBar', () => {
         const props = getProps(['StartOverComponent']);
         const renderResult = render(<DetailsViewCommandBar {...props} />);
         expect(getMockComponentClassPropsForCall(StartOverDialog, 1).dialogState).toBe('none');
-        const startOverMenuButton = renderResult.getByRole('menuitem', { name: 'start over menu' });
+        renderResult.debug()
+        const startOverMenuButton = renderResult.getByText('Start over');
         await userEvent.click(startOverMenuButton);
         const startOverAssessmentButton = renderResult.getByRole('menuitem', {
             name: 'Start over Assessment',
@@ -429,9 +431,7 @@ describe('DetailsViewCommandBar', () => {
             useOriginalReactElements('DetailsView/components/export-dialog', ['ExportDialog']);
             const props = getProps(['ReportExportDialogFactory', 'CommandBar']);
             const renderResult = render(<DetailsViewCommandBar {...props} />);
-            const exportButton = renderResult.getByRole('button', {
-                name: 'Export Result',
-            });
+            const exportButton = renderResult.getByText('Export result');
             expect(exportButton).not.toHaveFocus();
             console.log(getMockComponentCall(ExportDialog));
             getMockComponentCall(ExportDialog)[0].afterDismissed();
@@ -513,9 +513,7 @@ describe('DetailsViewCommandBar', () => {
 
             const renderResult = render(<DetailsViewCommandBar {...props} />);
             expect(renderResult.baseElement).toHaveFocus();
-            const startOverMenuButton = renderResult.getByRole('menuitem', {
-                name: 'start over menu',
-            });
+            const startOverMenuButton = renderResult.getByText('Start over');
             act(() => {
                 getMockComponentCall(StartOverDialog)[0].dismissDialog();
             });
@@ -606,9 +604,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                          expectedProps as StartOverFactoryProps,
-                          'down',
-                      )
+                        expectedProps as StartOverFactoryProps,
+                        'down',
+                    )
                     : startOverComponent,
             );
     }

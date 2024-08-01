@@ -33,16 +33,16 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -55,19 +55,19 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -184,16 +184,16 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -206,19 +206,19 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -335,16 +335,16 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -357,19 +357,19 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -486,16 +486,16 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -508,19 +508,19 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -637,16 +637,16 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -659,7 +659,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
     </div>
     <mock-exportdialog
@@ -763,16 +763,16 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -785,7 +785,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
     </div>
     <mock-exportdialog
@@ -888,16 +888,16 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -910,25 +910,24 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <div>
-        <div
+        <button
           aria-expanded="true"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-MenuItem r11normc commandBarButtonsMenu menuItem"
+          class="fui-Button r1alrhcs fui-MenuButton ___1xcqye2_8h58iy0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur1"
-          role="menuitem"
-          tabindex="0"
+          type="button"
         >
           <span
-            class="fui-MenuItem__icon r9c34qo"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___1n29ach_duziql0 f1nizpg2 fqyhrn0"
           >
             <svg
               aria-hidden="true"
-              class="refreshIcon ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
               fill="currentColor"
               height="1em"
               viewBox="0 0 20 20"
@@ -941,21 +940,17 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
               />
             </svg>
           </span>
+          Start over
           <span
-            class="fui-MenuItem__content r1ls86vo"
-          >
-            Start over
-          </span>
-          <span
-            class="fui-MenuItem__submenuIndicator r9c34qo"
+            class="fui-MenuButton__menuIcon ___c2pfdf0_8ts8a30 fwrc4pm f1ugzwwg fvblgha frx94fk fbyavb5"
           >
             <svg
               aria-hidden="true"
-              class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              class="___1p6ai22_1ra22ji f1w7gpdv fez10in fg4l7m0 fkfq4zb f9hdeju f139oj5f"
               fill="currentColor"
-              height="1em"
+              height="20"
               viewBox="0 0 20 20"
-              width="1em"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -964,7 +959,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
               />
             </svg>
           </span>
-        </div>
+        </button>
         <span
           hidden=""
         />
@@ -1071,16 +1066,16 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -1093,24 +1088,24 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <div>
-        <div
+        <button
+          aria-expanded="true"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-MenuItem r11normc commandBarButtonsMenu menuItem"
+          class="fui-Button r1alrhcs fui-MenuButton ___1xcqye2_8h58iy0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur1"
-          role="menuitem"
-          tabindex="0"
+          type="button"
         >
           <span
-            class="fui-MenuItem__icon r9c34qo"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___1n29ach_duziql0 f1nizpg2 fqyhrn0"
           >
             <svg
               aria-hidden="true"
-              class="refreshIcon ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
               fill="currentColor"
               height="1em"
               viewBox="0 0 20 20"
@@ -1123,21 +1118,17 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
               />
             </svg>
           </span>
+          Start over
           <span
-            class="fui-MenuItem__content r1ls86vo"
-          >
-            Start over
-          </span>
-          <span
-            class="fui-MenuItem__submenuIndicator r9c34qo"
+            class="fui-MenuButton__menuIcon ___c2pfdf0_8ts8a30 fwrc4pm f1ugzwwg fvblgha frx94fk fbyavb5"
           >
             <svg
               aria-hidden="true"
-              class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              class="___1p6ai22_1ra22ji f1w7gpdv fez10in fg4l7m0 fkfq4zb f9hdeju f139oj5f"
               fill="currentColor"
-              height="1em"
+              height="20"
               viewBox="0 0 20 20"
-              width="1em"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -1146,7 +1137,10 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
               />
             </svg>
           </span>
-        </div>
+        </button>
+        <span
+          hidden=""
+        />
       </div>
     </div>
     <mock-exportdialog
@@ -1250,16 +1244,16 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -1272,25 +1266,24 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <div>
-        <div
+        <button
           aria-expanded="true"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-MenuItem r11normc commandBarButtonsMenu menuItem"
+          class="fui-Button r1alrhcs fui-MenuButton ___1xcqye2_8h58iy0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur0"
-          role="menuitem"
-          tabindex="0"
+          type="button"
         >
           <span
-            class="fui-MenuItem__icon r9c34qo"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___1n29ach_duziql0 f1nizpg2 fqyhrn0"
           >
             <svg
               aria-hidden="true"
-              class="refreshIcon ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
               fill="currentColor"
               height="1em"
               viewBox="0 0 20 20"
@@ -1303,21 +1296,17 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
               />
             </svg>
           </span>
+          Start over
           <span
-            class="fui-MenuItem__content r1ls86vo"
-          >
-            Start over
-          </span>
-          <span
-            class="fui-MenuItem__submenuIndicator r9c34qo"
+            class="fui-MenuButton__menuIcon ___c2pfdf0_8ts8a30 fwrc4pm f1ugzwwg fvblgha frx94fk fbyavb5"
           >
             <svg
               aria-hidden="true"
-              class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              class="___1p6ai22_1ra22ji f1w7gpdv fez10in fg4l7m0 fkfq4zb f9hdeju f139oj5f"
               fill="currentColor"
-              height="1em"
+              height="20"
               viewBox="0 0 20 20"
-              width="1em"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -1326,7 +1315,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
               />
             </svg>
           </span>
-        </div>
+        </button>
         <span
           hidden=""
         />
@@ -1433,16 +1422,16 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -1455,24 +1444,24 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <div>
-        <div
+        <button
+          aria-expanded="true"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-MenuItem r11normc commandBarButtonsMenu menuItem"
+          class="fui-Button r1alrhcs fui-MenuButton ___1xcqye2_8h58iy0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur0"
-          role="menuitem"
-          tabindex="0"
+          type="button"
         >
           <span
-            class="fui-MenuItem__icon r9c34qo"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___1n29ach_duziql0 f1nizpg2 fqyhrn0"
           >
             <svg
               aria-hidden="true"
-              class="refreshIcon ___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
               fill="currentColor"
               height="1em"
               viewBox="0 0 20 20"
@@ -1485,21 +1474,17 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
               />
             </svg>
           </span>
+          Start over
           <span
-            class="fui-MenuItem__content r1ls86vo"
-          >
-            Start over
-          </span>
-          <span
-            class="fui-MenuItem__submenuIndicator r9c34qo"
+            class="fui-MenuButton__menuIcon ___c2pfdf0_8ts8a30 fwrc4pm f1ugzwwg fvblgha frx94fk fbyavb5"
           >
             <svg
               aria-hidden="true"
-              class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+              class="___1p6ai22_1ra22ji f1w7gpdv fez10in fg4l7m0 fkfq4zb f9hdeju f139oj5f"
               fill="currentColor"
-              height="1em"
+              height="20"
               viewBox="0 0 20 20"
-              width="1em"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -1508,7 +1493,10 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
               />
             </svg>
           </span>
-        </div>
+        </button>
+        <span
+          hidden=""
+        />
       </div>
     </div>
     <mock-exportdialog
@@ -1612,16 +1600,16 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -1634,7 +1622,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <div>
         Transfer to assessment stub
@@ -1741,16 +1729,16 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1whombv_109ksws f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f9hdeju"
+        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         type="button"
       >
         <span
-          class="fui-Button__icon rywnvv2 commandBarButtonIcon ___uljs5h0_1j23dpq f1nizpg2 fq3bhnu"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
           <svg
             aria-hidden="true"
-            class="___12fm75w_v8ls9a0 f1w7gpdv fez10in fg4l7m0"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
             fill="currentColor"
             height="1em"
             viewBox="0 0 20 20"
@@ -1763,7 +1751,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
             />
           </svg>
         </span>
-        Export Result
+        Export result
       </button>
       <div>
         Transfer to assessment stub

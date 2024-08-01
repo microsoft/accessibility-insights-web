@@ -4,7 +4,7 @@
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { NamedFC } from 'common/react/named-fc';
-import { CommandButtonStyle } from 'DetailsView/components/command-button-styles';
+import { useCommandButtonStyle } from 'DetailsView/components/command-button-styles';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import * as React from 'react';
 
@@ -21,7 +21,7 @@ export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-bu
 export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProps>(
     'TransferToAssessmentButton',
     props => {
-        const saveAssessmentStyles = CommandButtonStyle();
+        const saveAssessmentStyles = useCommandButtonStyle();
         return (
             <InsightsCommandButton
                 className={saveAssessmentStyles.assessmentButton}

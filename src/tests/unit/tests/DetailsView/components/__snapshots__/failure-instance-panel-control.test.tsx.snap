@@ -5,10 +5,10 @@ exports[`FailureInstancePanelControlTest closeFailureInstancePanel: Button props
   "appearance": "transparent",
   "aria-description": "Open add a failure instance panel",
   "aria-label": "Add a failure instance",
-  "children": [
-    "Add a failure instance",
-  ],
-  "icon": <AddRegular />,
+  "children": "Add a failure instance",
+  "icon": <FluentUIV9Icon
+    iconName="AddRegular"
+  />,
   "onClick": [Function],
 }
 `;
@@ -31,10 +31,10 @@ exports[`FailureInstancePanelControlTest componentDidUpdate reassigns state: But
   "appearance": "transparent",
   "aria-description": "Open add a failure instance panel",
   "aria-label": "Add a failure instance",
-  "children": [
-    "Add a failure instance",
-  ],
-  "icon": <AddRegular />,
+  "children": "Add a failure instance",
+  "icon": <FluentUIV9Icon
+    iconName="AddRegular"
+  />,
   "onClick": [Function],
 }
 `;
@@ -46,10 +46,10 @@ exports[`FailureInstancePanelControlTest onAddFailureInstance: Button props 1`] 
   "appearance": "transparent",
   "aria-description": "Open add a failure instance panel",
   "aria-label": "Add a failure instance",
-  "children": [
-    "Add a failure instance",
-  ],
-  "icon": <AddRegular />,
+  "children": "Add a failure instance",
+  "icon": <FluentUIV9Icon
+    iconName="AddRegular"
+  />,
   "onClick": [Function],
 }
 `;
@@ -61,10 +61,10 @@ exports[`FailureInstancePanelControlTest onFailureDescriptionChange: Button prop
   "appearance": "transparent",
   "aria-description": "Open add a failure instance panel",
   "aria-label": "Add a failure instance",
-  "children": [
-    "Add a failure instance",
-  ],
-  "icon": <AddRegular />,
+  "children": "Add a failure instance",
+  "icon": <FluentUIV9Icon
+    iconName="AddRegular"
+  />,
   "onClick": [Function],
 }
 `;
@@ -80,10 +80,10 @@ exports[`FailureInstancePanelControlTest onSelectorChange : Button props 1`] = `
   "appearance": "transparent",
   "aria-description": "Open add a failure instance panel",
   "aria-label": "Add a failure instance",
-  "children": [
-    "Add a failure instance",
-  ],
-  "icon": <AddRegular />,
+  "children": "Add a failure instance",
+  "icon": <FluentUIV9Icon
+    iconName="AddRegular"
+  />,
   "onClick": [Function],
 }
 `;
@@ -95,10 +95,10 @@ exports[`FailureInstancePanelControlTest onValidateSelector : Button props 1`] =
   "appearance": "transparent",
   "aria-description": "Open add a failure instance panel",
   "aria-label": "Add a failure instance",
-  "children": [
-    "Add a failure instance",
-  ],
-  "icon": <AddRegular />,
+  "children": "Add a failure instance",
+  "icon": <FluentUIV9Icon
+    iconName="AddRegular"
+  />,
   "onClick": [Function],
 }
 `;
@@ -110,10 +110,10 @@ exports[`FailureInstancePanelControlTest openFailureInstancePanel: Button props 
   "appearance": "transparent",
   "aria-description": "Open add a failure instance panel",
   "aria-label": "Add a failure instance",
-  "children": [
-    "Add a failure instance",
-  ],
-  "icon": <AddRegular />,
+  "children": "Add a failure instance",
+  "icon": <FluentUIV9Icon
+    iconName="AddRegular"
+  />,
   "onClick": [Function],
 }
 `;
@@ -167,10 +167,10 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
   "appearance": "transparent",
   "aria-description": "Open add a failure instance panel",
   "aria-label": "Add a failure instance",
-  "children": [
-    "Add a failure instance",
-  ],
-  "icon": <AddRegular />,
+  "children": "Add a failure instance",
+  "icon": <FluentUIV9Icon
+    iconName="AddRegular"
+  />,
   "onClick": [Function],
 }
 `;
@@ -286,10 +286,10 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
   "appearance": "transparent",
   "aria-description": "Open add a failure instance panel",
   "aria-label": "Add a failure instance",
-  "children": [
-    "Add a failure instance",
-  ],
-  "icon": <AddRegular />,
+  "children": "Add a failure instance",
+  "icon": <FluentUIV9Icon
+    iconName="AddRegular"
+  />,
   "onClick": [Function],
 }
 `;

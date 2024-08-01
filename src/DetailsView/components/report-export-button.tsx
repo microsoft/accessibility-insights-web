@@ -3,7 +3,7 @@
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { NamedFC } from 'common/react/named-fc';
-import { CommandButtonStyle } from 'DetailsView/components/command-button-styles';
+import { useCommandButtonStyle } from 'DetailsView/components/command-button-styles';
 import * as React from 'react';
 
 export interface ReportExportButtonProps {
@@ -14,7 +14,7 @@ export interface ReportExportButtonProps {
 export const reportExportButtonAutomationId = 'report-export-button';
 
 export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExportButton', props => {
-    const exportButtonStyles = CommandButtonStyle();
+    const exportButtonStyles = useCommandButtonStyle();
 
     return (
         <InsightsCommandButton

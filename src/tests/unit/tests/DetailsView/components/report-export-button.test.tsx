@@ -27,7 +27,7 @@ describe(ReportExportButton.displayName, () => {
         showDialogMock = jest.fn();
         props = {
             showReportExportDialog: showDialogMock,
-            buttonRef: {} as React.RefObject<IButton>,
+            buttonRef: {} as React.RefObject<HTMLButtonElement>,
         };
     });
 

@@ -3,7 +3,7 @@
 
 import { makeStyles, tokens } from '@fluentui/react-components';
 
-export const useCommandButtonStyle: any = makeStyles<any>({
+export const useCommandButtonStyle = makeStyles({
     assessmentButton: {
         fontWeight: '400 !important',
         paddingLeft: '5px !important',
