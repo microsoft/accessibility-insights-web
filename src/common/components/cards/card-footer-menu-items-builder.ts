@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-    IButtonProps,
-    IContextualMenuItem,
-    IContextualMenuRenderItem,
-} from '@fluentui/react';
+import { IButtonProps, IContextualMenuItem, IContextualMenuRenderItem } from '@fluentui/react';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
@@ -22,7 +18,8 @@ import React from 'react';
 export type CardFooterMenuItem = IContextualMenuItem & IButtonProps;
 
 export type CardFooterMenuItemsProps = {
-    fileIssueButtonRef: React.RefObject<HTMLButtonElement> & React.RefObject<IContextualMenuRenderItem>;
+    fileIssueButtonRef: React.RefObject<HTMLButtonElement> &
+        React.RefObject<IContextualMenuRenderItem>;
     toastRef: React.RefObject<Toast>;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData | null;
@@ -57,7 +54,7 @@ export class CardFooterMenuItemsBuilder {
                 },
                 iconName: 'ladybugSolid',
                 onClick: event => this.fileIssue(props, event),
-                componentRef:()=> props.fileIssueButtonRef,
+                componentRef: () => props.fileIssueButtonRef,
             });
         }
 

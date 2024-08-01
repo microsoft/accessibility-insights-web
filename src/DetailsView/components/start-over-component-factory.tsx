@@ -3,6 +3,7 @@
 import { IContextualMenuItem } from '@fluentui/react';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -15,7 +16,6 @@ import {
 } from 'DetailsView/components/start-over-dropdown';
 import * as React from 'react';
 import styles from './start-over-menu-item.scss';
-import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 
 export type StartOverFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -75,11 +75,7 @@ export function getStartOverComponentFastPass(props: StartOverFactoryProps): JSX
     return (
         <InsightsCommandButton
             insightsCommandButtonIconProps={{
-                icon: (
-                    <FluentUIV9Icon
-                        iconName="ArrowClockwiseRegular"
-                    />
-                ),
+                icon: <FluentUIV9Icon iconName="ArrowClockwiseRegular" />,
             }}
             {...startOverProps}
         >

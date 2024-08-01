@@ -13,6 +13,7 @@ import { IRenderFunction } from '@fluentui/utilities';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { hasIn } from 'lodash';
 import * as React from 'react';
@@ -23,7 +24,6 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 
 export const passUnmarkedInstancesButtonAutomationId =
     'assessment-instance-table-pass-unmarked-instances-button';

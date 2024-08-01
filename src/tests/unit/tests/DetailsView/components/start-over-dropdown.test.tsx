@@ -145,7 +145,6 @@ describe('StartOverDropdownTest user interaction', () => {
 
                 const renderResult = render(<StartOverDropdown {...defaultProps} />);
                 fireEvent.click(renderResult.getByRole('button'));
-                console.log(getMockComponentClassPropsForCall(MenuList));
                 const isStartOverOptionRendered = getMockComponentClassPropsForCall(
                     MenuList,
                 ).children.some(item => item.key === optionKey);

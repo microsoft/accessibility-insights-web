@@ -5,6 +5,7 @@ import { Button } from '@fluentui/react-components';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -15,7 +16,6 @@ import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-com
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';
 import styles from './failure-instance-panel.scss';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
-import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 export interface FailureInstancePanelControlProps {
     step: string;
     test: VisualizationType;

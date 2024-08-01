@@ -118,7 +118,6 @@ export const CardFooterInstanceActionButtons = props => {
 
     const renderExpandedButtons = () => {
         const menuItems = getMenuItems();
-        console.log('inside expanded button');
         return (
             <>
                 {menuItems.map(props => (
@@ -148,9 +147,8 @@ export const CardFooterInstanceActionButtons = props => {
     };
 
     const menuItems = getMenuItems();
-    console.log('here--->', menuItems?.length)
     const menuItemsJsx =
-        menuItems?.length == 0 ? null : (
+        menuItems?.length === 0 ? null : (
             <div onKeyDown={event => event.stopPropagation()}>
                 {renderButtons()}
                 {renderCopyFailureDetailsToast()}

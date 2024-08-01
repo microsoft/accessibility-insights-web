@@ -10,7 +10,7 @@ import {
     MenuTrigger,
     Tooltip,
 } from '@fluentui/react-components';
-import { render, renderHook, RenderResult, screen } from '@testing-library/react';
+import { render, RenderResult } from '@testing-library/react';
 import {
     CardFooterInstanceActionButtons,
     CardFooterInstanceActionButtonsDeps,
@@ -38,7 +38,7 @@ import {
 jest.mock('@fluentui/react-components');
 jest.mock('../../../../../../common/components/toast');
 
-jest.mock('common/icons/fluentui-v9-icons')
+jest.mock('common/icons/fluentui-v9-icons');
 describe(CardFooterInstanceActionButtons, () => {
     mockReactComponents([
         Toast,
@@ -60,12 +60,12 @@ describe(CardFooterInstanceActionButtons, () => {
         {
             key: 'item1',
             text: 'item 1',
-            onClick: () => null
+            onClick: () => null,
         },
         {
             key: 'item2',
             text: 'item 2',
-            onClick: () => null
+            onClick: () => null,
         },
     ];
 
@@ -159,9 +159,7 @@ describe(CardFooterInstanceActionButtons, () => {
     );
 
     it('onIssueFilingSettingsDialogDismissed focus kebab button', async () => {
-        useOriginalReactElements('@fluentui/react-components', [
-            'Button'
-        ]);
+        useOriginalReactElements('@fluentui/react-components', ['Button']);
         defaultProps.narrowModeStatus = { isCardFooterCollapsed: true } as NarrowModeStatus;
         let menuItemsProps: CardFooterMenuItemsProps;
 
@@ -177,7 +175,7 @@ describe(CardFooterInstanceActionButtons, () => {
             });
         const result = render(<CardFooterInstanceActionButtons {...defaultProps} />);
         menuItemsProps.onIssueFilingSettingsDialogDismissed();
-        jest.spyOn(menuItemsProps, 'onIssueFilingSettingsDialogDismissed')
+        jest.spyOn(menuItemsProps, 'onIssueFilingSettingsDialogDismissed');
         const getButton = result.getByRole('button');
 
         expect(document.activeElement).toBe(getButton);
@@ -208,7 +206,6 @@ describe(CardFooterInstanceActionButtons, () => {
 
         // call ref callback to set rendered component's ref to our button mock
         const buttonRefCallback = menuItemsProps.fileIssueButtonRef as any;
-        console.log('buttonRef===>', buttonRefCallback)
         buttonRefCallback(fileIssueButtonMock.object);
 
         menuItemsProps.onIssueFilingSettingsDialogDismissed();

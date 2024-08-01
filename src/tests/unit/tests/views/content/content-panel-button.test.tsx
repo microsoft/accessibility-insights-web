@@ -16,7 +16,7 @@ import { ContentPanelButton } from 'views/content/content-panel-button';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
 jest.mock('@fluentui/react-components');
-jest.mock('../../../../../common/message-creators/content-action-message-creator')
+jest.mock('../../../../../common/message-creators/content-action-message-creator');
 
 describe('ContentPanelButton', () => {
     mockReactComponents([Button]);
@@ -106,8 +106,8 @@ describe('ContentPanelButton', () => {
         const deps: any = {
             contentProvider: ContentPage.provider(content),
             contentActionMessageCreator: {
-                openContentPanel: jest.fn()
-            }
+                openContentPanel: jest.fn(),
+            },
         };
         render(
             <ContentPanelButton deps={deps} reference={'for/testing'} contentTitle={contentTitle}>
@@ -115,9 +115,7 @@ describe('ContentPanelButton', () => {
             </ContentPanelButton>,
         );
 
-        getMockComponentClassPropsForCall(Button).onClick()
+        getMockComponentClassPropsForCall(Button).onClick();
         expect(deps.contentActionMessageCreator.openContentPanel).toHaveBeenCalled();
     });
-
-
 });

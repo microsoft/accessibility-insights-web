@@ -24,11 +24,19 @@ jest.mock('@fluentui/react');
 jest.mock('@fluentui/react-components');
 jest.mock('DetailsView/components/command-button-styles');
 jest.mock('common/icons/fluentui-v9-icons');
-jest.mock('common/components/controls/insights-command-button')
+jest.mock('common/components/controls/insights-command-button');
 //jest.mock('common/components/controls/insights-command-button-style');
 
 describe('SaveAssessmentButton', () => {
-    mockReactComponents([InsightsCommandButton, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton, Button]);
+    mockReactComponents([
+        InsightsCommandButton,
+        DialogFooter,
+        Stack,
+        Checkbox,
+        Stack.Item,
+        PrimaryButton,
+        Button,
+    ]);
     mockReactComponent(Dialog, 'Dialog');
 
     let propsStub: SaveAssessmentButtonProps;

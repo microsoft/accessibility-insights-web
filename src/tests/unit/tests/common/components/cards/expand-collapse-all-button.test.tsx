@@ -19,7 +19,7 @@ jest.mock('common/components/cards/expand-collapse-all-button-styles', () => {
         useExpandCollapseAllButtonStyles: jest.fn(),
     };
 });
-jest.mock('common/icons/fluentui-v9-icons')
+jest.mock('common/icons/fluentui-v9-icons');
 
 describe('ExpandCollapseAllButton', () => {
     mockReactComponents([Button]);

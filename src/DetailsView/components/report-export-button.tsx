@@ -19,11 +19,7 @@ export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExport
     return (
         <InsightsCommandButton
             insightsCommandButtonIconProps={{
-                icon: (
-                    <FluentUIV9Icon
-                        iconName="ArrowExportRegular"
-                    />
-                ),
+                icon: <FluentUIV9Icon iconName="ArrowExportRegular" />,
             }}
             onClick={props.showReportExportDialog}
             ref={props.buttonRef}

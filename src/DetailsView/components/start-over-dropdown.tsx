@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    DirectionalHint,
-} from '@fluentui/react';
+import { DirectionalHint } from '@fluentui/react';
 
 import {
     Menu,
@@ -14,12 +12,12 @@ import {
     MenuTrigger,
 } from '@fluentui/react-components';
 
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
+import { useStartOverDropdownStyles } from 'DetailsView/components/start-over-dropdown-styles';
 import * as React from 'react';
 
 import { StartOverContextMenuKeyOptions } from './details-view-right-panel';
-import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
-import { useStartOverDropdownStyles } from 'DetailsView/components/start-over-dropdown-styles';
 
 export type StartOverDropdownMenuItems = MenuItemProps & {
     name: string;
@@ -87,12 +85,10 @@ export const StartOverDropdown: React.FC<StartOverProps> = props => {
     };
 
     const onStartOverTestMenu = (): void => {
-        console.log('clicked2');
         props.openDialog('test');
     };
 
     const onStartOverAllTestsMenu = (): void => {
-        console.log('clicked1');
         props.openDialog('assessment');
     };
 
@@ -107,7 +103,7 @@ export const StartOverDropdown: React.FC<StartOverProps> = props => {
                         icon={
                             <FluentUIV9Icon
                                 iconName="ArrowClockwiseRegular"
-                            //    customClass={stylesValue.chevronIcon}
+                                //    customClass={stylesValue.chevronIcon}
                             />
                         }
                         aria-label="start over menu"
