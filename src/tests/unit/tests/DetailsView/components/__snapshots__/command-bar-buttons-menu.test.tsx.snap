@@ -78,3 +78,35 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
   </mock-tooltip>
 </DocumentFragment>
 `;
+
+exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render export report menuitem 1`] = `
+<div
+  role="menuitem"
+>
+  Report export button
+</div>
+`;
+
+exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render load assessment menuitem 1`] = `
+<div
+  role="menuitem"
+>
+  Load assessment button
+</div>
+`;
+
+exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render save assessment menuitem 1`] = `
+<div
+  role="menuitem"
+>
+  Save assessment button
+</div>
+`;
+
+exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render transfer to assessment menuitem 1`] = `
+<div
+  role="menuitem"
+>
+  Transfer to assessment button
+</div>
+`;
