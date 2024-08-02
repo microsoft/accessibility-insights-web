@@ -21,9 +21,7 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverCompon
 
 exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuItem 1`] = `
 <DocumentFragment>
-  <div
-    role="menuitem"
-  >
+  <div>
     <mock-startoverdropdown
       alltestsuffix="Assessment"
       dropdowndirection="left"
@@ -109,9 +107,7 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is false => component matches snapshot 1`] = `
 {
-  "children": <div
-    role="menuitem"
-  >
+  "children": <div>
     <InsightsCommandButton
       className="startOverMenuItem"
       data-automation-id="start-over"
@@ -142,9 +138,7 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is true => component matches snapshot 1`] = `
 {
-  "children": <div
-    role="menuitem"
-  >
+  "children": <div>
     <InsightsCommandButton
       className="startOverMenuItem"
       data-automation-id="start-over"
@@ -196,9 +190,7 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverCompo
 
 exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuItem 1`] = `
 <DocumentFragment>
-  <div
-    role="menuitem"
-  >
+  <div>
     <mock-startoverdropdown
       alltestsuffix="Quick Assess"
       dropdowndirection="left"

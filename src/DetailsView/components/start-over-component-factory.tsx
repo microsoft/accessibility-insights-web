@@ -43,9 +43,7 @@ export const AssessmentStartOverFactory: StartOverComponentFactory = {
     getStartOverComponent: props => getStartOverComponentForAssessment(props, 'down'),
     getStartOverMenuItem: props => {
         return {
-            children: (
-                <div>{getStartOverComponentForAssessment(props, 'left')}</div>
-            ),
+            children: <div>{getStartOverComponentForAssessment(props, 'left')}</div>,
         };
     },
 };
@@ -54,9 +52,7 @@ export const QuickAssessStartOverFactory: StartOverComponentFactory = {
     getStartOverComponent: props => getStartOverComponentForQuickAssess(props, 'down'),
     getStartOverMenuItem: props => {
         return {
-            children: (
-                <div>{getStartOverComponentForQuickAssess(props, 'left')}</div>
-            ),
+            children: <div>{getStartOverComponentForQuickAssess(props, 'left')}</div>,
         };
     },
 };

@@ -31,9 +31,7 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
             saveassessmentbutton="[object Object]"
             transfertoassessmentbutton="[object Object]"
           >
-            <div
-              role="menuitem"
-            >
+            <div>
               Save assessment button
             </div>
           </mock-menuitem>
@@ -45,9 +43,7 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
             saveassessmentbutton="[object Object]"
             transfertoassessmentbutton="[object Object]"
           >
-            <div
-              role="menuitem"
-            >
+            <div>
               Load assessment button
             </div>
           </mock-menuitem>
@@ -59,9 +55,7 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
             saveassessmentbutton="[object Object]"
             transfertoassessmentbutton="[object Object]"
           >
-            <div
-              role="menuitem"
-            >
+            <div>
               Transfer to assessment button
             </div>
           </mock-menuitem>
@@ -81,33 +75,25 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render export report menuitem 1`] = `
-<div
-  role="menuitem"
->
+<div>
   Report export button
 </div>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render load assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
+<div>
   Load assessment button
 </div>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render save assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
+<div>
   Save assessment button
 </div>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render transfer to assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
+<div>
   Transfer to assessment button
 </div>
 `;
