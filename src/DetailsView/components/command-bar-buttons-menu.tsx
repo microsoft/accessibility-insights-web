@@ -33,18 +33,18 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         if (exportButton != null) {
             overflowItems.push({
                 key: 'export report',
-                children: <div role="menuitem">{exportButton}</div>,
+                children: <div>{exportButton}</div>,
             });
         }
         if (props.saveAssessmentButton && props.loadAssessmentButton) {
             overflowItems.push(
                 {
                     key: 'save assessment',
-                    children: <div role="menuitem">{props.saveAssessmentButton}</div>,
+                    children: <div>{props.saveAssessmentButton}</div>,
                 },
                 {
                     key: 'load assessment',
-                    children: <div role="menuitem">{props.loadAssessmentButton}</div>,
+                    children: <div>{props.loadAssessmentButton}</div>,
                 },
             );
         }
@@ -52,7 +52,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         if (props.transferToAssessmentButton) {
             overflowItems.push({
                 key: 'transfer to assessment',
-                children: <div role="menuitem">{props.transferToAssessmentButton}</div>,
+                children: <div>{props.transferToAssessmentButton}</div>,
             });
         }
 

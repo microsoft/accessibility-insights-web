@@ -21,7 +21,6 @@ export class CollapsibleComponent extends React.Component<
     CollapsibleComponentProps,
     CollapsibleComponentState
 > {
-
     constructor(props: CollapsibleComponentProps) {
         super(props);
         this.state = { showContent: true };
