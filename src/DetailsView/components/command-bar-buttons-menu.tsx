@@ -22,7 +22,6 @@ export type CommandBarButtonsMenuProps = {
     transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef?: React.RefObject<HTMLButtonElement>;
-    //buttonRef: JSX.Element
 };
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
@@ -68,6 +67,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                     <MenuTrigger>
                         <MenuButton
                             appearance="transparent"
+                            aria-label="More actions"
                             icon={<FluentUIV9Icon iconName="MoreHorizontalRegular" />}
                             className={styles.commandBarButtonsMenuButton}
                             ref={props.buttonRef}

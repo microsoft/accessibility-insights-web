@@ -21,8 +21,6 @@ export class CollapsibleComponent extends React.Component<
     CollapsibleComponentProps,
     CollapsibleComponentState
 > {
-    private readonly iconNameDown = 'ChevronDown';
-    private readonly iconNameUp = 'ChevronRight';
 
     constructor(props: CollapsibleComponentProps) {
         super(props);
