@@ -35,11 +35,9 @@ export class CollapsibleComponent extends React.Component<
 
     public render(): JSX.Element {
         const showContent = this.state.showContent;
-        let iconName = this.iconNameUp;
         let content: JSX.Element | null = null;
 
         if (showContent) {
-            iconName = this.iconNameDown;
             content = (
                 <div className={css(this.props.contentClassName, styles.collapsibleContent)}>
                     {this.props.content}

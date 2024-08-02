@@ -52,10 +52,6 @@ exports[`ContentPanelButton renders from path: Button props 1`] = `
 }
 `;
 
-exports[`ContentPanelButton renders with content path as null 1`] = `<DocumentFragment />`;
-
-exports[`ContentPanelButton renders with content path as null: Button props 1`] = `undefined`;
-
 exports[`ContentPanelButton renders with reference is null 1`] = `<DocumentFragment />`;
 
 exports[`ContentPanelButton renders with reference is null: Button props 1`] = `undefined`;

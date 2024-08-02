@@ -32,7 +32,7 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
                     overrides?.button,
                 )}
                 icon={{
-                    children: props.insightsCommandButtonIconProps.icon,
+                    children: props.insightsCommandButtonIconProps?.icon,
                 }}
                 ref={ref}
                 {...props}

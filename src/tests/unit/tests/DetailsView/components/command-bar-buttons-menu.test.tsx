@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CommandBarButton, IButton, IOverflowSetItemProps, RefObject } from '@fluentui/react';
 import {
     Menu,
     MenuButton,
@@ -15,11 +14,8 @@ import {
     CommandBarButtonsMenu,
     CommandBarButtonsMenuProps,
 } from 'DetailsView/components/command-bar-buttons-menu';
-import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
-    getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -111,7 +107,6 @@ describe('CommandBarButtonsMenu', () => {
         renderExportReportComponentMock.verifyAll();
         getStartOverMenuItemMock.verifyAll();
     });
-
 
     function setupExportReportMenuItem(): void {
         renderExportReportComponentMock

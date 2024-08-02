@@ -2,15 +2,12 @@
 // Licensed under the MIT License.
 import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
-import { ThemeDeps, ThemeInnerProps } from 'common/components/theme';
-import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     getMockComponentClassPropsForCall,
     mockReactComponents,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
-import { Mock } from 'typemoq';
 import { ContentPage } from 'views/content/content-page';
 import { ContentPanelButton } from 'views/content/content-panel-button';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
@@ -20,23 +17,6 @@ jest.mock('../../../../../common/message-creators/content-action-message-creator
 
 describe('ContentPanelButton', () => {
     mockReactComponents([Button]);
-    const documentManipulatorMock = Mock.ofType(DocumentManipulator);
-    let props: ThemeInnerProps;
-    beforeEach(() => {
-        props = {
-            deps: {
-                documentManipulator: documentManipulatorMock.object,
-                storeActionMessageCreator: null,
-                storesHub: null,
-            } as ThemeDeps,
-            storeState: {
-                userConfigurationStoreData: {
-                    enableHighContrast: null,
-                },
-            },
-        } as ThemeInnerProps;
-    });
-
     const content = {
         for: {
             testing: ContentPage.create(() => 'CONTENT FOR TESTING' as any),

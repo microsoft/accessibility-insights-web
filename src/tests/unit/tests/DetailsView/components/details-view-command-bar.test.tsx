@@ -378,7 +378,6 @@ describe('DetailsViewCommandBar', () => {
         const props = getProps(['StartOverComponent']);
         const renderResult = render(<DetailsViewCommandBar {...props} />);
         expect(getMockComponentClassPropsForCall(StartOverDialog, 1).dialogState).toBe('none');
-        renderResult.debug()
         const startOverMenuButton = renderResult.getByText('Start over');
         await userEvent.click(startOverMenuButton);
         const startOverAssessmentButton = renderResult.getByRole('menuitem', {
@@ -433,7 +432,6 @@ describe('DetailsViewCommandBar', () => {
             const renderResult = render(<DetailsViewCommandBar {...props} />);
             const exportButton = renderResult.getByText('Export result');
             expect(exportButton).not.toHaveFocus();
-            console.log(getMockComponentCall(ExportDialog));
             getMockComponentCall(ExportDialog)[0].afterDismissed();
             expect(exportButton).toHaveFocus();
             await userEvent.click(exportButton); //open the dialog
@@ -604,9 +602,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                        expectedProps as StartOverFactoryProps,
-                        'down',
-                    )
+                          expectedProps as StartOverFactoryProps,
+                          'down',
+                      )
                     : startOverComponent,
             );
     }
