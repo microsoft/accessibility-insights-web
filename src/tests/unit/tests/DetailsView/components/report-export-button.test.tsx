@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 import {
     ReportExportButton,
     ReportExportButtonProps,
@@ -12,7 +13,6 @@ import {
     mockReactComponents,
     getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
-import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 
 jest.mock('common/components/controls/insights-command-button');
 

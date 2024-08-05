@@ -13,12 +13,11 @@ import {
 } from '@fluentui/react-components';
 
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { useStartOverDropdownStyles } from 'DetailsView/components/start-over-dropdown-styles';
 import * as React from 'react';
-
 import { StartOverContextMenuKeyOptions } from './details-view-right-panel';
-import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 
 export type StartOverDropdownMenuItems = MenuItemProps & {
     name: string;
@@ -104,7 +103,7 @@ export const StartOverDropdown: React.FC<StartOverProps> = props => {
                         icon={
                             <FluentUIV9Icon
                                 iconName="ArrowClockwiseRegular"
-                            //    customClass={stylesValue.chevronIcon}
+                                //    customClass={stylesValue.chevronIcon}
                             />
                         }
                         aria-label="start over menu"

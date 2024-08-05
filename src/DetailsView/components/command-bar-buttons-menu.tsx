@@ -11,10 +11,10 @@ import {
 } from '@fluentui/react-components';
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { NamedFC } from 'common/react/named-fc';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
-import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element | null;
