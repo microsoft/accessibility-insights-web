@@ -19,8 +19,7 @@ import React from 'react';
 export type CardFooterMenuItem = IContextualMenuItem & IButtonProps;
 
 export type CardFooterMenuItemsProps = {
-    fileIssueButtonRef: MyFunctionType &
-        React.RefObject<IContextualMenuRenderItem>;
+    fileIssueButtonRef: MyFunctionType & React.RefObject<IContextualMenuRenderItem>;
     toastRef: React.RefObject<Toast>;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData | null;

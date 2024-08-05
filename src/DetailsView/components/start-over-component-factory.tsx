@@ -7,6 +7,7 @@ import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from 'DetailsView/components/details-view-right-panel';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import {
@@ -16,7 +17,6 @@ import {
 } from 'DetailsView/components/start-over-dropdown';
 import * as React from 'react';
 import styles from './start-over-menu-item.scss';
-import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 
 export type StartOverFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

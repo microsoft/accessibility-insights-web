@@ -215,8 +215,7 @@ export class DetailsViewCommandBar extends React.Component<
                     this.exportDialogCloseFocus = ref ?? undefined;
                     this.startOverDialogCloseFocus = ref ?? undefined;
                     this.transferToAssessmentDialogCloseFocus = ref ?? undefined;
-                }
-                }
+                }}
             />
         );
     }
