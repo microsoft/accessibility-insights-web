@@ -16,6 +16,7 @@ import {
 } from 'DetailsView/components/start-over-dropdown';
 import * as React from 'react';
 import styles from './start-over-menu-item.scss';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 
 export type StartOverFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -28,7 +29,7 @@ export type StartOverFactoryProps = {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
     openDialog: (dialogType: StartOverDialogType) => void;
-    buttonRef: React.RefObject<HTMLButtonElement>;
+    buttonRef: MyFunctionType;
     hasSubMenu?: boolean;
 };
 

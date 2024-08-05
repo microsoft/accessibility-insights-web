@@ -48,8 +48,8 @@ export interface CardFooterInstanceActionButtonsProps {
 
 export const CardFooterInstanceActionButtons = props => {
     const toastRef = React.useRef(null);
-    const fileIssueButtonRef = React.useRef(null);
-    const kebabButtonRef = React.useRef(null);
+    const fileIssueButtonRef: any = React.useRef(null);
+    const kebabButtonRef: any = React.useRef(null);
 
     const focusButtonAfterDialogClosed = (): void => {
         if (props?.narrowModeStatus?.isCardFooterCollapsed) {

@@ -14,6 +14,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element | null;
@@ -21,7 +22,9 @@ export type CommandBarButtonsMenuProps = {
     loadAssessmentButton?: JSX.Element | null;
     transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
-    buttonRef?: React.RefObject<HTMLButtonElement>;
+    //buttonRef?: () => React.RefObject<HTMLButtonElement> | null;
+    buttonRef?: MyFunctionType;
+    hasSubMenu?: boolean;
 };
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(

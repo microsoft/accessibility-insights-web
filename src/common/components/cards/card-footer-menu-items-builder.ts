@@ -12,13 +12,14 @@ import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-te
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import React from 'react';
 
 export type CardFooterMenuItem = IContextualMenuItem & IButtonProps;
 
 export type CardFooterMenuItemsProps = {
-    fileIssueButtonRef: React.RefObject<HTMLButtonElement> &
+    fileIssueButtonRef: MyFunctionType &
         React.RefObject<IContextualMenuRenderItem>;
     toastRef: React.RefObject<Toast>;
     issueDetailsData: CreateIssueDetailsTextData;

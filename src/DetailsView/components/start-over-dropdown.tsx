@@ -18,6 +18,7 @@ import { useStartOverDropdownStyles } from 'DetailsView/components/start-over-dr
 import * as React from 'react';
 
 import { StartOverContextMenuKeyOptions } from './details-view-right-panel';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 
 export type StartOverDropdownMenuItems = MenuItemProps & {
     name: string;
@@ -32,7 +33,7 @@ export interface StartOverProps {
     singleTestSuffix: string;
     dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
-    buttonRef: React.RefObject<HTMLButtonElement>;
+    buttonRef: MyFunctionType;
     allTestSuffix: string;
     rightPanelOptions: StartOverContextMenuKeyOptions;
     switcherStartOverPreferences: StartOverContextMenuKeyOptions;
@@ -103,7 +104,7 @@ export const StartOverDropdown: React.FC<StartOverProps> = props => {
                         icon={
                             <FluentUIV9Icon
                                 iconName="ArrowClockwiseRegular"
-                                //    customClass={stylesValue.chevronIcon}
+                            //    customClass={stylesValue.chevronIcon}
                             />
                         }
                         aria-label="start over menu"

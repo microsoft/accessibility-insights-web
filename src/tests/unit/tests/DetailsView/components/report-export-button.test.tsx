@@ -12,6 +12,7 @@ import {
     mockReactComponents,
     getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 
 jest.mock('common/components/controls/insights-command-button');
 
@@ -24,7 +25,7 @@ describe(ReportExportButton.displayName, () => {
         showDialogMock = jest.fn();
         props = {
             showReportExportDialog: showDialogMock,
-            buttonRef: {} as React.RefObject<HTMLButtonElement>,
+            buttonRef: {} as MyFunctionType,
         };
     });
 

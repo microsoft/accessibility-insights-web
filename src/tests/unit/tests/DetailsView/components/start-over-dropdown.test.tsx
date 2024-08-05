@@ -14,6 +14,7 @@ import {
     ChevronDownRegular,
 } from '@fluentui/react-icons';
 import { fireEvent, render } from '@testing-library/react';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 import { StartOverContextMenuKeyOptions } from 'DetailsView/components/details-view-right-panel';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
@@ -61,7 +62,7 @@ describe('StartOverDropdownTest', () => {
             switcherStartOverPreferences: { showTest: true },
             dropdownDirection: 'down',
             openDialog: openDialogMock.object,
-            buttonRef: {} as React.RefObject<HTMLButtonElement>,
+            buttonRef: {} as MyFunctionType,
         };
     });
 
@@ -97,7 +98,7 @@ describe('StartOverDropdownTest user interaction', () => {
             switcherStartOverPreferences: { showTest: true },
             dropdownDirection: 'down',
             openDialog: openDialogMock.object,
-            buttonRef: {} as React.RefObject<HTMLButtonElement>,
+            buttonRef: {} as MyFunctionType,
         };
     });
 

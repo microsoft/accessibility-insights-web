@@ -91,6 +91,7 @@ export type TransferToAssessmentButtonFactory = (
     props: TransferToAssessmentButtonProps,
 ) => JSX.Element | null;
 
+export type MyFunctionType = (ref: any) => void;
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     tabStoreData: TabStoreData;
@@ -214,7 +215,8 @@ export class DetailsViewCommandBar extends React.Component<
                     this.exportDialogCloseFocus = ref ?? undefined;
                     this.startOverDialogCloseFocus = ref ?? undefined;
                     this.transferToAssessmentDialogCloseFocus = ref ?? undefined;
-                }}
+                }
+                }
             />
         );
     }

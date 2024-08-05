@@ -40,9 +40,7 @@ describe('CommandBarButtonsMenu', () => {
             loadAssessmentButton: <>Load assessment button</>,
             transferToAssessmentButton: <>Transfer to assessment button</>,
             getStartOverMenuItem: getStartOverMenuItemMock.object,
-            buttonRef: {
-                current: {},
-            },
+            buttonRef: {} as any,
             hasSubMenu: false,
         };
     });
