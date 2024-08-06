@@ -20,7 +20,7 @@ exports[`Details View -> Assessment -> Reflow With command bar button visible wi
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(4)",
+          "i[role="none"]:nth-child(6)",
         ],
       },
     ],
@@ -44,7 +44,7 @@ exports[`Details View -> Assessment -> Reflow With command bar button visible wi
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(4)",
+          "i[role="none"]:nth-child(6)",
         ],
       },
     ],
@@ -196,7 +196,7 @@ exports[`Details View -> Quick Assess -> Reflow With command bar button visible 
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i:nth-child(4)",
+          "i:nth-child(5)",
         ],
       },
     ],
@@ -220,7 +220,7 @@ exports[`Details View -> Quick Assess -> Reflow With command bar button visible 
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i:nth-child(4)",
+          "i:nth-child(5)",
         ],
       },
     ],
