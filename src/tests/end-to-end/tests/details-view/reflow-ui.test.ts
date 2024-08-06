@@ -145,7 +145,7 @@ describe('Details View ->', () => {
             targetPage = await browser.newTargetPage({
                 testResourcePath: 'all.html',
             });
-            
+
             await browser.newPopupPage(targetPage);
             detailsViewPage = await browser.newDetailsViewPage(targetPage);
             await detailsViewPage.waitForSelector(
