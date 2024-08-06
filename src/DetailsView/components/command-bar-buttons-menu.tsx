@@ -66,7 +66,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
 
         return (
             <Tooltip content="More actions" relationship="label">
-                <Menu persistOnItemClick={true}>
+                <Menu>
                     <MenuTrigger>
                         <MenuButton
                             appearance="transparent"
