@@ -13,14 +13,14 @@ exports[`Details View -> Assessment -> Reflow With command bar button visible wi
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(1)",
+          "i:nth-child(0)",
         ],
       },
       {
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(4)",
+          "i:nth-child(0)",
         ],
       },
     ],
@@ -37,14 +37,14 @@ exports[`Details View -> Assessment -> Reflow With command bar button visible wi
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(1)",
+          "i:nth-child(0)",
         ],
       },
       {
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(4)",
+          "i:nth-child(0)",
         ],
       },
     ],
@@ -69,14 +69,14 @@ exports[`Details View -> Fastpass -> Reflow With high contrast mode=false With c
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(1)",
+          "i:nth-child(0)",
         ],
       },
       {
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(4)",
+          "i:nth-child(0)",
         ],
       },
     ],
@@ -95,14 +95,14 @@ exports[`Details View -> Fastpass -> Reflow With high contrast mode=false and ca
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(1)",
+          "i:nth-child(0)",
         ],
       },
       {
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(4)",
+          "i:nth-child(0)",
         ],
       },
     ],
@@ -119,14 +119,14 @@ exports[`Details View -> Fastpass -> Reflow With high contrast mode=true With co
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(1)",
+          "i:nth-child(0)",
         ],
       },
       {
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(4)",
+          "i:nth-child(0)",
         ],
       },
     ],
@@ -161,14 +161,14 @@ exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and car
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(1)",
+          "i:nth-child(0)",
         ],
       },
       {
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i[role="none"]:nth-child(4)",
+          "i:nth-child(0)",
         ],
       },
     ],
@@ -189,14 +189,14 @@ exports[`Details View -> Quick Assess -> Reflow With command bar button visible 
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          ".fui-MenuList > i:nth-child(1)",
+          "i:nth-child(0)",
         ],
       },
       {
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i:nth-child(4)",
+          "i:nth-child(0)",
         ],
       },
     ],
@@ -213,14 +213,14 @@ exports[`Details View -> Quick Assess -> Reflow With command bar button visible 
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          ".fui-MenuList > i:nth-child(1)",
+          "i:nth-child(0)",
         ],
       },
       {
         "failureSummary": "Fix all of the following:
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
-          "i:nth-child(4)",
+          "i:nth-child(0)",
         ],
       },
     ],
