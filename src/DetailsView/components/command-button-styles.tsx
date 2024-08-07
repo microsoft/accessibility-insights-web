@@ -7,6 +7,7 @@ export const useCommandButtonStyle = makeStyles({
     assessmentButton: {
         fontWeight: '400 !important',
         paddingLeft: '5px !important',
+        textDecoration: 'none !important',
 
         ':focus': {
             border: `1px solid ${tokens.colorStrokeFocus2}`,

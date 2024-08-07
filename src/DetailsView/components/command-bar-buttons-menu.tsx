@@ -6,6 +6,7 @@ import {
     MenuItem,
     MenuList,
     MenuPopover,
+    MenuProps,
     MenuTrigger,
     Tooltip,
 } from '@fluentui/react-components';
@@ -15,6 +16,7 @@ import { MyFunctionType } from 'DetailsView/components/details-view-command-bar'
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
+import { NestedSubmenusControlled } from 'DetailsView/components/Test';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element | null;
@@ -30,24 +32,26 @@ export type CommandBarButtonsMenuProps = {
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
+        const [open, setOpen] = React.useState(false);
+        const onOpenChange: MenuProps["onOpenChange"] = (e, data) => setOpen(data.open);
         const exportButton = props.renderExportReportButton();
         const overflowItems: any[] = [];
 
         if (exportButton != null) {
             overflowItems.push({
                 key: 'export report',
-                children: <div>{exportButton}</div>,
+                children: <>{exportButton}</>,
             });
         }
         if (props.saveAssessmentButton && props.loadAssessmentButton) {
             overflowItems.push(
                 {
                     key: 'save assessment',
-                    children: <div>{props.saveAssessmentButton}</div>,
+                    children: <>{props.saveAssessmentButton}</>,
                 },
                 {
                     key: 'load assessment',
-                    children: <div>{props.loadAssessmentButton}</div>,
+                    children: <>{props.loadAssessmentButton}</>,
                 },
             );
         }
@@ -55,7 +59,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         if (props.transferToAssessmentButton) {
             overflowItems.push({
                 key: 'transfer to assessment',
-                children: <div>{props.transferToAssessmentButton}</div>,
+                children: <>{props.transferToAssessmentButton}</>,
             });
         }
 
@@ -63,42 +67,39 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'start over',
             ...props.getStartOverMenuItem(),
         });
-
+        console.log('open-->', open)
         return (
-            <Tooltip content="More actions" relationship="label">
-                <Menu>
-                    <MenuTrigger>
-                        <MenuButton
-                            appearance="transparent"
-                            aria-label="More actions"
-                            icon={<FluentUIV9Icon iconName="MoreHorizontalRegular" />}
-                            className={styles.commandBarButtonsMenuButton}
-                            ref={props.buttonRef}
-                        />
-                    </MenuTrigger>
-                    <MenuPopover
-                        style={{
-                            padding: 'unset !important',
-                            border: 'unset !important',
-                            borderRadius: 'unset !important',
-                        }}
-                    >
-                        <MenuList className={styles.menuList}>
-                            {overflowItems.map((item, index) => {
-                                return item?.children?.props?.children?.props?.hasSubMenu ? (
-                                    <span className={styles.menuItem} key={index}>
-                                        {item.children}
-                                    </span>
-                                ) : (
-                                    <MenuItem className={styles.menuItem} key={index} {...props}>
+            <>
+
+                <Tooltip content="More actions" relationship="label">
+                    <Menu open={open} onOpenChange={onOpenChange}>
+                        <MenuTrigger disableButtonEnhancement>
+                            <MenuButton
+                                appearance="transparent"
+                                aria-label="More actions"
+                                icon={<FluentUIV9Icon iconName="MoreHorizontalRegular" />}
+                                className={styles.commandBarButtonsMenuButton}
+                                ref={props.buttonRef}
+                            />
+                        </MenuTrigger>
+                        <MenuPopover
+                            style={{
+                                // padding: 'unset !important',
+                                border: 'unset !important',
+                                borderRadius: 'unset !important',
+                            }}
+                        >
+                            <MenuList className={styles.menuList}>
+                                {overflowItems.map((item, index) => (
+                                    <span key={index}>
                                         {item?.children}
-                                    </MenuItem>
-                                );
-                            })}
-                        </MenuList>
-                    </MenuPopover>
-                </Menu>
-            </Tooltip>
+                                    </span>
+                                ))}
+                            </MenuList>
+                        </MenuPopover>
+                    </Menu>
+                </Tooltip>
+            </>
         );
     },
 );

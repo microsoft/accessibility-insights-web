@@ -26,6 +26,7 @@ export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExport
             ref={props.buttonRef}
             data-automation-id={reportExportButtonAutomationId}
             className={exportButtonStyles.assessmentButton}
+            {...props}
         >
             Export result
         </InsightsCommandButton>

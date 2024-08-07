@@ -29,7 +29,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
     props => {
         const [dialogHidden, { setTrue: hideDialog, setFalse: showDialog }] = useBoolean(true);
         const saveAssessmentStyles = useCommandButtonStyle();
-        function handleSaveAssessmentClick(event: React.MouseEvent<any>) {
+        const handleSaveAssessmentClick = (event: React.MouseEvent<any>) => {
             props.deps.getAssessmentActionMessageCreator().saveAssessment(event);
             if (props.userConfigurationStoreData.showSaveAssessmentDialog) {
                 showDialog();
@@ -44,7 +44,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
         return (
             <>
                 <InsightsCommandButton
-                    as="a"
+                    as='a'
                     className={saveAssessmentStyles?.assessmentButton}
                     download={props.download}
                     href={props.href}
