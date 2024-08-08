@@ -88,6 +88,7 @@ export const CardFooterInstanceActionButtons = props => {
                         className={styles.menuButton}
                         ref={ref => (kebabButtonRef.current = ref)}
                         appearance="transparent"
+                        shape="square"
                         aria-label={props?.kebabMenuAriaLabel}
                         icon={<FluentUIV9Icon iconName="MoreVerticalRegular" />}
                     />

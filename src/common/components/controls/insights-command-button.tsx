@@ -31,6 +31,7 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
                     props.className,
                     overrides?.button,
                 )}
+                shape="square"
                 icon={{
                     children: props.insightsCommandButtonIconProps?.icon,
                 }}

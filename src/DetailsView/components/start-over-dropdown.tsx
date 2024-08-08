@@ -93,12 +93,13 @@ export const StartOverDropdown: React.FC<StartOverProps> = props => {
     };
 
     return (
-        <div role="menuitem">
+        <div>
             <Menu>
                 <MenuTrigger disableButtonEnhancement>
                     <MenuButton
                         ref={props.buttonRef}
                         appearance="transparent"
+                        shape="square"
                         className={stylesValue?.menuButton}
                         icon={
                             <FluentUIV9Icon
