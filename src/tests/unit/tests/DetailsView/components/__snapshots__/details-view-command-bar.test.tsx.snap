@@ -32,13 +32,15 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -55,15 +57,20 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
             />
           </svg>
         </span>
-        Export result
-      </button>
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="load-assessment-button"
-        type="button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -80,8 +87,12 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
             />
           </svg>
         </span>
-        Load assessment
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Load assessment
+        </span>
+      </div>
     </div>
     <mock-exportdialog
       description=""
@@ -183,13 +194,15 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -206,15 +219,20 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
             />
           </svg>
         </span>
-        Export result
-      </button>
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="load-assessment-button"
-        type="button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -231,8 +249,12 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
             />
           </svg>
         </span>
-        Load assessment
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Load assessment
+        </span>
+      </div>
     </div>
     <mock-exportdialog
       description=""
@@ -334,13 +356,15 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -357,15 +381,20 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
             />
           </svg>
         </span>
-        Export result
-      </button>
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="load-assessment-button"
-        type="button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -382,8 +411,12 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
             />
           </svg>
         </span>
-        Load assessment
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Load assessment
+        </span>
+      </div>
     </div>
     <mock-exportdialog
       description=""
@@ -485,13 +518,15 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -508,15 +543,20 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
             />
           </svg>
         </span>
-        Export result
-      </button>
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="load-assessment-button"
-        type="button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -533,8 +573,12 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
             />
           </svg>
         </span>
-        Load assessment
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Load assessment
+        </span>
+      </div>
     </div>
     <mock-exportdialog
       description=""
@@ -636,13 +680,15 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -659,8 +705,12 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
             />
           </svg>
         </span>
-        Export result
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
     </div>
     <mock-exportdialog
       description=""
@@ -762,13 +812,15 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -785,8 +837,12 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
             />
           </svg>
         </span>
-        Export result
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
     </div>
     <mock-exportdialog
       featureflagstoredata="[object Object]"
@@ -887,13 +943,15 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -910,14 +968,18 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
             />
           </svg>
         </span>
-        Export result
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
       <div>
         <button
           aria-expanded="true"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-Button r1alrhcs fui-MenuButton ___1xcqye2_8h58iy0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
+          class="fui-Button r1alrhcs fui-MenuButton ___wdno5z0_zvp7ru0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur1"
           type="button"
@@ -1065,13 +1127,15 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -1088,20 +1152,24 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
             />
           </svg>
         </span>
-        Export result
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
       <div>
         <button
-          aria-expanded="true"
+          aria-expanded="false"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-Button r1alrhcs fui-MenuButton ___1xcqye2_8h58iy0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
+          class="fui-Button r1alrhcs fui-MenuButton ___1ct9cz9_1oc00aw f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1kyxi2w f1t6ax4o fycuoez f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur1"
           type="button"
         >
           <span
-            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___1n29ach_duziql0 f1nizpg2 fqyhrn0"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___963sj20_1qpm2bl f1nizpg2"
           >
             <svg
               aria-hidden="true"
@@ -1138,9 +1206,6 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
             </svg>
           </span>
         </button>
-        <span
-          hidden=""
-        />
       </div>
     </div>
     <mock-exportdialog
@@ -1243,13 +1308,15 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -1266,14 +1333,18 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
             />
           </svg>
         </span>
-        Export result
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
       <div>
         <button
           aria-expanded="true"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-Button r1alrhcs fui-MenuButton ___1xcqye2_8h58iy0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
+          class="fui-Button r1alrhcs fui-MenuButton ___wdno5z0_zvp7ru0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur0"
           type="button"
@@ -1421,13 +1492,15 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -1444,20 +1517,24 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
             />
           </svg>
         </span>
-        Export result
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
       <div>
         <button
-          aria-expanded="true"
+          aria-expanded="false"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-Button r1alrhcs fui-MenuButton ___1xcqye2_8h58iy0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
+          class="fui-Button r1alrhcs fui-MenuButton ___1ct9cz9_1oc00aw f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1kyxi2w f1t6ax4o fycuoez f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur0"
           type="button"
         >
           <span
-            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___1n29ach_duziql0 f1nizpg2 fqyhrn0"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___963sj20_1qpm2bl f1nizpg2"
           >
             <svg
               aria-hidden="true"
@@ -1494,9 +1571,6 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
             </svg>
           </span>
         </button>
-        <span
-          hidden=""
-        />
       </div>
     </div>
     <mock-exportdialog
@@ -1599,13 +1673,15 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -1622,8 +1698,12 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
             />
           </svg>
         </span>
-        Export result
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
       <div>
         Transfer to assessment stub
       </div>
@@ -1728,13 +1808,15 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
     <div
       class="detailsViewCommandButtons"
     >
-      <button
-        class="fui-Button r1alrhcs ___wxpic80_18x2e4g f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad f1g8o529 f9hdeju f7otkfg"
+      <div
+        class="fui-MenuItem r11normc ___1r20z3h_r66yq00 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg"
         data-automation-id="report-export-button"
-        type="button"
+        id="report-export-button"
+        role="menuitem"
+        tabindex="0"
       >
         <span
-          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+          class="fui-MenuItem__icon r9c34qo"
         >
           <svg
             aria-hidden="true"
@@ -1751,8 +1833,12 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
             />
           </svg>
         </span>
-        Export result
-      </button>
+        <span
+          class="fui-MenuItem__content r1ls86vo"
+        >
+          Export result
+        </span>
+      </div>
       <div>
         Transfer to assessment stub
       </div>

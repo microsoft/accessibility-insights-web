@@ -3,7 +3,6 @@
 import {
     Menu,
     MenuButton,
-    MenuItem,
     MenuList,
     MenuPopover,
     MenuProps,
@@ -16,7 +15,6 @@ import { MyFunctionType } from 'DetailsView/components/details-view-command-bar'
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
-import { NestedSubmenusControlled } from 'DetailsView/components/Test';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element | null;

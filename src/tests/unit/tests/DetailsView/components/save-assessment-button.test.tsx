@@ -57,7 +57,7 @@ describe('SaveAssessmentButton', () => {
             beforeEach(() => {
                 mockReactComponent(Dialog, 'Dialog');
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                fireEvent.click(wrapper.getByRole('button'));
+                fireEvent.click(wrapper.getByRole('menuitem'));
             });
             it('snapshot of dialog', () => {
                 expect(wrapper.asFragment()).toMatchSnapshot();
@@ -87,7 +87,7 @@ describe('SaveAssessmentButton', () => {
                 useOriginalReactElements('@fluentui/react-components', ['Button']);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                fireEvent.click(wrapper.getByRole('button'));
+                fireEvent.click(wrapper.getByRole('menuitem'));
             });
 
             it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
@@ -127,7 +127,7 @@ describe('SaveAssessmentButton', () => {
         beforeEach(() => {
             propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
             wrapper = render(<SaveAssessmentButton {...propsStub} />);
-            fireEvent.click(wrapper.getByRole('button'));
+            fireEvent.click(wrapper.getByRole('menuitem'));
         });
 
         it('saves assessment without dialog (dialog is hidden)', () => {

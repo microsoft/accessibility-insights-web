@@ -3,17 +3,20 @@
 exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = `
 <DocumentFragment>
   <a
-    class="fui-Button r1alrhcs ___eduuxo0_1tclg4b f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3"
+    class="fui-MenuItem r11normc"
     download="download"
     href="url"
-    role="button"
+    role="menuitem"
     tabindex="0"
-    type="button"
   >
     <span
-      class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+      class="fui-MenuItem__icon r9c34qo"
     />
-    Save assessment
+    <span
+      class="fui-MenuItem__content r1ls86vo"
+    >
+      Save assessment
+    </span>
   </a>
   <mock-dialog
     dialogcontentprops="[object Object]"

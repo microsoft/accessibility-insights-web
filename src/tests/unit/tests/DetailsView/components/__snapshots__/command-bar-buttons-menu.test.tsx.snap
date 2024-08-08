@@ -7,9 +7,11 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
     relationship="label"
   >
     <mock-menu
-      persistonitemclick="true"
+      open="false"
     >
-      <mock-menutrigger>
+      <mock-menutrigger
+        disablebuttonenhancement="true"
+      >
         <mock-menubutton
           appearance="transparent"
           aria-label="More actions"
@@ -23,50 +25,16 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
         <mock-menulist
           classname="menuList"
         >
-          <mock-menuitem
-            buttonref="[object Object]"
-            classname="menuItem"
-            hassubmenu="false"
-            loadassessmentbutton="[object Object]"
-            saveassessmentbutton="[object Object]"
-            transfertoassessmentbutton="[object Object]"
-          >
-            <div>
-              Save assessment button
-            </div>
-          </mock-menuitem>
-          <mock-menuitem
-            buttonref="[object Object]"
-            classname="menuItem"
-            hassubmenu="false"
-            loadassessmentbutton="[object Object]"
-            saveassessmentbutton="[object Object]"
-            transfertoassessmentbutton="[object Object]"
-          >
-            <div>
-              Load assessment button
-            </div>
-          </mock-menuitem>
-          <mock-menuitem
-            buttonref="[object Object]"
-            classname="menuItem"
-            hassubmenu="false"
-            loadassessmentbutton="[object Object]"
-            saveassessmentbutton="[object Object]"
-            transfertoassessmentbutton="[object Object]"
-          >
-            <div>
-              Transfer to assessment button
-            </div>
-          </mock-menuitem>
-          <mock-menuitem
-            buttonref="[object Object]"
-            classname="menuItem"
-            hassubmenu="false"
-            loadassessmentbutton="[object Object]"
-            saveassessmentbutton="[object Object]"
-            transfertoassessmentbutton="[object Object]"
-          />
+          <span>
+            Save assessment button
+          </span>
+          <span>
+            Load assessment button
+          </span>
+          <span>
+            Transfer to assessment button
+          </span>
+          <span />
         </mock-menulist>
       </mock-menupopover>
     </mock-menu>
@@ -75,25 +43,25 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render export report menuitem 1`] = `
-<div>
+<span>
   Report export button
-</div>
+</span>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render load assessment menuitem 1`] = `
-<div>
+<span>
   Load assessment button
-</div>
+</span>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render save assessment menuitem 1`] = `
-<div>
+<span>
   Save assessment button
-</div>
+</span>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render transfer to assessment menuitem 1`] = `
-<div>
+<span>
   Transfer to assessment button
-</div>
+</span>
 `;

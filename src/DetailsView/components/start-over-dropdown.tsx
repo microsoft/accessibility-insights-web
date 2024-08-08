@@ -93,7 +93,7 @@ export const StartOverDropdown: React.FC<StartOverProps> = props => {
     };
 
     return (
-        <div>
+        <div role="menuitem">
             <Menu>
                 <MenuTrigger disableButtonEnhancement>
                     <MenuButton

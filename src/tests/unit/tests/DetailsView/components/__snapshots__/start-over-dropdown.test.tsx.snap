@@ -20,13 +20,13 @@ exports[`StartOverDropdownTest render 1`] = `
         <mock-menulist>
           <mock-menuitem
             name="Start over all test suffix stub"
-            persistonclick="true"
+            persistonclick="false"
           >
             Start over all test suffix stub
           </mock-menuitem>
           <mock-menuitem
             name="Start over single test suffix stub"
-            persistonclick="true"
+            persistonclick="false"
           >
             Start over single test suffix stub
           </mock-menuitem>
@@ -35,21 +35,6 @@ exports[`StartOverDropdownTest render 1`] = `
     </mock-menu>
   </div>
 </DocumentFragment>
-`;
-
-exports[`StartOverDropdownTest render: MenuButton props 1`] = `
-{
-  "appearance": "transparent",
-  "aria-label": "start over menu",
-  "children": "Start over",
-  "className": undefined,
-  "icon": <FluentUIV9Icon
-    iconName="ArrowClockwiseRegular"
-  />,
-  "menuIcon": <FluentUIV9Icon
-    iconName="ChevronDown20Regular"
-  />,
-}
 `;
 
 exports[`StartOverDropdownTest render with dropdown on left 1`] = `
@@ -72,13 +57,13 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
         <mock-menulist>
           <mock-menuitem
             name="Start over all test suffix stub"
-            persistonclick="true"
+            persistonclick="false"
           >
             Start over all test suffix stub
           </mock-menuitem>
           <mock-menuitem
             name="Start over single test suffix stub"
-            persistonclick="true"
+            persistonclick="false"
           >
             Start over single test suffix stub
           </mock-menuitem>
@@ -100,6 +85,21 @@ exports[`StartOverDropdownTest render with dropdown on left: MenuButton props 1`
   />,
   "menuIcon": <FluentUIV9Icon
     iconName="ChevronRight20Regular"
+  />,
+}
+`;
+
+exports[`StartOverDropdownTest render: MenuButton props 1`] = `
+{
+  "appearance": "transparent",
+  "aria-label": "start over menu",
+  "children": "Start over",
+  "className": undefined,
+  "icon": <FluentUIV9Icon
+    iconName="ArrowClockwiseRegular"
+  />,
+  "menuIcon": <FluentUIV9Icon
+    iconName="ChevronDown20Regular"
   />,
 }
 `;

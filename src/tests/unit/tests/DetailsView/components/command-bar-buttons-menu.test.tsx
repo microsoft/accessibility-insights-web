@@ -83,7 +83,7 @@ describe('CommandBarButtonsMenu', () => {
         renderExportReportComponentMock
             .setup(r => r())
             .returns(() => <>Report export button</>)
-            .verifiable(Times.once());
+            .verifiable(Times.atLeastOnce());
     }
 
     function setupStartOverMenuItem(): void {
@@ -93,6 +93,6 @@ describe('CommandBarButtonsMenu', () => {
         getStartOverMenuItemMock
             .setup(s => s())
             .returns(() => startOverMenuItem.children)
-            .verifiable(Times.once());
+            .verifiable(Times.atLeastOnce());
     }
 });

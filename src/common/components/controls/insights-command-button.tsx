@@ -1,12 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    Button,
-    ButtonProps,
-    mergeClasses,
-    MenuButtonProps,
-    MenuItem,
-} from '@fluentui/react-components';
+import { ButtonProps, mergeClasses, MenuButtonProps, MenuItem } from '@fluentui/react-components';
 
 import { useInsightsCommandButtonStyle } from 'common/components/controls/insights-command-button-style';
 import { NamedFC } from 'common/react/named-fc';
