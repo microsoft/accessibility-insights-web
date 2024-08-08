@@ -40,7 +40,6 @@ export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
             <Button
                 className="info"
                 appearance="transparent"
-                //icon={Icons[iconName]}
                 icon={<FluentUIV9Icon iconName={iconName} />}
                 onClick={onClick}
                 aria-label={'info and examples'}

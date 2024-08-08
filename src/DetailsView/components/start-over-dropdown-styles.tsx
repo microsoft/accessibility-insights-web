@@ -10,10 +10,6 @@ export const useStartOverDropdownStyles: any = makeStyles({
         color: tokens.colorNeutralForeground2,
         paddingLeft: '4px',
 
-        ':focus': {
-            border: `1px solid ${tokens.colorStrokeFocus2}`,
-        },
-
         ':hover': {
             background: 'none !important',
             color: tokens.colorNeutralForeground2BrandHover,
@@ -51,5 +47,7 @@ export const useStartOverDropdownStyles: any = makeStyles({
 
     menuItem: {
         paddingBottom: 'unset !important',
+        border: 'unset !important',
+        borderRadius: 'unset !important',
     },
 });

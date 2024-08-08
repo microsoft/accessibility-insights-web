@@ -103,7 +103,7 @@ export const StartOverDropdown: React.FC<StartOverProps> = props => {
                         icon={
                             <FluentUIV9Icon
                                 iconName="ArrowClockwiseRegular"
-                            //    customClass={stylesValue.chevronIcon}
+                                //    customClass={stylesValue.chevronIcon}
                             />
                         }
                         aria-label="start over menu"

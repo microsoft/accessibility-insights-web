@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Button, ButtonProps, mergeClasses, MenuButtonProps, MenuItem } from '@fluentui/react-components';
+import {
+    Button,
+    ButtonProps,
+    mergeClasses,
+    MenuButtonProps,
+    MenuItem,
+} from '@fluentui/react-components';
 
 import { useInsightsCommandButtonStyle } from 'common/components/controls/insights-command-button-style';
 import { NamedFC } from 'common/react/named-fc';
@@ -22,9 +28,8 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
     'InsightsCommandButton',
     React.forwardRef((props, ref) => {
         const overrides = useInsightsCommandButtonStyle();
-        console.log("insights props", props);
+        console.log('insights props', props);
         return (
-
             <MenuItem
                 appearance="transparent"
                 className={mergeClasses(

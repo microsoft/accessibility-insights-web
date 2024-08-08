@@ -25,10 +25,6 @@
 .fileissue {
     font-weight: 400 !important;
 
-    &:focus {
-        border: 1px solid $primary-text !important;
-    }
-
     &:hover {
         & > span {
             & > svg {
@@ -51,10 +47,6 @@
 }
 
 .menu-Button {
-    &:focus {
-        border: 1px solid $primary-text !important;
-    }
-
     &:hover {
         border: 1px solid $primary-text !important;
         color: $primary-text !important;
@@ -63,7 +55,6 @@
 
 .kebab-menu-button {
     margin-right: 8px;
-
     // Since the menu uses a custom SVG, set the button shape:
     width: 32px;
     height: 32px;
@@ -75,7 +66,6 @@
     &:global(.is-expanded) {
         background-color: $menu-item-background-active;
     }
-
     // Add hover and active state:
     &:global(.is-expanded) .kebab-menu-icon,
     &:hover .kebab-menu-icon {

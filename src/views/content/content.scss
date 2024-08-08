@@ -17,6 +17,12 @@
 .info {
     /* stylelint-disable-next-line length-zero-no-unit */
     padding: 0px !important;
+    color: $link !important;
+    font-weight: 400 !important;
+
+    &:hover{
+        color: $link-hover !important;
+    }
 }
 
 .content-header {

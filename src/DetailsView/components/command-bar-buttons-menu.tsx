@@ -33,7 +33,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
         const [open, setOpen] = React.useState(false);
-        const onOpenChange: MenuProps["onOpenChange"] = (e, data) => setOpen(data.open);
+        const onOpenChange: MenuProps['onOpenChange'] = (e, data) => setOpen(data.open);
         const exportButton = props.renderExportReportButton();
         const overflowItems: any[] = [];
 
@@ -67,10 +67,9 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'start over',
             ...props.getStartOverMenuItem(),
         });
-        console.log('open-->', open)
+        console.log('open-->', open);
         return (
             <>
-
                 <Tooltip content="More actions" relationship="label">
                     <Menu open={open} onOpenChange={onOpenChange}>
                         <MenuTrigger disableButtonEnhancement>
@@ -91,9 +90,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                         >
                             <MenuList className={styles.menuList}>
                                 {overflowItems.map((item, index) => (
-                                    <span key={index}>
-                                        {item?.children}
-                                    </span>
+                                    <span key={index}>{item?.children}</span>
                                 ))}
                             </MenuList>
                         </MenuPopover>

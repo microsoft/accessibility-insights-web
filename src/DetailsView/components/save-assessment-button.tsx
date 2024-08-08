@@ -34,7 +34,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
             if (props.userConfigurationStoreData.showSaveAssessmentDialog) {
                 showDialog();
             }
-        }
+        };
 
         function handleDontShowAgainClick(event: React.MouseEvent<any>, checked?: boolean) {
             if (checked === undefined) return;
@@ -44,7 +44,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
         return (
             <>
                 <InsightsCommandButton
-                    as='a'
+                    as="a"
                     className={saveAssessmentStyles?.assessmentButton}
                     download={props.download}
                     href={props.href}
