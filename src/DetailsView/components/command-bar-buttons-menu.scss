@@ -33,6 +33,7 @@
     &:hover {
         background: 'none !important';
         color: $insights-button-hover;
+
         & > span {
             & > svg {
                 color: $insights-button-hover;

@@ -191,7 +191,7 @@ describe('StartOverComponentFactory', () => {
 
         function clickStartOverButton(startOverButton: JSX.Element, event: any): void {
             const renderResult = render(startOverButton);
-            const onClick = renderResult.getByRole('menuitem');
+            const onClick = renderResult.getByRole('button');
             fireEvent.click(onClick);
         }
 

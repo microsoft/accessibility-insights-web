@@ -430,7 +430,7 @@ describe('DetailsViewCommandBar', () => {
             useOriginalReactElements('DetailsView/components/export-dialog', ['ExportDialog']);
             const props = getProps(['ReportExportDialogFactory', 'CommandBar']);
             const renderResult = render(<DetailsViewCommandBar {...props} />);
-            const exportButton = renderResult.container.querySelector('#report-export-button');
+            const exportButton = renderResult.getByText('Export result');
             expect(exportButton).not.toHaveFocus();
             getMockComponentCall(ExportDialog)[0].afterDismissed();
             expect(exportButton).toHaveFocus();
@@ -473,7 +473,7 @@ describe('DetailsViewCommandBar', () => {
             ]);
             const props = getProps(['TransferToAssessmentButton', 'CommandBar']);
             const renderResult = render(<DetailsViewCommandBar {...props} />);
-            const transferButton = renderResult.getByRole('menuitem', {
+            const transferButton = renderResult.getByRole('button', {
                 name: 'Move to assessment',
             });
             expect(transferButton).not.toHaveFocus();

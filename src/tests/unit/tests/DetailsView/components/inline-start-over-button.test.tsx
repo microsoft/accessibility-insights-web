@@ -46,7 +46,7 @@ describe(InlineStartOverButton.displayName, () => {
             .verifiable();
 
         const renderResult = render(<InlineStartOverButton {...props} />);
-        const button = renderResult.getByRole('menuitem');
+        const button = renderResult.getByRole('button');
         const event = createEvent.click(button);
         fireEvent(button, event);
 

@@ -55,6 +55,7 @@
 
 .kebab-menu-button {
     margin-right: 8px;
+
     // Since the menu uses a custom SVG, set the button shape:
     width: 32px;
     height: 32px;
@@ -66,6 +67,7 @@
     &:global(.is-expanded) {
         background-color: $menu-item-background-active;
     }
+
     // Add hover and active state:
     &:global(.is-expanded) .kebab-menu-icon,
     &:hover .kebab-menu-icon {

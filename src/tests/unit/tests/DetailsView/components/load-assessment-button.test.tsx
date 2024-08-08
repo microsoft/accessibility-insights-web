@@ -75,7 +75,7 @@ describe('LoadAssessmentButton', () => {
         ]);
         handleLoadAssessmentButtonClickMock.setup(m => m(It.isAny())).verifiable();
         const renderResult = render(<LoadAssessmentButton {...props} />);
-        await userEvent.click(renderResult.getByRole('menuitem'));
+        await userEvent.click(renderResult.getByRole('button'));
         handleLoadAssessmentButtonClickMock.verifyAll();
     });
 });
