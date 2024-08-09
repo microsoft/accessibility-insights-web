@@ -23,6 +23,7 @@ export interface LoadAssessmentButtonProps {
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
     handleLoadAssessmentButtonClick: () => void;
+    isNarrowMode?: boolean
 }
 
 export const loadAssessmentButtonAutomationId = 'load-assessment-button';
@@ -39,6 +40,7 @@ export const LoadAssessmentButton = NamedFC<LoadAssessmentButtonProps>(
                 }}
                 onClick={props.handleLoadAssessmentButtonClick}
                 className={loadButtonStyles.assessmentButton}
+                {...props}
             >
                 Load assessment
             </InsightsCommandButton>

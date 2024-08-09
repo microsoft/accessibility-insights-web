@@ -10,12 +10,15 @@ export const useCommandButtonStyle = makeStyles({
         textDecoration: 'none !important',
 
         ':focus': {
-            border: `1px solid ${tokens.colorStrokeFocus2}`,
+            // border: `1px solid ${tokens.colorStrokeFocus2}`,
+            // border: 'inherit'
         },
 
         '&:hover': {
             background: 'none !important',
             color: tokens.colorNeutralForeground2BrandHover,
+            //border: 'unset !important',
+
             '& > span': {
                 '& >svg': {
                     color: tokens.colorNeutralForeground2BrandHover,
