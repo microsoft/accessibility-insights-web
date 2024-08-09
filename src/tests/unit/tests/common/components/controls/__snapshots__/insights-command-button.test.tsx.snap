@@ -7,6 +7,7 @@ exports[`InsightsCommandButton renders per snapshot with extra className combine
     classname=""
     icon="[object Object]"
     insightscommandbuttoniconprops="[object Object]"
+    shape="square"
   />
 </DocumentFragment>
 `;
@@ -22,6 +23,7 @@ exports[`InsightsCommandButton renders per snapshot with extra className combine
   "insightsCommandButtonIconProps": {
     "className": "startOverMenuItemIcon",
   },
+  "shape": "square",
 }
 `;
 
@@ -31,6 +33,7 @@ exports[`InsightsCommandButton renders per snapshot with extra icon className co
     appearance="transparent"
     icon="[object Object]"
     insightscommandbuttoniconprops="[object Object]"
+    shape="square"
   >
     Load assessment
   </mock-button>
@@ -52,6 +55,7 @@ exports[`InsightsCommandButton renders per snapshot with extra icon className co
       className="icon-class-name"
     />,
   },
+  "shape": "square",
 }
 `;
 
@@ -61,6 +65,7 @@ exports[`InsightsCommandButton renders per snapshot with iconProps passed throug
     appearance="transparent"
     icon="[object Object]"
     insightscommandbuttoniconprops="[object Object]"
+    shape="square"
   >
     Load assessment
   </mock-button>
@@ -78,6 +83,7 @@ exports[`InsightsCommandButton renders per snapshot with iconProps passed throug
   "insightsCommandButtonIconProps": {
     "icon": <FolderOpenRegular />,
   },
+  "shape": "square",
 }
 `;
 
@@ -88,6 +94,7 @@ exports[`InsightsCommandButton renders per snapshot with props passed through 1`
     classname=""
     icon="[object Object]"
     insightscommandbuttoniconprops="[object Object]"
+    shape="square"
   >
     test-text
   </mock-button>
@@ -105,5 +112,6 @@ exports[`InsightsCommandButton renders per snapshot with props passed through: B
   "insightsCommandButtonIconProps": {
     "className": "startOverMenuItemIcon",
   },
+  "shape": "square",
 }
 `;

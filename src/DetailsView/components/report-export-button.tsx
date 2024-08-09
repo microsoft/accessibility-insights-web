@@ -17,7 +17,7 @@ export const reportExportButtonAutomationId = 'report-export-button';
 
 export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExportButton', props => {
     const exportButtonStyles = useCommandButtonStyle();
-    console.log('props in report export button', props)
+    console.log('props in report export button', props);
     return (
         <InsightsCommandButton
             insightsCommandButtonIconProps={{

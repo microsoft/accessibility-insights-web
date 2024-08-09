@@ -15,6 +15,7 @@ export type TransferToAssessmentButtonDeps = {
 export interface TransferToAssessmentButtonProps {
     deps: TransferToAssessmentButtonDeps;
     buttonRef?: MyFunctionType;
+    isNarrowMode?: boolean;
 }
 
 export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-button';

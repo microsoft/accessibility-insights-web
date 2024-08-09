@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { Checkbox, Dialog, DialogFooter, DialogType, PrimaryButton, Stack } from '@fluentui/react';
-import { useBoolean } from '@fluentui/react-hooks';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -26,15 +25,6 @@ export interface SaveAssessmentDialogProps {
 export const SaveAssessmentDialog = NamedFC<SaveAssessmentDialogProps>(
     'SaveAssessmentDialog',
     props => {
-        const [dialogHidden, { setTrue: hideDialog, setFalse: showDialog }] = useBoolean(true);
-
-        const handleSaveAssessmentClick = (event: React.MouseEvent<any>) => {
-            props.deps.getAssessmentActionMessageCreator().saveAssessment(event);
-            if (props.userConfigurationStoreData.showSaveAssessmentDialog) {
-                showDialog();
-            }
-        };
-
         function handleDontShowAgainClick(event: React.MouseEvent<any>, checked?: boolean) {
             if (checked === undefined) return;
             props.deps.userConfigMessageCreator.setSaveAssessmentDialogState(!checked);

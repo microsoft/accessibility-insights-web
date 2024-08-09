@@ -15,7 +15,6 @@ import { MyFunctionType } from 'DetailsView/components/details-view-command-bar'
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
-import { ReportExportButton } from 'DetailsView/components/report-export-button';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element | null;
@@ -23,7 +22,6 @@ export type CommandBarButtonsMenuProps = {
     loadAssessmentButton?: JSX.Element | null;
     transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
-    //buttonRef?: () => React.RefObject<HTMLButtonElement> | null;
     buttonRef?: MyFunctionType;
     hasSubMenu?: boolean;
 };
@@ -35,12 +33,10 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         const onOpenChange: MenuProps['onOpenChange'] = (e, data) => setOpen(data.open);
         const exportButton = props.renderExportReportButton();
         const overflowItems: any[] = [];
-        console.log('commandbarbuttonsmenu---->', props)
         if (exportButton != null) {
             overflowItems.push({
                 key: 'export report',
                 children: <>{exportButton}</>,
-                // children: <ReportExportButton {...props} />
             });
         }
         if (props.saveAssessmentButton && props.loadAssessmentButton) {
@@ -83,14 +79,13 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                         </MenuTrigger>
                         <MenuPopover
                             style={{
-                                // padding: 'unset !important',
                                 border: 'unset !important',
                                 borderRadius: 'unset !important',
                             }}
                         >
                             <MenuList className={styles.menuList}>
                                 {overflowItems.map((item, index) => (
-                                    <span key={index}>{item?.children}</span>
+                                    <span role="group" key={index}>{item?.children}</span>
                                 ))}
                             </MenuList>
                         </MenuPopover>

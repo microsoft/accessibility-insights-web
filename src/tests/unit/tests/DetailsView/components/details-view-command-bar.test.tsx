@@ -77,6 +77,7 @@ import { IMock, It, Mock } from 'typemoq';
 
 jest.mock('DetailsView/components/report-export-button');
 jest.mock('DetailsView/components/load-assessment-dialog');
+jest.mock('DetailsView/components/save-assessment-dialog');
 jest.mock('DetailsView/components/start-over-dialog');
 jest.mock('DetailsView/components/export-dialog');
 jest.mock('DetailsView/components/command-bar-buttons-menu');

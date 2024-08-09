@@ -14,14 +14,18 @@ exports[`LoadAssessmentButton should render per the snapshot 1`] = `
 
 exports[`LoadAssessmentButton should render per the snapshot: InsightsCommandButton props 1`] = `
 {
+  "assessmentStoreData": undefined,
   "children": "Load assessment",
   "className": "___1r20z3h_0000000 f1t6ax4o fmntwad fgslppp f9hdeju f139oj5f f7otkfg",
   "data-automation-id": "load-assessment-button",
+  "deps": undefined,
+  "handleLoadAssessmentButtonClick": [Function],
   "insightsCommandButtonIconProps": {
     "icon": <FluentUIV9Icon
       iconName="FolderOpenRegular"
     />,
   },
   "onClick": [Function],
+  "tabStoreData": undefined,
 }
 `;

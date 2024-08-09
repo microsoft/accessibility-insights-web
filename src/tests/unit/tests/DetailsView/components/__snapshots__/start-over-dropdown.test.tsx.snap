@@ -2,9 +2,7 @@
 
 exports[`StartOverDropdownTest render 1`] = `
 <DocumentFragment>
-  <div
-    role="menuitem"
-  >
+  <div>
     <mock-menu>
       <mock-menutrigger
         disablebuttonenhancement="true"
@@ -14,6 +12,7 @@ exports[`StartOverDropdownTest render 1`] = `
           aria-label="start over menu"
           icon="[object Object]"
           menuicon="[object Object]"
+          shape="square"
         >
           Start over
         </mock-menubutton>
@@ -41,9 +40,7 @@ exports[`StartOverDropdownTest render 1`] = `
 
 exports[`StartOverDropdownTest render with dropdown on left 1`] = `
 <DocumentFragment>
-  <div
-    role="menuitem"
-  >
+  <div>
     <mock-menu>
       <mock-menutrigger
         disablebuttonenhancement="true"
@@ -53,6 +50,7 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
           aria-label="start over menu"
           icon="[object Object]"
           menuicon="[object Object]"
+          shape="square"
         >
           Start over
         </mock-menubutton>
@@ -90,6 +88,7 @@ exports[`StartOverDropdownTest render with dropdown on left: MenuButton props 1`
   "menuIcon": <FluentUIV9Icon
     iconName="ChevronRight20Regular"
   />,
+  "shape": "square",
 }
 `;
 
@@ -105,5 +104,6 @@ exports[`StartOverDropdownTest render: MenuButton props 1`] = `
   "menuIcon": <FluentUIV9Icon
     iconName="ChevronDown20Regular"
   />,
+  "shape": "square",
 }
 `;

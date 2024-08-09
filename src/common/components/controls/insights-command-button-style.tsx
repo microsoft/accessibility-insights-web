@@ -9,7 +9,7 @@ export const useInsightsCommandButtonStyle = makeStyles({
     },
 
     menuItem: {
-        border: 'unset !important'
+        border: 'unset !important',
     },
 
     buttonIcon: {

@@ -26,6 +26,7 @@ jest.mock('@fluentui/react-components', () => ({
     makeStyles: () => () => ({}),
 }));
 jest.mock('common/icons/fluentui-v9-icons');
+jest.mock('DetailsView/components/save-assessment-dialog');
 jest.mock('@fluentui/react-components');
 describe('SaveAssessmentButton', () => {
     mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
@@ -34,6 +35,8 @@ describe('SaveAssessmentButton', () => {
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
+    const handleSaveAssesmentButtonClickMock =
+        Mock.ofType<(event: React.MouseEvent<any>) => void>();
 
     beforeEach(() => {
         assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
@@ -49,6 +52,7 @@ describe('SaveAssessmentButton', () => {
             download: 'download',
             href: 'url',
             userConfigurationStoreData,
+            handleSaveAssesmentButtonClick: handleSaveAssesmentButtonClickMock.object,
         };
     });
 

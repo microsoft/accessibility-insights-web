@@ -230,7 +230,6 @@ export class DetailsViewCommandBar extends React.Component<
                     this.startOverDialogCloseFocus = ref ?? undefined;
                     this.transferToAssessmentDialogCloseFocus = ref ?? undefined;
                 }}
-
             />
         );
     }
@@ -300,6 +299,7 @@ export class DetailsViewCommandBar extends React.Component<
     private renderTransferToAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.TransferToAssessmentButton({
             ...this.props,
+            ...{ isNarrowMode: this.props.narrowModeStatus.isCommandBarCollapsed },
             buttonRef: ref => (this.transferToAssessmentDialogCloseFocus = ref ?? undefined),
         });
     };

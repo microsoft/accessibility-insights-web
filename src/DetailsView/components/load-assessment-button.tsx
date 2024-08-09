@@ -23,7 +23,7 @@ export interface LoadAssessmentButtonProps {
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
     handleLoadAssessmentButtonClick: () => void;
-    isNarrowMode?: boolean
+    isNarrowMode?: boolean;
 }
 
 export const loadAssessmentButtonAutomationId = 'load-assessment-button';

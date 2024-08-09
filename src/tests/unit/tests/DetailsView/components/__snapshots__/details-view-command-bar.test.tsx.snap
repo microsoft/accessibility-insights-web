@@ -33,7 +33,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -59,7 +59,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
         Export result
       </button>
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
         type="button"
       >
@@ -185,7 +185,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -211,7 +211,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
         Export result
       </button>
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
         type="button"
       >
@@ -337,7 +337,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -363,7 +363,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
         Export result
       </button>
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
         type="button"
       >
@@ -489,7 +489,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -515,7 +515,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
         Export result
       </button>
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
         type="button"
       >
@@ -641,7 +641,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -768,7 +768,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -894,7 +894,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -919,14 +919,12 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
         </span>
         Export result
       </button>
-      <div
-        role="menuitem"
-      >
+      <div>
         <button
           aria-expanded="true"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-Button r1alrhcs fui-MenuButton ___wdno5z0_zvp7ru0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f9hdeju f7otkfg"
+          class="fui-Button r1alrhcs fui-MenuButton ___1nyxmsr_1glahic f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur1"
           type="button"
@@ -1075,7 +1073,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -1100,14 +1098,12 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
         </span>
         Export result
       </button>
-      <div
-        role="menuitem"
-      >
+      <div>
         <button
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-Button r1alrhcs fui-MenuButton ___1ct9cz9_1oc00aw f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1kyxi2w f1t6ax4o fycuoez f9hdeju f7otkfg"
+          class="fui-Button r1alrhcs fui-MenuButton ___xj87dj0_12rfi17 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur1"
           type="button"
@@ -1253,7 +1249,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -1278,14 +1274,12 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
         </span>
         Export result
       </button>
-      <div
-        role="menuitem"
-      >
+      <div>
         <button
           aria-expanded="true"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-Button r1alrhcs fui-MenuButton ___wdno5z0_zvp7ru0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f9hdeju f7otkfg"
+          class="fui-Button r1alrhcs fui-MenuButton ___1nyxmsr_1glahic f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur0"
           type="button"
@@ -1434,7 +1428,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -1459,14 +1453,12 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
         </span>
         Export result
       </button>
-      <div
-        role="menuitem"
-      >
+      <div>
         <button
           aria-expanded="false"
           aria-haspopup="menu"
           aria-label="start over menu"
-          class="fui-Button r1alrhcs fui-MenuButton ___1ct9cz9_1oc00aw f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1kyxi2w f1t6ax4o fycuoez f9hdeju f7otkfg"
+          class="fui-Button r1alrhcs fui-MenuButton ___xj87dj0_12rfi17 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1kyxi2w f1t6ax4o fycuoez f1g8o529 f9hdeju f7otkfg"
           data-tabster="{"restorer":{"type":1}}"
           id="menur0"
           type="button"
@@ -1612,7 +1604,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -1742,7 +1734,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       class="detailsViewCommandButtons"
     >
       <button
-        class="fui-Button r1alrhcs ___1fycnx4_xnqvbv0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
         data-automation-id="report-export-button"
         id="report-export-button"
         type="button"
@@ -1980,7 +1972,9 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
     <div
       class="detailsViewCommandButtons"
     >
-      <mock-reportexportbutton />
+      <mock-reportexportbutton
+        isnarrowmode="false"
+      />
       <div>
         Save assessment
       </div>
@@ -2094,7 +2088,9 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     <div
       class="detailsViewCommandButtons"
     >
-      <mock-reportexportbutton />
+      <mock-reportexportbutton
+        isnarrowmode="false"
+      />
       <div>
         Save assessment
       </div>

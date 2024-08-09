@@ -21,6 +21,7 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmen
   "onMouseLeave": [Function],
   "onMouseMove": [Function],
   "role": "button",
+  "shape": "square",
   "tabIndex": 0,
 }
 `;
@@ -32,7 +33,7 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmen
       aria-expanded="false"
       aria-haspopup="menu"
       aria-label="test-kebabmenuarialabel"
-      class="fui-Button r1alrhcs fui-MenuButton menuButton ___cpe5h10_1yhfyj7 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f18ktai2 fwbmr0d f44c6la"
+      class="fui-Button r1alrhcs fui-MenuButton menuButton ___14ayyxl_z6mxox0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f18ktai2 fwbmr0d f44c6la"
       data-tabster="{"restorer":{"type":1}}"
       id="menur0"
       role="button"
@@ -72,6 +73,7 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with undefined ari
   "onMouseLeave": [Function],
   "onMouseMove": [Function],
   "role": "button",
+  "shape": "square",
   "tabIndex": 0,
 }
 `;
@@ -82,7 +84,7 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with undefined ari
     <button
       aria-expanded="false"
       aria-haspopup="menu"
-      class="fui-Button r1alrhcs fui-MenuButton menuButton ___cpe5h10_1yhfyj7 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f18ktai2 fwbmr0d f44c6la"
+      class="fui-Button r1alrhcs fui-MenuButton menuButton ___14ayyxl_z6mxox0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f18ktai2 fwbmr0d f44c6la"
       data-tabster="{"restorer":{"type":1}}"
       id="menur1"
       role="button"
