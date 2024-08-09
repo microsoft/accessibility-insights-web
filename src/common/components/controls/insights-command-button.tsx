@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ButtonProps, mergeClasses, MenuButtonProps, Button } from '@fluentui/react-components';
+import { ButtonProps, mergeClasses, MenuButtonProps, Button, MenuItem } from '@fluentui/react-components';
 
 import { useInsightsCommandButtonStyle } from 'common/components/controls/insights-command-button-style';
 import { NamedFC } from 'common/react/named-fc';
@@ -15,6 +15,7 @@ export type InsightsCommandButtonIconProps = {
 export type InsightsCommandButtonProps = (ButtonProps | MenuButtonProps) & {
     insightsCommandButtonIconProps?: InsightsCommandButtonIconProps;
     ref?: any;
+    isNarrowMode?: boolean
 };
 
 // See https://www.figma.com/file/Wj4Ggf6GGQBQkiDIaHfXRX2B/Accessibility-Insights%3A-Styles?node-id=1%3A27
@@ -24,22 +25,40 @@ export const InsightsCommandButton = NamedFC<InsightsCommandButtonProps>(
         const overrides = useInsightsCommandButtonStyle();
         console.log('insights props', props);
         return (
-            <Button
-                appearance="transparent"
-                className={mergeClasses(
-                    styles?.insightsCommandButton,
-                    props.className,
-                    overrides?.button,
-                )}
-                shape="square"
-                icon={{
-                    children: props.insightsCommandButtonIconProps?.icon,
-                }}
-                ref={ref}
-                {...props}
-            >
-                {props.children}
-            </Button>
+            props.isNarrowMode ?
+                <MenuItem
+                    appearance="transparent"
+                    // className={mergeClasses(
+                    //     styles?.insightsCommandButton,
+                    //     props.className,
+                    //     overrides?.button,
+                    // )}
+                    className={overrides.menuItem}
+                    shape="square"
+                    icon={{
+                        children: props.insightsCommandButtonIconProps?.icon,
+                    }}
+                    ref={ref}
+                    {...props}
+                >
+                    {props.children}
+                </MenuItem> :
+                <Button
+                    appearance="transparent"
+                    className={mergeClasses(
+                        styles?.insightsCommandButton,
+                        props.className,
+                        overrides?.button,
+                    )}
+                    shape="square"
+                    icon={{
+                        children: props.insightsCommandButtonIconProps?.icon,
+                    }}
+                    ref={ref}
+                    {...props}
+                >
+                    {props.children}
+                </Button>
         );
     }),
 );

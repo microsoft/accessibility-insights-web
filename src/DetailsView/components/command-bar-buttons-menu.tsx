@@ -15,6 +15,7 @@ import { MyFunctionType } from 'DetailsView/components/details-view-command-bar'
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import styles from './command-bar-buttons-menu.scss';
+import { ReportExportButton } from 'DetailsView/components/report-export-button';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element | null;
@@ -34,11 +35,12 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         const onOpenChange: MenuProps['onOpenChange'] = (e, data) => setOpen(data.open);
         const exportButton = props.renderExportReportButton();
         const overflowItems: any[] = [];
-
+        console.log('commandbarbuttonsmenu---->', props)
         if (exportButton != null) {
             overflowItems.push({
                 key: 'export report',
                 children: <>{exportButton}</>,
+                // children: <ReportExportButton {...props} />
             });
         }
         if (props.saveAssessmentButton && props.loadAssessmentButton) {

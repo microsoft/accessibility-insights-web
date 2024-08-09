@@ -7,6 +7,11 @@ export const useInsightsCommandButtonStyle = makeStyles({
     button: {
         fontWeight: tokens?.fontWeightRegular,
     },
+
+    menuItem: {
+        border: 'unset !important'
+    },
+
     buttonIcon: {
         //color: tokens?.colorCompoundBrandStrokeHover,
     },
