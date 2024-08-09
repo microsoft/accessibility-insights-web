@@ -30,7 +30,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 describe(CardFooterMenuItemsBuilder, () => {
     let props: CardFooterMenuItemsProps;
     let deps: CardFooterMenuItemsDeps;
-    const fileIssueButtonRef = () => null;
+    const fileIssueButtonRef = {} as any;
     const issueDetailsData = { snippet: 'test snipper' } as CreateIssueDetailsTextData;
     const userConfigurationStoreData = {
         bugService: 'test-bug-service',

@@ -89,7 +89,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         border: none;
         display: flex;
         align-items: baseline;
-        width: 100%;
+        width: auto;
 
         &:hover {
             background-color: $neutral-alpha-4;

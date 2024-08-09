@@ -239,6 +239,12 @@ describe('Details View ->', () => {
         // this is a false positive because background is black and link is having yellow as per high contrast theme
         // standards so this criteria does not apply
         // Please refer for more information on the error:https://github.com/dequelabs/axe-core/issues/3464
+        // this results object has a failure for aria-hidden-focus
+        // These are Tabster dummy inputs and they must be added to the exception list.
+        // They are intentionally aria - hidden as their purpose is to redirect focus to the correct element
+        // right when they receive focus and not having aria - hidden will result in the screen readers choking
+        // starting to announce them.
+        // Please refer for more information on the error:https://github.com/microsoft/fluentui/issues/25133
         expect(results).toMatchSnapshot();
     }
 

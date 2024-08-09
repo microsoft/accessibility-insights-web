@@ -1,32 +1,42 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    ContextualMenu,
-    DirectionalHint,
-    IButton,
-    IContextualMenuItem,
-    IRefObject,
-} from '@fluentui/react';
-import { IPoint } from '@fluentui/utilities';
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
-import * as React from 'react';
+import { DirectionalHint } from '@fluentui/react';
 
+import {
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItemProps,
+    MenuList,
+    MenuPopover,
+    MenuTrigger,
+} from '@fluentui/react-components';
+
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
+import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
+import { useStartOverDropdownStyles } from 'DetailsView/components/start-over-dropdown-styles';
+import * as React from 'react';
 import { StartOverContextMenuKeyOptions } from './details-view-right-panel';
+
+export type StartOverDropdownMenuItems = MenuItemProps & {
+    name: string;
+};
 
 export interface StartOverState {
     isContextMenuVisible: boolean;
-    target?: HTMLElement | string | MouseEvent | IPoint | null;
+    target?: HTMLElement | string | MouseEvent | null;
 }
 
 export interface StartOverProps {
     singleTestSuffix: string;
     dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
-    buttonRef: IRefObject<IButton>;
+    buttonRef: MyFunctionType;
     allTestSuffix: string;
     rightPanelOptions: StartOverContextMenuKeyOptions;
     switcherStartOverPreferences: StartOverContextMenuKeyOptions;
+    hasSubMenu?: boolean;
 }
 
 const dropdownDirections = {
@@ -42,70 +52,27 @@ const dropdownDirections = {
 
 export type DropdownDirection = keyof typeof dropdownDirections;
 
-export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
-    constructor(props: StartOverProps) {
-        super(props);
+export const StartOverDropdown: React.FC<StartOverProps> = props => {
+    const stylesValue: any = useStartOverDropdownStyles();
+    const direction = props.dropdownDirection;
 
-        this.state = {
-            isContextMenuVisible: false,
-        };
-    }
-
-    public render(): JSX.Element {
-        const direction = this.props.dropdownDirection;
-        return (
-            <div>
-                <InsightsCommandButton
-                    iconProps={{
-                        iconName: 'Refresh',
-                    }}
-                    text="Start over"
-                    ariaLabel="start over menu"
-                    onClick={this.openDropdown}
-                    menuIconProps={{
-                        iconName: dropdownDirections[direction].iconName,
-                    }}
-                    componentRef={this.props.buttonRef}
-                />
-                {this.renderContextMenu()}
-            </div>
-        );
-    }
-
-    private renderContextMenu(): JSX.Element | null {
-        if (!this.state.isContextMenuVisible) {
-            return null;
-        }
-
-        const direction = this.props.dropdownDirection;
-
-        return (
-            <ContextualMenu
-                onDismiss={() => this.dismissDropdown()}
-                target={this.state.target}
-                items={this.getMenuItems()}
-                directionalHint={dropdownDirections[direction].directionalHint}
-            />
-        );
-    }
-
-    private getMenuItems(): IContextualMenuItem[] {
+    const getMenuItemsV9 = (): StartOverDropdownMenuItems[] => {
         const {
             singleTestSuffix,
             allTestSuffix,
             rightPanelOptions,
             switcherStartOverPreferences: startOverButtonOptionPreferences,
-        } = this.props;
-        const items: IContextualMenuItem[] = [];
+        } = props;
+        const items: StartOverDropdownMenuItems[] = [];
         const assessmentKey = {
             key: 'assessment',
             name: `Start over ${allTestSuffix}`,
-            onClick: this.onStartOverAllTestsMenu,
+            onClick: onStartOverAllTestsMenu,
         };
         const testKey = {
             key: 'test',
             name: `Start over ${singleTestSuffix}`,
-            onClick: this.onStartOverTestMenu,
+            onClick: onStartOverTestMenu,
         };
 
         items.push(assessmentKey);
@@ -115,21 +82,65 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         }
 
         return items;
-    }
-
-    private onStartOverTestMenu = (): void => {
-        this.props.openDialog('test');
     };
 
-    private onStartOverAllTestsMenu = (): void => {
-        this.props.openDialog('assessment');
+    const onStartOverTestMenu = (): void => {
+        props.openDialog('test');
     };
 
-    private openDropdown = (event): void => {
-        this.setState({ target: event.currentTarget, isContextMenuVisible: true });
+    const onStartOverAllTestsMenu = (): void => {
+        props.openDialog('assessment');
     };
 
-    private dismissDropdown(): void {
-        this.setState({ target: null, isContextMenuVisible: false });
-    }
-}
+    return (
+        <div>
+            <Menu>
+                <MenuTrigger disableButtonEnhancement>
+                    <MenuButton
+                        ref={props.buttonRef}
+                        appearance="transparent"
+                        shape="square"
+                        className={stylesValue?.menuButton}
+                        icon={
+                            <FluentUIV9Icon
+                                iconName="ArrowClockwiseRegular"
+                                //    customClass={stylesValue.chevronIcon}
+                            />
+                        }
+                        aria-label="start over menu"
+                        //className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
+                        menuIcon={
+                            direction === 'left' ? (
+                                <FluentUIV9Icon
+                                    iconName="ChevronRight20Regular"
+                                    customClass={stylesValue?.chevronIcon}
+                                />
+                            ) : (
+                                <FluentUIV9Icon
+                                    iconName="ChevronDown20Regular"
+                                    customClass={stylesValue?.chevronIcon}
+                                />
+                            )
+                        }
+                    >
+                        Start over
+                    </MenuButton>
+                </MenuTrigger>
+                <MenuPopover className={stylesValue?.menuPopover}>
+                    <MenuList>
+                        {getMenuItemsV9().map(item => (
+                            <MenuItem
+                                persistOnClick={false}
+                                className={stylesValue?.menuItem}
+                                key={item.key}
+                                {...item}
+                            >
+                                {item.name}
+                            </MenuItem>
+                        ))}
+                    </MenuList>
+                </MenuPopover>
+            </Menu>
+        </div>
+    );
+};

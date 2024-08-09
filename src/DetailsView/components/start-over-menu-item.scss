@@ -3,8 +3,23 @@
 @import '../../common/styles/colors.scss';
 
 .start-over-menu-item {
+    font-weight: 400 !important;
+    padding-left: 3px !important;
+
+    &:hover {
+        background: none !important;
+        color: $insights-button-hover !important;
+
+        & > span {
+            & > svg {
+                color: $insights-button-hover;
+            }
+        }
+    }
+
     .start-over-menu-item-icon {
         line-height: 16px;
+        margin-left: -8px !important;
     }
 
     button:disabled,

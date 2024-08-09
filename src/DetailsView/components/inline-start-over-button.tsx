@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { NamedFC } from 'common/react/named-fc';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -23,11 +23,14 @@ export const InlineStartOverButton = NamedFC<InlineStartOverButtonProps>(
         return (
             <InsightsCommandButton
                 onClick={rescan}
-                text="Start over"
-                iconProps={{ iconName: 'Refresh' }}
+                insightsCommandButtonIconProps={{
+                    icon: <FluentUIV9Icon iconName="ArrowClockwiseRegular" />,
+                }}
                 className={styles.inlineStartOverButton}
                 data-automation-id={inlineStartOverButtonDataAutomationId}
-            />
+            >
+                Start over
+            </InsightsCommandButton>
         );
     },
 );

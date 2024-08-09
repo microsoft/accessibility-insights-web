@@ -21,6 +21,9 @@ export function normalizeSelector(selector: string): string {
         const identifier = output.slice(1);
         output = `${output[0]}${normalizeOfficeFabricClassName(identifier)}`;
     }
+    if (/i\S+nth-child\(\d\)/.test(output)) {
+        output = 'i:nth-child(0)';
+    }
     return output;
 }
 

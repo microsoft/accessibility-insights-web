@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-    IButton,
-    IButtonProps,
-    IContextualMenuItem,
-    IContextualMenuRenderItem,
-    IRefObject,
-} from '@fluentui/react';
+import { IButtonProps, IContextualMenuItem, IContextualMenuRenderItem } from '@fluentui/react';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
@@ -18,13 +12,14 @@ import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-te
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import React from 'react';
 
 export type CardFooterMenuItem = IContextualMenuItem & IButtonProps;
 
 export type CardFooterMenuItemsProps = {
-    fileIssueButtonRef: IRefObject<IButton> & IRefObject<IContextualMenuRenderItem>;
+    fileIssueButtonRef: MyFunctionType & React.RefObject<IContextualMenuRenderItem>;
     toastRef: React.RefObject<Toast>;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData | null;
@@ -57,8 +52,9 @@ export class CardFooterMenuItemsBuilder {
                 iconProps: {
                     iconName: 'ladybugSolid',
                 },
+                iconName: 'ladybugSolid',
                 onClick: event => this.fileIssue(props, event),
-                componentRef: props.fileIssueButtonRef,
+                componentRef: () => props.fileIssueButtonRef,
             });
         }
 
@@ -69,6 +65,7 @@ export class CardFooterMenuItemsBuilder {
                 iconProps: {
                     iconName: 'copy',
                 },
+                iconName: 'copy',
                 onClick: event => void this.copyFailureDetails(props, event),
             });
         }

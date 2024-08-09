@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IIconProps, ActionButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
+import { FolderOpenRegular } from '@fluentui/react-icons';
+
 import { render } from '@testing-library/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import * as React from 'react';
@@ -9,37 +11,57 @@ import {
     mockReactComponents,
 } from '../../../../mock-helpers/mock-module-helpers';
 
-jest.mock('@fluentui/react', () => ({
-    ...jest.requireActual('@fluentui/react'),
-    ActionButton: jest.fn(),
-}));
+jest.mock('common/components/controls/insights-command-button-style', () => {
+    return {
+        useInsightsCommandButtonStyle: jest.fn(),
+    };
+});
+
+jest.mock('@fluentui/react-components');
+
 describe('InsightsCommandButton', () => {
-    mockReactComponents([ActionButton]);
+    mockReactComponents([Button]);
+    const props = {
+        insightsCommandButtonIconProps: {
+            className: 'startOverMenuItemIcon',
+        },
+        className: '',
+    };
     it('renders per snapshot with props passed through', () => {
-        const renderResult = render(<InsightsCommandButton text={'test-text'} />);
+        const renderResult = render(
+            <InsightsCommandButton {...props}>test-text</InsightsCommandButton>,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
+        expectMockedComponentPropsToMatchSnapshots([Button]);
     });
 
     it('renders per snapshot with extra className combined with its own', () => {
-        const renderResult = render(<InsightsCommandButton className={'test-extra-class-name'} />);
+        const renderResult = render(<InsightsCommandButton {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
+        expectMockedComponentPropsToMatchSnapshots([Button]);
     });
 
     it('renders per snapshot with iconProps passed through', () => {
-        const iconProps = { testProperty: 'test-value' } as IIconProps;
-        const renderResult = render(<InsightsCommandButton iconProps={iconProps} />);
+        const renderResult = render(
+            <InsightsCommandButton insightsCommandButtonIconProps={{ icon: <FolderOpenRegular /> }}>
+                Load assessment
+            </InsightsCommandButton>,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
+        expectMockedComponentPropsToMatchSnapshots([Button]);
     });
 
     it('renders per snapshot with extra icon className combined with its own', () => {
-        const iconProps = {
-            className: 'icon-class-name',
-        } as IIconProps;
-        const renderResult = render(<InsightsCommandButton iconProps={iconProps} />);
+        const renderResult = render(
+            <InsightsCommandButton
+                insightsCommandButtonIconProps={{
+                    icon: <FolderOpenRegular className="icon-class-name" />,
+                }}
+            >
+                Load assessment
+            </InsightsCommandButton>,
+        );
         expect(renderResult.asFragment()).toMatchSnapshot();
-        expectMockedComponentPropsToMatchSnapshots([ActionButton]);
+        expectMockedComponentPropsToMatchSnapshots([Button]);
     });
 });

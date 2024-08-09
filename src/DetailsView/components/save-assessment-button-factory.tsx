@@ -24,6 +24,8 @@ export type SaveAssessmentButtonFactoryProps = {
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
+    isNarrowMode?: boolean;
+    handleSaveAssesmentButtonClick: (event: React.MouseEvent<any>) => void;
 };
 
 export function getSaveButtonForAssessment(props: SaveAssessmentButtonFactoryProps): JSX.Element {

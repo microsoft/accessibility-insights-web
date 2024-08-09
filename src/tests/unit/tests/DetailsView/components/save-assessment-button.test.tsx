@@ -1,14 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-    ActionButton,
-    Checkbox,
-    Dialog,
-    DialogFooter,
-    PrimaryButton,
-    Stack,
-} from '@fluentui/react';
+import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
 import { fireEvent, render, RenderResult, act } from '@testing-library/react';
 
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
@@ -20,21 +13,30 @@ import {
 } from 'DetailsView/components/save-assessment-button';
 import * as React from 'react';
 import {
-    getMockComponentClassPropsForCall,
     mockReactComponents,
     mockReactComponent,
+    getMockComponentClassPropsForCall,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components', () => ({
+    ...jest.requireActual('@fluentui/react-components'),
+    makeStyles: () => () => ({}),
+}));
+jest.mock('common/icons/fluentui-v9-icons');
+jest.mock('DetailsView/components/save-assessment-dialog');
+jest.mock('@fluentui/react-components');
 describe('SaveAssessmentButton', () => {
-    mockReactComponents([DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton, ActionButton]);
-    mockReactComponent(Dialog, 'Dialog');
+    mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
+
     let propsStub: SaveAssessmentButtonProps;
     let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
+    const handleSaveAssesmentButtonClickMock =
+        Mock.ofType<(event: React.MouseEvent<any>) => void>();
 
     beforeEach(() => {
         assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
@@ -50,6 +52,7 @@ describe('SaveAssessmentButton', () => {
             download: 'download',
             href: 'url',
             userConfigurationStoreData,
+            handleSaveAssesmentButtonClick: handleSaveAssesmentButtonClickMock.object,
         };
     });
 
@@ -58,7 +61,7 @@ describe('SaveAssessmentButton', () => {
             beforeEach(() => {
                 mockReactComponent(Dialog, 'Dialog');
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                fireEvent.click(wrapper.container.querySelector('mock-customizedactionbutton'));
+                fireEvent.click(wrapper.getByRole('button'));
             });
             it('snapshot of dialog', () => {
                 expect(wrapper.asFragment()).toMatchSnapshot();
@@ -84,17 +87,17 @@ describe('SaveAssessmentButton', () => {
                     'Stack',
                     'Checkbox',
                     'PrimaryButton',
-                    'ActionButton',
                 ]);
+                useOriginalReactElements('@fluentui/react-components', ['Button']);
 
                 wrapper = render(<SaveAssessmentButton {...propsStub} />);
-                fireEvent.click(wrapper.getByRole('link'));
+                fireEvent.click(wrapper.getByRole('button'));
             });
 
             it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
                 // The "Don't show again" checkbox logic is inverted
                 const checkbox = wrapper.getByRole('checkbox');
-                // Check "Don't show again" = true
+                // // Check "Don't show again" = true
 
                 fireEvent.click(checkbox);
                 // showSaveAssessmentDialog = false ("Enable the dialog" = false)
@@ -115,10 +118,6 @@ describe('SaveAssessmentButton', () => {
                 act(() => {
                     gotItButtonProps.onClick();
                 });
-                // since upgrading to React 18, this test is nondeterministic between being run in
-                // isolation and being run with the entire test suite. If you are working on this test
-                // and running it all by itself locally, it will include an additional empty render after
-                // the link click in the beforeEach, making this test fail.
                 const getProps = getMockComponentClassPropsForCall(Dialog, 3);
                 expect(getProps.hidden).toEqual(true);
             });
@@ -132,7 +131,7 @@ describe('SaveAssessmentButton', () => {
         beforeEach(() => {
             propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
             wrapper = render(<SaveAssessmentButton {...propsStub} />);
-            fireEvent.click(wrapper.getByRole('link'));
+            fireEvent.click(wrapper.getByRole('button'));
         });
 
         it('saves assessment without dialog (dialog is hidden)', () => {
