@@ -37,6 +37,7 @@ export interface StartOverProps {
     rightPanelOptions: StartOverContextMenuKeyOptions;
     switcherStartOverPreferences: StartOverContextMenuKeyOptions;
     hasSubMenu?: boolean;
+    isNarrowMode?: boolean;
 }
 
 const dropdownDirections = {
@@ -97,18 +98,13 @@ export const StartOverDropdown: React.FC<StartOverProps> = props => {
             <Menu>
                 <MenuTrigger disableButtonEnhancement>
                     <MenuButton
+                        role={props.isNarrowMode ? 'menuitem' : 'button'}
                         ref={props.buttonRef}
                         appearance="transparent"
                         shape="square"
                         className={stylesValue?.menuButton}
-                        icon={
-                            <FluentUIV9Icon
-                                iconName="ArrowClockwiseRegular"
-                                //    customClass={stylesValue.chevronIcon}
-                            />
-                        }
+                        icon={<FluentUIV9Icon iconName="ArrowClockwiseRegular" />}
                         aria-label="start over menu"
-                        //className={mergeClasses(styles.commandBarButtonsMenu, styles.menuItem)}
                         menuIcon={
                             direction === 'left' ? (
                                 <FluentUIV9Icon

@@ -20,6 +20,7 @@ export interface SaveAssessmentButtonProps {
     deps: SaveAssessmentButtonDeps;
     userConfigurationStoreData: UserConfigurationStoreData;
     handleSaveAssesmentButtonClick: (event: React.MouseEvent<any>) => void;
+    isNarrowMode?: boolean;
 }
 
 export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
@@ -32,8 +33,6 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                 <InsightsCommandButton
                     as="a"
                     className={saveAssessmentStyles?.assessmentButton}
-                    download={props.download}
-                    href={props.href}
                     onClick={props.handleSaveAssesmentButtonClick}
                     insightsCommandButtonIconProps={{
                         icon: <FluentUIV9Icon iconName="SaveRegular" />,

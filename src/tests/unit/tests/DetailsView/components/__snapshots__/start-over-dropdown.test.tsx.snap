@@ -12,6 +12,7 @@ exports[`StartOverDropdownTest render 1`] = `
           aria-label="start over menu"
           icon="[object Object]"
           menuicon="[object Object]"
+          role="button"
           shape="square"
         >
           Start over
@@ -50,6 +51,7 @@ exports[`StartOverDropdownTest render with dropdown on left 1`] = `
           aria-label="start over menu"
           icon="[object Object]"
           menuicon="[object Object]"
+          role="button"
           shape="square"
         >
           Start over
@@ -88,6 +90,7 @@ exports[`StartOverDropdownTest render with dropdown on left: MenuButton props 1`
   "menuIcon": <FluentUIV9Icon
     iconName="ChevronRight20Regular"
   />,
+  "role": "button",
   "shape": "square",
 }
 `;
@@ -104,6 +107,7 @@ exports[`StartOverDropdownTest render: MenuButton props 1`] = `
   "menuIcon": <FluentUIV9Icon
     iconName="ChevronDown20Regular"
   />,
+  "role": "button",
   "shape": "square",
 }
 `;

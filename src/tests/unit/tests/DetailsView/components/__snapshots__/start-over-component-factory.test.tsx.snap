@@ -6,6 +6,7 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverCompon
   "buttonRef": undefined,
   "dropdownDirection": "down",
   "hasSubMenu": true,
+  "isNarrowMode": undefined,
   "openDialog": undefined,
   "rightPanelOptions": {
     "showTest": true,
@@ -40,6 +41,7 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuIt
   "buttonRef": undefined,
   "dropdownDirection": "left",
   "hasSubMenu": true,
+  "isNarrowMode": undefined,
   "openDialog": undefined,
   "rightPanelOptions": {
     "showTest": true,
@@ -209,6 +211,7 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuI
   "buttonRef": undefined,
   "dropdownDirection": "left",
   "hasSubMenu": true,
+  "isNarrowMode": undefined,
   "openDialog": undefined,
   "rightPanelOptions": {
     "showTest": true,

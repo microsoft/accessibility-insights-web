@@ -35,6 +35,7 @@ export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProp
                     props.deps.dataTransferViewController.showQuickAssessToAssessmentConfirmDialog
                 }
                 ref={props.buttonRef}
+                isNarrowMode={props.isNarrowMode}
             >
                 Move to assessment
             </InsightsCommandButton>

@@ -35,6 +35,7 @@ import {
     SaveAssessmentButtonFactoryDeps,
     SaveAssessmentButtonFactoryProps,
 } from 'DetailsView/components/save-assessment-button-factory';
+import { SaveAssessmentDialog } from 'DetailsView/components/save-assessment-dialog';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -55,7 +56,6 @@ import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { SaveAssessmentDialog } from 'DetailsView/components/save-assessment-dialog';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;

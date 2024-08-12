@@ -31,6 +31,7 @@ export type StartOverFactoryProps = {
     openDialog: (dialogType: StartOverDialogType) => void;
     buttonRef: MyFunctionType;
     hasSubMenu?: boolean;
+    isNarrowMode?: boolean;
 };
 
 export type StartOverMenuItem = Omit<IContextualMenuItem, 'key'>;
@@ -97,6 +98,7 @@ export function getStartOverComponentForAssessment(
         rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
         switcherStartOverPreferences: { showTest: true },
         hasSubMenu: props.hasSubMenu,
+        isNarrowMode: props.isNarrowMode,
     };
 
     return <StartOverDropdown {...startOverProps} />;
@@ -119,6 +121,7 @@ export function getStartOverComponentForQuickAssess(
         rightPanelOptions: props.rightPanelConfiguration.startOverContextMenuKeyOptions,
         switcherStartOverPreferences: { showTest },
         hasSubMenu: props.hasSubMenu,
+        isNarrowMode: props.isNarrowMode,
     };
 
     return <StartOverDropdown {...startOverProps} />;
@@ -137,5 +140,6 @@ export function getStartOverPropsForFastPass(props: StartOverFactoryProps): Star
         'data-automation-id': startOverAutomationId,
         text: 'Start over',
         className: styles.startOverMenuItem,
+        isNarrowMode: props.isNarrowMode,
     };
 }
