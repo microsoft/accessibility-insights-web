@@ -1,5 +1,7 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License.
+ */
 
 export interface GuidanceTag {
     id: string;
@@ -18,10 +20,6 @@ export const guidanceTags = {
     BEST_PRACTICE: {
         id: 'BEST_PRACTICE',
         displayText: 'Best Practice',
-    },
-    WCAG_2_2_DEPRECATION: {
-        id: 'WCAG_2_2',
-        displayText: 'Deprecated for WCAG 2.2',
     },
     AI_SCAN: {
         id: 'AI_SCAN',
