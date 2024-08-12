@@ -18,7 +18,6 @@ import { liveMultimedia } from './live-multimedia';
 import { multimedia } from './multimedia';
 import { nativeWidgets } from './native-widgets';
 import { page } from './page';
-import { parsing } from './parsing';
 import { pointerMotion } from './pointer-motion';
 import { repetitiveContent } from './repetitive-content';
 import { semantics } from './semantics';
@@ -38,7 +37,6 @@ export const test = {
     language,
     multimedia,
     page,
-    parsing,
     repetitiveContent,
     sensory,
     semantics,

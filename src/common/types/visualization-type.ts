@@ -16,7 +16,6 @@ export enum VisualizationType {
     AudioVideOnly,
     ErrorsAssessment,
     TimedEventsAssessment,
-    ParsingAssessment,
     PrerecordedMultimediaAssessment,
     LiveMultimediaAssessment,
     VisibleFocusOrderAssessment,
