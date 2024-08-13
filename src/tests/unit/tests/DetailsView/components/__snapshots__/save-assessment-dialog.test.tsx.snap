@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SaveAssessmentDialog render 1`] = `
+<DocumentFragment>
+  <mock-dialog
+    dialogcontentprops="[object Object]"
+    hidden="false"
+    modalprops="[object Object]"
+  >
+    <div
+      class="dialogBody"
+    >
+      To load this assessment, use the 
+      <strong>
+        Load assessment
+      </strong>
+       button in the Accessibility Insights Assessment command bar.
+    </div>
+    <mock-styleddialogfooterbase>
+      <mock-stack
+        horizontal="true"
+        horizontalalign="space-between"
+        tokens="[object Object]"
+        verticalalign="center"
+        wrap="true"
+      >
+        <mock-stackitem
+          disableshrink="true"
+          grow="true"
+        >
+          <mock-styledcheckboxbase
+            checked="false"
+            label="Don't show again"
+          />
+        </mock-stackitem>
+        <mock-stackitem
+          grow="true"
+        >
+          <mock-customizedprimarybutton
+            text="Got it"
+          />
+        </mock-stackitem>
+      </mock-stack>
+    </mock-styleddialogfooterbase>
+  </mock-dialog>
+</DocumentFragment>
+`;

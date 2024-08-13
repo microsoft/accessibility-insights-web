@@ -74,6 +74,8 @@ import {
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock } from 'typemoq';
+import { AssessmentDataFormatter } from '../../../../../common/assessment-data-formatter';
+import { SaveAssessmentDialog } from '../../../../../DetailsView/components/save-assessment-dialog';
 
 jest.mock('DetailsView/components/report-export-button');
 jest.mock('DetailsView/components/load-assessment-dialog');
@@ -82,6 +84,7 @@ jest.mock('DetailsView/components/start-over-dialog');
 jest.mock('DetailsView/components/export-dialog');
 jest.mock('DetailsView/components/command-bar-buttons-menu');
 jest.mock('DetailsView/components/invalid-load-assessment-dialog');
+jest.mock('DetailsView/components/save-assessment-dialog');
 jest.mock('common/components/new-tab-link-with-tooltip');
 jest.mock('DetailsView/components/quick-assess-to-assessment-dialog');
 describe('DetailsViewCommandBar', () => {
@@ -89,6 +92,7 @@ describe('DetailsViewCommandBar', () => {
         ReportExportButton,
         LoadAssessmentDialog,
         StartOverDialog,
+        SaveAssessmentDialog,
         CommandBarButtonsMenu,
         InvalidLoadAssessmentDialog,
         NewTabLinkWithTooltip,
@@ -126,6 +130,7 @@ describe('DetailsViewCommandBar', () => {
     let fileURLProviderMock: IMock<FileURLProvider>;
     let loadAssessmentHelper: LoadAssessmentHelper;
     let assessmentDataParser: AssessmentDataParser;
+    let assessmentDataFormatter: AssessmentDataFormatter;
     const urlParser: UrlParser = new UrlParser();
     let dataTransferViewControllerMock: IMock<DataTransferViewController>;
     const reportExportServiceProvider: ReportExportServiceProvider =
@@ -161,6 +166,7 @@ describe('DetailsViewCommandBar', () => {
         getStartOverComponentMock = Mock.ofInstance(props => null);
         fileURLProviderMock = Mock.ofType(FileURLProvider);
         assessmentDataParser = new AssessmentDataParser();
+        assessmentDataFormatter = new AssessmentDataFormatter();
         loadAssessmentDataValidator = new LoadAssessmentDataValidator(
             Assessments,
             featureFlagStoreData,
@@ -262,6 +268,7 @@ describe('DetailsViewCommandBar', () => {
                 fileURLProvider: fileURLProviderMock.object,
                 loadAssessmentHelper: loadAssessmentHelper,
                 assessmentDataParser: assessmentDataParser,
+                assessmentDataFormatter: assessmentDataFormatter,
                 urlParser: urlParser,
                 dataTransferViewController: dataTransferViewControllerMock.object,
                 getProvider: () => assessmentsProviderStub,
@@ -279,6 +286,7 @@ describe('DetailsViewCommandBar', () => {
             },
             rightPanelConfiguration,
             dataTransferViewStoreData: { showQuickAssessToAssessmentConfirmDialog: false },
+            userConfigurationStoreData: { showSaveAssessmentDialog: false },
         } as DetailsViewCommandBarProps;
     }
 
@@ -332,6 +340,18 @@ describe('DetailsViewCommandBar', () => {
         expect(getMockComponentClassPropsForCall(ExportDialog, 2).isOpen).toBe(true);
         expect(renderResult.asFragment()).toMatchSnapshot('export dialog open');
         global.Date = originalDate;
+    });
+
+    test('renders save assessment dialog', async () => {
+        const props = getProps(['SaveAssessmentButton']);
+        props.userConfigurationStoreData.showSaveAssessmentDialog = true;
+        const renderResult = render(<DetailsViewCommandBar {...props} />);
+        const saveButton = renderResult.getByText('Save assessment');
+        expect(getMockComponentClassPropsForCall(SaveAssessmentDialog, 1).isOpen).toBe(false);
+        expect(renderResult.asFragment()).toMatchSnapshot('save assessment dialog hidden');
+        await userEvent.click(saveButton);
+        expect(getMockComponentClassPropsForCall(SaveAssessmentDialog, 2).isOpen).toBe(true);
+        expect(renderResult.asFragment()).toMatchSnapshot('Save assessment dialog open');
     });
 
     test('renders load assessment dialog', async () => {

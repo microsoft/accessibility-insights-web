@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`SaveAssessmentButton snapshot of dialog 1`] = `
-<DocumentFragment>
-  <span
-    class="ms-layer"
-  />
-</DocumentFragment>
-`;

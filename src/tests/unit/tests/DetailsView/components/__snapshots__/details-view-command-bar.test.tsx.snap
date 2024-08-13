@@ -108,6 +108,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -123,6 +124,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -135,6 +137,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -147,6 +150,20 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -260,6 +277,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -275,6 +293,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -287,6 +306,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -299,6 +319,20 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -412,6 +446,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -427,6 +462,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -439,6 +475,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -451,6 +488,20 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -564,6 +615,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -579,6 +631,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -591,6 +644,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -603,6 +657,20 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -691,6 +759,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -706,6 +775,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -718,6 +788,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -730,6 +801,20 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -817,6 +902,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -832,6 +918,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -844,6 +931,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -856,6 +944,362 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders save assessment dialog: Save assessment dialog open 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        data-automation-id="report-export-button"
+        id="report-export-button"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        Export result
+      </button>
+      <a
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        download="SavedAssessment_undefined_undefined.a11ywebassessment"
+        role="button"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 5c0-1.1.9-2 2-2h8.38a2 2 0 0 1 1.41.59l1.62 1.62A2 2 0 0 1 17 6.62V15a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm2-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1v-4.5c0-.83.67-1.5 1.5-1.5h7c.83 0 1.5.67 1.5 1.5V16a1 1 0 0 0 1-1V6.62a1 1 0 0 0-.3-.7L14.1 4.28a1 1 0 0 0-.71-.29H13v2.5c0 .83-.67 1.5-1.5 1.5h-4A1.5 1.5 0 0 1 6 6.5V4H5Zm2 0v2.5c0 .28.22.5.5.5h4a.5.5 0 0 0 .5-.5V4H7Zm7 12v-4.5a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5V16h8Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        Save assessment
+      </a>
+    </div>
+    <mock-exportdialog
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-quickassesstoassessmentconfirmdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isshown="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="true"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders save assessment dialog: save assessment dialog hidden 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        data-automation-id="report-export-button"
+        id="report-export-button"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        Export result
+      </button>
+      <a
+        class="fui-Button r1alrhcs ___129yhqa_8g6fsk0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f9hdeju f7otkfg"
+        download="SavedAssessment_undefined_undefined.a11ywebassessment"
+        role="button"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 5c0-1.1.9-2 2-2h8.38a2 2 0 0 1 1.41.59l1.62 1.62A2 2 0 0 1 17 6.62V15a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm2-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1v-4.5c0-.83.67-1.5 1.5-1.5h7c.83 0 1.5.67 1.5 1.5V16a1 1 0 0 0 1-1V6.62a1 1 0 0 0-.3-.7L14.1 4.28a1 1 0 0 0-.71-.29H13v2.5c0 .83-.67 1.5-1.5 1.5h-4A1.5 1.5 0 0 1 6 6.5V4H5Zm2 0v2.5c0 .28.22.5.5.5h4a.5.5 0 0 0 .5-.5V4H7Zm7 12v-4.5a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5V16h8Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        Save assessment
+      </a>
+    </div>
+    <mock-exportdialog
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-quickassesstoassessmentconfirmdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isshown="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -997,6 +1441,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1012,6 +1457,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1024,6 +1470,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1036,6 +1483,20 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1174,6 +1635,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1189,6 +1651,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1201,6 +1664,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1213,6 +1677,20 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1354,6 +1832,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1369,6 +1848,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1381,6 +1861,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1393,6 +1874,20 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1531,6 +2026,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1546,6 +2042,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1558,6 +2055,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1570,6 +2068,20 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1661,6 +2173,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1676,6 +2189,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1688,6 +2202,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1700,6 +2215,20 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1791,6 +2320,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1806,6 +2336,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1818,6 +2349,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1830,6 +2362,20 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1889,6 +2435,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1904,6 +2451,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1916,6 +2464,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1928,6 +2477,20 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -2016,6 +2579,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -2031,6 +2595,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -2043,6 +2608,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -2055,6 +2621,20 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -2126,6 +2706,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -2141,6 +2722,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -2153,6 +2735,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -2165,6 +2748,20 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -2233,6 +2830,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -2248,6 +2846,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -2260,6 +2859,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -2272,6 +2872,20 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -2346,6 +2960,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -2361,6 +2976,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -2373,6 +2989,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -2385,6 +3002,20 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
