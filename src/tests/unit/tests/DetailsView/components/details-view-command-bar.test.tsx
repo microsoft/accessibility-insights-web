@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import '@testing-library/jest-dom';
-import { Button } from '@fluentui/react-components';
+import { Button, toggleButtonClassNames } from '@fluentui/react-components';
 import { act, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Assessments } from 'assessments/assessments';
@@ -76,6 +76,7 @@ import {
 import { IMock, It, Mock } from 'typemoq';
 import { AssessmentDataFormatter } from '../../../../../common/assessment-data-formatter';
 import { SaveAssessmentDialog } from '../../../../../DetailsView/components/save-assessment-dialog';
+import { LoadAssessmentButton } from 'DetailsView/components/load-assessment-button';
 
 jest.mock('DetailsView/components/report-export-button');
 jest.mock('DetailsView/components/load-assessment-dialog');
@@ -87,6 +88,8 @@ jest.mock('DetailsView/components/invalid-load-assessment-dialog');
 jest.mock('DetailsView/components/save-assessment-dialog');
 jest.mock('common/components/new-tab-link-with-tooltip');
 jest.mock('DetailsView/components/quick-assess-to-assessment-dialog');
+jest.mock('DetailsView/components/load-assessment-button');
+
 describe('DetailsViewCommandBar', () => {
     mockReactComponents([
         ReportExportButton,
@@ -99,6 +102,7 @@ describe('DetailsViewCommandBar', () => {
         ReportExportButton,
         ExportDialog,
         QuickAssessToAssessmentDialog,
+        LoadAssessmentButton
     ]);
     const thePageTitle = 'command-bar-test-tab-title';
     const thePageUrl = 'command-bar-test-url';
@@ -150,7 +154,10 @@ describe('DetailsViewCommandBar', () => {
                 _prevTargetPageData,
                 _newTargetPageId,
             ) => {
-                if (toggleLoad) toggleLoadAssessmentDialog();
+                if (toggleLoad) {
+                    toggleLoadAssessmentDialog();
+
+                };
                 if (toggleInvalidLoad) toggleInvalidLoadAssessmentDialog();
             },
         } as LoadAssessmentHelper;
@@ -314,6 +321,20 @@ describe('DetailsViewCommandBar', () => {
 
     test('renders with buttons collapsed into a menu', () => {
         isCommandBarCollapsed = true;
+        const props = getProps();
+
+        const renderResult = render(<DetailsViewCommandBar {...props} />);
+
+        expect(renderResult.asFragment()).toMatchSnapshot();
+        expectMockedComponentPropsToMatchSnapshots([CommandBarButtonsMenu]);
+    });
+
+    test('renders with buttons ', () => {
+        useOriginalReactElements('DetailsView/components/load-assessment-button', [
+            'LoadAssessmentButton',
+        ]);
+        tabStoreData.isClosed = true;
+        isCommandBarCollapsed = false;
         const props = getProps();
 
         const renderResult = render(<DetailsViewCommandBar {...props} />);
@@ -524,6 +545,16 @@ describe('DetailsViewCommandBar', () => {
             expect(renderResult.baseElement).toHaveFocus();
         });
 
+        test('render statover component', async () => {
+            isCommandBarCollapsed = true;
+            useOriginalReactElements('DetailsView/components/start-over-dialog', [
+                'StartOverDialog',
+            ]);
+            const props = getProps(['StartOverComponent', 'CommandBar']);
+            const renderResult = render(<DetailsViewCommandBar {...props} />);
+            expect(renderResult).toMatchSnapshot();
+        });
+
         test('focus start over button when focus ref is set', async () => {
             useOriginalReactElements('DetailsView/components/start-over-dialog', [
                 'StartOverDialog',
@@ -623,9 +654,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                          expectedProps as StartOverFactoryProps,
-                          'down',
-                      )
+                        expectedProps as StartOverFactoryProps,
+                        'down',
+                    )
                     : startOverComponent,
             );
     }

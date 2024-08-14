@@ -1,5 +1,271 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DetailsViewCommandBar Button focus render statover component 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body
+    class=""
+    data-tabster="{"root":{}}"
+  >
+    <div
+      id="fluent-default-layer-host"
+      style="position: fixed; z-index: 1000000;"
+    />
+    <div>
+      <div
+        aria-label="command bar"
+        class="detailsViewCommandBar"
+        role="region"
+      >
+        <div
+          aria-labelledby="switch-to-target"
+          class="detailsViewTargetPage"
+        >
+          <span
+            id="switch-to-target"
+          >
+            Target page: 
+          </span>
+          <mock-newtablinkwithtooltip
+            aria-label="Switch to target page: command-bar-test-tab-title"
+            classname="targetPageLink"
+            role="link"
+            tooltipcontent="Switch to target page: command-bar-test-tab-title"
+          >
+            <span
+              class="targetPageTitle"
+            >
+              command-bar-test-tab-title
+            </span>
+          </mock-newtablinkwithtooltip>
+        </div>
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          aria-label="More actions"
+          class="fui-Button r1alrhcs fui-MenuButton commandBarButtonsMenuButton ___cpe5h10_1yhfyj7 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f18ktai2 fwbmr0d f44c6la"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur4"
+          type="button"
+        >
+          <span
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon"
+          >
+            <svg
+              aria-hidden="true"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.25 10a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm5 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0ZM15 11.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </button>
+        <mock-invalidloadassessmentdialog
+          assessmentstoredata="[object Object]"
+          datatransferviewstoredata="[object Object]"
+          deps="[object Object]"
+          featureflagstoredata="[object Object]"
+          isopen="false"
+          narrowmodestatus="[object Object]"
+          rightpanelconfiguration="[object Object]"
+          scanmetadata="[object Object]"
+          switchernavconfiguration="[object Object]"
+          tabstoredata="[object Object]"
+          userconfigurationstoredata="[object Object]"
+        />
+        <mock-loadassessmentdialog
+          assessmentstoredata="[object Object]"
+          datatransferviewstoredata="[object Object]"
+          deps="[object Object]"
+          featureflagstoredata="[object Object]"
+          isopen="false"
+          loadedassessmentdata="[object Object]"
+          narrowmodestatus="[object Object]"
+          prevtab="[object Object]"
+          rightpanelconfiguration="[object Object]"
+          scanmetadata="[object Object]"
+          switchernavconfiguration="[object Object]"
+          tabid="5"
+          tabstoredata="[object Object]"
+          userconfigurationstoredata="[object Object]"
+        />
+        <mock-saveassessmentdialog
+          assessmentstoredata="[object Object]"
+          datatransferviewstoredata="[object Object]"
+          deps="[object Object]"
+          featureflagstoredata="[object Object]"
+          isopen="false"
+          narrowmodestatus="[object Object]"
+          rightpanelconfiguration="[object Object]"
+          scanmetadata="[object Object]"
+          switchernavconfiguration="[object Object]"
+          tabstoredata="[object Object]"
+          userconfigurationstoredata="[object Object]"
+        />
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      aria-label="command bar"
+      class="detailsViewCommandBar"
+      role="region"
+    >
+      <div
+        aria-labelledby="switch-to-target"
+        class="detailsViewTargetPage"
+      >
+        <span
+          id="switch-to-target"
+        >
+          Target page: 
+        </span>
+        <mock-newtablinkwithtooltip
+          aria-label="Switch to target page: command-bar-test-tab-title"
+          classname="targetPageLink"
+          role="link"
+          tooltipcontent="Switch to target page: command-bar-test-tab-title"
+        >
+          <span
+            class="targetPageTitle"
+          >
+            command-bar-test-tab-title
+          </span>
+        </mock-newtablinkwithtooltip>
+      </div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="menu"
+        aria-label="More actions"
+        class="fui-Button r1alrhcs fui-MenuButton commandBarButtonsMenuButton ___cpe5h10_1yhfyj7 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f18ktai2 fwbmr0d f44c6la"
+        data-tabster="{"restorer":{"type":1}}"
+        id="menur4"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 fui-MenuButton__icon"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.25 10a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm5 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0ZM15 11.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+      <mock-invalidloadassessmentdialog
+        assessmentstoredata="[object Object]"
+        datatransferviewstoredata="[object Object]"
+        deps="[object Object]"
+        featureflagstoredata="[object Object]"
+        isopen="false"
+        narrowmodestatus="[object Object]"
+        rightpanelconfiguration="[object Object]"
+        scanmetadata="[object Object]"
+        switchernavconfiguration="[object Object]"
+        tabstoredata="[object Object]"
+        userconfigurationstoredata="[object Object]"
+      />
+      <mock-loadassessmentdialog
+        assessmentstoredata="[object Object]"
+        datatransferviewstoredata="[object Object]"
+        deps="[object Object]"
+        featureflagstoredata="[object Object]"
+        isopen="false"
+        loadedassessmentdata="[object Object]"
+        narrowmodestatus="[object Object]"
+        prevtab="[object Object]"
+        rightpanelconfiguration="[object Object]"
+        scanmetadata="[object Object]"
+        switchernavconfiguration="[object Object]"
+        tabid="5"
+        tabstoredata="[object Object]"
+        userconfigurationstoredata="[object Object]"
+      />
+      <mock-saveassessmentdialog
+        assessmentstoredata="[object Object]"
+        datatransferviewstoredata="[object Object]"
+        deps="[object Object]"
+        featureflagstoredata="[object Object]"
+        isopen="false"
+        narrowmodestatus="[object Object]"
+        rightpanelconfiguration="[object Object]"
+        scanmetadata="[object Object]"
+        switchernavconfiguration="[object Object]"
+        tabstoredata="[object Object]"
+        userconfigurationstoredata="[object Object]"
+      />
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
 exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid load assessment dialog hidden 1`] = `
 <DocumentFragment>
   <div
@@ -2380,6 +2646,10 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
   </div>
 </DocumentFragment>
 `;
+
+exports[`DetailsViewCommandBar renders with buttons  1`] = `<DocumentFragment />`;
+
+exports[`DetailsViewCommandBar renders with buttons : CommandBarButtonsMenu props 1`] = `undefined`;
 
 exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = `
 <DocumentFragment>
