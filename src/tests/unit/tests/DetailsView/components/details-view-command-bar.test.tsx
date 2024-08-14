@@ -41,6 +41,7 @@ import {
 } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialog } from 'DetailsView/components/export-dialog';
 import { InvalidLoadAssessmentDialog } from 'DetailsView/components/invalid-load-assessment-dialog';
+import { LoadAssessmentButton } from 'DetailsView/components/load-assessment-button';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentDialog } from 'DetailsView/components/load-assessment-dialog';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
@@ -76,7 +77,6 @@ import {
 import { IMock, It, Mock } from 'typemoq';
 import { AssessmentDataFormatter } from '../../../../../common/assessment-data-formatter';
 import { SaveAssessmentDialog } from '../../../../../DetailsView/components/save-assessment-dialog';
-import { LoadAssessmentButton } from 'DetailsView/components/load-assessment-button';
 
 jest.mock('DetailsView/components/report-export-button');
 jest.mock('DetailsView/components/load-assessment-dialog');
