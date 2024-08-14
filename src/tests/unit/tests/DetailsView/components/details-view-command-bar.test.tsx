@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import '@testing-library/jest-dom';
-import { Button, toggleButtonClassNames } from '@fluentui/react-components';
+import { Button } from '@fluentui/react-components';
 import { act, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Assessments } from 'assessments/assessments';
@@ -102,7 +102,7 @@ describe('DetailsViewCommandBar', () => {
         ReportExportButton,
         ExportDialog,
         QuickAssessToAssessmentDialog,
-        LoadAssessmentButton
+        LoadAssessmentButton,
     ]);
     const thePageTitle = 'command-bar-test-tab-title';
     const thePageUrl = 'command-bar-test-url';
@@ -156,8 +156,7 @@ describe('DetailsViewCommandBar', () => {
             ) => {
                 if (toggleLoad) {
                     toggleLoadAssessmentDialog();
-
-                };
+                }
                 if (toggleInvalidLoad) toggleInvalidLoadAssessmentDialog();
             },
         } as LoadAssessmentHelper;
@@ -654,9 +653,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                        expectedProps as StartOverFactoryProps,
-                        'down',
-                    )
+                          expectedProps as StartOverFactoryProps,
+                          'down',
+                      )
                     : startOverComponent,
             );
     }
