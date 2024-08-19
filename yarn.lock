@@ -1261,7 +1261,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fluentui/react-components@npm:^9.53.0":
+"@fluentui/react-components@npm:^9.54.1":
   version: 9.54.13
   resolution: "@fluentui/react-components@npm:9.54.13"
   dependencies:
