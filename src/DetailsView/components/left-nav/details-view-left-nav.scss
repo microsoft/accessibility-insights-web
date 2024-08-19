@@ -32,6 +32,10 @@
 
         button.ms-Nav-link {
             width: 100%;
+
+            &:hover {
+                background-color: $nav-link-hover;
+            }
         }
 
         .overview-label {
@@ -73,6 +77,10 @@
                     color: $always-black;
                 }
 
+                a {
+                    font-weight: 600;
+                }
+
                 a,
                 button {
                     background-color: $communication-tint-40;
@@ -92,6 +100,10 @@
                     border-left: $pivot-item-left-border-width $pivot-item-border-style
                         $communication-primary;
                 }
+            }
+
+            &:not(.is-selected):hover {
+                background-color: $nav-link-hover;
             }
         }
 

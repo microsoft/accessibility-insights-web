@@ -1265,7 +1265,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fluentui/react-components@npm:^9.53.0":
+"@fluentui/react-components@npm:^9.54.1":
   version: 9.54.2
   resolution: "@fluentui/react-components@npm:9.54.2"
   dependencies:
@@ -3632,9 +3632,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:^16.11.7":
-  version: 16.18.99
-  resolution: "@types/node@npm:16.18.99"
-  checksum: 658deaf80ac00ececb32c0d55b94244b601991dec641e9c7f829f38a4cdcded240f1944b61493c710a854a30f94d1dfbe3f6d44c3b1e36488d76002b59246a93
+  version: 16.18.101
+  resolution: "@types/node@npm:16.18.101"
+  checksum: d099055168529f56665ad470e0aeb443557301b1342be12eeedcb04897614bbc09ecf10621a90460f83a5264acad4feaf84d0db181251ebe901049aad4ab4bcf
   languageName: node
   linkType: hard
 
@@ -4268,7 +4268,7 @@ __metadata:
   dependencies:
     "@esbuild-plugins/node-resolve": ^0.2.2
     "@fluentui/react": ^8.118.1
-    "@fluentui/react-components": ^9.53.0
+    "@fluentui/react-components": ^9.54.1
     "@microsoft/applicationinsights-web": ^2.8.15
     "@swc/core": ^1.3.107
     "@swc/jest": ^0.2.36
@@ -5994,9 +5994,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.796":
-  version: 1.4.806
-  resolution: "electron-to-chromium@npm:1.4.806"
-  checksum: 51181df78e51e99b9b61253626985d7437815bfe2f6f9a669aa99aeb05e31f539f851de3ab22288636ab0cf5141f5541a95c70904ac597c3833f850ca5855779
+  version: 1.4.807
+  resolution: "electron-to-chromium@npm:1.4.807"
+  checksum: 40ab22e369c4b84ef2ac1cd70ac73a847d0b71869d4bb351902c673b616e068909ab184bbec47d43e853c07bcd7527159872d4aadddad9fcf21c67340ae96454
   languageName: node
   linkType: hard
 
@@ -8373,11 +8373,11 @@ __metadata:
   linkType: hard
 
 "is-core-module@npm:^2.13.0, is-core-module@npm:^2.13.1, is-core-module@npm:^2.5.0":
-  version: 2.13.1
-  resolution: "is-core-module@npm:2.13.1"
+  version: 2.14.0
+  resolution: "is-core-module@npm:2.14.0"
   dependencies:
-    hasown: ^2.0.0
-  checksum: 256559ee8a9488af90e4bad16f5583c6d59e92f0742e9e8bb4331e758521ee86b810b93bae44f390766ffbc518a0488b18d9dab7da9a5ff997d499efc9403f7c
+    hasown: ^2.0.2
+  checksum: 6bba6c8dc99d88d6f3b2746709d82caddcd9565cafd5870e28ab320720e27e6d9d2bb953ba0839ed4d2ee264bfdd14a9fa1bbc242a916f7dacc8aa95f0322256
   languageName: node
   linkType: hard
 
@@ -13185,22 +13185,22 @@ __metadata:
   linkType: hard
 
 "typescript@npm:^5.4.5":
-  version: 5.4.5
-  resolution: "typescript@npm:5.4.5"
+  version: 5.5.2
+  resolution: "typescript@npm:5.5.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 53c879c6fa1e3bcb194b274d4501ba1985894b2c2692fa079db03c5a5a7140587a1e04e1ba03184605d35f439b40192d9e138eb3279ca8eee313c081c8bcd9b0
+  checksum: 9c5a7982dadcb2d38d129c575dd38645ae11588ae0d4a12852fb04482bbc5a1660b2371e48fd5b33b6b605cc57cefe777670054546856945a05e77bd22c8c2cd
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@^5.4.5#~builtin<compat/typescript>":
-  version: 5.4.5
-  resolution: "typescript@patch:typescript@npm%3A5.4.5#~builtin<compat/typescript>::version=5.4.5&hash=85af82"
+  version: 5.5.2
+  resolution: "typescript@patch:typescript@npm%3A5.5.2#~builtin<compat/typescript>::version=5.5.2&hash=85af82"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 2373c693f3b328f3b2387c3efafe6d257b057a142f9a79291854b14ff4d5367d3d730810aee981726b677ae0fd8329b23309da3b6aaab8263dbdccf1da07a3ba
+  checksum: 9d89bac0de650e15d6846485f238d1e65f1013f2c260d9e53e86a1da6ecf8109d9fad9402575c5c36a6592dc5d4370db090e12971c8630ae84453654baabb6b4
   languageName: node
   linkType: hard
 
@@ -13575,8 +13575,8 @@ __metadata:
   linkType: hard
 
 "webpack@npm:^5.91.0":
-  version: 5.92.0
-  resolution: "webpack@npm:5.92.0"
+  version: 5.92.1
+  resolution: "webpack@npm:5.92.1"
   dependencies:
     "@types/eslint-scope": ^3.7.3
     "@types/estree": ^1.0.5
@@ -13607,7 +13607,7 @@ __metadata:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: b020102549d2bdbc59902003140808601a4f85800c3efcb8292d4239a71a44786d0b4e2412cfa840a75c2e60276e7e55ea3b77b4e1850a915024cab2a57e90ef
+  checksum: 11bec781260c4180883e98a4a15a08df297aca654ded45e70598f688881dd722f992d680addafe6f6342debede345cddcce2b781c50f5cde29d6c0bc33a82452
   languageName: node
   linkType: hard
 

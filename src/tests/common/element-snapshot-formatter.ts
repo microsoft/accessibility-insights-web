@@ -41,13 +41,13 @@ export function normalizeClassName(htmlString: string): string {
     // matches a string like: class="*"
     // we process only the string value on the right side
     const classAttributeMatcher = /class="([^".]+)"/g;
-
     return htmlString.replace(classAttributeMatcher, (_, classNamesMatch: string) => {
         let classNames = classNamesMatch.split(' ');
 
         classNames = classNames.map(className => {
             let result = normalizeCssModuleClassName(className);
             result = normalizeOfficeFabricClassName(result);
+            result = normalizeV9ClassName(result);
             return result;
         });
 
@@ -59,11 +59,19 @@ export function normalizeClassName(htmlString: string): string {
 // We remove the "random" number before snapshot comparison to avoid flakiness
 export function normalizeOfficeFabricClassName(className: string): string {
     const officeFabricClassNameMatcher = /^([a-zA-Z-_]+)(\d+)(-{0,1}\w+)?$/;
-
     return className.replace(officeFabricClassNameMatcher, '$1000$3');
 }
 
 export const CSS_MODULE_HASH_REPLACEMENT = '{{CSS_MODULE_HASH}}';
+
+export const V9_CLASS_NAME_REPLACEMENT = '{{FluentUI_V9_DYNAMIC_CLASS_NAME}}';
+
+// Fluent UI v9 adds dynamically generated classnames like "___1fq7916_1xye54t"
+// This normalizes them to avoid causing E2Es to fail for unrelated style changes.
+export function normalizeV9ClassName(className: string): string {
+    const v9ClassNameMatcher = /_{3}[0-9a-zA-Z_.]+/;
+    return className.replace(v9ClassNameMatcher, `${V9_CLASS_NAME_REPLACEMENT}`);
+}
 
 // Our compiler config adds generated suffixes of form "--abc12" to the end of class names defined in
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.

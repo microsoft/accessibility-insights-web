@@ -19,6 +19,7 @@
         :global {
             .is-selected {
                 background-color: $nav-link-selected;
+                font-weight: 600;
 
                 a,
                 button {

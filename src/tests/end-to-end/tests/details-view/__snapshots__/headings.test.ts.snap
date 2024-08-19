@@ -10,7 +10,7 @@ exports[`Details View -> Assessment -> Headings Getting started page Getting sta
   The link has insufficient color contrast of 2.95:1 with the surrounding text. (Minimum contrast is 3:1, link text: #106ebe, surrounding text: #242424)
   The link has no styling (such as underline) to distinguish it from the surrounding text",
         "selector": [
-          "p:nth-child(6) > .root-183.insights-link[target="_blank"]",
+          "p:nth-child(6) > .{{FluentUI_V9_DYNAMIC_CLASS_NAME}}[target="_blank"]",
         ],
       },
     ],
@@ -28,7 +28,7 @@ exports[`Details View -> Assessment -> Headings Getting started page Getting sta
   The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
   The link has no styling (such as underline) to distinguish it from the surrounding text",
         "selector": [
-          "p:nth-child(6) > .root-325.insights-link[target="_blank"]",
+          "p:nth-child(6) > .{{FluentUI_V9_DYNAMIC_CLASS_NAME}}[target="_blank"]",
         ],
       },
     ],

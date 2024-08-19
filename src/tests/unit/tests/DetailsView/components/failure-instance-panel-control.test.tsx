@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ActionButton, Link, TextField } from '@fluentui/react';
+import { ActionButton, TextField } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { act, fireEvent, render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { FlaggedComponent } from 'common/components/flagged-component';
@@ -24,6 +25,7 @@ import {
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 jest.mock('common/components/flagged-component');
 jest.mock('DetailsView/components/generic-panel');
 jest.mock('DetailsView/components/action-and-cancel-buttons-component');
@@ -108,9 +110,9 @@ describe('FailureInstancePanelControlTest', () => {
             'TextField',
             'Panel',
             'ActionButton',
-            'Link',
             'DefaultButton',
         ]);
+        useOriginalReactElements('@fluentui/react-components', ['Link']);
         useOriginalReactElements('DetailsView/components/generic-panel', ['GenericPanel']);
         useOriginalReactElements('common/components/flagged-component', ['FlaggedComponent']);
         useOriginalReactElements('DetailsView/components/action-and-cancel-buttons-component', [
