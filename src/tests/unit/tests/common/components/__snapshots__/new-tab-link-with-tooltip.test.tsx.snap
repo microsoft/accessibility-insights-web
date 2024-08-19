@@ -6,7 +6,15 @@ exports[`NewTabLinkWithTooltip handles children 1`] = `
     calloutprops="[object Object]"
     content="tooltip text"
     styles="[object Object]"
-  />
+  >
+    <mock-link
+      classname="insights-link insightsLink"
+      href="test"
+      target="_blank"
+    >
+      link text
+    </mock-link>
+  </mock-styledtooltiphostbase>
 </DocumentFragment>
 `;
 
@@ -36,7 +44,13 @@ exports[`NewTabLinkWithTooltip renders with null tooltip content 1`] = `
   <mock-styledtooltiphostbase
     calloutprops="[object Object]"
     styles="[object Object]"
-  />
+  >
+    <mock-link
+      classname="insights-link insightsLink"
+      href="test"
+      target="_blank"
+    />
+  </mock-styledtooltiphostbase>
 </DocumentFragment>
 `;
 
@@ -65,7 +79,13 @@ exports[`NewTabLinkWithTooltip renders with tooltip content 1`] = `
     calloutprops="[object Object]"
     content="tooltip text"
     styles="[object Object]"
-  />
+  >
+    <mock-link
+      classname="insights-link insightsLink"
+      href="test"
+      target="_blank"
+    />
+  </mock-styledtooltiphostbase>
 </DocumentFragment>
 `;
 

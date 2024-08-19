@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TooltipHost, Link } from '@fluentui/react';
+import { TooltipHost } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { BlockingDialog } from 'common/components/blocking-dialog';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
@@ -25,6 +26,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 jest.mock('DetailsView/components/change-assessment-dialog');
 jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 jest.mock('common/components/blocking-dialog');
 describe('TargetChangeDialog test set for prev tab null', () => {
     mockReactComponents([ChangeAssessmentDialog, BlockingDialog, TooltipHost, Link]);
