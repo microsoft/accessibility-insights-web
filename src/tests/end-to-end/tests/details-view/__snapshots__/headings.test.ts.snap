@@ -1,40 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Details View -> Assessment -> Headings Getting started page Getting started page should pass accessibility validation with highContrastMode=false 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 2.95:1 with the surrounding text. (Minimum contrast is 3:1, link text: #106ebe, surrounding text: #242424)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(6) > .root-183.insights-link[target="_blank"]",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Details View -> Assessment -> Headings Getting started page Getting started page should pass accessibility validation with highContrastMode=false 1`] = `[]`;
 
-exports[`Details View -> Assessment -> Headings Getting started page Getting started page should pass accessibility validation with highContrastMode=true 1`] = `
-[
-  {
-    "id": "link-in-text-block",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
-        "selector": [
-          "p:nth-child(6) > .root-323.insights-link[target="_blank"]",
-        ],
-      },
-    ],
-  },
-]
-`;
+exports[`Details View -> Assessment -> Headings Getting started page Getting started page should pass accessibility validation with highContrastMode=true 1`] = `[]`;
 
 exports[`Details View -> Assessment -> Headings Requirement page should pass accessibility validation with highContrastMode=false 1`] = `
 [
