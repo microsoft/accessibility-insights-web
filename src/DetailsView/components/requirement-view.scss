@@ -22,6 +22,14 @@
         align-self: flex-end;
         margin-bottom: 1vh;
         margin-top: 1vh;
+        border: 1px solid $neutral-30 !important;
+        border-radius: 2px !important;
+
+        &:focus-visible {
+            outline: 1px solid;
+            outline-offset: -4px;
+            box-shadow: none !important;
+        }
     }
 
     .requirement-content {
@@ -49,6 +57,7 @@
         width: 308px;
         height: fit-content;
         margin-right: 32px;
+
         @media screen and (width <= 1200px) {
             width: 100%;
             padding-top: 0;

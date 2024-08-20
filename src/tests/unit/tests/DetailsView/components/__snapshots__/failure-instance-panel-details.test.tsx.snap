@@ -17,10 +17,19 @@ exports[`FailureInstancePanelDetailsTest renders 1`] = `
       Note: If the CSS selector maps to multiple snippets, the first will be selected
     </div>
     <div>
-      <mock-customizeddefaultbutton
-        disabled="false"
-        text="Validate CSS selector"
-      />
+      <div
+        class="buttonsComponent"
+      >
+        <div
+          class="buttonCol"
+        >
+          <mock-button
+            disabled="false"
+          >
+            Validate CSS selector
+          </mock-button>
+        </div>
+      </div>
     </div>
     <div
       aria-atomic="true"

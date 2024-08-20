@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, Icon, ILabelStyles, ITextFieldStyles, TextField } from '@fluentui/react';
+import { Icon, ILabelStyles, ITextFieldStyles, TextField } from '@fluentui/react';
+import { Button, mergeClasses } from '@fluentui/react-components';
+import buttonStyles from 'common/styles/button.scss';
 import * as React from 'react';
 import { NamedFC } from '../../common/react/named-fc';
 import styles from './failure-instance-panel.scss';
@@ -54,11 +56,20 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
                     Note: If the CSS selector maps to multiple snippets, the first will be selected
                 </div>
                 <div>
-                    <DefaultButton
-                        text="Validate CSS selector"
-                        onClick={props.onValidateSelector}
-                        disabled={props.path === null}
-                    />
+                    <div className={buttonStyles.buttonsComponent}>
+                        <div className={buttonStyles.buttonCol}>
+                            <Button
+                                className={mergeClasses(
+                                    buttonStyles.defaultButton,
+                                    styles.validateCssButton,
+                                )}
+                                onClick={props.onValidateSelector}
+                                disabled={props.path === null}
+                            >
+                                Validate CSS selector
+                            </Button>
+                        </div>
+                    </div>
                 </div>
                 <div aria-live="polite" aria-atomic="true">
                     <div className={styles.failureInstanceSnippetTitle}>Code Snippet</div>
