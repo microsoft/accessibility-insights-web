@@ -112,7 +112,7 @@ describe('FailureInstancePanelControlTest', () => {
             'ActionButton',
             'DefaultButton',
         ]);
-        useOriginalReactElements('@fluentui/react-components', ['Link']);
+        useOriginalReactElements('@fluentui/react-components', ['Link', 'Button']);
         useOriginalReactElements('DetailsView/components/generic-panel', ['GenericPanel']);
         useOriginalReactElements('common/components/flagged-component', ['FlaggedComponent']);
         useOriginalReactElements('DetailsView/components/action-and-cancel-buttons-component', [
