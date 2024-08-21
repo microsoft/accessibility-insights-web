@@ -1,16 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ILinkProps, Link } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { mockReactComponents } from '../../../mock-helpers/mock-module-helpers';
-jest.mock('@fluentui/react');
+import { NewTabLink, NewTabLinkProps } from '../../../../../common/components/new-tab-link';
+import { mockReactComponent } from '../../../mock-helpers/mock-module-helpers';
+jest.mock('@fluentui/react-components', () => ({
+    ...jest.requireActual('@fluentui/react-components'),
+    Link: jest.fn(),
+}));
 
 describe('NewTabLink', () => {
-    mockReactComponents([Link]);
+    mockReactComponent(Link, 'Link');
     it('renders content with custom className', () => {
-        const props: ILinkProps = {
+        const props: NewTabLinkProps = {
             href: 'test',
             className: 'custom-class',
         };
@@ -20,7 +23,7 @@ describe('NewTabLink', () => {
     });
 
     it('renders content without custom className', () => {
-        const props: ILinkProps = {
+        const props: NewTabLinkProps = {
             href: 'test',
         };
 
@@ -29,7 +32,7 @@ describe('NewTabLink', () => {
     });
 
     it('handles children', () => {
-        const props: ILinkProps = {
+        const props: NewTabLinkProps = {
             href: 'test',
         };
 

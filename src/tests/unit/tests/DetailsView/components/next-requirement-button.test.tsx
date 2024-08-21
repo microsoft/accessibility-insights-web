@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DefaultButton, Icon } from '@fluentui/react';
+import { Icon } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { Requirement } from 'assessments/types/requirement';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -18,10 +19,11 @@ import {
     getMockComponentClassPropsForCall,
 } from '../../../mock-helpers/mock-module-helpers';
 
+jest.mock('@fluentui/react-components');
 jest.mock('@fluentui/react');
 
 describe('NextRequirementButton', () => {
-    mockReactComponents([DefaultButton, (Icon as any).type]);
+    mockReactComponents([Button, (Icon as any).type]);
     let messageCreatorMock: IMock<AssessmentActionMessageCreator>;
     let eventStub: React.MouseEvent<HTMLElement>;
     let props: NextRequirementButtonProps;
@@ -57,7 +59,7 @@ describe('NextRequirementButton', () => {
             .verifiable();
 
         render(<NextRequirementButton {...props} />);
-        getMockComponentClassPropsForCall(DefaultButton).onClick(eventStub);
+        getMockComponentClassPropsForCall(Button).onClick(eventStub);
         messageCreatorMock.verifyAll();
     });
 });

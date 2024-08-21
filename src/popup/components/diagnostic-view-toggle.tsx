@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IToggle, Link, Spinner, SpinnerSize } from '@fluentui/react';
+import { IToggle, Spinner, SpinnerSize } from '@fluentui/react';
+import { Link } from '@fluentui/react-components';
 import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -173,6 +174,7 @@ export class DiagnosticViewToggle extends React.Component<
         if (this.configuration.guidance) {
             return (
                 <ContentLink
+                    className="adhoc-insights-guidance-link"
                     deps={this.props.deps}
                     reference={this.configuration.guidance}
                     linkText={linkText}
@@ -182,7 +184,7 @@ export class DiagnosticViewToggle extends React.Component<
 
         return (
             <Link
-                className="insights-link"
+                className="adhoc-insights-link"
                 href="#"
                 onClick={ev =>
                     this.props.actionMessageCreator.openDetailsView(

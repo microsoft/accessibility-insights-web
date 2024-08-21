@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseButton, Button, DefaultButton } from '@fluentui/react';
+import { BaseButton } from '@fluentui/react';
+import { Button, mergeClasses } from '@fluentui/react-components';
+import { DocumentSearch20Regular } from '@fluentui/react-icons';
 import { DecoratedAxeNodeResult } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
-
 import {
     CopyIssueDetailsButton,
     CopyIssueDetailsButtonDeps,
@@ -13,8 +14,8 @@ import {
     IssueFilingButtonDeps,
 } from '../../common/components/issue-filing-button';
 import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
-import { FileHTMLIcon } from '../../common/icons/file-html-icon';
 import { NamedFC } from '../../common/react/named-fc';
+import styles from '../../common/styles/button.scss';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { AxeResultToIssueFilingDataConverter } from '../../issue-filing/rule-result-to-issue-filing-data';
@@ -29,7 +30,7 @@ export type CommandBarProps = {
     deps: CommandBarDeps;
     onClickInspectButton: (
         event: React.MouseEvent<
-            Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement,
+            typeof Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement,
             MouseEvent
         >,
     ) => void;
@@ -46,13 +47,16 @@ export type CommandBarProps = {
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const renderInspectButton = (): JSX.Element => {
         return (
-            <DefaultButton
-                className="insights-dialog-button-inspect"
+            <Button
+                className={mergeClasses(
+                    'insights-dialog-button-inspect',
+                    styles.detailsDialogButton,
+                )}
                 onClick={props.onClickInspectButton}
             >
-                <FileHTMLIcon />
+                <DocumentSearch20Regular />
                 <div className="ms-Button-label">Inspect HTML</div>
-            </DefaultButton>
+            </Button>
         );
     };
 

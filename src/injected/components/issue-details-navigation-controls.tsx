@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
+import styles from 'common/styles/button.scss';
 import * as React from 'react';
-
 import { NamedFC } from '../../common/react/named-fc';
 import { DetailsDialog } from './details-dialog';
 
@@ -31,23 +31,29 @@ export const IssueDetailsNavigationControls = NamedFC<IssueDetailsNavigationCont
         if (props.failuresCount <= 1) {
             return null;
         }
+        const backText = '< Back';
+        const nextText = 'Next >';
 
         const renderBackButton = () =>
             !props.dialogHandler.isBackButtonDisabled(props.container) && (
-                <DefaultButton
+                <Button
+                    className={styles.detailsDialogButton}
                     data-automation-id="back"
-                    text="< Back"
                     onClick={onClickBackButton}
-                />
+                >
+                    {backText}
+                </Button>
             );
 
         const renderNextButton = () =>
             !props.dialogHandler.isNextButtonDisabled(props.container) && (
-                <DefaultButton
+                <Button
+                    className={styles.detailsDialogButton}
                     data-automation-id="next"
-                    text="Next >"
                     onClick={onClickNextButton}
-                />
+                >
+                    {nextText}
+                </Button>
             );
 
         return (

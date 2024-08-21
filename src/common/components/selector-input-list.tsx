@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    DefaultButton,
     FocusZone,
     FocusZoneDirection,
     IconButton,
@@ -9,7 +8,10 @@ import {
     List,
     TextField,
 } from '@fluentui/react';
+import { Button, mergeClasses } from '@fluentui/react-components';
+import { AddRegular } from '@fluentui/react-icons';
 import styles from 'common/components/selector-input-list.scss';
+import buttonStyles from 'common/styles/button.scss';
 import * as _ from 'lodash/index';
 import * as React from 'react';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';
@@ -77,13 +79,24 @@ export class SelectorInputList extends React.Component<
                         placeholder="Enter element selector here"
                     />
                     <div className={styles.addSelectorButtons}>
-                        <DefaultButton
-                            className={styles.textboxAddSelectorButton}
-                            iconProps={{ iconName: 'add' }}
-                            onClick={this.addSelector}
-                            disabled={!this.state.isTextFieldValueValid}
-                            text="Add Selector"
-                        />
+                        <div className={buttonStyles.buttonsComponent}>
+                            <div className={buttonStyles.buttonCol}>
+                                <Button
+                                    className={
+                                        !this.state.isTextFieldValueValid
+                                            ? buttonStyles.buttonDisabled
+                                            : mergeClasses(
+                                                  buttonStyles.defaultButton,
+                                                  styles.selectorInputButton,
+                                              )
+                                    }
+                                    onClick={this.addSelector}
+                                    disabled={!this.state.isTextFieldValueValid}
+                                >
+                                    <AddRegular className={styles.addSelector} /> Add Selector
+                                </Button>
+                            </div>
+                        </div>
                         <IconButton
                             iconProps={{
                                 iconName: 'scopeTemplate',

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Link, TextField } from '@fluentui/react';
-import { Button } from '@fluentui/react-components';
+import { TextField } from '@fluentui/react';
+import { Link, Button } from '@fluentui/react-components';
 import { act, fireEvent, render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { FlaggedComponent } from 'common/components/flagged-component';
@@ -109,10 +109,10 @@ describe('FailureInstancePanelControlTest', () => {
         useOriginalReactElements('@fluentui/react', [
             'TextField',
             'Panel',
-            'Button',
-            'Link',
+            'ActionButton',
             'DefaultButton',
         ]);
+        useOriginalReactElements('@fluentui/react-components', ['Link']);
         useOriginalReactElements('DetailsView/components/generic-panel', ['GenericPanel']);
         useOriginalReactElements('common/components/flagged-component', ['FlaggedComponent']);
         useOriginalReactElements('DetailsView/components/action-and-cancel-buttons-component', [

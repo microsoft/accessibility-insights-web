@@ -190,7 +190,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
 
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance 1`] = `
 <DocumentFragment>
-  <mock-styledlinkbase
+  <mock-link
     classname="editButton"
   />
   <mock-genericpanel

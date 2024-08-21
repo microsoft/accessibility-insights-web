@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Icon, ILabelStyles, ITextFieldStyles, Link, TextField } from '@fluentui/react';
-import { Button } from '@fluentui/react-components';
+import { Icon, ILabelStyles, ITextFieldStyles, TextField } from '@fluentui/react';
+import { Link, Button } from '@fluentui/react-components';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
