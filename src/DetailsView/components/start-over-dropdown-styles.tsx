@@ -44,14 +44,10 @@ export const useStartOverDropdownStyles: any = makeStyles({
     },
 
     menuPopover: {
-        padding: 'unset !important',
-        border: 'unset !important',
-        borderRadius: 'unset !important',
+        borderRadius: tokens.borderRadiusNone,
     },
 
     menuItem: {
-        paddingBottom: 'unset !important',
-        border: 'unset !important',
-        borderRadius: 'unset !important',
+        borderRadius: tokens.borderRadiusNone,
     },
 });

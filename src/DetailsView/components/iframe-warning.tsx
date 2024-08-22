@@ -19,7 +19,11 @@ export const IframeWarningContainerAutomationId = 'iframe-warning-container';
 export const IframeWarning = NamedFC<IframeWarningProps>('IframeWarning', props => (
     <div data-automation-id={IframeWarningContainerAutomationId}>
         There are iframes in the target page. To have complete results,{' '}
-        <Link className="insights-link" onClick={props.onAllowPermissionsClick}>
+        <Link
+            className="insights-link"
+            onClick={props.onAllowPermissionsClick}
+            style={{ fontSize: 12 }}
+        >
             give Accessibility Insights additional permissions
         </Link>
         ; this will trigger a rescan of the test.

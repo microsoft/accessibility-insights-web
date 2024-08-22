@@ -13,7 +13,7 @@ import {
 } from '@fluentui/react-components';
 
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
-import { MyFunctionType } from 'DetailsView/components/details-view-command-bar';
+import { ButtonRefFunction } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { useStartOverDropdownStyles } from 'DetailsView/components/start-over-dropdown-styles';
 import * as React from 'react';
@@ -32,7 +32,7 @@ export interface StartOverProps {
     singleTestSuffix: string;
     dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
-    buttonRef: MyFunctionType;
+    buttonRef: ButtonRefFunction;
     allTestSuffix: string;
     rightPanelOptions: StartOverContextMenuKeyOptions;
     switcherStartOverPreferences: StartOverContextMenuKeyOptions;

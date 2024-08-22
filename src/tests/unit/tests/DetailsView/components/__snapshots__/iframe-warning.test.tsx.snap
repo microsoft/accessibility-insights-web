@@ -8,6 +8,7 @@ exports[`AssessmentIframeWarning render 1`] = `
     There are iframes in the target page. To have complete results, 
     <mock-link
       classname="insights-link"
+      style="font-size: 12px;"
     >
       give Accessibility Insights additional permissions
     </mock-link>
@@ -29,6 +30,7 @@ exports[`FastPassIframeWarning render 1`] = `
     There are iframes in the target page. To have complete results, 
     <mock-link
       classname="insights-link"
+      style="font-size: 12px;"
     >
       give Accessibility Insights additional permissions
     </mock-link>
@@ -50,6 +52,7 @@ exports[`IframeWarning render 1`] = `
     There are iframes in the target page. To have complete results, 
     <mock-link
       classname="insights-link"
+      style="font-size: 12px;"
     >
       give Accessibility Insights additional permissions
     </mock-link>

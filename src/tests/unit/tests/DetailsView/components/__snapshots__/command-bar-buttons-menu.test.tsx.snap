@@ -9,16 +9,23 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
     <mock-menu
       open="false"
     >
-      <mock-menutrigger
-        disablebuttonenhancement="true"
+      <mock-tooltip
+        content="More actions"
+        positioning="below-end"
+        relationship="label"
+        witharrow="true"
       >
-        <mock-menubutton
-          appearance="transparent"
-          aria-label="More actions"
-          classname="commandBarButtonsMenuButton"
-          icon="[object Object]"
-        />
-      </mock-menutrigger>
+        <mock-menutrigger
+          disablebuttonenhancement="true"
+        >
+          <mock-menubutton
+            appearance="transparent"
+            aria-label="More actions"
+            classname="commandBarButtonsMenuButton"
+            icon="[object Object]"
+          />
+        </mock-menutrigger>
+      </mock-tooltip>
       <mock-menupopover
         style="border-radius: unset !important;"
       >

@@ -9,6 +9,7 @@ import {
     MenuList,
     MenuPopover,
     MenuTrigger,
+    tokens,
 } from '@fluentui/react-components';
 import {
     CardFooterMenuItemsBuilder,
@@ -95,9 +96,7 @@ export const CardFooterInstanceActionButtons = props => {
                 </MenuTrigger>
                 <MenuPopover
                     style={{
-                        padding: 'unset !important',
-                        border: 'unset !important',
-                        borderRadius: 'unset !important',
+                        borderRadius: tokens.borderRadiusNone,
                     }}
                 >
                     <MenuList>

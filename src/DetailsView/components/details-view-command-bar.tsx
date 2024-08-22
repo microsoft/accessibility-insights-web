@@ -93,7 +93,7 @@ export type TransferToAssessmentButtonFactory = (
     props: TransferToAssessmentButtonProps,
 ) => JSX.Element | null;
 
-export type MyFunctionType = (ref: any) => void;
+export type ButtonRefFunction = (ref: any) => void;
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     tabStoreData: TabStoreData;
