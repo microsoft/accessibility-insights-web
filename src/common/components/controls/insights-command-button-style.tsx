@@ -11,8 +11,4 @@ export const useInsightsCommandButtonStyle = makeStyles({
     menuItem: {
         border: 'unset !important',
     },
-
-    buttonIcon: {
-        //color: tokens?.colorCompoundBrandStrokeHover,
-    },
 });

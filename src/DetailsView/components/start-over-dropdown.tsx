@@ -13,6 +13,7 @@ import {
 } from '@fluentui/react-components';
 
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
+import { NamedFC } from 'common/react/named-fc';
 import { ButtonRefFunction } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { useStartOverDropdownStyles } from 'DetailsView/components/start-over-dropdown-styles';
@@ -53,7 +54,9 @@ const dropdownDirections = {
 
 export type DropdownDirection = keyof typeof dropdownDirections;
 
-export const StartOverDropdown: React.FC<StartOverProps> = props => {
+export const StartOverDropdown = NamedFC<StartOverProps>(
+    'StartOverDropdown',
+    props => {
     const stylesValue: any = useStartOverDropdownStyles();
     const direction = props.dropdownDirection;
 
@@ -139,4 +142,4 @@ export const StartOverDropdown: React.FC<StartOverProps> = props => {
             </Menu>
         </div>
     );
-};
+});

@@ -33,12 +33,12 @@
     }
 
     .requirement-content {
+        padding-left: 32px;
+
         @media screen and (width >= 1200px) {
             display: grid;
             grid-template-columns: 1fr 308px;
         }
-
-        padding-left: 32px;
 
         .main-content {
             margin-top: 10px;

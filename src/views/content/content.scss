@@ -232,15 +232,15 @@
     }
 
     .do-header {
-        @include check-icon-styles($icon-size, 0, $do-color);
-
         border-bottom: 2px solid $do-color;
+
+        @include check-icon-styles($icon-size, 0, $do-color);
     }
 
     .dont-header {
-        @include cross-icon-styles($icon-size, 0, $dont-color);
-
         border-bottom: 2px solid $dont-color;
+
+        @include cross-icon-styles($icon-size, 0, $dont-color);        
     }
 
     .pass-header {

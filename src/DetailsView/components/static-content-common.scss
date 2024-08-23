@@ -8,6 +8,8 @@
     padding-right: $fast-pass-right-panel-margin-right;
     padding-left: $fast-pass-right-panel-margin-left;
     margin-bottom: auto;
+    background-color: $neutral-2;
+    height: 100%;
 
     ol {
         -webkit-padding-start: 16px; // Chrome versions before 87 use non-standard name: https://caniuse.com/mdn-css_properties_padding-inline-start
@@ -21,9 +23,6 @@
     i {
         font-size: 16px;
     }
-
-    background-color: $neutral-2;
-    height: 100%;
 }
 
 .details-view-toggle {

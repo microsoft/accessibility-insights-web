@@ -51,6 +51,7 @@ $outcome-not-applicable-color: $neutral-outcome;
     }
 
     .fail {
+        background-color: $outcome-fail-color;
         @extend %block;
         @include cross-icon-styles($outcome-summary-icon-size, 0, $outcome-fail-color);
 
@@ -58,11 +59,10 @@ $outcome-not-applicable-color: $neutral-outcome;
             bottom: -1px;
             margin-right: 8px;
         }
-
-        background-color: $outcome-fail-color;
     }
 
     .pass {
+        background-color: $outcome-pass-color;
         @extend %block;
         @include check-icon-styles($outcome-summary-icon-size, 0, $outcome-pass-color);
 
@@ -71,29 +71,26 @@ $outcome-not-applicable-color: $neutral-outcome;
             margin-right: 8px;
             margin-left: 4px;
         }
-
-        background-color: $outcome-pass-color;
     }
 
     .inapplicable,
     .unscannable {
+        background-color: $outcome-not-applicable-color;
         @extend %block;
-        @include inapplicable-icon-styles(
-            $outcome-summary-icon-size,
-            0,
-            $outcome-not-applicable-color
-        );
+        @include inapplicable-icon-styles( $outcome-summary-icon-size, 0, $outcome-not-applicable-color );
 
         .check-container {
             bottom: -1px;
             margin-right: 8px;
             margin-left: 4px;
         }
-
-        background-color: $outcome-not-applicable-color;
     }
 
     .incomplete {
+        background-color: $outcome-incomplete-summary-background;
+        color: $outcome-incomplete-summary-consistent-foreground;
+        border: 2px $outcome-incomplete-border-color solid;
+        height: 12px;
         @extend %block;
         @include incomplete-icon-styles(14px, 3px);
 
@@ -101,11 +98,6 @@ $outcome-not-applicable-color: $neutral-outcome;
             margin-right: 6px;
             border-color: $outcome-incomplete-summary-consistent-foreground;
         }
-
-        background-color: $outcome-incomplete-summary-background;
-        color: $outcome-incomplete-summary-consistent-foreground;
-        border: 2px $outcome-incomplete-border-color solid;
-        height: 12px;
     }
 
     .summary-bar-left-edge {
