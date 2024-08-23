@@ -25,6 +25,7 @@ import { UserConfigurationStoreData } from '../../types/store-data/user-configur
 import { Toast, ToastDeps } from '../toast';
 import styles from './card-footer-instance-action-buttons.scss';
 import { CardInteractionSupport } from './card-interaction-support';
+import { NamedFC } from 'common/react/named-fc';
 
 registerIcons({
     icons: {
@@ -47,7 +48,7 @@ export interface CardFooterInstanceActionButtonsProps {
     narrowModeStatus?: NarrowModeStatus;
 }
 
-export const CardFooterInstanceActionButtons = props => {
+export const CardFooterInstanceActionButtons = NamedFC<CardFooterInstanceActionButtonsProps>('CardFooterInstanceActionButtonsProps', props => {
     const toastRef = React.useRef(null);
     const fileIssueButtonRef: any = React.useRef(null);
     const kebabButtonRef: any = React.useRef(null);
@@ -120,18 +121,17 @@ export const CardFooterInstanceActionButtons = props => {
         const menuItems = getMenuItems();
         return (
             <>
-                {menuItems.map(props => (
+                {menuItems.map(menuItem => (
                     <Button
                         as="button"
                         appearance="transparent"
-                        onClick={props.onClick}
-                        icon={<FluentUIV9Icon iconName={props?.iconName} />}
-                        className={styles[props.key]}
+                        onClick={menuItem.onClick}
+                        icon={<FluentUIV9Icon iconName={menuItem?.iconName} />}
+                        className={styles[menuItem.key]}
                         size="medium"
-                        ref={ref => (props.componentRef = ref)}
-                        key={`${props.key}-expandedButtons`}
+                        key={`${menuItem.key}-expandedButtons`}
                     >
-                        {props.text}
+                        {menuItem.text}
                     </Button>
                 ))}
             </>
@@ -156,4 +156,4 @@ export const CardFooterInstanceActionButtons = props => {
         );
 
     return menuItemsJsx;
-};
+});

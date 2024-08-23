@@ -11,6 +11,10 @@
     &:hover {
         background-color: $neutral-2 !important;
     }
+
+    &:focus {
+        border: 1px solid $neutral-100;
+    }
 }
 
 .menu-list {

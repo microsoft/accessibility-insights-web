@@ -32,6 +32,10 @@
             }
         }
     }
+
+    &:focus {
+        outline:  #000 auto 1px !important;
+    }
 }
 
 .copyfailuredetails {
@@ -50,6 +54,10 @@
     &:hover {
         border: 1px solid $primary-text !important;
         color: $primary-text !important;
+    }
+
+    &:focus {
+        outline: 1px solid;
     }
 }
 

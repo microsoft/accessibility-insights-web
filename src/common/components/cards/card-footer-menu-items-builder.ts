@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { IButtonProps, IContextualMenuItem, IContextualMenuRenderItem } from '@fluentui/react';
+import { IButtonProps, IContextualMenuItem } from '@fluentui/react';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardInteractionSupport } from 'common/components/cards/card-interaction-support';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
@@ -19,12 +19,13 @@ import React from 'react';
 export type CardFooterMenuItem = IContextualMenuItem & IButtonProps;
 
 export type CardFooterMenuItemsProps = {
-    fileIssueButtonRef: ButtonRefFunction & React.RefObject<IContextualMenuRenderItem>;
+    fileIssueButtonRef: ButtonRefFunction;
     toastRef: React.RefObject<Toast>;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData | null;
     onIssueFilingSettingsDialogDismissed: () => void;
     deps: CardFooterMenuItemsDeps;
+    
 };
 
 export type CardFooterMenuItemsDeps = {
