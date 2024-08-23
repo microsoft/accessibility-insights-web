@@ -240,7 +240,7 @@
     .dont-header {
         border-bottom: 2px solid $dont-color;
 
-        @include cross-icon-styles($icon-size, 0, $dont-color);        
+        @include cross-icon-styles($icon-size, 0, $dont-color);
     }
 
     .pass-header {

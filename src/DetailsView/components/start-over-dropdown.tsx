@@ -54,9 +54,7 @@ const dropdownDirections = {
 
 export type DropdownDirection = keyof typeof dropdownDirections;
 
-export const StartOverDropdown = NamedFC<StartOverProps>(
-    'StartOverDropdown',
-    props => {
+export const StartOverDropdown = NamedFC<StartOverProps>('StartOverDropdown', props => {
     const stylesValue: any = useStartOverDropdownStyles();
     const direction = props.dropdownDirection;
 

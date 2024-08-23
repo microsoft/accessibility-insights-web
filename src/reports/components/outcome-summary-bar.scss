@@ -77,7 +77,11 @@ $outcome-not-applicable-color: $neutral-outcome;
     .unscannable {
         background-color: $outcome-not-applicable-color;
         @extend %block;
-        @include inapplicable-icon-styles( $outcome-summary-icon-size, 0, $outcome-not-applicable-color );
+        @include inapplicable-icon-styles(
+            $outcome-summary-icon-size,
+            0,
+            $outcome-not-applicable-color
+        );
 
         .check-container {
             bottom: -1px;

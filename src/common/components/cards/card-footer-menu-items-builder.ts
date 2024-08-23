@@ -25,7 +25,6 @@ export type CardFooterMenuItemsProps = {
     userConfigurationStoreData: UserConfigurationStoreData | null;
     onIssueFilingSettingsDialogDismissed: () => void;
     deps: CardFooterMenuItemsDeps;
-    
 };
 
 export type CardFooterMenuItemsDeps = {
