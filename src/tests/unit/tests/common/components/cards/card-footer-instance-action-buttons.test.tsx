@@ -39,7 +39,7 @@ jest.mock('@fluentui/react-components');
 jest.mock('../../../../../../common/components/toast');
 
 jest.mock('common/icons/fluentui-v9-icons');
-describe(CardFooterInstanceActionButtons, () => {
+describe('CardFooterInstanceActionButtons', () => {
     mockReactComponents([
         Toast,
         Button,

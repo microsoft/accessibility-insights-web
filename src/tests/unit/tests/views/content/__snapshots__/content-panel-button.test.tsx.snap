@@ -62,7 +62,6 @@ exports[`ContentPanelButton renders without iconName 1`] = `
     appearance="transparent"
     aria-label="info and examples"
     classname="info"
-    icon="[object Object]"
   >
     TEXT
   </mock-button>
@@ -75,7 +74,7 @@ exports[`ContentPanelButton renders without iconName: Button props 1`] = `
   "aria-label": "info and examples",
   "children": "TEXT",
   "className": "info",
-  "icon": <FluentUIV9Icon />,
+  "icon": undefined,
   "onClick": [Function],
 }
 `;
