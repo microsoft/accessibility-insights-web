@@ -163,7 +163,7 @@ exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders
     <mock-menu>
       <mock-menutrigger />
       <mock-menupopover
-        style="border-radius: var(--borderRadiusNone);"
+        classname="menuPopover"
       >
         <mock-menulist>
           <mock-menuitem
@@ -197,7 +197,7 @@ exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders
     <mock-menu>
       <mock-menutrigger />
       <mock-menupopover
-        style="border-radius: var(--borderRadiusNone);"
+        classname="menuPopover"
       >
         <mock-menulist>
           <mock-menuitem
