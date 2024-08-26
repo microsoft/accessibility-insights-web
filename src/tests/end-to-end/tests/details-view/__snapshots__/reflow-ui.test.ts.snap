@@ -25,19 +25,6 @@ exports[`Details View -> Assessment -> Reflow With command bar button visible wi
       },
     ],
   },
-  {
-    "id": "aria-required-children",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  Element has children which are not allowed: button[tabindex]
-  Element uses aria-busy="true" while showing a loader",
-        "selector": [
-          ".fui-MenuList",
-        ],
-      },
-    ],
-  },
 ]
 `;
 
@@ -58,19 +45,6 @@ exports[`Details View -> Assessment -> Reflow With command bar button visible wi
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
           "i:nth-child(0)",
-        ],
-      },
-    ],
-  },
-  {
-    "id": "aria-required-children",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  Element has children which are not allowed: button[tabindex]
-  Element uses aria-busy="true" while showing a loader",
-        "selector": [
-          ".fui-MenuList",
         ],
       },
     ],
@@ -103,19 +77,6 @@ exports[`Details View -> Fastpass -> Reflow With high contrast mode=false With c
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
           "i:nth-child(0)",
-        ],
-      },
-    ],
-  },
-  {
-    "id": "aria-required-children",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  Element has children which are not allowed: button[tabindex]
-  Element uses aria-busy="true" while showing a loader",
-        "selector": [
-          ".fui-MenuList",
         ],
       },
     ],
@@ -166,19 +127,6 @@ exports[`Details View -> Fastpass -> Reflow With high contrast mode=true With co
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
           "i:nth-child(0)",
-        ],
-      },
-    ],
-  },
-  {
-    "id": "aria-required-children",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  Element has children which are not allowed: button[tabindex]
-  Element uses aria-busy="true" while showing a loader",
-        "selector": [
-          ".fui-MenuList",
         ],
       },
     ],
@@ -237,19 +185,6 @@ exports[`Details View -> Quick Assess -> Reflow With command bar button visible 
       },
     ],
   },
-  {
-    "id": "aria-required-children",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  Element has children which are not allowed: button[tabindex]
-  Element uses aria-busy="true" while showing a loader",
-        "selector": [
-          ".fui-MenuList",
-        ],
-      },
-    ],
-  },
 ]
 `;
 
@@ -270,19 +205,6 @@ exports[`Details View -> Quick Assess -> Reflow With command bar button visible 
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
           "i:nth-child(0)",
-        ],
-      },
-    ],
-  },
-  {
-    "id": "aria-required-children",
-    "nodes": [
-      {
-        "failureSummary": "Fix any of the following:
-  Element has children which are not allowed: button[tabindex]
-  Element uses aria-busy="true" while showing a loader",
-        "selector": [
-          ".fui-MenuList",
         ],
       },
     ],

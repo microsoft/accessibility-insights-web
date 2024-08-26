@@ -9,7 +9,6 @@ import {
     MenuList,
     MenuPopover,
     MenuTrigger,
-    tokens,
 } from '@fluentui/react-components';
 import {
     CardFooterMenuItemsBuilder,
@@ -101,11 +100,7 @@ export const CardFooterInstanceActionButtons = NamedFC<CardFooterInstanceActionB
                             icon={<FluentUIV9Icon iconName="MoreVerticalRegular" />}
                         />
                     </MenuTrigger>
-                    <MenuPopover
-                        style={{
-                            borderRadius: tokens.borderRadiusNone,
-                        }}
-                    >
+                    <MenuPopover className={styles.menuPopover}>
                         <MenuList>
                             {getMenuItems().map((item: any, index: number) => (
                                 <MenuItem
