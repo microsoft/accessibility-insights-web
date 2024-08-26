@@ -25,6 +25,19 @@ exports[`Details View -> Assessment -> Reflow With command bar button visible wi
       },
     ],
   },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
+        ],
+      },
+    ],
+  },
 ]
 `;
 
@@ -45,6 +58,19 @@ exports[`Details View -> Assessment -> Reflow With command bar button visible wi
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
           "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
         ],
       },
     ],
@@ -77,6 +103,19 @@ exports[`Details View -> Fastpass -> Reflow With high contrast mode=false With c
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
           "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
         ],
       },
     ],
@@ -131,26 +170,23 @@ exports[`Details View -> Fastpass -> Reflow With high contrast mode=true With co
       },
     ],
   },
-]
-`;
-
-exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and card kebab menu collapsed 1`] = `
-[
   {
-    "id": "link-in-text-block",
+    "id": "aria-required-children",
     "nodes": [
       {
         "failureSummary": "Fix any of the following:
-  The link has insufficient color contrast of 1.07:1 with the surrounding text. (Minimum contrast is 3:1, link text: #ffff00, surrounding text: #ffffff)
-  The link has no styling (such as underline) to distinguish it from the surrounding text",
+  Element has children which are not allowed: button[tabindex]
+  Element uses aria-busy="true" while showing a loader",
         "selector": [
-          ".issues-table-subtitle--SwQ6H > .{{FluentUI_V9_DYNAMIC_CLASS_NAME}}[target="_blank"]",
+          ".fui-MenuList",
         ],
       },
     ],
   },
 ]
 `;
+
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and card kebab menu collapsed 1`] = `[]`;
 
 exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and card kebab menu expanded 1`] = `
 [
@@ -201,6 +237,19 @@ exports[`Details View -> Quick Assess -> Reflow With command bar button visible 
       },
     ],
   },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
+        ],
+      },
+    ],
+  },
 ]
 `;
 
@@ -221,6 +270,19 @@ exports[`Details View -> Quick Assess -> Reflow With command bar button visible 
   Focusable content should have tabindex="-1" or be removed from the DOM",
         "selector": [
           "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
         ],
       },
     ],
