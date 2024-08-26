@@ -475,6 +475,9 @@ export class ActionCreator {
                 this.executingScope,
             );
         }
+        if (payload.test === VisualizationType.NeedsReview) {
+            await this.needsReviewCardSelectionActions.toggleVisualHelper.invoke(null);
+        }
     };
 
     private onRescanVisualization = async (payload: RescanVisualizationPayload) => {
