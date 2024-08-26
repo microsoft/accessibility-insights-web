@@ -11,12 +11,15 @@ import {
     BaseActionPayload,
     CardSelectionPayload,
     RuleExpandCollapsePayload,
+    VisualizationTogglePayload,
 } from './action-payloads';
+import { VisualizationActions } from 'background/actions/visualization-actions';
 
 export class CardSelectionActionCreator {
     constructor(
         private readonly interpreter: Interpreter,
         private readonly cardSelectionActions: CardSelectionActions,
+        private readonly visualizationActions: VisualizationActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
     ) {}
 
@@ -67,8 +70,13 @@ export class CardSelectionActionCreator {
         );
     };
 
-    private onToggleVisualHelper = async (payload: BaseActionPayload): Promise<void> => {
+    private onToggleVisualHelper = async (payload: VisualizationTogglePayload): Promise<void> => {
         await this.cardSelectionActions.toggleVisualHelper.invoke(null);
+        if (payload.enabled) {
+            await this.visualizationActions.disableVisualization.invoke(payload.test);
+        } else {
+            await this.visualizationActions.enableVisualization.invoke(payload);
+        }
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.VISUAL_HELPER_TOGGLED, payload);
     };
 

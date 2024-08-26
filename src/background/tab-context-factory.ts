@@ -152,6 +152,7 @@ export class TabContextFactory {
         const cardSelectionActionCreator = new CardSelectionActionCreator(
             interpreter,
             actionsHub.cardSelectionActions,
+            actionsHub.visualizationActions,
             this.telemetryEventHandler,
         );
         const needsReviewCardSelectionActionCreator = new NeedsReviewCardSelectionActionCreator(

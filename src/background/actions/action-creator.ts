@@ -475,8 +475,15 @@ export class ActionCreator {
                 this.executingScope,
             );
         }
-        if (payload.test === VisualizationType.NeedsReview) {
-            await this.needsReviewCardSelectionActions.toggleVisualHelper.invoke(null);
+        switch (payload.test) {
+            case VisualizationType.Issues:
+                await this.cardSelectionActions.toggleVisualHelper.invoke(null);
+                break;
+            case VisualizationType.NeedsReview:
+                await this.needsReviewCardSelectionActions.toggleVisualHelper.invoke(null);
+                break;
+            default:
+                break;
         }
     };
 
