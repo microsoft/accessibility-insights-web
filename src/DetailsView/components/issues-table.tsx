@@ -63,7 +63,6 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     }
 
     componentDidMount(): void {
-        console.log('issuesTable did Mount');
         const cardCount = this.getCardCount();
         const assessment = this.props.getProvider().forType(this.props.selectedVisualizationType);
         const requirement = assessment?.requirements[0].key;

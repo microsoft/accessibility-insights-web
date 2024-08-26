@@ -86,6 +86,7 @@ describe('IssuesTableTest', () => {
 
     it('includes subtitle if specified', () => {
         const props = new TestPropsBuilder()
+            .setDeps(deps)
             .setGetProviderMock(getProviderMock)
             .setSubtitle(<>test subtitle text</>)
             .build();
