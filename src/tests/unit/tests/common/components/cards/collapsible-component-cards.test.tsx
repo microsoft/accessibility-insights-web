@@ -27,8 +27,8 @@ describe('CollapsibleComponentCardsTest', () => {
     const eventStubFactory = new EventStubFactory();
 
     let setFocusVisibilityMock: IMock<SetFocusVisibility>;
-    let onExpandToggleMock: IMock<(event: React.MouseEvent<HTMLDivElement>) => void>;
-    let clickEventMock: IMock<React.MouseEvent<HTMLDivElement>>;
+    let onExpandToggleMock: IMock<(event: React.MouseEvent<HTMLButtonElement>) => void>;
+    let clickEventMock: IMock<React.MouseEvent<HTMLButtonElement>>;
 
     const partialProps: Partial<CollapsibleComponentCardsProps> = {
         header: <HeadingElementForLevel headingLevel={5}>Some header</HeadingElementForLevel>,
@@ -43,8 +43,8 @@ describe('CollapsibleComponentCardsTest', () => {
     };
 
     beforeEach(() => {
-        onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
-        clickEventMock = Mock.ofType<React.MouseEvent<HTMLDivElement>>();
+        onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLButtonElement>) => void>();
+        clickEventMock = Mock.ofType<React.MouseEvent<HTMLButtonElement>>();
         setFocusVisibilityMock = Mock.ofType<SetFocusVisibility>();
         partialProps.deps = {
             setFocusVisibility: setFocusVisibilityMock.object,

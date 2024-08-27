@@ -79,7 +79,7 @@ export const FastPassTabStopsInstanceSectionPropsFactory: TabStopsInstanceSectio
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel,
                 deps: deps,
-                onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
+                onExpandToggle: (event: React.MouseEvent<HTMLButtonElement>) => {
                     deps.tabStopRequirementActionMessageCreator!.toggleTabStopRequirementExpand(
                         result.id,
                         event,
