@@ -8,15 +8,15 @@ import {
 } from 'background/actions/action-payloads';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
+import { VisualizationType } from 'common/types/visualization-type';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
-import { VisualizationActions } from 'background/actions/visualization-actions';
-import { VisualizationType } from 'common/types/visualization-type';
 
 describe('CardSelectionActionCreator', () => {
     const tabId = -2;

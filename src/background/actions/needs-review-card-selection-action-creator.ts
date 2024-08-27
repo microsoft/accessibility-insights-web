@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
 import { StoreNames } from 'common/stores/store-names';
 
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
@@ -13,7 +14,6 @@ import {
     RuleExpandCollapsePayload,
     VisualizationTogglePayload,
 } from './action-payloads';
-import { VisualizationActions } from 'background/actions/visualization-actions';
 
 export class NeedsReviewCardSelectionActionCreator {
     constructor(
