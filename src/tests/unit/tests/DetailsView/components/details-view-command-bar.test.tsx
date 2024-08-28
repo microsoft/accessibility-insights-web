@@ -660,9 +660,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                        expectedProps as StartOverFactoryProps,
-                        'down',
-                    )
+                          expectedProps as StartOverFactoryProps,
+                          'down',
+                      )
                     : startOverComponent,
             );
     }
