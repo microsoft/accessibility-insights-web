@@ -16,14 +16,13 @@ import {
     StartOverProps,
 } from 'DetailsView/components/start-over-dropdown';
 import * as React from 'react';
+import { RefObject } from 'react';
 import styles from './start-over-menu-item.scss';
 
 export type StartOverFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     getProvider: () => AssessmentsProvider;
 };
-
-import { RefObject } from 'react';
 
 export type StartOverFactoryProps = {
     deps: StartOverFactoryDeps;

@@ -48,10 +48,12 @@ import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-hel
 import { QuickAssessToAssessmentDialog } from 'DetailsView/components/quick-assess-to-assessment-dialog';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
+import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
 import {
     SaveAssessmentButtonFactoryProps,
     getSaveButtonForAssessment,
 } from 'DetailsView/components/save-assessment-button-factory';
+import { SaveAssessmentDialog } from 'DetailsView/components/save-assessment-dialog';
 import {
     StartOverFactoryProps,
     getStartOverComponentForAssessment,
@@ -76,8 +78,6 @@ import {
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock } from 'typemoq';
 import { AssessmentDataFormatter } from '../../../../../common/assessment-data-formatter';
-import { SaveAssessmentDialog } from 'DetailsView/components/save-assessment-dialog';
-import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
 
 jest.mock('DetailsView/components/report-export-button');
 jest.mock('DetailsView/components/load-assessment-dialog');
@@ -660,9 +660,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                          expectedProps as StartOverFactoryProps,
-                          'down',
-                      )
+                        expectedProps as StartOverFactoryProps,
+                        'down',
+                    )
                     : startOverComponent,
             );
     }

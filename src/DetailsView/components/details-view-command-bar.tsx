@@ -214,11 +214,11 @@ export const DetailsViewCommandBar = props => {
                     exportDialogCloseFocus = ref ?? undefined;
                     transferToAssessmentDialogCloseFocus = ref ?? undefined;
                 }}
-                // ref={ref => {
-                //     startOverDialogCloseFocus = ref ?? undefined;
-                //     exportDialogCloseFocus = ref ?? undefined;
-                //     transferToAssessmentDialogCloseFocus = ref ?? undefined;
-                // }}
+            // ref={ref => {
+            //     startOverDialogCloseFocus = ref ?? undefined;
+            //     exportDialogCloseFocus = ref ?? undefined;
+            //     transferToAssessmentDialogCloseFocus = ref ?? undefined;
+            // }}
             />
         );
     };
@@ -307,7 +307,7 @@ export const DetailsViewCommandBar = props => {
                 isOpen={localState.isLoadAssessmentDialogOpen}
                 prevTab={props?.assessmentStoreData.persistedTabInfo}
                 loadedAssessmentData={localState.loadedAssessmentData}
-                tabId={props?.tabStoreData.id!}
+                tabId={props.tabStoreData.id!}
                 onClose={toggleLoadAssessmentDialog}
             />
         );
@@ -346,8 +346,8 @@ export const DetailsViewCommandBar = props => {
             setAssessmentState,
             toggleInvalidLoadAssessmentDialog,
             toggleLoadAssessmentDialog,
-            props?.assessmentStoreData.persistedTabInfo,
-            props?.tabStoreData.id!,
+            props.assessmentStoreData.persistedTabInfo,
+            props.tabStoreData.id!,
         );
     };
 
