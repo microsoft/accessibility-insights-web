@@ -24,6 +24,7 @@ export interface LoadAssessmentButtonProps {
     assessmentStoreData: AssessmentStoreData;
     handleLoadAssessmentButtonClick: () => void;
     isNarrowMode?: boolean;
+    buttonRef: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 export const loadAssessmentButtonAutomationId = 'load-assessment-button';
@@ -40,6 +41,7 @@ export const LoadAssessmentButton = NamedFC<LoadAssessmentButtonProps>(
                 }}
                 onClick={props.handleLoadAssessmentButtonClick}
                 className={loadButtonStyles.assessmentButton}
+                ref={props.buttonRef}
                 {...props}
             >
                 Load assessment

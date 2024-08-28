@@ -23,13 +23,15 @@ export type StartOverFactoryDeps = {
     getProvider: () => AssessmentsProvider;
 };
 
+import { RefObject } from 'react';
+
 export type StartOverFactoryProps = {
     deps: StartOverFactoryDeps;
     assessmentStoreData: AssessmentStoreData;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
     openDialog: (dialogType: StartOverDialogType) => void;
-    buttonRef: ButtonRefFunction;
+    buttonRef: RefObject<HTMLButtonElement>;
     hasSubMenu?: boolean;
     isNarrowMode?: boolean;
 };

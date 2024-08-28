@@ -21,6 +21,7 @@ export interface SaveAssessmentButtonProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     handleSaveAssesmentButtonClick: (event: React.MouseEvent<any>) => void;
     isNarrowMode?: boolean;
+    buttonRef: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
@@ -37,6 +38,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                     insightsCommandButtonIconProps={{
                         icon: <FluentUIV9Icon iconName="SaveRegular" />,
                     }}
+                    ref={props.buttonRef}
                     {...props}
                 >
                     Save assessment

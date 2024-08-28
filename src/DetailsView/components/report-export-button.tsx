@@ -9,7 +9,7 @@ import * as React from 'react';
 
 export interface ReportExportButtonProps {
     showReportExportDialog: () => void;
-    buttonRef?: ButtonRefFunction;
+    buttonRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
     isNarrowMode?: boolean;
 }
 
@@ -17,6 +17,7 @@ export const reportExportButtonAutomationId = 'report-export-button';
 
 export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExportButton', props => {
     const exportButtonStyles = useCommandButtonStyle();
+
     return (
         <InsightsCommandButton
             insightsCommandButtonIconProps={{

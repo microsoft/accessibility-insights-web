@@ -14,7 +14,7 @@ export type TransferToAssessmentButtonDeps = {
 };
 export interface TransferToAssessmentButtonProps {
     deps: TransferToAssessmentButtonDeps;
-    buttonRef?: ButtonRefFunction;
+    buttonRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
     isNarrowMode?: boolean;
 }
 
@@ -22,8 +22,9 @@ export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-bu
 
 export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProps>(
     'TransferToAssessmentButton',
-    props => {
+    (props) => {
         const saveAssessmentStyles = useCommandButtonStyle();
+
         return (
             <InsightsCommandButton
                 className={saveAssessmentStyles.assessmentButton}

@@ -23,83 +23,78 @@ export type CommandBarButtonsMenuProps = {
     transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef?: ButtonRefFunction;
+    //buttonRef: (ref) => void;
     hasSubMenu?: boolean;
 };
 
-export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
-    'CommandBarButtonsMenu',
-    props => {
-        const [open, setOpen] = React.useState(false);
-        const onOpenChange: MenuProps['onOpenChange'] = (e, data) => setOpen(data.open);
-        const exportButton = props.renderExportReportButton();
-        const overflowItems: any[] = [];
-        if (exportButton != null) {
-            overflowItems.push({
-                key: 'export report',
-                children: <>{exportButton}</>,
-            });
-        }
-        if (props.saveAssessmentButton && props.loadAssessmentButton) {
-            overflowItems.push(
-                {
-                    key: 'save assessment',
-                    children: <>{props.saveAssessmentButton}</>,
-                },
-                {
-                    key: 'load assessment',
-                    children: <>{props.loadAssessmentButton}</>,
-                },
-            );
-        }
 
-        if (props.transferToAssessmentButton) {
-            overflowItems.push({
-                key: 'transfer to assessment',
-                children: <>{props.transferToAssessmentButton}</>,
-            });
-        }
+export const CommandBarButtonsMenu = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, CommandBarButtonsMenuProps>((props, ref) => {
+    const [open, setOpen] = React.useState(false);
+    const onOpenChange: MenuProps['onOpenChange'] = (e, data) => setOpen(data.open);
+    const exportButton = props.renderExportReportButton();
 
+    const overflowItems: any[] = [];
+    if (exportButton != null) {
         overflowItems.push({
-            key: 'start over',
-            ...props.getStartOverMenuItem(),
+            key: 'export report',
+            children: <>{exportButton}</>,
         });
-        return (
-            <>
-                <Tooltip content="More actions" relationship="label">
-                    <Menu open={open} onOpenChange={onOpenChange}>
-                        <Tooltip
-                            withArrow
-                            content="More actions"
-                            relationship="label"
-                            positioning="below-end"
-                        >
-                            <MenuTrigger disableButtonEnhancement>
-                                <MenuButton
-                                    appearance="transparent"
-                                    aria-label="More actions"
-                                    icon={<FluentUIV9Icon iconName="MoreHorizontalRegular" />}
-                                    className={styles.commandBarButtonsMenuButton}
-                                    ref={props.buttonRef}
-                                />
-                            </MenuTrigger>
-                        </Tooltip>
-                        <MenuPopover
-                            style={{
-                                border: 'unset !important',
-                                borderRadius: 'unset !important',
-                            }}
-                        >
-                            <MenuList className={styles.menuList}>
-                                {overflowItems.map((item, index) => (
-                                    <span role="group" key={index}>
-                                        {item?.children}
-                                    </span>
-                                ))}
-                            </MenuList>
-                        </MenuPopover>
-                    </Menu>
-                </Tooltip>
-            </>
+    }
+    if (props.saveAssessmentButton && props.loadAssessmentButton) {
+        overflowItems.push(
+            {
+                key: 'save assessment',
+                children: <>{props.saveAssessmentButton}</>,
+            },
+            {
+                key: 'load assessment',
+                children: <>{props.loadAssessmentButton}</>,
+            },
         );
-    },
-);
+    }
+
+    if (props.transferToAssessmentButton) {
+        overflowItems.push({
+            key: 'transfer to assessment',
+            children: <>{props.transferToAssessmentButton}</>,
+        });
+    }
+
+    overflowItems.push({
+        key: 'start over',
+        ...props.getStartOverMenuItem(),
+    });
+
+    return (
+        <>
+            <Tooltip content="More actions" relationship="label">
+                <Menu open={open} onOpenChange={onOpenChange}>
+                    <MenuTrigger disableButtonEnhancement>
+                        <MenuButton
+                            appearance="transparent"
+                            aria-label="More actions"
+                            icon={<FluentUIV9Icon iconName="MoreHorizontalRegular" />}
+                            className={styles.commandBarButtonsMenuButton}
+                            ref={() => props.buttonRef || ref}
+                        />
+                    </MenuTrigger>
+                    <MenuPopover
+                        style={{
+                            border: 'unset !important',
+                            borderRadius: 'unset !important',
+                        }}
+                    >
+                        <MenuList className={styles.menuList}>
+                            {overflowItems.map((item, index) => (
+                                <span role="group" key={index}>
+                                    {item?.children}
+                                </span>
+                            ))}
+                        </MenuList>
+                    </MenuPopover>
+                </Menu>
+            </Tooltip >
+        </>
+    );
+});
+

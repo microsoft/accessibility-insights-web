@@ -9,6 +9,10 @@ export const useCommandButtonStyle = makeStyles({
         paddingLeft: '5px !important',
         textDecoration: 'none !important',
 
+        '&:focus': {
+            outline: '1px solid'
+        },
+
         '&:hover': {
             background: 'none !important',
             color: tokens.colorNeutralForeground2BrandHover,

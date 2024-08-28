@@ -29,11 +29,13 @@ export interface StartOverState {
     target?: HTMLElement | string | MouseEvent | null;
 }
 
+import { RefObject } from 'react';
+
 export interface StartOverProps {
     singleTestSuffix: string;
     dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
-    buttonRef: ButtonRefFunction;
+    buttonRef: RefObject<HTMLButtonElement>;
     allTestSuffix: string;
     rightPanelOptions: StartOverContextMenuKeyOptions;
     switcherStartOverPreferences: StartOverContextMenuKeyOptions;
@@ -57,7 +59,6 @@ export type DropdownDirection = keyof typeof dropdownDirections;
 export const StartOverDropdown = NamedFC<StartOverProps>('StartOverDropdown', props => {
     const stylesValue: any = useStartOverDropdownStyles();
     const direction = props.dropdownDirection;
-
     const getMenuItemsV9 = (): StartOverDropdownMenuItems[] => {
         const {
             singleTestSuffix,
@@ -93,7 +94,6 @@ export const StartOverDropdown = NamedFC<StartOverProps>('StartOverDropdown', pr
     const onStartOverAllTestsMenu = (): void => {
         props.openDialog('assessment');
     };
-
     return (
         <div>
             <Menu>

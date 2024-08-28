@@ -11,7 +11,7 @@ export const useStartOverDropdownStyles: any = makeStyles({
         paddingLeft: '4px',
 
         ':focus': {
-            border: `1px solid ${tokens.colorStrokeFocus2}`,
+            outline: '1px solid'
         },
 
         ':hover': {
@@ -49,5 +49,9 @@ export const useStartOverDropdownStyles: any = makeStyles({
 
     menuItem: {
         borderRadius: tokens.borderRadiusNone,
+
+        ':hover': {
+            backgroundColor: 'unset !important',
+        },
     },
 });

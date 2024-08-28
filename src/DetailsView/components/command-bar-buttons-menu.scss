@@ -13,7 +13,8 @@
     }
 
     &:focus {
-        border: 1px solid $neutral-100;
+        // border: 1px solid $neutral-100;
+        outline: 1px solid;
     }
 }
 
