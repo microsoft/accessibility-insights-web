@@ -1282,7 +1282,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
 
 exports[`DetailsViewCommandBar renders with buttons  1`] = `<DocumentFragment />`;
 
-exports[`DetailsViewCommandBar renders with buttons : mocked component props 1`] = `undefined`;
+exports[`DetailsViewCommandBar renders with buttons : CommandBarButtonsMenu props 1`] = `undefined`;
 
 exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = `
 <DocumentFragment>
@@ -1313,7 +1313,6 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
         </span>
       </mock-newtablinkwithtooltip>
     </div>
-    <mock-commandbarbuttonsmenu />
     <mock-exportdialog
       description=""
       featureflagstoredata="[object Object]"
@@ -1356,19 +1355,6 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       tabstoredata="[object Object]"
       userconfigurationstoredata="[object Object]"
     />
-    <mock-startoverdialog
-      assessmentstoredata="[object Object]"
-      datatransferviewstoredata="[object Object]"
-      deps="[object Object]"
-      dialogstate="none"
-      featureflagstoredata="[object Object]"
-      narrowmodestatus="[object Object]"
-      rightpanelconfiguration="[object Object]"
-      scanmetadata="[object Object]"
-      switchernavconfiguration="[object Object]"
-      tabstoredata="[object Object]"
-      userconfigurationstoredata="[object Object]"
-    />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
       datatransferviewstoredata="[object Object]"
@@ -1382,21 +1368,19 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       tabstoredata="[object Object]"
       userconfigurationstoredata="[object Object]"
     />
-    <mock-saveassessmentdialog
-      assessmentstoredata="[object Object]"
-      datatransferviewstoredata="[object Object]"
-      deps="[object Object]"
-      featureflagstoredata="[object Object]"
-      isopen="false"
-      narrowmodestatus="[object Object]"
-      rightpanelconfiguration="[object Object]"
-      scanmetadata="[object Object]"
-      switchernavconfiguration="[object Object]"
-      tabstoredata="[object Object]"
-      userconfigurationstoredata="[object Object]"
-    />
   </div>
 </DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders with buttons collapsed into a menu: CommandBarButtonsMenu props 1`] = `
+{
+  "buttonRef": [Function],
+  "getStartOverMenuItem": [Function],
+  "loadAssessmentButton": undefined,
+  "renderExportReportButton": [Function],
+  "saveAssessmentButton": undefined,
+  "transferToAssessmentButton": undefined,
+}
 `;
 
 exports[`DetailsViewCommandBar renders with export button and start over 1`] = `

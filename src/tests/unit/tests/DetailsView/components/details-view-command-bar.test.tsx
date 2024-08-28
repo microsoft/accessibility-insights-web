@@ -76,11 +76,11 @@ import {
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock } from 'typemoq';
 import { AssessmentDataFormatter } from '../../../../../common/assessment-data-formatter';
-import { SaveAssessmentDialog } from '../../../../../DetailsView/components/save-assessment-dialog';
+import { SaveAssessmentDialog } from 'DetailsView/components/save-assessment-dialog';
+import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
 
 jest.mock('DetailsView/components/report-export-button');
 jest.mock('DetailsView/components/load-assessment-dialog');
-jest.mock('DetailsView/components/save-assessment-dialog');
 jest.mock('DetailsView/components/start-over-dialog');
 jest.mock('DetailsView/components/export-dialog');
 jest.mock('DetailsView/components/command-bar-buttons-menu');
@@ -89,10 +89,12 @@ jest.mock('DetailsView/components/save-assessment-dialog');
 jest.mock('common/components/new-tab-link-with-tooltip');
 jest.mock('DetailsView/components/quick-assess-to-assessment-dialog');
 jest.mock('DetailsView/components/load-assessment-button');
+jest.mock('DetailsView/components/save-assessment-button')
 
 describe('DetailsViewCommandBar', () => {
     mockReactComponents([
         ReportExportButton,
+        SaveAssessmentButton,
         LoadAssessmentDialog,
         StartOverDialog,
         SaveAssessmentDialog,
@@ -313,9 +315,10 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders null when tab closed', () => {
-        tabStoreData.isClosed = true;
-
-        expect(renderTest()).toBeNull();
+        const props = getProps();
+        props.tabStoreData.isClosed = true;
+        const result = render(<DetailsViewCommandBar {...props} />);
+        expect(result.container.firstChild).toBeNull();
     });
 
     test('renders with buttons collapsed into a menu', () => {
@@ -365,7 +368,11 @@ describe('DetailsViewCommandBar', () => {
     test('renders save assessment dialog', async () => {
         const props = getProps(['SaveAssessmentButton']);
         props.userConfigurationStoreData.showSaveAssessmentDialog = true;
+        useOriginalReactElements('DetailsView/components/save-assessment-button', [
+            'SaveAssessmentButton',
+        ]);
         const renderResult = render(<DetailsViewCommandBar {...props} />);
+        renderResult.debug();
         const saveButton = renderResult.getByText('Save assessment');
         expect(getMockComponentClassPropsForCall(SaveAssessmentDialog, 1).isOpen).toBe(false);
         expect(renderResult.asFragment()).toMatchSnapshot('save assessment dialog hidden');
@@ -602,15 +609,15 @@ describe('DetailsViewCommandBar', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
     }
 
-    function renderTest(): JSX.Element {
-        const testSubject = getTestSubject();
+    // function renderTest(): JSX.Element {
+    //     const testSubject = getTestSubject();
 
-        return testSubject.render();
-    }
+    //     return testSubject.render();
+    // }
 
-    function getTestSubject(): DetailsViewCommandBar {
-        return new DetailsViewCommandBar(getProps());
-    }
+    // function getTestSubject(): DetailsViewCommandBar {
+    //     return new DetailsViewCommandBar(getProps());
+    // }
 
     function setupReportExportDialogFactory(
         expectedProps?: Partial<ReportExportDialogFactoryProps>,
@@ -653,9 +660,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                          expectedProps as StartOverFactoryProps,
-                          'down',
-                      )
+                        expectedProps as StartOverFactoryProps,
+                        'down',
+                    )
                     : startOverComponent,
             );
     }

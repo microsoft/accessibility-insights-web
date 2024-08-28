@@ -50,11 +50,11 @@ import {
 } from 'DetailsView/components/transfer-to-assessment-button';
 import { DataTransferViewStoreData } from 'DetailsView/data-transfer-view-store';
 import * as React from 'react';
+import { RefObject } from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { RefObject } from 'react';
 
 export type ButtonRefFunction = (ref: RefObject<HTMLButtonElement>) => void;
 
@@ -214,11 +214,11 @@ export const DetailsViewCommandBar = props => {
                     exportDialogCloseFocus = ref ?? undefined;
                     transferToAssessmentDialogCloseFocus = ref ?? undefined;
                 }}
-                // ref={ref => {
-                //     startOverDialogCloseFocus = ref ?? undefined;
-                //     exportDialogCloseFocus = ref ?? undefined;
-                //     transferToAssessmentDialogCloseFocus = ref ?? undefined;
-                // }}
+            // ref={ref => {
+            //     startOverDialogCloseFocus = ref ?? undefined;
+            //     exportDialogCloseFocus = ref ?? undefined;
+            //     transferToAssessmentDialogCloseFocus = ref ?? undefined;
+            // }}
             />
         );
     };

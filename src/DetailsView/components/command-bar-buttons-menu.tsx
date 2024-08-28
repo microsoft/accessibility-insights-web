@@ -27,10 +27,7 @@ export type CommandBarButtonsMenuProps = {
     hasSubMenu?: boolean;
 };
 
-export const CommandBarButtonsMenu = React.forwardRef<
-    HTMLButtonElement | HTMLAnchorElement,
-    CommandBarButtonsMenuProps
->((props, ref) => {
+export const CommandBarButtonsMenu = (props) => {
     const [open, setOpen] = React.useState(false);
     const onOpenChange: MenuProps['onOpenChange'] = (e, data) => setOpen(data.open);
     const exportButton = props.renderExportReportButton();
@@ -77,7 +74,7 @@ export const CommandBarButtonsMenu = React.forwardRef<
                             aria-label="More actions"
                             icon={<FluentUIV9Icon iconName="MoreHorizontalRegular" />}
                             className={styles.commandBarButtonsMenuButton}
-                            ref={() => props.buttonRef || ref}
+                            ref={() => props.buttonRef}
                         />
                     </MenuTrigger>
                     <MenuPopover
@@ -98,4 +95,4 @@ export const CommandBarButtonsMenu = React.forwardRef<
             </Tooltip>
         </>
     );
-});
+};
