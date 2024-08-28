@@ -10,7 +10,7 @@ export const useCommandButtonStyle = makeStyles({
         textDecoration: 'none !important',
 
         '&:focus': {
-            outline: '1px solid'
+            outline: '1px solid',
         },
 
         '&:hover': {

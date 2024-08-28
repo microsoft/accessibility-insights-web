@@ -11,7 +11,7 @@ export const useStartOverDropdownStyles: any = makeStyles({
         paddingLeft: '4px',
 
         ':focus': {
-            outline: '1px solid'
+            outline: '1px solid',
         },
 
         ':hover': {

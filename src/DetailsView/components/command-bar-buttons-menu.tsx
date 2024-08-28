@@ -27,8 +27,10 @@ export type CommandBarButtonsMenuProps = {
     hasSubMenu?: boolean;
 };
 
-
-export const CommandBarButtonsMenu = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, CommandBarButtonsMenuProps>((props, ref) => {
+export const CommandBarButtonsMenu = React.forwardRef<
+    HTMLButtonElement | HTMLAnchorElement,
+    CommandBarButtonsMenuProps
+>((props, ref) => {
     const [open, setOpen] = React.useState(false);
     const onOpenChange: MenuProps['onOpenChange'] = (e, data) => setOpen(data.open);
     const exportButton = props.renderExportReportButton();
@@ -93,8 +95,7 @@ export const CommandBarButtonsMenu = React.forwardRef<HTMLButtonElement | HTMLAn
                         </MenuList>
                     </MenuPopover>
                 </Menu>
-            </Tooltip >
+            </Tooltip>
         </>
     );
 });
-

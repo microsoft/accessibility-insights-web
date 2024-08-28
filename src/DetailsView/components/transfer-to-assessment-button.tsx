@@ -22,7 +22,7 @@ export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-bu
 
 export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProps>(
     'TransferToAssessmentButton',
-    (props) => {
+    props => {
         const saveAssessmentStyles = useCommandButtonStyle();
 
         return (
