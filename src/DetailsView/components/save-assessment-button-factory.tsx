@@ -40,9 +40,7 @@ export function getSaveButtonForAssessment(props: SaveAssessmentButtonFactoryPro
     const fileName = `SavedAssessment_${fileDate}_${fileTitle}.a11ywebassessment`;
     const fileURL = props.deps.fileURLProvider.provideURL([assessmentData], 'application/json');
 
-    return (
-        <SaveAssessmentButton buttonRef={undefined} download={fileName} href={fileURL} {...props} />
-    );
+    return <SaveAssessmentButton download={fileName} href={fileURL} {...props} />;
 }
 
 export function getNullSaveButton(props: SaveAssessmentButtonFactoryProps): JSX.Element | null {

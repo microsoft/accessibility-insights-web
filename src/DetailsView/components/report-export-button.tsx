@@ -4,7 +4,6 @@ import { InsightsCommandButton } from 'common/components/controls/insights-comma
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { NamedFC } from 'common/react/named-fc';
 import { useCommandButtonStyle } from 'DetailsView/components/command-button-styles';
-import { ButtonRefFunction } from 'DetailsView/components/details-view-command-bar';
 import * as React from 'react';
 
 export interface ReportExportButtonProps {

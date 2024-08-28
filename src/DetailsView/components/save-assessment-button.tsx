@@ -21,7 +21,7 @@ export interface SaveAssessmentButtonProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     handleSaveAssesmentButtonClick: (event: React.MouseEvent<any>) => void;
     isNarrowMode?: boolean;
-    buttonRef: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
+    buttonRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
