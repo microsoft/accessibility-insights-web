@@ -89,7 +89,7 @@ jest.mock('DetailsView/components/save-assessment-dialog');
 jest.mock('common/components/new-tab-link-with-tooltip');
 jest.mock('DetailsView/components/quick-assess-to-assessment-dialog');
 jest.mock('DetailsView/components/load-assessment-button');
-jest.mock('DetailsView/components/save-assessment-button')
+jest.mock('DetailsView/components/save-assessment-button');
 
 describe('DetailsViewCommandBar', () => {
     mockReactComponents([
@@ -660,9 +660,9 @@ describe('DetailsViewCommandBar', () => {
             .returns(() =>
                 useOriginalReactElements
                     ? getStartOverComponentForAssessment(
-                        expectedProps as StartOverFactoryProps,
-                        'down',
-                    )
+                          expectedProps as StartOverFactoryProps,
+                          'down',
+                      )
                     : startOverComponent,
             );
     }

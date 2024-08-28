@@ -214,11 +214,11 @@ export const DetailsViewCommandBar = props => {
                     exportDialogCloseFocus = ref ?? undefined;
                     transferToAssessmentDialogCloseFocus = ref ?? undefined;
                 }}
-            // ref={ref => {
-            //     startOverDialogCloseFocus = ref ?? undefined;
-            //     exportDialogCloseFocus = ref ?? undefined;
-            //     transferToAssessmentDialogCloseFocus = ref ?? undefined;
-            // }}
+                // ref={ref => {
+                //     startOverDialogCloseFocus = ref ?? undefined;
+                //     exportDialogCloseFocus = ref ?? undefined;
+                //     transferToAssessmentDialogCloseFocus = ref ?? undefined;
+                // }}
             />
         );
     };

@@ -30,7 +30,6 @@ export interface StartOverState {
     target?: HTMLElement | string | MouseEvent | null;
 }
 
-
 export interface StartOverProps {
     singleTestSuffix: string;
     dropdownDirection: DropdownDirection;

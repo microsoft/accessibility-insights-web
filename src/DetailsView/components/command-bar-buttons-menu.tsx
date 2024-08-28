@@ -27,7 +27,7 @@ export type CommandBarButtonsMenuProps = {
     hasSubMenu?: boolean;
 };
 
-export const CommandBarButtonsMenu = (props) => {
+export const CommandBarButtonsMenu = props => {
     const [open, setOpen] = React.useState(false);
     const onOpenChange: MenuProps['onOpenChange'] = (e, data) => setOpen(data.open);
     const exportButton = props.renderExportReportButton();
