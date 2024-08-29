@@ -14,10 +14,11 @@ import {
 
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { NamedFC } from 'common/react/named-fc';
+import { ButtonRefFunction } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { useStartOverDropdownStyles } from 'DetailsView/components/start-over-dropdown-styles';
 import * as React from 'react';
-import { RefObject } from 'react';
+
 import { StartOverContextMenuKeyOptions } from './details-view-right-panel';
 
 export type StartOverDropdownMenuItems = MenuItemProps & {
@@ -33,7 +34,7 @@ export interface StartOverProps {
     singleTestSuffix: string;
     dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
-    buttonRef: RefObject<HTMLButtonElement>;
+    buttonRef?: ButtonRefFunction;
     allTestSuffix: string;
     rightPanelOptions: StartOverContextMenuKeyOptions;
     switcherStartOverPreferences: StartOverContextMenuKeyOptions;

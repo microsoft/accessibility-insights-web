@@ -14,7 +14,7 @@ export type InsightsCommandButtonIconProps = {
 
 export type InsightsCommandButtonProps = (MenuButtonProps | any) & {
     insightsCommandButtonIconProps?: InsightsCommandButtonIconProps;
-    ref?: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
+    // ref?: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
     isNarrowMode?: boolean;
 };
 

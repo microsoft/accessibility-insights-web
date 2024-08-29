@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { ButtonRefFunction } from 'DetailsView/components/details-view-command-bar';
+
 import {
     ReportExportButton,
     ReportExportButtonProps,
@@ -25,7 +25,6 @@ describe(ReportExportButton.displayName, () => {
         showDialogMock = jest.fn();
         props = {
             showReportExportDialog: showDialogMock,
-            buttonRef: {} as ButtonRefFunction,
         };
     });
 

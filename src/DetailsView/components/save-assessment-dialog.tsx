@@ -29,7 +29,6 @@ export const SaveAssessmentDialog = NamedFC<SaveAssessmentDialogProps>(
             if (checked === undefined) return;
             props.deps.userConfigMessageCreator.setSaveAssessmentDialogState(!checked);
         }
-
         return (
             <>
                 <Dialog

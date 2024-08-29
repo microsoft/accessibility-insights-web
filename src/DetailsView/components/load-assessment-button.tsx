@@ -9,6 +9,8 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UrlParser } from 'common/url-parser';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { useCommandButtonStyle } from 'DetailsView/components/command-button-styles';
+import { ButtonRefFunction } from 'DetailsView/components/details-view-command-bar';
+
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import * as React from 'react';
 
@@ -24,7 +26,7 @@ export interface LoadAssessmentButtonProps {
     assessmentStoreData: AssessmentStoreData;
     handleLoadAssessmentButtonClick: () => void;
     isNarrowMode?: boolean;
-    buttonRef: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
+    buttonRef?: ButtonRefFunction;
 }
 
 export const loadAssessmentButtonAutomationId = 'load-assessment-button';

@@ -5,6 +5,7 @@ import { InsightsCommandButton } from 'common/components/controls/insights-comma
 import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { NamedFC } from 'common/react/named-fc';
 import { useCommandButtonStyle } from 'DetailsView/components/command-button-styles';
+import { ButtonRefFunction } from 'DetailsView/components/details-view-command-bar';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import * as React from 'react';
 
@@ -13,7 +14,7 @@ export type TransferToAssessmentButtonDeps = {
 };
 export interface TransferToAssessmentButtonProps {
     deps: TransferToAssessmentButtonDeps;
-    buttonRef?: React.RefObject<HTMLButtonElement | HTMLAnchorElement>;
+    buttonRef?: ButtonRefFunction;
     isNarrowMode?: boolean;
 }
 
