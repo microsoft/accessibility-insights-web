@@ -12,5 +12,5 @@ export interface CardSelectionMessageCreator {
     toggleRuleExpandCollapse: (ruleId: string, event: React.SyntheticEvent) => void;
     collapseAllRules: (event: SupportedMouseEvent) => void;
     expandAllRules: (event: SupportedMouseEvent) => void;
-    toggleVisualHelper: (event: SupportedMouseEvent) => void;
+    toggleVisualHelper: (event: SupportedMouseEvent, isEnabled?: boolean) => void;
 }

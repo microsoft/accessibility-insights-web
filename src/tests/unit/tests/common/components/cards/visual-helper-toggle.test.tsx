@@ -40,7 +40,7 @@ describe('VisualHelperToggle', () => {
 
     it('fires toggleVisualHelper when toggled', async () => {
         useOriginalReactElements('@fluentui/react', ['Toggle']);
-        mockCardSelectionMessageCreator.setup(m => m.toggleVisualHelper(It.isAny()));
+        mockCardSelectionMessageCreator.setup(m => m.toggleVisualHelper(It.isAny(), It.isAny()));
 
         const renderResult = render(
             <VisualHelperToggle
