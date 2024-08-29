@@ -3,7 +3,6 @@
 exports[`ReportExportButton renders ReportExportButton 1`] = `
 <DocumentFragment>
   <mock-insightscommandbutton
-    buttonref="[object Object]"
     classname="___173moxi_0000000 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f139oj5f f7otkfg"
     data-automation-id="report-export-button"
     id="report-export-button"
@@ -16,7 +15,6 @@ exports[`ReportExportButton renders ReportExportButton 1`] = `
 
 exports[`ReportExportButton renders ReportExportButton: InsightsCommandButton props 1`] = `
 {
-  "buttonRef": {},
   "children": "Export result",
   "className": "___173moxi_0000000 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f139oj5f f7otkfg",
   "data-automation-id": "report-export-button",
