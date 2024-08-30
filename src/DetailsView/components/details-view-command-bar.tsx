@@ -218,7 +218,7 @@ export class DetailsViewCommandBar extends React.Component<
                 transferToAssessmentButton={this.renderTransferToAssessmentButton()}
                 getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
-                    this.exportDialogCloseFocus = ref?.current ?? undefined;
+                    this.exportDialogCloseFocus = ref ?? undefined;
                     this.startOverDialogCloseFocus = ref ?? undefined;
                     this.transferToAssessmentDialogCloseFocus = ref ?? undefined;
                 }}
@@ -279,7 +279,7 @@ export class DetailsViewCommandBar extends React.Component<
                 {...this.props}
                 isOpen={this.state.isSaveAssessmentDialogOpen}
                 onClose={this.toggleSaveAssessmentDialog}
-            ></SaveAssessmentDialog>
+            />
         );
     };
 
@@ -305,7 +305,6 @@ export class DetailsViewCommandBar extends React.Component<
     private renderLoadAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.LoadAssessmentButton({
             ...this.props,
-            //buttonRef: ref => (this.loadAssessmentDialogFocus = ref ?? undefined),
             handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
         });
     };

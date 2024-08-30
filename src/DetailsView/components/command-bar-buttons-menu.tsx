@@ -23,7 +23,6 @@ export type CommandBarButtonsMenuProps = {
     transferToAssessmentButton?: JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef?: ButtonRefFunction;
-    //buttonRef: (ref) => void;
     hasSubMenu?: boolean;
 };
 
