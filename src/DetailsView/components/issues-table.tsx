@@ -76,7 +76,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         return (
             <h1>
                 {this.props.title}
-                {this.props.includeStepsText ?? true ? ` ${this.props.stepsText}` : null}
+                {(this.props.includeStepsText ?? true) ? ` ${this.props.stepsText}` : null}
             </h1>
         );
     }
