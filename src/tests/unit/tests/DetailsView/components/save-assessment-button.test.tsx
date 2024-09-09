@@ -12,7 +12,6 @@ import {
 } from 'DetailsView/components/save-assessment-button';
 import * as React from 'react';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';

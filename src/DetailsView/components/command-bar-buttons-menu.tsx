@@ -87,7 +87,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                     >
                         <MenuList className={styles.menuList}>
                             {overflowItems.map((item, index) => (
-                                <span role="group" key={index}>
+                                <span key={index}>
                                     {item?.children}
                                 </span>
                             ))}

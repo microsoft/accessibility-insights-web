@@ -2,12 +2,12 @@
 
 exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 <DocumentFragment>
-  <mock-tooltip
-    content="More actions"
-    relationship="label"
+  <mock-menu
+    open="false"
   >
-    <mock-menu
-      open="false"
+    <mock-tooltip
+      content="More actions"
+      relationship="label"
     >
       <mock-menutrigger
         disablebuttonenhancement="true"
@@ -19,65 +19,49 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
           icon="[object Object]"
         />
       </mock-menutrigger>
-      <mock-menupopover
-        style="border-radius: unset !important;"
+    </mock-tooltip>
+    <mock-menupopover
+      style="border-radius: unset !important;"
+    >
+      <mock-menulist
+        classname="menuList"
       >
-        <mock-menulist
-          classname="menuList"
-        >
-          <span
-            role="group"
-          >
-            Save assessment button
-          </span>
-          <span
-            role="group"
-          >
-            Load assessment button
-          </span>
-          <span
-            role="group"
-          >
-            Transfer to assessment button
-          </span>
-          <span
-            role="group"
-          />
-        </mock-menulist>
-      </mock-menupopover>
-    </mock-menu>
-  </mock-tooltip>
+        <span>
+          Save assessment button
+        </span>
+        <span>
+          Load assessment button
+        </span>
+        <span>
+          Transfer to assessment button
+        </span>
+        <span />
+      </mock-menulist>
+    </mock-menupopover>
+  </mock-menu>
 </DocumentFragment>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render export report menuitem 1`] = `
-<span
-  role="group"
->
+<span>
   Report export button
 </span>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render load assessment menuitem 1`] = `
-<span
-  role="group"
->
+<span>
   Load assessment button
 </span>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render save assessment menuitem 1`] = `
-<span
-  role="group"
->
+<span>
   Save assessment button
 </span>
 `;
 
 exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render transfer to assessment menuitem 1`] = `
-<span
-  role="group"
->
+<span>
   Transfer to assessment button
 </span>
 `;

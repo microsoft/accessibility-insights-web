@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Button } from '@fluentui/react-components';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 
@@ -72,7 +72,9 @@ describe('CollapsibleComponentTest', () => {
 
         const renderResult = render(<CollapsibleComponent {...props} />);
         expect(renderResult.asFragment()).toMatchSnapshot('expanded');
-        getMockComponentClassPropsForCall(Button).onClick();
+        act(() => {
+            getMockComponentClassPropsForCall(Button).onClick();
+        });
         expectMockedComponentPropsToMatchSnapshots([Button]);
         await userEvent.click(renderResult.container.querySelector('mock-customizedactionbutton'));
         expect(renderResult.asFragment()).toMatchSnapshot('collapsed');
