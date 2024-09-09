@@ -49,10 +49,7 @@ export class CardFooterMenuItemsBuilder {
             items.push({
                 key: 'fileissue',
                 text: 'File issue',
-                iconProps: {
-                    iconName: 'ladybugSolid',
-                },
-                iconName: 'ladybugSolid',
+                iconName: 'BugFilled',
                 onClick: event => this.fileIssue(props, event),
                 componentRef: () => props.fileIssueButtonRef,
             });
@@ -62,10 +59,7 @@ export class CardFooterMenuItemsBuilder {
             items.push({
                 key: 'copyfailuredetails',
                 text: `Copy failure details`,
-                iconProps: {
-                    iconName: 'copy',
-                },
-                iconName: 'copy',
+                iconName: 'DocumentCopyRegular',
                 onClick: event => void this.copyFailureDetails(props, event),
             });
         }

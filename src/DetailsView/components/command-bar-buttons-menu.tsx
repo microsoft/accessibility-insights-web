@@ -67,8 +67,8 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
 
         return (
             <>
-                <Tooltip content="More actions" relationship="label">
-                    <Menu open={open} onOpenChange={onOpenChange}>
+                <Menu open={open} onOpenChange={onOpenChange}>
+                    <Tooltip content="More actions" relationship="label">
                         <MenuTrigger disableButtonEnhancement>
                             <MenuButton
                                 appearance="transparent"
@@ -78,22 +78,22 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                                 ref={() => props.buttonRef}
                             />
                         </MenuTrigger>
-                        <MenuPopover
-                            style={{
-                                border: 'unset !important',
-                                borderRadius: 'unset !important',
-                            }}
-                        >
-                            <MenuList className={styles.menuList}>
-                                {overflowItems.map((item, index) => (
-                                    <span role="group" key={index}>
-                                        {item?.children}
-                                    </span>
-                                ))}
-                            </MenuList>
-                        </MenuPopover>
-                    </Menu>
-                </Tooltip>
+                    </Tooltip>
+                    <MenuPopover
+                        style={{
+                            border: 'unset !important',
+                            borderRadius: 'unset !important',
+                        }}
+                    >
+                        <MenuList className={styles.menuList}>
+                            {overflowItems.map((item, index) => (
+                                <span role="group" key={index}>
+                                    {item?.children}
+                                </span>
+                            ))}
+                        </MenuList>
+                    </MenuPopover>
+                </Menu>
             </>
         );
     },

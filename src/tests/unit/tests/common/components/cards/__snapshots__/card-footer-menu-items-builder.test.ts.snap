@@ -5,10 +5,7 @@ exports[`CardFooterMenuItemsBuilder Returns expected menu items: supportsIssueFi
 exports[`CardFooterMenuItemsBuilder Returns expected menu items: supportsIssueFiling=false supportsCopyFailureDetails=true 1`] = `
 [
   {
-    "iconName": "copy",
-    "iconProps": {
-      "iconName": "copy",
-    },
+    "iconName": "DocumentCopyRegular",
     "key": "copyfailuredetails",
     "onClick": [Function],
     "text": "Copy failure details",
@@ -20,10 +17,7 @@ exports[`CardFooterMenuItemsBuilder Returns expected menu items: supportsIssueFi
 [
   {
     "componentRef": [Function],
-    "iconName": "ladybugSolid",
-    "iconProps": {
-      "iconName": "ladybugSolid",
-    },
+    "iconName": "BugFilled",
     "key": "fileissue",
     "onClick": [Function],
     "text": "File issue",
@@ -35,19 +29,13 @@ exports[`CardFooterMenuItemsBuilder Returns expected menu items: supportsIssueFi
 [
   {
     "componentRef": [Function],
-    "iconName": "ladybugSolid",
-    "iconProps": {
-      "iconName": "ladybugSolid",
-    },
+    "iconName": "BugFilled",
     "key": "fileissue",
     "onClick": [Function],
     "text": "File issue",
   },
   {
-    "iconName": "copy",
-    "iconProps": {
-      "iconName": "copy",
-    },
+    "iconName": "DocumentCopyRegular",
     "key": "copyfailuredetails",
     "onClick": [Function],
     "text": "Copy failure details",

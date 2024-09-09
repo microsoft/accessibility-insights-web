@@ -608,16 +608,6 @@ describe('DetailsViewCommandBar', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
     }
 
-    // function renderTest(): JSX.Element {
-    //     const testSubject = getTestSubject();
-
-    //     return testSubject.render();
-    // }
-
-    // function getTestSubject(): DetailsViewCommandBar {
-    //     return new DetailsViewCommandBar(getProps());
-    // }
-
     function setupReportExportDialogFactory(
         expectedProps?: Partial<ReportExportDialogFactoryProps>,
     ): void {

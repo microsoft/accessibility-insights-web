@@ -59,8 +59,6 @@ export const CardFooterInstanceActionButtons = NamedFC<CardFooterInstanceActionB
             if (props?.narrowModeStatus?.isCardFooterCollapsed) {
                 kebabButtonRef?.current?.focus();
             } else {
-                fileIssueButtonRef?.current?.removeAttribute('textprediction');
-                fileIssueButtonRef?.current?.setAttribute('writingsuggestions', 'false');
                 fileIssueButtonRef?.current?.focus();
             }
         };

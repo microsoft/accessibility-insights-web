@@ -269,7 +269,7 @@ export class DetailsViewCommandBar extends React.Component<
     private renderSaveAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.SaveAssessmentButton({
             ...this.props,
-            handleSaveAssesmentButtonClick: this.handleSaveAssessmentButtonClick,
+            handleSaveAssessmentButtonClick: this.handleSaveAssessmentButtonClick,
         });
     };
 

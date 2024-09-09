@@ -12,6 +12,7 @@ import {
 } from 'DetailsView/components/save-assessment-button';
 import * as React from 'react';
 import {
+    expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -26,27 +27,32 @@ jest.mock('common/icons/fluentui-v9-icons');
 jest.mock('DetailsView/components/save-assessment-dialog');
 jest.mock('../../../../../common/components/controls/insights-command-button');
 jest.mock('@fluentui/react-components');
+
 describe('SaveAssessmentButton', () => {
     mockReactComponents([InsightsCommandButton]);
-    const userConfigMessageCreatorMock: IMock<UserConfigMessageCreator> =
-        Mock.ofType(UserConfigMessageCreator);
-    const assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator> =
-        Mock.ofType<AssessmentActionMessageCreator>();
-    const handleSaveAssesmentButtonClickMock =
+    let propsStub: SaveAssessmentButtonProps;
+    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
+    let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
+    let userConfigurationStoreData: UserConfigurationStoreData;
+    const handleSaveAssessmentButtonClickMock =
         Mock.ofType<(event: React.MouseEvent<any>) => void>();
-    const userConfigurationStoreData: UserConfigurationStoreData = {
-        showSaveAssessmentDialog: true,
-    } as UserConfigurationStoreData;
-    const propsStub: SaveAssessmentButtonProps = {
-        deps: {
-            getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
-            userConfigMessageCreator: userConfigMessageCreatorMock.object,
-        },
-        download: 'download',
-        href: 'url',
-        userConfigurationStoreData,
-        handleSaveAssesmentButtonClick: handleSaveAssesmentButtonClickMock.object,
-    };
+    beforeEach(() => {
+        assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
+        userConfigurationStoreData = {
+            showSaveAssessmentDialog: true,
+        } as UserConfigurationStoreData;
+        userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
+        propsStub = {
+            deps: {
+                getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
+                userConfigMessageCreator: userConfigMessageCreatorMock.object,
+            },
+            download: 'download',
+            href: 'url',
+            userConfigurationStoreData,
+            handleSaveAssessmentButtonClick: handleSaveAssessmentButtonClickMock.object,
+        };
+    });
 
     it('should render per snapshot', async () => {
         const wrapper = render(<SaveAssessmentButton {...propsStub} />);
@@ -57,9 +63,9 @@ describe('SaveAssessmentButton', () => {
         useOriginalReactElements('../../../common/components/controls/insights-command-button', [
             'InsightsCommandButton',
         ]);
-        handleSaveAssesmentButtonClickMock.setup(m => m(It.isAny())).verifiable();
+        handleSaveAssessmentButtonClickMock.setup(m => m(It.isAny())).verifiable();
         const wrapper = render(<SaveAssessmentButton {...propsStub} />);
         await userEvent.click(wrapper.getByRole('button'));
-        handleSaveAssesmentButtonClickMock.verifyAll();
+        handleSaveAssessmentButtonClickMock.verifyAll();
     });
 });
