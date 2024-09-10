@@ -38,7 +38,7 @@ beforeEach(() => {
         },
         userConfigurationStoreData,
         isOpen: true,
-        onClose: () => {},
+        onClose: () => { },
     };
 });
 
@@ -93,12 +93,12 @@ describe('SaveAssessmentDialog', () => {
 
 describe('on dialog disabled', () => {
     mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
-    let wrapper;
+
 
     beforeEach(() => {
         propsStub.isOpen = false;
         propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
-        wrapper = render(<SaveAssessmentDialog {...propsStub} />);
+        render(<SaveAssessmentDialog {...propsStub} />);
     });
 
     it('saves assessment without dialog (dialog is hidden)', () => {
