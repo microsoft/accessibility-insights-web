@@ -3,6 +3,7 @@
 
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -16,15 +17,13 @@ import {
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, It, Mock } from 'typemoq';
-import { InsightsCommandButton } from '../../../../../common/components/controls/insights-command-button';
 
 jest.mock('@fluentui/react-components', () => ({
     ...jest.requireActual('@fluentui/react-components'),
     makeStyles: () => () => ({}),
 }));
 jest.mock('common/icons/fluentui-v9-icons');
-jest.mock('DetailsView/components/save-assessment-dialog');
-jest.mock('../../../../../common/components/controls/insights-command-button');
+jest.mock('common/components/controls/insights-command-button');
 jest.mock('@fluentui/react-components');
 
 describe('SaveAssessmentButton', () => {
@@ -59,7 +58,7 @@ describe('SaveAssessmentButton', () => {
     });
 
     it('should call save assessment button click method on click', async () => {
-        useOriginalReactElements('../../../common/components/controls/insights-command-button', [
+        useOriginalReactElements('common/components/controls/insights-command-button', [
             'InsightsCommandButton',
         ]);
         handleSaveAssessmentButtonClickMock.setup(m => m(It.isAny())).verifiable();

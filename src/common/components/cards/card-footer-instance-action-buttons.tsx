@@ -79,10 +79,6 @@ export const CardFooterInstanceActionButtons = NamedFC<CardFooterInstanceActionB
                 return null;
             }
 
-            if (props?.narrowModeStatus?.isCardFooterCollapsed) {
-                kebabButtonRef?.current?.focus();
-            }
-
             return <Toast ref={toastRef} deps={props.deps} />;
         };
 

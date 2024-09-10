@@ -14,49 +14,48 @@ import React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import {
     getMockComponentClassPropsForCall,
-    mockReactComponent,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
 
 jest.mock('@fluentui/react');
 
+let propsStub: SaveAssessmentDialogProps;
+let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
+let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
+let userConfigurationStoreData: UserConfigurationStoreData;
+
+beforeEach(() => {
+    assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
+    userConfigurationStoreData = {
+        showSaveAssessmentDialog: true,
+    } as UserConfigurationStoreData;
+    userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
+    propsStub = {
+        deps: {
+            getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
+            userConfigMessageCreator: userConfigMessageCreatorMock.object,
+        },
+        userConfigurationStoreData,
+        isOpen: true,
+        onClose: () => {},
+    };
+});
+
 describe('SaveAssessmentDialog', () => {
-    mockReactComponents([DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
-    mockReactComponent(Dialog, 'Dialog');
+    mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
 
-    let propsStub: SaveAssessmentDialogProps;
-    let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
-    let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
-    let userConfigurationStoreData: UserConfigurationStoreData;
-    beforeEach(() => {
-        assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
-        userConfigurationStoreData = {
-            showSaveAssessmentDialog: true,
-        } as UserConfigurationStoreData;
-        userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
-        propsStub = {
-            deps: {
-                getAssessmentActionMessageCreator: () => assessmentActionMessageCreatorMock.object,
-                userConfigMessageCreator: userConfigMessageCreatorMock.object,
-            },
-            userConfigurationStoreData,
-            isOpen: true,
-            onClose: () => {},
-        };
-    });
-
-    it('render', () => {
+    it('render snapshot of dialog', () => {
         const wrapper = render(<SaveAssessmentDialog {...propsStub} />);
         expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
-    it('dialog is visible when isOpen is `true`', () => {
+    it('dialog is visible', () => {
         render(<SaveAssessmentDialog {...propsStub} />);
         expect(getMockComponentClassPropsForCall(Dialog).hidden).toEqual(false);
     });
 
-    it('dialog is hidden (dismissed) when isOpen is `false`', () => {
+    it('dialog is hidden (dismissed) when onDismiss is called', () => {
         propsStub.isOpen = false;
         render(<SaveAssessmentDialog {...propsStub} />);
         expect(getMockComponentClassPropsForCall(Dialog).hidden).toEqual(true);
@@ -78,5 +77,31 @@ describe('SaveAssessmentDialog', () => {
             x => x.setSaveAssessmentDialogState(false),
             Times.once(),
         );
+    });
+
+    // Need to be checked
+    // it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
+    //     propsStub.isOpen = true;
+    //     render(<SaveAssessmentDialog {...propsStub} />);
+    //     const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
+
+    //     gotItButtonProps.onClick();
+    //     const getProps = getMockComponentClassPropsForCall(Dialog);
+    //     expect(getProps.hidden).toEqual(true);
+    // });
+});
+
+describe('on dialog disabled', () => {
+    mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
+    let wrapper;
+
+    beforeEach(() => {
+        propsStub.isOpen = false;
+        propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
+        wrapper = render(<SaveAssessmentDialog {...propsStub} />);
+    });
+
+    it('saves assessment without dialog (dialog is hidden)', () => {
+        expect(getMockComponentClassPropsForCall(Dialog).hidden).toEqual(true);
     });
 });

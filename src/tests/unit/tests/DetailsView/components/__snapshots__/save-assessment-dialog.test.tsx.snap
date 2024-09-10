@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SaveAssessmentDialog render 1`] = `
+exports[`SaveAssessmentDialog render snapshot of dialog 1`] = `
 <DocumentFragment>
-  <mock-dialog
+  <mock-styledwithresponsivemode
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -42,6 +42,6 @@ exports[`SaveAssessmentDialog render 1`] = `
         </mock-stackitem>
       </mock-stack>
     </mock-styleddialogfooterbase>
-  </mock-dialog>
+  </mock-styledwithresponsivemode>
 </DocumentFragment>
 `;

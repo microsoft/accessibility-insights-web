@@ -30,20 +30,18 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
         const saveAssessmentStyles = useCommandButtonStyle();
 
         return (
-            <>
-                <InsightsCommandButton
-                    as="a"
-                    className={saveAssessmentStyles?.assessmentButton}
-                    onClick={props.handleSaveAssessmentButtonClick}
-                    insightsCommandButtonIconProps={{
-                        icon: <FluentUIV9Icon iconName="SaveRegular" />,
-                    }}
-                    ref={props.buttonRef}
-                    {...props}
-                >
-                    Save assessment
-                </InsightsCommandButton>
-            </>
+            <InsightsCommandButton
+                as="a"
+                className={saveAssessmentStyles?.assessmentButton}
+                onClick={props.handleSaveAssessmentButtonClick}
+                insightsCommandButtonIconProps={{
+                    icon: <FluentUIV9Icon iconName="SaveRegular" />,
+                }}
+                ref={props.buttonRef}
+                {...props}
+            >
+                Save assessment
+            </InsightsCommandButton>
         );
     },
 );
