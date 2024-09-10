@@ -38,7 +38,7 @@ beforeEach(() => {
         },
         userConfigurationStoreData,
         isOpen: true,
-        onClose: () => { },
+        onClose: () => {},
     };
 });
 
@@ -93,7 +93,6 @@ describe('SaveAssessmentDialog', () => {
 
 describe('on dialog disabled', () => {
     mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
-
 
     beforeEach(() => {
         propsStub.isOpen = false;
