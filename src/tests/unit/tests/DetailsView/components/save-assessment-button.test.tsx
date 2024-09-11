@@ -22,9 +22,8 @@ jest.mock('@fluentui/react-components', () => ({
     ...jest.requireActual('@fluentui/react-components'),
     makeStyles: () => () => ({}),
 }));
-jest.mock('common/icons/fluentui-v9-icons');
+
 jest.mock('common/components/controls/insights-command-button');
-jest.mock('@fluentui/react-components');
 
 describe('SaveAssessmentButton', () => {
     mockReactComponents([InsightsCommandButton]);
@@ -34,6 +33,7 @@ describe('SaveAssessmentButton', () => {
     let userConfigurationStoreData: UserConfigurationStoreData;
     const handleSaveAssessmentButtonClickMock =
         Mock.ofType<(event: React.MouseEvent<any>) => void>();
+
     beforeEach(() => {
         assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
         userConfigurationStoreData = {
@@ -55,6 +55,14 @@ describe('SaveAssessmentButton', () => {
     it('should render per snapshot', async () => {
         const wrapper = render(<SaveAssessmentButton {...propsStub} />);
         expect(wrapper.asFragment()).toMatchSnapshot();
+    });
+
+    it('render Save assement button with props to match snapshot', () => {
+        useOriginalReactElements('common/components/controls/insights-command-button', [
+            'InsightsCommandButton',
+        ]);
+        const { asFragment } = render(<SaveAssessmentButton {...propsStub} />);
+        expect(asFragment()).toMatchSnapshot();
     });
 
     it('should call save assessment button click method on click', async () => {
