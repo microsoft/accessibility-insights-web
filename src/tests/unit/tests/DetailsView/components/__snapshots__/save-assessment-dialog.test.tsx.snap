@@ -2,7 +2,7 @@
 
 exports[`SaveAssessmentDialog render snapshot of dialog 1`] = `
 <DocumentFragment>
-  <mock-styledwithresponsivemode
+  <mock-dialog
     dialogcontentprops="[object Object]"
     hidden="false"
     modalprops="[object Object]"
@@ -42,6 +42,6 @@ exports[`SaveAssessmentDialog render snapshot of dialog 1`] = `
         </mock-stackitem>
       </mock-stack>
     </mock-styleddialogfooterbase>
-  </mock-styledwithresponsivemode>
+  </mock-dialog>
 </DocumentFragment>
 `;

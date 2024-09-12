@@ -14,6 +14,7 @@ import React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import {
     getMockComponentClassPropsForCall,
+    mockReactComponent,
     mockReactComponents,
     useOriginalReactElements,
 } from '../../../mock-helpers/mock-module-helpers';
@@ -24,12 +25,16 @@ let propsStub: SaveAssessmentDialogProps;
 let assessmentActionMessageCreatorMock: IMock<AssessmentActionMessageCreator>;
 let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
 let userConfigurationStoreData: UserConfigurationStoreData;
+let onCloseMock: jest.Mock;
 
 beforeEach(() => {
+    mockReactComponents([DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
+    mockReactComponent(Dialog, 'Dialog');
     assessmentActionMessageCreatorMock = Mock.ofType<AssessmentActionMessageCreator>();
     userConfigurationStoreData = {
         showSaveAssessmentDialog: true,
     } as UserConfigurationStoreData;
+    onCloseMock = jest.fn();
     userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
     propsStub = {
         deps: {
@@ -38,13 +43,11 @@ beforeEach(() => {
         },
         userConfigurationStoreData,
         isOpen: true,
-        onClose: () => {},
+        onClose: onCloseMock,
     };
 });
 
 describe('SaveAssessmentDialog', () => {
-    mockReactComponents([Dialog, DialogFooter, Stack, Checkbox, Stack.Item, PrimaryButton]);
-
     it('render snapshot of dialog', () => {
         const wrapper = render(<SaveAssessmentDialog {...propsStub} />);
         expect(wrapper.asFragment()).toMatchSnapshot();
@@ -60,7 +63,19 @@ describe('SaveAssessmentDialog', () => {
         render(<SaveAssessmentDialog {...propsStub} />);
         expect(getMockComponentClassPropsForCall(Dialog).hidden).toEqual(true);
     });
+});
 
+describe('dialog interaction', () => {
+    beforeEach(() => {
+        propsStub.isOpen = true;
+        render(<SaveAssessmentDialog {...propsStub} />);
+        const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
+        gotItButtonProps.onClick();
+    });
+
+    it('dialog is hidden (dismissed) when "got it" button is clicked', () => {
+        expect(onCloseMock).toHaveBeenCalled();
+    });
     it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
         useOriginalReactElements('@fluentui/react', [
             'Dialog',
@@ -78,17 +93,6 @@ describe('SaveAssessmentDialog', () => {
             Times.once(),
         );
     });
-
-    // Need to be checked
-    // it('dialog is hidden (dismissed) when "got it" button is clicked', async () => {
-    //     propsStub.isOpen = true;
-    //     render(<SaveAssessmentDialog {...propsStub} />);
-    //     const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
-
-    //     gotItButtonProps.onClick();
-    //     const getProps = getMockComponentClassPropsForCall(Dialog);
-    //     expect(getProps.hidden).toEqual(true);
-    // });
 });
 
 describe('on dialog disabled', () => {

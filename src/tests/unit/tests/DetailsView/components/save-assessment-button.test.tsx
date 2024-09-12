@@ -13,6 +13,7 @@ import {
 } from 'DetailsView/components/save-assessment-button';
 import * as React from 'react';
 import {
+    getMockComponentClassPropsForCall,
     mockReactComponents,
     useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -57,12 +58,10 @@ describe('SaveAssessmentButton', () => {
         expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
-    it('render Save assement button with props to match snapshot', () => {
-        useOriginalReactElements('common/components/controls/insights-command-button', [
-            'InsightsCommandButton',
-        ]);
-        const { asFragment } = render(<SaveAssessmentButton {...propsStub} />);
-        expect(asFragment()).toMatchSnapshot();
+    it('render Save assement button with props to match with mock props', () => {
+        render(<SaveAssessmentButton {...propsStub} />);
+        const insightsButtonProps = getMockComponentClassPropsForCall(InsightsCommandButton).deps;
+        expect(insightsButtonProps).toEqual(propsStub.deps);
     });
 
     it('should call save assessment button click method on click', async () => {
