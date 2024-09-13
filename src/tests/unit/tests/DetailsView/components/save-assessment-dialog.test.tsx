@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Checkbox, Dialog, DialogFooter, PrimaryButton, Stack } from '@fluentui/react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, RenderResult } from '@testing-library/react';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AssessmentActionMessageCreator } from 'DetailsView/actions/assessment-action-message-creator';
@@ -66,9 +66,18 @@ describe('SaveAssessmentDialog', () => {
 });
 
 describe('dialog interaction', () => {
+    let wrapper: RenderResult;
+
     beforeEach(() => {
+        useOriginalReactElements('@fluentui/react', [
+            'Dialog',
+            'DialogFooter',
+            'Stack',
+            'Checkbox',
+        ]);
         propsStub.isOpen = true;
-        render(<SaveAssessmentDialog {...propsStub} />);
+        propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
+        wrapper = render(<SaveAssessmentDialog {...propsStub} />);
         const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
         gotItButtonProps.onClick();
     });
@@ -76,20 +85,13 @@ describe('dialog interaction', () => {
     it('dialog is hidden (dismissed) when "got it" button is clicked', () => {
         expect(onCloseMock).toHaveBeenCalled();
     });
-    it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
-        useOriginalReactElements('@fluentui/react', [
-            'Dialog',
-            'DialogFooter',
-            'Stack',
-            'Checkbox',
-        ]);
-        const wrapper = render(<SaveAssessmentDialog {...propsStub} />);
-        const checkbox = wrapper.getByRole('checkbox');
 
+    it('when "dont show again" box is clicked, set the showSaveAssessmentDialog user config state to `false`', () => {
+        const checkbox = wrapper.getByRole('checkbox');
         fireEvent.click(checkbox);
 
         userConfigMessageCreatorMock.verify(
-            x => x.setSaveAssessmentDialogState(false),
+            x => x.setSaveAssessmentDialogState(true),
             Times.once(),
         );
     });
