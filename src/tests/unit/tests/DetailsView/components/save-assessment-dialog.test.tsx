@@ -78,11 +78,11 @@ describe('dialog interaction', () => {
         propsStub.isOpen = true;
         propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
         wrapper = render(<SaveAssessmentDialog {...propsStub} />);
-        const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
-        gotItButtonProps.onClick();
     });
 
     it('dialog is hidden (dismissed) when "got it" button is clicked', () => {
+        const gotItButtonProps = getMockComponentClassPropsForCall(PrimaryButton);
+        gotItButtonProps.onClick();
         expect(onCloseMock).toHaveBeenCalled();
     });
 
