@@ -1,33 +1,34 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    CommandBarButton,
-    IButton,
-    IOverflowSetItemProps,
-    RefObject,
-    TooltipHost,
-} from '@fluentui/react';
-import { render } from '@testing-library/react';
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    MenuPopover,
+    MenuTrigger,
+    Tooltip,
+} from '@fluentui/react-components';
+import { fireEvent, render, screen } from '@testing-library/react';
 import {
     CommandBarButtonsMenu,
     CommandBarButtonsMenuProps,
 } from 'DetailsView/components/command-bar-buttons-menu';
-import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import * as React from 'react';
 import {
-    expectMockedComponentPropsToMatchSnapshots,
-    getMockComponentClassPropsForCall,
     mockReactComponents,
+    useOriginalReactElements,
 } from 'tests/unit/mock-helpers/mock-module-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
+jest.mock('common/icons/fluentui-v9-icons');
 
 describe('CommandBarButtonsMenu', () => {
-    mockReactComponents([TooltipHost, CommandBarButton]);
+    mockReactComponents([Tooltip, Menu, MenuTrigger, MenuButton, MenuPopover, MenuList, MenuItem]);
 
     let renderExportReportComponentMock: IMock<() => JSX.Element>;
-    let getStartOverMenuItemMock: IMock<() => StartOverMenuItem>;
+    let getStartOverMenuItemMock: any;
     let commandBarButtonsMenuProps: CommandBarButtonsMenuProps;
 
     beforeEach(() => {
@@ -38,37 +39,41 @@ describe('CommandBarButtonsMenu', () => {
             saveAssessmentButton: <>Save assessment button</>,
             loadAssessmentButton: <>Load assessment button</>,
             transferToAssessmentButton: <>Transfer to assessment button</>,
-
             getStartOverMenuItem: getStartOverMenuItemMock.object,
-            buttonRef: {} as RefObject<IButton>,
-        } as CommandBarButtonsMenuProps;
+            buttonRef: {} as any,
+            hasSubMenu: false,
+        };
     });
 
     it('renders CommandBarButtonsMenu', () => {
         const wrapper = render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
-        expectMockedComponentPropsToMatchSnapshots([CommandBarButton]);
         expect(wrapper.asFragment()).toMatchSnapshot();
     });
 
-    it('renders all child buttons,', () => {
+    it('renders all child buttons with hasSubMenu false,', () => {
+        useOriginalReactElements('@fluentui/react-components', [
+            'Menu',
+            'MenuButton',
+            'MenuTrigger',
+            'MenuPopover',
+            'MenuList',
+            'MenuItem',
+            'Tooltip',
+        ]);
         setupExportReportMenuItem();
         setupStartOverMenuItem();
 
-        render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
-        const commandBarProps = getMockComponentClassPropsForCall(CommandBarButton);
-
-        const overflowItems: IOverflowSetItemProps[] = commandBarProps.menuProps?.items;
-
-        expect(commandBarProps.menuProps?.items).toBeDefined();
-        expect(commandBarProps.menuProps?.items).toHaveLength(5);
-
-        expect(overflowItems[0].onRender()).toMatchSnapshot('render export report menuitem');
-        expect(overflowItems[1].onRender()).toMatchSnapshot('render save assessment menuitem');
-        expect(overflowItems[2].onRender()).toMatchSnapshot('render load assessment menuitem');
-        expect(overflowItems[3].onRender()).toMatchSnapshot(
-            'render transfer to assessment menuitem',
-        );
-        expect(overflowItems[4].onRender()).toMatchSnapshot('render start over menuitem');
+        const test = render(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
+        const getMoreActionsButton = test.queryByRole('button');
+        fireEvent.click(getMoreActionsButton);
+        const hasExportButton = screen.getByText('Report export button');
+        const hasSaveButton = screen.getByText('Save assessment button');
+        const hasLoadButton = screen.getByText('Load assessment button');
+        const hasTransferButton = screen.getByText('Transfer to assessment button');
+        expect(hasExportButton).toMatchSnapshot('render export report menuitem');
+        expect(hasSaveButton).toMatchSnapshot('render save assessment menuitem');
+        expect(hasLoadButton).toMatchSnapshot('render load assessment menuitem');
+        expect(hasTransferButton).toMatchSnapshot('render transfer to assessment menuitem');
 
         renderExportReportComponentMock.verifyAll();
         getStartOverMenuItemMock.verifyAll();
@@ -78,16 +83,16 @@ describe('CommandBarButtonsMenu', () => {
         renderExportReportComponentMock
             .setup(r => r())
             .returns(() => <>Report export button</>)
-            .verifiable(Times.once());
+            .verifiable(Times.atLeastOnce());
     }
 
     function setupStartOverMenuItem(): void {
         const startOverMenuItem = {
-            onRender: () => <>Start over button</>,
+            children: <>Start over button</>,
         };
         getStartOverMenuItemMock
             .setup(s => s())
-            .returns(() => startOverMenuItem)
-            .verifiable(Times.once());
+            .returns(() => startOverMenuItem.children)
+            .verifiable(Times.atLeastOnce());
     }
 });

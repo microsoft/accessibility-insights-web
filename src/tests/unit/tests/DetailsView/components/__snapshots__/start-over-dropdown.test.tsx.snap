@@ -3,32 +3,38 @@
 exports[`StartOverDropdownTest render 1`] = `
 <DocumentFragment>
   <div>
-    <mock-insightscommandbutton
-      arialabel="start over menu"
-      componentref="[object Object]"
-      iconprops="[object Object]"
-      menuiconprops="[object Object]"
-      text="Start over"
-    />
-  </div>
-</DocumentFragment>
-`;
-
-exports[`StartOverDropdownTest render ContextualMenu 1`] = `
-<DocumentFragment>
-  <div>
-    <mock-insightscommandbutton
-      arialabel="start over menu"
-      componentref="[object Object]"
-      iconprops="[object Object]"
-      menuiconprops="[object Object]"
-      text="Start over"
-    />
-    <mock-styledcontextualmenubase
-      directionalhint="7"
-      items="[object Object],[object Object]"
-      target="test event"
-    />
+    <mock-menu>
+      <mock-menutrigger
+        disablebuttonenhancement="true"
+      >
+        <mock-menubutton
+          appearance="transparent"
+          aria-label="start over menu"
+          icon="[object Object]"
+          menuicon="[object Object]"
+          role="button"
+          shape="square"
+        >
+          Start over
+        </mock-menubutton>
+      </mock-menutrigger>
+      <mock-menupopover>
+        <mock-menulist>
+          <mock-menuitem
+            name="Start over all test suffix stub"
+            persistonclick="false"
+          >
+            Start over all test suffix stub
+          </mock-menuitem>
+          <mock-menuitem
+            name="Start over single test suffix stub"
+            persistonclick="false"
+          >
+            Start over single test suffix stub
+          </mock-menuitem>
+        </mock-menulist>
+      </mock-menupopover>
+    </mock-menu>
   </div>
 </DocumentFragment>
 `;
@@ -36,35 +42,72 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
 exports[`StartOverDropdownTest render with dropdown on left 1`] = `
 <DocumentFragment>
   <div>
-    <mock-insightscommandbutton
-      arialabel="start over menu"
-      componentref="[object Object]"
-      iconprops="[object Object]"
-      menuiconprops="[object Object]"
-      text="Start over"
-    />
-    <mock-styledcontextualmenubase
-      directionalhint="8"
-      items="[object Object],[object Object]"
-      target="test target"
-    />
+    <mock-menu>
+      <mock-menutrigger
+        disablebuttonenhancement="true"
+      >
+        <mock-menubutton
+          appearance="transparent"
+          aria-label="start over menu"
+          icon="[object Object]"
+          menuicon="[object Object]"
+          role="button"
+          shape="square"
+        >
+          Start over
+        </mock-menubutton>
+      </mock-menutrigger>
+      <mock-menupopover>
+        <mock-menulist>
+          <mock-menuitem
+            name="Start over all test suffix stub"
+            persistonclick="false"
+          >
+            Start over all test suffix stub
+          </mock-menuitem>
+          <mock-menuitem
+            name="Start over single test suffix stub"
+            persistonclick="false"
+          >
+            Start over single test suffix stub
+          </mock-menuitem>
+        </mock-menulist>
+      </mock-menupopover>
+    </mock-menu>
   </div>
 </DocumentFragment>
 `;
 
-exports[`StartOverDropdownTest render: InsightsCommandButton props 1`] = `
+exports[`StartOverDropdownTest render with dropdown on left: MenuButton props 1`] = `
 {
-  "ariaLabel": "start over menu",
-  "componentRef": {},
-  "iconProps": {
-    "iconName": "Refresh",
-  },
-  "menuIconProps": {
-    "iconName": "ChevronDown",
-  },
-  "onClick": [Function],
-  "text": "Start over",
+  "appearance": "transparent",
+  "aria-label": "start over menu",
+  "children": "Start over",
+  "className": undefined,
+  "icon": <FluentUIV9Icon
+    iconName="ArrowClockwiseRegular"
+  />,
+  "menuIcon": <FluentUIV9Icon
+    iconName="ChevronRight20Regular"
+  />,
+  "role": "button",
+  "shape": "square",
 }
 `;
 
-exports[`StartOverDropdownTest render: StyledContextualMenuBase props 1`] = `undefined`;
+exports[`StartOverDropdownTest render: MenuButton props 1`] = `
+{
+  "appearance": "transparent",
+  "aria-label": "start over menu",
+  "children": "Start over",
+  "className": undefined,
+  "icon": <FluentUIV9Icon
+    iconName="ArrowClockwiseRegular"
+  />,
+  "menuIcon": <FluentUIV9Icon
+    iconName="ChevronDown20Regular"
+  />,
+  "role": "button",
+  "shape": "square",
+}
+`;

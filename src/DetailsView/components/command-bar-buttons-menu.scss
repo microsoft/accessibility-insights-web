@@ -5,16 +5,62 @@
 
 .command-bar-buttons-menu-button {
     font-size: 16px;
+    padding: 9px !important;
+    color: $primary-text !important;
+
+    &:hover {
+        background-color: $neutral-2 !important;
+    }
+
+    &:focus {
+        outline: 1px solid;
+    }
+}
+
+.menu-list {
+    top: 19px !important;
+}
+
+.menu-item {
+    padding-bottom: unset !important;
+
+    &:hover {
+        background: none !important;
+    }
+}
+
+.menu-button {
+    align-items: flex-start !important;
+    font-weight: 400 !important;
+    margin-left: -8px !important;
+
+    &:hover {
+        background: 'none !important';
+        color: $insights-button-hover;
+
+        & > span {
+            & > svg {
+                color: $insights-button-hover;
+            }
+        }
+    }
+}
+
+.refresh-icon {
+    color: $insights-button-hover !important;
 }
 
 .command-bar-buttons-submenu {
+    min-width: fit-content;
+
     button {
         height: 36px;
     }
-
-    min-width: fit-content;
 }
 
 .command-bar-buttons-menu {
-    height: $details-view-command-bar-height;
+    height: 17px;
+    margin-left: 9px !important;
+    margin-top: 8px !important;
+    margin-bottom: 16px !important;
 }

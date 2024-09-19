@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { css } from '@fluentui/utilities';
 import styles from 'common/components/collapsible-component.scss';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import * as React from 'react';
 
 export interface CollapsibleComponentProps {
@@ -20,9 +21,6 @@ export class CollapsibleComponent extends React.Component<
     CollapsibleComponentProps,
     CollapsibleComponentState
 > {
-    private readonly iconNameDown = 'ChevronDown';
-    private readonly iconNameUp = 'ChevronRight';
-
     constructor(props: CollapsibleComponentProps) {
         super(props);
         this.state = { showContent: true };
@@ -34,11 +32,9 @@ export class CollapsibleComponent extends React.Component<
 
     public render(): JSX.Element {
         const showContent = this.state.showContent;
-        let iconName = this.iconNameUp;
         let content: JSX.Element | null = null;
 
         if (showContent) {
-            iconName = this.iconNameDown;
             content = (
                 <div className={css(this.props.contentClassName, styles.collapsibleContent)}>
                     {this.props.content}
@@ -48,14 +44,19 @@ export class CollapsibleComponent extends React.Component<
 
         return (
             <div className={css(this.props.containerClassName)}>
-                <ActionButton
+                <Button
                     className={styles.collapsible}
-                    iconProps={{ iconName: iconName }}
+                    appearance="transparent"
                     onClick={this.onClick}
                     aria-expanded={showContent}
                 >
+                    {showContent ? (
+                        <FluentUIV9Icon iconName="ChevronDown24Regular" />
+                    ) : (
+                        <FluentUIV9Icon iconName="ChevronRight24Regular" />
+                    )}
                     {this.props.header}
-                </ActionButton>
+                </Button>
                 {content}
             </div>
         );

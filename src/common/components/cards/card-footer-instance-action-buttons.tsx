@@ -1,14 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton, DirectionalHint, IButton } from '@fluentui/react';
 import { registerIcons } from '@fluentui/react/lib/Styling';
 import {
-    CardFooterMenuItem,
+    Button,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    MenuPopover,
+    MenuTrigger,
+    tokens,
+} from '@fluentui/react-components';
+import {
     CardFooterMenuItemsBuilder,
     CardFooterMenuItemsDeps,
 } from 'common/components/cards/card-footer-menu-items-builder';
 import { CardsViewController } from 'common/components/cards/cards-view-controller';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
+import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
@@ -38,102 +48,113 @@ export interface CardFooterInstanceActionButtonsProps {
     narrowModeStatus?: NarrowModeStatus;
 }
 
-export class CardFooterInstanceActionButtons extends React.Component<CardFooterInstanceActionButtonsProps> {
-    private toastRef: React.RefObject<Toast>;
-    private fileIssueButtonRef: IButton | null;
-    private kebabButtonRef: IButton | null;
-    constructor(props: CardFooterInstanceActionButtonsProps) {
-        super(props);
-        this.toastRef = React.createRef();
-    }
+export const CardFooterInstanceActionButtons = NamedFC<CardFooterInstanceActionButtonsProps>(
+    'CardFooterInstanceActionButtonsProps',
+    props => {
+        const toastRef = React.useRef(null);
+        const fileIssueButtonRef: any = React.useRef(null);
+        const kebabButtonRef: any = React.useRef(null);
 
-    public render(): JSX.Element | null {
-        const menuItems = this.getMenuItems();
-        if (menuItems.length === 0) {
-            return null;
-        }
+        const focusButtonAfterDialogClosed = (): void => {
+            if (props?.narrowModeStatus?.isCardFooterCollapsed) {
+                kebabButtonRef?.current?.focus();
+            } else {
+                fileIssueButtonRef?.current?.focus();
+            }
+        };
 
-        return (
-            // The wrapper has to be a real element, not a <>, because we want the placeholder elements
-            // the dialog/toast involve to be considered as part of the button for the purposes of layout
-            // calculation in this component's parent.
-            <div onKeyDown={event => event.stopPropagation()}>
-                {this.renderButtons()}
-                {this.renderCopyFailureDetailsToast()}
-            </div>
-        );
-    }
+        const getMenuItems = () => {
+            return props.deps.cardFooterMenuItemsBuilder.getCardFooterMenuItems({
+                ...props,
+                toastRef: toastRef,
+                fileIssueButtonRef: ref => (fileIssueButtonRef.current = ref),
+                onIssueFilingSettingsDialogDismissed: focusButtonAfterDialogClosed,
+            });
+        };
 
-    public renderButtons(): JSX.Element {
-        if (this.props.narrowModeStatus?.isCardFooterCollapsed) {
-            return this.renderKebabButton();
-        } else {
-            return this.renderExpandedButtons();
-        }
-    }
+        const renderCopyFailureDetailsToast = () => {
+            const { cardInteractionSupport } = props.deps;
 
-    public renderKebabButton(): JSX.Element {
-        return (
-            <ActionButton
-                componentRef={ref => (this.kebabButtonRef = ref)}
-                ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
-                menuIconProps={{
-                    iconName: 'MoreActionsMenuIcon',
-                    className: styles.kebabMenuIcon,
-                }}
-                menuProps={{
-                    directionalHint: DirectionalHint.bottomRightEdge,
-                    shouldFocusOnMount: true,
-                    items: this.getMenuItems(),
-                }}
-            />
-        );
-    }
+            if (!cardInteractionSupport.supportsCopyFailureDetails) {
+                return null;
+            }
 
-    public renderExpandedButtons(): JSX.Element {
-        const menuItems = this.getMenuItems();
+            return <Toast ref={toastRef} deps={props.deps} />;
+        };
 
-        return (
-            <>
-                {menuItems.map(props => (
-                    <span key={props.key}>
-                        <ActionButton
-                            onClick={props.onClick}
-                            text={props.text}
-                            iconProps={props.iconProps}
-                            className={props.key}
-                            componentRef={props.componentRef}
+        const renderKebabButton = () => {
+            return (
+                <Menu>
+                    <MenuTrigger>
+                        <MenuButton
+                            className={styles.menuButton}
+                            ref={ref => (kebabButtonRef.current = ref)}
+                            appearance="transparent"
+                            shape="square"
+                            aria-label={props?.kebabMenuAriaLabel}
+                            icon={<FluentUIV9Icon iconName="MoreVerticalRegular" />}
                         />
-                    </span>
-                ))}
-            </>
-        );
-    }
+                    </MenuTrigger>
+                    <MenuPopover
+                        style={{
+                            borderRadius: tokens.borderRadiusNone,
+                        }}
+                    >
+                        <MenuList>
+                            {getMenuItems().map((item: any, index: number) => (
+                                <MenuItem
+                                    className={styles.kebabMenuIcon}
+                                    key={`${item.key}-${index}-kebabMenuItem`}
+                                    icon={<FluentUIV9Icon iconName={item?.iconName} />}
+                                    {...item}
+                                >
+                                    {item?.text}
+                                </MenuItem>
+                            ))}
+                        </MenuList>
+                    </MenuPopover>
+                </Menu>
+            );
+        };
 
-    public renderCopyFailureDetailsToast(): JSX.Element | null {
-        const { cardInteractionSupport } = this.props.deps;
+        const renderExpandedButtons = () => {
+            const menuItems = getMenuItems();
+            return (
+                <>
+                    {menuItems.map(menuItem => (
+                        <Button
+                            as="button"
+                            appearance="transparent"
+                            onClick={menuItem.onClick}
+                            icon={<FluentUIV9Icon iconName={menuItem?.iconName} />}
+                            className={styles[menuItem.key]}
+                            size="medium"
+                            key={`${menuItem.key}-expandedButtons`}
+                        >
+                            {menuItem.text}
+                        </Button>
+                    ))}
+                </>
+            );
+        };
 
-        if (!cardInteractionSupport.supportsCopyFailureDetails) {
-            return null;
-        }
+        const renderButtons = () => {
+            if (props.narrowModeStatus?.isCardFooterCollapsed) {
+                return renderKebabButton();
+            } else {
+                return renderExpandedButtons();
+            }
+        };
 
-        return <Toast ref={this.toastRef} deps={this.props.deps} />;
-    }
+        const menuItems = getMenuItems();
+        const menuItemsJsx =
+            menuItems?.length === 0 ? null : (
+                <div onKeyDown={event => event.stopPropagation()}>
+                    {renderButtons()}
+                    {renderCopyFailureDetailsToast()}
+                </div>
+            );
 
-    private getMenuItems(): CardFooterMenuItem[] {
-        return this.props.deps.cardFooterMenuItemsBuilder.getCardFooterMenuItems({
-            ...this.props,
-            toastRef: this.toastRef,
-            fileIssueButtonRef: ref => (this.fileIssueButtonRef = ref),
-            onIssueFilingSettingsDialogDismissed: this.focusButtonAfterDialogClosed,
-        });
-    }
-
-    private focusButtonAfterDialogClosed = (): void => {
-        if (this.props.narrowModeStatus?.isCardFooterCollapsed) {
-            this.kebabButtonRef?.focus();
-        } else {
-            this.fileIssueButtonRef?.focus();
-        }
-    };
-}
+        return menuItemsJsx;
+    },
+);

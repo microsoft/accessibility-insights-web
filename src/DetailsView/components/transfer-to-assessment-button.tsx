@@ -1,19 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { IRefObject, IButton } from '@fluentui/react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { NamedFC } from 'common/react/named-fc';
+import { useCommandButtonStyle } from 'DetailsView/components/command-button-styles';
+import { ButtonRefFunction } from 'DetailsView/components/details-view-command-bar';
 import { DataTransferViewController } from 'DetailsView/data-transfer-view-controller';
 import * as React from 'react';
 
 export type TransferToAssessmentButtonDeps = {
     dataTransferViewController: DataTransferViewController;
 };
-
 export interface TransferToAssessmentButtonProps {
     deps: TransferToAssessmentButtonDeps;
-    buttonRef?: IRefObject<IButton>;
+    buttonRef?: ButtonRefFunction;
+    isNarrowMode?: boolean;
 }
 
 export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-button';
@@ -21,14 +23,20 @@ export const transferToAssessmentButtonAutomationId = 'transfer-to-assessment-bu
 export const TransferToAssessmentButton = NamedFC<TransferToAssessmentButtonProps>(
     'TransferToAssessmentButton',
     props => {
+        const saveAssessmentStyles = useCommandButtonStyle();
+
         return (
             <InsightsCommandButton
+                className={saveAssessmentStyles.assessmentButton}
                 data-automation-id={transferToAssessmentButtonAutomationId}
-                iconProps={{ iconName: 'fabricMoveToFolder' }}
+                insightsCommandButtonIconProps={{
+                    icon: <FluentUIV9Icon iconName="FolderArrowRightRegular" />,
+                }}
                 onClick={
                     props.deps.dataTransferViewController.showQuickAssessToAssessmentConfirmDialog
                 }
-                componentRef={props.buttonRef}
+                ref={props.buttonRef}
+                isNarrowMode={props.isNarrowMode}
             >
                 Move to assessment
             </InsightsCommandButton>

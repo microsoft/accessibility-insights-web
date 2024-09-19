@@ -21,7 +21,7 @@ describe('ReportCollapsibleContainerControl', () => {
         buttonAriaLabel: [undefined, 'some button label'],
         id: [undefined, 'some id'],
     };
-    const onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
+    const onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLButtonElement>) => void>();
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {

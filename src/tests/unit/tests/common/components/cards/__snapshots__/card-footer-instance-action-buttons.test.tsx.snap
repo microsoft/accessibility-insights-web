@@ -2,39 +2,48 @@
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: action button menu props 1`] = `
 {
-  "ariaLabel": "test-kebabmenuarialabel",
-  "componentRef": [Function],
-  "menuIconProps": {
-    "className": "kebabMenuIcon",
-    "iconName": "MoreActionsMenuIcon",
-  },
-  "menuProps": {
-    "directionalHint": 6,
-    "items": [
-      {
-        "key": "item1",
-        "onClick": [Function],
-        "text": "item 1",
-      },
-      {
-        "key": "item2",
-        "onClick": [Function],
-        "text": "item 2",
-      },
-    ],
-    "shouldFocusOnMount": true,
-  },
+  "appearance": "transparent",
+  "aria-disabled": undefined,
+  "aria-expanded": undefined,
+  "aria-haspopup": "menu",
+  "aria-label": "test-kebabmenuarialabel",
+  "className": "menuButton",
+  "data-tabster": "{"restorer":{"type":1}}",
+  "icon": <FluentUIV9Icon
+    iconName="MoreVerticalRegular"
+  />,
+  "id": "menur0",
+  "onClick": [Function],
+  "onContextMenu": [Function],
+  "onKeyDown": [Function],
+  "onKeyUp": [Function],
+  "onMouseEnter": [Function],
+  "onMouseLeave": [Function],
+  "onMouseMove": [Function],
+  "role": "button",
+  "shape": "square",
+  "tabIndex": 0,
 }
 `;
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmenuarialabel aria label passed as prop: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <mock-customizedactionbutton
-      arialabel="test-kebabmenuarialabel"
-      menuiconprops="[object Object]"
-      menuprops="[object Object]"
-    />
+    <button
+      aria-expanded="false"
+      aria-haspopup="menu"
+      aria-label="test-kebabmenuarialabel"
+      class="fui-Button r1alrhcs fui-MenuButton menuButton ___14ayyxl_z6mxox0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f18ktai2 fwbmr0d f44c6la"
+      data-tabster="{"restorer":{"type":1}}"
+      id="menur0"
+      role="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="fui-Button__icon rywnvv2 fui-MenuButton__icon"
+      />
+    </button>
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"
@@ -45,39 +54,47 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with test-kebabmen
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: action button menu props 1`] = `
 {
-  "ariaLabel": "More actions",
-  "componentRef": [Function],
-  "menuIconProps": {
-    "className": "kebabMenuIcon",
-    "iconName": "MoreActionsMenuIcon",
-  },
-  "menuProps": {
-    "directionalHint": 6,
-    "items": [
-      {
-        "key": "item1",
-        "onClick": [Function],
-        "text": "item 1",
-      },
-      {
-        "key": "item2",
-        "onClick": [Function],
-        "text": "item 2",
-      },
-    ],
-    "shouldFocusOnMount": true,
-  },
+  "appearance": "transparent",
+  "aria-disabled": undefined,
+  "aria-expanded": undefined,
+  "aria-haspopup": "menu",
+  "aria-label": undefined,
+  "className": "menuButton",
+  "data-tabster": "{"restorer":{"type":1}}",
+  "icon": <FluentUIV9Icon
+    iconName="MoreVerticalRegular"
+  />,
+  "id": "menur1",
+  "onClick": [Function],
+  "onContextMenu": [Function],
+  "onKeyDown": [Function],
+  "onKeyUp": [Function],
+  "onMouseEnter": [Function],
+  "onMouseLeave": [Function],
+  "onMouseMove": [Function],
+  "role": "button",
+  "shape": "square",
+  "tabIndex": 0,
 }
 `;
 
 exports[`CardFooterInstanceActionButtons renders per snapshot with undefined aria label passed as prop: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <mock-customizedactionbutton
-      arialabel="More actions"
-      menuiconprops="[object Object]"
-      menuprops="[object Object]"
-    />
+    <button
+      aria-expanded="false"
+      aria-haspopup="menu"
+      class="fui-Button r1alrhcs fui-MenuButton menuButton ___14ayyxl_z6mxox0 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f18ktai2 fwbmr0d f44c6la"
+      data-tabster="{"restorer":{"type":1}}"
+      id="menur1"
+      role="button"
+      tabindex="0"
+      type="button"
+    >
+      <span
+        class="fui-Button__icon rywnvv2 fui-MenuButton__icon"
+      />
+    </button>
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"
@@ -89,18 +106,24 @@ exports[`CardFooterInstanceActionButtons renders per snapshot with undefined ari
 exports[`CardFooterInstanceActionButtons renders without copyFailureDetails supported: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <span>
-      <mock-customizedactionbutton
-        classname="item1"
-        text="item 1"
-      />
-    </span>
-    <span>
-      <mock-customizedactionbutton
-        classname="item2"
-        text="item 2"
-      />
-    </span>
+    <mock-button
+      appearance="transparent"
+      as="button"
+      classname="item1"
+      icon="[object Object]"
+      size="medium"
+    >
+      item 1
+    </mock-button>
+    <mock-button
+      appearance="transparent"
+      as="button"
+      classname="item2"
+      icon="[object Object]"
+      size="medium"
+    >
+      item 2
+    </mock-button>
   </div>
 </DocumentFragment>
 `;
@@ -108,18 +131,24 @@ exports[`CardFooterInstanceActionButtons renders without copyFailureDetails supp
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=false renders per snapshot: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <span>
-      <mock-customizedactionbutton
-        classname="item1"
-        text="item 1"
-      />
-    </span>
-    <span>
-      <mock-customizedactionbutton
-        classname="item2"
-        text="item 2"
-      />
-    </span>
+    <mock-button
+      appearance="transparent"
+      as="button"
+      classname="item1"
+      icon="[object Object]"
+      size="medium"
+    >
+      item 1
+    </mock-button>
+    <mock-button
+      appearance="transparent"
+      as="button"
+      classname="item2"
+      icon="[object Object]"
+      size="medium"
+    >
+      item 2
+    </mock-button>
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"
@@ -128,41 +157,66 @@ exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=false render
 </DocumentFragment>
 `;
 
-exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: action button menu props 1`] = `
-{
-  "ariaLabel": "More actions",
-  "componentRef": [Function],
-  "menuIconProps": {
-    "className": "kebabMenuIcon",
-    "iconName": "MoreActionsMenuIcon",
-  },
-  "menuProps": {
-    "directionalHint": 6,
-    "items": [
-      {
-        "key": "item1",
-        "onClick": [Function],
-        "text": "item 1",
-      },
-      {
-        "key": "item2",
-        "onClick": [Function],
-        "text": "item 2",
-      },
-    ],
-    "shouldFocusOnMount": true,
-  },
-}
-`;
-
 exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: component snapshot 1`] = `
 <DocumentFragment>
   <div>
-    <mock-customizedactionbutton
-      arialabel="More actions"
-      menuiconprops="[object Object]"
-      menuprops="[object Object]"
+    <mock-menu>
+      <mock-menutrigger />
+      <mock-menupopover
+        style="border-radius: var(--borderRadiusNone);"
+      >
+        <mock-menulist>
+          <mock-menuitem
+            classname="kebabMenuIcon"
+            icon="[object Object]"
+            text="item 1"
+          >
+            item 1
+          </mock-menuitem>
+          <mock-menuitem
+            classname="kebabMenuIcon"
+            icon="[object Object]"
+            text="item 2"
+          >
+            item 2
+          </mock-menuitem>
+        </mock-menulist>
+      </mock-menupopover>
+    </mock-menu>
+    <mock-toast
+      deps="[object Object]"
+      timeoutlength="6000"
     />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CardFooterInstanceActionButtons with isCardFooterCollapsed=true renders per snapshot: kebab button menu 1`] = `
+<DocumentFragment>
+  <div>
+    <mock-menu>
+      <mock-menutrigger />
+      <mock-menupopover
+        style="border-radius: var(--borderRadiusNone);"
+      >
+        <mock-menulist>
+          <mock-menuitem
+            classname="kebabMenuIcon"
+            icon="[object Object]"
+            text="item 1"
+          >
+            item 1
+          </mock-menuitem>
+          <mock-menuitem
+            classname="kebabMenuIcon"
+            icon="[object Object]"
+            text="item 2"
+          >
+            item 2
+          </mock-menuitem>
+        </mock-menulist>
+      </mock-menupopover>
+    </mock-menu>
     <mock-toast
       deps="[object Object]"
       timeoutlength="6000"

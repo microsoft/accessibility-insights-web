@@ -13,6 +13,7 @@ import { IRenderFunction } from '@fluentui/utilities';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { ManualTestStatus } from 'common/types/store-data/manual-test-status';
 import { hasIn } from 'lodash';
 import * as React from 'react';
@@ -125,7 +126,9 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         return (
             <InsightsCommandButton
                 data-automation-id={passUnmarkedInstancesButtonAutomationId}
-                iconProps={{ iconName: 'skypeCheck' }}
+                insightsCommandButtonIconProps={{
+                    icon: <FluentUIV9Icon iconName="Checkmark20Filled" />,
+                }}
                 onClick={this.onPassUnmarkedInstances}
                 disabled={disabled}
             >

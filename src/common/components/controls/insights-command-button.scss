@@ -15,6 +15,10 @@
         }
     }
 
+    &:hover {
+        background: none !important;
+    }
+
     &:active:not(:disabled) {
         .command-bar-button-icon {
             color: $primary-text;

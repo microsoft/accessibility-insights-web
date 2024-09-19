@@ -70,7 +70,10 @@ export class ThemeInner extends React.Component<ThemeInnerProps, ThemeState> {
     private loadAppropriateTheme(isHighContrast: boolean): void {
         const appropriateThemeV8 = isHighContrast ? HighContrastTheme : DefaultTheme;
         const appropriateThemeV9 = isHighContrast ? ThemeV9DarkTheme : webLightTheme;
-        this.setState({ themeValueV8: appropriateThemeV8, themeValueV9: appropriateThemeV9 });
+        this.setState({
+            themeValueV8: appropriateThemeV8,
+            themeValueV9: appropriateThemeV9,
+        });
     }
 
     private isHighContrastEnabled(props: ThemeInnerProps): boolean {

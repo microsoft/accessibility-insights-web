@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import * as React from 'react';
-
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { NamedFC } from '../../common/react/named-fc';
 import { ContentProvider, ContentReference } from './content-page';
@@ -34,16 +34,18 @@ export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
         }
 
         const onClick = ev =>
-            contentActionMessageCreator.openContentPanel(ev, contentPath, contentTitle);
+            contentActionMessageCreator?.openContentPanel(ev, contentPath, contentTitle);
 
         return (
-            <ActionButton
-                iconProps={{ iconName }}
+            <Button
+                className="info"
+                appearance="transparent"
+                icon={iconName && <FluentUIV9Icon iconName={iconName} />}
                 onClick={onClick}
-                ariaLabel={'info and examples'}
+                aria-label={'info and examples'}
             >
                 {children}
-            </ActionButton>
+            </Button>
         );
     },
 );

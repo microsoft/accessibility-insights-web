@@ -1,6 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton, IButton } from '@fluentui/react';
+import {
+    Button,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
+    MenuPopover,
+    MenuTrigger,
+    Tooltip,
+} from '@fluentui/react-components';
 import { render, RenderResult } from '@testing-library/react';
 import {
     CardFooterInstanceActionButtons,
@@ -22,14 +31,25 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { Toast } from '../../../../../../common/components/toast';
 import {
     expectMockedComponentPropsToMatchSnapshots,
-    getMockComponentClassPropsForCall,
     mockReactComponents,
+    useOriginalReactElements,
 } from '../../../../mock-helpers/mock-module-helpers';
 
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 jest.mock('../../../../../../common/components/toast');
-describe(CardFooterInstanceActionButtons, () => {
-    mockReactComponents([Toast, ActionButton]);
+
+jest.mock('common/icons/fluentui-v9-icons');
+describe('CardFooterInstanceActionButtons', () => {
+    mockReactComponents([
+        Toast,
+        Button,
+        MenuItem,
+        Menu,
+        MenuTrigger,
+        MenuPopover,
+        MenuList,
+        Tooltip,
+    ]);
 
     let defaultProps: CardFooterInstanceActionButtonsProps;
     let defaultDeps: CardFooterInstanceActionButtonsDeps;
@@ -52,7 +72,6 @@ describe(CardFooterInstanceActionButtons, () => {
     beforeEach(() => {
         menuItemsBuilderMock = Mock.ofType<CardFooterMenuItemsBuilder>();
         cardsViewControllerMock = Mock.ofType<CardsViewController>();
-
         defaultDeps = {
             cardInteractionSupport: allCardInteractionsSupported,
             cardFooterMenuItemsBuilder: menuItemsBuilderMock.object,
@@ -70,7 +89,6 @@ describe(CardFooterInstanceActionButtons, () => {
         setupGetMenuItems([], defaultProps);
 
         const renderResult = render(<CardFooterInstanceActionButtons {...defaultProps} />);
-
         expect(renderResult.container.firstChild).toBeNull();
     });
 
@@ -106,12 +124,18 @@ describe(CardFooterInstanceActionButtons, () => {
         });
 
         function verifySnapshots(renderedElement: RenderResult): void {
+            useOriginalReactElements('@fluentui/react-components', [
+                'Tooltip',
+                'Menu',
+                'MenuTrigger',
+                'MenuButton',
+                'MenuPopover',
+                'MenuList',
+                'MenuItem',
+            ]);
             expect(renderedElement.asFragment()).toMatchSnapshot('component snapshot');
             if (isCardFooterCollapsed) {
-                expectMockedComponentPropsToMatchSnapshots(
-                    [ActionButton],
-                    'action button menu props',
-                );
+                expect(renderedElement.asFragment()).toMatchSnapshot('kebab button menu');
             }
         }
     });
@@ -130,13 +154,13 @@ describe(CardFooterInstanceActionButtons, () => {
             const renderResult = render(<CardFooterInstanceActionButtons {...newProps} />);
 
             expect(renderResult.asFragment()).toMatchSnapshot('component snapshot');
-            expectMockedComponentPropsToMatchSnapshots([ActionButton], 'action button menu props');
+            expectMockedComponentPropsToMatchSnapshots([MenuButton], 'action button menu props');
         },
     );
 
-    it('onIssueFilingSettingsDialogDismissed focuses kebab button', async () => {
+    it('onIssueFilingSettingsDialogDismissed focus kebab button', async () => {
+        useOriginalReactElements('@fluentui/react-components', ['Button']);
         defaultProps.narrowModeStatus = { isCardFooterCollapsed: true } as NarrowModeStatus;
-        const kebabButtonMock = Mock.ofType<IButton>();
         let menuItemsProps: CardFooterMenuItemsProps;
 
         menuItemsBuilderMock
@@ -149,22 +173,17 @@ describe(CardFooterInstanceActionButtons, () => {
                 menuItemsProps = props;
                 return menuItems;
             });
-
-        render(<CardFooterInstanceActionButtons {...defaultProps} />);
-
-        // call ref callback to set rendered component's ref to our button mock
-        const kebabButtonRefCallback = getMockComponentClassPropsForCall(ActionButton)
-            .componentRef as (ref: IButton) => void;
-        kebabButtonRefCallback(kebabButtonMock.object);
-
+        const result = render(<CardFooterInstanceActionButtons {...defaultProps} />);
         menuItemsProps.onIssueFilingSettingsDialogDismissed();
+        jest.spyOn(menuItemsProps, 'onIssueFilingSettingsDialogDismissed');
+        const getButton = result.getByRole('button');
 
-        kebabButtonMock.verify(k => k.focus(), Times.once());
+        expect(document.activeElement).toBe(getButton);
     });
 
     it('File issue button is focused when issue filing settings dialog is dismissed', async () => {
         defaultProps.narrowModeStatus = { isCardFooterCollapsed: false } as NarrowModeStatus;
-        const fileIssueButtonMock = Mock.ofType<IButton>();
+        const fileIssueButtonMock = Mock.ofType<HTMLButtonElement>();
 
         let menuItemsProps: CardFooterMenuItemsProps;
         menuItemsBuilderMock
@@ -186,7 +205,7 @@ describe(CardFooterInstanceActionButtons, () => {
         );
 
         // call ref callback to set rendered component's ref to our button mock
-        const buttonRefCallback = menuItemsProps.fileIssueButtonRef as (button: IButton) => void;
+        const buttonRefCallback = menuItemsProps.fileIssueButtonRef as any;
         buttonRefCallback(fileIssueButtonMock.object);
 
         menuItemsProps.onIssueFilingSettingsDialogDismissed();

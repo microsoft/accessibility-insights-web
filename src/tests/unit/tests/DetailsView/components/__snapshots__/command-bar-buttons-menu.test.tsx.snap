@@ -2,97 +2,66 @@
 
 exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 <DocumentFragment>
-  <mock-styledtooltiphostbase
-    aria-label="More actions"
-    content="More actions"
+  <mock-menu
+    open="false"
   >
-    <mock-customizedcommandbarbutton
-      arialabel="More actions"
-      classname="commandBarButtonsMenu"
-      componentref="[object Object]"
-      menuiconprops="[object Object]"
-      menuprops="[object Object]"
-      role="button"
-    />
-  </mock-styledtooltiphostbase>
+    <mock-tooltip
+      content="More actions"
+      relationship="label"
+    >
+      <mock-menutrigger
+        disablebuttonenhancement="true"
+      >
+        <mock-menubutton
+          appearance="transparent"
+          aria-label="More actions"
+          classname="commandBarButtonsMenuButton"
+          icon="[object Object]"
+        />
+      </mock-menutrigger>
+    </mock-tooltip>
+    <mock-menupopover
+      style="border-radius: unset !important;"
+    >
+      <mock-menulist
+        classname="menuList"
+      >
+        <span>
+          Save assessment button
+        </span>
+        <span>
+          Load assessment button
+        </span>
+        <span>
+          Transfer to assessment button
+        </span>
+        <span />
+      </mock-menulist>
+    </mock-menupopover>
+  </mock-menu>
 </DocumentFragment>
 `;
 
-exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu: CustomizedCommandBarButton props 1`] = `
-{
-  "ariaLabel": "More actions",
-  "className": "commandBarButtonsMenu",
-  "componentRef": {},
-  "menuIconProps": {
-    "className": "commandBarButtonsMenuButton",
-    "iconName": "More",
-  },
-  "menuProps": {
-    "className": "commandBarButtonsSubmenu",
-    "items": [
-      {
-        "key": "save assessment",
-        "onRender": [Function],
-      },
-      {
-        "key": "load assessment",
-        "onRender": [Function],
-      },
-      {
-        "key": "transfer to assessment",
-        "onRender": [Function],
-      },
-      {
-        "key": "start over",
-      },
-    ],
-  },
-  "role": "button",
-}
+exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render export report menuitem 1`] = `
+<span>
+  Report export button
+</span>
 `;
 
-exports[`CommandBarButtonsMenu renders all child buttons,: render export report menuitem 1`] = `
-<div
-  role="menuitem"
->
-  <React.Fragment>
-    Report export button
-  </React.Fragment>
-</div>
+exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render load assessment menuitem 1`] = `
+<span>
+  Load assessment button
+</span>
 `;
 
-exports[`CommandBarButtonsMenu renders all child buttons,: render load assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
-  <React.Fragment>
-    Load assessment button
-  </React.Fragment>
-</div>
+exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render save assessment menuitem 1`] = `
+<span>
+  Save assessment button
+</span>
 `;
 
-exports[`CommandBarButtonsMenu renders all child buttons,: render save assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
-  <React.Fragment>
-    Save assessment button
-  </React.Fragment>
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons,: render start over menuitem 1`] = `
-<React.Fragment>
-  Start over button
-</React.Fragment>
-`;
-
-exports[`CommandBarButtonsMenu renders all child buttons,: render transfer to assessment menuitem 1`] = `
-<div
-  role="menuitem"
->
-  <React.Fragment>
-    Transfer to assessment button
-  </React.Fragment>
-</div>
+exports[`CommandBarButtonsMenu renders all child buttons with hasSubMenu false,: render transfer to assessment menuitem 1`] = `
+<span>
+  Transfer to assessment button
+</span>
 `;

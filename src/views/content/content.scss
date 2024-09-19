@@ -14,6 +14,17 @@
     }
 }
 
+.info {
+    /* stylelint-disable-next-line length-zero-no-unit */
+    padding: 0px !important;
+    color: $link !important;
+    font-weight: 400 !important;
+
+    &:hover {
+        color: $link-hover !important;
+    }
+}
+
 .content-header {
     @include text-style-title-l;
 
@@ -221,15 +232,15 @@
     }
 
     .do-header {
-        @include check-icon-styles($icon-size, 0, $do-color);
-
         border-bottom: 2px solid $do-color;
+
+        @include check-icon-styles($icon-size, 0, $do-color);
     }
 
     .dont-header {
-        @include cross-icon-styles($icon-size, 0, $dont-color);
-
         border-bottom: 2px solid $dont-color;
+
+        @include cross-icon-styles($icon-size, 0, $dont-color);
     }
 
     .pass-header {

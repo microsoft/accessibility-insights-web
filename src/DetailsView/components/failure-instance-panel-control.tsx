@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton, Icon, ILabelStyles, ITextFieldStyles, TextField } from '@fluentui/react';
-import { Link } from '@fluentui/react-components';
+import { Icon, ILabelStyles, ITextFieldStyles, TextField } from '@fluentui/react';
+import { Link, Button } from '@fluentui/react-components';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -15,7 +16,6 @@ import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-com
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';
 import styles from './failure-instance-panel.scss';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
-
 export interface FailureInstancePanelControlProps {
     step: string;
     test: VisualizationType;
@@ -83,19 +83,20 @@ export class FailureInstancePanelControl extends React.Component<
     private renderButton(): JSX.Element {
         if (this.props.actionType === CapturedInstanceActionType.CREATE) {
             return (
-                <ActionButton
-                    ariaLabel={FailureInstancePanelControl.addFailureInstanceLabel}
-                    ariaDescription="Open add a failure instance panel"
-                    iconProps={{ iconName: 'Add' }}
+                <Button
+                    appearance="transparent"
+                    aria-label={FailureInstancePanelControl.addFailureInstanceLabel}
+                    aria-description="Open add a failure instance panel"
+                    icon={<FluentUIV9Icon iconName="AddRegular" />}
                     onClick={this.openFailureInstancePanel}
                 >
                     {FailureInstancePanelControl.addFailureInstanceLabel}
-                </ActionButton>
+                </Button>
             );
         } else {
             return (
                 <Link className={styles.editButton} onClick={this.openFailureInstancePanel}>
-                    <Icon iconName="edit" ariaLabel={'edit instance'} />
+                    <Icon iconName="edit" aria-label={'edit instance'} />
                 </Link>
             );
         }
@@ -207,7 +208,7 @@ export class FailureInstancePanelControl extends React.Component<
         });
     };
 
-    private onValidateSelector = (event): void => {
+    private onValidateSelector = (): void => {
         this.props.addPathForValidation(this.state.currentInstance.path);
     };
 

@@ -1,5 +1,271 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DetailsViewCommandBar Button focus render statover component 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body
+    class=""
+    data-tabster="{"root":{}}"
+  >
+    <div
+      id="fluent-default-layer-host"
+      style="position: fixed; z-index: 1000000;"
+    />
+    <div>
+      <div
+        aria-label="command bar"
+        class="detailsViewCommandBar"
+        role="region"
+      >
+        <div
+          aria-labelledby="switch-to-target"
+          class="detailsViewTargetPage"
+        >
+          <span
+            id="switch-to-target"
+          >
+            Target page: 
+          </span>
+          <mock-newtablinkwithtooltip
+            aria-label="Switch to target page: command-bar-test-tab-title"
+            classname="targetPageLink"
+            role="link"
+            tooltipcontent="Switch to target page: command-bar-test-tab-title"
+          >
+            <span
+              class="targetPageTitle"
+            >
+              command-bar-test-tab-title
+            </span>
+          </mock-newtablinkwithtooltip>
+        </div>
+        <button
+          aria-expanded="false"
+          aria-haspopup="menu"
+          aria-label="More actions"
+          class="fui-Button r1alrhcs fui-MenuButton commandBarButtonsMenuButton ___cpe5h10_1yhfyj7 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f18ktai2 fwbmr0d f44c6la"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur3"
+          type="button"
+        >
+          <span
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon"
+          >
+            <svg
+              aria-hidden="true"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.25 10a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm5 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0ZM15 11.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </button>
+        <mock-invalidloadassessmentdialog
+          assessmentstoredata="[object Object]"
+          datatransferviewstoredata="[object Object]"
+          deps="[object Object]"
+          featureflagstoredata="[object Object]"
+          isopen="false"
+          narrowmodestatus="[object Object]"
+          rightpanelconfiguration="[object Object]"
+          scanmetadata="[object Object]"
+          switchernavconfiguration="[object Object]"
+          tabstoredata="[object Object]"
+          userconfigurationstoredata="[object Object]"
+        />
+        <mock-loadassessmentdialog
+          assessmentstoredata="[object Object]"
+          datatransferviewstoredata="[object Object]"
+          deps="[object Object]"
+          featureflagstoredata="[object Object]"
+          isopen="false"
+          loadedassessmentdata="[object Object]"
+          narrowmodestatus="[object Object]"
+          prevtab="[object Object]"
+          rightpanelconfiguration="[object Object]"
+          scanmetadata="[object Object]"
+          switchernavconfiguration="[object Object]"
+          tabid="5"
+          tabstoredata="[object Object]"
+          userconfigurationstoredata="[object Object]"
+        />
+        <mock-saveassessmentdialog
+          assessmentstoredata="[object Object]"
+          datatransferviewstoredata="[object Object]"
+          deps="[object Object]"
+          featureflagstoredata="[object Object]"
+          isopen="false"
+          narrowmodestatus="[object Object]"
+          rightpanelconfiguration="[object Object]"
+          scanmetadata="[object Object]"
+          switchernavconfiguration="[object Object]"
+          tabstoredata="[object Object]"
+          userconfigurationstoredata="[object Object]"
+        />
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      aria-label="command bar"
+      class="detailsViewCommandBar"
+      role="region"
+    >
+      <div
+        aria-labelledby="switch-to-target"
+        class="detailsViewTargetPage"
+      >
+        <span
+          id="switch-to-target"
+        >
+          Target page: 
+        </span>
+        <mock-newtablinkwithtooltip
+          aria-label="Switch to target page: command-bar-test-tab-title"
+          classname="targetPageLink"
+          role="link"
+          tooltipcontent="Switch to target page: command-bar-test-tab-title"
+        >
+          <span
+            class="targetPageTitle"
+          >
+            command-bar-test-tab-title
+          </span>
+        </mock-newtablinkwithtooltip>
+      </div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="menu"
+        aria-label="More actions"
+        class="fui-Button r1alrhcs fui-MenuButton commandBarButtonsMenuButton ___cpe5h10_1yhfyj7 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb fjxutwb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f18ktai2 fwbmr0d f44c6la"
+        data-tabster="{"restorer":{"type":1}}"
+        id="menur3"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 fui-MenuButton__icon"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.25 10a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Zm5 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0ZM15 11.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </button>
+      <mock-invalidloadassessmentdialog
+        assessmentstoredata="[object Object]"
+        datatransferviewstoredata="[object Object]"
+        deps="[object Object]"
+        featureflagstoredata="[object Object]"
+        isopen="false"
+        narrowmodestatus="[object Object]"
+        rightpanelconfiguration="[object Object]"
+        scanmetadata="[object Object]"
+        switchernavconfiguration="[object Object]"
+        tabstoredata="[object Object]"
+        userconfigurationstoredata="[object Object]"
+      />
+      <mock-loadassessmentdialog
+        assessmentstoredata="[object Object]"
+        datatransferviewstoredata="[object Object]"
+        deps="[object Object]"
+        featureflagstoredata="[object Object]"
+        isopen="false"
+        loadedassessmentdata="[object Object]"
+        narrowmodestatus="[object Object]"
+        prevtab="[object Object]"
+        rightpanelconfiguration="[object Object]"
+        scanmetadata="[object Object]"
+        switchernavconfiguration="[object Object]"
+        tabid="5"
+        tabstoredata="[object Object]"
+        userconfigurationstoredata="[object Object]"
+      />
+      <mock-saveassessmentdialog
+        assessmentstoredata="[object Object]"
+        datatransferviewstoredata="[object Object]"
+        deps="[object Object]"
+        featureflagstoredata="[object Object]"
+        isopen="false"
+        narrowmodestatus="[object Object]"
+        rightpanelconfiguration="[object Object]"
+        scanmetadata="[object Object]"
+        switchernavconfiguration="[object Object]"
+        tabstoredata="[object Object]"
+        userconfigurationstoredata="[object Object]"
+      />
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
 exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid load assessment dialog hidden 1`] = `
 <DocumentFragment>
   <div
@@ -33,58 +299,55 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__15"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__18"
-            >
-              Load assessment
-            </span>
-          </span>
+            <path
+              d="M3 5.5v6.6l1.5-2.6A3 3 0 0 1 7.1 8H15v-.5c0-.83-.67-1.5-1.5-1.5h-4a.5.5 0 0 1-.35-.15l-1.71-1.7A.5.5 0 0 0 7.09 4H4.5C3.67 4 3 4.67 3 5.5Zm1.28 10.48.22.02h9.4a2 2 0 0 0 1.73-1l2.17-3.75A1.5 1.5 0 0 0 16.5 9H7.1a2 2 0 0 0-1.73 1L3.2 13.75a1.5 1.5 0 0 0 1.08 2.23ZM2 14.46V5.5A2.5 2.5 0 0 1 4.5 3h2.59c.4 0 .78.16 1.06.44L9.7 5h3.79A2.5 2.5 0 0 1 16 7.5V8h.5a2.5 2.5 0 0 1 2.16 3.75L16.5 15.5a3 3 0 0 1-2.6 1.5H4.5a2.54 2.54 0 0 1-1.62-.6A2.5 2.5 0 0 1 2 14.46Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Load assessment
       </button>
     </div>
     <mock-exportdialog
@@ -111,6 +374,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -126,6 +390,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -138,6 +403,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -150,6 +416,20 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -188,58 +468,55 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__15"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__18"
-            >
-              Load assessment
-            </span>
-          </span>
+            <path
+              d="M3 5.5v6.6l1.5-2.6A3 3 0 0 1 7.1 8H15v-.5c0-.83-.67-1.5-1.5-1.5h-4a.5.5 0 0 1-.35-.15l-1.71-1.7A.5.5 0 0 0 7.09 4H4.5C3.67 4 3 4.67 3 5.5Zm1.28 10.48.22.02h9.4a2 2 0 0 0 1.73-1l2.17-3.75A1.5 1.5 0 0 0 16.5 9H7.1a2 2 0 0 0-1.73 1L3.2 13.75a1.5 1.5 0 0 0 1.08 2.23ZM2 14.46V5.5A2.5 2.5 0 0 1 4.5 3h2.59c.4 0 .78.16 1.06.44L9.7 5h3.79A2.5 2.5 0 0 1 16 7.5V8h.5a2.5 2.5 0 0 1 2.16 3.75L16.5 15.5a3 3 0 0 1-2.6 1.5H4.5a2.54 2.54 0 0 1-1.62-.6A2.5 2.5 0 0 1 2 14.46Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Load assessment
       </button>
     </div>
     <mock-exportdialog
@@ -266,6 +543,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -281,6 +559,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -293,6 +572,7 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -305,6 +585,20 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -343,58 +637,55 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__9"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__12"
-            >
-              Load assessment
-            </span>
-          </span>
+            <path
+              d="M3 5.5v6.6l1.5-2.6A3 3 0 0 1 7.1 8H15v-.5c0-.83-.67-1.5-1.5-1.5h-4a.5.5 0 0 1-.35-.15l-1.71-1.7A.5.5 0 0 0 7.09 4H4.5C3.67 4 3 4.67 3 5.5Zm1.28 10.48.22.02h9.4a2 2 0 0 0 1.73-1l2.17-3.75A1.5 1.5 0 0 0 16.5 9H7.1a2 2 0 0 0-1.73 1L3.2 13.75a1.5 1.5 0 0 0 1.08 2.23ZM2 14.46V5.5A2.5 2.5 0 0 1 4.5 3h2.59c.4 0 .78.16 1.06.44L9.7 5h3.79A2.5 2.5 0 0 1 16 7.5V8h.5a2.5 2.5 0 0 1 2.16 3.75L16.5 15.5a3 3 0 0 1-2.6 1.5H4.5a2.54 2.54 0 0 1-1.62-.6A2.5 2.5 0 0 1 2 14.46Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Load assessment
       </button>
     </div>
     <mock-exportdialog
@@ -421,6 +712,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -436,6 +728,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -448,6 +741,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -460,6 +754,20 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -498,58 +806,55 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__9"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="load-assessment-button"
-        data-is-focusable="true"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__12"
-            >
-              Load assessment
-            </span>
-          </span>
+            <path
+              d="M3 5.5v6.6l1.5-2.6A3 3 0 0 1 7.1 8H15v-.5c0-.83-.67-1.5-1.5-1.5h-4a.5.5 0 0 1-.35-.15l-1.71-1.7A.5.5 0 0 0 7.09 4H4.5C3.67 4 3 4.67 3 5.5Zm1.28 10.48.22.02h9.4a2 2 0 0 0 1.73-1l2.17-3.75A1.5 1.5 0 0 0 16.5 9H7.1a2 2 0 0 0-1.73 1L3.2 13.75a1.5 1.5 0 0 0 1.08 2.23ZM2 14.46V5.5A2.5 2.5 0 0 1 4.5 3h2.59c.4 0 .78.16 1.06.44L9.7 5h3.79A2.5 2.5 0 0 1 16 7.5V8h.5a2.5 2.5 0 0 1 2.16 3.75L16.5 15.5a3 3 0 0 1-2.6 1.5H4.5a2.54 2.54 0 0 1-1.62-.6A2.5 2.5 0 0 1 2 14.46Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Load assessment
       </button>
     </div>
     <mock-exportdialog
@@ -576,6 +881,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -591,6 +897,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -603,6 +910,7 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -615,6 +923,20 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -653,31 +975,30 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__6"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
     </div>
     <mock-exportdialog
@@ -704,6 +1025,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -719,6 +1041,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -731,6 +1054,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -743,6 +1067,20 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -781,31 +1119,30 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__6"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
     </div>
     <mock-exportdialog
@@ -831,6 +1168,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -846,6 +1184,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -858,6 +1197,7 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -870,6 +1210,362 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders save assessment dialog: Save assessment dialog open 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
+        data-automation-id="report-export-button"
+        id="report-export-button"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        Export result
+      </button>
+      <a
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
+        download="SavedAssessment_undefined_undefined.a11ywebassessment"
+        role="button"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 5c0-1.1.9-2 2-2h8.38a2 2 0 0 1 1.41.59l1.62 1.62A2 2 0 0 1 17 6.62V15a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm2-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1v-4.5c0-.83.67-1.5 1.5-1.5h7c.83 0 1.5.67 1.5 1.5V16a1 1 0 0 0 1-1V6.62a1 1 0 0 0-.3-.7L14.1 4.28a1 1 0 0 0-.71-.29H13v2.5c0 .83-.67 1.5-1.5 1.5h-4A1.5 1.5 0 0 1 6 6.5V4H5Zm2 0v2.5c0 .28.22.5.5.5h4a.5.5 0 0 0 .5-.5V4H7Zm7 12v-4.5a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5V16h8Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        Save assessment
+      </a>
+    </div>
+    <mock-exportdialog
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-quickassesstoassessmentconfirmdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isshown="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="true"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DetailsViewCommandBar renders save assessment dialog: save assessment dialog hidden 1`] = `
+<DocumentFragment>
+  <div
+    aria-label="command bar"
+    class="detailsViewCommandBar"
+    role="region"
+  >
+    <div
+      aria-labelledby="switch-to-target"
+      class="detailsViewTargetPage"
+    >
+      <span
+        id="switch-to-target"
+      >
+        Target page: 
+      </span>
+      <mock-newtablinkwithtooltip
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        classname="targetPageLink"
+        role="link"
+        tooltipcontent="Switch to target page: command-bar-test-tab-title"
+      >
+        <span
+          class="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </mock-newtablinkwithtooltip>
+    </div>
+    <div
+      class="detailsViewCommandButtons"
+    >
+      <button
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
+        data-automation-id="report-export-button"
+        id="report-export-button"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        Export result
+      </button>
+      <a
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
+        download="SavedAssessment_undefined_undefined.a11ywebassessment"
+        role="button"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
+        >
+          <svg
+            aria-hidden="true"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 5c0-1.1.9-2 2-2h8.38a2 2 0 0 1 1.41.59l1.62 1.62A2 2 0 0 1 17 6.62V15a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm2-1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1v-4.5c0-.83.67-1.5 1.5-1.5h7c.83 0 1.5.67 1.5 1.5V16a1 1 0 0 0 1-1V6.62a1 1 0 0 0-.3-.7L14.1 4.28a1 1 0 0 0-.71-.29H13v2.5c0 .83-.67 1.5-1.5 1.5h-4A1.5 1.5 0 0 1 6 6.5V4H5Zm2 0v2.5c0 .28.22.5.5.5h4a.5.5 0 0 0 .5-.5V4H7Zm7 12v-4.5a.5.5 0 0 0-.5-.5h-7a.5.5 0 0 0-.5.5V16h8Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        Save assessment
+      </a>
+    </div>
+    <mock-exportdialog
+      description=""
+      featureflagstoredata="[object Object]"
+      htmlexportdata=""
+      htmlfilename=""
+      htmlfileurl="#"
+      isopen="false"
+      jsonexportdata=""
+      jsonfilename=""
+      jsonfileurl="#"
+      reportexportformat="Assessment"
+      reportexportservices="[object Object],[object Object],[object Object]"
+    />
+    <mock-invalidloadassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-loadassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      loadedassessmentdata="[object Object]"
+      narrowmodestatus="[object Object]"
+      prevtab="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabid="5"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-startoverdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      dialogstate="none"
+      featureflagstoredata="[object Object]"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-quickassesstoassessmentconfirmdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isshown="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -908,67 +1604,82 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__30"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <div>
         <button
+          aria-expanded="true"
+          aria-haspopup="menu"
           aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
+          class="fui-Button r1alrhcs fui-MenuButton ___b3z9fu0_617zfn0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1dswenw f9hdeju f7otkfg"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur1"
+          role="button"
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___1n29ach_duziql0 f1nizpg2 fqyhrn0"
           >
-            <i
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                class="ms-Button-label label-113"
-                id="id__33"
-              >
-                Start over
-              </span>
-            </span>
-            <i
+              <path
+                d="M4 10a6 6 0 0 1 10.47-4H12.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.6a7 7 0 1 0 1.98 4.36.5.5 0 1 0-1 .08L16 10a6 6 0 0 1-12 0Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          Start over
+          <span
+            class="fui-MenuButton__menuIcon ___c2pfdf0_8ts8a30 fwrc4pm f1ugzwwg fvblgha frx94fk fbyavb5"
+          >
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
+              class="___1p6ai22_1ra22ji f1w7gpdv fez10in fg4l7m0 fkfq4zb f9hdeju f139oj5f"
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+                fill="currentColor"
+              />
+            </svg>
           </span>
         </button>
         <span
-          class="ms-layer"
+          hidden=""
         />
       </div>
     </div>
@@ -996,6 +1707,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1011,6 +1723,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1023,6 +1736,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1035,6 +1749,20 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1073,63 +1801,78 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__30"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <div>
         <button
+          aria-expanded="false"
+          aria-haspopup="menu"
           aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
+          class="fui-Button r1alrhcs fui-MenuButton ___5uqdeq0_1y5fi4n f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1kyxi2w f1t6ax4o fycuoez f1dswenw f9hdeju f7otkfg"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur1"
+          role="button"
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___963sj20_1qpm2bl f1nizpg2"
           >
-            <i
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                class="ms-Button-label label-113"
-                id="id__33"
-              >
-                Start over
-              </span>
-            </span>
-            <i
+              <path
+                d="M4 10a6 6 0 0 1 10.47-4H12.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.6a7 7 0 1 0 1.98 4.36.5.5 0 1 0-1 .08L16 10a6 6 0 0 1-12 0Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          Start over
+          <span
+            class="fui-MenuButton__menuIcon ___c2pfdf0_8ts8a30 fwrc4pm f1ugzwwg fvblgha frx94fk fbyavb5"
+          >
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
+              class="___1p6ai22_1ra22ji f1w7gpdv fez10in fg4l7m0 fkfq4zb f9hdeju f139oj5f"
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+                fill="currentColor"
+              />
+            </svg>
           </span>
         </button>
       </div>
@@ -1158,6 +1901,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1173,6 +1917,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1185,6 +1930,7 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1197,6 +1943,20 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1235,67 +1995,82 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__21"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <div>
         <button
+          aria-expanded="true"
+          aria-haspopup="menu"
           aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
+          class="fui-Button r1alrhcs fui-MenuButton ___b3z9fu0_617zfn0 f1q9pm1r f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 fxoiby5 f15q0o9g f1kyxi2w f1t6ax4o fycuoez f1dswenw f9hdeju f7otkfg"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur0"
+          role="button"
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___1n29ach_duziql0 f1nizpg2 fqyhrn0"
           >
-            <i
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                class="ms-Button-label label-113"
-                id="id__24"
-              >
-                Start over
-              </span>
-            </span>
-            <i
+              <path
+                d="M4 10a6 6 0 0 1 10.47-4H12.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.6a7 7 0 1 0 1.98 4.36.5.5 0 1 0-1 .08L16 10a6 6 0 0 1-12 0Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          Start over
+          <span
+            class="fui-MenuButton__menuIcon ___c2pfdf0_8ts8a30 fwrc4pm f1ugzwwg fvblgha frx94fk fbyavb5"
+          >
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
+              class="___1p6ai22_1ra22ji f1w7gpdv fez10in fg4l7m0 fkfq4zb f9hdeju f139oj5f"
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+                fill="currentColor"
+              />
+            </svg>
           </span>
         </button>
         <span
-          class="ms-layer"
+          hidden=""
         />
       </div>
     </div>
@@ -1323,6 +2098,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1338,6 +2114,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1350,6 +2127,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1362,6 +2140,20 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1400,63 +2192,78 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__21"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <div>
         <button
+          aria-expanded="false"
+          aria-haspopup="menu"
           aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
+          class="fui-Button r1alrhcs fui-MenuButton ___5uqdeq0_1y5fi4n f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1kyxi2w f1t6ax4o fycuoez f1dswenw f9hdeju f7otkfg"
+          data-tabster="{"restorer":{"type":1}}"
+          id="menur0"
+          role="button"
           type="button"
         >
           <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
+            class="fui-Button__icon rywnvv2 fui-MenuButton__icon ___963sj20_1qpm2bl f1nizpg2"
           >
-            <i
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
+              class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+              fill="currentColor"
+              height="1em"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                class="ms-Button-label label-113"
-                id="id__24"
-              >
-                Start over
-              </span>
-            </span>
-            <i
+              <path
+                d="M4 10a6 6 0 0 1 10.47-4H12.5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-1 0v1.6a7 7 0 1 0 1.98 4.36.5.5 0 1 0-1 .08L16 10a6 6 0 0 1-12 0Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          Start over
+          <span
+            class="fui-MenuButton__menuIcon ___c2pfdf0_8ts8a30 fwrc4pm f1ugzwwg fvblgha frx94fk fbyavb5"
+          >
+            <svg
               aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
+              class="___1p6ai22_1ra22ji f1w7gpdv fez10in fg4l7m0 fkfq4zb f9hdeju f139oj5f"
+              fill="currentColor"
+              height="20"
+              viewBox="0 0 20 20"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15.85 7.65c.2.2.2.5 0 .7l-5.46 5.49a.55.55 0 0 1-.78 0L4.15 8.35a.5.5 0 1 1 .7-.7L10 12.8l5.15-5.16c.2-.2.5-.2.7 0Z"
+                fill="currentColor"
+              />
+            </svg>
           </span>
         </button>
       </div>
@@ -1485,6 +2292,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1500,6 +2308,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1512,6 +2321,7 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1524,6 +2334,20 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1562,31 +2386,30 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__39"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <div>
         Transfer to assessment stub
@@ -1616,6 +2439,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1631,6 +2455,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1643,6 +2468,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1655,6 +2481,20 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1693,31 +2533,30 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       class="detailsViewCommandButtons"
     >
       <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+        class="fui-Button r1alrhcs ___140khrv_1s9dz87 f1c21dwh f1p3nwhy f11589ue f1q5o8ev f1pdflbu fkfq4zb f1s2uweq fr80ssc f1ukrpxl fecsdlb f139oj5f ft1hn21 fuxngvv fwiml72 f1h0usnq fs4ktlq f16h9ulv fx2bmrt f1fg1p5m f1dfjoow f1j98vj9 f1tme0vf f4xjyn1 f18onu3q f9ddjv3 f1fabniw fj0ryk1 f1t6ax4o fmntwad fgslppp f1dswenw f9hdeju f7otkfg"
         data-automation-id="report-export-button"
-        data-is-focusable="true"
+        id="report-export-button"
         type="button"
       >
         <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          class="fui-Button__icon rywnvv2 ___963sj20_1qpm2bl f1nizpg2"
         >
-          <i
+          <svg
             aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+            class="___134f6oe_gm9x020 f1w7gpdv fez10in fg4l7m0 fq3bhnu"
+            fill="currentColor"
+            height="1em"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <span
-              class="ms-Button-label label-113"
-              id="id__39"
-            >
-              Export result
-            </span>
-          </span>
+            <path
+              d="M2.5 4c.28 0 .5.22.5.5v11a.5.5 0 0 1-1 0v-11c0-.28.22-.5.5-.5ZM5 10c0-.28.22-.5.5-.5h10.8l-3.15-3.15a.5.5 0 0 1 .7-.7l4 4a.5.5 0 0 1 0 .7l-4 4a.5.5 0 0 1-.7-.7l3.14-3.15H5.5A.5.5 0 0 1 5 10Z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
+        Export result
       </button>
       <div>
         Transfer to assessment stub
@@ -1747,6 +2586,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1762,6 +2602,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1774,6 +2615,7 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1786,10 +2628,28 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
 `;
+
+exports[`DetailsViewCommandBar renders with buttons  1`] = `<DocumentFragment />`;
+
+exports[`DetailsViewCommandBar renders with buttons : CommandBarButtonsMenu props 1`] = `undefined`;
 
 exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = `
 <DocumentFragment>
@@ -1845,6 +2705,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -1860,6 +2721,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -1872,6 +2734,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -1884,6 +2747,20 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -1940,25 +2817,10 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
         Transfer to assessment stub
       </div>
       <button
-        class="ms-Button ms-Button--action ms-Button--command root-109"
-        data-is-focusable="true"
+        class="fui-Button r1alrhcs"
         type="button"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__0"
-            >
-              Start Over Component
-            </span>
-          </span>
-        </span>
+        Start Over Component
       </button>
     </div>
     <mock-exportdialog
@@ -1985,6 +2847,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -2000,6 +2863,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -2012,6 +2876,7 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -2024,6 +2889,20 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -2093,6 +2972,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -2108,6 +2988,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -2120,6 +3001,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -2132,6 +3014,20 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -2200,6 +3096,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -2215,6 +3112,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -2227,6 +3125,7 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -2239,6 +3138,20 @@ exports[`DetailsViewCommandBar renders without export button and without start o
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>
@@ -2283,25 +3196,10 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
         Transfer to assessment stub
       </div>
       <button
-        class="ms-Button ms-Button--action ms-Button--command root-109"
-        data-is-focusable="true"
+        class="fui-Button r1alrhcs"
         type="button"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
-        >
-          <span
-            class="ms-Button-textContainer textContainer-111"
-          >
-            <span
-              class="ms-Button-label label-113"
-              id="id__3"
-            >
-              Start Over Component
-            </span>
-          </span>
-        </span>
+        Start Over Component
       </button>
     </div>
     <mock-exportdialog
@@ -2328,6 +3226,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-loadassessmentdialog
       assessmentstoredata="[object Object]"
@@ -2343,6 +3242,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       switchernavconfiguration="[object Object]"
       tabid="5"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-startoverdialog
       assessmentstoredata="[object Object]"
@@ -2355,6 +3255,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
     <mock-quickassesstoassessmentconfirmdialog
       assessmentstoredata="[object Object]"
@@ -2367,6 +3268,20 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
       scanmetadata="[object Object]"
       switchernavconfiguration="[object Object]"
       tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
+    />
+    <mock-saveassessmentdialog
+      assessmentstoredata="[object Object]"
+      datatransferviewstoredata="[object Object]"
+      deps="[object Object]"
+      featureflagstoredata="[object Object]"
+      isopen="false"
+      narrowmodestatus="[object Object]"
+      rightpanelconfiguration="[object Object]"
+      scanmetadata="[object Object]"
+      switchernavconfiguration="[object Object]"
+      tabstoredata="[object Object]"
+      userconfigurationstoredata="[object Object]"
     />
   </div>
 </DocumentFragment>

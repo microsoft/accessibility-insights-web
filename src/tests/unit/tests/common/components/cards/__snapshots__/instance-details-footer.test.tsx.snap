@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InstanceDetailsFooter renders as null when no card interactions are supported: CardFooterInstanceActionButtons props 1`] = `undefined`;
+exports[`InstanceDetailsFooter renders as null when no card interactions are supported: CardFooterInstanceActionButtonsProps props 1`] = `undefined`;
 
 exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web) 1`] = `
 <DocumentFragment>
@@ -17,7 +17,7 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
         Highlight visible
       </label>
     </div>
-    <mock-cardfooterinstanceactionbuttons
+    <mock-cardfooterinstanceactionbuttonsprops
       deps="[object Object]"
       issuedetailsdata="[object Object]"
       kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
@@ -27,7 +27,7 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
 </DocumentFragment>
 `;
 
-exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web): CardFooterInstanceActionButtons props 1`] = `
+exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web): CardFooterInstanceActionButtonsProps props 1`] = `
 {
   "deps": {
     "cardInteractionSupport": {
@@ -59,7 +59,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
         Highlight hidden
       </label>
     </div>
-    <mock-cardfooterinstanceactionbuttons
+    <mock-cardfooterinstanceactionbuttonsprops
       deps="[object Object]"
       issuedetailsdata="[object Object]"
       kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
@@ -69,7 +69,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
 </DocumentFragment>
 `;
 
-exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden": CardFooterInstanceActionButtons props 1`] = `
+exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden": CardFooterInstanceActionButtonsProps props 1`] = `
 {
   "deps": {
     "cardInteractionSupport": {
@@ -101,7 +101,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
         Highlight unavailable
       </label>
     </div>
-    <mock-cardfooterinstanceactionbuttons
+    <mock-cardfooterinstanceactionbuttonsprops
       deps="[object Object]"
       issuedetailsdata="[object Object]"
       kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
@@ -111,7 +111,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
 </DocumentFragment>
 `;
 
-exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable": CardFooterInstanceActionButtons props 1`] = `
+exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable": CardFooterInstanceActionButtonsProps props 1`] = `
 {
   "deps": {
     "cardInteractionSupport": {
@@ -143,7 +143,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
         Highlight visible
       </label>
     </div>
-    <mock-cardfooterinstanceactionbuttons
+    <mock-cardfooterinstanceactionbuttonsprops
       deps="[object Object]"
       issuedetailsdata="[object Object]"
       kebabmenuarialabel="More Actions for failure instance body img in rule some-rule"
@@ -153,7 +153,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
 </DocumentFragment>
 `;
 
-exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible": CardFooterInstanceActionButtons props 1`] = `
+exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible": CardFooterInstanceActionButtonsProps props 1`] = `
 {
   "deps": {
     "cardInteractionSupport": {

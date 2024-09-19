@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton } from '@fluentui/react';
+import { Button } from '@fluentui/react-components';
 import { render } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
@@ -19,15 +19,16 @@ import {
     useOriginalReactElements,
 } from '../../../../mock-helpers/mock-module-helpers';
 
-jest.mock('@fluentui/react');
+jest.mock('@fluentui/react-components');
 jest.mock('common/components/heading-element-for-level');
+
 describe('CollapsibleComponentCardsTest', () => {
-    mockReactComponents([HeadingElementForLevel, ActionButton]);
+    mockReactComponents([HeadingElementForLevel, Button]);
     const eventStubFactory = new EventStubFactory();
 
     let setFocusVisibilityMock: IMock<SetFocusVisibility>;
-    let onExpandToggleMock: IMock<(event: React.MouseEvent<HTMLDivElement>) => void>;
-    let clickEventMock: IMock<React.MouseEvent<HTMLDivElement>>;
+    let onExpandToggleMock: IMock<(event: React.MouseEvent<HTMLButtonElement>) => void>;
+    let clickEventMock: IMock<React.MouseEvent<HTMLButtonElement>>;
 
     const partialProps: Partial<CollapsibleComponentCardsProps> = {
         header: <HeadingElementForLevel headingLevel={5}>Some header</HeadingElementForLevel>,
@@ -42,8 +43,8 @@ describe('CollapsibleComponentCardsTest', () => {
     };
 
     beforeEach(() => {
-        onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
-        clickEventMock = Mock.ofType<React.MouseEvent<HTMLDivElement>>();
+        onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLButtonElement>) => void>();
+        clickEventMock = Mock.ofType<React.MouseEvent<HTMLButtonElement>>();
         setFocusVisibilityMock = Mock.ofType<SetFocusVisibility>();
         partialProps.deps = {
             setFocusVisibility: setFocusVisibilityMock.object,
@@ -80,7 +81,7 @@ describe('CollapsibleComponentCardsTest', () => {
         } as CollapsibleComponentCardsProps;
 
         const control = CardsCollapsibleControl(props);
-        useOriginalReactElements('@fluentui/react', ['ActionButton']);
+        useOriginalReactElements('@fluentui/react-components', ['Button']);
         const renderResult = render(control);
 
         expect(renderResult.asFragment()).toMatchSnapshot('expanded');
@@ -105,7 +106,7 @@ describe('CollapsibleComponentCardsTest', () => {
             eventStubFactory.createKeypressEvent();
 
             const control = CardsCollapsibleControl(props);
-            useOriginalReactElements('@fluentui/react', ['ActionButton']);
+            useOriginalReactElements('@fluentui/react-components', ['Button']);
             const renderResult = render(control);
 
             const button = renderResult.getByRole('button');
@@ -118,7 +119,7 @@ describe('CollapsibleComponentCardsTest', () => {
             eventStubFactory.createMouseClickEvent();
 
             const control = CardsCollapsibleControl(props);
-            useOriginalReactElements('@fluentui/react', ['ActionButton']);
+            useOriginalReactElements('@fluentui/react-components', ['Button']);
             const renderResult = render(control);
 
             await userEvent.click(renderResult.getByRole('button'));

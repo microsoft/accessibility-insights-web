@@ -2,75 +2,116 @@
 
 exports[`InsightsCommandButton renders per snapshot with extra className combined with its own 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
-    classname="insightsCommandButton test-extra-class-name"
-    iconprops="[object Object]"
+  <mock-button
+    appearance="transparent"
+    classname=""
+    icon="[object Object]"
+    insightscommandbuttoniconprops="[object Object]"
+    shape="square"
   />
 </DocumentFragment>
 `;
 
-exports[`InsightsCommandButton renders per snapshot with extra className combined with its own: mockConstructor props 1`] = `
+exports[`InsightsCommandButton renders per snapshot with extra className combined with its own: Button props 1`] = `
 {
-  "className": "insightsCommandButton test-extra-class-name",
-  "iconProps": {
-    "className": "commandBarButtonIcon",
+  "appearance": "transparent",
+  "children": undefined,
+  "className": "",
+  "icon": {
+    "children": undefined,
   },
+  "insightsCommandButtonIconProps": {
+    "className": "startOverMenuItemIcon",
+  },
+  "shape": "square",
 }
 `;
 
 exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
-    classname="insightsCommandButton"
-    iconprops="[object Object]"
-  />
+  <mock-button
+    appearance="transparent"
+    icon="[object Object]"
+    insightscommandbuttoniconprops="[object Object]"
+    shape="square"
+  >
+    Load assessment
+  </mock-button>
 </DocumentFragment>
 `;
 
-exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own: mockConstructor props 1`] = `
+exports[`InsightsCommandButton renders per snapshot with extra icon className combined with its own: Button props 1`] = `
 {
-  "className": "insightsCommandButton",
-  "iconProps": {
-    "className": "commandBarButtonIcon icon-class-name",
+  "appearance": "transparent",
+  "children": "Load assessment",
+  "className": undefined,
+  "icon": {
+    "children": <FolderOpenRegular
+      className="icon-class-name"
+    />,
   },
+  "insightsCommandButtonIconProps": {
+    "icon": <FolderOpenRegular
+      className="icon-class-name"
+    />,
+  },
+  "shape": "square",
 }
 `;
 
 exports[`InsightsCommandButton renders per snapshot with iconProps passed through 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
-    classname="insightsCommandButton"
-    iconprops="[object Object]"
-  />
+  <mock-button
+    appearance="transparent"
+    icon="[object Object]"
+    insightscommandbuttoniconprops="[object Object]"
+    shape="square"
+  >
+    Load assessment
+  </mock-button>
 </DocumentFragment>
 `;
 
-exports[`InsightsCommandButton renders per snapshot with iconProps passed through: mockConstructor props 1`] = `
+exports[`InsightsCommandButton renders per snapshot with iconProps passed through: Button props 1`] = `
 {
-  "className": "insightsCommandButton",
-  "iconProps": {
-    "className": "commandBarButtonIcon",
-    "testProperty": "test-value",
+  "appearance": "transparent",
+  "children": "Load assessment",
+  "className": undefined,
+  "icon": {
+    "children": <FolderOpenRegular />,
   },
+  "insightsCommandButtonIconProps": {
+    "icon": <FolderOpenRegular />,
+  },
+  "shape": "square",
 }
 `;
 
 exports[`InsightsCommandButton renders per snapshot with props passed through 1`] = `
 <DocumentFragment>
-  <mock-mockconstructor
-    classname="insightsCommandButton"
-    iconprops="[object Object]"
-    text="test-text"
-  />
+  <mock-button
+    appearance="transparent"
+    classname=""
+    icon="[object Object]"
+    insightscommandbuttoniconprops="[object Object]"
+    shape="square"
+  >
+    test-text
+  </mock-button>
 </DocumentFragment>
 `;
 
-exports[`InsightsCommandButton renders per snapshot with props passed through: mockConstructor props 1`] = `
+exports[`InsightsCommandButton renders per snapshot with props passed through: Button props 1`] = `
 {
-  "className": "insightsCommandButton",
-  "iconProps": {
-    "className": "commandBarButtonIcon",
+  "appearance": "transparent",
+  "children": "test-text",
+  "className": "",
+  "icon": {
+    "children": undefined,
   },
-  "text": "test-text",
+  "insightsCommandButtonIconProps": {
+    "className": "startOverMenuItemIcon",
+  },
+  "shape": "square",
 }
 `;

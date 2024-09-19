@@ -86,6 +86,7 @@ describe('StartOverComponentFactory', () => {
                     showTest: true,
                 },
             },
+            hasSubMenu: true,
         } as StartOverFactoryProps;
     }
 
@@ -93,14 +94,14 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverComponent', () => {
             const props = getProps(true);
             const rendered = AssessmentStartOverFactory.getStartOverComponent(props);
-            expect(rendered).toMatchSnapshot();
+            expect(rendered.props).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
 
         it('getStartOverMenuItem', () => {
             const props = getProps(true);
             const menuItem = AssessmentStartOverFactory.getStartOverMenuItem(props);
-            const renderResult = render(menuItem.onRender());
+            const renderResult = render(menuItem.children);
 
             expect(renderResult.asFragment()).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
@@ -118,7 +119,7 @@ describe('StartOverComponentFactory', () => {
         it('getStartOverMenuItem', () => {
             const props = getProps(true);
             const menuItem = QuickAssessStartOverFactory.getStartOverMenuItem(props);
-            const renderResult = render(menuItem.onRender());
+            const renderResult = render(menuItem.children);
             expect(renderResult.asFragment()).toMatchSnapshot();
             expectMockedComponentPropsToMatchSnapshots([StartOverDropdown]);
         });
@@ -140,9 +141,7 @@ describe('StartOverComponentFactory', () => {
             '%s',
             (
                 testName: string,
-                getComponentOrMenuItem: (
-                    props: StartOverFactoryProps,
-                ) => JSX.Element | StartOverMenuItem,
+                getComponentOrMenuItem: (props: StartOverFactoryProps) => any | StartOverMenuItem,
                 clickComponentOrMenuItem: (
                     item: JSX.Element | StartOverMenuItem,
                     event: any,
@@ -179,6 +178,7 @@ describe('StartOverComponentFactory', () => {
                     props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
 
                     const item = getComponentOrMenuItem(props);
+
                     clickComponentOrMenuItem(item, event);
 
                     actionMessageCreatorMock.verify(
@@ -196,7 +196,7 @@ describe('StartOverComponentFactory', () => {
         }
 
         function clickStartOverMenuItem(startOverMenuItem: IContextualMenuItem, event: any): void {
-            startOverMenuItem.onClick(event);
+            startOverMenuItem.children.props.children?.props.onClick(event);
         }
     });
 });

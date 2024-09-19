@@ -43,11 +43,14 @@ exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigura
 `;
 
 exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns Complete button when it is last requirement in quickAssessRequirementKeys 1`] = `
-<CustomizedPrimaryButton
+<Button
+  appearance="primary"
   data-automation-id="complete-button"
   onClick={[Function]}
-  text="Complete"
-/>
+  shape="square"
+>
+  Complete
+</Button>
 `;
 
 exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigurationForQuickAssess returns NextRequirementButton with next requirement in quickAssessRequirementKeys 1`] = `

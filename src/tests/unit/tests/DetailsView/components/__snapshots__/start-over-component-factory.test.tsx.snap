@@ -1,33 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverComponent 1`] = `
-<StartOverDropdown
-  allTestSuffix="Assessment"
-  dropdownDirection="down"
-  rightPanelOptions={
-    {
-      "showTest": true,
-    }
-  }
-  singleTestSuffix="the title"
-  switcherStartOverPreferences={
-    {
-      "showTest": true,
-    }
-  }
-/>
+{
+  "allTestSuffix": "Assessment",
+  "buttonRef": undefined,
+  "dropdownDirection": "down",
+  "hasSubMenu": true,
+  "isNarrowMode": undefined,
+  "openDialog": undefined,
+  "rightPanelOptions": {
+    "showTest": true,
+  },
+  "singleTestSuffix": "the title",
+  "switcherStartOverPreferences": {
+    "showTest": true,
+  },
+}
 `;
 
 exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverComponent: StartOverDropdown props 1`] = `undefined`;
 
 exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuItem 1`] = `
 <DocumentFragment>
-  <div
-    role="menuitem"
-  >
+  <div>
     <mock-startoverdropdown
       alltestsuffix="Assessment"
       dropdowndirection="left"
+      hassubmenu="true"
       rightpaneloptions="[object Object]"
       singletestsuffix="the title"
       switcherstartoverpreferences="[object Object]"
@@ -41,6 +40,8 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuIt
   "allTestSuffix": "Assessment",
   "buttonRef": undefined,
   "dropdownDirection": "left",
+  "hasSubMenu": true,
+  "isNarrowMode": undefined,
   "openDialog": undefined,
   "rightPanelOptions": {
     "showTest": true,
@@ -63,9 +64,18 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
       "iconName": "Refresh",
     }
   }
+  insightsCommandButtonIconProps={
+    {
+      "icon": <FluentUIV9Icon
+        iconName="ArrowClockwiseRegular"
+      />,
+    }
+  }
   onClick={[Function]}
   text="Start over"
-/>
+>
+  Start over
+</InsightsCommandButton>
 `;
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is false => component matches snapshot: StartOverDropdown props 1`] = `undefined`;
@@ -81,24 +91,48 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponen
       "iconName": "Refresh",
     }
   }
+  insightsCommandButtonIconProps={
+    {
+      "icon": <FluentUIV9Icon
+        iconName="ArrowClockwiseRegular"
+      />,
+    }
+  }
   onClick={[Function]}
   text="Start over"
-/>
+>
+  Start over
+</InsightsCommandButton>
 `;
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is true => component matches snapshot: StartOverDropdown props 1`] = `undefined`;
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is false => component matches snapshot 1`] = `
 {
-  "className": "startOverMenuItem",
-  "data-automation-id": "start-over",
-  "disabled": false,
-  "iconProps": {
-    "className": "startOverMenuItemIcon",
-    "iconName": "Refresh",
-  },
-  "onClick": [Function],
-  "text": "Start over",
+  "children": <div>
+    <InsightsCommandButton
+      className="startOverMenuItem"
+      data-automation-id="start-over"
+      disabled={false}
+      iconProps={
+        {
+          "className": "startOverMenuItemIcon",
+          "iconName": "Refresh",
+        }
+      }
+      insightsCommandButtonIconProps={
+        {
+          "icon": <FluentUIV9Icon
+            iconName="ArrowClockwiseRegular"
+          />,
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    >
+      Start over
+    </InsightsCommandButton>
+  </div>,
 }
 `;
 
@@ -106,15 +140,30 @@ exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverMenuItem renders scanning is true => component matches snapshot 1`] = `
 {
-  "className": "startOverMenuItem",
-  "data-automation-id": "start-over",
-  "disabled": true,
-  "iconProps": {
-    "className": "startOverMenuItemIcon",
-    "iconName": "Refresh",
-  },
-  "onClick": [Function],
-  "text": "Start over",
+  "children": <div>
+    <InsightsCommandButton
+      className="startOverMenuItem"
+      data-automation-id="start-over"
+      disabled={true}
+      iconProps={
+        {
+          "className": "startOverMenuItemIcon",
+          "iconName": "Refresh",
+        }
+      }
+      insightsCommandButtonIconProps={
+        {
+          "icon": <FluentUIV9Icon
+            iconName="ArrowClockwiseRegular"
+          />,
+        }
+      }
+      onClick={[Function]}
+      text="Start over"
+    >
+      Start over
+    </InsightsCommandButton>
+  </div>,
 }
 `;
 
@@ -124,6 +173,7 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverCompo
 <StartOverDropdown
   allTestSuffix="Quick Assess"
   dropdownDirection="down"
+  hasSubMenu={true}
   rightPanelOptions={
     {
       "showTest": true,
@@ -142,12 +192,11 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverCompo
 
 exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuItem 1`] = `
 <DocumentFragment>
-  <div
-    role="menuitem"
-  >
+  <div>
     <mock-startoverdropdown
       alltestsuffix="Quick Assess"
       dropdowndirection="left"
+      hassubmenu="true"
       rightpaneloptions="[object Object]"
       singletestsuffix=""
       switcherstartoverpreferences="[object Object]"
@@ -161,6 +210,8 @@ exports[`StartOverComponentFactory QuickAssessStartOverFactory getStartOverMenuI
   "allTestSuffix": "Quick Assess",
   "buttonRef": undefined,
   "dropdownDirection": "left",
+  "hasSubMenu": true,
+  "isNarrowMode": undefined,
   "openDialog": undefined,
   "rightPanelOptions": {
     "showTest": true,

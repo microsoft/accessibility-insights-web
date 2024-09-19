@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ActionButton, TextField } from '@fluentui/react';
-import { Link } from '@fluentui/react-components';
+import { TextField } from '@fluentui/react';
+import { Link, Button } from '@fluentui/react-components';
 import { act, fireEvent, render } from '@testing-library/react';
 import { Assessments } from 'assessments/assessments';
 import { FlaggedComponent } from 'common/components/flagged-component';
+import { FluentUIV9Icon } from 'common/icons/fluentui-v9-icons';
 import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -30,15 +31,18 @@ jest.mock('common/components/flagged-component');
 jest.mock('DetailsView/components/generic-panel');
 jest.mock('DetailsView/components/action-and-cancel-buttons-component');
 jest.mock('DetailsView/components/failure-instance-panel-details');
+jest.mock('common/icons/fluentui-v9-icons');
+
 describe('FailureInstancePanelControlTest', () => {
     mockReactComponents([
-        ActionButton,
+        Button,
         Link,
         GenericPanel,
         FlaggedComponent,
         TextField,
         ActionAndCancelButtonsComponent,
         FailureInstancePanelDetails,
+        FluentUIV9Icon,
     ]);
     let addPathForValidationMock: IMock<(path) => void>;
     let addInstanceMock: IMock<(instanceData, test, step) => void>;
@@ -55,7 +59,7 @@ describe('FailureInstancePanelControlTest', () => {
     test('render FailureInstancePanelControl: create without instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -72,7 +76,7 @@ describe('FailureInstancePanelControlTest', () => {
             failureInstance: { failureDescription: 'original text' },
         };
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
         expect(renderResult.asFragment()).toMatchSnapshot();
         const flaggedProps = getMockComponentClassPropsForCall(FlaggedComponent);
         expect(flaggedProps.enableJSXElement.props.path).toBeUndefined();
@@ -81,7 +85,7 @@ describe('FailureInstancePanelControlTest', () => {
     test('render FailureInstancePanelControl: edit without instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
@@ -90,7 +94,7 @@ describe('FailureInstancePanelControlTest', () => {
         const description = 'description';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
         const genericPanelProp = getMockComponentClassPropsForCall(GenericPanel);
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(textField, { target: { value: description } });
@@ -112,6 +116,7 @@ describe('FailureInstancePanelControlTest', () => {
             'ActionButton',
             'DefaultButton',
         ]);
+
         useOriginalReactElements('@fluentui/react-components', ['Link', 'Button']);
         useOriginalReactElements('DetailsView/components/generic-panel', ['GenericPanel']);
         useOriginalReactElements('common/components/flagged-component', ['FlaggedComponent']);
@@ -125,9 +130,9 @@ describe('FailureInstancePanelControlTest', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
 
-        fireEvent.click(renderResult.getByRole('button'));
+        fireEvent.click(renderResult.getByText('Add a failure instance'));
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(textField, { target: { value: description } });
 
@@ -140,8 +145,8 @@ describe('FailureInstancePanelControlTest', () => {
         props.featureFlagStoreData = { manualInstanceDetails: true };
         props.failureInstance.path = '';
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
-        fireEvent.click(renderResult.getByRole('button'));
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
+        fireEvent.click(renderResult.getByText('Add a failure instance'));
         const cssSelector = renderResult.getByLabelText('CSS Selector') as HTMLInputElement;
         fireEvent.change(cssSelector, { target: { value: selector } });
         expect(cssSelector.value).toBe(selector);
@@ -163,8 +168,8 @@ describe('FailureInstancePanelControlTest', () => {
             .verifiable(Times.once());
 
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
-        fireEvent.click(renderResult.getByRole('button'));
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
+        fireEvent.click(renderResult.getByText('Add a failure instance'));
         fireEvent.click(renderResult.getByText('Validate CSS selector'));
 
         addPathForValidationMock.verifyAll();
@@ -180,8 +185,8 @@ describe('FailureInstancePanelControlTest', () => {
         props.failureInstance = failureInstance;
         props.featureFlagStoreData = { manualInstanceDetails: true };
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
-        fireEvent.click(renderResult.getByRole('button'));
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
+        fireEvent.click(renderResult.getByText('Add a failure instance'));
 
         expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull;
         const failureDescription = renderResult.getByLabelText('Comment') as HTMLInputElement;
@@ -209,7 +214,7 @@ describe('FailureInstancePanelControlTest', () => {
             .verifiable(Times.once());
 
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
         fireEvent.click(renderResult.getByRole('button'));
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(textField, { target: { value: description } });
@@ -234,8 +239,8 @@ describe('FailureInstancePanelControlTest', () => {
             .verifiable(Times.once());
 
         const renderResult = render(<FailureInstancePanelControl {...props} />);
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
-        fireEvent.click(renderResult.getByRole('button'));
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
+        fireEvent.click(renderResult.getByText('Add a failure instance'));
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(textField, { target: { value: description } });
         fireEvent.click(renderResult.getByText('Add failed instance'));
@@ -271,20 +276,18 @@ describe('FailureInstancePanelControlTest', () => {
         newProps.failureInstance = newFailureInstance;
         newProps.featureFlagStoreData = { manualInstanceDetails: true };
         prevProps.featureFlagStoreData = { manualInstanceDetails: true };
-        const { rerender, getByLabelText, getByText, getByRole } = render(
-            <FailureInstancePanelControl {...prevProps} />,
-        );
-        expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
-        fireEvent.click(getByRole('button'));
-        const pathField = getByLabelText('CSS Selector') as HTMLInputElement;
+        const renderResult = render(<FailureInstancePanelControl {...prevProps} />);
+        expectMockedComponentPropsToMatchSnapshots([Button, FlaggedComponent]);
+        fireEvent.click(renderResult.getByText('Add a failure instance'));
+        const pathField = renderResult.getByLabelText('CSS Selector') as HTMLInputElement;
         expect(pathField.value).toEqual(prevProps.failureInstance.path);
-        const emptySnippetText = getByText(
+        const emptySnippetText = renderResult.getByText(
             'Code snippet will auto-populate based on the CSS selector input.',
         );
         expect(emptySnippetText).not.toBeNull();
-        rerender(<FailureInstancePanelControl {...newProps} />);
+        renderResult.rerender(<FailureInstancePanelControl {...newProps} />);
         expect(pathField.value).toEqual(newProps.failureInstance.path);
-        const filledSnippetText = getByText(newProps.failureInstance.snippet);
+        const filledSnippetText = renderResult.getByText(newProps.failureInstance.snippet);
         expect(filledSnippetText).not.toBeNull();
     });
 

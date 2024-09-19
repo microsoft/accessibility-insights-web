@@ -35,6 +35,7 @@ import {
     SaveAssessmentButtonFactoryDeps,
     SaveAssessmentButtonFactoryProps,
 } from 'DetailsView/components/save-assessment-button-factory';
+import { SaveAssessmentDialog } from 'DetailsView/components/save-assessment-dialog';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -75,6 +76,7 @@ export type DetailsViewCommandBarState = {
     isInvalidLoadAssessmentDialogOpen: boolean;
     isLoadAssessmentDialogOpen: boolean;
     isReportExportDialogOpen: boolean;
+    isSaveAssessmentDialogOpen: boolean;
     loadedAssessmentData: VersionedAssessmentData;
     startOverDialogState: StartOverDialogState;
 };
@@ -90,6 +92,8 @@ export type LoadAssessmentButtonFactory = (props: LoadAssessmentButtonProps) => 
 export type TransferToAssessmentButtonFactory = (
     props: TransferToAssessmentButtonProps,
 ) => JSX.Element | null;
+
+export type ButtonRefFunction = (ref: any) => void;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -116,6 +120,7 @@ export class DetailsViewCommandBar extends React.Component<
     public exportDialogCloseFocus?: IButton;
     public startOverDialogCloseFocus?: IButton;
     public transferToAssessmentDialogCloseFocus?: IButton;
+    public loadAssessmentDialogFocus?: IButton;
 
     public constructor(props) {
         super(props);
@@ -123,6 +128,7 @@ export class DetailsViewCommandBar extends React.Component<
             isInvalidLoadAssessmentDialogOpen: false,
             isLoadAssessmentDialogOpen: false,
             isReportExportDialogOpen: false,
+            isSaveAssessmentDialogOpen: false,
             loadedAssessmentData: {} as VersionedAssessmentData,
             startOverDialogState: 'none',
         };
@@ -142,6 +148,7 @@ export class DetailsViewCommandBar extends React.Component<
                 {this.renderLoadAssessmentDialog()}
                 {this.renderStartOverDialog()}
                 {this.renderTransferToAssessmentDialog()}
+                {this.renderSaveAssessmentDialog()}
             </div>
         );
     }
@@ -262,7 +269,18 @@ export class DetailsViewCommandBar extends React.Component<
     private renderSaveAssessmentButton = (): JSX.Element | null => {
         return this.props.switcherNavConfiguration.SaveAssessmentButton({
             ...this.props,
+            handleSaveAssessmentButtonClick: this.handleSaveAssessmentButtonClick,
         });
+    };
+
+    private renderSaveAssessmentDialog = (): JSX.Element | null => {
+        return (
+            <SaveAssessmentDialog
+                {...this.props}
+                isOpen={this.state.isSaveAssessmentDialogOpen}
+                onClose={this.toggleSaveAssessmentDialog}
+            />
+        );
     };
 
     private renderTransferToAssessmentButton = (): JSX.Element | null => {
@@ -326,6 +344,19 @@ export class DetailsViewCommandBar extends React.Component<
         }));
     };
 
+    private toggleSaveAssessmentDialog = () => {
+        this.setState(prevState => ({
+            isSaveAssessmentDialogOpen: !prevState.isSaveAssessmentDialogOpen,
+        }));
+    };
+
+    private handleSaveAssessmentButtonClick = (event: React.MouseEvent<any>) => {
+        this.props.deps.getAssessmentActionMessageCreator().saveAssessment(event);
+        if (this.props.userConfigurationStoreData.showSaveAssessmentDialog) {
+            this.toggleSaveAssessmentDialog();
+        }
+    };
+
     private setAssessmentState = (parsedAssessmentData: VersionedAssessmentData) => {
         this.setState(_ => ({
             loadedAssessmentData: parsedAssessmentData,
@@ -382,7 +413,7 @@ export class DetailsViewCommandBar extends React.Component<
         return {
             ...this.props,
             openDialog: this.showStartOverDialog,
-            buttonRef: ref => (this.startOverDialogCloseFocus = ref),
+            buttonRef: ref => (this.startOverDialogCloseFocus = ref ?? undefined),
         };
     };
 

@@ -5,15 +5,15 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
   <div
     class=""
   >
-    <mock-customizedactionbutton
+    <mock-button
+      appearance="transparent"
       aria-expanded="true"
       classname="collapsible"
-      iconprops="[object Object]"
     >
       <div>
         Some header
       </div>
-    </mock-customizedactionbutton>
+    </mock-button>
     <div
       class="content-class-name collapsibleContent"
     >
@@ -25,16 +25,19 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
 </DocumentFragment>
 `;
 
-exports[`CollapsibleComponentTest render expanded with content-class-name: CustomizedActionButton props 1`] = `
+exports[`CollapsibleComponentTest render expanded with content-class-name: Button props 1`] = `
 {
+  "appearance": "transparent",
   "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
+  "children": [
+    <FluentUIV9Icon
+      iconName="ChevronDown24Regular"
+    />,
+    <div>
+      Some header
+    </div>,
+  ],
   "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
   "onClick": [Function],
 }
 `;
@@ -44,15 +47,15 @@ exports[`CollapsibleComponentTest render expanded without content-class-name 1`]
   <div
     class=""
   >
-    <mock-customizedactionbutton
+    <mock-button
+      appearance="transparent"
       aria-expanded="true"
       classname="collapsible"
-      iconprops="[object Object]"
     >
       <div>
         Some header
       </div>
-    </mock-customizedactionbutton>
+    </mock-button>
     <div
       class="collapsibleContent"
     >
@@ -64,16 +67,19 @@ exports[`CollapsibleComponentTest render expanded without content-class-name 1`]
 </DocumentFragment>
 `;
 
-exports[`CollapsibleComponentTest render expanded without content-class-name: CustomizedActionButton props 1`] = `
+exports[`CollapsibleComponentTest render expanded without content-class-name: Button props 1`] = `
 {
+  "appearance": "transparent",
   "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
+  "children": [
+    <FluentUIV9Icon
+      iconName="ChevronDown24Regular"
+    />,
+    <div>
+      Some header
+    </div>,
+  ],
   "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
   "onClick": [Function],
 }
 `;
@@ -83,15 +89,15 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
   <div
     class="a-container"
   >
-    <mock-customizedactionbutton
+    <mock-button
+      appearance="transparent"
       aria-expanded="true"
       classname="collapsible"
-      iconprops="[object Object]"
     >
       <div>
         Some header
       </div>
-    </mock-customizedactionbutton>
+    </mock-button>
     <div
       class="collapsibleContent"
     >
@@ -103,16 +109,19 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
 </DocumentFragment>
 `;
 
-exports[`CollapsibleComponentTest render with container-class-name: CustomizedActionButton props 1`] = `
+exports[`CollapsibleComponentTest render with container-class-name: Button props 1`] = `
 {
+  "appearance": "transparent",
   "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
+  "children": [
+    <FluentUIV9Icon
+      iconName="ChevronDown24Regular"
+    />,
+    <div>
+      Some header
+    </div>,
+  ],
   "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
   "onClick": [Function],
 }
 `;
@@ -122,15 +131,15 @@ exports[`CollapsibleComponentTest render without container-class-name 1`] = `
   <div
     class=""
   >
-    <mock-customizedactionbutton
+    <mock-button
+      appearance="transparent"
       aria-expanded="true"
       classname="collapsible"
-      iconprops="[object Object]"
     >
       <div>
         Some header
       </div>
-    </mock-customizedactionbutton>
+    </mock-button>
     <div
       class="collapsibleContent"
     >
@@ -142,44 +151,53 @@ exports[`CollapsibleComponentTest render without container-class-name 1`] = `
 </DocumentFragment>
 `;
 
-exports[`CollapsibleComponentTest render without container-class-name: CustomizedActionButton props 1`] = `
+exports[`CollapsibleComponentTest render without container-class-name: Button props 1`] = `
 {
+  "appearance": "transparent",
   "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
+  "children": [
+    <FluentUIV9Icon
+      iconName="ChevronDown24Regular"
+    />,
+    <div>
+      Some header
+    </div>,
+  ],
   "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
   "onClick": [Function],
 }
 `;
 
-exports[`CollapsibleComponentTest toggle from expanded to collapsed: CustomizedActionButton props 1`] = `
+exports[`CollapsibleComponentTest toggle from expanded to collapsed: Button props 1`] = `
 {
+  "appearance": "transparent",
   "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
+  "children": [
+    <FluentUIV9Icon
+      iconName="ChevronDown24Regular"
+    />,
+    <div>
+      Some header
+    </div>,
+  ],
   "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
   "onClick": [Function],
 }
 `;
 
-exports[`CollapsibleComponentTest toggle from expanded to collapsed: CustomizedActionButton props 2`] = `
+exports[`CollapsibleComponentTest toggle from expanded to collapsed: Button props 2`] = `
 {
+  "appearance": "transparent",
   "aria-expanded": true,
-  "children": <div>
-    Some header
-  </div>,
+  "children": [
+    <FluentUIV9Icon
+      iconName="ChevronDown24Regular"
+    />,
+    <div>
+      Some header
+    </div>,
+  ],
   "className": "collapsible",
-  "iconProps": {
-    "iconName": "ChevronDown",
-  },
   "onClick": [Function],
 }
 `;
@@ -189,15 +207,15 @@ exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1
   <div
     class=""
   >
-    <mock-customizedactionbutton
-      aria-expanded="true"
+    <mock-button
+      appearance="transparent"
+      aria-expanded="false"
       classname="collapsible"
-      iconprops="[object Object]"
     >
       <div>
         Some header
       </div>
-    </mock-customizedactionbutton>
+    </mock-button>
   </div>
 </DocumentFragment>
 `;
@@ -207,15 +225,15 @@ exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`
   <div
     class=""
   >
-    <mock-customizedactionbutton
+    <mock-button
+      appearance="transparent"
       aria-expanded="true"
       classname="collapsible"
-      iconprops="[object Object]"
     >
       <div>
         Some header
       </div>
-    </mock-customizedactionbutton>
+    </mock-button>
     <div
       class="collapsibleContent"
     >

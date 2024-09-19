@@ -4,9 +4,79 @@ exports[`Details View -> Assessment -> Reflow With command bar button visible sh
 
 exports[`Details View -> Assessment -> Reflow With command bar button visible should pass accessibility validation with high contrast mode=true 1`] = `[]`;
 
-exports[`Details View -> Assessment -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=false 1`] = `[]`;
+exports[`Details View -> Assessment -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=false 1`] = `
+[
+  {
+    "id": "aria-hidden-focus",
+    "nodes": [
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex], [role=button]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
+        ],
+      },
+    ],
+  },
+]
+`;
 
-exports[`Details View -> Assessment -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=true 1`] = `[]`;
+exports[`Details View -> Assessment -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=true 1`] = `
+[
+  {
+    "id": "aria-hidden-focus",
+    "nodes": [
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex], [role=button]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
+        ],
+      },
+    ],
+  },
+]
+`;
 
 exports[`Details View -> Assessment -> Reflow With hamburger button visible should pass accessibility validation with high contrast mode=false 1`] = `[]`;
 
@@ -16,13 +86,105 @@ exports[`Details View -> Assessment -> Reflow With hamburger button visible with
 
 exports[`Details View -> Assessment -> Reflow With hamburger button visible with hamburger button expanded should pass accessibility validation with command bar menu open and high contrast mode=true 1`] = `[]`;
 
-exports[`Details View -> Fastpass -> Reflow With high contrast mode=false With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=%s 1`] = `[]`;
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=false With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=%s 1`] = `
+[
+  {
+    "id": "aria-hidden-focus",
+    "nodes": [
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
+        ],
+      },
+    ],
+  },
+]
+`;
 
 exports[`Details View -> Fastpass -> Reflow With high contrast mode=false and card kebab menu collapsed 1`] = `[]`;
 
-exports[`Details View -> Fastpass -> Reflow With high contrast mode=false and card kebab menu expanded 1`] = `[]`;
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=false and card kebab menu expanded 1`] = `
+[
+  {
+    "id": "aria-hidden-focus",
+    "nodes": [
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+]
+`;
 
-exports[`Details View -> Fastpass -> Reflow With high contrast mode=true With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=%s 1`] = `[]`;
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=true With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=%s 1`] = `
+[
+  {
+    "id": "aria-hidden-focus",
+    "nodes": [
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
+        ],
+      },
+    ],
+  },
+]
+`;
 
 exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and card kebab menu collapsed 1`] = `
 [
@@ -42,15 +204,107 @@ exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and car
 ]
 `;
 
-exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and card kebab menu expanded 1`] = `[]`;
+exports[`Details View -> Fastpass -> Reflow With high contrast mode=true and card kebab menu expanded 1`] = `
+[
+  {
+    "id": "aria-hidden-focus",
+    "nodes": [
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+]
+`;
 
 exports[`Details View -> Quick Assess -> Reflow With command bar button visible should pass accessibility validation with high contrast mode=false 1`] = `[]`;
 
 exports[`Details View -> Quick Assess -> Reflow With command bar button visible should pass accessibility validation with high contrast mode=true 1`] = `[]`;
 
-exports[`Details View -> Quick Assess -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=false 1`] = `[]`;
+exports[`Details View -> Quick Assess -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=false 1`] = `
+[
+  {
+    "id": "aria-hidden-focus",
+    "nodes": [
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex], [role=button]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
+        ],
+      },
+    ],
+  },
+]
+`;
 
-exports[`Details View -> Quick Assess -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=true 1`] = `[]`;
+exports[`Details View -> Quick Assess -> Reflow With command bar button visible with command bar button expanded should pass accessibility validation with command bar menu open and high contrast mode=true 1`] = `
+[
+  {
+    "id": "aria-hidden-focus",
+    "nodes": [
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+      {
+        "failureSummary": "Fix all of the following:
+  Focusable content should have tabindex="-1" or be removed from the DOM",
+        "selector": [
+          "i:nth-child(0)",
+        ],
+      },
+    ],
+  },
+  {
+    "id": "aria-required-children",
+    "nodes": [
+      {
+        "failureSummary": "Fix any of the following:
+  Element has children which are not allowed: button[tabindex], [role=button]
+  Element uses aria-busy="true" while showing a loader",
+        "selector": [
+          ".fui-MenuList",
+        ],
+      },
+    ],
+  },
+]
+`;
 
 exports[`Details View -> Quick Assess -> Reflow With hamburger button visible should pass accessibility validation with high contrast mode=false 1`] = `[]`;
 

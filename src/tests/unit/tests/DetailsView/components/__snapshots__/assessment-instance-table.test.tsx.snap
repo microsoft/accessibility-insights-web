@@ -6,7 +6,7 @@ exports[`AssessmentInstanceTable with instances renders per snapshot 1`] = `
     <mock-insightscommandbutton
       data-automation-id="assessment-instance-table-pass-unmarked-instances-button"
       disabled="false"
-      iconprops="[object Object]"
+      insightscommandbuttoniconprops="[object Object]"
     >
       Pass unmarked instances
     </mock-insightscommandbutton>
@@ -72,8 +72,10 @@ exports[`AssessmentInstanceTable with instances renders per snapshot: InsightsCo
   "children": "Pass unmarked instances",
   "data-automation-id": "assessment-instance-table-pass-unmarked-instances-button",
   "disabled": false,
-  "iconProps": {
-    "iconName": "skypeCheck",
+  "insightsCommandButtonIconProps": {
+    "icon": <FluentUIV9Icon
+      iconName="Checkmark20Filled"
+    />,
   },
   "onClick": [Function],
 }

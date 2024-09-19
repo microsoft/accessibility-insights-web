@@ -153,12 +153,11 @@ html {
 }
 
 #popup-container .ms-Link {
+    color: $communication-primary;
+    font-weight: 600;
     @media screen and (forced-colors: active) {
         color: linktext !important;
     }
-
-    color: $communication-primary;
-    font-weight: 600;
 }
 
 #popup-container .main-section {
