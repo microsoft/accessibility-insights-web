@@ -62,6 +62,24 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         super(props);
     }
 
+    componentDidMount(): void {
+        const cardCount = this.getCardCount();
+        const assessment = this.props.getProvider().forType(this.props.selectedVisualizationType);
+        const requirement = assessment?.requirements[0].key;
+        if (!this.props.issuesEnabled && cardCount > 0) {
+            this.props.deps.detailsViewActionMessageCreator.enableFastPassVisualHelperWithoutScan(
+                this.props.selectedVisualizationType,
+                requirement,
+            );
+        }
+        if (!this.props.issuesEnabled && cardCount === 0) {
+            this.props.deps.detailsViewActionMessageCreator.rescanVisualizationWithoutTelemetry(
+                this.props.selectedVisualizationType,
+                requirement,
+            );
+        }
+    }
+
     public render(): JSX.Element {
         return (
             <div className={styles.issuesTable}>
@@ -109,22 +127,6 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     }
 
     private renderComponent(): JSX.Element {
-        const cardCount = this.getCardCount();
-        const assessment = this.props.getProvider().forType(this.props.selectedVisualizationType);
-        const requirement = assessment?.requirements[0].key;
-        if (!this.props.issuesEnabled && cardCount > 0) {
-            this.props.deps.detailsViewActionMessageCreator.enableFastPassVisualHelperWithoutScan(
-                this.props.selectedVisualizationType,
-                requirement,
-            );
-        }
-        if (!this.props.issuesEnabled && cardCount === 0) {
-            this.props.deps.detailsViewActionMessageCreator.rescanVisualizationWithoutTelemetry(
-                this.props.selectedVisualizationType,
-                requirement,
-            );
-        }
-
         if (this.props.scanning) {
             return this.renderSpinner('Scanning...');
         }

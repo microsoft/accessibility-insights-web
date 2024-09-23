@@ -475,6 +475,16 @@ export class ActionCreator {
                 this.executingScope,
             );
         }
+        switch (payload.test) {
+            case VisualizationType.Issues:
+                await this.cardSelectionActions.toggleVisualHelper.invoke(null);
+                break;
+            case VisualizationType.NeedsReview:
+                await this.needsReviewCardSelectionActions.toggleVisualHelper.invoke(null);
+                break;
+            default:
+                break;
+        }
     };
 
     private onRescanVisualization = async (payload: RescanVisualizationPayload) => {

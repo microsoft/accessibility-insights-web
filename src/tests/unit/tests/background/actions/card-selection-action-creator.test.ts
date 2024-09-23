@@ -4,12 +4,15 @@ import {
     BaseActionPayload,
     CardSelectionPayload,
     RuleExpandCollapsePayload,
+    VisualizationTogglePayload,
 } from 'background/actions/action-payloads';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
+import { VisualizationType } from 'common/types/visualization-type';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -19,10 +22,12 @@ describe('CardSelectionActionCreator', () => {
     const tabId = -2;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let interpreterMock: MockInterpreter;
+    let visualizationActionsMock: IMock<VisualizationActions>;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
         interpreterMock = new MockInterpreter();
+        visualizationActionsMock = createVisualizationActionsMock();
     });
 
     it('handles card selection toggle', async () => {
@@ -31,7 +36,7 @@ describe('CardSelectionActionCreator', () => {
             ruleId: 'test-rule-id',
         };
         const toggleCardSelectionMock = createAsyncActionMock(payload);
-        const actionsMock = createActionsMock(
+        const actionsMock = createCardSelectionActionsMock(
             'toggleCardSelection',
             toggleCardSelectionMock.object,
         );
@@ -39,6 +44,7 @@ describe('CardSelectionActionCreator', () => {
         const testSubject = new CardSelectionActionCreator(
             interpreterMock.object,
             actionsMock.object,
+            visualizationActionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
@@ -62,7 +68,7 @@ describe('CardSelectionActionCreator', () => {
             ruleId: 'test-rule-id',
         };
         const ruleExpansionToggleMock = createAsyncActionMock(payload);
-        const actionsMock = createActionsMock(
+        const actionsMock = createCardSelectionActionsMock(
             'toggleRuleExpandCollapse',
             ruleExpansionToggleMock.object,
         );
@@ -70,6 +76,7 @@ describe('CardSelectionActionCreator', () => {
         const testSubject = new CardSelectionActionCreator(
             interpreterMock.object,
             actionsMock.object,
+            visualizationActionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
@@ -89,13 +96,23 @@ describe('CardSelectionActionCreator', () => {
     });
 
     test('onToggleVisualHelper', async () => {
-        const payloadStub: BaseActionPayload = {};
+        const payloadStub: VisualizationTogglePayload = {
+            test: VisualizationType.NeedsReview,
+            enabled: false,
+            telemetry: {
+                enabled: false,
+            } as TelemetryEvents.ToggleTelemetryData,
+        };
         const toggleVisualHelperMock = createAsyncActionMock(null);
-        const actionsMock = createActionsMock('toggleVisualHelper', toggleVisualHelperMock.object);
+        const actionsMock = createCardSelectionActionsMock(
+            'toggleVisualHelper',
+            toggleVisualHelperMock.object,
+        );
 
         const testSubject = new CardSelectionActionCreator(
             interpreterMock.object,
             actionsMock.object,
+            visualizationActionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
@@ -112,12 +129,22 @@ describe('CardSelectionActionCreator', () => {
             handler => handler.publishTelemetry(TelemetryEvents.VISUAL_HELPER_TOGGLED, payloadStub),
             Times.once(),
         );
+        visualizationActionsMock.verify(actions => actions['enableVisualization'], Times.once());
+
+        payloadStub.enabled = true;
+        payloadStub.telemetry.enabled = true;
+        await interpreterMock.simulateMessage(
+            Messages.CardSelection.ToggleVisualHelper,
+            payloadStub,
+            tabId,
+        );
+        visualizationActionsMock.verify(actions => actions['disableVisualization'], Times.once());
     });
 
     test('onCollapseAllRules', async () => {
         const payloadStub: BaseActionPayload = {};
         const collapseAllRulesActionMock = createAsyncActionMock(null);
-        const actionsMock = createActionsMock(
+        const actionsMock = createCardSelectionActionsMock(
             'collapseAllRules',
             collapseAllRulesActionMock.object,
         );
@@ -125,6 +152,7 @@ describe('CardSelectionActionCreator', () => {
         const testSubject = new CardSelectionActionCreator(
             interpreterMock.object,
             actionsMock.object,
+            visualizationActionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
@@ -146,11 +174,15 @@ describe('CardSelectionActionCreator', () => {
     test('onExpandAllRules', async () => {
         const payloadStub: BaseActionPayload = {};
         const expandAllRulesActionMock = createAsyncActionMock(null);
-        const actionsMock = createActionsMock('expandAllRules', expandAllRulesActionMock.object);
+        const actionsMock = createCardSelectionActionsMock(
+            'expandAllRules',
+            expandAllRulesActionMock.object,
+        );
 
         const testSubject = new CardSelectionActionCreator(
             interpreterMock.object,
             actionsMock.object,
+            visualizationActionsMock.object,
             telemetryEventHandlerMock.object,
         );
 
@@ -169,12 +201,34 @@ describe('CardSelectionActionCreator', () => {
         );
     });
 
-    function createActionsMock<ActionName extends keyof CardSelectionActions>(
+    function createCardSelectionActionsMock<ActionName extends keyof CardSelectionActions>(
         actionName: ActionName,
         action: CardSelectionActions[ActionName],
     ): IMock<CardSelectionActions> {
         const actionsMock = Mock.ofType<CardSelectionActions>();
         actionsMock.setup(actions => actions[actionName]).returns(() => action);
+        return actionsMock;
+    }
+
+    function createVisualizationActionsMock<
+        ActionName extends keyof VisualizationActions,
+    >(): IMock<VisualizationActions> {
+        const actionsMock = Mock.ofType<VisualizationActions>();
+        const payload = {
+            test: VisualizationType.Issues,
+            enabled: true,
+            telemetry: {
+                enabled: true,
+            },
+        };
+        const enableVisualizationMock = createAsyncActionMock(payload);
+        const disableVisualizationMock = createAsyncActionMock(payload.test);
+        actionsMock
+            .setup(actions => actions['enableVisualization'])
+            .returns(() => enableVisualizationMock.object);
+        actionsMock
+            .setup(actions => actions['disableVisualization'])
+            .returns(() => disableVisualizationMock.object);
         return actionsMock;
     }
 });

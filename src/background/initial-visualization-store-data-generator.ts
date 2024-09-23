@@ -56,9 +56,10 @@ export class InitialVisualizationStoreDataGenerator {
         };
 
         const initialState = !isEmpty(persistedData)
-            ? merge({}, defaultValues, persistedData)
+            ? merge({}, defaultValues, persistedData, {
+                  tests: { adhoc: defaultValues.tests.adhoc },
+              })
             : defaultValues;
-
         return initialState;
     }
 
