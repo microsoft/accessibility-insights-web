@@ -82,7 +82,6 @@ jobs:
   publish-code-coverage:
     needs: unit-tests # This waits for *all* of the unit-tests jobs
     runs-on: ubuntu-20.04
-    enable: false
     steps:
     # This only needs to be present so codecov can use the source tree for some post-processing
     # This job doesn't require that we install dependencies
