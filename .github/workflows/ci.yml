@@ -80,6 +80,7 @@ jobs:
       timeout-minutes: 5
 
   publish-code-coverage:
+    if: false
     needs: unit-tests # This waits for *all* of the unit-tests jobs
     runs-on: ubuntu-20.04
     steps:
