@@ -83,7 +83,6 @@ extends:
                               codeCoverageTool: Cobertura
                               summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
                               failIfCoverageEmpty: true
-                              enable: false
                               # We care most about the summary information; adding the detailed files doesn't give enough extra information
                               # to be worth the 1min it adds to the build.
                               # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
