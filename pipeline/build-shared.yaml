@@ -87,6 +87,7 @@ extends:
                               # to be worth the 1min it adds to the build.
                               # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
                               # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
+                          enabled: false
                           displayName: publish code coverage
                           timeoutInMinutes: 5
 
