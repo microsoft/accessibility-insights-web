@@ -78,21 +78,21 @@ extends:
                           displayName: publish test results
                           timeoutInMinutes: 3
 
-                        - task: PublishCodeCoverageResults@1
-                          inputs:
-                              codeCoverageTool: Cobertura
-                              summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
-                              failIfCoverageEmpty: true
-                              # We care most about the summary information; adding the detailed files doesn't give enough extra information
-                              # to be worth the 1min it adds to the build.
-                              # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
-                              # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
-                          displayName: publish code coverage
-                          timeoutInMinutes: 5
+                        # - task: PublishCodeCoverageResults@1
+                        #   inputs:
+                        #       codeCoverageTool: Cobertura
+                        #       summaryFileLocation: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/cobertura-coverage.xml
+                        #       failIfCoverageEmpty: true
+                        #       # We care most about the summary information; adding the detailed files doesn't give enough extra information
+                        #       # to be worth the 1min it adds to the build.
+                        #       # Consider re-enabling this once https://github.com/Microsoft/azure-pipelines-tasks/issues/4945 is resolved.
+                        #       # reportDirectory: $(System.DefaultWorkingDirectory)/test-results/unit/coverage/lcov-report
+                        #   displayName: publish code coverage
+                        #   timeoutInMinutes: 5
 
-                        - script: yarn publish-code-coverage -t $(CODECOV_TOKEN)
-                          displayName: Publish code coverage to codecov
-                          timeoutInMinutes: 3
+                        # - script: yarn publish-code-coverage -t $(CODECOV_TOKEN)
+                        #   displayName: Publish code coverage to codecov
+                        #   timeoutInMinutes: 3
 
                   - job: 'publish_build_drops'
                     templateContext:
