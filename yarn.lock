@@ -2452,10 +2452,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.11.7":
-  version: 16.18.97
-  resolution: "@types/node@npm:16.18.97"
-  checksum: 54f44aaeaa523d4c728177d070aeb20b8011e12ac45aff0d992e350e10cac4d899ac6429cd0f06a6c3a001c8a6cd204429b1a16628d82f1b1e4cc1cbdeca780f
+"@types/node@npm:^22.7.3":
+  version: 22.7.3
+  resolution: "@types/node@npm:22.7.3"
+  dependencies:
+    undici-types: ~6.19.2
+  checksum: 1785ceb0d7b05b2a68df85ec89f2c76bc57a59f4f7a349966f2f7c8ee531d59dcba1adb4e3fddb19e0981ded96bf255291858e6b56dfe7984247b3a4f1227a22
   languageName: node
   linkType: hard
 
@@ -3101,7 +3103,7 @@ __metadata:
     "@types/jsdom": ^21.1.6
     "@types/lodash": ^4.14.202
     "@types/luxon": ^3.4.2
-    "@types/node": ^16.11.7
+    "@types/node": ^22.7.3
     "@types/react": ^18.3.1
     "@types/react-dom": ^18.3.0
     "@types/react-helmet": ^6.1.11
@@ -12031,6 +12033,13 @@ __metadata:
     sprintf-js: ^1.1.1
     util-deprecate: ^1.0.2
   checksum: b7719c30e5d1fdda4ee9379e8d80dca2b0668942420ba365ae3410120e08225fe36707a7981ce0f921812dee6a2290b713cdce1e75e770b98e67a45d8a378d35
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~6.19.2":
+  version: 6.19.8
+  resolution: "undici-types@npm:6.19.8"
+  checksum: de51f1b447d22571cf155dfe14ff6d12c5bdaec237c765085b439c38ca8518fc360e88c70f99469162bf2e14188a7b0bcb06e1ed2dc031042b984b0bb9544017
   languageName: node
   linkType: hard
 
