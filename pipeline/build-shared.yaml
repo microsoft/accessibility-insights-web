@@ -90,10 +90,6 @@ extends:
                           displayName: publish code coverage
                           timeoutInMinutes: 5
 
-                        - script: yarn publish-code-coverage -t $(CODECOV_TOKEN)
-                          displayName: Publish code coverage to codecov
-                          timeoutInMinutes: 3
-
                   - job: 'publish_build_drops'
                     templateContext:
                         outputs:

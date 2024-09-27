@@ -79,34 +79,6 @@ jobs:
           test-results/unit/coverage/cobertura-coverage.xml
       timeout-minutes: 5
 
-  publish-code-coverage:
-    needs: unit-tests # This waits for *all* of the unit-tests jobs
-    runs-on: ubuntu-20.04
-    steps:
-    # This only needs to be present so codecov can use the source tree for some post-processing
-    # This job doesn't require that we install dependencies
-    - uses: actions/checkout@v4.1.7
-      timeout-minutes: 2
-
-    - uses: actions/setup-node@v4
-      with: { node-version: "${{ env.NODE_VERSION }}" }
-      timeout-minutes: 2
-
-    - uses: actions/download-artifact@v4
-      with:
-        name: unit-tests-1-results
-        path: unit-tests-1-results
-      timeout-minutes: 2
-
-    - uses: actions/download-artifact@v4
-      with:
-        name: unit-tests-2-results
-        path: unit-tests-2-results
-      timeout-minutes: 2
-
-    - run: npx codecov
-      timeout-minutes: 3
-
   lints:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
