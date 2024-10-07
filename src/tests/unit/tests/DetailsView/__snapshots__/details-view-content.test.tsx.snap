@@ -369,10 +369,6 @@ exports[`DetailsViewContent render renders normally: DetailsViewBody props 1`] =
           "enabled": false,
           "stepStatus": {},
         },
-        "parsing": {
-          "enabled": false,
-          "stepStatus": {},
-        },
         "pointerMotion": {
           "enabled": false,
           "stepStatus": {},
