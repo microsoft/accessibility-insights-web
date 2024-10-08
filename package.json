@@ -137,7 +137,7 @@
         "regenerator-runtime": "^0.14.1",
         "sass": "^1.69.7",
         "sass-loader": "^13.3.3",
-        "serve-static": "^1.15.0",
+        "serve-static": "^1.16.0",
         "simple-git": "^3.22.0",
         "stylelint": "^15.11.0",
         "stylelint-config-prettier-scss": "^1.0.0",
