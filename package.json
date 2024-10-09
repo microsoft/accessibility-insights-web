@@ -147,7 +147,7 @@
         "typed-scss-modules": "^8.0.0",
         "typemoq": "^2.1.0",
         "typescript": "^5.4.5",
-        "webpack": "^5.94.0",
+        "webpack": "^5.95.0",
         "webpack-cli": "^5.1.4",
         "webpack-node-externals": "^3.0.0"
     },
