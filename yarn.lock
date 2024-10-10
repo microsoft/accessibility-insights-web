@@ -2397,10 +2397,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.202":
-  version: 4.17.1
-  resolution: "@types/lodash@npm:4.17.1"
-  checksum: 01984d5b44c09ef45258f8ac6d0cf926900624064722d51a020ba179e5d4a293da0068fb278d87dc695586afe7ebd3362ec57f5c0e7c4f6c1fab9d04a80e77f5
+"@types/lodash@npm:^4.17.10":
+  version: 4.17.10
+  resolution: "@types/lodash@npm:4.17.10"
+  checksum: 4600f2f25270c8fee6953e363d318149a5f0f1b1bb820aa2f42d7ada6e4f7de31848bb5ffc2c687b40bd73aa982167bdd6e6d8d456e72abe0c660ec77d1fa7e9
   languageName: node
   linkType: hard
 
@@ -3079,7 +3079,7 @@ __metadata:
     "@types/chrome": 0.0.260
     "@types/jest": ^29.5.11
     "@types/jsdom": ^21.1.6
-    "@types/lodash": ^4.14.202
+    "@types/lodash": ^4.17.10
     "@types/luxon": ^3.4.2
     "@types/node": ^16.11.7
     "@types/react": ^18.3.1
