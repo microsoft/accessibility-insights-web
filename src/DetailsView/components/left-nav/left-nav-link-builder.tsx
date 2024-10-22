@@ -207,7 +207,7 @@ export class LeftNavLinkBuilder {
             return test;
         });
 
-        return allTestLinks;
+        return allTestLinks as unknown as BaseLeftNavLink[];
     }
 
     private buildNoncollapsibleAssessmentLink = (
