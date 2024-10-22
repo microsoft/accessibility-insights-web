@@ -119,21 +119,21 @@ export class LeftNavLinkBuilder {
         const isExpanded = assessment.visualizationType === expandedTest;
         const test = featureFlagStoreData[FeatureFlags.automatedChecks]
             ? this.buildNoncollapsibleAssessmentLink(
-                  deps,
-                  assessment,
-                  startingIndex,
-                  assessmentsData,
-                  forceAnchor,
-              )
+                deps,
+                assessment,
+                startingIndex,
+                assessmentsData,
+                forceAnchor,
+            )
             : this.buildCollapsibleAssessmentLink(
-                  deps,
-                  assessment,
-                  startingIndex,
-                  assessmentsData,
-                  isExpanded,
-                  onRightPanelContentSwitch,
-                  forceAnchor,
-              );
+                deps,
+                assessment,
+                startingIndex,
+                assessmentsData,
+                isExpanded,
+                onRightPanelContentSwitch,
+                forceAnchor,
+            );
 
         return test;
     }
@@ -207,7 +207,7 @@ export class LeftNavLinkBuilder {
             return test;
         });
 
-        return allTestLinks;
+        return allTestLinks as unknown as BaseLeftNavLink[];
     }
 
     private buildNoncollapsibleAssessmentLink = (
