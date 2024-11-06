@@ -323,9 +323,6 @@ exports[`getRuleInclusions getRuleInclusions matches snapshotted list of product
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "summary-name": {
-    "status": "included",
-  },
   "svg-img-alt": {
     "status": "included",
   },

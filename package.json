@@ -156,7 +156,7 @@
         "@microsoft/applicationinsights-web": "^2.8.15",
         "@testing-library/user-event": "^14.5.2",
         "ajv": "^8.12.0",
-        "axe-core": "4.10.2",
+        "axe-core": "4.9.1",
         "classnames": "^2.5.1",
         "idb-keyval": "^6.2.1",
         "lodash": "^4.17.21",
