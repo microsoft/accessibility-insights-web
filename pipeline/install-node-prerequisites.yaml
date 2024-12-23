@@ -4,8 +4,8 @@ steps:
     - task: NodeTool@0
       inputs:
           # Keep this in sync with /.github/workflows/ci.yml
-          versionSpec: '16.14.2'
-      displayName: use node 16.14.2
+          versionSpec: '20.17.0'
+      displayName: use node 20.17.0
       timeoutInMinutes: 2
       retryCountOnTaskFailure: 2
 
