@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
     - uses: actions/setup-node@v4
@@ -52,7 +52,7 @@ jobs:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
     - uses: actions/setup-node@v4
@@ -83,7 +83,7 @@ jobs:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
     - uses: actions/setup-node@v4
@@ -117,7 +117,7 @@ jobs:
   codeql:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
     - uses: github/codeql-action/init@v3
@@ -133,14 +133,14 @@ jobs:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
     # We need to update this each time we update playwright
-    container: mcr.microsoft.com/playwright:v1.45.3-focal
+    container: mcr.microsoft.com/playwright:v1.48.2-focal
     strategy:
       fail-fast: false
       matrix:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
     - uses: actions/setup-node@v4
@@ -190,7 +190,7 @@ jobs:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
     - uses: actions/setup-node@v4
@@ -219,7 +219,7 @@ jobs:
   check-clearly-defined:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
     - name: Check ClearlyDefined for dependabot PR's

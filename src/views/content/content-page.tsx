@@ -127,7 +127,7 @@ export function ContentProvider(root: ContentTree): ContentProvider {
     const contentFromReference = (reference?: ContentReference) =>
         isContentPageComponent(reference) ? reference : getPage(reference);
     const pathFromReference = (reference?: ContentReference) =>
-        isContentPageComponent(reference) ? pathTo(reference) : reference ?? null;
+        isContentPageComponent(reference) ? pathTo(reference) : (reference ?? null);
 
     return { getPage, allPaths, pathTo, contentFromReference, pathFromReference };
 }
