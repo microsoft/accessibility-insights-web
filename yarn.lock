@@ -3111,7 +3111,7 @@ __metadata:
     npm-run-all: ^4.1.5
     playwright: ^1.48.2
     postcss: ^8.4.41
-    postcss-modules: ^6.0.0
+    postcss-modules: ^6.0.1
     prettier: ^3.3.3
     react: ^18.3.1
     react-dom: ^18.3.1
@@ -9735,6 +9735,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-modules@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "postcss-modules@npm:6.0.1"
+  dependencies:
+    generic-names: ^4.0.0
+    icss-utils: ^5.1.0
+    lodash.camelcase: ^4.3.0
+    postcss-modules-extract-imports: ^3.1.0
+    postcss-modules-local-by-default: ^4.0.5
+    postcss-modules-scope: ^3.2.0
+    postcss-modules-values: ^4.0.0
+    string-hash: ^1.1.3
+  peerDependencies:
+    postcss: ^8.0.0
+  checksum: bdbf1e2babfb5a6ff13c86c36b8b431b655472cc9e16098cea0b960ed1fe8fa8f298292f939548bf00cc664c66e954d1b4c5a8634a7b57c58bc06d8f54cdd5a0
+  languageName: node
+  linkType: hard
+
 "postcss-resolve-nested-selector@npm:^0.1.1":
   version: 0.1.1
   resolution: "postcss-resolve-nested-selector@npm:0.1.1"
@@ -11040,7 +11058,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string-hash@npm:^1.1.1":
+"string-hash@npm:^1.1.1, string-hash@npm:^1.1.3":
   version: 1.1.3
   resolution: "string-hash@npm:1.1.3"
   checksum: 104b8667a5e0dc71bfcd29fee09cb88c6102e27bfb07c55f95535d90587d016731d52299380052e514266f4028a7a5172e0d9ac58e2f8f5001be61dc77c0754d
