@@ -20,6 +20,23 @@
 
     &:hover,
     &:active {
+        text-decoration: underline !important;
+    }
+}
+
+.insights-link-icon {
+    display: flex;
+
+    &:hover,
+    &:active {
         text-decoration: none !important;
+    }
+}
+
+@media screen and (forced-colors: active) {
+    .insights-link:hover,
+    .insights-link-icon:hover {
+        forced-color-adjust: none;
+        color: ButtonText !important;
     }
 }
