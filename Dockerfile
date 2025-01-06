@@ -12,14 +12,14 @@ USER root
 # We need to update certificates before we can successfully update and install node
 # This is a workaround for https://github.com/nodesource/distributions/issues/1266
 #
-# We pin nodejs 16.x instead of accepting Playwright's default for consistency with
+# We pin nodejs 20.x instead of accepting Playwright's default for consistency with
 # our other build environments. 
 RUN apt-get update && \
   apt-get install ca-certificates && \
   apt-get update && \
   apt-get install -y curl && \
-  curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
-  apt-get install -y --allow-downgrades nodejs=16.* && \
+  curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+  apt-get install -y --allow-downgrades nodejs=20.* && \
   rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
