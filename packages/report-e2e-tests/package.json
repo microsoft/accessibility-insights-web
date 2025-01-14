@@ -5,7 +5,7 @@
     "scripts": {
         "build": "tsc",
         "lint:check": "eslint --ext .ts ./",
-        "lint:fix": "eslint --fix -c ../../.eslintrc.js --ext .ts ./",
+        "lint:fix": "eslint --fix -c ../../eslintrc.config.mjs --ext .ts ./",
         "test": "cross-env NODE_OPTIONS='--unhandled-rejections=strict' jest --colors --runInBand"
     },
     "repository": "git+https://github.com/microsoft/accessibility-insights-web.git",
@@ -16,7 +16,13 @@
     },
     "homepage": "https://github.com/microsoft/accessibility-insights-web#readme",
     "dependencies": {
-        "accessibility-insights-report": "*"
+        "@eslint/compat": "^1.2.5",
+        "@eslint/eslintrc": "^3.2.0",
+        "@eslint/js": "^9.18.0",
+        "@eslint/migrate-config": "^1.3.6",
+        "accessibility-insights-report": "*",
+        "eslint-plugin-security": "^3.0.1",
+        "globals": "^15.14.0"
     },
     "devDependencies": {
         "@types/jest": "^29.5.11",

@@ -11,7 +11,7 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'plugin:security/recommended',
+        // 'plugin:security/recommended',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
