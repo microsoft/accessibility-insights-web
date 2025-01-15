@@ -92,7 +92,7 @@ export default [{
         "no-throw-literal": "error",
         "react/no-access-state-in-setstate": "error",
         "react/no-unused-state": "error",
-        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/ban-types": "off",

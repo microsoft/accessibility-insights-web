@@ -15,7 +15,7 @@ describe('fromAxeResult', () => {
         'axe-results-without-issues': axeResultsWithoutIssues,
     };
 
-    describe.each(Object.keys(examples))('with example input "%s"', (exampleName: string) => {
+    describe.each(Object.keys(examples))('with example input "%s"', (exampleName: any) => {
         const input: AxeReportParameters = examples[exampleName];
 
         beforeEach(() => {

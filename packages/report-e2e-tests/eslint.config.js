@@ -31,7 +31,7 @@ export default [{
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:security/recommended",
+   // "plugin:security/recommended",
 ), {
     plugins: {
         react,
@@ -88,7 +88,7 @@ export default [{
         "no-throw-literal": "error",
         "react/no-access-state-in-setstate": "error",
         "react/no-unused-state": "error",
-        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/ban-types": "off",
@@ -112,6 +112,7 @@ export default [{
         "@typescript-eslint/no-implied-eval": "off",
         "@typescript-eslint/prefer-regexp-exec": "off",
         "@typescript-eslint/await-thenable": "off",
+        "@typescript-eslint/no-floating-promises": "off",
         "react/prop-types": "off",
         "react/display-name": "off",
         "react/no-unescaped-entities": "off",

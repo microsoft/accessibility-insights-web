@@ -2,10 +2,11 @@
     "name": "accessibility-insights-report-e2e-tests",
     "version": "1.0.0",
     "description": "This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.",
+    "type": "module",
     "scripts": {
         "build": "tsc",
-        "lint:check": "eslint --ext .ts ./",
-        "lint:fix": "eslint --fix -c ../../eslintrc.config.mjs --ext .ts ./",
+        "lint:check": "eslint ./",
+        "lint:fix": "eslint 'src/**/*.ts' --quiet --fix",
         "test": "cross-env NODE_OPTIONS='--unhandled-rejections=strict' jest --colors --runInBand"
     },
     "repository": "git+https://github.com/microsoft/accessibility-insights-web.git",

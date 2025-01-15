@@ -61,7 +61,7 @@ module.exports = {
         'react/no-unused-state': 'error',
 
         // Disabled due to high existing-positive count during initial tslint -> eslint migration
-        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-explicit-any': 'error',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/ban-types': 'off',

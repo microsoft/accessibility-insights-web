@@ -42,7 +42,7 @@
         "format:fix": "prettier --config prettier.config.js --write \"**/*\"",
         "lint:check": "eslint \"**/*.{js,ts,tsx}\"",
         "lint:check:all": "yarn lint:check && yarn lint:scss && yarn packages run lint:check",
-        "lint:fix": "eslint \"**/*.{js,ts,tsx}\" --quiet --fix",
+        "lint:fix": "eslint '**/*.{js,ts,tsx}' --quiet --fix",
         "lint:scss": "stylelint \"**/*.scss\"",
         "lint:scss:fix": "stylelint \"**/*.scss\" --fix",
         "null:autoadd": "node ./tools/strict-null-checks/auto-add.js",
