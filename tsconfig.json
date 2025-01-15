@@ -11,12 +11,12 @@
         "noUnusedLocals": true
     },
     "include": [
-        ".eslintrc.js",
+        "eslint.config.mjs",
         "src/**/*.ts",
         "src/**/*.tsx",
         "src/**/*.js",
         "deploy/**/*",
         "tools/**/*",
-        "./*.js"
+        "./*.js",
     ]
 }
