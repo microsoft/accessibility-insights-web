@@ -3107,7 +3107,7 @@ __metadata:
     generic-names: ^4.0.0
     grunt: ^1.6.1
     grunt-bom-removal: 1.0.1
-    grunt-cli: ^1.4.3
+    grunt-cli: ^1.5.0
     grunt-concurrent: ^3.0.0
     grunt-contrib-clean: ^2.0.1
     grunt-contrib-copy: ^1.0.0
@@ -6539,7 +6539,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"grunt-cli@npm:^1.4.3, grunt-cli@npm:~1.4.3":
+"grunt-cli@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "grunt-cli@npm:1.5.0"
+  dependencies:
+    grunt-known-options: ~2.0.0
+    interpret: ~1.1.0
+    liftup: ~3.0.1
+    nopt: ~5.0.0
+    v8flags: ^4.0.1
+  bin:
+    grunt: bin/grunt
+  checksum: 124493f25b761581dcc0863078ca2953da1c81d5f4e57c17487a05e29283131c353cc87163125e777417534c8d80e419cefcf4bd8b9220c33f0d52d7b00a60ff
+  languageName: node
+  linkType: hard
+
+"grunt-cli@npm:~1.4.3":
   version: 1.4.3
   resolution: "grunt-cli@npm:1.4.3"
   dependencies:
@@ -9085,6 +9100,17 @@ __metadata:
   bin:
     nopt: bin/nopt.js
   checksum: 66cd3b6021fc8130fc201236bc3dce614fc86988b78faa91377538b09d57aad9ba4300b5d6a01dc93d6c6f2c170f81cc893063d496d108150b65191beb4a50a4
+  languageName: node
+  linkType: hard
+
+"nopt@npm:~5.0.0":
+  version: 5.0.0
+  resolution: "nopt@npm:5.0.0"
+  dependencies:
+    abbrev: 1
+  bin:
+    nopt: bin/nopt.js
+  checksum: d35fdec187269503843924e0114c0c6533fb54bbf1620d0f28b4b60ba01712d6687f62565c55cc20a504eff0fbe5c63e22340c3fad549ad40469ffb611b04f2f
   languageName: node
   linkType: hard
 
@@ -12170,6 +12196,13 @@ __metadata:
     "@types/istanbul-lib-coverage": ^2.0.1
     convert-source-map: ^2.0.0
   checksum: 31ef98c6a31b1dab6be024cf914f235408cd4c0dc56a5c744a5eea1a9e019ba279e1b6f90d695b78c3186feed391ed492380ccf095009e2eb91f3d058f0b4491
+  languageName: node
+  linkType: hard
+
+"v8flags@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "v8flags@npm:4.0.1"
+  checksum: 69863ede75ff79579654951c78724c084bc337d0ebe1d9bffc6924f3f2bd0b40a9eb4c568fc795201d5eb72311b77e5d75a7e1544faa12355412360dc37d76e2
   languageName: node
   linkType: hard
 
