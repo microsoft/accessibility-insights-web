@@ -6,7 +6,7 @@ exports[`FastPassLeftNav renders visualization based left nav with appropriate p
     deps="[object Object]"
     featureflagstoredata="[object Object]"
     selectedkey="some string"
-    visualizations="1,3,29"
+    visualizations="1,3,28"
   />
 </DocumentFragment>
 `;
@@ -24,7 +24,7 @@ exports[`FastPassLeftNav renders visualization based left nav with appropriate p
   "visualizations": [
     1,
     3,
-    29,
+    28,
   ],
 }
 `;
