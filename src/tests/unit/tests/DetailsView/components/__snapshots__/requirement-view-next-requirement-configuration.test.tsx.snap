@@ -69,7 +69,7 @@ exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigura
       "key": "next-quick-assess-requirement-key",
     }
   }
-  nextRequirementVisualizationType={32}
+  nextRequirementVisualizationType={31}
 />
 `;
 
@@ -92,6 +92,6 @@ exports[`RequirementViewNextRequirementConfiguration getNextRequirementConfigura
       "key": "other-requirement-key",
     }
   }
-  nextRequirementVisualizationType={36}
+  nextRequirementVisualizationType={35}
 />
 `;
