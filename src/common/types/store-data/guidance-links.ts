@@ -23,6 +23,10 @@ export const guidanceTags = {
         id: 'WCAG_2_2',
         displayText: 'Deprecated for WCAG 2.2',
     },
+    AI_SCAN: {
+        id: 'AI_SCAN',
+        displayText: 'AI suggested',
+    },
 };
 
 export interface GuidanceLink {
