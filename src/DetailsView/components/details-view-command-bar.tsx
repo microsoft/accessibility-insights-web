@@ -190,11 +190,13 @@ export class DetailsViewCommandBar extends React.Component<
         ) {
             return (
                 <div className={styles.detailsViewCommandButtons}>
-                    {reportExportElement}
-                    {saveAssessmentButtonElement}
-                    {loadAssessmentButtonElement}
-                    {transferToAssessmentButtonElement}
-                    {startOverElement}
+                    <ul role="group" aria-label="Assessment actions" className={styles.ulClass}>
+                        {reportExportElement && <li>{reportExportElement}</li>}
+                        {saveAssessmentButtonElement && <li>{saveAssessmentButtonElement}</li>}
+                        {loadAssessmentButtonElement && <li>{loadAssessmentButtonElement}</li>}
+                        {transferToAssessmentButtonElement && <li>{transferToAssessmentButtonElement}</li>}
+                        {startOverElement && <li>{startOverElement}</li>}
+                    </ul>
                 </div>
             );
         }
