@@ -38,6 +38,10 @@
     text-overflow: ellipsis;
     display: inline-block;
     overflow: hidden;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .target-page-link {
