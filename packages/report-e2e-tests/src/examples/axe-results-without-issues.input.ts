@@ -18,7 +18,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                 id: 'accesskeys',
                 impact: null,
                 nodes: [],
-                tags: ['best-practice', 'cat.keyboard'],
+                tags: ['best-practice', 'cat.keyboard', 'ai-scan'],
             },
             {
                 description: 'Ensures <area> elements of image maps have alternate text',
