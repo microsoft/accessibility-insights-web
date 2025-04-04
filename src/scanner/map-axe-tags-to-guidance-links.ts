@@ -46,7 +46,7 @@ function mapAxeTagToGuidanceLink(axeTag: string): HyperlinkDefinition | null {
     if (axeTag === 'best-practice') {
         return BestPractice;
     }
-    if (axeTag == 'ai-scan') {
+    if (axeTag === 'ai-scan') {
         return AiScan;
     }
     const metadata: GuidelineMetadata = guidelineMetadata[getGuidelineKeyByAxeTag(axeTag)] ?? null;
