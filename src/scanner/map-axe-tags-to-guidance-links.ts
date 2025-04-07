@@ -16,7 +16,6 @@ export const BestPractice: GuidanceLink = {
     tags: [guidanceTags.BEST_PRACTICE],
 };
 
-
 const bestPracticeToGuidanceTagOverrideMapping = {
     'aria-allowed-role': ['wcag131', 'wcag412'],
     'presentation-role-conflict': ['wcag131'],
