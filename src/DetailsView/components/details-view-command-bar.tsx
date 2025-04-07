@@ -190,7 +190,7 @@ export class DetailsViewCommandBar extends React.Component<
         ) {
             return (
                 <div className={styles.detailsViewCommandButtons}>
-                    <ul role="group" aria-label="Assessment actions" className={styles.ulClass}>
+                    <ul role="list" aria-label="Assessment actions" className={styles.ulClass}>
                         {reportExportElement && <li>{reportExportElement}</li>}
                         {saveAssessmentButtonElement && <li>{saveAssessmentButtonElement}</li>}
                         {loadAssessmentButtonElement && <li>{loadAssessmentButtonElement}</li>}
