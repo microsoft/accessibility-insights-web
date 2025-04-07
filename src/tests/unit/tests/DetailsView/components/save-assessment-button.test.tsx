@@ -132,7 +132,7 @@ describe('SaveAssessmentButton', () => {
         beforeEach(() => {
             propsStub.userConfigurationStoreData.showSaveAssessmentDialog = false;
             wrapper = render(<SaveAssessmentButton {...propsStub} />);
-            fireEvent.click(wrapper.getByRole('link'));
+            fireEvent.click(wrapper.getByRole('button'));
         });
 
         it('saves assessment without dialog (dialog is hidden)', () => {
