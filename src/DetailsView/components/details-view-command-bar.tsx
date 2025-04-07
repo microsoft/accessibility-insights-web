@@ -194,7 +194,9 @@ export class DetailsViewCommandBar extends React.Component<
                         {reportExportElement && <li>{reportExportElement}</li>}
                         {saveAssessmentButtonElement && <li>{saveAssessmentButtonElement}</li>}
                         {loadAssessmentButtonElement && <li>{loadAssessmentButtonElement}</li>}
-                        {transferToAssessmentButtonElement && <li>{transferToAssessmentButtonElement}</li>}
+                        {transferToAssessmentButtonElement && (
+                            <li>{transferToAssessmentButtonElement}</li>
+                        )}
                         {startOverElement && <li>{startOverElement}</li>}
                     </ul>
                 </div>
