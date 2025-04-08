@@ -31,13 +31,16 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -66,7 +69,9 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="load-assessment-button"
@@ -196,13 +201,16 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -231,7 +239,9 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="load-assessment-button"
@@ -361,13 +371,16 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -396,7 +409,9 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="load-assessment-button"
@@ -526,13 +541,16 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -561,7 +579,9 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="load-assessment-button"
@@ -691,13 +711,16 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -827,13 +850,16 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -962,13 +988,16 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -997,7 +1026,9 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             <button
               aria-label="start over menu"
@@ -1137,13 +1168,16 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -1172,7 +1206,9 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             <button
               aria-label="start over menu"
@@ -1309,13 +1345,16 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -1344,7 +1383,9 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             <button
               aria-label="start over menu"
@@ -1484,13 +1525,16 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -1519,7 +1563,9 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             <button
               aria-label="start over menu"
@@ -1656,13 +1702,16 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -1691,7 +1740,9 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Transfer to assessment stub
           </div>
@@ -1797,13 +1848,16 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
             data-automation-id="report-export-button"
@@ -1832,7 +1886,9 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
             </span>
           </button>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Transfer to assessment stub
           </div>
@@ -2047,26 +2103,35 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <mock-reportexportbutton />
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Save assessment
           </div>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Transfer to assessment stub
           </div>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command root-109"
             data-is-focusable="true"
@@ -2190,21 +2255,28 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <mock-reportexportbutton />
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Save assessment
           </div>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Transfer to assessment stub
           </div>
@@ -2310,18 +2382,23 @@ exports[`DetailsViewCommandBar renders without export button and without start o
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Save assessment
           </div>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Transfer to assessment stub
           </div>
@@ -2427,23 +2504,30 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
       <ul
         aria-label="Assessment actions"
         class="ulClass"
-        role="list"
+        role="group"
       >
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Save assessment
           </div>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <div>
             Transfer to assessment stub
           </div>
         </li>
-        <li>
+        <li
+          role="menuitem"
+        >
           <button
             class="ms-Button ms-Button--action ms-Button--command root-109"
             data-is-focusable="true"

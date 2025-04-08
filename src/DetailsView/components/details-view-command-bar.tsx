@@ -189,15 +189,19 @@ export class DetailsViewCommandBar extends React.Component<
             startOverElement
         ) {
             return (
-                <div className={styles.detailsViewCommandButtons}>
-                    <ul role="list" aria-label="Assessment actions" className={styles.ulClass}>
-                        {reportExportElement && <li>{reportExportElement}</li>}
-                        {saveAssessmentButtonElement && <li>{saveAssessmentButtonElement}</li>}
-                        {loadAssessmentButtonElement && <li>{loadAssessmentButtonElement}</li>}
-                        {transferToAssessmentButtonElement && (
-                            <li>{transferToAssessmentButtonElement}</li>
+                <div role="menu" className={styles.detailsViewCommandButtons}>
+                    <ul role="group" aria-label="Assessment actions" className={styles.ulClass}>
+                        {reportExportElement && <li role="menuitem">{reportExportElement}</li>}
+                        {saveAssessmentButtonElement && (
+                            <li role="menuitem">{saveAssessmentButtonElement}</li>
                         )}
-                        {startOverElement && <li>{startOverElement}</li>}
+                        {loadAssessmentButtonElement && (
+                            <li role="menuitem">{loadAssessmentButtonElement}</li>
+                        )}
+                        {transferToAssessmentButtonElement && (
+                            <li role="menuitem">{transferToAssessmentButtonElement}</li>
+                        )}
+                        {startOverElement && <li role="menuitem">{startOverElement}</li>}
                     </ul>
                 </div>
             );
