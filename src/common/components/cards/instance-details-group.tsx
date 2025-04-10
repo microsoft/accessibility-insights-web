@@ -28,6 +28,7 @@ export type InstanceDetailsGroupProps = {
     targetAppInfo: TargetAppData;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
+    feedbackURL?: string;
 };
 
 export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
@@ -40,6 +41,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
             targetAppInfo,
             cardSelectionMessageCreator,
             narrowModeStatus,
+            feedbackURL,
         } = props;
         const { nodes } = rule;
         const unifiedRule: UnifiedRule = {
@@ -66,6 +68,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
                             targetAppInfo={targetAppInfo}
                             cardSelectionMessageCreator={cardSelectionMessageCreator}
                             narrowModeStatus={narrowModeStatus}
+                            {...(feedbackURL && { feedbackURL })}
                         />
                     </li>
                 ))}

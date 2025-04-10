@@ -1,0 +1,114 @@
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/common.scss';
+@import '../../../common/styles/fonts.scss';
+
+.markup-footer {
+    display: flex;
+    justify-content: space-between; // Changed from flex-start
+    align-items: center;
+    background-color: var(--neutral-2, #f8f8f8);
+    min-height: 48px;
+    padding: 0 20px;
+    border-top: 0.5px solid var(--card-footer-border, #dedede);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    margin-top: 0;
+  }
+    
+  .feedback-text {
+    font-size: 14px;
+    color: var(--secondary-text, rgba(0, 0, 0, 0.7));
+    margin-right: 12px;
+  }
+    
+  .feedback-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .buttons-group-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .buttons-group-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    position: relative;
+    margin-left: auto
+  }
+    
+  .feedback-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-60, #666);
+    text-decoration: none;
+    font-size: 14px;
+    gap: 6px;
+  }
+    
+  .feedback-button:hover {
+    background-color: var(--neutral-alpha-4, rgba(0, 0, 0, 0.04));
+  }
+    
+  .feedback-button span {
+    margin-left: 6px;
+    font-size: 14px;
+  }
+
+  .ai-content-label {
+    background-color: var(--neutral-10, #e6e6e6);
+    color: var(--neutral-60, #666);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .notification-container {
+    position: relative;
+    height: 0;
+    width: 0;
+  }
+
+  .copy-notification {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    background-color: var(--neutral-80, #333);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    animation: fadeInOut 2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+    z-index: 100;
+    display: none;
+    &.visible {
+      display: inline-block;
+    }
+  }
+
+  .hidden-content {
+    display: none;
+  }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(10px); }
+    20% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }

@@ -18,7 +18,7 @@ export class CombinedResultsReport implements AccessibilityInsightsReport.Report
     ) {}
 
     public asHTML(): string {
-        const { scanDetails, results } = this.parameters;
+        const { scanDetails, results, feedbackURL } = this.parameters;
 
         const targetAppInfo = {
             name: scanDetails.basePageTitle,
@@ -44,7 +44,8 @@ export class CombinedResultsReport implements AccessibilityInsightsReport.Report
         return this.deps.reportHtmlGenerator.generateHtml(
             scanMetadata,
             cardsByRule,
-            results.urlResults
+            results.urlResults,
+            feedbackURL
         );
     }
 }

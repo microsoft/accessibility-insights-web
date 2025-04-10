@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { limitedCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -15,6 +15,7 @@ import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
 import { UrlResultCounts } from 'reports/package/accessibilityInsightsReport';
 import { CombinedReportSectionProps } from './components/report-sections/combined-report-section-factory';
+import { getDefaultCopyToClipboardScript } from './components/report-sections/copy-to-clipboard-script-provider';
 import {
     ReportSectionFactory,
     SectionDeps,
@@ -38,6 +39,7 @@ export class CombinedReportHtmlGenerator {
         scanMetadata: ScanMetadata,
         cardsByRule: CardsViewModel,
         urlResultCounts: UrlResultCounts,
+        feedbackURL?: string,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
@@ -50,15 +52,17 @@ export class CombinedReportHtmlGenerator {
                 collapsibleControl: ReportCollapsibleContainerControl,
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
-                cardInteractionSupport: noCardInteractionsSupported,
+                cardInteractionSupport: limitedCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLinkWithConfirmationDialog,
+                feedbackURL: feedbackURL || undefined,
             } as SectionDeps,
             cardsViewData: cardsByRule,
             urlResultCounts,
             toUtcString: this.utcDateConverter,
             secondsToTimeString: this.secondsToTimeStringConverter,
             getCollapsibleScript: this.getCollapsibleScript,
+            getCopyToClipboardScript: getDefaultCopyToClipboardScript,
             sectionHeadingLevel: 2,
         };
 

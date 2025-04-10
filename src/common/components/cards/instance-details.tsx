@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
+import { buildCopyContent } from 'common/utils/card-content-formatter';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
@@ -18,6 +19,7 @@ import {
     UnifiedRule,
 } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
+import { MarkupFooter } from './failed-instances-markup-footer';
 import { InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
 
 export const instanceCardAutomationId = 'instance-card';
@@ -36,7 +38,12 @@ export type InstanceDetailsProps = {
     rule: UnifiedRule;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
+    feedbackURL?: string;
 };
+
+// Feedback mechanism is only enabled for results with the following guidance tags
+const AI_SCAN_TAG = 'AI_SCAN';
+const FEEDBACK_ENABLED_TAGS = [AI_SCAN_TAG];
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
     const {
@@ -47,10 +54,28 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         targetAppInfo,
         cardSelectionMessageCreator,
         narrowModeStatus,
+        feedbackURL
     } = props;
     const [cardFocused, setCardFocus] = React.useState(false);
 
     const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
+
+    const hasFeedbackEnabledTag = () => {
+        if (!rule || !rule.guidance) return false;
+
+        return rule.guidance.some(guidanceLink =>
+            guidanceLink.tags && guidanceLink.tags.some(tag => FEEDBACK_ENABLED_TAGS.includes(tag.id)),
+        );
+    };
+
+    // Add specific check for AI_SCAN tag
+    const hasAIScanTag = () => {
+        if (!rule || !rule.guidance) return false;
+        
+        return rule.guidance.some(guidanceLink =>
+            guidanceLink.tags && guidanceLink.tags.some(tag => tag.id === AI_SCAN_TAG)
+        );
+    };
 
     const instanceDetailsCardStyling = classNames({
         [styles.instanceDetailsCard]: true,
@@ -118,6 +143,13 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                         rule={rule}
                         targetAppInfo={targetAppInfo}
                         narrowModeStatus={narrowModeStatus}
+                    />
+                    <MarkupFooter 
+                        deps={deps}
+                        instanceId={result.uid}
+                        contentToCopy={buildCopyContent(result)} 
+                        feedbackURL={hasFeedbackEnabledTag() ? feedbackURL : undefined}
+                        isIssueAIdetected={hasAIScanTag()}
                     />
                 </div>
             </div>

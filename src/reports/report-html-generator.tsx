@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { limitedCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { NewTabLink } from 'common/components/new-tab-link';
@@ -12,6 +12,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
+import { getDefaultCopyToClipboardScript } from './components/report-sections/copy-to-clipboard-script-provider';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import {
@@ -38,6 +39,7 @@ export class ReportHtmlGenerator {
         description: string,
         cardsViewData: CardsViewModel,
         scanMetadata: ScanMetadata,
+        feedbackURL?: string,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
@@ -50,14 +52,16 @@ export class ReportHtmlGenerator {
                 collapsibleControl: ReportCollapsibleContainerControl,
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
-                cardInteractionSupport: noCardInteractionsSupported,
+                cardInteractionSupport: limitedCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
                 getNextHeadingLevel: this.getNextHeadingLevel,
+                feedbackURL: feedbackURL || undefined,
             } as SectionDeps,
             cardsViewData: cardsViewData,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
+            getCopyToClipboardScript: getDefaultCopyToClipboardScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
             recommendColor: this.recommendColor,
