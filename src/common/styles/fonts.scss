@@ -17,7 +17,7 @@
         $family: $family + $comma + $font;
         $comma: ',';
     }
-    @return unquote($family);
+    @return string.unquote($family);
 }
 
 // Fonts
