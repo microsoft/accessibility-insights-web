@@ -6,11 +6,14 @@
 
 .markup-footer {
     display: flex;
-    justify-content: space-between; // Changed from flex-start
+    justify-content: space-between;
     align-items: center;
     background-color: var(--neutral-2, #f8f8f8);
     min-height: 48px;
-    padding: 0 20px;
+    padding-top: 0;
+    padding-right: 20px;
+    padding-bottom: 0;
+    padding-left: 20px;
     border-top: 0.5px solid var(--card-footer-border, #dedede);
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
@@ -19,7 +22,7 @@
 
 .feedback-text {
     font-size: 14px;
-    color: var(--secondary-text, rgba(0, 0, 0, 0.7));
+    color: var(--secondary-text, rgb(0 0 0 / 70%));
     margin-right: 12px;
 }
 
@@ -59,7 +62,7 @@
 }
 
 .feedback-button:hover {
-    background-color: var(--neutral-alpha-4, rgba(0, 0, 0, 0.04));
+    background-color: var(--neutral-alpha-4, rgb(0 0 0 / 4%));
 }
 
 .feedback-button span {
@@ -71,7 +74,10 @@
     background-color: var(--neutral-10, #e6e6e6);
     color: var(--neutral-60, #666);
     font-size: 12px;
-    padding: 4px 10px;
+    padding-top: 4px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+    padding-left: 10px;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -90,15 +96,19 @@
     right: 0;
     background-color: var(--neutral-80, #333);
     color: white;
-    padding: 6px 12px;
+    padding-top: 6px;
+    padding-right: 12px;
+    padding-bottom: 6px;
+    padding-left: 12px;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 500;
-    animation: fadeInOut 2s ease-in-out;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: fade-in-out 2s ease-in-out;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
     white-space: nowrap;
     z-index: 100;
     display: none;
+
     &.visible {
         display: inline-block;
     }
@@ -108,19 +118,22 @@
     display: none;
 }
 
-@keyframes fadeInOut {
+@keyframes fade-in-out {
     0% {
         opacity: 0;
         transform: translateY(10px);
     }
+
     20% {
         opacity: 1;
         transform: translateY(0);
     }
+
     80% {
         opacity: 1;
         transform: translateY(0);
     }
+
     100% {
         opacity: 0;
         transform: translateY(-10px);
