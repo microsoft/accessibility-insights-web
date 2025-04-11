@@ -1654,7 +1654,7 @@ ul.instance-details-list--YfkRy > li:last-child {
     }
 })(document)</script><script>(function(doc) {
     const copyToClipboard = async function(instanceId) {
-        const contentId = `copy-content-${instanceId.replace(/[^a-zA-Z0-9]/g, "")}`;
+        const contentId = `copy-content-${instanceId}`;
         const contentElement = doc.getElementById(contentId);
         const textToCopy = contentElement ? contentElement.textContent || "" : instanceId;
         try {
@@ -1663,7 +1663,7 @@ ul.instance-details-list--YfkRy > li:last-child {
             console.error("Failed to copy text: ", err);
             return;
         }
-        const notificationId = `copy-notification-${instanceId.replace(/[^a-zA-Z0-9]/g, "")}`;
+        const notificationId = `copy-notification-${instanceId}`;
         const notificationElement = doc.getElementById(notificationId);
         if (notificationElement) {
             notificationElement.style.display = "inline";

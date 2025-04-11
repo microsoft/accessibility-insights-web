@@ -34,6 +34,7 @@ describe('AxeResultReport', () => {
             scanComplete: reportDateTime,
         }
     };
+    const feedbackURL = undefined;
 
     const results = {
         timestamp: scanTimestamp,
@@ -75,7 +76,7 @@ describe('AxeResultReport', () => {
     const expectedHTML = '<div>The Report!</div>';
     const mockReportHtmlGenerator = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
     mockReportHtmlGenerator
-        .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub))
+        .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub, feedbackURL))
         .returns(() => expectedHTML);
 
     const mockGetDateFromTimestamp = Mock.ofType<(timestamp: string) => Date>();

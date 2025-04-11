@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 export const addCopyToClipboardListener = function (doc: Document): void {
     const copyToClipboard = async function (instanceId: string): Promise<void> {
-        const contentId = `copy-content-${instanceId.replace(/[^a-zA-Z0-9]/g, '')}`;
+        const contentId = `copy-content-${instanceId}`;
         const contentElement = doc.getElementById(contentId);
         const textToCopy = contentElement ? contentElement.textContent || '' : instanceId;
 
@@ -13,7 +13,7 @@ export const addCopyToClipboardListener = function (doc: Document): void {
             return;
         }
 
-        const notificationId = `copy-notification-${instanceId.replace(/[^a-zA-Z0-9]/g, '')}`;
+        const notificationId = `copy-notification-${instanceId}`;
         const notificationElement = doc.getElementById(notificationId);
         if (notificationElement) {
             notificationElement.style.display = 'inline';

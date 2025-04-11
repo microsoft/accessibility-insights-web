@@ -2,21 +2,34 @@
 // Licensed under the MIT License.
 import { CopyDetailsIcon } from 'common/icons/copy-details-icon';
 import { NamedFC } from 'common/react/named-fc';
+import { generateDeterministicContentId } from 'common/utils/id-generator';
 import * as React from 'react';
 import styles from './failed-instances-markup-footer.scss';
 
 export interface CopyContentButtonProps {
     instanceId: string;
     contentToCopy?: string;
+    ruleId?: string;
+    index?: number;
+    targetPath?: string;
 }
 
 export const CopyContentButton = NamedFC<CopyContentButtonProps>(
     'CopyContentButton',
-    ({ instanceId, contentToCopy }) => {
-        const cleanInstanceId = instanceId.replace(/[^a-zA-Z0-9]/g, '');
-        const copyButtonId = `copy-button-${cleanInstanceId}`;
-        const copyContentId = `copy-content-${cleanInstanceId}`;
-        const notificationId = `copy-notification-${cleanInstanceId}`;
+    ({ instanceId, contentToCopy, ruleId, index, targetPath }) => {
+        const deterministicContent = [
+            ruleId || '',
+            index?.toString() || '',
+            targetPath || '',
+        ].join('-');
+        
+        const idBase = deterministicContent ? 
+        generateDeterministicContentId(deterministicContent) :
+            instanceId.replace(/[^a-zA-Z0-9]/g, '');
+        
+        const copyButtonId = `copy-button-${idBase}`;
+        const copyContentId = `copy-content-${idBase}`;
+        const notificationId = `copy-notification-${idBase}`;
 
         return (
             <>

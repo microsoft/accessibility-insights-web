@@ -36,7 +36,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
             reportHtmlGenerator,
             getDateFromTimestamp
         } = this.deps;
-        const { results, description, scanContext: { pageTitle }, feedbackURL} = this.parameters;
+        const { results, description, scanContext: { pageTitle }, feedbackURL = undefined} = this.parameters;
 
         const scanDate = getDateFromTimestamp(results.timestamp);
 
