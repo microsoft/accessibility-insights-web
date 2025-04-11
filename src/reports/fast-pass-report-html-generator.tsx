@@ -49,6 +49,7 @@ export class FastPassReportHtmlGenerator {
         private readonly toolData: ToolData,
         private readonly getCurrentDate: () => Date,
         private readonly getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel,
+        private readonly getCopyToClipboardScript: () => string,
     ) {}
 
     public generateHtml(model: FastPassReportModel): string {
@@ -85,6 +86,7 @@ export class FastPassReportHtmlGenerator {
             scanMetadata,
             results,
             sectionHeadingLevel: 3,
+            getCopyToClipboardScript: this.getCopyToClipboardScript,
         };
 
         const reportElement: JSX.Element = <FastPassReport {...props} />;

@@ -96,6 +96,7 @@ describe('ReportHtmlGenerator', () => {
             },
             scanMetadata,
             sectionHeadingLevel: 2,
+            getCopyToClipboardScript: getScriptMock.object,
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <NullComponent />;
@@ -122,6 +123,7 @@ describe('ReportHtmlGenerator', () => {
             recommendColorMock.object,
             getPropertyConfigurationStub,
             getNextHeadingLevelStub,
+            getScriptMock.object,
         );
 
         const actual = testObject.generateHtml(

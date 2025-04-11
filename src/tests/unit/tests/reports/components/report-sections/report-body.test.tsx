@@ -100,6 +100,7 @@ describe('ReportBody', () => {
                 },
             },
             sectionHeadingLevel: 3,
+            getCopyToClipboardScript: getScriptStub,
         };
 
         const props: ReportBodyProps = {

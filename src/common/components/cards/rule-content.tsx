@@ -26,6 +26,7 @@ export type RuleContentProps = {
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
     outcomeType: InstanceOutcomeType;
+    feedbackURL?: string;
 };
 
 export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {
