@@ -31,61 +31,76 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__15"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__15"
+                >
+                  Export result
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="load-assessment-button"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          </button>
+        </li>
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="load-assessment-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__18"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Load assessment
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="FabricOpenFolderHorizontal"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__18"
+                >
+                  Load assessment
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
+          </button>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -186,61 +201,76 @@ exports[`DetailsViewCommandBar renders invalid load assessment dialog: invalid l
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__15"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__15"
+                >
+                  Export result
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="load-assessment-button"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          </button>
+        </li>
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="load-assessment-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__18"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Load assessment
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="FabricOpenFolderHorizontal"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__18"
+                >
+                  Load assessment
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
+          </button>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -341,61 +371,76 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__9"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__9"
+                >
+                  Export result
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="load-assessment-button"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          </button>
+        </li>
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="load-assessment-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__12"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Load assessment
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="FabricOpenFolderHorizontal"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__12"
+                >
+                  Load assessment
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
+          </button>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -496,61 +541,76 @@ exports[`DetailsViewCommandBar renders load assessment dialog: load assessment d
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__9"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__9"
+                >
+                  Export result
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="load-assessment-button"
-        data-is-focusable="true"
-        type="button"
-      >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+          </button>
+        </li>
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="FabricOpenFolderHorizontal"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="load-assessment-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__12"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Load assessment
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="FabricOpenFolderHorizontal"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__12"
+                >
+                  Load assessment
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
+          </button>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -651,34 +711,45 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog hidde
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__6"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__6"
+                >
+                  Export result
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
+          </button>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -779,34 +850,45 @@ exports[`DetailsViewCommandBar renders report export dialog: export dialog open 
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__6"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__6"
+                >
+                  Export result
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
+          </button>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       featureflagstoredata="[object Object]"
@@ -906,71 +988,86 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__30"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
-            </span>
-          </span>
-        </span>
-      </button>
-      <div>
-        <button
-          aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
-          type="button"
-        >
-          <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
-          >
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
-            >
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
               <span
-                class="ms-Button-label label-113"
-                id="id__33"
+                class="ms-Button-textContainer textContainer-111"
               >
-                Start over
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__30"
+                >
+                  Export result
+                </span>
               </span>
             </span>
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
+          </button>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            <button
+              aria-label="start over menu"
+              class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+              data-is-focusable="true"
+              type="button"
+            >
+              <span
+                class="ms-Button-flexContainer flexContainer-110"
+                data-automationid="splitbuttonprimary"
+              >
+                <i
+                  aria-hidden="true"
+                  class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                  data-icon-name="Refresh"
+                />
+                <span
+                  class="ms-Button-textContainer textContainer-111"
+                >
+                  <span
+                    class="ms-Button-label label-113"
+                    id="id__33"
+                  >
+                    Start over
+                  </span>
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+                  data-icon-name="ChevronDown"
+                />
+              </span>
+            </button>
+            <span
+              class="ms-layer"
             />
-          </span>
-        </button>
-        <span
-          class="ms-layer"
-        />
-      </div>
+          </div>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -1071,68 +1168,83 @@ exports[`DetailsViewCommandBar renders start assessment over dialog: start asses
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__30"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
-            </span>
-          </span>
-        </span>
-      </button>
-      <div>
-        <button
-          aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
-          type="button"
-        >
-          <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
-          >
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
-            >
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
               <span
-                class="ms-Button-label label-113"
-                id="id__33"
+                class="ms-Button-textContainer textContainer-111"
               >
-                Start over
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__30"
+                >
+                  Export result
+                </span>
               </span>
             </span>
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
-          </span>
-        </button>
-      </div>
+          </button>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            <button
+              aria-label="start over menu"
+              class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+              data-is-focusable="true"
+              type="button"
+            >
+              <span
+                class="ms-Button-flexContainer flexContainer-110"
+                data-automationid="splitbuttonprimary"
+              >
+                <i
+                  aria-hidden="true"
+                  class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                  data-icon-name="Refresh"
+                />
+                <span
+                  class="ms-Button-textContainer textContainer-111"
+                >
+                  <span
+                    class="ms-Button-label label-113"
+                    id="id__33"
+                  >
+                    Start over
+                  </span>
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+                  data-icon-name="ChevronDown"
+                />
+              </span>
+            </button>
+          </div>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -1233,71 +1345,86 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__21"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
-            </span>
-          </span>
-        </span>
-      </button>
-      <div>
-        <button
-          aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
-          type="button"
-        >
-          <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
-          >
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
-            >
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
               <span
-                class="ms-Button-label label-113"
-                id="id__24"
+                class="ms-Button-textContainer textContainer-111"
               >
-                Start over
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__21"
+                >
+                  Export result
+                </span>
               </span>
             </span>
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
+          </button>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            <button
+              aria-label="start over menu"
+              class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+              data-is-focusable="true"
+              type="button"
+            >
+              <span
+                class="ms-Button-flexContainer flexContainer-110"
+                data-automationid="splitbuttonprimary"
+              >
+                <i
+                  aria-hidden="true"
+                  class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                  data-icon-name="Refresh"
+                />
+                <span
+                  class="ms-Button-textContainer textContainer-111"
+                >
+                  <span
+                    class="ms-Button-label label-113"
+                    id="id__24"
+                  >
+                    Start over
+                  </span>
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+                  data-icon-name="ChevronDown"
+                />
+              </span>
+            </button>
+            <span
+              class="ms-layer"
             />
-          </span>
-        </button>
-        <span
-          class="ms-layer"
-        />
-      </div>
+          </div>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -1398,68 +1525,83 @@ exports[`DetailsViewCommandBar renders start test over dialog: start test over d
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__21"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
-            </span>
-          </span>
-        </span>
-      </button>
-      <div>
-        <button
-          aria-label="start over menu"
-          class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-          data-is-focusable="true"
-          type="button"
-        >
-          <span
-            class="ms-Button-flexContainer flexContainer-110"
-            data-automationid="splitbuttonprimary"
-          >
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-              data-icon-name="Refresh"
-            />
-            <span
-              class="ms-Button-textContainer textContainer-111"
-            >
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
               <span
-                class="ms-Button-label label-113"
-                id="id__24"
+                class="ms-Button-textContainer textContainer-111"
               >
-                Start over
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__21"
+                >
+                  Export result
+                </span>
               </span>
             </span>
-            <i
-              aria-hidden="true"
-              class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
-              data-icon-name="ChevronDown"
-            />
-          </span>
-        </button>
-      </div>
+          </button>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            <button
+              aria-label="start over menu"
+              class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+              data-is-focusable="true"
+              type="button"
+            >
+              <span
+                class="ms-Button-flexContainer flexContainer-110"
+                data-automationid="splitbuttonprimary"
+              >
+                <i
+                  aria-hidden="true"
+                  class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                  data-icon-name="Refresh"
+                />
+                <span
+                  class="ms-Button-textContainer textContainer-111"
+                >
+                  <span
+                    class="ms-Button-label label-113"
+                    id="id__24"
+                  >
+                    Start over
+                  </span>
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="ms-Icon root-105 ms-Button-menuIcon menuIcon-114"
+                  data-icon-name="ChevronDown"
+                />
+              </span>
+            </button>
+          </div>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -1560,37 +1702,52 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__39"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__39"
+                >
+                  Export result
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
-      <div>
-        Transfer to assessment stub
-      </div>
+          </button>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            Transfer to assessment stub
+          </div>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -1691,37 +1848,52 @@ exports[`DetailsViewCommandBar renders transfer to assessment dialog: transfer t
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <button
-        class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
-        data-automation-id="report-export-button"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <i
-            aria-hidden="true"
-            class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
-            data-icon-name="Export"
-          />
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <button
+            class="ms-Button ms-Button--action ms-Button--command insightsCommandButton root-109"
+            data-automation-id="report-export-button"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__39"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Export result
+              <i
+                aria-hidden="true"
+                class="ms-Icon root-105 ms-Button-icon commandBarButtonIcon icon-112 commandBarButtonIcon"
+                data-icon-name="Export"
+              />
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__39"
+                >
+                  Export result
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
-      <div>
-        Transfer to assessment stub
-      </div>
+          </button>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            Transfer to assessment stub
+          </div>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -1931,35 +2103,58 @@ exports[`DetailsViewCommandBar renders with export button and start over 1`] = `
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <mock-reportexportbutton />
-      <div>
-        Save assessment
-      </div>
-      <div>
-        Transfer to assessment stub
-      </div>
-      <button
-        class="ms-Button ms-Button--action ms-Button--command root-109"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <mock-reportexportbutton />
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            Save assessment
+          </div>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            Transfer to assessment stub
+          </div>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <button
+            class="ms-Button ms-Button--action ms-Button--command root-109"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__0"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Start Over Component
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__0"
+                >
+                  Start Over Component
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
+          </button>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -2060,14 +2255,33 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <mock-reportexportbutton />
-      <div>
-        Save assessment
-      </div>
-      <div>
-        Transfer to assessment stub
-      </div>
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
+      >
+        <li
+          role="menuitem"
+        >
+          <mock-reportexportbutton />
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            Save assessment
+          </div>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            Transfer to assessment stub
+          </div>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -2168,13 +2382,28 @@ exports[`DetailsViewCommandBar renders without export button and without start o
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <div>
-        Save assessment
-      </div>
-      <div>
-        Transfer to assessment stub
-      </div>
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
+      >
+        <li
+          role="menuitem"
+        >
+          <div>
+            Save assessment
+          </div>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            Transfer to assessment stub
+          </div>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
@@ -2275,34 +2504,53 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     </div>
     <div
       class="detailsViewCommandButtons"
+      role="menu"
     >
-      <div>
-        Save assessment
-      </div>
-      <div>
-        Transfer to assessment stub
-      </div>
-      <button
-        class="ms-Button ms-Button--action ms-Button--command root-109"
-        data-is-focusable="true"
-        type="button"
+      <ul
+        aria-label="Assessment actions"
+        class="ulClass"
+        role="group"
       >
-        <span
-          class="ms-Button-flexContainer flexContainer-110"
-          data-automationid="splitbuttonprimary"
+        <li
+          role="menuitem"
         >
-          <span
-            class="ms-Button-textContainer textContainer-111"
+          <div>
+            Save assessment
+          </div>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <div>
+            Transfer to assessment stub
+          </div>
+        </li>
+        <li
+          role="menuitem"
+        >
+          <button
+            class="ms-Button ms-Button--action ms-Button--command root-109"
+            data-is-focusable="true"
+            type="button"
           >
             <span
-              class="ms-Button-label label-113"
-              id="id__3"
+              class="ms-Button-flexContainer flexContainer-110"
+              data-automationid="splitbuttonprimary"
             >
-              Start Over Component
+              <span
+                class="ms-Button-textContainer textContainer-111"
+              >
+                <span
+                  class="ms-Button-label label-113"
+                  id="id__3"
+                >
+                  Start Over Component
+                </span>
+              </span>
             </span>
-          </span>
-        </span>
-      </button>
+          </button>
+        </li>
+      </ul>
     </div>
     <mock-exportdialog
       description=""
