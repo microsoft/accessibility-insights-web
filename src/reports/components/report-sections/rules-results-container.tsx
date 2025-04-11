@@ -5,7 +5,10 @@ import * as React from 'react';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
 import styles from './rules-results-container.scss';
 
-export type RulesResultsContainerProps = Pick<CombinedReportSectionProps, 'getCollapsibleScript' | 'getCopyToClipboardScript'>;
+export type RulesResultsContainerProps = Pick<
+    CombinedReportSectionProps,
+    'getCollapsibleScript' | 'getCopyToClipboardScript'
+>;
 
 export const RulesResultsContainer = NamedFC<RulesResultsContainerProps>(
     'RulesResultsContainer',

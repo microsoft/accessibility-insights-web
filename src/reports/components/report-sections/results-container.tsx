@@ -4,7 +4,10 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { SectionProps } from './report-section-factory';
 
-export type ResultsContainerProps = Pick<SectionProps, 'getCollapsibleScript' | 'getCopyToClipboardScript'>;
+export type ResultsContainerProps = Pick<
+    SectionProps,
+    'getCollapsibleScript' | 'getCopyToClipboardScript'
+>;
 
 export const ResultsContainer = NamedFC<ResultsContainerProps>(
     'ResultsContainer',

@@ -22,14 +22,24 @@ export const FeedbackButtons = NamedFC<FeedbackButtonsProps>(
 
         return (
             <>
-                <a href={buildFeedbackUrl('helpful')} className={styles.feedbackButton} title="Helpful">
+                <a
+                    href={buildFeedbackUrl('helpful')}
+                    className={styles.feedbackButton}
+                    title="Helpful"
+                >
                     <ThumbsUpIcon />
                 </a>
-                <a href={buildFeedbackUrl('unhelpful')} className={styles.feedbackButton} title="Unhelpful">
+                <a
+                    href={buildFeedbackUrl('unhelpful')}
+                    className={styles.feedbackButton}
+                    title="Unhelpful"
+                >
                     <ThumbsDownIcon />
                 </a>
                 {isIssueAIdetected && (
-                    <span className={styles.aiContentLabel}>AI-generated content may be incorrect</span>
+                    <span className={styles.aiContentLabel}>
+                        AI-generated content may be incorrect
+                    </span>
                 )}
             </>
         );

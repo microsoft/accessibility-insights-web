@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export const addCopyToClipboardListener = function (doc: Document): void {
-    const copyToClipboard = async function(instanceId: string): Promise<void> {
+    const copyToClipboard = async function (instanceId: string): Promise<void> {
         const contentId = `copy-content-${instanceId.replace(/[^a-zA-Z0-9]/g, '')}`;
         const contentElement = doc.getElementById(contentId);
         const textToCopy = contentElement ? contentElement.textContent || '' : instanceId;
@@ -17,7 +17,7 @@ export const addCopyToClipboardListener = function (doc: Document): void {
         const notificationElement = doc.getElementById(notificationId);
         if (notificationElement) {
             notificationElement.style.display = 'inline';
-            setTimeout(function() {
+            setTimeout(function () {
                 notificationElement.style.display = 'none';
             }, 2000);
         }
@@ -29,7 +29,7 @@ export const addCopyToClipboardListener = function (doc: Document): void {
         const buttonId = button.id;
         const instanceId = buttonId.replace('copy-button-', '');
 
-        button.addEventListener('click', function(): void {
+        button.addEventListener('click', function (): void {
             void copyToClipboard(instanceId);
         });
     }

@@ -20,9 +20,9 @@ export const CopyContentButton = NamedFC<CopyContentButtonProps>(
 
         return (
             <>
-                <button 
-                    id={copyButtonId} 
-                    className={styles.feedbackButton} 
+                <button
+                    id={copyButtonId}
+                    className={styles.feedbackButton}
                     title="Copy failure details"
                     aria-label="Copy failure details to clipboard"
                     aria-describedby={contentToCopy ? copyContentId : undefined}
@@ -36,7 +36,12 @@ export const CopyContentButton = NamedFC<CopyContentButtonProps>(
                     </span>
                 )}
                 <div className={styles.notificationContainer}>
-                    <span id={notificationId} className={styles.copyNotification} role="status" aria-live="polite">
+                    <span
+                        id={notificationId}
+                        className={styles.copyNotification}
+                        role="status"
+                        aria-live="polite"
+                    >
                         Copied failure details!
                     </span>
                 </div>

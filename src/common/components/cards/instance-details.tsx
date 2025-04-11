@@ -54,7 +54,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         targetAppInfo,
         cardSelectionMessageCreator,
         narrowModeStatus,
-        feedbackURL
+        feedbackURL,
     } = props;
     const [cardFocused, setCardFocus] = React.useState(false);
 
@@ -63,17 +63,20 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     const hasFeedbackEnabledTag = () => {
         if (!rule || !rule.guidance) return false;
 
-        return rule.guidance.some(guidanceLink =>
-            guidanceLink.tags && guidanceLink.tags.some(tag => FEEDBACK_ENABLED_TAGS.includes(tag.id)),
+        return rule.guidance.some(
+            guidanceLink =>
+                guidanceLink.tags &&
+                guidanceLink.tags.some(tag => FEEDBACK_ENABLED_TAGS.includes(tag.id)),
         );
     };
 
     // Add specific check for AI_SCAN tag
     const hasAIScanTag = () => {
         if (!rule || !rule.guidance) return false;
-        
-        return rule.guidance.some(guidanceLink =>
-            guidanceLink.tags && guidanceLink.tags.some(tag => tag.id === AI_SCAN_TAG)
+
+        return rule.guidance.some(
+            guidanceLink =>
+                guidanceLink.tags && guidanceLink.tags.some(tag => tag.id === AI_SCAN_TAG),
         );
     };
 
@@ -144,10 +147,10 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                         targetAppInfo={targetAppInfo}
                         narrowModeStatus={narrowModeStatus}
                     />
-                    <MarkupFooter 
+                    <MarkupFooter
                         deps={deps}
                         instanceId={result.uid}
-                        contentToCopy={buildCopyContent(result)} 
+                        contentToCopy={buildCopyContent(result)}
                         feedbackURL={hasFeedbackEnabledTag() ? feedbackURL : undefined}
                         isIssueAIdetected={hasAIScanTag()}
                     />

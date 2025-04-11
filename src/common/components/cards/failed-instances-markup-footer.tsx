@@ -19,34 +19,31 @@ export interface MarkupFooterProps {
     isIssueAIdetected?: boolean;
 }
 
-export const MarkupFooter = NamedFC<MarkupFooterProps>(
-    'MarkupFooter',
-    props => {
-        const { deps, instanceId, feedbackURL, contentToCopy, isIssueAIdetected } = props;
-        const supportsCopy = deps.cardInteractionSupport.supportsCopyFailureDetailsInMarkup;
+export const MarkupFooter = NamedFC<MarkupFooterProps>('MarkupFooter', props => {
+    const { deps, instanceId, feedbackURL, contentToCopy, isIssueAIdetected } = props;
+    const supportsCopy = deps.cardInteractionSupport.supportsCopyFailureDetailsInMarkup;
 
-        if (!feedbackURL && !supportsCopy) {
-            return null;
-        }
+    if (!feedbackURL && !supportsCopy) {
+        return null;
+    }
 
-        return (
-            <div className={styles.markupFooter}>
-                {feedbackURL && (
-                    <div className={styles.buttonsGroupLeft}>
-                        <FeedbackButtons 
-                            feedbackURL={feedbackURL} 
-                            instanceId={instanceId} 
-                            isIssueAIdetected={isIssueAIdetected}
-                        />
-                    </div>
-                )}
+    return (
+        <div className={styles.markupFooter}>
+            {feedbackURL && (
+                <div className={styles.buttonsGroupLeft}>
+                    <FeedbackButtons
+                        feedbackURL={feedbackURL}
+                        instanceId={instanceId}
+                        isIssueAIdetected={isIssueAIdetected}
+                    />
+                </div>
+            )}
 
-                {supportsCopy && (
-                    <div className={styles.buttonsGroupRight}>
-                        <CopyContentButton instanceId={instanceId} contentToCopy={contentToCopy} />
-                    </div>
-                )}
-            </div>
-        );
-    },
-);
+            {supportsCopy && (
+                <div className={styles.buttonsGroupRight}>
+                    <CopyContentButton instanceId={instanceId} contentToCopy={contentToCopy} />
+                </div>
+            )}
+        </div>
+    );
+});
