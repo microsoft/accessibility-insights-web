@@ -17,22 +17,21 @@ export interface MarkupFooterProps {
     feedbackURL?: string;
     contentToCopy?: string;
     isIssueAIdetected?: boolean;
-    // Add stable properties
     ruleId?: string;
     index?: number;
     targetPath?: string;
 }
 
 export const MarkupFooter = NamedFC<MarkupFooterProps>('MarkupFooter', props => {
-    const { 
-        deps, 
-        instanceId, 
-        feedbackURL, 
-        contentToCopy, 
+    const {
+        deps,
+        instanceId,
+        feedbackURL,
+        contentToCopy,
         isIssueAIdetected,
         ruleId,
         index,
-        targetPath
+        targetPath,
     } = props;
     const supportsCopy = deps.cardInteractionSupport.supportsCopyFailureDetailsInMarkup;
 
@@ -54,9 +53,9 @@ export const MarkupFooter = NamedFC<MarkupFooterProps>('MarkupFooter', props => 
 
             {supportsCopy && (
                 <div className={styles.buttonsGroupRight}>
-                    <CopyContentButton 
-                        instanceId={instanceId} 
-                        contentToCopy={contentToCopy} 
+                    <CopyContentButton
+                        instanceId={instanceId}
+                        contentToCopy={contentToCopy}
                         ruleId={ruleId}
                         index={index}
                         targetPath={targetPath}

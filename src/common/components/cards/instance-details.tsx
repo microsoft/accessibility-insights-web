@@ -112,10 +112,12 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     // Get target path for deterministic ID generation
     const getTargetPath = (): string => {
-        const target = result.identifiers?.target || 
-                      result.identifiers?.identifier || 
-                      result.identifiers?.conciseName || '';
-        
+        const target =
+            result.identifiers?.target ||
+            result.identifiers?.identifier ||
+            result.identifiers?.conciseName ||
+            '';
+
         return typeof target === 'string' ? target : JSON.stringify(target);
     };
 

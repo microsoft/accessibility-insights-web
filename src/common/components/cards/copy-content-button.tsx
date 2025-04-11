@@ -17,16 +17,14 @@ export interface CopyContentButtonProps {
 export const CopyContentButton = NamedFC<CopyContentButtonProps>(
     'CopyContentButton',
     ({ instanceId, contentToCopy, ruleId, index, targetPath }) => {
-        const deterministicContent = [
-            ruleId || '',
-            index?.toString() || '',
-            targetPath || '',
-        ].join('-');
-        
-        const idBase = deterministicContent ? 
-        generateDeterministicContentId(deterministicContent) :
-            instanceId.replace(/[^a-zA-Z0-9]/g, '');
-        
+        const deterministicContent = [ruleId || '', index?.toString() || '', targetPath || ''].join(
+            '-',
+        );
+
+        const idBase = deterministicContent
+            ? generateDeterministicContentId(deterministicContent)
+            : instanceId.replace(/[^a-zA-Z0-9]/g, '');
+
         const copyButtonId = `copy-button-${idBase}`;
         const copyContentId = `copy-content-${idBase}`;
         const notificationId = `copy-notification-${idBase}`;
