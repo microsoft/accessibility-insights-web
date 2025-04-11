@@ -100,6 +100,7 @@ describe('CombinedReportHtmlGenerator', () => {
             fixInstructionProcessorMock.object,
             recommendColorStub,
             getPropertyConfigurationStub,
+            getScriptMock.object,
         );
     });
 
@@ -123,6 +124,7 @@ describe('CombinedReportHtmlGenerator', () => {
             cardsViewData,
             urlResultCounts,
             sectionHeadingLevel: 2,
+            getCopyToClipboardScript: getScriptMock.object,
         };
 
         const headElement: JSX.Element = <NullComponent />;

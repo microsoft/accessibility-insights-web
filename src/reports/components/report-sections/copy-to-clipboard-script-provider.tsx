@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 export const addCopyToClipboardListener = function (doc: Document): void {
     const copyToClipboard = async function(instanceId: string): Promise<void> {
         const contentId = `copy-content-${instanceId.replace(/[^a-zA-Z0-9]/g, '')}`;

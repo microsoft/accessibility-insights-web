@@ -12,7 +12,6 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
-import { getDefaultCopyToClipboardScript } from './components/report-sections/copy-to-clipboard-script-provider';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import {
@@ -33,6 +32,7 @@ export class ReportHtmlGenerator {
         private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
         private readonly getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel,
+        private readonly getCopyToClipboardScript: () => string,
     ) {}
 
     public generateHtml(
@@ -61,12 +61,12 @@ export class ReportHtmlGenerator {
             cardsViewData: cardsViewData,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
-            getCopyToClipboardScript: getDefaultCopyToClipboardScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
             recommendColor: this.recommendColor,
             scanMetadata,
             sectionHeadingLevel: 2,
+            getCopyToClipboardScript: this.getCopyToClipboardScript,
         } as SectionProps;
 
         const props: ReportBodyProps = {

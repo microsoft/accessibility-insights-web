@@ -122,6 +122,7 @@ describe('ReportHtmlGenerator', () => {
             recommendColorMock.object,
             getPropertyConfigurationStub,
             getNextHeadingLevelStub,
+            getScriptMock.object,
         );
 
         const actual = testObject.generateHtml(

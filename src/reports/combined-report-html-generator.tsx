@@ -15,7 +15,6 @@ import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
 import { UrlResultCounts } from 'reports/package/accessibilityInsightsReport';
 import { CombinedReportSectionProps } from './components/report-sections/combined-report-section-factory';
-import { getDefaultCopyToClipboardScript } from './components/report-sections/copy-to-clipboard-script-provider';
 import {
     ReportSectionFactory,
     SectionDeps,
@@ -33,6 +32,7 @@ export class CombinedReportHtmlGenerator {
         private readonly fixInstructionProcessor: FixInstructionProcessor,
         private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
+        private readonly getCopyToClipboardScript: () => string,
     ) {}
 
     public generateHtml(
@@ -62,8 +62,8 @@ export class CombinedReportHtmlGenerator {
             toUtcString: this.utcDateConverter,
             secondsToTimeString: this.secondsToTimeStringConverter,
             getCollapsibleScript: this.getCollapsibleScript,
-            getCopyToClipboardScript: getDefaultCopyToClipboardScript,
             sectionHeadingLevel: 2,
+            getCopyToClipboardScript: this.getCopyToClipboardScript,
         };
 
         const props: ReportBodyProps<CombinedReportSectionProps> = {

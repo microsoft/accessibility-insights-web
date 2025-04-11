@@ -15,6 +15,7 @@ import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-genera
 import { AxeResultsReportSectionFactory } from 'reports/components/report-sections/axe-results-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { CombinedReportSectionFactory } from 'reports/components/report-sections/combined-report-section-factory';
+import { getDefaultCopyToClipboardScript } from 'reports/components/report-sections/copy-to-clipboard-script-provider';
 import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
 import { CombinedResultsReport, CombinedResultsReportDeps } from 'reports/package/combined-results-report';
@@ -80,6 +81,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         recommendColor,
         getPropertyConfiguration,
         GetNextHeadingLevel,
+        getDefaultCopyToClipboardScript,
     );
 
     const titleProvider = {
@@ -166,6 +168,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         fixInstructionProcessor,
         recommendColor,
         getPropertyConfiguration,
+        getDefaultCopyToClipboardScript,
     );
     const deps: CombinedResultsReportDeps = {
         reportHtmlGenerator,
