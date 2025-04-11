@@ -924,6 +924,118 @@ ul.instance-details-list li:last-child {
   display: flex;
 }
 
+/* css-modules:src/common/components/cards/failed-instances-markup-footer */
+.markup-footer--HEVHv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--neutral-2, #f8f8f8);
+  min-height: 48px;
+  padding: 0 20px;
+  border-top: 0.5px solid var(--card-footer-border, #dedede);
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  margin-top: 0;
+}
+.feedback-text--yBb6Z {
+  font-size: 14px;
+  color: var(--secondary-text, rgba(0, 0, 0, 0.7));
+  margin-right: 12px;
+}
+.feedback-buttons--rDHVY {
+  display: flex;
+  gap: 8px;
+}
+.buttons-group-left--JSoCT {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.buttons-group-right--SKsSu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  position: relative;
+  margin-left: auto;
+}
+.feedback-button--Vn-lA {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-60, #666);
+  text-decoration: none;
+  font-size: 14px;
+  gap: 6px;
+}
+.feedback-button--Vn-lA:hover {
+  background-color: var(--neutral-alpha-4, rgba(0, 0, 0, 0.04));
+}
+.feedback-button--Vn-lA span {
+  margin-left: 6px;
+  font-size: 14px;
+}
+.ai-content-label--1cidK {
+  background-color: var(--neutral-10, #e6e6e6);
+  color: var(--neutral-60, #666);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.notification-container--axJpL {
+  position: relative;
+  height: 0;
+  width: 0;
+}
+.copy-notification--MlMTG {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  background-color: var(--neutral-80, #333);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  animation: fadeInOut--qgvyr 2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  z-index: 100;
+  display: none;
+}
+.copy-notification--MlMTG.visible--GCwEf {
+  display: inline-block;
+}
+.hidden-content--9JuU6 {
+  display: none;
+}
+@keyframes fadeInOut--qgvyr {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
 /* css-modules:src/common/components/toast */
 .toast-container--L-5HM {
   display: inline-block;
@@ -1522,7 +1634,20 @@ ul.instance-details-list--YfkRy > li:last-child {
             event.preventDefault();
         }
     });
-})("new-tab-link-with-confirmation-dialog__3", document, confirm);</script></li></ul></td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Path</th><td class="row-content--07KUh">.rule-1-selector-1</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Snippet</th><td class="row-content--07KUh snippet--hSNfv">&lt;div&gt;snippet 1&lt;/div&gt;</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">How to fix</th><td class="row-content--07KUh"><div class="how-to-fix-content--Zz96u"><div><div>Fix ONE of the following:</div><ul><li>No valid skip link found</li><li>Page does not have a header</li><li>Page does not have a landmark region</li></ul></div></div></td></tr></tbody></table></div></div></div></li><li><div data-automation-id="instance-card" class="instance-details-card-container--KLHTp"><div class="instance-details-card--owGQF"><div><table class="report-instance-table--3VoZX"><tbody><tr class="row---3i35"><th class="row-label--FlVZl">URL</th><td class="row-content--07KUh"><ul class="urls-row-content--JDdRx"><li><a target="_blank" href="https://url/rule-1/failure-1" class="ms-Link insights-link root-109" id="new-tab-link-with-confirmation-dialog__4">https://url/rule-1/failure-1</a><script>(function(linkId, doc, confirmCallback) {
+})("new-tab-link-with-confirmation-dialog__3", document, confirm);</script></li></ul></td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Path</th><td class="row-content--07KUh">.rule-1-selector-1</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Snippet</th><td class="row-content--07KUh snippet--hSNfv">&lt;div&gt;snippet 1&lt;/div&gt;</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">How to fix</th><td class="row-content--07KUh"><div class="how-to-fix-content--Zz96u"><div><div>Fix ONE of the following:</div><ul><li>No valid skip link found</li><li>Page does not have a header</li><li>Page does not have a landmark region</li></ul></div></div></td></tr></tbody></table><div class="markup-footer--HEVHv"><div class="buttons-group-right--SKsSu"><button id="copy-button-35efb33f6171438b9bccaf3498909b66" class="feedback-button--Vn-lA" title="Copy failure details" aria-label="Copy failure details to clipboard" aria-describedby="copy-content-35efb33f6171438b9bccaf3498909b66"><svg width="16" height="16" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><path d="M5.5028 4.62704L5.5 6.75V17.2542C5.5 19.0491 6.95507 20.5042 8.75 20.5042L17.3663 20.5045C17.0573 21.3782 16.224 22.0042 15.2444 22.0042H8.75C6.12665 22.0042 4 19.8776 4 17.2542V6.75C4 5.76929 4.62745 4.93512 5.5028 4.62704ZM17.75 2C18.9926 2 20 3.00736 20 4.25V17.25C20 18.4926 18.9926 19.5 17.75 19.5H8.75C7.50736 19.5 6.5 18.4926 6.5 17.25V4.25C6.5 3.00736 7.50736 2 8.75 2H17.75ZM17.75 3.5H8.75C8.33579 3.5 8 3.83579 8 4.25V17.25C8 17.6642 8.33579 18 8.75 18H17.75C18.1642 18 18.5 17.6642 18.5 17.25V4.25C18.5 3.83579 18.1642 3.5 17.75 3.5Z" fill="#212121" transform="scale(2)"></path></svg><span>Copy Failure Details</span></button><span id="copy-content-35efb33f6171438b9bccaf3498909b66" class="hidden-content--9JuU6">Rule ID: bypass
+
+Path: .rule-1-selector-1
+
+Snippet: &lt;div&gt;snippet 1&lt;/div&gt;
+
+URLs:
+- https://url/rule-1/failure-1
+
+How to fix:
+Fix any of the following:
+  No valid skip link found
+  Page does not have a header
+  Page does not have a landmark region</span><div class="notification-container--axJpL"><span id="copy-notification-35efb33f6171438b9bccaf3498909b66" class="copy-notification--MlMTG" role="status" aria-live="polite">Copied failure details!</span></div></div></div></div></div></div></li><li><div data-automation-id="instance-card" class="instance-details-card-container--KLHTp"><div class="instance-details-card--owGQF"><div><table class="report-instance-table--3VoZX"><tbody><tr class="row---3i35"><th class="row-label--FlVZl">URL</th><td class="row-content--07KUh"><ul class="urls-row-content--JDdRx"><li><a target="_blank" href="https://url/rule-1/failure-1" class="ms-Link insights-link root-109" id="new-tab-link-with-confirmation-dialog__4">https://url/rule-1/failure-1</a><script>(function(linkId, doc, confirmCallback) {
     const targetPageLink = doc.getElementById(linkId);
     targetPageLink.addEventListener("click", function(event) {
         const result = confirmCallback("Are you sure you want to navigate away from the Accessibility Insights report?\nThis link will open the target page in a new tab.\n\nPress OK to continue or Cancel to stay on the current page.");
@@ -1538,7 +1663,21 @@ ul.instance-details-list--YfkRy > li:last-child {
             event.preventDefault();
         }
     });
-})("new-tab-link-with-confirmation-dialog__5", document, confirm);</script><span aria-hidden="true" class="urls-row-content-new-Failure--oL5lS">  NEW!</span></li></ul></td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Path</th><td class="row-content--07KUh">.rule-1-selector-2</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Snippet</th><td class="row-content--07KUh snippet--hSNfv">&lt;div&gt;snippet 2&lt;/div&gt;</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">How to fix</th><td class="row-content--07KUh"><div class="how-to-fix-content--Zz96u"><div><div>Fix ONE of the following:</div><ul><li>No valid skip link found</li><li>Page does not have a header</li><li>Page does not have a landmark region</li></ul></div></div></td></tr></tbody></table></div></div></div></li></ul></div></div><div class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"><h4 class="heading-element-for-level--ifVX6 title-container"><button class="collapsible-control" aria-expanded="false" aria-controls="content-container-color-contrast" aria-label="1 Failed color-contrast Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds"><span data-automation-id="rule-detail" class="rule-detail"><span class="outcome-chip-container--G5Dfr"><span aria-hidden="true"><span class="outcome-chip outcome-chip-fail" title="1 Failed"><span class="icon"><span class="check-container"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#E81123"></circle><path d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z" fill="var(--neutral-0)"></path></svg></span></span><span data-automation-id="count" class="count" aria-hidden="true"> 1</span><span class="screen-reader-only">1 Failed</span></span></span></span><span><span data-automation-id="cards-rule-id" class="rule-details-id"><strong>color-contrast</strong></span>: <span class="rule-details-description">Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds</span></span></span></button></h4><div id="content-container-color-contrast" class="collapsible-content" aria-hidden="true"><div class="rule-more-resources--uw9mc"><div class="more-resources-title--jOuUL">Resources for this rule</div><span class="rule-details-id--s-TpO"><a target="_blank" href="https://accessibilityinsights.io/info-examples/web/color-contrast" class="ms-Link insights-link root-109" id="new-tab-link-with-confirmation-dialog__6">More information about color-contrast</a><script>(function(linkId, doc, confirmCallback) {
+})("new-tab-link-with-confirmation-dialog__5", document, confirm);</script><span aria-hidden="true" class="urls-row-content-new-Failure--oL5lS">  NEW!</span></li></ul></td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Path</th><td class="row-content--07KUh">.rule-1-selector-2</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Snippet</th><td class="row-content--07KUh snippet--hSNfv">&lt;div&gt;snippet 2&lt;/div&gt;</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">How to fix</th><td class="row-content--07KUh"><div class="how-to-fix-content--Zz96u"><div><div>Fix ONE of the following:</div><ul><li>No valid skip link found</li><li>Page does not have a header</li><li>Page does not have a landmark region</li></ul></div></div></td></tr></tbody></table><div class="markup-footer--HEVHv"><div class="buttons-group-right--SKsSu"><button id="copy-button-09dcf199a29943cc8fd04bc473eafc79" class="feedback-button--Vn-lA" title="Copy failure details" aria-label="Copy failure details to clipboard" aria-describedby="copy-content-09dcf199a29943cc8fd04bc473eafc79"><svg width="16" height="16" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><path d="M5.5028 4.62704L5.5 6.75V17.2542C5.5 19.0491 6.95507 20.5042 8.75 20.5042L17.3663 20.5045C17.0573 21.3782 16.224 22.0042 15.2444 22.0042H8.75C6.12665 22.0042 4 19.8776 4 17.2542V6.75C4 5.76929 4.62745 4.93512 5.5028 4.62704ZM17.75 2C18.9926 2 20 3.00736 20 4.25V17.25C20 18.4926 18.9926 19.5 17.75 19.5H8.75C7.50736 19.5 6.5 18.4926 6.5 17.25V4.25C6.5 3.00736 7.50736 2 8.75 2H17.75ZM17.75 3.5H8.75C8.33579 3.5 8 3.83579 8 4.25V17.25C8 17.6642 8.33579 18 8.75 18H17.75C18.1642 18 18.5 17.6642 18.5 17.25V4.25C18.5 3.83579 18.1642 3.5 17.75 3.5Z" fill="#212121" transform="scale(2)"></path></svg><span>Copy Failure Details</span></button><span id="copy-content-09dcf199a29943cc8fd04bc473eafc79" class="hidden-content--9JuU6">Rule ID: bypass
+
+Path: .rule-1-selector-2
+
+Snippet: &lt;div&gt;snippet 2&lt;/div&gt;
+
+URLs:
+- https://url/rule-1/failure-1
+- https://url/rule1/failure-2
+
+How to fix:
+Fix any of the following:
+  No valid skip link found
+  Page does not have a header
+  Page does not have a landmark region</span><div class="notification-container--axJpL"><span id="copy-notification-09dcf199a29943cc8fd04bc473eafc79" class="copy-notification--MlMTG" role="status" aria-live="polite">Copied failure details!</span></div></div></div></div></div></div></li></ul></div></div><div class="collapsible-container collapsible-rule-details-group--V-HWh collapsed"><h4 class="heading-element-for-level--ifVX6 title-container"><button class="collapsible-control" aria-expanded="false" aria-controls="content-container-color-contrast" aria-label="1 Failed color-contrast Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds"><span data-automation-id="rule-detail" class="rule-detail"><span class="outcome-chip-container--G5Dfr"><span aria-hidden="true"><span class="outcome-chip outcome-chip-fail" title="1 Failed"><span class="icon"><span class="check-container"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#E81123"></circle><path d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z" fill="var(--neutral-0)"></path></svg></span></span><span data-automation-id="count" class="count" aria-hidden="true"> 1</span><span class="screen-reader-only">1 Failed</span></span></span></span><span><span data-automation-id="cards-rule-id" class="rule-details-id"><strong>color-contrast</strong></span>: <span class="rule-details-description">Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds</span></span></span></button></h4><div id="content-container-color-contrast" class="collapsible-content" aria-hidden="true"><div class="rule-more-resources--uw9mc"><div class="more-resources-title--jOuUL">Resources for this rule</div><span class="rule-details-id--s-TpO"><a target="_blank" href="https://accessibilityinsights.io/info-examples/web/color-contrast" class="ms-Link insights-link root-109" id="new-tab-link-with-confirmation-dialog__6">More information about color-contrast</a><script>(function(linkId, doc, confirmCallback) {
     const targetPageLink = doc.getElementById(linkId);
     targetPageLink.addEventListener("click", function(event) {
         const result = confirmCallback("Are you sure you want to navigate away from the Accessibility Insights report?\nThis link will open the target page in a new tab.\n\nPress OK to continue or Cancel to stay on the current page.");
@@ -1562,7 +1701,21 @@ ul.instance-details-list--YfkRy > li:last-child {
             event.preventDefault();
         }
     });
-})("new-tab-link-with-confirmation-dialog__8", document, confirm);</script><span aria-hidden="true" class="urls-row-content-new-Failure--oL5lS">  NEW!</span></li></ul></td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Path</th><td class="row-content--07KUh">.rule-2-selector-1</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Snippet</th><td class="row-content--07KUh snippet--hSNfv">&lt;div&gt;snippet&lt;/div&gt;</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Related paths</th><td class="row-content--07KUh"><ul class="path-list--MxxKM"><li>#menu &gt; li:nth-child(1)</li></ul></td></tr><tr class="row---3i35"><th class="row-label--FlVZl">How to fix</th><td class="row-content--07KUh"><div class="how-to-fix-content--Zz96u"><div><div>Fix the following:</div><ul><li><span aria-hidden="true"><span>Element has insufficient color contrast of 2.52 (foreground color: </span><span aria-hidden="true" class="fix-instruction-color-box--DQpQE" style="background-color:#8a94a8"></span><span>#8a94a8, background color: </span><span aria-hidden="true" class="fix-instruction-color-box--DQpQE" style="background-color:#e7ecd8"></span><span>#e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1</span></span><span class="screen-reader-only--6LUiO">Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1</span><ul data-automation-id="recommendations"><li><span aria-hidden="true"><span> Use foreground color: </span><span aria-hidden="true" class="fix-instruction-color-box--DQpQE" style="background-color:#5e6572"></span><span>#5e6572 and the original background color: </span><span aria-hidden="true" class="fix-instruction-color-box--DQpQE" style="background-color:#e7ecd8"></span><span>#e7ecd8 to meet a contrast ratio of 4.86:1.</span></span><span class="screen-reader-only--6LUiO"> Use foreground color: #5e6572 and the original background color: #e7ecd8 to meet a contrast ratio of 4.86:1.</span></li></ul></li></ul></div></div></td></tr></tbody></table></div></div></div></li></ul></div></div></div></div></div></div><div class="result-section"><div class="collapsible-container collapsed"><h3 class="heading-element-for-level--ifVX6 title-container"><button class="collapsible-control" aria-expanded="false" aria-controls="content-container-pass-checks-section"><span class="combined-report-result-section-title--TqIZO"><span class="screen-reader-only">Passed rules 2</span><span class="heading--UpAHf" aria-hidden="true">Passed rules (2)</span></span></button></h3><div id="content-container-pass-checks-section" class="collapsible-content" aria-hidden="true"><div class="rule-details-group--Tb-LW"><div class="rule-detail"><div> <span class="rule-details-id"><a target="_blank" href="https://dequeuniversity.com/rules/axe/3.3/area-alt?application=webdriverjs" class="ms-Link insights-link root-109" aria-label="rule area-alt" aria-describedby="passed-rule-area-alt-description">area-alt</a></span>: <span class="rule-details-description" id="passed-rule-area-alt-description">Ensures &lt;area&gt; elements of image maps have alternate text</span>(<span class="guidance-links"><a target="_blank" href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html" class="ms-Link insights-link root-109" id="new-tab-link-with-confirmation-dialog__9">WCAG 1.1.1</a><script>(function(linkId, doc, confirmCallback) {
+})("new-tab-link-with-confirmation-dialog__8", document, confirm);</script><span aria-hidden="true" class="urls-row-content-new-Failure--oL5lS">  NEW!</span></li></ul></td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Path</th><td class="row-content--07KUh">.rule-2-selector-1</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Snippet</th><td class="row-content--07KUh snippet--hSNfv">&lt;div&gt;snippet&lt;/div&gt;</td></tr><tr class="row---3i35"><th class="row-label--FlVZl">Related paths</th><td class="row-content--07KUh"><ul class="path-list--MxxKM"><li>#menu &gt; li:nth-child(1)</li></ul></td></tr><tr class="row---3i35"><th class="row-label--FlVZl">How to fix</th><td class="row-content--07KUh"><div class="how-to-fix-content--Zz96u"><div><div>Fix the following:</div><ul><li><span aria-hidden="true"><span>Element has insufficient color contrast of 2.52 (foreground color: </span><span aria-hidden="true" class="fix-instruction-color-box--DQpQE" style="background-color:#8a94a8"></span><span>#8a94a8, background color: </span><span aria-hidden="true" class="fix-instruction-color-box--DQpQE" style="background-color:#e7ecd8"></span><span>#e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1</span></span><span class="screen-reader-only--6LUiO">Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1</span><ul data-automation-id="recommendations"><li><span aria-hidden="true"><span> Use foreground color: </span><span aria-hidden="true" class="fix-instruction-color-box--DQpQE" style="background-color:#5e6572"></span><span>#5e6572 and the original background color: </span><span aria-hidden="true" class="fix-instruction-color-box--DQpQE" style="background-color:#e7ecd8"></span><span>#e7ecd8 to meet a contrast ratio of 4.86:1.</span></span><span class="screen-reader-only--6LUiO"> Use foreground color: #5e6572 and the original background color: #e7ecd8 to meet a contrast ratio of 4.86:1.</span></li></ul></li></ul></div></div></td></tr></tbody></table><div class="markup-footer--HEVHv"><div class="buttons-group-right--SKsSu"><button id="copy-button-765284b377bc4fa7ae564628a2fbbc5e" class="feedback-button--Vn-lA" title="Copy failure details" aria-label="Copy failure details to clipboard" aria-describedby="copy-content-765284b377bc4fa7ae564628a2fbbc5e"><svg width="16" height="16" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><path d="M5.5028 4.62704L5.5 6.75V17.2542C5.5 19.0491 6.95507 20.5042 8.75 20.5042L17.3663 20.5045C17.0573 21.3782 16.224 22.0042 15.2444 22.0042H8.75C6.12665 22.0042 4 19.8776 4 17.2542V6.75C4 5.76929 4.62745 4.93512 5.5028 4.62704ZM17.75 2C18.9926 2 20 3.00736 20 4.25V17.25C20 18.4926 18.9926 19.5 17.75 19.5H8.75C7.50736 19.5 6.5 18.4926 6.5 17.25V4.25C6.5 3.00736 7.50736 2 8.75 2H17.75ZM17.75 3.5H8.75C8.33579 3.5 8 3.83579 8 4.25V17.25C8 17.6642 8.33579 18 8.75 18H17.75C18.1642 18 18.5 17.6642 18.5 17.25V4.25C18.5 3.83579 18.1642 3.5 17.75 3.5Z" fill="#212121" transform="scale(2)"></path></svg><span>Copy Failure Details</span></button><span id="copy-content-765284b377bc4fa7ae564628a2fbbc5e" class="hidden-content--9JuU6">Rule ID: color-contrast
+
+Path: .rule-2-selector-1
+
+Snippet: &lt;div&gt;snippet&lt;/div&gt;
+
+Related Paths:
+- #menu &gt; li:nth-child(1)
+
+URLs:
+- https://url/rule2/failure1
+
+How to fix:
+Fix any of the following:
+  Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1</span><div class="notification-container--axJpL"><span id="copy-notification-765284b377bc4fa7ae564628a2fbbc5e" class="copy-notification--MlMTG" role="status" aria-live="polite">Copied failure details!</span></div></div></div></div></div></div></li></ul></div></div></div></div></div></div><div class="result-section"><div class="collapsible-container collapsed"><h3 class="heading-element-for-level--ifVX6 title-container"><button class="collapsible-control" aria-expanded="false" aria-controls="content-container-pass-checks-section"><span class="combined-report-result-section-title--TqIZO"><span class="screen-reader-only">Passed rules 2</span><span class="heading--UpAHf" aria-hidden="true">Passed rules (2)</span></span></button></h3><div id="content-container-pass-checks-section" class="collapsible-content" aria-hidden="true"><div class="rule-details-group--Tb-LW"><div class="rule-detail"><div> <span class="rule-details-id"><a target="_blank" href="https://dequeuniversity.com/rules/axe/3.3/area-alt?application=webdriverjs" class="ms-Link insights-link root-109" aria-label="rule area-alt" aria-describedby="passed-rule-area-alt-description">area-alt</a></span>: <span class="rule-details-description" id="passed-rule-area-alt-description">Ensures &lt;area&gt; elements of image maps have alternate text</span>(<span class="guidance-links"><a target="_blank" href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html" class="ms-Link insights-link root-109" id="new-tab-link-with-confirmation-dialog__9">WCAG 1.1.1</a><script>(function(linkId, doc, confirmCallback) {
     const targetPageLink = doc.getElementById(linkId);
     targetPageLink.addEventListener("click", function(event) {
         const result = confirmCallback("Are you sure you want to navigate away from the Accessibility Insights report?\nThis link will open the target page in a new tab.\n\nPress OK to continue or Cancel to stay on the current page.");
@@ -1633,6 +1786,35 @@ ul.instance-details-list--YfkRy > li:last-child {
             } else {
                 container.classList.add("collapsed");
             }
+        });
+    }
+})(document)</script><script>(function(doc) {
+    const copyToClipboard = async function(instanceId) {
+        const contentId = `copy-content-${instanceId.replace(/[^a-zA-Z0-9]/g, "")}`;
+        const contentElement = doc.getElementById(contentId);
+        const textToCopy = contentElement ? contentElement.textContent || "" : instanceId;
+        try {
+            await navigator.clipboard.writeText(textToCopy);
+        } catch (err) {
+            console.error("Failed to copy text: ", err);
+            return;
+        }
+        const notificationId = `copy-notification-${instanceId.replace(/[^a-zA-Z0-9]/g, "")}`;
+        const notificationElement = doc.getElementById(notificationId);
+        if (notificationElement) {
+            notificationElement.style.display = "inline";
+            setTimeout(function() {
+                notificationElement.style.display = "none";
+            }, 2e3);
+        }
+    };
+    const copyButtons = doc.querySelectorAll('button[id^="copy-button-"]');
+    for(let i = 0; i < copyButtons.length; i++){
+        const button = copyButtons[i];
+        const buttonId = button.id;
+        const instanceId = buttonId.replace("copy-button-", "");
+        button.addEventListener("click", function() {
+            void copyToClipboard(instanceId);
         });
     }
 })(document)</script></div></main><div class="report-footer-container"><div class="report-footer" role="contentinfo">This automated checks result was generated using the Mock Service Name that helps find some of the most common accessibility issues. The scan was performed in a clean browser environment, using axe-core mock.axe.version and Mock user agent with a display resolution of 1920x1080. For a complete WCAG 2.1 compliance assessment please visit <a target="_blank" href="http://aka.ms/AccessibilityInsights" class="ms-Link insights-link tool-name-link root-109" title="Get more information and download Accessibility Insights for Web">http://aka.ms/AccessibilityInsights</a>.</div></div></body></html>
