@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { limitedCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { NewTabLink } from 'common/components/new-tab-link';
@@ -36,7 +36,7 @@ describe('ReportHtmlGenerator', () => {
         const recommendColorMock = Mock.ofType(RecommendColor);
         const getPropertyConfigurationStub = (id: string) => null;
         const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => null;
-        const cardInteractionSupport = noCardInteractionsSupported;
+        const cardInteractionSupport = limitedCardInteractionsSupported;
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
@@ -81,6 +81,7 @@ describe('ReportHtmlGenerator', () => {
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
                 getNextHeadingLevel: getNextHeadingLevelStub,
+                feedbackURL: undefined,
             } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
