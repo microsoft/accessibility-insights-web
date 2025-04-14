@@ -6,11 +6,11 @@ import { reporterFactory, CombinedReportParameters } from 'accessibility-insight
 // TODO: Restore usage of prettier once the Node update feature is complete
 //import * as prettier from 'prettier';
 
+import { combinedResultsWithAiIssuesFeedbackUrl } from './examples/combined-results-with-ai-issues-and-feedback-url.input';
 import { combinedResultsWithBaselineAwareIssues } from './examples/combined-results-with-baseline-aware-issues';
+import { combinedResultsWithFeedbackUrl } from './examples/combined-results-with-issues-and-feedback-url.input';
 import { combinedResultsWithIssues } from './examples/combined-results-with-issues.input';
 import { combinedResultsWithoutIssues } from './examples/combined-results-without-issues.input';
-import { combinedResultsWithFeedbackUrl } from './examples/combined-results-with-issues-and-feedback-url.input';
-import { combinedResultsWithAiIssuesFeedbackUrl } from './examples/combined-results-with-ai-issues-and-feedback-url.input';
 
 describe('fromCombinedResults', () => {
     const examples = {

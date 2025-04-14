@@ -6,12 +6,12 @@ import { AxeReportParameters, reporterFactory } from 'accessibility-insights-rep
 // TODO: Restore usage of prettier once the Node update feature is complete
 //import * as prettier from 'prettier';
 
-import { axeResultsWithIssues } from './examples/axe-results-with-issues.input';
-import { axeResultsWithoutIssues } from './examples/axe-results-without-issues.input';
+import { axeResultsWithAiIssuesFeedbackURL } from './examples/axe-results-with-ai-issues-and-feedback-url.input';
 import { axeResultsWithAiIssues } from './examples/axe-results-with-ai-issues.input';
 import { axeResultsWithFeedbackURL } from './examples/axe-results-with-feedback-url.input';
+import { axeResultsWithIssues } from './examples/axe-results-with-issues.input';
 import { axeResultsWithUndefinedFeedbackURL } from './examples/axe-results-with-undefined-feedback-url.input';
-import { axeResultsWithAiIssuesFeedbackURL } from './examples/axe-results-with-ai-issues-and-feedback-url.input';
+import { axeResultsWithoutIssues } from './examples/axe-results-without-issues.input';
 
 describe('fromAxeResult', () => {
     const examples = {
