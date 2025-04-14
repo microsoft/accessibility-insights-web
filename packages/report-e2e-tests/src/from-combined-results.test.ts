@@ -18,7 +18,7 @@ describe('fromCombinedResults', () => {
         'combined-results-without-issues': combinedResultsWithoutIssues,
         'combined-results-with-baseline-aware-issues': combinedResultsWithBaselineAwareIssues,
         'combined-results-with-issues-and-feedback-url': combinedResultsWithFeedbackUrl,
-        'combined-results-with-ai-issues-and-feedback-url': combinedResultsWithAiIssuesFeedbackUrl
+        'combined-results-with-ai-issues-and-feedback-url': combinedResultsWithAiIssuesFeedbackUrl,
     };
 
     describe.each(Object.keys(examples))('with example input "%s"', (exampleName: string) => {

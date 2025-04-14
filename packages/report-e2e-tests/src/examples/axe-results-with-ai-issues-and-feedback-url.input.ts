@@ -4648,7 +4648,14 @@ export const axeResultsWithAiIssuesFeedbackURL: AxeReportParameters = {
                         target: ['html'],
                     },
                 ],
-                tags: ['cat.keyboard', 'wcag2a', 'wcag241', 'section508', 'section508.22.o', 'ai-scan'],
+                tags: [
+                    'cat.keyboard',
+                    'wcag2a',
+                    'wcag241',
+                    'section508',
+                    'section508.22.o',
+                    'ai-scan',
+                ],
             },
             {
                 description:
