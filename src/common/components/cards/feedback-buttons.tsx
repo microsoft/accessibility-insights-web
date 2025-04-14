@@ -14,26 +14,17 @@ export interface FeedbackButtonsProps {
 
 export const FeedbackButtons = NamedFC<FeedbackButtonsProps>(
     'FeedbackButtons',
-    ({ feedbackURL, instanceId, isIssueAIdetected = false }) => {
-        const buildFeedbackUrl = (type: string) => {
-            const baseUrl = feedbackURL.endsWith('/') ? feedbackURL : `${feedbackURL}/`;
-            return `${baseUrl}?feedback=${type}&instanceId=${encodeURIComponent(instanceId)}`;
+    ({ feedbackURL, isIssueAIdetected = false }) => {
+        const getFeedbackUrl = () => {
+            return feedbackURL;
         };
 
         return (
             <>
-                <a
-                    href={buildFeedbackUrl('helpful')}
-                    className={styles.feedbackButton}
-                    title="Helpful"
-                >
+                <a href={getFeedbackUrl()} className={styles.feedbackButton} title="Helpful">
                     <ThumbsUpIcon />
                 </a>
-                <a
-                    href={buildFeedbackUrl('unhelpful')}
-                    className={styles.feedbackButton}
-                    title="Unhelpful"
-                >
+                <a href={getFeedbackUrl()} className={styles.feedbackButton} title="Unhelpful">
                     <ThumbsDownIcon />
                 </a>
                 {isIssueAIdetected && (

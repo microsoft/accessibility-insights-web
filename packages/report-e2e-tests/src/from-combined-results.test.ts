@@ -9,12 +9,16 @@ import { reporterFactory, CombinedReportParameters } from 'accessibility-insight
 import { combinedResultsWithBaselineAwareIssues } from './examples/combined-results-with-baseline-aware-issues';
 import { combinedResultsWithIssues } from './examples/combined-results-with-issues.input';
 import { combinedResultsWithoutIssues } from './examples/combined-results-without-issues.input';
+import { combinedResultsWithFeedbackUrl } from './examples/combined-results-with-issues-and-feedback-url.input';
+import { combinedResultsWithAiIssuesFeedbackUrl } from './examples/combined-results-with-ai-issues-and-feedback-url.input';
 
 describe('fromCombinedResults', () => {
     const examples = {
         'combined-results-with-issues': combinedResultsWithIssues,
         'combined-results-without-issues': combinedResultsWithoutIssues,
         'combined-results-with-baseline-aware-issues': combinedResultsWithBaselineAwareIssues,
+        'combined-results-with-issues-and-feedback-url': combinedResultsWithFeedbackUrl,
+        'combined-results-with-ai-issues-and-feedback-url': combinedResultsWithAiIssuesFeedbackUrl
     };
 
     describe.each(Object.keys(examples))('with example input "%s"', (exampleName: string) => {
