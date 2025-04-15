@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { limitedCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -75,6 +75,8 @@ describe('CombinedReportHtmlGenerator', () => {
         unscannableUrls: 3,
     };
 
+    const feedbackURL = undefined;
+
     const cardsViewData = {
         cards: exampleUnifiedStatusResults,
         visualHelperEnabled: true,
@@ -100,6 +102,7 @@ describe('CombinedReportHtmlGenerator', () => {
             fixInstructionProcessorMock.object,
             recommendColorStub,
             getPropertyConfigurationStub,
+            getScriptMock.object,
         );
     });
 
@@ -111,9 +114,10 @@ describe('CombinedReportHtmlGenerator', () => {
                 getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
                 getPropertyConfigById: getPropertyConfigurationStub,
                 collapsibleControl: ReportCollapsibleContainerControl,
-                cardInteractionSupport: noCardInteractionsSupported,
+                cardInteractionSupport: limitedCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLinkWithConfirmationDialog,
+                feedbackURL: feedbackURL,
             } as SectionDeps,
             sectionFactory: sectionFactoryMock.object,
             toUtcString: getUTCStringFromDateStub,
@@ -123,6 +127,7 @@ describe('CombinedReportHtmlGenerator', () => {
             cardsViewData,
             urlResultCounts,
             sectionHeadingLevel: 2,
+            getCopyToClipboardScript: getScriptMock.object,
         };
 
         const headElement: JSX.Element = <NullComponent />;
@@ -140,7 +145,12 @@ describe('CombinedReportHtmlGenerator', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const html = testSubject.generateHtml(scanMetadata, cardsViewData, urlResultCounts);
+        const html = testSubject.generateHtml(
+            scanMetadata,
+            cardsViewData,
+            urlResultCounts,
+            feedbackURL,
+        );
 
         expect(html).toMatchSnapshot();
     });

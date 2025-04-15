@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportHtmlGenerator generateHtml 1`] = `"<!DOCTYPE html><html lang="en"><head-markup /><body-markup /></html>"`;
+
+exports[`ReportHtmlGenerator with feedback URL generateHtml includes feedback URL in the output 1`] = `"<!DOCTYPE html><html lang="en"><head-markup /><body-markup><a href="https://microsoft.com">Feedback</a></body-markup></html>"`;

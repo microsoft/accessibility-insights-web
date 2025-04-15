@@ -20,4 +20,5 @@ export type CommonInstancesSectionProps = {
     sectionHeadingLevel: HeadingLevel;
     narrowModeStatus?: NarrowModeStatus;
     cardsViewStoreData?: CardsViewStoreData;
+    feedbackURL?: string;
 };

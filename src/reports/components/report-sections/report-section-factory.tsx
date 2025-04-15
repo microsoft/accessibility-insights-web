@@ -25,6 +25,7 @@ export type SectionProps = {
     description: string;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
+    getCopyToClipboardScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
     cardsViewData: CardsViewModel;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
@@ -32,6 +33,7 @@ export type SectionProps = {
     shouldAlertFailuresCount?: boolean;
     scanMetadata: ScanMetadata;
     sectionHeadingLevel: HeadingLevel;
+    feedbackURL?: string;
 };
 
 export const ResultSectionTypes = {

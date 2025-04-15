@@ -115,6 +115,7 @@ describe(FastPassReport.displayName, () => {
                 },
             },
             sectionHeadingLevel: 3,
+            getCopyToClipboardScript: getScriptStub,
         };
 
         const renderResult = render(<FastPassReport {...props} />);
