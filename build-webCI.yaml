@@ -13,7 +13,7 @@ trigger:
 
 variables:
     windowsImage: 'windows-2022-secure'
-    macImage: 'macOS-11'
+    macImage: 'macOS-latest'
     linuxImage: 'ubuntu-latest'
     Codeql.Enabled: true
 
