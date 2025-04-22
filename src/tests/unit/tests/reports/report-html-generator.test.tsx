@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { limitedCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { NewTabLink } from 'common/components/new-tab-link';
@@ -36,7 +36,7 @@ describe('ReportHtmlGenerator', () => {
         const recommendColorMock = Mock.ofType(RecommendColor);
         const getPropertyConfigurationStub = (id: string) => null;
         const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => null;
-        const cardInteractionSupport = noCardInteractionsSupported;
+        const cardInteractionSupport = limitedCardInteractionsSupported;
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
@@ -81,6 +81,7 @@ describe('ReportHtmlGenerator', () => {
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
                 getNextHeadingLevel: getNextHeadingLevelStub,
+                feedbackURL: undefined,
             } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
@@ -96,6 +97,7 @@ describe('ReportHtmlGenerator', () => {
             },
             scanMetadata,
             sectionHeadingLevel: 2,
+            getCopyToClipboardScript: getScriptMock.object,
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <NullComponent />;
@@ -122,6 +124,7 @@ describe('ReportHtmlGenerator', () => {
             recommendColorMock.object,
             getPropertyConfigurationStub,
             getNextHeadingLevelStub,
+            getScriptMock.object,
         );
 
         const actual = testObject.generateHtml(
@@ -135,5 +138,130 @@ describe('ReportHtmlGenerator', () => {
         );
 
         expect(actual).toMatchSnapshot();
+    });
+});
+
+describe('ReportHtmlGenerator with feedback URL', () => {
+    test('generateHtml includes feedback URL in the output', () => {
+        const scanDate: Date = new Date(2018, 2, 12, 16, 24);
+        const pageTitle: string = 'page-title';
+        const pageUrl: string = 'https://page-url/';
+        const description: string = 'description';
+        const feedbackURL: string = 'https://microsoft.com';
+        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const recommendColorMock = Mock.ofType(RecommendColor);
+        const getPropertyConfigurationStub = (id: string) => null;
+        const getNextHeadingLevelStub = (headingLevel: HeadingLevel) => null;
+        const cardInteractionSupport = limitedCardInteractionsSupported;
+
+        const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
+        const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
+
+        const sectionFactoryMock = Mock.ofType<ReportSectionFactory>();
+
+        const toolData: ToolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
+        };
+
+        const getScriptMock = Mock.ofInstance(() => '');
+
+        const targetAppInfo = {
+            name: pageTitle,
+            url: pageUrl,
+        };
+
+        const scanMetadata = {
+            toolData: toolData,
+            targetAppInfo: targetAppInfo,
+            timespan: {
+                scanComplete: scanDate,
+            },
+        } as ScanMetadata;
+
+        const sectionProps: ReportBodyProps = {
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendColorMock.object,
+                getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
+                getPropertyConfigById: getPropertyConfigurationStub,
+                collapsibleControl: ReportCollapsibleContainerControl,
+                cardInteractionSupport: cardInteractionSupport,
+                cardsVisualizationModifierButtons: NullComponent,
+                LinkComponent: NewTabLink,
+                getNextHeadingLevel: getNextHeadingLevelStub,
+                feedbackURL: feedbackURL,
+            } as SectionDeps,
+            fixInstructionProcessor: fixInstructionProcessorMock.object,
+            recommendColor: recommendColorMock.object,
+            sectionFactory: sectionFactoryMock.object as ReportBodySectionFactory,
+            description,
+            toUtcString: getUTCStringFromDateStub,
+            getCollapsibleScript: getScriptMock.object,
+            getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
+            cardsViewData: {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
+            scanMetadata,
+            sectionHeadingLevel: 2,
+            getCopyToClipboardScript: getScriptMock.object,
+        } as ReportBodyProps;
+
+        const headElement: JSX.Element = <NullComponent />;
+        const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;
+
+        const renderedBodyMarkup = `<body-markup><a href="${feedbackURL}">Feedback</a></body-markup>`;
+
+        const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
+        sectionFactoryMock.setup(mock => mock.HeadSection).returns(() => NullComponent);
+        rendererMock
+            .setup(r => r.renderToStaticMarkup(It.isObjectWith(headElement)))
+            .returns(() => '<head-markup />')
+            .verifiable(Times.once());
+        rendererMock
+            .setup(r => r.renderToStaticMarkup(It.isObjectWith(bodyElement)))
+            .returns(() => renderedBodyMarkup)
+            .verifiable(Times.once());
+
+        const testObject = new ReportHtmlGenerator(
+            sectionFactoryMock.object,
+            rendererMock.object,
+            getScriptMock.object,
+            getUTCStringFromDateStub,
+            getGuidanceTagsStub,
+            fixInstructionProcessorMock.object,
+            recommendColorMock.object,
+            getPropertyConfigurationStub,
+            getNextHeadingLevelStub,
+            getScriptMock.object,
+        );
+
+        const actual = testObject.generateHtml(
+            description,
+            {
+                cards: exampleUnifiedStatusResults,
+                visualHelperEnabled: true,
+                allCardsCollapsed: true,
+            },
+            scanMetadata,
+            feedbackURL,
+        );
+
+        expect(actual).toContain(feedbackURL);
+
+        expect(actual).toContain(`<a href="${feedbackURL}">Feedback</a>`);
+
+        expect(actual).toMatchSnapshot();
+
+        rendererMock.verifyAll();
     });
 });

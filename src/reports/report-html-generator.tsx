@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { limitedCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { NewTabLink } from 'common/components/new-tab-link';
@@ -32,12 +32,14 @@ export class ReportHtmlGenerator {
         private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
         private readonly getNextHeadingLevel: (headingLevel: HeadingLevel) => HeadingLevel,
+        private readonly getCopyToClipboardScript: () => string,
     ) {}
 
     public generateHtml(
         description: string,
         cardsViewData: CardsViewModel,
         scanMetadata: ScanMetadata,
+        feedbackURL?: string,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
@@ -50,10 +52,11 @@ export class ReportHtmlGenerator {
                 collapsibleControl: ReportCollapsibleContainerControl,
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
-                cardInteractionSupport: noCardInteractionsSupported,
+                cardInteractionSupport: limitedCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
                 getNextHeadingLevel: this.getNextHeadingLevel,
+                feedbackURL: feedbackURL || undefined,
             } as SectionDeps,
             cardsViewData: cardsViewData,
             toUtcString: this.utcDateConverter,
@@ -63,6 +66,7 @@ export class ReportHtmlGenerator {
             recommendColor: this.recommendColor,
             scanMetadata,
             sectionHeadingLevel: 2,
+            getCopyToClipboardScript: this.getCopyToClipboardScript,
         } as SectionProps;
 
         const props: ReportBodyProps = {

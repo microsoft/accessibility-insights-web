@@ -106,6 +106,7 @@ describe(FastPassReportHtmlGenerator, () => {
             results: model.results,
             scanMetadata: expectedScanMetadata,
             sectionHeadingLevel: 3,
+            getCopyToClipboardScript: getScriptMock.object,
         };
 
         const reportElement: JSX.Element = <FastPassReport {...expectedProps} />;
@@ -128,6 +129,7 @@ describe(FastPassReportHtmlGenerator, () => {
             toolData,
             () => scanDate,
             getNextHeadingLevelStub,
+            getScriptMock.object,
         );
 
         const actual = testObject.generateHtml(model);
