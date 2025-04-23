@@ -41,7 +41,7 @@
   --neutral-alpha-80: rgb(0 0 0 / 80%);
   --neutral-alpha-90: rgb(0 0 0 / 90%);
   --positive-outcome: #228722;
-  --negative-outcome: #e81123;
+  --negative-outcome: #cd4a45;
   --neutral-outcome: var(--neutral-60);
   --box-shadow-108: rgb(0 0 0 / 10.8%);
   --box-shadow-132: rgb(0 0 0 / 13.2%);
@@ -415,7 +415,7 @@ button::after {
   margin-right: 0;
 }
 .outcome-summary-bar .label {
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .screen-reader-only {
@@ -922,6 +922,127 @@ ul.instance-details-list li:last-child {
   line-height: 20px;
   align-items: flex-end;
   display: flex;
+}
+
+/* css-modules:src/common/components/cards/failed-instances-markup-footer */
+.markup-footer--HEVHv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--neutral-2, #f8f8f8);
+  min-height: 48px;
+  padding-top: 0;
+  padding-right: 20px;
+  padding-bottom: 0;
+  padding-left: 20px;
+  border-top: 0.5px solid var(--card-footer-border, #dedede);
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  margin-top: 0;
+}
+.feedback-text--yBb6Z {
+  font-size: 14px;
+  color: var(--secondary-text, rgba(0, 0, 0, 0.7));
+  margin-right: 12px;
+}
+.feedback-buttons--rDHVY {
+  display: flex;
+  gap: 8px;
+}
+.buttons-group-left--JSoCT {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.buttons-group-right--SKsSu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  position: relative;
+  margin-left: auto;
+}
+.feedback-button--Vn-lA {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-60, #666);
+  text-decoration: none;
+  font-size: 14px;
+  gap: 6px;
+}
+.feedback-button--Vn-lA:hover {
+  background-color: var(--neutral-alpha-4, rgba(0, 0, 0, 0.04));
+}
+.feedback-button--Vn-lA span {
+  margin-left: 6px;
+  font-size: 14px;
+}
+.ai-content-label--1cidK {
+  background-color: var(--neutral-10, #e6e6e6);
+  color: var(--neutral-60, #666);
+  font-size: 12px;
+  padding-top: 4px;
+  padding-right: 10px;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.notification-container--axJpL {
+  position: relative;
+  height: 0;
+  width: 0;
+}
+.copy-notification--MlMTG {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  background-color: var(--neutral-80, #333);
+  color: white;
+  padding-top: 6px;
+  padding-right: 12px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  animation: fade-in-out--AuVTM 2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  z-index: 100;
+  display: none;
+}
+.copy-notification--MlMTG.visible--GCwEf {
+  display: inline-block;
+}
+.hidden-content--9JuU6 {
+  display: none;
+}
+@keyframes fade-in-out--AuVTM {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
 
 /* css-modules:src/common/components/toast */

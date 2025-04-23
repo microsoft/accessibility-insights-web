@@ -16,6 +16,12 @@ export const BestPractice: GuidanceLink = {
     tags: [guidanceTags.BEST_PRACTICE],
 };
 
+export const AiScan: GuidanceLink = {
+    text: '',
+    href: '',
+    tags: [guidanceTags.AI_SCAN],
+};
+
 const bestPracticeToGuidanceTagOverrideMapping = {
     'aria-allowed-role': ['wcag131', 'wcag412'],
     'presentation-role-conflict': ['wcag131'],
@@ -39,6 +45,9 @@ function addGuidanceTagOverrides(resultId: string, currentTags?: string[]) {
 function mapAxeTagToGuidanceLink(axeTag: string): HyperlinkDefinition | null {
     if (axeTag === 'best-practice') {
         return BestPractice;
+    }
+    if (axeTag === 'ai-scan') {
+        return AiScan;
     }
     const metadata: GuidelineMetadata = guidelineMetadata[getGuidelineKeyByAxeTag(axeTag)] ?? null;
     if (metadata === null) {

@@ -38,8 +38,19 @@
     text-overflow: ellipsis;
     display: inline-block;
     overflow: hidden;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .target-page-link {
     width: 100%;
+}
+
+.ul-class {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }

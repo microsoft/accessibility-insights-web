@@ -6,6 +6,7 @@ exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = 
     download="download"
     href="url"
     iconprops="[object Object]"
+    role="button"
   >
     Save assessment
   </mock-customizedactionbutton>

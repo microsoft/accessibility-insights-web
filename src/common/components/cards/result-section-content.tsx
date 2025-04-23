@@ -33,6 +33,7 @@ export type ResultSectionContentProps = {
     headingLevel: number;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
+    feedbackURL?: string;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
