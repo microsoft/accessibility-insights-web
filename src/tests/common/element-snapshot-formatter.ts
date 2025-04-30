@@ -68,7 +68,6 @@ export const CSS_MODULE_HASH_REPLACEMENT = '{{CSS_MODULE_HASH}}';
 // Our compiler config adds generated suffixes of form "--abc12" to the end of class names defined in
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
 export function normalizeCssModuleClassName(className: string): string {
-    // eslint-disable-next-line no-useless-escape
     const cssModuleClassNameMatcher = /^([\w-]+--)[A-Za-z0-9+\/=\-_]{5}$/;
 
     return className.replace(cssModuleClassNameMatcher, `$1${CSS_MODULE_HASH_REPLACEMENT}`);
@@ -89,7 +88,6 @@ function normalizeEnvironmentSensitivePositionStyles(absolutelyPositionedElement
     const originalInlineStyle = absolutelyPositionedElement.getAttribute('style');
     if (originalInlineStyle != null) {
         const sanitizedInlineStyle = originalInlineStyle.replace(
-            // eslint-disable-next-line no-useless-escape
             /((top|left|min-width|min-height):\s*)([\-0-9.]+)(px)/g,
             '$1{{ENVIRONMENT_SENSITIVE_POSITION}}$4',
         );

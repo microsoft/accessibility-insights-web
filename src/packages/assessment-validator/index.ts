@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { Assessments } from 'assessments/assessments';
-import { LoadAssessmentDataSchemaProvider } from 'DetailsView/components/load-assessment-data-schema-provider';
 import * as fs from 'fs';
 import * as path from 'path';
 import Ajv from 'ajv';
 import standaloneCode from 'ajv/dist/standalone';
+import { Assessments } from 'assessments/assessments';
+import { LoadAssessmentDataSchemaProvider } from 'DetailsView/components/load-assessment-data-schema-provider';
 
 const validatorFilePath = path.join(
     __dirname,
