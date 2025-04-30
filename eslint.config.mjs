@@ -17,9 +17,15 @@ const gitignorePath = path.resolve(__dirname, ".gitignore");
 export default defineConfig([
         {
         ignores: [
+            'node_modules/',
+            '**/*bundle.js',
+            'dist/',
             'drop/',
             'extension/',
             'packages/',
+            'test-results/',
+            'src/DetailsView/components/generated-validate-assessment-json.js',
+            'replace-plugin.js',
             ],
         },
             
