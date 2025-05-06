@@ -3,7 +3,7 @@
 parameters:
     jobNameSuffix: ''
     windowsImage: 'windows-2022-secure'
-    macImage: 'macOS-latest'
+    macImage: 'macOS-14'
     linuxImage: 'ubuntu-22.04-secure'
 
 jobs:
