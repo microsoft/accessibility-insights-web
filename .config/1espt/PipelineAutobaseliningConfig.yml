@@ -64,3 +64,15 @@ pipelines:
           lastModifiedDate: 2025-01-15
         armory:
           lastModifiedDate: 2025-01-15
+  39:
+    usedNonDefaultBranch: true
+    retail:
+      source:
+        credscan:
+          lastModifiedDate: 2025-05-07
+        eslint:
+          lastModifiedDate: 2025-05-07
+        armory:
+          lastModifiedDate: 2025-05-07
+        accessibilityinsights:
+          lastModifiedDate: 2025-05-07
