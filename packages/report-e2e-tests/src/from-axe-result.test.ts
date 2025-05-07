@@ -23,7 +23,7 @@ describe('fromAxeResult', () => {
         'axe-results-with-ai-issues-and-feedback-url': axeResultsWithAiIssuesFeedbackURL,
     };
 
-    describe.each(Object.keys(examples))('with example input "%s"', (exampleName: string) => {
+    describe.each(Object.keys(examples))('with example input "%s"', (exampleName: any) => {
         const input: AxeReportParameters = examples[exampleName];
 
         beforeEach(() => {

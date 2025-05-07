@@ -6,5 +6,5 @@ export type ActionInitiator<D extends {}> = (
 ) => void;
 
 export type ActionInitiators = {
-    openExternalLink: ActionInitiator<{ href: string }>;
+openExternalLink: ActionInitiator<{ href: any }>;
 };
