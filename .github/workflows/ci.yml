@@ -15,7 +15,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v4.2.2
@@ -44,7 +44,7 @@ jobs:
     
   unit-tests:
     name: unit-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     strategy:
       fail-fast: false
@@ -80,7 +80,7 @@ jobs:
       timeout-minutes: 5
 
   lints:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v4.2.2
@@ -115,7 +115,7 @@ jobs:
       timeout-minutes: 6
 
   codeql:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
@@ -131,7 +131,7 @@ jobs:
 
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     # We need to update this each time we update playwright
     container: mcr.microsoft.com/playwright:v1.48.2-focal
     strategy:
@@ -187,7 +187,7 @@ jobs:
       timeout-minutes: 15 # chrome-logs is several GB, this can take a while
 
   e2e-report-tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v4.2.2
@@ -217,7 +217,7 @@ jobs:
       timeout-minutes: 3
 
   check-clearly-defined:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
