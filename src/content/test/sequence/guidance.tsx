@@ -20,7 +20,8 @@ export const guidance = create(({ Markup, Link }) => (
                 </h3>
                 <ul>
                     <li>
-                        If you use <Markup.Code>position:absolute</Markup.Code>, be sure the DOM order matches the expected reading order.{' '}
+                        If you use <Markup.Code>position:absolute</Markup.Code>, be sure the DOM order matches the expected reading
+                        order.{' '}
                     </li>
                     <li>
                         Avoid using <Markup.Code>float:right</Markup.Code>, as it always creates a mismatch: elements displayed on the right
