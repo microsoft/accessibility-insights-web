@@ -27,7 +27,8 @@ export const infoAndExamples = create(({ Markup }) => (
         <ul>
             <li>
                 The text field of a rich text editor can become a keyboard trap if pressing the <Markup.Term>Tab</Markup.Term> key inserts a
-                tab character. The user interface must (1) provide an alternative method for navigating away, and (2) inform users about it.{' '}
+                tab character. The user interface must (1) provide an alternative method for navigating away, and (2) inform users about
+                it.{' '}
             </li>
             <li>
                 Keyboard traps can result from scripts that use <Markup.Term>blur</Markup.Term> or <Markup.Term>keypress</Markup.Term>{' '}

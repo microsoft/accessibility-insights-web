@@ -38,7 +38,6 @@ describe('assessments-style-cop', () => {
     }
 
     function isUpperCaseAcronym(s: string): boolean {
-        // eslint-disable-next-line no-useless-escape
         return /^[A-Z0-9\-]+s?$/.test(s);
     }
 
