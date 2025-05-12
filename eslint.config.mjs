@@ -12,7 +12,6 @@ import parser from '@typescript-eslint/parser';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const gitignorePath = path.resolve(__dirname, '.gitignore');
 
 export default defineConfig([
     {
@@ -22,25 +21,52 @@ export default defineConfig([
             'dist/',
             'drop/',
             'extension/',
-            'packages/',
+            //'packages/',
             'test-results/',
             'src/DetailsView/components/generated-validate-assessment-json.js',
             'replace-plugin.js',
         ],
     },
-
     {
+        files: [
+            '**/*.config.js',
+            '**/prettier.config.js',
+            '**/jest.config.js',
+            '**/index.js',
+            '.stylelintrc.js',
+            '.github/**/*.js',
+            'packages/report-e2e-tests/jest.config.js',
+            'packages/report-e2e-tests/prettier.config.js',
+        ],
+        languageOptions: {
+            parserOptions: {
+                project: null,
+            },
+        },
+    },
+    
+    {
+        //This block merges from eslintrc.base.js
         files: ['**/*.ts', '**/*.tsx'],
         languageOptions: {
             parser,
             parserOptions: {
                 project: './tsconfig.json',
                 tsconfigRootDir: __dirname,
+                sourceType: 'module',
+                ecmaFeatures: {
+                    jsx: true,
+                },
+                ecmaVersion: 2017,
             },
-            sourceType: 'module',
             globals: {
                 ...globals.browser,
                 ...globals.node,
+            },
+        },
+        settings: {
+            react: {
+                version: 'detect',
             },
         },
         plugins: {
@@ -50,8 +76,8 @@ export default defineConfig([
             '@typescript-eslint': tseslint,
         },
         rules: {
+            //From eslintrc.base.js
             eqeqeq: ['error', 'always', { null: 'ignore' }],
-
             'import/order': [
                 'error',
                 {
@@ -61,7 +87,6 @@ export default defineConfig([
                     },
                 },
             ],
-
             'no-restricted-imports': [
                 'error',
                 {
@@ -75,7 +100,6 @@ export default defineConfig([
                     ],
                 },
             ],
-
             'no-throw-literal': 'error',
             'react/no-access-state-in-setstate': 'error',
             'react/no-unused-state': 'error',
@@ -86,6 +110,7 @@ export default defineConfig([
             'security/detect-object-injection': 'off',
             'no-prototype-builtins': 'off',
 
+            //Disabled rules from eslintrc.base.js
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/explicit-module-boundary-types': 'off',
             '@typescript-eslint/no-unused-vars': 'off',
@@ -113,6 +138,40 @@ export default defineConfig([
         },
     },
     {
+        files: ['**/*.js', '**/*.jsx'],
+        languageOptions: {
+            parser,
+            parserOptions: {
+                project: null,
+                tsconfigRootDir: __dirname,
+                sourceType: 'module',
+                ecmaFeatures: {
+                    jsx: true,
+                },
+                ecmaVersion: 2017,
+            },
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+            },
+        },
+        settings: {
+            react: {
+                version: 'detect',
+            },
+        },
+        plugins: {
+            react,
+            import: importPlugin,
+            security,
+            '@typescript-eslint': tseslint,
+        },
+        rules: {
+            // repeat rules 
+        },
+    },
+    {
+        //From overrides[] in eslintrc.base.js
         files: ['src/tests/**/*', 'tools/**/*', 'pipeline/**/*', 'deploy/**/*', '**/Gruntfile.js'],
         rules: {
             'security/detect-non-literal-regexp': 'off',
@@ -120,6 +179,30 @@ export default defineConfig([
             'security/detect-unsafe-regex': 'off',
             'security/detect-child-process': 'off',
             'security/detect-eval-with-expression': 'off',
+        },
+    },
+
+    {
+        //Migrated from packages/report-e2e-tests/.eslintrc.js
+        files: ['packages/report-e2e-tests/**/*.{ts,tsx,js,jsx}'],
+        ignores: ['**/node_modules/**', '**/*bundle.js', '**/dist/**', '**/drop/**', '**/test-results/**'],
+        languageOptions: {
+            parser,
+            parserOptions: {
+                project: './packages/report-e2e-tests/tsconfig.json',
+                tsconfigRootDir: __dirname,
+            },
+            sourceType: 'module',
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+            },
+        },
+        plugins: {
+            react,
+            import: importPlugin,
+            security,
+            '@typescript-eslint': tseslint,
         },
     },
 ]);
