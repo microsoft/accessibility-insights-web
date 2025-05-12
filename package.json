@@ -141,7 +141,7 @@
         "simple-git": "^3.22.0",
         "stylelint": "^15.11.0",
         "stylelint-config-prettier-scss": "^1.0.0",
-        "stylelint-config-standard-scss": "^11.1.0",
+        "stylelint-config-standard-scss": "^15.0.0",
         "terser-webpack-plugin": "^5.3.14",
         "ts-loader": "^9.5.1",
         "typed-scss-modules": "^8.0.0",
