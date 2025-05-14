@@ -135,7 +135,13 @@ export default defineConfig([
     {
         //Migrated from packages/report-e2e-tests/.eslintrc.js
         files: ['packages/report-e2e-tests/**/*.{ts,tsx,js,jsx}'],
-        ignores: ['**/node_modules/**', '**/*bundle.js', '**/dist/**', '**/drop/**', '**/test-results/**'],
+        ignores: [
+            '**/node_modules/**',
+            '**/*bundle.js',
+            '**/dist/**',
+            '**/drop/**',
+            '**/test-results/**',
+        ],
         languageOptions: {
             parser,
             parserOptions: {

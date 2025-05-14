@@ -10,16 +10,16 @@
         "strictNullChecks": false,
         "noUnusedLocals": true
     },
-  "include": [
-    ".eslintrc.js",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.js",
-    "deploy/**/*",
-    "tools/**/*",
-    "./*.js",
-    ".stylelintrc.js",
-    "packages/**/*.js",
-    ".github/workflows/verify-unchanged-strict-null-checks.js"
-  ]
+    "include": [
+        ".eslintrc.js",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.js",
+        "deploy/**/*",
+        "tools/**/*",
+        "./*.js",
+        ".stylelintrc.js",
+        "packages/**/*.js",
+        ".github/workflows/verify-unchanged-strict-null-checks.js"
+    ]
 }
