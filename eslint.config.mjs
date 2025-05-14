@@ -27,27 +27,10 @@ export default defineConfig([
             'replace-plugin.js',
         ],
     },
-    {
-        files: [
-            '**/*.config.js',
-            '**/prettier.config.js',
-            '**/jest.config.js',
-            '**/index.js',
-            '.stylelintrc.js',
-            '.github/**/*.js',
-            'packages/report-e2e-tests/jest.config.js',
-            'packages/report-e2e-tests/prettier.config.js',
-        ],
-        languageOptions: {
-            parserOptions: {
-                project: null,
-            },
-        },
-    },
-    
+
     {
         //This block merges from eslintrc.base.js
-        files: ['**/*.ts', '**/*.tsx'],
+        files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
         languageOptions: {
             parser,
             parserOptions: {
@@ -135,39 +118,6 @@ export default defineConfig([
             '@typescript-eslint/no-implied-eval': 'off',
             '@typescript-eslint/prefer-regexp-exec': 'off',
             '@typescript-eslint/await-thenable': 'off',
-        },
-    },
-    {
-        files: ['**/*.js', '**/*.jsx'],
-        languageOptions: {
-            parser,
-            parserOptions: {
-                project: null,
-                tsconfigRootDir: __dirname,
-                sourceType: 'module',
-                ecmaFeatures: {
-                    jsx: true,
-                },
-                ecmaVersion: 2017,
-            },
-            globals: {
-                ...globals.browser,
-                ...globals.node,
-            },
-        },
-        settings: {
-            react: {
-                version: 'detect',
-            },
-        },
-        plugins: {
-            react,
-            import: importPlugin,
-            security,
-            '@typescript-eslint': tseslint,
-        },
-        rules: {
-            // repeat rules 
         },
     },
     {

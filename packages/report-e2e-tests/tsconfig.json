@@ -3,5 +3,5 @@
     "compilerOptions": {
         "outDir": "dist"
     },
-    "include": ["**/*.ts"]
+  "include": [ "**/*.ts", "jest.config.js", "prettier.config.js"]
 }
