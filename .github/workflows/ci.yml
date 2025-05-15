@@ -133,7 +133,7 @@ jobs:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
     # We need to update this each time we update playwright
-    container: mcr.microsoft.com/playwright:v1.52.0-noble
+    container: mcr.microsoft.com/playwright:v1.48.2-focal
     strategy:
       fail-fast: false
       matrix:
