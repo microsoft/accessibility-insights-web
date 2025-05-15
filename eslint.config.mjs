@@ -21,7 +21,6 @@ export default defineConfig([
             'dist/',
             'drop/',
             'extension/',
-            //'packages/',
             'test-results/',
             'src/DetailsView/components/generated-validate-assessment-json.js',
             'replace-plugin.js',
@@ -29,7 +28,6 @@ export default defineConfig([
     },
 
     {
-        //This block merges from eslintrc.base.js
         files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
         languageOptions: {
             parser,
@@ -59,7 +57,6 @@ export default defineConfig([
             '@typescript-eslint': tseslint,
         },
         rules: {
-            //From eslintrc.base.js
             eqeqeq: ['error', 'always', { null: 'ignore' }],
             'import/order': [
                 'error',
@@ -93,7 +90,6 @@ export default defineConfig([
             'security/detect-object-injection': 'off',
             'no-prototype-builtins': 'off',
 
-            //Disabled rules from eslintrc.base.js
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/explicit-module-boundary-types': 'off',
             '@typescript-eslint/no-unused-vars': 'off',
@@ -121,7 +117,6 @@ export default defineConfig([
         },
     },
     {
-        //From overrides[] in eslintrc.base.js
         files: ['src/tests/**/*', 'tools/**/*', 'pipeline/**/*', 'deploy/**/*', '**/Gruntfile.js'],
         rules: {
             'security/detect-non-literal-regexp': 'off',
@@ -133,7 +128,6 @@ export default defineConfig([
     },
 
     {
-        //Migrated from packages/report-e2e-tests/.eslintrc.js
         files: ['packages/report-e2e-tests/**/*.{ts,tsx,js,jsx}'],
         ignores: [
             '**/node_modules/**',
