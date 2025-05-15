@@ -27,6 +27,20 @@ export class RuleProcessor {
         return rule;
     }
 
+    public excludeNodesByCustomLogic(rule: AxeRule): AxeRule | null {
+        rule.nodes = rule.nodes.filter((nodeResult: AxeNodeResult) => {
+            return !(
+                rule.id === 'aria-hidden-focus' &&
+                nodeResult.html.toLowerCase().includes('data-tabster-dummy')
+            );
+        });
+
+        if (rule.nodes.length === 0) {
+            return null;
+        }
+
+        return rule;
+    }
     private normalizeMessage(message: string): string {
         return message.toLowerCase().trim();
     }

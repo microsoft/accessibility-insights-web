@@ -41,11 +41,14 @@ export class ResultDecorator {
     ): RuleResult[] {
         return ruleResults.reduce((filteredArray: RuleResult[], result: AxeRule) => {
             this.messageDecorator.decorateResultWithMessages(result);
-            const processedResult = this.ruleProcessor.suppressChecksByMessages(
+            let processedResult = this.ruleProcessor.suppressChecksByMessages(
                 result,
                 !isInapplicable,
             );
 
+            if (processedResult != null) {
+                processedResult = this.ruleProcessor.excludeNodesByCustomLogic(processedResult);
+            }
             if (processedResult != null) {
                 filteredArray.push({
                     ...processedResult,
