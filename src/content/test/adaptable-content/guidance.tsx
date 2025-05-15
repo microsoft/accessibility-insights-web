@@ -14,7 +14,8 @@ export const guidance = create(({ Markup, Link }) => (
         </p>
         <ul>
             <li>
-                People with visual or reading disabilities find it easier to read when they can make text larger or increase its spacing.{' '}
+                People with visual or reading disabilities find it easier to read when they can make text larger or increase its
+                spacing.{' '}
             </li>
             <li> People with motor disabilities who use mounted displays need content that orients automatically to the screen. </li>
             <li>

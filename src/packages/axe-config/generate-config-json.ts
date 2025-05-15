@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import * as axe from 'axe-core';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as axe from 'axe-core';
 import { explicitRuleOverrides, getRuleInclusions } from 'scanner/get-rule-inclusions';
 import { ScanParameterGenerator } from 'scanner/scan-parameter-generator';
 

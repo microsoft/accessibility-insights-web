@@ -27,7 +27,9 @@ export class LinkedFrameMessenger extends SingleFrameMessenger {
 
     private otherMessenger: LinkedFrameMessenger;
     private listeners: DictionaryStringTo<PromiseWindowCommandMessageListener> = {};
-    public window: Window = {} as Window;
+    public window: Window = {
+        location: { href: 'about:blank' } as any,
+    } as Window;
     public frameElement = { contentWindow: this.window } as HTMLIFrameElement;
 
     public initialize(): void {}

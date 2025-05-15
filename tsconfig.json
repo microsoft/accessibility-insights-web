@@ -17,6 +17,9 @@
         "src/**/*.js",
         "deploy/**/*",
         "tools/**/*",
-        "./*.js"
+        "./*.js",
+        ".stylelintrc.js",
+        "packages/**/*.js",
+        ".github/workflows/verify-unchanged-strict-null-checks.js"
     ]
 }

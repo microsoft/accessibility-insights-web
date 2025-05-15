@@ -55,7 +55,7 @@
             "prepend": "<!--",
             "append": "-->"
         },
-        "ts|tsx|d.ts|js|scss|css": {
+        "ts|tsx|d.ts|js|scss|css|mjs": {
             "eachLine": {
                 "prepend": "// "
             }
