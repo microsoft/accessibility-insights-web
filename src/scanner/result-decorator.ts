@@ -38,6 +38,7 @@ export class ResultDecorator {
     private decorateAxeRuleResults(
         ruleResults: AxeRule[],
         isInapplicable: boolean = false,
+        isViolation: boolean = false,
     ): RuleResult[] {
         return ruleResults.reduce((filteredArray: RuleResult[], result: AxeRule) => {
             this.messageDecorator.decorateResultWithMessages(result);
@@ -47,7 +48,9 @@ export class ResultDecorator {
             );
 
             if (processedResult != null) {
-                processedResult = this.ruleProcessor.excludeNodesByCustomLogic(processedResult);
+                if (!isViolation) {
+                    processedResult = this.ruleProcessor.suppressFluentUITabsterResult(processedResult);
+                }
             }
             if (processedResult != null) {
                 filteredArray.push({
