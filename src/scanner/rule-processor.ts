@@ -36,7 +36,7 @@ export class RuleProcessor {
          */
 
         if (result.id === 'aria-hidden-focus') {
-            result.nodes = result.nodes.filter((node: AxeNodeResult) => {
+            result.nodes = result.nodes.filter(node => {
                 return !node.html.includes('data-tabster-dummy');
             });
         }
