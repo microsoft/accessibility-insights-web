@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TargetHelper } from '../../common/target-helper';
 import * as AxeUtils from '../axe-utils';
 import { IAxeCheckResultExtraData, RuleConfiguration } from '../iruleresults';
 
@@ -22,7 +23,7 @@ export const headingConfiguration: RuleConfiguration = {
 };
 
 function evaluateCodedHeadings(node: HTMLElement, options: any): boolean {
-    const headingText: string = node.innerText;
+    const headingText: string = TargetHelper.getSlotInnerTextFromElementNode(node);
     let headingLevel: number | undefined;
     const ariaHeadingLevel: string | null = node.getAttribute('aria-level');
     if (ariaHeadingLevel !== null) {

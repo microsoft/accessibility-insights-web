@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { TargetHelper } from '../../common/target-helper';
 import { DialogRenderer } from '../dialog-renderer';
 import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
@@ -78,7 +79,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
             textAlign: 'center',
         };
 
-        if (!element.innerText) {
+        if (!element.innerText && !TargetHelper.getSlotInnerTextFromElementNode(element)) {
             drawerConfig.showVisualization = false;
         }
 
@@ -119,3 +120,4 @@ export class HeadingFormatter extends FailureInstanceFormatter {
         return attr ? attr.textContent : null;
     }
 }
+

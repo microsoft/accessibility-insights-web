@@ -101,6 +101,25 @@ export class TargetHelper {
         }
     };
 
+    public static getSlotInnerTextFromElementNode = (element: HTMLElement): string =>
+    {
+        let text: string = '';
+        element.childNodes.forEach((child) => {
+            if(child.nodeName?.toLocaleLowerCase() === 'slot')
+            {
+                const slot = child as HTMLSlotElement;
+                const assignedNodes = slot.assignedNodes();
+                text = assignedNodes.reduce((acc, node) => acc + (node.textContent ?? ''), text ?? '');
+            }
+            else
+            {
+                text = text + (child.textContent ?? '');
+            }
+        })
+
+        return text;
+    };
+
     private static getShadowHost = (selectors: string[], dom: Document): Element | null => {
         let shadowHost: Element | null = null;
         let queryElement: ShadowRoot | Document = dom;
