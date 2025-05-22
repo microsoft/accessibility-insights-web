@@ -109,11 +109,6 @@ describe('ResultDecorator', () => {
                 .returns(result => result)
                 .verifiable();
 
-            ruleProcessorMock
-                .setup(m => m.normalizedSuppressedMessages)
-                .returns(() => [])
-                .verifiable();
-
             const testSubject = new ResultDecorator(
                 documentUtilsMock.object,
                 messageDecoratorMock.object,
@@ -125,6 +120,7 @@ describe('ResultDecorator', () => {
 
             expect(decoratedResult).toEqual(resultStubWithGuidanceLinks);
 
+            ruleProcessorMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
             mockTagToLinkMapper.verifyAll();
@@ -226,11 +222,6 @@ describe('ResultDecorator', () => {
                 .returns(result => result)
                 .verifiable();
 
-            ruleProcessorMock
-                .setup(m => m.normalizedSuppressedMessages)
-                .returns(() => [])
-                .verifiable();
-
             const testSubject = new ResultDecorator(
                 documentUtilsMock.object,
                 messageDecoratorMock.object,
@@ -243,6 +234,7 @@ describe('ResultDecorator', () => {
             );
 
             expect(decoratedResult).toEqual(resultStubWithGuidanceLinks);
+            ruleProcessorMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
             tagToLinkMapperMock.verifyAll();
