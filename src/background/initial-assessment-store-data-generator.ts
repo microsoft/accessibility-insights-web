@@ -3,6 +3,11 @@
 
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { VisualizationType } from 'common/types/visualization-type';
+import {
+    deprecatedVisualizationTypes,
+    deprecatedAssessmentKeys,
+} from 'common/visualization-type-helper';
 import { head } from 'lodash';
 import {
     AssessmentData,
@@ -27,14 +32,30 @@ export class InitialAssessmentStoreDataGenerator {
                 title: persistedData?.persistedTabInfo?.title,
                 detailsViewId: persistedData?.persistedTabInfo?.detailsViewId,
             };
-        const persistedTests = persistedData && persistedData.assessments;
+        let persistedTests = persistedData && persistedData.assessments;
+        if (persistedTests) {
+            persistedTests = { ...persistedTests };
+            // keep the keys but discard any stored data
+            deprecatedAssessmentKeys.forEach(key => {
+                if (key in persistedTests) {
+                    persistedTests[key] = null;
+                }
+            });
+        }
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
-        const selectedTestType =
+        let selectedTestType =
             persistedData?.assessmentNavState?.selectedTestType ?? first.visualizationType;
-        const selectedTestStep =
+        let selectedTestStep =
             persistedData?.assessmentNavState?.selectedTestSubview ??
             (first.requirements && first.requirements[0] && first.requirements[0].key);
+
+        // If the persisted nav points at a deprecated assessment, fall back to defaults
+        if (deprecatedVisualizationTypes.includes(selectedTestType as VisualizationType)) {
+            selectedTestType = first.visualizationType;
+            selectedTestStep = first.requirements?.[0]?.key;
+        }
+
         const expandedTestType = persistedData?.assessmentNavState?.expandedTestType;
         const resultDescription = (persistedData && persistedData.resultDescription) || '';
 
@@ -60,6 +81,16 @@ export class InitialAssessmentStoreDataGenerator {
         this.tests.forEach(test => {
             const persistedTestData = persistedTests && persistedTests[test.key];
             assessmentData[test.key] = test.initialDataCreator(test, persistedTestData);
+        });
+
+        // add placeholder objects for every deprecated assessment key
+        deprecatedAssessmentKeys.forEach(key => {
+            if (!(key in assessmentData)) {
+                assessmentData[key] = {
+                    enabled: false,
+                    stepStatus: {},
+                } as unknown as AssessmentData;
+            }
         });
 
         return assessmentData;
