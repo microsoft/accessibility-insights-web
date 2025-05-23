@@ -6,7 +6,6 @@ import { InitialVisualizationStoreDataGenerator } from 'background/initial-visua
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { EnumHelper } from 'common/enum-helper';
 import { PersistentStore } from 'common/flux/persistent-store';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { Logger } from 'common/logging/logger';
@@ -18,6 +17,7 @@ import {
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { getNumericVisualizationTypeValues } from 'common/visualization-type-helper';
 import {
     AssessmentToggleActionPayload,
     InjectionFailedPayload,
@@ -143,7 +143,7 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
     };
 
     private disableAssessmentVisualizationsWithoutEmitting(): void {
-        EnumHelper.getNumericValues(VisualizationType).forEach((test: number) => {
+        getNumericVisualizationTypeValues().forEach((test: number) => {
             const configuration = this.visualizationConfigurationFactory.getConfiguration(test);
             const shouldDisableTest = !this.isAdhoc(configuration);
             if (shouldDisableTest) {
@@ -201,8 +201,8 @@ export class VisualizationStore extends PersistentStore<VisualizationStoreData> 
     };
 
     private disableAllTests(): void {
-        EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
-            this.toggleTestOff(test);
+        getNumericVisualizationTypeValues().forEach((test: number) => {
+            this.toggleTestOff(test as VisualizationType);
         });
     }
 
