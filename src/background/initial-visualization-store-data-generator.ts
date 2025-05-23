@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { EnumHelper } from 'common/enum-helper';
 import { DetailsViewPivotType } from 'common/types/store-data/details-view-pivot-type';
 import {
     InjectingState,
@@ -10,6 +9,7 @@ import {
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { getNumericVisualizationTypeValues } from 'common/visualization-type-helper';
 import { isEmpty, merge } from 'lodash';
 
 export class InitialVisualizationStoreDataGenerator {
@@ -27,7 +27,8 @@ export class InitialVisualizationStoreDataGenerator {
         };
 
         if (this.visualizationConfigurationFactory != null) {
-            EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
+            getNumericVisualizationTypeValues().forEach((testNumber: number) => {
+                const test = testNumber as VisualizationType;
                 const config = this.visualizationConfigurationFactory.getConfiguration(test);
                 defaultTests[config.testMode][config.key] = {
                     enabled: false,

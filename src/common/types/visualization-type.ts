@@ -16,6 +16,7 @@ export enum VisualizationType {
     AudioVideOnly,
     ErrorsAssessment,
     TimedEventsAssessment,
+    // #7418: ParsingAssessment has been removed, but this entry is kept for backwards compatibility
     ParsingAssessment,
     PrerecordedMultimediaAssessment,
     LiveMultimediaAssessment,

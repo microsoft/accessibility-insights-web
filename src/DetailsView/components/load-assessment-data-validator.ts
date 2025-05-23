@@ -6,6 +6,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
+import { deprecatedAssessmentKeys } from 'common/visualization-type-helper';
 import validateAssessmentJson from './empty-validate-assessment-json';
 
 export type AjvValidationReturnData = {
@@ -41,7 +42,8 @@ export class LoadAssessmentDataValidator {
                 parsedAssessmentData.assessmentData.assessments,
             ).filter(
                 parsedKey =>
-                    !assessments.some(knownAssessment => knownAssessment.key === parsedKey),
+                    !assessments.some(knownAssessment => knownAssessment.key === parsedKey) &&
+                    !deprecatedAssessmentKeys.includes(parsedKey),
             );
             dataIsValid = unknownAssessments.length === 0;
             if (!dataIsValid) {

@@ -4,19 +4,20 @@ import { InitialVisualizationStoreDataGenerator } from 'background/initial-visua
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 
-import { EnumHelper } from 'common/enum-helper';
 import {
     InjectingState,
     VisualizationStoreData,
 } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { getNumericVisualizationTypeValues } from 'common/visualization-type-helper';
 import { IMock, Mock } from 'typemoq';
 
 describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
     let defaultState: VisualizationStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let generator: InitialVisualizationStoreDataGenerator;
-    const visualizationTypes: VisualizationType[] = EnumHelper.getNumericValues(VisualizationType);
+    const visualizationTypes: VisualizationType[] =
+        getNumericVisualizationTypeValues() as VisualizationType[];
     const visualizationConfigurationStub = (test: number, testMode: string) => {
         return {
             key: `type-${test}`,
