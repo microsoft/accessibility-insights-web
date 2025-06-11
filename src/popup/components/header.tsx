@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import styles from './header.scss';
 import { ReactNode } from 'react';
+import styles from './header.scss';
 
 export interface HeaderProps {
     title: string;

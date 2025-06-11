@@ -11,9 +11,9 @@ import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
+import { ReactNode } from 'react';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { Header } from './header';
-import { ReactNode } from 'react';
 
 export type LaunchPanelHeaderDeps = {
     popupActionMessageCreator: PopupActionMessageCreator;
