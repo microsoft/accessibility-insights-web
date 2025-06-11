@@ -3,10 +3,11 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import styles from './header.scss';
+import { ReactNode } from 'react';
 
 export interface HeaderProps {
     title: string;
-    subtitle?: React.ReactChild;
+    subtitle?: ReactNode;
     children?: JSX.Element;
 }
 

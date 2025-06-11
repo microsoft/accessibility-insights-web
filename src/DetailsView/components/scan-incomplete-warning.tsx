@@ -38,7 +38,7 @@ export class ScanIncompleteWarning extends React.PureComponent<ScanIncompleteWar
                     key={warningId}
                     messageBarType={MessageBarType.warning}
                 >
-                    {render(this.props)}
+                    {React.createElement(render, this.props)}
                 </MessageBar>
             );
 
