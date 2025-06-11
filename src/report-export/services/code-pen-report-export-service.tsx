@@ -11,7 +11,7 @@ import {
 const codePenReportExportServiceKey: ReportExportServiceKey = 'codepen';
 
 class CodePenExportForm extends React.Component<ReportExportFormProps> {
-    private buttonRef: React.RefObject<HTMLButtonElement>;
+    private buttonRef: React.RefObject<HTMLButtonElement | null>; 
 
     constructor(props) {
         super(props);

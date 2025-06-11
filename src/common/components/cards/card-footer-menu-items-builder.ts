@@ -25,7 +25,7 @@ export type CardFooterMenuItem = IContextualMenuItem & IButtonProps;
 
 export type CardFooterMenuItemsProps = {
     fileIssueButtonRef: IRefObject<IButton> & IRefObject<IContextualMenuRenderItem>;
-    toastRef: React.RefObject<Toast>;
+    toastRef: React.RefObject<Toast | null>;
     issueDetailsData: CreateIssueDetailsTextData;
     userConfigurationStoreData: UserConfigurationStoreData | null;
     onIssueFilingSettingsDialogDismissed: () => void;
