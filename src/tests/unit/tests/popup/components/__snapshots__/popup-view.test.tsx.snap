@@ -14,7 +14,7 @@ exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] =
   </div>
   <mock-telemetrypermissiondialog
     deps="[object Object]"
-    isfirsttime="true"
+    isfirsttime=""
   />
 </DocumentFragment>
 `;
@@ -39,7 +39,7 @@ exports[`PopupView render actual content render toggles view: launch pad 1`] = `
   </div>
   <mock-telemetrypermissiondialog
     deps="[object Object]"
-    isfirsttime="true"
+    isfirsttime=""
   />
 </DocumentFragment>
 `;
@@ -69,48 +69,122 @@ exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
   </div>
   <mock-telemetrypermissiondialog
     deps="[object Object]"
-    isfirsttime="true"
+    isfirsttime=""
   />
 </DocumentFragment>
 `;
 
 exports[`PopupView render spinner 1`] = `
-<StyledSpinnerBase
-  className="insights-spinner"
-  label="Loading..."
-  size={3}
-/>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "className": "insights-spinner",
+    "label": "Loading...",
+    "size": 3,
+  },
+  "type": {
+    "$$typeof": Symbol(react.forward_ref),
+    "render": [Function],
+  },
+}
 `;
 
 exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
-<div
-  className="ms-Fabric unsupported-url-info-panel"
->
-  <Header
-    title="test title"
-  />
-  <div
-    className="main-section"
-  >
-    <div
-      className="popup-grid"
-    >
-      <div
-        className="launch-panel-general-container"
-      >
-        <React.Fragment>
-          <span>
-            Accessibility Insights for Web can't run on this URL.
-          </span>
-          <br />
-          <span>
-            You'll need to go to a different page.
-          </span>
-        </React.Fragment>
-      </div>
-    </div>
-  </div>
-</div>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": [
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "title": "test title",
+        },
+        "type": [Function],
+      },
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {
+              "children": {
+                "$$typeof": Symbol(react.transitional.element),
+                "_owner": null,
+                "_store": {},
+                "key": null,
+                "props": {
+                  "children": {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": null,
+                    "props": {
+                      "children": [
+                        {
+                          "$$typeof": Symbol(react.transitional.element),
+                          "_owner": null,
+                          "_store": {},
+                          "key": "0",
+                          "props": {
+                            "children": "Accessibility Insights for Web can't run on this URL.",
+                          },
+                          "type": "span",
+                        },
+                        {
+                          "$$typeof": Symbol(react.transitional.element),
+                          "_owner": null,
+                          "_store": {},
+                          "key": "1",
+                          "props": {},
+                          "type": "br",
+                        },
+                        {
+                          "$$typeof": Symbol(react.transitional.element),
+                          "_owner": null,
+                          "_store": {},
+                          "key": "2",
+                          "props": {
+                            "children": "You'll need to go to a different page.",
+                          },
+                          "type": "span",
+                        },
+                        undefined,
+                      ],
+                    },
+                    "type": Symbol(react.fragment),
+                  },
+                  "className": "launch-panel-general-container",
+                },
+                "type": "div",
+              },
+              "className": "popup-grid",
+            },
+            "type": "div",
+          },
+          "className": "main-section",
+        },
+        "type": "div",
+      },
+    ],
+    "className": "ms-Fabric unsupported-url-info-panel",
+  },
+  "type": "div",
+}
 `;
 
 exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `

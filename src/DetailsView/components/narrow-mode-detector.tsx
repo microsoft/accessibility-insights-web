@@ -55,9 +55,10 @@ export function getNarrowModeComponentWrapper<P>(
 }
 
 export function NarrowModeDetector<P>(props: NarrowModeDetectorProps<P>): JSX.Element {
+    const renderChildren = getNarrowModeComponentWrapper(props);
     return (
         <ReactResizeDetector handleWidth={true} handleHeight={false} querySelector="body">
-            {getNarrowModeComponentWrapper(props)}
+            {renderChildren}
         </ReactResizeDetector>
     );
 }

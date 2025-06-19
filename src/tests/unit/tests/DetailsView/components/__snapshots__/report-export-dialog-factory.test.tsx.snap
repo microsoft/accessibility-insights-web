@@ -1,10 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected properties are set 1`] = `
-<ReportExportComponent
-  afterDialogDismissed={[Function]}
-  deps={
-    {
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "afterDialogDismissed": [Function],
+    "deps": {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "getAssessmentActionMessageCreator": [Function],
       "getCurrentDate": [Function],
@@ -12,19 +16,17 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
       "getProvider": [Function],
       "reportExportServiceProvider": [typemoq mock object],
       "reportGenerator": [typemoq mock object],
-    }
-  }
-  dismissExportDialog={[Function]}
-  exportResultsClickedTelemetry={[Function]}
-  featureFlagStoreData={{}}
-  getExportDescription={[Function]}
-  htmlGenerator={[Function]}
-  isOpen={true}
-  jsonGenerator={[Function]}
-  pageTitle="command-bar-test-tab-title"
-  reportExportFormat="Assessment"
-  reportExportServices={
-    [
+    },
+    "dismissExportDialog": [Function],
+    "exportResultsClickedTelemetry": [Function],
+    "featureFlagStoreData": {},
+    "getExportDescription": [Function],
+    "htmlGenerator": [Function],
+    "isOpen": true,
+    "jsonGenerator": [Function],
+    "pageTitle": "command-bar-test-tab-title",
+    "reportExportFormat": "Assessment",
+    "reportExportServices": [
       {
         "generateMenuItem": null,
         "key": "html",
@@ -37,18 +39,23 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
         "generateMenuItem": null,
         "key": "codepen",
       },
-    ]
-  }
-  scanDate={2021-02-07T05:02:00.000Z}
-  updatePersistedDescription={[Function]}
-/>
+    ],
+    "scanDate": 2021-02-07T05:02:00.000Z,
+    "updatePersistedDescription": [Function],
+  },
+  "type": [Function],
+}
 `;
 
 exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected properties are set 1`] = `
-<ReportExportComponent
-  afterDialogDismissed={[Function]}
-  deps={
-    {
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "afterDialogDismissed": [Function],
+    "deps": {
       "detailsViewActionMessageCreator": [typemoq mock object],
       "getAssessmentActionMessageCreator": [Function],
       "getCurrentDate": [Function],
@@ -56,19 +63,17 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
       "getProvider": [Function],
       "reportExportServiceProvider": [typemoq mock object],
       "reportGenerator": [typemoq mock object],
-    }
-  }
-  dismissExportDialog={[Function]}
-  exportResultsClickedTelemetry={[Function]}
-  featureFlagStoreData={{}}
-  getExportDescription={[Function]}
-  htmlGenerator={[Function]}
-  isOpen={true}
-  jsonGenerator={[Function]}
-  pageTitle="command-bar-test-tab-title"
-  reportExportFormat="FastPass"
-  reportExportServices={
-    [
+    },
+    "dismissExportDialog": [Function],
+    "exportResultsClickedTelemetry": [Function],
+    "featureFlagStoreData": {},
+    "getExportDescription": [Function],
+    "htmlGenerator": [Function],
+    "isOpen": true,
+    "jsonGenerator": [Function],
+    "pageTitle": "command-bar-test-tab-title",
+    "reportExportFormat": "FastPass",
+    "reportExportServices": [
       {
         "generateMenuItem": null,
         "key": "html",
@@ -77,9 +82,10 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
         "generateMenuItem": null,
         "key": "codepen",
       },
-    ]
-  }
-  scanDate={2019-03-12T09:00:00.000Z}
-  updatePersistedDescription={[Function]}
-/>
+    ],
+    "scanDate": 2019-03-12T09:00:00.000Z,
+    "updatePersistedDescription": [Function],
+  },
+  "type": [Function],
+}
 `;

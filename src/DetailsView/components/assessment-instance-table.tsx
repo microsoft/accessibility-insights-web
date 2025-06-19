@@ -83,7 +83,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
             <div>
                 {this.renderInstanceTableHeader(items)}
                 <DetailsList
-                    ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
+                    ariaLabel="Use arrow keys to navigate inside the instances grid"
                     items={items}
                     columns={columns}
                     checkboxVisibility={CheckboxVisibility.hidden}

@@ -1,452 +1,1173 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FixInstructionProcessor background and foreground on the message (mind the order) 1`] = `
-<React.Fragment>
-  <React.Fragment>
-    <span
-      aria-hidden="true"
-    >
-      <span>
-        Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#e7ecd8",
-          }
-        }
-      />
-      <span>
-        #8a94a8, foreground color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#8a94a8",
-          }
-        }
-      />
-      <span>
-        #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-      </span>
-    </span>
-    <span
-      className="screenReaderOnly"
-    >
-      Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-    </span>
-  </React.Fragment>
-  <ul
-    data-automation-id="recommendations"
-  >
-    <li>
-      <React.Fragment>
-        <span
-          aria-hidden="true"
-        >
-          <span>
-            test return value
-          </span>
-        </span>
-        <span
-          className="screenReaderOnly"
-        >
-          test return value
-        </span>
-      </React.Fragment>
-    </li>
-  </ul>
-</React.Fragment>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": [
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "aria-hidden": "true",
+                "children": [
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-0",
+                    "props": {
+                      "children": "Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-1",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#e7ecd8",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-2",
+                    "props": {
+                      "children": "#8a94a8, foreground color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-3",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#8a94a8",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-4",
+                    "props": {
+                      "children": "#8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                    },
+                    "type": "span",
+                  },
+                ],
+              },
+              "type": "span",
+            },
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "children": "Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                "className": "screenReaderOnly",
+              },
+              "type": "span",
+            },
+          ],
+        },
+        "type": Symbol(react.fragment),
+      },
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": "recommendations-list",
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": "recommendation-0",
+              "props": {
+                "children": {
+                  "$$typeof": Symbol(react.transitional.element),
+                  "_owner": null,
+                  "_store": {},
+                  "key": null,
+                  "props": {
+                    "children": [
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "aria-hidden": "true",
+                          "children": [
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-0",
+                              "props": {
+                                "children": "test return value",
+                              },
+                              "type": "span",
+                            },
+                          ],
+                        },
+                        "type": "span",
+                      },
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "children": "test return value",
+                          "className": "screenReaderOnly",
+                        },
+                        "type": "span",
+                      },
+                    ],
+                  },
+                  "type": Symbol(react.fragment),
+                },
+              },
+              "type": "li",
+            },
+          ],
+          "data-automation-id": "recommendations",
+        },
+        "type": "ul",
+      },
+    ],
+  },
+  "type": Symbol(react.fragment),
+}
 `;
 
 exports[`FixInstructionProcessor foreground and background color on the message (mind the order) 1`] = `
-<React.Fragment>
-  <React.Fragment>
-    <span
-      aria-hidden="true"
-    >
-      <span>
-        Element has insufficient color contrast of 2.52 (foreground color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#8a94a8",
-          }
-        }
-      />
-      <span>
-        #8a94a8, background color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#e7ecd8",
-          }
-        }
-      />
-      <span>
-        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-      </span>
-    </span>
-    <span
-      className="screenReaderOnly"
-    >
-      Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-    </span>
-  </React.Fragment>
-  <ul
-    data-automation-id="recommendations"
-  >
-    <li>
-      <React.Fragment>
-        <span
-          aria-hidden="true"
-        >
-          <span>
-            test return value
-          </span>
-        </span>
-        <span
-          className="screenReaderOnly"
-        >
-          test return value
-        </span>
-      </React.Fragment>
-    </li>
-  </ul>
-</React.Fragment>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": [
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "aria-hidden": "true",
+                "children": [
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-0",
+                    "props": {
+                      "children": "Element has insufficient color contrast of 2.52 (foreground color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-1",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#8a94a8",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-2",
+                    "props": {
+                      "children": "#8a94a8, background color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-3",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#e7ecd8",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-4",
+                    "props": {
+                      "children": "#e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                    },
+                    "type": "span",
+                  },
+                ],
+              },
+              "type": "span",
+            },
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "children": "Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1",
+                "className": "screenReaderOnly",
+              },
+              "type": "span",
+            },
+          ],
+        },
+        "type": Symbol(react.fragment),
+      },
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": "recommendations-list",
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": "recommendation-0",
+              "props": {
+                "children": {
+                  "$$typeof": Symbol(react.transitional.element),
+                  "_owner": null,
+                  "_store": {},
+                  "key": null,
+                  "props": {
+                    "children": [
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "aria-hidden": "true",
+                          "children": [
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-0",
+                              "props": {
+                                "children": "test return value",
+                              },
+                              "type": "span",
+                            },
+                          ],
+                        },
+                        "type": "span",
+                      },
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "children": "test return value",
+                          "className": "screenReaderOnly",
+                        },
+                        "type": "span",
+                      },
+                    ],
+                  },
+                  "type": Symbol(react.fragment),
+                },
+              },
+              "type": "li",
+            },
+          ],
+          "data-automation-id": "recommendations",
+        },
+        "type": "ul",
+      },
+    ],
+  },
+  "type": Symbol(react.fragment),
+}
 `;
 
 exports[`FixInstructionProcessor foreground color on the message 1`] = `
-<React.Fragment>
-  <React.Fragment>
-    <span
-      aria-hidden="true"
-    >
-      <span>
-        color contrast of 2.52 (foreground color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": {
+      "$$typeof": Symbol(react.transitional.element),
+      "_owner": null,
+      "_store": {},
+      "key": null,
+      "props": {
+        "children": [
           {
-            "backgroundColor": "#8a94a8",
-          }
-        }
-      />
-      <span>
-        #8a94a8; nothing else to match here)
-      </span>
-    </span>
-    <span
-      className="screenReaderOnly"
-    >
-      color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here)
-    </span>
-  </React.Fragment>
-</React.Fragment>
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {
+              "aria-hidden": "true",
+              "children": [
+                {
+                  "$$typeof": Symbol(react.transitional.element),
+                  "_owner": null,
+                  "_store": {},
+                  "key": "instruction-split-0",
+                  "props": {
+                    "children": "color contrast of 2.52 (foreground color: ",
+                  },
+                  "type": "span",
+                },
+                {
+                  "$$typeof": Symbol(react.transitional.element),
+                  "_owner": null,
+                  "_store": {},
+                  "key": "instruction-split-1",
+                  "props": {
+                    "aria-hidden": true,
+                    "className": "fixInstructionColorBox",
+                    "style": {
+                      "backgroundColor": "#8a94a8",
+                    },
+                  },
+                  "type": "span",
+                },
+                {
+                  "$$typeof": Symbol(react.transitional.element),
+                  "_owner": null,
+                  "_store": {},
+                  "key": "instruction-split-2",
+                  "props": {
+                    "children": "#8a94a8; nothing else to match here)",
+                  },
+                  "type": "span",
+                },
+              ],
+            },
+            "type": "span",
+          },
+          {
+            "$$typeof": Symbol(react.transitional.element),
+            "_owner": null,
+            "_store": {},
+            "key": null,
+            "props": {
+              "children": "color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here)",
+              "className": "screenReaderOnly",
+            },
+            "type": "span",
+          },
+        ],
+      },
+      "type": Symbol(react.fragment),
+    },
+  },
+  "type": Symbol(react.fragment),
+}
 `;
 
 exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
-<React.Fragment>
-  <React.Fragment>
-    <span
-      aria-hidden="true"
-    >
-      <span>
-        Element has insufficient color contrast of 4.48 (foreground color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#fefefe",
-          }
-        }
-      />
-      <span>
-        #fefefe, background color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#21809d",
-          }
-        }
-      />
-      <span>
-        #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
-      </span>
-    </span>
-    <span
-      className="screenReaderOnly"
-    >
-      Element has insufficient color contrast of 4.48 (foreground color: #fefefe, background color: #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
-    </span>
-  </React.Fragment>
-  <ul
-    data-automation-id="recommendations"
-  >
-    <li>
-      <React.Fragment>
-        <span
-          aria-hidden="true"
-        >
-          <span>
-            Use foreground color: 
-          </span>
-          <span
-            aria-hidden={true}
-            className="fixInstructionColorBox"
-            style={
-              {
-                "backgroundColor": "#ffffff",
-              }
-            }
-          />
-          <span>
-            #ffffff and the original background color: 
-          </span>
-          <span
-            aria-hidden={true}
-            className="fixInstructionColorBox"
-            style={
-              {
-                "backgroundColor": "#21809d",
-              }
-            }
-          />
-          <span>
-            #21809d to meet a contrast ratio of 4.53:1
-          </span>
-        </span>
-        <span
-          className="screenReaderOnly"
-        >
-          Use foreground color: #ffffff and the original background color: #21809d to meet a contrast ratio of 4.53:1
-        </span>
-      </React.Fragment>
-    </li>
-    <li>
-      <React.Fragment>
-        <span
-          aria-hidden="true"
-        >
-          <span>
-            Or use background color: 
-          </span>
-          <span
-            aria-hidden={true}
-            className="fixInstructionColorBox"
-            style={
-              {
-                "backgroundColor": "#1f7995",
-              }
-            }
-          />
-          <span>
-            #1f7995 and the original foreground color: 
-          </span>
-          <span
-            aria-hidden={true}
-            className="fixInstructionColorBox"
-            style={
-              {
-                "backgroundColor": "#fcfcfc",
-              }
-            }
-          />
-          <span>
-            #fcfcfc to meet a contrast ratio of 4.84:1.
-          </span>
-        </span>
-        <span
-          className="screenReaderOnly"
-        >
-          Or use background color: #1f7995 and the original foreground color: #fcfcfc to meet a contrast ratio of 4.84:1.
-        </span>
-      </React.Fragment>
-    </li>
-  </ul>
-</React.Fragment>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": [
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "aria-hidden": "true",
+                "children": [
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-0",
+                    "props": {
+                      "children": "Element has insufficient color contrast of 4.48 (foreground color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-1",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#fefefe",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-2",
+                    "props": {
+                      "children": "#fefefe, background color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-3",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#21809d",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-4",
+                    "props": {
+                      "children": "#21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    },
+                    "type": "span",
+                  },
+                ],
+              },
+              "type": "span",
+            },
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "children": "Element has insufficient color contrast of 4.48 (foreground color: #fefefe, background color: #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "className": "screenReaderOnly",
+              },
+              "type": "span",
+            },
+          ],
+        },
+        "type": Symbol(react.fragment),
+      },
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": "recommendations-list",
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": "recommendation-0",
+              "props": {
+                "children": {
+                  "$$typeof": Symbol(react.transitional.element),
+                  "_owner": null,
+                  "_store": {},
+                  "key": null,
+                  "props": {
+                    "children": [
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "aria-hidden": "true",
+                          "children": [
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-0",
+                              "props": {
+                                "children": "Use foreground color: ",
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-1",
+                              "props": {
+                                "aria-hidden": true,
+                                "className": "fixInstructionColorBox",
+                                "style": {
+                                  "backgroundColor": "#ffffff",
+                                },
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-2",
+                              "props": {
+                                "children": "#ffffff and the original background color: ",
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-3",
+                              "props": {
+                                "aria-hidden": true,
+                                "className": "fixInstructionColorBox",
+                                "style": {
+                                  "backgroundColor": "#21809d",
+                                },
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-4",
+                              "props": {
+                                "children": "#21809d to meet a contrast ratio of 4.53:1",
+                              },
+                              "type": "span",
+                            },
+                          ],
+                        },
+                        "type": "span",
+                      },
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "children": "Use foreground color: #ffffff and the original background color: #21809d to meet a contrast ratio of 4.53:1",
+                          "className": "screenReaderOnly",
+                        },
+                        "type": "span",
+                      },
+                    ],
+                  },
+                  "type": Symbol(react.fragment),
+                },
+              },
+              "type": "li",
+            },
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": "recommendation-1",
+              "props": {
+                "children": {
+                  "$$typeof": Symbol(react.transitional.element),
+                  "_owner": null,
+                  "_store": {},
+                  "key": null,
+                  "props": {
+                    "children": [
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "aria-hidden": "true",
+                          "children": [
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-0",
+                              "props": {
+                                "children": "Or use background color: ",
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-1",
+                              "props": {
+                                "aria-hidden": true,
+                                "className": "fixInstructionColorBox",
+                                "style": {
+                                  "backgroundColor": "#1f7995",
+                                },
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-2",
+                              "props": {
+                                "children": "#1f7995 and the original foreground color: ",
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-3",
+                              "props": {
+                                "aria-hidden": true,
+                                "className": "fixInstructionColorBox",
+                                "style": {
+                                  "backgroundColor": "#fcfcfc",
+                                },
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-4",
+                              "props": {
+                                "children": "#fcfcfc to meet a contrast ratio of 4.84:1.",
+                              },
+                              "type": "span",
+                            },
+                          ],
+                        },
+                        "type": "span",
+                      },
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "children": "Or use background color: #1f7995 and the original foreground color: #fcfcfc to meet a contrast ratio of 4.84:1.",
+                          "className": "screenReaderOnly",
+                        },
+                        "type": "span",
+                      },
+                    ],
+                  },
+                  "type": Symbol(react.fragment),
+                },
+              },
+              "type": "li",
+            },
+          ],
+          "data-automation-id": "recommendations",
+        },
+        "type": "ul",
+      },
+    ],
+  },
+  "type": Symbol(react.fragment),
+}
 `;
 
 exports[`FixInstructionProcessor recommendColor has two recommendations 1`] = `
-<React.Fragment>
-  <React.Fragment>
-    <span
-      aria-hidden="true"
-    >
-      <span>
-        Element has insufficient color contrast of 4.48 (foreground color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#fefefe",
-          }
-        }
-      />
-      <span>
-        #fefefe, background color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#21809d",
-          }
-        }
-      />
-      <span>
-        #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
-      </span>
-    </span>
-    <span
-      className="screenReaderOnly"
-    >
-      Element has insufficient color contrast of 4.48 (foreground color: #fefefe, background color: #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
-    </span>
-  </React.Fragment>
-  <ul
-    data-automation-id="recommendations"
-  >
-    <li>
-      <React.Fragment>
-        <span
-          aria-hidden="true"
-        >
-          <span>
-            Use foreground color: 
-          </span>
-          <span
-            aria-hidden={true}
-            className="fixInstructionColorBox"
-            style={
-              {
-                "backgroundColor": "#ffffff",
-              }
-            }
-          />
-          <span>
-            #ffffff and the original background color: 
-          </span>
-          <span
-            aria-hidden={true}
-            className="fixInstructionColorBox"
-            style={
-              {
-                "backgroundColor": "#21809d",
-              }
-            }
-          />
-          <span>
-            #21809d to meet a contrast ratio of 4.53:1.
-          </span>
-        </span>
-        <span
-          className="screenReaderOnly"
-        >
-          Use foreground color: #ffffff and the original background color: #21809d to meet a contrast ratio of 4.53:1.
-        </span>
-      </React.Fragment>
-    </li>
-  </ul>
-</React.Fragment>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": [
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "aria-hidden": "true",
+                "children": [
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-0",
+                    "props": {
+                      "children": "Element has insufficient color contrast of 4.48 (foreground color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-1",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#fefefe",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-2",
+                    "props": {
+                      "children": "#fefefe, background color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-3",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#21809d",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-4",
+                    "props": {
+                      "children": "#21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+                    },
+                    "type": "span",
+                  },
+                ],
+              },
+              "type": "span",
+            },
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "children": "Element has insufficient color contrast of 4.48 (foreground color: #fefefe, background color: #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1",
+                "className": "screenReaderOnly",
+              },
+              "type": "span",
+            },
+          ],
+        },
+        "type": Symbol(react.fragment),
+      },
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": "recommendations-list",
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": "recommendation-0",
+              "props": {
+                "children": {
+                  "$$typeof": Symbol(react.transitional.element),
+                  "_owner": null,
+                  "_store": {},
+                  "key": null,
+                  "props": {
+                    "children": [
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "aria-hidden": "true",
+                          "children": [
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-0",
+                              "props": {
+                                "children": "Use foreground color: ",
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-1",
+                              "props": {
+                                "aria-hidden": true,
+                                "className": "fixInstructionColorBox",
+                                "style": {
+                                  "backgroundColor": "#ffffff",
+                                },
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-2",
+                              "props": {
+                                "children": "#ffffff and the original background color: ",
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-3",
+                              "props": {
+                                "aria-hidden": true,
+                                "className": "fixInstructionColorBox",
+                                "style": {
+                                  "backgroundColor": "#21809d",
+                                },
+                              },
+                              "type": "span",
+                            },
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-4",
+                              "props": {
+                                "children": "#21809d to meet a contrast ratio of 4.53:1.",
+                              },
+                              "type": "span",
+                            },
+                          ],
+                        },
+                        "type": "span",
+                      },
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "children": "Use foreground color: #ffffff and the original background color: #21809d to meet a contrast ratio of 4.53:1.",
+                          "className": "screenReaderOnly",
+                        },
+                        "type": "span",
+                      },
+                    ],
+                  },
+                  "type": Symbol(react.fragment),
+                },
+              },
+              "type": "li",
+            },
+          ],
+          "data-automation-id": "recommendations",
+        },
+        "type": "ul",
+      },
+    ],
+  },
+  "type": Symbol(react.fragment),
+}
 `;
 
 exports[`FixInstructionProcessor updates aria-required-children "(see related nodes)" text to "(see <em>Related paths</em>)" 1`] = `
-<React.Fragment>
-  Element has children which are not allowed
-   (see 
-  <em>
-    Related paths
-  </em>
-  )
-</React.Fragment>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": [
+      "Element has children which are not allowed",
+      " (see ",
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": "Related paths",
+        },
+        "type": "em",
+      },
+      ")",
+    ],
+  },
+  "type": Symbol(react.fragment),
+}
 `;
 
 exports[`FixInstructionProcessor we assume only one instance of fore/background color, second instance will be ignored 1`] = `
-<React.Fragment>
-  <React.Fragment>
-    <span
-      aria-hidden="true"
-    >
-      <span>
-        first foreground color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#ffffff",
-          }
-        }
-      />
-      <span>
-        #ffffff, second foreground: #000000, first background color: 
-      </span>
-      <span
-        aria-hidden={true}
-        className="fixInstructionColorBox"
-        style={
-          {
-            "backgroundColor": "#AAAAAA",
-          }
-        }
-      />
-      <span>
-        #AAAAAA, second background color: #bbBBbb
-      </span>
-    </span>
-    <span
-      className="screenReaderOnly"
-    >
-      first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb
-    </span>
-  </React.Fragment>
-  <ul
-    data-automation-id="recommendations"
-  >
-    <li>
-      <React.Fragment>
-        <span
-          aria-hidden="true"
-        >
-          <span>
-            test return value
-          </span>
-        </span>
-        <span
-          className="screenReaderOnly"
-        >
-          test return value
-        </span>
-      </React.Fragment>
-    </li>
-  </ul>
-</React.Fragment>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": [
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": null,
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "aria-hidden": "true",
+                "children": [
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-0",
+                    "props": {
+                      "children": "first foreground color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-1",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#ffffff",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-2",
+                    "props": {
+                      "children": "#ffffff, second foreground: #000000, first background color: ",
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-3",
+                    "props": {
+                      "aria-hidden": true,
+                      "className": "fixInstructionColorBox",
+                      "style": {
+                        "backgroundColor": "#AAAAAA",
+                      },
+                    },
+                    "type": "span",
+                  },
+                  {
+                    "$$typeof": Symbol(react.transitional.element),
+                    "_owner": null,
+                    "_store": {},
+                    "key": "instruction-split-4",
+                    "props": {
+                      "children": "#AAAAAA, second background color: #bbBBbb",
+                    },
+                    "type": "span",
+                  },
+                ],
+              },
+              "type": "span",
+            },
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": null,
+              "props": {
+                "children": "first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb",
+                "className": "screenReaderOnly",
+              },
+              "type": "span",
+            },
+          ],
+        },
+        "type": Symbol(react.fragment),
+      },
+      {
+        "$$typeof": Symbol(react.transitional.element),
+        "_owner": null,
+        "_store": {},
+        "key": "recommendations-list",
+        "props": {
+          "children": [
+            {
+              "$$typeof": Symbol(react.transitional.element),
+              "_owner": null,
+              "_store": {},
+              "key": "recommendation-0",
+              "props": {
+                "children": {
+                  "$$typeof": Symbol(react.transitional.element),
+                  "_owner": null,
+                  "_store": {},
+                  "key": null,
+                  "props": {
+                    "children": [
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "aria-hidden": "true",
+                          "children": [
+                            {
+                              "$$typeof": Symbol(react.transitional.element),
+                              "_owner": null,
+                              "_store": {},
+                              "key": "instruction-split-0",
+                              "props": {
+                                "children": "test return value",
+                              },
+                              "type": "span",
+                            },
+                          ],
+                        },
+                        "type": "span",
+                      },
+                      {
+                        "$$typeof": Symbol(react.transitional.element),
+                        "_owner": null,
+                        "_store": {},
+                        "key": null,
+                        "props": {
+                          "children": "test return value",
+                          "className": "screenReaderOnly",
+                        },
+                        "type": "span",
+                      },
+                    ],
+                  },
+                  "type": Symbol(react.fragment),
+                },
+              },
+              "type": "li",
+            },
+          ],
+          "data-automation-id": "recommendations",
+        },
+        "type": "ul",
+      },
+    ],
+  },
+  "type": Symbol(react.fragment),
+}
 `;
 
 exports[`FixInstructionProcessor when we have nothing to process 1`] = `
-<React.Fragment>
-  nothing to process
-</React.Fragment>
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "children": "nothing to process",
+  },
+  "type": Symbol(react.fragment),
+}
 `;

@@ -112,10 +112,9 @@ exports[`RestartScanVisualHelperToggleTest render 1`] = `
       aria-hidden="false"
     >
       <mock-visualizationtoggle
-        checked="true"
-        classname="visual-helper-toggle"
+        checked=""
+        class="visual-helper-toggle"
         data-automation-id="visual-helper-toggle"
-        disabled="false"
         visualizationname="Visual helper"
       />
     </div>

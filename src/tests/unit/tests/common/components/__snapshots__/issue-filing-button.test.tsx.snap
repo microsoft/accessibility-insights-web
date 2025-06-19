@@ -21,7 +21,7 @@ exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
   </button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
-    isopen="true"
+    isopen=""
     issuefilingservicepropertiesmap="[object Object]"
     selectedissuedata="[object Object]"
     selectedissuefilingservice="[object Object]"
@@ -51,7 +51,6 @@ exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to f
   </button>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
-    isopen="false"
     issuefilingservicepropertiesmap="[object Object]"
     selectedissuedata="[object Object]"
     selectedissuefilingservice="[object Object]"
@@ -63,7 +62,7 @@ exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to f
 exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 <DocumentFragment>
   <mock-customizeddefaultbutton
-    classname="file-issue-button"
+    class="file-issue-button"
   >
     <mock-ladybugsolidicon />
     <div
@@ -74,7 +73,6 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
   </mock-customizeddefaultbutton>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
-    isopen="false"
     issuefilingservicepropertiesmap="[object Object]"
     selectedissuedata="[object Object]"
     selectedissuefilingservice="[object Object]"
@@ -86,7 +84,7 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
 exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
 <DocumentFragment>
   <mock-customizeddefaultbutton
-    classname="file-issue-button"
+    class="file-issue-button"
   >
     <mock-ladybugsolidicon />
     <div
@@ -97,7 +95,6 @@ exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
   </mock-customizeddefaultbutton>
   <mock-issuefilingneedssettingshelptext
     deps="[object Object]"
-    isopen="false"
     issuefilingservicepropertiesmap="[object Object]"
     selectedissuedata="[object Object]"
     selectedissuefilingservice="[object Object]"

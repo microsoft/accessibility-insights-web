@@ -10,7 +10,7 @@ exports[`SummarySection AllOutcomesSummarySection renders BaseSummarySection wit
     </h2>
     <mock-outcomesummarybar
       alloutcometypes="fail,pass,inapplicable"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
     />
   </div>
@@ -45,7 +45,7 @@ exports[`SummarySection BaseSummarySection: failure only 1`] = `
     </h2>
     <mock-outcomesummarybar
       alloutcometypes="pass"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
     />
   </div>
@@ -78,7 +78,7 @@ exports[`SummarySection BaseSummarySection: failures + not applicable + passes 1
     </h2>
     <mock-outcomesummarybar
       alloutcometypes="pass"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
     />
   </div>
@@ -111,7 +111,7 @@ exports[`SummarySection BaseSummarySection: failures + not applicable only 1`] =
     </h2>
     <mock-outcomesummarybar
       alloutcometypes="pass"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
     />
   </div>
@@ -144,7 +144,7 @@ exports[`SummarySection BaseSummarySection: failures + passes only 1`] = `
     </h2>
     <mock-outcomesummarybar
       alloutcometypes="pass"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
     />
   </div>
@@ -177,7 +177,7 @@ exports[`SummarySection BaseSummarySection: not applicable + passes only 1`] = `
     </h2>
     <mock-outcomesummarybar
       alloutcometypes="pass"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
     />
   </div>
@@ -210,7 +210,7 @@ exports[`SummarySection BaseSummarySection: not applicable only 1`] = `
     </h2>
     <mock-outcomesummarybar
       alloutcometypes="pass"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
     />
   </div>
@@ -243,7 +243,7 @@ exports[`SummarySection BaseSummarySection: passes only 1`] = `
     </h2>
     <mock-outcomesummarybar
       alloutcometypes="pass"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
     />
   </div>
@@ -276,7 +276,7 @@ exports[`SummarySection PassFailSummarySection: %s renders BaseSummarySection wi
     </h2>
     <mock-outcomesummarybar
       alloutcometypes="fail,pass"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
     />
   </div>

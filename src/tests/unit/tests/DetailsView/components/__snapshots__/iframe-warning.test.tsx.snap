@@ -7,7 +7,7 @@ exports[`AssessmentIframeWarning render 1`] = `
   >
     There are iframes in the target page. To have complete results, 
     <mock-styledlinkbase
-      classname="insights-link"
+      class="insights-link"
     >
       give Accessibility Insights additional permissions
     </mock-styledlinkbase>
@@ -28,7 +28,7 @@ exports[`FastPassIframeWarning render 1`] = `
   >
     There are iframes in the target page. To have complete results, 
     <mock-styledlinkbase
-      classname="insights-link"
+      class="insights-link"
     >
       give Accessibility Insights additional permissions
     </mock-styledlinkbase>
@@ -49,7 +49,7 @@ exports[`IframeWarning render 1`] = `
   >
     There are iframes in the target page. To have complete results, 
     <mock-styledlinkbase
-      classname="insights-link"
+      class="insights-link"
     >
       give Accessibility Insights additional permissions
     </mock-styledlinkbase>

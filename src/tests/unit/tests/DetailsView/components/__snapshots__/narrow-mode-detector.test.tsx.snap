@@ -1,14 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NarrowModeDetector render renders child component properly when narrow mode is disabled: All narrow mode status values should be false 1`] = `
-<TestComponent
-  narrowModeStatus={
-    {
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {
+    "narrowModeStatus": {
       "isCardFooterCollapsed": false,
       "isCommandBarCollapsed": false,
       "isHeaderAndNavCollapsed": false,
       "isVirtualKeyboardCollapsed": false,
-    }
-  }
-/>
+    },
+  },
+  "type": [Function],
+}
 `;

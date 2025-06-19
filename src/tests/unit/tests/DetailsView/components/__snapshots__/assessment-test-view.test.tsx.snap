@@ -79,10 +79,9 @@ exports[`AssessmentTestView renders with a RequirementView when a requirement is
     currenttarget="[object Object]"
     deps="[object Object]"
     featureflagstoredata="[object Object]"
-    isrequirementenabled="false"
     pathsnippetstoredata="[object Object]"
     requirementviewcomponentconfiguration="[object Object]"
-    scanninginprogress="true"
+    scanninginprogress=""
   />
 </DocumentFragment>
 `;
