@@ -5,10 +5,8 @@ exports[`DetailsViewContent render renders normally 1`] = `
   <mock-interactiveheader
     deps="[object Object]"
     featureflagstoredata="[object Object]"
-    issidenavopen="false"
     narrowmodestatus="[object Object]"
     selectedpivot="0"
-    tabclosed="false"
   />
   <mock-detailsviewbody
     assessmentcardsviewdata="[object Object]"
@@ -20,13 +18,12 @@ exports[`DetailsViewContent render renders normally 1`] = `
     detailsviewstoredata="[object Object]"
     dropdownclickhandler="undefined"
     featureflagstoredata="[object Object]"
-    issidenavopen="false"
     narrowmodestatus="[object Object]"
     needsreviewcardsviewdata="[object Object]"
     pathsnippetstoredata="[object Object]"
     rightpanelconfiguration="[object Object]"
     scanmetadata="[object Object]"
-    selectedtest="-1"
+    selectedtest="0"
     switchernavconfiguration="[object Object]"
     tabstoprequirementdata="[object Object]"
     tabstopsviewstoredata="[object Object]"
@@ -141,7 +138,7 @@ exports[`DetailsViewContent render renders normally: DetailsViewBody props 1`] =
       },
     },
   },
-  "selectedTest": -1,
+  "selectedTest": 0,
   "setSideNavOpen": [Function],
   "switcherNavConfiguration": {
     "getSelectedAssessmentCardSelectionStoreData": [Function],
@@ -277,7 +274,7 @@ exports[`DetailsViewContent render renders normally: DetailsViewBody props 1`] =
     "focusedTarget": null,
     "injectingState": "notInjecting",
     "scanning": null,
-    "selectedAdhocDetailsView": -1,
+    "selectedAdhocDetailsView": 0,
     "selectedDetailsViewPivot": 0,
     "selectedFastPassDetailsView": 1,
     "tests": {
