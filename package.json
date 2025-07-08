@@ -95,7 +95,7 @@
         "@types/ua-parser-js": "^0.7.39",
         "@types/uuid": "^9.0.7",
         "@types/webextension-polyfill": "^0.10.7",
-        "@typescript-eslint/eslint-plugin": "^5.61.0",
+        "@typescript-eslint/eslint-plugin": "^8.36.0",
         "@typescript-eslint/parser": "^6.18.1",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.3",
