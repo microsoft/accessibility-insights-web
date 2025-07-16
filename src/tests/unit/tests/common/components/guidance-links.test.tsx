@@ -7,7 +7,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { forOwn } from 'lodash';
 import * as React from 'react';
-import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
+import { BestPractice, PreviewFeature, ExperimentalFeature } from 'scanner/map-axe-tags-to-guidance-links';
 import {
     mockReactComponents,
     useOriginalReactElements,
@@ -53,6 +53,30 @@ describe('GuidanceLinksTest', () => {
         'one best practice link': [BestPractice],
         'best practice and regular links (excludes BEST PRACTICE)': [
             BestPractice,
+            testLink1,
+            testLink2,
+        ],
+        'one preview feature link': [PreviewFeature],
+        'one experimental feature link': [ExperimentalFeature],
+        'preview feature and regular links': [
+            PreviewFeature,
+            testLink1,
+            testLink2,
+        ],
+        'experimental feature and regular links': [
+            ExperimentalFeature,
+            testLink1,
+            testLink2,
+        ],
+        'multiple guidance links (best practice, preview, and experimental)': [
+            BestPractice,
+            PreviewFeature,
+            ExperimentalFeature,
+        ],
+        'all guidance links with regular links': [
+            BestPractice,
+            PreviewFeature,
+            ExperimentalFeature,
             testLink1,
             testLink2,
         ],

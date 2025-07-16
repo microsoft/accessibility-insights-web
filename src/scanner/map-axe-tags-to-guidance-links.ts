@@ -22,6 +22,18 @@ export const AiScan: GuidanceLink = {
     tags: [guidanceTags.AI_SCAN],
 };
 
+export const PreviewFeature: GuidanceLink = {
+    text: '',
+    href: '',
+    tags: [guidanceTags.PREVIEW_FEATURE],
+};
+
+export const ExperimentalFeature: GuidanceLink = {
+    text: '',
+    href: '',
+    tags: [guidanceTags.EXPERIMENTAL_FEATURE],
+};
+
 const bestPracticeToGuidanceTagOverrideMapping = {
     'aria-allowed-role': ['wcag131', 'wcag412'],
     'presentation-role-conflict': ['wcag131'],
@@ -48,6 +60,13 @@ function mapAxeTagToGuidanceLink(axeTag: string): HyperlinkDefinition | null {
     }
     if (axeTag === 'ai-scan') {
         return AiScan;
+    }
+    if (axeTag === 'preview-feature') {
+        return PreviewFeature;
+    }
+
+    if (axeTag === 'experimental-feature') {
+        return ExperimentalFeature;
     }
     const metadata: GuidelineMetadata = guidelineMetadata[getGuidelineKeyByAxeTag(axeTag)] ?? null;
     if (metadata === null) {

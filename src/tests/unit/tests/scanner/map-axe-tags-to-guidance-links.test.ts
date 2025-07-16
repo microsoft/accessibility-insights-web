@@ -3,13 +3,25 @@
 import * as axe from 'axe-core';
 import { link } from 'content/link';
 import { flatMap } from 'lodash';
-import { BestPractice, mapAxeTagsToGuidanceLinks } from 'scanner/map-axe-tags-to-guidance-links';
+import { BestPractice, PreviewFeature, ExperimentalFeature, mapAxeTagsToGuidanceLinks } from 'scanner/map-axe-tags-to-guidance-links';
 
 describe('mapAxeTagsToGuidanceLinks', () => {
     const defaultIncludedRuleId = 'color-contrast';
     it('should map best-practice to the BestPractice link', () => {
         expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, ['best-practice'])).toEqual([
             BestPractice,
+        ]);
+    });
+
+    it('should map preview-feature to the PreviewFeature link', () => {
+        expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, ['preview-feature'])).toEqual([
+            PreviewFeature,
+        ]);
+    });
+
+    it('should map experimental-feature to the ExperimentalFeature link', () => {
+        expect(mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, ['experimental-feature'])).toEqual([
+            ExperimentalFeature,
         ]);
     });
 
@@ -73,6 +85,17 @@ describe('mapAxeTagsToGuidanceLinks', () => {
         ).toEqual([BestPractice, link.WCAG_1_1_1]);
     });
 
+    it('should handle multiple inputs including preview-feature and experimental-feature', () => {
+        expect(
+            mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, [
+                'preview-feature',
+                'experimental-feature',
+                'best-practice',
+                'wcag111',
+            ]),
+        ).toEqual([PreviewFeature, ExperimentalFeature, BestPractice, link.WCAG_1_1_1]);
+    });
+
     it('should sort the output', () => {
         expect(
             mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, [
@@ -81,6 +104,17 @@ describe('mapAxeTagsToGuidanceLinks', () => {
                 'best-practice',
             ]),
         ).toEqual([BestPractice, link.WCAG_1_1_1, link.WCAG_1_4_11]);
+    });
+
+    it('should sort the output including new feature tags', () => {
+        expect(
+            mapAxeTagsToGuidanceLinks(defaultIncludedRuleId, [
+                'preview-feature',
+                'wcag111',
+                'experimental-feature',
+                'best-practice',
+            ]),
+        ).toEqual([PreviewFeature, ExperimentalFeature, BestPractice, link.WCAG_1_1_1]);
     });
 
     it('should add additional links for special case ruleIds', () => {
