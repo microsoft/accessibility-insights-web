@@ -64,6 +64,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 header: (
                     <MinimalRuleHeader
                         key={rule.id}
+                        deps={deps}
                         rule={rule}
                         outcomeType={outcomeType}
                         outcomeCounter={outcomeCounter}

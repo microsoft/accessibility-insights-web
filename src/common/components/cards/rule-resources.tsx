@@ -58,9 +58,11 @@ export const RuleResources = NamedFC<RuleResourcesProps>(
         };
 
         const renderGuidanceLinks = () => {
-            return <GuidanceLinks links={rule.guidance!} LinkComponent={deps.LinkComponent} />;
+            return <GuidanceLinks links={rule.guidance} LinkComponent={deps.LinkComponent} />;
         };
-        const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidance!} />;
+        const renderGuidanceTags = () => {
+            return <GuidanceTags deps={deps} links={rule.guidance} />;
+        };
 
         return (
             <div className={styles.ruleMoreResources}>
