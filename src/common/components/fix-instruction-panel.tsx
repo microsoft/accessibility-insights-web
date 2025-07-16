@@ -36,9 +36,10 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
 
         const renderInstructions = (checkType: CheckType): JSX.Element[] => {
             const instructionList = props.checks.map((check, checkIndex) => {
+                const message = check.message || '';
                 return (
                     <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>
-                        {fixInstructionProcessor.process(check.message, props.deps.recommendColor)}
+                        {fixInstructionProcessor.process(message, props.deps.recommendColor)}
                     </li>
                 );
             });

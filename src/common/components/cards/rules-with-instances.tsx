@@ -7,7 +7,6 @@ import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
-import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
@@ -53,11 +52,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         cardSelectionMessageCreator,
         narrowModeStatus,
     }) => {
-        const getCollapsibleComponentProps = (
-            rule: CardRuleResult,
-            idx: number,
-            buttonAriaLabel: string,
-        ) => {
+        const getCollapsibleComponentProps = (rule: CardRuleResult, idx: number) => {
             return {
                 id: rule.id,
                 key: `summary-details-${idx + 1}`,
@@ -85,7 +80,6 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 ),
                 containerAutomationId: ruleGroupAutomationId,
                 containerClassName: styles.collapsibleRuleDetailsGroup,
-                buttonAriaLabel: buttonAriaLabel,
                 headingLevel,
                 deps: deps,
                 onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
@@ -101,11 +95,8 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 data-automation-id={ruleDetailsGroupAutomationId}
             >
                 {rules.map((rule, idx) => {
-                    const { pastTense } = outcomeTypeSemantics[outcomeType];
-                    const count = outcomeCounter(rule.nodes);
-                    const buttonAriaLabel = `${count} ${pastTense} ${rule.id} ${rule.description}`;
                     const CollapsibleComponent = deps.collapsibleControl(
-                        getCollapsibleComponentProps(rule, idx, buttonAriaLabel),
+                        getCollapsibleComponentProps(rule, idx),
                     );
                     return CollapsibleComponent;
                 })}
