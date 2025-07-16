@@ -53,6 +53,17 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         narrowModeStatus,
     }) => {
         const getCollapsibleComponentProps = (rule: CardRuleResult, idx: number) => {
+            const count = outcomeCounter(rule.nodes);
+            const outcomeText =
+                outcomeType === 'pass'
+                    ? 'Passed'
+                    : outcomeType === 'fail'
+                      ? 'Failed'
+                      : outcomeType === 'inapplicable'
+                        ? 'Not applicable'
+                        : 'Unknown';
+            const buttonAriaLabel = `${count} ${outcomeText} ${rule.id} ${rule.description}`;
+
             return {
                 id: rule.id,
                 key: `summary-details-${idx + 1}`,
@@ -78,6 +89,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         feedbackURL={deps.feedbackURL || undefined}
                     />
                 ),
+                buttonAriaLabel,
                 containerAutomationId: ruleGroupAutomationId,
                 containerClassName: styles.collapsibleRuleDetailsGroup,
                 headingLevel,

@@ -3,7 +3,12 @@
 import * as axe from 'axe-core';
 import { link } from 'content/link';
 import { flatMap } from 'lodash';
-import { BestPractice, PreviewFeature, ExperimentalFeature, mapAxeTagsToGuidanceLinks } from 'scanner/map-axe-tags-to-guidance-links';
+import {
+    BestPractice,
+    PreviewFeature,
+    ExperimentalFeature,
+    mapAxeTagsToGuidanceLinks,
+} from 'scanner/map-axe-tags-to-guidance-links';
 
 describe('mapAxeTagsToGuidanceLinks', () => {
     const defaultIncludedRuleId = 'color-contrast';

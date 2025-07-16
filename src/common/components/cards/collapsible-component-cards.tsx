@@ -22,6 +22,7 @@ export interface CollapsibleComponentCardsProps {
     contentClassName?: string;
     containerAutomationId?: string;
     containerClassName?: string;
+    buttonAriaLabel?: string;
     deps: CollapsibleComponentCardsDeps;
     onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => void;
     isExpanded?: boolean;
@@ -38,6 +39,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
             deps,
             containerAutomationId,
             containerClassName,
+            buttonAriaLabel,
             header,
             onExpandToggle: onExpandToggle,
         } = props;
@@ -80,6 +82,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
                         className={styles.collapsibleControl}
                         onClick={onClick}
                         aria-expanded={showContent}
+                        ariaLabel={buttonAriaLabel}
                     >
                         <span className={styles.collapsibleTitle}>{header}</span>
                     </ActionButton>
