@@ -14,6 +14,7 @@ exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
       >
         <mock-outcomechip
           count="2"
+          labelledby="true"
           outcometype="fail"
         />
       </span>
@@ -139,6 +140,7 @@ exports[`MinimalRuleHeader renders, outcomeType = review 1`] = `
       >
         <mock-outcomechip
           count="2"
+          labelledby="true"
           outcometype="review"
         />
       </span>

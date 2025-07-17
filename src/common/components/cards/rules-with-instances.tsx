@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -21,7 +22,8 @@ import styles from './rules-with-instances.scss';
 export const ruleGroupAutomationId = 'cards-rule-group';
 
 export type RulesWithInstancesDeps = RuleContentDeps &
-    CollapsibleComponentCardsDeps & {
+    CollapsibleComponentCardsDeps &
+    GuidanceTagsDeps & {
         collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
         feedbackURL?: string;
     };
@@ -53,17 +55,31 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         cardSelectionMessageCreator,
         narrowModeStatus,
     }) => {
-        const getCollapsibleComponentProps = (
-            rule: CardRuleResult,
-            idx: number,
-            buttonAriaLabel: string,
-        ) => {
+        const getCollapsibleComponentProps = (rule: CardRuleResult, idx: number) => {
+            const { pastTense } = outcomeTypeSemantics[outcomeType];
+            const count = outcomeCounter(rule.nodes);
+
+            // Include guidance tags in the aria-label for accessibility
+            const guidanceTags =
+                rule.guidance && deps.getGuidanceTagsFromGuidanceLinks
+                    ? deps.getGuidanceTagsFromGuidanceLinks(rule.guidance)
+                    : [];
+            const guidanceTagsText =
+                guidanceTags.length > 0
+                    ? `${guidanceTags.map(tag => tag.displayText).join(' ')}`
+                    : '';
+
+            // Button visible text structure - include guidance tags with proper spacing
+            const buttonAriaLabel =
+                `${count} ${pastTense} ${rule.id}: ${rule.description}${guidanceTagsText ? ` ${guidanceTagsText}` : ''}`.trim();
+
             return {
                 id: rule.id,
                 key: `summary-details-${idx + 1}`,
                 header: (
                     <MinimalRuleHeader
                         key={rule.id}
+                        deps={deps}
                         rule={rule}
                         outcomeType={outcomeType}
                         outcomeCounter={outcomeCounter}
@@ -82,9 +98,9 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         feedbackURL={deps.feedbackURL || undefined}
                     />
                 ),
+                buttonAriaLabel,
                 containerAutomationId: ruleGroupAutomationId,
                 containerClassName: styles.collapsibleRuleDetailsGroup,
-                buttonAriaLabel: buttonAriaLabel,
                 headingLevel,
                 deps: deps,
                 onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
@@ -100,11 +116,8 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 data-automation-id={ruleDetailsGroupAutomationId}
             >
                 {rules.map((rule, idx) => {
-                    const { pastTense } = outcomeTypeSemantics[outcomeType];
-                    const count = outcomeCounter(rule.nodes);
-                    const buttonAriaLabel = `${count} ${pastTense} ${rule.id} ${rule.description}`;
                     const CollapsibleComponent = deps.collapsibleControl(
-                        getCollapsibleComponentProps(rule, idx, buttonAriaLabel),
+                        getCollapsibleComponentProps(rule, idx),
                     );
                     return CollapsibleComponent;
                 })}
