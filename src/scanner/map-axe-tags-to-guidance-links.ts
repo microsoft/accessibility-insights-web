@@ -64,7 +64,6 @@ function mapAxeTagToGuidanceLink(axeTag: string): HyperlinkDefinition | null {
     if (axeTag === 'preview-feature') {
         return PreviewFeature;
     }
-
     if (axeTag === 'experimental-feature') {
         return ExperimentalFeature;
     }

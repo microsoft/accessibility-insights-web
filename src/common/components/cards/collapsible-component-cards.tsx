@@ -37,9 +37,9 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
             content,
             isExpanded,
             deps,
+            buttonAriaLabel,
             containerAutomationId,
             containerClassName,
-            buttonAriaLabel,
             header,
             onExpandToggle: onExpandToggle,
         } = props;

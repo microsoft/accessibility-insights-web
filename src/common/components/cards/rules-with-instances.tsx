@@ -8,6 +8,7 @@ import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
+import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
@@ -55,15 +56,8 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         narrowModeStatus,
     }) => {
         const getCollapsibleComponentProps = (rule: CardRuleResult, idx: number) => {
+            const { pastTense } = outcomeTypeSemantics[outcomeType];
             const count = outcomeCounter(rule.nodes);
-            const outcomeText =
-                outcomeType === 'pass'
-                    ? 'Passed'
-                    : outcomeType === 'fail'
-                      ? 'Failed'
-                      : outcomeType === 'inapplicable'
-                        ? 'Not applicable'
-                        : 'Unknown';
 
             // Include guidance tags in the aria-label for accessibility
             const guidanceTags =
@@ -75,10 +69,9 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                     ? `${guidanceTags.map(tag => tag.displayText).join(' ')}`
                     : '';
 
-            // TODO: The aria-label needs to match what screen readers see in the actual button content, but that is currently not well formatted and should be improved in the future
-            // Button structure: OutcomeChip (count + hidden full text) + rule.id + ":" + description + guidance
-            // There is a redundancy because the OutcomeChip contains both visible count and screen-reader text
-            const buttonAriaLabel = `${count} ${outcomeText}${rule.id}: ${rule.description}${guidanceTagsText}`;
+            // Button visible text structure - include guidance tags with proper spacing
+            const buttonAriaLabel =
+                `${count} ${pastTense} ${rule.id}: ${rule.description}${guidanceTagsText ? ` ${guidanceTagsText}` : ''}`.trim();
 
             return {
                 id: rule.id,

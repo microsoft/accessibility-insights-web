@@ -7,7 +7,7 @@ exports[`RulesWithInstances renders 1`] = `
     data-automation-id="rule-details-group"
   >
     <mock-cardscollapsiblecontrol
-      buttonarialabel="5 Passedsome-rule: sample-description"
+      buttonarialabel="5 Passed some-rule: sample-description"
       containerautomationid="cards-rule-group"
       containerclassname="collapsibleRuleDetailsGroup"
       content="[object Object]"
@@ -22,7 +22,7 @@ exports[`RulesWithInstances renders 1`] = `
 
 exports[`RulesWithInstances renders: CardsCollapsibleControl props 1`] = `
 {
-  "buttonAriaLabel": "5 Passedsome-rule: sample-description",
+  "buttonAriaLabel": "5 Passed some-rule: sample-description",
   "containerAutomationId": "cards-rule-group",
   "containerClassName": "collapsibleRuleDetailsGroup",
   "content": <RuleContent
@@ -39,7 +39,7 @@ exports[`RulesWithInstances renders: CardsCollapsibleControl props 1`] = `
             {
               "type": "return",
               "value": <mock-CardsCollapsibleControl
-                buttonAriaLabel="5 Passedsome-rule: sample-description"
+                buttonAriaLabel="5 Passed some-rule: sample-description"
                 containerAutomationId="cards-rule-group"
                 containerClassName="collapsibleRuleDetailsGroup"
                 content={
@@ -212,7 +212,7 @@ exports[`RulesWithInstances renders: CardsCollapsibleControl props 1`] = `
         {
           "type": "return",
           "value": <mock-CardsCollapsibleControl
-            buttonAriaLabel="5 Passedsome-rule: sample-description"
+            buttonAriaLabel="5 Passed some-rule: sample-description"
             containerAutomationId="cards-rule-group"
             containerClassName="collapsibleRuleDetailsGroup"
             content={
@@ -338,7 +338,7 @@ exports[`RulesWithInstances renders: CardsCollapsibleControl props 1`] = `
             {
               "type": "return",
               "value": <mock-CardsCollapsibleControl
-                buttonAriaLabel="5 Passedsome-rule: sample-description"
+                buttonAriaLabel="5 Passed some-rule: sample-description"
                 containerAutomationId="cards-rule-group"
                 containerClassName="collapsibleRuleDetailsGroup"
                 content={

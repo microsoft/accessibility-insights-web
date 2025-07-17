@@ -64,6 +64,7 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
             <span className={styles.outcomeChipContainer}>{renderCountBadge()}</span>
             <span>
                 {renderRuleName()}: {renderDescription()}
+                {rule.guidance && ' '}
                 {renderGuidanceTags()}
             </span>
         </span>
