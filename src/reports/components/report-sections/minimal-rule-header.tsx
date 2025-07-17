@@ -37,7 +37,7 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
 
         return (
             <span aria-hidden="true">
-                <OutcomeChip count={count} outcomeType={outcomeType} />
+                <OutcomeChip count={count} outcomeType={outcomeType} labelledBy={true} />
             </span>
         );
     };
@@ -63,7 +63,8 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
         <span data-automation-id={ruleDetailAutomationId} className="rule-detail">
             <span className={styles.outcomeChipContainer}>{renderCountBadge()}</span>
             <span>
-                {renderRuleName()}: {renderDescription()} {renderGuidanceTags()}
+                {renderRuleName()}: {renderDescription()}
+                {renderGuidanceTags()}
             </span>
         </span>
     );

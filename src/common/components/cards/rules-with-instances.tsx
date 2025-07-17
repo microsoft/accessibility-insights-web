@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
-import { GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
@@ -72,13 +72,13 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                     : [];
             const guidanceTagsText =
                 guidanceTags.length > 0
-                    ? ` ${guidanceTags.map(tag => tag.displayText).join(' ')}`
+                    ? `${guidanceTags.map(tag => tag.displayText).join(' ')}`
                     : '';
 
             // TODO: The aria-label needs to match what screen readers see in the actual button content, but that is currently not well formatted and should be improved in the future
             // Button structure: OutcomeChip (count + hidden full text) + rule.id + ":" + description + guidance
             // There is a redundancy because the OutcomeChip contains both visible count and screen-reader text
-            const buttonAriaLabel = `${count}${count} ${outcomeText}${rule.id}: ${rule.description}${guidanceTagsText}`;
+            const buttonAriaLabel = `${count} ${outcomeText}${rule.id}: ${rule.description}${guidanceTagsText}`;
 
             return {
                 id: rule.id,
