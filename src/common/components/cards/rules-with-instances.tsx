@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
+import { GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
@@ -20,7 +21,8 @@ import styles from './rules-with-instances.scss';
 export const ruleGroupAutomationId = 'cards-rule-group';
 
 export type RulesWithInstancesDeps = RuleContentDeps &
-    CollapsibleComponentCardsDeps & {
+    CollapsibleComponentCardsDeps &
+    GuidanceTagsDeps & {
         collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
         feedbackURL?: string;
     };
@@ -62,7 +64,21 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                       : outcomeType === 'inapplicable'
                         ? 'Not applicable'
                         : 'Unknown';
-            const buttonAriaLabel = `${count} ${outcomeText} ${rule.id} ${rule.description}`;
+
+            // Include guidance tags in the aria-label for accessibility
+            const guidanceTags =
+                rule.guidance && deps.getGuidanceTagsFromGuidanceLinks
+                    ? deps.getGuidanceTagsFromGuidanceLinks(rule.guidance)
+                    : [];
+            const guidanceTagsText =
+                guidanceTags.length > 0
+                    ? ` ${guidanceTags.map(tag => tag.displayText).join(' ')}`
+                    : '';
+
+            // TODO: The aria-label needs to match what screen readers see in the actual button content, but that is currently not well formatted and should be improved in the future
+            // Button structure: OutcomeChip (count + hidden full text) + rule.id + ":" + description + guidance
+            // There is a redundancy because the OutcomeChip contains both visible count and screen-reader text
+            const buttonAriaLabel = `${count}${count} ${outcomeText}${rule.id}: ${rule.description}${guidanceTagsText}`;
 
             return {
                 id: rule.id,

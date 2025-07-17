@@ -63,8 +63,7 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
         <span data-automation-id={ruleDetailAutomationId} className="rule-detail">
             <span className={styles.outcomeChipContainer}>{renderCountBadge()}</span>
             <span>
-                {renderRuleName()}: {renderDescription()}
-                {renderGuidanceTags()}
+                {renderRuleName()}: {renderDescription()} {renderGuidanceTags()}
             </span>
         </span>
     );
