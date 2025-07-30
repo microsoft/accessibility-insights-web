@@ -39,6 +39,7 @@ export type InstanceDetailsProps = {
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
     feedbackURL?: string;
+    outcomeType?: string;
 };
 
 // Feedback mechanism is only enabled for results with the following guidance tags
@@ -55,6 +56,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         cardSelectionMessageCreator,
         narrowModeStatus,
         feedbackURL,
+        outcomeType,
     } = props;
     const [cardFocused, setCardFocus] = React.useState(false);
 
@@ -167,6 +169,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                         ruleId={result.ruleId}
                         index={props.index}
                         targetPath={getTargetPath()}
+                        outcomeType={outcomeType}
                     />
                 </div>
             </div>

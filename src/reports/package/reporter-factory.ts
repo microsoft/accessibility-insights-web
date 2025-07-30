@@ -8,7 +8,7 @@ import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
 import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
-import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
+import { getCheckResolution, getFixResolution, getPassResolution } from 'injected/adapters/resolution-creator';
 import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
@@ -100,6 +100,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const getUnifiedResults = new ConvertScanResultsToUnifiedResults(
         generateUID,
         getFixResolution,
+        getPassResolution,
         getCheckResolution,
         extractRelatedSelectors
     ).automatedChecksConversion;

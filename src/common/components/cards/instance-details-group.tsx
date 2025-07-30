@@ -29,6 +29,7 @@ export type InstanceDetailsGroupProps = {
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
     feedbackURL?: string;
+    outcomeType?: string;
 };
 
 export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
@@ -42,6 +43,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
             cardSelectionMessageCreator,
             narrowModeStatus,
             feedbackURL,
+            outcomeType,
         } = props;
         const { nodes } = rule;
         const unifiedRule: UnifiedRule = {
@@ -55,7 +57,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
             <ul
                 data-automation-id={ruleContentAutomationId}
                 className={styles.instanceDetailsList}
-                aria-label="instances with additional information like path, snippet and how to fix"
+                aria-label="instances with additional information like path, snippet and how to fix or why it is passed"
             >
                 {nodes.map((node, index) => (
                     <li key={`instance-details-${index}`}>
@@ -68,6 +70,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
                             targetAppInfo={targetAppInfo}
                             cardSelectionMessageCreator={cardSelectionMessageCreator}
                             narrowModeStatus={narrowModeStatus}
+                            outcomeType={outcomeType}
                             {...(feedbackURL && { feedbackURL })}
                         />
                     </li>

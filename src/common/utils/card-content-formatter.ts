@@ -65,6 +65,7 @@ export function buildCopyContent(result: CardResult): string {
     const howToFix = getHowToFixContent();
     if (howToFix) {
         sections.push(`How to fix:\n${howToFix}`);
+        console.log(result);
     }
 
     return sections.join('\n\n');

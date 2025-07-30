@@ -2,39 +2,42 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 
-import {
-    CollapsibleResultSection,
-    CollapsibleResultSectionDeps,
-} from './collapsible-result-section';
-import { SectionProps } from './report-section-factory';
+import { CommonInstancesSectionProps } from '../../../common/components/cards/common-instances-section-props';
+//import styles from '../../../common/components/cards/failed-instances-section.scss';
+import { ResultSection } from '../../../common/components/cards/result-section';
 
-export type PassedChecksSectionDeps = CollapsibleResultSectionDeps;
-
-export type PassedChecksSectionProps = Pick<
-    SectionProps,
-    'deps' | 'cardsViewData' | 'cardSelectionMessageCreator' | 'sectionHeadingLevel'
-> & {
-    testKey?: string;
-};
-
-export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
+export const PassedChecksSection = NamedFC<CommonInstancesSectionProps>(
     'PassedChecksSection',
-    ({ deps, cardsViewData, cardSelectionMessageCreator, testKey, sectionHeadingLevel }) => {
-        const cardRuleResults = cardsViewData?.cards?.pass ?? [];
+    ({
+        cardsViewData,
+        deps,
+        userConfigurationStoreData,
+        scanMetadata,
+        shouldAlertFailuresCount,
+        cardSelectionMessageCreator,
+        sectionHeadingLevel,
+        narrowModeStatus,
+    }) => {
+        if (cardsViewData == null || cardsViewData.cards == null) {
+            return null;
+        }
 
         return (
-            <CollapsibleResultSection
+            <ResultSection
                 deps={deps}
-                title="Passed checks"
-                cardRuleResults={cardRuleResults}
-                containerClassName="result-section"
+                title="Passed cheks"
+                results={cardsViewData.cards.pass}
                 outcomeType="pass"
-                badgeCount={cardRuleResults.length}
-                containerId="passed-checks-section"
+                badgeCount={cardsViewData.cards.pass.length}
+                userConfigurationStoreData={userConfigurationStoreData}
+                targetAppInfo={scanMetadata.targetAppInfo}
+                visualHelperEnabled={cardsViewData.visualHelperEnabled}
+                allCardsCollapsed={cardsViewData.allCardsCollapsed}
+                outcomeCounter={OutcomeCounter.countByCards}
+                sectionHeadingLevel={sectionHeadingLevel}
                 cardSelectionMessageCreator={cardSelectionMessageCreator}
-                testKey={testKey}
-                headingLevel={sectionHeadingLevel}
             />
         );
     },

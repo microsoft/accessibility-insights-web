@@ -16,6 +16,7 @@ export interface FixInstructionPanelProps {
     checkType: CheckType;
     checks: { message: string }[];
     renderTitleElement: (titleText: string) => JSX.Element;
+    isPass? : boolean,
 }
 
 export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
@@ -24,6 +25,9 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
         const { fixInstructionProcessor } = props.deps;
 
         const getPanelTitle = (checkType: CheckType, checkCount: number): string => {
+            if (props.isPass) {
+                return 'Result pass as:'
+            }
             if (checkCount === 1) {
                 return 'Fix the following:';
             }
