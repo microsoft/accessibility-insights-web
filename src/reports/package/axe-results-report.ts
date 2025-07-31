@@ -36,7 +36,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
             reportHtmlGenerator,
             getDateFromTimestamp
         } = this.deps;
-        const { results, description, scanContext: { pageTitle }, feedbackURL = undefined} = this.parameters;
+        const { results, description, scanContext: { pageTitle }, feedbackURL = undefined, expandPassSection = false} = this.parameters;
 
         const scanDate = getDateFromTimestamp(results.timestamp);
 
@@ -73,7 +73,8 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
             description,
             cardsViewModel,
             scanMetadata,
-            feedbackURL
+            feedbackURL,
+            expandPassSection,
         );
 
         return html;

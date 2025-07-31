@@ -35,6 +35,7 @@ export type CombinedReportSectionProps = BaseSummaryReportSectionProps &
         sectionHeadingLevel: HeadingLevel;
         getCopyToClipboardScript: () => string;
         feedbackURL?: string;
+        expandPassSection?: boolean;
     };
 
 export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSectionProps> = {

@@ -40,6 +40,7 @@ export class CombinedReportHtmlGenerator {
         cardsByRule: CardsViewModel,
         urlResultCounts: UrlResultCounts,
         feedbackURL?: string,
+        expandPassSection?: boolean,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);

@@ -3,42 +3,61 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
-
-import { CommonInstancesSectionProps } from '../../../common/components/cards/common-instances-section-props';
-//import styles from '../../../common/components/cards/failed-instances-section.scss';
+import {
+    CollapsibleResultSection,
+    CollapsibleResultSectionDeps,
+} from './collapsible-result-section';
+import { SectionProps } from './report-section-factory';
 import { ResultSection } from '../../../common/components/cards/result-section';
 
-export const PassedChecksSection = NamedFC<CommonInstancesSectionProps>(
-    'PassedChecksSection',
-    ({
-        cardsViewData,
-        deps,
-        userConfigurationStoreData,
-        scanMetadata,
-        shouldAlertFailuresCount,
-        cardSelectionMessageCreator,
-        sectionHeadingLevel,
-        narrowModeStatus,
-    }) => {
-        if (cardsViewData == null || cardsViewData.cards == null) {
-            return null;
-        }
+export type PassedChecksSectionDeps = CollapsibleResultSectionDeps;
 
-        return (
-            <ResultSection
-                deps={deps}
-                title="Passed cheks"
-                results={cardsViewData.cards.pass}
-                outcomeType="pass"
-                badgeCount={cardsViewData.cards.pass.length}
-                userConfigurationStoreData={userConfigurationStoreData}
-                targetAppInfo={scanMetadata.targetAppInfo}
-                visualHelperEnabled={cardsViewData.visualHelperEnabled}
-                allCardsCollapsed={cardsViewData.allCardsCollapsed}
-                outcomeCounter={OutcomeCounter.countByCards}
-                sectionHeadingLevel={sectionHeadingLevel}
-                cardSelectionMessageCreator={cardSelectionMessageCreator}
-            />
-        );
+export type PassedChecksSectionProps = SectionProps & {
+    testKey?: string;
+};
+
+export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
+    'PassedChecksSection',
+    (props) => {
+        if (props.expandPassSection) {
+            if (props.cardsViewData == null || props.cardsViewData.cards == null) {
+                return null;
+            }
+
+            return (
+                <ResultSection
+                    deps={props.deps}
+                    title="Passed cheks"
+                    results={props.cardsViewData.cards.pass}
+                    outcomeType="pass"
+                    badgeCount={props.cardsViewData.cards.pass.length}
+                    userConfigurationStoreData={props.userConfigurationStoreData}
+                    targetAppInfo={props.scanMetadata.targetAppInfo}
+                    visualHelperEnabled={props.cardsViewData.visualHelperEnabled}
+                    allCardsCollapsed={props.cardsViewData.allCardsCollapsed}
+                    outcomeCounter={OutcomeCounter.countByCards}
+                    sectionHeadingLevel={props.sectionHeadingLevel}
+                    cardSelectionMessageCreator={props.cardSelectionMessageCreator}
+                />
+            );
+        }
+        else {
+            const cardRuleResults = props.cardsViewData?.cards?.pass ?? [];
+
+            return (
+                <CollapsibleResultSection
+                    deps={props.deps}
+                    title="Passed checks"
+                    cardRuleResults={cardRuleResults}
+                    containerClassName="result-section"
+                    outcomeType="pass"
+                    badgeCount={cardRuleResults.length}
+                    containerId="passed-checks-section"
+                    cardSelectionMessageCreator={props.cardSelectionMessageCreator}
+                    testKey={props.testKey}
+                    headingLevel={props.sectionHeadingLevel}
+                />
+            );
+        }
     },
 );

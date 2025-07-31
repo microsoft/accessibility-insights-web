@@ -12,9 +12,11 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
+import { PassedChecksSectionDeps } from './passed-checks-section';
 
 export type SectionDeps = NotApplicableChecksSectionDeps &
-    CommonInstancesSectionDeps
+    CommonInstancesSectionDeps &
+    PassedChecksSectionDeps;
 
 export type SectionProps = {
     deps: SectionDeps;
@@ -32,6 +34,7 @@ export type SectionProps = {
     scanMetadata: ScanMetadata;
     sectionHeadingLevel: HeadingLevel;
     feedbackURL?: string;
+    expandPassSection?: boolean;
 };
 
 export const ResultSectionTypes = {

@@ -26,7 +26,7 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
 
         const getPanelTitle = (checkType: CheckType, checkCount: number): string => {
             if (props.isPass) {
-                return 'Result pass as:'
+                return 'Rule passed as:'
             }
             if (checkCount === 1) {
                 return 'Fix the following:';
