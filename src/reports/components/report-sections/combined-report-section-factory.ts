@@ -11,6 +11,7 @@ import {
 import {
     CombinedReportNotApplicableSection,
     CombinedReportPassedSection,
+    CombinedReportIncompleteSection,
 } from 'reports/components/report-sections/combined-report-rules-only-sections';
 import { CombinedReportSummarySection } from 'reports/components/report-sections/combined-report-summary-section';
 import { RulesResultsContainer } from 'reports/components/report-sections/rules-results-container';
@@ -49,7 +50,8 @@ export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSe
     FailedInstancesSection: CombinedReportFailedSection,
     PassedChecksSection: CombinedReportPassedSection,
     NotApplicableChecksSection: CombinedReportNotApplicableSection,
+    IncompleteChecksSection: CombinedReportIncompleteSection,
     FooterSection: ReportFooter,
     FooterText: FooterTextForService,
-    resultSectionsOrder: ['failed', 'passed', 'notApplicable'],
+    resultSectionsOrder: ['failed', 'passed', 'incomplete', 'notApplicable'],
 };

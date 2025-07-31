@@ -13,10 +13,12 @@ import { CardsViewModel } from '../../../common/types/store-data/card-view-model
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
+import { IncompleteChecksSectionDeps } from './incomplete-checks-section';
 
 export type SectionDeps = NotApplicableChecksSectionDeps &
     CommonInstancesSectionDeps &
-    PassedChecksSectionDeps;
+    PassedChecksSectionDeps &
+    IncompleteChecksSectionDeps;
 
 export type SectionProps = {
     deps: SectionDeps;
@@ -40,6 +42,7 @@ export const ResultSectionTypes = {
     failed: 'FailedInstancesSection',
     passed: 'PassedChecksSection',
     notApplicable: 'NotApplicableChecksSection',
+    incomplete: 'IncompleteChecksSection',
 };
 
 export type ReportSectionFactory<SectionPropsType = SectionProps> = {
@@ -54,6 +57,7 @@ export type ReportSectionFactory<SectionPropsType = SectionProps> = {
     FailedInstancesSection: ReactFCWithDisplayName<SectionPropsType>;
     PassedChecksSection: ReactFCWithDisplayName<SectionPropsType>;
     NotApplicableChecksSection: ReactFCWithDisplayName<SectionPropsType>;
+    IncompleteChecksSection: ReactFCWithDisplayName<SectionPropsType>;
     FooterSection: ReactFCWithDisplayName;
     FooterText: ReactFCWithDisplayName<SectionPropsType>;
     resultSectionsOrder: (keyof typeof ResultSectionTypes)[];
