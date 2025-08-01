@@ -103,9 +103,6 @@ exports[`MinimalRuleHeader renders, outcomeType = pass 1`] = `
     class="rule-detail"
     data-automation-id="rule-detail"
   >
-    <span
-      class="outcomeChipContainer"
-    />
     <span>
       <span
         class="rule-details-id"

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import { CardRuleResult, CardsViewModel } from 'common/types/store-data/card-view-model';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import {
     PassedChecksSection,
@@ -15,6 +16,12 @@ import { mockReactComponents } from '../../../../mock-helpers/mock-module-helper
 jest.mock('../../../../../../reports/components/report-sections/collapsible-result-section');
 describe('PassedChecksSection', () => {
     mockReactComponents([CollapsibleResultSection]);
+    const scanMetadata: ScanMetadata = {
+        targetAppInfo: {
+            name: 'page title',
+            url: 'page url',
+        },
+    } as ScanMetadata;
     it('renders', () => {
         const props: PassedChecksSectionProps = {
             deps: {} as SectionDeps,
@@ -27,6 +34,7 @@ describe('PassedChecksSection', () => {
                 },
             } as CardsViewModel,
             sectionHeadingLevel: 3,
+            scanMetadata,
         };
 
         const renderResult = render(<PassedChecksSection {...props} />);
@@ -43,6 +51,7 @@ describe('PassedChecksSection', () => {
                 },
             } as CardsViewModel,
             sectionHeadingLevel: 3,
+            scanMetadata,
         };
 
         const renderResult = render(<PassedChecksSection {...props} />);

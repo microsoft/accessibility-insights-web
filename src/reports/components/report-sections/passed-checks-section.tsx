@@ -3,22 +3,30 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
+import { ResultSection } from '../../../common/components/cards/result-section';
 import {
     CollapsibleResultSection,
     CollapsibleResultSectionDeps,
 } from './collapsible-result-section';
 import { SectionProps } from './report-section-factory';
-import { ResultSection } from '../../../common/components/cards/result-section';
 
 export type PassedChecksSectionDeps = CollapsibleResultSectionDeps;
 
-export type PassedChecksSectionProps = SectionProps & {
+export type PassedChecksSectionProps = Pick<
+    SectionProps,
+    | 'deps'
+    | 'cardsViewData'
+    | 'cardSelectionMessageCreator'
+    | 'sectionHeadingLevel'
+    | 'expandPassSection'
+    | 'scanMetadata'
+> & {
     testKey?: string;
 };
 
 export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
     'PassedChecksSection',
-    (props) => {
+    props => {
         if (props.expandPassSection) {
             if (props.cardsViewData == null || props.cardsViewData.cards == null) {
                 return null;
@@ -31,7 +39,7 @@ export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
                     results={props.cardsViewData.cards.pass}
                     outcomeType="pass"
                     badgeCount={props.cardsViewData.cards.pass.length}
-                    userConfigurationStoreData={props.userConfigurationStoreData}
+                    userConfigurationStoreData={null}
                     targetAppInfo={props.scanMetadata.targetAppInfo}
                     visualHelperEnabled={props.cardsViewData.visualHelperEnabled}
                     allCardsCollapsed={props.cardsViewData.allCardsCollapsed}
@@ -40,8 +48,7 @@ export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
                     cardSelectionMessageCreator={props.cardSelectionMessageCreator}
                 />
             );
-        }
-        else {
+        } else {
             const cardRuleResults = props.cardsViewData?.cards?.pass ?? [];
 
             return (

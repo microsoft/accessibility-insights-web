@@ -68,6 +68,7 @@ export class ReportHtmlGenerator {
             scanMetadata,
             sectionHeadingLevel: 2,
             getCopyToClipboardScript: this.getCopyToClipboardScript,
+            expandPassSection: expandPassSection,
         } as SectionProps;
 
         const props: ReportBodyProps = {

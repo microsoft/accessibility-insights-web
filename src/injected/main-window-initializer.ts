@@ -16,7 +16,11 @@ import { toolName } from 'content/strings/application';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { GetDetailsSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
-import { getCheckResolution, getFixResolution, getPassResolution } from 'injected/adapters/resolution-creator';
+import {
+    getCheckResolution,
+    getFixResolution,
+    getPassResolution,
+} from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
 import { TabStopsDoneAnalyzingTracker } from 'injected/analyzers/tab-stops-done-analyzing-tracker';

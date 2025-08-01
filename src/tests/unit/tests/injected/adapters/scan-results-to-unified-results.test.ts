@@ -12,6 +12,7 @@ import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 describe('ScanResults to Unified Results Test', () => {
     let generateGuidMock: IMock<() => string>;
     let fixResolutionCreatorMock: IMock<ResolutionCreator>;
+    let passResolutionCreatorMock: IMock<ResolutionCreator>;
     let checkResolutionCreatorMock: IMock<ResolutionCreator>;
     let extractRelatedSelectorsStub: RelatedSelectorExtractor;
 
@@ -23,6 +24,7 @@ describe('ScanResults to Unified Results Test', () => {
             .returns(() => guidStub)
             .verifiable(Times.atLeastOnce());
         fixResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
+        passResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
         checkResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
         extractRelatedSelectorsStub = node => [
             `extractRelatedSelectors output for ${node['target'] ?? node['selector']}`,
@@ -114,6 +116,7 @@ describe('ScanResults to Unified Results Test', () => {
         return new ConvertScanResultsToUnifiedResults(
             generateGuidMock.object,
             fixResolutionCreatorMock.object,
+            passResolutionCreatorMock.object,
             checkResolutionCreatorMock.object,
             extractRelatedSelectorsStub,
         );

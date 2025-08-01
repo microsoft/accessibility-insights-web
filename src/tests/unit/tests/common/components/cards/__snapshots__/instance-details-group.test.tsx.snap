@@ -3,7 +3,7 @@
 exports[`InstanceDetailsGroup renders 1`] = `
 <DocumentFragment>
   <ul
-    aria-label="instances with additional information like path, snippet and how to fix"
+    aria-label="instances with additional information like path, snippet and how to fix or why it is passed"
     class="instanceDetailsList"
     data-automation-id="cards-rule-content"
   >
@@ -27,6 +27,7 @@ exports[`InstanceDetailsGroup renders: InstanceDetails props 1`] = `
   "deps": {},
   "index": 0,
   "narrowModeStatus": undefined,
+  "outcomeType": undefined,
   "result": {
     "descriptors": {
       "snippet": "this is a sample snippet",

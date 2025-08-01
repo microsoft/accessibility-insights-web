@@ -35,7 +35,8 @@ export const MarkupFooter = NamedFC<MarkupFooterProps>('MarkupFooter', props => 
         targetPath,
         outcomeType,
     } = props;
-    const supportsCopy = outcomeType !== "pass" && deps.cardInteractionSupport.supportsCopyFailureDetailsInMarkup;
+    const supportsCopy =
+        outcomeType !== 'pass' && deps.cardInteractionSupport.supportsCopyFailureDetailsInMarkup;
 
     if (!feedbackURL && !supportsCopy) {
         return null;
