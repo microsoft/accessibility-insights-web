@@ -140,7 +140,7 @@ describe('FixInstructionPanelTests', () => {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
                 recommendColor: recommendation,
             },
-            isPass: true
+            isPass: true,
         };
 
         const renderResult = render(<FixInstructionPanel {...props} />);
