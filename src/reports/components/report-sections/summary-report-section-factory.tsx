@@ -39,6 +39,7 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     FailedInstancesSection: FailedUrlsSection,
     PassedChecksSection: PassedUrlsSection,
     NotApplicableChecksSection: NotScannedUrlsSection,
+    IncompleteChecksSection: NotScannedUrlsSection,
     FooterSection: ReportFooter,
     FooterText: FooterTextForService,
     resultSectionsOrder: ['failed', 'notApplicable', 'passed'],
