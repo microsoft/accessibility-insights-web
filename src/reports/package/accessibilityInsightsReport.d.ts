@@ -127,7 +127,6 @@ declare namespace AccessibilityInsightsReport {
         scanDetails: ScanSummaryDetails,
         results: CombinedReportResults,
         feedbackURL?: string,
-        expandPassSection?: boolean;
     }
 
     export type Reporter = {

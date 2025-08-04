@@ -36,13 +36,13 @@ export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
                 <ResultSection
                     deps={props.deps}
                     title="Passed cheks"
-                    results={props.cardsViewData.cards.pass}
+                    results={props.cardsViewData?.cards?.pass}
                     outcomeType="pass"
-                    badgeCount={props.cardsViewData.cards.pass.length}
+                    badgeCount={props.cardsViewData?.cards?.pass?.length}
                     userConfigurationStoreData={null}
                     targetAppInfo={props.scanMetadata.targetAppInfo}
-                    visualHelperEnabled={props.cardsViewData.visualHelperEnabled}
-                    allCardsCollapsed={props.cardsViewData.allCardsCollapsed}
+                    visualHelperEnabled={props.cardsViewData?.visualHelperEnabled}
+                    allCardsCollapsed={props.cardsViewData?.allCardsCollapsed}
                     outcomeCounter={OutcomeCounter.countByCards}
                     sectionHeadingLevel={props.sectionHeadingLevel}
                     cardSelectionMessageCreator={props.cardSelectionMessageCreator}

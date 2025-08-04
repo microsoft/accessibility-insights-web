@@ -51,8 +51,6 @@ describe('CombinedResultsReport', () => {
 
     const feedbackURL = undefined;
 
-    const expandPassSection = false;
-
     const results = {
         resultsByRule: {
             failed: [],
@@ -104,7 +102,7 @@ describe('CombinedResultsReport', () => {
             .returns(() => cardsViewDataStub);
 
         reportHtmlGeneratorMock
-            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, urlResultsCount, feedbackURL, expandPassSection))
+            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, urlResultsCount, feedbackURL))
             .returns(() => expectedHtml);
 
         const html = combinedResultsReport.asHTML();
@@ -134,7 +132,7 @@ describe('CombinedResultsReport', () => {
             .returns(() => cardsViewDataStub);
             
         reportHtmlGeneratorMock
-            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, urlResultsCount, specificFeedbackURL, expandPassSection))
+            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, urlResultsCount, specificFeedbackURL))
             .returns(() => htmlWithFeedback)
             .verifiable();
             
