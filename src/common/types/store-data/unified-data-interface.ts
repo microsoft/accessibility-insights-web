@@ -117,6 +117,7 @@ export interface UnifiedResult {
 export type InstanceResultStatus =
     | 'pass' // May include results which are very low-confidence failures, in addition to high-confidence non-failures
     | 'fail'
+    | 'incomplete'
     | 'unknown';
 
 export interface ScreenshotData {

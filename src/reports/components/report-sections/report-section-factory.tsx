@@ -41,8 +41,8 @@ export type SectionProps = {
 export const ResultSectionTypes = {
     failed: 'FailedInstancesSection',
     passed: 'PassedChecksSection',
-    notApplicable: 'NotApplicableChecksSection',
     incomplete: 'IncompleteChecksSection',
+    notApplicable: 'NotApplicableChecksSection',
 };
 
 export type ReportSectionFactory<SectionPropsType = SectionProps> = {
@@ -56,8 +56,8 @@ export type ReportSectionFactory<SectionPropsType = SectionProps> = {
     ResultsContainer: ReactFCWithDisplayName<SectionPropsType>;
     FailedInstancesSection: ReactFCWithDisplayName<SectionPropsType>;
     PassedChecksSection: ReactFCWithDisplayName<SectionPropsType>;
-    NotApplicableChecksSection: ReactFCWithDisplayName<SectionPropsType>;
     IncompleteChecksSection: ReactFCWithDisplayName<SectionPropsType>;
+    NotApplicableChecksSection: ReactFCWithDisplayName<SectionPropsType>;
     FooterSection: ReactFCWithDisplayName;
     FooterText: ReactFCWithDisplayName<SectionPropsType>;
     resultSectionsOrder: (keyof typeof ResultSectionTypes)[];
