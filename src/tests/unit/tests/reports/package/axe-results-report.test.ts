@@ -36,7 +36,7 @@ describe('AxeResultReport', () => {
     };
     const feedbackURL = undefined;
 
-    const expandPassSection = false;
+    const expandPassSectionDetails = null;
 
     const results = {
         timestamp: scanTimestamp,
@@ -78,7 +78,7 @@ describe('AxeResultReport', () => {
     const expectedHTML = '<div>The Report!</div>';
     const mockReportHtmlGenerator = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
     mockReportHtmlGenerator
-        .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub, feedbackURL, expandPassSection))
+        .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub, feedbackURL, expandPassSectionDetails))
         .returns(() => expectedHTML);
 
     const mockGetDateFromTimestamp = Mock.ofType<(timestamp: string) => Date>();
@@ -108,7 +108,7 @@ describe('AxeResultReport', () => {
         
         const mockReportHtmlGeneratorWithFeedback = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
         mockReportHtmlGeneratorWithFeedback
-            .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub, feedbackURLWithValue, expandPassSection))
+            .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub, feedbackURLWithValue, expandPassSectionDetails))
             .returns(() => htmlWithFeedback)
             .verifiable(Times.once());
             

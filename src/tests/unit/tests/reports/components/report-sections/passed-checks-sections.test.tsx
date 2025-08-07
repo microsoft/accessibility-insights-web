@@ -74,7 +74,7 @@ describe('PassedChecksSection', () => {
             } as CardsViewModel,
             sectionHeadingLevel: 3,
             scanMetadata,
-            expandPassSection: true,
+            expandPassSectionDetails: { expandPassSection: true },
         };
         const renderResult = render(<PassedChecksSection {...props} />);
 

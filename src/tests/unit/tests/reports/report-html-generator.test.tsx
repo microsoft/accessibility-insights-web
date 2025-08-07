@@ -98,7 +98,7 @@ describe('ReportHtmlGenerator', () => {
             scanMetadata,
             sectionHeadingLevel: 2,
             getCopyToClipboardScript: getScriptMock.object,
-            expandPassSection: undefined,
+            expandPassSectionDetails: undefined,
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <NullComponent />;
@@ -215,7 +215,7 @@ describe('ReportHtmlGenerator with feedback URL', () => {
             scanMetadata,
             sectionHeadingLevel: 2,
             getCopyToClipboardScript: getScriptMock.object,
-            expandPassSection: undefined,
+            expandPassSectionDetails: undefined,
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <NullComponent />;

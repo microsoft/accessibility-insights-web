@@ -34,6 +34,7 @@ export type ResultSectionContentProps = {
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
     feedbackURL?: string;
+    expandByTags?: string[];
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -49,6 +50,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             headingLevel,
             cardSelectionMessageCreator,
             narrowModeStatus,
+            expandByTags,
         } = props;
         if (results.length === 0) {
             return null;
@@ -71,6 +73,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     headingLevel={headingLevel}
                     cardSelectionMessageCreator={cardSelectionMessageCreator}
                     narrowModeStatus={narrowModeStatus}
+                    expandByTags={expandByTags}
                 />
             </>
         );

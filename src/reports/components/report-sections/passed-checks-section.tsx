@@ -18,7 +18,7 @@ export type PassedChecksSectionProps = Pick<
     | 'cardsViewData'
     | 'cardSelectionMessageCreator'
     | 'sectionHeadingLevel'
-    | 'expandPassSection'
+    | 'expandPassSectionDetails'
     | 'scanMetadata'
 > & {
     testKey?: string;
@@ -27,7 +27,7 @@ export type PassedChecksSectionProps = Pick<
 export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
     'PassedChecksSection',
     props => {
-        if (props.expandPassSection) {
+        if (props.expandPassSectionDetails?.expandPassSection) {
             if (props.cardsViewData == null || props.cardsViewData.cards == null) {
                 return null;
             }
@@ -46,6 +46,7 @@ export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
                     outcomeCounter={OutcomeCounter.countByCards}
                     sectionHeadingLevel={props.sectionHeadingLevel}
                     cardSelectionMessageCreator={props.cardSelectionMessageCreator}
+                    expandByTags={props.expandPassSectionDetails?.expandByTags}
                 />
             );
         } else {
