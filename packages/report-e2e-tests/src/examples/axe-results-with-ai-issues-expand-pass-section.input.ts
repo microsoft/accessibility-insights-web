@@ -515,6 +515,34 @@ export const axeResultsWithAiIssuesExpandPassSection: AxeReportParameters = {
         incomplete: [],
         passes: [
             {
+                id: 'focus-order',
+                impact: null,
+                tags: ['wcag241', 'ai-scan', 'preview-feature'],
+                description:
+                    'Focus Order is Logical. Keyboard users can navigate content in a reasonable order.',
+                help: 'Focus order is as expected.',
+                helpUrl: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html',
+                nodes: [
+                    {
+                        html: '',
+                        impact: null,
+                        target: [],
+                        failureSummary: '',
+                        any: [],
+                        all: [
+                            {
+                                id: 'focus-order',
+                                impact: 'none',
+                                message: 'Element is focused in an appropriate order',
+                                data: null,
+                                relatedNodes: [],
+                            },
+                        ],
+                        none: [],
+                    },
+                ],
+            },
+            {
                 description: "Ensures aria-hidden='true' is not present on the document body.",
                 help: "aria-hidden='true' must not be present on the document body",
                 helpUrl:

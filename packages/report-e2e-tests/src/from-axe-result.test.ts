@@ -7,9 +7,9 @@ import { AxeReportParameters, reporterFactory } from 'accessibility-insights-rep
 //import * as prettier from 'prettier';
 
 import { axeResultsWithAiIssuesFeedbackURL } from './examples/axe-results-with-ai-issues-and-feedback-url.input';
-import { axeResultsWithAiIssues } from './examples/axe-results-with-ai-issues.input';
-import { axeResultsWithAiIssuesExpandPassSection } from './examples/axe-results-with-ai-issues-expand-pass-section.input';
 import { axeResultsWithAiIssuesExpandPassSectionByTag } from './examples/axe-results-with-ai-issues-expand-pass-section-by-tag.input';
+import { axeResultsWithAiIssuesExpandPassSection } from './examples/axe-results-with-ai-issues-expand-pass-section.input';
+import { axeResultsWithAiIssues } from './examples/axe-results-with-ai-issues.input';
 import { axeResultsWithFeedbackURL } from './examples/axe-results-with-feedback-url.input';
 import { axeResultsWithIssues } from './examples/axe-results-with-issues.input';
 import { axeResultsWithUndefinedFeedbackURL } from './examples/axe-results-with-undefined-feedback-url.input';
