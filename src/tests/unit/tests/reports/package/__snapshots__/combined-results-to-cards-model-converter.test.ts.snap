@@ -63,6 +63,7 @@ exports[`CombinedResultsToCardsModelConverter with a mixture of url specificatio
         "url": "url for inapplicable-rule-1 with default url https://example.com/rules/inapplicable-rule-1",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "passed-rule-1 description",
@@ -249,6 +250,7 @@ exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
         "url": "url for inapplicable-rule-1 with default url https://example.com/rules/inapplicable-rule-1",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "passed-rule-1 description",
@@ -435,6 +437,7 @@ exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
         "url": "url for inapplicable-rule-1 with default url https://example.com/rules/inapplicable-rule-1",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "passed-rule-1 description",
@@ -474,6 +477,7 @@ exports[`CombinedResultsToCardsModelConverter without issues 1`] = `
         "url": "url for inapplicable-rule-2 with default url https://example.com/rules/inapplicable-rule-2",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "passed-rule-1 description",
@@ -582,6 +586,7 @@ exports[`CombinedResultsToCardsModelConverter without passed or inapplicable rul
       },
     ],
     "inapplicable": [],
+    "incomplete": [],
     "pass": [],
     "unknown": [],
   },
