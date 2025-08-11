@@ -22,7 +22,7 @@ export const IncompleteChecksSection = NamedFC<IncompleteChecksSectionProps>(
     'IncompleteChecksSection',
     ({ deps, cardsViewData, cardSelectionMessageCreator, testKey, sectionHeadingLevel }) => {
         const cardRuleResults = cardsViewData?.cards?.unknown ?? [];
-        
+
         return (
             <CollapsibleResultSection
                 deps={deps}

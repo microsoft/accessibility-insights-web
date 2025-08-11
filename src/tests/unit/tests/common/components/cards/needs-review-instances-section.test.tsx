@@ -26,14 +26,14 @@ describe('NeedsReviewInstancesSection', () => {
         pass: [],
         inapplicable: [],
         unknown: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
-        incomplete:[]
+        incomplete: [],
     };
     const nonEmptyResults: CardRuleResultsByStatus = {
         fail: [],
         pass: [],
         inapplicable: [],
         unknown: [],
-        incomplete:[]
+        incomplete: [],
     };
     const scanMetadata: ScanMetadata = {
         targetAppInfo: {
