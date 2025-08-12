@@ -25,12 +25,14 @@ describe('FailedInstancesSection', () => {
         pass: [],
         inapplicable: [],
         unknown: [],
+        incomplete:[]
     };
     const nonEmptyResults: CardRuleResultsByStatus = {
         fail: [],
         pass: [],
         inapplicable: [],
         unknown: [],
+        incomplete:[]
     };
     const scanMetadata: ScanMetadata = {
         targetAppInfo: {
