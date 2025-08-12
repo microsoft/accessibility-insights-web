@@ -66,5 +66,4 @@ export const exampleUnifiedStatusResults: CardRuleResultsByStatus = {
     fail: [exampleUnifiedRuleResult],
     inapplicable: [],
     unknown: [],
-    incomplete:[]
 };
