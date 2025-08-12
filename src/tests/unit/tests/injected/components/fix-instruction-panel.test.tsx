@@ -123,6 +123,31 @@ describe('FixInstructionPanelTests', () => {
         expect(renderResult.asFragment()).toMatchSnapshot();
     });
 
+    test('render pass message', () => {
+        const allChecks: FormattedCheckResult[] = [
+            {
+                message: 'message',
+                id: 'id1',
+                data: 'data',
+            },
+        ];
+
+        const props: FixInstructionPanelProps = {
+            checkType: CheckType.All,
+            checks: allChecks,
+            renderTitleElement: renderTitleAsDiv,
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendation,
+            },
+            isPass: true,
+        };
+
+        const renderResult = render(<FixInstructionPanel {...props} />);
+
+        expect(renderResult.asFragment()).toMatchSnapshot();
+    });
+
     function renderTitleAsDiv(titleText: string): JSX.Element {
         return <div>{titleText}</div>;
     }

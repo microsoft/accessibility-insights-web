@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PassedChecksSection render details when expandedPassSection prop is true 1`] = `
+<DocumentFragment>
+  <mock-resultsection
+    badgecount="3"
+    deps="[object Object]"
+    outcometype="pass"
+    results="[object Object],[object Object],[object Object]"
+    sectionheadinglevel="3"
+    targetappinfo="[object Object]"
+    title="Passed cheks"
+  />
+</DocumentFragment>
+`;
+
 exports[`PassedChecksSection renders 1`] = `
 <DocumentFragment>
   <mock-collapsibleresultsection

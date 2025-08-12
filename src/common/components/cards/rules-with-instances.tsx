@@ -9,6 +9,7 @@ import { OutcomeCounter } from 'reports/components/outcome-counter';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
+import { FullRuleHeader } from '../../../reports/components/report-sections/full-rule-header';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
@@ -38,6 +39,7 @@ export type RulesWithInstancesProps = {
     headingLevel: number;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
     narrowModeStatus?: NarrowModeStatus;
+    expandByTags?: string[];
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
@@ -54,6 +56,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         headingLevel,
         cardSelectionMessageCreator,
         narrowModeStatus,
+        expandByTags,
     }) => {
         const getCollapsibleComponentProps = (rule: CardRuleResult, idx: number) => {
             const { pastTense } = outcomeTypeSemantics[outcomeType];
@@ -116,6 +119,30 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 data-automation-id={ruleDetailsGroupAutomationId}
             >
                 {rules.map((rule, idx) => {
+                    const expandRule =
+                        rule.guidance &&
+                        expandByTags &&
+                        rule.guidance.some(
+                            guidanceLink =>
+                                guidanceLink.tags &&
+                                guidanceLink.tags.some(tag =>
+                                    expandByTags.some(
+                                        expandTag =>
+                                            tag.id.toLowerCase() === expandTag.toLowerCase(),
+                                    ),
+                                ),
+                        );
+
+                    if (rule.status === 'pass' && !expandRule) {
+                        return (
+                            <FullRuleHeader
+                                deps={deps}
+                                key={rule.id}
+                                cardRuleResult={rule}
+                                outcomeType={outcomeType}
+                            />
+                        );
+                    }
                     const CollapsibleComponent = deps.collapsibleControl(
                         getCollapsibleComponentProps(rule, idx),
                     );

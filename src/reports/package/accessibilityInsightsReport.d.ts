@@ -17,6 +17,7 @@ declare namespace AccessibilityInsightsReport {
         serviceName: string;
         scanContext: ScanContext;
         feedbackURL?: string;
+        expandPassSectionDetails?: ExpandPassSectionParameter;
     }
 
     export type ScanSummaryDetails = {
@@ -133,6 +134,11 @@ declare namespace AccessibilityInsightsReport {
         fromSummaryResults: (parameters: SummaryReportParameters) => Report;
         fromCombinedResults: (parameters: CombinedReportParameters) => Report;
     };
+
+    export type ExpandPassSectionParameter = {
+        expandPassSection: boolean;
+        expandByTags?: string[];
+    }
 
     export type ReporterFactory = () => Reporter;
 

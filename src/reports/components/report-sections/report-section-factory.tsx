@@ -11,6 +11,7 @@ import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
+import { ExpandPassSectionParameter } from '../../package/accessibilityInsightsReport';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
 
@@ -34,6 +35,7 @@ export type SectionProps = {
     scanMetadata: ScanMetadata;
     sectionHeadingLevel: HeadingLevel;
     feedbackURL?: string;
+    expandPassSectionDetails?: ExpandPassSectionParameter;
 };
 
 export const ResultSectionTypes = {

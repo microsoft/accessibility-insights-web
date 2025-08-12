@@ -20,6 +20,7 @@ export interface MarkupFooterProps {
     ruleId?: string;
     index?: number;
     targetPath?: string;
+    outcomeType?: string;
 }
 
 export const MarkupFooter = NamedFC<MarkupFooterProps>('MarkupFooter', props => {
@@ -32,8 +33,10 @@ export const MarkupFooter = NamedFC<MarkupFooterProps>('MarkupFooter', props => 
         ruleId,
         index,
         targetPath,
+        outcomeType,
     } = props;
-    const supportsCopy = deps.cardInteractionSupport.supportsCopyFailureDetailsInMarkup;
+    const supportsCopy =
+        outcomeType !== 'pass' && deps.cardInteractionSupport.supportsCopyFailureDetailsInMarkup;
 
     if (!feedbackURL && !supportsCopy) {
         return null;

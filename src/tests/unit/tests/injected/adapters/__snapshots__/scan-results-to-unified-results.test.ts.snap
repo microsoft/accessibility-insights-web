@@ -94,7 +94,6 @@ exports[`ScanResults to Unified Results Test automaticChecksConversion works wit
     },
     "resolution": {
       "howToFixSummary": undefined,
-      "test fix resolution": {},
     },
     "ruleId": "test",
     "status": "pass",

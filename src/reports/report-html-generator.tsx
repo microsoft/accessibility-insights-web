@@ -19,6 +19,7 @@ import {
     SectionDeps,
     SectionProps,
 } from './components/report-sections/report-section-factory';
+import { ExpandPassSectionParameter } from './package/accessibilityInsightsReport';
 import { ReactStaticRenderer } from './react-static-renderer';
 
 export class ReportHtmlGenerator {
@@ -40,6 +41,7 @@ export class ReportHtmlGenerator {
         cardsViewData: CardsViewModel,
         scanMetadata: ScanMetadata,
         feedbackURL?: string,
+        expandPassSectionDetails?: ExpandPassSectionParameter,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
@@ -67,6 +69,7 @@ export class ReportHtmlGenerator {
             scanMetadata,
             sectionHeadingLevel: 2,
             getCopyToClipboardScript: this.getCopyToClipboardScript,
+            expandPassSectionDetails: expandPassSectionDetails,
         } as SectionProps;
 
         const props: ReportBodyProps = {

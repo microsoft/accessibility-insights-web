@@ -7,6 +7,8 @@ import { AxeReportParameters, reporterFactory } from 'accessibility-insights-rep
 //import * as prettier from 'prettier';
 
 import { axeResultsWithAiIssuesFeedbackURL } from './examples/axe-results-with-ai-issues-and-feedback-url.input';
+import { axeResultsWithAiIssuesExpandPassSectionByTag } from './examples/axe-results-with-ai-issues-expand-pass-section-by-tag.input';
+import { axeResultsWithAiIssuesExpandPassSection } from './examples/axe-results-with-ai-issues-expand-pass-section.input';
 import { axeResultsWithAiIssues } from './examples/axe-results-with-ai-issues.input';
 import { axeResultsWithFeedbackURL } from './examples/axe-results-with-feedback-url.input';
 import { axeResultsWithIssues } from './examples/axe-results-with-issues.input';
@@ -21,6 +23,10 @@ describe('fromAxeResult', () => {
         'axe-results-with-feedback-url': axeResultsWithFeedbackURL,
         'axe-results-with-undefined-feedback-url': axeResultsWithUndefinedFeedbackURL,
         'axe-results-with-ai-issues-and-feedback-url': axeResultsWithAiIssuesFeedbackURL,
+        'axe-results-with-ai-issues-expand-pass-section.input':
+            axeResultsWithAiIssuesExpandPassSection,
+        'axe-results-with-ai-issues-expand-pass-section-by-tag.input':
+            axeResultsWithAiIssuesExpandPassSectionByTag,
     };
 
     describe.each(Object.keys(examples))('with example input "%s"', (exampleName: string) => {

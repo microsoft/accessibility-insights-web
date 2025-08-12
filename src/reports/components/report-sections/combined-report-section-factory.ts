@@ -17,7 +17,10 @@ import { RulesResultsContainer } from 'reports/components/report-sections/rules-
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
 import { SummaryReportHeaderSection } from 'reports/components/report-sections/summary-report-header-section';
 import { SummaryReportHead } from 'reports/components/summary-report-head';
-import { UrlResultCounts } from 'reports/package/accessibilityInsightsReport';
+import {
+    ExpandPassSectionParameter,
+    UrlResultCounts,
+} from 'reports/package/accessibilityInsightsReport';
 import { FooterTextForService } from 'reports/package/footer-text-for-service';
 import { AutomatedChecksTitleSection } from './automated-checks-title-section';
 import { BodySection } from './body-section';
@@ -35,6 +38,7 @@ export type CombinedReportSectionProps = BaseSummaryReportSectionProps &
         sectionHeadingLevel: HeadingLevel;
         getCopyToClipboardScript: () => string;
         feedbackURL?: string;
+        expandPassSectionDetails?: ExpandPassSectionParameter;
     };
 
 export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSectionProps> = {

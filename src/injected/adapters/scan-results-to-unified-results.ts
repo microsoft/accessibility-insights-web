@@ -26,6 +26,7 @@ export class ConvertScanResultsToUnifiedResults {
     constructor(
         private readonly uuidGenerator: UUIDGenerator,
         private readonly getFixResolution: ResolutionCreator,
+        private readonly getPassResolution: ResolutionCreator,
         private readonly getCheckResolution: ResolutionCreator,
         private readonly extractRelatedSelectors: RelatedSelectorExtractor,
     ) {}
@@ -51,7 +52,7 @@ export class ConvertScanResultsToUnifiedResults {
             ...this.createUnifiedResultsFromRuleResults(
                 scanResults.passes,
                 'pass',
-                this.getFixResolution,
+                this.getPassResolution,
             ),
         ];
     };
