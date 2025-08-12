@@ -63,7 +63,6 @@ exports[`DetailsListIssuesView should return issues table with scanning to false
         },
       ],
       "inapplicable": [],
-      "incomplete": [],
       "pass": [],
       "unknown": [],
     },
