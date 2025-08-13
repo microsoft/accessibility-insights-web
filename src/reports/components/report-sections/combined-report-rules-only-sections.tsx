@@ -63,3 +63,8 @@ export const CombinedReportNotApplicableSection = makeCombinedReportRulesOnlySec
     outcomeType: 'inapplicable',
     title: 'Not applicable rules',
 });
+
+export const CombinedReportIncompleteSection = makeCombinedReportRulesOnlySection({
+    outcomeType: 'incomplete',
+    title: 'Incomplete rules',
+});

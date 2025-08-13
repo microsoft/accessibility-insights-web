@@ -54,6 +54,11 @@ export class ConvertScanResultsToUnifiedResults {
                 'pass',
                 this.getPassResolution,
             ),
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.incomplete,
+                'incomplete',
+                this.getFixResolution,
+            )
         ];
     };
 
