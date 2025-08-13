@@ -55,7 +55,7 @@ export class ConvertScanResultsToUnifiedResults {
             ),
             ...this.createUnifiedResultsFromRuleResults(
                 scanResults.incomplete,
-                'unknown',
+                'incomplete',
                 this.getFixResolution,
             )
         ];
