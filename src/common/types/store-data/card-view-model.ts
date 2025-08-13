@@ -34,5 +34,4 @@ export const AllRuleResultStatuses: CardRuleResultStatus[] = [
     'fail',
     'unknown',
     'inapplicable',
-    'incomplete'
 ];
