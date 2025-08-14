@@ -5,6 +5,7 @@ import {
     FailedUrlsSection,
     FailedUrlsSectionDeps,
 } from 'reports/components/report-sections/failed-urls-section';
+import { IncompleteUrlsSection } from 'reports/components/report-sections/incomplete-urls-section';
 import { NotScannedUrlsSection } from 'reports/components/report-sections/not-scanned-urls-section';
 import { PassedUrlsSection } from 'reports/components/report-sections/passed-urls-section';
 import { ResultsByUrlContainer } from 'reports/components/report-sections/results-by-url-container';
@@ -38,6 +39,7 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     ResultsContainer: ResultsByUrlContainer,
     FailedInstancesSection: FailedUrlsSection,
     PassedChecksSection: PassedUrlsSection,
+    IncompleteChecksSection: IncompleteUrlsSection,
     NotApplicableChecksSection: NotScannedUrlsSection,
     FooterSection: ReportFooter,
     FooterText: FooterTextForService,

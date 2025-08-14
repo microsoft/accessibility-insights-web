@@ -45,6 +45,7 @@ declare namespace AccessibilityInsightsReport {
         failed: SummaryScanResult[],
         passed: SummaryScanResult[],
         unscannable: SummaryScanError[],
+        incomplete: SummaryScanResult[],
     };
 
     export type SummaryReportParameters = {
