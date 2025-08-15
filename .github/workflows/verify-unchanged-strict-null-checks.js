@@ -9,9 +9,9 @@
 //
 // This serves as a reminder for humans to update strict null checks when they add files.
 
+const child_process = require('child_process');
 const path = require('path');
 const process = require('process');
-const child_process = require('child_process');
 
 const lockfilePath = path.join(__dirname, '..', '..', 'tsconfig.strictNullChecks.json');
 

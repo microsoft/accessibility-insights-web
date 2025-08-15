@@ -19,7 +19,7 @@ export interface PreviewFeaturesPanelProps {
 }
 
 export class PreviewFeaturesPanel extends React.Component<PreviewFeaturesPanelProps> {
-    public render(): JSX.Element {
+    public render(): any {
         return (
             <GenericPanel
                 headerText="Preview features"
