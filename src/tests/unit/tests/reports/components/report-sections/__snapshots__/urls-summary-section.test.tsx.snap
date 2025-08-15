@@ -16,9 +16,9 @@ exports[`UrlsSummarySection renders 1`] = `
      total URLs scanned
     <mock-outcomesummarybar
       alloutcometypes="fail,unscannable,pass"
-      iconstyleinverted="true"
+      iconstyleinverted=""
       outcomestats="[object Object]"
-      textlabel="true"
+      textlabel=""
     />
     <div
       class="failureInstances"

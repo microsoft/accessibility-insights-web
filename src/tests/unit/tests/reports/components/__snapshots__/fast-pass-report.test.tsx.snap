@@ -12,7 +12,6 @@ exports[`FastPassReport renders 1`] = `
       results="[object Object]"
       scanmetadata="[object Object]"
       sectionheadinglevel="3"
-      shouldalertfailurescount="false"
     />
     <mock-contentsection>
       <mock-fastpasstitlesection />
@@ -24,7 +23,6 @@ exports[`FastPassReport renders 1`] = `
         results="[object Object]"
         scanmetadata="[object Object]"
         sectionheadinglevel="3"
-        shouldalertfailurescount="false"
       />
       <mock-fastpassreportsummary
         deps="[object Object]"
@@ -34,7 +32,6 @@ exports[`FastPassReport renders 1`] = `
         results="[object Object]"
         scanmetadata="[object Object]"
         sectionheadinglevel="3"
-        shouldalertfailurescount="false"
       />
       <mock-resultscontainer
         deps="[object Object]"
@@ -44,7 +41,6 @@ exports[`FastPassReport renders 1`] = `
         results="[object Object]"
         scanmetadata="[object Object]"
         sectionheadinglevel="3"
-        shouldalertfailurescount="false"
       >
         <mock-fastpassresultstitlesection
           title="Automated checks"
@@ -57,13 +53,12 @@ exports[`FastPassReport renders 1`] = `
           results="[object Object]"
           scanmetadata="[object Object]"
           sectionheadinglevel="3"
-          shouldalertfailurescount="false"
         />
         <mock-fastpassresultstitlesection
           title="Tab stops"
         />
         <mock-tabstopsfailedinstancesection
-          alwaysrendersection="true"
+          alwaysrendersection=""
           deps="[object Object]"
           sectionheadinglevel="3"
           tabstoprequirementstate="[object Object]"
@@ -76,7 +71,6 @@ exports[`FastPassReport renders 1`] = `
           results="[object Object]"
           scanmetadata="[object Object]"
           sectionheadinglevel="3"
-          shouldalertfailurescount="false"
           tabstops="[object Object]"
         />
         <mock-tabstopscheckssectionwrapper
@@ -87,7 +81,6 @@ exports[`FastPassReport renders 1`] = `
           results="[object Object]"
           scanmetadata="[object Object]"
           sectionheadinglevel="3"
-          shouldalertfailurescount="false"
           tabstops="[object Object]"
         />
       </mock-resultscontainer>
@@ -101,7 +94,6 @@ exports[`FastPassReport renders 1`] = `
         results="[object Object]"
         scanmetadata="[object Object]"
         sectionheadinglevel="3"
-        shouldalertfailurescount="false"
       />
     </mock-reportfooter>
   </mock-bodysection>

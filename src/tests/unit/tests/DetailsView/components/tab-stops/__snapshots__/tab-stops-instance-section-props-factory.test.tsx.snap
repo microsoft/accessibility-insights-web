@@ -68,9 +68,13 @@ exports[`TabStopsInstanceSectionPropsFactory for Fastpass creates props as expec
   "buttonAriaLabel": "label",
   "containerAutomationId": "tab-stops-results-group",
   "containerClassName": "collapsibleRequirementDetailsGroup",
-  "content": <TabStopsRequirementInstancesCollapsibleContent
-    instances={
-      [
+  "content": {
+    "$$typeof": Symbol(react.transitional.element),
+    "_owner": null,
+    "_store": {},
+    "key": "keyboard-navigation-requirement-group",
+    "props": {
+      "instances": [
         {
           "description": "test desc 1",
           "id": "test-id-1",
@@ -79,25 +83,28 @@ exports[`TabStopsInstanceSectionPropsFactory for Fastpass creates props as expec
           "description": "test desc 2",
           "id": "test-id-2",
         },
-      ]
-    }
-    onEditButtonClicked={[Function]}
-    onRemoveButtonClicked={[Function]}
-    requirementId="keyboard-navigation"
-  />,
+      ],
+      "onEditButtonClicked": [Function],
+      "onRemoveButtonClicked": [Function],
+      "requirementId": "keyboard-navigation",
+    },
+    "type": [Function],
+  },
   "deps": {
     "tabStopRequirementActionMessageCreator": [typemoq mock object],
     "tabStopsTestViewController": [typemoq mock object],
   },
-  "header": <TabStopsMinimalRequirementHeader
-    deps={
-      {
+  "header": {
+    "$$typeof": Symbol(react.transitional.element),
+    "_owner": null,
+    "_store": {},
+    "key": "keyboard-navigation",
+    "props": {
+      "deps": {
         "tabStopRequirementActionMessageCreator": [typemoq mock object],
         "tabStopsTestViewController": [typemoq mock object],
-      }
-    }
-    requirement={
-      {
+      },
+      "requirement": {
         "description": "test requirement description 1",
         "id": "keyboard-navigation",
         "instances": [
@@ -112,9 +119,10 @@ exports[`TabStopsInstanceSectionPropsFactory for Fastpass creates props as expec
         ],
         "isExpanded": false,
         "name": "test requirement name 1",
-      }
-    }
-  />,
+      },
+    },
+    "type": [Function],
+  },
   "headingLevel": 3,
   "id": "keyboard-navigation",
   "isExpanded": false,
@@ -192,9 +200,13 @@ exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expecte
   "buttonAriaLabel": "label",
   "containerAutomationId": "tab-stops-results-group",
   "containerClassName": "collapsibleRequirementDetailsGroup",
-  "content": <TabStopsReportInstanceList
-    instances={
-      [
+  "content": {
+    "$$typeof": Symbol(react.transitional.element),
+    "_owner": null,
+    "_store": {},
+    "key": "keyboard-navigation-requirement-group",
+    "props": {
+      "instances": [
         {
           "props": [
             {
@@ -207,22 +219,25 @@ exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expecte
             },
           ],
         },
-      ]
-    }
-  />,
+      ],
+    },
+    "type": [Function],
+  },
   "deps": {
     "tabStopRequirementActionMessageCreator": [typemoq mock object],
     "tabStopsTestViewController": [typemoq mock object],
   },
-  "header": <TabStopsMinimalRequirementHeader
-    deps={
-      {
+  "header": {
+    "$$typeof": Symbol(react.transitional.element),
+    "_owner": null,
+    "_store": {},
+    "key": "keyboard-navigation",
+    "props": {
+      "deps": {
         "tabStopRequirementActionMessageCreator": [typemoq mock object],
         "tabStopsTestViewController": [typemoq mock object],
-      }
-    }
-    requirement={
-      {
+      },
+      "requirement": {
         "description": "test requirement description 1",
         "id": "keyboard-navigation",
         "instances": [
@@ -237,9 +252,10 @@ exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expecte
         ],
         "isExpanded": false,
         "name": "test requirement name 1",
-      }
-    }
-  />,
+      },
+    },
+    "type": [Function],
+  },
   "headingLevel": 3,
   "id": "keyboard-navigation",
   "isExpanded": false,
@@ -253,24 +269,32 @@ exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expecte
   "buttonAriaLabel": "label",
   "containerAutomationId": "tab-stops-results-group",
   "containerClassName": "collapsibleRequirementDetailsGroup",
-  "content": <span
-    className="noInstances"
-  >
-    This requirement has failed but no comment has been added
-  </span>,
+  "content": {
+    "$$typeof": Symbol(react.transitional.element),
+    "_owner": null,
+    "_store": {},
+    "key": null,
+    "props": {
+      "children": "This requirement has failed but no comment has been added",
+      "className": "noInstances",
+    },
+    "type": "span",
+  },
   "deps": {
     "tabStopRequirementActionMessageCreator": [typemoq mock object],
     "tabStopsTestViewController": [typemoq mock object],
   },
-  "header": <TabStopsMinimalRequirementHeader
-    deps={
-      {
+  "header": {
+    "$$typeof": Symbol(react.transitional.element),
+    "_owner": null,
+    "_store": {},
+    "key": "keyboard-navigation",
+    "props": {
+      "deps": {
         "tabStopRequirementActionMessageCreator": [typemoq mock object],
         "tabStopsTestViewController": [typemoq mock object],
-      }
-    }
-    requirement={
-      {
+      },
+      "requirement": {
         "description": "test requirement description 1",
         "id": "keyboard-navigation",
         "instances": [
@@ -285,9 +309,10 @@ exports[`TabStopsInstanceSectionPropsFactory for Report creates props as expecte
         ],
         "isExpanded": false,
         "name": "test requirement name 1",
-      }
-    }
-  />,
+      },
+    },
+    "type": [Function],
+  },
   "headingLevel": 3,
   "id": "keyboard-navigation",
   "isExpanded": false,

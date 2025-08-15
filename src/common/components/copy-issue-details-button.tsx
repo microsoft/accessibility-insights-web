@@ -24,10 +24,10 @@ export type CopyIssueDetailsButtonProps = {
 };
 
 export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButtonProps> {
-    private toastRef: React.RefObject<Toast>;
+    private toastRef: React.RefObject<Toast | null>;
     constructor(props: CopyIssueDetailsButtonProps) {
         super(props);
-        this.toastRef = React.createRef();
+        this.toastRef = React.createRef<Toast>();
     }
 
     private getIssueDetailsText(issueData: CreateIssueDetailsTextData): string {

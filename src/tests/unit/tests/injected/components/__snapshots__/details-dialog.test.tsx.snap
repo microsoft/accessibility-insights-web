@@ -4,7 +4,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
 <DocumentFragment>
   <mock-dialog
     dialogcontentprops="[object Object]"
-    hidden="false"
     modalprops="[object Object]"
     title="help"
   >
@@ -54,8 +53,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
         deps="[object Object]"
         devtoolsshortcut="shortcut"
         failedrules="[object Object]"
-        hassecuretargetpage="true"
-        shouldshowinsecureoriginpagemessage="false"
+        hassecuretargetpage=""
       />
       <div
         class="insights-dialog-fix-instruction-container"
@@ -157,13 +155,21 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
 }
 `;
 
-exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
+exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: verify close button 1`] = `
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {},
+  "type": [MockFunction],
+}
+`;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
 <DocumentFragment>
   <mock-dialog
     dialogcontentprops="[object Object]"
-    hidden="false"
     modalprops="[object Object]"
     title="help"
   >
@@ -213,8 +219,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
         deps="[object Object]"
         devtoolsshortcut="shortcut"
         failedrules="[object Object]"
-        hassecuretargetpage="true"
-        shouldshowinsecureoriginpagemessage="false"
+        hassecuretargetpage=""
       />
       <div
         class="insights-dialog-fix-instruction-container"
@@ -316,13 +321,21 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: GuidanceLinks pr
 }
 `;
 
-exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
+exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: verify close button 1`] = `
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {},
+  "type": [MockFunction],
+}
+`;
 
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
 <DocumentFragment>
   <mock-dialog
     dialogcontentprops="[object Object]"
-    hidden="false"
     modalprops="[object Object]"
     title="help"
   >
@@ -372,8 +385,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
         deps="[object Object]"
         devtoolsshortcut="shortcut"
         failedrules="[object Object]"
-        hassecuretargetpage="true"
-        shouldshowinsecureoriginpagemessage="false"
+        hassecuretargetpage=""
       />
       <div
         class="insights-dialog-fix-instruction-container"
@@ -475,4 +487,13 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: GuidanceLinks pro
 }
 `;
 
-exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: verify close button 1`] = `<CancelIcon />`;
+exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: verify close button 1`] = `
+{
+  "$$typeof": Symbol(react.transitional.element),
+  "_owner": null,
+  "_store": {},
+  "key": null,
+  "props": {},
+  "type": [MockFunction],
+}
+`;

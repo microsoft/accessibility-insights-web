@@ -9,7 +9,7 @@ exports[`AdhocStaticTestView render handles content & guidance 1`] = `
     stepstext="Step 0 of 3"
     title="test title"
     togglelabel="test toggle label"
-    visualizationenabled="true"
+    visualizationenabled=""
   />
 </DocumentFragment>
 `;
@@ -22,7 +22,7 @@ exports[`AdhocStaticTestView render handles content & no guidance 1`] = `
     stepstext="Step 0 of 3"
     title="test title"
     togglelabel="test toggle label"
-    visualizationenabled="true"
+    visualizationenabled=""
   />
 </DocumentFragment>
 `;
@@ -35,7 +35,7 @@ exports[`AdhocStaticTestView render handles no content & guidance 1`] = `
     stepstext="Step 0 of 3"
     title="test title"
     togglelabel="test toggle label"
-    visualizationenabled="true"
+    visualizationenabled=""
   />
 </DocumentFragment>
 `;
@@ -47,7 +47,7 @@ exports[`AdhocStaticTestView render handles no content & no guidance 1`] = `
     stepstext="Step 0 of 3"
     title="test title"
     togglelabel="test toggle label"
-    visualizationenabled="true"
+    visualizationenabled=""
   />
 </DocumentFragment>
 `;

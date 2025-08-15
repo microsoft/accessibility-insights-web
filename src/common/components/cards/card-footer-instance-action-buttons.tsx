@@ -39,12 +39,12 @@ export interface CardFooterInstanceActionButtonsProps {
 }
 
 export class CardFooterInstanceActionButtons extends React.Component<CardFooterInstanceActionButtonsProps> {
-    private toastRef: React.RefObject<Toast>;
+    private toastRef: React.RefObject<Toast | null>;
     private fileIssueButtonRef: IButton | null;
     private kebabButtonRef: IButton | null;
     constructor(props: CardFooterInstanceActionButtonsProps) {
         super(props);
-        this.toastRef = React.createRef();
+        this.toastRef = React.createRef<Toast>();
     }
 
     public render(): JSX.Element | null {

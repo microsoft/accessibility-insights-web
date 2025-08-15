@@ -3,7 +3,6 @@
 exports[`StartOverDialog renders when dialogState = assessment 1`] = `
 <DocumentFragment>
   <mock-genericdialog
-    ishidden="false"
     messagetext="Starting over will clear all existing results and clear progress of all tests and requirements. Are you sure you want to start over?"
     primarybuttontext="Start over"
     title="Start over"
@@ -16,7 +15,6 @@ exports[`StartOverDialog renders when dialogState = none 1`] = `<DocumentFragmen
 exports[`StartOverDialog renders when dialogState = test 1`] = `
 <DocumentFragment>
   <mock-genericdialog
-    ishidden="false"
     messagetext="Starting over will clear all existing results from the test name test. Are you sure you want to start over?"
     primarybuttontext="Start over"
     title="Start over"

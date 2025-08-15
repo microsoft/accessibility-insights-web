@@ -77,11 +77,10 @@ export function mockReactComponent<T extends React.ComponentClass<P>, P = any>(
         }
         const mockFunction = mockReactElement<P>(name);
         if (component.prototype && component.prototype.isReactComponent) {
-            const mockClass = (props: P, context?: any, ...rest: any[]) => ({
-                render: () => mockFunction(props, ...rest),
+            const mockClass = (props: P, context?: any) => ({
+                render: () => mockFunction(props),
                 props,
                 context,
-                ...rest,
             });
             (component as any).mockImplementation(mockClass);
         } else {

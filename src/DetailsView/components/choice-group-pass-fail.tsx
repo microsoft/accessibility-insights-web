@@ -62,7 +62,7 @@ export class ChoiceGroupPassFail extends React.Component<ChoiceGroupPassFailProp
                         <IconButton
                             onClick={this.onUndoClicked}
                             iconProps={{ iconName: 'undo' }}
-                            ariaLabel="undo"
+                            aria-label="undo"
                         />
                     )}
                     {this.props.secondaryControls}
@@ -99,7 +99,7 @@ export class ChoiceGroupPassFail extends React.Component<ChoiceGroupPassFailProp
             // When label is not visible, hide the label and provide aria-label
             ...(!this.props.isLabelVisible && {
                 onRenderLabel: () => <></>,
-                ariaLabel: text,
+                ['aria-label']: text,
             }),
             styles: {
                 root: styles.radioButtonOption,

@@ -12,7 +12,6 @@ exports[`ReportBody renders 1`] = `
       scanmetadata="[object Object]"
       sectionfactory="[object Object]"
       sectionheadinglevel="3"
-      shouldalertfailurescount="false"
     />
     <mock-contentsection>
       <mock-automatedcheckstitlesection />
@@ -25,7 +24,6 @@ exports[`ReportBody renders 1`] = `
         scanmetadata="[object Object]"
         sectionfactory="[object Object]"
         sectionheadinglevel="3"
-        shouldalertfailurescount="false"
       />
       <mock-alloutcomessummarysection
         cardsviewdata="[object Object]"
@@ -36,7 +34,6 @@ exports[`ReportBody renders 1`] = `
         scanmetadata="[object Object]"
         sectionfactory="[object Object]"
         sectionheadinglevel="3"
-        shouldalertfailurescount="false"
       />
       <mock-resultscontainer
         cardsviewdata="[object Object]"
@@ -47,7 +44,6 @@ exports[`ReportBody renders 1`] = `
         scanmetadata="[object Object]"
         sectionfactory="[object Object]"
         sectionheadinglevel="3"
-        shouldalertfailurescount="false"
       >
         <mock-failedinstancessection
           cardsviewdata="[object Object]"
@@ -58,7 +54,6 @@ exports[`ReportBody renders 1`] = `
           scanmetadata="[object Object]"
           sectionfactory="[object Object]"
           sectionheadinglevel="3"
-          shouldalertfailurescount="false"
         />
         <mock-passedcheckssection
           cardsviewdata="[object Object]"
@@ -69,7 +64,6 @@ exports[`ReportBody renders 1`] = `
           scanmetadata="[object Object]"
           sectionfactory="[object Object]"
           sectionheadinglevel="3"
-          shouldalertfailurescount="false"
         />
         <mock-notapplicablecheckssection
           cardsviewdata="[object Object]"
@@ -80,7 +74,6 @@ exports[`ReportBody renders 1`] = `
           scanmetadata="[object Object]"
           sectionfactory="[object Object]"
           sectionheadinglevel="3"
-          shouldalertfailurescount="false"
         />
       </mock-resultscontainer>
     </mock-contentsection>
@@ -94,7 +87,6 @@ exports[`ReportBody renders 1`] = `
         scanmetadata="[object Object]"
         sectionfactory="[object Object]"
         sectionheadinglevel="3"
-        shouldalertfailurescount="false"
       />
     </mock-footersection>
   </mock-bodysection>
