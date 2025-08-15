@@ -439,10 +439,6 @@ exports[`DetailsViewBody render render: FluentSideNav props 1`] = `
                     "enabled": false,
                     "stepStatus": {},
                   },
-                  "parsing": {
-                    "enabled": false,
-                    "stepStatus": {},
-                  },
                   "pointerMotion": {
                     "enabled": false,
                     "stepStatus": {},
@@ -817,10 +813,6 @@ exports[`DetailsViewBody render render: FluentSideNav props 1`] = `
                       "enabled": false,
                       "stepStatus": {},
                     },
-                    "parsing": {
-                      "enabled": false,
-                      "stepStatus": {},
-                    },
                     "pointerMotion": {
                       "enabled": false,
                       "stepStatus": {},
@@ -1074,10 +1066,6 @@ exports[`DetailsViewBody render render: FluentSideNav props 1`] = `
           "stepStatus": {},
         },
         "page": {
-          "enabled": false,
-          "stepStatus": {},
-        },
-        "parsing": {
           "enabled": false,
           "stepStatus": {},
         },
@@ -1559,10 +1547,6 @@ exports[`DetailsViewBody render render: QuickAssessCommandBar props 1`] = `
                       "enabled": false,
                       "stepStatus": {},
                     },
-                    "parsing": {
-                      "enabled": false,
-                      "stepStatus": {},
-                    },
                     "pointerMotion": {
                       "enabled": false,
                       "stepStatus": {},
@@ -1816,10 +1800,6 @@ exports[`DetailsViewBody render render: QuickAssessCommandBar props 1`] = `
           "stepStatus": {},
         },
         "page": {
-          "enabled": false,
-          "stepStatus": {},
-        },
-        "parsing": {
           "enabled": false,
           "stepStatus": {},
         },

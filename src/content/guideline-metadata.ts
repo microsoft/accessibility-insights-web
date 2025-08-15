@@ -590,7 +590,7 @@ export const guidelineMetadata = {
         linkName: 'WCAG 4.1.1',
         linkTag: 'WCAG_4_1_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/parsing.html',
-        guidanceTags: [guidanceTags.WCAG_2_2_DEPRECATION],
+        guidanceTags: [],
     },
     'WCAG 4.1.2': {
         number: '4.1.2',
