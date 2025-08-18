@@ -35,6 +35,7 @@ export class CombinedResultsToCardsModelConverter {
             pass: passedCards,
             inapplicable: inapplicableCards,
             unknown: [],
+            incomplete: []
         };
     
         return {
