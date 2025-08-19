@@ -33,5 +33,5 @@ export const AllRuleResultStatuses: CardRuleResultStatus[] = [
     'pass',
     'fail',
     'unknown',
-    'inapplicable'
+    'inapplicable',
 ];

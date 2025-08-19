@@ -56,13 +56,6 @@ describe('SummaryResultsReport', () => {
                 errorLogLocation: 'error log file',
             }
         ],
-        incomplete: [
-            {
-                url: `${baseUrl}/incomplete`,
-                numFailures: 0,
-                reportLocation: 'incomplete report link',
-            }
-        ],
     };
 
     const parameters: SummaryReportParameters = {

@@ -20,7 +20,6 @@ describe(FailedUrlsSection.displayName, () => {
     const failed = [{}] as SummaryScanResult[];
     const passed = [{}, {}] as SummaryScanResult[];
     const unscannable = [{}, {}, {}] as SummaryScanError[];
-    const incomplete = [{}] as SummaryScanResult[];
 
     it('renders', () => {
         const props = {
@@ -29,7 +28,6 @@ describe(FailedUrlsSection.displayName, () => {
                 failed,
                 passed,
                 unscannable,
-                incomplete,
             },
         };
         const wrapper = render(<FailedUrlsSection {...props} />);

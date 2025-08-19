@@ -85,13 +85,6 @@ describe('ReportHtmlGenerator', () => {
                     errorLogLocation: 'error log file',
                 },
             ],
-            incomplete: [
-                {
-                    url: `${baseUrl}/incomplete`,
-                    numFailures: 0,
-                    reportLocation: 'incomplete report link',
-                },
-            ],
         };
 
         const sectionProps: ReportBodyProps<SummaryReportSectionProps> = {

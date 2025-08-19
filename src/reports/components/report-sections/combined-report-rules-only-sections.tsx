@@ -24,7 +24,10 @@ const makeCombinedReportRulesOnlySection = (options: {
         'CombinedReportRulesOnlySection',
         ({ deps, cardsViewData, cardSelectionMessageCreator }) => {
             const { outcomeType, title } = options;
-            const cardRuleResults = outcomeType=== 'incomplete' ? cardsViewData.cards['unknown'] : cardsViewData.cards[outcomeType];
+            const cardRuleResults =
+                outcomeType === 'incomplete'
+                    ? cardsViewData.cards['unknown']
+                    : cardsViewData.cards[outcomeType];
             const sectionId = `${outcomeType}-checks-section`;
 
             const CollapsibleContent = deps.collapsibleControl({
