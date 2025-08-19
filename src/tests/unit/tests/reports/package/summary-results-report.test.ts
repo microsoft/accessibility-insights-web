@@ -55,7 +55,7 @@ describe('SummaryResultsReport', () => {
                 errorDescription: 'error description',
                 errorLogLocation: 'error log file',
             }
-        ],
+        ]
     };
 
     const parameters: SummaryReportParameters = {
