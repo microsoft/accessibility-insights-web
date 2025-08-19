@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IncompleteUrlsSection renders 1`] = `
+<DocumentFragment>
+  <mock-collapsibleurlresultsection
+    badgecount="1"
+    containerid="incomplete-urls-section"
+    content="[object Object]"
+    deps="[object Object]"
+    outcometype="incomplete"
+    title="Incomplete URLs"
+  />
+</DocumentFragment>
+`;
+
+exports[`IncompleteUrlsSection renders: CollapsibleUrlResultSection props 1`] = `
+{
+  "badgeCount": 1,
+  "containerId": "incomplete-urls-section",
+  "content": <UrlScanResultsTable
+    id="incomplete-urls-table"
+    results={
+      [
+        {},
+      ]
+    }
+  />,
+  "deps": {},
+  "outcomeType": "incomplete",
+  "title": "Incomplete URLs",
+}
+`;

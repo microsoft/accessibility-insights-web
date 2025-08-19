@@ -3,9 +3,9 @@
 import { render } from '@testing-library/react';
 import * as React from 'react';
 import {
-    NotScannedUrlsSection,
-    NotScannedUrlsSectionDeps,
-} from 'reports/components/report-sections/not-scanned-urls-section';
+    IncompleteUrlsSection,
+    IncompleteUrlsSectionDeps,
+} from 'reports/components/report-sections/incomplete-urls-section';
 import { SummaryScanResult, SummaryScanError } from 'reports/package/accessibilityInsightsReport';
 import { CollapsibleUrlResultSection } from '../../../../../../reports/components/report-sections/collapsible-url-result-section';
 import {
@@ -14,7 +14,7 @@ import {
 } from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../reports/components/report-sections/collapsible-url-result-section');
-describe(NotScannedUrlsSection.displayName, () => {
+describe(IncompleteUrlsSection.displayName, () => {
     mockReactComponents([CollapsibleUrlResultSection]);
     const failed = [{}] as SummaryScanResult[];
     const passed = [{}, {}] as SummaryScanResult[];
@@ -22,7 +22,7 @@ describe(NotScannedUrlsSection.displayName, () => {
     const incomplete = [{}] as SummaryScanResult[];
     it('renders', () => {
         const props = {
-            deps: {} as NotScannedUrlsSectionDeps,
+            deps: {} as IncompleteUrlsSectionDeps,
             results: {
                 failed,
                 passed,
@@ -30,7 +30,7 @@ describe(NotScannedUrlsSection.displayName, () => {
                 incomplete,
             },
         };
-        const renderResult = render(<NotScannedUrlsSection {...props} />);
+        const renderResult = render(<IncompleteUrlsSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();
         expectMockedComponentPropsToMatchSnapshots([CollapsibleUrlResultSection]);

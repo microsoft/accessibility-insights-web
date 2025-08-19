@@ -67,6 +67,7 @@ describe('CombinedResultsReport', () => {
             pass: [],
             inapplicable: [],
             unknown: [],
+            incomplete: [],
         },
     };
 

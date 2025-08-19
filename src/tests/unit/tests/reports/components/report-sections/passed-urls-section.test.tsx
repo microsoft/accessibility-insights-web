@@ -19,6 +19,7 @@ describe(PassedUrlsSection.displayName, () => {
     const failed = [{}] as SummaryScanResult[];
     const passed = [{}, {}] as SummaryScanResult[];
     const unscannable = [{}, {}, {}] as SummaryScanError[];
+    const incomplete = [{}] as SummaryScanResult[];
 
     it('renders', () => {
         const props = {
@@ -27,6 +28,7 @@ describe(PassedUrlsSection.displayName, () => {
                 failed,
                 passed,
                 unscannable,
+                incomplete,
             },
         };
         const renderResult = render(<PassedUrlsSection {...props} />);

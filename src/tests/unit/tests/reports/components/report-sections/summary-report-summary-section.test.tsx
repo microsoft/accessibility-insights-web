@@ -29,10 +29,12 @@ describe('SummaryReportSummarySection', () => {
     ];
     const passed = [{}] as SummaryScanResult[];
     const unscannable = [{}, {}, {}] as SummaryScanError[];
+    const incomplete = [{}] as SummaryScanResult[];
     const results: SummaryScanResults = {
         failed,
         passed,
         unscannable,
+        incomplete,
     };
 
     it('renders', () => {
