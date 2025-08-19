@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScanResults to Unified Results Test automatedChecksConversionForAgentReport works fine when there is no data in scanresults 1`] = `[]`;
+exports[`ScanResults to Unified Results Test automatedChecksConversionForReportPackage works fine when there is no data in scanresults 1`] = `[]`;
 
-exports[`ScanResults to Unified Results Test automatedChecksConversionForAgentReport works with filled up passes and failures value in scan results 1`] = `
+exports[`ScanResults to Unified Results Test automatedChecksConversionForReportPackage works with filled up passes and failures value in scan results 1`] = `
 [
   {
     "descriptors": {

@@ -66,23 +66,23 @@ describe('ScanResults to Unified Results Test', () => {
     });
 
     test.each(nullIdentifiers)(
-        'automatedChecksConversionForAgentReport provides a defined UnifiedResult instance %s',
+        'automatedChecksConversionForReportPackage provides a defined UnifiedResult instance %s',
         scanResultStub => {
             const testSubject = getTestSubject();
-            const unifiedResults = testSubject.automatedChecksConversionForAgentReport(
+            const unifiedResults = testSubject.automatedChecksConversionForReportPackage(
                 scanResultStub as ScanResults,
             );
             expect(unifiedResults).toBeDefined();
         },
     );
 
-    test('automatedChecksConversionForAgentReport works fine when there is no data in scanresults', () => {
+    test('automatedChecksConversionForReportPackage works fine when there is no data in scanresults', () => {
         const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResultsWithNoData();
-        expect(testSubject.automatedChecksConversionForAgentReport(scanResultsStub)).toMatchSnapshot();
+        expect(testSubject.automatedChecksConversionForReportPackage(scanResultsStub)).toMatchSnapshot();
     });
 
-    test('automatedChecksConversionForAgentReport works with filled up passes and failures value in scan results', () => {
+    test('automatedChecksConversionForReportPackage works with filled up passes and failures value in scan results', () => {
         setupResolutionMock(fixResolutionCreatorMock, 'test', passingNode, fixResolutionStub);
         setupResolutionMock(fixResolutionCreatorMock, 'id1', node1, fixResolutionStub);
         setupResolutionMock(fixResolutionCreatorMock, 'id1', node2, fixResolutionStub);
@@ -90,7 +90,7 @@ describe('ScanResults to Unified Results Test', () => {
 
         const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResults();
-        expect(testSubject.automatedChecksConversionForAgentReport(scanResultsStub)).toMatchSnapshot();
+        expect(testSubject.automatedChecksConversionForReportPackage(scanResultsStub)).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });
 

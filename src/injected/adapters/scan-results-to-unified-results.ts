@@ -57,16 +57,16 @@ export class ConvertScanResultsToUnifiedResults {
         ];
     };
 
-    public automatedChecksConversionForAgentReport: ConvertScanResultsToUnifiedResultsDelegate = (
+    public automatedChecksConversionForReportPackage: ConvertScanResultsToUnifiedResultsDelegate = (
         scanResults: ScanResults,
     ): UnifiedResult[] => {
         if (!scanResults) {
             return [];
         }
-        return this.automatedChecksCreateUnifiedResultsFromScanResultsForAgentReport(scanResults);
+        return this.automatedChecksCreateUnifiedResultsFromScanResultsForReportPackage(scanResults);
     };
 
-    private automatedChecksCreateUnifiedResultsFromScanResultsForAgentReport = (
+    private automatedChecksCreateUnifiedResultsFromScanResultsForReportPackage = (
         scanResults: ScanResults,
     ): UnifiedResult[] => {
         return [

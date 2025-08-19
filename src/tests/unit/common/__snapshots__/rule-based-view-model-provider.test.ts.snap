@@ -58,6 +58,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -218,6 +219,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -378,6 +380,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -538,6 +541,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -698,6 +702,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -858,6 +863,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -1018,6 +1024,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -1178,6 +1185,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -1338,6 +1346,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -1498,6 +1507,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -1658,6 +1668,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -1818,6 +1829,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -1978,6 +1990,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -2138,6 +2151,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -2298,6 +2312,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",
@@ -2458,6 +2473,7 @@ exports[`RuleBasedViewModelProvider getCardViewData for combination {"isExpanded
         "url": "stub_url_rule3",
       },
     ],
+    "incomplete": [],
     "pass": [
       {
         "description": "stub_description_rule1",

@@ -103,7 +103,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         getPassResolution,
         getCheckResolution,
         extractRelatedSelectors
-    ).automatedChecksConversionForAgentReport;
+    ).automatedChecksConversionForReportPackage;
 
     const deps: AxeResultsReportDeps = {
         reportHtmlGenerator,
