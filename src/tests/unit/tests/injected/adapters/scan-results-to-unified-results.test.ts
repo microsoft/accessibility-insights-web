@@ -79,7 +79,9 @@ describe('ScanResults to Unified Results Test', () => {
     test('automatedChecksConversionForReportPackage works fine when there is no data in scanresults', () => {
         const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResultsWithNoData();
-        expect(testSubject.automatedChecksConversionForReportPackage(scanResultsStub)).toMatchSnapshot();
+        expect(
+            testSubject.automatedChecksConversionForReportPackage(scanResultsStub),
+        ).toMatchSnapshot();
     });
 
     test('automatedChecksConversionForReportPackage works with filled up passes and failures value in scan results', () => {
@@ -90,7 +92,9 @@ describe('ScanResults to Unified Results Test', () => {
 
         const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResults();
-        expect(testSubject.automatedChecksConversionForReportPackage(scanResultsStub)).toMatchSnapshot();
+        expect(
+            testSubject.automatedChecksConversionForReportPackage(scanResultsStub),
+        ).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });
 

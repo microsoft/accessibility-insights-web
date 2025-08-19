@@ -19,7 +19,9 @@ export type IncompleteUrlsSectionProps = {
 export const IncompleteUrlsSection = NamedFC<IncompleteUrlsSectionProps>(
     'IncompleteUrlsSection',
     ({ results, deps }) => {
-        const table = <UrlScanResultsTable results={results.incomplete} id="incomplete-urls-table" />;
+        const table = (
+            <UrlScanResultsTable results={results.incomplete} id="incomplete-urls-table" />
+        );
 
         return (
             <CollapsibleUrlResultSection

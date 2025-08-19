@@ -514,36 +514,34 @@ export const axeResultsWithAiIssuesWithIncompleteChecks: AxeReportParameters = {
         ],
         incomplete: [
             {
-                "id": "no-keyboard-trap",
-                "impact": null,
-                "tags": [
-                    "wcag212",
-                    "ai-scan",
-                    "preview-feature"
-                ],
-                "description": "Could not fully evaluate keyboard trap scenario due to an error.",
-                "help": "Manual review required. The automated check could not complete.",
-                "helpUrl": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap",
-                "nodes": [
+                id: 'no-keyboard-trap',
+                impact: null,
+                tags: ['wcag212', 'ai-scan', 'preview-feature'],
+                description: 'Could not fully evaluate keyboard trap scenario due to an error.',
+                help: 'Manual review required. The automated check could not complete.',
+                helpUrl: 'https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap',
+                nodes: [
                     {
-                        "html": "",
-                        "impact": null,
-                        "target": [],
-                        "failureSummary": "Could not fully evaluate keyboard trap scenario due to an error.",
-                        "any": [],
-                        "all": [],
-                        "none": [
+                        html: '',
+                        impact: null,
+                        target: [],
+                        failureSummary:
+                            'Could not fully evaluate keyboard trap scenario due to an error.',
+                        any: [],
+                        all: [],
+                        none: [
                             {
-                                "id": "no-keyboard-trap",
-                                "impact": "unknown",
-                                "message": "Could not fully evaluate keyboard trap scenario due to an error.",
-                                "data": null,
-                                "relatedNodes": []
-                            }
-                        ]
-                    }
-                ]
-            }
+                                id: 'no-keyboard-trap',
+                                impact: 'unknown',
+                                message:
+                                    'Could not fully evaluate keyboard trap scenario due to an error.',
+                                data: null,
+                                relatedNodes: [],
+                            },
+                        ],
+                    },
+                ],
+            },
         ],
         passes: [
             {

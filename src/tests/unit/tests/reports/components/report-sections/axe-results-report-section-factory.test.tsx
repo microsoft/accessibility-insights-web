@@ -14,6 +14,8 @@ describe('AxeResultsReportSectionFactory', () => {
     });
 
     it('should have IncompleteChecksSection present', () => {
-        expect(AxeResultsReportSectionFactory.IncompleteChecksSection).toBe(IncompleteChecksSection);
+        expect(AxeResultsReportSectionFactory.IncompleteChecksSection).toBe(
+            IncompleteChecksSection,
+        );
     });
 });

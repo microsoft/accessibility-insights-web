@@ -12,9 +12,9 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { ExpandPassSectionParameter } from '../../package/accessibilityInsightsReport';
+import { IncompleteChecksSectionDeps } from './incomplete-checks-section';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
-import { IncompleteChecksSectionDeps } from './incomplete-checks-section';
 
 export type SectionDeps = NotApplicableChecksSectionDeps &
     CommonInstancesSectionDeps &

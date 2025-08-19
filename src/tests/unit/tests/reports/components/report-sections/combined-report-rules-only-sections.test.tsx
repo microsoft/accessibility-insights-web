@@ -9,7 +9,7 @@ import {
     CombinedReportNotApplicableSection,
     CombinedReportPassedSection,
     CombinedReportRulesOnlySectionProps,
-    CombinedReportIncompleteSection
+    CombinedReportIncompleteSection,
 } from 'reports/components/report-sections/combined-report-rules-only-sections';
 import { RulesOnly } from 'reports/components/report-sections/rules-only';
 import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -69,6 +69,4 @@ describe('CombinedReportRulesOnlySections', () => {
             expect(wrapper.asFragment()).toMatchSnapshot();
         });
     });
-  
-
 });

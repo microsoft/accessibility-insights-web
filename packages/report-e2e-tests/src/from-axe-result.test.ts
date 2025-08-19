@@ -28,7 +28,8 @@ describe('fromAxeResult', () => {
             axeResultsWithAiIssuesExpandPassSection,
         'axe-results-with-ai-issues-expand-pass-section-by-tag.input':
             axeResultsWithAiIssuesExpandPassSectionByTag,
-        'axe-results-with-ai-issues-with-incomplete-checks.input': axeResultsWithAiIssuesWithIncompleteChecks,
+        'axe-results-with-ai-issues-with-incomplete-checks.input':
+            axeResultsWithAiIssuesWithIncompleteChecks,
     };
 
     describe.each(Object.keys(examples))('with example input "%s"', (exampleName: string) => {

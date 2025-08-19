@@ -84,7 +84,7 @@ export class ConvertScanResultsToUnifiedResults {
                 scanResults.incomplete,
                 'unknown',
                 this.getFixResolution,
-            )
+            ),
         ];
     };
 
