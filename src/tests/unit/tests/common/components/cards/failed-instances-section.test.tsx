@@ -25,7 +25,7 @@ describe('FailedInstancesSection', () => {
         pass: [],
         inapplicable: [],
         unknown: [],
-        incomplete:[],
+        incomplete: [],
     };
     const nonEmptyResults: CardRuleResultsByStatus = {
         fail: [],
