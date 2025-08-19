@@ -107,6 +107,7 @@ declare namespace AccessibilityInsightsReport {
         failed: FailuresGroup[],
         passed?: AxeRuleData[],
         notApplicable?: AxeRuleData[],
+        incomplete?: AxeRuleData[]
     }
 
     export type UrlResultCounts = {

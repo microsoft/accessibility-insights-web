@@ -5,7 +5,7 @@ import { InstanceResultStatus, UnifiedResult } from './unified-data-interface';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
-export type CardRuleResultStatus = InstanceResultStatus | 'inapplicable' | 'incomplete';
+export type CardRuleResultStatus = InstanceResultStatus | 'inapplicable';
 export interface CardRuleResult {
     id: string;
     nodes: CardResult[];
@@ -33,6 +33,5 @@ export const AllRuleResultStatuses: CardRuleResultStatus[] = [
     'pass',
     'fail',
     'unknown',
-    'inapplicable',
-    'incomplete',
+    'inapplicable'
 ];

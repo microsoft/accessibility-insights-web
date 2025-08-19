@@ -39,7 +39,6 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     ResultsContainer: ResultsByUrlContainer,
     FailedInstancesSection: FailedUrlsSection,
     PassedChecksSection: PassedUrlsSection,
-    IncompleteChecksSection: IncompleteUrlsSection,
     NotApplicableChecksSection: NotScannedUrlsSection,
     FooterSection: ReportFooter,
     FooterText: FooterTextForService,

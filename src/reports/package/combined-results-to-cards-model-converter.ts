@@ -29,13 +29,13 @@ export class CombinedResultsToCardsModelConverter {
         const passedCards = this.getCardRuleResults(results.passed);
         const inapplicableCards = this.getCardRuleResults(results.notApplicable);
         const failedCards = results.failed.map(this.getFailuresGroupedByRule);
+        const incompleteCards = this.getCardRuleResults(results.incomplete);
         
         const statusResults: CardRuleResultsByStatus = {
             fail: failedCards,
             pass: passedCards,
             inapplicable: inapplicableCards,
-            unknown: [],
-            incomplete: []
+            unknown: incompleteCards,
         };
     
         return {
