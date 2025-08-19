@@ -35,6 +35,7 @@ exports[`TabStopChecksSectionWrapper renders: PassedChecksSection props 1`] = `
         },
       ],
       "inapplicable": [],
+      "incomplete": [],
       "pass": [
         {
           "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",
@@ -130,6 +131,7 @@ exports[`TabStopChecksSectionWrapper renders: PassedChecksSection props 1`] = `
                   },
                 ],
                 "inapplicable": [],
+                "incomplete": [],
                 "pass": [
                   {
                     "description": "All interactive elements can be reached using the Tab and arrow keys. (Partially automated)",

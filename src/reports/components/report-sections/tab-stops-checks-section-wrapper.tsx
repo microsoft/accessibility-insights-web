@@ -46,6 +46,7 @@ export class TabStopsChecksSectionWrapper extends React.Component<TabStopsChecks
                 pass: this.buildCardRuleResults('pass'),
                 unknown: this.buildCardRuleResults('unknown'),
                 inapplicable: [],
+                incomplete: [],
             },
             visualHelperEnabled: false,
             allCardsCollapsed: true,
