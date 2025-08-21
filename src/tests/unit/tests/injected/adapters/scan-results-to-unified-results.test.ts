@@ -66,6 +66,39 @@ describe('ScanResults to Unified Results Test', () => {
     });
 
     test.each(nullIdentifiers)(
+        'automatedChecksConversionForReportPackage provides a defined UnifiedResult instance %s',
+        scanResultStub => {
+            const testSubject = getTestSubject();
+            const unifiedResults = testSubject.automatedChecksConversionForReportPackage(
+                scanResultStub as ScanResults,
+            );
+            expect(unifiedResults).toBeDefined();
+        },
+    );
+
+    test('automatedChecksConversionForReportPackage works fine when there is no data in scanresults', () => {
+        const testSubject = getTestSubject();
+        const scanResultsStub: ScanResults = createTestResultsWithNoData();
+        expect(
+            testSubject.automatedChecksConversionForReportPackage(scanResultsStub),
+        ).toMatchSnapshot();
+    });
+
+    test('automatedChecksConversionForReportPackage works with filled up passes and failures value in scan results', () => {
+        setupResolutionMock(fixResolutionCreatorMock, 'test', passingNode, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id1', node1, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id1', node2, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id2', node3, fixResolutionStub);
+
+        const testSubject = getTestSubject();
+        const scanResultsStub: ScanResults = createTestResults();
+        expect(
+            testSubject.automatedChecksConversionForReportPackage(scanResultsStub),
+        ).toMatchSnapshot();
+        generateGuidMock.verifyAll();
+    });
+
+    test.each(nullIdentifiers)(
         'needsReviewConversion provides a defined UnifiedResult instance %s',
         scanResultStub => {
             const testSubject = getTestSubject();

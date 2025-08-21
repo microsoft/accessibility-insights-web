@@ -35,7 +35,7 @@ export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
             return (
                 <ResultSection
                     deps={props.deps}
-                    title="Passed cheks"
+                    title="Passed checks"
                     results={props.cardsViewData?.cards?.pass}
                     outcomeType="pass"
                     badgeCount={props.cardsViewData?.cards?.pass?.length}

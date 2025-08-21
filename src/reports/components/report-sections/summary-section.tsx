@@ -21,7 +21,7 @@ export const BaseSummarySection = NamedFC<BaseSummarySectionProps>('BaseSummaryS
         }, 0),
         pass: cards.pass.length,
         inapplicable: cards.inapplicable.length,
-        incomplete: 0, // never used
+        incomplete: cards.unknown ? cards.unknown.length : 0,
         review: 0, // never used
     };
 
@@ -41,7 +41,10 @@ export const AllOutcomesSummarySection = NamedFC<SummarySectionProps>(
     'AllOutcomesSummarySection',
     props => {
         return (
-            <BaseSummarySection {...props} outcomeTypesShown={['fail', 'pass', 'inapplicable']} />
+            <BaseSummarySection
+                {...props}
+                outcomeTypesShown={['fail', 'pass', 'incomplete', 'inapplicable']}
+            />
         );
     },
 );

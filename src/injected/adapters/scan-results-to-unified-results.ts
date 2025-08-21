@@ -57,6 +57,37 @@ export class ConvertScanResultsToUnifiedResults {
         ];
     };
 
+    public automatedChecksConversionForReportPackage: ConvertScanResultsToUnifiedResultsDelegate = (
+        scanResults: ScanResults,
+    ): UnifiedResult[] => {
+        if (!scanResults) {
+            return [];
+        }
+        return this.automatedChecksCreateUnifiedResultsFromScanResultsForReportPackage(scanResults);
+    };
+
+    private automatedChecksCreateUnifiedResultsFromScanResultsForReportPackage = (
+        scanResults: ScanResults,
+    ): UnifiedResult[] => {
+        return [
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.violations,
+                'fail',
+                this.getFixResolution,
+            ),
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.passes,
+                'pass',
+                this.getPassResolution,
+            ),
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.incomplete,
+                'unknown',
+                this.getFixResolution,
+            ),
+        ];
+    };
+
     public needsReviewConversion: ConvertScanResultsToUnifiedResultsDelegate = (
         scanResults: ScanResults,
     ): UnifiedResult[] => {

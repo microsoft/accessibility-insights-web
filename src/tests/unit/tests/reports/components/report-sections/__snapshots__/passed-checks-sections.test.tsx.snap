@@ -9,7 +9,7 @@ exports[`PassedChecksSection render details when expandedPassSection prop is tru
     results="[object Object],[object Object],[object Object]"
     sectionheadinglevel="3"
     targetappinfo="[object Object]"
-    title="Passed cheks"
+    title="Passed checks"
   />
 </DocumentFragment>
 `;

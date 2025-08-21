@@ -9,6 +9,7 @@ import {
     CombinedReportNotApplicableSection,
     CombinedReportPassedSection,
     CombinedReportRulesOnlySectionProps,
+    CombinedReportIncompleteSection,
 } from 'reports/components/report-sections/combined-report-rules-only-sections';
 import { RulesOnly } from 'reports/components/report-sections/rules-only';
 import { mockReactComponents } from 'tests/unit/mock-helpers/mock-module-helpers';
@@ -59,6 +60,12 @@ describe('CombinedReportRulesOnlySections', () => {
     describe('CombinedReportNotApplicableSection', () => {
         it('renders', () => {
             const wrapper = render(<CombinedReportNotApplicableSection {...props} />);
+            expect(wrapper.asFragment()).toMatchSnapshot();
+        });
+    });
+    describe('CombinedReportIncompleteSection', () => {
+        it('renders', () => {
+            const wrapper = render(<CombinedReportIncompleteSection {...props} />);
             expect(wrapper.asFragment()).toMatchSnapshot();
         });
     });
