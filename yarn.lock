@@ -3091,7 +3091,7 @@ __metadata:
     case-sensitive-paths-webpack-plugin: ^2.4.0
     classnames: ^2.5.1
     codecov: ^3.8.3
-    commander: ^11.1.0
+    commander: ^14.0.1
     core-js-bundle: ^3.35.0
     cross-env: ^7.0.3
     css-loader: ^6.10.0
@@ -4209,10 +4209,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "commander@npm:11.1.0"
-  checksum: fd1a8557c6b5b622c89ecdfde703242ab7db3b628ea5d1755784c79b8e7cb0d74d65b4a262289b533359cd58e1bfc0bf50245dfbcd2954682a6f367c828b79ef
+"commander@npm:^14.0.1":
+  version: 14.0.1
+  resolution: "commander@npm:14.0.1"
+  checksum: a072b714e73a69cc85e68f588a3c910f330e5b31861fe1f9abc9312e81bdca193676fc1fea99f739b4237ee903751fb20b4adcdd409ec4c4df0964792e9daa47
   languageName: node
   linkType: hard
 
