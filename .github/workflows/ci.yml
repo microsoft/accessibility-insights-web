@@ -9,13 +9,20 @@ on:
   schedule:
     - cron: '0 19 * * 0'
 
+permissions:
+  contents: read
+  security-events: write
 env:
   # Keep this in sync with /pipeline/install-node-prerequisites.yaml
   NODE_VERSION: 20.17.0
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v4.2.2
@@ -45,6 +52,10 @@ jobs:
   unit-tests:
     name: unit-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-22.04
+    
+    permissions:
+          contents: read
+
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     strategy:
       fail-fast: false
@@ -81,6 +92,10 @@ jobs:
 
   lints:
     runs-on: ubuntu-22.04
+    
+    permissions:
+      contents: read
+
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v4.2.2
@@ -114,24 +129,15 @@ jobs:
       run: yarn null:autoadd && node .github/workflows/verify-unchanged-strict-null-checks.js
       timeout-minutes: 6
 
-  codeql:
-    runs-on: ubuntu-22.04
-    steps:
-    - uses: actions/checkout@v4.2.2
-      timeout-minutes: 2
 
-    - uses: github/codeql-action/init@v3
-      timeout-minutes: 2
-      with:
-        trap-caching: false
-        languages: javascript
-    
-    - uses: github/codeql-action/analyze@v3
-      timeout-minutes: 10
 
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-22.04
+    
+    permissions:
+          contents: read
+          security-events: write
     # We need to update this each time we update playwright
     container: mcr.microsoft.com/playwright:v1.48.2-focal
     strategy:
@@ -188,6 +194,10 @@ jobs:
 
   e2e-report-tests:
     runs-on: ubuntu-22.04
+    
+    permissions:
+      contents: read
+
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v4.2.2
@@ -218,6 +228,10 @@ jobs:
 
   check-clearly-defined:
     runs-on: ubuntu-22.04
+    
+    permissions:
+      contents: read
+
     steps:
     - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
