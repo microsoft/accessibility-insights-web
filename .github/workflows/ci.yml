@@ -15,7 +15,11 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v4.2.2
@@ -45,6 +49,10 @@ jobs:
   unit-tests:
     name: unit-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-22.04
+    
+    permissions:
+          contents: read
+
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     strategy:
       fail-fast: false
@@ -81,6 +89,10 @@ jobs:
 
   lints:
     runs-on: ubuntu-22.04
+    
+    permissions:
+      contents: read
+
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v4.2.2
@@ -116,6 +128,11 @@ jobs:
 
   codeql:
     runs-on: ubuntu-22.04
+    
+    permissions:
+      contents: read
+      security-events: write
+
     steps:
     - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
@@ -132,6 +149,10 @@ jobs:
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-22.04
+    
+    permissions:
+          contents: read
+
     # We need to update this each time we update playwright
     container: mcr.microsoft.com/playwright:v1.48.2-focal
     strategy:
@@ -188,6 +209,10 @@ jobs:
 
   e2e-report-tests:
     runs-on: ubuntu-22.04
+    
+    permissions:
+      contents: read
+
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v4.2.2
@@ -218,6 +243,10 @@ jobs:
 
   check-clearly-defined:
     runs-on: ubuntu-22.04
+    
+    permissions:
+      contents: read
+
     steps:
     - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
