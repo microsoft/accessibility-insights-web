@@ -128,14 +128,18 @@ jobs:
 
   codeql:
     runs-on: ubuntu-22.04
-    
+    needs: build
     permissions:
       contents: read
       security-events: write
 
     steps:
     - uses: actions/checkout@v4.2.2
-      timeout-minutes: 2
+    - uses: github/codeql-action/init@v3
+  
+      with:
+        languages: javascript
+        queries: +security-extend
 
     - uses: github/codeql-action/init@v3
       timeout-minutes: 2
@@ -152,7 +156,7 @@ jobs:
     
     permissions:
           contents: read
-
+          security-events: write
     # We need to update this each time we update playwright
     container: mcr.microsoft.com/playwright:v1.48.2-focal
     strategy:
