@@ -15,6 +15,7 @@ variables:
     windowsImage: 'windows-2022-secure'
     macImage: 'macOS-14'
     linuxImage: 'ubuntu-22.04-secure'
+    Codeql.Enabled: true
 
 extends:
     template: pipeline/build-shared.yaml@self
