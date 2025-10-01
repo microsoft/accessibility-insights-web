@@ -114,6 +114,16 @@ jobs:
       run: yarn null:autoadd && node .github/workflows/verify-unchanged-strict-null-checks.js
       timeout-minutes: 6
 
+  codeql:
+    runs-on: ubuntu-22.04
+    steps:
+        - uses: actions/checkout@v4
+        - uses: github/codeql-action/init@v3
+          with:
+           config-file: ./.github/codeql/codeql-config.yml
+           trap-caching: false
+        - uses: github/codeql-action/analyze@v3
+  
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-22.04
