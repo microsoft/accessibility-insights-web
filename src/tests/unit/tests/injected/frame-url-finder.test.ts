@@ -46,7 +46,7 @@ describe(FrameUrlFinder, () => {
     });
 
     it('finds the current window location href at the current target level', async () => {
-        parentFrameMessenger.window.location = { href: 'http://parent.frame' } as Location;
+        (parentFrameMessenger.window.location as Location).href = 'http://parent.frame';
 
         const result = await parentFrameUrlFinder.getTargetFrameUrl(['#parent-element']);
 
@@ -54,7 +54,7 @@ describe(FrameUrlFinder, () => {
     });
 
     it('finds the child window location href if target points to a child', async () => {
-        childFrameMessenger.window.location = { href: 'http://child.frame' } as Location;
+        (childFrameMessenger.window.location as Location).href = 'http://child.frame';
 
         const result = await parentFrameUrlFinder.getTargetFrameUrl([
             '#child-frame',

@@ -334,7 +334,6 @@ module.exports = function (grunt) {
             grunt.log.writeln(`embedding style in ${src}`);
             const fileOptions = { options: { encoding: 'utf8' } };
             const input = grunt.file.read(src, fileOptions);
-            // eslint-disable-next-line no-useless-escape
             const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
             const output = input.replace(rex, (_, cssName) => {
                 const cssFile = path.resolve(cssPath, cssName);

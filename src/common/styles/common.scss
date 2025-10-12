@@ -27,7 +27,8 @@ $details-view-command-bar-border-height: 1px !default;
 $details-view-left-nav-width: 250px !default;
 $details-view-left-nav-border-width: 1px;
 $details-view-total-header-height: (
-    #{$details-view-command-bar-border-height} + #{$details-view-command-bar-height} + #{$details-view-header-bar-height}
+    #{$details-view-command-bar-border-height} + #{$details-view-command-bar-height} +
+        #{$details-view-header-bar-height}
 );
 $fast-pass-right-panel-margin-right: 24px !default;
 $fast-pass-right-panel-margin-left: 24px !default;

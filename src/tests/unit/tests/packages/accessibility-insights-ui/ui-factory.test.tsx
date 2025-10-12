@@ -8,11 +8,11 @@ import { NarrowModeThresholds } from 'common/narrow-mode-thresholds';
 import { UIFactory } from 'packages/accessibility-insights-ui/ui-factory';
 import * as React from 'react';
 import { GuidanceTitle } from 'views/content/guidance-title';
+import { ContentView } from '../../../../../views/content/content-view';
 import {
     expectMockedComponentPropsToMatchSnapshots,
     mockReactComponents,
 } from '../../../mock-helpers/mock-module-helpers';
-import { ContentView } from '../../../../../views/content/content-view';
 jest.mock('../../../../../views/content/content-view');
 
 describe('UIFactory', () => {
