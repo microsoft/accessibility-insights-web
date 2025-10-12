@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const baseModule = require('./eslintrc.base');
-module.exports = {
+import baseModule from './eslint.config.mjs';
+
+export default {
     ...baseModule,
     root: true,
     ignorePatterns: [
