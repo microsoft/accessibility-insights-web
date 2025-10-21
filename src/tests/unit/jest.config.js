@@ -22,6 +22,6 @@ module.exports = {
     rootDir: rootDir,
     roots: [currentDir],
     setupFiles: [`${currentDir}/jest-setup.ts`],
-    testEnvironment: 'jsdom',
+    testEnvironment: `${currentDir}/FixJSDOMEnvironment.ts`,
     testMatch: [`${currentDir}/**/*.test.(ts|tsx|js)`],
 };
