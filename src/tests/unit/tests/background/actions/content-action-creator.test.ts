@@ -63,7 +63,7 @@ describe('ContentActionMessageCreator', () => {
             const errorMessage = 'error on showDetailsView';
             detailsViewControllerMock
                 .setup(controller => controller.showDetailsView(tabId))
-                .returns(() => Promise.reject(errorMessage))
+                .returns(() => Promise.reject(new Error(errorMessage)))
                 .verifiable(Times.once());
 
             testSubject.registerCallbacks();

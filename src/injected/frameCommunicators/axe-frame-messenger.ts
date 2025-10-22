@@ -71,11 +71,10 @@ export class AxeFrameMessenger implements axe.FrameMessenger {
             // This behavior of passing an Error object if the respondee throws an error is missing
             // from the axe-core frame-messenger documentation, but it matches the default axe-core
             // behavior.
-            const messageOrError: any | Error =
+            const messageOrError: any =
                 payload.type === 'success'
                     ? payload.message
                     : new Error('An axe-core error occurred in a child frame.');
-
             const keepalive = payload.type === 'success' ? payload.keepalive : false;
 
             try {

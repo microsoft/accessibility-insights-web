@@ -92,7 +92,7 @@ describe('BackchannelWindowMessageTranslator', () => {
     test('tryCreateBackchannelReceiveMessage with valid input', () => {
         const backchannelRequestMessage = testSubject.tryCreateBackchannelReceiveMessage(`{
             "messageId": "${validMessageId}",
-            "message": "${validMessageProperty}",
+            "message": "${JSON.stringify(validMessageProperty)}",
             "messageStableSignature": "${MESSAGE_STABLE_SIGNATURE}",
             "messageSourceId": "${translatorSourceId}",
             "messageVersion": "${messageVersion}"
@@ -115,53 +115,53 @@ describe('BackchannelWindowMessageTranslator', () => {
         ${'message with only messageVersion present'}         | ${`{ "messageVersion": "${messageVersion}" }`}
         ${'message with only messageStableSignature present'} | ${`{ "messageStableSignature": "${MESSAGE_STABLE_SIGNATURE}" }`}
         ${'message with only messageId missing'} | ${`{
-    "message": "${validMessageProperty}",
+    "message": "${JSON.stringify(validMessageProperty)}",
     "messageStableSignature": "${MESSAGE_STABLE_SIGNATURE}",
     "messageSourceId": "${translatorSourceId}",
     "messageVersion": "${messageVersion}"
 }`}
         ${'message with messageStableSignature missing'} | ${`{
     "messageId": "${validMessageId}",
-    "message": "${validMessageProperty}",
+    "message": "${JSON.stringify(validMessageProperty)}",
     "messageSourceId": "${translatorSourceId}",
     "messageVersion": "${messageVersion}"
 }`}
         ${'message with messageSourceId missing'} | ${`{
     "messageId": "${validMessageId}",
-    "message": "${validMessageProperty}",
+    "message": "${JSON.stringify(validMessageProperty)}",
     "messageStableSignature": "${MESSAGE_STABLE_SIGNATURE}",
     "messageVersion": "${messageVersion}"
 }`}
         ${'message with messageVersion missing'} | ${`{
     "messageId": "${validMessageId}",
-    "message": "${validMessageProperty}",
+    "message": "${JSON.stringify(validMessageProperty)}",
     "messageStableSignature": "${MESSAGE_STABLE_SIGNATURE}",
     "messageSourceId": "${translatorSourceId}"
 }`}
         ${'message with messageId malformed'} | ${`{
     "messageId": 0,
-    "message": "${validMessageProperty}",
+    "message": "${JSON.stringify(validMessageProperty)}",
     "messageStableSignature": "${MESSAGE_STABLE_SIGNATURE}",
     "messageSourceId": "${translatorSourceId}",
     "messageVersion": "${messageVersion}"
 }`}
         ${'message with messageStableSignature malformed'} | ${`{
     "messageId": "${validMessageId}",
-    "message": "${validMessageProperty}",
+    "message": "${JSON.stringify(validMessageProperty)}",
     "messageStableSignature": "unknown stable signature",
     "messageSourceId": "${translatorSourceId}",
     "messageVersion": "${messageVersion}"
 }`}
         ${'message with unknown messageSourceId'} | ${`{
     "messageId": "${validMessageId}",
-    "message": "${validMessageProperty}",
+    "message": "${JSON.stringify(validMessageProperty)}",
     "messageStableSignature": "${MESSAGE_STABLE_SIGNATURE}",
     "messageSourceId": "unknown source id",
     "messageVersion": "${messageVersion}"
 }`}
         ${'message with unknown messageVersion'} | ${`{
     "messageId": "${validMessageId}",
-    "message": "${validMessageProperty}",
+    "message": "${JSON.stringify(validMessageProperty)}",
     "messageStableSignature": "${MESSAGE_STABLE_SIGNATURE}",
     "messageSourceId": "${translatorSourceId}",
     "messageVersion": "unknown version"

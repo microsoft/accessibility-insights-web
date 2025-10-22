@@ -29,7 +29,7 @@ describe(`promiseFactory`, () => {
 
         it("propagates an underlying Promise's reject", async () => {
             const reason = 'rejecting!';
-            const rejecting = testObject.timeout(Promise.reject(reason), 10);
+            const rejecting = testObject.timeout(Promise.reject(new Error(reason)), 10);
 
             await expect(rejecting).rejects.toEqual(reason);
         });
@@ -75,11 +75,11 @@ describe(`promiseFactory`, () => {
             const reason = 'rejecting!';
             const rejecting = new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    reject(reason);
+                    reject(new Error(reason));
                 }, 10);
             }).catch(error => {
                 //jest expects caught rejections
-                expect(error).toEqual(reason);
+                expect(error).toEqual(new Error(reason));
                 return reason;
             });
             const result = testObject.delay(rejecting, 20);

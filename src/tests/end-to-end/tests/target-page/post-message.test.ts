@@ -246,7 +246,7 @@ describe('Target Page window.postMessage behavior', () => {
         );
     }
 
-    function tryJsonParse(maybeJsonString: any): any | null {
+    function tryJsonParse(maybeJsonString: any): any {
         if (typeof maybeJsonString !== 'string') {
             return null;
         }

@@ -35,7 +35,7 @@ describe('ShortcutsPageController', () => {
             .setup(adapter =>
                 adapter.createActiveTab(ShortcutsPageController.configureCommandTabUrl),
             )
-            .returns(() => Promise.reject(errorMessage))
+            .returns(() => Promise.reject(new Error(errorMessage)))
             .verifiable(Times.once());
 
         await expect(testSubject.openShortcutsTab()).rejects.toEqual(errorMessage);

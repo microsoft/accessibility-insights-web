@@ -183,7 +183,7 @@ describe(TabActionCreator, () => {
             const dummyError = 'switch to tab dummy error';
             browserAdapterMock
                 .setup(adapter => adapter.switchToTab(tabIdStub))
-                .returns(() => Promise.reject(dummyError));
+                .returns(() => Promise.reject(new Error(dummyError)));
 
             testSubject.registerCallbacks();
 

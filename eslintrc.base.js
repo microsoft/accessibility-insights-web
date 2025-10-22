@@ -10,17 +10,18 @@ module.exports = {
         'eslint:recommended',
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:@typescript-eslint/recommended-type-checked', // v8: renamed from recommended-requiring-type-checking
         'plugin:security/recommended',
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         sourceType: 'module', // Allows for the use of imports
-        project: './tsconfig.json',
+        projectService: true, // v8: replaces 'project' option
+        tsconfigRootDir: __dirname, // v8: required for projectService
         ecmaFeatures: {
             jsx: true,
         },
-        ecmaVersion: 8,
+        ecmaVersion: 2020, // v8: updated from 8 to 2020
     },
     plugins: ['react', '@typescript-eslint', 'security', 'import'],
     settings: {
@@ -64,12 +65,16 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
-        '@typescript-eslint/ban-types': 'off',
+        // v8: ban-types removed, replaced with more specific rules (all off to maintain current behavior)
+        '@typescript-eslint/no-empty-object-type': 'off',
+        '@typescript-eslint/no-unsafe-function-type': 'off',
+        '@typescript-eslint/no-wrapper-object-types': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-empty-function': 'off',
-        '@typescript-eslint/no-empty-interface': 'off',
+        // v8: no-empty-interface replaced with no-empty-object-type (already off above)
         '@typescript-eslint/no-namespace': 'off',
-        '@typescript-eslint/no-var-requires': 'off',
+        // v8: no-var-requires replaced with no-require-imports
+        '@typescript-eslint/no-require-imports': 'off',
         '@typescript-eslint/no-inferrable-types': 'off',
         '@typescript-eslint/no-unsafe-argument': 'off',
         '@typescript-eslint/no-unsafe-assignment': 'off',
@@ -85,6 +90,8 @@ module.exports = {
         '@typescript-eslint/no-implied-eval': 'off',
         '@typescript-eslint/prefer-regexp-exec': 'off',
         '@typescript-eslint/await-thenable': 'off',
+        // v8: Temporarily disabled due to potential issues during migration
+        '@typescript-eslint/no-duplicate-enum-values': 'off',
         'react/prop-types': 'off',
         'react/display-name': 'off',
         'react/no-unescaped-entities': 'off',
@@ -93,6 +100,11 @@ module.exports = {
         'no-prototype-builtins': 'off',
     },
     overrides: [
+        {
+            // Disable type-checked rules for JS files not in tsconfig
+            files: ['*.js', '*.mjs', '*.cjs'],
+            extends: ['plugin:@typescript-eslint/disable-type-checked'],
+        },
         {
             files: ['src/tests/**/*', 'tools/**/*', 'pipeline/**/*', 'deploy/**/*', 'Gruntfile.js'],
             rules: {

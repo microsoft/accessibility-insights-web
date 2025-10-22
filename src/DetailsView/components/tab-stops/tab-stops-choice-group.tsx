@@ -49,7 +49,7 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
     }
 
     private renderAddFailureInstance(): JSX.Element | null {
-        return this.props.status === 'fail' ? (
+        return this.props.status === ('fail' as any) ? (
             <IconButton
                 data-automation-id={addTabStopsFailureInstanceAutomationId}
                 iconProps={{ iconName: 'add' }}

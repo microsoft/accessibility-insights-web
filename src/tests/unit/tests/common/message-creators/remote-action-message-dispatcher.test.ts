@@ -53,7 +53,9 @@ describe('RemoteActionMessageDispatcher', () => {
         it('propagates errors from postMessage to logger.error', () => {
             const expectedError = 'expected error';
             postMessageMock.reset();
-            postMessageMock.setup(m => m(It.isAny())).returns(() => Promise.reject(expectedError));
+            postMessageMock
+                .setup(m => m(It.isAny()))
+                .returns(() => Promise.reject(new Error(expectedError)));
             const testObject = new RemoteActionMessageDispatcher(
                 postMessageMock.object,
                 null,
@@ -96,7 +98,9 @@ describe('RemoteActionMessageDispatcher', () => {
         it('propagates errors from postMessage to logger.error', async () => {
             const expectedError = 'expected error';
             postMessageMock.reset();
-            postMessageMock.setup(m => m(It.isAny())).returns(() => Promise.reject(expectedError));
+            postMessageMock
+                .setup(m => m(It.isAny()))
+                .returns(() => Promise.reject(new Error(expectedError)));
             const testObject = new RemoteActionMessageDispatcher(
                 postMessageMock.object,
                 null,

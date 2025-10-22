@@ -51,7 +51,7 @@ describe('UsageLoggerTest', () => {
 
         storageAdapterMock
             .setup(m => m.setUserData(It.isValue(expected)))
-            .returns(_ => Promise.reject({ message: errorMessage }));
+            .returns(_ => Promise.reject(new Error(errorMessage)));
 
         usageLogger.record();
 

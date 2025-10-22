@@ -138,10 +138,9 @@ describe('Details View -> Overview Page', () => {
     it.each([true, false])(
         'should show correct number of items in export dropdown menu with codepen feature flag = %s',
         async codepenFlag => {
-            codepenFlag
+            void (codepenFlag
                 ? await backgroundContext.enableFeatureFlag('exportReportOptions')
-                : await backgroundContext.disableFeatureFlag('exportReportOptions');
-
+                : await backgroundContext.disableFeatureFlag('exportReportOptions'));
             await overviewPage.openExportDropdown();
             const items = (await overviewPage.countMenuItems()).valueOf();
             await overviewPage.closeExportDialog();

@@ -86,7 +86,7 @@ describe('NotificationCreator', () => {
 
                 browserAdapterMock
                     .setup(adapter => adapter.createNotification(It.isValue(notificationOptions)))
-                    .returns(() => Promise.reject(errorMessage))
+                    .returns(() => Promise.reject(new Error(errorMessage)))
                     .verifiable(Times.once());
 
                 testObject.createNotification(notificationMessage);

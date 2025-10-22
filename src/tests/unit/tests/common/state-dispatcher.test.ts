@@ -157,7 +157,9 @@ describe('StateDispatcherTest', () => {
         stateDispatcher.initialize();
 
         broadcastMock.reset();
-        broadcastMock.setup(m => m(It.isAny())).returns(() => Promise.reject(expectedError));
+        broadcastMock
+            .setup(m => m(It.isAny()))
+            .returns(() => Promise.reject(new Error(expectedError)));
 
         privateDispatcher.call(stateDispatcher);
         await flushSettledPromises();

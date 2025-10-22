@@ -59,7 +59,7 @@ export class AssessmentCardSelectionMessageCreatorWrapper implements CardSelecti
         const assessmentStoreState = this.assessmentStore.getState();
 
         if (assessmentStoreState == null) {
-            throw NO_ASSESSMENT_STORE_DATA_ERROR;
+            throw new Error(NO_ASSESSMENT_STORE_DATA_ERROR);
         }
 
         const selectedTest = assessmentStoreState.assessmentNavState.selectedTestType;

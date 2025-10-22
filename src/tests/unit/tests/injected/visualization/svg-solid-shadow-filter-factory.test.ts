@@ -170,7 +170,15 @@ class FeElementAsserter<TParams> {
     ): void {
         forOwn(this.expectedParams, (value, name) => {
             const actualValue = actualElement.getAttributeNS(null, name);
-            expect(actualValue).toEqual(value.toString());
+            let expectedValue: string;
+            if (value == null) {
+                expectedValue = '';
+            } else if (typeof value === 'object') {
+                expectedValue = JSON.stringify(value);
+            } else {
+                expectedValue = String(value as string | number | boolean);
+            }
+            expect(actualValue).toEqual(expectedValue);
         });
     }
 

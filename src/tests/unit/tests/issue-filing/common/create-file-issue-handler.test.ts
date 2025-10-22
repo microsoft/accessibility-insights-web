@@ -74,7 +74,7 @@ describe('createFileIssueHandler', () => {
 
         browserAdapterMock
             .setup(adapter => adapter.createActiveTab(urlStub))
-            .returns(() => Promise.reject(errorMessage));
+            .returns(() => Promise.reject(new Error(errorMessage)));
 
         const testSubject = createFileIssueHandler(
             urlProviderMock.object,

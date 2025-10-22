@@ -71,7 +71,7 @@ export interface TestStepResult {
 }
 
 export interface AssessmentNavState {
-    selectedTestSubview: RequirementName | GettingStarted;
+    selectedTestSubview: RequirementName; // GettingStarted is redundant as RequirementName is string
     selectedTestType: VisualizationType;
     expandedTestType?: VisualizationType;
 }

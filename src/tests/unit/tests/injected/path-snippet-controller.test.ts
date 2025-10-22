@@ -94,7 +94,7 @@ describe('InspectControllerTests', () => {
 
         elementFinderMock
             .setup(finder => finder.processRequest(expectedMessage))
-            .returns(() => Promise.reject())
+            .returns(() => Promise.reject(new Error('Element finder rejected')))
             .verifiable(Times.once());
         addCorrespondingSnippetMock.setup(sm => sm(errorMessage)).verifiable(Times.once());
 

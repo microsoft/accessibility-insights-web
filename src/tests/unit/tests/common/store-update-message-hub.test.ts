@@ -46,7 +46,7 @@ describe(StoreUpdateMessageHub, () => {
         testSubject = new StoreUpdateMessageHub(mockDispatcher.object, tabId);
 
         // Simulating setting up the listener to avoid error check in registerStoreUpdateListener
-        testSubject.handleBrowserMessage;
+        void testSubject.handleBrowserMessage;
 
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
     });
@@ -120,7 +120,7 @@ describe(StoreUpdateMessageHub, () => {
 
     it('Calls registered listener if not created with a tab id', async () => {
         testSubject = new StoreUpdateMessageHub(mockDispatcher.object);
-        testSubject.handleBrowserMessage;
+        void testSubject.handleBrowserMessage;
         testSubject.registerStoreUpdateListener(storeId, registeredListener);
 
         const response = testSubject.handleBrowserMessage(tabContextMessage);

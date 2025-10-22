@@ -95,7 +95,7 @@ describe('InspectActionCreator', () => {
             const dummyError = 'test-dummy-error';
             browserAdapterMock
                 .setup(adapter => adapter.switchToTab(tabId))
-                .returns(() => Promise.reject(dummyError));
+                .returns(() => Promise.reject(new Error(dummyError)));
 
             testSubject.registerCallbacks();
 

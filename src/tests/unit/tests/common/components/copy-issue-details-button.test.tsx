@@ -90,10 +90,9 @@ describe('CopyIssueDetailsButtonTest', () => {
             navigatorUtilsMock
                 .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
                 .returns(() => {
-                    return Promise.reject();
+                    return Promise.reject(new Error('Copy to clipboard failed'));
                 })
                 .verifiable(Times.once());
-
             useOriginalReactElements('@fluentui/react', ['DefaultButton']);
             const renderResult = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
@@ -110,11 +109,10 @@ describe('CopyIssueDetailsButtonTest', () => {
             navigatorUtilsMock
                 .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
                 .returns(() => {
-                    return Promise.reject();
+                    return Promise.reject(new Error('Copy to clipboard failed'));
                 })
                 .verifiable(Times.once());
             props.hasSecureTargetPage = false;
-
             useOriginalReactElements('@fluentui/react', ['DefaultButton']);
             const renderResult = render(<CopyIssueDetailsButton {...props} />);
             onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());

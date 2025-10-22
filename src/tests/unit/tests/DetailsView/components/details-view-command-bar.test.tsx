@@ -452,7 +452,7 @@ describe('DetailsViewCommandBar', () => {
             useOriginalReactElements('DetailsView/components/quick-assess-to-assessment-dialog', [
                 'QuickAssessToAssessmentDialog',
             ]);
-            useOriginalReactElements;
+            void useOriginalReactElements;
             const props = getProps(['CommandBar']);
             let setRef;
             transferToAssessmentButtonFactoryMock

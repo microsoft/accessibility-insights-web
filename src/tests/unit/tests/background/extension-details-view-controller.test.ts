@@ -189,7 +189,7 @@ describe('ExtensionDetailsViewController', () => {
                 const errorMessage = 'switchToTab failed with dummy error';
                 browserAdapterMock
                     .setup(adapter => adapter.switchToTab(detailsViewTabId))
-                    .returns(() => Promise.reject(errorMessage));
+                    .returns(() => Promise.reject(new Error(errorMessage)));
 
                 await expect(testSubject.showDetailsView(targetTabId)).rejects.toEqual(
                     errorMessage,
@@ -211,7 +211,7 @@ describe('ExtensionDetailsViewController', () => {
                             '/DetailsView/detailsView.html?tabId=' + targetTabId,
                         ),
                     )
-                    .returns(() => Promise.reject(errorMessage))
+                    .returns(() => Promise.reject(new Error(errorMessage)))
                     .verifiable(Times.once());
 
                 await expect(testSubject.showDetailsView(targetTabId)).rejects.toEqual(

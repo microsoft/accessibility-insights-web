@@ -551,10 +551,7 @@ describe('ActionCreatorTest', () => {
                     'PreviewFeatures',
                 )
                 .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
-                .setupShowDetailsView(
-                    tabId,
-                    Promise.reject({ message: showDetailsViewErrorMessage }),
-                )
+                .setupShowDetailsView(tabId, Promise.reject(new Error(showDetailsViewErrorMessage)))
                 .setupLogError(showDetailsViewErrorMessage);
 
             const actionCreator = validator.buildActionCreator();

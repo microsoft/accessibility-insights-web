@@ -133,7 +133,7 @@ export class BackchannelWindowMessageTranslator {
         );
     }
 
-    private tryParseJson(rawWindowMessage: unknown): any | null {
+    private tryParseJson(rawWindowMessage: unknown): any {
         if (typeof rawWindowMessage !== 'string') {
             return null;
         }

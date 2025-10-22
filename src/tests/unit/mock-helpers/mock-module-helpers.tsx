@@ -97,9 +97,9 @@ export function mockReactComponent<T extends React.ComponentClass<P>, P = any>(
 }
 
 function expectMockedComponentPropsToMatchSnapshot(component: any, snapshotName?: string) {
-    snapshotName !== undefined
+    void (snapshotName !== undefined
         ? expect(getMockComponentClassPropsForCall(component as any)).toMatchSnapshot(snapshotName)
-        : expect(getMockComponentClassPropsForCall(component as any)).toMatchSnapshot();
+        : expect(getMockComponentClassPropsForCall(component as any)).toMatchSnapshot());
 }
 
 function mockReactElement<P = any>(elementName: string) {

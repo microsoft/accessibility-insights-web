@@ -73,7 +73,7 @@ describe('BrowserPermissionsTracker', () => {
             const browserPermissions = false;
             await testSubject.initialize();
 
-            setupBrowserAdapterMock(Promise.reject());
+            setupBrowserAdapterMock(Promise.reject(new Error('Permission request rejected')));
 
             await browserAdapterMock.addPermissions();
 
@@ -101,7 +101,7 @@ describe('BrowserPermissionsTracker', () => {
             const browserPermissions = false;
             await testSubject.initialize();
 
-            setupBrowserAdapterMock(Promise.reject());
+            setupBrowserAdapterMock(Promise.reject(new Error('Permission request rejected')));
 
             await browserAdapterMock.removePermissions();
 

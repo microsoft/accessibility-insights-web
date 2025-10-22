@@ -60,7 +60,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .returns(() => Promise.resolve([{ id: 1 } as Tabs.Tab]));
             browserAdapterMock
                 .setup(ba => ba.sendMessageToFrames(It.isAny()))
-                .returns(() => Promise.reject(testError));
+                .returns(() => Promise.reject(new Error(testError.message)));
             browserAdapterMock
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
                 .returns(() => Promise.resolve());
@@ -86,7 +86,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .returns(() => Promise.resolve());
             browserAdapterMock
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
-                .returns(() => Promise.reject(testError));
+                .returns(() => Promise.reject(new Error(testError.message)));
 
             loggerMock.setup(m => m.error(expectedMessage, It.isAny())).verifiable(Times.once());
 
@@ -107,7 +107,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .returns(() => Promise.resolve());
             browserAdapterMock
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
-                .returns(() => Promise.reject(testError));
+                .returns(() => Promise.reject(new Error(testError.message)));
 
             loggerMock.setup(m => m.error(It.isAny(), It.isAny())).verifiable(Times.never());
 
@@ -145,7 +145,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
 
             browserAdapterMock
                 .setup(ba => ba.sendMessageToFrames(It.isAny()))
-                .returns(() => Promise.reject(testError));
+                .returns(() => Promise.reject(new Error(testError.message)));
             browserAdapterMock
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
                 .returns(() => Promise.resolve());
@@ -168,7 +168,7 @@ describe('BrowserMessageBroadcasterFactory', () => {
                 .returns(() => Promise.resolve());
             browserAdapterMock
                 .setup(ba => ba.sendMessageToTab(It.isAny(), It.isAny()))
-                .returns(() => Promise.reject(testError));
+                .returns(() => Promise.reject(new Error(testError.message)));
 
             loggerMock.setup(m => m.error(expectedMessage, It.isAny())).verifiable(Times.once());
 

@@ -24,7 +24,7 @@ describe('InitialVisualizationStoreDataGenerator.generateInitialState', () => {
         } as VisualizationConfiguration;
     };
     const typeToTestModeMap = visualizationTypes.map(vt =>
-        vt < 5 ? 'adhoc' : vt > 10 ? 'assessments' : 'quickAssess',
+        (vt as number) < 5 ? 'adhoc' : (vt as number) > 10 ? 'assessments' : 'quickAssess',
     );
 
     beforeEach(() => {

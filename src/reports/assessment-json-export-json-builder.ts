@@ -121,7 +121,12 @@ function processFailedDetailsData(
             requirement.instances.forEach(instance => {
                 const currentInstance: AssessmentJsonExportFailureInstance = {};
                 instance.props.forEach(prop => {
-                    const propValueStr = prop.value?.toString() ?? '';
+                    const propValueStr =
+                        typeof prop.value === 'string' || typeof prop.value === 'number'
+                            ? String(prop.value)
+                            : prop.value
+                              ? JSON.stringify(prop.value)
+                              : '';
                     if (prop.key === 'Comment') {
                         currentInstance.comment = propValueStr;
                     } else if (prop.key === 'Path') {

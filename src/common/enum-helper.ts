@@ -19,7 +19,7 @@ export class EnumHelper {
         }
 
         if (!foundNumericKey) {
-            throw new Error(`No 'number' key found on ${enumType}`);
+            throw new Error(`No 'number' key found on ${JSON.stringify(enumType)}`);
         }
 
         return result;

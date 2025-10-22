@@ -26,6 +26,6 @@ describe('EnumHelperTest', () => {
     test('string enum', () => {
         const action = () => EnumHelper.getNumericValues<TestStringEnum>(TestStringEnum);
 
-        expect(action).toThrowError(`No 'number' key found on ${TestStringEnum}`);
+        expect(action).toThrowError(`No 'number' key found on ${JSON.stringify(TestStringEnum)}`);
     });
 });

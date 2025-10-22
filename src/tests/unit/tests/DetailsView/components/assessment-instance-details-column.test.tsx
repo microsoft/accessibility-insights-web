@@ -79,7 +79,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
             }),
         );
 
-        props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false);
+        void (props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false));
         expect(!isNull(wrapper.container.querySelector('.ms-TooltipHost'))).toBe(true);
         expect(
             !isNull(wrapper.container.querySelector(`.${styles.assessmentInstanceTextContent}`)),

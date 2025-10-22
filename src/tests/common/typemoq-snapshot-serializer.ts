@@ -17,7 +17,7 @@ const typemoqProxyIdValue = 'BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8';
 
 function readingPropertyThrowsMockException(val: Function): boolean {
     try {
-        val['___any_property'];
+        void val['___any_property'];
     } catch (e: any) {
         if (e instanceof MockException) {
             return true;

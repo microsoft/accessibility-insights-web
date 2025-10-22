@@ -181,7 +181,7 @@ describe('FailureInstancePanelControlTest', () => {
         expectMockedComponentPropsToMatchSnapshots([ActionButton, FlaggedComponent]);
         fireEvent.click(renderResult.getByRole('button'));
 
-        expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull;
+        expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull();
         const failureDescription = renderResult.getByLabelText('Comment') as HTMLInputElement;
         expect(failureDescription.value).toEqual(props.failureInstance.failureDescription);
         const pathField = renderResult.getByLabelText('CSS Selector') as HTMLInputElement;
@@ -212,7 +212,7 @@ describe('FailureInstancePanelControlTest', () => {
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(textField, { target: { value: description } });
         fireEvent.click(renderResult.getByText('Save'));
-        expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull;
+        expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull();
         editInstanceMock.verifyAll();
         clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });
@@ -237,7 +237,7 @@ describe('FailureInstancePanelControlTest', () => {
         const textField = renderResult.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(textField, { target: { value: description } });
         fireEvent.click(renderResult.getByText('Add failed instance'));
-        expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull;
+        expect(renderResult.container.querySelector('.failureInstancePanel')).not.toBeNull();
         addInstanceMock.verifyAll();
         clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });

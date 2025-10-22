@@ -66,9 +66,7 @@ export function ContentProvider(root: ContentTree): ContentProvider {
 
     const notFoundPage = (path?: string) => create(() => <h1>Cannot find {path}</h1>);
 
-    function isContentPageComponent(
-        leaf: any | ContentPageComponent,
-    ): leaf is ContentPageComponent {
+    function isContentPageComponent(leaf: any): leaf is ContentPageComponent {
         return (
             leaf &&
             (leaf as ContentPageComponent).displayName &&

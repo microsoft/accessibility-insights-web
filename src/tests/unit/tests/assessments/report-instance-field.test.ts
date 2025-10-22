@@ -99,11 +99,11 @@ describe('ReportInstanceField', () => {
     });
 
     describe('fromPropertyBagFunction', () => {
-        const field = ReportInstanceField.fromPropertyBagFunction<Bag>(
-            'Three',
-            'three',
-            b => b.one + ' + ' + b.two,
-        );
+        const field = ReportInstanceField.fromPropertyBagFunction<Bag>('Three', 'three', b => {
+            const oneStr = typeof b.one === 'object' ? JSON.stringify(b.one) : String(b.one ?? '');
+            const twoStr = typeof b.two === 'object' ? JSON.stringify(b.two) : String(b.two ?? '');
+            return oneStr + ' + ' + twoStr;
+        });
 
         it('returns key', () => {
             expect(field.key).toEqual('three');

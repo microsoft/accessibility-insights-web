@@ -111,7 +111,7 @@ describe('DebugToolsTelemetryClient', () => {
             telemetryDataFactoryMock.setup(factory => factory.getData()).returns(() => stubAppData);
             browserAdapterMock
                 .setup(b => b.sendRuntimeMessage(It.isAny()))
-                .returns(() => Promise.reject('error from sendRuntimeMessage'))
+                .returns(() => Promise.reject(new Error('error from sendRuntimeMessage')))
                 .verifiable();
 
             testSubject.trackEvent(eventName, eventProperties);

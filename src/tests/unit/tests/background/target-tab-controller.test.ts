@@ -71,7 +71,7 @@ describe('TargetTabControllerTest', () => {
             const errorMessage = 'switchToTab failed error message';
             browserAdapterMock
                 .setup(adapter => adapter.switchToTab(tabId))
-                .returns(() => Promise.reject(errorMessage));
+                .returns(() => Promise.reject(new Error(errorMessage)));
 
             await expect(testSubject.showTargetTab(tabId, test, step)).rejects.toEqual(
                 errorMessage,

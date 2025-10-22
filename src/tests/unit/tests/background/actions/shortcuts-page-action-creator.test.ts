@@ -83,10 +83,9 @@ describe('ShortcutsPageActionCreator', () => {
                 const errorMessage = 'dummy error';
                 shortcutsPageControllerMock
                     .setup(controller => controller.openShortcutsTab())
-                    .returns(() => Promise.reject(errorMessage));
+                    .returns(() => Promise.reject(new Error(errorMessage)));
 
                 testSubject.registerCallbacks();
-
                 await flushSettledPromises();
 
                 telemetryHandlerMock.verify(
