@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 const fs = require('fs');
 const path = require('path');
-const commander = require('commander');
+const { Command } = require('commander');
 const simpleGit = require('simple-git');
 
 const main = async () => {
@@ -127,7 +127,7 @@ const generateCSVContent = (gitLogs, version) => {
 };
 
 const parseCommandLineArguments = () => {
-    const program = new commander.Command();
+    const program = new Command();
 
     program
         .requiredOption(
