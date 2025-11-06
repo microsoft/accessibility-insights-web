@@ -42,7 +42,8 @@ test('my accessibility test', async () => {
     const html = reporter.fromAxeResult({
         results,
         description: "description of report",
-        serviceName: "service name",
+        serviceName: "service name", // Optional, read from `testRunner` if not provided
+        serviceVersion: "1.0.0", // Optional, read from `testRunner` if not provided
         scanContext: {
             pageTitle: await testPage.title(),
         }
