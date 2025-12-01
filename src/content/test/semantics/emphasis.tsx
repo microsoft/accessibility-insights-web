@@ -4,16 +4,24 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <p>Words and phrases that are visually emphasized must be contained within semantically correct elements.</p>
+        <p>
+            Words and phrases that are visually emphasized to convey semantic meaning or importance must be contained within semantically
+            correct elements.
+        </p>
         <h2>Why it matters</h2>
         <p>
             People with good vision can infer from visual styling that a word or phrase is especially important. For example, it might be
             displayed using bold or italic font. Unless the visually emphasized word or phrase is also contained in a semantically correct
             element, people who use screen readers won't know that it's emphasized.
         </p>
+        <p>
+            However, not all bold or italic text requires semantic markup. Visual variations in font-weight or style used purely for design
+            purposes, such as distinguishing labels from values or creating visual hierarchy, do not need to be marked up semantically
+            unless they convey emphasis or importance.
+        </p>
         <h2>How to fix</h2>
         <p>
-            Contain the emphasized word or phrase in a semantically correct element:
+            When visual emphasis conveys semantic meaning, contain the emphasized word or phrase in a semantically correct element:
             <ul>
                 <li>
                     Use the <Markup.Code>{'<em>'}</Markup.Code> element when you want to stress a word or phrase within the context of a
@@ -26,6 +34,10 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     bold text when they skim the page.
                 </li>
             </ul>
+        </p>
+        <p>
+            Do not use <Markup.Code>{'<strong>'}</Markup.Code> or <Markup.Code>{'<em>'}</Markup.Code> for text that is bold or italic purely
+            for visual design, such as labels, identifiers, or creating visual separation between parts of a heading.
         </p>
         <Markup.PassFail
             failText={
@@ -42,6 +54,17 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 </p>
             }
             passExample={`<p>These carrots are [<em>]not[</em>] crunchy!</p>`}
+        />
+        <Markup.PassFail
+            failText={
+                <p>
+                    The bold "Warning:" label might appear to require a <Markup.Code>{'<strong>'}</Markup.Code> element, but it's actually
+                    used as a visual label, not to convey emphasis.
+                </p>
+            }
+            failExample={`<p>[<strong>]Warning:[</strong>] This action cannot be undone.</p>`}
+            passText={<p>The word "cannot" is what's being emphasized to convey importance, while "Warning:" serves as a label.</p>}
+            passExample={`<p><span class="label">Warning:</span> This action [<strong>]cannot[</strong>] be undone.</p>`}
         />
         <h2>More examples</h2>
         <h3>WCAG success criteria</h3>
