@@ -16,27 +16,18 @@ export interface AssessmentSummaryDetailsProps {
 export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryDetailsProps> {
     public render(): JSX.Element {
         return (
-            <div role="table" className={styles.assessmentSummaryDetails}>
-                <div role="rowgroup" className={styles.assessmentSummaryDetailsBody}>
-                    {this.getTestDetailsList(this.props.testSummaries)}
-                </div>
-            </div>
+            <ul className={styles.assessmentSummaryDetails}>
+                {this.getTestDetailsList(this.props.testSummaries)}
+            </ul>
         );
     }
 
     private getTestDetailsList(summaries: AssessmentSummaryReportModel[]): JSX.Element[] {
         return summaries.map(summary => (
-            <div
-                role="row"
-                key={summary.displayName}
-                className={styles.assessmentSummaryDetailsRow}
-            >
+            <li key={summary.displayName} className={styles.assessmentSummaryDetailsRow}>
                 <div className={styles.testSummary}>
-                    <div role="cell" className={styles.testSummaryDisplayName}>
-                        {summary.displayName}
-                    </div>
+                    <div className={styles.testSummaryDisplayName}>{summary.displayName}</div>
                     <div
-                        role="cell"
                         className={styles.testSummaryStatus}
                         data-automation-id={testSummaryStatusAutomationId(summary.displayName)}
                     >
@@ -47,7 +38,7 @@ export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryD
                         )}
                     </div>
                 </div>
-            </div>
+            </li>
         ));
     }
 }

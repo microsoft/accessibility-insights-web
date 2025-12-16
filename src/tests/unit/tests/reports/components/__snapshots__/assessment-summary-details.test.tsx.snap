@@ -2,153 +2,123 @@
 
 exports[`AssessmentSummaryDetails render Correct composition 1`] = `
 <DocumentFragment>
-  <div
+  <ul
     class="assessmentSummaryDetails"
-    role="table"
   >
-    <div
-      class="assessmentSummaryDetailsBody"
-      role="rowgroup"
+    <li
+      class="assessmentSummaryDetailsRow"
     >
       <div
-        class="assessmentSummaryDetailsRow"
-        role="row"
+        class="testSummary"
       >
         <div
-          class="testSummary"
+          class="testSummaryDisplayName"
         >
-          <div
-            class="testSummaryDisplayName"
-            role="cell"
-          >
-            Assessment1
-          </div>
-          <div
-            class="testSummaryStatus"
-            data-automation-id="test-summary-status/Assessment1"
-            role="cell"
-          >
-            <mock-outcomeiconset
-              displayname="Assessment1"
-              fail="2"
-              incomplete="1"
-              pass="1"
-            />
-          </div>
+          Assessment1
+        </div>
+        <div
+          class="testSummaryStatus"
+          data-automation-id="test-summary-status/Assessment1"
+        >
+          <mock-outcomeiconset
+            displayname="Assessment1"
+            fail="2"
+            incomplete="1"
+            pass="1"
+          />
         </div>
       </div>
+    </li>
+    <li
+      class="assessmentSummaryDetailsRow"
+    >
       <div
-        class="assessmentSummaryDetailsRow"
-        role="row"
+        class="testSummary"
       >
         <div
-          class="testSummary"
+          class="testSummaryDisplayName"
         >
-          <div
-            class="testSummaryDisplayName"
-            role="cell"
-          >
-            Assessment2
-          </div>
-          <div
-            class="testSummaryStatus"
-            data-automation-id="test-summary-status/Assessment2"
-            role="cell"
-          >
-            <mock-outcomeiconset
-              displayname="Assessment2"
-              fail="1"
-              incomplete="1"
-              pass="0"
-            />
-          </div>
+          Assessment2
+        </div>
+        <div
+          class="testSummaryStatus"
+          data-automation-id="test-summary-status/Assessment2"
+        >
+          <mock-outcomeiconset
+            displayname="Assessment2"
+            fail="1"
+            incomplete="1"
+            pass="0"
+          />
         </div>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </DocumentFragment>
 `;
 
 exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1`] = `
 <DocumentFragment>
-  <div
+  <ul
     class="assessmentSummaryDetails"
-    role="table"
   >
-    <div
-      class="assessmentSummaryDetailsBody"
-      role="rowgroup"
+    <li
+      class="assessmentSummaryDetailsRow"
     >
       <div
-        class="assessmentSummaryDetailsRow"
-        role="row"
+        class="testSummary"
       >
         <div
-          class="testSummary"
+          class="testSummaryDisplayName"
         >
-          <div
-            class="testSummaryDisplayName"
-            role="cell"
-          >
-            test
-          </div>
-          <div
-            class="testSummaryStatus"
-            data-automation-id="test-summary-status/test"
-            role="cell"
-          >
-            <mock-outcomechipset
-              displayname="test"
-              fail="0"
-              incomplete="8"
-              pass="0"
-            />
-          </div>
+          test
+        </div>
+        <div
+          class="testSummaryStatus"
+          data-automation-id="test-summary-status/test"
+        >
+          <mock-outcomechipset
+            displayname="test"
+            fail="0"
+            incomplete="8"
+            pass="0"
+          />
         </div>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </DocumentFragment>
 `;
 
 exports[`AssessmentSummaryDetails render Renders an OutcomeIconSet for 7 items 1`] = `
 <DocumentFragment>
-  <div
+  <ul
     class="assessmentSummaryDetails"
-    role="table"
   >
-    <div
-      class="assessmentSummaryDetailsBody"
-      role="rowgroup"
+    <li
+      class="assessmentSummaryDetailsRow"
     >
       <div
-        class="assessmentSummaryDetailsRow"
-        role="row"
+        class="testSummary"
       >
         <div
-          class="testSummary"
+          class="testSummaryDisplayName"
         >
-          <div
-            class="testSummaryDisplayName"
-            role="cell"
-          >
-            test
-          </div>
-          <div
-            class="testSummaryStatus"
-            data-automation-id="test-summary-status/test"
-            role="cell"
-          >
-            <mock-outcomeiconset
-              displayname="test"
-              fail="0"
-              incomplete="7"
-              pass="0"
-            />
-          </div>
+          test
+        </div>
+        <div
+          class="testSummaryStatus"
+          data-automation-id="test-summary-status/test"
+        >
+          <mock-outcomeiconset
+            displayname="test"
+            fail="0"
+            incomplete="7"
+            pass="0"
+          />
         </div>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </DocumentFragment>
 `;
