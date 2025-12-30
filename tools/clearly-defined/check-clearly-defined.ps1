@@ -150,6 +150,19 @@ function GetUri([string]$branchName) {
     if ($elements.Length -eq 3) {
         $rawNamespace = "-"
         $fullPackage = $elements[2]
+    } elseif ($elements.Length -eq 4) {
+        $commonSubdirectories = @("deploy", "packages", "src", "lib", "tools", "scripts", "client", "server", "app", "apps")
+        $possibleNamespace = $elements[2]
+        
+        if ($commonSubdirectories -contains $possibleNamespace) {
+            # This is a subdirectory path, not a namespace
+            $rawNamespace = "-"
+            $fullPackage = $elements[3]
+        } else {
+            # This is  a real npm namespace (e.g., "types" for @types)
+            $rawNamespace = $elements[2]
+            $fullPackage = $elements[3]
+        }
     } else {
         $rawNamespace = $elements[2]
         $fullPackage = $elements[3]
