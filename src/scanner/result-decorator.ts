@@ -23,7 +23,7 @@ export class ResultDecorator {
     public decorateResults(results: Axe.AxeResults): ScanResults {
         const scanResults: ScanResults = {
             passes: this.decorateAxeRuleResults(results.passes),
-            violations: this.decorateAxeRuleResults(results.violations),
+            violations: this.decorateAxeRuleResults(results.violations, false, true),
             inapplicable: this.decorateAxeRuleResults(results.inapplicable, true),
             incomplete: this.decorateAxeRuleResults(results.incomplete),
             timestamp: results.timestamp,
@@ -38,14 +38,21 @@ export class ResultDecorator {
     private decorateAxeRuleResults(
         ruleResults: AxeRule[],
         isInapplicable: boolean = false,
+        isViolation: boolean = false,
     ): RuleResult[] {
         return ruleResults.reduce((filteredArray: RuleResult[], result: AxeRule) => {
             this.messageDecorator.decorateResultWithMessages(result);
-            const processedResult = this.ruleProcessor.suppressChecksByMessages(
+            let processedResult = this.ruleProcessor.suppressChecksByMessages(
                 result,
                 !isInapplicable,
             );
 
+            if (processedResult != null) {
+                if (isViolation) {
+                    processedResult =
+                        this.ruleProcessor.suppressFluentUITabsterResult(processedResult);
+                }
+            }
             if (processedResult != null) {
                 filteredArray.push({
                     ...processedResult,

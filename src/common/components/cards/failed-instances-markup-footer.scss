@@ -1,0 +1,141 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/common.scss';
+@import '../../../common/styles/fonts.scss';
+
+.markup-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--neutral-2, #f8f8f8);
+    min-height: 48px;
+    padding-top: 0;
+    padding-right: 20px;
+    padding-bottom: 0;
+    padding-left: 20px;
+    border-top: 0.5px solid var(--card-footer-border, #dedede);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    margin-top: 0;
+}
+
+.feedback-text {
+    font-size: 14px;
+    color: var(--secondary-text, rgb(0 0 0 / 70%));
+    margin-right: 12px;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.buttons-group-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.buttons-group-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    position: relative;
+    margin-left: auto;
+}
+
+.feedback-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-60, #666);
+    text-decoration: none;
+    font-size: 14px;
+    gap: 6px;
+}
+
+.feedback-button:hover {
+    background-color: var(--neutral-alpha-4, rgb(0 0 0 / 4%));
+}
+
+.feedback-button span {
+    margin-left: 6px;
+    font-size: 14px;
+}
+
+.ai-content-label {
+    background-color: var(--neutral-10, #e6e6e6);
+    color: var(--neutral-60, #666);
+    font-size: 12px;
+    padding-top: 4px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.notification-container {
+    position: relative;
+    height: 0;
+    width: 0;
+}
+
+.copy-notification {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    background-color: var(--neutral-80, #333);
+    color: white;
+    padding-top: 6px;
+    padding-right: 12px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    animation: fade-in-out 2s ease-in-out;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+    white-space: nowrap;
+    z-index: 100;
+    display: none;
+
+    &.visible {
+        display: inline-block;
+    }
+}
+
+.hidden-content {
+    display: none;
+}
+
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}

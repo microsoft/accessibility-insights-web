@@ -27,6 +27,25 @@ export class RuleProcessor {
         return rule;
     }
 
+    public suppressFluentUITabsterResult(result: AxeRule): AxeRule {
+        /**
+         * [False Positive] aria-hidden-focus on elements with data-tabster-dummy #7598
+         * Resolves a known issue with Fluent UI, which uses Tabster to manage focus.
+         * Tabster inserts hidden but focusable elements into the DOM, which can trigger
+         * false positives for the 'aria-hidden-focus' rule in WCP accessibility scans.
+         */
+
+        if (result.id === 'aria-hidden-focus') {
+            result.nodes = result.nodes.filter(node => {
+                return !(
+                    node.html.includes('data-tabster-dummy') ||
+                    node.html.includes('data-is-focus-trap-zone-bumper="true"')
+                );
+            });
+        }
+        return result;
+    }
+
     private normalizeMessage(message: string): string {
         return message.toLowerCase().trim();
     }

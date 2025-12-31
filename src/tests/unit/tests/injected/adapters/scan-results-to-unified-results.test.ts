@@ -12,6 +12,7 @@ import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 describe('ScanResults to Unified Results Test', () => {
     let generateGuidMock: IMock<() => string>;
     let fixResolutionCreatorMock: IMock<ResolutionCreator>;
+    let passResolutionCreatorMock: IMock<ResolutionCreator>;
     let checkResolutionCreatorMock: IMock<ResolutionCreator>;
     let extractRelatedSelectorsStub: RelatedSelectorExtractor;
 
@@ -23,6 +24,7 @@ describe('ScanResults to Unified Results Test', () => {
             .returns(() => guidStub)
             .verifiable(Times.atLeastOnce());
         fixResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
+        passResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
         checkResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
         extractRelatedSelectorsStub = node => [
             `extractRelatedSelectors output for ${node['target'] ?? node['selector']}`,
@@ -60,6 +62,39 @@ describe('ScanResults to Unified Results Test', () => {
         const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResults();
         expect(testSubject.automatedChecksConversion(scanResultsStub)).toMatchSnapshot();
+        generateGuidMock.verifyAll();
+    });
+
+    test.each(nullIdentifiers)(
+        'automatedChecksConversionForReportPackage provides a defined UnifiedResult instance %s',
+        scanResultStub => {
+            const testSubject = getTestSubject();
+            const unifiedResults = testSubject.automatedChecksConversionForReportPackage(
+                scanResultStub as ScanResults,
+            );
+            expect(unifiedResults).toBeDefined();
+        },
+    );
+
+    test('automatedChecksConversionForReportPackage works fine when there is no data in scanresults', () => {
+        const testSubject = getTestSubject();
+        const scanResultsStub: ScanResults = createTestResultsWithNoData();
+        expect(
+            testSubject.automatedChecksConversionForReportPackage(scanResultsStub),
+        ).toMatchSnapshot();
+    });
+
+    test('automatedChecksConversionForReportPackage works with filled up passes and failures value in scan results', () => {
+        setupResolutionMock(fixResolutionCreatorMock, 'test', passingNode, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id1', node1, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id1', node2, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id2', node3, fixResolutionStub);
+
+        const testSubject = getTestSubject();
+        const scanResultsStub: ScanResults = createTestResults();
+        expect(
+            testSubject.automatedChecksConversionForReportPackage(scanResultsStub),
+        ).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });
 
@@ -114,6 +149,7 @@ describe('ScanResults to Unified Results Test', () => {
         return new ConvertScanResultsToUnifiedResults(
             generateGuidMock.object,
             fixResolutionCreatorMock.object,
+            passResolutionCreatorMock.object,
             checkResolutionCreatorMock.object,
             extractRelatedSelectorsStub,
         );

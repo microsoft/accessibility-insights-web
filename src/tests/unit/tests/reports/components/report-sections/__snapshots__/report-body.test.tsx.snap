@@ -156,6 +156,7 @@ exports[`ReportBody renders: allOutcomesSummarySectionProps 1`] = `
   "description": "test description",
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
+  "getCopyToClipboardScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
@@ -240,6 +241,7 @@ exports[`ReportBody renders: detailsSectionProps 1`] = `
   "description": "test description",
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
+  "getCopyToClipboardScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
@@ -324,6 +326,7 @@ exports[`ReportBody renders: failedInstancesSectionProps 1`] = `
   "description": "test description",
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
+  "getCopyToClipboardScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
@@ -408,6 +411,7 @@ exports[`ReportBody renders: footerTextPropsProps 1`] = `
   "description": "test description",
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
+  "getCopyToClipboardScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
@@ -492,6 +496,7 @@ exports[`ReportBody renders: notApplicableChecksSectionProps 1`] = `
   "description": "test description",
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
+  "getCopyToClipboardScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
@@ -576,6 +581,7 @@ exports[`ReportBody renders: passedChecksSectionProps 1`] = `
   "description": "test description",
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
+  "getCopyToClipboardScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
@@ -661,6 +667,7 @@ exports[`ReportBody renders: resultsContainerProps 1`] = `
   "description": "test description",
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
+  "getCopyToClipboardScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
   "recommendColor": [typemoq mock object],
   "scanMetadata": {
@@ -745,6 +752,7 @@ exports[`ReportBody renders: sectionProps 1`] = `
   "description": "test description",
   "fixInstructionProcessor": [typemoq mock object],
   "getCollapsibleScript": [Function],
+  "getCopyToClipboardScript": [Function],
   "getGuidanceTagsFromGuidanceLinks": [Function],
   "recommendColor": [typemoq mock object],
   "scanMetadata": {

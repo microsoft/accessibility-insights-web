@@ -11,10 +11,11 @@ export const failureCountAutomationId = 'count';
 interface OutcomeChipProps {
     outcomeType: OutcomeType;
     count: number;
+    labelledBy?: boolean; // When true, suppresses the internal screen reader text
 }
 
 export const OutcomeChip = NamedFC<OutcomeChipProps>('OutcomeChip', props => {
-    const { outcomeType, count } = props;
+    const { outcomeType, count, labelledBy } = props;
     const { pastTense } = outcomeTypeSemantics[outcomeType];
 
     const text = `${count} ${pastTense}`;
@@ -32,7 +33,7 @@ export const OutcomeChip = NamedFC<OutcomeChipProps>('OutcomeChip', props => {
                 {' '}
                 {count}
             </span>
-            <span className="screen-reader-only">{text}</span>
+            {!labelledBy && <span className="screen-reader-only">{text}</span>}
         </span>
     );
 });

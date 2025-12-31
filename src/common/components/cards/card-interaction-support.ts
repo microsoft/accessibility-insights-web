@@ -4,6 +4,7 @@ export type CardInteractionSupport = {
     supportsHighlighting: boolean;
     supportsIssueFiling: boolean;
     supportsCopyFailureDetails: boolean;
+    supportsCopyFailureDetailsInMarkup?: boolean | undefined;
 };
 
 export const allCardInteractionsSupported: CardInteractionSupport = {
@@ -16,4 +17,11 @@ export const noCardInteractionsSupported: CardInteractionSupport = {
     supportsHighlighting: false,
     supportsIssueFiling: false,
     supportsCopyFailureDetails: false,
+};
+
+export const limitedCardInteractionsSupported: CardInteractionSupport = {
+    supportsHighlighting: false,
+    supportsIssueFiling: false,
+    supportsCopyFailureDetails: false,
+    supportsCopyFailureDetailsInMarkup: true,
 };

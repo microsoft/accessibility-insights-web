@@ -8,13 +8,14 @@ import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
 import { extractRelatedSelectors } from 'injected/adapters/extract-related-selectors';
-import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
+import { getCheckResolution, getFixResolution, getPassResolution } from 'injected/adapters/resolution-creator';
 import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
 import { AxeResultsReportSectionFactory } from 'reports/components/report-sections/axe-results-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { CombinedReportSectionFactory } from 'reports/components/report-sections/combined-report-section-factory';
+import { getDefaultCopyToClipboardScript } from 'reports/components/report-sections/copy-to-clipboard-script-provider';
 import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
 import { CombinedResultsReport, CombinedResultsReportDeps } from 'reports/package/combined-results-report';
@@ -80,6 +81,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         recommendColor,
         getPropertyConfiguration,
         GetNextHeadingLevel,
+        getDefaultCopyToClipboardScript,
     );
 
     const titleProvider = {
@@ -98,9 +100,10 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const getUnifiedResults = new ConvertScanResultsToUnifiedResults(
         generateUID,
         getFixResolution,
+        getPassResolution,
         getCheckResolution,
         extractRelatedSelectors
-    ).automatedChecksConversion;
+    ).automatedChecksConversionForReportPackage;
 
     const deps: AxeResultsReportDeps = {
         reportHtmlGenerator,
@@ -166,6 +169,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         fixInstructionProcessor,
         recommendColor,
         getPropertyConfiguration,
+        getDefaultCopyToClipboardScript,
     );
     const deps: CombinedResultsReportDeps = {
         reportHtmlGenerator,

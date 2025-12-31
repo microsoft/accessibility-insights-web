@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { limitedCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
@@ -32,12 +32,14 @@ export class CombinedReportHtmlGenerator {
         private readonly fixInstructionProcessor: FixInstructionProcessor,
         private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
+        private readonly getCopyToClipboardScript: () => string,
     ) {}
 
     public generateHtml(
         scanMetadata: ScanMetadata,
         cardsByRule: CardsViewModel,
         urlResultCounts: UrlResultCounts,
+        feedbackURL?: string,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
@@ -50,9 +52,10 @@ export class CombinedReportHtmlGenerator {
                 collapsibleControl: ReportCollapsibleContainerControl,
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
-                cardInteractionSupport: noCardInteractionsSupported,
+                cardInteractionSupport: limitedCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLinkWithConfirmationDialog,
+                feedbackURL: feedbackURL || undefined,
             } as SectionDeps,
             cardsViewData: cardsByRule,
             urlResultCounts,
@@ -60,6 +63,7 @@ export class CombinedReportHtmlGenerator {
             secondsToTimeString: this.secondsToTimeStringConverter,
             getCollapsibleScript: this.getCollapsibleScript,
             sectionHeadingLevel: 2,
+            getCopyToClipboardScript: this.getCopyToClipboardScript,
         };
 
         const props: ReportBodyProps<CombinedReportSectionProps> = {

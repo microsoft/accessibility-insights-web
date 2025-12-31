@@ -58,9 +58,12 @@ export const RuleResources = NamedFC<RuleResourcesProps>(
         };
 
         const renderGuidanceLinks = () => {
-            return <GuidanceLinks links={rule.guidance!} LinkComponent={deps.LinkComponent} />;
+            const links = rule.guidance?.filter(guidanceLink => !isEmpty(guidanceLink.href)) || [];
+            return <GuidanceLinks links={links} LinkComponent={deps.LinkComponent} />;
         };
-        const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidance!} />;
+        const renderGuidanceTags = () => {
+            return <GuidanceTags deps={deps} links={rule.guidance} />;
+        };
 
         return (
             <div className={styles.ruleMoreResources}>

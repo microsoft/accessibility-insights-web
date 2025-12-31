@@ -23,6 +23,10 @@
                 a,
                 button {
                     background-color: $nav-link-selected !important;
+                    @media (forced-colors: active) {
+                        forced-color-adjust: none;
+                        background-color: Highlight !important;
+                    }
                 }
             }
 
@@ -36,6 +40,9 @@
             a,
             button {
                 background-color: $nav-link-hover;
+                @media (forced-colors: active) {
+                    background-color: Highlight !important;
+                }
             }
         }
     }

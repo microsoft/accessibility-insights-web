@@ -46,10 +46,11 @@ export class FixInstructionProcessor {
     private readonly originalMiddleSentence = ' and the original foreground color: ';
 
     public process(fixInstruction: string, recommendColor: RecommendColor): JSX.Element {
+        const instruction = fixInstruction || '';
         return (
-            this.tryProcessAsColorContrastRecommendation(fixInstruction, recommendColor) ??
-            this.tryProcessAsRelatedNodesReference(fixInstruction) ??
-            this.processAsNoop(fixInstruction)
+            this.tryProcessAsColorContrastRecommendation(instruction, recommendColor) ??
+            this.tryProcessAsRelatedNodesReference(instruction) ??
+            this.processAsNoop(instruction)
         );
     }
 
@@ -62,7 +63,7 @@ export class FixInstructionProcessor {
     // with the aria-required-children rule and is likely to be obsoleted with the resolution of
     // https://github.com/dequelabs/axe-core/issues/3842
     private tryProcessAsRelatedNodesReference(input: string): JSX.Element | null {
-        if (!input.endsWith(' (see related nodes)')) {
+        if (!input || !input.endsWith(' (see related nodes)')) {
             return null;
         }
 

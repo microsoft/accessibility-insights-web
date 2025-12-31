@@ -66,6 +66,7 @@ describe('FastPassReportSummary', () => {
                 },
             },
             sectionHeadingLevel: 3,
+            getCopyToClipboardScript: getScriptStub,
         };
     });
 

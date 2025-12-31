@@ -46,13 +46,15 @@
 
         &:hover {
             color: $link-hover;
+            text-decoration: underline;
         }
 
         @media screen and (forced-colors: active) {
             color: linktext;
 
             &:hover {
-                color: linktext;
+                color: ButtonText !important;
+                text-decoration: underline;
             }
         }
     }

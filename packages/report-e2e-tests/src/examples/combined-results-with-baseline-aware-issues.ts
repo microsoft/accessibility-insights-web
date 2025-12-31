@@ -198,6 +198,28 @@ export const combinedResultsWithBaselineAwareIssues: CombinedReportParameters = 
                     tags: ['cat.name-role-value', 'wcag2a', 'wcag412', 'wcag131'],
                 },
             ],
+            incomplete: [
+                {
+                    description: 'Ensures <area> elements of image maps have alternate text',
+                    ruleUrl:
+                        'https://dequeuniversity.com/rules/axe/3.3/area-alt?application=webdriverjs',
+                    ruleId: 'area-alt',
+                    tags: [
+                        'cat.text-alternatives',
+                        'wcag2a',
+                        'wcag111',
+                        'section508',
+                        'section508.22.a',
+                    ],
+                },
+                {
+                    description: 'Ensures aria-hidden elements do not contain focusable elements',
+                    ruleUrl:
+                        'https://dequeuniversity.com/rules/axe/3.3/aria-hidden-focus?application=webdriverjs',
+                    ruleId: 'aria-hidden-focus',
+                    tags: ['cat.name-role-value', 'wcag2a', 'wcag412', 'wcag131'],
+                },
+            ],
             notApplicable: [
                 {
                     description: 'Ensures every ARIA input field has an accessible name',

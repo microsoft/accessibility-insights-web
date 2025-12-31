@@ -12,7 +12,7 @@ import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-resu
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { ResultDecorator } from 'scanner/result-decorator';
-import { It, Mock, MockBehavior } from 'typemoq';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AxeResultReport', () => {
     const scanTimestamp = 'timestamp';
@@ -34,6 +34,9 @@ describe('AxeResultReport', () => {
             scanComplete: reportDateTime,
         }
     };
+    const feedbackURL = undefined;
+
+    const expandPassSectionDetails = null;
 
     const results = {
         timestamp: scanTimestamp,
@@ -75,7 +78,7 @@ describe('AxeResultReport', () => {
     const expectedHTML = '<div>The Report!</div>';
     const mockReportHtmlGenerator = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
     mockReportHtmlGenerator
-        .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub))
+        .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub, feedbackURL, expandPassSectionDetails))
         .returns(() => expectedHTML);
 
     const mockGetDateFromTimestamp = Mock.ofType<(timestamp: string) => Date>();
@@ -96,5 +99,36 @@ describe('AxeResultReport', () => {
         const html = report.asHTML();
 
         expect(html).toEqual(expectedHTML);
+    });
+    
+    it('passes feedbackURL to report generator and includes it in the HTML output', () => {
+        const feedbackURLWithValue = 'microsoft.com';
+        
+        const htmlWithFeedback = '<div>The Report with Feedback URL: microsoft.com</div>';
+        
+        const mockReportHtmlGeneratorWithFeedback = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
+        mockReportHtmlGeneratorWithFeedback
+            .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub, feedbackURLWithValue, expandPassSectionDetails))
+            .returns(() => htmlWithFeedback)
+            .verifiable(Times.once());
+            
+        const depsWithFeedback: AxeResultsReportDeps = {
+            ...deps,
+            reportHtmlGenerator: mockReportHtmlGeneratorWithFeedback.object,
+        };
+        
+        const parametersWithFeedback: AxeReportParameters = {
+            ...parameters,
+            feedbackURL: feedbackURLWithValue
+        };
+
+        const reportWithFeedback = new AxeResultsReport(depsWithFeedback, parametersWithFeedback, toolDataStub);
+
+        const html = reportWithFeedback.asHTML();
+
+        mockReportHtmlGeneratorWithFeedback.verifyAll();
+        
+        expect(html).toEqual(htmlWithFeedback);
+        expect(html).toContain(feedbackURLWithValue);
     });
 });

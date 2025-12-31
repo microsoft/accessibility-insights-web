@@ -87,6 +87,7 @@ import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-ge
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { getDefaultCopyToClipboardScript } from 'reports/components/report-sections/copy-to-clipboard-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeSemanticsFromTestStatus,
@@ -440,6 +441,7 @@ if (tabId != null) {
                 toolData,
                 DateProvider.getCurrentDate,
                 GetNextHeadingLevel,
+                getDefaultCopyToClipboardScript,
             );
 
             // Represents the language in which pages are to be displayed
