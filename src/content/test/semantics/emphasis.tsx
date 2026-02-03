@@ -5,8 +5,8 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <p>
-            Words and phrases that are visually emphasized to convey semantic meaning or importance commonly should be contained within semantically
-            correct elements.
+            Words and phrases that are visually emphasized to convey semantic meaning or importance commonly should be contained within
+            semantically correct elements.
         </p>
         <h2>Why it matters</h2>
         <p>
@@ -58,13 +58,19 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    The bold "Warning:" label might appear to require a <Markup.Code>{'<strong>'}</Markup.Code> element, but it's actually
-                    used as a visual label, not to convey emphasis.
+                    The bold SKU in this heading is purely for visual styling, not to convey emphasis. Using{' '}
+                    <Markup.Code>{'<strong>'}</Markup.Code> here is unnecessary since the heading already provides semantic importance.
                 </p>
             }
-            failExample={`<p>[<strong>]Warning:[</strong>] This action cannot be undone.</p>`}
-            passText={<p>The word "cannot" is what's being emphasized to convey importance, while "Warning:" serves as a label.</p>}
-            passExample={`<p><span class="label">Warning:</span> This action [<strong>]cannot[</strong>] be undone.</p>`}
+            failExample={`<h2 style="font-weight: normal">[<strong>]SKU a8090:[</strong>] Product Name</h2>`}
+            passText={<p>Without the unnecessary strong element, the heading correctly conveys the content's importance.</p>}
+            passExample={`<h2>SKU a8090: Product Name</h2>`}
+        />
+        <Markup.PassFail
+            failText={<p>The italic separators in this breadcrumb are being used for styling purposes, not to convey emphasis.</p>}
+            failExample={`<nav><a href="/">Home</a> [<em>]/[</em>] <a href="/about">About</a> [<em>]/[</em>] Contact</nav>`}
+            passText={<p>Using a span for the separator correctly indicates it's for visual presentation only.</p>}
+            passExample={`<nav><a href="/">Home</a> <span class="separator">/</span> <a href="/about">About</a> <span class="separator">/</span> Contact</nav>`}
         />
         <h2>More examples</h2>
         <h3>WCAG success criteria</h3>
