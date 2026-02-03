@@ -5,7 +5,7 @@ import { create, React } from '../../common';
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <p>
-            Words and phrases that are visually emphasized to convey semantic meaning or importance must be contained within semantically
+            Words and phrases that are visually emphasized to convey semantic meaning or importance commonly should be contained within semantically
             correct elements.
         </p>
         <h2>Why it matters</h2>

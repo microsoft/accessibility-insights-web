@@ -23,7 +23,7 @@ const emphasisHowToTest: JSX.Element = (
                 Examine the target page to identify any visually emphasized words or phrases that
                 convey semantic emphasis or importance. Note: Bold or italic text used purely for
                 visual design, layout, or separation (such as labels, section identifiers, or visual
-                hierarchy) does not require semantic markup unless it conveys emphasis or
+                hierarchy) may not require semantic markup unless it conveys emphasis or
                 importance.
             </li>
             <li>
