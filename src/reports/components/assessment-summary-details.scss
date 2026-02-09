@@ -3,47 +3,51 @@
 @import '../../common/styles/common.scss';
 
 .assessment-summary-details {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    column-count: 2;
-    column-gap: 4%;
-    display: block;
-    width: 100%;
-    align-items: start;
+    display: flex;
 
-    @media screen and (width <= 900px) {
-        column-count: 1;
-    }
-
-    .assessment-summary-details-row {
-        // This intermediate inline-block element between the wrapping multi-column block layout and
-        // the per-row flex layout is required for Chromium to respect the parent's align-items style.
-        display: inline-block;
+    .assessment-summary-details-body {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        column-count: 2;
+        column-gap: 4%;
+        display: block;
         width: 100%;
+        align-items: start;
 
-        .test-summary {
-            display: flex;
-            width: 98%;
-            padding-top: 12px;
-            padding-right: 10px;
-            padding-bottom: 12px;
-            padding-left: 10px;
-            justify-content: space-between;
-            border-bottom: $neutral-alpha-8 solid 1px;
+        @media screen and (width <= 900px) {
+            column-count: 1;
         }
 
-        .test-summary-status {
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-        }
+        .assessment-summary-details-row {
+            // This intermediate inline-block element between the wrapping multi-column block layout and
+            // the per-row flex layout is required for Chromium to respect the parent's align-items style.
+            display: inline-block;
+            width: 100%;
 
-        .test-summary-display-name {
-            font-size: 14px;
-            line-height: 20px;
-            white-space: nowrap;
-            font-weight: 600;
+            .test-summary {
+                display: flex;
+                width: 98%;
+                padding-top: 12px;
+                padding-right: 10px;
+                padding-bottom: 12px;
+                padding-left: 10px;
+                justify-content: space-between;
+                border-bottom: $neutral-alpha-8 solid 1px;
+            }
+
+            .test-summary-status {
+                display: flex;
+                align-items: center;
+                white-space: nowrap;
+            }
+
+            .test-summary-display-name {
+                font-size: 14px;
+                line-height: 20px;
+                white-space: nowrap;
+                font-weight: 600;
+            }
         }
     }
 }

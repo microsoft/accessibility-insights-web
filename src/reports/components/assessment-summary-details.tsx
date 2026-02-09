@@ -16,9 +16,11 @@ export interface AssessmentSummaryDetailsProps {
 export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryDetailsProps> {
     public render(): JSX.Element {
         return (
-            <ul className={styles.assessmentSummaryDetails}>
-                {this.getTestDetailsList(this.props.testSummaries)}
-            </ul>
+            <div className={styles.assessmentSummaryDetails}>
+                <ul className={styles.assessmentSummaryDetailsBody}>
+                    {this.getTestDetailsList(this.props.testSummaries)}
+                </ul>
+            </div>
         );
     }
 
