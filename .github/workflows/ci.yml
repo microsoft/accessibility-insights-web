@@ -116,6 +116,16 @@ jobs:
 
   codeql:
     runs-on: ubuntu-22.04
+    permissions:
+      # required for all workflows
+      security-events: write
+
+      # required to fetch internal or private CodeQL packs
+      packages: read
+
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
     steps:
     - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
