@@ -4,7 +4,7 @@ module.exports = {
     extends: ['stylelint-config-standard-scss', 'stylelint-config-prettier-scss'],
     rules: {
         'selector-pseudo-class-no-unknown': [true, { ignorePseudoClasses: ['global'] }],
-        'scss/at-import-partial-extension': 'always',
+        'scss/load-partial-extension': 'always',
         'declaration-block-no-duplicate-properties': [true, { ignore: ['consecutive-duplicates'] }],
         'declaration-block-no-redundant-longhand-properties': null, // Prefer longhand to improve readability
         'shorthand-property-no-redundant-values': null, // Prefer longhand to improve readability
