@@ -19,10 +19,16 @@ const emphasisHowToTest: JSX.Element = (
     <div>
         <p>This procedure uses the browser Developer Tools (F12) to inspect the page's HTML.</p>
         <ol>
-            <li>Examine the target page to identify any visually emphasized words or phrases.</li>
             <li>
-                Inspect the HTML for each emphasized word or phrase to verify that it's contained in
-                an <Markup.Tag tagName="em" /> or <Markup.Tag tagName="strong" /> element.
+                Examine the target page to identify any visually emphasized words or phrases that
+                convey semantic emphasis or importance. Note: Bold or italic text used purely for
+                visual design, layout, or separation (such as labels, section identifiers, or visual
+                hierarchy) may not require semantic markup unless it conveys emphasis or importance.
+            </li>
+            <li>
+                Inspect the HTML for each semantically emphasized word or phrase to verify that it's
+                contained in an <Markup.Tag tagName="em" /> or <Markup.Tag tagName="strong" />{' '}
+                element.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
