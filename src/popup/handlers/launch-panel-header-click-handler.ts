@@ -15,7 +15,7 @@ export class LaunchPanelHeaderClickHandler {
             return;
         }
 
-        const url: string = item.data;         
+        const url: string = item.data;
         popupWindow.open(url);
     }
 
