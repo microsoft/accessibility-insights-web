@@ -40,6 +40,28 @@ import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags
 import { AxeReportParameters, CombinedReportParameters, ReporterFactory, SummaryReportParameters } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
 
+interface TestRunnerInfo {
+    name?: string;
+    version?: string;
+}
+
+function deriveServiceInfo(
+    serviceName: string | undefined,
+    serviceVersion: string | undefined,
+    testRunner?: TestRunnerInfo,
+) {
+    const DEFAULT_SERVICE_NAME = 'Accessibility Insights';
+    const effectiveServiceName =
+        (serviceName && serviceName.trim()) ||
+        (testRunner?.name && String(testRunner.name).trim()) ||
+        DEFAULT_SERVICE_NAME;
+
+    const effectiveServiceVersion =
+        serviceVersion ?? testRunner?.version ?? null;
+
+    return { effectiveServiceName, effectiveServiceVersion };
+}
+
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const {
         results: {
@@ -56,7 +78,12 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
             pageTitle: targetPageTitle,
         },
         serviceName,
+        serviceVersion,
     } = parameters;
+
+    const testRunner: TestRunnerInfo = (parameters.results as any).testRunner || {};
+    const { effectiveServiceName, effectiveServiceVersion } =
+        deriveServiceInfo(serviceName, serviceVersion, testRunner);
 
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
@@ -65,8 +92,8 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const toolData = createToolData(
         'axe-core',
         axeVersion,
-        serviceName,
-        null,
+        effectiveServiceName,
+        effectiveServiceVersion,
         userAgent,
         `${windowWidth}x${windowHeight}`
     );    
@@ -118,13 +145,15 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
 };
 
 const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
-    const { serviceName, axeVersion, userAgent, browserResolution } = parameters;
+    const { serviceName, serviceVersion, axeVersion, userAgent, browserResolution } = parameters;
+    const { effectiveServiceName, effectiveServiceVersion } =
+        deriveServiceInfo(serviceName, serviceVersion);
 
     const toolData = createToolData(
         'axe-core',
         axeVersion,
-        serviceName,
-        null,
+        effectiveServiceName,
+        effectiveServiceVersion,
         userAgent,
         browserResolution,
     );
@@ -145,13 +174,15 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
 };
 
 const combinedResultsReportGenerator = (parameters: CombinedReportParameters) => {
-    const { serviceName, axeVersion, userAgent, browserResolution } = parameters;
+    const { serviceName, serviceVersion, axeVersion, userAgent, browserResolution } = parameters;
+    const { effectiveServiceName, effectiveServiceVersion } =
+        deriveServiceInfo(serviceName, serviceVersion);
 
     const toolData = createToolData(
         'axe-core',
         axeVersion,
-        serviceName,
-        null,
+        effectiveServiceName,
+        effectiveServiceVersion,
         userAgent,
         browserResolution,
     );
