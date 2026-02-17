@@ -22,7 +22,7 @@ const generateValidator = () => {
     console.log('Generating validator...');
     const ajv = new Ajv({ code: { source: true } });
     const validate = ajv.compile(schema);
-    let moduleCode = standaloneCode(ajv, validate);
+    const moduleCode = standaloneCode(ajv, validate);
 
     console.log(`Writing validator file to ${validatorFilePath}...`);
     fs.writeFileSync(validatorFilePath, moduleCode);
