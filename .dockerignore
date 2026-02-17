@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-# ignoring files that we dont need for e2e tests
+# ignoring files that we don't need for e2e tests.
 .git/
 dist/
 drop/
@@ -9,7 +9,7 @@ extension/
 node_modules/
 test-results/
 
-# Yarn config for non-zero-installs
+# Yarn config for non-zero-installs.
 .pnp.*
 .yarn/*
 !.yarn/patches
