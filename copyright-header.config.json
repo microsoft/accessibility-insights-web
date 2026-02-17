@@ -36,7 +36,6 @@
         "**/test-results",
         "**/yarn.lock",
         "Dockerfile",
-        ".eslintignore",
         "**/*.plist",
         "./src/DetailsView/components/generated-validate-assessment-json.js"
     ],
@@ -55,7 +54,7 @@
             "prepend": "<!--",
             "append": "-->"
         },
-        "ts|tsx|d.ts|js|scss|css": {
+        "ts|tsx|d.ts|js|mjs|scss|css": {
             "eachLine": {
                 "prepend": "// "
             }
