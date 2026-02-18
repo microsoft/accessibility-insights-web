@@ -36,6 +36,10 @@ export class AssessmentDataConverter {
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
         isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
         getIncludedAlwaysRules: () => string[],
+        generatePropertyBagFrom?: (
+            ruleResult: DecoratedAxeNodeResult,
+            checkName: ChecksType,
+        ) => any,
     ): AssessmentInstancesMap {
         let instancesMap: AssessmentInstancesMap = {};
 
@@ -62,6 +66,7 @@ export class AssessmentDataConverter {
                     ruleResult,
                     getInstanceStatus,
                     isVisualizationSupported,
+                    generatePropertyBagFrom,
                 );
             }
         });
@@ -110,6 +115,10 @@ export class AssessmentDataConverter {
         ruleResult: DecoratedAxeNodeResult,
         getInstanceStatus: (result: DecoratedAxeNodeResult) => ManualTestStatus,
         isVisualizationSupported: (result: DecoratedAxeNodeResult) => boolean,
+        generatePropertyBagFrom?: (
+            ruleResult: DecoratedAxeNodeResult,
+            checkName: ChecksType,
+        ) => any,
     ): GeneratedAssessmentInstance {
         const target: Target = elementAxeResult.target;
         let testStepResults = {};
@@ -130,7 +139,7 @@ export class AssessmentDataConverter {
         );
 
         let actualPropertyBag = {
-            ...this.getPropertyBagFromAnyChecks(ruleResult),
+            ...this.getPropertyBagFromAnyChecks(ruleResult, generatePropertyBagFrom),
             ...propertyBag,
         };
         actualPropertyBag = isEmpty(actualPropertyBag) ? null : actualPropertyBag;
@@ -203,8 +212,16 @@ export class AssessmentDataConverter {
         };
     }
 
-    private getPropertyBagFromAnyChecks(ruleResult: DecoratedAxeNodeResult): any {
-        return this.getPropertyBagFrom(ruleResult, 'any');
+    private getPropertyBagFromAnyChecks(
+        ruleResult: DecoratedAxeNodeResult,
+        generatePropertyBagFrom?: (
+            ruleResult: DecoratedAxeNodeResult,
+            checkName: ChecksType,
+        ) => any,
+    ): any {
+        return generatePropertyBagFrom
+            ? generatePropertyBagFrom(ruleResult, 'any')
+            : this.getPropertyBagFrom(ruleResult, 'any');
     }
 
     private getPropertyBagFrom(ruleResult: DecoratedAxeNodeResult, checkName: ChecksType): any {
@@ -215,7 +232,6 @@ export class AssessmentDataConverter {
         ) {
             return ruleResult[checkName][0].data;
         }
-
         return null;
     }
 
@@ -234,4 +250,4 @@ export class AssessmentDataConverter {
     }
 }
 
-type ChecksType = 'any' | 'all';
+export type ChecksType = 'any' | 'all';
