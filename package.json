@@ -155,7 +155,7 @@
         "@fluentui/react": "^8.118.1",
         "@microsoft/applicationinsights-web": "^2.8.15",
         "@testing-library/user-event": "^14.5.2",
-        "ajv": "^8.12.0",
+        "ajv": "^8.18.0",
         "axe-core": "4.10.2",
         "classnames": "^2.5.1",
         "idb-keyval": "^6.2.1",
@@ -173,6 +173,7 @@
     },
     "resolutions": {
         "@types/node": "^22.7.3",
+        "ajv": "^8.18.0",
         "ansi-regex@^2.0.0": "^5.0.1",
         "license-check-and-add/yargs@^13.3.0": "^15.3.1",
         "nth-check@~1.0.1": "^2.0.1",
