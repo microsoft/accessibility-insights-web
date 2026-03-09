@@ -3065,7 +3065,7 @@ __metadata:
   resolution: "accessibility-insights-ui@workspace:packages/ui"
   dependencies:
     "@fluentui/react": ^8.118.1
-    axe-core: 4.9.1
+    axe-core: 4.11.1
     classnames: ^2.5.1
     lodash: ^4.17.23
     luxon: ^3.5.0
@@ -3631,13 +3631,6 @@ __metadata:
   version: 4.11.1
   resolution: "axe-core@npm:4.11.1"
   checksum: 92b3c79af3695bcebac0e7f3f90f4bc11d2b39ccdc670937290e8dacbc943473713cc06b771dea0563c66d57d93d940ed89e082bfdecccf9dd70782d4bb243c0
-  languageName: node
-  linkType: hard
-
-"axe-core@npm:4.9.1":
-  version: 4.9.1
-  resolution: "axe-core@npm:4.9.1"
-  checksum: 41d9227871781f96c2952e2a777fca73624959dd0e98864f6d82806a77602f82b4fc490852082a7e524d8cd864e50d8b4d9931819b4a150112981d8c932110c5
   languageName: node
   linkType: hard
 
