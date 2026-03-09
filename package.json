@@ -147,7 +147,7 @@
         "typed-scss-modules": "^8.0.0",
         "typemoq": "^2.1.0",
         "typescript": "^5.6.3",
-        "webpack": "^5.95.0",
+        "webpack": "^5.104.1",
         "webpack-cli": "^5.1.4",
         "webpack-node-externals": "^3.0.0"
     },
@@ -159,13 +159,13 @@
         "axe-core": "4.10.2",
         "classnames": "^2.5.1",
         "idb-keyval": "^6.2.1",
-        "lodash": "^4.17.21",
+        "lodash": "^4.17.23",
         "luxon": "^3.5.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
         "react-helmet-async": "^2.0.5",
         "react-resize-detector": "^9.1.1",
-        "react-router-dom": "^6.21.3",
+        "react-router-dom": "^6.30.2",
         "tabbable": "^6.2.0",
         "ua-parser-js": "^1.0.37",
         "uuid": "^9.0.1",
@@ -177,6 +177,7 @@
         "license-check-and-add/yargs@^13.3.0": "^15.3.1",
         "nth-check@~1.0.1": "^2.0.1",
         "semver@^6.0.0": "^6.3.1",
-        "semver@^7.0.0": "^7.5.2"
+        "semver@^7.0.0": "^7.5.2",
+        "lodash": "^4.17.23"
     }
 }
