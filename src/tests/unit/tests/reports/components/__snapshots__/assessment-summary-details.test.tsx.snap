@@ -4,29 +4,24 @@ exports[`AssessmentSummaryDetails render Correct composition 1`] = `
 <DocumentFragment>
   <div
     class="assessmentSummaryDetails"
-    role="table"
   >
-    <div
+    <ul
       class="assessmentSummaryDetailsBody"
-      role="rowgroup"
     >
-      <div
+      <li
         class="assessmentSummaryDetailsRow"
-        role="row"
       >
         <div
           class="testSummary"
         >
           <div
             class="testSummaryDisplayName"
-            role="cell"
           >
             Assessment1
           </div>
           <div
             class="testSummaryStatus"
             data-automation-id="test-summary-status/Assessment1"
-            role="cell"
           >
             <mock-outcomeiconset
               displayname="Assessment1"
@@ -36,24 +31,21 @@ exports[`AssessmentSummaryDetails render Correct composition 1`] = `
             />
           </div>
         </div>
-      </div>
-      <div
+      </li>
+      <li
         class="assessmentSummaryDetailsRow"
-        role="row"
       >
         <div
           class="testSummary"
         >
           <div
             class="testSummaryDisplayName"
-            role="cell"
           >
             Assessment2
           </div>
           <div
             class="testSummaryStatus"
             data-automation-id="test-summary-status/Assessment2"
-            role="cell"
           >
             <mock-outcomeiconset
               displayname="Assessment2"
@@ -63,8 +55,8 @@ exports[`AssessmentSummaryDetails render Correct composition 1`] = `
             />
           </div>
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </DocumentFragment>
 `;
@@ -73,29 +65,24 @@ exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1
 <DocumentFragment>
   <div
     class="assessmentSummaryDetails"
-    role="table"
   >
-    <div
+    <ul
       class="assessmentSummaryDetailsBody"
-      role="rowgroup"
     >
-      <div
+      <li
         class="assessmentSummaryDetailsRow"
-        role="row"
       >
         <div
           class="testSummary"
         >
           <div
             class="testSummaryDisplayName"
-            role="cell"
           >
             test
           </div>
           <div
             class="testSummaryStatus"
             data-automation-id="test-summary-status/test"
-            role="cell"
           >
             <mock-outcomechipset
               displayname="test"
@@ -105,8 +92,8 @@ exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1
             />
           </div>
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </DocumentFragment>
 `;
@@ -115,29 +102,24 @@ exports[`AssessmentSummaryDetails render Renders an OutcomeIconSet for 7 items 1
 <DocumentFragment>
   <div
     class="assessmentSummaryDetails"
-    role="table"
   >
-    <div
+    <ul
       class="assessmentSummaryDetailsBody"
-      role="rowgroup"
     >
-      <div
+      <li
         class="assessmentSummaryDetailsRow"
-        role="row"
       >
         <div
           class="testSummary"
         >
           <div
             class="testSummaryDisplayName"
-            role="cell"
           >
             test
           </div>
           <div
             class="testSummaryStatus"
             data-automation-id="test-summary-status/test"
-            role="cell"
           >
             <mock-outcomeiconset
               displayname="test"
@@ -147,8 +129,8 @@ exports[`AssessmentSummaryDetails render Renders an OutcomeIconSet for 7 items 1
             />
           </div>
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </DocumentFragment>
 `;
