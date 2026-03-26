@@ -4,16 +4,24 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <p>Words and phrases that are visually emphasized must be contained within semantically correct elements.</p>
+        <p>
+            Words and phrases that are visually emphasized to convey semantic meaning or importance commonly should be contained within
+            semantically correct elements.
+        </p>
         <h2>Why it matters</h2>
         <p>
             People with good vision can infer from visual styling that a word or phrase is especially important. For example, it might be
             displayed using bold or italic font. Unless the visually emphasized word or phrase is also contained in a semantically correct
             element, people who use screen readers won't know that it's emphasized.
         </p>
+        <p>
+            However, not all bold or italic text requires semantic markup. Visual variations in font-weight or style used purely for design
+            purposes, such as distinguishing labels from values or creating visual hierarchy, do not need to be marked up semantically
+            unless they convey emphasis or importance.
+        </p>
         <h2>How to fix</h2>
         <p>
-            Contain the emphasized word or phrase in a semantically correct element:
+            When visual emphasis conveys semantic meaning, contain the emphasized word or phrase in a semantically correct element:
             <ul>
                 <li>
                     Use the <Markup.Code>{'<em>'}</Markup.Code> element when you want to stress a word or phrase within the context of a
@@ -26,6 +34,10 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     bold text when they skim the page.
                 </li>
             </ul>
+        </p>
+        <p>
+            Do not use <Markup.Code>{'<strong>'}</Markup.Code> or <Markup.Code>{'<em>'}</Markup.Code> for text that is bold or italic purely
+            for visual design, such as labels, identifiers, or creating visual separation between parts of a heading.
         </p>
         <Markup.PassFail
             failText={
@@ -42,6 +54,23 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 </p>
             }
             passExample={`<p>These carrots are [<em>]not[</em>] crunchy!</p>`}
+        />
+        <Markup.PassFail
+            failText={
+                <p>
+                    The bold SKU in this heading is purely for visual styling, not to convey emphasis. Using{' '}
+                    <Markup.Code>{'<strong>'}</Markup.Code> here is unnecessary since the heading already provides semantic importance.
+                </p>
+            }
+            failExample={`<h2 style="font-weight: normal">[<strong>]SKU a8090:[</strong>] Product Name</h2>`}
+            passText={<p>Without the unnecessary strong element, the heading correctly conveys the content's importance.</p>}
+            passExample={`<h2>SKU a8090: Product Name</h2>`}
+        />
+        <Markup.PassFail
+            failText={<p>The italic separators in this breadcrumb are being used for styling purposes, not to convey emphasis.</p>}
+            failExample={`<nav><a href="/">Home</a> [<em>]/[</em>] <a href="/about">About</a> [<em>]/[</em>] Contact</nav>`}
+            passText={<p>Using a span for the separator correctly indicates it's for visual presentation only.</p>}
+            passExample={`<nav><a href="/">Home</a> <span class="separator">/</span> <a href="/about">About</a> <span class="separator">/</span> Contact</nav>`}
         />
         <h2>More examples</h2>
         <h3>WCAG success criteria</h3>
