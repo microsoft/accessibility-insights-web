@@ -52,6 +52,17 @@ export class ScannerUtils {
         return resultsMap;
     };
 
+    public getAllApplicableInstances = (
+        results: ScanResults,
+    ): DictionaryStringTo<HtmlElementAxeResults> => {
+        const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
+        this.addFailuresToDictionary(resultsMap, results.violations);
+        this.addIncompletesToDictionary(resultsMap, results.incomplete);
+        this.addPassesToDictionary(resultsMap, results.passes);
+
+        return resultsMap;
+    };
+
     public getAllCompletedInstances = (
         results: ScanResults,
     ): DictionaryStringTo<HtmlElementAxeResults> => {
