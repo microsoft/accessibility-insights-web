@@ -3016,7 +3016,7 @@ __metadata:
     "@fluentui/react": ^8.118.1
     axe-core: 4.10.2
     classnames: ^2.5.1
-    lodash: ^4.17.23
+    lodash: ^4.18.0
     luxon: ^3.5.0
     react: ^18.3.1
     react-dom: ^18.3.1
@@ -3032,7 +3032,7 @@ __metadata:
     "@fluentui/react": ^8.118.1
     axe-core: 4.9.1
     classnames: ^2.5.1
-    lodash: ^4.17.23
+    lodash: ^4.18.0
     luxon: ^3.5.0
     react: ^18.3.1
     react-dom: ^18.3.1
@@ -3105,7 +3105,7 @@ __metadata:
     js-yaml: ^4.1.1
     jscodeshift: ^17.1.2
     license-check-and-add: ^4.0.5
-    lodash: ^4.17.23
+    lodash: ^4.18.0
     luxon: ^3.5.0
     mini-css-extract-plugin: 2.9.0
     npm-run-all: ^4.1.5
@@ -8557,10 +8557,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.23":
-  version: 4.17.23
-  resolution: "lodash@npm:4.17.23"
-  checksum: 7daad39758a72872e94651630fbb54ba76868f904211089721a64516ce865506a759d9ad3d8ff22a2a49a50a09db5d27c36f22762d21766e47e3ba918d6d7bab
+"lodash@npm:^4.18.0":
+  version: 4.18.1
+  resolution: "lodash@npm:4.18.1"
+  checksum: bb5f5b49aad29614e709af02b64c56b0f8b78c6a81434a3c1ae527d2f0f78ca08f9d9fb22aa825a053876c9d2166e9c01f31c356014b5e2bdc0556c057433102
   languageName: node
   linkType: hard
 
