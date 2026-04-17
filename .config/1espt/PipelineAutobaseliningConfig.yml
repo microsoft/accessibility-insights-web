@@ -72,6 +72,8 @@ pipelines:
           lastModifiedDate: 2025-01-15
         armory:
           lastModifiedDate: 2025-01-15
+        accessibilityinsights:
+          lastModifiedDate: 2026-04-17
   39:
     usedNonDefaultBranch: true
     retail:
