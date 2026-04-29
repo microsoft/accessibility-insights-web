@@ -27,4 +27,20 @@
         margin-top: 16px;
         margin-bottom: 21px;
     }
+
+    .outcome-legend {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 20px;
+        color: $primary-text;
+
+        .outcome-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    }
 }
