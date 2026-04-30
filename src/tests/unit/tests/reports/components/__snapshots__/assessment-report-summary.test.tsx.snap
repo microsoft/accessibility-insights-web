@@ -16,12 +16,62 @@ exports[`AssessmentReportSummary render Correct composition 1`] = `
       ]
     }
     countSuffix="%"
+    textLabel={true}
   />
   <h3
     className="testDetailsText"
   >
     Test details
   </h3>
+  <div
+    className="outcomeLegend"
+  >
+    <span
+      className="outcomeLegendItem"
+    >
+      <span
+        aria-hidden="true"
+        className="outcome-icon outcome-icon-pass"
+      >
+        <OutcomeIcon
+          outcomeType="pass"
+        />
+      </span>
+      <span>
+        Passed
+      </span>
+    </span>
+    <span
+      className="outcomeLegendItem"
+    >
+      <span
+        aria-hidden="true"
+        className="outcome-icon outcome-icon-incomplete"
+      >
+        <OutcomeIcon
+          outcomeType="incomplete"
+        />
+      </span>
+      <span>
+        Incomplete
+      </span>
+    </span>
+    <span
+      className="outcomeLegendItem"
+    >
+      <span
+        aria-hidden="true"
+        className="outcome-icon outcome-icon-fail"
+      >
+        <OutcomeIcon
+          outcomeType="fail"
+        />
+      </span>
+      <span>
+        Failed
+      </span>
+    </span>
+  </div>
   <AssessmentSummaryDetails
     testSummaries={[]}
   />

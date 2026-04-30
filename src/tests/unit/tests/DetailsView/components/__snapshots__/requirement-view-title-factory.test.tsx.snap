@@ -2,21 +2,25 @@
 
 exports[`RequirementViewTitleFactoryTest getRequirementViewTitleForAssessment renders content from props 1`] = `
 <DocumentFragment>
-  <h1
+  <div
     class="requirementViewTitle"
   >
-    test-requirement-name
-    <mock-guidancetags
-      deps="[object Object]"
-      links="[object Object]"
-    />
+    <h1
+      class="requirementViewTitleHeading"
+    >
+      test-requirement-name
+      <mock-guidancetags
+        deps="[object Object]"
+        links="[object Object]"
+      />
+    </h1>
     <mock-contentpanelbutton
       contenttitle="test-requirement-name"
       deps="[object Object]"
       iconname="info"
       reference="[object Object]"
     />
-  </h1>
+  </div>
 </DocumentFragment>
 `;
 
