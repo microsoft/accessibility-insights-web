@@ -3066,7 +3066,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.61.0
     "@typescript-eslint/parser": ^6.18.1
     ajv: ^8.18.0
-    axe-core: 4.11.2
+    axe-core: 4.11.3
     case-sensitive-paths-webpack-plugin: ^2.4.0
     classnames: ^2.5.1
     commander: ^14.0.2
@@ -3099,7 +3099,7 @@ __metadata:
     js-yaml: ^4.1.1
     jscodeshift: ^17.1.2
     license-check-and-add: ^4.0.5
-    lodash: ^4.17.23
+    lodash: ^4.18.0
     luxon: ^3.5.0
     mini-css-extract-plugin: 2.9.0
     npm-run-all: ^4.1.5
@@ -3626,13 +3626,6 @@ __metadata:
   dependencies:
     possible-typed-array-names: ^1.0.0
   checksum: 1aa3ffbfe6578276996de660848b6e95669d9a95ad149e3dd0c0cda77db6ee1dbd9d1dd723b65b6d277b882dd0c4b91a654ae9d3cf9e1254b7e93e4908d78fd3
-  languageName: node
-  linkType: hard
-
-"axe-core@npm:4.11.2":
-  version: 4.11.2
-  resolution: "axe-core@npm:4.11.2"
-  checksum: 9d156e714990ace407814235d823eb996a6b419162cfa80e9d85ac79b42b4ca9aaa2adf29698618b389ec5e2bd967f57464aeb84928fa261122b46b49f7fb513
   languageName: node
   linkType: hard
 
@@ -8947,7 +8940,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.23":
+"lodash@npm:^4.18.0":
   version: 4.18.1
   resolution: "lodash@npm:4.18.1"
   checksum: bb5f5b49aad29614e709af02b64c56b0f8b78c6a81434a3c1ae527d2f0f78ca08f9d9fb22aa825a053876c9d2166e9c01f31c356014b5e2bdc0556c057433102
