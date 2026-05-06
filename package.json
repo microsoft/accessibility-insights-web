@@ -96,7 +96,6 @@
         "@typescript-eslint/eslint-plugin": "^5.61.0",
         "@typescript-eslint/parser": "^6.18.1",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
-        "codecov": "^3.8.3",
         "commander": "^14.0.2",
         "core-js-bundle": "^3.35.0",
         "cross-env": "^7.0.3",
@@ -166,7 +165,7 @@
         "react-router-dom": "^7.13.2",
         "tabbable": "^6.2.0",
         "ua-parser-js": "^1.0.37",
-        "uuid": "^9.0.1",
+        "uuid": "^12.0.0",
         "webextension-polyfill": "^0.12.0"
     },
     "resolutions": {
