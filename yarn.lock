@@ -3014,7 +3014,7 @@ __metadata:
     react: ^18.3.1
     react-dom: ^18.3.1
     react-helmet-async: ^2.0.5
-    uuid: ^12.0.0
+    uuid: ^14.0.0
   languageName: unknown
   linkType: soft
 
@@ -3031,7 +3031,7 @@ __metadata:
     react-dom: ^18.3.1
     react-helmet-async: ^2.0.5
     react-resize-detector: ^9.1.1
-    uuid: ^12.0.0
+    uuid: ^14.0.0
   languageName: unknown
   linkType: soft
 
@@ -3125,7 +3125,7 @@ __metadata:
     typemoq: ^2.1.0
     typescript: ^5.6.3
     ua-parser-js: ^1.0.37
-    uuid: ^12.0.0
+    uuid: ^14.0.0
     webextension-polyfill: ^0.12.0
     webpack: ^5.104.1
     webpack-cli: ^5.1.4
@@ -12892,12 +12892,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:^12.0.0":
-  version: 12.0.1
-  resolution: "uuid@npm:12.0.1"
+"uuid@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "uuid@npm:14.0.0"
   bin:
-    uuid: dist/bin/uuid
-  checksum: 0303128558a584f11f7b455ac2f309b4416992f76908279d02fa4db878f60afd3c096f77bd1263ff1f85f3a72d49f8bd9fffca8b3a38c2819928dcc56e9e897a
+    uuid: dist-node/bin/uuid
+  checksum: 08608584a79e987cdae000fa8eb724fa51dd8aafc136cd9fa9a8c87d07b246c56eec5fd9027fdb3e49a863eedf758bc19e325909ce281955c7a027fed67dc89e
   languageName: node
   linkType: hard
 
