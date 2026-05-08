@@ -39,6 +39,7 @@ exports[`Switcher renders Switcher itself matches snapshot 1`] = `
     <mock-styleddropdownbase
       arialabel="select activity"
       classname="leftNavSwitcherDropdown"
+      label="Select activity"
       options="[object Object],[object Object],[object Object]"
       responsivemode="2"
       selectedkey="0"
