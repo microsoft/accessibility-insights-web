@@ -63,6 +63,7 @@ export class ChoiceGroupPassFail extends React.Component<ChoiceGroupPassFailProp
                             onClick={this.onUndoClicked}
                             iconProps={{ iconName: 'undo' }}
                             ariaLabel="undo"
+                            title="Undo"
                         />
                     )}
                     {this.props.secondaryControls}

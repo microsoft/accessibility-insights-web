@@ -54,6 +54,7 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
                 data-automation-id={addTabStopsFailureInstanceAutomationId}
                 iconProps={{ iconName: 'add' }}
                 ariaLabel="add failure instance"
+                title="Add Failure Instance"
                 onClick={this.props.onAddFailureInstanceClicked}
             />
         ) : null;
