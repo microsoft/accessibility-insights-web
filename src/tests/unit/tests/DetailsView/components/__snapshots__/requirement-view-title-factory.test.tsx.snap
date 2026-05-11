@@ -50,7 +50,7 @@ exports[`RequirementViewTitleFactoryTest getRequirementViewTitleForAssessment re
 exports[`RequirementViewTitleFactoryTest getRequirementViewTitleForQuickAssess renders content from props 1`] = `
 <DocumentFragment>
   <h1
-    class="requirementViewTitle"
+    class="requirementViewTitleHeading"
   >
     test-requirement-name
   </h1>
