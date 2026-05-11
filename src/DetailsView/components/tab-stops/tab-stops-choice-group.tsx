@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IChoiceGroup, IChoiceGroupOption, IconButton } from '@fluentui/react';
+import { IChoiceGroup, IChoiceGroupOption, IconButton, TooltipHost } from '@fluentui/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
@@ -50,13 +50,14 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
 
     private renderAddFailureInstance(): JSX.Element | null {
         return this.props.status === 'fail' ? (
-            <IconButton
-                data-automation-id={addTabStopsFailureInstanceAutomationId}
-                iconProps={{ iconName: 'add' }}
-                ariaLabel="add failure instance"
-                title="Add Failure Instance"
-                onClick={this.props.onAddFailureInstanceClicked}
-            />
+            <TooltipHost content="add failure instance">
+                <IconButton
+                    data-automation-id={addTabStopsFailureInstanceAutomationId}
+                    iconProps={{ iconName: 'add' }}
+                    ariaLabel="add failure instance"
+                    onClick={this.props.onAddFailureInstanceClicked}
+                />
+            </TooltipHost>
         ) : null;
     }
 

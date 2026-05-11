@@ -35,10 +35,14 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to FAIL 1`] = `
     <div
       class="secondaryControlsWrapper"
     >
-      <mock-customizediconbutton
-        arialabel="undo"
-        iconprops="[object Object]"
-      />
+      <mock-styledtooltiphostbase
+        content="undo"
+      >
+        <mock-customizediconbutton
+          arialabel="undo"
+          iconprops="[object Object]"
+        />
+      </mock-styledtooltiphostbase>
       <mock-customizediconbutton
         aria-label="add"
         iconprops="[object Object]"
@@ -115,10 +119,14 @@ exports[`ChoiceGroupPassFail render: selectedKey is set to PASS 1`] = `
     <div
       class="secondaryControlsWrapper"
     >
-      <mock-customizediconbutton
-        arialabel="undo"
-        iconprops="[object Object]"
-      />
+      <mock-styledtooltiphostbase
+        content="undo"
+      >
+        <mock-customizediconbutton
+          arialabel="undo"
+          iconprops="[object Object]"
+        />
+      </mock-styledtooltiphostbase>
       <mock-customizediconbutton
         aria-label="add"
         iconprops="[object Object]"

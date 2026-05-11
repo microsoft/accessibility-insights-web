@@ -6,6 +6,7 @@ import {
     IChoiceGroupOption,
     IChoiceGroupProps,
     IconButton,
+    TooltipHost,
     mergeStyles,
 } from '@fluentui/react';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
@@ -59,12 +60,13 @@ export class ChoiceGroupPassFail extends React.Component<ChoiceGroupPassFailProp
                 />
                 <div className={styles.secondaryControlsWrapper}>
                     {showUndoButton && (
-                        <IconButton
-                            onClick={this.onUndoClicked}
-                            iconProps={{ iconName: 'undo' }}
-                            ariaLabel="undo"
-                            title="Undo"
-                        />
+                        <TooltipHost content="undo">
+                            <IconButton
+                                onClick={this.onUndoClicked}
+                                iconProps={{ iconName: 'undo' }}
+                                ariaLabel="undo"
+                            />
+                        </TooltipHost>
                     )}
                     {this.props.secondaryControls}
                 </div>

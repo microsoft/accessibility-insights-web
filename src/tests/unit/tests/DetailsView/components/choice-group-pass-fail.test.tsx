@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ChoiceGroup, IconButton } from '@fluentui/react';
+import { ChoiceGroup, IconButton, TooltipHost } from '@fluentui/react';
 import { act, render } from '@testing-library/react';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
 import {
@@ -21,7 +21,7 @@ import '@testing-library/jest-dom';
 jest.mock('@fluentui/react');
 
 describe('ChoiceGroupPassFail', () => {
-    mockReactComponents([ChoiceGroup, IconButton]);
+    mockReactComponents([ChoiceGroup, IconButton, TooltipHost]);
     let props: ChoiceGroupPassFailProps;
     let onUndoClickedMock: IMock<onUndoClicked>;
 
@@ -62,7 +62,7 @@ describe('ChoiceGroupPassFail', () => {
     });
 
     test('render label, aria-label is not defined', () => {
-        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton']);
+        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton', 'TooltipHost']);
         props.selectedKey = TabStopRequirementStatuses.pass;
         props.isLabelVisible = true;
 
