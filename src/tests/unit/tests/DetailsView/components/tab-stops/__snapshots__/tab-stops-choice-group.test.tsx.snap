@@ -14,23 +14,17 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
     <div
       class="secondaryControlsWrapper"
     >
-      <mock-styledtooltiphostbase
-        content="undo"
-      >
-        <mock-customizediconbutton
-          arialabel="undo"
-          iconprops="[object Object]"
-        />
-      </mock-styledtooltiphostbase>
-      <mock-styledtooltiphostbase
-        content="add failure instance"
-      >
-        <mock-customizediconbutton
-          arialabel="add failure instance"
-          data-automation-id="addTabStopsFailureInstance"
-          iconprops="[object Object]"
-        />
-      </mock-styledtooltiphostbase>
+      <mock-customizediconbutton
+        arialabel="undo"
+        iconprops="[object Object]"
+        title="undo"
+      />
+      <mock-customizediconbutton
+        arialabel="add failure instance"
+        data-automation-id="addTabStopsFailureInstance"
+        iconprops="[object Object]"
+        title="add failure instance"
+      />
     </div>
   </div>
 </DocumentFragment>
@@ -43,6 +37,7 @@ exports[`TabStopsChoiceGroup render with fail status: CustomizedIconButton props
     "iconName": "undo",
   },
   "onClick": [Function],
+  "title": "undo",
 }
 `;
 
@@ -94,14 +89,11 @@ exports[`TabStopsChoiceGroup render with pass status 1`] = `
     <div
       class="secondaryControlsWrapper"
     >
-      <mock-styledtooltiphostbase
-        content="undo"
-      >
-        <mock-customizediconbutton
-          arialabel="undo"
-          iconprops="[object Object]"
-        />
-      </mock-styledtooltiphostbase>
+      <mock-customizediconbutton
+        arialabel="undo"
+        iconprops="[object Object]"
+        title="undo"
+      />
     </div>
   </div>
 </DocumentFragment>

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ChoiceGroup, IconButton, TooltipHost } from '@fluentui/react';
+import { ChoiceGroup, IconButton } from '@fluentui/react';
 import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { TabStopRequirementStatuses } from 'common/types/store-data/visualization-scan-result-data';
@@ -22,7 +22,7 @@ import {
 
 jest.mock('@fluentui/react');
 describe('TabStopsChoiceGroup', () => {
-    mockReactComponents([ChoiceGroup, IconButton, TooltipHost]);
+    mockReactComponents([ChoiceGroup, IconButton]);
     let props: TabStopsChoiceGroupsProps;
     let onGroupChoiceChangeMock: IMock<onGroupChoiceChange>;
     let onUndoClickedMock: IMock<onUndoClicked>;
@@ -68,7 +68,7 @@ describe('TabStopsChoiceGroup', () => {
 
     test('verify component is correctly used with undo', async () => {
         props.status = TabStopRequirementStatuses.pass;
-        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton', 'TooltipHost']);
+        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton']);
         const renderResult = render(<TabStopsChoiceGroup {...props} />);
 
         const undoButton = renderResult.getAllByRole('button');
@@ -81,7 +81,7 @@ describe('TabStopsChoiceGroup', () => {
     });
 
     test('verify on change appropriately calls onGroupChoiceChange', async () => {
-        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton', 'TooltipHost']);
+        useOriginalReactElements('@fluentui/react', ['ChoiceGroup', 'IconButton']);
         const renderResult = render(<TabStopsChoiceGroup {...props} />);
         const choiceGroupChange = renderResult.getAllByRole('radio');
 
