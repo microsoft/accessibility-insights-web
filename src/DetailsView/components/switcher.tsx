@@ -88,8 +88,8 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
             <div className={styles.leftNavSwitcher} role="region" aria-label="activity">
                 <Dropdown
                     className={styles.leftNavSwitcherDropdown}
-                    label="Select activity"
                     ariaLabel="select activity"
+                    title="Select activity"
                     responsiveMode={ResponsiveMode.large}
                     selectedKey={this.state.selectedKey}
                     onRenderOption={this.onRenderOption}
