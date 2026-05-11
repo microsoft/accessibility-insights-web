@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dropdown, IDropdownOption, TextField } from '@fluentui/react';
+import { Dropdown, IDropdownOption, ResponsiveMode, TextField } from '@fluentui/react';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { SettingsFormProps } from '../../types/settings-form-props';
@@ -72,6 +72,7 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
                     label="Select a field for issue details"
                     onChange={onIssueDetailLocationChange}
                     selectedKey={props.settings ? props.settings.issueDetailsField : null}
+                    responsiveMode={ResponsiveMode.large}
                 />
             </>
         );

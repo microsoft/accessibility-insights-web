@@ -18,6 +18,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
     label="Select a field for issue details"
     options="[object Object],[object Object]"
     placeholder="Select an option"
+    responsivemode="2"
   />
 </DocumentFragment>
 `;
@@ -37,6 +38,7 @@ exports[`AzureBoardsSettingsForm renders settings is null: StyledDropdownBase pr
     },
   ],
   "placeholder": "Select an option",
+  "responsiveMode": 2,
   "selectedKey": null,
 }
 `;
@@ -59,6 +61,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
     label="Select a field for issue details"
     options="[object Object],[object Object]"
     placeholder="Select an option"
+    responsivemode="2"
     selectedkey="description"
   />
 </DocumentFragment>
@@ -79,6 +82,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField: 
     },
   ],
   "placeholder": "Select an option",
+  "responsiveMode": 2,
   "selectedKey": "description",
 }
 `;
