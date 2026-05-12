@@ -42,6 +42,7 @@ exports[`Switcher renders Switcher itself matches snapshot 1`] = `
       options="[object Object],[object Object],[object Object]"
       responsivemode="2"
       selectedkey="0"
+      title="Select activity"
     />
   </div>
 </DocumentFragment>
