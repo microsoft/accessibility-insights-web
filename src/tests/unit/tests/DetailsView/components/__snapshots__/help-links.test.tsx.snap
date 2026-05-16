@@ -2,35 +2,39 @@
 
 exports[`HelpLinks linkInformation is shown properly 1`] = `
 <DocumentFragment>
-  <div
-    class="helpLink"
+  <ul
+    class="helpLinkList"
   >
-    <mock-externallink
-      deps="[object Object]"
-      href="https://www.test1.com"
+    <li
+      class="helpLink"
     >
-      test1
-    </mock-externallink>
-  </div>
-  <div
-    class="helpLink"
-  >
-    <mock-externallink
-      deps="[object Object]"
-      href="https://www.test2.com"
+      <mock-externallink
+        deps="[object Object]"
+        href="https://www.test1.com"
+      >
+        test1
+      </mock-externallink>
+    </li>
+    <li
+      class="helpLink"
     >
-      test2
-    </mock-externallink>
-  </div>
-  <div
-    class="helpLink"
-  >
-    <mock-externallink
-      deps="[object Object]"
-      href="https://www.test3.com"
+      <mock-externallink
+        deps="[object Object]"
+        href="https://www.test2.com"
+      >
+        test2
+      </mock-externallink>
+    </li>
+    <li
+      class="helpLink"
     >
-      test3
-    </mock-externallink>
-  </div>
+      <mock-externallink
+        deps="[object Object]"
+        href="https://www.test3.com"
+      >
+        test3
+      </mock-externallink>
+    </li>
+  </ul>
 </DocumentFragment>
 `;

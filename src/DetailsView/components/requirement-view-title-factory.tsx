@@ -25,16 +25,18 @@ export function getRequirementViewTitleForAssessment(
     props: RequirementViewTitleFactoryProps,
 ): JSX.Element {
     return (
-        <h1 className={styles.requirementViewTitle}>
-            {props.name}
-            <GuidanceTags deps={props.deps} links={props.guidanceLinks} />
+        <div className={styles.requirementViewTitle}>
+            <h1 className={styles.requirementViewTitleHeading}>
+                {props.name}
+                <GuidanceTags deps={props.deps} links={props.guidanceLinks} />
+            </h1>
             <ContentPanelButton
                 deps={props.deps}
                 reference={props.infoAndExamples}
                 iconName="info"
                 contentTitle={props.name}
             />
-        </h1>
+        </div>
     );
 }
 
@@ -44,5 +46,5 @@ export function getRequirementViewTitleForQuickAssess(
     if (props.assessmentKey === AutomatedChecks.key) {
         return getRequirementViewTitleForAssessment(props);
     }
-    return <h1 className={styles.requirementViewTitle}>{props.name}</h1>;
+    return <h1 className={styles.requirementViewTitleHeading}>{props.name}</h1>;
 }

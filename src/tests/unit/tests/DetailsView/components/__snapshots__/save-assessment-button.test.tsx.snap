@@ -8,7 +8,7 @@ exports[`SaveAssessmentButton on dialog enabled render snapshot of dialog 1`] = 
     iconprops="[object Object]"
     role="button"
   >
-    Save assessment
+    Save and download assessment
   </mock-customizedactionbutton>
   <mock-dialog
     dialogcontentprops="[object Object]"

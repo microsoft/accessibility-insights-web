@@ -3,9 +3,15 @@
 @import '../../common/styles/common.scss';
 
 .requirement-view-title {
+    display: flex;
+    align-items: center;
+}
+
+.requirement-view-title-heading {
     @include text-style-title-m;
 
     color: $primary-text;
     display: flex;
     align-items: center;
+    margin: 0;
 }
