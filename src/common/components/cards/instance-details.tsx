@@ -130,7 +130,10 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         >
             <div className={instanceDetailsCardStyling} {...cardHighlightingProperties}>
                 <div>
-                    <table className={styles.reportInstanceTable}>
+                    <table
+                        className={styles.reportInstanceTable}
+                        aria-label={`${result.ruleId} issue ${props.index + 1} details`}
+                    >
                         <tbody>
                             {renderCardRowsForPropertyBag(result.identifiers, props)}
                             {renderCardRowsForPropertyBag(result.descriptors, props)}

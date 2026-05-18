@@ -180,6 +180,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
     >
       <div>
         <table
+          aria-label="image-alt issue 23 details"
           class="reportInstanceTable"
         >
           <tbody />
@@ -211,6 +212,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
     >
       <div>
         <table
+          aria-label="image-alt issue 23 details"
           class="reportInstanceTable"
         >
           <tbody />
@@ -302,6 +304,7 @@ exports[`InstanceDetails renders 1`] = `
     >
       <div>
         <table
+          aria-label="image-alt issue 23 details"
           class="reportInstanceTable"
         >
           <tbody />
@@ -332,6 +335,7 @@ exports[`InstanceDetails renders nothing when there is no card row configuration
     >
       <div>
         <table
+          aria-label="image-alt issue 23 details"
           class="reportInstanceTable"
         >
           <tbody />
