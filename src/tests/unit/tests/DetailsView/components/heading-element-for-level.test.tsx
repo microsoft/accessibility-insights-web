@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import {
-    GetNextHeadingLevel,
+    getNextHeadingLevel,
     HeadingElementForLevel,
     HeadingElementForLevelProps,
     HeadingLevel,
@@ -30,7 +30,7 @@ describe('HeadingElementForLevel', () => {
         headingLevel => {
             const expected = (headingLevel + 1) as HeadingLevel;
 
-            const testValue = GetNextHeadingLevel(headingLevel);
+            const testValue = getNextHeadingLevel(headingLevel);
 
             expect(testValue).toEqual(expected);
         },
@@ -39,7 +39,7 @@ describe('HeadingElementForLevel', () => {
     it('throws an error for invalid heading levels', () => {
         const errorMessage = '7 is not a valid heading level';
 
-        const action = () => GetNextHeadingLevel(6);
+        const action = () => getNextHeadingLevel(6);
 
         expect(action).toThrowError(errorMessage);
     });

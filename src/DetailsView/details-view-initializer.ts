@@ -23,7 +23,7 @@ import { CardsViewController } from 'common/components/cards/cards-view-controll
 import { CardsViewStore } from 'common/components/cards/cards-view-store';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { getIssueFilingDialogProps } from 'common/components/get-issue-filing-dialog-props';
-import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
+import { getNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
@@ -440,7 +440,7 @@ if (tabId != null) {
                 new TabStopsFailedCounterIncludingNoInstance(),
                 toolData,
                 DateProvider.getCurrentDate,
-                GetNextHeadingLevel,
+                getNextHeadingLevel,
                 getDefaultCopyToClipboardScript,
             );
 
@@ -707,7 +707,7 @@ if (tabId != null) {
                 tabStopsFailedCounter: new TabStopsFailedCounterInstancesOnly(),
                 tabStopsTestViewController,
                 tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
-                getNextHeadingLevel: GetNextHeadingLevel,
+                getNextHeadingLevel: getNextHeadingLevel,
                 detailsViewId,
                 cardsViewController,
                 cardFooterMenuItemsBuilder,

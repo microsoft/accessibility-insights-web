@@ -136,12 +136,15 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                         <HeadingElementForLevel
                             headingLevel={props.instanceHeadingLevel}
                             className={styles.instanceHeading}
-                            aria-label={`Issue ${props.index + 1}: ${result.ruleId}`}
-                        />
+                        >
+                            <span className="screen-reader-only">
+                                Issue {props.index + 1}: {result.ruleId}
+                            </span>
+                        </HeadingElementForLevel>
                     )}
                     <table
                         className={styles.reportInstanceTable}
-                        aria-label={`${result.ruleId} issue ${props.index + 1} details`}
+                        aria-label={`Issue ${props.index + 1} details`}
                     >
                         <tbody>
                             {renderCardRowsForPropertyBag(result.identifiers, props)}

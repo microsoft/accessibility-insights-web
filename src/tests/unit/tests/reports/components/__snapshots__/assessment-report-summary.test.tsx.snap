@@ -24,6 +24,7 @@ exports[`AssessmentReportSummary render Correct composition 1`] = `
     Test details
   </h3>
   <div
+    aria-hidden="true"
     className="outcomeLegend"
   >
     <span

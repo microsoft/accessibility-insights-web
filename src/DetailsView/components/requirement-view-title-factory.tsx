@@ -46,5 +46,9 @@ export function getRequirementViewTitleForQuickAssess(
     if (props.assessmentKey === AutomatedChecks.key) {
         return getRequirementViewTitleForAssessment(props);
     }
-    return <h1 className={styles.requirementViewTitleHeading}>{props.name}</h1>;
+    return (
+        <div className={styles.requirementViewTitle}>
+            <h1 className={styles.requirementViewTitleHeading}>{props.name}</h1>
+        </div>
+    );
 }

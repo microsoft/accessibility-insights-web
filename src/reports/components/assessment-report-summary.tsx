@@ -25,7 +25,7 @@ export class AssessmentReportSummary extends React.Component<AssessmentReportSum
                     textLabel={true}
                 />
                 <h3 className={styles.testDetailsText}>Test details</h3>
-                <div className={styles.outcomeLegend}>
+                <div className={styles.outcomeLegend} aria-hidden="true">
                     {allRequirementOutcomeTypes.map(outcomeType => (
                         <span key={outcomeType} className={styles.outcomeLegendItem}>
                             <span
