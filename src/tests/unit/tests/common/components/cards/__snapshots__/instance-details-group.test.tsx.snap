@@ -26,6 +26,7 @@ exports[`InstanceDetailsGroup renders: InstanceDetails props 1`] = `
   "cardSelectionMessageCreator": {},
   "deps": {},
   "index": 0,
+  "instanceHeadingLevel": undefined,
   "narrowModeStatus": undefined,
   "outcomeType": undefined,
   "result": {

@@ -46,6 +46,7 @@ exports[`RulesWithInstances renders: CardsCollapsibleControl props 1`] = `
                   <RuleContent
                     cardSelectionMessageCreator={[typemoq mock object]}
                     deps={[Circular]}
+                    instanceHeadingLevel={6}
                     outcomeType="pass"
                     rule={
                       {
@@ -153,6 +154,7 @@ exports[`RulesWithInstances renders: CardsCollapsibleControl props 1`] = `
         "fixInstructionProcessor": [typemoq mock object],
       }
     }
+    instanceHeadingLevel={6}
     outcomeType="pass"
     rule={
       {
@@ -219,6 +221,7 @@ exports[`RulesWithInstances renders: CardsCollapsibleControl props 1`] = `
               <RuleContent
                 cardSelectionMessageCreator={[typemoq mock object]}
                 deps={[Circular]}
+                instanceHeadingLevel={6}
                 outcomeType="pass"
                 rule={
                   {
@@ -345,6 +348,7 @@ exports[`RulesWithInstances renders: CardsCollapsibleControl props 1`] = `
                   <RuleContent
                     cardSelectionMessageCreator={[typemoq mock object]}
                     deps={[Circular]}
+                    instanceHeadingLevel={6}
                     outcomeType="pass"
                     rule={
                       {
