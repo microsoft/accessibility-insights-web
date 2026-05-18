@@ -17,11 +17,13 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
       <mock-customizediconbutton
         arialabel="undo"
         iconprops="[object Object]"
+        title="undo"
       />
       <mock-customizediconbutton
         arialabel="add failure instance"
         data-automation-id="addTabStopsFailureInstance"
         iconprops="[object Object]"
+        title="add failure instance"
       />
     </div>
   </div>
@@ -35,6 +37,7 @@ exports[`TabStopsChoiceGroup render with fail status: CustomizedIconButton props
     "iconName": "undo",
   },
   "onClick": [Function],
+  "title": "undo",
 }
 `;
 
@@ -89,6 +92,7 @@ exports[`TabStopsChoiceGroup render with pass status 1`] = `
       <mock-customizediconbutton
         arialabel="undo"
         iconprops="[object Object]"
+        title="undo"
       />
     </div>
   </div>
