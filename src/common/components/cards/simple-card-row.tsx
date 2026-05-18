@@ -17,11 +17,23 @@ export const SimpleCardRow = NamedFC<SimpleCardRowProps>(
     'SimpleCardRow',
     ({ label: givenLabel, content, rowKey, contentClassName }) => {
         const contentStyling = css(styles.rowContent, contentClassName);
+        const rawId = React.useId().replace(/:/g, '');
+        const headerId = `card-row-label-${rawId}`;
+        const contentId = `card-row-content-${rawId}`;
 
         return (
             <tr className={styles.row} key={rowKey}>
-                <th className={styles.rowLabel}>{givenLabel}</th>
-                <td className={contentStyling}>{content}</td>
+                <th scope="row" id={headerId} className={styles.rowLabel}>
+                    {givenLabel}
+                </th>
+                <td
+                    id={contentId}
+                    headers={headerId}
+                    aria-labelledby={`${headerId} ${contentId}`}
+                    className={contentStyling}
+                >
+                    {content}
+                </td>
             </tr>
         );
     },
