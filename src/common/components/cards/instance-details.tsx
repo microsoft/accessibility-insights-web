@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import classNames from 'classnames';
-import { HeadingElementForLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
@@ -41,7 +40,6 @@ export type InstanceDetailsProps = {
     narrowModeStatus?: NarrowModeStatus;
     feedbackURL?: string;
     outcomeType?: string;
-    instanceHeadingLevel?: HeadingLevel;
 };
 
 // Feedback mechanism is only enabled for results with the following guidance tags
@@ -132,17 +130,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         >
             <div className={instanceDetailsCardStyling} {...cardHighlightingProperties}>
                 <div>
-                    {props.instanceHeadingLevel !== undefined && (
-                        <HeadingElementForLevel
-                            headingLevel={props.instanceHeadingLevel}
-                            className={styles.instanceHeading}
-                            aria-label={`Issue ${props.index + 1}: ${result.ruleId}`}
-                        />
-                    )}
-                    <table
-                        className={styles.reportInstanceTable}
-                        aria-label={`Issue ${props.index + 1} details`}
-                    >
+                    <table className={styles.reportInstanceTable}>
                         <tbody>
                             {renderCardRowsForPropertyBag(result.identifiers, props)}
                             {renderCardRowsForPropertyBag(result.descriptors, props)}

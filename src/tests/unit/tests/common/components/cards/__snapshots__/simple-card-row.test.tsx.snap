@@ -9,16 +9,11 @@ exports[`SimpleCardRow renders 1`] = `
       >
         <th
           class="rowLabel"
-          id="card-row-label-r0"
-          scope="row"
         >
           test label
         </th>
         <td
-          aria-labelledby="card-row-label-r0 card-row-content-r0"
           class="rowContent"
-          headers="card-row-label-r0"
-          id="card-row-content-r0"
         >
           test content
         </td>
@@ -37,16 +32,11 @@ exports[`SimpleCardRow renders with correct styling with extra class name 1`] = 
       >
         <th
           class="rowLabel"
-          id="card-row-label-r1"
-          scope="row"
         >
           test label
         </th>
         <td
-          aria-labelledby="card-row-label-r1 card-row-content-r1"
           class="rowContent test class name"
-          headers="card-row-label-r1"
-          id="card-row-content-r1"
         >
           test content
         </td>

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
@@ -31,7 +30,6 @@ export type InstanceDetailsGroupProps = {
     narrowModeStatus?: NarrowModeStatus;
     feedbackURL?: string;
     outcomeType?: string;
-    instanceHeadingLevel?: HeadingLevel;
 };
 
 export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
@@ -46,7 +44,6 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
             narrowModeStatus,
             feedbackURL,
             outcomeType,
-            instanceHeadingLevel,
         } = props;
         const { nodes } = rule;
         const unifiedRule: UnifiedRule = {
@@ -74,7 +71,6 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
                             cardSelectionMessageCreator={cardSelectionMessageCreator}
                             narrowModeStatus={narrowModeStatus}
                             outcomeType={outcomeType}
-                            instanceHeadingLevel={instanceHeadingLevel}
                             {...(feedbackURL && { feedbackURL })}
                         />
                     </li>

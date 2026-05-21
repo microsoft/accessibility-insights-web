@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -28,7 +27,6 @@ export type RuleContentProps = {
     narrowModeStatus?: NarrowModeStatus;
     outcomeType: InstanceOutcomeType;
     feedbackURL?: string;
-    instanceHeadingLevel?: HeadingLevel;
 };
 
 export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {

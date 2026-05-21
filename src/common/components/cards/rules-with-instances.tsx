@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GuidanceTagsDeps } from 'common/components/guidance-tags';
-import { getNextHeadingLevel, HeadingLevel } from 'common/components/heading-element-for-level';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -63,12 +62,6 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
             const { pastTense } = outcomeTypeSemantics[outcomeType];
             const count = outcomeCounter(rule.nodes);
 
-            const isValidHeadingLevel =
-                Number.isInteger(headingLevel) && headingLevel >= 1 && headingLevel <= 5;
-            const instanceHeadingLevel: HeadingLevel | undefined = isValidHeadingLevel
-                ? getNextHeadingLevel(headingLevel as HeadingLevel)
-                : undefined;
-
             // Include guidance tags in the aria-label for accessibility
             const guidanceTags =
                 rule.guidance && deps.getGuidanceTagsFromGuidanceLinks
@@ -106,7 +99,6 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         cardSelectionMessageCreator={cardSelectionMessageCreator}
                         narrowModeStatus={narrowModeStatus}
                         feedbackURL={deps.feedbackURL || undefined}
-                        instanceHeadingLevel={instanceHeadingLevel}
                     />
                 ),
                 buttonAriaLabel,
