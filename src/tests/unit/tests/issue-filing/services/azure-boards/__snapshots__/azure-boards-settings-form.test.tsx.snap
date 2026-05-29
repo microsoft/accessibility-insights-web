@@ -17,6 +17,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
   <mock-styleddropdownbase
     label="Select a field for issue details"
     options="[object Object],[object Object]"
+    panelprops="[object Object]"
     placeholder="Select an option"
   />
 </DocumentFragment>
@@ -26,6 +27,7 @@ exports[`AzureBoardsSettingsForm renders settings is null: StyledDropdownBase pr
 {
   "label": "Select a field for issue details",
   "onChange": [Function],
+  "onRenderContainer": [Function],
   "options": [
     {
       "key": "reproSteps",
@@ -36,6 +38,13 @@ exports[`AzureBoardsSettingsForm renders settings is null: StyledDropdownBase pr
       "text": "Description",
     },
   ],
+  "panelProps": {
+    "focusTrapZoneProps": {
+      "firstFocusableTarget": "[role="option"]",
+      "forceFocusInsideTrap": true,
+    },
+    "isLightDismiss": false,
+  },
   "placeholder": "Select an option",
   "selectedKey": null,
 }
@@ -58,6 +67,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
   <mock-styleddropdownbase
     label="Select a field for issue details"
     options="[object Object],[object Object]"
+    panelprops="[object Object]"
     placeholder="Select an option"
     selectedkey="description"
   />
@@ -68,6 +78,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField: 
 {
   "label": "Select a field for issue details",
   "onChange": [Function],
+  "onRenderContainer": [Function],
   "options": [
     {
       "key": "reproSteps",
@@ -78,6 +89,13 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField: 
       "text": "Description",
     },
   ],
+  "panelProps": {
+    "focusTrapZoneProps": {
+      "firstFocusableTarget": "[role="option"]",
+      "forceFocusInsideTrap": true,
+    },
+    "isLightDismiss": false,
+  },
   "placeholder": "Select an option",
   "selectedKey": "description",
 }
