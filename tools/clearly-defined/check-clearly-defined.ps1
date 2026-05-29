@@ -191,38 +191,6 @@ function WriteFormattedError([string]$pipelineType, [string]$message) {
     }
 }
 
-function GetStatusCode([System.Management.Automation.ErrorRecord]$errorRecord) {
-    $responseProperty = $errorRecord.Exception.PSObject.Properties['Response']
-    if ($null -eq $responseProperty -or $null -eq $responseProperty.Value) {
-        return $null
-    }
-
-    return [int]$responseProperty.Value.StatusCode
-}
-
-function IsTransientClearlyDefinedError([Nullable[int]]$statusCode) {
-    return $statusCode -in 408, 429, 500, 502, 503, 504, 520, 522, 524
-}
-
-function InvokeClearlyDefinedRequest([string]$uri) {
-    $retryCount = 3
-    $retryDelaySeconds = 5
-
-    for ($attempt = 1; $attempt -le $retryCount; $attempt++) {
-        try {
-            return Invoke-RestMethod -Uri $uri -Method Get -ErrorAction Stop
-        } catch {
-            $statusCode = GetStatusCode $_
-            if ((-not (IsTransientClearlyDefinedError $statusCode)) -or $attempt -eq $retryCount) {
-                throw
-            }
-
-            Write-Warning "ClearlyDefined request failed with transient status code $statusCode on attempt $attempt of $retryCount. Retrying in $retryDelaySeconds seconds."
-            Start-Sleep -Seconds $retryDelaySeconds
-        }
-    }
-}
-
 try {
     $pipelineType = GetPipelineType $PipelineType
     $branchName = GetBranchName $pipelineType $BranchName
@@ -231,7 +199,7 @@ try {
 
     $uri = GetUri($branchName)
     Write-Host "Getting data from $uri"
-    $response = InvokeClearlyDefinedRequest $uri
+    $response = Invoke-RestMethod -Uri $uri -Method Get -ErrorAction Stop
 
     if (Get-Member -inputobject $response -name "files" -Membertype Properties) {
         Write-Host "ClearlyDefined has a definition for this package version."
