@@ -3125,7 +3125,7 @@ __metadata:
     react-dom: ^18.3.1
     react-helmet-async: ^2.0.5
     react-resize-detector: ^9.1.1
-    react-router-dom: ^7.13.2
+    react-router-dom: ^7.17.0
     regenerator-runtime: ^0.14.1
     sass: ^1.69.7
     sass-loader: ^13.3.3
@@ -10692,21 +10692,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^7.13.2":
-  version: 7.13.2
-  resolution: "react-router-dom@npm:7.13.2"
+"react-router-dom@npm:^7.17.0":
+  version: 7.17.0
+  resolution: "react-router-dom@npm:7.17.0"
   dependencies:
-    react-router: 7.13.2
+    react-router: 7.17.0
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: a578420a7219a01a4f3f61f99ccf3892341084b493f02d1b1422f2766bfe038993dc494f7e3203313ca22d3b90fa386435409248ffa49c503586b17cf0724e72
+  checksum: a295332a90f1738ec4ee8e8d3f057a68faff3a182176e9c892c34e7ad4225793b11bab7bd5ffb96a05a27ea77bda0b1be109bb446c2d67479c1cb46a56a5aa62
   languageName: node
   linkType: hard
 
-"react-router@npm:7.13.2":
-  version: 7.13.2
-  resolution: "react-router@npm:7.13.2"
+"react-router@npm:7.17.0":
+  version: 7.17.0
+  resolution: "react-router@npm:7.17.0"
   dependencies:
     cookie: ^1.0.1
     set-cookie-parser: ^2.6.0
@@ -10716,7 +10716,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 84e704693900afca4933641cd86110a72305b18a2eb922b2d367c7f6f733c177af2ef1c9e4b291f235c34462250ea20da045f75146dd28d0abe6675d5fac3e3b
+  checksum: 0cf48def1600c518b7b2646a4c59f306756033bb08398dda9cdf16010f2b4e5178354c3b68e6eec5291c6f3a0b871bf0d3cbb6367ae8d4fd01d17f436c4fc5be
   languageName: node
   linkType: hard
 
