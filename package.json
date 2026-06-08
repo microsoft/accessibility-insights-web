@@ -145,7 +145,7 @@
         "typemoq": "^2.1.0",
         "typescript": "^5.6.3",
         "webpack": "^5.104.1",
-        "webpack-cli": "^5.1.4",
+        "webpack-cli": "^7.0.2",
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
