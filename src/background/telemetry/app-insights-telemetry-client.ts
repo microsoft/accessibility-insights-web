@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ITelemetryContext as AppInsightsTelemetryContext } from '@microsoft/applicationinsights-core-js';
 import { ApplicationInsights, ITelemetryItem } from '@microsoft/applicationinsights-web';
-import { Initialization } from '@microsoft/applicationinsights-web/types/Initialization';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
 import { TelemetryBaseData } from './telemetry-base-data';
 import { TelemetryClient } from './telemetry-client';
-export type ITelemetryContext = Initialization['context'];
+export type ITelemetryContext = AppInsightsTelemetryContext;
 export type ITelemetryTrace = ITelemetryContext['telemetryTrace'];
 export interface TelemetryData {
     baseData: TelemetryBaseData;
