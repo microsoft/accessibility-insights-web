@@ -86,3 +86,19 @@ pipelines:
           lastModifiedDate: 2025-05-07
         accessibilityinsights:
           lastModifiedDate: 2025-05-07
+  2:
+    retail:
+      source:
+        eslint:
+          lastModifiedDate: 2026-06-11
+        psscriptanalyzer:
+          lastModifiedDate: 2026-06-11
+        armory:
+          lastModifiedDate: 2026-06-11
+        accessibilityinsights:
+          lastModifiedDate: 2026-06-11
+      binary:
+        binskim:
+          lastModifiedDate: 2026-06-11
+        spotbugs:
+          lastModifiedDate: 2026-06-11
