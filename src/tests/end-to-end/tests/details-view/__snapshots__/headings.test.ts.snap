@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Details View -> Assessment -> Headings Requirement page should pass accessibility validation with highContrastMode=false 1`] = `[]`;
-
-exports[`Details View -> Assessment -> Headings Requirement page should pass accessibility validation with highContrastMode=true 1`] = `[]`;
