@@ -72,9 +72,16 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                     ? `${guidanceTags.map(tag => tag.displayText).join(' ')}`
                     : '';
 
-            // Button visible text structure - include guidance tags with proper spacing
+            // The aria-label must start with the visible text content of the button so
+            // axe-core 4.12's label-content-name-mismatch rule passes (visible text must be a
+            // substring of the accessible name). The button visibly contains the OutcomeChip's
+            // count, then the rule.id, description, and guidance tags. The past-tense outcome
+            // word (e.g. 'Failed', 'Passed') is appended in parentheses at the end so screen
+            // reader users still hear the outcome without breaking the substring containment
+            // check. All original information (count, rule.id, description, guidance tags,
+            // outcome) is preserved -- only the ordering is changed.
             const buttonAriaLabel =
-                `${count} ${pastTense} ${rule.id}: ${rule.description}${guidanceTagsText ? ` ${guidanceTagsText}` : ''}`.trim();
+                `${count} ${rule.id}: ${rule.description}${guidanceTagsText ? ` ${guidanceTagsText}` : ''} (${pastTense})`.trim();
 
             return {
                 id: rule.id,

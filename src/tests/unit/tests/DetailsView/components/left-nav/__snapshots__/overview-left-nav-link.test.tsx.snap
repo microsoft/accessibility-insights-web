@@ -20,6 +20,7 @@ exports[`OverviewLeftNavLink renders 1`] = `
       >
         test-props-link-name
       </span>
+       
       <span
         class="overview-percent"
       >

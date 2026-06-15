@@ -10,6 +10,7 @@ exports[`TestViewLeftNavLink renders 1`] = `
     <i>
       test-props-renderIcon
     </i>
+     
     <span
       class="testName"
     >
