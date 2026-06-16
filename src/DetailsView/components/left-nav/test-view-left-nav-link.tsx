@@ -17,8 +17,7 @@ export const TestViewLeftNavLink = NamedFC<BaseLeftNavLinkProps>(
                 className={commonStyles.leftNavLinkContainer}
                 aria-hidden="true"
             >
-                {renderIcon(link)}{' '}
-                <span className={styles.testName}>{link.name}</span>
+                {renderIcon(link)} <span className={styles.testName}>{link.name}</span>
             </span>
         );
     },
