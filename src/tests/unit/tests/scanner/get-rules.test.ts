@@ -38,7 +38,7 @@ describe('getDefaultRules', () => {
             ruleId: 'test id three',
         };
 
-        const rulesStub = [ruleStubOne, ruleStubTwo, ruleStubThree];
+        const rulesStub = [ruleStubOne, ruleStubTwo, ruleStubThree] as Axe.RuleMetadata[];
 
         const expected: ScannerRuleInfo[] = [
             {
@@ -73,7 +73,7 @@ describe('getDefaultRules', () => {
 
         getRulesMock
             .setup(grm => grm())
-            .returns(() => rulesStub as any)
+            .returns(() => rulesStub as ReturnType<typeof Axe.getRules>)
             .verifiable();
 
         getHelpUrlMock.setup(gchm => gchm(ruleStubOne.ruleId, It.isAny())).returns(() => urlStub);
