@@ -3363,7 +3363,7 @@ __metadata:
     grunt-contrib-copy: ^1.0.0
     grunt-contrib-watch: ^1.1.0
     grunt-exec: ^3.0.0
-    grunt-sass: ^3.1.0
+    grunt-sass: ^4.1.0
     idb-keyval: ^6.2.1
     jest: ^29.7.0
     jest-environment-jsdom: ^29.7.0
@@ -7137,12 +7137,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"grunt-sass@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "grunt-sass@npm:3.1.0"
+"grunt-sass@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "grunt-sass@npm:4.1.0"
   peerDependencies:
     grunt: ">=1"
-  checksum: c96ceedeb3af64162d23ca6c62fac64fb91fbf6aff90398f55ee30d733103d6b8f6d2b81095f446e25f27db4ab4bbcaf42667466ac996cf3012fc0c3035ff3dc
+  checksum: 73714a7df6367062c2ee77b1b94e372fe413804e0e9e967d119ce608e71812d143716cfbacefea9d21a484d18f5923a83e330397d3e3a4b72d73b7862de2d413
   languageName: node
   linkType: hard
 

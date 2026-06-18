@@ -89,8 +89,8 @@
 
                 a::after,
                 button::after {
-                    border-left: common.$pivot-item-left-border-width common.$pivot-item-border-style
-                        colors.$communication-primary;
+                    border-left: common.$pivot-item-left-border-width
+                        common.$pivot-item-border-style colors.$communication-primary;
                 }
             }
         }

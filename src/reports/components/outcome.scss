@@ -76,7 +76,11 @@ outcome-summary-bar.$outcome-count-border-size: 1.5px;
     }
 
     &.outcome-chip-pass {
-        @include icon.check-icon-styles($outcome-chip-icon-size, 0, outcome-summary-bar.$outcome-pass-color);
+        @include icon.check-icon-styles(
+            $outcome-chip-icon-size,
+            0,
+            outcome-summary-bar.$outcome-pass-color
+        );
         @include outcome-chip-color(outcome-summary-bar.$outcome-pass-color);
     }
 
@@ -87,7 +91,11 @@ outcome-summary-bar.$outcome-count-border-size: 1.5px;
     }
 
     &.outcome-chip-fail {
-        @include icon.cross-icon-styles($outcome-chip-icon-size, 0, outcome-summary-bar.$outcome-fail-color);
+        @include icon.cross-icon-styles(
+            $outcome-chip-icon-size,
+            0,
+            outcome-summary-bar.$outcome-fail-color
+        );
         @include outcome-chip-color(outcome-summary-bar.$outcome-fail-color);
     }
 
@@ -107,7 +115,11 @@ outcome-summary-bar.$outcome-count-border-size: 1.5px;
     }
 
     .outcome-icon-pass {
-        @include icon.check-icon-styles($outcome-icon-size, 0, outcome-summary-bar.$outcome-pass-color);
+        @include icon.check-icon-styles(
+            $outcome-icon-size,
+            0,
+            outcome-summary-bar.$outcome-pass-color
+        );
     }
 
     .outcome-icon-incomplete {
@@ -119,6 +131,10 @@ outcome-summary-bar.$outcome-count-border-size: 1.5px;
     }
 
     .outcome-icon-fail {
-        @include icon.cross-icon-styles($outcome-icon-size, 0, outcome-summary-bar.$outcome-fail-color);
+        @include icon.cross-icon-styles(
+            $outcome-icon-size,
+            0,
+            outcome-summary-bar.$outcome-fail-color
+        );
     }
 }
