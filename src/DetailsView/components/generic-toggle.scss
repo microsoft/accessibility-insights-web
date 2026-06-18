@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/fonts.scss';
 
 .generic-toggle-component {
     margin-bottom: 4vh;
@@ -12,7 +12,7 @@
         margin-bottom: 1vh;
 
         .toggle-name {
-            @include text-style-title-s;
+            @include fonts.text-style-title-s;
         }
 
         .toggle {
@@ -23,6 +23,6 @@
     }
 
     .toggle-description {
-        color: $primary-text;
+        color: colors.$primary-text;
     }
 }

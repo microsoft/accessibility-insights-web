@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../styles/colors.scss';
+@use '../styles/colors.scss';
 
 $toast-width: 316px;
 $toast-padding: 20px;
@@ -10,9 +10,9 @@ $toast-padding: 20px;
 }
 
 .toast-content {
-    background: $neutral-70;
+    background: colors.$neutral-70;
     border-radius: 4px;
-    color: $neutral-0;
+    color: colors.$neutral-0;
     padding-left: $toast-padding;
     padding-top: 14px;
     padding-bottom: 14px;

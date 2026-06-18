@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/colors.scss';
-@import './common-mixins.scss';
+@use '../../../common/styles/colors.scss';
+@use 'common-mixins.scss';
 
 .report-footer-container {
-    @include content-size;
+    @include common-mixins.content-size;
 
     margin-bottom: 68px;
     margin-top: 24px;
 
     .report-footer {
         line-height: 20px;
-        color: $report-footer-text;
+        color: colors.$report-footer-text;
     }
 
     @media only screen and (width <= 1000px) {

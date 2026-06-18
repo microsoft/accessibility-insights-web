@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../common/styles/common.scss';
+@use '../../common/styles/common.scss';
 
 .assessment-instance-label {
     width: 24px;
@@ -11,7 +11,7 @@
     float: left;
     margin-right: 8px;
     line-height: 24px;
-    color: $always-white;
+    color: common.$always-white;
 }
 
 .assessment-instance-label:global(.radio) {
@@ -34,7 +34,7 @@
 }
 
 .instance-header {
-    color: $primary-text;
+    color: common.$primary-text;
     white-space: pre;
     @media screen and (forced-colors: active) {
         color: inherit;
@@ -45,7 +45,7 @@
     overflow: hidden;
     white-space: normal;
     text-overflow: ellipsis;
-    color: $secondary-text;
+    color: common.$secondary-text;
     @media screen and (forced-colors: active) {
         color: inherit;
     }

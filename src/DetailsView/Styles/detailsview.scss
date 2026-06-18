@@ -1,19 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/root-level-only/color-definitions.scss';
-@import '../../common/styles/root-level-only/global-styles.scss';
-@import '../../common/styles/common.scss';
-@import '../../views/content/content.scss';
-@import '../../reports/components/outcome.scss';
-@import '../../reports/components/assessment-report-header.scss';
-@import '../../common/components/toast.scss';
-@import '../../common/components/guidance-tags.scss';
+@use '../../common/styles/root-level-only/color-definitions.scss';
+@use '../../common/styles/root-level-only/global-styles.scss';
+@use '../../common/styles/common.scss';
+@use '../../views/content/content.scss';
+@use '../../reports/components/outcome.scss';
+@use '../../reports/components/assessment-report-header.scss';
+@use '../../common/components/toast.scss';
+@use '../../common/components/guidance-tags.scss';
+@use "../../common/styles/colors.scss";
+@use "../../common/styles/fonts.scss";
 
 body {
     margin: 0;
-    background: $neutral-0;
-    color: $neutral-100;
-    font-family: $font-family;
+    background: colors.$neutral-0;
+    color: colors.$neutral-100;
+    font-family: fonts.$font-family;
     font-size: 14px;
     height: 100vh;
     max-height: 100vh;

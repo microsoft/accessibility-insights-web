@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import './common-mixins.scss';
-@import '../../../common/styles/fonts.scss';
+@use 'common-mixins.scss';
+@use '../../../common/styles/colors.scss';
+@use '../../../common/styles/fonts.scss';
 
 .urls-summary-section {
-    @include box-shadow;
+    @include common-mixins.box-shadow;
 
-    background-color: $neutral-0;
+    background-color: colors.$neutral-0;
     padding: 20px;
     margin-bottom: 24px;
 
@@ -16,7 +17,7 @@
     }
 
     .total-urls {
-        font-weight: $font-weight-semi-bold;
+        font-weight: fonts.$font-weight-semi-bold;
     }
 
     .failure-instances {

@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../styles/colors.scss';
-@import '../../styles/fonts.scss';
+@use '../../styles/colors.scss';
+@use '../../styles/fonts.scss';
 
 .foot {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $neutral-2;
+    background-color: colors.$neutral-2;
     min-height: 48px;
     padding-left: 12px;
-    border-top: 0.5px solid $card-footer-border;
+    border-top: 0.5px solid colors.$card-footer-border;
     border-bottom-left-radius: inherit;
     border-bottom-right-radius: inherit;
 
@@ -21,7 +21,7 @@
         background: transparent;
 
         svg {
-            fill: $secondary-text;
+            fill: colors.$secondary-text;
             @media screen and (forced-colors: active) {
                 fill: ButtonFace !important;
                 stroke: ButtonText !important;
@@ -29,8 +29,8 @@
         }
 
         label {
-            color: $secondary-text;
-            font-size: $font-size-m;
+            color: colors.$secondary-text;
+            font-size: fonts.$font-size-m;
             overflow-wrap: break-word;
             word-break: break-word;
         }

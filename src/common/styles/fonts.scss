@@ -9,15 +9,15 @@
     $comma: '';
     $family: '';
     @each $font in $fonts {
-        $font: if(
-            string.index($font, ' ') == null and string.index($font, '-') != 1,
-            $font,
-            "'#{$font}'"
-        );
+        @if string.index($font, ' ') == null and string.index($font, '-') != 1 {
+            $font: $font;
+        } @else {
+            $font: "'#{$font}'";
+        }
         $family: $family + $comma + $font;
         $comma: ',';
     }
-    @return unquote($family);
+    @return string.unquote($family);
 }
 
 // Fonts
