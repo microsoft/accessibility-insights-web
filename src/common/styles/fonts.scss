@@ -9,7 +9,7 @@
     $comma: '';
     $family: '';
     @each $font in $fonts {
-        @if string.index($font, ' ') == null and string.index($font, '-') != 1 {
+        @if not string.index($font, ' ') and string.index($font, '-') != 1 {
             $font: $font;
         } @else {
             $font: "'#{$font}'";
