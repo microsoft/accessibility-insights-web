@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
+@use '../../common/styles/colors.scss';
 
 .launch-panel-header {
     margin-bottom: 12px;
@@ -14,13 +14,13 @@
     .title {
         margin-block-start: unset;
         margin-block-end: unset;
-        color: $neutral-100;
+        color: colors.$neutral-100;
         font-size: 21px;
         font-weight: 100;
     }
 
     .subtitle {
-        color: $neutral-60;
+        color: colors.$neutral-60;
         font-size: 11px;
     }
 

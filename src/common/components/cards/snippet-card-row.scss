@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/fonts.scss';
+@use '../../../common/styles/fonts.scss';
 
 .snippet {
-    font-family: $code-font-family;
+    font-family: fonts.$code-font-family;
     white-space: normal;
 }

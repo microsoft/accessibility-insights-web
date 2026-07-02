@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../../common/styles/colors.scss';
+@use '../../../common/styles/colors.scss';
 
 .urls-row-content {
     padding-left: 16px;
@@ -13,6 +13,6 @@
 }
 
 .urls-row-content-new-Failure {
-    color: $negative-outcome;
+    color: colors.$negative-outcome;
     font-weight: bold;
 }
