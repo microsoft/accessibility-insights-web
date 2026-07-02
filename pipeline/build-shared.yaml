@@ -21,6 +21,11 @@ extends:
     ${{ else }}:
         template: v1/1ES.Unofficial.PipelineTemplate.yml@1esPipelines
     parameters:
+        settings:
+            # SFI-ES4.2.4: block public package-feed access (NuGet/NPM/Yarn/PyPI/Maven/Cargo).
+            # Applies to both build.yaml and build-webCI.yaml (Accessibility Insights Web CI).
+            # Appended to the default Permissive policy; never set CFSClean alone.
+            networkIsolationPolicy: Permissive,CFSClean
         pool:
             name: $(a11yInsightsPool) # Name of your hosted pool
             image: windows-2022-secure # Name of the image in your pool. If not specified, first image of the pool is used

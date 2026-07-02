@@ -14,6 +14,10 @@ resources:
 extends:
     template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
     parameters:
+        settings:
+            # SFI-ES4.2.4: block public package-feed access (NuGet/NPM/Yarn/PyPI/Maven/Cargo).
+            # Appended to the default Permissive policy; never set CFSClean alone.
+            networkIsolationPolicy: Permissive,CFSClean
         pool:
             os: linux
             image: ubuntu-22.04-secure

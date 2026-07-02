@@ -35,6 +35,9 @@ extends:
             os: windows
         settings:
             skipBuildTagsForGitHubPullRequests: true
+            # SFI-ES4.2.4: block public package-feed access (NuGet/NPM/Yarn/PyPI/Maven/Cargo).
+            # Appended to the default Permissive policy; never set CFSClean alone.
+            networkIsolationPolicy: Permissive,CFSClean
         sdl:
             codeql:
                 compiled:
