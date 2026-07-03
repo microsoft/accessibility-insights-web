@@ -262,7 +262,6 @@ button::after {
   padding-bottom: 14px;
   padding-left: 0;
   padding-right: 20px;
-  border-bottom: 0.5px solid var(--neutral-10);
 }
 .report-instance-table .row > * {
   margin-top: 12px;
@@ -270,6 +269,9 @@ button::after {
   margin-left: 20px;
   margin-right: 0;
   padding: 0;
+}
+.report-instance-table .row {
+  border-bottom: 0.5px solid var(--neutral-10);
 }
 .report-instance-table .row:last-child {
   border-bottom: none;
@@ -331,9 +333,6 @@ button::after {
 .outcome-summary-bar .count {
   font-weight: 600;
 }
-.outcome-summary-bar .fail {
-  background-color: var(--negative-outcome);
-}
 .outcome-summary-bar .fail .check-container {
   position: relative;
   width: 16px;
@@ -349,8 +348,8 @@ button::after {
   bottom: -1px;
   margin-right: 8px;
 }
-.outcome-summary-bar .pass {
-  background-color: var(--positive-outcome);
+.outcome-summary-bar .fail {
+  background-color: var(--negative-outcome);
 }
 .outcome-summary-bar .pass .check-container {
   position: relative;
@@ -368,9 +367,8 @@ button::after {
   margin-right: 8px;
   margin-left: 4px;
 }
-.outcome-summary-bar .inapplicable,
-.outcome-summary-bar .unscannable {
-  background-color: var(--neutral-outcome);
+.outcome-summary-bar .pass {
+  background-color: var(--positive-outcome);
 }
 .outcome-summary-bar .inapplicable .check-container,
 .outcome-summary-bar .unscannable .check-container {
@@ -387,11 +385,9 @@ button::after {
   margin-right: 8px;
   margin-left: 4px;
 }
-.outcome-summary-bar .incomplete {
+.outcome-summary-bar .inapplicable,
+.outcome-summary-bar .unscannable {
   background-color: var(--neutral-outcome);
-  color: var(--white);
-  border: 2px var(--neutral-60) solid;
-  height: 12px;
 }
 .outcome-summary-bar .incomplete .check-container {
   position: relative;
@@ -404,6 +400,12 @@ button::after {
 .outcome-summary-bar .incomplete .check-container {
   margin-right: 6px;
   border-color: var(--white);
+}
+.outcome-summary-bar .incomplete {
+  background-color: var(--neutral-outcome);
+  color: var(--white);
+  border: 2px var(--neutral-60) solid;
+  height: 12px;
 }
 .outcome-summary-bar .summary-bar-left-edge {
   border-top-left-radius: 2px;
@@ -891,7 +893,6 @@ ul.instance-details-list li:last-child {
   padding-bottom: 14px;
   padding-left: 0;
   padding-right: 20px;
-  border-bottom: 0.5px solid var(--neutral-10);
 }
 .report-instance-table--3VoZX .row---3i35 > * {
   margin-top: 12px;
@@ -899,6 +900,9 @@ ul.instance-details-list li:last-child {
   margin-left: 20px;
   margin-right: 0;
   padding: 0;
+}
+.report-instance-table--3VoZX .row---3i35 {
+  border-bottom: 0.5px solid var(--neutral-10);
 }
 .report-instance-table--3VoZX .row---3i35:last-child {
   border-bottom: none;

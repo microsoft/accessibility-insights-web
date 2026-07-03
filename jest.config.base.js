@@ -45,6 +45,7 @@ module.exports = {
     testEnvironment: 'node',
     testMatch: ['**/*.spec.[tj]s', '**/*.test.[tj]s'],
     testPathIgnorePatterns: ['/dist/', '/out/'],
+    transformIgnorePatterns: ['node_modules/(?!uuid/)'],
     transform: {
         '^.+\\.(ts|tsx|js|jsx)$': ['@swc/jest'],
     },

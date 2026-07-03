@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/common.scss';
+@use '../../common/styles/common.scss';
 
 .requirement-context-container {
     padding-top: 20px;
@@ -8,8 +8,8 @@
     padding-right: 24px;
     padding-bottom: 24px;
     border-radius: 4px;
-    background-color: $help-links-section-background;
-    border: 1px solid $help-links-section-border;
+    background-color: common.$help-links-section-background;
+    border: 1px solid common.$help-links-section-border;
     box-sizing: border-box;
 
     p {
@@ -18,7 +18,7 @@
 }
 
 .context-heading {
-    @include h3;
+    @include common.h3;
 
     padding: 0;
     margin-block-end: 1em;
@@ -27,7 +27,7 @@
 }
 
 .context-links > * {
-    font-family: $font-family;
+    font-family: common.$font-family;
     font-size: 14px;
 
     &:global(.ms-Button) {
@@ -42,10 +42,10 @@
         margin-left: 0;
         margin-right: 0;
         line-height: 20px;
-        color: $link;
+        color: common.$link;
 
         &:hover {
-            color: $link-hover;
+            color: common.$link-hover;
             text-decoration: underline;
         }
 
