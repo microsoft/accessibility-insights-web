@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/fonts.scss';
 
 .assessment-scan-details {
-    background-color: $neutral-2;
+    background-color: colors.$neutral-2;
     border-radius: 4px;
     padding-top: 4px;
     padding-right: 32px;
@@ -14,12 +14,12 @@
 
     h3 {
         font-size: 17px;
-        font-weight: $font-weight-semi-bold;
+        font-weight: fonts.$font-weight-semi-bold;
     }
 
     td {
         font-size: 12px;
-        font-family: $font-family;
+        font-family: fonts.$font-family;
         padding-top: 1px;
         padding-bottom: 16px;
 
@@ -30,7 +30,7 @@
         }
 
         a {
-            color: $neutral-100;
+            color: colors.$neutral-100;
             text-decoration: none;
             word-break: break-all;
         }

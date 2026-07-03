@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/common.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/common.scss';
+@use '../../common/styles/fonts.scss';
 
 .report-header-bar {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
-    background-color: $ada-brand-color;
-    height: $details-view-header-bar-height;
+    background-color: colors.$ada-brand-color;
+    height: common.$details-view-header-bar-height;
     width: 100%;
 
     :global(.header-icon) {
@@ -22,9 +22,9 @@
 
     .header-text {
         margin-left: 8px;
-        color: $header-bar-title-color;
+        color: colors.$header-bar-title-color;
         flex-shrink: 1;
-        @include ellipsed-text;
-        @include text-style-header-s;
+        @include common.ellipsed-text;
+        @include fonts.text-style-header-s;
     }
 }

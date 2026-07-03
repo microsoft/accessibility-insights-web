@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../common/styles/colors.scss';
-@import '../common/styles/fonts.scss';
+@use '../common/styles/colors.scss';
+@use '../common/styles/fonts.scss';
 
 .requirement-detail {
     font-size: 14px;
@@ -14,7 +14,7 @@
     text-align: left;
 
     strong {
-        font-weight: $font-weight-semi-bold;
+        font-weight: fonts.$font-weight-semi-bold;
     }
 
     :global(.outcome-chip) {
@@ -24,18 +24,18 @@
 }
 
 .requirement-detail-description {
-    @include text-style-body-m;
+    @include fonts.text-style-body-m;
 
     word-break: break-all;
 }
 
 .requirement-details-id {
-    font-weight: $font-weight-semi-bold;
-    color: $primary-text;
+    font-weight: fonts.$font-weight-semi-bold;
+    color: colors.$primary-text;
     word-break: break-all;
 
     a {
-        font-weight: $font-weight-semi-bold;
-        color: $primary-text;
+        font-weight: fonts.$font-weight-semi-bold;
+        color: colors.$primary-text;
     }
 }

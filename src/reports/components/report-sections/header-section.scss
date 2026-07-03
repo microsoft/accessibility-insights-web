@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/colors.scss';
-@import '../../../common/styles/common.scss';
-@import '../../../common/styles/fonts.scss';
+@use '../../../common/styles/colors.scss';
+@use '../../../common/styles/common.scss';
+@use '../../../common/styles/fonts.scss';
 
 .report-header-command-bar {
     height: 40px;
@@ -11,22 +11,22 @@
     justify-content: end;
     min-height: fit-content;
     align-items: center;
-    background-color: $neutral-0;
+    background-color: colors.$neutral-0;
     box-shadow: 0 1px 0 rgb(0 0 0 / 8%);
 
     .target-page {
         white-space: nowrap;
         margin-left: 16px;
         display: flex;
-        color: $primary-text;
-        font-family: $font-family;
+        color: colors.$primary-text;
+        font-family: fonts.$font-family;
         font-size: 14px;
         line-height: 20px;
         font-weight: normal;
         min-width: 0;
 
         a {
-            @include ellipsed-text;
+            @include common.ellipsed-text;
         }
     }
 }

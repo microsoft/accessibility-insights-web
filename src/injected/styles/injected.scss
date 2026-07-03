@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/root-level-only/color-definitions.scss';
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/common.scss';
+@use '../../common/styles/root-level-only/color-definitions.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/common.scss';
 
 #accessibility-insights-root-container {
     visibility: hidden !important;
@@ -110,7 +110,7 @@
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
-        fill: $primary-text !important;
+        fill: colors.$primary-text !important;
 
         @media screen and (forced-colors: active) {
             fill: inherit !important;
@@ -122,7 +122,7 @@
         margin-left: 8px !important;
 
         svg path {
-            fill: $neutral-100 !important;
+            fill: colors.$neutral-100 !important;
             fill-opacity: 0.9 !important;
 
             @media screen and (forced-colors: active) {
@@ -144,7 +144,7 @@
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
-        fill: $neutral-30 !important;
+        fill: colors.$neutral-30 !important;
 
         @media screen and (forced-colors: active) {
             fill: inherit !important;
@@ -159,23 +159,23 @@
         margin-top: 4px !important;
         margin-bottom: 8px !important;
         font-size: 12px !important;
-        color: $negative-outcome !important;
-        font-weight: $font-weight-semi-bold !important;
+        color: colors.$negative-outcome !important;
+        font-weight: common.$font-weight-semi-bold !important;
     }
 
     .insights-dialog-main-override .file-issue-button-help {
         margin-top: 4px !important;
         margin-bottom: 8px !important;
         font-size: 12px !important;
-        color: $negative-outcome;
-        font-weight: $font-weight-semi-bold;
+        color: colors.$negative-outcome;
+        font-weight: common.$font-weight-semi-bold;
     }
 
     .insights-dialog-main-override .copy-issue-details-button-help {
         margin-top: 4px !important;
         font-size: 12px !important;
-        color: $negative-outcome !important;
-        font-weight: $font-weight-semi-bold !important;
+        color: colors.$negative-outcome !important;
+        font-weight: common.$font-weight-semi-bold !important;
     }
 
     .insights-highlight-container,
@@ -194,22 +194,22 @@
         .insights-dialog-title {
             margin-bottom: 16px !important;
             padding-bottom: 0 !important;
-            color: $primary-text !important;
+            color: colors.$primary-text !important;
             font-size: 21px !important;
-            font-weight: $font-weight-semi-bold !important;
+            font-weight: common.$font-weight-semi-bold !important;
             letter-spacing: -0.02em !important;
         }
 
         .insights-dialog-section-title {
             margin-top: 16px !important;
             margin-bottom: 4px !important;
-            color: $primary-text !important;
+            color: colors.$primary-text !important;
             font-size: 15px !important;
-            font-weight: $font-weight-semi-bold !important;
+            font-weight: common.$font-weight-semi-bold !important;
         }
 
         .insights-dialog-content {
-            color: $secondary-text !important;
+            color: colors.$secondary-text !important;
             font-size: 14px !important;
 
             ul {
@@ -233,7 +233,7 @@
                 margin-left: 4px !important;
                 margin-right: 4px !important;
                 line-height: 100% !important;
-                font-weight: $font-weight-semi-bold !important;
+                font-weight: common.$font-weight-semi-bold !important;
             }
 
             svg {
@@ -245,8 +245,8 @@
         .insights-dialog-next-and-back-container {
             margin-top: 16px !important;
             display: grid !important;
-            color: $primary-text !important;
-            font-size: $font-size-m !important;
+            color: colors.$primary-text !important;
+            font-size: common.$font-size-m !important;
             align-items: center !important;
             grid-template-columns: 100px 1fr 100px !important;
 
@@ -275,7 +275,7 @@
         // This applies to both the text in highlight boxes and also the text
         // in highlight circled used for tab/focus visualizers
         .insights-highlight-text {
-            @include ms-high-contrast-override {
+            @include common.ms-high-contrast-override {
                 // Note that forced-color-adjust: none is required for highlight box labels'
                 // outline/box-shadows to be inherited correctly in HC mode, in addition to being
                 // required for color and background-color
@@ -308,7 +308,7 @@
             outline-offset: 1px !important;
             box-shadow: 0 0 0 4px white !important;
 
-            @include ms-high-contrast-override {
+            @include common.ms-high-contrast-override {
                 forced-color-adjust: none;
                 outline-color: Highlight !important;
                 box-shadow: 0 0 0 4px HighlightText !important;
@@ -322,7 +322,7 @@
             outline-offset: 1px !important;
             box-shadow: 0 0 0 4px white !important;
 
-            @include ms-high-contrast-override {
+            @include common.ms-high-contrast-override {
                 forced-color-adjust: none;
                 outline-color: Highlight !important;
                 box-shadow: 0 0 0 4px HighlightText !important;

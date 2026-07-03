@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/colors.scss';
-@import '../../../common/styles/fonts.scss';
+@use '../../../common/styles/colors.scss';
+@use '../../../common/styles/fonts.scss';
 
 .summary-results-table {
     width: 100%;
@@ -14,7 +14,7 @@
 
     th,
     td {
-        border: 1px solid $neutral-20;
+        border: 1px solid colors.$neutral-20;
         padding-top: 16px;
         padding-right: 8px;
         padding-bottom: 16px;
@@ -22,8 +22,8 @@
     }
 
     th {
-        font-weight: $font-weight-semi-bold;
-        background-color: $neutral-6;
+        font-weight: fonts.$font-weight-semi-bold;
+        background-color: colors.$neutral-6;
     }
 
     thead tr :first-child {
@@ -31,7 +31,7 @@
     }
 
     td {
-        background-color: $neutral-0;
+        background-color: colors.$neutral-0;
 
         &.text-cell {
             overflow-wrap: break-word;

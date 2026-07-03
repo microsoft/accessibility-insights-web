@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/common.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/common.scss';
 
 .failure-instance-panel {
     .observed-failure-textfield {
@@ -16,17 +16,17 @@
 .failure-instance-snippet-empty-body {
     margin-top: 8px;
     margin-bottom: 24px;
-    color: $secondary-text;
+    color: colors.$secondary-text;
 }
 
 .failure-instance-snippet-title {
     margin-top: 24px;
     margin-bottom: 8px;
-    color: $primary-text;
+    color: colors.$primary-text;
 }
 
 .failure-instance-selector-note {
-    color: $secondary-text;
+    color: colors.$secondary-text;
     margin-top: 8px;
     margin-bottom: 8px;
 }
@@ -39,8 +39,8 @@
     padding-bottom: 12px;
     padding-left: 16px;
     max-height: 200px;
-    color: $primary-text;
-    background-color: $neutral-4;
+    color: colors.$primary-text;
+    background-color: colors.$neutral-4;
     overflow-y: scroll;
     word-wrap: break-word;
 }
@@ -49,13 +49,13 @@
     margin-top: 9px;
     margin-bottom: 50px;
     margin-left: 9px;
-    color: $secondary-text;
+    color: colors.$secondary-text;
     display: flex;
     flex-direction: row;
 }
 
 .failure-instance-snippet-error-icon {
-    color: $negative-outcome;
+    color: colors.$negative-outcome;
     padding-top: 3px;
     padding-right: 8px;
     padding-bottom: 3px;
@@ -65,7 +65,7 @@
 .edit-button {
     font-size: 16px !important;
     line-height: 24px !important;
-    color: $neutral-100 !important;
+    color: colors.$neutral-100 !important;
 
     &:hover,
     &:focus {
@@ -73,7 +73,7 @@
     }
 
     @media screen and (forced-colors: active) {
-        @include fluent-forced-color-adjust-override;
+        @include common.fluent-forced-color-adjust-override;
 
         color: inherit !important;
 

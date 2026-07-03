@@ -4,15 +4,18 @@
 // This file is @imported by many SCSS modules, which means it *must not* contain any actual style
 // definitions; it may *only* contain SCSS directives (eg, $variable, @function, and @mixin).
 
-@import 'high-contrast-override.scss';
-@import 'colors.scss';
-@import 'fonts.scss';
+@forward 'high-contrast-override.scss';
+@forward 'colors.scss';
+@forward 'fonts.scss';
+@use 'high-contrast-override.scss';
+@use 'colors.scss';
+@use 'fonts.scss';
 
-$focus-ring-color: $neutral-100;
+$focus-ring-color: colors.$neutral-100;
 
 @mixin set-focus-ring-styles($property: 'border') {
     #{$property}: 1px solid $focus-ring-color;
-    @include ms-high-contrast-override {
+    @include high-contrast-override.ms-high-contrast-override {
         #{$property}: 1px dashed windowtext !important;
     }
 }
@@ -40,7 +43,7 @@ $fast-pass-right-panel-margin-top: 24px !default;
 }
 
 @mixin h3 {
-    font-weight: $font-weight-semi-bold;
+    font-weight: fonts.$font-weight-semi-bold;
     font-size: 17px;
 }
 

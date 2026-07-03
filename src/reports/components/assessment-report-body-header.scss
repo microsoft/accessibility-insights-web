@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/fonts.scss';
 
 .assessment-report-body-header {
     margin-bottom: 21px;
@@ -10,15 +10,15 @@
         font-size: 28px;
         margin-top: 0;
         margin-bottom: 24px;
-        font-weight: $font-weight-semi-bold;
+        font-weight: fonts.$font-weight-semi-bold;
         line-height: 40px;
         letter-spacing: -1;
     }
 
     p {
         font-size: 14px;
-        color: $secondary-text;
-        font-family: $font-family;
+        color: colors.$secondary-text;
+        font-family: fonts.$font-family;
         margin: 0;
         line-height: 20px;
     }
