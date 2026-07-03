@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/icons/icon.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/icons/icon.scss';
+@use '../../common/styles/fonts.scss';
 
-$outcome-pass-color: $positive-outcome;
-$outcome-incomplete-border-color: $incomplete-color;
-$outcome-incomplete-summary-background: $neutral-outcome;
-$outcome-incomplete-summary-consistent-foreground: $always-white;
-$outcome-fail-color: $negative-outcome;
-$outcome-inapplicable-color: $neutral-outcome;
+$outcome-pass-color: colors.$positive-outcome;
+$outcome-incomplete-border-color: colors.$incomplete-color;
+$outcome-incomplete-summary-background: colors.$neutral-outcome;
+$outcome-incomplete-summary-consistent-foreground: colors.$always-white;
+$outcome-fail-color: colors.$negative-outcome;
+$outcome-inapplicable-color: colors.$neutral-outcome;
 $outcome-count-border-size: 1.5px;
 $standard-icon-size: 16px;
-$outcome-not-applicable-color: $neutral-outcome;
+$outcome-not-applicable-color: colors.$neutral-outcome;
 
 .outcome-summary-bar {
     $outcome-summary-icon-size: 16px;
@@ -32,10 +32,10 @@ $outcome-not-applicable-color: $neutral-outcome;
 
     .block,
     %block {
-        font-family: $font-family;
+        font-family: fonts.$font-family;
         line-height: 20px;
         font-size: 16px;
-        color: $neutral-0;
+        color: colors.$neutral-0;
         padding-top: 8px;
         padding-right: 8px;
         padding-bottom: 10px;
@@ -52,7 +52,7 @@ $outcome-not-applicable-color: $neutral-outcome;
 
     .fail {
         @extend %block;
-        @include cross-icon-styles($outcome-summary-icon-size, 0, $outcome-fail-color);
+        @include icon.cross-icon-styles($outcome-summary-icon-size, 0, $outcome-fail-color);
 
         .check-container {
             bottom: -1px;
@@ -64,7 +64,7 @@ $outcome-not-applicable-color: $neutral-outcome;
 
     .pass {
         @extend %block;
-        @include check-icon-styles($outcome-summary-icon-size, 0, $outcome-pass-color);
+        @include icon.check-icon-styles($outcome-summary-icon-size, 0, $outcome-pass-color);
 
         .check-container {
             bottom: -1px;
@@ -78,7 +78,7 @@ $outcome-not-applicable-color: $neutral-outcome;
     .inapplicable,
     .unscannable {
         @extend %block;
-        @include inapplicable-icon-styles(
+        @include icon.inapplicable-icon-styles(
             $outcome-summary-icon-size,
             0,
             $outcome-not-applicable-color
@@ -95,7 +95,7 @@ $outcome-not-applicable-color: $neutral-outcome;
 
     .incomplete {
         @extend %block;
-        @include incomplete-icon-styles(14px, 3px);
+        @include icon.incomplete-icon-styles(14px, 3px);
 
         .check-container {
             margin-right: 6px;

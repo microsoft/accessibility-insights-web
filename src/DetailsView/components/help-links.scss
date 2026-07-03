@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/fonts.scss';
 
 .help-link-list {
     list-style: none;
@@ -12,8 +12,8 @@
 .help-link {
     padding-top: 5px;
     padding-bottom: 5px;
-    font-family: $font-family;
+    font-family: fonts.$font-family;
     line-height: 20px;
     font-size: 14px;
-    color: $communication-primary;
+    color: colors.$communication-primary;
 }

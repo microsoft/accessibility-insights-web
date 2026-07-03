@@ -1,25 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../../common/styles/common.scss';
+@use '../../../common/styles/common.scss';
 
 .index-circle {
     display: inline-block;
     border-radius: 50%;
-    border: 1px solid $neutral-20;
+    border: 1px solid common.$neutral-20;
     width: 1.5em;
     line-height: 1.5em;
     padding: 0.07em;
     margin-top: 0.23em;
-    color: $secondary-text;
-    background: $neutral-0;
+    color: common.$secondary-text;
+    background: common.$neutral-0;
     text-align: center;
 
     li :global(.is-expanded) &,
     :global(.ms-Nav-compositeLink.is-selected) & {
-        color: $neutral-0;
-        background: $index-circle-background;
-        border-color: $neutral-0;
+        color: common.$neutral-0;
+        background: common.$index-circle-background;
+        border-color: common.$neutral-0;
     }
 
     @media (forced-colors: active) {

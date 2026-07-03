@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../common/styles/root-level-only/color-definitions.scss';
-@import '../common/styles/root-level-only/global-styles.scss';
-@import '../common/styles/colors.scss';
-@import '../common/styles/fonts.scss';
-@import './components/outcome.scss';
-@import './components/assessment-report-header.scss';
-@import './components/assessment-scan-details.scss';
-@import './components/assessment-report-body-header.scss';
-@import '../common/components/guidance-tags.scss';
+@use '../common/styles/root-level-only/color-definitions.scss';
+@use '../common/styles/root-level-only/global-styles.scss';
+@use '../common/styles/colors.scss';
+@use '../common/styles/fonts.scss';
+@use 'components/outcome.scss';
+@use 'components/assessment-report-header.scss';
+@use 'components/assessment-scan-details.scss';
+@use 'components/assessment-report-body-header.scss';
+@use '../common/components/guidance-tags.scss';
 
 * {
-    font-family: $font-family;
+    font-family: fonts.$font-family;
     -webkit-print-color-adjust: exact; // Requires vendor prefix: https://caniuse.com/mdn-css_properties_print-color-adjust
     print-color-adjust: exact;
 }
@@ -26,7 +26,7 @@ header {
 }
 
 .details-section {
-    border-bottom: $neutral-alpha-20 solid 1px;
+    border-bottom: colors.$neutral-alpha-20 solid 1px;
 }
 
 .details-section-header {
@@ -34,7 +34,7 @@ header {
     display: flex;
     align-items: center;
     font-size: 21px;
-    font-weight: $font-weight-semi-bold;
+    font-weight: fonts.$font-weight-semi-bold;
     line-height: 32px;
 }
 
@@ -48,7 +48,7 @@ header {
     display: flex;
     align-items: center;
     font-size: 17px;
-    font-weight: $font-weight-semi-bold;
+    font-weight: fonts.$font-weight-semi-bold;
 }
 
 .step-details {
@@ -67,7 +67,7 @@ header {
 
 .step-header-name {
     font-size: 15px;
-    font-family: $font-family;
+    font-family: fonts.$font-family;
     display: inline;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -76,7 +76,7 @@ header {
 
 .step-header-description {
     font-size: 15px;
-    font-family: $font-family;
+    font-family: fonts.$font-family;
     padding-left: 8px;
     padding-right: 8px;
     display: inline;
@@ -84,7 +84,7 @@ header {
 
 .step-header-message {
     font-size: 15px;
-    font-family: $font-family;
+    font-family: fonts.$font-family;
     padding-left: 8px;
     padding-right: 8px;
     display: inline;
@@ -97,7 +97,7 @@ header {
 
     &:not(:last-child) {
         padding-bottom: 14px;
-        border-bottom: $neutral-8 solid 1px;
+        border-bottom: colors.$neutral-8 solid 1px;
     }
 }
 
@@ -108,7 +108,7 @@ header {
 
 .instance-value {
     font-size: 12px;
-    font-family: $font-family;
+    font-family: fonts.$font-family;
     vertical-align: top;
     word-break: break-all;
     white-space: pre-line;
@@ -117,7 +117,7 @@ header {
 .instance-key,
 %instance-key {
     font-size: 12px;
-    font-weight: $font-weight-semi-bold;
+    font-weight: fonts.$font-weight-semi-bold;
     vertical-align: top;
     text-align: left;
     width: 140px;
@@ -137,17 +137,17 @@ header {
 
 .test-guidance-links-group {
     display: inline;
-    color: $primary-text;
+    color: colors.$primary-text;
     font-size: 14px;
-    font-family: $font-family;
+    font-family: fonts.$font-family;
     padding-right: 8px;
     padding-left: 8px;
 }
 
 .report-footer {
     font-size: 14px;
-    font-family: $font-family;
-    color: $secondary-text;
+    font-family: fonts.$font-family;
+    color: colors.$secondary-text;
     padding-top: 24px;
     padding-bottom: 36px;
     padding-left: 12px;
@@ -156,16 +156,16 @@ header {
 
 .report-footer-link {
     font-size: 14px;
-    font-family: $font-family;
+    font-family: fonts.$font-family;
     text-decoration: none;
 }
 
 .ms-Link,
 .link {
-    color: $link;
+    color: colors.$link;
 
     &:hover {
-        color: $link-hover;
+        color: colors.$link-hover;
     }
 }
 
@@ -173,6 +173,6 @@ header {
     .ms-Link,
     .link {
         text-decoration: none;
-        color: $primary-text;
+        color: colors.$primary-text;
     }
 }

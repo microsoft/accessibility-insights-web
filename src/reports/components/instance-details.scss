@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/fonts.scss';
 
 @mixin fill-available-width {
     // `stretch` is experimental: https://caniuse.com/mdn-css_properties_width_stretch
@@ -20,17 +20,17 @@
 
 .instance-details-card {
     border-radius: 4px;
-    border: 1px solid $card-border;
+    border: 1px solid colors.$card-border;
     outline-style: 'border-style';
     box-shadow:
-        0 0.6px 1.8px $box-shadow-108,
-        0 3.2px 7.2px $box-shadow-132;
+        0 0.6px 1.8px colors.$box-shadow-108,
+        0 3.2px 7.2px colors.$box-shadow-132;
     margin-bottom: 16px;
     @include fill-available-width;
 }
 
 .instance-details-card-container.selected {
-    outline: 5px solid $communication-tint-10;
+    outline: 5px solid colors.$communication-tint-10;
 }
 
 .instance-details-card.selected {
@@ -39,7 +39,7 @@
 
 .instance-details-card.focused,
 .instance-details-card:focus {
-    outline: 2px solid $primary-text;
+    outline: 2px solid colors.$primary-text;
     outline-offset: 2px;
 }
 
@@ -54,12 +54,12 @@
 
 .instance-details-card.interactive:hover {
     box-shadow:
-        0 8px 10px $box-shadow-108,
-        0 8px 10px $box-shadow-132;
+        0 8px 10px colors.$box-shadow-108,
+        0 8px 10px colors.$box-shadow-132;
 }
 
 .report-instance-table {
-    background: $neutral-0;
+    background: colors.$neutral-0;
     display: table;
     table-layout: fixed;
     @include fill-available-width;
@@ -89,7 +89,7 @@
             padding: 0;
         }
 
-        border-bottom: 0.5px solid $neutral-10;
+        border-bottom: 0.5px solid colors.$neutral-10;
 
         &:last-child {
             border-bottom: none;
@@ -105,8 +105,8 @@
         flex-grow: 0;
         font-size: 14px;
         line-height: 20px;
-        font-weight: $font-weight-semi-bold;
-        color: $primary-text;
+        font-weight: fonts.$font-weight-semi-bold;
+        color: colors.$primary-text;
         text-align: left;
     }
 
@@ -114,7 +114,7 @@
         flex-basis: 200px;
         flex-shrink: 1;
         flex-grow: 1;
-        color: $secondary-text;
+        color: colors.$secondary-text;
         font-size: 14px;
         line-height: 20px;
         align-items: flex-end;
