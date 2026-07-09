@@ -15,6 +15,7 @@ import { HighlightBoxDrawer } from '../../../../../injected/visualization/highli
 import { NullDrawer } from '../../../../../injected/visualization/null-drawer';
 import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
 import { SVGDrawer } from '../../../../../injected/visualization/svg-drawer';
+import { TextSpacingDrawer } from '../../../../../injected/visualization/text-spacing-drawer';
 
 describe('DrawerProviderTests', () => {
     let testObject: DrawerProvider;
@@ -76,6 +77,12 @@ describe('DrawerProviderTests', () => {
         const injectedClassName = 'test';
         const drawer = testObject.createSingleTargetDrawer(injectedClassName);
         expect(drawer).toBeInstanceOf(SingleTargetDrawer);
+    });
+
+    test('createTextSpacingDrawer', () => {
+        const injectedClassName = 'test';
+        const drawer = testObject.createTextSpacingDrawer(injectedClassName);
+        expect(drawer).toBeInstanceOf(TextSpacingDrawer);
     });
 
     test('getSVGDrawer: svg drawer v2 with null/no config', () => {
