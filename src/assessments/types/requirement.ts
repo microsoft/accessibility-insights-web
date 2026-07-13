@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IColumn } from '@fluentui/react';
+import { ChecksType } from 'background/assessment-data-converter';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import {
@@ -60,6 +61,7 @@ export interface Requirement {
     getDefaultMessage?: IGetMessageGenerator;
     instanceTableHeaderType?: InstanceTableHeaderType;
     getCompletedRequirementDetailsForTelemetry?: (assessmentData: AssessmentData) => any;
+    generatePropertyBagFrom?: (ruleResult: DecoratedAxeNodeResult, checkName: ChecksType) => any;
 }
 
 export type VisualHelperToggleConfigDeps = {
