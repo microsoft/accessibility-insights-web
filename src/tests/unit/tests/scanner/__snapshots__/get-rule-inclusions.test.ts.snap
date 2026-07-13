@@ -67,6 +67,9 @@ exports[`getRuleInclusions getRuleInclusions matches snapshotted list of product
   "aria-roles": {
     "status": "included",
   },
+  "aria-tab-name": {
+    "status": "included",
+  },
   "aria-text": {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
@@ -217,7 +220,7 @@ exports[`getRuleInclusions getRuleInclusions matches snapshotted list of product
     "status": "excluded",
   },
   "landmark-complementary-is-top-level": {
-    "reason": "rule is tagged best-practice",
+    "reason": "disabled in axe config",
     "status": "excluded",
   },
   "landmark-contentinfo-is-top-level": {

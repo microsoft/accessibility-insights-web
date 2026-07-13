@@ -16,7 +16,7 @@ export const OverviewLeftNavLink = NamedFC<Pick<BaseLeftNavLinkProps, 'link'>>(
                     <Icon iconName="home" className={css(styles.linkIcon, 'left-nav-icon')} />
                 </span>
                 <span className="ms-Button-label overview-label">
-                    <span className="overview-name">{link.name}</span>
+                    <span className="overview-name">{link.name}</span>{' '}
                     <span className="overview-percent">{link.percentComplete}% Completed</span>
                 </span>
             </span>

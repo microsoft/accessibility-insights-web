@@ -19,6 +19,7 @@ exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
         />
       </span>
     </span>
+     
     <span>
       <span
         class="rule-details-id"
@@ -48,6 +49,7 @@ exports[`MinimalRuleHeader renders, outcomeType = inapplicable 1`] = `
     <span
       class="outcomeChipContainer"
     />
+     
     <span>
       <span
         class="rule-details-id"
@@ -77,6 +79,7 @@ exports[`MinimalRuleHeader renders, outcomeType = incomplete 1`] = `
     <span
       class="outcomeChipContainer"
     />
+     
     <span>
       <span
         class="rule-details-id"
@@ -142,6 +145,7 @@ exports[`MinimalRuleHeader renders, outcomeType = review 1`] = `
         />
       </span>
     </span>
+     
     <span>
       <span
         class="rule-details-id"

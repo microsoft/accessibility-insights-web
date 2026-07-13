@@ -73,7 +73,7 @@ describe('getDefaultRules', () => {
 
         getRulesMock
             .setup(grm => grm())
-            .returns(() => rulesStub)
+            .returns(() => rulesStub as ReturnType<typeof Axe.getRules>)
             .verifiable();
 
         getHelpUrlMock.setup(gchm => gchm(ruleStubOne.ruleId, It.isAny())).returns(() => urlStub);

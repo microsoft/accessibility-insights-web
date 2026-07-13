@@ -62,7 +62,9 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
     return (
         <span data-automation-id={ruleDetailAutomationId} className="rule-detail">
             {outcomeType !== 'pass' && (
-                <span className={styles.outcomeChipContainer}>{renderCountBadge()}</span>
+                <>
+                    <span className={styles.outcomeChipContainer}>{renderCountBadge()}</span>{' '}
+                </>
             )}
             <span>
                 {renderRuleName()}: {renderDescription()}

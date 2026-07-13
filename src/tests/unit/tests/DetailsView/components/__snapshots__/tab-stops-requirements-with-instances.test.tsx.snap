@@ -5,11 +5,11 @@ exports[`TabStopsRequirementsWithInstances renders component instance count === 
   <div>
     <mock-cardscollapsiblecontrol
       headinglevel="3"
-      id="keyboard-navigation00 Failed test requirement name 1 test requirement description 1"
+      id="keyboard-navigation00 test requirement name 1 test requirement description 1 (Failed)"
     />
     <mock-cardscollapsiblecontrol
       headinglevel="3"
-      id="keyboard-traps10 Failed test requirement name 2 test requirement description 2"
+      id="keyboard-traps10 test requirement name 2 test requirement description 2 (Failed)"
     />
   </div>
 </DocumentFragment>
@@ -26,11 +26,11 @@ exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] =
   <div>
     <mock-cardscollapsiblecontrol
       headinglevel="3"
-      id="keyboard-navigation02 Failed test requirement name 1 test requirement description 1"
+      id="keyboard-navigation02 test requirement name 1 test requirement description 1 (Failed)"
     />
     <mock-cardscollapsiblecontrol
       headinglevel="3"
-      id="keyboard-traps12 Failed test requirement name 2 test requirement description 2"
+      id="keyboard-traps12 test requirement name 2 test requirement description 2 (Failed)"
     />
   </div>
 </DocumentFragment>

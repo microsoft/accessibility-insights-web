@@ -66,7 +66,14 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                     }
 
                     let collapsibleComponentProps: CollapsibleComponentCardsProps;
-                    const buttonAriaLabel = `${totalCount} ${pastTense} ${requirement.name} ${requirement.description}`;
+                    // The aria-label must start with the visible text content of the button so
+                    // axe-core 4.12's label-content-name-mismatch rule passes (visible text
+                    // must be a substring of the accessible name). The button visibly contains
+                    // the OutcomeChip's count, then the requirement name and description. The
+                    // past-tense outcome word is appended in parentheses at the end so screen
+                    // reader users still hear the outcome. All original information (count,
+                    // name, description, outcome) is preserved -- only the ordering is changed.
+                    const buttonAriaLabel = `${totalCount} ${requirement.name} ${requirement.description} (${pastTense})`;
                     if (instanceCount === 0) {
                         collapsibleComponentProps = getCollapsibleComponentPropsWithoutInstance!(
                             requirement,
