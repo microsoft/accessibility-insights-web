@@ -3446,7 +3446,7 @@ __metadata:
     luxon: ^3.5.0
     mini-css-extract-plugin: 2.9.0
     npm-run-all: ^4.1.5
-    playwright: ^1.48.2
+    playwright: ^1.55.1
     postcss: ^8.5.10
     postcss-modules: ^6.0.1
     prettier: ^3.3.3
@@ -10491,27 +10491,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.48.2":
-  version: 1.48.2
-  resolution: "playwright-core@npm:1.48.2"
+"playwright-core@npm:1.60.0":
+  version: 1.60.0
+  resolution: "playwright-core@npm:1.60.0"
   bin:
     playwright-core: cli.js
-  checksum: a73ecea379f13f757ec38299871256a130d4abec5688369969a6b1ef6104c67f731a27c9a503a988c3e5b1141048552a3ed8c4d061cb631ff2ebab606835c10a
+  checksum: 8afc6ce9b3fc2f17ebbc671555b1d982a6e1b554c9215ba92d843e9ced8ebdd66c25996debcf1773c15b449c5fa8a42e6bc8ec0b1d96c5b5b759214c3a54c80f
   languageName: node
   linkType: hard
 
-"playwright@npm:^1.48.2":
-  version: 1.48.2
-  resolution: "playwright@npm:1.48.2"
+"playwright@npm:^1.55.1":
+  version: 1.60.0
+  resolution: "playwright@npm:1.60.0"
   dependencies:
     fsevents: 2.3.2
-    playwright-core: 1.48.2
+    playwright-core: 1.60.0
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 69ffb28b5a94fc21a9bd3439feb363ffebb21c6b00e6d08ffc225787be49005d6b57072ebb043e78378252850f2b7712f8478e6685138a8e445d6fda94a31e28
+  checksum: 07b893cfe34fed7039910f6bb9ecabac29888578b42ea54026815c3642989efdf9b9480184ce097c6f49cade3e8addcb026afcaf58800b639dc572ed3487ee42
   languageName: node
   linkType: hard
 
