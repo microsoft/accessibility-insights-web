@@ -76,12 +76,8 @@ export class WebVisualizationConfigurationFactory implements VisualizationConfig
     }
 
     public forEachConfig(callback: ForEachConfigCallback): void {
-        // Only include non-deprecated visualization types
-        const { getNumericVisualizationTypeValues } = require('common/visualization-type-helper');
-        getNumericVisualizationTypeValues().forEach(type => {
-            if (this.configurationByType[type]) {
-                callback(this.configurationByType[type], Number(type));
-            }
+        Object.keys(this.configurationByType).forEach(type => {
+            callback(this.configurationByType[type], Number(type));
         });
 
         this.fullAssessmentProvider.all().forEach(assessment => {

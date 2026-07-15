@@ -4,10 +4,7 @@
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
 import { VisualizationType } from 'common/types/visualization-type';
-import {
-    deprecatedVisualizationTypes,
-    deprecatedAssessmentKeys,
-} from 'common/visualization-type-helper';
+import { deprecatedVisualizationTypes } from 'common/visualization-type-helper';
 import { head } from 'lodash';
 import {
     AssessmentData,
@@ -32,16 +29,7 @@ export class InitialAssessmentStoreDataGenerator {
                 title: persistedData?.persistedTabInfo?.title,
                 detailsViewId: persistedData?.persistedTabInfo?.detailsViewId,
             };
-        let persistedTests = persistedData && persistedData.assessments;
-        if (persistedTests) {
-            persistedTests = { ...persistedTests };
-            // keep the keys but discard any stored data
-            deprecatedAssessmentKeys.forEach(key => {
-                if (key in persistedTests) {
-                    persistedTests[key] = null;
-                }
-            });
-        }
+        const persistedTests = persistedData && persistedData.assessments;
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
         let selectedTestType =
@@ -81,16 +69,6 @@ export class InitialAssessmentStoreDataGenerator {
         this.tests.forEach(test => {
             const persistedTestData = persistedTests && persistedTests[test.key];
             assessmentData[test.key] = test.initialDataCreator(test, persistedTestData);
-        });
-
-        // add placeholder objects for every deprecated assessment key
-        deprecatedAssessmentKeys.forEach(key => {
-            if (!(key in assessmentData)) {
-                assessmentData[key] = {
-                    enabled: false,
-                    stepStatus: {},
-                } as unknown as AssessmentData;
-            }
         });
 
         return assessmentData;
