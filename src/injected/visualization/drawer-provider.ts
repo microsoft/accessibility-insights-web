@@ -33,6 +33,7 @@ import { SVGDrawer } from './svg-drawer';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
+import { TextSpacingDrawer } from './text-spacing-drawer';
 
 export class DrawerProvider {
     constructor(
@@ -55,6 +56,10 @@ export class DrawerProvider {
 
     public createSingleTargetDrawer(className: string): Drawer {
         return new SingleTargetDrawer(this.drawerUtils, new SingleTargetFormatter(className));
+    }
+
+    public createTextSpacingDrawer(className: string): Drawer {
+        return new TextSpacingDrawer(this.drawerUtils, new SingleTargetFormatter(className));
     }
 
     public createSVGDrawer(config: IPartialSVGDrawerConfiguration | null = null): Drawer {
