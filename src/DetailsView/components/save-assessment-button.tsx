@@ -47,7 +47,7 @@ export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>(
                     onClick={handleSaveAssessmentClick}
                     role="button"
                 >
-                    Save and download assessment
+                    Download assessment
                 </InsightsCommandButton>
                 <Dialog
                     hidden={dialogHidden}
