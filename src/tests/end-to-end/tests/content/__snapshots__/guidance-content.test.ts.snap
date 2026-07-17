@@ -29741,7 +29741,7 @@ exports[`Guidance Content pages test/semantics/emphasis/infoAndExamples matches 
       class="content"
     >
       <p>
-        Words and phrases that are visually emphasized must be contained within semantically correct elements.
+        Words and phrases that are visually emphasized to convey semantic meaning or importance commonly should be contained within semantically correct elements.
       </p>
       <h2>
         Why it matters
@@ -29749,11 +29749,14 @@ exports[`Guidance Content pages test/semantics/emphasis/infoAndExamples matches 
       <p>
         People with good vision can infer from visual styling that a word or phrase is especially important. For example, it might be displayed using bold or italic font. Unless the visually emphasized word or phrase is also contained in a semantically correct element, people who use screen readers won't know that it's emphasized.
       </p>
+      <p>
+        However, not all bold or italic text requires semantic markup. Visual variations in font-weight or style used purely for design purposes, such as distinguishing labels from values or creating visual hierarchy, do not need to be marked up semantically unless they convey emphasis or importance.
+      </p>
       <h2>
         How to fix
       </h2>
       <p>
-        Contain the emphasized word or phrase in a semantically correct element:
+        When visual emphasis conveys semantic meaning, contain the emphasized word or phrase in a semantically correct element:
       </p>
       <ul>
         <li>
@@ -29776,6 +29779,21 @@ exports[`Guidance Content pages test/semantics/emphasis/infoAndExamples matches 
         </li>
       </ul>
       <p />
+      <p>
+        Do not use 
+        <span
+          class="insights-code"
+        >
+          &lt;strong&gt;
+        </span>
+         or 
+        <span
+          class="insights-code"
+        >
+          &lt;em&gt;
+        </span>
+         for text that is bold or italic purely for visual design, such as labels, identifiers, or creating visual separation between parts of a heading.
+      </p>
       <div
         class="pass-fail-grid"
       >
@@ -29919,6 +29937,284 @@ exports[`Guidance Content pages test/semantics/emphasis/infoAndExamples matches 
                   &lt;/em&gt;
                 </span>
                  crunchy!&lt;/p&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            The bold SKU in this heading is purely for visual styling, not to convey emphasis. Using 
+            <span
+              class="insights-code"
+            >
+              &lt;strong&gt;
+            </span>
+             here is unnecessary since the heading already provides semantic importance.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h2 style="font-weight: normal"&gt;
+                <span
+                  class="highlight"
+                >
+                  &lt;strong&gt;
+                </span>
+                SKU a8090:
+                <span
+                  class="highlight"
+                >
+                  &lt;/strong&gt;
+                </span>
+                 Product Name&lt;/h2&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Without the unnecessary strong element, the heading correctly conveys the content's importance.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h2&gt;SKU a8090: Product Name&lt;/h2&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="var(--neutral-0)"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            The italic separators in this breadcrumb are being used for styling purposes, not to convey emphasis.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;nav&gt;&lt;a href="/"&gt;Home&lt;/a&gt; 
+                <span
+                  class="highlight"
+                >
+                  &lt;em&gt;
+                </span>
+                /
+                <span
+                  class="highlight"
+                >
+                  &lt;/em&gt;
+                </span>
+                 &lt;a href="/about"&gt;About&lt;/a&gt; 
+                <span
+                  class="highlight"
+                >
+                  &lt;em&gt;
+                </span>
+                /
+                <span
+                  class="highlight"
+                >
+                  &lt;/em&gt;
+                </span>
+                 Contact&lt;/nav&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                height="16"
+                role="img"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="var(--neutral-0)"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Using a span for the separator correctly indicates it's for visual presentation only.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;nav&gt;&lt;a href="/"&gt;Home&lt;/a&gt; &lt;span class="separator"&gt;/&lt;/span&gt; &lt;a href="/about"&gt;About&lt;/a&gt; &lt;span class="separator"&gt;/&lt;/span&gt; Contact&lt;/nav&gt;
               </div>
             </div>
           </div>
