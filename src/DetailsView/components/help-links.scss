@@ -3,6 +3,12 @@
 @use '../../common/styles/colors.scss';
 @use '../../common/styles/fonts.scss';
 
+.help-link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 .help-link {
     padding-top: 5px;
     padding-bottom: 5px;

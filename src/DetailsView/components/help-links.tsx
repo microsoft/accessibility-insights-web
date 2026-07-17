@@ -17,14 +17,14 @@ export interface HelpLinksProps {
 export const HelpLinks = NamedFC('HelpLinks', (props: HelpLinksProps) => {
     const { linkInformation } = props;
     return (
-        <>
+        <ul className={styles.helpLinkList}>
             {linkInformation.map((link: HyperlinkDefinition) => (
-                <div className={styles.helpLink} key={link.href}>
+                <li className={styles.helpLink} key={link.href}>
                     <ExternalLink deps={props.deps} href={link.href}>
                         {link.text}
                     </ExternalLink>
-                </div>
+                </li>
             ))}
-        </>
+        </ul>
     );
 });
