@@ -3374,7 +3374,7 @@ __metadata:
     react: ^18.3.1
     react-dom: ^18.3.1
     react-helmet-async: ^2.0.5
-    react-resize-detector: ^9.1.1
+    react-resize-detector: ^12.3.0
     uuid: ^14.0.0
   languageName: unknown
   linkType: soft
@@ -3453,7 +3453,7 @@ __metadata:
     react: ^18.3.1
     react-dom: ^18.3.1
     react-helmet-async: ^2.0.5
-    react-resize-detector: ^9.1.1
+    react-resize-detector: ^12.3.0
     react-router-dom: ^7.17.0
     regenerator-runtime: ^0.14.1
     sass: ^1.100.0
@@ -5641,6 +5641,20 @@ __metadata:
     is-date-object: ^1.0.5
     is-symbol: ^1.0.4
   checksum: 966965880356486cd4d1fe9a523deda2084c81b3702d951212c098f5f2ee93605d1b7c1840062efb48a07d892641c7ed1bc194db563645c0dd2b919cb6d65b93
+  languageName: node
+  linkType: hard
+
+"es-toolkit@npm:^1.39.6":
+  version: 1.49.0
+  resolution: "es-toolkit@npm:1.49.0"
+  dependenciesMeta:
+    "@trivago/prettier-plugin-sort-imports@4.3.0":
+      unplugged: true
+    prettier-plugin-sort-re-exports@0.0.1:
+      unplugged: true
+    vitepress-plugin-sandpack@1.1.4:
+      unplugged: true
+  checksum: 20b77a3facd9484479e3cfd2da4f24ac2af6f063247cda7479f0b291f8876ae8099a23ef71901af50897483951cc4e41119549dbe48f0f0af59e2931eb62332f
   languageName: node
   linkType: hard
 
@@ -10955,15 +10969,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-resize-detector@npm:^9.1.1":
-  version: 9.1.1
-  resolution: "react-resize-detector@npm:9.1.1"
+"react-resize-detector@npm:^12.3.0":
+  version: 12.3.0
+  resolution: "react-resize-detector@npm:12.3.0"
   dependencies:
-    lodash: ^4.17.21
+    es-toolkit: ^1.39.6
   peerDependencies:
-    react: ^16.0.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 0612b4416212962e5762f25e20c7016bdce3107d745a399b44bc099a04488a704228908357845c2e3fa49bf9902077f0eeebc99cf76d42ea479a8aa79f4c5b9d
+    react: ^18.0.0 || ^19.0.0
+  checksum: c6f98a23fcefd1737c75fabce95af7d958ab4f38fb96be1150e8bee7c91267b8e1d75d84491ce0c3366c051ef20686d788506f577430d964ed2aed0b51c2d459
   languageName: node
   linkType: hard
 
