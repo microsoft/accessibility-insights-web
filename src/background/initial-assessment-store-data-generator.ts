@@ -3,6 +3,8 @@
 
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { VisualizationType } from 'common/types/visualization-type';
+import { deprecatedVisualizationTypes } from 'common/visualization-type-helper';
 import { head } from 'lodash';
 import {
     AssessmentData,
@@ -30,11 +32,18 @@ export class InitialAssessmentStoreDataGenerator {
         const persistedTests = persistedData && persistedData.assessments;
         // defaulting this.tests values to null instead of doing multiple if
         const first = head(this.tests) || this.NULL_FIRST_TEST;
-        const selectedTestType =
+        let selectedTestType =
             persistedData?.assessmentNavState?.selectedTestType ?? first.visualizationType;
-        const selectedTestStep =
+        let selectedTestStep =
             persistedData?.assessmentNavState?.selectedTestSubview ??
             (first.requirements && first.requirements[0] && first.requirements[0].key);
+
+        // If the persisted nav points at a deprecated assessment, fall back to defaults
+        if (deprecatedVisualizationTypes.includes(selectedTestType as VisualizationType)) {
+            selectedTestType = first.visualizationType;
+            selectedTestStep = first.requirements?.[0]?.key;
+        }
+
         const expandedTestType = persistedData?.assessmentNavState?.expandedTestType;
         const resultDescription = (persistedData && persistedData.resultDescription) || '';
 

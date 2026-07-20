@@ -141,6 +141,41 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         },
     );
 
+    it('falls back to the default assessmentNavState when the persisted selectedTestType is deprecated', () => {
+        const generatedState = generator.generateInitialState({
+            assessmentNavState: {
+                selectedTestSubview: 'parsing',
+                selectedTestType: VisualizationType.ParsingAssessment,
+                expandedTestType: knownExpandedTestType,
+            },
+        } as AssessmentStoreData);
+
+        expect(generatedState.assessmentNavState).toEqual({
+            selectedTestType: defaultState.assessmentNavState.selectedTestType,
+            selectedTestSubview: defaultState.assessmentNavState.selectedTestSubview,
+            expandedTestType: knownExpandedTestType,
+        });
+    });
+
+    it('does not propagate persisted data for deprecated assessments', () => {
+        assessments.forEach(assessment => {
+            initialDataCreatorMock
+                .setup(mock => mock(assessment, undefined))
+                .returns(() => assessmentDataStub);
+        });
+
+        const persistedAssessments: DictionaryStringTo<AssessmentData> = {
+            parsing: {} as AssessmentData,
+        };
+
+        const generatedState = generator.generateInitialState({
+            assessments: persistedAssessments,
+        } as AssessmentStoreData);
+
+        expect(generatedState.assessments).toEqual(defaultState.assessments);
+        expect('parsing' in generatedState.assessments).toBe(false);
+    });
+
     it('removed depreciated appRefreshed property if present', () => {
         const tabWithAppRefreshed = {
             appRefreshed: false,

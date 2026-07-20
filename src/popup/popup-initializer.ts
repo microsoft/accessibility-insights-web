@@ -10,11 +10,11 @@ import { DocumentManipulator } from 'common/document-manipulator';
 import { StoreUpdateMessageHub } from 'common/store-update-message-hub';
 import { ExceptionTelemetryListener } from 'common/telemetry/exception-telemetry-listener';
 import { ExceptionTelemetrySanitizer } from 'common/telemetry/exception-telemetry-sanitizer';
+import { getNumericVisualizationTypeValues } from 'common/visualization-type-helper';
 import { createRoot } from 'react-dom/client';
 import { AxeInfo } from '../common/axe-info';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
-import { EnumHelper } from '../common/enum-helper';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { IsSupportedBrowser } from '../common/is-supported-browser';
@@ -191,8 +191,7 @@ export class PopupInitializer {
             ...contentActionMessageCreator.initiators,
         };
 
-        const visualizationTypes =
-            EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
+        const visualizationTypes = getNumericVisualizationTypeValues() as VisualizationType[];
         const storesHub = new ClientStoresHub<PopupViewControllerState>([
             visualizationStore,
             launchPanelStateStore,
