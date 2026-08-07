@@ -11,6 +11,9 @@ resources:
           name: 1ESPipelineTemplates/1ESPipelineTemplates
           ref: refs/tags/release
 
+# This pipeline publishes to public npmjs, so it intentionally does NOT set the
+# SFI ES-4.2.4 CFSClean policy.
+
 extends:
     template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
     parameters:

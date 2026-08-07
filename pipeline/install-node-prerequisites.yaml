@@ -9,7 +9,26 @@ steps:
       timeoutInMinutes: 2
       retryCountOnTaskFailure: 2
 
+    # SFI ES-4.2.4 (CFS): route package restore through an Azure Artifacts feed instead of
+    # the public registry, which CFSClean blocks.
+    #
+    # a11yNpmRegistry is a per-pipeline-definition variable (same convention as
+    # a11yInsightsPool) and is deliberately NOT set here: this file is shared by pipelines
+    # in different ADO orgs, and a YAML value would override the definition value rather
+    # than the other way around. Each definition must point at a feed in its OWN org so
+    # $(System.AccessToken) can authenticate without a PAT:
+    #   accessibility-insights          -> .../accessibility-insights/Accessibility%20Insights/_packaging/A11yInsights-PublicPackage/npm/registry/
+    #   accessibility-insights-private  -> .../accessibility-insights-private/Accessibility%20Insights%20(private)/_packaging/a11y-insights-public/npm/registry/
+    #   mseng                           -> .../mseng/1ES/_packaging/1ES_PublicPackages/npm/registry/
+    #
+    # Scoped to the ADO pipelines only; the repo's .yarnrc.yml is intentionally left alone
+    # so GitHub Actions and Dependabot keep resolving from the public registry (they are
+    # not subject to network isolation).
     - script: yarn install --immutable
       displayName: install packages and dependencies
       timeoutInMinutes: 10
       retryCountOnTaskFailure: 2
+      env:
+          YARN_NPM_REGISTRY_SERVER: $(a11yNpmRegistry)
+          YARN_NPM_ALWAYS_AUTH: 'true'
+          YARN_NPM_AUTH_TOKEN: $(System.AccessToken)

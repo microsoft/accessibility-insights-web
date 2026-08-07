@@ -42,6 +42,10 @@ extends:
                 compiled:
                     enabled: true
                 runSourceLanguagesInSourceAnalysis: true
+        # SFI ES-4.2.4: append CFSClean to block the public package feeds. Permissive must
+        # stay first -- setting CFSClean alone would block all network traffic.
+        settings:
+            networkIsolationPolicy: Permissive,CFSClean
         stages:
             - stage: Stage
               jobs:

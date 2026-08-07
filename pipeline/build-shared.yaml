@@ -26,6 +26,11 @@ extends:
             image: windows-2022-secure # Name of the image in your pool. If not specified, first image of the pool is used
             os: windows
 
+        # SFI ES-4.2.4: append CFSClean to block the public package feeds. Permissive must
+        # stay first -- setting CFSClean alone would block all network traffic.
+        settings:
+            networkIsolationPolicy: Permissive,CFSClean
+
         stages:
             - stage: Stage
 

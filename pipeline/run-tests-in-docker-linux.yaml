@@ -26,7 +26,7 @@ steps:
       displayName: (linux) make sure 'target' parameter is specified
 
     # DOCKER_BUILDKIT=1 allows us to skip non-related targets (github docker/cli@1134)
-    - script: DOCKER_BUILDKIT=1 docker build -t app --target ${{ parameters.target }} .
+    - script: DOCKER_BUILDKIT=1 docker build -t app --target ${{ parameters.target }} --build-arg ADO_NPM_REGISTRY="$(a11yNpmRegistry)" --build-arg ADO_NPM_TOKEN="$(System.AccessToken)" .
       displayName: (linux) setup docker
       condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
