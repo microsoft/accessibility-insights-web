@@ -28,12 +28,11 @@ extends:
             codeql:
                 compiled:
                     enabled: true
-        # SFI ES-4.2.4: block the public package feeds. Listed alone because this org's
-        # limit policy is DefaultDeny, which discards Permissive anyway. This pipeline runs
+        # TEMP TEST: Permissive restored alongside CFSClean. This pipeline runs
         # CredScan/PoliCheck only and does not restore packages, so it needs no feed
         # redirect.
         settings:
-            networkIsolationPolicy: CFSClean
+            networkIsolationPolicy: Permissive,CFSClean
         customBuildTags:
             - MigrationTooling-accessibility-insights-private-Accessibility Insights (private)-3-Tool
         stages:

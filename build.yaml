@@ -16,6 +16,8 @@ variables:
     macImage: 'macOS-14'
     linuxImage: 'ubuntu-22.04-secure'
     Codeql.Enabled: true
+    # TEMP TEST: CFS proxy feed (anonymous, org-agnostic).
+    a11yNpmRegistry: 'https://packagefeedproxy.microsoft.io/npm/'
 
 extends:
     template: pipeline/build-shared.yaml@self
