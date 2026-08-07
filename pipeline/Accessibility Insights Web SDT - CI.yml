@@ -28,7 +28,9 @@ extends:
             codeql:
                 compiled:
                     enabled: true
-        # TEMP TEST: Permissive restored alongside CFSClean. This pipeline runs
+        # SFI ES-4.2.4: CFSClean blocks the public package feeds. Permissive is the base
+        # policy; 1ES currently discards it in favour of the centrally-applied DefaultDeny
+        # limit policy, so it is stated for intent rather than effect. This pipeline runs
         # CredScan/PoliCheck only and does not restore packages, so it needs no feed
         # redirect.
         settings:

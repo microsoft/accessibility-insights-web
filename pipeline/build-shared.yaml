@@ -26,13 +26,11 @@ extends:
             image: windows-2022-secure # Name of the image in your pool. If not specified, first image of the pool is used
             os: windows
 
-        # TEMP TEST: Permissive restored alongside CFSClean.
-        # LinuxDistroRepos allows archive.ubuntu.com for the apt-get steps in Dockerfile;
-        # without it the DNS proxy sinkholes that host to 192.0.2.x and each fetch stalls
-        # until it times out.
-        # SFI ES-4.2.4: CFSClean blocks the public package feeds.
+        # SFI ES-4.2.4: CFSClean blocks the public package feeds. Permissive is the base
+        # policy; note that 1ES currently discards it in favour of the centrally-applied
+        # DefaultDeny limit policy, so it is stated here for intent rather than effect.
         settings:
-            networkIsolationPolicy: Permissive,CFSClean,LinuxDistroRepos
+            networkIsolationPolicy: Permissive,CFSClean
 
         stages:
             - stage: Stage

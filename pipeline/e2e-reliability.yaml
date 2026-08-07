@@ -14,10 +14,6 @@ pr:
             - src/tests/end-to-end/
             - Dockerfile
 
-# TEMP TEST: CFS proxy feed (anonymous, org-agnostic).
-variables:
-    a11yNpmRegistry: 'https://packagefeedproxy.microsoft.io/npm/'
-
 # The `resources` specify the location and version of the 1ES PT.
 resources:
     repositories:
@@ -39,11 +35,10 @@ extends:
             os: windows
         settings:
             skipBuildTagsForGitHubPullRequests: true
-            # TEMP TEST: Permissive restored alongside CFSClean.
-            # LinuxDistroRepos allows archive.ubuntu.com for the apt-get steps in
-            # Dockerfile; without it the DNS proxy sinkholes that host to 192.0.2.x and
-            # each fetch stalls until it times out.
-            networkIsolationPolicy: Permissive,CFSClean,LinuxDistroRepos
+            # SFI ES-4.2.4: CFSClean blocks the public package feeds. Permissive is the
+            # base policy; 1ES currently discards it in favour of the centrally-applied
+            # DefaultDeny limit policy, so it is stated for intent rather than effect.
+            networkIsolationPolicy: Permissive,CFSClean
         sdl:
             codeql:
                 compiled:

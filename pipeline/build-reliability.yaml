@@ -18,10 +18,6 @@ pr:
             - esbuild.js
             - style-config.js
 
-# TEMP TEST: CFS proxy feed (anonymous, org-agnostic).
-variables:
-    a11yNpmRegistry: 'https://packagefeedproxy.microsoft.io/npm/'
-
 # The `resources` specify the location and version of the 1ES PT.
 resources:
     repositories:
@@ -46,7 +42,9 @@ extends:
                 compiled:
                     enabled: true
                 runSourceLanguagesInSourceAnalysis: true
-        # TEMP TEST: Permissive restored alongside CFSClean.
+        # SFI ES-4.2.4: CFSClean blocks the public package feeds. Permissive is the base
+        # policy; 1ES currently discards it in favour of the centrally-applied DefaultDeny
+        # limit policy, so it is stated for intent rather than effect.
         settings:
             networkIsolationPolicy: Permissive,CFSClean
         stages:
