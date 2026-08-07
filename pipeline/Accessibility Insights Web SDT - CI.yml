@@ -28,12 +28,12 @@ extends:
             codeql:
                 compiled:
                     enabled: true
-        # SFI ES-4.2.4: append CFSClean to block the public package feeds. Permissive must
-        # stay first -- setting CFSClean alone would block all network traffic. This
-        # pipeline runs CredScan/PoliCheck only and does not restore packages, so it needs
-        # no feed redirect.
+        # SFI ES-4.2.4: block the public package feeds. Listed alone because this org's
+        # limit policy is DefaultDeny, which discards Permissive anyway. This pipeline runs
+        # CredScan/PoliCheck only and does not restore packages, so it needs no feed
+        # redirect.
         settings:
-            networkIsolationPolicy: Permissive,CFSClean
+            networkIsolationPolicy: CFSClean
         customBuildTags:
             - MigrationTooling-accessibility-insights-private-Accessibility Insights (private)-3-Tool
         stages:
