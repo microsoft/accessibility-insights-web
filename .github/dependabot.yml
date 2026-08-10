@@ -5,6 +5,14 @@ updates:
   schedule:
     interval: daily
     time: "08:30"  # UTC
+  # Wait for a release to settle before proposing it, so we don't pick up
+  # versions that get unpublished or immediately patched. Does not apply to
+  # security updates, which are always raised immediately.
+  cooldown:
+    default-days: 7
+    semver-major-days: 30
+    semver-minor-days: 7
+    semver-patch-days: 3
   labels:
   - "category: engineering"
   - dependencies
@@ -17,6 +25,9 @@ updates:
   schedule:
     interval: daily
     time: "08:30"  # UTC
+  # docker tags aren't reliably semver, so only default-days is supported here.
+  cooldown:
+    default-days: 7
   labels:
   - "category: engineering"
   - dependencies
@@ -29,6 +40,11 @@ updates:
   schedule:
     interval: daily
     time: "08:30"  # UTC
+  cooldown:
+    default-days: 7
+    semver-major-days: 30
+    semver-minor-days: 7
+    semver-patch-days: 3
   labels:
   - "category: engineering"
   - dependencies
@@ -73,4 +89,7 @@ updates:
   schedule:
     interval: daily
     time: "08:30"  # UTC
+  # action tags aren't reliably semver, so only default-days is supported here.
+  cooldown:
+    default-days: 7
   open-pull-requests-limit: 10  # Default value of 5 has been problematic
