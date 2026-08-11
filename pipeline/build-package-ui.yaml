@@ -11,6 +11,10 @@ resources:
           name: 1ESPipelineTemplates/1ESPipelineTemplates
           ref: refs/tags/release
 
+# Publishes to public npmjs, so this pipeline deliberately does NOT set the SFI ES-4.2.4
+# CFSClean policy, which would block that publish. It does still restore from the CFS
+# feed, using the build identity since it runs in the org that hosts the feed.
+
 extends:
     template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
     parameters:
@@ -29,3 +33,4 @@ extends:
                   - template: pipeline/build-package.template.yaml@self
                     parameters:
                         suffix: ui
+                        feedRegistry: 'https://pkgs.dev.azure.com/accessibility-insights-private/c79273f4-2dcc-480f-852b-0267a30c82db/_packaging/a11y-insights-public/npm/registry/'

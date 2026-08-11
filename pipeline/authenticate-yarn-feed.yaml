@@ -1,0 +1,47 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+# Sets the YARN_NPM_* variables used to restore from the CFS feed (SFI ES-4.2.4).
+# Yarn Berry ignores .npmrc, so npmAuthenticate@0 cannot be used; yarn reads these
+# environment variables instead, and they override .yarnrc.yml.
+parameters:
+    # CFS feed registry URL. Empty disables both branches below.
+    - name: feedRegistry
+      type: string
+      default: ''
+
+    # ARM service connection, required only when the pipeline runs in a different org
+    # than the feed. Must be a literal string: service connections are resolved at
+    # compile time, before runtime variables exist.
+    - name: azureSubscription
+      type: string
+      default: ''
+
+steps:
+    # Cross-org: a build identity is not a resolvable principal in another org, so mint
+    # a token from the service connection's identity instead.
+    - ${{ if and(ne(parameters.feedRegistry, ''), ne(parameters.azureSubscription, '')) }}:
+          - task: AzureCLI@2
+            displayName: authenticate yarn to the CFS feed (service principal)
+            inputs:
+                azureSubscription: ${{ parameters.azureSubscription }}
+                scriptType: pscore
+                scriptLocation: 'inlineScript'
+                # 499b84ac-... is the Azure DevOps Services resource ID.
+                inlineScript: |
+                    $accessToken = az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query "accessToken" --output tsv
+                    Write-Host "##vso[task.setsecret]$accessToken"
+                    Write-Host "##vso[task.setvariable variable=YARN_NPM_AUTH_TOKEN;issecret=true]$accessToken"
+                    Write-Host "##vso[task.setvariable variable=YARN_NPM_REGISTRY_SERVER]${{ parameters.feedRegistry }}"
+                    Write-Host "##vso[task.setvariable variable=YARN_NPM_ALWAYS_AUTH]true"
+
+    # Same org as the feed: the build identity can read it directly.
+    - ${{ if and(ne(parameters.feedRegistry, ''), eq(parameters.azureSubscription, '')) }}:
+          - pwsh: |
+                Write-Host "##vso[task.setsecret]$env:SYSTEM_ACCESSTOKEN"
+                Write-Host "##vso[task.setvariable variable=YARN_NPM_AUTH_TOKEN;issecret=true]$env:SYSTEM_ACCESSTOKEN"
+                Write-Host "##vso[task.setvariable variable=YARN_NPM_REGISTRY_SERVER]${{ parameters.feedRegistry }}"
+                Write-Host "##vso[task.setvariable variable=YARN_NPM_ALWAYS_AUTH]true"
+            displayName: authenticate yarn to the CFS feed (build identity)
+            env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)

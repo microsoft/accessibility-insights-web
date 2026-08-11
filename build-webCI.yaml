@@ -21,3 +21,6 @@ extends:
     template: pipeline/build-shared.yaml@self
     parameters:
         templateType: Official
+        # Runs in accessibility-insights-private, the org that hosts the CFS feed, so the
+        # build identity can read it directly. azureSubscription is deliberately unset.
+        feedRegistry: 'https://pkgs.dev.azure.com/accessibility-insights-private/c79273f4-2dcc-480f-852b-0267a30c82db/_packaging/a11y-insights-public/npm/registry/'

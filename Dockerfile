@@ -32,7 +32,17 @@ COPY packages/report-e2e-tests/package.json /app/packages/report-e2e-tests/
 COPY packages/ui/package.json /app/packages/ui/
 COPY packages/validator/package.json /app/packages/validator/
 
-RUN yarn install --immutable
+# SFI ES-4.2.4 (CFS): optional Azure Artifacts feed for package restore. Distinct ARG
+# names are used so an unset value never blanks out .yarnrc.yml's own YARN_NPM_ settings.
+ARG ADO_NPM_REGISTRY
+ARG ADO_NPM_TOKEN
+
+RUN if [ -n "$ADO_NPM_REGISTRY" ]; then \
+      export YARN_NPM_REGISTRY_SERVER="$ADO_NPM_REGISTRY" \
+             YARN_NPM_ALWAYS_AUTH=true \
+             YARN_NPM_AUTH_TOKEN="$ADO_NPM_TOKEN"; \
+    fi; \
+    yarn install --immutable
 
 COPY . /app
 

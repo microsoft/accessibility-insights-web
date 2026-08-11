@@ -28,6 +28,11 @@ extends:
             codeql:
                 compiled:
                     enabled: true
+        # SFI ES-4.2.4: CFSClean blocks the public package feeds. Permissive is the base
+        # policy; 1ES currently overrides it with the centrally-applied DefaultDeny.
+        # This pipeline runs CredScan/PoliCheck only, so it needs no feed redirect.
+        settings:
+            networkIsolationPolicy: Permissive,CFSClean
         customBuildTags:
             - MigrationTooling-accessibility-insights-private-Accessibility Insights (private)-3-Tool
         stages:
