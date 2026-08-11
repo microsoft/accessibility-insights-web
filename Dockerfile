@@ -33,12 +33,11 @@ COPY packages/ui/package.json /app/packages/ui/
 COPY packages/validator/package.json /app/packages/validator/
 
 # SFI ES-4.2.4 (CFS): the feed URL comes from the .yarnrc.yml COPYed above; this is
-# only the credential for it. A distinct ARG name is used so an unset value never
-# blanks out yarn's own YARN_NPM_ settings.
-ARG ADO_NPM_TOKEN
-
-RUN if [ -n "$ADO_NPM_TOKEN" ]; then \
-      export YARN_NPM_AUTH_TOKEN="$ADO_NPM_TOKEN"; \
+# only the credential for it. Mounted as a BuildKit secret rather than passed as an ARG,
+# so the token is not retained in the image layers or build metadata.
+RUN --mount=type=secret,id=ado_npm_token \
+    if [ -s /run/secrets/ado_npm_token ]; then \
+      export YARN_NPM_AUTH_TOKEN="$(cat /run/secrets/ado_npm_token)"; \
     fi; \
     yarn install --immutable
 

@@ -179,4 +179,5 @@ extends:
                         - template: pipeline/run-tests-in-docker-linux.yaml@self
                           parameters:
                               target: web
+                              azureSubscription: ${{ parameters.azureSubscription }}
                         - template: pipeline/e2e-test-publish-results.yaml@self
