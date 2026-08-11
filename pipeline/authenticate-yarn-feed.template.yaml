@@ -26,6 +26,10 @@ steps:
                 # 499b84ac-... is the Azure DevOps Services resource ID.
                 inlineScript: |
                     $accessToken = az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query "accessToken" --output tsv
+                    if (-not $accessToken) {
+                        Write-Host "##vso[task.logissue type=error]Failed to mint an Azure DevOps token from '${{ parameters.azureSubscription }}'. Check that the service connection is authorized for this pipeline and that its identity has at least Collaborator on the feed."
+                        exit 1
+                    }
                     Write-Host "##vso[task.setsecret]$accessToken"
                     Write-Host "##vso[task.setvariable variable=YARN_NPM_AUTH_TOKEN;issecret=true]$accessToken"
 
