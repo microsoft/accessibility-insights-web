@@ -32,6 +32,10 @@ steps:
     # Same org as the feed: the build identity can read it directly.
     - ${{ if eq(parameters.azureSubscription, '') }}:
           - pwsh: |
+                if (-not $env:SYSTEM_ACCESSTOKEN) {
+                    Write-Host "##vso[task.logissue type=error]System.AccessToken is empty. Enable 'Allow scripts to access the OAuth token' on the job, or the yarn install below will fail against the CFS feed."
+                    exit 1
+                }
                 Write-Host "##vso[task.setsecret]$env:SYSTEM_ACCESSTOKEN"
                 Write-Host "##vso[task.setvariable variable=YARN_NPM_AUTH_TOKEN;issecret=true]$env:SYSTEM_ACCESSTOKEN"
             displayName: authenticate yarn to the CFS feed (build identity)

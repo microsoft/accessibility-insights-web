@@ -16,7 +16,7 @@ steps:
       timeoutInMinutes: 2
       retryCountOnTaskFailure: 2
 
-    # Sets YARN_NPM_AUTH_TOKEN, which later steps inherit as an environment variable.
+    # Sets the YARN_NPM_AUTH_TOKEN pipeline variable.
     - template: ./authenticate-yarn-feed.template.yaml
       parameters:
           azureSubscription: ${{ parameters.azureSubscription }}
@@ -25,3 +25,8 @@ steps:
       displayName: install packages and dependencies
       timeoutInMinutes: 10
       retryCountOnTaskFailure: 2
+      env:
+          # Secret variables are deliberately NOT mapped into the environment by Azure
+          # DevOps, so this has to be passed explicitly or yarn fails with
+          # "No authentication configured for request".
+          YARN_NPM_AUTH_TOKEN: $(YARN_NPM_AUTH_TOKEN)
