@@ -25,5 +25,4 @@ extends:
         # accessibility-insights-private, so it needs a service connection to mint a
         # cross-org token. Service connections are per-org; this is the existing mseng/1ES
         # connection the accessibility-insights-linter pipelines already use.
-        feedRegistry: 'https://pkgs.dev.azure.com/accessibility-insights-private/c79273f4-2dcc-480f-852b-0267a30c82db/_packaging/a11y-insights-public/npm/registry/'
         azureSubscription: 'a11y-insights-corp-tenant-identity'

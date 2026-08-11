@@ -1,11 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 parameters:
-    # CFS feed to restore from (SFI ES-4.2.4). Empty uses whatever .yarnrc.yml specifies.
-    - name: feedRegistry
-      type: string
-      default: ''
-
     # ARM service connection, required only when this pipeline's org differs from the
     # feed's. Must be a literal string, not a $(variable).
     - name: azureSubscription
@@ -21,10 +16,9 @@ steps:
       timeoutInMinutes: 2
       retryCountOnTaskFailure: 2
 
-    # Sets YARN_NPM_* variables, which later steps inherit as environment variables.
-    - template: ./authenticate-yarn-feed.yaml
+    # Sets YARN_NPM_AUTH_TOKEN, which later steps inherit as an environment variable.
+    - template: ./authenticate-yarn-feed.template.yaml
       parameters:
-          feedRegistry: ${{ parameters.feedRegistry }}
           azureSubscription: ${{ parameters.azureSubscription }}
 
     - script: yarn install --immutable

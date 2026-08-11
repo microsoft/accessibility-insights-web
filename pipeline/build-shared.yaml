@@ -8,13 +8,9 @@ parameters:
           - UnOfficial
           - Official
 
-    # Passed straight through to install-node-prerequisites.yaml. See that file for
-    # when these need to be set. Both must be literal strings: service connection
-    # references are resolved at compile time, before runtime variables exist.
-    - name: feedRegistry
-      type: string
-      default: ''
-
+    # Passed straight through to install-node-prerequisites.yaml. Must be a literal
+    # string: service connection references are resolved at compile time, before
+    # runtime variables exist.
     - name: azureSubscription
       type: string
       default: ''
@@ -56,7 +52,6 @@ extends:
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
                           parameters:
-                              feedRegistry: ${{ parameters.feedRegistry }}
                               azureSubscription: ${{ parameters.azureSubscription }}
 
                         - script: yarn lint:check:all
@@ -125,7 +120,6 @@ extends:
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
                           parameters:
-                              feedRegistry: ${{ parameters.feedRegistry }}
                               azureSubscription: ${{ parameters.azureSubscription }}
 
                         - task: ComponentGovernanceComponentDetection@0
@@ -155,7 +149,6 @@ extends:
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
                           parameters:
-                              feedRegistry: ${{ parameters.feedRegistry }}
                               azureSubscription: ${{ parameters.azureSubscription }}
 
                         - script: yarn build:package:report
@@ -182,7 +175,6 @@ extends:
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
                           parameters:
-                              feedRegistry: ${{ parameters.feedRegistry }}
                               azureSubscription: ${{ parameters.azureSubscription }}
                         - template: pipeline/run-tests-in-docker-linux.yaml@self
                           parameters:

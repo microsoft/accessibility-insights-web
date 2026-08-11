@@ -7,10 +7,6 @@ parameters:
     # Passed through to install-node-prerequisites.yaml. This template is used by the
     # package release pipelines, which restore from the CFS feed but deliberately do not
     # run under CFSClean, since they publish to public npmjs.
-    - name: feedRegistry
-      type: string
-      default: ''
-
     - name: azureSubscription
       type: string
       default: ''
@@ -21,7 +17,6 @@ jobs:
       steps:
           - template: install-node-prerequisites.yaml
             parameters:
-                feedRegistry: ${{ parameters.feedRegistry }}
                 azureSubscription: ${{ parameters.azureSubscription }}
 
           - script: yarn lint:check

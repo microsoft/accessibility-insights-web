@@ -6,7 +6,6 @@ parameters:
     macImage: 'macOS-14'
     linuxImage: 'ubuntu-22.04-secure'
     # Passed straight through to install-node-prerequisites.yaml.
-    feedRegistry: ''
     azureSubscription: ''
 
 jobs:
@@ -18,7 +17,6 @@ jobs:
       steps:
           - template: ./install-node-prerequisites.yaml
             parameters:
-                feedRegistry: ${{ parameters.feedRegistry }}
                 azureSubscription: ${{ parameters.azureSubscription }}
           - script: yarn build:all
             displayName: build:all
@@ -31,7 +29,6 @@ jobs:
       steps:
           - template: ./install-node-prerequisites.yaml
             parameters:
-                feedRegistry: ${{ parameters.feedRegistry }}
                 azureSubscription: ${{ parameters.azureSubscription }}
           - script: yarn build:all
             displayName: build:all
@@ -44,7 +41,6 @@ jobs:
       steps:
           - template: ./install-node-prerequisites.yaml
             parameters:
-                feedRegistry: ${{ parameters.feedRegistry }}
                 azureSubscription: ${{ parameters.azureSubscription }}
           - script: yarn build:all
             displayName: build:all

@@ -33,4 +33,3 @@ extends:
                   - template: pipeline/build-package.template.yaml@self
                     parameters:
                         suffix: report
-                        feedRegistry: 'https://pkgs.dev.azure.com/accessibility-insights-private/c79273f4-2dcc-480f-852b-0267a30c82db/_packaging/a11y-insights-public/npm/registry/'
