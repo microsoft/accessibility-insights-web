@@ -32,10 +32,14 @@ COPY packages/report-e2e-tests/package.json /app/packages/report-e2e-tests/
 COPY packages/ui/package.json /app/packages/ui/
 COPY packages/validator/package.json /app/packages/validator/
 
-# SFI ES-4.2.4 (CFS): the feed URL comes from the .yarnrc.yml COPYed above; this is
-# only the credential for it. Mounted as a BuildKit secret rather than passed as an ARG,
-# so the token is not retained in the image layers or build metadata.
+# SFI ES-4.2.4 (CFS): the feed URL comes from the .yarnrc.yml COPYed above; these supply
+# only the credential for it. Both mounts are optional, so each caller provides whichever
+# it has: the ADO pipelines mount a minted token, while local builds mount the developer's
+# home .yarnrc.yml, which the Azure Artifacts npm credential provider populates and which
+# yarn merges with the project config. Secrets are mounted rather than passed as build
+# args so the credential is not retained in image layers or build metadata.
 RUN --mount=type=secret,id=ado_npm_token \
+    --mount=type=secret,id=home_yarnrc,target=/root/.yarnrc.yml \
     if [ -s /run/secrets/ado_npm_token ]; then \
       export YARN_NPM_AUTH_TOKEN="$(cat /run/secrets/ado_npm_token)"; \
     fi; \
