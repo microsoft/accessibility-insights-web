@@ -48,28 +48,30 @@ extends:
             - stage: Stage
               jobs:
                   # Runs in the accessibility-insights org while the feed lives in
-                  # accessibility-insights-private, so it needs a cross-org token.
+                  # accessibility-insights-private, so it needs a cross-org token. The
+                  # connection is owned by the axe-pipelines-samples project and shared
+                  # into this one, which is why the name carries the project suffix.
                   - template: pipeline/e2e-job-per-environment.yaml@self
                     parameters:
                         jobNameSuffix: _1
-                        azureSubscription: 'a11y-insights-public-feed-identity'
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
 
                   - template: pipeline/e2e-job-per-environment.yaml@self
                     parameters:
                         jobNameSuffix: _2
-                        azureSubscription: 'a11y-insights-public-feed-identity'
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
 
                   - template: pipeline/e2e-job-per-environment.yaml@self
                     parameters:
                         jobNameSuffix: _3
-                        azureSubscription: 'a11y-insights-public-feed-identity'
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
 
                   - template: pipeline/e2e-job-per-environment.yaml@self
                     parameters:
                         jobNameSuffix: _4
-                        azureSubscription: 'a11y-insights-public-feed-identity'
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
 
                   - template: pipeline/e2e-job-per-environment.yaml@self
                     parameters:
                         jobNameSuffix: _5
-                        azureSubscription: 'a11y-insights-public-feed-identity'
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
