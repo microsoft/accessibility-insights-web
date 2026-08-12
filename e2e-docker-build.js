@@ -1,20 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-// Wraps `docker build` for the end-to-end test image, passing its arguments through
-// unchanged and adding one thing: a credential for the CFS feed.
+// Runs `docker build` with the developer's home .yarnrc.yml mounted as a BuildKit secret,
+// so the image's `yarn install` can authenticate to the CFS feed without the token
+// reaching any image layer. The Azure Artifacts npm credential provider writes that file.
 //
-// The project .yarnrc.yml points npmRegistryServer at the CFS feed, so the `yarn install`
-// inside the image needs a credential for it. The Azure Artifacts npm credential provider
-// writes one into the developer's home .yarnrc.yml; mounting that file as a BuildKit
-// secret lets the container's yarn read it without the token ever landing in an image
-// layer or in build metadata.
-//
-// This exists as a script rather than an inline `docker build` in package.json because the
-// home directory has to be resolved portably: HOME is not set on Windows, so a literal
-// $HOME in an npm script would silently produce a broken path there.
-//
-// Usage mirrors docker build, with the build context last:
+// A script rather than an inline command because HOME is not set on Windows, so a literal
+// $HOME in an npm script would silently break there. Arguments pass through to docker
+// build unchanged:
 //     node e2e-docker-build.js -t <image-tag> --target <stage> .
 
 const { spawnSync } = require('child_process');
@@ -32,6 +25,8 @@ if (passthrough.length === 0) {
 const homeYarnrc = path.join(os.homedir(), '.yarnrc.yml');
 let secretArgs = [];
 
+// Path comes from os.homedir() and a fixed name, so there is no injection risk here.
+// eslint-disable-next-line security/detect-non-literal-fs-filename
 if (fs.existsSync(homeYarnrc)) {
     secretArgs = ['--secret', `id=home_yarnrc,src=${homeYarnrc}`];
 } else {
@@ -42,8 +37,7 @@ if (fs.existsSync(homeYarnrc)) {
     );
 }
 
-// docker requires the build context to be the final argument, so the secret goes in
-// ahead of it rather than being appended.
+// docker requires the build context last, so the secret is spliced in before it.
 const dockerArgs = ['build', ...passthrough.slice(0, -1), ...secretArgs, ...passthrough.slice(-1)];
 
 const result = spawnSync('docker', dockerArgs, {
