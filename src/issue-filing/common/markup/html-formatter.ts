@@ -12,7 +12,8 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
     };
 
     const link = (href: string, text?: string): string => {
-        return `<a href="${href}">${text || href}</a>`;
+        const escapedHref = escape(href);
+        return `<a href="${escapedHref}">${text ? escape(text) : escapedHref}</a>`;
     };
 
     const sectionHeader = (text: string) => {
