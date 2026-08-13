@@ -84,4 +84,29 @@ describe('HTMLFormatter', () => {
             expect(result).toEqual('<a href="test-href">test-text</a>');
         });
     });
+
+    describe('link', () => {
+        it('escapes special characters in href', () => {
+            const result = testSubject.link('http://example.com/?a="><script>');
+
+            expect(result).toBe(
+                '<a href="http://example.com/?a=&quot;&gt;&lt;script&gt;">' +
+                    'http://example.com/?a=&quot;&gt;&lt;script&gt;</a>',
+            );
+        });
+
+        it('escapes special characters in text when provided', () => {
+            const result = testSubject.link('http://example.com', '<b>click "me"</b>');
+
+            expect(result).toBe(
+                '<a href="http://example.com">&lt;b&gt;click &quot;me&quot;&lt;/b&gt;</a>',
+            );
+        });
+
+        it('escapes href but leaves plain text untouched', () => {
+            const result = testSubject.link('http://example.com', 'safe text');
+
+            expect(result).toBe('<a href="http://example.com">safe text</a>');
+        });
+    });
 });
