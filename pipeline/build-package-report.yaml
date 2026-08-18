@@ -11,9 +11,12 @@ resources:
           name: 1ESPipelineTemplates/1ESPipelineTemplates
           ref: refs/tags/release
 
-# Publishes to public npmjs, so this pipeline deliberately does NOT set the SFI ES-4.2.4
-# CFSClean policy, which would block that publish. It does still restore from the CFS
-# feed, using the build identity since it runs in the org that hosts the feed.
+# SFI ES-4.2.4 (S360 pipeline def 43). Restores from the CFS feed using the build
+# identity, since it runs in the org that hosts the feed.
+#
+# The `Npm@1` publish at the end of build-package.template.yaml still targets public
+# npmjs, which CFSClean blocks. Moving that publish to ESRP Release is tracked
+# separately; until it lands, expect the publish step to be denied under this policy.
 
 extends:
     template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
@@ -27,6 +30,10 @@ extends:
                 name: $(a11yInsightsPool)
                 image: windows-2022-secure
                 os: windows
+        # SFI ES-4.2.4: CFSClean blocks the public package feeds. Permissive is the base
+        # policy; 1ES currently overrides it with the centrally-applied DefaultDeny.
+        settings:
+            networkIsolationPolicy: Permissive,CFSClean
         stages:
             - stage: Stage
               jobs:

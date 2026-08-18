@@ -5,8 +5,10 @@ parameters:
       type: string
 
     # Passed through to install-node-prerequisites.yaml. This template is used by the
-    # package release pipelines, which restore from the CFS feed but deliberately do not
-    # run under CFSClean, since they publish to public npmjs.
+    # package release pipelines, which restore from the CFS feed and now also run under
+    # the SFI ES-4.2.4 CFSClean policy set by their wrappers. The `Npm@1` publish below
+    # still targets public npmjs, which CFSClean blocks; moving it to ESRP Release is
+    # tracked separately.
     - name: azureSubscription
       type: string
       default: ''
