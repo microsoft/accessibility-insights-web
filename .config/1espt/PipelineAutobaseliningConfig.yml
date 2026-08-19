@@ -67,11 +67,11 @@ pipelines:
         credscan:
           lastModifiedDate: 2025-01-15
         eslint:
-          lastModifiedDate: 2025-01-15
+          lastModifiedDate: 2026-08-19
         psscriptanalyzer:
-          lastModifiedDate: 2025-01-15
+          lastModifiedDate: 2026-08-19
         armory:
-          lastModifiedDate: 2025-01-15
+          lastModifiedDate: 2026-08-19
         accessibilityinsights:
           lastModifiedDate: 2026-04-17
   39:
