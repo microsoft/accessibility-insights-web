@@ -1,0 +1,47 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+# Supplies the credentials yarn uses to restore from the CFS feed (SFI ES-4.2.4).
+# The feed URL itself lives in .yarnrc.yml, so only the token is set here.
+# Yarn Berry ignores .npmrc, so npmAuthenticate@0 cannot be used; yarn reads
+# YARN_NPM_AUTH_TOKEN from the environment instead.
+parameters:
+    # ARM service connection, required only when the pipeline runs in a different org
+    # than the feed. Must be a literal string: service connections are resolved at
+    # compile time, before runtime variables exist.
+    - name: azureSubscription
+      type: string
+      default: ''
+
+steps:
+    # Cross-org: a build identity is not a resolvable principal in another org, so mint
+    # a token from the service connection's identity instead.
+    - ${{ if ne(parameters.azureSubscription, '') }}:
+          - task: AzureCLI@2
+            displayName: authenticate yarn to the CFS feed (service principal)
+            inputs:
+                azureSubscription: ${{ parameters.azureSubscription }}
+                scriptType: pscore
+                scriptLocation: 'inlineScript'
+                # 499b84ac-... is the Azure DevOps Services resource ID.
+                inlineScript: |
+                    $accessToken = az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query "accessToken" --output tsv
+                    if (-not $accessToken) {
+                        Write-Host "##vso[task.logissue type=error]Failed to mint an Azure DevOps token from '${{ parameters.azureSubscription }}'. Check that the service connection is authorized for this pipeline and that its identity has at least Collaborator on the feed."
+                        exit 1
+                    }
+                    Write-Host "##vso[task.setsecret]$accessToken"
+                    Write-Host "##vso[task.setvariable variable=YARN_NPM_AUTH_TOKEN;issecret=true]$accessToken"
+
+    # Same org as the feed: the build identity can read it directly.
+    - ${{ if eq(parameters.azureSubscription, '') }}:
+          - pwsh: |
+                if (-not $env:SYSTEM_ACCESSTOKEN) {
+                    Write-Host "##vso[task.logissue type=error]System.AccessToken is empty. Enable 'Allow scripts to access the OAuth token' on the job, or the yarn install below will fail against the CFS feed."
+                    exit 1
+                }
+                Write-Host "##vso[task.setsecret]$env:SYSTEM_ACCESSTOKEN"
+                Write-Host "##vso[task.setvariable variable=YARN_NPM_AUTH_TOKEN;issecret=true]$env:SYSTEM_ACCESSTOKEN"
+            displayName: authenticate yarn to the CFS feed (build identity)
+            env:
+                SYSTEM_ACCESSTOKEN: $(System.AccessToken)

@@ -13,6 +13,10 @@ parameters:
     - name: run-timeout-minutes
       type: number
       default: 30
+    # Passed to the image build so its own yarn install can reach the CFS feed.
+    - name: azureSubscription
+      type: string
+      default: ''
 
 steps:
     - bash: |
@@ -25,10 +29,25 @@ steps:
       condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
       displayName: (linux) make sure 'target' parameter is specified
 
+    # The image runs its own yarn install, and .yarnrc.yml is COPYed into it, so the
+    # container gets the feed URL from there but still needs a token.
+    - template: ./authenticate-yarn-feed.template.yaml
+      parameters:
+          azureSubscription: ${{ parameters.azureSubscription }}
+
     # DOCKER_BUILDKIT=1 allows us to skip non-related targets (github docker/cli@1134)
-    - script: DOCKER_BUILDKIT=1 docker build -t app --target ${{ parameters.target }} .
+    # The feed token is piped in as a BuildKit secret rather than a build arg, so it is
+    # never written to the image layers or build metadata.
+    - script: |
+          set -euo pipefail
+          printf '%s' "$YARN_NPM_AUTH_TOKEN" > "$(Agent.TempDirectory)/ado_npm_token"
+          DOCKER_BUILDKIT=1 docker build -t app --target ${{ parameters.target }} \
+              --secret id=ado_npm_token,src="$(Agent.TempDirectory)/ado_npm_token" .
+          rm -f "$(Agent.TempDirectory)/ado_npm_token"
       displayName: (linux) setup docker
       condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
+      env:
+          YARN_NPM_AUTH_TOKEN: $(YARN_NPM_AUTH_TOKEN)
 
     - script: docker run --network=host -i app --ci
       displayName: (linux) run docker entrypoint

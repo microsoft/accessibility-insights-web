@@ -32,7 +32,16 @@ COPY packages/report-e2e-tests/package.json /app/packages/report-e2e-tests/
 COPY packages/ui/package.json /app/packages/ui/
 COPY packages/validator/package.json /app/packages/validator/
 
-RUN yarn install --immutable
+# SFI ES-4.2.4 (CFS): the feed URL comes from the .yarnrc.yml COPYed above; these supply
+# only the credential. Both mounts are optional, so each caller provides whichever it has:
+# the ADO pipelines mount a minted token, local builds mount the developer's home
+# .yarnrc.yml. Mounted as secrets so the credential stays out of the image layers.
+RUN --mount=type=secret,id=ado_npm_token \
+    --mount=type=secret,id=home_yarnrc,target=/root/.yarnrc.yml \
+    if [ -s /run/secrets/ado_npm_token ]; then \
+      export YARN_NPM_AUTH_TOKEN="$(cat /run/secrets/ado_npm_token)"; \
+    fi; \
+    yarn install --immutable
 
 COPY . /app
 

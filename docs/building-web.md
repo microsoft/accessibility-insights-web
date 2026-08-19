@@ -31,6 +31,8 @@ See [Git branch setup](git-branch-setup.md).
 
 #### Install packages
 
+Packages are restored from an internal Azure Artifacts feed rather than the public npm registry, so `yarn install` needs a credential for that feed. Run the Azure Artifacts npm credential provider once (it writes a token into a home-level `.yarnrc.yml`), or set `YARN_NPM_AUTH_TOKEN` in your environment.
+
 ```bash
 yarn install
 ```
@@ -120,7 +122,8 @@ yarn test:e2e
 # -u updates snapshots
 yarn test:e2e -u
 
-# Run from the context of the docker container our Linux CI builds use (requires Docker to be installed)
+# Run from the context of the docker container our Linux CI builds use (requires Docker to be
+# installed, and the same feed credential as `yarn install`; see Install packages above)
 yarn test:e2e:docker
 
 # Run tests for the report package

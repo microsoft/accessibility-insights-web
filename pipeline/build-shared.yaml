@@ -8,6 +8,13 @@ parameters:
           - UnOfficial
           - Official
 
+    # Passed straight through to install-node-prerequisites.yaml. Must be a literal
+    # string: service connection references are resolved at compile time, before
+    # runtime variables exist.
+    - name: azureSubscription
+      type: string
+      default: ''
+
 resources:
     repositories:
         - repository: 1esPipelines
@@ -26,6 +33,11 @@ extends:
             image: windows-2022-secure # Name of the image in your pool. If not specified, first image of the pool is used
             os: windows
 
+        # SFI ES-4.2.4: CFSClean blocks the public package feeds. Permissive is the base
+        # policy; 1ES currently overrides it with the centrally-applied DefaultDeny.
+        settings:
+            networkIsolationPolicy: Permissive,CFSClean
+
         stages:
             - stage: Stage
 
@@ -39,6 +51,8 @@ extends:
 
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
+                          parameters:
+                              azureSubscription: ${{ parameters.azureSubscription }}
 
                         - script: yarn lint:check:all
                           displayName: check lint errors
@@ -105,6 +119,8 @@ extends:
                         os: linux
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
+                          parameters:
+                              azureSubscription: ${{ parameters.azureSubscription }}
 
                         - task: ComponentGovernanceComponentDetection@0
                           displayName: 'dependency detection (Component Governance)'
@@ -132,6 +148,8 @@ extends:
                         os: linux
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
+                          parameters:
+                              azureSubscription: ${{ parameters.azureSubscription }}
 
                         - script: yarn build:package:report
                           displayName: build report package
@@ -156,7 +174,10 @@ extends:
                         os: linux
                     steps:
                         - template: pipeline/install-node-prerequisites.yaml@self
+                          parameters:
+                              azureSubscription: ${{ parameters.azureSubscription }}
                         - template: pipeline/run-tests-in-docker-linux.yaml@self
                           parameters:
                               target: web
+                              azureSubscription: ${{ parameters.azureSubscription }}
                         - template: pipeline/e2e-test-publish-results.yaml@self

@@ -6,6 +6,8 @@ parameters:
     windowsImage: 'windows-2022-secure'
     macImage: 'macOS-14'
     linuxImage: 'ubuntu-22.04-secure'
+    # Passed straight through to install-node-prerequisites.yaml.
+    azureSubscription: ''
 
 jobs:
     - job: 'e2e_tests_windows${{ parameters.jobNameSuffix }}'
@@ -15,6 +17,8 @@ jobs:
           os: windows
       steps:
           - template: ./install-node-prerequisites.yaml
+            parameters:
+                azureSubscription: ${{ parameters.azureSubscription }}
           - template: ./e2e-test-from-agent.yaml
           - template: ./e2e-test-publish-results.yaml
 
@@ -25,6 +29,8 @@ jobs:
           os: macOS
       steps:
           - template: ./install-node-prerequisites.yaml
+            parameters:
+                azureSubscription: ${{ parameters.azureSubscription }}
           - template: ./e2e-test-from-agent.yaml
           - template: ./e2e-test-publish-results.yaml
 
@@ -37,4 +43,5 @@ jobs:
           - template: ./run-tests-in-docker-linux.yaml
             parameters:
                 target: web
+                azureSubscription: ${{ parameters.azureSubscription }}
           - template: ./e2e-test-publish-results.yaml

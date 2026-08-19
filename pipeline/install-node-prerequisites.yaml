@@ -1,5 +1,12 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+parameters:
+    # ARM service connection, required only when this pipeline's org differs from the
+    # feed's. Must be a literal string, not a $(variable).
+    - name: azureSubscription
+      type: string
+      default: ''
+
 steps:
     - task: NodeTool@0
       inputs:
@@ -9,7 +16,17 @@ steps:
       timeoutInMinutes: 2
       retryCountOnTaskFailure: 2
 
+    # Sets the YARN_NPM_AUTH_TOKEN pipeline variable.
+    - template: ./authenticate-yarn-feed.template.yaml
+      parameters:
+          azureSubscription: ${{ parameters.azureSubscription }}
+
     - script: yarn install --immutable
       displayName: install packages and dependencies
       timeoutInMinutes: 10
       retryCountOnTaskFailure: 2
+      env:
+          # Secret variables are deliberately NOT mapped into the environment by Azure
+          # DevOps, so this has to be passed explicitly or yarn fails with
+          # "No authentication configured for request".
+          YARN_NPM_AUTH_TOKEN: $(YARN_NPM_AUTH_TOKEN)

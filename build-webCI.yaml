@@ -21,3 +21,10 @@ extends:
     template: pipeline/build-shared.yaml@self
     parameters:
         templateType: Official
+        # This file is used by pipelines in more than one org. accessibility-insights-private
+        # hosts the CFS feed, so its build identity reads the feed directly and needs no
+        # service connection. Anywhere else the feed is cross-org, so a token has to be
+        # minted from one. The check is on the private project's id rather than a positive
+        # match on the other orgs, so anything we have not enumerated still gets a token.
+        ${{ if ne(variables['System.TeamProjectId'], 'c79273f4-2dcc-480f-852b-0267a30c82db') }}:
+            azureSubscription: 'a11y-insights-corp-tenant-identity'

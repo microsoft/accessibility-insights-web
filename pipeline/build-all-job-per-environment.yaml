@@ -5,6 +5,8 @@ parameters:
     windowsImage: 'windows-2022-secure'
     macImage: 'macOS-14'
     linuxImage: 'ubuntu-22.04-secure'
+    # Passed straight through to install-node-prerequisites.yaml.
+    azureSubscription: ''
 
 jobs:
     - job: 'build_all_windows${{ parameters.jobNameSuffix }}'
@@ -14,6 +16,8 @@ jobs:
           os: windows
       steps:
           - template: ./install-node-prerequisites.yaml
+            parameters:
+                azureSubscription: ${{ parameters.azureSubscription }}
           - script: yarn build:all
             displayName: build:all
 
@@ -24,6 +28,8 @@ jobs:
           os: macOS
       steps:
           - template: ./install-node-prerequisites.yaml
+            parameters:
+                azureSubscription: ${{ parameters.azureSubscription }}
           - script: yarn build:all
             displayName: build:all
 
@@ -34,5 +40,7 @@ jobs:
           os: linux
       steps:
           - template: ./install-node-prerequisites.yaml
+            parameters:
+                azureSubscription: ${{ parameters.azureSubscription }}
           - script: yarn build:all
             displayName: build:all

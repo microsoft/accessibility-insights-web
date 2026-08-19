@@ -21,3 +21,9 @@ extends:
     template: pipeline/build-shared.yaml@self
     parameters:
         templateType: UnOfficial
+        # Same arrangement as build-webCI.yaml: the definitions that use this file live in
+        # the accessibility-insights and accessibility-insights-private orgs. Only the
+        # latter hosts the CFS feed, so only it can read the feed without a token. The
+        # connection named here is the one shared into the accessibility-insights org.
+        ${{ if ne(variables['System.TeamProjectId'], 'c79273f4-2dcc-480f-852b-0267a30c82db') }}:
+            azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
