@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../common/styles/common.scss';
+@use '../common/styles/common.scss';
 
 .details-view-body {
     height: 100%;
@@ -11,9 +11,9 @@
     flex-direction: column;
     padding-bottom: 1px;
     box-sizing: border-box;
-    width: calc(100vw - (#{$details-view-left-nav-width}));
+    width: calc(100vw - (#{common.$details-view-left-nav-width}));
     height: 100%;
-    max-height: calc(100vh - (#{$details-view-header-bar-height}));
+    max-height: calc(100vh - (#{common.$details-view-header-bar-height}));
 
     &.narrow-mode {
         width: 100%;
@@ -33,7 +33,7 @@
     height: 100%;
 
     :global(.ms-Pivot) {
-        border-bottom: 1px solid $neutral-8;
+        border-bottom: 1px solid common.$neutral-8;
         padding-left: 12px;
     }
 
@@ -45,7 +45,7 @@
         width: 100%;
         overflow: auto;
         box-sizing: border-box;
-        max-height: calc(100vh - (#{$details-view-total-header-height}));
+        max-height: calc(100vh - (#{common.$details-view-total-header-height}));
 
         > div {
             width: 100%;
@@ -54,8 +54,8 @@
 
         :global(.ms-MessageBar-icon) i {
             margin-left: 12px;
-            color: $always-black;
-            @include ms-high-contrast-override {
+            color: common.$always-black;
+            @include common.ms-high-contrast-override {
                 color: inherit;
             }
         }
@@ -75,9 +75,9 @@
 
             h1 {
                 margin: 0;
-                font-weight: $font-weight-semi-bold;
+                font-weight: common.$font-weight-semi-bold;
                 font-size: 21px;
-                color: $neutral-100;
+                color: common.$neutral-100;
             }
 
             b {

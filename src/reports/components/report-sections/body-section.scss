@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/colors.scss';
-@import '../../../common/styles/fonts.scss';
+@use '../../../common/styles/colors.scss';
+@use '../../../common/styles/fonts.scss';
 
 body {
     font-size: 14px;
     margin: auto;
-    background-color: $neutral-2;
+    background-color: colors.$neutral-2;
     color: black;
-    font-family: $font-family;
+    font-family: fonts.$font-family;
 }

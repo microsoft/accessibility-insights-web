@@ -48,11 +48,27 @@ function ignoreNodeModules(givenPlugins) {
     // esbuild doesn't have an easy way to ignore node_modules for monorepos,
     // so this plugin is necessary (marks all node_modules as external).
     // Thread: https://github.com/evanw/esbuild/issues/619
+    //
+    // ESM-only packages (e.g. uuid v12+) must be bundled inline rather than
+    // kept external, because their internal relative imports break when
+    // wrapped in CJS require() calls.
+    const esmOnlyPackages = ['uuid'];
     givenPlugins.push(
         NodeResolve.NodeResolvePlugin({
             extensions: ['.ts', '.tsx', '.js'],
             onResolved: resolved => {
-                if (resolved.includes('node_modules')) {
+                // Allow Node.js built-in modules (e.g. node:crypto) to pass
+                // through as external — needed when bundling ESM-only packages
+                // that import Node built-ins.
+                if (resolved.startsWith('node:')) {
+                    return { external: true };
+                }
+                if (
+                    resolved.includes('node_modules') &&
+                    !esmOnlyPackages.some(pkg =>
+                        resolved.includes(`node_modules${path.sep}${pkg}${path.sep}`),
+                    )
+                ) {
                     return {
                         external: true,
                     };

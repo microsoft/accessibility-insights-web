@@ -11,13 +11,17 @@ import {
 import {
     CombinedReportNotApplicableSection,
     CombinedReportPassedSection,
+    CombinedReportIncompleteSection,
 } from 'reports/components/report-sections/combined-report-rules-only-sections';
 import { CombinedReportSummarySection } from 'reports/components/report-sections/combined-report-summary-section';
 import { RulesResultsContainer } from 'reports/components/report-sections/rules-results-container';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
 import { SummaryReportHeaderSection } from 'reports/components/report-sections/summary-report-header-section';
 import { SummaryReportHead } from 'reports/components/summary-report-head';
-import { UrlResultCounts } from 'reports/package/accessibilityInsightsReport';
+import {
+    ExpandPassSectionParameter,
+    UrlResultCounts,
+} from 'reports/package/accessibilityInsightsReport';
 import { FooterTextForService } from 'reports/package/footer-text-for-service';
 import { AutomatedChecksTitleSection } from './automated-checks-title-section';
 import { BodySection } from './body-section';
@@ -33,6 +37,9 @@ export type CombinedReportSectionProps = BaseSummaryReportSectionProps &
         cardsViewData: CardsViewModel;
         urlResultCounts: UrlResultCounts;
         sectionHeadingLevel: HeadingLevel;
+        getCopyToClipboardScript: () => string;
+        feedbackURL?: string;
+        expandPassSectionDetails?: ExpandPassSectionParameter;
     };
 
 export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSectionProps> = {
@@ -46,8 +53,9 @@ export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSe
     ResultsContainer: RulesResultsContainer,
     FailedInstancesSection: CombinedReportFailedSection,
     PassedChecksSection: CombinedReportPassedSection,
+    IncompleteChecksSection: CombinedReportIncompleteSection,
     NotApplicableChecksSection: CombinedReportNotApplicableSection,
     FooterSection: ReportFooter,
     FooterText: FooterTextForService,
-    resultSectionsOrder: ['failed', 'passed', 'notApplicable'],
+    resultSectionsOrder: ['failed', 'passed', 'incomplete', 'notApplicable'],
 };

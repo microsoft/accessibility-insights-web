@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../common/styles/common.scss';
+@use '../../common/styles/common.scss';
 
 .selector-input-list {
     .selector-input-title {
@@ -10,27 +10,27 @@
     }
 
     .selector-list {
-        border: solid 1px $neutral-30;
+        border: solid 1px common.$neutral-30;
         margin-top: 1vh;
         margin-bottom: 3vh;
         height: 15%;
         overflow: auto;
 
         :global(.ms-List-cell):last-child {
-            border-bottom: solid $neutral-20 1px;
+            border-bottom: solid common.$neutral-20 1px;
         }
 
         :global(.ms-List-cell + .ms-List-cell) {
-            border-top: solid $neutral-20 1px;
+            border-top: solid common.$neutral-20 1px;
         }
 
         .delete-selector-button {
-            background: $neutral-0;
+            background: common.$neutral-0;
             padding-right: 0;
             margin: 1px;
 
             .delete-selector-icon {
-                color: $neutral-30;
+                color: common.$neutral-30;
             }
         }
     }

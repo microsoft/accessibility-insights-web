@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../common/styles/common.scss';
+@use '../../common/styles/common.scss';
 
 .static-content-in-details-view {
-    padding-top: $fast-pass-right-panel-margin-top;
-    padding-right: $fast-pass-right-panel-margin-right;
-    padding-left: $fast-pass-right-panel-margin-left;
+    padding-top: common.$fast-pass-right-panel-margin-top;
+    padding-right: common.$fast-pass-right-panel-margin-right;
+    padding-left: common.$fast-pass-right-panel-margin-left;
     margin-bottom: auto;
 
     ol {
@@ -22,7 +22,7 @@
         font-size: 16px;
     }
 
-    background-color: $neutral-2;
+    background-color: common.$neutral-2;
     height: 100%;
 }
 
@@ -30,7 +30,7 @@
     margin-bottom: 0;
     margin-top: 12px;
     height: 40px;
-    background-color: $neutral-4;
+    background-color: common.$neutral-4;
 
     :global {
         .ms-Toggle-label {
@@ -39,7 +39,7 @@
             margin-right: 8px;
             margin-bottom: 5px;
             margin-left: 8px;
-            color: $neutral-100;
+            color: common.$neutral-100;
         }
 
         .ms-Toggle-innerContainer {

@@ -6,6 +6,7 @@ exports[`ContentLink renders from content, only have the icon 1`] = `
 <DocumentFragment>
   <mock-newtablinkwithtooltip
     aria-label="Guidance"
+    classname="insightsLinkIcon"
     href="/insights.html#/content/for/testing"
     tooltipcontent="Guidance"
   >
@@ -20,6 +21,7 @@ exports[`ContentLink renders from path, only have the icon 1`] = `
 <DocumentFragment>
   <mock-newtablinkwithtooltip
     aria-label="Guidance"
+    classname="insightsLinkIcon"
     href="/insights.html#/content/for/testing"
     tooltipcontent="Guidance"
   >
@@ -34,6 +36,7 @@ exports[`ContentLink renders with both text and icon 1`] = `
 <DocumentFragment>
   <mock-newtablinkwithtooltip
     aria-label="test guidance"
+    classname="insightsLinkIcon"
     href="/insights.html#/content/for/testing"
     tooltipcontent="Guidance"
   >
@@ -49,6 +52,7 @@ exports[`ContentLink renders with only text 1`] = `
 <DocumentFragment>
   <mock-newtablinkwithtooltip
     aria-label="test guidance"
+    classname="insightsLinkIcon"
     href="/insights.html#/content/for/testing"
     tooltipcontent="Guidance"
   >

@@ -11,17 +11,17 @@ on:
 
 env:
   # Keep this in sync with /pipeline/install-node-prerequisites.yaml
-  NODE_VERSION: 16.14.2
+  NODE_VERSION: 20.17.0
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v6
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -36,7 +36,7 @@ jobs:
       timeout-minutes: 10
 
     - name: upload artifact build-results
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: build-results
         path: drop
@@ -44,7 +44,7 @@ jobs:
     
   unit-tests:
     name: unit-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     strategy:
       fail-fast: false
@@ -52,10 +52,10 @@ jobs:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v6
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -70,7 +70,7 @@ jobs:
       timeout-minutes: 10
 
     - name: upload artifact unit-tests-results
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       if: ${{ always() }}
       with:
         name: unit-tests-${{ matrix.shard-index }}-results
@@ -79,42 +79,14 @@ jobs:
           test-results/unit/coverage/cobertura-coverage.xml
       timeout-minutes: 5
 
-  publish-code-coverage:
-    needs: unit-tests # This waits for *all* of the unit-tests jobs
-    runs-on: ubuntu-20.04
-    steps:
-    # This only needs to be present so codecov can use the source tree for some post-processing
-    # This job doesn't require that we install dependencies
-    - uses: actions/checkout@v4.1.7
-      timeout-minutes: 2
-
-    - uses: actions/setup-node@v4
-      with: { node-version: "${{ env.NODE_VERSION }}" }
-      timeout-minutes: 2
-
-    - uses: actions/download-artifact@v4
-      with:
-        name: unit-tests-1-results
-        path: unit-tests-1-results
-      timeout-minutes: 2
-
-    - uses: actions/download-artifact@v4
-      with:
-        name: unit-tests-2-results
-        path: unit-tests-2-results
-      timeout-minutes: 2
-
-    - run: npx codecov
-      timeout-minutes: 3
-
   lints:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v6
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -143,9 +115,9 @@ jobs:
       timeout-minutes: 6
 
   codeql:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
     - uses: github/codeql-action/init@v3
@@ -159,19 +131,19 @@ jobs:
 
   e2e-web-tests:
     name: e2e-web-tests (${{ matrix.shard-index }}/${{ strategy.job-total }})
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     # We need to update this each time we update playwright
-    container: mcr.microsoft.com/playwright:v1.45.3-focal
+    container: mcr.microsoft.com/playwright:v1.48.2-focal
     strategy:
       fail-fast: false
       matrix:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v6
       with:
         node-version: "${{ env.NODE_VERSION }}"
         # Intentionally omitting caching; it would need a separate, larger
@@ -197,7 +169,7 @@ jobs:
       timeout-minutes: 10
 
     - name: upload artifact e2e-web-tests-results
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       if: ${{ always() }}
       with:
         name: e2e-web-tests-${{ matrix.shard-index }}-results
@@ -205,7 +177,7 @@ jobs:
       timeout-minutes: 3
 
     - name: upload artifact e2e-web-tests-debug-logs
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       if: ${{ failure() }}
       with:
         name: e2e-web-tests-${{ matrix.shard-index }}-debug-logs
@@ -215,13 +187,13 @@ jobs:
       timeout-minutes: 15 # chrome-logs is several GB, this can take a while
 
   e2e-report-tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v6
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -237,7 +209,7 @@ jobs:
       timeout-minutes: 5
 
     - name: upload artifact e2e-report-tests-results
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       if: ${{ always() }}
       with:
         name: e2e-report-tests-results
@@ -245,9 +217,9 @@ jobs:
       timeout-minutes: 3
 
   check-clearly-defined:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v4.1.7
+    - uses: actions/checkout@v4.2.2
       timeout-minutes: 2
 
     - name: Check ClearlyDefined for dependabot PR's

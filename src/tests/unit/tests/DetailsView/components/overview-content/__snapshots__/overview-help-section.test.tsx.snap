@@ -5,11 +5,11 @@ exports[`OverviewHelpSection help text is shown properly 1`] = `
   <section
     class="overviewHelpContainer"
   >
-    <h3
+    <h2
       class="helpHeading"
     >
       Help
-    </h3>
+    </h2>
     <mock-helplinks
       deps="[object Object]"
       linkinformation=""

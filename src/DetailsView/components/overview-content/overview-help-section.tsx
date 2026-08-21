@@ -21,7 +21,7 @@ export const OverviewHelpSection = NamedFC(
     (props: OverviewHelpSectionProps) => {
         return (
             <section className={styles.overviewHelpContainer}>
-                <h3 className={styles.helpHeading}>Help</h3>
+                <h2 className={styles.helpHeading}>Help</h2>
                 <HelpLinks linkInformation={props.linkDataSource} deps={props.deps} />
                 {props.getAboutComponent()}
             </section>

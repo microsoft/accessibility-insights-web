@@ -16,6 +16,7 @@ export interface FixInstructionPanelProps {
     checkType: CheckType;
     checks: { message: string }[];
     renderTitleElement: (titleText: string) => JSX.Element;
+    isPass?: boolean;
 }
 
 export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
@@ -24,6 +25,9 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
         const { fixInstructionProcessor } = props.deps;
 
         const getPanelTitle = (checkType: CheckType, checkCount: number): string => {
+            if (props.isPass) {
+                return 'Rule passed as:';
+            }
             if (checkCount === 1) {
                 return 'Fix the following:';
             }
@@ -36,9 +40,10 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
 
         const renderInstructions = (checkType: CheckType): JSX.Element[] => {
             const instructionList = props.checks.map((check, checkIndex) => {
+                const message = check.message || '';
                 return (
                     <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>
-                        {fixInstructionProcessor.process(check.message, props.deps.recommendColor)}
+                        {fixInstructionProcessor.process(message, props.deps.recommendColor)}
                     </li>
                 );
             });

@@ -27,6 +27,7 @@ export const OutcomeIconSet = NamedFC<RequirementOutcomeStats>('OutcomeIconSet',
                     <span
                         className={'outcome-icon outcome-icon-' + outcomeType}
                         key={`outcome-icon-index-${index}`}
+                        aria-hidden="true"
                     >
                         <OutcomeIcon outcomeType={outcomeType} />
                     </span>

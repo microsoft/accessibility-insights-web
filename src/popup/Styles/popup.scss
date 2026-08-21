@@ -1,26 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/root-level-only/color-definitions.scss';
-@import '../../common/styles/root-level-only/global-styles.scss';
-@import '../../common/styles/common.scss';
+@use '../../common/styles/root-level-only/color-definitions.scss';
+@use '../../common/styles/root-level-only/global-styles.scss';
+@use '../../common/styles/common.scss';
 
 body {
     margin: 0;
     overflow-y: auto;
     height: fit-content; // required for the popup's window to resize properly when the details view is zoomed in/out
-    background: $neutral-0;
-    font-family: $font-family;
+    background: common.$neutral-0;
+    font-family: common.$font-family;
 }
 
 .telemetry-permission-dialog-modal {
     .ms-Overlay {
-        background-color: $neutral-alpha-20;
+        background-color: common.$neutral-alpha-20;
     }
 }
 
 div.insights-dialog-main-override.telemetry-permission-dialog {
     border-radius: 6px;
-    box-shadow: 0 0 10px 0 $neutral-alpha-60;
+    box-shadow: 0 0 10px 0 common.$neutral-alpha-60;
     width: 368px;
 
     // Workaround for issue https://github.com/microsoft/accessibility-insights-web/issues/4178
@@ -46,7 +46,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
     }
 
     .ms-Dialog-title {
-        font-weight: $font-weight-semi-bold;
+        font-weight: common.$font-weight-semi-bold;
     }
 
     .ms-Checkbox-checkbox {
@@ -69,7 +69,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
 
     .telemetry-checkbox-section {
         font-size: 12px;
-        color: $primary-text;
+        color: common.$primary-text;
         padding-top: 10px;
     }
 
@@ -157,7 +157,7 @@ html {
         color: linktext !important;
     }
 
-    color: $communication-primary;
+    color: common.$communication-primary;
     font-weight: 600;
 }
 
@@ -166,7 +166,7 @@ html {
     margin-right: 14px;
 
     .launch-pad-footer {
-        color: $neutral-60;
+        color: common.$neutral-60;
         font-weight: 300;
         font-size: 11px;
         margin-bottom: 12px;
@@ -187,7 +187,7 @@ html {
         border-width: 1px 0 0 0;
         padding: 0;
         border-style: solid;
-        border-color: $neutral-8;
+        border-color: common.$neutral-8;
     }
 
     .launch-pad-item-title {
@@ -209,7 +209,7 @@ html {
 #popup-container .main-section .ms-Toggle-stateText {
     font-size: 11px;
     padding-top: 3px;
-    color: $secondary-text;
+    color: common.$secondary-text;
 }
 
 .popup-menu .ms-ContextualMenu-icon {
@@ -304,7 +304,7 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
             height: 31px;
             font-size: 31px;
             line-height: 36px;
-            color: $secondary-text;
+            color: common.$secondary-text;
             font-style: normal;
         }
 
@@ -313,7 +313,7 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
             height: 31px;
             font-size: 31px;
             line-height: 36px;
-            color: $secondary-text;
+            color: common.$secondary-text;
             font-style: normal;
         }
     }
@@ -326,7 +326,7 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
         border-radius: 50%;
         width: 59px;
         height: 59px;
-        background-color: $communication-tint-30;
+        background-color: common.$communication-tint-30;
         margin-top: 12px;
         padding-top: 12px;
         padding-right: 14px;

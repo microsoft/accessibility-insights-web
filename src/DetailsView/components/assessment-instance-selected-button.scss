@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/common.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/common.scss';
 
 .instance-visibility-button,
 .instance-visibility-button:active,
 .instance-visibility-button:focus {
-    color: $primary-text;
+    color: colors.$primary-text;
     padding-bottom: 6px;
     background-color: inherit;
-    @include ms-high-contrast-override {
+    @include common.ms-high-contrast-override {
         color: inherit;
         outline: 1px inherit solid;
     }
@@ -17,16 +17,16 @@
 
 .test-instance-selected {
     padding: 2px;
-    color: $neutral-0;
+    color: colors.$neutral-0;
 }
 
 .test-instance-selected-hidden {
-    background-color: $neutral-60;
+    background-color: colors.$neutral-60;
     cursor: default;
 }
 
 .test-instance-selected-visible {
-    background-color: $communication-primary;
+    background-color: colors.$communication-primary;
 }
 
 .test-instance-selected-hidden-button {

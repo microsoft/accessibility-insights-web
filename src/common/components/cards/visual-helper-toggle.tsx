@@ -15,7 +15,12 @@ export type VisualHelperToggleProps = {
 export const VisualHelperToggle = NamedFC<VisualHelperToggleProps>('VisualHelperToggle', props => {
     return (
         <Toggle
-            onClick={props.cardSelectionMessageCreator.toggleVisualHelper}
+            onClick={event => {
+                props.cardSelectionMessageCreator.toggleVisualHelper(
+                    event,
+                    props.visualHelperEnabled,
+                );
+            }}
             label="Visual helper"
             checked={props.visualHelperEnabled}
             className={css(styles.visualHelperToggle, props.className)}

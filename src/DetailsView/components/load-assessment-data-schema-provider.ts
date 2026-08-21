@@ -26,6 +26,9 @@ export class LoadAssessmentDataSchemaProvider {
             { assessmentKey: 'automated-checks', requirementKey: 'duplicate-id' },
             { assessmentKey: 'automated-checks', requirementKey: 'duplicate-id-active' },
             { assessmentKey: 'automated-checks', requirementKey: 'duplicate-id-aria' },
+            // #7418: The parsing assessment has been removed, but saved assessment
+            // files from older versions may still contain its results
+            { assessmentKey: 'parsing', requirementKey: 'parsing' },
         ];
         deprecatedRequirements.forEach(requirement => {
             if (this.getAssessments(schema)[requirement.assessmentKey] === undefined) {

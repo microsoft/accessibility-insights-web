@@ -1,3 +1,5 @@
+@use '../styles/colors.scss';
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @use 'sass:math';
@@ -8,10 +10,10 @@
     height: ($height - $border-size * 2);
     display: inline-block;
     border-radius: 50%;
-    border: $border-size solid $neutral-0;
+    border: $border-size solid colors.$neutral-0;
 }
 
-@mixin check-icon-styles($icon-size, $border-size: 1px, $icon-color: $neutral-0) {
+@mixin check-icon-styles($icon-size, $border-size: 1px, $icon-color: colors.$neutral-0) {
     // max-tick-length = iconSize - borderthickness - spacingBetweenCircleAndTick
     $max-tick-length: ($icon-size - $border-size * 2 - 2);
     $check-height: math.div($max-tick-length, 2);
@@ -28,7 +30,7 @@
     }
 }
 
-@mixin cross-icon-styles($icon-size, $border-size: 1px, $icon-color: $neutral-0) {
+@mixin cross-icon-styles($icon-size, $border-size: 1px, $icon-color: colors.$neutral-0) {
     $true-icon-size: ($icon-size - $border-size * 2);
     $width-value: (math.div(2, 14) * $true-icon-size);
 
@@ -51,7 +53,7 @@
     }
 }
 
-@mixin inapplicable-icon-styles($icon-size, $border-size: 1px, $icon-color: $neutral-0) {
+@mixin inapplicable-icon-styles($icon-size, $border-size: 1px, $icon-color: colors.$neutral-0) {
     $true-icon-size: ($icon-size - $border-size * 2);
     $width-value: (math.div(1, 7) * $true-icon-size);
 

@@ -43,10 +43,6 @@ exports[`InitialVisualizationStoreDataGenerator.generateInitialState generates t
         "enabled": false,
         "stepStatus": {},
       },
-      "type-15": {
-        "enabled": false,
-        "stepStatus": {},
-      },
       "type-16": {
         "enabled": false,
         "stepStatus": {},
@@ -218,10 +214,6 @@ exports[`InitialVisualizationStoreDataGenerator.generateInitialState overwrites 
       "enabled": false,
       "stepStatus": {},
     },
-    "type-15": {
-      "enabled": false,
-      "stepStatus": {},
-    },
     "type-16": {
       "enabled": false,
       "stepStatus": {},
@@ -389,10 +381,6 @@ exports[`InitialVisualizationStoreDataGenerator.generateInitialState overwrites 
       "stepStatus": {},
     },
     "type-14": {
-      "enabled": false,
-      "stepStatus": {},
-    },
-    "type-15": {
       "enabled": false,
       "stepStatus": {},
     },

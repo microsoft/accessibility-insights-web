@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../../common/styles/colors.scss';
-@import './common-mixins.scss';
+@use '../../../common/styles/colors.scss';
+@use 'common-mixins.scss';
 
 .scan-details-section {
-    @include box-shadow;
+    @include common-mixins.box-shadow;
 
-    background-color: $neutral-0;
+    background-color: colors.$neutral-0;
     padding: 20px;
     margin-bottom: 22px;
 

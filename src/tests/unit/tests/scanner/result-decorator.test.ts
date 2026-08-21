@@ -104,6 +104,11 @@ describe('ResultDecorator', () => {
                 })
                 .verifiable();
 
+            ruleProcessorMock
+                .setup(m => m.suppressFluentUITabsterResult(instanceStub))
+                .returns(result => result)
+                .verifiable();
+
             const testSubject = new ResultDecorator(
                 documentUtilsMock.object,
                 messageDecoratorMock.object,
@@ -114,6 +119,7 @@ describe('ResultDecorator', () => {
             const decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
 
             expect(decoratedResult).toEqual(resultStubWithGuidanceLinks);
+
             ruleProcessorMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
@@ -209,6 +215,11 @@ describe('ResultDecorator', () => {
                 .returns(result => {
                     return result;
                 })
+                .verifiable();
+
+            ruleProcessorMock
+                .setup(m => m.suppressFluentUITabsterResult(violationInstance))
+                .returns(result => result)
                 .verifiable();
 
             const testSubject = new ResultDecorator(

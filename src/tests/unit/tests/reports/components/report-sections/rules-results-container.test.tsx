@@ -16,6 +16,7 @@ describe(RulesResultsContainer.displayName, () => {
 
         const props: RulesResultsContainerProps = {
             getCollapsibleScript: getScriptMock.object,
+            getCopyToClipboardScript: getScriptMock.object,
         };
 
         const children: JSX.Element[] = [

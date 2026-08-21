@@ -191,4 +191,37 @@ describe('RuleProcessor', () => {
         const actual = testSubject.suppressChecksByMessages(initialAxeRule);
         expect(actual).toBeNull();
     });
+
+    it('suppressFluentUITabsterResult: removes only Tabster dummy nodes and retains valid errors', () => {
+        const falsePositiveNode: AxeNodeResult = {
+            any: [],
+            none: [],
+            all: [],
+            html: '<i tabindex="0" data-tabster-dummy="" aria-hidden="true">hello1</i>',
+            target: ['#falsePositive'],
+        };
+
+        const trueErrorNode: AxeNodeResult = {
+            any: [],
+            none: [],
+            all: [],
+            html: '<i tabindex="0" aria-hidden="true">hello2</i>',
+            target: ['#trueError'],
+        };
+
+        const initialAxeRule: AxeRule = {
+            id: 'aria-hidden-focus',
+            nodes: [falsePositiveNode, trueErrorNode],
+            description: 'aria hidden focus issue',
+        };
+
+        const expectedAxeRule: AxeRule = {
+            id: 'aria-hidden-focus',
+            nodes: [trueErrorNode],
+            description: 'aria hidden focus issue',
+        };
+
+        const actual = testSubject.suppressFluentUITabsterResult(initialAxeRule);
+        expect(actual).toEqual(expectedAxeRule);
+    });
 });

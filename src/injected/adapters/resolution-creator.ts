@@ -26,6 +26,16 @@ export const getFixResolution: ResolutionCreator = (data: ResolutionCreatorData)
     };
 };
 
+export const getPassResolution: ResolutionCreator = (data: ResolutionCreatorData) => {
+    return {
+        'pass-resolution-web': {
+            any: data.nodeResult.any?.map(checkResult => checkResult.message),
+            none: data.nodeResult.none?.map(checkResult => checkResult.message),
+            all: data.nodeResult.all?.map(checkResult => checkResult.message),
+        },
+    };
+};
+
 export const getCheckResolution: ResolutionCreator = (data: ResolutionCreatorData) => {
     return {
         richResolution: {

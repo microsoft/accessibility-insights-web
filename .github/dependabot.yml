@@ -1,4 +1,9 @@
 version: 2
+
+# Version updates are paused: ADO CI now restores packages from the CFS feed
+# (SFI ES-4.2.4), and Dependabot has no credentials for it, so its PRs cannot
+# pass CI. open-pull-requests-limit: 0 stops version updates only — security
+# updates have a separate internal limit and continue to be raised.
 updates:
 - package-ecosystem: npm
   directory: "/deploy/"
@@ -11,7 +16,7 @@ updates:
   commit-message:
     prefix: chore
     include: scope
-  open-pull-requests-limit: 10  # Default value of 5 has been problematic
+  open-pull-requests-limit: 0  # paused, see note above
 - package-ecosystem: docker
   directory: "/"
   schedule:
@@ -23,7 +28,7 @@ updates:
   commit-message:
     prefix: chore
     include: scope
-  open-pull-requests-limit: 10  # Default value of 5 has been problematic
+  open-pull-requests-limit: 0  # paused, see note above
 - package-ecosystem: npm
   directory: "/"
   schedule:
@@ -36,7 +41,7 @@ updates:
     prefix: chore
     include: scope
   versioning-strategy: increase
-  open-pull-requests-limit: 10  # Default value of 5 has been problematic
+  open-pull-requests-limit: 0  # paused, see note above
   ignore:
     # axe-core updates require enough extra validation
     # on false positives and breaking ai-web, so avoiding
@@ -73,4 +78,4 @@ updates:
   schedule:
     interval: daily
     time: "08:30"  # UTC
-  open-pull-requests-limit: 10  # Default value of 5 has been problematic
+  open-pull-requests-limit: 0  # paused, see note above

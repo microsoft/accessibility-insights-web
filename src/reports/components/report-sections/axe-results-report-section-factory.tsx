@@ -8,6 +8,7 @@ import { AutomatedChecksTitleSection } from './automated-checks-title-section';
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
+import { IncompleteChecksSection } from './incomplete-checks-section';
 import { NotApplicableChecksSection } from './not-applicable-checks-section';
 import { PassedChecksSection } from './passed-checks-section';
 import { ReportFooter } from './report-footer';
@@ -24,9 +25,10 @@ export const AxeResultsReportSectionFactory: ReportSectionFactory = {
     ResultsContainer,
     FailedInstancesSection,
     PassedChecksSection,
+    IncompleteChecksSection,
     NotApplicableChecksSection,
     FooterSection: ReportFooter,
-    resultSectionsOrder: ['failed', 'passed', 'notApplicable'],
+    resultSectionsOrder: ['failed', 'passed', 'incomplete', 'notApplicable'],
     FooterText: FooterTextForService,
     HeaderSection: ReporterHeaderSection,
     HeadSection: ReporterHead,

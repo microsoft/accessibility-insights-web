@@ -16,6 +16,7 @@ describe('ResultsContainer', () => {
 
         const props: ResultsContainerProps = {
             getCollapsibleScript: getScriptMock.object,
+            getCopyToClipboardScript: getScriptMock.object,
         };
 
         const children: JSX.Element[] = [

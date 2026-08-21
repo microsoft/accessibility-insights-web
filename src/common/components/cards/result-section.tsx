@@ -20,6 +20,7 @@ export type ResultSectionProps = Omit<ResultSectionContentProps, 'headingLevel'>
         containerClassName?: string;
         deps: ResultSectionDeps;
         sectionHeadingLevel: HeadingLevel;
+        expandByTags?: string[];
     };
 
 export const resultSectionAutomationId = 'result-section';

@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
+@use '../../common/styles/colors.scss';
 
 :global(.high-contrast-theme) {
     .insights-tooltip {
         outline-style: solid;
         outline-width: 1px;
-        outline-color: $always-white;
+        outline-color: colors.$always-white;
     }
 }
 
@@ -20,6 +20,23 @@
 
     &:hover,
     &:active {
+        text-decoration: underline !important;
+    }
+}
+
+.insights-link-icon {
+    display: flex;
+
+    &:hover,
+    &:active {
         text-decoration: none !important;
+    }
+}
+
+@media screen and (forced-colors: active) {
+    .insights-link:hover,
+    .insights-link-icon:hover {
+        forced-color-adjust: none;
+        color: ButtonText !important;
     }
 }

@@ -16,6 +16,8 @@ declare namespace AccessibilityInsightsReport {
         description: string;
         serviceName: string;
         scanContext: ScanContext;
+        feedbackURL?: string;
+        expandPassSectionDetails?: ExpandPassSectionParameter;
     }
 
     export type ScanSummaryDetails = {
@@ -104,6 +106,7 @@ declare namespace AccessibilityInsightsReport {
         failed: FailuresGroup[],
         passed?: AxeRuleData[],
         notApplicable?: AxeRuleData[],
+        incomplete?: AxeRuleData[]
     }
 
     export type UrlResultCounts = {
@@ -124,6 +127,7 @@ declare namespace AccessibilityInsightsReport {
         browserResolution: string,
         scanDetails: ScanSummaryDetails,
         results: CombinedReportResults,
+        feedbackURL?: string,
     }
 
     export type Reporter = {
@@ -131,6 +135,11 @@ declare namespace AccessibilityInsightsReport {
         fromSummaryResults: (parameters: SummaryReportParameters) => Report;
         fromCombinedResults: (parameters: CombinedReportParameters) => Report;
     };
+
+    export type ExpandPassSectionParameter = {
+        expandPassSection: boolean;
+        expandByTags?: string[];
+    }
 
     export type ReporterFactory = () => Reporter;
 

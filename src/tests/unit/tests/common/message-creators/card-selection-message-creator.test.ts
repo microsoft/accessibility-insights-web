@@ -4,13 +4,19 @@ import {
     BaseActionPayload,
     CardSelectionPayload,
     RuleExpandCollapsePayload,
+    VisualizationTogglePayload,
 } from 'background/actions/action-payloads';
-import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+    ToggleTelemetryData,
+} from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
 import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { VisualizationType } from 'common/types/visualization-type';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('Card Selection Message Creator', () => {
@@ -117,8 +123,12 @@ describe('Card Selection Message Creator', () => {
     });
 
     test('toggleVisualHelper', () => {
-        const payload: BaseActionPayload = {
-            telemetry: telemetryStub,
+        const payload: VisualizationTogglePayload = {
+            telemetry: {
+                enabled: true,
+            } as ToggleTelemetryData,
+            test: VisualizationType.Issues,
+            enabled: true,
         };
 
         const expectedMessage: Message = {
@@ -130,7 +140,7 @@ describe('Card Selection Message Creator', () => {
             .setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub))
             .returns(() => telemetryStub);
 
-        testSubject.toggleVisualHelper(eventStub);
+        testSubject.toggleVisualHelper(eventStub, true);
 
         dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
     });

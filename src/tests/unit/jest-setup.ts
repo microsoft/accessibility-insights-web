@@ -14,3 +14,9 @@ setIconOptions({
 // global window APIs to be available).
 window.TextEncoder = util.TextEncoder as unknown as typeof window.TextEncoder;
 window.TextDecoder = util.TextDecoder as unknown as typeof window.TextDecoder;
+
+// structuredClone is available in Node 17+ but not exposed by jest-environment-jsdom (jsdom 20.x).
+// fake-indexeddb v6+ requires it for cloning stored values.
+if (typeof structuredClone === 'undefined') {
+    (global as any).structuredClone = (value: any) => JSON.parse(JSON.stringify(value));
+}

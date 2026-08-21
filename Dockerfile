@@ -5,21 +5,21 @@
 # reference: https://stackoverflow.com/a/51683309/3711475
 # reference: https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
-FROM mcr.microsoft.com/playwright:v1.45.3-focal AS setup
+FROM mcr.microsoft.com/playwright:v1.48.2-focal AS setup
 
 USER root
 
 # We need to update certificates before we can successfully update and install node
 # This is a workaround for https://github.com/nodesource/distributions/issues/1266
 #
-# We pin nodejs 16.x instead of accepting Playwright's default for consistency with
+# We pin nodejs 20.x instead of accepting Playwright's default for consistency with
 # our other build environments. 
 RUN apt-get update && \
   apt-get install ca-certificates && \
   apt-get update && \
   apt-get install -y curl && \
-  curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
-  apt-get install -y --allow-downgrades nodejs=16.* && \
+  curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+  apt-get install -y --allow-downgrades nodejs=20.* && \
   rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -32,7 +32,16 @@ COPY packages/report-e2e-tests/package.json /app/packages/report-e2e-tests/
 COPY packages/ui/package.json /app/packages/ui/
 COPY packages/validator/package.json /app/packages/validator/
 
-RUN yarn install --immutable
+# SFI ES-4.2.4 (CFS): the feed URL comes from the .yarnrc.yml COPYed above; these supply
+# only the credential. Both mounts are optional, so each caller provides whichever it has:
+# the ADO pipelines mount a minted token, local builds mount the developer's home
+# .yarnrc.yml. Mounted as secrets so the credential stays out of the image layers.
+RUN --mount=type=secret,id=ado_npm_token \
+    --mount=type=secret,id=home_yarnrc,target=/root/.yarnrc.yml \
+    if [ -s /run/secrets/ado_npm_token ]; then \
+      export YARN_NPM_AUTH_TOKEN="$(cat /run/secrets/ado_npm_token)"; \
+    fi; \
+    yarn install --immutable
 
 COPY . /app
 

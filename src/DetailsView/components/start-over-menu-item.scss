@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
+@use '../../common/styles/colors.scss';
 
 .start-over-menu-item {
     .start-over-menu-item-icon {
@@ -9,25 +9,25 @@
 
     button:disabled,
     button[aria-disabled='true'] {
-        color: $disabled-text;
+        color: colors.$disabled-text;
 
         .start-over-menu-item-icon {
-            color: $disabled-text;
+            color: colors.$disabled-text;
         }
     }
 
     button:active {
         .start-over-menu-item-icon {
-            color: $primary-text;
+            color: colors.$primary-text;
         }
     }
 
     button:hover {
-        background-color: $neutral-0;
-        color: $insights-button-hover;
+        background-color: colors.$neutral-0;
+        color: colors.$insights-button-hover;
 
         .start-over-menu-item-icon {
-            color: $insights-button-hover;
+            color: colors.$insights-button-hover;
         }
     }
 }

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
+@use '../../common/styles/colors.scss';
 
 .diagnostic-view-toggle {
     display: grid;
@@ -29,6 +29,6 @@
         justify-self: end;
         font-weight: 400;
         font-size: 11px;
-        color: $secondary-text;
+        color: colors.$secondary-text;
     }
 }

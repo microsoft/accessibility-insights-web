@@ -17,5 +17,8 @@ exports[`ResultsContainer renders 1`] = `
   <script>
     test script
   </script>
+  <script>
+    test script
+  </script>
 </DocumentFragment>
 `;

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../styles/colors.scss';
+@use '../../styles/colors.scss';
 
 .kebab-menu-icon {
     flex-grow: 1; // Center the custom SVG
@@ -30,11 +30,11 @@
     height: 32px;
 
     &:hover {
-        background-color: $menu-item-background-hover;
+        background-color: colors.$menu-item-background-hover;
     }
 
     &:global(.is-expanded) {
-        background-color: $menu-item-background-active;
+        background-color: colors.$menu-item-background-active;
     }
 
     // Add hover and active state:

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
 import { StoreNames } from 'common/stores/store-names';
 
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
@@ -11,12 +12,14 @@ import {
     BaseActionPayload,
     CardSelectionPayload,
     RuleExpandCollapsePayload,
+    VisualizationTogglePayload,
 } from './action-payloads';
 
 export class NeedsReviewCardSelectionActionCreator {
     constructor(
         private readonly interpreter: Interpreter,
         private readonly needsReviewCardSelectionActions: NeedsReviewCardSelectionActions,
+        private readonly visualizationActions: VisualizationActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
     ) {}
 
@@ -69,8 +72,13 @@ export class NeedsReviewCardSelectionActionCreator {
         );
     };
 
-    private onToggleVisualHelper = async (payload: BaseActionPayload): Promise<void> => {
+    private onToggleVisualHelper = async (payload: VisualizationTogglePayload): Promise<void> => {
         await this.needsReviewCardSelectionActions.toggleVisualHelper.invoke(null);
+        if (payload.enabled) {
+            await this.visualizationActions.disableVisualization.invoke(payload.test);
+        } else {
+            await this.visualizationActions.enableVisualization.invoke(payload);
+        }
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.VISUAL_HELPER_TOGGLED, payload);
     };
 

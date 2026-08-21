@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PassResolutionCardRow renders 1`] = `
+<DocumentFragment>
+  <mock-simplecardrow
+    content="[object Object]"
+    label="Summary"
+    rowkey="pass-resolution-row-22"
+  />
+</DocumentFragment>
+`;
+
+exports[`PassResolutionCardRow renders: SimpleCardRow props 1`] = `
+{
+  "content": <div
+    className="passResolutionContent"
+  >
+    <FixInstructionPanel
+      checkType={0}
+      checks={
+        [
+          {
+            "message": "pass all message",
+          },
+        ]
+      }
+      deps={
+        {
+          "LinkComponent": {},
+          "fixInstructionProcessor": [typemoq mock object],
+          "recommendColor": {},
+        }
+      }
+      isPass={true}
+      renderTitleElement={[Function]}
+    />
+    <FixInstructionPanel
+      checkType={1}
+      checks={
+        [
+          {
+            "message": "pass any message",
+          },
+        ]
+      }
+      deps={
+        {
+          "LinkComponent": {},
+          "fixInstructionProcessor": [typemoq mock object],
+          "recommendColor": {},
+        }
+      }
+      isPass={true}
+      renderTitleElement={[Function]}
+    />
+  </div>,
+  "label": "Summary",
+  "rowKey": "pass-resolution-row-22",
+}
+`;

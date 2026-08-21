@@ -9,6 +9,7 @@ import { UrlsCardRow } from 'common/components/cards/urls-card-row';
 import { RecommendColor } from 'common/components/recommend-color';
 import { LinkComponentType } from 'common/types/link-component-type';
 import { HowToFixWebCardRow } from '../components/cards/how-to-fix-card-row';
+import { PassResolutionCardRow } from '../components/cards/pass-resolution-card-row';
 import { PathCardRow } from '../components/cards/path-card-row';
 import { SnippetCardRow } from '../components/cards/snippet-card-row';
 import { FixInstructionProcessor } from '../components/fix-instruction-processor';
@@ -17,6 +18,7 @@ import { ReactFCWithDisplayName } from '../react/named-fc';
 export const AllPropertyTypes = [
     'css-selector',
     'how-to-fix-web',
+    'pass-resolution-web',
     'richResolution',
     'snippet',
     'className',
@@ -45,6 +47,10 @@ export interface PropertyConfiguration {
 
 export const howToFixWebConfiguration: PropertyConfiguration = {
     cardRow: HowToFixWebCardRow,
+};
+
+export const passWebConfiguration: PropertyConfiguration = {
+    cardRow: PassResolutionCardRow,
 };
 
 export const richResolutionConfiguration: PropertyConfiguration = {
@@ -85,6 +91,7 @@ export type PropertyIdToConfigurationMap = {
 const propertyIdToConfigurationMap: PropertyIdToConfigurationMap = {
     'css-selector': cssSelectorConfiguration,
     'how-to-fix-web': howToFixWebConfiguration,
+    'pass-resolution-web': passWebConfiguration,
     richResolution: richResolutionConfiguration,
     snippet: snippetConfiguration,
     className: classNameConfiguration,

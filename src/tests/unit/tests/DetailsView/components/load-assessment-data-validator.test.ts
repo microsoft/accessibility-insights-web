@@ -122,6 +122,29 @@ describe(LoadAssessmentDataValidator, () => {
             expect(validationResults.dataIsValid).toEqual(true);
         });
 
+        it('passes validation when a deprecated assessment is present', () => {
+            const assessments: { [key: string]: AssessmentData } = {
+                parsing: {} as AssessmentData,
+            };
+            const jsonWithDeprecatedAssessment = {
+                assessmentData: {
+                    persistedTabInfo: {},
+                    assessmentNavState: {},
+                    assessments,
+                    resultDescription: '',
+                },
+                version: 1,
+            } as VersionedAssessmentData;
+
+            validateFunctionMock
+                .setup(m => m(jsonWithDeprecatedAssessment))
+                .returns(() => true)
+                .verifiable(Times.once());
+
+            const validationResults = testSubject.uploadedDataIsValid(jsonWithDeprecatedAssessment);
+            expect(validationResults.dataIsValid).toEqual(true);
+        });
+
         it('does not pass validation when disabled flag assessment is added', () => {
             const assessments: { [key: string]: AssessmentData } = {
                 flaggedAssessment: {} as AssessmentData,

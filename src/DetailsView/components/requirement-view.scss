@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/common.scss';
+@use '../../common/styles/common.scss';
 
 .requirement-view {
     margin-right: 18px;
@@ -38,7 +38,7 @@
             margin-right: 32px;
 
             h3 {
-                @include h3;
+                @include common.h3;
             }
         }
     }
@@ -67,7 +67,7 @@
 
     :global(.visual-helper-text) {
         padding-right: 0.9vh;
-        font-family: $font-family;
+        font-family: common.$font-family;
         font-size: 14px;
         line-height: 20px;
     }

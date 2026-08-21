@@ -49,6 +49,8 @@ describe('CombinedResultsReport', () => {
         unscannableUrls: 3,
     };
 
+    const feedbackURL = undefined;
+
     const results = {
         resultsByRule: {
             failed: [],
@@ -100,11 +102,44 @@ describe('CombinedResultsReport', () => {
             .returns(() => cardsViewDataStub);
 
         reportHtmlGeneratorMock
-            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, urlResultsCount))
+            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, urlResultsCount, feedbackURL))
             .returns(() => expectedHtml);
 
         const html = combinedResultsReport.asHTML();
 
         expect(html).toEqual(expectedHtml);
-    })
-})
+    });
+    
+    it('includes feedback URL in the generated HTML', () => {
+        const specificFeedbackURL = 'microsoft.com';
+        
+        const parametersWithFeedback = {
+            ...parameters,
+            feedbackURL: specificFeedbackURL
+        };
+        
+        const combinedResultsReportWithFeedback = new CombinedResultsReport(
+            { reportHtmlGenerator: reportHtmlGeneratorMock.object },
+            parametersWithFeedback,
+            toolDataStub,
+            resultsToCardsConverterMock.object
+        );
+        
+        const htmlWithFeedback = '<div>The Report with Feedback!</div>';
+        
+        resultsToCardsConverterMock
+            .setup(rtc => rtc.convertResults(results.resultsByRule))
+            .returns(() => cardsViewDataStub);
+            
+        reportHtmlGeneratorMock
+            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, urlResultsCount, specificFeedbackURL))
+            .returns(() => htmlWithFeedback)
+            .verifiable();
+            
+        const html = combinedResultsReportWithFeedback.asHTML();
+        
+        reportHtmlGeneratorMock.verifyAll();
+        
+        expect(html).toEqual(htmlWithFeedback);
+    });
+});

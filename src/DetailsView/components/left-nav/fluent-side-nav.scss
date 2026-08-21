@@ -1,22 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/common.scss';
+@use '../../../common/styles/common.scss';
 
 #side-nav-container {
-    width: $details-view-left-nav-width;
+    width: common.$details-view-left-nav-width;
 }
 
 .left-nav-panel {
     :global(.ms-Panel-main) {
-        width: $details-view-left-nav-width;
+        width: common.$details-view-left-nav-width;
     }
 
     :global(.ms-Panel-content) {
         padding: 0;
 
         :global(.main-nav) {
-            max-height: calc(100vh - (#{$details-view-header-bar-height}));
-            height: calc(100vh - (#{$details-view-header-bar-height}));
+            max-height: calc(100vh - (#{common.$details-view-header-bar-height}));
+            height: calc(100vh - (#{common.$details-view-header-bar-height}));
         }
     }
 }

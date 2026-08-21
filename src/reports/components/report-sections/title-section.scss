@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/fonts.scss';
+@use '../../../common/styles/fonts.scss';
 
 .title-section {
     margin-top: 56px;
 
     h1 {
-        font-weight: $font-weight-semi-bold;
+        font-weight: fonts.$font-weight-semi-bold;
         margin-bottom: 24px;
         font-size: 21px;
         line-height: 32px;

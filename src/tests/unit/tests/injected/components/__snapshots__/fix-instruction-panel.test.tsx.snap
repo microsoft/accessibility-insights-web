@@ -52,3 +52,18 @@ exports[`FixInstructionPanelTests render none checks 1`] = `
 `;
 
 exports[`FixInstructionPanelTests render nothing 1`] = `<DocumentFragment />`;
+
+exports[`FixInstructionPanelTests render pass message 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      Rule passed as:
+    </div>
+    <ul>
+      <li>
+        message
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

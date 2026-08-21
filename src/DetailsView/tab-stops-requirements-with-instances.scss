@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../common/styles/colors.scss';
-@import '../common/styles/fonts.scss';
+@use '../common/styles/colors.scss';
+@use '../common/styles/fonts.scss';
 
 .collapsible-requirement-details-group {
     box-shadow: 0 1px 0 rgb(0 0 0 / 8%);

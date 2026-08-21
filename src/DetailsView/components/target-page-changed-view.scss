@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
+@use '../../common/styles/colors.scss';
 
 .target-page-changed-subtitle {
-    color: $secondary-text;
+    color: colors.$secondary-text;
     max-width: 570px;
     font-size: 14px;
     margin-top: 4px;

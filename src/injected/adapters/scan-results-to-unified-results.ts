@@ -26,6 +26,7 @@ export class ConvertScanResultsToUnifiedResults {
     constructor(
         private readonly uuidGenerator: UUIDGenerator,
         private readonly getFixResolution: ResolutionCreator,
+        private readonly getPassResolution: ResolutionCreator,
         private readonly getCheckResolution: ResolutionCreator,
         private readonly extractRelatedSelectors: RelatedSelectorExtractor,
     ) {}
@@ -51,6 +52,37 @@ export class ConvertScanResultsToUnifiedResults {
             ...this.createUnifiedResultsFromRuleResults(
                 scanResults.passes,
                 'pass',
+                this.getPassResolution,
+            ),
+        ];
+    };
+
+    public automatedChecksConversionForReportPackage: ConvertScanResultsToUnifiedResultsDelegate = (
+        scanResults: ScanResults,
+    ): UnifiedResult[] => {
+        if (!scanResults) {
+            return [];
+        }
+        return this.automatedChecksCreateUnifiedResultsFromScanResultsForReportPackage(scanResults);
+    };
+
+    private automatedChecksCreateUnifiedResultsFromScanResultsForReportPackage = (
+        scanResults: ScanResults,
+    ): UnifiedResult[] => {
+        return [
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.violations,
+                'fail',
+                this.getFixResolution,
+            ),
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.passes,
+                'pass',
+                this.getPassResolution,
+            ),
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.incomplete,
+                'unknown',
                 this.getFixResolution,
             ),
         ];

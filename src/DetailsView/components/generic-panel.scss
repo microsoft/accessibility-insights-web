@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/fonts.scss';
 
 .generic-panel {
-    color: $neutral-100;
+    color: colors.$neutral-100;
 }
 
 .header-text {
-    @include text-style-title-m;
+    @include fonts.text-style-title-m;
 
-    color: $neutral-100;
+    color: colors.$neutral-100;
     margin-bottom: 20px;
 }

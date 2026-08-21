@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/common.scss';
+@use '../../common/styles/common.scss';
 
 .getting-started-view {
     margin-right: 18px;
@@ -15,7 +15,7 @@
 }
 
 .getting-started-header {
-    @include text-style-title-m;
+    @include common.text-style-title-m;
 
     padding-top: 8px;
 
@@ -29,7 +29,7 @@
 }
 
 .getting-started-title {
-    @include text-style-title-s;
+    @include common.text-style-title-s;
 }
 
 .next-requirement-button {

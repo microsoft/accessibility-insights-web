@@ -42,20 +42,38 @@ extends:
                 compiled:
                     enabled: true
                 runSourceLanguagesInSourceAnalysis: true
+        # SFI ES-4.2.4: CFSClean blocks the public package feeds. Permissive is the base
+        # policy; 1ES currently overrides it with the centrally-applied DefaultDeny.
+        settings:
+            networkIsolationPolicy: Permissive,CFSClean
         stages:
             - stage: Stage
               jobs:
+                  # Runs in the accessibility-insights org while the feed lives in
+                  # accessibility-insights-private, so it needs a cross-org token. The
+                  # connection is owned by the axe-pipelines-samples project and shared
+                  # into this one, which is why the name carries the project suffix.
                   - template: pipeline/build-all-job-per-environment.yaml@self
-                    parameters: { jobNameSuffix: _1 }
+                    parameters:
+                        jobNameSuffix: _1
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
 
                   - template: pipeline/build-all-job-per-environment.yaml@self
-                    parameters: { jobNameSuffix: _2 }
+                    parameters:
+                        jobNameSuffix: _2
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
 
                   - template: pipeline/build-all-job-per-environment.yaml@self
-                    parameters: { jobNameSuffix: _3 }
+                    parameters:
+                        jobNameSuffix: _3
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
 
                   - template: pipeline/build-all-job-per-environment.yaml@self
-                    parameters: { jobNameSuffix: _4 }
+                    parameters:
+                        jobNameSuffix: _4
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'
 
                   - template: pipeline/build-all-job-per-environment.yaml@self
-                    parameters: { jobNameSuffix: _5 }
+                    parameters:
+                        jobNameSuffix: _5
+                        azureSubscription: 'a11y-insights-public-feed-identity-accessibility-insights-web'

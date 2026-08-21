@@ -6,12 +6,15 @@ import * as React from 'react';
 import { NamedFC } from '../react/named-fc';
 import styles from './new-tab-link-with-tooltip.scss';
 
-export type NewTabLinkWithTooltipProps = ILinkProps & { tooltipContent: string | undefined };
+export type NewTabLinkWithTooltipProps = ILinkProps & {
+    tooltipContent: string | undefined;
+    className?: string | undefined;
+};
 
 export const NewTabLinkWithTooltip = NamedFC<NewTabLinkWithTooltipProps>(
     'NewTabLinkWithTooltip',
     props => {
-        const { tooltipContent, ...linkProps } = props;
+        const { tooltipContent, className, ...linkProps } = props;
         const hostStyles: Partial<ITooltipHostStyles> = {
             root: styles.insightsTooltipHost,
         };
@@ -23,7 +26,7 @@ export const NewTabLinkWithTooltip = NamedFC<NewTabLinkWithTooltipProps>(
         };
         return (
             <TooltipHost content={tooltipContent} styles={hostStyles} calloutProps={calloutProps}>
-                <NewTabLink className={styles.insightsLink} {...linkProps} />
+                <NewTabLink className={className ?? styles.insightsLink} {...linkProps} />
             </TooltipHost>
         );
     },

@@ -49,9 +49,29 @@ describe(LoadAssessmentDataSchemaProvider, () => {
             type: 'object',
         };
 
+        const deprecatedRequirementKeys: { [assessmentKey: string]: string[] } = {
+            'automated-checks': [
+                'aria-roledescription',
+                'duplicate-id',
+                'duplicate-id-active',
+                'duplicate-id-aria',
+            ],
+            parsing: ['parsing'],
+        };
+
         let properties = {};
-        assessments = assessments.concat({ key: 'automated-checks' } as Assessment);
+        assessments = assessments.concat(
+            { key: 'automated-checks' } as Assessment,
+            { key: 'parsing' } as Assessment,
+        );
         forEach(assessments, assessment => {
+            const stepPropertiesMap = {};
+            const statusPropertiesMap = {};
+            forEach(deprecatedRequirementKeys[assessment.key] ?? [], requirementKey => {
+                stepPropertiesMap[requirementKey] = stepProperties;
+                statusPropertiesMap[requirementKey] = statusProperties;
+            });
+
             properties = {
                 ...properties,
                 [assessment.key]: {
@@ -63,29 +83,13 @@ describe(LoadAssessmentDataSchemaProvider, () => {
                         },
                         manualTestStepResultMap: {
                             additionalProperties: false,
-                            properties:
-                                assessment.key === 'automated-checks'
-                                    ? {
-                                          'aria-roledescription': stepProperties,
-                                          'duplicate-id': stepProperties,
-                                          'duplicate-id-active': stepProperties,
-                                          'duplicate-id-aria': stepProperties,
-                                      }
-                                    : {},
+                            properties: stepPropertiesMap,
                             type: ['object', 'null'],
                         },
                         scanIncompleteWarnings: { type: 'array' },
                         testStepStatus: {
                             additionalProperties: false,
-                            properties:
-                                assessment.key === 'automated-checks'
-                                    ? {
-                                          'aria-roledescription': statusProperties,
-                                          'duplicate-id': statusProperties,
-                                          'duplicate-id-active': statusProperties,
-                                          'duplicate-id-aria': statusProperties,
-                                      }
-                                    : {},
+                            properties: statusPropertiesMap,
                             type: ['object', 'null'],
                         },
                     },

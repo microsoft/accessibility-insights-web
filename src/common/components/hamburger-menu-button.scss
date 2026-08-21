@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
+@use '../../common/styles/colors.scss';
 
 :global(.high-contrast-theme) {
     .hamburger-menu-button {
-        color: $neutral-alpha-90;
+        color: colors.$neutral-alpha-90;
     }
 
     .hamburger-menu-button-callout {
-        box-shadow: $always-white 0 0 1px 0 !important;
+        box-shadow: colors.$always-white 0 0 1px 0 !important;
         border-radius: unset;
     }
 }

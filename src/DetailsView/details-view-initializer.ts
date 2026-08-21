@@ -23,7 +23,7 @@ import { CardsViewController } from 'common/components/cards/cards-view-controll
 import { CardsViewStore } from 'common/components/cards/cards-view-store';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { getIssueFilingDialogProps } from 'common/components/get-issue-filing-dialog-props';
-import { GetNextHeadingLevel } from 'common/components/heading-element-for-level';
+import { getNextHeadingLevel } from 'common/components/heading-element-for-level';
 import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
@@ -87,6 +87,7 @@ import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-ge
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { getDefaultCopyToClipboardScript } from 'reports/components/report-sections/copy-to-clipboard-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeSemanticsFromTestStatus,
@@ -439,7 +440,8 @@ if (tabId != null) {
                 new TabStopsFailedCounterIncludingNoInstance(),
                 toolData,
                 DateProvider.getCurrentDate,
-                GetNextHeadingLevel,
+                getNextHeadingLevel,
+                getDefaultCopyToClipboardScript,
             );
 
             // Represents the language in which pages are to be displayed
@@ -705,7 +707,7 @@ if (tabId != null) {
                 tabStopsFailedCounter: new TabStopsFailedCounterInstancesOnly(),
                 tabStopsTestViewController,
                 tabStopsInstanceSectionPropsFactory: FastPassTabStopsInstanceSectionPropsFactory,
-                getNextHeadingLevel: GetNextHeadingLevel,
+                getNextHeadingLevel: getNextHeadingLevel,
                 detailsViewId,
                 cardsViewController,
                 cardFooterMenuItemsBuilder,

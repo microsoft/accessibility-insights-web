@@ -16,6 +16,28 @@ exports[`GuidanceLinksTest linkComponentType is defined as ExternalLink 1`] = `
 
 exports[`GuidanceLinksTest links is empty 1`] = `<DocumentFragment />`;
 
+exports[`GuidanceLinksTest links is not null and correct with all guidance links with regular links 1`] = `
+<DocumentFragment>
+  <span
+    class="className"
+  >
+    <mock-externallink
+      href="https://url1"
+    >
+      TEXT1
+    </mock-externallink>
+    <span>
+      , 
+    </span>
+    <mock-externallink
+      href="https://url2"
+    >
+      TEXT2
+    </mock-externallink>
+  </span>
+</DocumentFragment>
+`;
+
 exports[`GuidanceLinksTest links is not null and correct with best practice and regular links (excludes BEST PRACTICE) 1`] = `
 <DocumentFragment>
   <span
@@ -38,7 +60,53 @@ exports[`GuidanceLinksTest links is not null and correct with best practice and 
 </DocumentFragment>
 `;
 
+exports[`GuidanceLinksTest links is not null and correct with experimental feature and regular links 1`] = `
+<DocumentFragment>
+  <span
+    class="className"
+  >
+    <mock-externallink
+      href="https://url1"
+    >
+      TEXT1
+    </mock-externallink>
+    <span>
+      , 
+    </span>
+    <mock-externallink
+      href="https://url2"
+    >
+      TEXT2
+    </mock-externallink>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`GuidanceLinksTest links is not null and correct with multiple guidance links (best practice, preview, and experimental) 1`] = `
+<DocumentFragment>
+  <span
+    class="className"
+  />
+</DocumentFragment>
+`;
+
 exports[`GuidanceLinksTest links is not null and correct with one best practice link 1`] = `
+<DocumentFragment>
+  <span
+    class="className"
+  />
+</DocumentFragment>
+`;
+
+exports[`GuidanceLinksTest links is not null and correct with one experimental feature link 1`] = `
+<DocumentFragment>
+  <span
+    class="className"
+  />
+</DocumentFragment>
+`;
+
+exports[`GuidanceLinksTest links is not null and correct with one preview feature link 1`] = `
 <DocumentFragment>
   <span
     class="className"
@@ -55,6 +123,28 @@ exports[`GuidanceLinksTest links is not null and correct with one regular link 1
       href="https://url1"
     >
       TEXT1
+    </mock-externallink>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`GuidanceLinksTest links is not null and correct with preview feature and regular links 1`] = `
+<DocumentFragment>
+  <span
+    class="className"
+  >
+    <mock-externallink
+      href="https://url1"
+    >
+      TEXT1
+    </mock-externallink>
+    <span>
+      , 
+    </span>
+    <mock-externallink
+      href="https://url2"
+    >
+      TEXT2
     </mock-externallink>
   </span>
 </DocumentFragment>

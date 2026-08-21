@@ -66,5 +66,5 @@ export const TextSpacing: Requirement = {
         ),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
     getDrawer: provider =>
-        provider.createSingleTargetDrawer('insights-formatted-text-spacing-container'),
+        provider.createTextSpacingDrawer('insights-formatted-text-spacing-container'),
 };

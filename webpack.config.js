@@ -59,7 +59,12 @@ const scssRule = (useHash = true) => ({
                 },
             },
         },
-        'sass-loader',
+        {
+            loader: 'sass-loader',
+            options: {
+                api: 'modern-compiler',
+            },
+        },
     ],
 });
 

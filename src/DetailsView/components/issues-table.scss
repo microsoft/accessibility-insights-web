@@ -1,27 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../common/styles/common.scss';
+@use '../../common/styles/common.scss';
 
 .details-disabled-message {
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: $font-size-m;
+    font-size: common.$font-size-m;
 }
 
 .issues-table {
-    background-color: $neutral-2;
+    background-color: common.$neutral-2;
     width: calc(
-        100% - #{$fast-pass-right-panel-margin-right} - #{$fast-pass-right-panel-margin-left}
+        100% - #{common.$fast-pass-right-panel-margin-right} - #{common.$fast-pass-right-panel-margin-left}
     );
     display: flex;
     flex-direction: column;
-    padding-top: $fast-pass-right-panel-margin-top;
-    padding-right: $fast-pass-right-panel-margin-right;
-    padding-left: $fast-pass-right-panel-margin-left;
+    padding-top: common.$fast-pass-right-panel-margin-top;
+    padding-right: common.$fast-pass-right-panel-margin-right;
+    padding-left: common.$fast-pass-right-panel-margin-left;
 
     .issues-table-subtitle {
-        color: $secondary-text;
+        color: common.$secondary-text;
         max-width: 570px;
         font-size: 14px;
         margin-top: 4px;

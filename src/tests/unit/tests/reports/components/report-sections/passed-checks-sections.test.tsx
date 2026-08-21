@@ -2,19 +2,28 @@
 // Licensed under the MIT License.
 import { render } from '@testing-library/react';
 import { CardRuleResult, CardsViewModel } from 'common/types/store-data/card-view-model';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import {
     PassedChecksSection,
     PassedChecksSectionProps,
 } from 'reports/components/report-sections/passed-checks-section';
 
+import { ResultSection } from '../../../../../../common/components/cards/result-section';
 import { CollapsibleResultSection } from '../../../../../../reports/components/report-sections/collapsible-result-section';
 import { SectionDeps } from '../../../../../../reports/components/report-sections/report-section-factory';
 import { mockReactComponents } from '../../../../mock-helpers/mock-module-helpers';
 
 jest.mock('../../../../../../reports/components/report-sections/collapsible-result-section');
+jest.mock('../../../../../../common/components/cards/result-section');
 describe('PassedChecksSection', () => {
-    mockReactComponents([CollapsibleResultSection]);
+    mockReactComponents([CollapsibleResultSection, ResultSection]);
+    const scanMetadata: ScanMetadata = {
+        targetAppInfo: {
+            name: 'page title',
+            url: 'page url',
+        },
+    } as ScanMetadata;
     it('renders', () => {
         const props: PassedChecksSectionProps = {
             deps: {} as SectionDeps,
@@ -27,6 +36,7 @@ describe('PassedChecksSection', () => {
                 },
             } as CardsViewModel,
             sectionHeadingLevel: 3,
+            scanMetadata,
         };
 
         const renderResult = render(<PassedChecksSection {...props} />);
@@ -43,8 +53,29 @@ describe('PassedChecksSection', () => {
                 },
             } as CardsViewModel,
             sectionHeadingLevel: 3,
+            scanMetadata,
         };
 
+        const renderResult = render(<PassedChecksSection {...props} />);
+
+        expect(renderResult.asFragment()).toMatchSnapshot();
+    });
+
+    it('render details when expandedPassSection prop is true', () => {
+        const props: PassedChecksSectionProps = {
+            deps: {} as SectionDeps,
+            cardsViewData: {
+                cards: {
+                    pass: [{} as CardRuleResult, {} as CardRuleResult, {} as CardRuleResult],
+                    fail: [],
+                    inapplicable: [],
+                    unknown: [],
+                },
+            } as CardsViewModel,
+            sectionHeadingLevel: 3,
+            scanMetadata,
+            expandPassSectionDetails: { expandPassSection: true },
+        };
         const renderResult = render(<PassedChecksSection {...props} />);
 
         expect(renderResult.asFragment()).toMatchSnapshot();

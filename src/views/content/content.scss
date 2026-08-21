@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/icons/icon.scss';
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/icons/icon.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/fonts.scss';
 
 .content-container {
     display: flex;
@@ -15,7 +15,7 @@
 }
 
 .content-header {
-    @include text-style-title-l;
+    @include fonts.text-style-title-l;
 
     margin-left: 10px;
     margin-right: 10px;
@@ -24,18 +24,18 @@
 .content {
     flex-grow: 10;
     max-width: 1120px;
-    font-family: $font-family;
+    font-family: fonts.$font-family;
     font-size: 14px;
     margin: 10px;
     word-break: break-word;
 
     table {
-        font-family: $font-family;
+        font-family: fonts.$font-family;
         font-size: 14px;
     }
 
     h1 {
-        @include text-style-title-l;
+        @include fonts.text-style-title-l;
     }
 
     h2 {
@@ -93,7 +93,7 @@
 
     .code-example {
         .code-example-code {
-            font-family: $code-font-family;
+            font-family: fonts.$code-font-family;
             margin-block-start: 1em;
             margin-block-end: 1em;
         }
@@ -127,11 +127,11 @@
     }
 
     $icon-size: 16px;
-    $do-color: $positive-outcome;
-    $dont-color: $negative-outcome;
+    $do-color: colors.$positive-outcome;
+    $dont-color: colors.$negative-outcome;
 
     .insights-code {
-        font-family: $code-font-family;
+        font-family: fonts.$code-font-family;
     }
 
     .pass-fail-grid {
@@ -139,7 +139,7 @@
         grid-template-areas:
             'fail-section pass-section'
             'fail-example pass-example';
-        border: 1px solid $neutral-60;
+        border: 1px solid colors.$neutral-60;
         word-break: break-word;
     }
 
@@ -152,12 +152,12 @@
 
     .fail-example,
     .pass-example {
-        border-top: 1px solid $neutral-60;
+        border-top: 1px solid colors.$neutral-60;
     }
 
     .fail-section,
     .fail-example {
-        border-right: 1px solid $neutral-60;
+        border-right: 1px solid colors.$neutral-60;
     }
 
     .fail-section {
@@ -221,23 +221,23 @@
     }
 
     .do-header {
-        @include check-icon-styles($icon-size, 0, $do-color);
+        @include icon.check-icon-styles($icon-size, 0, $do-color);
 
         border-bottom: 2px solid $do-color;
     }
 
     .dont-header {
-        @include cross-icon-styles($icon-size, 0, $dont-color);
+        @include icon.cross-icon-styles($icon-size, 0, $dont-color);
 
         border-bottom: 2px solid $dont-color;
     }
 
     .pass-header {
-        @include check-icon-styles(12px, 0, $do-color);
+        @include icon.check-icon-styles(12px, 0, $do-color);
     }
 
     .fail-header {
-        @include cross-icon-styles(12px, 0, $dont-color);
+        @include icon.cross-icon-styles(12px, 0, $dont-color);
     }
 
     .table {
@@ -250,7 +250,7 @@
     }
 
     .accessibility-problems-list {
-        background: $neutral-6;
+        background: colors.$neutral-6;
         list-style-type: disc;
     }
 
@@ -278,51 +278,51 @@
         }
 
         th {
-            background: $neutral-100;
-            color: $neutral-0;
+            background: colors.$neutral-100;
+            color: colors.$neutral-0;
             font-weight: 400;
         }
 
         td {
-            background: $neutral-10;
-            color: $neutral-100;
+            background: colors.$neutral-10;
+            color: colors.$neutral-100;
         }
 
         .contentinfo-landmark {
-            border-color: $landmark-contentinfo;
+            border-color: colors.$landmark-contentinfo;
         }
 
         .main-landmark {
-            border-color: $landmark-main;
+            border-color: colors.$landmark-main;
         }
 
         .complementary-landmark {
-            border-color: $landmark-complementary;
+            border-color: colors.$landmark-complementary;
         }
 
         .banner-landmark {
-            border-color: $landmark-banner;
+            border-color: colors.$landmark-banner;
         }
 
         .region-landmark {
-            border-color: $landmark-region;
+            border-color: colors.$landmark-region;
         }
 
         .navigation-landmark {
-            border-color: $landmark-navigation;
+            border-color: colors.$landmark-navigation;
         }
 
         .search-landmark {
-            border-color: $landmark-search;
+            border-color: colors.$landmark-search;
         }
 
         .form-landmark {
-            border-color: $landmark-form;
+            border-color: colors.$landmark-form;
         }
     }
 
     .landmarks-legend {
-        color: $neutral-100;
+        color: colors.$neutral-100;
         font-size: 14px;
         display: table-cell;
         width: 110px;
@@ -334,35 +334,35 @@
         border-width: 3px;
 
         &.contentinfo-landmark {
-            border-color: $landmark-contentinfo;
+            border-color: colors.$landmark-contentinfo;
         }
 
         &.main-landmark {
-            border-color: $landmark-main;
+            border-color: colors.$landmark-main;
         }
 
         &.complementary-landmark {
-            border-color: $landmark-complementary;
+            border-color: colors.$landmark-complementary;
         }
 
         &.banner-landmark {
-            border-color: $landmark-banner;
+            border-color: colors.$landmark-banner;
         }
 
         &.region-landmark {
-            border-color: $landmark-region;
+            border-color: colors.$landmark-region;
         }
 
         &.navigation-landmark {
-            border-color: $landmark-navigation;
+            border-color: colors.$landmark-navigation;
         }
 
         &.search-landmark {
-            border-color: $landmark-search;
+            border-color: colors.$landmark-search;
         }
 
         &.form-landmark {
-            border-color: $landmark-form;
+            border-color: colors.$landmark-form;
         }
     }
 }

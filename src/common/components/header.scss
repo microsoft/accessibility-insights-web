@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/common.scss';
-@import '../../common/styles/fonts.scss';
+@use '../../common/styles/colors.scss';
+@use '../../common/styles/common.scss';
+@use '../../common/styles/fonts.scss';
 
 .header-bar {
     display: flex;
@@ -10,8 +10,8 @@
     justify-content: flex-start;
     align-items: center;
     align-content: stretch;
-    background-color: $ada-brand-color;
-    min-height: $details-view-header-bar-height;
+    background-color: colors.$ada-brand-color;
+    min-height: common.$details-view-header-bar-height;
     width: 100%;
 
     :global(.header-icon) {
@@ -28,11 +28,11 @@
         // to the minimum 500px allowed by Chrome and not have the title get cut off.
         margin-right: 32px;
         margin-left: 8px;
-        color: $header-bar-title-color;
-        font-size: $font-size-ml;
-        font-family: $font-family;
+        color: colors.$header-bar-title-color;
+        font-size: fonts.$font-size-ml;
+        font-family: fonts.$font-family;
 
-        @include ellipsed-text;
+        @include common.ellipsed-text;
     }
 
     .spacer {
@@ -57,7 +57,7 @@
 
         i {
             font-size: 20px;
-            color: $neutral-0;
+            color: colors.$neutral-0;
         }
     }
 }

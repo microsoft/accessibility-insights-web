@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/common.scss';
+@use '../../common/styles/common.scss';
 
 .requirement-instructions-header {
     font-style: normal;
-    font-weight: $font-weight-semi-bold;
-    font-size: $font-size-ml;
+    font-weight: common.$font-weight-semi-bold;
+    font-size: common.$font-size-ml;
     line-height: 20px;
     padding-left: 0.5vw;
     display: block;
 }
 
 .requirement-instructions {
-    font-family: $font-family;
+    font-family: common.$font-family;
 
     p,
     ol,

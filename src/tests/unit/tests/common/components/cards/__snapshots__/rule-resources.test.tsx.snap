@@ -291,7 +291,9 @@ exports[`RuleResources renders with {
     <span
       class="ruleGuidance"
     >
-      <mock-guidancelinks />
+      <mock-guidancelinks
+        links=""
+      />
       <mock-guidancetags
         deps="[object Object]"
       />
@@ -308,7 +310,7 @@ exports[`RuleResources renders with {
 }: GuidanceLinks props 1`] = `
 {
   "LinkComponent": [Function],
-  "links": null,
+  "links": [],
 }
 `;
 
@@ -369,7 +371,9 @@ exports[`RuleResources renders with {
     <span
       class="ruleGuidance"
     >
-      <mock-guidancelinks />
+      <mock-guidancelinks
+        links=""
+      />
       <mock-guidancetags
         deps="[object Object]"
       />
@@ -386,7 +390,7 @@ exports[`RuleResources renders with {
 }: GuidanceLinks props 1`] = `
 {
   "LinkComponent": [Function],
-  "links": null,
+  "links": [],
 }
 `;
 

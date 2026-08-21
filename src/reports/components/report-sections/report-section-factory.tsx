@@ -11,12 +11,15 @@ import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
+import { ExpandPassSectionParameter } from '../../package/accessibilityInsightsReport';
+import { IncompleteChecksSectionDeps } from './incomplete-checks-section';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
 
 export type SectionDeps = NotApplicableChecksSectionDeps &
     CommonInstancesSectionDeps &
-    PassedChecksSectionDeps;
+    PassedChecksSectionDeps &
+    IncompleteChecksSectionDeps;
 
 export type SectionProps = {
     deps: SectionDeps;
@@ -25,6 +28,7 @@ export type SectionProps = {
     description: string;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
+    getCopyToClipboardScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
     cardsViewData: CardsViewModel;
     cardSelectionMessageCreator?: CardSelectionMessageCreator;
@@ -32,11 +36,14 @@ export type SectionProps = {
     shouldAlertFailuresCount?: boolean;
     scanMetadata: ScanMetadata;
     sectionHeadingLevel: HeadingLevel;
+    feedbackURL?: string;
+    expandPassSectionDetails?: ExpandPassSectionParameter;
 };
 
 export const ResultSectionTypes = {
     failed: 'FailedInstancesSection',
     passed: 'PassedChecksSection',
+    incomplete: 'IncompleteChecksSection',
     notApplicable: 'NotApplicableChecksSection',
 };
 
@@ -51,6 +58,7 @@ export type ReportSectionFactory<SectionPropsType = SectionProps> = {
     ResultsContainer: ReactFCWithDisplayName<SectionPropsType>;
     FailedInstancesSection: ReactFCWithDisplayName<SectionPropsType>;
     PassedChecksSection: ReactFCWithDisplayName<SectionPropsType>;
+    IncompleteChecksSection?: ReactFCWithDisplayName<SectionPropsType>;
     NotApplicableChecksSection: ReactFCWithDisplayName<SectionPropsType>;
     FooterSection: ReactFCWithDisplayName;
     FooterText: ReactFCWithDisplayName<SectionPropsType>;

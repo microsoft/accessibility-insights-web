@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/colors.scss';
-@import '../../../common/styles/fonts.scss';
+@use '../../../common/styles/colors.scss';
+@use '../../../common/styles/fonts.scss';
 
 .rule-details-group {
     :global(.rule-detail) {
@@ -20,22 +20,22 @@
         }
 
         :global(.rule-details-id) {
-            font-weight: $font-weight-semi-bold;
-            color: $primary-text;
+            font-weight: fonts.$font-weight-semi-bold;
+            color: colors.$primary-text;
             word-break: break-all;
 
             a {
-                font-weight: $font-weight-semi-bold;
-                color: $primary-text !important;
+                font-weight: fonts.$font-weight-semi-bold;
+                color: colors.$primary-text !important;
             }
 
             strong {
-                font-weight: $font-weight-semi-bold;
+                font-weight: fonts.$font-weight-semi-bold;
             }
         }
 
         :global(.rule-detail-description) {
-            color: $secondary-text !important;
+            color: colors.$secondary-text !important;
             word-break: break-all;
         }
     }

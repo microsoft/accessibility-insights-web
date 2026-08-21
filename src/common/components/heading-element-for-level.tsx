@@ -24,7 +24,7 @@ export const HeadingElementForLevel = NamedFC<HeadingElementForLevelProps>(
     },
 );
 
-export const GetNextHeadingLevel = (headingLevel: HeadingLevel) => {
+export const getNextHeadingLevel = (headingLevel: HeadingLevel) => {
     const nextLevel = headingLevel + 1;
 
     if (nextLevel > 6) {
