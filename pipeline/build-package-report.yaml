@@ -14,9 +14,11 @@ resources:
 # SFI ES-4.2.4 (S360 pipeline def 43). Restores from the CFS feed using the build
 # identity, since it runs in the org that hosts the feed.
 #
-# The `Npm@1` publish at the end of build-package.template.yaml still targets public
-# npmjs, which CFSClean blocks. Moving that publish to ESRP Release is tracked
-# separately; until it lands, expect the publish step to be denied under this policy.
+# Publishing to public npmjs goes through ESRP Release rather than a direct `npm publish`,
+# which CFSClean blocks. Until ESRP Release onboarding lands the esrp* parameters below stay
+# empty: the pipeline builds, tests and packs the tarball and publishes it as a build
+# artifact, but does not release. See ESRP-RELEASE-ONBOARDING.md for the steps and the
+# values to fill in here.
 
 extends:
     template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
@@ -40,3 +42,12 @@ extends:
                   - template: pipeline/build-package.template.yaml@self
                     parameters:
                         suffix: report
+                        # Fill these in once ESRP Release onboarding is complete; see
+                        # ESRP-RELEASE-ONBOARDING.md. The release job is not compiled in
+                        # while esrpConnectedServiceName is empty.
+                        esrpConnectedServiceName: ''
+                        esrpKeyVaultName: ''
+                        esrpSignCertName: ''
+                        esrpClientId: ''
+                        esrpOwner: ''
+                        esrpApprover: ''

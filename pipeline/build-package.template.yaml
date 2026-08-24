@@ -11,8 +11,43 @@ parameters:
       type: string
       default: ''
 
+    # ESRP Release. Must be literal strings, not $(variables): resolved at compile time.
+    # The release job is only compiled in when esrpConnectedServiceName is set.
+    - name: esrpConnectedServiceName
+      type: string
+      default: ''
+
+    - name: esrpKeyVaultName
+      type: string
+      default: ''
+
+    - name: esrpSignCertName
+      type: string
+      default: ''
+
+    - name: esrpClientId
+      type: string
+      default: ''
+
+    # Individual aliases only; ESRP rejects DLs and SGs, and approver must differ from owner.
+    - name: esrpOwner
+      type: string
+      default: ''
+
+    - name: esrpApprover
+      type: string
+      default: ''
+
 jobs:
     - job: 'build_and_publish_package'
+
+      templateContext:
+          outputs:
+              - output: buildArtifacts
+                displayName: publish npm tarball
+                PathtoPublish: $(Build.ArtifactStagingDirectory)/npm-packages
+                ArtifactName: npm-package-${{ parameters.suffix }}
+                timeoutInMinutes: 5
 
       steps:
           - template: install-node-prerequisites.yaml
@@ -66,12 +101,50 @@ jobs:
           - script: yarn build:package:${{ parameters.suffix }}
             displayName: build:package:${{ parameters.suffix }}
 
-          # Temporarily disabled (SFI ES-4.2.4): publishing to public npmjs is blocked by the
-          # CFSClean policy on these pipelines, so this step fails every run. No package can be
-          # released until it is restored, which requires a publish path that policy allows.
-          #
-          # - task: Npm@1
-          #   inputs:
-          #       command: 'publish'
-          #       publishEndpoint: 'npmjs.com (accessibility-insights-team)'
-          #       workingDir: '$(System.DefaultWorkingDirectory)/packages/${{ parameters.suffix }}'
+          # npm pack, not yarn pack: same code path the previous npm publish used, so the
+          # tarball is unchanged. ESRP distributes prebuilt .tgz files, it does not build.
+          - script: |
+                set -euo pipefail
+                mkdir -p "$(Build.ArtifactStagingDirectory)/npm-packages"
+                npm pack --pack-destination "$(Build.ArtifactStagingDirectory)/npm-packages"
+                ls -l "$(Build.ArtifactStagingDirectory)/npm-packages"
+            displayName: pack accessibility-insights-${{ parameters.suffix }}
+            workingDirectory: $(System.DefaultWorkingDirectory)/packages/${{ parameters.suffix }}
+            timeoutInMinutes: 3
+
+    # EsrpRelease must be in a release job: 1ESPT injects Steps/DisallowReleaseSteps.yml into
+    # every agent job and blocks `esrprelease` there. Release jobs are exempt.
+    - ${{ if ne(parameters.esrpConnectedServiceName, '') }}:
+          - job: 'publish_package'
+            dependsOn: 'build_and_publish_package'
+
+            templateContext:
+                type: releaseJob
+                isProduction: true
+                inputs:
+                    - input: pipelineArtifact
+                      artifactName: npm-package-${{ parameters.suffix }}
+                      targetPath: $(Pipeline.Workspace)/npm-packages
+
+            steps:
+                # ESRP auto-approves; the package ships the moment this runs. Both pipelines
+                # are manual-trigger-only by design — do not add a CI or PR trigger.
+                - task: EsrpRelease@12
+                  displayName: publish accessibility-insights-${{ parameters.suffix }} to npmjs
+                  timeoutInMinutes: 20
+                  inputs:
+                      connectedservicename: ${{ parameters.esrpConnectedServiceName }}
+                      usemanagedidentity: true
+                      keyvaultname: ${{ parameters.esrpKeyVaultName }}
+                      signcertname: ${{ parameters.esrpSignCertName }}
+                      clientid: ${{ parameters.esrpClientId }}
+                      intent: PackageDistribution
+                      contenttype: npm
+                      contentsource: Folder
+                      folderlocation: $(Pipeline.Workspace)/npm-packages
+                      waitforreleasecompletion: true
+                      owners: ${{ parameters.esrpOwner }}
+                      approvers: ${{ parameters.esrpApprover }}
+                      serviceendpointurl: https://api.esrp.microsoft.com
+                      mainpublisher: ESRPRELPACMAN
+                      domaintenantid: 975f013f-7f24-47e8-a7d3-abc4752bf346 # PME
