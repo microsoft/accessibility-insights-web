@@ -3454,7 +3454,7 @@ __metadata:
     react-dom: ^18.3.1
     react-helmet-async: ^2.0.5
     react-resize-detector: ^9.1.1
-    react-router-dom: ^7.18.1
+    react-router-dom: ^7.18.2
     regenerator-runtime: ^0.14.1
     sass: ^1.100.0
     sass-loader: ^14.2.1
@@ -10967,21 +10967,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^7.18.1":
-  version: 7.18.1
-  resolution: "react-router-dom@npm:7.18.1::__archiveUrl=https%3A%2F%2Fms-feed-25.pkgs.visualstudio.com%2F1es-public%2F_packaging%2Fnpm-public%2Fnpm%2Fregistry%2Freact-router-dom%2F-%2Freact-router-dom-7.18.1.tgz"
+"react-router-dom@npm:^7.18.2":
+  version: 7.18.2
+  resolution: "react-router-dom@npm:7.18.2"
   dependencies:
-    react-router: 7.18.1
+    react-router: 7.18.2
   peerDependencies:
     react: ">=18"
     react-dom: ">=18"
-  checksum: af8d1a9fa477ffd2dbe20a6deba6d551a4263cff05a789cff217cc8c926a4760f251c4458238530ff9c778974275d223a90392a91c53bbc64a989a2f8ee3aaa7
+  checksum: 7e5443a1bfb84878af72ea87bd1890514008399d6098a4b578ddedb938c6c5495c40dc7d17de8eccd8b00839a12dae0d80daf09270176dbbffa3ca38a7a0cadd
   languageName: node
   linkType: hard
 
-"react-router@npm:7.18.1":
-  version: 7.18.1
-  resolution: "react-router@npm:7.18.1::__archiveUrl=https%3A%2F%2Fms-feed-25.pkgs.visualstudio.com%2F1es-public%2F_packaging%2Fnpm-public%2Fnpm%2Fregistry%2Freact-router%2F-%2Freact-router-7.18.1.tgz"
+"react-router@npm:7.18.2":
+  version: 7.18.2
+  resolution: "react-router@npm:7.18.2"
   dependencies:
     cookie: ^1.0.1
     set-cookie-parser: ^2.6.0
@@ -10991,7 +10991,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 797a6f873439d2c2a0887281b408e53ceb57ddf49aacac95a8f0db2d9b4c7d9345cf14d7716b6b91830409ac27af5f8065407ea1cf0371ec0b1041d0aef2d230
+  checksum: 945d24fd3ec7f113f384fde00463fd75b7f1cf5bf76fc2cd1f46cfc2c5610516c538ec55f9294d11a72988179949ed1b8470e4b2571d4b7031016f83c55f51cc
   languageName: node
   linkType: hard
 

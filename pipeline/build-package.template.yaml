@@ -5,8 +5,8 @@ parameters:
       type: string
 
     # Passed through to install-node-prerequisites.yaml. This template is used by the
-    # package release pipelines, which restore from the CFS feed but deliberately do not
-    # run under CFSClean, since they publish to public npmjs.
+    # package release pipelines, which restore from the CFS feed and run under the
+    # SFI ES-4.2.4 CFSClean policy set by their wrappers.
     - name: azureSubscription
       type: string
       default: ''
@@ -66,8 +66,12 @@ jobs:
           - script: yarn build:package:${{ parameters.suffix }}
             displayName: build:package:${{ parameters.suffix }}
 
-          - task: Npm@1
-            inputs:
-                command: 'publish'
-                publishEndpoint: 'npmjs.com (accessibility-insights-team)'
-                workingDir: '$(System.DefaultWorkingDirectory)/packages/${{ parameters.suffix }}'
+          # Temporarily disabled (SFI ES-4.2.4): publishing to public npmjs is blocked by the
+          # CFSClean policy on these pipelines, so this step fails every run. No package can be
+          # released until it is restored, which requires a publish path that policy allows.
+          #
+          # - task: Npm@1
+          #   inputs:
+          #       command: 'publish'
+          #       publishEndpoint: 'npmjs.com (accessibility-insights-team)'
+          #       workingDir: '$(System.DefaultWorkingDirectory)/packages/${{ parameters.suffix }}'
