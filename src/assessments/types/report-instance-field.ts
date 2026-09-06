@@ -64,6 +64,7 @@ const common: { [key in CommonReportInstanceFieldKey]: ReportInstanceField } = {
 };
 
 function isValid(value: ColumnValue): ColumnValue {
+    console.log('valid??', isValid);
     if (!value) {
         return false;
     }

@@ -409,6 +409,7 @@ export class AssessmentStore extends PersistentStore<AssessmentStoreData> {
                 stepConfig.getInstanceStatus,
                 stepConfig.isVisualizationSupportedForResult,
                 getIncludedAlwaysRules,
+                stepConfig.generatePropertyBagFrom,
             );
         assessmentData.generatedAssessmentInstancesMap = generatedAssessmentInstancesMap;
         assessmentData.testStepStatus[step].isStepScanned = true;
