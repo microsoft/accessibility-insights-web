@@ -305,7 +305,7 @@ exports[`Assessment JSON export builder export JSON matches snapshot 1`] = `
         },
         {
           "requirementKey": "missingHeadings",
-          "requirementDescription": "Text that looks like a heading must be coded as a heading"
+          "requirementDescription": "Text that labels a section of the page must be coded as a heading"
         },
         {
           "requirementKey": "headingLevel",
@@ -732,7 +732,7 @@ exports[`Assessment JSON export builder export JSON matches snapshot 1`] = `
         },
         {
           "requirementKey": "missingHeadings",
-          "requirementDescription": "Text that looks like a heading must be coded as a heading"
+          "requirementDescription": "Text that labels a section of the page must be coded as a heading"
         },
         {
           "requirementKey": "bypassBlocks",

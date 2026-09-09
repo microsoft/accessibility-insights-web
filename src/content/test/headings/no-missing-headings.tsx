@@ -11,7 +11,7 @@ export const whyItMatters = create(() => (
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <p>Text that looks like a heading must be coded as a heading.</p>
+        <p>Text that labels a section of the page must be coded as a heading.</p>
         <h2>Why it matters</h2>
         <p>
             People with good vision can quickly scan a page to identify headings based solely on their appearance, such as large or bold
