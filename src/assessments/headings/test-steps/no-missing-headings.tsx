@@ -15,7 +15,7 @@ import { HeadingsTestStep } from './test-steps';
 
 const missingHeadingsDescription: JSX.Element = (
     <span>
-        Text that <Markup.Emphasis>looks like</Markup.Emphasis> a heading must be{' '}
+        Text that <Markup.Emphasis>labels a section of the page</Markup.Emphasis> must be{' '}
         <Markup.Emphasis>coded</Markup.Emphasis> as a heading.
     </span>
 );
@@ -26,7 +26,7 @@ const missingHeadingsHowToTest: JSX.Element = (
         <ol>
             <li>
                 Examine the target page to verify that each element that{' '}
-                <Markup.Emphasis>looks like a</Markup.Emphasis> heading is{' '}
+                <Markup.Emphasis>labels a section of the page</Markup.Emphasis> is{' '}
                 <Markup.Emphasis>coded</Markup.Emphasis> as a heading (highlighted).
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
