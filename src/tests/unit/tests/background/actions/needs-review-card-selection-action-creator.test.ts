@@ -14,7 +14,7 @@ import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
 import { VisualizationType } from 'common/types/visualization-type';
 import { MockInterpreter } from 'tests/unit/tests/background/global-action-creators/mock-interpreter';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 import { createAsyncActionMock } from '../global-action-creators/action-creator-test-helpers';
 
@@ -139,6 +139,37 @@ describe('NeedsReviewCardSelectionActionCreator', () => {
             tabId,
         );
         visualizationActionsMock.verify(actions => actions['disableVisualization'], Times.once());
+    });
+
+    test('onToggleVisualHelper with null payload only toggles visual helper', async () => {
+        const toggleVisualHelperMock = createAsyncActionMock(null);
+        const actionsMock = createNeedsReviewActionsMock(
+            'toggleVisualHelper',
+            toggleVisualHelperMock.object,
+        );
+
+        const testSubject = new NeedsReviewCardSelectionActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            visualizationActionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        await interpreterMock.simulateMessage(
+            Messages.NeedsReviewCardSelection.ToggleVisualHelper,
+            null,
+            tabId,
+        );
+
+        toggleVisualHelperMock.verifyAll();
+        visualizationActionsMock.verify(actions => actions['enableVisualization'], Times.never());
+        visualizationActionsMock.verify(actions => actions['disableVisualization'], Times.never());
+        telemetryEventHandlerMock.verify(
+            handler => handler.publishTelemetry(It.isAny(), It.isAny()),
+            Times.never(),
+        );
     });
 
     test('onCollapseAllRules', async () => {
