@@ -1,0 +1,29 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Target size</title>
+    </head>
+
+    <body role="main">
+        <h1>Target Size Rule Example Controls</h1>
+
+            <h2>Failing - Size - Partially Obscured, Offset - Default</h2>
+
+            <a href="#" class="target" style="width: 24px; height: 24px; display: inline-block">
+                a
+            </a>
+            <a
+                href="#"
+                class="ignore"
+                style="width: 24px; height: 24px; display: inline; margin-left: -10px"
+                >b</a
+            >
+
+        </div>
+    </body>
+</html>
