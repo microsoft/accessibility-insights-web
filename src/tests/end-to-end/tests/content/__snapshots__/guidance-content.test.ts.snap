@@ -13300,7 +13300,7 @@ exports[`Guidance Content pages test/headings/noMissingHeadings matches the snap
       class="content"
     >
       <p>
-        Text that looks like a heading must be coded as a heading.
+        Text that labels a section of the page must be coded as a heading.
       </p>
       <h2>
         Why it matters
