@@ -198,6 +198,7 @@ describe('AppInsights telemetry client tests', () => {
             )
             .returns(callback => {
                 addTelemetryInitializerCallback = callback;
+                return {} as any;
             })
             .verifiable(Times.once());
     }
