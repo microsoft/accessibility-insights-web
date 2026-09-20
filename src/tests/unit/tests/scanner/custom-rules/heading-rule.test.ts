@@ -48,6 +48,48 @@ describe('HeadingRule', () => {
         });
     });
 
+    describe('evaluateCodedHeadings when innerText is empty', () => {
+        it('should fall back to accessible name from img alt', () => {
+            const heading = document.createElement('h3');
+            const img = document.createElement('img');
+            img.setAttribute('alt', 'Product photo');
+            heading.appendChild(img);
+            document.body.appendChild(heading);
+
+            const dataSetter = jest.fn();
+            headingConfiguration.checks[0].evaluate.call({ data: dataSetter }, heading);
+
+            expect(dataSetter).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    headingLevel: 3,
+                    headingText: 'Product photo',
+                }),
+            );
+
+            heading.remove();
+        });
+
+        it('should fall back to aria-label when innerText is empty', () => {
+            const heading = document.createElement('div');
+            heading.setAttribute('role', 'heading');
+            heading.setAttribute('aria-level', '2');
+            heading.setAttribute('aria-label', 'Section title');
+            document.body.appendChild(heading);
+
+            const dataSetter = jest.fn();
+            headingConfiguration.checks[0].evaluate.call({ data: dataSetter }, heading);
+
+            expect(dataSetter).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    headingLevel: 2,
+                    headingText: 'Section title',
+                }),
+            );
+
+            heading.remove();
+        });
+    });
+
     describe('selector', () => {
         it('should return true for all elements with h tag', () => {
             const selector = headingConfiguration.rule.selector;

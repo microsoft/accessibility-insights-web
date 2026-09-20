@@ -139,6 +139,54 @@ describe('HeadingFormatterTests', () => {
         expect(config.showVisualization).toBe(false);
     });
 
+    test('verifyShowHeadingWithImgAltAndNoInnerText', () => {
+        const headingElement = createEmptyHeading(`<h3><img alt="Product photo" /></h3>`);
+        const config = testSubject.getDrawerConfiguration(headingElement, null);
+
+        expect(config.showVisualization).toBe(true);
+        expect(config.textBoxConfig.text).toBe('H3');
+    });
+
+    test('verifyShowHeadingWithAriaLabelAndNoInnerText', () => {
+        const headingElement = createEmptyHeading(`<h2 aria-label="Section title"></h2>`);
+        const config = testSubject.getDrawerConfiguration(headingElement, null);
+
+        expect(config.showVisualization).toBe(true);
+        expect(config.textBoxConfig.text).toBe('H2');
+    });
+
+    test('verifyShowHeadingWhenCollectedHeadingTextHasAccessibleName', () => {
+        const headingElement = createEmptyHeading(`<h1></h1>`);
+        const data = {
+            ruleResults: {
+                'collect-headings': {
+                    any: [
+                        {
+                            id: 'collect-headings',
+                            data: { headingLevel: 1, headingText: 'Slotted title' },
+                        },
+                    ],
+                },
+            },
+        } as any;
+
+        const config = testSubject.getDrawerConfiguration(headingElement, data);
+
+        expect(config.showVisualization).toBe(true);
+        expect(config.textBoxConfig.text).toBe('H1');
+    });
+
+    test('verifyShowHeadingWhenPropertyBagHasAccessibleName', () => {
+        const headingElement = createEmptyHeading(`<h1></h1>`);
+        const data = {
+            propertyBag: { headingLevel: 1, headingText: 'From property bag' },
+        } as any;
+
+        const config = testSubject.getDrawerConfiguration(headingElement, data);
+
+        expect(config.showVisualization).toBe(true);
+    });
+
     test('verifyHideHiddenHeading', () => {
         const headingElement = createHeadingWithInnerText(`<h1 hidden="true">HEADING</h1>`);
         const formatter = new HeadingFormatter(createDisplayNoneStyleComputer());
