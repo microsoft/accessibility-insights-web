@@ -56,6 +56,18 @@ describe('unique-landmark', () => {
                 expect(result).toEqual(true);
             });
 
+            it(`should match because it is a ${elementType} with an aria-labelledby label`, () => {
+                fixture.innerHTML = `
+                    <h2 id="${elementType}-label" style="display:none">sample label</h2>
+                    <${elementType} aria-labelledby="${elementType}-label">some ${elementType}</${elementType}>
+                `;
+                const node = fixture.querySelector(`${elementType}`);
+                const result = withAxeSetup(() =>
+                    uniqueLandmarkConfiguration.rule.matches(node, null),
+                );
+                expect(result).toEqual(true);
+            });
+
             it(`should not match because it is a ${elementType} without a label`, () => {
                 fixture.innerHTML = `<${elementType}>some ${elementType}</${elementType}>`;
                 const node = fixture.querySelector(`${elementType}`);

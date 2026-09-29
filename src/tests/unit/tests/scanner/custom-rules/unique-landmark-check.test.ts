@@ -59,6 +59,39 @@ describe('axe.Check: unique-landmark', () => {
         });
     });
 
+    it('set role & label for landmark with aria-labelledby referencing screen-reader text', () => {
+        fixture.innerHTML = `
+            <h2 id="nav-heading" style="display:none">navigation landmark</h2>
+            <nav id="landmark1" aria-labelledby="nav-heading">
+                <ul><li><a href="#">Link</a></li></ul>
+            </nav>
+            `;
+        axe.setup(fixture);
+
+        const node = fixture.querySelector('#landmark1');
+        expectCheckTrue(node);
+        expect(checkContext._data).toEqual({
+            role: 'navigation',
+            label: 'navigation landmark',
+        });
+    });
+
+    it('set role & null label for landmark without label', () => {
+        fixture.innerHTML = `
+            <nav id="landmark1">
+                <ul><li><a href="#">Link</a></li></ul>
+            </nav>
+            `;
+        axe.setup(fixture);
+
+        const node = fixture.querySelector('#landmark1');
+        expectCheckTrue(node);
+        expect(checkContext._data).toEqual({
+            role: 'navigation',
+            label: null,
+        });
+    });
+
     it('should exclude hidden landmarks for unique check', () => {
         fixture.innerHTML = `
             <div role="banner" id="landmark1" style="display:none">landmark1</div>
@@ -90,6 +123,35 @@ describe('axe.Check: unique-landmark', () => {
         });
 
         it('false for duplicate landmark', () => {
+            expectCheckFalse(duplicateLandmark1);
+            expectCheckFalse(duplicateLandmark2);
+        });
+
+        it('true for unique landmark', () => {
+            expectCheckTrue(uniqueLandmark);
+        });
+    });
+
+    describe('duplicate label validation with aria-labelledby', () => {
+        let duplicateLandmark1: Element;
+        let duplicateLandmark2: Element;
+        let uniqueLandmark: Element;
+
+        beforeEach(() => {
+            fixture.innerHTML = `
+            <div id="duplicate-heading" style="display:none">duplicate</div>
+            <div role="banner" id="landmark1" aria-labelledby="duplicate-heading">landmark1</div>
+            <div role="banner" id="landmark2" aria-label="duplicate">landmark2</div>
+            <div role="banner" id="landmark3" aria-label="some other landmark">landmark3</div>
+            `;
+
+            axe.setup(fixture);
+            duplicateLandmark1 = fixture.querySelector('#landmark1');
+            duplicateLandmark2 = fixture.querySelector('#landmark2');
+            uniqueLandmark = fixture.querySelector('#landmark3');
+        });
+
+        it('false for duplicate landmark using aria-labelledby and aria-label', () => {
             expectCheckFalse(duplicateLandmark1);
             expectCheckFalse(duplicateLandmark2);
         });

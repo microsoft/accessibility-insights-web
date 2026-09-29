@@ -75,7 +75,7 @@ function getObservedRoleForElement(element: any): any {
                 parent = parent.parentNode;
             }
         } else if (tagName === 'section' || tagName === 'form') {
-            const label = axe.commons.aria.label(element);
+            const label = getLandmarkLabel(element);
             if (!label) {
                 role = null;
             }
@@ -87,13 +87,40 @@ function getObservedRoleForElement(element: any): any {
     return role;
 }
 
+function getLandmarkLabel(element: any): string | null {
+    if (!element || typeof element.hasAttribute !== 'function') {
+        return null;
+    }
+    if (!element.hasAttribute('aria-label') && !element.hasAttribute('aria-labelledby')) {
+        return null;
+    }
+    try {
+        const accessibleText: string = axe.commons.text.accessibleText(element);
+        if (accessibleText && accessibleText.trim().length > 0) {
+            return accessibleText.trim();
+        }
+    } catch {
+        // Fallback to axe.commons.aria.label if accessibleText throws
+    }
+    try {
+        const label: string = axe.commons.aria.label(element);
+        if (label && label.trim().length > 0) {
+            return label.trim();
+        }
+    } catch {
+        // Fallback to direct aria-label attribute
+    }
+    const ariaLabel = element.getAttribute('aria-label');
+    return ariaLabel && ariaLabel.trim().length > 0 ? ariaLabel.trim() : null;
+}
+
 function evaluate(node: any, options: any): boolean {
     if (isLandmark(node) === false) {
         return false;
     }
 
     const role = getObservedRoleForElement(node);
-    let label = axe.commons.aria.label(node);
+    let label = getLandmarkLabel(node);
     let candidates: Array<any> = [];
     const selectors = getRoleSelectors(role);
     const selectorsLength = selectors.length;
@@ -114,7 +141,7 @@ function evaluate(node: any, options: any): boolean {
                 isLandmark(candidate) &&
                 axe.commons.dom.isVisible(candidate, true)
             ) {
-                let candidateLabel = axe.commons.aria.label(candidate);
+                let candidateLabel = getLandmarkLabel(candidate);
                 candidateLabel = candidateLabel ? candidateLabel.toLowerCase() : null;
                 if (label === candidateLabel) {
                     return false;
