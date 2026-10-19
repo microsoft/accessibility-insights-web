@@ -61,6 +61,7 @@ export const needsReviewRules = [
     'th-has-data-cells',
     'label-content-name-mismatch',
     'p-as-heading',
+    'target-size',
 ];
 
 export const getNeedsReviewRulesConfig: () => DictionaryStringTo<RuleIncluded> = () => {

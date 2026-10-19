@@ -74,6 +74,7 @@ describe('SelfFastPass', () => {
                             'th-has-data-cells',
                             'label-content-name-mismatch',
                             'p-as-heading',
+                            'target-size',
                         ],
                     },
                     It.isAny(),
