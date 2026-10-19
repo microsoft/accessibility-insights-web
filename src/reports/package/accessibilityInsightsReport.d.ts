@@ -14,7 +14,8 @@ declare namespace AccessibilityInsightsReport {
     export type AxeReportParameters = {
         results: axe.AxeResults,
         description: string;
-        serviceName: string;
+        serviceName?: string;
+        serviceVersion?: string;
         scanContext: ScanContext;
         feedbackURL?: string;
         expandPassSectionDetails?: ExpandPassSectionParameter;
@@ -48,7 +49,8 @@ declare namespace AccessibilityInsightsReport {
     };
 
     export type SummaryReportParameters = {
-        serviceName: string,
+        serviceName?: string,
+        serviceVersion?: string,
         axeVersion: string,
         userAgent: string,
         browserResolution: string,
@@ -121,7 +123,8 @@ declare namespace AccessibilityInsightsReport {
     }
 
     export type CombinedReportParameters = {
-        serviceName: string,
+        serviceName?: string,
+        serviceVersion?: string,
         axeVersion: string,
         userAgent: string,
         browserResolution: string,
