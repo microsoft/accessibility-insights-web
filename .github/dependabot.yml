@@ -79,3 +79,5 @@ updates:
     interval: daily
     time: "08:30"  # UTC
   open-pull-requests-limit: 0  # paused, see note above
+  cooldown:
+    default-days: 7
