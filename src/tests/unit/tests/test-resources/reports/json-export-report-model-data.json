@@ -3866,12 +3866,12 @@
                                         "key": null,
                                         "ref": null,
                                         "props": {
-                                            "children": "looks like"
+                                            "children": "labels a section of the page"
                                         },
                                         "_owner": null,
                                         "_store": {}
                                     },
-                                    " a heading must be",
+                                    " must be",
                                     " ",
                                     {
                                         "key": null,
