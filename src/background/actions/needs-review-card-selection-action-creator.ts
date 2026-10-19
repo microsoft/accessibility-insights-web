@@ -72,14 +72,16 @@ export class NeedsReviewCardSelectionActionCreator {
         );
     };
 
-    private onToggleVisualHelper = async (payload: VisualizationTogglePayload): Promise<void> => {
+    private onToggleVisualHelper = async (payload: VisualizationTogglePayload | null): Promise<void> => {
         await this.needsReviewCardSelectionActions.toggleVisualHelper.invoke(null);
-        if (payload.enabled) {
-            await this.visualizationActions.disableVisualization.invoke(payload.test);
-        } else {
-            await this.visualizationActions.enableVisualization.invoke(payload);
+        if (payload && payload.enabled !== undefined && payload.test !== undefined) {
+            if (payload.enabled) {
+                await this.visualizationActions.disableVisualization.invoke(payload.test);
+            } else {
+                await this.visualizationActions.enableVisualization.invoke(payload);
+            }
+            this.telemetryEventHandler.publishTelemetry(TelemetryEvents.VISUAL_HELPER_TOGGLED, payload);
         }
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.VISUAL_HELPER_TOGGLED, payload);
     };
 
     private onCollapseAllRules = async (payload: BaseActionPayload): Promise<void> => {
