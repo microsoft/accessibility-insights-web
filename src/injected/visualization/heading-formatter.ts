@@ -15,6 +15,11 @@ export interface StyleComputer {
     getComputedStyle(elt: Element, pseudoElt?: string): CSSStyleDeclaration;
 }
 
+interface HeadingScanData {
+    propertyBag?: { headingText?: string };
+    ruleResults?: Record<string, { any?: Array<{ data?: { headingText?: string } }> }>;
+}
+
 export class HeadingFormatter extends FailureInstanceFormatter {
     private styleComputer: StyleComputer;
 
@@ -78,7 +83,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
             textAlign: 'center',
         };
 
-        if (!element.innerText) {
+        if (!this.hasContentToShow(element, data)) {
             drawerConfig.showVisualization = false;
         }
 
@@ -102,6 +107,84 @@ export class HeadingFormatter extends FailureInstanceFormatter {
 
     private isHTag(element: HTMLElement): boolean {
         return element.matches('h1,h2,h3,h4,h5,h6');
+    }
+
+    // Headings can have an accessible name without innerText (img alt, aria-*, slotted shadow content)
+    private hasContentToShow(
+        element: HTMLElement,
+        data?: AssessmentVisualizationInstance,
+    ): boolean {
+        if (element.innerText) {
+            return true;
+        }
+
+        if (this.getCollectedHeadingText(data)) {
+            return true;
+        }
+
+        return this.getDomAccessibleText(element) !== '';
+    }
+
+    private getCollectedHeadingText(data?: AssessmentVisualizationInstance): string {
+        if (data == null) {
+            return '';
+        }
+
+        const scanData = data as Partial<HeadingScanData>;
+        const propertyBagHeadingText = scanData.propertyBag?.headingText;
+        if (propertyBagHeadingText) {
+            return propertyBagHeadingText;
+        }
+
+        const ruleResults = scanData.ruleResults;
+        if (ruleResults == null) {
+            return '';
+        }
+
+        for (const ruleId of Object.keys(ruleResults)) {
+            const checks = ruleResults[ruleId]?.any;
+            if (!Array.isArray(checks)) {
+                continue;
+            }
+            for (const check of checks) {
+                const headingText = check?.data?.headingText;
+                if (typeof headingText === 'string' && headingText !== '') {
+                    return headingText;
+                }
+            }
+        }
+
+        return '';
+    }
+
+    private getDomAccessibleText(element: HTMLElement): string {
+        const ariaLabel = element.getAttribute('aria-label');
+        if (ariaLabel && ariaLabel.trim()) {
+            return ariaLabel.trim();
+        }
+
+        const labelledBy = element.getAttribute('aria-labelledby');
+        if (labelledBy) {
+            const doc = element.ownerDocument;
+            const label = labelledBy
+                .split(/\s+/)
+                .map(id => doc?.getElementById(id)?.textContent?.trim() ?? '')
+                .filter(text => text.length > 0)
+                .join(' ')
+                .trim();
+            if (label) {
+                return label;
+            }
+        }
+
+        const imgAlts = Array.from(element.querySelectorAll('img[alt]'))
+            .map(img => img.getAttribute('alt')?.trim() ?? '')
+            .filter(alt => alt.length > 0);
+        if (imgAlts.length > 0) {
+            return imgAlts.join(' ');
+        }
+
+        return (element.textContent ?? '').trim();
     }
 
     private getHTagLevel(element: HTMLElement): string {
