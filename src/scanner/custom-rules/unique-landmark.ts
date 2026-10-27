@@ -58,6 +58,25 @@ function getRoleSelectors(roleId: any): any[] {
     return selectors;
 }
 
+function getLandmarkName(element: any): string | null {
+    const fromAria = axe.commons.aria.label(element);
+    if (fromAria) {
+        return fromAria;
+    }
+    // aria-labelledby to visually-hidden text: aria.label can be null while accname is not (#7761)
+    if (
+        typeof element.getAttribute === 'function' &&
+        (element.getAttribute('aria-labelledby') || element.getAttribute('aria-label'))
+    ) {
+        try {
+            return axe.commons.text.accessibleText(element) || null;
+        } catch {
+            return null;
+        }
+    }
+    return null;
+}
+
 function getObservedRoleForElement(element: any): any {
     let role = element.getAttribute('role');
     role = role ? role.trim() : role;
@@ -75,7 +94,7 @@ function getObservedRoleForElement(element: any): any {
                 parent = parent.parentNode;
             }
         } else if (tagName === 'section' || tagName === 'form') {
-            const label = axe.commons.aria.label(element);
+            const label = getLandmarkName(element);
             if (!label) {
                 role = null;
             }
@@ -93,7 +112,7 @@ function evaluate(node: any, options: any): boolean {
     }
 
     const role = getObservedRoleForElement(node);
-    let label = axe.commons.aria.label(node);
+    let label = getLandmarkName(node);
     let candidates: Array<any> = [];
     const selectors = getRoleSelectors(role);
     const selectorsLength = selectors.length;
@@ -114,7 +133,7 @@ function evaluate(node: any, options: any): boolean {
                 isLandmark(candidate) &&
                 axe.commons.dom.isVisible(candidate, true)
             ) {
-                let candidateLabel = axe.commons.aria.label(candidate);
+                let candidateLabel = getLandmarkName(candidate);
                 candidateLabel = candidateLabel ? candidateLabel.toLowerCase() : null;
                 if (label === candidateLabel) {
                     return false;
