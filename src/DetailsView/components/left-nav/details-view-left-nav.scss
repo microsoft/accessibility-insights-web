@@ -85,12 +85,38 @@
                             color: HighlightText !important;
                         }
                     }
+
+                    @media (forced-colors: active) {
+                        forced-color-adjust: none;
+                        background-color: Highlight !important;
+                        color: HighlightText !important;
+                    }
                 }
 
                 a::after,
                 button::after {
                     border-left: common.$pivot-item-left-border-width
                         common.$pivot-item-border-style colors.$communication-primary;
+
+                    @media (forced-colors: active) {
+                        forced-color-adjust: none;
+                        border-left-color: Highlight !important;
+                        border-left-width: 4px !important;
+                    }
+                }
+            }
+
+            &:not(.is-selected) {
+                a:hover,
+                button:hover,
+                a:focus,
+                button:focus {
+                    @media (forced-colors: active) {
+                        forced-color-adjust: none;
+                        outline: 2px solid Highlight !important;
+                        outline-offset: -2px;
+                        color: HighlightText !important;
+                    }
                 }
             }
         }
