@@ -22,7 +22,8 @@ export const headingConfiguration: RuleConfiguration = {
 };
 
 function evaluateCodedHeadings(node: HTMLElement, options: any): boolean {
-    const headingText: string = node.innerText;
+    // innerText misses accessible names from img alt / aria-* / slotted shadow content (#7579 #7697 #7812)
+    const headingText: string = node.innerText || getHeadingAccessibleText(node);
     let headingLevel: number | undefined;
     const ariaHeadingLevel: string | null = node.getAttribute('aria-level');
     if (ariaHeadingLevel !== null) {
@@ -40,4 +41,18 @@ function evaluateCodedHeadings(node: HTMLElement, options: any): boolean {
     // tslint:disable-next-line: no-invalid-this
     this.data(headingResultData);
     return true;
+}
+
+function getHeadingAccessibleText(node: HTMLElement): string {
+    try {
+        // During an axe scan, commons APIs work without an extra setup call.
+        return AxeUtils.getAccessibleText(node) || '';
+    } catch {
+        // Outside a scan (unit tests), set up axe temporarily.
+    }
+    try {
+        return AxeUtils.withAxeSetup(() => AxeUtils.getAccessibleText(node)) || '';
+    } catch {
+        return '';
+    }
 }
