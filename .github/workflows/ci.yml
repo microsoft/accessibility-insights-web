@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v6
+    - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -36,7 +36,7 @@ jobs:
       timeout-minutes: 10
 
     - name: upload artifact build-results
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       with:
         name: build-results
         path: drop
@@ -52,10 +52,10 @@ jobs:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v6
+    - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -70,7 +70,7 @@ jobs:
       timeout-minutes: 10
 
     - name: upload artifact unit-tests-results
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       if: ${{ always() }}
       with:
         name: unit-tests-${{ matrix.shard-index }}-results
@@ -83,10 +83,10 @@ jobs:
     runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v6
+    - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -117,16 +117,16 @@ jobs:
   codeql:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       timeout-minutes: 2
 
-    - uses: github/codeql-action/init@v3
+    - uses: github/codeql-action/init@f3712979fa5f215279b101dd0a2e3bdfb4353324 # v3.37.7
       timeout-minutes: 2
       with:
         trap-caching: false
         languages: javascript
     
-    - uses: github/codeql-action/analyze@v3
+    - uses: github/codeql-action/analyze@f3712979fa5f215279b101dd0a2e3bdfb4353324 # v3.37.7
       timeout-minutes: 10
 
   e2e-web-tests:
@@ -140,10 +140,10 @@ jobs:
         shard-index: [1, 2]
 
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v6
+    - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
       with:
         node-version: "${{ env.NODE_VERSION }}"
         # Intentionally omitting caching; it would need a separate, larger
@@ -169,7 +169,7 @@ jobs:
       timeout-minutes: 10
 
     - name: upload artifact e2e-web-tests-results
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       if: ${{ always() }}
       with:
         name: e2e-web-tests-${{ matrix.shard-index }}-results
@@ -177,7 +177,7 @@ jobs:
       timeout-minutes: 3
 
     - name: upload artifact e2e-web-tests-debug-logs
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       if: ${{ failure() }}
       with:
         name: e2e-web-tests-${{ matrix.shard-index }}-debug-logs
@@ -190,10 +190,10 @@ jobs:
     runs-on: ubuntu-22.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       timeout-minutes: 2
 
-    - uses: actions/setup-node@v6
+    - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
       with:
         node-version: "${{ env.NODE_VERSION }}"
         cache: yarn
@@ -209,7 +209,7 @@ jobs:
       timeout-minutes: 5
 
     - name: upload artifact e2e-report-tests-results
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
       if: ${{ always() }}
       with:
         name: e2e-report-tests-results
@@ -219,7 +219,7 @@ jobs:
   check-clearly-defined:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       timeout-minutes: 2
 
     - name: Check ClearlyDefined for dependabot PR's
